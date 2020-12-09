@@ -1,13 +1,13 @@
 import React from 'react'
 import { Modal, Button } from '@toptal/picasso'
-import { useModals } from '@toptal/picasso/utils'
+import { useModal } from '@toptal/picasso/utils'
 
 const ModalDialog = ({
-  modalId,
-  hideModal
+  open,
+  onClose
 }: {
-  modalId: string
-  hideModal: (modalId: string) => void
+  open: boolean
+  onClose: () => void
 }) => {
   const container = document.getElementById('modal-container')!
 
@@ -15,9 +15,9 @@ const ModalDialog = ({
     <Modal
       container={() => container}
       onBackdropClick={() => console.log('Clicked backdrop..')}
-      onClose={() => hideModal(modalId)}
+      onClose={onClose}
       onOpen={() => console.log('onOpen()')}
-      open
+      open={open}
       transitionDuration={0} // Only for demo purposes, should not be used
     >
       <Modal.Title>A lot of data</Modal.Title>
@@ -100,11 +100,7 @@ const ModalDialog = ({
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </Modal.Content>
       <Modal.Actions>
-        <Button
-          data-testid='cancel'
-          variant='flat'
-          onClick={() => hideModal(modalId)}
-        >
+        <Button data-testid='cancel' variant='secondary' onClick={onClose}>
           Cancel
         </Button>
       </Modal.Actions>
@@ -113,19 +109,14 @@ const ModalDialog = ({
 }
 
 const Example = () => {
-  const { showModal, hideModal } = useModals()
-
-  const handleClick = () => {
-    const modalId = showModal(() => (
-      <ModalDialog modalId={modalId} hideModal={hideModal} />
-    ))
-  }
+  const { showModal, hideModal, isOpen } = useModal()
 
   return (
     <div id='modal-container'>
-      <Button data-testid='trigger' onClick={handleClick}>
+      <Button data-testid='trigger' onClick={showModal}>
         Open
       </Button>
+      <ModalDialog open={isOpen} onClose={hideModal} />
     </div>
   )
 }

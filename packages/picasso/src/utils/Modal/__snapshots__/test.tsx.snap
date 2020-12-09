@@ -14,7 +14,8 @@ exports[`useModal opens and closes modal 1`] = `
     >
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -52,7 +53,8 @@ exports[`useModal opens and closes modal 1`] = `
               Modal content
             </p>
             <button
-              class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+              class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+              data-component-type="button"
               tabindex="0"
               type="button"
             >
@@ -87,7 +89,8 @@ exports[`useModal opens and closes modal 2`] = `
       style=""
     >
       <button
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -116,7 +119,8 @@ exports[`useModal shows multiple modals at the same time 1`] = `
     >
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -128,7 +132,8 @@ exports[`useModal shows multiple modals at the same time 1`] = `
       </button>
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >

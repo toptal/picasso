@@ -28,7 +28,7 @@ const Summary = ({
     </Typography>
     <Container>
       <Button
-        variant='flat'
+        variant='secondary'
         icon={
           <Transitions.Rotate180 on={expanded}>
             <ArrowDownMinor16 />
@@ -38,14 +38,14 @@ const Summary = ({
       >
         {expanded ? 'Hide' : 'Show'}
       </Button>
-      <Button variant='transparent' icon={<Drag16 />} />
+      <Button.Circular variant='flat' icon={<Drag16 />} />
     </Container>
   </Container>
 )
 
 const InterviewCard = () => (
   <Container
-    style={{ flex: 1, border: `1px solid ${palette.grey.light}` }}
+    style={{ flex: 1, border: `1px solid ${palette.grey.light2}` }}
     flex
   >
     <Container
@@ -69,7 +69,7 @@ const InterviewCard = () => (
     <div
       style={{
         width: '1px',
-        backgroundColor: palette.grey.light,
+        backgroundColor: palette.grey.light2,
         margin: '1.5em 0'
       }}
     />
@@ -144,7 +144,7 @@ const Example = () => {
       <Accordion
         content={<InterviewCard />}
         expanded={expanded}
-        bordered={false}
+        borders='none'
       />
     </div>
   )

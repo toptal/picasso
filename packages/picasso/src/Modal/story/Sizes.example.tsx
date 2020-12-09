@@ -9,7 +9,7 @@ import {
   Container,
   ModalProps
 } from '@toptal/picasso'
-import { useModals } from '@toptal/picasso/utils'
+import { useModal } from '@toptal/picasso/utils'
 
 const STATES = [
   {
@@ -23,18 +23,18 @@ const STATES = [
 ]
 
 const ModalDialog = ({
-  modalId,
-  hideModal,
+  open,
+  onClose,
   size
 }: {
-  modalId: string
-  hideModal: (modalId: string) => void
-  size?: ModalProps['size']
+  open: boolean
+  onClose: () => void
+  size: ModalProps['size']
 }) => (
   <Modal
-    open
+    open={open}
     size={size}
-    onClose={() => hideModal(modalId)}
+    onClose={onClose}
     container={() => document.getElementById('modal-container-sizes')!} // Only for demo purposes
     transitionDuration={0} // Only for demo purposes, should not be used
   >
@@ -54,14 +54,10 @@ const ModalDialog = ({
       </Form.Field>
     </Modal.Content>
     <Modal.Actions>
-      <Button
-        data-testid='cancel'
-        variant='flat'
-        onClick={() => hideModal(modalId)}
-      >
+      <Button data-testid='cancel' variant='secondary' onClick={onClose}>
         Cancel
       </Button>
-      <Button onClick={() => hideModal(modalId)} variant='primary-green'>
+      <Button onClick={onClose} variant='positive'>
         Update
       </Button>
     </Modal.Actions>
@@ -69,50 +65,57 @@ const ModalDialog = ({
 )
 
 const Example = () => {
-  const { showModal, hideModal } = useModals()
-
-  const handleSmallClick = () => {
-    const modalId = showModal(() => (
-      <ModalDialog modalId={modalId} hideModal={hideModal} size='small' />
-    ))
-  }
-
-  const handleMediumClick = () => {
-    const modalId = showModal(() => (
-      <ModalDialog modalId={modalId} hideModal={hideModal} />
-    ))
-  }
-
-  const handleLargeClick = () => {
-    const modalId = showModal(() => (
-      <ModalDialog modalId={modalId} hideModal={hideModal} size='large' />
-    ))
-  }
-
-  const handleFullScreenClick = () => {
-    const modalId = showModal(() => (
-      <ModalDialog modalId={modalId} hideModal={hideModal} size='full-screen' />
-    ))
-  }
+  const {
+    showModal: showModalSmall,
+    hideModal: hideModalSmall,
+    isOpen: isOpenSmall
+  } = useModal()
+  const {
+    showModal: showModalMedium,
+    hideModal: hideModalMedium,
+    isOpen: isOpenMedium
+  } = useModal()
+  const {
+    showModal: showModalLarge,
+    hideModal: hideModalLarge,
+    isOpen: isOpenLarge
+  } = useModal()
+  const {
+    showModal: showModalFullscreen,
+    hideModal: hideModalFullscreen,
+    isOpen: isOpenFullscreen
+  } = useModal()
 
   return (
     <div id='modal-container-sizes'>
       <Container flex>
-        <Button onClick={handleSmallClick} data-testid='trigger-small'>
+        <Button onClick={showModalSmall} data-testid='trigger-small'>
           Open small
         </Button>
-        <Button onClick={handleMediumClick} data-testid='trigger-medium'>
+        <ModalDialog open={isOpenSmall} onClose={hideModalSmall} size='small' />
+
+        <Button onClick={showModalMedium} data-testid='trigger-medium'>
           Open medium (default)
         </Button>
-        <Button onClick={handleLargeClick} data-testid='trigger-large'>
+        <ModalDialog
+          open={isOpenMedium}
+          onClose={hideModalMedium}
+          size='medium'
+        />
+
+        <Button onClick={showModalLarge} data-testid='trigger-large'>
           Open large
         </Button>
-        <Button
-          onClick={handleFullScreenClick}
-          data-testid='trigger-full-screen'
-        >
+        <ModalDialog open={isOpenLarge} onClose={hideModalLarge} size='large' />
+
+        <Button onClick={showModalFullscreen} data-testid='trigger-full-screen'>
           Open full-screen
         </Button>
+        <ModalDialog
+          open={isOpenFullscreen}
+          onClose={hideModalFullscreen}
+          size='full-screen'
+        />
       </Container>
     </div>
   )

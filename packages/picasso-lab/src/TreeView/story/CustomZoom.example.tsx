@@ -19,7 +19,7 @@ const NodeContainer = styled<typeof Container>(Container)<{
   width: 236px;
   padding: 0.5rem;
   ${({ selected }) =>
-    `border: 1px solid ${selected ? palette.blue.main : palette.grey.light};`}
+    `border: 1px solid ${selected ? palette.blue.main : palette.grey.light2};`}
 `
 
 const createTreeNode = (
@@ -185,18 +185,10 @@ const CustomZoom: FC = () => {
 
   return (
     <Container>
-      <Button
-        size='medium'
-        variant='primary-green'
-        onClick={() => zoomHandler(0.3)}
-      >
+      <Button size='medium' variant='positive' onClick={() => zoomHandler(0.3)}>
         &minus;
       </Button>
-      <Button
-        size='medium'
-        variant='primary-green'
-        onClick={() => zoomHandler(1.3)}
-      >
+      <Button size='medium' variant='positive' onClick={() => zoomHandler(1.3)}>
         +
       </Button>
     </Container>

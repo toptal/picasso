@@ -7,7 +7,7 @@ import Modal, { Props as ModalProps } from '../Modal'
 import Button, { VariantType as ButtonVariantType } from '../Button'
 import styles from './styles'
 
-export type VariantType = 'red' | 'blue' | 'green'
+export type VariantType = 'positive' | 'negative'
 
 export type PromptOptions = {
   setResult: (newResult: unknown) => void
@@ -25,7 +25,7 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   title: string
   /** Prompt message */
   message: string
-  /** Different Prompt variants used for differnt intention */
+  /** Different Prompt variants used for different intention */
   variant?: VariantType
   /** Text on Submit button */
   submitText?: string
@@ -36,6 +36,7 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   onAfterSubmit?: () => void
   /** Callback on Cancel onClick event */
   onCancel?: () => void
+  onClose?: () => void
 }
 
 export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
@@ -52,6 +53,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
     onSubmit,
     onAfterSubmit,
     onCancel,
+    onClose,
     ...rest
   } = props
   const [result, setResult] = useState<unknown>()
@@ -65,17 +67,35 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
 
       await onSubmit(result)
       setLoading(false)
-      // closes modal if use-modals hook is used
-      onAfterSubmit!()
+
+      handleOnAfterSubmit()
     } catch (err) {
       setError(true)
       setLoading(false)
     }
   }
 
+  const handleOnAfterSubmit = () => {
+    onAfterSubmit!()
+    handleClose()
+  }
+
+  const handleCancel = () => {
+    onCancel!()
+    handleClose()
+  }
+
+  const handleClose = () => {
+    setResult(undefined)
+
+    if (onClose) {
+      onClose!()
+    }
+  }
+
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <Modal ref={ref} {...rest}>
+    <Modal ref={ref} onClose={onClose && handleClose} {...rest}>
       {title && <Modal.Title>{title}</Modal.Title>}
       <Modal.Content>
         <Typography size='medium'>{message}</Typography>
@@ -93,13 +113,13 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
         )}
       </Modal.Content>
       <Modal.Actions>
-        <Button disabled={loading} variant='flat' onClick={onCancel}>
+        <Button disabled={loading} variant='secondary' onClick={handleCancel}>
           {cancelText}
         </Button>
         <Button
           loading={loading}
           onClick={handleSubmit}
-          variant={`primary-${variant}` as ButtonVariantType}
+          variant={`${variant}` as ButtonVariantType}
         >
           {submitText}
         </Button>
@@ -113,7 +133,7 @@ PromptModal.defaultProps = {
   onCancel: () => {},
   size: 'small',
   submitText: 'Submit',
-  variant: 'green',
+  variant: 'positive',
   onAfterSubmit: () => {}
 }
 

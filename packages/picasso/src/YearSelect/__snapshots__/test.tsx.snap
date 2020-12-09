@@ -12,21 +12,21 @@ exports[`YearSelect default render 1`] = `
         class="makeStyles-inputWrapper"
       >
         <div
-          aria-autocomplete="list"
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-input MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
             aria-invalid="false"
             autocomplete="off"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
+            readonly=""
             size="1"
             type="text"
             value=""
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
@@ -45,7 +45,7 @@ exports[`YearSelect default render 1`] = `
           viewBox="0 0 16 16"
         >
           <path
-            d="M8.429 2.715l2.117 3.528a.5.5 0 01-.43.757H5.884a.5.5 0 01-.429-.757l2.117-3.528a.5.5 0 01.858 0zM8.429 13.285l2.117-3.528a.5.5 0 00-.43-.757H5.884a.5.5 0 00-.429.757l2.117 3.528a.5.5 0 00.858 0z"
+            d="M11 10.3L11.7 11 8 14.7 4.3 11 5 10.3 8 13.3 11 10.3ZM8 1.3L11.7 5 11 5.7 8 2.7 5 5.7 4.3 5 7.3 2 7.3 2 8 1.3Z"
           />
         </svg>
       </div>
@@ -56,7 +56,7 @@ exports[`YearSelect default render 1`] = `
 
 exports[`YearSelect render in descending order 1`] = `
 <ul
-  class="MuiList-root ScrollMenu-menu"
+  class="MuiList-root Menu-root ScrollMenu-menu"
   role="menu"
   tabindex="-1"
 >
@@ -66,73 +66,128 @@ exports[`YearSelect render in descending order 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="2005"
     >
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        2005
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2005
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2004"
     >
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        2004
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2004
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2003"
     >
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        2003
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2003
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2002"
     >
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        2002
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2002
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2001"
     >
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        2001
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2001
+          </span>
+        </div>
+      </div>
     </li>
   </div>
 </ul>

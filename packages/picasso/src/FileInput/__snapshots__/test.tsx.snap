@@ -9,7 +9,7 @@ exports[`FileInput default render 1`] = `
       class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root InputAdornment-root FileInput-adornmentStart MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root InputAdornment-root FileInput-adornmentStart MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
           class="SvgUploadDocument16-root"
@@ -29,10 +29,11 @@ exports[`FileInput default render 1`] = `
         type="file"
       />
       <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
       >
         <button
-          class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root FileInput-button"
+          class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root FileInput-button"
+          data-component-type="button"
           tabindex="0"
           type="button"
         >
@@ -45,7 +46,7 @@ exports[`FileInput default render 1`] = `
       </div>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend

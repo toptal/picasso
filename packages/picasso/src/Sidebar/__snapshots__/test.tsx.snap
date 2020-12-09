@@ -28,7 +28,7 @@ exports[`Sidebar with menu  1`] = `
         class="Sidebar-spacer"
       />
       <ul
-        class="MuiList-root SidebarMenu-root"
+        class="MuiList-root Menu-root SidebarMenu-root"
         role="menu"
         tabindex="-1"
       />
@@ -49,12 +49,12 @@ exports[`Sidebar with one normal and one bottom menu  1`] = `
         class="Sidebar-spacer"
       />
       <ul
-        class="MuiList-root SidebarMenu-root"
+        class="MuiList-root Menu-root SidebarMenu-root"
         role="menu"
         tabindex="-1"
       />
       <ul
-        class="MuiList-root SidebarMenu-root SidebarMenu-bottom"
+        class="MuiList-root Menu-root SidebarMenu-root SidebarMenu-bottom"
         role="menu"
         tabindex="-1"
       />

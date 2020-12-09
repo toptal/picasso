@@ -18,7 +18,6 @@ import React, {
   ForwardRefExoticComponent,
   RefAttributes
 } from 'react'
-import { ModalProvider } from 'react-modal-hook'
 import { makeStyles } from '@material-ui/styles'
 import { Helmet } from 'react-helmet'
 
@@ -277,7 +276,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
           {reset && <CssBaseline />}
           {loadFavicon && <Favicon environment={environment} />}
           <NotificationsProvider container={notificationContainer}>
-            <ModalProvider>{children}</ModalProvider>
+            {children}
           </NotificationsProvider>
         </PicassoGlobalStylesProvider>
       </MuiThemeProvider>

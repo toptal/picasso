@@ -4,7 +4,7 @@ const maxHeight = 'calc(100% - 6rem)'
 const maxWidth = 'calc(100% - 6rem)'
 const maxHeightForTopAligned = 'calc(100% - 4rem)'
 
-export default ({ palette, screens }: Theme) =>
+export default ({ screens, sizes }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -14,6 +14,7 @@ export default ({ palette, screens }: Theme) =>
     paper: {
       maxHeight,
       maxWidth,
+      borderRadius: sizes.borderRadius.medium,
 
       [screens('small')]: {
         maxWidth: 'none',
@@ -40,15 +41,7 @@ export default ({ palette, screens }: Theme) =>
     },
     closeButton: {
       position: 'absolute',
-      right: '2rem',
-      top: '1.875rem',
-      color: palette.grey.dark,
-      fontSize: '1rem',
-      cursor: 'pointer',
-      opacity: 0.3,
-
-      '&:hover': {
-        opacity: 1
-      }
+      right: '2em',
+      top: '2em'
     }
   })

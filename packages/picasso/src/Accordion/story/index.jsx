@@ -20,21 +20,20 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-
-  .addExample('Accordion/story/Default.example.jsx', {
+  .addExample('Accordion/story/Default.example.tsx', {
     title: 'Default',
     description:
       'Styled sections is a default behaviour of Accordion when `expanded` prop is not specified (uncontrolled)'
   })
-  .addExample('Accordion/story/AccordionGroup.example.jsx', {
+  .addExample('Accordion/story/AccordionGroup.example.tsx', {
     title: 'Group',
     description: 'Accordions with styled sections in a group'
   })
-  .addExample('Accordion/story/Controlled.example.jsx', {
+  .addExample('Accordion/story/Controlled.example.tsx', {
     title: 'Controlled state',
     description: 'Accordions with controlled expanded property'
   })
-  .addExample('Accordion/story/CustomFontStyling.example.jsx', {
+  .addExample('Accordion/story/CustomFontStyling.example.tsx', {
     title: 'Custom styling',
     description:
       'Summary and Details of Accordion can be decorated with additional styles'

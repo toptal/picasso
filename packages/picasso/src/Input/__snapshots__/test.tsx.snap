@@ -9,7 +9,7 @@ exports[`renders icon in the beginning 1`] = `
       class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
           class="SvgSearch16-root PicassoInput-icon"
@@ -29,7 +29,7 @@ exports[`renders icon in the beginning 1`] = `
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -55,7 +55,7 @@ exports[`renders icon in the end 1`] = `
       class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
           class="SvgSearch16-root PicassoInput-icon"
@@ -75,7 +75,7 @@ exports[`renders icon in the end 1`] = `
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -109,7 +109,7 @@ exports[`should show manual resize handler 1`] = `
       </textarea>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -144,7 +144,8 @@ exports[`should show reset button 1`] = `
         class="MuiInputAdornment-root InputAdornment-root OutlinedInput-resetButton OutlinedInput-resetButtonDirty MuiInputAdornment-positionEnd"
       >
         <button
-          class="MuiButtonBase-root PicassoButton-circular PicassoButton-small PicassoButton-transparent PicassoButton-root"
+          class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+          data-component-type="button"
           role="reset"
           tabindex="-1"
           type="button"
@@ -166,7 +167,7 @@ exports[`should show reset button 1`] = `
       </div>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -198,7 +199,7 @@ exports[`shows counter for multiline input 1`] = `
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -231,7 +232,7 @@ exports[`shows counter for regular input 1`] = `
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -250,7 +251,7 @@ exports[`shows counter for regular input 1`] = `
 
 exports[`shows excess chars for multiline input with exceeded limit 1`] = `
 <div
-  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
   <span
@@ -265,7 +266,7 @@ exports[`shows excess chars for multiline input with exceeded limit 1`] = `
 
 exports[`shows remaining chars for for multiline input with limit 1`] = `
 <div
-  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
   <span

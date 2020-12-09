@@ -73,6 +73,7 @@ const Example = () => (
   <div>
     <Container
       bordered
+      rounded
       padded='medium'
       variant='blue'
       style={{ maxWidth: 400 }}

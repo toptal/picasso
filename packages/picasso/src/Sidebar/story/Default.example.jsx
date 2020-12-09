@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sidebar, Label, Logo, Container, Typography } from '@toptal/picasso'
+import { Sidebar, Tag, Logo, Container, Typography } from '@toptal/picasso'
 import {
   Jobs16,
   Overview16,
@@ -42,8 +42,11 @@ const Example = () => (
             Legal Info
           </Typography>
           <Container left='medium'>
-            <Label>5</Label>
+            <Tag>5</Tag>
           </Container>
+        </Sidebar.Item>
+        <Sidebar.Item>
+          Menu item with surprisingly long text content
         </Sidebar.Item>
         <Sidebar.Item
           collapsible

@@ -1,33 +1,32 @@
 import React from 'react'
 import { OverviewBlock } from '@toptal/picasso-lab'
-import { Container } from '@toptal/picasso'
 
 const MultilineExample = () => (
   <section>
     <OverviewBlock.Group>
-      <OverviewBlock
-        value='$26,125,123.70'
-        label='Outstanding'
-        variant='label-yellow'
-      />
-      <OverviewBlock
-        value='$5,837,806.68'
-        label='Overdue'
-        variant='label-red'
-      />
-      <OverviewBlock
-        value='$1,232,107.99'
-        label='Disputed'
-        variant='label-red'
-      />
-      <OverviewBlock
-        value='$1,722,076.43'
-        label='Incollections'
-        variant='label-red'
-      />
-    </OverviewBlock.Group>
-    <Container top='xsmall'>
-      <OverviewBlock.Group>
+      <OverviewBlock.Row>
+        <OverviewBlock
+          value='$26,125,123.70'
+          label='Outstanding'
+          variant='label-yellow'
+        />
+        <OverviewBlock
+          value='$5,837,806.68'
+          label='Overdue'
+          variant='label-red'
+        />
+        <OverviewBlock
+          value='$1,232,107.99'
+          label='Disputed'
+          variant='label-red'
+        />
+        <OverviewBlock
+          value='$1,722,076.43'
+          label='Incollections'
+          variant='label-red'
+        />
+      </OverviewBlock.Row>
+      <OverviewBlock.Row>
         <OverviewBlock
           value='$935,590.65'
           label='Written off'
@@ -48,8 +47,8 @@ const MultilineExample = () => (
           label='Paid'
           variant='label-green'
         />
-      </OverviewBlock.Group>
-    </Container>
+      </OverviewBlock.Row>
+    </OverviewBlock.Group>
   </section>
 )
 

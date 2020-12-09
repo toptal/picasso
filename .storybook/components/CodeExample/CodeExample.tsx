@@ -245,7 +245,7 @@ class CodeExample extends Component<Props> {
               <div className={classes.buttons}>
                 {showEditCode && (
                   <Button
-                    variant='flat'
+                    variant='secondary'
                     size='small'
                     icon={<Code16 />}
                     onClick={this.handleShowEditor}
@@ -254,7 +254,7 @@ class CodeExample extends Component<Props> {
                   </Button>
                 )}
                 <Button
-                  variant='flat'
+                  variant='secondary'
                   size='small'
                   icon={<Link16 />}
                   onClick={this.handleCopyLink}

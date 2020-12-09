@@ -6,45 +6,69 @@ exports[`Menu default render 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root"
+      class="MuiList-root Menu-root"
       role="menu"
       tabindex="-1"
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
-        <span
-          class="MenuItem-stringContent"
+        <div
+          class="Container-flex Container-column MenuItem-content"
         >
-          Item 1
-        </span>
+          <div
+            class="Container-centerAlignItems Container-flex"
+          >
+            <span
+              class="MenuItem-stringContent"
+            >
+              Item 1
+            </span>
+          </div>
+        </div>
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
-        <span
-          class="MenuItem-stringContent"
+        <div
+          class="Container-flex Container-column MenuItem-content"
         >
-          Item 2
-        </span>
+          <div
+            class="Container-centerAlignItems Container-flex"
+          >
+            <span
+              class="MenuItem-stringContent"
+            >
+              Item 2
+            </span>
+          </div>
+        </div>
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
-        <span
-          class="MenuItem-stringContent"
+        <div
+          class="Container-flex Container-column MenuItem-content"
         >
-          Item 3
-        </span>
+          <div
+            class="Container-centerAlignItems Container-flex"
+          >
+            <span
+              class="MenuItem-stringContent"
+            >
+              Item 3
+            </span>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
@@ -57,73 +81,97 @@ exports[`Menu has back button when in submenu 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root Menu-hideMenu"
+      class="MuiList-root Menu-root Menu-hideMenu"
       role="menu"
       tabindex="-1"
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
-        <span
-          class="MenuItem-stringContent"
-        >
-          Item 1
-        </span>
         <div
-          class="Container-leftxsmallMargin Container-flex Container-inline"
+          class="Container-flex Container-column MenuItem-content"
         >
-          <svg
-            class="SvgChevronMinor16-root"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
+          <div
+            class="Container-centerAlignItems Container-flex"
           >
-            <path
-              d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
-            />
-          </svg>
+            <span
+              class="MenuItem-stringContent"
+            >
+              Item 1
+            </span>
+            <div
+              class="Container-leftxsmallMargin Container-flex Container-inline"
+            >
+              <svg
+                class="SvgChevronMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
       </li>
     </ul>
     <ul
-      class="MuiList-root"
+      class="MuiList-root Menu-root"
       role="menu"
       tabindex="-1"
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
-        <p
-          class="MuiTypography-root Typography-bodySmall Typography-darkGrey MuiTypography-body1"
+        <div
+          class="Container-flex Container-column MenuItem-content"
         >
-          <svg
-            class="SvgBackMinor16-root Menu-backButtonIcon"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
+          <div
+            class="Container-centerAlignItems Container-flex"
           >
-            <path
-              d="M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z"
-            />
-          </svg>
-          Back
-        </p>
+            <p
+              class="MuiTypography-root Typography-bodySmall Typography-darkGrey MuiTypography-body1"
+            >
+              <svg
+                class="SvgBackMinor16-root Menu-backButtonIcon"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z"
+                />
+              </svg>
+              Back
+            </p>
+          </div>
+        </div>
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
-        <span
-          class="MenuItem-stringContent"
+        <div
+          class="Container-flex Container-column MenuItem-content"
         >
-          Submenu Item
-        </span>
+          <div
+            class="Container-centerAlignItems Container-flex"
+          >
+            <span
+              class="MenuItem-stringContent"
+            >
+              Submenu Item
+            </span>
+          </div>
+        </div>
       </li>
     </ul>
   </div>

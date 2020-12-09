@@ -37,7 +37,7 @@ const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
   return result.length > 0 ? result : null
 }
 
-const DefaultExample = () => {
+const Example = () => {
   const [skillInputValue, setSkillInputValue] = useState<string>(
     EMPTY_INPUT_VALUE
   )
@@ -149,6 +149,7 @@ const DefaultExample = () => {
         name='legal'
         label='I confirm that I have legal permission from the client to feature this project.'
       />
+      <Form.Switch name='publicProfile' label='Public Profile' width='auto' />
 
       <Container top='small'>
         <Form.SubmitButton>Submit</Form.SubmitButton>
@@ -157,4 +158,4 @@ const DefaultExample = () => {
   )
 }
 
-export default DefaultExample
+export default Example

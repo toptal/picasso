@@ -14,7 +14,7 @@ const Example = () => (
         </Menu>
       }
     >
-      <Button variant='primary'>
+      <Button>
         Open Dropdown
         <Dropdown.Arrow />
       </Button>

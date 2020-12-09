@@ -67,10 +67,9 @@ export const Drawer: FunctionComponent<Props> = ({
           <Typography variant='heading' size='medium' className={classes.title}>
             {title}
           </Typography>
-          <Button
-            variant='transparent'
+          <Button.Circular
+            variant='flat'
             icon={<CloseMinor16 />}
-            className={classes.closeButton}
             onClick={handleOnClose}
           />
         </Container>

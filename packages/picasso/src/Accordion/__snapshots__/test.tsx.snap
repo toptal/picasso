@@ -6,7 +6,7 @@ exports[`controlled version should render collapsed version 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordered MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersAll MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
@@ -24,15 +24,26 @@ exports[`controlled version should render collapsed version 1`] = `
           <div
             class="makeStyles-expandIconAlignTop"
           >
-            <svg
-              class="SvgArrowDownMinor16-root makeStyles-expandIcon"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <button
+              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              data-component-type="button"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
-              />
-            </svg>
+              <span
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content PicassoButtonAction-content"
+              >
+                <svg
+                  class="SvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon makeStyles-expandIcon"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                  />
+                </svg>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -52,7 +63,9 @@ exports[`controlled version should render collapsed version 1`] = `
               <div
                 class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details"
               >
-                <div>
+                <div
+                  id="details"
+                >
                   Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
                 </div>
               </div>
@@ -71,7 +84,7 @@ exports[`controlled version should render expanded version 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordered Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersAll Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
@@ -89,15 +102,26 @@ exports[`controlled version should render expanded version 1`] = `
           <div
             class="makeStyles-expandIconAlignTop"
           >
-            <svg
-              class="SvgArrowDownMinor16-root makeStyles-expandIcon makeStyles-expandIconExpanded"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <button
+              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              data-component-type="button"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
-              />
-            </svg>
+              <span
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content PicassoButtonAction-content"
+              >
+                <svg
+                  class="SvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon makeStyles-expandIcon makeStyles-expandIconExpanded"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                  />
+                </svg>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -117,7 +141,9 @@ exports[`controlled version should render expanded version 1`] = `
               <div
                 class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details"
               >
-                <div>
+                <div
+                  id="details"
+                >
                   Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
                 </div>
               </div>
@@ -136,7 +162,7 @@ exports[`default version for sections should render default version 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordered MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersAll MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
@@ -154,15 +180,26 @@ exports[`default version for sections should render default version 1`] = `
           <div
             class="makeStyles-expandIconAlignTop"
           >
-            <svg
-              class="SvgArrowDownMinor16-root makeStyles-expandIcon"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <button
+              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              data-component-type="button"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
-              />
-            </svg>
+              <span
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content PicassoButtonAction-content"
+              >
+                <svg
+                  class="SvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon makeStyles-expandIcon"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                  />
+                </svg>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -182,7 +219,9 @@ exports[`default version for sections should render default version 1`] = `
               <div
                 class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details"
               >
-                <div>
+                <div
+                  id="details"
+                >
                   Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
                 </div>
               </div>
@@ -201,7 +240,7 @@ exports[`default version for sections should render expanded version after click
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordered Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersAll Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
@@ -219,15 +258,26 @@ exports[`default version for sections should render expanded version after click
           <div
             class="makeStyles-expandIconAlignTop"
           >
-            <svg
-              class="SvgArrowDownMinor16-root makeStyles-expandIcon makeStyles-expandIconExpanded"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <button
+              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              data-component-type="button"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
-              />
-            </svg>
+              <span
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content PicassoButtonAction-content"
+              >
+                <svg
+                  class="SvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon makeStyles-expandIcon makeStyles-expandIconExpanded"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                  />
+                </svg>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -247,7 +297,9 @@ exports[`default version for sections should render expanded version after click
               <div
                 class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details"
               >
-                <div>
+                <div
+                  id="details"
+                >
                   Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
                 </div>
               </div>

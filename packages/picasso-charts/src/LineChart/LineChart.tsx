@@ -245,7 +245,7 @@ export const LineChart = (props: Props) => {
             [classes.hideBottomYAxisLabel]: !showBottomYAxisLabel
           })}
         >
-          <CartesianGrid stroke={palette.grey.lighter} />
+          <CartesianGrid stroke={palette.grey.lighter2} />
 
           {/* Axis */}
           <XAxis

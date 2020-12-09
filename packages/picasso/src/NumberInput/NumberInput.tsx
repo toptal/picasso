@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  useRef,
-  RefObject,
-  ReactElement,
-  ReactNode
-} from 'react'
+import React, { forwardRef, useRef, RefObject, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
@@ -13,7 +7,7 @@ import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import Container from '../Container'
 import { useCombinedRefs } from '../utils'
-import ArrowUpIcon from './icons/ArrowUpIcon'
+import { ArrowDownMinor16, ArrowUpMinor16 } from '../Icon'
 import styles from './styles'
 
 export interface Props
@@ -127,7 +121,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
           }}
           onClick={handleUpClick}
         >
-          <ArrowUpIcon />
+          <ArrowUpMinor16 />
         </ButtonBase>
         <ButtonBase
           disabled={disabled}
@@ -137,7 +131,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
           }}
           onClick={handleDownClick}
         >
-          <ArrowUpIcon className={classes.arrowDown} />
+          <ArrowDownMinor16 />
         </ButtonBase>
       </Container>
     </InputAdornment>
@@ -185,11 +179,11 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       />
     )
 
-    const startAdornment = icon
-      ? React.cloneElement(icon as ReactElement, {
-          className: classes.icon
-        })
-      : null
+    const startAdornment = icon ? (
+      <InputAdornment position='start' disablePointerEvents>
+        {icon}
+      </InputAdornment>
+    ) : null
 
     return (
       <OutlinedInput

@@ -1,4 +1,6 @@
 import buttonGroupStory from '../../ButtonGroup/story'
+import buttonCircularStory from '../../ButtonCircular/story'
+import buttonActionStory from '../../ButtonAction/story'
 import { Button } from '../Button'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -135,25 +137,11 @@ page
       },
       variant: {
         name: 'variant',
-        defaultValue: 'primary-blue',
+        defaultValue: 'primary',
         description: 'The variant to use',
         type: {
           name: 'enum',
-          enums: [
-            'transparent',
-            'flat',
-            'primary-blue',
-            'secondary-blue',
-            'primary-red',
-            'secondary-red',
-            'primary-green',
-            'secondary-green',
-            'flat-white',
-            'secondary-white',
-            'transparent-white',
-            'transparent-blue',
-            'transparent-green'
-          ]
+          enums: ['primary', 'positive', 'negative', 'secondary', 'transparent']
         }
       },
       value: {
@@ -181,11 +169,13 @@ page
     },
     name: 'Button'
   })
+  .addComponentDocs(buttonCircularStory.componentDocs)
+  .addComponentDocs(buttonActionStory.componentDocs)
   .addComponentDocs(buttonGroupStory.componentDocs)
 
 page
   .createChapter()
-  .addExample('Button/story/Basic.example.jsx', 'Basic')
+  .addExample('Button/story/Default.example.tsx', 'Default')
   .addExample('Button/story/Variants.example.jsx', 'Variants')
   .addExample('Button/story/States.example.jsx', 'States')
   .addExample('Button/story/Disabled.example.jsx', {
@@ -195,10 +185,6 @@ page
   .addExample('Button/story/Sizes.example.jsx', 'Sizes')
   .addExample('Button/story/FullWidth.example.jsx', 'Full width')
   .addExample('Button/story/IconButtons.example.jsx', 'Button with Icon')
-  .addExample(
-    'Button/story/CircularIconButton.example.jsx',
-    'Circular Style Button'
-  )
   .addExample(
     'Button/story/IconButtonsWithText.example.jsx',
     'Button with text and Icon'
@@ -210,4 +196,6 @@ page
       'Example show augmentation with Picasso Link component. You can use Link component from react-router-dom or some other custom component.'
   })
 
+page.connect(buttonCircularStory.chapter)
+page.connect(buttonActionStory.chapter)
 page.connect(buttonGroupStory.chapter)

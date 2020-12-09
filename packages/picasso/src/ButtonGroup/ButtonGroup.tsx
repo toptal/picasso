@@ -39,7 +39,9 @@ export default withStyles(styles)(
       Button,
       {
         root: classes.button,
-        active: classes.active
+        active: classes.active,
+        focused: classes.focused,
+        hovered: classes.hovered
       }
     ]
   ])(ButtonGroup)

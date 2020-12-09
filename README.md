@@ -138,9 +138,7 @@ After Picasso will be released with your changes you can start using your Icon a
 
    ```
 
-2. Add the new folder and `CHANGELOG.md` to `/Dockerfile` to the list of directories that use `RUN chmod a+rw`
-
-3. Add the new package to:
+2. Add the new package to:
 
    - the `paths` key in `/tsconfig.json`
    - the `alias` key in `/.storybook/webpack.config.js`

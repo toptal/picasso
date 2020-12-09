@@ -7,7 +7,7 @@ import {
   Tabs,
   UserBadge,
   Typography,
-  Label,
+  Tag,
   Container
 } from '@toptal/picasso'
 import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso/Icon'
@@ -47,19 +47,19 @@ const ExpandableContent = () => (
       </UserBadge>
 
       <Container>
-        <Button variant='secondary-blue' size='small'>
+        <Button variant='secondary' size='small'>
           Q &amp; A
         </Button>
-        <Button variant='secondary-blue' size='small'>
+        <Button variant='secondary' size='small'>
           Timeline
         </Button>
         <Button size='small'>Contact Company</Button>
-        <Button circular variant='flat' size='small' icon={<More16 />} />
+        <Button.Circular variant='flat' icon={<More16 />} />
       </Container>
     </Container>
 
     <Container top='small'>
-      <Label>$2k Design Credit</Label>
+      <Tag>$2k Design Credit</Tag>
     </Container>
   </Container>
 )
@@ -104,11 +104,9 @@ const TableWithExpandableRows = () => {
             <Table.Cell>{time}</Table.Cell>
             <Table.Cell align='center'>{assignee}</Table.Cell>
             <Table.Cell align='center'>
-              <Button circular variant='flat' size='small' icon={<Star16 />} />
-              <Button
-                circular
+              <Button.Circular variant='flat' icon={<Star16 />} />
+              <Button.Circular
                 variant='flat'
-                size='small'
                 icon={<StyledArrowDownMinor16 expanded={expandedData[id]} />}
                 data-testid={`expand-button-${id}`}
                 onClick={() => handleExpandClick(id)}

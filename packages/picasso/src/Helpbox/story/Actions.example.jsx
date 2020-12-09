@@ -6,7 +6,7 @@ const Example = () => (
     <Helpbox variant='yellow'>
       <Helpbox.Title>Heading Small</Helpbox.Title>
       <Helpbox.Actions>
-        <Button size='small' variant='secondary-blue'>
+        <Button size='small' variant='secondary'>
           Action1
         </Button>
         <Button size='small'>Action2</Button>

@@ -1,9 +1,11 @@
-import pageHeaderStory from '../../PageHeader/story'
+import topBarStory from '../../TopBar/story'
 import pageHeadStory from '../../PageHead/story'
-import pageHeaderMenuStory from '../../PageHeaderMenu/story'
+import topBarMenuStory from '../../TopBarMenu/story'
 import pageContentStory from '../../PageContent/story'
 import pageFooterStory from '../../PageFooter/story'
 import pageBannerStory from '../../PageBanner/story'
+import pageAutocompleteStory from '../../PageAutocomplete/story'
+import pageArticleStory from '../../PageArticle/story'
 import { Page } from '../Page'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -15,47 +17,53 @@ const page = PicassoBook.section('Layout').createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Page, name: 'Page' })
-  .addComponentDocs(pageHeaderStory.componentDocs)
+  .addComponentDocs(topBarStory.componentDocs)
   .addComponentDocs(pageHeadStory.componentDocs)
-  .addComponentDocs(pageHeaderMenuStory.componentDocs)
+  .addComponentDocs(topBarMenuStory.componentDocs)
   .addComponentDocs(pageContentStory.componentDocs)
+  .addComponentDocs(pageArticleStory.componentDocs)
   .addComponentDocs(pageFooterStory.componentDocs)
   .addComponentDocs(pageBannerStory.componentDocs)
+  .addComponentDocs(pageAutocompleteStory.componentDocs)
 
 page
   .createChapter()
-  .addExample('Page/story/Default.example.jsx', {
+  .addExample('Page/story/Default.example.tsx', {
     title: 'Default',
     description:
       'Page has centered content and restricted width of 1200px or 75rem',
     waitUntilImagesLoaded: true
   })
-  .addExample('Page/story/WideWidth.example.jsx', {
+  .addExample('Page/story/WideWidth.example.tsx', {
     title: 'Wide width',
     description:
       'Page has centered content and restricted width of 1440px or 90rem',
     waitUntilImagesLoaded: true
   })
-  .addExample('Page/story/FullWidth.example.jsx', {
+  .addExample('Page/story/FullWidth.example.tsx', {
     title: 'Full width',
     waitUntilImagesLoaded: true
   })
-  .addExample('Page/story/Scroll.example.jsx', 'Scroll with overflow')
-  .addExample('Page/story/WithBanner.example.jsx', {
+  .addExample('Page/story/Scroll.example.tsx', 'Scroll with overflow')
+  .addExample('Page/story/WithBanner.example.tsx', {
     title: 'With Banner',
     waitUntilImagesLoaded: true
   })
-  .addExample('Page/story/WithCompoundBanner.example.jsx', {
+  .addExample('Page/story/WithCompoundBanner.example.tsx', {
     title: 'With Compound Banner',
     waitUntilImagesLoaded: true
   })
 
-page.connect(pageHeaderStory.chapter)
+page.connect(topBarStory.chapter)
 
 page.connect(pageHeadStory.chapter)
 
 page.connect(pageContentStory.chapter)
 
+page.connect(pageArticleStory.chapter)
+
 page.connect(pageFooterStory.chapter)
 
 page.connect(pageBannerStory.chapter)
+
+page.connect(pageAutocompleteStory.chapter)

@@ -8,7 +8,7 @@ PicassoProvider.override(({ palette, sizes }: Theme) => ({
       color: palette.grey.dark,
       backgroundColor: palette.common.white,
       borderRadius: '6.25em',
-      border: `${sizes.borderWidth} solid ${palette.grey.light}`,
+      border: `${sizes.borderWidth} solid ${palette.grey.light2}`,
       height: '1.5em'
     },
     label: {

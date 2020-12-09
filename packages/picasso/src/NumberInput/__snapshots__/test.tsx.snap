@@ -27,14 +27,12 @@ exports[`regular 1`] = `
           type="button"
         >
           <svg
-            height="5"
-            width="6"
-            xmlns="http://www.w3.org/2000/svg"
+            class="SvgArrowUpMinor16-root"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
           >
             <path
-              d="M3 0l3 5H0z"
-              fill="#455065"
-              fill-rule="evenodd"
+              d="M7.997 5.29l4.707 4.707-.707.707-4-4-4 4-.707-.707 4-4 .707-.707z"
             />
           </svg>
         </button>
@@ -44,15 +42,12 @@ exports[`regular 1`] = `
           type="button"
         >
           <svg
-            class="PicassoNumberInput-arrowDown"
-            height="5"
-            width="6"
-            xmlns="http://www.w3.org/2000/svg"
+            class="SvgArrowDownMinor16-root"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
           >
             <path
-              d="M3 0l3 5H0z"
-              fill="#455065"
-              fill-rule="evenodd"
+              d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
             />
           </svg>
         </button>
@@ -60,7 +55,7 @@ exports[`regular 1`] = `
     </div>
     <fieldset
       aria-hidden="true"
-      class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+      class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
       style="padding-left: 8px;"
     >
       <legend

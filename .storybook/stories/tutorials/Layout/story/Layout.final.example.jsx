@@ -50,7 +50,7 @@ const MainContent = () => (
 const Example = () => (
   <div style={{ height: '40rem' }}>
     <Page>
-      <Page.Header title='How to layout a page' />
+      <Page.TopBar title='How to layout a page' />
       <Page.Content>
         <SidebarMenu />
         <MainContent />
@@ -61,7 +61,7 @@ const Example = () => (
 )
 
 const StyledMainContentContainer = styled(Container)`
-  background-color: ${palette.grey.light};
+  background-color: ${palette.grey.light2};
   flex: 1;
 `
 
