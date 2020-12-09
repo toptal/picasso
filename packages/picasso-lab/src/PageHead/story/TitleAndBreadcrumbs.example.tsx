@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from '@toptal/picasso'
-import { Subheader, Breadcrumbs } from '@toptal/picasso-lab'
+import { PageHead, Breadcrumbs } from '@toptal/picasso-lab'
 
 const TitleAndBreadcrumbsExample = () => (
-  <Subheader>
+  <PageHead>
     <Breadcrumbs>
       <Breadcrumbs.Item
         as={Link}
@@ -18,10 +18,10 @@ const TitleAndBreadcrumbsExample = () => (
         Toptal
       </Breadcrumbs.Item>
     </Breadcrumbs>
-    <Subheader.Main>
-      <Subheader.Title>Heading Large</Subheader.Title>
-    </Subheader.Main>
-  </Subheader>
+    <PageHead.Main>
+      <PageHead.Title>Heading Large</PageHead.Title>
+    </PageHead.Main>
+  </PageHead>
 )
 
 export default TitleAndBreadcrumbsExample
