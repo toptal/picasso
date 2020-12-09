@@ -175,11 +175,11 @@ test('should open menu when click on select if there is NO search', () => {
   expect(getByRole('menu')).toBeInTheDocument()
 })
 
-test('should open menu when focus on select if there is a search', () => {
+test('should NOT open menu when focus on select if there is a search', () => {
   const placeholder = 'Choose an option...'
   const searchThreshold = OPTIONS.length - 1
 
-  const { getByPlaceholderText, getByRole } = renderSelect({
+  const { getByPlaceholderText, queryByRole } = renderSelect({
     options: OPTIONS,
     placeholder,
     searchThreshold
@@ -189,7 +189,7 @@ test('should open menu when focus on select if there is a search', () => {
 
   fireEvent.focus(selectInput)
 
-  expect(getByRole('menu')).toMatchSnapshot()
+  expect(queryByRole('menu')).not.toBeInTheDocument()
 })
 
 test('should return back selected value when input value is edited', () => {
@@ -208,6 +208,7 @@ test('should return back selected value when input value is edited', () => {
   const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
 
   fireEvent.focus(selectInput)
+  fireEvent.keyDown(selectInput, { key: ' ', code: '{space}' })
 
   const searchInput = getByPlaceholderText(searchPlaceholder)
 
@@ -232,6 +233,7 @@ test('should filter options based on entered value to the input field', () => {
   const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
 
   fireEvent.focus(selectInput)
+  fireEvent.keyDown(selectInput, { key: 'Enter', code: 'Enter' })
 
   const searchInput = getByPlaceholderText(searchPlaceholder)
 
@@ -254,7 +256,7 @@ test('should show all options when input value is wiped', () => {
 
   const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
 
-  fireEvent.focus(selectInput)
+  fireEvent.click(selectInput)
 
   const searchInput = getByPlaceholderText(searchPlaceholder)
 
@@ -279,6 +281,7 @@ test('should focus search input when tab is pressed', () => {
   const selectInput = getByPlaceholderText(placeholder)
 
   fireEvent.focus(selectInput)
+  fireEvent.keyDown(selectInput, { key: ' ', code: '{space}' })
   fireEvent.keyDown(selectInput, {
     key: 'Tab',
     code: 'Tab'
@@ -303,6 +306,7 @@ test('should focus search input when a character is entered', () => {
   const selectInput = getByPlaceholderText(placeholder)
 
   fireEvent.focus(selectInput)
+  fireEvent.keyDown(selectInput, { key: ' ', code: '{space}' })
   fireEvent.keyDown(selectInput, {
     key: '2',
     code: 'Digit2'
@@ -330,7 +334,7 @@ test('should render noOptionText if the value entered does not match any of the 
 
   const selectInput = getByPlaceholderText(placeholder)
 
-  fireEvent.focus(selectInput)
+  fireEvent.click(selectInput)
 
   const searchInput = getByPlaceholderText(searchPlaceholder)
 

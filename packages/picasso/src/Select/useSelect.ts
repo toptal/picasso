@@ -185,13 +185,6 @@ const useSelect = ({
     }
   })
 
-  const handleFocus = () => {
-    if (showSearch && canOpen) {
-      onFocus()
-      setOpen(true)
-    }
-  }
-
   const handleClick = () => {
     if (canOpen) {
       onFocus()
@@ -323,7 +316,7 @@ const useSelect = ({
   }
 
   const getRootProps = () => ({
-    onFocus: handleFocus,
+    onFocus,
     onClick: handleClick,
     onBlur: handleSelectBlur
   })
