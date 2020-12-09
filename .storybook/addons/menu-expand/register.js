@@ -6,5 +6,6 @@ import { scheduleWork } from './index'
 const ADDON_ID = 'menu-expand'
 
 addons.register(ADDON_ID, api => {
-  api.once(SET_STORIES, scheduleWork(api))
+  const channel = addons.getChannel()
+  channel.once(STORY_RENDERED, scheduleWork(api))
 })
