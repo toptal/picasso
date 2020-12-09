@@ -22,13 +22,6 @@ page
       await makeScreenshot({
         selector: '[data-testid="menu"]'
       })
-
-      await testPage.keyboard.press('ArrowDown')
-      await testPage.waitFor(250)
-
-      await makeScreenshot({
-        selector: '[data-testid="menu"]'
-      })
     }
   })
   .addExample('Dropdown/story/ButtonDropdown.example.jsx', 'Button Anchor')
