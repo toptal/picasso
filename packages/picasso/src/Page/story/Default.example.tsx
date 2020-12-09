@@ -1,11 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Page, Container, Menu, Typography, Sidebar } from '@toptal/picasso'
 import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
-
-const StyledMainContentContainer = styled(Container)`
-  flex: 1;
-`
 
 const Example = () => (
   <div style={{ height: '30rem' }}>
@@ -49,7 +44,7 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <StyledMainContentContainer top='small' bottom='small'>
+  <Container top='small' bottom='small'>
     <Container bottom='small'>
       <Typography align='center' variant='heading' size='large'>
         Default example
@@ -64,7 +59,7 @@ const Content = () => (
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
     </Typography>
-  </StyledMainContentContainer>
+  </Container>
 )
 
 export default Example
