@@ -85,6 +85,35 @@ const componentDocs = PicassoBook.createComponentDocs(
   }
 )
 
+const chapter = PicassoBook.connectToPage(page =>
+  page
+    .createChapter('Sidebar Item')
+    .addExample('SidebarItem/story/Links.example.tsx', {
+      title: 'Sidebar.Item as a Link',
+      description: `
+Most of the time you would use Sidebar.Item as a router Link. This is how to do it.
+`
+    })
+    .addExample('SidebarItem/story/Icons.example.tsx', 'Icons')
+    .addExample('SidebarItem/story/Collapsible.example.tsx', {
+      title: 'Collapsible Sidebar.Item',
+      description:
+        'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop',
+      effect: async (testPage, makeScreenshot) => {
+        await testPage.click('[test-id="Referrals"]')
+        await testPage.waitFor(100)
+        await makeScreenshot()
+      }
+    })
+    .addExample('SidebarItem/story/DefaultExpanded.example.tsx', {
+      title: 'Expanded by default',
+      description:
+        'When a nested Sidebar.Item is selected, it automatically expands the menu.'
+    })
+    .addExample('SidebarItem/story/Disabled.example.tsx', 'Disabled')
+)
+
 export default {
+  chapter,
   componentDocs
 }
