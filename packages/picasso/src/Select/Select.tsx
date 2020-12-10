@@ -116,7 +116,7 @@ export interface Props<
   /** Whether to render reset icon which clears selected value */
   enableReset?: boolean
   popperContainer?: HTMLElement
-  /** A threshold of the number of options, defines when to start showing search for Select */
+  /** Defines the minimum options number to show the search */
   searchThreshold?: number
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
@@ -591,7 +591,8 @@ export const Select = documentable(
         onSelect: handleSelect,
         onChange: handleChange,
         onBlur: handleBlur,
-        onFocus: handleFocus
+        onFocus: handleFocus,
+        native
       })
 
       const iconAdornment = icon ? (
