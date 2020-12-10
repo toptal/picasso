@@ -177,7 +177,20 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       )
     }
 
-    return menuItem
+    return (
+      <>
+        {menuItem}
+        {hasMenu && (
+          <div
+            className={
+              hasIcon ? classes.nestedMenuWithIcon : classes.nestedMenu
+            }
+          >
+            {menu}
+          </div>
+        )}
+      </>
+    )
   })
 )
 
