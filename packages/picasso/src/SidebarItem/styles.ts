@@ -7,12 +7,12 @@ export default ({ palette, sizes }: Theme) =>
       padding: '0 1rem',
       margin: '0 1rem',
 
-      '$nestedMenu &, $nonCollapsibleMenu &': {
+      '$nestedMenu &': {
         padding: '0 0 0 2rem',
         marginRight: '1rem'
       },
 
-      '$nestedMenuWithIcon &, $nonCollapsibleMenuWithIcon &': {
+      '$nestedMenuWithIcon &': {
         padding: '0 0 0 2.875rem',
         marginRight: '1rem'
       }
