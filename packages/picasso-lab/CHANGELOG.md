@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.36.6](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.36.5...@toptal/picasso-lab@2.36.6) (2020-12-07)
+
+
+### Bug Fixes
+
+* use document.activeElement for focus check ([#1755](https://github.com/toptal/picasso/issues/1755)) ([9141f1a](https://github.com/toptal/picasso/commit/9141f1a08701aa5be6257d354d0d1b674e8a2294))
+
+
+
+
+
 ## [2.36.5](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.36.4...@toptal/picasso-lab@2.36.5) (2020-11-13)
 
 **Note:** Version bump only for package @toptal/picasso-lab
