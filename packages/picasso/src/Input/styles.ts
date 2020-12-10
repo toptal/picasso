@@ -9,7 +9,8 @@ export default ({ palette }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
-      backgroundColor: palette.common.white
+      backgroundColor: palette.common.white,
+      cursor: 'text'
     },
     rootMultiline: {
       height: 'auto'

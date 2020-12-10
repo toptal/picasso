@@ -5,6 +5,7 @@ import { Time16 } from '@toptal/picasso/Icon'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import InputMask from 'react-input-mask'
 import { detect } from 'detect-browser'
+import cx from 'classnames'
 
 import styles from './styles'
 
@@ -41,7 +42,7 @@ export interface Props
 }
 
 export const TimePicker = (props: Props) => {
-  const { onChange, value, width, ...rest } = props
+  const { onChange, value, width, className, ...rest } = props
   const classes = useStyles(props)
   const browser = detect()
   const isSafari = browser?.name === 'safari'
@@ -55,7 +56,7 @@ export const TimePicker = (props: Props) => {
     /[0-9]/
   ]
 
-  const getIcon = () => <Time16 classes={{ root: classes.icon }} />
+  const icon = <Time16 classes={{ root: classes.icon }} />
 
   if (isSafari) {
     return (
@@ -63,8 +64,9 @@ export const TimePicker = (props: Props) => {
         type='text'
         readOnly
         iconPosition='end'
-        icon={getIcon()}
+        icon={icon}
         width={width}
+        className={cx(classes.root, className)}
         inputProps={{
           className: classes.inputBase,
           ...rest
@@ -88,9 +90,10 @@ export const TimePicker = (props: Props) => {
     <Input
       type='time'
       value={value}
+      className={cx(classes.root, className)}
       onChange={onChange}
       iconPosition='end'
-      icon={getIcon()}
+      icon={icon}
       width={width}
       inputProps={{
         className: classes.inputBase,
@@ -100,8 +103,6 @@ export const TimePicker = (props: Props) => {
     />
   )
 }
-
-TimePicker.defaultProps = {}
 
 TimePicker.displayName = 'TimePicker'
 
