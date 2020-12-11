@@ -285,7 +285,7 @@ export const LineChart = (props: Props) => {
             width={Y_AXIS_WIDTH}
             tickFormatter={
               formatYAxisTick
-                ? value => formatYAxisTick?.(value, yDomain)
+                ? value => formatYAxisTick(value, yDomain)
                 : undefined
             }
           />

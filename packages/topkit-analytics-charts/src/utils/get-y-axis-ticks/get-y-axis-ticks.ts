@@ -3,7 +3,7 @@ import { ticks } from 'd3-array'
 
 import { HOUR, DAY, NUMBER_OF_Y_AXIS_TICKS } from '../../config'
 
-const uniqBy = (array: any[]) =>
+const uniqBy = <T>(array: T[]) =>
   array.filter((value, index, self) => self.indexOf(value) === index)
 
 const getYAxisTicks = (domain: [number, number], unit?: string) => {
@@ -15,9 +15,7 @@ const getYAxisTicks = (domain: [number, number], unit?: string) => {
         .domain([0, domain[1] / interval])
         .ticks(4)
 
-      return uniqBy(yAxisTicks.map(Math.floor)).map(
-        (tick: number) => tick * interval
-      )
+      return uniqBy(yAxisTicks.map(Math.floor)).map(tick => tick * interval)
     }
   }
 
