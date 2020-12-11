@@ -16,10 +16,11 @@ module.exports = {
   addons: [
     'storybook-readme/register',
     '@storybook/addon-viewport/register',
-    './addons/menu-expander/register',
+    './addons/menu-expand/register',
     './addons/anchor-link-handler/register',
     './addons/document-title/register'
   ],
+  stories: [path.join(__dirname, './load-stories.js')],
   typescript: {
     check: isDevelopment,
     checkOptions: {
