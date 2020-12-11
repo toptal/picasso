@@ -180,6 +180,9 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'LineChart'
 })
 
+const defaultGetYAxisTicks = (domain: Domain) =>
+  getD3Ticks(domain[0], domain[1], NUMBER_OF_TICKS)
+
 export const LineChart = (props: Props) => {
   const classes = useStyles(props)
   const {
@@ -196,8 +199,7 @@ export const LineChart = (props: Props) => {
     showBottomYAxisLabel,
     children,
     getXAxisTicks = getChartTicks,
-    getYAxisTicks = (domain: Domain) =>
-      getD3Ticks(domain[0], domain[1], NUMBER_OF_TICKS),
+    getYAxisTicks = defaultGetYAxisTicks,
     formatYAxisTick
   } = props
 

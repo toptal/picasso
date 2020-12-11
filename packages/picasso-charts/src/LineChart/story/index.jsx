@@ -58,12 +58,6 @@ export const sharedChartDocs = {
     type: 'boolean',
     description: 'Shows the bottom Y axis label',
     defaultValue: false
-  },
-  showEvenYAxisTicks: {
-    name: 'showEvenYAxisTicks',
-    type: 'boolean',
-    description: 'Shows even Y ticks',
-    defaultValue: false
   }
 }
 
