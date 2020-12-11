@@ -45,9 +45,6 @@ const Example = () => (
             <Tag>5</Tag>
           </Container>
         </Sidebar.Item>
-        <Sidebar.Item>
-          Menu item with surprisingly long text content
-        </Sidebar.Item>
         <Sidebar.Item
           collapsible
           icon={<Referrals16 />}
@@ -55,15 +52,17 @@ const Example = () => (
             <Sidebar.Menu>
               <Sidebar.Item>Share Online</Sidebar.Item>
               <Sidebar.Item>Referred Users</Sidebar.Item>
-              <Sidebar.Item>Commisions</Sidebar.Item>
+              <Sidebar.Item>Commissions</Sidebar.Item>
               <Sidebar.Item>Payment Options</Sidebar.Item>
-              <Sidebar.Item>Expected Commisions</Sidebar.Item>
+              <Sidebar.Item>Expected Commissions</Sidebar.Item>
             </Sidebar.Menu>
           }
         >
           Referrals
         </Sidebar.Item>
-        <Sidebar.Item icon={<Resources16 />}>Resources</Sidebar.Item>
+        <Sidebar.Item icon={<Resources16 />}>
+          Menu item with surprisingly long text content
+        </Sidebar.Item>
       </Sidebar.Menu>
 
       <Sidebar.Menu bottom>
