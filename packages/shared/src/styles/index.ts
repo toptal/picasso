@@ -39,7 +39,7 @@ export const outline = (baseColor: string, width = 3) => ({
   boxShadow: `0 0 0 ${width}px ${alpha(baseColor, 0.48)}`
 })
 
-export const remToNumber = (value: string): number => Number.parseFloat(value)
+export const remToNumber = (value: string) => Number.parseFloat(value)
 
 export { default as withClasses } from './withClasses'
 
