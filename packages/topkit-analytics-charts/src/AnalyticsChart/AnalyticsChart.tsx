@@ -5,7 +5,9 @@ import {
   toChartFormat,
   toHighlightFormat,
   toLineConfigFormat,
-  getXAxisTicks
+  getXAxisTicks,
+  getYAxisTicks,
+  formatYAxisTick
 } from './../utils'
 
 export type ChartGranularity = 'month' | 'week' | 'day' | 'hour'
@@ -41,6 +43,7 @@ export const AnalyticsChart = ({
   lineConfig: lines,
   formatXAxisLabel,
   granularity,
+  unit,
   ...rest
 }: Props) => {
   const chartData = useMemo(
@@ -61,6 +64,10 @@ export const AnalyticsChart = ({
     orderedData => getXAxisTicks(orderedData, granularity),
     [granularity]
   )
+  const getYTicks = useCallback(
+    (bottomDomain, topDomain) => getYAxisTicks(bottomDomain, topDomain, unit),
+    [unit]
+  )
 
   return (
     <LineChart
@@ -69,6 +76,8 @@ export const AnalyticsChart = ({
       highlights={highlightsData || null}
       lineConfig={lineConfig}
       getXAxisTicks={getXTicks}
+      getYAxisTicks={getYTicks}
+      formatYAxisTick={(value, domain) => formatYAxisTick(value, domain, unit)}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     />

@@ -79,7 +79,9 @@ export type BaseChartProps = {
   showBottomYAxisLabel?: boolean
   showEvenYAxisTicks?: boolean
   children?: ReactNode
-  getXAxisTicks?: (orderedChartData: OrderedChartDataPoint[]) => any[]
+  getXAxisTicks?: (orderedChartData: OrderedChartDataPoint[]) => number[]
+  getYAxisTicks?: (bottomDomain: number, topDomain: number) => number[]
+  formatYAxisTick?: (value: number, domain: [number, number]) => string
 }
 
 export type Props = BaseChartProps & {
@@ -193,7 +195,9 @@ export const LineChart = (props: Props) => {
     showBottomYAxisLabel,
     showEvenYAxisTicks,
     children,
-    getXAxisTicks = getChartTicks
+    getXAxisTicks = getChartTicks,
+    getYAxisTicks,
+    formatYAxisTick
   } = props
 
   const yKey = Object.keys(lines)[0]
@@ -228,6 +232,10 @@ export const LineChart = (props: Props) => {
       calculateTooltipPosition(next, tooltipElem, chartElem)
     }
   }
+
+  const yAxisTicks = showEvenYAxisTicks
+    ? getD3Ticks(BOTTOM_DOMAIN, topDomain, NUMBER_OF_TICKS)
+    : getYAxisTicks?.(BOTTOM_DOMAIN, topDomain) || undefined
 
   return (
     <div
@@ -264,19 +272,18 @@ export const LineChart = (props: Props) => {
           <YAxis
             type='number'
             dataKey={yKey}
-            unit={unit}
+            unit={formatYAxisTick ? undefined : unit}
             domain={[BOTTOM_DOMAIN, topDomain]}
             tickLine={TICK_LINE}
             axisLine={AXIS_LINE}
             interval={0}
-            ticks={
-              showEvenYAxisTicks
-                ? getD3Ticks(BOTTOM_DOMAIN, topDomain, NUMBER_OF_TICKS)
-                : undefined
-            }
+            ticks={yAxisTicks}
             minTickGap={MIN_TICK_GAP}
             tickMargin={TICK_MARGIN}
             width={Y_AXIS_WIDTH}
+            tickFormatter={value =>
+              formatYAxisTick?.(value, [BOTTOM_DOMAIN, topDomain])
+            }
           />
 
           {referenceLineList}
