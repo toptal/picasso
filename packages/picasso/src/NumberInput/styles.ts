@@ -3,7 +3,8 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 export default ({ palette, transitions }: Theme) =>
   createStyles({
     root: {
-      paddingRight: 0
+      paddingRight: 0,
+      cursor: 'text'
     },
     input: {
       '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
