@@ -128,9 +128,7 @@ Sidebar.defaultProps = {
 Sidebar.displayName = 'Sidebar'
 
 Sidebar.Menu = SidebarMenu
-
 Sidebar.Item = SidebarItem
-
 Sidebar.Logo = SidebarLogo
 
 export default Sidebar as PicassoComponentWithRef<
