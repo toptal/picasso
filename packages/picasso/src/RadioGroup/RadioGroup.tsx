@@ -10,7 +10,9 @@ export interface Props extends RadioGroupProps {
   horizontal?: boolean
 }
 
-// Using { index: -1 } to keep the correct CSS injection order (https://toptal-core.atlassian.net/browse/FX-1520)
+// Using { index: -1 } to inject CSS link to the bottom of the head
+// in order to prevent FormControlLabel's styles to override RadioGroup's ones
+// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoRadioGroup',
   index: -1
