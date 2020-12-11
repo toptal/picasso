@@ -101,7 +101,7 @@ Most of the time you would use Sidebar.Item as a router Link. This is how to do 
         'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop',
       effect: async (testPage, makeScreenshot) => {
         await testPage.click('[test-id="Referrals"]')
-        await testPage.waitFor(100)
+        await testPage.waitForSelector('[role="region"]')
         await makeScreenshot()
       }
     })
