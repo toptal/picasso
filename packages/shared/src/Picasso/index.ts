@@ -2,7 +2,7 @@ export {
   default,
   PicassoProvider,
   usePicassoRoot,
-  usePageHeader,
+  useTopBar,
   useAppConfig,
   useDrawer,
   RootContext

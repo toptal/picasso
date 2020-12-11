@@ -9,7 +9,7 @@ import React, {
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, usePageHeader } from '@toptal/picasso-shared'
+import { StandardProps, useTopBar } from '@toptal/picasso-shared'
 
 import Logo from '../Logo'
 import Container from '../Container'
@@ -53,15 +53,15 @@ export const TopBar = forwardRef<HTMLElement, Props>(function TopBar(
 ) {
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
-  const { setHasPageHeader } = usePageHeader()
+  const { setHasTopBar } = useTopBar()
 
   useLayoutEffect(() => {
-    setHasPageHeader(true)
+    setHasTopBar(true)
 
     return function cleanup() {
-      setHasPageHeader(false)
+      setHasTopBar(false)
     }
-  }, [setHasPageHeader])
+  }, [setHasTopBar])
 
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
