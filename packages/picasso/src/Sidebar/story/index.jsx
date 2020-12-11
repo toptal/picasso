@@ -18,21 +18,7 @@ page
 
 page
   .createChapter()
-  .addExample('Sidebar/story/Default.example.jsx', 'Default')
-  .addExample(
-    'Sidebar/story/DefaultExpanded.example.jsx',
-    'Expanded By Default'
-  )
-  .addExample('Sidebar/story/Links.example.tsx', 'With Links')
-  .addExample('Sidebar/story/WithoutIcons.example.jsx', 'Without Icons')
-  .addExample('Sidebar/story/Variants.example.jsx', 'Variants')
-  .addExample('Sidebar/story/Menu.example.jsx', {
-    title: 'Item Menu',
-    description:
-      'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[test-id="Referrals"]')
-      await testPage.waitFor(100)
-      await makeScreenshot()
-    }
-  })
+  .addExample('Sidebar/story/Default.example.tsx', 'Default')
+  .addExample('Sidebar/story/Variants.example.tsx', 'Variants')
+
+page.connect(sidebarItemStory.chapter)

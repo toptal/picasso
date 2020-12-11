@@ -120,7 +120,10 @@ export const SidebarItem: OverridableComponent<Props> = memo(
           classes.noWrap,
           classes.roundedBorder,
           classes[variant!],
-          { [classes.selected]: !hasMenu && selected },
+          {
+            [classes.selected]: !hasMenu && selected,
+            [classes.collapsible]: hasMenu && collapsible
+          },
           className
         )}
         onClick={handleMenuItemClick}
@@ -146,41 +149,47 @@ export const SidebarItem: OverridableComponent<Props> = memo(
 
     if (hasMenu && collapsible) {
       return (
-        <Container right='small'>
-          <Accordion
-            onChange={handleAccordionChange}
-            classes={{
-              summary: classes.summary,
-              details: classes.details,
-              content: classes.content
-            }}
-            content={menu}
-            borders='none'
-            disabled={disabled}
-            expanded={isExpanded}
-            expandIcon={
-              <ArrowDownMinor16
-                className={cx(
-                  classes.expandIcon,
-                  classes[`${variant}ExpandIcon`],
-                  {
-                    [classes.expandIconDisabled]: disabled
-                  }
-                )}
-              />
-            }
-          >
-            {menuItem}
-          </Accordion>
-        </Container>
+        <Accordion
+          onChange={handleAccordionChange}
+          classes={{
+            summary: classes.collapsibleWrapper,
+            details: hasIcon ? classes.nestedMenuWithIcon : classes.nestedMenu,
+            content: classes.content
+          }}
+          content={menu}
+          borders='none'
+          disabled={disabled}
+          expanded={isExpanded}
+          expandIcon={
+            <ArrowDownMinor16
+              className={cx(
+                classes.expandIcon,
+                classes[`${variant}ExpandIcon`],
+                {
+                  [classes.expandIconDisabled]: disabled
+                }
+              )}
+            />
+          }
+        >
+          {menuItem}
+        </Accordion>
       )
     }
 
     return (
-      <Container right='small'>
+      <>
         {menuItem}
-        {hasMenu && <div className={classes.nonCollapsibleMenu}>{menu}</div>}
-      </Container>
+        {hasMenu && (
+          <div
+            className={
+              hasIcon ? classes.nestedMenuWithIcon : classes.nestedMenu
+            }
+          >
+            {menu}
+          </div>
+        )}
+      </>
     )
   })
 )
