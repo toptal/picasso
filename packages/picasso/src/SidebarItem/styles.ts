@@ -5,14 +5,16 @@ export default ({ palette, sizes }: Theme) =>
     root: {
       height: '2.75em',
       padding: '0 1rem',
+      margin: '0 1rem',
 
-      '$nonCollapsibleMenu &': {
-        paddingLeft: '2rem',
-        marginRight: '0rem'
+      '$nestedMenu &': {
+        padding: '0 0 0 2rem',
+        marginRight: '1rem'
       },
-      '$details &': {
-        paddingLeft: '2rem',
-        marginRight: '0rem'
+
+      '$nestedMenuWithIcon &': {
+        padding: '0 0 0 2.875rem',
+        marginRight: '1rem'
       }
     },
     roundedBorder: {
@@ -68,15 +70,15 @@ export default ({ palette, sizes }: Theme) =>
     withIcon: {
       marginLeft: '0.875em'
     },
-    summary: {
-      padding: 0
+    collapsibleWrapper: {
+      padding: '0 0 0 1rem',
+      margin: '0 1rem'
     },
-    details: {
-      fontSize: 'inherit',
-      marginBottom: '0'
-    },
+    nestedMenu: {},
+    nestedMenuWithIcon: {},
     content: {
-      fontSize: 'inherit'
+      // to cover text overflow in the sub-menu header item
+      maxWidth: '100%'
     },
     expandIcon: {
       fontSize: '1em'
@@ -94,5 +96,8 @@ export default ({ palette, sizes }: Theme) =>
       flex: 1,
       minWidth: 0
     },
-    nonCollapsibleMenu: {}
+    collapsible: {
+      margin: 0,
+      padding: 0
+    }
   })
