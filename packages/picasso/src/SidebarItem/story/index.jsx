@@ -89,14 +89,14 @@ const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('Sidebar Item')
     .addExample('SidebarItem/story/Links.example.tsx', {
-      title: 'Sidebar.Item as a Link',
+      title: 'As a Link',
       description: `
 Most of the time you would use Sidebar.Item as a router Link. This is how to do it.
 `
     })
     .addExample('SidebarItem/story/Icons.example.tsx', 'Icons')
     .addExample('SidebarItem/story/Collapsible.example.tsx', {
-      title: 'Collapsible Sidebar.Item',
+      title: 'Collapsible',
       description:
         'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop',
       effect: async (testPage, makeScreenshot) => {
