@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react'
+import React, { useMemo } from 'react'
 import { BaseChartProps, LineChart } from '@toptal/picasso-charts'
 
 import {
@@ -60,14 +60,6 @@ export const AnalyticsChart = ({
       toHighlightFormat(chartData, highlights, xAxisKey!, formatXAxisLabel!),
     [chartData, formatXAxisLabel, highlights, xAxisKey]
   )
-  const getXTicks = useCallback(
-    orderedData => getXAxisTicks(orderedData, granularity),
-    [granularity]
-  )
-  const getYTicks = useCallback(
-    (bottomDomain, topDomain) => getYAxisTicks(bottomDomain, topDomain, unit),
-    [unit]
-  )
 
   return (
     <LineChart
@@ -75,8 +67,8 @@ export const AnalyticsChart = ({
       data={chartData}
       highlights={highlightsData || null}
       lineConfig={lineConfig}
-      getXAxisTicks={getXTicks}
-      getYAxisTicks={getYTicks}
+      getXAxisTicks={orderedData => getXAxisTicks(orderedData, granularity)}
+      getYAxisTicks={domain => getYAxisTicks(domain, unit)}
       formatYAxisTick={(value, domain) => formatYAxisTick(value, domain, unit)}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}

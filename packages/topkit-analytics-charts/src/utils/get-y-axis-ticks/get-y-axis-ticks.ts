@@ -6,17 +6,13 @@ import { HOUR, DAY } from '../../config'
 const uniqBy = (array: any[]) =>
   array.filter((value, index, self) => self.indexOf(value) === index)
 
-const getYAxisTicks = (
-  bottomDomain: number,
-  topDomain: number,
-  unit?: string
-) => {
+const getYAxisTicks = (domain: [number, number], unit?: string) => {
   if (unit === 'minutes') {
-    if (topDomain >= HOUR) {
-      const interval = topDomain >= DAY * 2 ? DAY : HOUR
+    if (domain[1] >= HOUR) {
+      const interval = domain[1] >= DAY * 2 ? DAY : HOUR
 
       const ticks = scaleLinear()
-        .domain([0, topDomain / interval])
+        .domain([0, domain[1] / interval])
         .ticks(4)
 
       return uniqBy(ticks.map(Math.floor)).map(
@@ -25,7 +21,7 @@ const getYAxisTicks = (
     }
   }
 
-  return ticks(bottomDomain, topDomain, 4)
+  return ticks(domain[0], domain[1], 4)
 }
 
 export default getYAxisTicks

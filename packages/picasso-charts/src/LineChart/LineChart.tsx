@@ -67,6 +67,8 @@ export type LineConfig = Record<
   { color: string; variant?: 'solid' | 'reference' }
 >
 
+export type Domain = [number, number]
+
 export type BaseChartProps = {
   lineConfig: LineConfig
   unit?: string
@@ -77,11 +79,10 @@ export type BaseChartProps = {
   allowTooltipEscapeViewBox?: boolean
   className?: string
   showBottomYAxisLabel?: boolean
-  showEvenYAxisTicks?: boolean
   children?: ReactNode
   getXAxisTicks?: (orderedChartData: OrderedChartDataPoint[]) => number[]
-  getYAxisTicks?: (bottomDomain: number, topDomain: number) => number[]
-  formatYAxisTick?: (value: number, domain: [number, number]) => string
+  getYAxisTicks?: (domain: Domain) => number[]
+  formatYAxisTick?: (value: number, domain: Domain) => string
 }
 
 export type Props = BaseChartProps & {
@@ -193,10 +194,10 @@ export const LineChart = (props: Props) => {
     highlights,
     referenceLines,
     showBottomYAxisLabel,
-    showEvenYAxisTicks,
     children,
     getXAxisTicks = getChartTicks,
-    getYAxisTicks,
+    getYAxisTicks = (domain: Domain) =>
+      getD3Ticks(domain[0], domain[1], NUMBER_OF_TICKS),
     formatYAxisTick
   } = props
 
@@ -233,9 +234,7 @@ export const LineChart = (props: Props) => {
     }
   }
 
-  const yAxisTicks = showEvenYAxisTicks
-    ? getD3Ticks(BOTTOM_DOMAIN, topDomain, NUMBER_OF_TICKS)
-    : getYAxisTicks?.(BOTTOM_DOMAIN, topDomain) || undefined
+  const yDomain: Domain = [BOTTOM_DOMAIN, topDomain]
 
   return (
     <div
@@ -272,17 +271,20 @@ export const LineChart = (props: Props) => {
           <YAxis
             type='number'
             dataKey={yKey}
+            // re-charts will append unit even if we have a format function, hence it's removed here
             unit={formatYAxisTick ? undefined : unit}
-            domain={[BOTTOM_DOMAIN, topDomain]}
+            domain={yDomain}
             tickLine={TICK_LINE}
             axisLine={AXIS_LINE}
             interval={0}
-            ticks={yAxisTicks}
+            ticks={getYAxisTicks(yDomain)}
             minTickGap={MIN_TICK_GAP}
             tickMargin={TICK_MARGIN}
             width={Y_AXIS_WIDTH}
-            tickFormatter={value =>
-              formatYAxisTick?.(value, [BOTTOM_DOMAIN, topDomain])
+            tickFormatter={
+              formatYAxisTick
+                ? value => formatYAxisTick?.(value, yDomain)
+                : undefined
             }
           />
 
@@ -330,9 +332,7 @@ LineChart.defaultProps = {
   unit: 'd',
   tooltip: false,
   allowTooltipEscapeViewBox: false,
-  xAxisKey: 'x',
-  showBottomYAxisLabel: false,
-  showEvenYAxisTicks: false
+  xAxisKey: 'x'
 }
 
 LineChart.displayName = 'LineChart'
