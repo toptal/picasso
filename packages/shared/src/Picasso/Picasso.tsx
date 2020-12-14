@@ -16,7 +16,8 @@ import React, {
   useState,
   forwardRef,
   ForwardRefExoticComponent,
-  RefAttributes
+  RefAttributes,
+  useLayoutEffect
 } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Helmet } from 'react-helmet'
@@ -72,6 +73,8 @@ interface RootContextProps extends TextLabelProps {
   rootRef?: RefObject<HTMLDivElement>
   hasTopBar: boolean
   setHasTopBar: (value: boolean) => void
+  hasSidebar: boolean
+  setHasSidebar: (value: boolean) => void
   environment: EnvironmentType<'test' | 'temploy'>
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
@@ -79,6 +82,8 @@ interface RootContextProps extends TextLabelProps {
 export const RootContext = React.createContext<RootContextProps>({
   hasTopBar: false,
   setHasTopBar: () => {},
+  hasSidebar: false,
+  setHasSidebar: () => {},
   environment: 'development',
   titleCase: false,
   hasDrawer: false,
@@ -107,6 +112,24 @@ export const useDrawer = () => {
     hasDrawer: context.hasDrawer,
     setHasDrawer: context.setHasDrawer
   }
+}
+
+export const useNotifyRootAboutSidebar = () => {
+  const { setHasSidebar } = useContext(RootContext)
+
+  useLayoutEffect(() => {
+    setHasSidebar(true)
+
+    return function cleanup() {
+      setHasSidebar(false)
+    }
+  }, [setHasSidebar])
+}
+
+export const useHasSidebar = () => {
+  const { hasSidebar } = useContext(RootContext)
+
+  return hasSidebar
 }
 
 export const useAppConfig = () => {
@@ -170,6 +193,13 @@ const PicassoGlobalStylesProvider = (
       setContextValue({
         ...contextValue,
         hasDrawer
+      })
+    },
+    hasSidebar: false,
+    setHasSidebar: (hasSidebar: boolean) => {
+      setContextValue({
+        ...contextValue,
+        hasSidebar
       })
     }
   })

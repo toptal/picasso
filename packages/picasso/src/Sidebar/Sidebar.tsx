@@ -12,6 +12,7 @@ import {
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
+import { useNotifyRootAboutSidebar } from '@toptal/picasso-shared/Picasso/Picasso'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -85,6 +86,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   props,
   ref
 ) {
+  useNotifyRootAboutSidebar()
   const classes = useStyles(props)
   const { children, variant, className, style } = props
 
