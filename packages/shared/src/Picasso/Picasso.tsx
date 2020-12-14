@@ -70,15 +70,15 @@ const PicassoProvider = new Provider(createMuiTheme(picasso))
 
 interface RootContextProps extends TextLabelProps {
   rootRef?: RefObject<HTMLDivElement>
-  hasPageHeader: boolean
-  setHasPageHeader: (value: boolean) => void
+  hasTopBar: boolean
+  setHasTopBar: (value: boolean) => void
   environment: EnvironmentType<'test' | 'temploy'>
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
 }
 export const RootContext = React.createContext<RootContextProps>({
-  hasPageHeader: false,
-  setHasPageHeader: () => {},
+  hasTopBar: false,
+  setHasTopBar: () => {},
   environment: 'development',
   titleCase: false,
   hasDrawer: false,
@@ -95,8 +95,8 @@ export const useTopBar = () => {
   const context = useContext(RootContext)
 
   return {
-    hasPageHeader: context.hasPageHeader,
-    setHasPageHeader: context.setHasPageHeader
+    hasTopBar: context.hasTopBar,
+    setHasTopBar: context.setHasTopBar
   }
 }
 
@@ -156,11 +156,11 @@ const PicassoGlobalStylesProvider = (
   const rootRef = useRef<HTMLDivElement>(null)
   const [contextValue, setContextValue] = useState({
     rootRef,
-    hasPageHeader: false,
-    setHasPageHeader: (hasPageHeader: boolean) => {
+    hasTopBar: false,
+    setHasTopBar: (hasTopBar: boolean) => {
       setContextValue({
         ...contextValue,
-        hasPageHeader
+        hasTopBar
       })
     },
     environment,
