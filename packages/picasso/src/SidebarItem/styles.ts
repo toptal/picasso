@@ -5,14 +5,16 @@ export default ({ palette, sizes }: Theme) =>
     root: {
       height: '2.75em',
       padding: '0 1rem',
-      margin: '0 1rem 0 0',
+      margin: '0 1rem',
 
       '$nestedMenu &': {
-        padding: '0 0 0 2rem'
+        padding: '0 0 0 2rem',
+        marginRight: '1rem'
       },
 
       '$nestedMenuWithIcon &': {
-        padding: '0 0 0 2.875rem'
+        padding: '0 0 0 2.875rem',
+        marginRight: '1rem'
       }
     },
     roundedBorder: {
@@ -70,7 +72,7 @@ export default ({ palette, sizes }: Theme) =>
     },
     collapsibleWrapper: {
       padding: '0 0 0 1rem',
-      margin: '0 1rem 0 0'
+      margin: '0 1rem'
     },
     nestedMenu: {},
     nestedMenuWithIcon: {},
