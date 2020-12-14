@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.38.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.37.0...@toptal/picasso-lab@2.38.0) (2020-12-14)
+
+
+### Features
+
+* **SkeletonLoader:** extend ButtonLoader ([#1750](https://github.com/toptal/picasso/issues/1750)) ([6ccbd00](https://github.com/toptal/picasso/commit/6ccbd0072217e3ff26a818bd4495687322d61f65))
+
+
+
+
+
 # [2.37.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.36.6...@toptal/picasso-lab@2.37.0) (2020-12-14)
 
 
