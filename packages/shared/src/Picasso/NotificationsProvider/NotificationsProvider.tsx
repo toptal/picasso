@@ -19,11 +19,11 @@ const NotificationsProvider: FunctionComponent<Props> = ({
   children,
   container
 }) => {
-  const { hasPageHeader } = useTopBar()
+  const { hasTopBar } = useTopBar()
   const classes = useStyles()
   const { hasDrawer } = useDrawer()
 
-  const containerAnchorOriginTop = hasPageHeader
+  const containerAnchorOriginTop = hasTopBar
     ? classes.rootWithMargin
     : undefined
 
