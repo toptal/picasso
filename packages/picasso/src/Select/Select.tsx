@@ -560,6 +560,10 @@ export const Select = documentable(
 
           fireOnChangeEvent({ event, value: newValue })
           setFilterOptionsValue(EMPTY_INPUT_VALUE)
+
+          if (selectRef.current) {
+            selectRef.current.focus()
+          }
         },
         [
           allOptions,
@@ -567,7 +571,8 @@ export const Select = documentable(
           setFilterOptionsValue,
           fireOnChangeEvent,
           multiple,
-          value
+          value,
+          selectRef
         ]
       )
 
