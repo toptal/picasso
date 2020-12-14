@@ -10,9 +10,9 @@ import {
   BaseProps,
   JssProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  useNotifyRootAboutSidebar
 } from '@toptal/picasso-shared'
-import { useNotifyRootAboutSidebar } from '@toptal/picasso-shared/Picasso/Picasso'
 
 import Button from '../Button'
 import Container from '../Container'

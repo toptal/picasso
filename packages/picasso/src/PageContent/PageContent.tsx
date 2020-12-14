@@ -1,8 +1,7 @@
 import React, { useContext, forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
-import { useHasSidebar } from '@toptal/picasso-shared/Picasso/Picasso'
+import { StandardProps, useHasSidebar } from '@toptal/picasso-shared'
 
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
