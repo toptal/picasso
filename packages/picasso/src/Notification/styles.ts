@@ -6,6 +6,7 @@ PicassoProvider.override(({ layout }: Theme) => ({
     message: {
       display: 'flex',
       maxWidth: layout.contentWidth,
+      padding: `0 ${layout.contentPaddingHorizontal}`,
       width: '100%',
       minWidth: 0,
       margin: '0 auto'
@@ -16,7 +17,8 @@ PicassoProvider.override(({ layout }: Theme) => ({
 export default ({
   palette: { red, green, yellow, common, text },
   shadows,
-  sizes: { borderRadius }
+  sizes: { borderRadius },
+  layout
 }: Theme) =>
   createStyles({
     notification: {
@@ -24,7 +26,7 @@ export default ({
       borderRadius: 0,
       flexWrap: 'nowrap',
       maxWidth: 'initial',
-      padding: `1.5em`,
+      padding: `1.5em calc(1.5em - ${layout.contentPaddingHorizontal})`,
       position: 'relative',
       width: '100%',
       boxShadow: 'none'
