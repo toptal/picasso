@@ -52,8 +52,8 @@ page
       await makeScreenshot()
     }
   })
-  .addExample('TypographyOverflow/story/WithDelay.example.tsx', {
-    title: 'With delay',
+  .addExample('TypographyOverflow/story/Delay.example.tsx', {
+    title: 'Delay',
     effect: async (testPage, makeScreenshot) => {
       /**
        * TODO: Revert to testPage.hover once the issue below is fixed
@@ -61,7 +61,7 @@ page
        */
       // When ellipsed text is hovered then tooltip should appear
       await testPage.click('[data-testid="default-delay-tooltip"]')
-      await testPage.waitFor(300)
+      await testPage.waitFor(200)
       await makeScreenshot()
 
       await testPage.click('[data-testid="long-delay-tooltip"]')

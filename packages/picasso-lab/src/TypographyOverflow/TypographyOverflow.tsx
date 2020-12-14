@@ -1,11 +1,7 @@
-import React, { ReactNode } from 'react'
+import { Tooltip, Typography, TypographyProps } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
-import {
-  Tooltip,
-  TooltipProps,
-  Typography,
-  TypographyProps
-} from '@toptal/picasso'
+import { DelayType } from '@toptal/picasso/Tooltip/Tooltip'
+import React, { ReactNode } from 'react'
 
 import Ellipsis from '../Ellipsis'
 
@@ -15,7 +11,7 @@ export interface Props extends BaseProps, TypographyProps {
   /** A content to show in tooltip when typography overflows. By default, TypographyOverflow's children are used. */
   tooltipContent?: ReactNode
   /** A delay in showing the tooltip when typography overflows. */
-  tooltipDelay?: TooltipProps['delay']
+  tooltipDelay?: DelayType
 }
 
 export const TypographyOverflow = ({
