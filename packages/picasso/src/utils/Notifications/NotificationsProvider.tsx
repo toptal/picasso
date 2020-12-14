@@ -15,13 +15,13 @@ const NotificationsProvider: FunctionComponent<Props> = ({
   children,
   container
 }) => {
-  const { hasPageHeader } = useTopBar()
+  const { hasTopBar } = useTopBar()
 
   return (
     <SnackbarProvider
       domRoot={container}
       maxSnack={MAX_NOTIFICATION_MESSAGES}
-      style={hasPageHeader ? { marginTop: headerHeight.default } : undefined}
+      style={hasTopBar ? { marginTop: headerHeight.default } : undefined}
     >
       {children}
     </SnackbarProvider>
