@@ -120,9 +120,11 @@ export const useNotifyRootAboutSidebar = () => {
   useLayoutEffect(() => {
     setHasSidebar(true)
 
-    return function cleanup() {
+    const cleanup = () => {
       setHasSidebar(false)
     }
+
+    return cleanup
   }, [setHasSidebar])
 }
 
