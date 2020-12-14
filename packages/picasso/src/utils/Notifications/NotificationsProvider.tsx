@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { SnackbarProvider } from 'notistack'
-import { usePageHeader } from '@toptal/picasso-shared'
+import { useTopBar } from '@toptal/picasso-shared'
 
 import { headerHeight } from '../../TopBar/styles'
 
@@ -15,7 +15,7 @@ const NotificationsProvider: FunctionComponent<Props> = ({
   children,
   container
 }) => {
-  const { hasPageHeader } = usePageHeader()
+  const { hasPageHeader } = useTopBar()
 
   return (
     <SnackbarProvider
