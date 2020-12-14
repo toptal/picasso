@@ -53,15 +53,15 @@ export const TopBar = forwardRef<HTMLElement, Props>(function TopBar(
 ) {
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
-  const { setHasPageHeader } = useTopBar()
+  const { setHasTopBar } = useTopBar()
 
   useLayoutEffect(() => {
-    setHasPageHeader(true)
+    setHasTopBar(true)
 
     return function cleanup() {
-      setHasPageHeader(false)
+      setHasTopBar(false)
     }
-  }, [setHasPageHeader])
+  }, [setHasTopBar])
 
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
