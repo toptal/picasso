@@ -1,7 +1,7 @@
+import React, { ReactNode } from 'react'
 import { Tooltip, Typography, TypographyProps } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
 import { DelayType } from '@toptal/picasso/Tooltip/Tooltip'
-import React, { ReactNode } from 'react'
 
 import Ellipsis from '../Ellipsis'
 
