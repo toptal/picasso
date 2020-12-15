@@ -5,6 +5,7 @@ export {
   useTopBar,
   useAppConfig,
   useDrawer,
+  useSidebar,
   RootContext
 } from './Picasso'
 
