@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.4.0...@topkit/analytics-charts@0.4.1) (2020-12-14)
+
+
+### Bug Fixes
+
+* **AnalyticsChart:** format y axis ([#1770](https://github.com/toptal/picasso/issues/1770)) ([bd342b9](https://github.com/toptal/picasso/commit/bd342b9c744c26d5be95466340e0ba5330d294ce))
+
+
+
+
+
 # [0.4.0](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.3.10...@topkit/analytics-charts@0.4.0) (2020-11-27)
 
 
