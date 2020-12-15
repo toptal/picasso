@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Modal, Button } from '@toptal/picasso'
-import { useModals } from '@toptal/picasso/utils'
+import { useModal } from '@toptal/picasso/utils'
 
 const ModalDialog = ({
-  modalId,
-  hideModal,
+  open,
+  onClose,
   align = 'centered'
 }: {
-  modalId: string
-  hideModal: (modalId: string) => void
+  open: boolean
+  onClose: () => void
   align?: 'top' | 'centered'
 }) => {
   const [isLoading] = useState(false)
@@ -17,8 +17,8 @@ const ModalDialog = ({
     <Modal
       align={align}
       container={() => document.getElementById('modal-container')!}
-      onClose={() => hideModal(modalId)}
-      open
+      onClose={onClose}
+      open={open}
     >
       <Modal.Title>Alignment is "{align}"</Modal.Title>
       <Modal.Content>
@@ -43,11 +43,7 @@ const ModalDialog = ({
         </p>
       </Modal.Content>
       <Modal.Actions>
-        <Button
-          disabled={isLoading}
-          variant='flat'
-          onClick={() => hideModal(modalId)}
-        >
+        <Button disabled={isLoading} variant='secondary' onClick={onClose}>
           Cancel
         </Button>
       </Modal.Actions>
@@ -56,32 +52,29 @@ const ModalDialog = ({
 }
 
 const Example = () => {
-  const { showModal, hideModal } = useModals()
-
-  const handleClickTopAligned = () => {
-    const modalId = showModal(() => (
-      <ModalDialog modalId={modalId} hideModal={hideModal} align='top' />
-    ))
-  }
-
-  const handleClickCenteredAligned = () => {
-    const modalId = showModal(() => (
-      <ModalDialog modalId={modalId} hideModal={hideModal} />
-    ))
-  }
+  const {
+    showModal: showTopAlignedModal,
+    hideModal: hideTopAlignedModal,
+    isOpen: isTopAlignedModalOpen
+  } = useModal()
+  const { showModal, hideModal, isOpen } = useModal()
 
   return (
     <div id='modal-container'>
-      <Button data-testid='align-top-open' onClick={handleClickTopAligned}>
+      <Button data-testid='align-top-open' onClick={showTopAlignedModal}>
         Open Top Aligned Modal
       </Button>
 
-      <Button
-        data-testid='align-centered-open'
-        onClick={handleClickCenteredAligned}
-      >
+      <Button data-testid='align-centered-open' onClick={showModal}>
         Open Centered Aligned Modal
       </Button>
+
+      <ModalDialog
+        open={isTopAlignedModalOpen}
+        onClose={hideTopAlignedModal}
+        align='top'
+      />
+      <ModalDialog open={isOpen} onClose={hideModal} />
     </div>
   )
 }
