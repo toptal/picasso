@@ -4,6 +4,7 @@ exports[`FormField default render 1`] = `
 <div>
   <div
     class="FormField-root"
+    data-field-has-error="false"
   >
     <input />
   </div>
