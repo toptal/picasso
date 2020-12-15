@@ -3,9 +3,9 @@ import { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
 import { palette } from '@toptal/picasso/utils'
 import { ButtonProps } from '@toptal/picasso'
-export interface Props
-  extends BaseProps,
-    Pick<ButtonProps, 'size' | 'circular'> {}
+export interface Props extends BaseProps, Pick<ButtonProps, 'size'> {
+  circular?: boolean
+}
 
 const BORDER_RADIUS = 4
 
