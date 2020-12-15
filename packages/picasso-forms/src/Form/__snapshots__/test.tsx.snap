@@ -11,6 +11,7 @@ exports[`Form default render 1`] = `
       <form>
         <div
           class="FormField-root"
+          data-field-has-error="false"
         >
           <div
             class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
