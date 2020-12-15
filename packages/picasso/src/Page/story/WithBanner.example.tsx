@@ -1,10 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Page, Container, Menu, Typography } from '@toptal/picasso'
-
-const StyledMainContentContainer = styled(Container)`
-  flex: 1;
-`
 
 const Example = () => (
   <div style={{ maxHeight: '30rem' }}>
@@ -15,7 +10,9 @@ const Example = () => (
         has been checked, we will reach to you via email about next steps.
       </Page.Banner>
       <Page.Content>
-        <Content />
+        <Page.Article>
+          <Content />
+        </Page.Article>
       </Page.Content>
       <Page.Footer />
     </Page>
@@ -37,7 +34,7 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <StyledMainContentContainer top='small'>
+  <Container top='small' bottom='small'>
     <Container bottom='small'>
       <Typography align='center' variant='heading' size='large'>
         Banner example
@@ -52,7 +49,7 @@ const Content = () => (
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
     </Typography>
-  </StyledMainContentContainer>
+  </Container>
 )
 
 export default Example

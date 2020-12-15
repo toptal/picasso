@@ -8,7 +8,7 @@ export interface Layout {
 const layout: Layout = {
   contentWidthWide: '90em',
   contentWidth: '75em',
-  contentPaddingHorizontal: '0.625em'
+  contentPaddingHorizontal: '2em'
 }
 
 export default layout
