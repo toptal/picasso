@@ -6,7 +6,9 @@ const Example = () => (
     <Page>
       <Page.TopBar title='Scrollable example' />
       <Page.Content>
-        <Content />
+        <Page.Article>
+          <Content />
+        </Page.Article>
       </Page.Content>
       <Page.Footer />
     </Page>
@@ -14,7 +16,7 @@ const Example = () => (
 )
 
 const Content = () => (
-  <Container top='small'>
+  <Container top='small' bottom='small'>
     <Container bottom='small'>
       <Typography align='center' variant='heading' size='large'>
         Scrollable example
