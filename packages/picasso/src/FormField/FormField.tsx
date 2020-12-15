@@ -27,6 +27,7 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
       ref={ref}
       className={cx(classes.root, className)}
       style={style}
+      data-field-has-error={Boolean(error)}
     >
       {children}
       {error && <FormError className={classes.error}>{error}</FormError>}

@@ -8,6 +8,7 @@ exports[`FormLabel default render 1`] = `
     <form>
       <div
         class="FormField-root"
+        data-field-has-error="false"
       >
         <label
           class="FormLabel-root"
@@ -32,6 +33,7 @@ exports[`FormLabel disabled 1`] = `
     <form>
       <div
         class="FormField-root"
+        data-field-has-error="false"
       >
         <label
           class="FormLabel-root FormLabel-disabled"
@@ -56,6 +58,7 @@ exports[`FormLabel required with (optional) 1`] = `
     <form>
       <div
         class="FormField-root"
+        data-field-has-error="false"
       >
         <label
           class="FormLabel-root"
@@ -81,6 +84,7 @@ exports[`FormLabel required with asterisk 1`] = `
     <form>
       <div
         class="FormField-root"
+        data-field-has-error="false"
       >
         <label
           class="FormLabel-root"
