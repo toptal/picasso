@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import { Button, Container, Typography } from '@toptal/picasso'
 import { BaseProps, useDrawer } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso/Icon'
-import React, { FunctionComponent, ReactNode, useEffect } from 'react'
+import React, { FunctionComponent, ReactNode, useLayoutEffect } from 'react'
 
 import styles from './styles'
 
@@ -35,15 +35,19 @@ export const Drawer: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const classes = useStyles()
-  const { hasDrawer, setHasDrawer } = useDrawer()
+  const { setHasDrawer } = useDrawer()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setHasDrawer(open)
+
+    const cleanup = () => {
+      setHasDrawer(false)
+    }
+
+    return cleanup
   }, [open, setHasDrawer])
 
   const handleOnClose = () => {
-    setHasDrawer(false)
-
     if (onClose) {
       onClose()
     }
@@ -53,7 +57,7 @@ export const Drawer: FunctionComponent<Props> = ({
     <MUIDrawer
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      open={hasDrawer}
+      open={open}
       onClose={handleOnClose}
       disablePortal={disablePortal}
     >

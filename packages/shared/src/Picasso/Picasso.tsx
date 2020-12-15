@@ -72,6 +72,8 @@ interface RootContextProps extends TextLabelProps {
   rootRef?: RefObject<HTMLDivElement>
   hasTopBar: boolean
   setHasTopBar: (value: boolean) => void
+  hasSidebar: boolean
+  setHasSidebar: (value: boolean) => void
   environment: EnvironmentType<'test' | 'temploy'>
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
@@ -79,6 +81,8 @@ interface RootContextProps extends TextLabelProps {
 export const RootContext = React.createContext<RootContextProps>({
   hasTopBar: false,
   setHasTopBar: () => {},
+  hasSidebar: false,
+  setHasSidebar: () => {},
   environment: 'development',
   titleCase: false,
   hasDrawer: false,
@@ -106,6 +110,15 @@ export const useDrawer = () => {
   return {
     hasDrawer: context.hasDrawer,
     setHasDrawer: context.setHasDrawer
+  }
+}
+
+export const useSidebar = () => {
+  const context = useContext(RootContext)
+
+  return {
+    hasSidebar: context.hasSidebar,
+    setHasSidebar: context.setHasSidebar
   }
 }
 
@@ -170,6 +183,13 @@ const PicassoGlobalStylesProvider = (
       setContextValue({
         ...contextValue,
         hasDrawer
+      })
+    },
+    hasSidebar: false,
+    setHasSidebar: (hasSidebar: boolean) => {
+      setContextValue({
+        ...contextValue,
+        hasSidebar
       })
     }
   })

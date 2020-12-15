@@ -2,7 +2,8 @@ import React, {
   forwardRef,
   useState,
   ReactNode,
-  FunctionComponent
+  FunctionComponent,
+  useLayoutEffect
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -10,7 +11,8 @@ import {
   BaseProps,
   JssProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  useSidebar
 } from '@toptal/picasso-shared'
 
 import Button from '../Button'
@@ -85,6 +87,16 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   props,
   ref
 ) {
+  const { setHasSidebar } = useSidebar()
+
+  useLayoutEffect(() => {
+    setHasSidebar(true)
+
+    return function cleanup() {
+      setHasSidebar(false)
+    }
+  }, [setHasSidebar])
+
   const classes = useStyles(props)
   const { children, variant, className, style } = props
 
