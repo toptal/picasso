@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.38.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.37.0...@toptal/picasso-lab@2.38.0) (2020-12-14)
+
+
+### Features
+
+* **SkeletonLoader:** extend ButtonLoader ([#1750](https://github.com/toptal/picasso/issues/1750)) ([6ccbd00](https://github.com/toptal/picasso/commit/6ccbd0072217e3ff26a818bd4495687322d61f65))
+
+
+
+
+
+# [2.37.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.36.6...@toptal/picasso-lab@2.37.0) (2020-12-14)
+
+
+### Features
+
+* [SPT-1202] Add tooltip delay on the typography overflow ([#1778](https://github.com/toptal/picasso/issues/1778)) ([0b77ffa](https://github.com/toptal/picasso/commit/0b77ffab2dbd23a55da0b15fb2141d6b525759a1))
+
+
+
+
+
 ## [2.36.6](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.36.5...@toptal/picasso-lab@2.36.6) (2020-12-07)
 
 
