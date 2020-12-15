@@ -5,8 +5,7 @@ export {
   useTopBar,
   useAppConfig,
   useDrawer,
-  useNotifyRootAboutSidebar,
-  useHasSidebar,
+  useSidebar,
   RootContext
 } from './Picasso'
 

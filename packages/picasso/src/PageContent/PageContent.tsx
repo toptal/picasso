@@ -1,7 +1,7 @@
 import React, { useContext, forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, useHasSidebar } from '@toptal/picasso-shared'
+import { StandardProps, useSidebar } from '@toptal/picasso-shared'
 
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
@@ -20,7 +20,7 @@ export const PageContent = forwardRef<HTMLDivElement, Props>(
     ref
   ) {
     const { width, fullWidth } = useContext<PageContextProps>(PageContext)
-    const hasSidebar = useHasSidebar()
+    const { hasSidebar } = useSidebar()
 
     const innerClassName = cx(
       {

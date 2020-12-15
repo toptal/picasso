@@ -122,12 +122,6 @@ export const useSidebar = () => {
   }
 }
 
-export const useHasSidebar = () => {
-  const { hasSidebar } = useContext(RootContext)
-
-  return hasSidebar
-}
-
 export const useAppConfig = () => {
   const context = useContext(RootContext)
 
