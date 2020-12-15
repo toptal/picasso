@@ -16,8 +16,7 @@ import React, {
   useState,
   forwardRef,
   ForwardRefExoticComponent,
-  RefAttributes,
-  useLayoutEffect
+  RefAttributes
 } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Helmet } from 'react-helmet'
@@ -114,18 +113,13 @@ export const useDrawer = () => {
   }
 }
 
-export const useNotifyRootAboutSidebar = () => {
-  const { setHasSidebar } = useContext(RootContext)
+export const useSidebar = () => {
+  const context = useContext(RootContext)
 
-  useLayoutEffect(() => {
-    setHasSidebar(true)
-
-    const cleanup = () => {
-      setHasSidebar(false)
-    }
-
-    return cleanup
-  }, [setHasSidebar])
+  return {
+    hasSidebar: context.hasSidebar,
+    setHasSidebar: context.setHasSidebar
+  }
 }
 
 export const useHasSidebar = () => {
