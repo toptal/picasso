@@ -8,6 +8,7 @@ exports[`FormLabel default render 1`] = `
     <form>
       <div
         class="FormField-root"
+        data-field-has-error="false"
       >
         <label
           class="FormLabel-root"
@@ -56,6 +57,7 @@ exports[`FormLabel disabled 1`] = `
     <form>
       <div
         class="FormField-root"
+        data-field-has-error="false"
       >
         <label
           class="FormLabel-root FormLabel-disabled"
@@ -104,6 +106,7 @@ exports[`FormLabel required 1`] = `
     <form>
       <div
         class="FormField-root"
+        data-field-has-error="false"
       >
         <label
           class="FormLabel-root"
@@ -157,6 +160,7 @@ exports[`FormLabel required and disabled 1`] = `
     <form>
       <div
         class="FormField-root"
+        data-field-has-error="false"
       >
         <label
           class="FormLabel-root FormLabel-disabled"
