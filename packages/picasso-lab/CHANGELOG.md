@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.38.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.38.0...@toptal/picasso-lab@2.38.1) (2020-12-15)
+
+
+### Bug Fixes
+
+* **OverviewGroup:** fix non selectable text ([#1786](https://github.com/toptal/picasso/issues/1786)) ([b55be16](https://github.com/toptal/picasso/commit/b55be16d5888451c3058838a91ec10c684c96362))
+
+
+
+
+
 # [2.38.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.37.0...@toptal/picasso-lab@2.38.0) (2020-12-14)
 
 
