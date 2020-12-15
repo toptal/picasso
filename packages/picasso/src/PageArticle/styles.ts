@@ -1,9 +1,9 @@
-import { createStyles } from '@material-ui/core/styles'
+import { createStyles, Theme } from '@material-ui/core/styles'
 
-export default () =>
+export default ({ layout }: Theme) =>
   createStyles({
     root: {
       flex: 1,
-      margin: '0 2rem'
+      margin: `0 ${layout.contentPaddingHorizontal}`
     }
   })
