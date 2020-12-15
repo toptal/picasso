@@ -11,6 +11,7 @@ exports[`FormRadio default render 1`] = `
       <form>
         <div
           class="FormField-root"
+          data-field-has-error="false"
         >
           <label
             class="FormLabel-root"
@@ -113,6 +114,7 @@ exports[`FormRadio required with asterisk 1`] = `
       <form>
         <div
           class="FormField-root"
+          data-field-has-error="false"
         >
           <label
             class="FormLabel-root"
