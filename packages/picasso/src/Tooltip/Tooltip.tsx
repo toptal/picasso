@@ -21,7 +21,7 @@ export type PlacementType = TooltipProps['placement']
 
 type MaxWidthType = 'none' | 'default'
 
-type DelayType = 'short' | 'long'
+export type DelayType = 'short' | 'long'
 
 const delayDurations: { [k in DelayType]: number } = {
   short: 200,
