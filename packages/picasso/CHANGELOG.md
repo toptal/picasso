@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.117.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.116.0...@toptal/picasso@4.117.0) (2020-12-15)
+
+
+### Features
+
+* **Icon:** add commission icon ([#1785](https://github.com/toptal/picasso/issues/1785)) ([2f83ad0](https://github.com/toptal/picasso/commit/2f83ad09060ee5f9975f182e0c4096f195a07af2))
+
+
+
+
+
 # [4.116.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.115.2...@toptal/picasso@4.116.0) (2020-12-14)
 
 
