@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { ComponentProps } from 'react'
 import { render, PicassoConfig } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 import { Link, MemoryRouter as Router } from 'react-router-dom'
 
-import OverviewBlock, { Props } from './OverviewBlock'
+import OverviewBlock from './OverviewBlock'
 
 jest.mock('ap-style-title-case')
 
 const renderOverviewBlock = (
-  props: OmitInternalProps<Props, 'children'>,
+  props: ComponentProps<typeof OverviewBlock>,
   picassoConfig?: PicassoConfig
 ) => {
   return render(
