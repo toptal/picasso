@@ -6,7 +6,9 @@ const Example = () => (
     <Page width='full'>
       <Page.TopBar rightContent={<RightContent />} title='Full width example' />
       <Page.Content>
-        <Content />
+        <Page.Article>
+          <Content />
+        </Page.Article>
       </Page.Content>
       <Page.Footer />
     </Page>
@@ -28,7 +30,7 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <Container top='small'>
+  <Container top='small' bottom='small'>
     <Container bottom='small'>
       <Typography align='center' variant='heading' size='large'>
         Full width example
