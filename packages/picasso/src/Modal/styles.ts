@@ -8,7 +8,10 @@ export default ({ screens, sizes }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      // do not remove, should be covered with test
+      // https://toptal-core.atlassian.net/browse/FX-1543
+      fontSize: '1rem'
     },
     container: {},
     paper: {
@@ -36,7 +39,7 @@ export default ({ screens, sizes }: Theme) =>
     },
     topAlignedDialog: {
       position: 'absolute',
-      top: '0px',
+      top: 0,
       maxHeight: maxHeightForTopAligned
     },
     closeButton: {
