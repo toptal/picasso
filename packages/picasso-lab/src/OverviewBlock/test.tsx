@@ -2,22 +2,23 @@ import React from 'react'
 import { render, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
+import { Link, MemoryRouter as Router } from 'react-router-dom'
 
 import OverviewBlock, { Props } from './OverviewBlock'
 
 jest.mock('ap-style-title-case')
 
 const renderOverviewBlock = (
-  children: string,
   props: OmitInternalProps<Props, 'children'>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { label, value, titleCase } = props
-
   return render(
-    <OverviewBlock label={label} value={value} titleCase={titleCase}>
-      {children}
-    </OverviewBlock>,
+    <Router>
+      <OverviewBlock
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+      />
+    </Router>,
     undefined,
     picassoConfig
   )
@@ -36,7 +37,6 @@ test('should transform text to title case when Picasso titleCase property is tru
   const LABEL_TEXT = 'abc dj4'
 
   renderOverviewBlock(
-    'test abc123',
     { value: 'abc co5', label: LABEL_TEXT },
     { titleCase: true }
   )
@@ -46,10 +46,54 @@ test('should transform text to title case when Picasso titleCase property is tru
 
 test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
   renderOverviewBlock(
-    'test abc456',
     { value: 'abc dk9', label: 'abc ps0', titleCase: false },
     { titleCase: true }
   )
 
   expect(spiedOnTitleCase).toBeCalledTimes(0)
+})
+
+describe('when OnClick function is defined', () => {
+  describe('when `as` prop is defined', () => {
+    it('render the element as `Link`', () => {
+      const { getByTestId } = renderOverviewBlock({
+        value: 'abc dk9',
+        label: 'abc ps0',
+        as: Link,
+        onClick: jest.fn(),
+        to: '/',
+        'data-testid': 'OverviewBlock'
+      })
+      const block = getByTestId('OverviewBlock')
+
+      // By the Link component to -> href
+      expect(block).toHaveAttribute('href', '/')
+      expect(block.nodeName).toBe('A')
+    })
+  })
+
+  describe('when `as` prop is undefined', () => {
+    it('render the element as `button`', () => {
+      const { getByTestId } = renderOverviewBlock({
+        value: 'abc dk9',
+        label: 'abc ps0',
+        onClick: jest.fn(),
+        'data-testid': 'OverviewBlock'
+      })
+
+      expect(getByTestId('OverviewBlock').nodeName).toBe('BUTTON')
+    })
+  })
+})
+
+describe('when OnClick function is undefined', () => {
+  it('renders the element as `div`', () => {
+    const { getByTestId } = renderOverviewBlock({
+      value: 'abc dk9',
+      label: 'abc ps0',
+      'data-testid': 'OverviewBlock'
+    })
+
+    expect(getByTestId('OverviewBlock').nodeName).toBe('DIV')
+  })
 })

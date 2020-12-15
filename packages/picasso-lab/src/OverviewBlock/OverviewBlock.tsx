@@ -67,7 +67,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       value,
       label,
       variant,
-      as: Component = 'button',
+      as,
       className,
       onClick,
       titleCase: propsTitleCase,
@@ -90,6 +90,8 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
     }
 
     const isClickable = Boolean(onClick)
+
+    const Component = isClickable && as ? as : 'div'
 
     const titleCase = useTitleCase(propsTitleCase)
 
