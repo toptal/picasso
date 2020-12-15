@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.7.2...@toptal/picasso-charts@0.7.3) (2020-12-14)
+
+
+### Bug Fixes
+
+* **AnalyticsChart:** format y axis ([#1770](https://github.com/toptal/picasso/issues/1770)) ([bd342b9](https://github.com/toptal/picasso/commit/bd342b9c744c26d5be95466340e0ba5330d294ce))
+
+
+
+
+
+## [0.7.2](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.7.1...@toptal/picasso-charts@0.7.2) (2020-12-11)
+
+
+### Bug Fixes
+
+* **picasso-charts:** add debounce package ([#1772](https://github.com/toptal/picasso/issues/1772)) ([3892c72](https://github.com/toptal/picasso/commit/3892c721bcb9ffbc356bcb69b39a735633d7ad28))
+
+
+
+
+
 ## [0.7.1](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.7.0...@toptal/picasso-charts@0.7.1) (2020-11-30)
 
 **Note:** Version bump only for package @toptal/picasso-charts
