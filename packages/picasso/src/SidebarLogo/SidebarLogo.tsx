@@ -18,7 +18,7 @@ export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
         ref={ref}
         flex
         bottom='small'
-        left='small'
+        left='large'
         alignItems='center'
         style={style}
         classes={classes}

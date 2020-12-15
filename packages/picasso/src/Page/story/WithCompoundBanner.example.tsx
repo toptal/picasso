@@ -1,11 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Page, Container, Menu, Typography, Link } from '@toptal/picasso'
 const { Banner } = Page
-
-const StyledMainContentContainer = styled(Container)`
-  flex: 1;
-`
 
 const Example = () => (
   <div style={{ maxHeight: '30rem' }}>
@@ -25,7 +20,9 @@ const Example = () => (
         </Banner.Actions>
       </Banner>
       <Page.Content>
-        <Content />
+        <Page.Article>
+          <Content />
+        </Page.Article>
       </Page.Content>
       <Page.Footer />
     </Page>
@@ -47,7 +44,7 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <StyledMainContentContainer top='small'>
+  <Container top='small' bottom='small'>
     <Container bottom='small'>
       <Typography align='center' variant='heading' size='large'>
         Compound banner example
@@ -62,7 +59,7 @@ const Content = () => (
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
     </Typography>
-  </StyledMainContentContainer>
+  </Container>
 )
 
 export default Example
