@@ -15,7 +15,6 @@ const CHART_DATA = [
 const Example = () => (
   <LineChart
     data={CHART_DATA}
-    showEvenYAxisTicks
     showBottomYAxisLabel
     lineConfig={{
       talents: { color: palette.blue.main }

@@ -1,4 +1,4 @@
-import getXAxisTicks from './'
+import getXAxisTicks from './get-x-axis-ticks'
 
 const ORDERED_DATA = [
   {
