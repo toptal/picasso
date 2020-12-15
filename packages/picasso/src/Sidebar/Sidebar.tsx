@@ -11,9 +11,9 @@ import {
   BaseProps,
   JssProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  useSidebar
 } from '@toptal/picasso-shared'
-import { useSidebar } from '@toptal/picasso-shared/Picasso/Picasso'
 
 import Button from '../Button'
 import Container from '../Container'

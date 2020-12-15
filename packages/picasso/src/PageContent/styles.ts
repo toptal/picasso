@@ -12,7 +12,6 @@ export default ({ layout, palette }: Theme) =>
       height: '100%',
       flexGrow: 1,
       maxWidth: layout.contentWidth,
-      padding: `0 ${layout.contentPaddingHorizontal}`,
       backgroundColor: palette.common.white,
       backgroundClip: 'content-box'
     },
