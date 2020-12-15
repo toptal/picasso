@@ -1,17 +1,11 @@
-import { FormApi, getIn } from 'final-form'
+import { FormApi } from 'final-form'
 
-import flatMap from './flat-map'
+const UNHIDDEN_INPUT_SELECTOR = 'input:not([type=hidden])'
 
-const formInputs = (form: HTMLFormElement) =>
-  Array.from(form.elements).filter(
-    element =>
-      element instanceof HTMLElement && typeof element.focus === 'function'
-  ) as HTMLInputElement[]
+const findFirstFieldWithError = (): HTMLElement | null => {
+  if (typeof document === 'undefined') return null
 
-const getInputs = (): HTMLInputElement[] => {
-  if (typeof document === 'undefined') return []
-
-  return flatMap(Array.from(document.forms), formInputs)
+  return document.querySelector<HTMLElement>('[data-field-has-error="true"]')
 }
 
 const findInputWithError = (inputs: HTMLInputElement[], errors: {}) =>
@@ -28,10 +22,12 @@ const findInputWithError = (inputs: HTMLInputElement[], errors: {}) =>
 const scrollToError = (errors: object) => {
   const firstInput = findInputWithError(getInputs(), errors)
 
-  if (!firstInput) return
+  if (!field) return
 
-  firstInput.focus({ preventScroll: true })
-  firstInput.scrollIntoView({ block: 'center', behavior: 'smooth' })
+  field.scrollIntoView({ block: 'center', behavior: 'smooth' })
+  field
+    .querySelector<HTMLInputElement>(UNHIDDEN_INPUT_SELECTOR)
+    ?.focus({ preventScroll: true })
 }
 
 export default () => <T>(form: FormApi<T>) => {
@@ -48,10 +44,8 @@ export default () => <T>(form: FormApi<T>) => {
   const scrollOnErrors = () => {
     const { errors = {}, submitErrors = {} } = state
 
-    if (Object.keys(errors).length) {
-      scrollToError(errors)
-    } else if (Object.keys(submitErrors).length) {
-      scrollToError(submitErrors)
+    if (Object.keys(errors).length || Object.keys(submitErrors).length) {
+      scrollToError()
     }
   }
 
