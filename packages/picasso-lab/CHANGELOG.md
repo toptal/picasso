@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.38.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.38.1...@toptal/picasso-lab@2.38.2) (2020-12-15)
+
+
+### Bug Fixes
+
+* **OverviewBlock:** fix typecheck in test ([#1791](https://github.com/toptal/picasso/issues/1791)) ([b00f8be](https://github.com/toptal/picasso/commit/b00f8be4e9ad4fb5901a6f6cbd726bb9f1e94c45))
+
+
+
+
+
 ## [2.38.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.38.0...@toptal/picasso-lab@2.38.1) (2020-12-15)
 
 
