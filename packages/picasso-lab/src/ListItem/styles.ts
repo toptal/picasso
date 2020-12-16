@@ -3,8 +3,10 @@ import { PicassoProvider } from '@toptal/picasso-shared'
 
 PicassoProvider.override(() => ({
   MuiListItem: {
-    focusVisible: {
-      backgroundColor: 'unset !important'
+    root: {
+      '&$focusVisible': {
+        backgroundColor: 'unset !important'
+      }
     }
   }
 }))
