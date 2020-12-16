@@ -11,6 +11,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
       <form>
         <div
           class="FormField-root"
+          data-field-has-error="false"
         >
           <label
             class="FormLabel-root"
@@ -119,6 +120,7 @@ exports[`Form.Checkbox default render for single checkbox 1`] = `
       <form>
         <div
           class="FormField-root"
+          data-field-has-error="false"
           data-testid="single-checkbox"
         >
           <label
@@ -176,6 +178,7 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
       <form>
         <div
           class="FormField-root"
+          data-field-has-error="false"
           data-testid="single-checkbox"
         >
           <label

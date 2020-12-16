@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Modal, Button, Form, Tooltip } from '@toptal/picasso'
-import { useModals } from '@toptal/picasso/utils'
+import { useModal } from '@toptal/picasso/utils'
 import { DatePicker } from '@toptal/picasso-lab'
 
 const ModalDialog = ({
-  modalId,
-  hideModal
+  open,
+  onClose
 }: {
-  modalId: string
-  hideModal: (modalId: string) => void
+  open: boolean
+  onClose: () => void
 }) => {
   const initialDate = new Date(2020, 10, 10)
   const [datepickerValue, setDatepickerValue] = useState(initialDate)
@@ -17,9 +17,9 @@ const ModalDialog = ({
     <Modal
       container={() => document.getElementById('modal-container')!}
       onBackdropClick={() => console.log('Clicked backdrop..')}
-      onClose={() => hideModal(modalId)}
+      onClose={onClose}
       onOpen={() => console.log('onOpen()')}
-      open
+      open={open}
       transitionDuration={0} // Only for demo purposes, should not be used
     >
       <Modal.Title>
@@ -42,21 +42,17 @@ const ModalDialog = ({
 }
 
 const Example = () => {
-  const { showModal, hideModal } = useModals()
-
-  const handleClick = () => {
-    const modalId = showModal(() => (
-      <ModalDialog modalId={modalId} hideModal={hideModal} />
-    ))
-  }
+  const { showModal, hideModal, isOpen } = useModal()
 
   return (
     <div id='modal-container'>
       <Tooltip open content='tooltip'>
-        <Button data-testid='trigger' onClick={handleClick}>
+        <Button data-testid='trigger' onClick={showModal}>
           Open
         </Button>
       </Tooltip>
+
+      <ModalDialog open={isOpen} onClose={hideModal} />
     </div>
   )
 }
