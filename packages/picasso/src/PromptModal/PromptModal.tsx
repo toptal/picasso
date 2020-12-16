@@ -6,6 +6,7 @@ import Typography from '../Typography'
 import Modal, { Props as ModalProps } from '../Modal'
 import Button, { VariantType as ButtonVariantType } from '../Button'
 import styles from './styles'
+import useIsMounted from '../utils/use-is-mounted'
 
 export type VariantType = 'positive' | 'negative'
 
@@ -59,6 +60,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
   const [result, setResult] = useState<unknown>()
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
+  const isStillMounted = useIsMounted()
 
   const handleSubmit = async () => {
     try {
@@ -66,9 +68,11 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
       setError(false)
 
       await onSubmit(result)
-      setLoading(false)
 
-      handleOnAfterSubmit()
+      if (isStillMounted.current) {
+        setLoading(false)
+        handleOnAfterSubmit()
+      }
     } catch (err) {
       setError(true)
       setLoading(false)
