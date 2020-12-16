@@ -11,6 +11,7 @@
         "*.md"
       ],
       "conventionalCommits": true,
+      "exact": true,
       "createRelease": "github",
       "yes": true,
       "message": "chore(release): publish [skip ci]"
