@@ -29,7 +29,9 @@ const RadioGroup: FunctionComponent<Props> = props => {
   const children = React.Children.toArray(rest.children)
 
   const childrenWithSpacing = children.map((child, index) => {
-    if (!React.isValidElement(child)) return
+    if (!React.isValidElement(child)) {
+      return child
+    }
 
     if (index === children.length || !horizontal) {
       return child
