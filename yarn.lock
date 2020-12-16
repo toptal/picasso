@@ -4099,13 +4099,13 @@
   resolved "https://registry.yarnpkg.com/@toptal/browserslist-config/-/browserslist-config-0.1.0-alpha.2.tgz#c0acea1a7348799ed38ad6ecebf2a5d4ca3660b4"
   integrity sha512-dSu1+Tf0nCa3qmTvGn+Kg6vwjbuXhZ7QIihax79zJKsXLYjYqny/YZAn3vrdNVGv9H9NvOM4qBVdrPDdVPVEVg==
 
-"@toptal/davinci-bootstrap@^2.1.40-alpha-resolutions.0+8fff03f":
-  version "2.1.40-alpha-resolutions.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-2.1.40-alpha-resolutions.0.tgz#31380574c0b77f4d74401e277441331de372d93c"
-  integrity sha512-KaI+i1bdcxRRigFV1YKmXHYkbWpqfHU+gEzw6UVmvIOhvroVXfJovuoaqQy0gCPcQQxMPs+5DJC+tfkDRZZ7mA==
+"@toptal/davinci-bootstrap@^2.1.40":
+  version "2.1.40"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-2.1.40.tgz#fed62628295d8a6ea40029902cec37873b884705"
+  integrity sha512-cT1XKGIR/W/Pee8ZdsNvvTVSc/NBABgUQ/laWRf9IGmFbebwte3bZkXRCxmuEAzaecGzFqkM4G0qKZhDJOJZHg==
   dependencies:
     "@toptal/davinci-cli-shared" "^1.0.1"
-    "@toptal/davinci-skeleton" "^1.4.66-alpha-resolutions.0+8fff03f"
+    "@toptal/davinci-skeleton" "^1.4.66"
     fs-extra "^8.0.1"
     lodash.kebabcase "^4.1.1"
     ora "^4.0.3"
@@ -4141,10 +4141,10 @@
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-engine@^1.4.11-alpha-resolutions.22+8fff03f":
-  version "1.4.11-alpha-resolutions.22"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-1.4.11-alpha-resolutions.22.tgz#4e92c28e327f3272d0081011d569008557029a67"
-  integrity sha512-GwEzzoNlrn5wFbByfuuvi7Sqb7/Nu2L6UlRk5gyU7Q930QWO8sa6QZdqMFCxHi4q1e/lMrLyhjALnw+dfJHpDA==
+"@toptal/davinci-engine@^1.4.11":
+  version "1.4.11"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-1.4.11.tgz#1700b81978f78c370790991fed32f2364d27915d"
+  integrity sha512-wgYCXQnwTb4ibXRDbfMUEyb8wZ0muTp7oFP6JiEMetqZNJbF5jt3sYdTL161gzfzhvpJRtIjeK0ZwVldguIiLA==
   dependencies:
     "@babel/cli" "^7.10.1"
     "@babel/core" "^7.10.1"
@@ -4214,10 +4214,10 @@
     matchmedia-polyfill "^0.3.2"
     semver "^7.3.2"
 
-"@toptal/davinci-skeleton@^1.4.66-alpha-resolutions.0+8fff03f":
-  version "1.4.66-alpha-resolutions.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-1.4.66-alpha-resolutions.0.tgz#e5bb8deea719c87b993de42db73b5419363b1f9d"
-  integrity sha512-6WYjZiFE82q5fg4xgqM5Y3A8DInwhEEq84tXSssOwvnmLBtK9CLe28xST0kN/DQL3IBHHOTSfELVMA22YzwHSQ==
+"@toptal/davinci-skeleton@^1.4.66":
+  version "1.4.66"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-1.4.66.tgz#70bca3eb12b1bf17eebb8101fe4cb1e2f0e8cf6e"
+  integrity sha512-yYEeenXngzQ2GF4tZGNhmCyaXNHDHF0LVvWVZBjosrepUAx3bDW3cxRpUYVFW6fKJ+b9uaM1JBb4eF+eZJH87g==
 
 "@toptal/davinci-syntax@^2.1.3":
   version "2.1.3"
@@ -4246,16 +4246,16 @@
     stylelint-config-styled-components "^0.1.1"
     stylelint-processor-styled-components "^1.8.0"
 
-"@toptal/davinci@0.2.262-alpha-resolutions.0":
-  version "0.2.262-alpha-resolutions.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-0.2.262-alpha-resolutions.0.tgz#7a010b98ba89073006c70f23ba492967bc05bb09"
-  integrity sha512-1qekulhxhkJTkrQL6/GqlXW03+31IBWEN1AiXUkQciMFvfxlWdXqLbjqR8GhwCKqbPgn0TLwbEFP3+WKBBEACQ==
+"@toptal/davinci@^0.2.262":
+  version "0.2.262"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-0.2.262.tgz#479c70d128ecab59b9d26219c7b60497ed08ebcd"
+  integrity sha512-sv5wD+lHcqNZzhOUZwQovovTTQMtsS4X8d6uJibwa1LU3jIvcFopzOh0N4xPGpG/JZ6d84AIsKMX0MUUbxFCug==
   dependencies:
-    "@toptal/davinci-bootstrap" "^2.1.40-alpha-resolutions.0+8fff03f"
+    "@toptal/davinci-bootstrap" "^2.1.40"
     "@toptal/davinci-ci" "^1.3.12"
     "@toptal/davinci-cli-shared" "^1.0.1"
     "@toptal/davinci-code" "^0.1.3"
-    "@toptal/davinci-engine" "^1.4.11-alpha-resolutions.22+8fff03f"
+    "@toptal/davinci-engine" "^1.4.11"
     "@toptal/davinci-qa" "^1.4.3"
     "@toptal/davinci-syntax" "^2.1.3"
     hygen "^6.0.4"
