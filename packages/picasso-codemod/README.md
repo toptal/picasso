@@ -28,3 +28,11 @@ The diff should look like this:
 +<PromptModal title="Title" message="message" onSubmit={handleSubmit} open={isOpen} variant='positive' />
 +<PromptModal title="Title" message="message" onSubmit={handleSubmit} open={isOpen} variant='positive' />
 ```
+
+<details>
+<summary>Command</summary>
+
+```npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/prompt-modal-variants .```
+
+</details>
+

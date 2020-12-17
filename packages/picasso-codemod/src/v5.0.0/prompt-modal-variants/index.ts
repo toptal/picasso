@@ -1,1 +1,1 @@
-export { default as promptModalVariants } from './prompt-modal-variants'
+export { default } from './prompt-modal-variants'
