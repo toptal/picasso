@@ -22,7 +22,7 @@ const transform: Transform = (file, api) => {
         const attribute = attributes[attributeIndex]
         const variant = attribute
           ? ((attribute as JSXAttribute).value as JSXText).value
-          : undefined
+          : null
 
         if (variant) {
           attributes[attributeIndex] = j.jsxAttribute(
