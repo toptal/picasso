@@ -239,6 +239,7 @@ const useAutocomplete = ({
 
         if (!isOpen) {
           setOpen(true)
+
           return
         }
 
