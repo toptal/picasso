@@ -1,0 +1,25 @@
+{
+  "name": "@toptal/picasso-codemod",
+  "version": "1.0.0",
+  "description": "Codemod scripts for Picasso.",
+  "author": "Toptal",
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-codemod#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "module": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toptal/picasso.git"
+  },
+  "scripts": {
+    "build:package": "cross-env NODE_ENV=production ./bin/build",
+    "prepublishOnly": "../../bin/prepublish"
+  },
+  "bugs": {
+    "url": "https://github.com/toptal/picasso/issues"
+  },
+  "sideEffects": false
+}
