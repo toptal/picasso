@@ -15,11 +15,14 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:package": "cross-env NODE_ENV=production ./bin/build",
+    "build:package": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
     "prepublishOnly": "../../bin/prepublish"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
   },
-  "sideEffects": false
+  "devDependencies": {
+    "jscodeshift": "0.11.0",
+    "@types/jscodeshift": "0.7.2"
+  }
 }

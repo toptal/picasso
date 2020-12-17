@@ -1,0 +1,20 @@
+/* eslint-disable */
+// @ts-nocheck
+import React from 'react'
+import { PromptModal } from '@toptal/picasso'
+
+const defaultProps = {
+  title: 'Test title',
+  message: 'Test message',
+  open: true,
+  onSubmit: () => {}
+}
+
+export default () => (
+  <>
+    <PromptModal {...defaultProps} variant='red' />
+    <PromptModal {...defaultProps} variant='green' />
+    <PromptModal {...defaultProps} variant='blue' />
+    <PromptModal {...defaultProps} />
+  </>
+)
