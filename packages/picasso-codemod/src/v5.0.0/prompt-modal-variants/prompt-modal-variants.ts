@@ -1,4 +1,10 @@
-import { Transform } from 'jscodeshift'
+import { Transform, JSXAttribute, JSXText } from 'jscodeshift'
+
+const newVariantOf: Record<string, string> = {
+  blue: 'positive',
+  green: 'positive',
+  red: 'negative'
+}
 
 const transform: Transform = (file, api) => {
   // eslint-disable-next-line id-length
@@ -14,14 +20,14 @@ const transform: Transform = (file, api) => {
           node => node.type === 'JSXAttribute' && node.name.name === 'variant'
         )
         const attribute = attributes[attributeIndex]
+        const variant = attribute
+          ? ((attribute as JSXAttribute).value as JSXText).value
+          : undefined
 
-        if (attribute && 'value' in attribute && attribute.value) {
-          const isNegative =
-            'value' in attribute.value && attribute.value.value === 'red'
-
+        if (variant) {
           attributes[attributeIndex] = j.jsxAttribute(
             j.jsxIdentifier('variant'),
-            j.literal(isNegative ? 'negative' : 'positive')
+            j.literal(newVariantOf[variant])
           )
         }
       })

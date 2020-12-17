@@ -7,8 +7,8 @@ This repository contains a collection of codemod scripts based for use with [JSC
 ## Setup & Run
 
 - `npm install -D @toptal/picasso-codemod`
-- `npx jscodeshift -t <codemod-script> <path>`
-- Use the `-d` option for a dry-run and use `-p` to print the output for comparison
+- `npx jscodeshift -t <codemod-script> --parser=tsx <path>`
+- [jscodeshift CLI usage](https://github.com/facebook/jscodeshift#usage-cli)
 
 ## Included Scripts
 
@@ -32,7 +32,9 @@ The diff should look like this:
 <details>
 <summary>Command</summary>
 
-```npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/prompt-modal-variants .```
+```sh
+npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v5.0.0/prompt-modal-variants src/**/*.tsx
+```
 
 </details>
 
