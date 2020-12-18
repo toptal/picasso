@@ -116,7 +116,7 @@ test('showPrompt with input returns result on Submit action ', async () => {
 })
 
 test('When PromptModal unmounted while performing submit, further state updates are short-circuited', async () => {
-  jest.spyOn(global.console, 'error')
+  const spy = jest.spyOn(global.console, 'error')
 
   const TestComponent = () => {
     const [isSubmitCompleted, setIsSubmitCompleted] = React.useState(false)
@@ -166,4 +166,6 @@ test('When PromptModal unmounted while performing submit, further state updates 
 
   // Ensure React has not logged "Can't perform a React state update on an unmounted component"
   expect(console.error).toBeCalledTimes(0)
+
+  spy.mockReset()
 })
