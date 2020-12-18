@@ -2,9 +2,6 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 
 export default ({ palette }: Theme) =>
   createStyles({
-    drawer: {
-      width: '27.5rem'
-    },
     header: {
       position: 'absolute',
       left: 0,
@@ -19,5 +16,11 @@ export default ({ palette }: Theme) =>
     },
     content: {
       paddingTop: '4.3125rem'
+    },
+    regular: {
+      width: '27.5rem'
+    },
+    wide: {
+      width: '34.5rem'
     }
   })
