@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, useState } from 'react'
+import React, { forwardRef, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import Container from '../Container'
@@ -6,6 +6,7 @@ import Typography from '../Typography'
 import Modal, { Props as ModalProps } from '../Modal'
 import Button, { VariantType as ButtonVariantType } from '../Button'
 import styles from './styles'
+import { useSafeState } from '../utils'
 
 export type VariantType = 'positive' | 'negative'
 
@@ -56,9 +57,9 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
     onClose,
     ...rest
   } = props
-  const [result, setResult] = useState<unknown>()
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
+  const [result, setResult] = useSafeState<unknown>()
+  const [loading, setLoading] = useSafeState(false)
+  const [error, setError] = useSafeState(false)
 
   const handleSubmit = async () => {
     try {
@@ -66,8 +67,8 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
       setError(false)
 
       await onSubmit(result)
-      setLoading(false)
 
+      setLoading(false)
       handleOnAfterSubmit()
     } catch (err) {
       setError(true)

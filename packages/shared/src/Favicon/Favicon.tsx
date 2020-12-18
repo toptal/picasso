@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 // we could use Page.Head instead, but it required PicassoProvider to be initialized
 // so it led to cross dependencies and error
 import { Helmet } from 'react-helmet'
+import useSafeState from '@toptal/picasso/utils/use-safe-state'
 
 import { getIcons } from './icons'
 import { useAppConfig, EnvironmentType } from '../Picasso'
@@ -12,7 +13,7 @@ export interface Props {
 }
 
 export const Favicon = ({ environment }: Props) => {
-  const [icons, setIcons] = useState<{
+  const [icons, setIcons] = useSafeState<{
     icon16?: string
     icon32?: string
     icon180?: string
