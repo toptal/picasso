@@ -6,7 +6,7 @@ import Typography from '../Typography'
 import Modal, { Props as ModalProps } from '../Modal'
 import Button, { VariantType as ButtonVariantType } from '../Button'
 import styles from './styles'
-import useSafeState from '../utils/use-safe-state'
+import { useSafeState } from '../utils'
 
 export type VariantType = 'positive' | 'negative'
 
