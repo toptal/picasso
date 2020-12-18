@@ -114,3 +114,56 @@ test('showPrompt with input returns result on Submit action ', async () => {
 
   expect(baseElement).toMatchSnapshot()
 })
+
+test('When PromptModal unmounted while performing submit, further state updates are short-circuited', async () => {
+  global.console = { ...global.console, error: jest.fn() }
+
+  const TestComponent = () => {
+    const [isSubmitCompleted, setIsSubmitCompleted] = React.useState(false)
+    const [shouldRenderPrompt, setShouldRenderPrompt] = React.useState(true)
+    const { showModal, hideModal, isOpen } = useModal()
+
+    return (
+      <>
+        <Button onClick={showModal}>Show</Button>
+        <Button onClick={() => setShouldRenderPrompt(false)}>Unmount</Button>
+
+        {isSubmitCompleted && 'Submitted'}
+        {shouldRenderPrompt && (
+          <PromptModal
+            open={isOpen}
+            title='Test title'
+            message='Test message'
+            onSubmit={hideModal}
+            onAfterSubmit={() => setIsSubmitCompleted(true)}
+          />
+        )}
+      </>
+    )
+  }
+
+  const { getByText, queryByText } = render(<TestComponent />)
+
+  // Open modal
+  const showModal = getByText('Show')
+
+  fireEvent.click(showModal)
+
+  // Submit modal
+  const submitModal = getByText('Submit')
+
+  fireEvent.click(submitModal)
+
+  // Unmount modal while submitting
+  const unmount = getByText('Unmount')
+
+  fireEvent.click(unmount)
+
+  // Wait until submitting is done
+  await wait(() => {
+    expect(queryByText('Submitted')).toBeInTheDocument()
+  })
+
+  // Ensure React has not logged "Can't perform a React state update on an unmounted component"
+  expect(console.error).toBeCalledTimes(0)
+})

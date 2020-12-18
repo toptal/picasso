@@ -1,11 +1,11 @@
-import { useRef, useEffect, useState, useCallback } from 'react'
+import { useRef, useLayoutEffect, useState, useCallback } from 'react'
 
 const useSafeState = <S>(initState: S | (() => S)) => {
   const [state, unsafeSetState] = useState<S>(initState)
 
   const isMounted = useRef(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     isMounted.current = true
 
     return () => {
