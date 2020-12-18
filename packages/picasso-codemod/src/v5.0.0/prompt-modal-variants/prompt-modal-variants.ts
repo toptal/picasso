@@ -1,9 +1,10 @@
 import { Transform, JSXAttribute, JSXText } from 'jscodeshift'
 
-const newVariantOf: Record<string, string> = {
-  blue: 'positive',
-  green: 'positive',
-  red: 'negative'
+const getNewVariant = (oldVariant?: string) => {
+  if (oldVariant === 'blue' || oldVariant === 'green') return 'positive'
+  if (oldVariant === 'red') return 'negative'
+
+  return undefined
 }
 
 const transform: Transform = (file, api) => {
@@ -19,13 +20,14 @@ const transform: Transform = (file, api) => {
         const attributeIndex = attributes.findIndex(
           node => node.type === 'JSXAttribute' && node.name.name === 'variant'
         )
-        const attribute = attributes[attributeIndex]
-        const variant = ((attribute as JSXAttribute)?.value as JSXText)?.value
+        const attribute = attributes[attributeIndex] as JSXAttribute | undefined
+        const variant = (attribute?.value as JSXText)?.value
+        const newVariant = getNewVariant(variant)
 
-        if (variant) {
+        if (newVariant) {
           attributes[attributeIndex] = j.jsxAttribute(
             j.jsxIdentifier('variant'),
-            j.literal(newVariantOf[variant] ?? null)
+            j.literal(newVariant)
           )
         }
       })

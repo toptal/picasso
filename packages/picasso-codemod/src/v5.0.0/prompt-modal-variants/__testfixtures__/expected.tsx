@@ -15,6 +15,8 @@ export default () => (
     <PromptModal {...defaultProps} variant='negative' />
     <PromptModal {...defaultProps} variant='positive' />
     <PromptModal {...defaultProps} variant='positive' />
+    <PromptModal {...defaultProps} variant='negative' />
+    <PromptModal {...defaultProps} variant='positive' />
     <PromptModal {...defaultProps} />
   </>
 )
