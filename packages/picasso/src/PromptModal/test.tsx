@@ -116,7 +116,7 @@ test('showPrompt with input returns result on Submit action ', async () => {
 })
 
 test('When PromptModal unmounted while performing submit, further state updates are short-circuited', async () => {
-  global.console = { ...global.console, error: jest.fn() }
+  jest.spyOn(global.console, 'error')
 
   const TestComponent = () => {
     const [isSubmitCompleted, setIsSubmitCompleted] = React.useState(false)
