@@ -20,14 +20,12 @@ const transform: Transform = (file, api) => {
           node => node.type === 'JSXAttribute' && node.name.name === 'variant'
         )
         const attribute = attributes[attributeIndex]
-        const variant = attribute
-          ? ((attribute as JSXAttribute).value as JSXText).value
-          : null
+        const variant = ((attribute as JSXAttribute)?.value as JSXText)?.value
 
         if (variant) {
           attributes[attributeIndex] = j.jsxAttribute(
             j.jsxIdentifier('variant'),
-            j.literal(newVariantOf[variant])
+            j.literal(newVariantOf[variant] ?? null)
           )
         }
       })
