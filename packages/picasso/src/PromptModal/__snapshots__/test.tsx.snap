@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders PromptModal 1`] = `
+exports[`PromptModal renders 1`] = `
 <body
   style="overflow: hidden; padding-right: 0px;"
 >
@@ -98,7 +98,7 @@ exports[`renders PromptModal 1`] = `
 </body>
 `;
 
-exports[`showPrompt opens and closes modal on Submit action 1`] = `
+exports[`PromptModal showPrompt opens and closes modal on Submit action 1`] = `
 <body
   style="overflow: hidden;"
 >
@@ -123,7 +123,7 @@ exports[`showPrompt opens and closes modal on Submit action 1`] = `
 </body>
 `;
 
-exports[`showPrompt opens and closes modal on Submit action 2`] = `
+exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
 <body
   style="overflow: hidden;"
 >
@@ -234,7 +234,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
 </body>
 `;
 
-exports[`showPrompt opens and closes modal on Submit action 3`] = `
+exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
 <body
   style="overflow: hidden;"
 >
@@ -345,7 +345,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
 </body>
 `;
 
-exports[`showPrompt with input returns result on Submit action  1`] = `
+exports[`PromptModal showPrompt with input returns result on Submit action  1`] = `
 <body
   style="overflow: hidden;"
 >
