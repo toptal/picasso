@@ -9,6 +9,8 @@ import styles from './styles'
 
 type AnchorType = 'bottom' | 'left' | 'right' | 'top'
 
+type WidthType = 'regular' | 'wide'
+
 export interface Props extends BaseProps {
   /** Side from which the drawer will appear.  */
   anchor?: AnchorType
@@ -22,6 +24,8 @@ export interface Props extends BaseProps {
   title: ReactNode
   /** Callback fired when the component requests to be closed. */
   onClose?: () => void
+  /** Width of Drawer */
+  width?: WidthType
 }
 
 const useStyles = makeStyles(styles, { name: 'PicassoDrawer' })
@@ -32,6 +36,7 @@ export const Drawer: FunctionComponent<Props> = ({
   open,
   onClose,
   title,
+  width,
   ...rest
 }) => {
   const classes = useStyles()
@@ -61,7 +66,7 @@ export const Drawer: FunctionComponent<Props> = ({
       onClose={handleOnClose}
       disablePortal={disablePortal}
     >
-      <Container className={classes.drawer}>
+      <Container className={classes[width!]}>
         <Container
           flex
           alignItems='center'
@@ -88,7 +93,8 @@ Drawer.displayName = 'Drawer'
 Drawer.defaultProps = {
   anchor: 'right',
   disablePortal: false,
-  onClose: () => {}
+  onClose: () => {},
+  width: 'regular'
 }
 
 export default Drawer

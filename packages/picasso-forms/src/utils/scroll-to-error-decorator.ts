@@ -2,17 +2,29 @@ import { FormApi } from 'final-form'
 
 const UNHIDDEN_INPUT_SELECTOR = 'input:not([type=hidden])'
 
-const findFirstFieldWithError = (): HTMLElement | null => {
-  if (typeof document === 'undefined') return null
+const getErrorField = () =>
+  document.querySelector<HTMLElement>('[data-field-has-error="true"]')
 
-  return document.querySelector<HTMLElement>('[data-field-has-error="true"]')
+const getErrorFieldAfterNextPaint = () =>
+  new Promise<HTMLElement | null>(resolve => {
+    const resolveField = () => resolve(getErrorField())
+
+    if (typeof requestAnimationFrame === 'undefined') {
+      setTimeout(resolveField, 16)
+    } else {
+      requestAnimationFrame(resolveField)
+    }
+  })
+
+const getErrorFieldWithRetries = async () => {
+  for (let index = 0; index < 3; index++) {
+    const field = await getErrorFieldAfterNextPaint()
+
+    if (field) return field
+  }
 }
 
-const scrollToError = () => {
-  const field = findFirstFieldWithError()
-
-  if (!field) return
-
+const scrollTo = (field: HTMLElement) => {
   field.scrollIntoView({ block: 'center', behavior: 'smooth' })
   field
     .querySelector<HTMLInputElement>(UNHIDDEN_INPUT_SELECTOR)
@@ -30,11 +42,13 @@ export default () => <T>(form: FormApi<T>) => {
     { errors: true, submitErrors: true }
   )
 
-  const scrollOnErrors = () => {
+  const scrollOnErrors = async () => {
     const { errors = {}, submitErrors = {} } = state
 
     if (Object.keys(errors).length || Object.keys(submitErrors).length) {
-      scrollToError()
+      const field = await getErrorFieldWithRetries()
+
+      if (field) scrollTo(field)
     }
   }
 
