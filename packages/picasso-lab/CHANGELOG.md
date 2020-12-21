@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.39.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.38.2...@toptal/picasso-lab@2.39.0) (2020-12-18)
+
+
+### Features
+
+* **Drawer:** add width prop to drawer ([#1798](https://github.com/toptal/picasso/issues/1798)) ([d5affa1](https://github.com/toptal/picasso/commit/d5affa1e621a02d8710e9cf5b7f4312496d581e2))
+
+
+
+
+
 ## [2.38.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.38.1...@toptal/picasso-lab@2.38.2) (2020-12-15)
 
 
