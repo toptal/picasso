@@ -13,12 +13,18 @@ page.createTabChapter('Props').addComponentDocs({
   additionalDocs: {
     options: {
       type: {
+        name: 'Option',
         description: `
 {\n
   value: string\n
   text: string\n
-}: Option
-        `
+}
+          `
+      }
+    },
+    multiple: {
+      type: {
+        name: 'boolean'
       }
     }
   }
@@ -69,13 +75,22 @@ page
   .addExample('Select/story/SearchBehavior.example.tsx', {
     title: 'Search behavior',
     description: `
-Search started to be enabled when Select component has the
-number of options greater than specified in \`searchThreshold\` prop.
+    Search is enabled when the number of options is greater or equal to \`searchThreshold\`.
       `
   }) // picasso-skip-visuals
   .addExample('Select/story/Disabled.example.jsx', 'Disabled')
   .addExample('Select/story/Error.example.jsx', 'Error')
   .addExample('Select/story/WithIcon.example.jsx', 'With Icon')
+  .addExample('Select/story/WithDescription.example.jsx', {
+    title: 'With Description',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="trigger"] input')
+      await testPage.waitFor(100)
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
   .addExample('Select/story/Loading.example.jsx', 'Loading')
   .addExample('Select/story/Sizes.example.jsx', 'Sizes')
   .addExample('Select/story/FullWidth.example.jsx', 'Full width')
@@ -121,10 +136,12 @@ number of options greater than specified in \`searchThreshold\` prop.
     description:
       'Demonstrate auto focus capability by switching visibility of Select'
   }) // picasso-skip-visuals
-  .addExample('Select/story/ResetButton.example.jsx', 'With reset button') // picasso-skip-visuals
+  .addExample('Select/story/ResetButton.example.jsx', {
+    title: 'With reset button',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.keyboard.press('Tab')
+
+      await makeScreenshot()
+    }
+  })
   .addExample('Select/story/Autofill.example.tsx', 'Disabling autofilling') // picasso-skip-visuals
-  .addExample('Select/story/DynamicOptions.example.tsx', 'Dynamic options') // picasso-skip-visuals
-  .addExample(
-    'Select/story/DynamicOptionsInModal.example.tsx',
-    'Dynamic options in Modal'
-  ) // picasso-skip-visuals

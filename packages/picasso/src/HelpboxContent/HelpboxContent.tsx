@@ -26,7 +26,7 @@ export const HelpboxContent = forwardRef<HTMLElement, Props>(
         variant='body'
         as='div'
         size='medium'
-        color='dark-grey'
+        color='black'
       >
         {children}
       </Typography>

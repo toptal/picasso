@@ -4,8 +4,7 @@ export default ({ palette, screens, zIndex }: Theme) =>
   createStyles({
     root: {
       height: '100%',
-      minWidth: '17rem',
-      width: '17rem',
+      width: '14.75rem',
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
       padding: '1rem 0',
       fontSize: '1rem',
@@ -17,7 +16,7 @@ export default ({ palette, screens, zIndex }: Theme) =>
     },
     responsiveWrapper: {
       position: 'fixed',
-      top: '0.375em',
+      top: '0.75em',
       left: '0.375em',
       zIndex: zIndex.appBar
     },
@@ -44,7 +43,8 @@ export default ({ palette, screens, zIndex }: Theme) =>
       height: '100%'
     },
     light: {
-      boxShadow: `inset -1px 0px 0px 0px ${palette.grey.lighter}`
+      boxShadow: `inset -1px 0px 0px 0px ${palette.grey.lighter2}`,
+      backgroundColor: palette.grey.lighter
     },
     dark: {
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,

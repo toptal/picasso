@@ -9,7 +9,8 @@ export default ({ palette }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
-      backgroundColor: palette.common.white
+      backgroundColor: palette.common.white,
+      cursor: 'text'
     },
     rootMultiline: {
       height: 'auto'
@@ -40,6 +41,6 @@ export default ({ palette }: Theme) =>
       justifyContent: 'flex-start',
       margin: 0,
       padding: '0.25rem 0',
-      borderTop: `1px solid ${palette.grey.lighter}`
+      borderTop: `1px solid ${palette.grey.lighter2}`
     }
   })

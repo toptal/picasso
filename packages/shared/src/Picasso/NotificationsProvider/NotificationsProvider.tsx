@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { SnackbarProvider } from 'notistack'
 import React, { FunctionComponent } from 'react'
 
-import { useDrawer, usePageHeader } from '../Picasso'
+import { useDrawer, useTopBar } from '../Picasso'
 import styles from './styles'
 
 const useStyles = makeStyles(styles)
@@ -19,11 +19,11 @@ const NotificationsProvider: FunctionComponent<Props> = ({
   children,
   container
 }) => {
-  const { hasPageHeader } = usePageHeader()
+  const { hasTopBar } = useTopBar()
   const classes = useStyles()
   const { hasDrawer } = useDrawer()
 
-  const containerAnchorOriginTop = hasPageHeader
+  const containerAnchorOriginTop = hasTopBar
     ? classes.rootWithMargin
     : undefined
 

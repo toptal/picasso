@@ -19,6 +19,7 @@ export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListene
 
 export { default as isString } from './is-string'
 export { default as disableUnsupportedProps } from './disable-unsupported-props'
+export { dashToCamelCase } from './dash-to-camel-case'
 export { default as isNumber } from './is-number'
 export { default as isBoolean } from './is-boolean'
 export { default as isPointerDevice } from './is-pointer-device'
@@ -26,11 +27,12 @@ export { default as isSubstring } from './is-substring'
 export { default as getNameInitials } from './get-name-initials'
 export { default as kebabToCamelCase } from './kebab-to-camel-case'
 export { default as toTitleCase } from './to-title-case'
+export { default as useSafeState } from './use-safe-state'
 export { capitalize } from './capitalize'
 
 export const Transitions = TransitionUtils
 
 export { Maybe } from './monads'
 export { useNotifications } from './Notifications'
-export { useModals } from './Modal'
+export { useModal } from './Modal'
 export * from './Modal'

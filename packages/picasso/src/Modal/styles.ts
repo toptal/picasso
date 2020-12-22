@@ -4,16 +4,20 @@ const maxHeight = 'calc(100% - 6rem)'
 const maxWidth = 'calc(100% - 6rem)'
 const maxHeightForTopAligned = 'calc(100% - 4rem)'
 
-export default ({ palette, screens }: Theme) =>
+export default ({ screens, sizes }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      // do not remove, should be covered with test
+      // https://toptal-core.atlassian.net/browse/FX-1543
+      fontSize: '1rem'
     },
     container: {},
     paper: {
       maxHeight,
       maxWidth,
+      borderRadius: sizes.borderRadius.medium,
 
       [screens('small')]: {
         maxWidth: 'none',
@@ -35,20 +39,12 @@ export default ({ palette, screens }: Theme) =>
     },
     topAlignedDialog: {
       position: 'absolute',
-      top: '0px',
+      top: 0,
       maxHeight: maxHeightForTopAligned
     },
     closeButton: {
       position: 'absolute',
-      right: '2rem',
-      top: '1.875rem',
-      color: palette.grey.dark,
-      fontSize: '1rem',
-      cursor: 'pointer',
-      opacity: 0.3,
-
-      '&:hover': {
-        opacity: 1
-      }
+      right: '2em',
+      top: '2em'
     }
   })

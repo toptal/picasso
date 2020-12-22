@@ -6,7 +6,7 @@ exports[`TimePicker default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTimePicker-root MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <input
         autocomplete="none"
@@ -16,7 +16,7 @@ exports[`TimePicker default render 1`] = `
         value="21:00"
       />
       <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
       >
         <svg
           class="SvgTime16-root PicassoTimePicker-icon PicassoInput-icon"
@@ -30,7 +30,7 @@ exports[`TimePicker default render 1`] = `
       </div>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend

@@ -30,7 +30,7 @@ export default ({ palette }: Theme) =>
       color: palette.common.white
     },
     lightGrey: {
-      color: palette.grey.light
+      color: palette.grey.light2
     },
     grey: {
       color: palette.grey.main

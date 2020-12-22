@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, Button, Input, Checkbox, Select, Form } from '@toptal/picasso'
-import { useModals } from '@toptal/picasso/utils'
+import { useModal } from '@toptal/picasso/utils'
 import { DatePicker } from '@toptal/picasso-lab'
 
 const STATES = [
@@ -15,11 +15,11 @@ const STATES = [
 ]
 
 const ModalDialog = ({
-  modalId,
-  hideModal
+  open,
+  onClose
 }: {
-  modalId: string
-  hideModal: (modalId: string) => void
+  open: boolean
+  onClose: () => void
 }) => {
   const [isLoading, setLoading] = useState(false)
   const [datepickerValue, setDatepickerValue] = useState<Date>()
@@ -28,9 +28,9 @@ const ModalDialog = ({
     <Modal
       container={() => document.getElementById('modal-container')!}
       onBackdropClick={() => console.log('Clicked backdrop..')}
-      onClose={() => hideModal(modalId)}
+      onClose={onClose}
       onOpen={() => console.log('onOpen()')}
-      open
+      open={open}
       transitionDuration={0} // Only for demo purposes, should not be used
     >
       <Modal.Title>Edit address details</Modal.Title>
@@ -61,11 +61,7 @@ const ModalDialog = ({
         </Form.Field>
       </Modal.Content>
       <Modal.Actions>
-        <Button
-          disabled={isLoading}
-          variant='flat'
-          onClick={() => hideModal(modalId)}
-        >
+        <Button disabled={isLoading} variant='secondary' onClick={onClose}>
           Cancel
         </Button>
         <Button
@@ -76,10 +72,10 @@ const ModalDialog = ({
 
             setTimeout(() => {
               setLoading(false)
-              hideModal(modalId)
+              onClose()
             }, 1000)
           }}
-          variant='primary-green'
+          variant='positive'
         >
           Update
         </Button>
@@ -89,19 +85,14 @@ const ModalDialog = ({
 }
 
 const Example = () => {
-  const { showModal, hideModal } = useModals()
-
-  const handleClick = () => {
-    const modalId = showModal(() => (
-      <ModalDialog modalId={modalId} hideModal={hideModal} />
-    ))
-  }
+  const { showModal, hideModal, isOpen } = useModal()
 
   return (
     <div id='modal-container'>
-      <Button data-testid='open' onClick={handleClick}>
+      <Button data-testid='open' onClick={showModal}>
         Open
       </Button>
+      <ModalDialog open={isOpen} onClose={hideModal} />
     </div>
   )
 }

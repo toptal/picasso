@@ -51,45 +51,69 @@ exports[`Dropdown should render menu 1`] = `
             style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
             <ul
-              class="MuiList-root"
+              class="MuiList-root Menu-root"
               role="menu"
               tabindex="-1"
             >
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="0"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item1
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item1
+                    </span>
+                  </div>
+                </div>
               </li>
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="-1"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item2
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item2
+                    </span>
+                  </div>
+                </div>
               </li>
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="-1"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item3
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item3
+                    </span>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
@@ -134,45 +158,69 @@ exports[`Dropdown should render menu with focus 1`] = `
             style="opacity: 1; transform: none; transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
             <ul
-              class="MuiList-root"
+              class="MuiList-root Menu-root"
               role="menu"
               tabindex="-1"
             >
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-focusVisible Mui-focusVisible"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-focusVisible Mui-focusVisible"
                 role="menuitem"
                 tabindex="0"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item1
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item1
+                    </span>
+                  </div>
+                </div>
               </li>
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="-1"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item2
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item2
+                    </span>
+                  </div>
+                </div>
               </li>
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="-1"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item3
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item3
+                    </span>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>

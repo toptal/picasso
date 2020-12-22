@@ -5,7 +5,7 @@ import { Button } from '@toptal/picasso'
 
 import Form, { Props } from './Form'
 
-const renderFormInput = (props: OmitInternalProps<Props>) => {
+const renderForm = (props: OmitInternalProps<Props>) => {
   const { onSubmit } = props
 
   return render(
@@ -16,9 +16,9 @@ const renderFormInput = (props: OmitInternalProps<Props>) => {
   )
 }
 
-describe('FormInput', () => {
-  test('default render', () => {
-    const { container } = renderFormInput({
+describe('Form', () => {
+  it('default render', () => {
+    const { container } = renderForm({
       onSubmit: values => console.log(values)
     })
 

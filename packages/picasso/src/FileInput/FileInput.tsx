@@ -104,7 +104,6 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     (isNumber(progress) && progress! <= 100) ||
     (isBoolean(progress) && progress)
 
-  const uploadButtonVariant = value || error ? 'secondary-blue' : 'primary-blue'
   const uploadButtonTitle =
     value || error ? 'Choose different file' : 'Choose File'
 
@@ -115,6 +114,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
       className={classes.adornmentStart}
       disabled={disabled}
       position='start'
+      disablePointerEvents
     >
       {value ? (
         <Check16 color={!disabled ? 'green' : undefined} />
@@ -125,7 +125,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
   )
 
   const endAdornment = (
-    <InputAdornment position='end'>
+    <InputAdornment position='end' disablePointerEvents>
       {inProgress ? (
         <Loader
           className={classes.loader}
@@ -136,7 +136,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
         <Button
           className={classes.button}
           size='small'
-          variant={uploadButtonVariant}
+          variant='secondary'
           disabled={disabled}
           onClick={() => inputRef.current && inputRef.current.click()}
         >

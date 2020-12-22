@@ -72,8 +72,8 @@ const Example = () => {
         onChange={handleChange}
         options={options}
         loading={loading}
-        minLength={MIN_CHARS}
         placeholder='Start typing Mongolia...'
+        data-testid='autocomplete'
       />
     </div>
   )

@@ -27,6 +27,7 @@ import PoweredByGoogle from './PoweredByGoogle'
 import { Item, ChangedOptions } from './types'
 import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
 import styles from './styles'
+import { BaseInputProps } from '../OutlinedInput'
 
 export interface Props
   extends StandardProps,
@@ -92,7 +93,9 @@ export interface Props
   enableAutofill?: boolean
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
+  /** DOM element that wraps the Popper */
   popperContainer?: HTMLElement
+  inputProps?: BaseInputProps
   /** Show the "Powered By Google" label */
   poweredByGoogle?: boolean
 }
@@ -182,10 +185,13 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       <ScrollMenu selectedIndex={highlightedIndex}>
         {options!.map((option, index) => (
           <Menu.Item
+            size='medium'
             key={getKey(option)}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getItemProps(index, option)}
             titleCase={false}
+            description={option.description}
+            className={classes.option}
           >
             {renderOption
               ? renderOption(option, index)
@@ -195,10 +201,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
         {shouldShowOtherOption && (
           <Menu.Item
+            size='medium'
             key='other-option'
-            className={cx({
-              [classes.otherOption]: true
-            })}
+            className={`${classes.option} ${classes.otherOption}`}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getOtherItemProps(optionsLength, value)}
             titleCase={false}
@@ -217,7 +222,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         )}
 
         {!optionsLength && !shouldShowOtherOption && (
-          <Menu.Item titleCase={false} disabled>
+          <Menu.Item size='medium' titleCase={false} disabled>
             {noOptionsText}
           </Menu.Item>
         )}
@@ -232,7 +237,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
     const InputComponent = inputComponent || Input
     const loadingComponent = (
-      <InputAdornment position='end'>
+      <InputAdornment position='end' disablePointerEvents>
         <Loader size='small' />
       </InputAdornment>
     )
@@ -266,6 +271,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             value={value}
             ref={ref}
             placeholder={placeholder}
+            inputProps={rest.inputProps}
             endAdornment={loading ? loadingComponent : endAdornment}
             width={width}
             name={enableAutofill ? name : undefined}

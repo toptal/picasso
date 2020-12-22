@@ -57,7 +57,7 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   }
 
   return createPropertiesStyles({
-    backgroundColor: colorOptions.lighter,
+    backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter,
 
     '&$bordered': {
       borderColor: colorOptions.main
@@ -102,10 +102,14 @@ justifyContentVariants.forEach(variant => {
   }
 })
 
-export default ({ palette }: Theme) =>
+export default ({ palette, sizes: { borderRadius } }: Theme) =>
   createStyles({
     bordered: {
-      border: `1px solid ${palette.grey.lighter}`
+      border: `1px solid ${palette.grey.lighter2}`
+    },
+
+    rounded: {
+      borderRadius: borderRadius.medium
     },
 
     flex: {

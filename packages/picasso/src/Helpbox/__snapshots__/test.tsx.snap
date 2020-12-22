@@ -6,7 +6,7 @@ exports[`Helpbox default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-largePadding Container-bordered Helpbox-root"
+      class="Container-mediumPadding Container-bordered Container-rounded Helpbox-root"
     >
       <div
         class="Container-bottomsmallMargin"
@@ -18,7 +18,7 @@ exports[`Helpbox default render 1`] = `
         </h4>
       </div>
       <div
-        class="MuiTypography-root Typography-bodyMedium Typography-darkGrey MuiTypography-body1"
+        class="MuiTypography-root Typography-bodyMedium Typography-black MuiTypography-body1"
       >
         Test
       </div>
@@ -26,7 +26,8 @@ exports[`Helpbox default render 1`] = `
         class="Container-centerAlignItems Container-flex HelpboxActions-root"
       >
         <button
-          class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+          class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+          data-component-type="button"
           tabindex="0"
           type="button"
         >

@@ -19,7 +19,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Photo url or custom Avatar component */
   avatar?: ReactNode
   /** Size */
-  size?: SizeType<'xsmall' | 'small'>
+  size?: SizeType<'xxsmall' | 'xsmall' | 'small'>
   /** Title that is rendered on the right of name */
   title?: string
   /** Function responsible for rendering the user's title with a custom component */
@@ -111,12 +111,7 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
       style={style}
     >
       {UserBadgeAvatar}
-      <Container
-        flex
-        direction='column'
-        left='small'
-        className={classes.infoContainer}
-      >
+      <Container flex direction='column' className={classes.infoContainer}>
         <Container flex alignItems='center'>
           {userName}
           {userTitle}

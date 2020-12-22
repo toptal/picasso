@@ -73,7 +73,7 @@ const arrowGenerator = (color: string) => {
   }
 }
 
-export default ({ palette, shadows, sizes }: Theme) =>
+export default ({ palette, shadows, sizes: { borderRadius } }: Theme) =>
   createStyles({
     tooltip: {
       backgroundColor: palette.grey.darker,
@@ -107,7 +107,7 @@ export default ({ palette, shadows, sizes }: Theme) =>
       lineHeight: '1em',
       padding: '0.25rem 0.5rem',
       margin: '0.5rem',
-      borderRadius: sizes.borderRadius
+      borderRadius: borderRadius.small
     },
     noMaxWidth: {
       maxWidth: 'none'

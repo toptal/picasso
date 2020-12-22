@@ -3,7 +3,8 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 export default ({ palette, transitions }: Theme) =>
   createStyles({
     root: {
-      paddingRight: 0
+      paddingRight: 0,
+      cursor: 'text'
     },
     input: {
       '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
@@ -15,18 +16,18 @@ export default ({ palette, transitions }: Theme) =>
     },
 
     control: {
-      height: '1.125rem',
+      height: '1rem',
       width: '1.625rem',
-      borderLeft: `1px solid ${palette.grey.light}`,
+      borderLeft: `1px solid ${palette.grey.light2}`,
       borderRight: '1px solid transparent',
 
       '&:hover': {
-        background: palette.grey.light,
-        borderColor: palette.grey.light
+        background: palette.grey.light2,
+        borderColor: palette.grey.light2
       },
 
       '& + &': {
-        borderTop: `1px solid ${palette.grey.light}`
+        borderTop: `1px solid ${palette.grey.light2}`
       },
 
       '&:active + &': {
@@ -43,13 +44,5 @@ export default ({ palette, transitions }: Theme) =>
 
     controlDisabled: {
       opacity: 0.48
-    },
-
-    arrowDown: {
-      transform: 'rotate(180deg)'
-    },
-
-    icon: {
-      marginRight: '0.625rem'
     }
   })

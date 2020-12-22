@@ -1,37 +1,68 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, sizes }: Theme) =>
   createStyles({
     root: {
-      height: '3em',
-      padding: '0 1.5em',
+      height: '2.75em',
+      padding: '0 1rem',
+      margin: '0 1rem',
 
-      '&:hover': {
-        backgroundColor: 'initial'
+      '$nestedMenu &': {
+        padding: '0 0 0 2rem',
+        marginRight: '1rem'
       },
 
-      '&:focus': {
-        backgroundColor: 'initial'
-      },
-      '$nonCollapsibleMenu &': {
-        paddingLeft: '3.375em'
-      },
-      '$details &': {
-        paddingLeft: '3.375em'
+      '$nestedMenuWithIcon &': {
+        padding: '0 0 0 2.875rem',
+        marginRight: '1rem'
       }
+    },
+    roundedBorder: {
+      borderRadius: sizes.borderRadius.small
     },
     light: {
       color: palette.grey.dark,
 
       '&:hover': {
-        color: palette.blue.main
+        color: palette.blue.main,
+        '&$selected': {
+          color: palette.blue.main,
+          backgroundColor: palette.grey.light
+        }
+      },
+
+      '&$selected': {
+        color: palette.blue.main,
+        backgroundColor: palette.grey.light
+      },
+
+      '&:focus': {
+        color: palette.blue.main,
+        '&$selected': {
+          color: palette.blue.main,
+          backgroundColor: palette.grey.light
+        }
       }
     },
     dark: {
-      color: palette.grey.main,
-
       '&:hover': {
-        color: palette.common.white
+        color: palette.common.white,
+        '&$selected': {
+          color: palette.common.white,
+          backgroundColor: palette.grey.dark
+        }
+      },
+      '&$selected': {
+        color: palette.common.white,
+        backgroundColor: palette.grey.dark
+      },
+
+      '&:focus': {
+        color: palette.common.white,
+        '&$selected': {
+          color: palette.common.white,
+          backgroundColor: palette.grey.dark
+        }
       }
     },
     selected: {},
@@ -39,18 +70,17 @@ export default ({ palette }: Theme) =>
     withIcon: {
       marginLeft: '0.875em'
     },
-    summary: {
-      padding: 0
+    collapsibleWrapper: {
+      padding: '0 0 0 1rem',
+      margin: '0 1rem'
     },
-    details: {
-      fontSize: 'inherit',
-      marginBottom: '0'
-    },
+    nestedMenu: {},
+    nestedMenuWithIcon: {},
     content: {
-      fontSize: 'inherit'
+      // to cover text overflow in the sub-menu header item
+      maxWidth: '100%'
     },
     expandIcon: {
-      margin: '0.8em 1em 0.8em 0.8em',
       fontSize: '1em'
     },
     lightExpandIcon: {
@@ -66,5 +96,8 @@ export default ({ palette }: Theme) =>
       flex: 1,
       minWidth: 0
     },
-    nonCollapsibleMenu: {}
+    collapsible: {
+      margin: 0,
+      padding: 0
+    }
   })

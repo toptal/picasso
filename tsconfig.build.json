@@ -14,6 +14,7 @@
     "**/*.example.tsx",
     "**/test.jsx",
     "**/test.tsx",
+    "**/test.ts",
     "**/*.spec.js",
     "**/*.spec.ts",
     "**/story/index.jsx",

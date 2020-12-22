@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import {
   Radio as PicassoRadio,
   RadioProps,
@@ -6,6 +6,7 @@ import {
 } from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import RadioGroupContext from './RadioGroupContext'
 
 export type Props = RadioGroupProps & FieldProps<RadioProps['value']>
 
@@ -13,26 +14,22 @@ export const RadioGroup = (props: Props) => {
   const { children, ...rest } = props
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <FieldWrapper {...rest} type='radio'>
-      {radioGroupProps => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { error, ...restRadioGroupProps } = radioGroupProps
+    <RadioGroupContext.Provider value={props.name}>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <FieldWrapper {...rest} type='radio'>
+        {radioGroupProps => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { error, ...restRadioGroupProps } = radioGroupProps
 
-        return (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <PicassoRadio.Group {...restRadioGroupProps}>
-            {React.Children.toArray(children)
-              .filter(React.isValidElement)
-              .map(child =>
-                React.cloneElement(child as ReactElement, {
-                  name: props.name
-                })
-              )}
-          </PicassoRadio.Group>
-        )
-      }}
-    </FieldWrapper>
+          return (
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            <PicassoRadio.Group {...restRadioGroupProps}>
+              {children}
+            </PicassoRadio.Group>
+          )
+        }}
+      </FieldWrapper>
+    </RadioGroupContext.Provider>
   )
 }
 

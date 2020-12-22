@@ -42,7 +42,7 @@ const Example = () => {
               onClick={() => {
                 setValue('')
               }}
-              variant='secondary-blue'
+              variant='secondary'
             >
               Reset
             </Button>

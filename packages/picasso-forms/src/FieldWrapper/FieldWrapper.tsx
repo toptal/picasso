@@ -5,12 +5,12 @@ import {
   FieldMetaState,
   FieldRenderProps
 } from 'react-final-form'
-import { Form as PicassoForm } from '@toptal/picasso'
+import { Form as PicassoForm, RequiredDecoration } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { DateOrDateRangeType } from '@toptal/picasso-lab'
 
 import { useFormContext } from '../Form/FormContext'
-import { useFormConfig, FormConfigProps } from '../FormConfig'
+import { useFormConfig, FormConfigProps, RequiredVariant } from '../FormConfig'
 import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
@@ -41,6 +41,7 @@ export type Props<
     name: string
     type?: string
     hideFieldLabel?: boolean
+    hideLabelRequiredDecoration?: boolean
     fieldType?: string
     children: (props: any) => React.ReactNode
   }
@@ -111,6 +112,29 @@ const getProps = ({
   }
 }
 
+const getRequiredDecoration = (
+  hideLabelRequiredDecoration?: boolean,
+  required?: boolean,
+  requiredVariant?: RequiredVariant
+): RequiredDecoration | undefined => {
+  if (hideLabelRequiredDecoration) {
+    return
+  }
+
+  const showAsterisk = required && requiredVariant === 'asterisk'
+
+  if (showAsterisk) {
+    return 'asterisk'
+  }
+
+  const showOptional =
+    !required && (!requiredVariant || requiredVariant === 'default')
+
+  if (showOptional) {
+    return 'optional'
+  }
+}
+
 const FieldWrapper = <
   TWrappedComponentProps extends { value?: ValueType },
   TInputValue extends ValueType = TWrappedComponentProps['value']
@@ -120,11 +144,13 @@ const FieldWrapper = <
   const {
     type,
     hideFieldLabel,
+    hideLabelRequiredDecoration,
     hint,
     label,
     required,
     enableReset,
     onResetClick,
+    'data-testid': dataTestId,
     // FieldProps - https://final-form.org/docs/react-final-form/types/FieldProps
     afterSubmit,
     allowNull,
@@ -221,13 +247,19 @@ const FieldWrapper = <
     childProps.enableReset = enableReset
   }
 
+  const requiredDecoration = getRequiredDecoration(
+    hideLabelRequiredDecoration,
+    required,
+    formConfig.requiredVariant
+  )
+
   return (
-    <PicassoForm.Field error={error} hint={hint}>
+    <PicassoForm.Field error={error} hint={hint} data-testid={dataTestId}>
       {!hideFieldLabel && label && (
         <PicassoForm.Label
-          disabled={rest.disabled}
-          required={required}
+          requiredDecoration={requiredDecoration}
           htmlFor={id}
+          disabled={rest.disabled}
         >
           {label}
         </PicassoForm.Label>
