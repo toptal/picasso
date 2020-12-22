@@ -38,3 +38,35 @@ npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v5.0.0/prom
 
 </details>
 
+#### `label-tag`
+
+Renames occurrences of `Label` to `Tag`.
+
+```diff
+- import { Label } from '@toptal/picasso'
++ import { Tag } from '@toptal/picasso'
+
+  const Example = () => (
+-   <Label.Group>
++   <Tag.Group>
+-     <Label>Angular JS</Label>
++     <Tag>Angular JS</Tag>
+-     <Label>React JS</Label>
++     <Tag>React JS</Tag>
+-     <Label onDelete={handleDelete}>Ember JS</Label>
++     <Tag onDelete={handleDelete}>Ember JS</Tag>
+-     <Label>Vue JS</Label>
++     <Tag>Vue JS</Tag>
+-   </Label.Group>
++   </Tag.Group>
+  )
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/label-tag src/**/*.tsx
+```
+
+</details>
