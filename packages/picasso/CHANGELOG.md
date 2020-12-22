@@ -8,173 +8,243 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* v5 ([#1487](https://github.com/toptal/picasso/issues/1487)) ([ee77cde](https://github.com/toptal/picasso/commit/ee77cde12f8f7670f50958ae3973327eb513d9f9)), closes [#1500](https://github.com/toptal/picasso/issues/1500) [#f3f4f6](https://github.com/toptal/picasso/issues/f3f4f6) [#e5e7](https://github.com/toptal/picasso/issues/e5e7) [#d8d9](https://github.com/toptal/picasso/issues/d8d9) [#1670](https://github.com/toptal/picasso/issues/1670) [#1686](https://github.com/toptal/picasso/issues/1686) [#1700](https://github.com/toptal/picasso/issues/1700) [#1688](https://github.com/toptal/picasso/issues/1688) [#1695](https://github.com/toptal/picasso/issues/1695) [#1691](https://github.com/toptal/picasso/issues/1691) [#1682](https://github.com/toptal/picasso/issues/1682) [#1705](https://github.com/toptal/picasso/issues/1705) [#1715](https://github.com/toptal/picasso/issues/1715) [#1721](https://github.com/toptal/picasso/issues/1721) [#1731](https://github.com/toptal/picasso/issues/1731) [#1741](https://github.com/toptal/picasso/issues/1741) [#1738](https://github.com/toptal/picasso/issues/1738) [#1745](https://github.com/toptal/picasso/issues/1745) [#1739](https://github.com/toptal/picasso/issues/1739) [#1751](https://github.com/toptal/picasso/issues/1751) [#1749](https://github.com/toptal/picasso/issues/1749) [#1736](https://github.com/toptal/picasso/issues/1736) [#1747](https://github.com/toptal/picasso/issues/1747) [#1762](https://github.com/toptal/picasso/issues/1762) [#1768](https://github.com/toptal/picasso/issues/1768) [#1758](https://github.com/toptal/picasso/issues/1758) [#1771](https://github.com/toptal/picasso/issues/1771) [#1774](https://github.com/toptal/picasso/issues/1774) [#1773](https://github.com/toptal/picasso/issues/1773) [#1775](https://github.com/toptal/picasso/issues/1775) [#1783](https://github.com/toptal/picasso/issues/1783) [#1781](https://github.com/toptal/picasso/issues/1781) [#1792](https://github.com/toptal/picasso/issues/1792) [#1796](https://github.com/toptal/picasso/issues/1796)
+* **Alert**
+  - added Alert.Inline component
+  - refactored Alert to use BASE 2.0 components
+* **Autocomplete**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - added option description
+  - added checkmark for selected options
+  - removed checkmark and updated padding
+  - fixed that adornment/icon click was not focusing the component
+  - options list does not open on focus anymore. Users should press Space/Enter/ArrowUp/ArrowDown to open it now
+* **Button**
+  - aligned with BASE 2.0 design
+  - added `flexShrink: 0`
+* **Button.Action**
+  - added a new component
+* **Button.Group**
+  - allow nesting `Button` components
+* **Checkbox**
+  - aligned with BASE 2.0 design
+  - fix `Checkbox.Group` with nested `Checkbox`
+  - set pointer by default, arrow for disabled
+* **Container**
+  - added `rounded` property
+* **Drawer**
+  - aligned with BASE 2.0 design
+* **Datepicker**
+  - set text cursor by default, arrow for disabled, pointer for dates and buttons inside dropdown
+* **FileInput**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - fix adornment/icon click is focusing the component
+* **Form**
+  - exported `FORM_ERROR` constant from `picasso-forms`
+  - if you return a string message from `onSubmit`, the message will be displayed as an error flash notification
+  - spacing between form input components is decreased
+  - added form config for setting required decoration (`asterisk` vs `(optional)`)
+* **Form.Label**
+  - added prop `requiredDecoration` to show `asterisk` or `(optional)`, but the prefered way - `(optional)`
+* **Form.SubmitButton**
+  - added 2 new button types - `circular` and `action`
+* **Helpbox**
+  - aligned with BASE 2.0 design
+  - modified internal padding - set to `medium`
+  - added rounded corners
+* **Indicator**
+  - aligned colors with BASE 2.0 design
+  - `green` color changed to use `darker green` color
+* **Input**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - set text cursor by default, arrow for disabled
+* **Modal**
+  - aligned with BASE 2.0 design
+  - no close on backdrop click
+  - added rounded corners
+  - changed a style of the close button
+  - added scroll shades for the end of the content
+  - increased content paddings
+  - fixed modal close button position
+  - adjusted modal action spacing
+* **MonthSelect**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+* **Notification**
+  - aligned with BASE 2.0 design
+  - added border radius, margin and shadows
+  - content width increased
+  - left-aligned content
+  - icon size reduced
+* **NumberInput**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - changed icons to `ArrowUpMinor16` and `ArrowDownMinor16`
+  - fixed adornment/icon click was not focusing the component
+* **OverviewBlock**
+  - aligned with BASE 2.0 design
+  - changed background color to white
+  - changed paddings, added vertical separators
+  - added `OverviewBlock.Row` component to support multiple-line layout for blocks
+* **OverviewBlock.Group**
+  - added `align` and `blockWidth` props
+* **Page.Article**
+  - added a new component
+* **Page.Header**
+  - aligned with BASE 2.0 design
+  - decreased height
+* **PromptModal**
+  - fixed operations on unmounted component
+* **Radio**
+  - aligned with BASE 2.0 design
+  - changed hover & focus styles
+  - set pointer by default, arrow for disabled
+* **Radio.Group**
+  - removed overriding of internal paddings inside `Form.Field`
+* **Sidebar**
+  - aligned with BASE 2.0 design
+  - made width narrower
+  - changed background color to `grey lighter`
+  - increased top offset
+  - induced grey background on the left side of the page
+* **Sidebar.Item**
+  - changed the left margin for collapsible and non-collapsible items
+  - added additional horizontal margins to align with BASE 2.0
+  - fixed some issues with text-overflow for items in the collapsible menus
+* **Select**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - fixed issue with multiple highlighted options
+  - added option description
+  - added checkmark for selected options
+  - changed the color of the selected option to black
+  - changed arrow icons
+  - added dedicated search input
+  - disabled input functionality for the select input, instead added Search input inside the options list
+  - added property `searchPlaceholder` to set placeholder for the added Search input inside options list. Default value `Search`
+  - `searchThreshold` default value is set to 10 instead of 4 previously
+  - fixed cursor when hovering disabled component
+  - options list does not open on focus anymore. Users should press Space/Enter/ArrowUp/ArrowDown to open it
+  - open options list on key down for arrow up and arrow down for Native Select
+  - set pointer cursor by default, arrow for disabled
+* **Subheader**
+  - aligned with BASE 2.0 design
+  - removed left padding
+* **Subheader.Breadcrumbs**
+  - not part of Subheader anymore and Breadcrumbs decided to make as a separate component in scope of picasso-lab
+
+    ```
+    import { Breadcrumbs } from '@toptal/picasso-lab'
+    ```
+* **Switch**
+  - added a new component
+* **TagSelector**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - options list does not open on focus anymore. Users should press Space/Enter/ArrowUp/ArrowDown to open it
+* **Timepicker**
+  - set default cursor by default, pointer for icon
+* **Tooltip**
+  - prevent tooltip overflow by default
+  - fixed positioning inside a dropdown
+  - uncontrolled `Tooltip` is getting closed after second click/touch on children element
+  - allow click events to propagate
 
 
 ### BREAKING CHANGES
 
-* - Page.Header: set the default Page.Header variant to dark. If you need a `light` variant - set `variant='light'`.
+* **Accordion**
+  - aligned borders with BASE 2.0
+  - Accordion: `bordered` prop is renamed to `borders`, which has 3 new values - `all`, `middle` and `none`
 
-* feat(Select): refactor highlighting and add option description
+    Accordion borders:
+    * `bordered: true` -> `all` (default value)
+    * `bordered: false` -> `none`
+    * `middle` is a new variant
+* **Button**
+  - variants have been changed and circular is extracted to separate component. Here is migration path:
 
-- Select: fixed issue with multiple highlighted options
-- Autocomplete: add option description
-- Autocomplete: add checkmark for selected options
-- Select: add option description
-- Select: add checkmark for selected options
-* - `useModals` is removed, instead use `useModal`
-- `showPrompt` is removed, instead use `showModal` in combination with `PromptModal`
-- `useModal` expect you to add `Modal` or `PromptModal` in your component in explicit way
-- for mutliple modals create declare multiple hooks, one per Modal
+    Button variants:
+    * `primary-blue` -> `primary` (default value)
+    * `primary-red` -> `negative`
+    * `primary-green` -> `positive`
+    * `secondary-blue, secondary-red, secondary-green` -> `secondary`
+    * `flat` -> `secondary`
+    * `flat-white` -> `transparent`
+    * `secondary-white` -> `transparent`
 
-```
-import { useModal } from '@toptal/picasso/utils'
+  - `<Button circular />` was replaced with `<Button.Circular />` with dedicated variants only for circular button: `primary, flat and transparent`
+* **Colors**
+  - `grey.lighter` changed to `#f3f4f6`
+  - `grey.light` changed to `#e5e7ea`
+  - added new colors `grey.lighter2` and `grey.light2`, which have old color values of `grey.lighter` (`#ebeced`) and `grey.light` (`#d8d9dc`)
+* **Checkbox**
+  - `required` prop changed to `requiredDecoration`, which now supports two options: asterisk or optional
+* **Form.Label**
+  - `required` prop changed to `requiredDecoration`, which now supports two options: asterisk or optional
+* **Label**
+  - renamed to `Tag`
+  - removed white variant
+  - added blue variant
+* **Modal**
+  - `disableBackdropClick` is set by default now and can't be modified
+  - set base `font-size` to `1rem`
+* **Notification**
+  - removed `variant`, `elevated`, `fullWidth` and `icon` props
+* **Page.BannerMessage**
+  - component is removed
+* **Page.Content**
+  - padding is reduced
+  - removed horizontal padding, now you should use `Page.Article` component
+* **Page.Header**
+  - set the default Page.Header variant to dark. If you need a `light` variant - set `variant='light'`.
+  - renamed to `Page.TopBar`
+* **Page.HeaderMenu**
+  - renamed to `Page.TopBarMenu`
+* **PromptModal**
+  - variant prop has changed its values to `positive` or `negative`
 
-...
-
-const {showModal, hideModal, isOpen } = useModal()
-
-...
-
-const handleClick = () => showModal()
-
-...
-
-<Modal open={isOpen} onClose={hideModal} />
-```
-
-* feat(Helpbox):  align with BASE 2.0 design
-
-- Container: added `rounded` property - `8px`
-- Helpbox: modified internal padding - set to `medium`
-- Helpbox: added rounded corners
-
-* feat(PageHeader): align with BASE 2.0 design
-
-- Page.Header: decreased height
-- Select: changed the color of the selected option to black
-
-* feat(Notification): align with BASE 2.0 design
-
-- Notification: adjusted style to match BASE 2.0 design (added border radius, margin and shadows)
-
-* feat(Tooltip): prevent tooltip overflow by default
-* - Tooltip: `preventOverflow` property of Tooltip component changed default value from false to true
-
-* feat(Sidebar): align with BASE 2.0 design
-
-- Sidebar: make the width narrower
-- Sidebar: change background color to grey lighter
-
-* feat(Subheader): align with BASE 2.0 design
-
-- Subheader.Breadcrumbs: not part of Subheader anymore and Breadcrumbs decided to make as a separate component in scope of picasso-lab
-
-```
-import { Breadcrumbs } from '@toptal/picasso-lab'
-```
-
-* feat(Button): align with BASE 2.0 design
-* - Button: variants have been changed and circular is extracted to separate component. Here is migration path:
-
-Button variants:
-* `primary-blue` -> `primary` (default value)
-* `primary-red` -> `negative`
-* `primary-green` -> `positive`
-* `secondary-blue, secondary-red, secondary-green` -> `secondary`
-* `flat` -> `secondary`
-* `flat-white` -> `transparent`
-* `secondary-white` -> `transparent`
-
-- Button: `<Button circular />` was replaced with `<Button.Circular />` with dedicated variants only for circular button: `primary, flat and transparent`
-
-* feat(Modal): align with BASE 2.0 design, no close on backdrop click
-
-- Modal: added rounded corners
-- Modal: changed a style of the close button
-* - Modal: `disableBackdropClick` prop was removed. `disableBackdropClick` is set by default now and can't be modified
-
-* feat(NumberInput): [FX-1089] Change NumberInput icons
-
-- NumberInput: changed icons to `ArrowUpMinor16` and `ArrowDownMinor16`
-
-* feat(OverviewBlock): align with BASE 2.0 design
-
-- OverviewBlock: changed background color to white
-- OverviewBlock: changed paddings, added vertical separators
-- OverviewBlock: added `OverviewBlock.Row` component to support multiple-line layout for blocks
-- OverviewBlock.Group: added `align` and `blockWidth` props
-
-* feat(Notification): changed default variant, fixed exported type
-* - Notification: change default variant to `white`
-- Notification: removed `variant`, `elevated` and `icon` props
-
-* feat(Colors): change light grey colors
-* 
-* - PromptModal: variant prop has changed its values to `positive` or `negative`.
-
-PromptModal variants:
-* `green` -> `positive` (default value)
-* `red` -> `negative`
-* `blue` -> removed
-* - Label: renamed to Tag
-- Label: removed white variant
-- Label: added blue variant
-
-* feat(Switch): [FX-1387] Add Switch component
-
-- Switch: new lab component based on Material UI Counterpart
-* - Accordion: `bordered` prop is renamed to `borders`, which has 3 new values - `all`, `middle` and `none`
-
-Accordion borders:
-* `bordered: true` -> `all` (default value)
-* `bordered: false` -> `none`
-* `middle` is a new variant
-* - FormLabel: 'required' prop changed to 'requiredDecoration', which now supports two options: asterisk or optional
-- Checkbox:  'required' prop changed to 'requiredDecoration', which now supports two options: asterisk or optional
-
-* feat(Page): [FX-1256] Rename Page.Header and Page.HeaderMenu
-* - Page.Header: renamed to Page.TopBar
-- Page.HeaderMenu: renamed to Page.TopBarMenu
-
-* fix(Tooltip): positioning inside a dropdown
-
-* feat(Select): [FX-1354] add dedicated search input
-
-- Select: disabled input functionality for the select input, instead added Search input inside the options list
-- Select: added property `searchPlaceholder` to set placeholder for the added Search input inside options list. Default value `Search`
-- Select: `searchThreshold` default value is set to 10 instead of 4 previously
-
-chore(Accordion): use snapshots in tests
-
-* feat(Select): [FX-1441] deprecate onSearchChange
-* - Select: `onSearchChange` is deprecated and will be removed in the next Picasso version. Select component should not be used with dynamic options anymore. Please use Autocomplete instead for such case
-
-* feat(Tooltip): hide on click for uncontrolled
-
-- Tooltip: uncontrolled Tooltip is getting closed after second click/touch on children element
-* - Notification: fullWidth prop removed
-- Notification: elevated prop removed
-- Notification: content width increased
-- Notification: left-aligned content
-* - Notification: variant prop removed
-- Notification: icon prop removed
-- PageContent: padding reduced
-- PageBannerMessage: removed
-* - UserBadge: avatar size reduced
-- Notification: icon size reduced
-- Subheader: removed left padding
-* - Subheader: rename to PageHead
-* - Modal: set base font-size to 1rem
-* - Sidebar: increased horizontal padding
-- SidebarLogo: increased left padding
-- PageContent: removed horizontal padding
-
-* feat(Sidebar): induce grey background on the left side of page
-* - PageContent: background becomes gray lighter if there is Sidebar
+    PromptModal variants:
+    * `green` -> `positive` (default value)
+    * `red` -> `negative`
+    * `blue` -> removed
+* **Select**
+  - `onSearchChange` is deprecated and will be removed in the next Picasso version. Select component should not be used with dynamic options anymore. Please use Autocomplete instead for such case
+* **Subheader**
+  - renamed to `PageHead`
+* **Sidebar**
+  - increased horizontal padding
+  - background becomes gray lighter if there is a `Sidebar` on a page
+* **Sidebar.Logo**
+  - increased left padding
+* **Tooltip**
+  - `preventOverflow` property of Tooltip component changed default value from `false` to `true`
+* **UserBadge**
+  - avatar size is reduced
 
 
+* `useModals` is removed, instead use `useModal`
+* `showPrompt` is removed, instead use `showModal` in combination with `PromptModal`
+* `useModal` expect you to add `Modal` or `PromptModal` in your component in explicit way
+* for mutliple modals create declare multiple hooks, one per Modal
 
+  ```
+  import { useModal } from '@toptal/picasso/utils'
+
+  ...
+
+  const {showModal, hideModal, isOpen } = useModal()
+
+  ...
+
+  const handleClick = () => showModal()
+
+  ...
+
+  <Modal open={isOpen} onClose={hideModal} />
+  ```
 
 
 ## [4.117.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.117.0...@toptal/picasso@4.117.1) (2020-12-15)
