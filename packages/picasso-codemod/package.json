@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-codemod",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Codemod scripts for Picasso.",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-codemod#readme",
@@ -22,7 +22,7 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "devDependencies": {
-    "jscodeshift": "0.11.0",
-    "@types/jscodeshift": "0.7.2"
+    "@types/jscodeshift": "0.7.2",
+    "jscodeshift": "0.11.0"
   }
 }
