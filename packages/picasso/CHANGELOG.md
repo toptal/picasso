@@ -18,7 +18,7 @@ After analysis, the design team started testing different solutions that were th
 
 Every interface language has its updates. Version 2 is just another step in our iterative process. We built the technical foundation on the design front where we have an easy way to update components according to user feedback. How technology changes and how the mindset of people using our products changes, our UI and UX are going to follow it, so that we make sure we have world-class product experience in place. 
 
-Important changes:
+### Important changes:
 
 * **Toning down interface with better contrast and readability.** Reducing heavy saturated header and unrecognizable sidebar. 
 
