@@ -34,6 +34,9 @@ Important changes:
 
 * **Alert**
   - added Alert.Inline component
+  
+    ![Alert Inline](https://github.com/toptal/picasso/raw/master/docs/images/v5/alert-inline.png)
+
   - refactored Alert to use BASE 2.0 components
 * **Autocomplete**
   - aligned with BASE 2.0 design
@@ -48,6 +51,14 @@ Important changes:
   - added `flexShrink: 0`
 * **Button.Action**
   - added a new component
+
+    ![Button.Action](https://github.com/toptal/picasso/raw/master/docs/images/v5/button-action.png)
+
+* **Button.Circular**
+  - added a new component
+
+    ![Button.Circular](https://github.com/toptal/picasso/raw/master/docs/images/v5/button-circular-after.png)
+
 * **Button.Group**
   - allow nesting `Button` components
 * **Checkbox**
@@ -102,6 +113,12 @@ Important changes:
   - content width increased
   - left-aligned content
   - icon size reduced
+
+    | Before | After |
+    |--|--|
+    |![Notification before](https://github.com/toptal/picasso/raw/master/docs/images/v5/notification-before.png)|![Notification after](https://github.com/toptal/picasso/raw/master/docs/images/v5/notification-after.png)|
+    |||
+
 * **NumberInput**
   - aligned with BASE 2.0 design
   - changed hover and focused outline
@@ -133,6 +150,11 @@ Important changes:
   - changed background color to `grey lighter`
   - increased top offset
   - induced grey background on the left side of the page
+
+    | Before | After |
+    |--|--|
+    |![Sidebar before](https://github.com/toptal/picasso/raw/master/docs/images/v5/sidebar-before.png)|![Sidebar after](https://github.com/toptal/picasso/raw/master/docs/images/v5/sidebar-after.png)|
+    |||
 * **Sidebar.Item**
   - changed the left margin for collapsible and non-collapsible items
   - added additional horizontal margins to align with BASE 2.0
@@ -164,6 +186,16 @@ Important changes:
     ```
 * **Switch**
   - added a new component
+
+    ![Switch](https://github.com/toptal/picasso/raw/master/docs/images/v5/switch.png)
+
+* **Tag.Rectangular**
+  - added a new component
+
+    ![Tag.Rectangular](https://github.com/toptal/picasso/raw/master/docs/images/v5/rectangular-tag.png)
+
+    ![Tag.Rectangular indicator](https://github.com/toptal/picasso/raw/master/docs/images/v5/recangular-tag-indicators.png)
+
 * **TagSelector**
   - aligned with BASE 2.0 design
   - changed hover and focused outline
