@@ -5,6 +5,30 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [5.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.117.1...@toptal/picasso@5.0.0) (2020-12-22)
 
+### BASE 2.0 design
+
+After the official launch of Talent Portal, the team received feedback through UserVoice related to better readability and ergonomics. At that point, Talent Portal was the first product that fully leaned on the first version of BASE, or BASE v1.
+
+We took a deep dive into the analysis and listed out observations. Analysis can be found here.
+
+After analysis, the design team started testing different solutions that were the origin of the evolution of BASE v1 into BASE v2. The goal was to change and build up confidence and approval from our talent audience, regarding implementation of updates that we listed out as possible solutions. Documentation regarding the test can be found here.
+
+What is BASE v2?
+
+Every interface language has its updates. Version 2 is just another step in our iterative process. We built the technical foundation on the design front where we have an easy way to update components according to user feedback. How technology changes and how the mindset of people using our products changes, our UI and UX are going to follow it, so that we make sure we have world-class product experience in place. 
+
+Important changes:
+
+* Toning down interface with better contrast and readability. Reducing heavy saturated header and unrecognizable sidebar. 
+
+* Changing form elements to follow the corner radius of buttons (in other words making them consistent). Due to previous leadership, we had this inconsistency in place that didn’t really have a lot of value in place. Consistent corner radius and rounded corners in general help with usability. With new VP Brand Strategy settling up in Toptal, we decided it is the right time to make them consistent. Here are two good sources on why this holds a lot of value:
+
+  - https://uxdesign.cc/make-sense-of-rounded-corners-on-buttons-dfc8e13ea7f7
+
+  - https://ux.stackexchange.com/questions/11150/how-do-rounded-corners-affect-usability
+
+* Creating documentation for every component. This is currently being worked on and we are on the good track to finish more than 85% of it by the end of 2020. Proper documentation will help designers as owners to know how to use the component the right way, but also other partners in the process — such as engineering, content, product or even stakeholders. 
+
 
 ### Features
 
