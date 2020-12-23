@@ -19,15 +19,15 @@ Every interface language has its updates. Version 2 is just another step in our 
 
 Important changes:
 
-* Toning down interface with better contrast and readability. Reducing heavy saturated header and unrecognizable sidebar. 
+* **Toning down interface with better contrast and readability.** Reducing heavy saturated header and unrecognizable sidebar. 
 
-* Changing form elements to follow the corner radius of buttons (in other words making them consistent). Due to previous leadership, we had this inconsistency in place that didn’t really have a lot of value in place. Consistent corner radius and rounded corners in general help with usability. With new VP Brand Strategy settling up in Toptal, we decided it is the right time to make them consistent. Here are two good sources on why this holds a lot of value:
+* **Changing form elements to follow the corner radius of buttons (in other words making them consistent).** Due to previous leadership, we had this inconsistency in place that didn’t really have a lot of value in place. Consistent corner radius and rounded corners in general help with usability. With new VP Brand Strategy settling up in Toptal, we decided it is the right time to make them consistent. Here are two good sources on why this holds a lot of value:
 
   - https://uxdesign.cc/make-sense-of-rounded-corners-on-buttons-dfc8e13ea7f7
 
   - https://ux.stackexchange.com/questions/11150/how-do-rounded-corners-affect-usability
 
-* Creating documentation for every component. This is currently being worked on and we are on the good track to finish more than 85% of it by the end of 2020. Proper documentation will help designers as owners to know how to use the component the right way, but also other partners in the process — such as engineering, content, product or even stakeholders. 
+* **Creating documentation for every component.** This is currently being worked on and we are on the good track to finish more than 85% of it by the end of 2020. Proper documentation will help designers as owners to know how to use the component the right way, but also other partners in the process — such as engineering, content, product or even stakeholders. 
 
 
 ### Features
