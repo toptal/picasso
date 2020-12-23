@@ -5,7 +5,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [5.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.117.1...@toptal/picasso@5.0.0) (2020-12-22)
 
-### BASE 2.0 design
+## Introduction to BASE 2.0
+### By Aleksandar Djuric 
 
 After the official launch of Talent Portal, the team received feedback through UserVoice related to better readability and ergonomics. At that point, Talent Portal was the first product that fully leaned on the first version of BASE, or BASE v1.
 
