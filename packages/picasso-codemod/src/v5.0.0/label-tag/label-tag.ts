@@ -1,5 +1,3 @@
-/* eslint-disable id-length */
-// TODO: disable id-length rule for codemods
 import { Transform } from 'jscodeshift'
 
 import { findComponents, renameImport } from '../../utils'

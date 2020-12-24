@@ -10,6 +10,13 @@
         "no-console": 0
       }
     },
+    // codemod fixtures
+    {
+      "files": ["packages/picasso-codemod/src/**"],
+      "rules": {
+        "id-length": ["error", { "exceptions": ["e", "_", "j"] }]
+      }
+    },
     // Generated files
     {
       "files": ["packages/picasso/src/Icon/index.ts"],

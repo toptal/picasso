@@ -1,4 +1,3 @@
-/* eslint-disable id-length */
 import { Core, JSCodeshift } from 'jscodeshift'
 
 const renameImport = (
