@@ -66,7 +66,7 @@ Renames occurrences of `Label` to `Tag`.
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/label-tag src/**/*.tsx
+npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/label-tag src/**/*.tsx --parser=tsx
 ```
 
 </details>
