@@ -21,6 +21,6 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Pagination/story/Default.example.jsx', 'Default')
-  .addExample('Pagination/story/Variants.example.jsx', 'Variants')
-  .addExample('Pagination/story/Disabled.example.jsx', 'Disabled')
+  .addExample('Pagination/story/Default.example.tsx', 'Default')
+  .addExample('Pagination/story/Variants.example.tsx', 'Variants')
+  .addExample('Pagination/story/Disabled.example.tsx', 'Disabled')

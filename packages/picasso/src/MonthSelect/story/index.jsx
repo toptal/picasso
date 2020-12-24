@@ -12,5 +12,5 @@ page
 
 page
   .createChapter()
-  .addExample('MonthSelect/story/Default.example.jsx', 'Default')
-  .addExample('MonthSelect/story/Filter.example.jsx', 'Filter months and years') // picasso-skip-visuals
+  .addExample('MonthSelect/story/Default.example.tsx', 'Default')
+  .addExample('MonthSelect/story/Filter.example.tsx', 'Filter months and years') // picasso-skip-visuals

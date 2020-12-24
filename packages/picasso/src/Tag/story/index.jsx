@@ -29,10 +29,10 @@ page
 
 page
   .createChapter()
-  .addExample('Tag/story/Variants.example.jsx', 'Variants')
-  .addExample('Tag/story/Dismissable.example.jsx', 'Dismissable')
-  .addExample('Tag/story/WithIcon.example.jsx', 'With icon')
-  .addExample('Tag/story/Disabled.example.jsx', 'Disabled')
+  .addExample('Tag/story/Variants.example.tsx', 'Variants')
+  .addExample('Tag/story/Dismissable.example.tsx', 'Dismissable')
+  .addExample('Tag/story/WithIcon.example.tsx', 'With icon')
+  .addExample('Tag/story/Disabled.example.tsx', 'Disabled')
 
 page.connect(tagGroupStory.chapter)
 page.connect(tagRectangularStory.chapter)

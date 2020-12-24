@@ -7,18 +7,18 @@ exports[`MenuItem default render 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <span
-            class="MenuItem-stringContent"
+            class="PicassoMenuItem-stringContent"
           >
             Item
           </span>
@@ -36,18 +36,18 @@ exports[`MenuItem has chevron if has nested menu 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <span
-            class="MenuItem-stringContent"
+            class="PicassoMenuItem-stringContent"
           >
             Item
           </span>

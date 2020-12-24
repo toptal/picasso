@@ -12,12 +12,12 @@ page
 
 page
   .createChapter()
-  .addExample('Loader/story/Default.example.jsx', 'Default')
-  .addExample('Loader/story/WithLabel.example.jsx', 'With label')
-  .addExample('Loader/story/Inline.example.jsx', 'With inline content')
-  .addExample('Loader/story/Sizes.example.jsx', 'Sizes')
-  .addExample('Loader/story/Variants.example.jsx', 'Variants')
-  .addExample('Loader/story/ControlledValue.example.jsx', {
+  .addExample('Loader/story/Default.example.tsx', 'Default')
+  .addExample('Loader/story/WithLabel.example.tsx', 'With label')
+  .addExample('Loader/story/Inline.example.tsx', 'With inline content')
+  .addExample('Loader/story/Sizes.example.tsx', 'Sizes')
+  .addExample('Loader/story/Variants.example.tsx', 'Variants')
+  .addExample('Loader/story/ControlledValue.example.tsx', {
     title: 'Controlled value',
     description: 'Loader with determined or static values'
   })

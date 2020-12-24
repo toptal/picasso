@@ -12,5 +12,5 @@ page
   .addComponentDocs({ component: Tabs, name: 'Tabs' })
   .addComponentDocs(tabStory.componentDocs)
 
-page.createChapter().addExample('Tabs/story/Default.example.jsx', 'Default')
+page.createChapter().addExample('Tabs/story/Default.example.tsx', 'Default')
 page.connect(tabStory.chapter)

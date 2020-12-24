@@ -5,8 +5,8 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('Action Button', 'Action Style Button.')
-    .addExample('ButtonAction/story/Default.example.jsx', 'Default')
-    .addExample('ButtonAction/story/States.example.jsx', 'States')
+    .addExample('ButtonAction/story/Default.example.tsx', 'Default')
+    .addExample('ButtonAction/story/States.example.tsx', 'States')
 )
 
 const componentDocs = PicassoBook.createComponentDocs(

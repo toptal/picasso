@@ -10,7 +10,7 @@ export type { AutocompleteProps, Item as AutocompleteItem } from './Autocomplete
 export { default as Avatar } from './Avatar'
 export type { AvatarProps } from './Avatar'
 export { default as Button } from './Button'
-export type { ButtonProps } from './Button'
+export type { ButtonProps, VariantType as ButtonVariantType } from './Button'
 export { default as Checkbox } from './Checkbox'
 export type { CheckboxProps } from './Checkbox'
 export type { CheckboxGroupProps } from './CheckboxGroup'

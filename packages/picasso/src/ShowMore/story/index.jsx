@@ -12,7 +12,7 @@ page
 
 page
   .createChapter()
-  .addExample('ShowMore/story/Default.example.jsx', 'Default')
-  .addExample('ShowMore/story/Expanded.example.jsx', 'Expanded')
-  .addExample('ShowMore/story/CustomLimit.example.jsx', 'Custom Limit')
-  .addExample('ShowMore/story/ToggleDisabled.example.jsx', 'Disabled Toggle')
+  .addExample('ShowMore/story/Default.example.tsx', 'Default')
+  .addExample('ShowMore/story/Expanded.example.tsx', 'Expanded')
+  .addExample('ShowMore/story/CustomLimit.example.tsx', 'Custom Limit')
+  .addExample('ShowMore/story/ToggleDisabled.example.tsx', 'Disabled Toggle')

@@ -12,5 +12,5 @@ page
 
 page
   .createChapter()
-  .addExample('Amount/story/Default.example.jsx', 'Default')
-  .addExample('Amount/story/Currency.example.jsx', 'EUR Currency example')
+  .addExample('Amount/story/Default.example.tsx', 'Default')
+  .addExample('Amount/story/Currency.example.tsx', 'EUR Currency example')

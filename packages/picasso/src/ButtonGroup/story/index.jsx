@@ -9,7 +9,7 @@ const chapter = PicassoBook.connectToPage(page =>
     )
     .addExample('ButtonGroup/story/ButtonGroup.example.tsx', 'Button group')
     .addExample(
-      'ButtonGroup/story/ButtonGroupNested.example.jsx',
+      'ButtonGroup/story/ButtonGroupNested.example.tsx',
       'Nested Button Group'
     )
 )

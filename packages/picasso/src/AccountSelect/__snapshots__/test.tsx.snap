@@ -12,12 +12,12 @@ exports[`AccountSelect default render 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light AccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light AccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
         <div
-          class="Container-flex Container-column MenuItem-content"
+          class="Container-flex Container-column PicassoMenuItem-content"
         >
           <div
             class="Container-centerAlignItems Container-flex"
@@ -78,12 +78,12 @@ exports[`AccountSelect default render 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light AccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light AccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="Container-flex Container-column MenuItem-content"
+          class="Container-flex Container-column PicassoMenuItem-content"
         >
           <div
             class="Container-centerAlignItems Container-flex"
@@ -145,12 +145,12 @@ exports[`AccountSelect default render 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light AccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light AccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="Container-flex Container-column MenuItem-content"
+          class="Container-flex Container-column PicassoMenuItem-content"
         >
           <div
             class="Container-centerAlignItems Container-flex"

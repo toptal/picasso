@@ -12,15 +12,15 @@ page
 
 page
   .createChapter()
-  .addExample('FileInput/story/Default.example.jsx', 'Default')
-  .addExample('FileInput/story/Error.example.jsx', 'Error')
-  .addExample('FileInput/story/Disabled.example.jsx', 'Disabled')
-  .addExample('FileInput/story/Uploading.example.jsx', 'Uploading')
+  .addExample('FileInput/story/Default.example.tsx', 'Default')
+  .addExample('FileInput/story/Error.example.tsx', 'Error')
+  .addExample('FileInput/story/Disabled.example.tsx', 'Disabled')
+  .addExample('FileInput/story/Uploading.example.tsx', 'Uploading')
   .addExample(
-    'FileInput/story/AllowedExtensions.example.jsx',
+    'FileInput/story/AllowedExtensions.example.tsx',
     'Allowed Extensions'
   )
-  .addExample('FileInput/story/Uploader.example.jsx', {
+  .addExample('FileInput/story/Uploader.example.tsx', {
     title: 'With Uploader',
     description:
       'Showcase how to integrate FileInput with uploading logic. Randomly returns errors and allows only upload of image files'

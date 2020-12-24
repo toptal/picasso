@@ -12,11 +12,11 @@ page
 
 page
   .createChapter()
-  .addExample('Image/story/Default.example.jsx', {
+  .addExample('Image/story/Default.example.tsx', {
     title: 'Default',
     waitUntilImagesLoaded: true
   })
-  .addExample('Image/story/Variants.example.jsx', {
+  .addExample('Image/story/Variants.example.tsx', {
     title: 'Variants',
     waitUntilImagesLoaded: true
   })

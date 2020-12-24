@@ -176,20 +176,20 @@ page
 page
   .createChapter()
   .addExample('Button/story/Default.example.tsx', 'Default')
-  .addExample('Button/story/Variants.example.jsx', 'Variants')
-  .addExample('Button/story/States.example.jsx', 'States')
-  .addExample('Button/story/Disabled.example.jsx', {
+  .addExample('Button/story/Variants.example.tsx', 'Variants')
+  .addExample('Button/story/States.example.tsx', 'States')
+  .addExample('Button/story/Disabled.example.tsx', {
     title: 'Disabled',
     description: 'The button shows that currently unable to be interacted with'
   })
-  .addExample('Button/story/Sizes.example.jsx', 'Sizes')
-  .addExample('Button/story/FullWidth.example.jsx', 'Full width')
-  .addExample('Button/story/IconButtons.example.jsx', 'Button with Icon')
+  .addExample('Button/story/Sizes.example.tsx', 'Sizes')
+  .addExample('Button/story/FullWidth.example.tsx', 'Full width')
+  .addExample('Button/story/IconButtons.example.tsx', 'Button with Icon')
   .addExample(
-    'Button/story/IconButtonsWithText.example.jsx',
+    'Button/story/IconButtonsWithText.example.tsx',
     'Button with text and Icon'
   )
-  .addExample('Button/story/Loading.example.jsx', 'Button with loading state')
+  .addExample('Button/story/Loading.example.tsx', 'Button with loading state')
   .addExample('Button/story/Augmentation.example.tsx', {
     title: 'Augmentation',
     description:
