@@ -36,7 +36,7 @@ Every interface language has its updates. Version 2 is just another step in our 
 * **Alert**
   - added Alert.Inline component
   
-    ![Alert Inline](https://github.com/toptal/picasso/raw/master/docs/images/v5/alert-inline.png)
+    ![Alert Inline](https://user-images.githubusercontent.com/2836281/103081159-0e4f4900-45e0-11eb-81b1-894645718db8.png)
 
   - refactored Alert to use BASE 2.0 components
 * **Autocomplete**
@@ -53,12 +53,12 @@ Every interface language has its updates. Version 2 is just another step in our 
 * **Button.Action**
   - added a new component
 
-    ![Button.Action](https://github.com/toptal/picasso/raw/master/docs/images/v5/button-action.png)
+    ![Button.Action](https://user-images.githubusercontent.com/2836281/103081204-245d0980-45e0-11eb-9ce4-709e73a32bef.png)
 
 * **Button.Circular**
   - added a new component
 
-    ![Button.Circular](https://github.com/toptal/picasso/raw/master/docs/images/v5/button-circular-after.png)
+    ![Button.Circular](https://user-images.githubusercontent.com/2836281/103081218-2fb03500-45e0-11eb-9352-7682a9dbc6d5.png)
 
 * **Button.Group**
   - allow nesting `Button` components
@@ -117,7 +117,7 @@ Every interface language has its updates. Version 2 is just another step in our 
 
     | Before | After |
     |--|--|
-    |![Notification before](https://github.com/toptal/picasso/raw/master/docs/images/v5/notification-before.png)|![Notification after](https://github.com/toptal/picasso/raw/master/docs/images/v5/notification-after.png)|
+    |![Notification before](https://user-images.githubusercontent.com/2836281/103081241-3d65ba80-45e0-11eb-8149-7dbaa838f995.png)|![Notification after](https://user-images.githubusercontent.com/2836281/103081260-45bdf580-45e0-11eb-9588-d5f5852bf1c9.png)|
     |||
 
 * **NumberInput**
@@ -154,7 +154,7 @@ Every interface language has its updates. Version 2 is just another step in our 
 
     | Before | After |
     |--|--|
-    |![Sidebar before](https://github.com/toptal/picasso/raw/master/docs/images/v5/sidebar-before.png)|![Sidebar after](https://github.com/toptal/picasso/raw/master/docs/images/v5/sidebar-after.png)|
+    |![Sidebar before](https://user-images.githubusercontent.com/2836281/103081284-52424e00-45e0-11eb-8913-a7c1708da657.png)|![Sidebar after](https://user-images.githubusercontent.com/2836281/103081301-5e2e1000-45e0-11eb-936e-01ba308176f0.png)|
     |||
 * **Sidebar.Item**
   - changed the left margin for collapsible and non-collapsible items
@@ -188,14 +188,14 @@ Every interface language has its updates. Version 2 is just another step in our 
 * **Switch**
   - added a new component
 
-    ![Switch](https://github.com/toptal/picasso/raw/master/docs/images/v5/switch.png)
+    ![Switch](https://user-images.githubusercontent.com/2836281/103081319-67b77800-45e0-11eb-9a8e-d492751e3867.png)
 
 * **Tag.Rectangular**
   - added a new component
 
-    ![Tag.Rectangular](https://github.com/toptal/picasso/raw/master/docs/images/v5/rectangular-tag.png)
+    ![Tag.Rectangular](https://user-images.githubusercontent.com/2836281/103081336-71d97680-45e0-11eb-8004-06e34593cb23.png)
 
-    ![Tag.Rectangular indicator](https://github.com/toptal/picasso/raw/master/docs/images/v5/recangular-tag-indicators.png)
+    ![Tag.Rectangular indicator](https://user-images.githubusercontent.com/2836281/103081356-79991b00-45e0-11eb-983b-0552327c84b7.png)
 
 * **TagSelector**
   - aligned with BASE 2.0 design
