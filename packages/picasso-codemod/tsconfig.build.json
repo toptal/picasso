@@ -3,5 +3,6 @@
   "compilerOptions": {
     "outDir": "dist-package"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/__testfixtures__", "**/test.ts"]
 }

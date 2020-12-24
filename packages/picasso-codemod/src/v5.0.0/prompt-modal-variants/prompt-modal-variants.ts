@@ -8,7 +8,6 @@ const getNewVariant = (oldVariant?: string) => {
 }
 
 const transform: Transform = (file, api) => {
-  // eslint-disable-next-line id-length
   const j = api.jscodeshift
 
   return (
