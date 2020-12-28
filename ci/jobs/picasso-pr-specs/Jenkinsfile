@@ -175,36 +175,6 @@ pipeline {
             }
           } //post
         } //stage
-          
-        stage('Run cypress') {
-          when {
-            expression {
-              ghprbMatchesComment(/test|all/)
-            }
-          }
-          steps {
-            script {
-              ghHelper.notifyPR('Cypress Tests', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-
-              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn cypress"
-            }
-          } //steps
-
-          post {
-            success {
-              success "Cypress Tests"
-              script {
-                ghHelper.notifyPR('Cypress Tests', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-              }
-            }
-            failure {
-              err "Cypress Tests"
-              script {
-                ghHelper.notifyPR('Cypress Tests', 'ERROR', 'Job failed', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-              }
-            }
-          } //post
-        } //stage
 
         stage('Check build') {
           when {
