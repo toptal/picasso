@@ -174,7 +174,14 @@ pipeline {
               }
             }
           } //post
+        } //stage
           
+        stage('Run cypress') {
+          when {
+            expression {
+              ghprbMatchesComment(/test|all/)
+            }
+          }
           steps {
             script {
               ghHelper.notifyPR('Cypress Tests', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
