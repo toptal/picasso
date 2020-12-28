@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import { Tag } from '@toptal/picasso'
 import { Settings16 } from '@toptal/picasso/Icon'
