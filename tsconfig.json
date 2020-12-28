@@ -16,7 +16,6 @@
     "baseUrl": ".",
     "typeRoots": ["node_modules/@types", "@types"],
     "paths": {
-      "@toptal/*": ["packages/*/src"],
       "@topkit/analytics-charts": ["packages/topkit-analytics-charts/src"],
       "@topkit/analytics-charts/*": ["packages/topkit-analytics-charts/src/*"],
       "@toptal/picasso/*": ["packages/picasso/src/*"],
@@ -28,7 +27,13 @@
       "*": ["@types/*"],
       "~/*": ["./*"]
     },
-    "types": ["node", "jest", "@testing-library/jest-dom", "cypress"]
+    "types": [
+      "node",
+      "jest",
+      "@testing-library/jest-dom",
+      "cypress",
+      "cypress-plugin-tab/src"
+    ]
   },
   "include": ["packages/*/src", "cypress/integration/*"],
   "exclude": ["packages/*/dist-package", "**/__testfixtures__"]
