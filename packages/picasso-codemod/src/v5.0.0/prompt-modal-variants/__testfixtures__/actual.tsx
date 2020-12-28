@@ -1,4 +1,3 @@
-/* eslint-disable */
 // @ts-nocheck
 import React from 'react'
 import { PromptModal } from '@toptal/picasso'

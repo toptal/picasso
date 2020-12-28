@@ -190,11 +190,3 @@ In other cases when you use custom webpack build configuration you should check 
 3. You have `sideEffects` prop in your `package.json` set to `false` value or don't have it at all
 
 Have a happy tree shaking! :)
-
-```
-
-```
-
-```
-
-```

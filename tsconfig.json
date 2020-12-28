@@ -35,6 +35,6 @@
       "cypress-plugin-tab/src"
     ]
   },
-  "include": ["packages/*/src", "cypress/integration"],
-  "exclude": ["packages/*/dist-package"]
+  "include": ["packages/*/src", "cypress/integration/*"],
+  "exclude": ["packages/*/dist-package", "**/__testfixtures__"]
 }
