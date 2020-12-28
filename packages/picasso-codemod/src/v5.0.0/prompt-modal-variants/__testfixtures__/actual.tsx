@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
+// @ts-nocheck
 import React from 'react'
 import { PromptModal } from '@toptal/picasso'
 

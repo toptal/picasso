@@ -14,7 +14,8 @@
     {
       "files": ["packages/picasso-codemod/src/**"],
       "rules": {
-        "id-length": ["error", { "exceptions": ["e", "_", "j"] }]
+        "id-length": ["error", { "exceptions": ["e", "_", "j"] }],
+        "react/jsx-props-no-spreading": "off"
       }
     },
     // Generated files
