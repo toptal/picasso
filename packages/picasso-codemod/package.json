@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-codemod",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Codemod scripts for Picasso.",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-codemod#readme",
