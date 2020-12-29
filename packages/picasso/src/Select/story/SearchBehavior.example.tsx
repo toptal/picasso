@@ -1,9 +1,9 @@
 import React, { useState, ChangeEvent } from 'react'
-import { Select, Button, Container } from '@toptal/picasso'
+import { Select, Form, Container, NumberInput } from '@toptal/picasso'
 
 const SelectSearchBehaviourExample = () => {
   const [value, setValue] = useState<string>()
-  const [options, setOptions] = useState(OPTIONS_WHEN_SEARCH_DISABLED)
+  const [threshold, setTreshold] = useState(4)
 
   const handleChange = (
     event: ChangeEvent<{
@@ -15,45 +15,45 @@ const SelectSearchBehaviourExample = () => {
     setValue(event.target.value)
   }
 
-  const handleAddOptionsClick = () => {
-    setValue(undefined)
-    setOptions(OPTIONS_WHEN_SEARCH_ENABLED)
-  }
-
-  const handleRemoveOptionsClick = () => {
-    setValue(undefined)
-    setOptions(OPTIONS_WHEN_SEARCH_DISABLED)
+  const handleTresholdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTreshold(parseInt(event.target.value, 10))
   }
 
   return (
     <Container flex>
-      <Select
-        onChange={handleChange}
-        options={options}
-        value={value}
-        placeholder='Choose an option...'
-        width='auto'
-        searchThreshold={4}
-      />
-      <Container left='small'>
-        <Button onClick={handleAddOptionsClick}>Add options</Button>
+      <Container right='small'>
+        <Form.Field>
+          <Form.Label>Search for an option</Form.Label>
+          <Select
+            onChange={handleChange}
+            value={value}
+            options={OPTIONS}
+            placeholder='Choose an option...'
+            width='auto'
+            searchThreshold={threshold}
+            data-testid='select'
+          />
+        </Form.Field>
       </Container>
-      <Container left='small'>
-        <Button onClick={handleRemoveOptionsClick}>Remove options</Button>
+      <Container>
+        <Form.Field>
+          <Form.Label>Search threshold</Form.Label>
+          <NumberInput
+            value={threshold}
+            onChange={handleTresholdChange}
+            data-testid='input-threshold'
+          />
+        </Form.Field>
       </Container>
     </Container>
   )
 }
 
-const OPTIONS_WHEN_SEARCH_DISABLED = [
+const OPTIONS = [
   { value: '1', text: 'Option 1' },
   { value: '2', text: 'Option 2' },
   { value: '3', text: 'Option 3' },
-  { value: '4', text: 'Option 4' }
-]
-
-const OPTIONS_WHEN_SEARCH_ENABLED = [
-  ...OPTIONS_WHEN_SEARCH_DISABLED,
+  { value: '4', text: 'Option 4' },
   { value: '5', text: 'Option 5' }
 ]
 

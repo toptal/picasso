@@ -18,8 +18,6 @@ exports[`DatePicker default render 1`] = `
             class="PicassoSvgCalendar16-root"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
           >
             <path
               d="M3 2V1h1v1h8V1h1v1h3v13H0V2h3zm0 1H1v2h14V3h-2v1h-1V3H4v1H3V3zm12 3H1v8h14V6z"
@@ -34,7 +32,7 @@ exports[`DatePicker default render 1`] = `
         />
         <fieldset
           aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
           style="padding-left: 8px;"
         >
           <legend

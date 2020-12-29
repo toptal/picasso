@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopBarMenu default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoDropdown-root"
+    >
+      <div
+        class="PicassoDropdown-anchor"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
+        >
+          <div
+            class="PicassoAvatar-root PicassoAvatar-xxsmall"
+          >
+            <img
+              alt="Jacqueline Roque"
+              class="PicassoImage-root PicassoAvatar-image PicassoAvatar-square PicassoAvatar-xxsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+              src="./jacqueline-with-flowers-1954-square.jpg"
+            />
+          </div>
+          <div
+            class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+          >
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            >
+              <h4
+                class="MuiTypography-root PicassoTypography-invert PicassoTypography-headingSmall PicassoUserBadge-name PicassoTopBarMenu-name PicassoTopBarMenu-truncateText PicassoTopBarMenu-name PicassoTopBarMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
+              >
+                Jacqueline Roque
+              </h4>
+            </div>
+          </div>
+        </div>
+        <span
+          class="PicassoDropdownArrow-root PicassoTopBarMenu-arrow PicassoDropdownArrow-medium"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

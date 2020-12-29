@@ -158,7 +158,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             <div className={classes.actions}>
               <Button
                 title='Previous month'
-                variant='flat'
+                variant='secondary'
                 size='small'
                 onClick={() => switchMonth(-1)}
               >
@@ -169,7 +169,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               </Typography>
               <Button
                 title='Next month'
-                variant='flat'
+                variant='secondary'
                 size='small'
                 onClick={() => switchMonth(1)}
               >

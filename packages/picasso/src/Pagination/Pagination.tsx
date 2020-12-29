@@ -52,7 +52,7 @@ const PaginationPage: FunctionComponent<PaginationPageProps> = ({
       className={classes.rangeButton}
       disabled={disabled}
       onClick={() => onClick(page)}
-      variant={activePage === page ? 'primary-blue' : 'secondary-blue'}
+      variant={activePage === page ? 'primary' : 'secondary'}
       size='small'
     >
       {page}
@@ -123,7 +123,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
       <Button
         disabled={isFirstActive || disabled}
         onClick={() => handleChange('previous')}
-        variant='secondary-blue'
+        variant='secondary'
         size='small'
       >
         Prev
@@ -156,7 +156,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
       <Button
         disabled={isLastActive || disabled}
         onClick={() => handleChange('next')}
-        variant='secondary-blue'
+        variant='secondary'
         size='small'
       >
         Next

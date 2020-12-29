@@ -9,14 +9,12 @@ exports[`FileInput default render 1`] = `
       class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root FileInputContent-root FileInputContent-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root FileInputContent-adornmentStart MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root PicassoInputAdornment-root FileInputContent-adornmentStart MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
           class="PicassoSvgUploadDocument16-root"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M1 15h7v1H0V0h13v8h-1V1H1v14zm12-3.293V16h-1v-4.293l-1.5 1.5-.707-.707L12.5 9.793l.707.707 2 2-.707.707-1.5-1.5zM3 4h7v1H3V4zm0 2h7v1H3V6zm0 2h3v1H3V8z"
@@ -31,10 +29,11 @@ exports[`FileInput default render 1`] = `
         type="file"
       />
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
       >
         <button
-          class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root FileInputContent-button"
+          class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root FileInputContent-button"
+          data-component-type="button"
           tabindex="0"
           type="button"
         >
@@ -47,7 +46,7 @@ exports[`FileInput default render 1`] = `
       </div>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend

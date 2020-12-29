@@ -2,7 +2,8 @@ import React, {
   forwardRef,
   useState,
   ReactNode,
-  FunctionComponent
+  FunctionComponent,
+  useLayoutEffect
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -11,7 +12,8 @@ import {
   StandardProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef,
-  mergeClasses
+  mergeClasses,
+  useSidebar
 } from '@toptal/picasso-shared'
 
 import Button from '../Button'
@@ -55,10 +57,9 @@ const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProp
       onOpen={handleShowSidebar}
       onClose={handleHideSidebar}
     >
-      <Button
+      <Button.Circular
         icon={showSidebar ? <Close16 /> : <Overview16 />}
-        circular
-        variant='flat-white'
+        variant='transparent'
       />
     </Dropdown>
   )
@@ -97,6 +98,15 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     classes: externalClasses
   } = props
   const classes = mergeClasses(useStyles(props), externalClasses)
+  const { setHasSidebar } = useSidebar()
+
+  useLayoutEffect(() => {
+    setHasSidebar(true)
+
+    return function cleanup() {
+      setHasSidebar(false)
+    }
+  }, [setHasSidebar])
 
   const isCompactLayout = useBreakpoint(['small', 'medium'])
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
@@ -138,9 +148,7 @@ Sidebar.defaultProps = {
 Sidebar.displayName = 'Sidebar'
 
 Sidebar.Menu = SidebarMenu
-
 Sidebar.Item = SidebarItem
-
 Sidebar.Logo = SidebarLogo
 
 export default Sidebar as PicassoComponentWithRef<

@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ layout }: Theme) =>
+export default ({ layout, palette }: Theme) =>
   createStyles({
     root: {
       flex: 1,
@@ -12,7 +12,11 @@ export default ({ layout }: Theme) =>
       height: '100%',
       flexGrow: 1,
       maxWidth: layout.contentWidth,
-      padding: '0 1rem'
+      backgroundColor: palette.common.white,
+      backgroundClip: 'content-box'
+    },
+    hasSidebar: {
+      background: `linear-gradient(90deg, ${palette.grey.lighter} 50%, ${palette.common.white} 50%)`
     },
     wide: {
       maxWidth: layout.contentWidthWide

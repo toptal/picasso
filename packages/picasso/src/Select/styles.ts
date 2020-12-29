@@ -13,7 +13,8 @@ export default ({ palette }: Theme) =>
     root: {
       position: 'relative',
       display: 'inline-flex',
-      fontSize: '1rem'
+      fontSize: '1rem',
+      cursor: 'pointer'
     },
     rootFull: {
       width: '100%'
@@ -22,9 +23,12 @@ export default ({ palette }: Theme) =>
       width: 'auto'
     },
     rootAuto: {},
+    rootDisabled: {
+      cursor: 'default'
+    },
     select: {
       width: '100%',
-      padding: '0.625rem',
+      padding: '0.5rem',
 
       '&:focus': {
         backgroundColor: 'inherit'
@@ -34,11 +38,14 @@ export default ({ palette }: Theme) =>
       width: 'inherit',
       outline: 0
     },
-    input: {
+    outlinedInput: {
       paddingRight: '1.625rem'
     },
-    readOnlyInput: {
-      cursor: 'pointer'
+    searchOutlinedInput: {
+      width: '100%'
+    },
+    searchInputIcon: {
+      marginRight: '0.5rem'
     },
     nativeInput: {
       padding: 0
@@ -53,10 +60,13 @@ export default ({ palette }: Theme) =>
       // so 5px are left instead of 10px when we use wider icon.
       right: '0.3125rem',
       color: palette.grey.dark,
-      fontSize: '1rem'
+      fontSize: '1rem',
+      cursor: 'inherit',
+      pointerEvents: 'none'
     },
     caretDisabled: {
-      color: alpha(palette.grey.dark!, 0.48)
+      color: alpha(palette.grey.dark!, 0.48),
+      zIndex: 1
     },
     nativeStartAdornment: {
       position: 'absolute',

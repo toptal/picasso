@@ -1,11 +1,15 @@
-import React, { forwardRef, ReactNode, useState } from 'react'
+import React, { forwardRef, ReactNode } from 'react'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { mergeClasses } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import Typography from '../Typography'
 import Modal, { Props as ModalProps } from '../Modal'
 import Button, { VariantType as ButtonVariantType } from '../Button'
+import styles from './styles'
+import { useSafeState } from '../utils'
 
-export type VariantType = 'red' | 'blue' | 'green'
+export type VariantType = 'positive' | 'negative'
 
 export type PromptOptions = {
   setResult: (newResult: unknown) => void
@@ -16,6 +20,10 @@ export type PromptOptions = {
   error: boolean
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoPromptModal'
+})
+
 export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   /** Pass input component to allow you get input value from prompt modal */
   children?: (result: PromptOptions) => ReactNode
@@ -23,7 +31,7 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   title: string
   /** Prompt message */
   message: string
-  /** Different Prompt variants used for differnt intention */
+  /** Different Prompt variants used for different intention */
   variant?: VariantType
   /** Text on Submit button */
   submitText?: string
@@ -34,6 +42,7 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   onAfterSubmit?: () => void
   /** Callback on Cancel onClick event */
   onCancel?: () => void
+  onClose?: () => void
 }
 
 export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
@@ -50,11 +59,14 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
     onSubmit,
     onAfterSubmit,
     onCancel,
+    onClose,
+    classes: externalClasses,
     ...rest
   } = props
-  const [result, setResult] = useState<unknown>()
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
+  const classes = mergeClasses(useStyles(props), externalClasses)
+  const [result, setResult] = useSafeState<unknown>()
+  const [loading, setLoading] = useSafeState(false)
+  const [error, setError] = useSafeState(false)
 
   const handleSubmit = async () => {
     try {
@@ -62,18 +74,41 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
       setError(false)
 
       await onSubmit(result)
+
       setLoading(false)
-      // closes modal if use-modals hook is used
-      onAfterSubmit!()
+      handleOnAfterSubmit()
     } catch (err) {
       setError(true)
       setLoading(false)
     }
   }
 
+  const handleOnAfterSubmit = () => {
+    onAfterSubmit!()
+    handleClose()
+  }
+
+  const handleCancel = () => {
+    onCancel!()
+    handleClose()
+  }
+
+  const handleClose = () => {
+    setResult(undefined)
+
+    if (onClose) {
+      onClose!()
+    }
+  }
+
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <Modal ref={ref} {...rest}>
+    <Modal
+      ref={ref}
+      onClose={onClose && handleClose}
+      classes={classes}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+    >
       {title && <Modal.Title>{title}</Modal.Title>}
       <Modal.Content>
         <Typography size='medium'>{message}</Typography>
@@ -91,13 +126,13 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
         )}
       </Modal.Content>
       <Modal.Actions>
-        <Button disabled={loading} variant='flat' onClick={onCancel}>
+        <Button disabled={loading} variant='secondary' onClick={handleCancel}>
           {cancelText}
         </Button>
         <Button
           loading={loading}
           onClick={handleSubmit}
-          variant={`primary-${variant}` as ButtonVariantType}
+          variant={`${variant}` as ButtonVariantType}
         >
           {submitText}
         </Button>
@@ -111,7 +146,7 @@ PromptModal.defaultProps = {
   onCancel: () => {},
   size: 'small',
   submitText: 'Submit',
-  variant: 'green',
+  variant: 'positive',
   onAfterSubmit: () => {}
 }
 

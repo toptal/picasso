@@ -47,8 +47,6 @@ const SvgRankOne16 = forwardRef(function SvgRankOne16(
   return (
     <svg
       viewBox='0 0 16 16'
-      xmlns='http://www.w3.org/2000/svg'
-      xmlnsXlink='http://www.w3.org/1999/xlink'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}

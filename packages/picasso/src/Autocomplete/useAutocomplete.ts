@@ -6,7 +6,8 @@ import {
   useState,
   ChangeEvent,
   FocusEventHandler,
-  useLayoutEffect
+  useEffect,
+  useMemo
 } from 'react'
 
 import { Item, ChangedOptions } from './types'
@@ -98,15 +99,23 @@ const useAutocomplete = ({
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 
-  useLayoutEffect(() => {
-    setHighlightedIndex(null)
-  }, [value, isOpen])
+  const selectedIndex = useMemo(
+    () =>
+      value && Array.isArray(options)
+        ? options.findIndex(option => getDisplayValue!(option) === value)
+        : null,
+    [getDisplayValue, options, value]
+  )
 
-  const shouldShowOtherOption =
-    showOtherOption &&
-    value &&
-    Array.isArray(options) &&
-    options.every(option => getDisplayValue!(option) !== value)
+  useEffect(() => {
+    if (!isOpen) {
+      setHighlightedIndex(
+        selectedIndex && selectedIndex !== -1 ? selectedIndex : 0
+      )
+    }
+  }, [isOpen, selectedIndex])
+
+  const shouldShowOtherOption = showOtherOption && selectedIndex === -1
 
   const handleChange = (newValue: string, isSelected = false) => {
     if (newValue !== value) {
@@ -171,11 +180,6 @@ const useAutocomplete = ({
     setOpen(true)
   }
 
-  const handleFocus: FocusEventHandler<HTMLInputElement> = event => {
-    handleClick()
-    onFocus(event)
-  }
-
   const handleBlur: FocusEventHandler<HTMLInputElement> = event => {
     setOpen(false)
     onBlur(event)
@@ -183,7 +187,7 @@ const useAutocomplete = ({
 
   const getInputProps = () => ({
     'aria-autocomplete': 'list' as React.AriaAttributes['aria-autocomplete'],
-    onFocus: handleFocus,
+    onFocus,
     onClick: handleClick,
     onChange: (
       event: ChangeEvent<
@@ -232,6 +236,13 @@ const useAutocomplete = ({
 
       if (key === 'Enter') {
         event.preventDefault()
+
+        if (!isOpen) {
+          setOpen(true)
+
+          return
+        }
+
         setOpen(false)
 
         const findSelectedItemUsingIndex = () =>

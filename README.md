@@ -138,9 +138,7 @@ After Picasso will be released with your changes you can start using your Icon a
 
    ```
 
-2. Add the new folder and `CHANGELOG.md` to `/Dockerfile` to the list of directories that use `RUN chmod a+rw`
-
-3. Add the new package to:
+2. Add the new package to:
 
    - the `paths` key in `/tsconfig.json`
    - the `alias` key in `/.storybook/webpack.config.js`
@@ -192,11 +190,3 @@ In other cases when you use custom webpack build configuration you should check 
 3. You have `sideEffects` prop in your `package.json` set to `false` value or don't have it at all
 
 Have a happy tree shaking! :)
-
-```
-
-```
-
-```
-
-```

@@ -9,12 +9,14 @@ import {
 } from '@toptal/picasso-shared'
 
 import PageHead from '../PageHead'
-import PageHeader from '../PageHeader'
-import PageHeaderMenu from '../PageHeaderMenu'
+import TopBar from '../TopBar'
+import TopBarMenu from '../TopBarMenu'
 import PageFooter from '../PageFooter'
 import PageContent from '../PageContent'
 import PageSidebar from '../Sidebar'
 import PageBanner from '../PageBanner'
+import PageAutocomplete from '../PageAutocomplete'
+import PageArticle from '../PageArticle'
 import { PageContextProps, ViewportWidthType } from './types'
 import styles from './styles'
 
@@ -25,18 +27,20 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   width?: ViewportWidthType
   /** Horizontally centers the content */
   centered?: boolean
-  /** Children components (`Page.Header`, `Page.Content`, `Page.Footer`) */
+  /** Children components (`Page.TopBar`, `Page.Content`, `Page.Footer`) */
   children: ReactNode
 }
 
 export interface StaticProps {
   Head: typeof PageHead
-  Header: typeof PageHeader
-  HeaderMenu: typeof PageHeaderMenu
+  TopBar: typeof TopBar
+  TopBarMenu: typeof TopBarMenu
   Content: typeof PageContent
   Footer: typeof PageFooter
   Sidebar: typeof PageSidebar
   Banner: typeof PageBanner
+  Autocomplete: typeof PageAutocomplete
+  Article: typeof PageArticle
 }
 
 export const PageContext = React.createContext<PageContextProps>({})
@@ -78,9 +82,9 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
 
 Page.displayName = 'Page'
 
-Page.Header = PageHeader
+Page.TopBar = TopBar
 
-Page.HeaderMenu = PageHeaderMenu
+Page.TopBarMenu = TopBarMenu
 
 Page.Content = PageContent
 
@@ -91,5 +95,9 @@ Page.Sidebar = PageSidebar
 Page.Banner = PageBanner
 
 Page.Head = PageHead
+
+Page.Autocomplete = PageAutocomplete
+
+Page.Article = PageArticle
 
 export default Page as PicassoComponentWithRef<Props, HTMLElement, StaticProps>

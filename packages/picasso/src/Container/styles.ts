@@ -2,11 +2,7 @@ import capitalize from '@material-ui/core/utils/capitalize'
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { Color } from '@material-ui/core'
 import { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
-import {
-  SpacingType,
-  spacingToRem,
-  createPropertiesStyles
-} from '@toptal/picasso-shared'
+import { SpacingType, spacingToRem } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 
@@ -56,13 +52,13 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
     return {}
   }
 
-  return createPropertiesStyles({
-    backgroundColor: colorOptions.lighter,
+  return {
+    backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter,
 
     '&$bordered': {
       borderColor: colorOptions.main
     }
-  })
+  }
 }
 
 const marginClassDef = (direction: Direction, spacing: Spacing) => ({
@@ -102,10 +98,14 @@ justifyContentVariants.forEach(variant => {
   }
 })
 
-export default ({ palette }: Theme) =>
+export default ({ palette, sizes: { borderRadius } }: Theme) =>
   createStyles({
     bordered: {
-      border: `1px solid ${palette.grey.lighter}`
+      border: `1px solid ${palette.grey.lighter2}`
+    },
+
+    rounded: {
+      borderRadius: borderRadius.medium
     },
 
     flex: {
@@ -124,9 +124,9 @@ export default ({ palette }: Theme) =>
       display: 'inline-block'
     },
 
-    whiteVariant: createPropertiesStyles({
+    whiteVariant: {
       backgroundColor: palette.common.white
-    }),
+    },
 
     redVariant: colorVariant(palette.red),
 

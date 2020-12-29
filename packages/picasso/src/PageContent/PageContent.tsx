@@ -1,7 +1,7 @@
 import React, { useContext, forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { mergeClasses, StandardProps, useSidebar } from '@toptal/picasso-shared'
 
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
@@ -31,6 +31,7 @@ export const PageContent = forwardRef<HTMLDivElement, Props>(
 
     const classes = mergeClasses(useStyles(props), externalClasses)
     const { width, fullWidth } = useContext<PageContextProps>(PageContext)
+    const { hasSidebar } = useSidebar()
 
     const innerClassName = cx(
       {
@@ -46,7 +47,11 @@ export const PageContent = forwardRef<HTMLDivElement, Props>(
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
-        className={cx(classes.root, className)}
+        className={cx(
+          classes.root,
+          { [classes.hasSidebar]: hasSidebar },
+          className
+        )}
         style={style}
       >
         <div className={innerClassName}>{children}</div>

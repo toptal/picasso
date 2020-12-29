@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoContainer-flex PicassoContainer-inline"
+    >
+      <div
+        class="PicassoContainer-rightsmallMargin"
+      >
+        <svg
+          class="PicassoSvgExclamation16-root PicassoSvgExclamation16-yellow"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M7.5 15a7.5 7.5 0 110-15 7.5 7.5 0 010 15zm0-1a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM7 3h1v6H7V3zm0 8h1v1H7v-1z"
+          />
+        </svg>
+      </div>
+      <div
+        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black PicassoAlertInline-content MuiTypography-body1"
+      >
+        test example string
+      </div>
+    </div>
+  </div>
+</div>
+`;

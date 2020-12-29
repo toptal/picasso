@@ -8,7 +8,7 @@ const summaryHeaderText = 'Fryderyk Chopin'
 const Summary = () => <div>{summaryHeaderText}</div>
 
 const Details = () => (
-  <div>
+  <div id='details'>
     Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in
     what was then the Duchy of Warsaw, a Polish state established by Napoleon.
     The parish baptismal record gives his birthday as 22 February 1810, and
@@ -30,7 +30,7 @@ describe('default version for sections', () => {
   })
 
   test('should render expanded version after click on summary', () => {
-    const { container, getByText } = render(
+    const { getByText, container } = render(
       <Accordion content={<Details />}>
         <Summary />
       </Accordion>

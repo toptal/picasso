@@ -25,7 +25,7 @@ export type PlacementType = TooltipProps['placement']
 
 type MaxWidthType = 'none' | 'default'
 
-type DelayType = 'short' | 'long'
+export type DelayType = 'short' | 'long'
 
 const delayDurations: { [k in DelayType]: number } = {
   short: 200,
@@ -41,7 +41,11 @@ interface UseTooltipHandlersOptions {
   disableListeners?: boolean
 }
 
-type ChildrenProps = { onClick?(event: ChangeEvent<{}>): void }
+type ChildrenProps = {
+  onClick?(event: ChangeEvent<{}>): void
+  onMouseOver?(event: MouseEvent): void
+  onMouseLeave?(event: MouseEvent): void
+}
 
 const useTooltipHandlers = ({
   open: externalOpen,
@@ -53,26 +57,55 @@ const useTooltipHandlers = ({
 }: UseTooltipHandlersOptions) => {
   const isTouchScreen = !isPointerDevice()
   const [internalOpen, setInternalOpen] = useState(false)
+  const [isPristine, setIsPristine] = useState(true)
   const delayDuration = isTouchScreen ? 0 : delayDurations[delay]
   const isUncontrolledTooltip = externalOpen === undefined
 
-  if (isUncontrolledTooltip && isTouchScreen) {
+  if (isUncontrolledTooltip) {
     /**
      * `onClose` is called by MUI when close is requested, for example on click away.
      * Since we are controlling tooltip here, we have to do actual close on our own.
      */
-    const handleClose = (event: ChangeEvent<{}>) => {
-      onClose?.(event)
+
+    const openTooltip = () => {
+      if (!disableListeners) {
+        setInternalOpen(true)
+        setIsPristine(false)
+      }
+    }
+
+    const closeTooltip = () => {
       setInternalOpen(false)
     }
 
+    const handleClose = (event: ChangeEvent<{}>) => {
+      onClose?.(event)
+      closeTooltip()
+    }
+
     const handleClick = (event: ChangeEvent<{}>) => {
-      event.preventDefault()
       children.props.onClick?.(event)
 
-      if (!disableListeners) {
-        setInternalOpen(true)
+      if (internalOpen) {
+        closeTooltip()
+
+        return
       }
+      if (isPristine) {
+        openTooltip()
+      }
+    }
+
+    const handleOnMouseOver = (event: MouseEvent) => {
+      event.preventDefault()
+      if (!isTouchScreen && !internalOpen && isPristine) {
+        openTooltip()
+      }
+    }
+
+    const handleOnMouseLeave = (event: MouseEvent) => {
+      event.preventDefault()
+      setIsPristine(true)
     }
 
     return {
@@ -81,7 +114,9 @@ const useTooltipHandlers = ({
       handleClose,
       delayDuration,
       children: cloneElement(children, {
-        onClick: handleClick
+        onClick: handleClick,
+        onMouseOver: handleOnMouseOver,
+        onMouseLeave: handleOnMouseLeave
       })
     }
   }
@@ -196,7 +231,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
             },
             preventOverflow: {
               enabled: preventOverflow,
-              boundariesElement: 'scrollParent'
+              boundariesElement: 'window'
             },
             hide: {
               enabled: preventOverflow
@@ -234,7 +269,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
 
 Tooltip.defaultProps = {
   arrow: true,
-  preventOverflow: false,
+  preventOverflow: true,
   placement: 'top',
   variant: 'dark',
   disablePortal: false,

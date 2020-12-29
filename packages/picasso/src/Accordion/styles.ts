@@ -1,14 +1,14 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider, createPropertiesStyles } from '@toptal/picasso-shared'
+import { PicassoProvider } from '@toptal/picasso-shared'
 
 PicassoProvider.override(() => ({
   MuiAccordion: {
     root: {
-      '&:before': {
-        display: 'none'
-      },
       '&$expanded': {
-        margin: 0
+        margin: 0,
+        '&:before': {
+          opacity: 1
+        }
       },
       '&$disabled': {
         backgroundColor: 'unset'
@@ -18,46 +18,51 @@ PicassoProvider.override(() => ({
 }))
 
 export default ({ palette, typography }: Theme) => {
-  const separatorStyles = createPropertiesStyles({
+  const separatorStyles = {
     display: 'block',
     left: 0,
     right: 0,
     height: '1px',
     content: '""',
     opacity: 1,
-    backgroundColor: palette.grey.light,
+    backgroundColor: palette.grey.light2,
     position: 'absolute'
-  })
+  }
 
   return createStyles({
     root: {
       background: 'transparent',
-      fontSize: '1rem',
-
-      '&:before': {
+      fontSize: '1rem'
+    },
+    bordersAll: {
+      '&:before, &:after': {
+        ...separatorStyles
+      },
+      '&:first-child:before': {
+        display: 'block'
+      },
+      '& + $root:before': {
         display: 'none'
       }
     },
-    bordered: {
-      '&:first-child:before': {
-        ...separatorStyles
-      },
+    bordersMiddle: {
       '&:before': {
-        background: 'transparent'
+        display: 'none'
       },
-      '&:after': {
-        ...separatorStyles
-      },
-      '&:nth-child(1):nth-last-child(1)': {
-        '&:before, &:after': {
-          display: 'none'
-        }
+      '&$root + $root:before': {
+        ...separatorStyles,
+        display: 'block',
+        transform: 'translateY(1px)'
       }
     },
-
-    summaryFontWeightInherit: createPropertiesStyles({
+    bordersNone: {
+      '&:before, &:after': {
+        display: 'none'
+      }
+    },
+    summaryFontWeightInherit: {
       fontWeight: 'inherit'
-    }),
+    },
     expandIcon: {
       fontSize: '0.7em',
       color: palette.grey.dark,

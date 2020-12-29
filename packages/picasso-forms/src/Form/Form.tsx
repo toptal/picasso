@@ -3,8 +3,8 @@ import {
   Form as FinalForm,
   FormProps as FinalFormProps
 } from 'react-final-form'
-import { FormApi, ValidationErrors, getIn, setIn } from 'final-form'
-import { Form as PicassoForm } from '@toptal/picasso'
+import { FormApi, SubmissionErrors, getIn, setIn } from 'final-form'
+import { Form as PicassoForm, Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
 import Autocomplete from '../Autocomplete'
@@ -20,6 +20,7 @@ import DatePicker from '../DatePicker'
 import TimePicker from '../TimePicker'
 import TagSelector from '../TagSelector'
 import SubmitButton from '../SubmitButton'
+import Switch from '../Switch'
 import { FormConfigContext } from '../FormConfig'
 import { createScrollToErrorDecorator } from '../utils'
 import {
@@ -38,29 +39,32 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   scrollOffsetTop?: number
 }
 
-const getSubmitErrors = (
-  validationObject: Validators,
-  formValues: AnyObject,
-  form: FormApi<AnyObject>
-) =>
-  Object.entries(validationObject).reduce<ValidationErrors | undefined>(
-    (result, [key, validator]) => {
-      const error: string = validator?.(
-        getIn(formValues, key),
-        formValues,
-        form.getFieldState(key)
-      )
+const getValidationErrors = (
+  validators: Validators,
+  formValues: Record<string, any>,
+  form: FormApi<Record<string, any>>
+) => {
+  let errors: Record<string, any> | undefined
 
-      if (error) {
-        return setIn(result || {}, key, error)
-      }
+  Object.entries(validators).forEach(([key, validator]) => {
+    const fieldValue = getIn(formValues, key)
+    const fieldMetaState = form.getFieldState(key)
 
-      return result
-    },
-    undefined
-  )
+    if (!validator) {
+      return
+    }
 
-export const Form = <T extends any = AnyObject>(props: Props<T>) => {
+    const error = validator(fieldValue, formValues, fieldMetaState)
+
+    if (error) {
+      errors = setIn(errors || {}, key, error)
+    }
+  })
+
+  return errors
+}
+
+export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
   const {
     children,
     autoComplete,
@@ -78,9 +82,31 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
 
   const validationObject = useRef<FormContextProps>(createFormContext())
 
+  const showSuccessNotification = () => {
+    if (!successSubmitMessage) {
+      return
+    }
+
+    showSuccess(successSubmitMessage)
+  }
+
+  const showErrorNotification = (errors: SubmissionErrors) => {
+    if (typeof errors === 'string') {
+      showError(errors, undefined, { persist: true })
+
+      return
+    }
+
+    if (!failedSubmitMessage) {
+      return
+    }
+
+    showError(failedSubmitMessage, undefined, { persist: true })
+  }
+
   const handleSubmit = useCallback(
     async (values, form, callback) => {
-      const validationErrors = getSubmitErrors(
+      const validationErrors = getValidationErrors(
         validationObject.current.getValidators(),
         values,
         form
@@ -90,15 +116,15 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
         return validationErrors
       }
 
-      const errors = await onSubmit(values, form, callback)
+      const submissionErrors = await onSubmit(values, form, callback)
 
-      if (!errors && successSubmitMessage) {
-        showSuccess(successSubmitMessage)
-      } else if (errors && failedSubmitMessage) {
-        showError(failedSubmitMessage)
+      if (!submissionErrors) {
+        showSuccessNotification()
+      } else {
+        showErrorNotification(submissionErrors)
       }
 
-      return errors
+      return submissionErrors
     },
     [
       failedSubmitMessage,
@@ -113,9 +139,11 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
     <FormContext.Provider value={validationObject}>
       <FinalForm
         render={({ handleSubmit }) => (
-          <PicassoForm autoComplete={autoComplete} onSubmit={handleSubmit}>
-            {children}
-          </PicassoForm>
+          <Container>
+            <PicassoForm autoComplete={autoComplete} onSubmit={handleSubmit}>
+              {children}
+            </PicassoForm>
+          </Container>
         )}
         onSubmit={handleSubmit}
         decorators={[...decorators, scrollToErrorDecorator]}
@@ -144,5 +172,6 @@ Form.TimePicker = TimePicker
 Form.TagSelector = TagSelector
 Form.SubmitButton = SubmitButton
 Form.ConfigProvider = FormConfigContext.Provider
+Form.Switch = Switch
 
 export default Form

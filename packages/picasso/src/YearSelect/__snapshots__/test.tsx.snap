@@ -12,21 +12,21 @@ exports[`YearSelect default render 1`] = `
         class="makeStyles-inputWrapper"
       >
         <div
-          aria-autocomplete="list"
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-input MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
             aria-invalid="false"
             autocomplete="off"
             class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
+            readonly=""
             size="1"
             type="text"
             value=""
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
@@ -43,7 +43,6 @@ exports[`YearSelect default render 1`] = `
           class="PicassoSvgDropdownArrows16-root makeStyles-caret"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M8.429 2.715l2.117 3.528a.5.5 0 01-.43.757H5.884a.5.5 0 01-.429-.757l2.117-3.528a.5.5 0 01.858 0zM8.429 13.285l2.117-3.528a.5.5 0 00-.43-.757H5.884a.5.5 0 00-.429.757l2.117 3.528a.5.5 0 00.858 0z"
@@ -57,7 +56,7 @@ exports[`YearSelect default render 1`] = `
 
 exports[`YearSelect render in descending order 1`] = `
 <ul
-  class="MuiList-root PicassoScrollMenu-menu"
+  class="MuiList-root Menu-root PicassoScrollMenu-menu"
   role="menu"
   tabindex="-1"
 >
@@ -67,73 +66,128 @@ exports[`YearSelect render in descending order 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="2005"
     >
-      <span
-        class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
-        2005
-      </span>
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+          />
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          >
+            2005
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2004"
     >
-      <span
-        class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
-        2004
-      </span>
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+          />
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          >
+            2004
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2003"
     >
-      <span
-        class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
-        2003
-      </span>
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+          />
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          >
+            2003
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2002"
     >
-      <span
-        class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
-        2002
-      </span>
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+          />
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          >
+            2002
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2001"
     >
-      <span
-        class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
-        2001
-      </span>
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+          />
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          >
+            2001
+          </span>
+        </div>
+      </div>
     </li>
   </div>
 </ul>

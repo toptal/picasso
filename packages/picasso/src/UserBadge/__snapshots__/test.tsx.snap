@@ -21,7 +21,7 @@ exports[`UserBadge auto center alignment 1`] = `
         </p>
       </div>
       <div
-        class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -59,7 +59,7 @@ exports[`UserBadge custom name 1`] = `
         </p>
       </div>
       <div
-        class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -100,7 +100,7 @@ exports[`UserBadge custom title 1`] = `
         </p>
       </div>
       <div
-        class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -146,7 +146,7 @@ exports[`UserBadge default render 1`] = `
         </p>
       </div>
       <div
-        class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -189,7 +189,7 @@ exports[`UserBadge invert render 1`] = `
         </p>
       </div>
       <div
-        class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -232,7 +232,7 @@ exports[`UserBadge manual center alignment 1`] = `
         </p>
       </div>
       <div
-        class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -275,7 +275,7 @@ exports[`UserBadge override auto center alignment 1`] = `
         </p>
       </div>
       <div
-        class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -313,7 +313,7 @@ exports[`UserBadge small size 1`] = `
         </p>
       </div>
       <div
-        class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"

@@ -17,7 +17,7 @@ const NodeContainer = styled<typeof Container>(Container)<{
   width: 236px;
   padding: 0.5rem;
   ${({ selected }) =>
-    `border: 1px solid ${selected ? palette.blue.main : palette.grey.light};`}
+    `border: 1px solid ${selected ? palette.blue.main : palette.grey.light2};`}
 `
 
 const createTreeNode = (

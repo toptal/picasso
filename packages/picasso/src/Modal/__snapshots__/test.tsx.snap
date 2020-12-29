@@ -43,15 +43,23 @@ exports[`renders Modal 1`] = `
           </h3>
         </div>
         <div
-          class="PicassoModalContent-root"
+          class="PicassoModalContent-shadedWrapper"
         >
-          Modal test content
+          <div
+            class="PicassoModalContent-shadedWrapperEffect"
+          />
+          <div
+            class="PicassoModalContent-modalContent"
+          >
+            Modal test content
+          </div>
         </div>
         <div
           class="PicassoModalAction-root"
         >
           <button
-            class="MuiButtonBase-root PicassoButton-medium PicassoButton-flat PicassoButton-root"
+            class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
+            data-component-type="button"
             tabindex="0"
             type="button"
           >
@@ -62,7 +70,8 @@ exports[`renders Modal 1`] = `
             </span>
           </button>
           <button
-            class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryGreen PicassoButton-root"
+            class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
+            data-component-type="button"
             tabindex="0"
             type="button"
           >
@@ -83,7 +92,7 @@ exports[`renders Modal 1`] = `
 </div>
 `;
 
-exports[`useModals opens and closes modal 1`] = `
+exports[`useModal opens and closes modal 1`] = `
 <body
   style="overflow: hidden;"
 >
@@ -94,7 +103,8 @@ exports[`useModals opens and closes modal 1`] = `
     >
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -132,7 +142,8 @@ exports[`useModals opens and closes modal 1`] = `
               Modal content
             </p>
             <button
-              class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+              class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+              data-component-type="button"
               tabindex="0"
               type="button"
             >
@@ -154,7 +165,7 @@ exports[`useModals opens and closes modal 1`] = `
 </body>
 `;
 
-exports[`useModals opens and closes modal 2`] = `
+exports[`useModal opens and closes modal 2`] = `
 <body
   style=""
 >
@@ -164,7 +175,8 @@ exports[`useModals opens and closes modal 2`] = `
       style=""
     >
       <button
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -179,7 +191,7 @@ exports[`useModals opens and closes modal 2`] = `
 </body>
 `;
 
-exports[`useModals shows multiple modals at the same time 1`] = `
+exports[`useModal shows multiple modals at the same time 1`] = `
 <body
   style="overflow: hidden;"
 >
@@ -190,7 +202,8 @@ exports[`useModals shows multiple modals at the same time 1`] = `
     >
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -202,7 +215,8 @@ exports[`useModals shows multiple modals at the same time 1`] = `
       </button>
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >

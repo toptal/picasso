@@ -20,7 +20,7 @@ import Container from '../Container'
 import Typography from '../Typography'
 import Accordion from '../Accordion'
 import MenuItem, { MenuItemAttributes } from '../MenuItem'
-import { ArrowDropDown16 } from '../Icon'
+import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../Sidebar/types'
 
@@ -123,14 +123,19 @@ export const SidebarItem: OverridableComponent<Props> = memo(
         className={cx(
           classes.root,
           classes.noWrap,
+          classes.roundedBorder,
           classes[variant!],
-          { [classes.selected]: !hasMenu && selected },
+          {
+            [classes.selected]: !hasMenu && selected,
+            [classes.collapsible]: hasMenu && collapsible
+          },
           className
         )}
         onClick={handleMenuItemClick}
         selected={!hasMenu && selected}
         disabled={disabled}
         variant={variant}
+        nonSelectable
       >
         <Container className={classes.noWrap} inline flex alignItems='center'>
           {icon}
@@ -152,16 +157,16 @@ export const SidebarItem: OverridableComponent<Props> = memo(
         <Accordion
           onChange={handleAccordionChange}
           classes={{
-            summary: classes.summary,
-            details: classes.details,
+            summary: classes.collapsibleWrapper,
+            details: hasIcon ? classes.nestedMenuWithIcon : classes.nestedMenu,
             content: classes.content
           }}
           content={menu}
-          bordered={false}
+          borders='none'
           disabled={disabled}
           expanded={isExpanded}
           expandIcon={
-            <ArrowDropDown16
+            <ArrowDownMinor16
               className={cx(
                 classes.expandIcon,
                 classes[`${variant}ExpandIcon`],
@@ -180,7 +185,15 @@ export const SidebarItem: OverridableComponent<Props> = memo(
     return (
       <>
         {menuItem}
-        {hasMenu && <div className={classes.nonCollapsibleMenu}>{menu}</div>}
+        {hasMenu && (
+          <div
+            className={
+              hasIcon ? classes.nestedMenuWithIcon : classes.nestedMenu
+            }
+          >
+            {menu}
+          </div>
+        )}
       </>
     )
   })

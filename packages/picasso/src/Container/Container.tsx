@@ -48,6 +48,8 @@ export interface Props
   justifyContent?: JustifyContentType
   /** Whether container has border or not */
   bordered?: boolean
+  /** Whether container has 8px border-radius applied or not */
+  rounded?: boolean
   /** Style variant of Notification */
   variant?: VariantType
   /** Component used for the root node */
@@ -76,6 +78,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
     justifyContent,
     style,
     bordered = false,
+    rounded = false,
     variant,
     classes: externalClasses,
     as: Component = inline ? 'span' : 'div',
@@ -115,6 +118,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
           ]]: justifyContent,
 
           [classes.bordered]: bordered,
+          [classes.rounded]: rounded,
           [classes.flex]: flex,
           [classes.inline]: inline,
           [classes.column]: direction === 'column'

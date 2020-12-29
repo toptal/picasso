@@ -15,7 +15,8 @@ exports[`Calendar default render 1`] = `
           class="PicassoCalendar-actions"
         >
           <button
-            class="MuiButtonBase-root PicassoButton-small PicassoButton-flat PicassoButton-root"
+            class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+            data-component-type="button"
             tabindex="0"
             title="Previous month"
             type="button"
@@ -27,8 +28,6 @@ exports[`Calendar default render 1`] = `
                 class="PicassoSvgBackMinor16-root"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
                 <path
                   d="M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z"
@@ -42,7 +41,8 @@ exports[`Calendar default render 1`] = `
             February 2019
           </h3>
           <button
-            class="MuiButtonBase-root PicassoButton-small PicassoButton-flat PicassoButton-root"
+            class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+            data-component-type="button"
             tabindex="0"
             title="Next month"
             type="button"
@@ -54,8 +54,6 @@ exports[`Calendar default render 1`] = `
                 class="PicassoSvgChevronMinor16-root"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
                 <path
                   d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"

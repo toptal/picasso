@@ -18,12 +18,13 @@ import {
   mergeClasses
 } from '@toptal/picasso-shared'
 
-import { Close16 } from '../Icon'
+import { CloseMinor16 } from '../Icon'
 import useCombinedRefs from '../utils/use-combined-refs'
 import { ModalManager } from '../utils/Modal'
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
+import Button from '../Button'
 import styles from './styles'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
@@ -218,12 +219,17 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       transitionDuration={transitionDuration}
       maxWidth={false}
       disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
+      disableBackdropClick
     >
       {children}
       {onClose && (
-        <span onClick={onClose}>
-          <Close16 className={classes.closeButton} />
-        </span>
+        <Button.Circular
+          variant='flat'
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseMinor16 />
+        </Button.Circular>
       )}
     </Dialog>
   )

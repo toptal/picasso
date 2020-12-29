@@ -2,7 +2,8 @@ import React, {
   useLayoutEffect,
   useRef,
   createRef,
-  FunctionComponent
+  FunctionComponent,
+  ReactNode
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import RootRef from '@material-ui/core/RootRef'
@@ -11,8 +12,11 @@ import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 import Menu from '../Menu'
 import styles from './styles'
 
+type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
 export interface Props extends StandardProps {
   selectedIndex?: number | null
+  onBlur?: FocusEventType
+  fixedHeader?: ReactNode
 }
 
 enum Direction {
@@ -34,18 +38,21 @@ const getMoveDirection = (
     : Direction.UP
 }
 
-const preventDefault = (
-  event: React.MouseEvent<HTMLUListElement, MouseEvent>
-) => event.preventDefault()
-
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoScrollMenu'
 })
 
 const ScrollMenu: FunctionComponent<Props> = props => {
-  const { selectedIndex, classes: externalClasses, children, style } = props
+  const {
+    selectedIndex,
+    onBlur,
+    children,
+    style,
+    fixedHeader,
+    classes: externalClasses,
+    ...rest
+  } = props
   const classes = mergeClasses(useStyles(props), externalClasses)
-
   const menuRef = useRef<HTMLDivElement | null>(null)
   const firstItemRef = createRef<HTMLElement>()
   const prevSelectedIndex = useRef(selectedIndex)
@@ -99,8 +106,14 @@ const ScrollMenu: FunctionComponent<Props> = props => {
   }, [firstItemRef, selectedIndex, prevSelectedIndex])
 
   return (
-    <Menu className={classes.menu} style={style} onMouseDown={preventDefault}>
-      <div ref={menuRef} className={classes.scrollView}>
+    <Menu
+      className={classes.menu}
+      style={style}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+    >
+      {fixedHeader}
+      <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
         {renderChildren}
       </div>
     </Menu>

@@ -6,31 +6,33 @@ exports[`Notification default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiSnackbarContent-root Notification-notificationWhite Notification-notification MuiPaper-elevation6"
+      class="MuiPaper-root MuiSnackbarContent-root Notification-notificationYellow Notification-notification MuiPaper-elevation6"
       role="alert"
     >
       <div
         class="MuiSnackbarContent-message"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+          class="PicassoContainer-flex"
         >
-          <svg
-            class="PicassoSvgInfo24-root PicassoSvgInfo24-grey"
-            style="min-width: 24px; min-height: 24px;"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
           >
-            <path
-              d="M11.5 22C5.701 22 1 17.299 1 11.5S5.701 1 11.5 1 22 5.701 22 11.5 17.299 22 11.5 22zm0-1a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM11 9h1v8h-1V9zm0-3h1v1h-1V6z"
-            />
-          </svg>
-        </div>
-        <div
-          class="MuiTypography-root PicassoTypography-bodyMedium Notification-content MuiTypography-body1"
-        >
-          test example string
+            <svg
+              class="PicassoSvgExclamationSolid16-root PicassoSvgExclamationSolid16-yellow"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 0a8 8 0 110 16A8 8 0 018 0zm0 11a1 1 0 100 2 1 1 0 000-2zm0-8a1 1 0 00-1 1v5a1 1 0 102 0V4a1 1 0 00-1-1z"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium Notification-content MuiTypography-body1"
+          >
+            test example string
+          </div>
         </div>
       </div>
     </div>

@@ -4,108 +4,178 @@ import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
 import Button from '../Button'
 import Input from '../Input'
 import PromptModal from '../PromptModal'
-import { useModals } from '../utils'
+import { useModal } from '../utils'
 
-test('renders PromptModal', () => {
-  const { baseElement } = render(
-    <PromptModal
-      open
-      title='Test title'
-      message='Test message'
-      onSubmit={async () => {}}
-    />
-  )
+describe('PromptModal', () => {
+  const spy = jest.spyOn(global.console, 'error')
 
-  expect(baseElement).toMatchSnapshot()
-})
-
-test('showPrompt opens and closes modal on Submit action', async () => {
-  const TestComponent = () => {
-    const { showPrompt } = useModals()
-
-    const handleClick = () => {
-      showPrompt({
-        title: 'Test title',
-        message: 'Test message',
-        onSubmit: async () => {}
-      })
-    }
-
-    return <Button onClick={handleClick}>Show</Button>
-  }
-
-  const { getByText, queryByText, baseElement } = render(<TestComponent />)
-
-  const showModal = getByText('Show')
-
-  expect(queryByText('Test title')).toBeFalsy()
-  expect(baseElement).toMatchSnapshot()
-
-  fireEvent.click(showModal)
-
-  expect(queryByText('Test title')).toBeTruthy()
-  expect(baseElement).toMatchSnapshot()
-
-  const submitModal = getByText('Submit')
-
-  fireEvent.click(submitModal)
-
-  await wait(() => {
-    expect(queryByText('Modal content')).toBeFalsy()
+  afterEach(() => {
+    spy.mockClear()
   })
 
-  expect(baseElement).toMatchSnapshot()
-})
+  test('renders', () => {
+    const { baseElement } = render(
+      <PromptModal
+        open
+        title='Test title'
+        message='Test message'
+        onSubmit={async () => {}}
+      />
+    )
 
-const identity = <T extends unknown>(value: T) => value
+    expect(baseElement).toMatchSnapshot()
+  })
 
-test('showPrompt with input returns result on Submit action ', async () => {
-  const mockResult = jest.fn(identity)
+  test('showPrompt opens and closes modal on Submit action', async () => {
+    const TestComponent = () => {
+      const { showModal, hideModal, isOpen } = useModal()
 
-  const TestComponent = () => {
-    const { showPrompt } = useModals()
-
-    const handleClick = async () => {
-      showPrompt({
-        title: 'Test title',
-        message: 'Test message',
-        onSubmit: result => {
-          mockResult(result)
-        },
-        // eslint-disable-next-line react/display-name
-        content: ({ setResult, result }) => (
-          <Input
-            aria-label='test-input'
-            width='full'
-            onChange={event => setResult(event.target.value)}
-            value={String(result)}
+      return (
+        <>
+          <Button onClick={showModal}>Show</Button>
+          <PromptModal
+            open={isOpen}
+            title='Test title'
+            message='Test message'
+            onSubmit={hideModal}
           />
-        )
-      })
+        </>
+      )
     }
 
-    return <Button onClick={handleClick}>Show</Button>
-  }
+    const { getByText, queryByText, baseElement } = render(<TestComponent />)
 
-  const { getByText, getByLabelText, baseElement } = render(<TestComponent />)
+    const showModal = getByText('Show')
 
-  const expectedResult = '42'
+    expect(queryByText('Test title')).toBeFalsy()
+    expect(baseElement).toMatchSnapshot()
 
-  const showModal = getByText('Show')
+    fireEvent.click(showModal)
 
-  fireEvent.click(showModal)
+    expect(queryByText('Test title')).toBeTruthy()
+    expect(baseElement).toMatchSnapshot()
 
-  const input = getByLabelText('test-input')
+    const submitModal = getByText('Submit')
 
-  fireEvent.change(input, { target: { value: expectedResult } })
+    fireEvent.click(submitModal)
 
-  const submitModal = getByText('Submit')
+    await wait(() => {
+      expect(queryByText('Modal content')).toBeFalsy()
+    })
 
-  fireEvent.click(submitModal)
-
-  await wait(() => {
-    expect(mockResult.mock.results[0].value).toBe(expectedResult)
+    expect(baseElement).toMatchSnapshot()
   })
 
-  expect(baseElement).toMatchSnapshot()
+  const identity = <T extends unknown>(value: T) => value
+
+  test('showPrompt with input returns result on Submit action ', async () => {
+    const mockResult = jest.fn(identity)
+
+    const TestComponent = () => {
+      const { showModal, hideModal, isOpen } = useModal()
+
+      return (
+        <>
+          <Button onClick={showModal}>Show</Button>
+          <PromptModal
+            open={isOpen}
+            title='Test title'
+            message='Test message'
+            onSubmit={result => {
+              mockResult(result)
+            }}
+            onClose={hideModal}
+          >
+            {({ setResult, result }) => (
+              <Input
+                aria-label='test-input'
+                width='full'
+                onChange={event => setResult(event.target.value)}
+                value={String(result)}
+              />
+            )}
+          </PromptModal>
+        </>
+      )
+    }
+
+    const { getByText, getByLabelText, baseElement } = render(<TestComponent />)
+
+    const expectedResult = '42'
+
+    const showModal = getByText('Show')
+
+    fireEvent.click(showModal)
+
+    const input = getByLabelText('test-input')
+
+    fireEvent.change(input, { target: { value: expectedResult } })
+
+    const submitModal = getByText('Submit')
+
+    fireEvent.click(submitModal)
+
+    await wait(() => {
+      expect(mockResult.mock.results[0].value).toBe(expectedResult)
+    })
+
+    expect(baseElement).toMatchSnapshot()
+  })
+
+  test('when unmounted while performing submit, should not do further state updates', async () => {
+    const TestComponent = () => {
+      const [isSubmitCompleted, setIsSubmitCompleted] = React.useState(false)
+      const [shouldRenderPrompt, setShouldRenderPrompt] = React.useState(true)
+      const { showModal, hideModal, isOpen } = useModal()
+
+      return (
+        <>
+          <Button onClick={showModal}>Show</Button>
+          <Button onClick={() => setShouldRenderPrompt(false)}>Unmount</Button>
+
+          {isSubmitCompleted && 'Submitted'}
+          {shouldRenderPrompt && (
+            <PromptModal
+              open={isOpen}
+              title='Test title'
+              message='Test message'
+              onSubmit={hideModal}
+              onAfterSubmit={() => setIsSubmitCompleted(true)}
+            />
+          )}
+        </>
+      )
+    }
+
+    const { getByText, queryByText } = render(<TestComponent />)
+
+    // Open modal
+    const showModal = getByText('Show')
+
+    fireEvent.click(showModal)
+
+    // Submit modal
+    const submitModal = getByText('Submit')
+
+    fireEvent.click(submitModal)
+
+    // Unmount modal while submitting
+    const unmount = getByText('Unmount')
+
+    fireEvent.click(unmount)
+
+    // Wait until submitting is done
+    await wait(() => {
+      expect(queryByText('Submitted')).toBeInTheDocument()
+    })
+
+    // Ensure React has not logged "Can't perform a React state update on an unmounted component"
+    expect(console.error).not.toBeCalledWith(
+      expect.stringContaining(
+        "Can't perform a React state update on an unmounted component"
+      ),
+      expect.anything(),
+      expect.anything()
+    )
+  })
 })

@@ -47,8 +47,6 @@ const SvgArrowDropUp24 = forwardRef(function SvgArrowDropUp24(
   return (
     <svg
       viewBox='0 0 24 24'
-      xmlns='http://www.w3.org/2000/svg'
-      xmlnsXlink='http://www.w3.org/1999/xlink'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}

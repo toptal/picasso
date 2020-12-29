@@ -27,7 +27,7 @@ exports[`TagSelector default render 1`] = `
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
@@ -89,8 +89,6 @@ exports[`TagSelector disabled render 1`] = `
                 class="PicassoSvgCloseMinor16-root"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
                 <path
                   d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
@@ -108,7 +106,7 @@ exports[`TagSelector disabled render 1`] = `
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
@@ -171,8 +169,6 @@ exports[`TagSelector preselected value 1`] = `
                   class="PicassoSvgCloseMinor16-root"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                   <path
                     d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
@@ -189,7 +185,7 @@ exports[`TagSelector preselected value 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
               style="padding-left: 8px;"
             >
               <legend

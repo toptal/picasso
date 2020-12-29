@@ -35,7 +35,7 @@ describe('YearSelect', () => {
       />
     )
 
-    fireEvent.focus(getByPlaceholderText(placeholder))
+    fireEvent.click(getByPlaceholderText(placeholder))
 
     expect(getByRole('menu')).toMatchSnapshot()
   })

@@ -1,20 +1,24 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-shared'
 
-PicassoProvider.override(() => ({
+PicassoProvider.override(({ layout }: Theme) => ({
   MuiSnackbarContent: {
     message: {
       display: 'flex',
-      padding: 0,
-      maxWidth: '72.5em',
-      minWidth: 0
+      maxWidth: layout.contentWidth,
+      padding: `0 ${layout.contentPaddingHorizontal}`,
+      width: '100%',
+      minWidth: 0,
+      margin: '0 auto'
     }
   }
 }))
 
 export default ({
   palette: { red, green, yellow, common, text },
-  shadows
+  shadows,
+  sizes: { borderRadius },
+  layout
 }: Theme) =>
   createStyles({
     notification: {
@@ -22,13 +26,16 @@ export default ({
       borderRadius: 0,
       flexWrap: 'nowrap',
       maxWidth: 'initial',
-      padding: '1.5em',
+      padding: `1.5em calc(1.5em - ${layout.contentPaddingHorizontal})`,
       position: 'relative',
       width: '100%',
       boxShadow: 'none'
     },
     notificationShadow: {
       boxShadow: shadows[3]
+    },
+    roundedBorders: {
+      borderRadius: borderRadius.small
     },
     notificationRed: {
       background: red.lighter
@@ -42,13 +49,10 @@ export default ({
     notificationYellow: {
       background: yellow.lighter
     },
-    notificationFullWidth: {
-      justifyContent: 'center'
-    },
 
     // Content
     content: {
-      color: text.primary,
+      color: common.black,
       overflowWrap: 'break-word',
       minWidth: 0
     },
@@ -59,15 +63,15 @@ export default ({
     // Content Icon
     iconWrapper: {
       flexBasis: '1.5em',
-      marginRight: '1.5em',
+      marginRight: '1em',
       minWidth: '1.5em',
       height: '1.3125em'
     },
 
     close: {
       position: 'absolute',
-      right: '.25em',
-      top: '.25em',
+      right: '1.4em',
+      top: '1.4em',
       background: 'transparent',
       border: 0,
       padding: 0,

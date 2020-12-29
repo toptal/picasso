@@ -7,7 +7,7 @@ const Example = () => {
 
   return (
     <Button
-      variant='flat'
+      variant='secondary'
       onClick={() => {
         showError('Error message with custom options', undefined, {
           onClose: () => {

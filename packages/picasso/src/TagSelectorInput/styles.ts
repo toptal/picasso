@@ -14,14 +14,14 @@ export default () =>
       paddingBottom: 0,
       paddingLeft: TAG_SELECTOR_INPUT_GUTTER_SIZE,
       paddingTop: TAG_SELECTOR_INPUT_GUTTER_SIZE,
+      cursor: 'pointer',
 
       '& > input': {
         flexGrow: 1,
-        width: '0',
+        width: 0,
         height: rem('24px'),
         paddingLeft: rem('4px'),
-        paddingRight: '0',
-        fontSize: '0.8125em',
+        paddingRight: 0,
         marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE
       }
     },

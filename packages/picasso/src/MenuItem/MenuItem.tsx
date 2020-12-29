@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, {
   forwardRef,
   ReactNode,
@@ -45,6 +46,7 @@ export interface Props
   /** Whether to render without internal padding */
   disableGutters?: boolean
   children?: ReactNode
+  description?: ReactNode
   /** Nested menu */
   menu?: ReactElement
   /** Callback when menu item is clicked */
@@ -57,10 +59,10 @@ export interface Props
   value?: string | string[] | number
   /** Variant of colors */
   variant?: VariantType
-  /**
-   * Size of component
-   */
+  /** Size of component */
   size?: SizeType<'small' | 'medium'>
+  /** Disables changing colors on hover/focus */
+  nonSelectable?: boolean
 }
 
 const generateKey = (() => {
@@ -78,6 +80,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   const {
     as,
     children,
+    description,
     classes: externalClasses,
     className,
     disabled,
@@ -91,6 +94,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     variant,
     size,
     titleCase: propsTitleCase,
+    nonSelectable,
     ...rest
   } = props
 
@@ -110,7 +114,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     typeof children === 'string' ? (
       <span
         className={cx(classes.stringContent, {
-          [classes[`stringContent${size && capitalize(size!)}`]]: size
+          [classes[`stringContent${size && capitalize(size!)}`]]: size,
+          [classes.stringContentSemibold]: checkmarked
         })}
         style={style}
       >
@@ -131,25 +136,6 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     }
   }
 
-  const renderIconIfEligible = () => {
-    if (menu) {
-      return (
-        <Container flex inline left='xsmall'>
-          <ChevronMinor16 />
-        </Container>
-      )
-    }
-    if (checkmarked) {
-      return (
-        <Container flex inline left='xsmall' data-testid='select-checkmark'>
-          <CheckMinor16 />
-        </Container>
-      )
-    }
-
-    return null
-  }
-
   return (
     <MUIMenuItem
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -162,7 +148,9 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
         }),
         selected: classes.selected
       }}
-      className={cx(classes[variant!], className)}
+      className={cx(classes.root, classes[variant!], className, {
+        [classes.nonSelectable]: nonSelectable
+      })}
       disabled={disabled}
       disableGutters={disableGutters}
       onClick={handleClick}
@@ -170,8 +158,35 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       value={value}
       selected={selected}
     >
-      {renderChildren()}
-      {renderIconIfEligible()}
+      <Container flex direction='column' className={classes.content}>
+        <Container flex alignItems='center'>
+          {checkmarked !== undefined && (
+            <Container
+              className={classes.iconContainer}
+              flex
+              inline
+              right='xsmall'
+            >
+              {checkmarked && <CheckMinor16 />}
+            </Container>
+          )}
+          {renderChildren()}
+          {menu && (
+            <Container flex inline left='xsmall'>
+              <ChevronMinor16 />
+            </Container>
+          )}
+        </Container>
+        {description && (
+          <Container
+            className={classes.description}
+            left={checkmarked === undefined ? undefined : 'medium'}
+            top={0.25}
+          >
+            {description}
+          </Container>
+        )}
+      </Container>
     </MUIMenuItem>
   )
 })
@@ -179,7 +194,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
 MenuItem.defaultProps = {
   as: 'li',
   onClick: () => {},
-  variant: 'light'
+  variant: 'light',
+  nonSelectable: false
 }
 
 MenuItem.displayName = 'MenuItem'

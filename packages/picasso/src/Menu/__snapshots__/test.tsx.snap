@@ -6,45 +6,69 @@ exports[`Menu default render 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root"
+      class="MuiList-root Menu-root"
       role="menu"
       tabindex="-1"
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
-        <span
-          class="PicassoMenuItem-stringContent"
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          Item 1
-        </span>
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          >
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Item 1
+            </span>
+          </div>
+        </div>
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
-        <span
-          class="PicassoMenuItem-stringContent"
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          Item 2
-        </span>
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          >
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Item 2
+            </span>
+          </div>
+        </div>
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
-        <span
-          class="PicassoMenuItem-stringContent"
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          Item 3
-        </span>
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          >
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Item 3
+            </span>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
@@ -57,77 +81,97 @@ exports[`Menu has back button when in submenu 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root Menu-hideMenu"
+      class="MuiList-root Menu-root Menu-hideMenu"
       role="menu"
       tabindex="-1"
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
-        <span
-          class="PicassoMenuItem-stringContent"
-        >
-          Item 1
-        </span>
         <div
-          class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <svg
-            class="PicassoSvgChevronMinor16-root"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            <path
-              d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
-            />
-          </svg>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Item 1
+            </span>
+            <div
+              class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
+            >
+              <svg
+                class="PicassoSvgChevronMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
       </li>
     </ul>
     <ul
-      class="MuiList-root"
+      class="MuiList-root Menu-root"
       role="menu"
       tabindex="-1"
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
-        <p
-          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <svg
-            class="PicassoSvgBackMinor16-root Menu-backButtonIcon"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            <path
-              d="M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z"
-            />
-          </svg>
-          Back
-        </p>
+            <p
+              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
+            >
+              <svg
+                class="PicassoSvgBackMinor16-root Menu-backButtonIcon"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z"
+                />
+              </svg>
+              Back
+            </p>
+          </div>
+        </div>
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
-        <span
-          class="PicassoMenuItem-stringContent"
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          Submenu Item
-        </span>
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          >
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Submenu Item
+            </span>
+          </div>
+        </div>
       </li>
     </ul>
   </div>

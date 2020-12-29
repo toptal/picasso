@@ -37,8 +37,6 @@ exports[`ShowMore default render 1`] = `
           class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -87,8 +85,6 @@ exports[`ShowMore when custom lessText text is specified should render with cust
           class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -137,8 +133,6 @@ exports[`ShowMore when custom showMore text is specified should render with cust
           class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -213,8 +207,6 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
           class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -263,8 +255,6 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
           class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -313,8 +303,6 @@ exports[`ShowMore when show more link is clicked should render expanded version 
           class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"

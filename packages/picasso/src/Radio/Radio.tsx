@@ -81,6 +81,7 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
       })}
       style={style}
       focusVisibleClassName={classes.focused}
+      data-testid='trigger'
     />
   )
 

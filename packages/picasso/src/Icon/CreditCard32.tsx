@@ -47,8 +47,6 @@ const SvgCreditCard32 = forwardRef(function SvgCreditCard32(
   return (
     <svg
       viewBox='0 0 32 32'
-      xmlns='http://www.w3.org/2000/svg'
-      xmlnsXlink='http://www.w3.org/1999/xlink'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}

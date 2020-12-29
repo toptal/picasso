@@ -13,7 +13,9 @@ import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
-import { StandardProps, mergeClasses, SizeType } from '@toptal/picasso-shared'
+import { StandardProps, SizeType, mergeClasses } from '@toptal/picasso-shared'
+import { Search16 } from '@toptal/picasso/Icon'
+import PopperJs from 'popper.js'
 
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
@@ -22,12 +24,18 @@ import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
 import Loader from '../Loader'
 import { DropdownArrows16 } from '../Icon'
-import { isSubstring, disableUnsupportedProps } from '../utils'
+import { isSubstring, disableUnsupportedProps, useCombinedRefs } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
-import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
+import useSelect, {
+  EMPTY_INPUT_VALUE,
+  ItemProps,
+  FocusEventType
+} from './useSelect'
 import styles from './styles'
 import { documentable, forwardRef } from '../utils/forward-ref'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import noop from '../utils/noop'
 
 type IconPosition = 'start' | 'end'
 export type ValueType = string | number
@@ -71,6 +79,8 @@ export interface Props<
   loading?: boolean
   /** Placeholder option which is selected by default */
   placeholder?: string
+  /** Placeholder for search input */
+  searchPlaceholder?: string
   /** Whether icon should be placed at the beginning or end of the `Input` */
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside Input */
@@ -84,7 +94,7 @@ export interface Props<
       value: V
     }>
   ) => void
-  /** Callback invoked when filter input changed */
+  /** @deprecated Callback invoked when search value changes */
   onSearchChange?: (value: string) => void
   /** Label to show when no options were found */
   noOptionsText?: string
@@ -106,7 +116,7 @@ export interface Props<
   /** Whether to render reset icon which clears selected value */
   enableReset?: boolean
   popperContainer?: HTMLElement
-  /** A threshold of the number of options, defines when to start showing search for Select */
+  /** Defines the minimum options number to show the search */
   searchThreshold?: number
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
@@ -116,7 +126,6 @@ export interface Props<
 type Selection = {
   isSelected(): boolean
   isOptionSelected(option: Option): boolean
-  isOptionCheckmarked(option: Option): boolean
   display(getDisplayValue: (option: Option | null) => string): string
 }
 
@@ -131,19 +140,14 @@ type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
 
 type OptionsProps = Pick<
   Props,
-  | 'options'
-  | 'value'
-  | 'multiple'
-  | 'renderOption'
-  | 'getDisplayValue'
-  | 'size'
-  | 'noOptionsText'
+  'options' | 'value' | 'multiple' | 'renderOption' | 'size' | 'noOptionsText'
 > & {
   highlightedIndex: number | null
-  inputValue: string
-  setHighlightedIndex: (index: number | null) => void
+  filterOptionsValue: string
   getItemProps: (index: number, option: Option) => ItemProps
+  onBlur?: FocusEventType
   onItemSelect: (event: React.MouseEvent, option: Option) => void
+  fixedHeader?: ReactNode
 }
 
 const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
@@ -181,14 +185,14 @@ const renderNativeOptions = ({
 
 interface SelectOptionProps {
   children?: ReactNode
+  description?: ReactNode
   onMouseDown: (event: React.MouseEvent) => void
+  onMouseEnter: () => void
   close: () => void
   selected: boolean
-  checkmarked: boolean
+  highlighted: boolean
   multiple?: boolean
   size?: SizeType<'small' | 'medium'>
-  index: number
-  setHighlightedIndex: OptionsProps['setHighlightedIndex']
   onItemSelect: OptionsProps['onItemSelect']
   option: Option
 }
@@ -198,31 +202,25 @@ const SelectOption = React.memo(
     option,
     size,
     onMouseDown,
+    onMouseEnter,
     selected,
-    checkmarked,
-    setHighlightedIndex,
-    index,
+    highlighted,
     onItemSelect,
     multiple,
+    description,
     children,
     close
   }: SelectOptionProps) => {
     return (
       <MenuItem
         role='option'
-        aria-selected={selected}
+        aria-selected={highlighted}
         value={option.value}
         size={size}
-        selected={selected}
-        checkmarked={checkmarked}
+        selected={highlighted}
+        checkmarked={selected}
         onMouseDown={onMouseDown}
-        onMouseEnter={() => {
-          if (selected) {
-            return
-          }
-
-          setHighlightedIndex(index)
-        }}
+        onMouseEnter={onMouseEnter}
         onClick={(event: React.MouseEvent) => {
           if (!multiple) {
             close()
@@ -231,6 +229,7 @@ const SelectOption = React.memo(
           onItemSelect(event, option)
         }}
         titleCase={false}
+        description={description}
       >
         {children}
       </MenuItem>
@@ -238,12 +237,15 @@ const SelectOption = React.memo(
   }
 )
 
+const isOptionInSelectedValues = (option: Option, value: ValueType[]) =>
+  value.includes(String(option.value))
+
 const getMultipleSelection = (
   options: Option[],
   value: ValueType[]
 ): Selection => {
   const getSelectedOptions = () =>
-    options.filter(option => value.includes(String(option.value)))
+    options.filter(option => isOptionInSelectedValues(option, value))
 
   return {
     display: (getDisplayValue: (option: Option | null) => string) =>
@@ -251,8 +253,7 @@ const getMultipleSelection = (
         .map(getDisplayValue)
         .join(', '),
     isSelected: () => !isEmpty(value),
-    isOptionSelected: () => false,
-    isOptionCheckmarked: option => value.includes(String(option.value))
+    isOptionSelected: option => isOptionInSelectedValues(option, value)
   }
 }
 
@@ -267,8 +268,7 @@ const getSingleSelection = (
     display: (getDisplayValue: (option: Option | null) => string) =>
       getDisplayValue(getSelectedOption()),
     isSelected: () => !isEmpty(value),
-    isOptionSelected: option => String(option.value) === value,
-    isOptionCheckmarked: () => false
+    isOptionSelected: option => option.value === value
   }
 }
 
@@ -317,18 +317,19 @@ const renderOptions = ({
   options,
   renderOption,
   highlightedIndex,
-  setHighlightedIndex,
   onItemSelect,
   getItemProps,
+  onBlur,
   value,
   multiple,
   size,
-  inputValue,
-  noOptionsText
+  filterOptionsValue,
+  noOptionsText,
+  fixedHeader
 }: OptionsProps) => {
-  if (!options.length && inputValue) {
+  if (!options.length && filterOptionsValue) {
     return (
-      <ScrollMenu>
+      <ScrollMenu fixedHeader={fixedHeader}>
         <MenuItem titleCase={false} disabled>
           {noOptionsText}
         </MenuItem>
@@ -337,7 +338,10 @@ const renderOptions = ({
   }
 
   const optionComponents = options.map((option, currentIndex) => {
-    const { close, onMouseDown } = getItemProps(currentIndex, option)
+    const { close, onMouseDown, onMouseEnter } = getItemProps(
+      currentIndex,
+      option
+    )
     const selection = getSelection(options, value)
 
     return (
@@ -346,16 +350,13 @@ const renderOptions = ({
         option={option}
         size={size}
         onMouseDown={onMouseDown}
-        selected={
-          selection.isOptionSelected(option) ||
-          highlightedIndex === currentIndex
-        }
-        checkmarked={selection.isOptionCheckmarked(option)}
-        setHighlightedIndex={setHighlightedIndex}
-        index={currentIndex}
+        onMouseEnter={onMouseEnter}
+        selected={selection.isOptionSelected(option)}
+        highlighted={highlightedIndex === currentIndex}
         multiple={multiple}
         close={close}
         onItemSelect={onItemSelect}
+        description={option.description}
       >
         {renderOption?.(option)}
       </SelectOption>
@@ -363,7 +364,13 @@ const renderOptions = ({
   })
 
   return (
-    <ScrollMenu selectedIndex={highlightedIndex}>{optionComponents}</ScrollMenu>
+    <ScrollMenu
+      fixedHeader={fixedHeader}
+      onBlur={onBlur}
+      selectedIndex={highlightedIndex}
+    >
+      {optionComponents}
+    </ScrollMenu>
   )
 }
 
@@ -373,6 +380,14 @@ export const Select = documentable(
       props: Props<T, M>,
       ref: React.Ref<HTMLInputElement> | null
     ) => {
+      usePropDeprecationWarning({
+        props,
+        name: 'onSearchChange',
+        componentName: 'Select',
+        description:
+          'Use the Autocomplete component if you require dynamic options.'
+      })
+
       const {
         className,
         style,
@@ -391,7 +406,7 @@ export const Select = documentable(
         disabled,
         error,
         onChange,
-        onSearchChange,
+        onSearchChange = noop,
         onBlur,
         multiple,
         value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
@@ -403,32 +418,34 @@ export const Select = documentable(
         enableAutofill,
         autoComplete,
         classes: externalClasses,
+        searchPlaceholder,
         ...rest
       } = purifyProps(props)
 
       const classes = mergeClasses(useStyles(props), externalClasses)
 
-      const emptySelectValue: string | string[] = multiple ? [] : ''
-
-      const fireOnChangeEvent = useCallback(
-        ({ event, value }: { event: any; value: ValueType | ValueType[] }) => {
-          event.persist()
-          event.target = { value, name }
-          onChange!(event)
-        },
-        [name, onChange]
+      const selectRef = useCombinedRefs<HTMLInputElement>(
+        ref,
+        useRef<HTMLInputElement>(null)
       )
-
+      const searchInputRef = useRef<HTMLInputElement>(null)
+      const popperRef = useRef<PopperJs>(null)
       const inputWrapperRef = useRef<HTMLDivElement>(null)
+
       const [selectedOptions, setSelectedOptions] = useState(
         getSelectedOptions(allOptions, value)
       )
-      const select = getSelection(
-        removeDuplicatedOptions([...allOptions, ...selectedOptions]),
-        value
+      const selection = useMemo(
+        () =>
+          getSelection(
+            removeDuplicatedOptions([...allOptions, ...selectedOptions]),
+            value
+          ),
+        [allOptions, selectedOptions, value]
       )
-      const [inputValue, setInputValue] = useState(
-        select.display(getDisplayValue!)
+
+      const [displayValue, setDisplayValue] = useState(
+        selection.display(getDisplayValue!)
       )
       const [filterOptionsValue, setFilterOptionsValue] = useState(
         EMPTY_INPUT_VALUE
@@ -441,44 +458,62 @@ export const Select = documentable(
         [allOptions, filterOptionsValue, getDisplayValue]
       )
 
+      const selectedIndexes = useMemo(
+        () =>
+          options.reduce(
+            (selected: number[], option: Option, index: number) =>
+              selection.isOptionSelected(option)
+                ? [...selected, index]
+                : selected,
+            []
+          ),
+        [options, selection]
+      )
+
+      const emptySelectValue: string | string[] = multiple ? [] : ''
+
+      const fireOnChangeEvent = useCallback(
+        ({ event, value }: { event: any; value: ValueType | ValueType[] }) => {
+          event.persist()
+          event.target = { value, name }
+          onChange!(event)
+        },
+        [name, onChange]
+      )
+
       useEffect(() => {
         const newSelect = getSelection(
           removeDuplicatedOptions([...allOptions, ...selectedOptions]),
           value
         )
 
-        setInputValue(newSelect.display(getDisplayValue!))
+        setDisplayValue(newSelect.display(getDisplayValue!))
         setSelectedOptions(getSelectedOptions(allOptions, value))
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [value, allOptions, getDisplayValue])
 
-      const readOnlyInput = multiple || allOptions.length <= searchThreshold!
+      const showSearch = allOptions.length >= searchThreshold!
 
-      const handleFocus = (
-        event: React.FocusEvent<HTMLInputElement | HTMLDivElement>
-      ) => {
-        if (!readOnlyInput && 'select' in event.target) {
-          event.target.select()
-        }
+      const handleFocus = () => {
         setFilterOptionsValue(EMPTY_INPUT_VALUE)
       }
 
       const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         if (!multiple) {
-          const hasValue = inputValue !== EMPTY_INPUT_VALUE
+          const hasValue = displayValue !== EMPTY_INPUT_VALUE
           const isInputCleaned = !hasValue && !isEmpty(value)
 
           if (isInputCleaned) {
             fireOnChangeEvent({ event, value: EMPTY_INPUT_VALUE })
-            setInputValue(EMPTY_INPUT_VALUE)
+            setDisplayValue(EMPTY_INPUT_VALUE)
           } else {
             const select = getSelection(
               removeDuplicatedOptions([...allOptions, ...selectedOptions]),
               value
             )
 
-            setInputValue(select.display(getDisplayValue!))
+            setDisplayValue(select.display(getDisplayValue!))
           }
         }
 
@@ -487,7 +522,6 @@ export const Select = documentable(
       }
 
       const handleChange = (newValue: string) => {
-        setInputValue(newValue)
         onSearchChange!(newValue)
         setFilterOptionsValue(newValue)
       }
@@ -496,7 +530,7 @@ export const Select = documentable(
         value: ValueType[],
         option: Option
       ) => {
-        const isInSelectedValues = value.includes(String(option.value))
+        const isInSelectedValues = isOptionInSelectedValues(option, value)
 
         if (isInSelectedValues) {
           return value!.filter(value => value !== option.value)
@@ -504,6 +538,7 @@ export const Select = documentable(
 
         return [...value, String(option.value)]
       }
+
       const handleSelect = useCallback(
         (event: React.SyntheticEvent, option: Option | null) => {
           let newValue: ValueType | ValueType[]
@@ -519,12 +554,17 @@ export const Select = documentable(
           setSelectedOptions(
             allOptions.filter(option =>
               Array.isArray(newValue)
-                ? newValue.includes(String(option.value))
+                ? isOptionInSelectedValues(option, newValue)
                 : newValue === String(option.value)
             )
           )
+
           fireOnChangeEvent({ event, value: newValue })
           setFilterOptionsValue(EMPTY_INPUT_VALUE)
+
+          if (selectRef.current) {
+            selectRef.current.focus()
+          }
         },
         [
           allOptions,
@@ -532,35 +572,47 @@ export const Select = documentable(
           setFilterOptionsValue,
           fireOnChangeEvent,
           multiple,
-          value
+          value,
+          selectRef
         ]
       )
 
       const {
         highlightedIndex,
-        setHighlightedIndex,
         isOpen,
         getItemProps,
+        getRootProps,
         getInputProps,
-        getRootProps
+        getSearchInputProps
       } = useSelect({
-        value: inputValue,
+        searchInputRef,
+        selectRef,
+        popperRef,
+        value: displayValue,
         options,
+        selectedIndexes,
         disabled,
+        closeOnEnter: !multiple,
+        showSearch,
         onSelect: handleSelect,
         onChange: handleChange,
         onBlur: handleBlur,
-        onFocus: handleFocus
+        onFocus: handleFocus,
+        native
       })
 
       const iconAdornment = icon ? (
-        <InputAdornment disabled={disabled} position={iconPosition!}>
+        <InputAdornment
+          disabled={disabled}
+          position={iconPosition!}
+          disablePointerEvents
+        >
           {icon}
         </InputAdornment>
       ) : null
 
-      const loadingComponent = (
-        <InputAdornment position='end'>
+      const loadingAdornment = (
+        <InputAdornment position='end' disablePointerEvents>
           <Loader size='small' />
         </InputAdornment>
       )
@@ -575,7 +627,7 @@ export const Select = documentable(
 
       const startAdornment = iconPosition === 'start' && iconAdornment
       const endAdornment = loading
-        ? loadingComponent
+        ? loadingAdornment
         : iconPosition === 'end' && iconAdornment
 
       const nativeStartAdornment = startAdornment && (
@@ -589,7 +641,7 @@ export const Select = documentable(
         <NativeSelect
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
-          ref={ref}
+          ref={selectRef}
           error={error}
           disabled={disabled}
           name={name}
@@ -604,9 +656,7 @@ export const Select = documentable(
               size={size}
               className={classes.nativeInput}
               // eslint-disable-next-line react/jsx-props-no-spreading
-              {...getInputProps({
-                canCloseOnEnter: !multiple
-              })}
+              {...getInputProps()}
             />
           }
           value={value}
@@ -614,7 +664,7 @@ export const Select = documentable(
           IconComponent={() => dropDownIcon}
           classes={{
             root: cx(classes.select, {
-              [classes.placeholder]: !select.isSelected()
+              [classes.placeholder]: !selection.isSelected()
             }),
             select: cx({
               [classes.nativeStartAdornmentPadding]: Boolean(
@@ -637,47 +687,57 @@ export const Select = documentable(
         </NativeSelect>
       )
 
+      const searchInput = showSearch ? (
+        <MenuItem as='div' size={size} nonSelectable>
+          <OutlinedInput
+            inputRef={searchInputRef}
+            className={classes.searchOutlinedInput}
+            startAdornment={<Search16 className={classes.searchInputIcon} />}
+            placeholder={searchPlaceholder}
+            size={size}
+            value={filterOptionsValue}
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...getSearchInputProps()}
+          />
+        </MenuItem>
+      ) : null
+
+      const rootProps = getRootProps()
+
       const selectComponent = (
         <>
           <div
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...getRootProps()}
+            {...rootProps}
             className={classes.inputWrapper}
           >
             {!enableAutofill && !native && name && (
-              <input type='hidden' value={inputValue} name={name} />
+              <input type='hidden' value={displayValue} name={name} />
             )}
             <OutlinedInput
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...rest}
-              inputRef={ref}
+              inputRef={selectRef}
               error={error}
               disabled={disabled}
               id={id}
               startAdornment={startAdornment}
               endAdornment={endAdornment}
               // Input specific props
-              value={inputValue}
+              value={displayValue}
               /* eslint-disable-next-line react/jsx-props-no-spreading */
-              {...getInputProps({
-                canCloseOnEnter: !multiple
-              })}
+              {...getInputProps()}
               placeholder={placeholder}
               width={width}
-              readOnly={readOnlyInput}
+              readOnly
               defaultValue={undefined}
-              className={cx(classes.input, {
-                [classes.readOnlyInput]: readOnlyInput
-              })}
+              className={classes.outlinedInput}
               inputProps={{
-                className: cx({
-                  [classes.readOnlyInput]: readOnlyInput
-                }),
                 size: 1 // let input to have smallest width by default for width:'shrink'
               }}
               size={size}
               role='textbox'
-              enableReset={enableReset ? select.isSelected() : false}
+              enableReset={enableReset ? selection.isSelected() : false}
               autoComplete={
                 enableAutofill ? autoComplete : autoComplete || 'off'
               }
@@ -687,6 +747,7 @@ export const Select = documentable(
           </div>
           {!disabled && (
             <Popper
+              ref={popperRef}
               autoWidth
               width={menuWidth}
               placement='bottom-start'
@@ -695,20 +756,19 @@ export const Select = documentable(
               container={popperContainer}
             >
               {isOpen &&
-                !loading &&
                 renderOptions({
                   options,
                   renderOption,
                   highlightedIndex,
-                  setHighlightedIndex,
                   onItemSelect: handleSelect,
                   getItemProps,
+                  onBlur: rootProps.onBlur,
                   value,
-                  getDisplayValue,
+                  filterOptionsValue,
                   multiple,
                   size,
                   noOptionsText,
-                  inputValue
+                  fixedHeader: searchInput
                 })}
             </Popper>
           )}
@@ -720,7 +780,10 @@ export const Select = documentable(
           className={cx(
             classes.root,
             className,
-            classes[`root${capitalize(width!)}`]
+            classes[`root${capitalize(width!)}`],
+            {
+              [classes.rootDisabled]: disabled
+            }
           )}
           style={style}
           ref={inputWrapperRef}
@@ -740,14 +803,14 @@ Select.defaultProps = {
   loading: false,
   native: false,
   noOptionsText: 'No matches found',
-  onChange: () => {},
-  onSearchChange: () => {},
-  onBlur: () => {},
+  onChange: noop,
+  onBlur: noop,
   renderOption: (option: Option) => option.text,
   size: 'medium',
   width: 'full',
-  searchThreshold: 4,
-  enableAutofill: false
+  searchThreshold: 10,
+  enableAutofill: false,
+  searchPlaceholder: 'Search'
 }
 
 Select.displayName = 'Select'

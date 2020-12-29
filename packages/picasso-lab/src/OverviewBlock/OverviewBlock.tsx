@@ -4,7 +4,8 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   MouseEvent,
-  ReactNode
+  ReactNode,
+  ComponentPropsWithoutRef
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -20,7 +21,9 @@ import { Typography } from '@toptal/picasso'
 import { toTitleCase } from '@toptal/picasso/utils'
 
 import styles from './styles'
+import { useOverviewBlockGroupContext } from '../OverviewBlockGroup/OverviewBlockGroupContext'
 import OverviewBlockGroup from '../OverviewBlockGroup'
+import OverviewBlockRow from '../OverviewBlockRow'
 
 type Variant =
   | 'value-red'
@@ -53,7 +56,8 @@ export type Props = BaseProps &
   }
 
 export interface StaticProps {
-  Group: FunctionComponent
+  Group: FunctionComponent<ComponentPropsWithoutRef<typeof OverviewBlockGroup>>
+  Row: FunctionComponent<ComponentPropsWithoutRef<typeof OverviewBlockRow>>
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -67,13 +71,14 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       value,
       label,
       variant,
-      as: Component = 'button',
+      as,
       className,
       onClick,
       titleCase: propsTitleCase,
       ...rest
     } = props
     const classes = useStyles(props)
+    const { align, blockWidth } = useOverviewBlockGroupContext()
 
     const color: ColorSettings = {
       value: 'black',
@@ -91,6 +96,8 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
 
     const isClickable = Boolean(onClick)
 
+    const Component = isClickable && as ? as : 'div'
+
     const titleCase = useTitleCase(propsTitleCase)
 
     return (
@@ -101,6 +108,8 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
         className={cx(
           { [classes.clickable]: isClickable },
           { [classes.disableOutline]: !isClickable },
+          classes[`${align}Align`],
+          classes[`${blockWidth}Width`],
           classes.root,
           className
         )}
@@ -126,6 +135,7 @@ OverviewBlock.defaultProps = {
 }
 
 OverviewBlock.Group = OverviewBlockGroup
+OverviewBlock.Row = OverviewBlockRow
 OverviewBlock.displayName = 'OverviewBlock'
 
 export default OverviewBlock

@@ -233,7 +233,7 @@ const CodeExample = (props: Props) => {
             <div className={classes.buttons}>
               {showEditCode && (
                 <Button
-                  variant='flat'
+                  variant='secondary'
                   size='small'
                   icon={<Code16 />}
                   onClick={toggleEditorVisibility}
@@ -242,7 +242,7 @@ const CodeExample = (props: Props) => {
                 </Button>
               )}
               <Button
-                variant='flat'
+                variant='secondary'
                 size='small'
                 icon={<Link16 />}
                 onClick={handleCopyLink}

@@ -10,6 +10,7 @@ import {
 import cx from 'classnames'
 import React, { forwardRef, ReactNode } from 'react'
 
+import { RequiredDecoration } from '../FormLabel'
 import CheckboxGroup from '../CheckboxGroup'
 import Container from '../Container'
 import FormControlLabel from '../FormControlLabel'
@@ -35,8 +36,8 @@ export interface Props
   label?: ReactNode
   /** The id of the input element */
   id?: string
-  /** Mark field as required */
-  required?: boolean
+  /** Whether to show asterisk or (optional) postfix for the label as a 'required' decoration */
+  requiredDecoration?: RequiredDecoration
   /** Callback invoked when `Checkbox` changed its value */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -56,7 +57,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
     className,
     style,
     disabled,
-    required,
+    requiredDecoration,
     onChange,
     value,
     checked,
@@ -75,14 +76,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
   const { color, ...checkboxAttributes } = rest
 
   const muiCheckbox = (
-    <Container
-      as='span'
-      flex
-      inline
-      className={cx(classes.checkboxWrapper, {
-        [classes.disabledCheckboxWrapper]: disabled
-      })}
-    >
+    <Container as='span' flex inline className={classes.checkboxWrapper}>
       <MUICheckbox
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...checkboxAttributes}
@@ -117,7 +111,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
         label: classes.label
       }}
       control={muiCheckbox}
-      required={required}
+      requiredDecoration={requiredDecoration}
       disabled={disabled}
       label={label}
       titleCase={titleCase}

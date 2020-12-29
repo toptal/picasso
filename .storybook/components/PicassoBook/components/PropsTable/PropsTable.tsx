@@ -1,6 +1,6 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Table } from '@toptal/picasso'
+import { Table, Typography, Tooltip } from '@toptal/picasso'
 import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
 
 import {
@@ -35,24 +35,52 @@ function useRows(props: Props): JSX.Element {
   return (
     <Fragment>
       {sortedProps.map(
-        ({ name, type, defaultValue, description, enums, required }) => (
-          <Table.Row key={name}>
-            <Table.Cell>
-              <span className={classes.propName}>{name}</span>
-              {required && <span className={classes.requiredTag}>*</span>}
-            </Table.Cell>
-            <PropTypeTableCell className={classes.typeCell} type={type} />
-            <Table.Cell className={classes.defaultValueCell}>
-              {defaultValue && (
-                <span className={classes.highlight}>{defaultValue}</span>
-              )}
-            </Table.Cell>
-            <Table.Cell className={classes.descriptionCell}>
-              <Description description={description} propName={name} />
-              {isEnum(type) && <EnumsList type={type} enums={enums} />}
-            </Table.Cell>
-          </Table.Row>
-        )
+        ({
+          name,
+          type,
+          defaultValue,
+          description,
+          enums,
+          required,
+          deprecated
+        }) => {
+          const propNameTypography = (
+            <Typography weight='semibold' inline lineThrough={deprecated}>
+              {name}
+            </Typography>
+          )
+          const propName = deprecated ? (
+            <Tooltip content={`${name} is deprecated`}>
+              {propNameTypography}
+            </Tooltip>
+          ) : (
+            propNameTypography
+          )
+
+          return (
+            <Table.Row key={name}>
+              <Table.Cell>
+                {propName}
+                {required && (
+                  <Typography color='red' inline>
+                    {' '}
+                    *
+                  </Typography>
+                )}
+              </Table.Cell>
+              <PropTypeTableCell className={classes.typeCell} type={type} />
+              <Table.Cell className={classes.defaultValueCell}>
+                {defaultValue && (
+                  <span className={classes.highlight}>{defaultValue}</span>
+                )}
+              </Table.Cell>
+              <Table.Cell className={classes.descriptionCell}>
+                <Description description={description} propName={name} />
+                {isEnum(type) && <EnumsList type={type} enums={enums} />}
+              </Table.Cell>
+            </Table.Row>
+          )
+        }
       )}
     </Fragment>
   )

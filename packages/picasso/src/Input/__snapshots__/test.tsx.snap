@@ -9,14 +9,12 @@ exports[`renders icon in the beginning 1`] = `
       class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
           class="PicassoSvgSearch16-root PicassoInput-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.582 9.874l4.625 4.626-.707.707-4.626-4.625a6 6 0 11.707-.707zM6 11A5 5 0 106 1a5 5 0 000 10z"
@@ -31,7 +29,7 @@ exports[`renders icon in the beginning 1`] = `
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -57,14 +55,12 @@ exports[`renders icon in the end 1`] = `
       class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
           class="PicassoSvgSearch16-root PicassoInput-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.582 9.874l4.625 4.626-.707.707-4.626-4.625a6 6 0 11.707-.707zM6 11A5 5 0 106 1a5 5 0 000 10z"
@@ -79,7 +75,7 @@ exports[`renders icon in the end 1`] = `
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -113,7 +109,7 @@ exports[`should show manual resize handler 1`] = `
       </textarea>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -148,7 +144,8 @@ exports[`should show reset button 1`] = `
         class="MuiInputAdornment-root PicassoInputAdornment-root PicassoOutlinedInput-resetButton PicassoOutlinedInput-resetButtonDirty MuiInputAdornment-positionEnd"
       >
         <button
-          class="MuiButtonBase-root PicassoButton-circular PicassoButton-small PicassoButton-transparent PicassoButton-root"
+          class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+          data-component-type="button"
           role="reset"
           tabindex="-1"
           type="button"
@@ -160,8 +157,6 @@ exports[`should show reset button 1`] = `
               class="PicassoSvgCloseMinor16-root PicassoButton-icon"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
             >
               <path
                 d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
@@ -172,7 +167,7 @@ exports[`should show reset button 1`] = `
       </div>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -204,7 +199,7 @@ exports[`shows counter for multiline input 1`] = `
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -237,7 +232,7 @@ exports[`shows counter for regular input 1`] = `
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -256,7 +251,7 @@ exports[`shows counter for regular input 1`] = `
 
 exports[`shows excess chars for multiline input with exceeded limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
   <span
@@ -271,7 +266,7 @@ exports[`shows excess chars for multiline input with exceeded limit 1`] = `
 
 exports[`shows remaining chars for for multiline input with limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
   <span

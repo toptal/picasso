@@ -1,29 +1,34 @@
-import { FormApi, getIn } from 'final-form'
+import { FormApi } from 'final-form'
 
-import flatMap from './flat-map'
+const UNHIDDEN_INPUT_SELECTOR = 'input:not([type=hidden])'
 
-const formInputs = (form: HTMLFormElement) =>
-  Array.from(form.elements).filter(
-    element =>
-      element instanceof HTMLElement && typeof element.focus === 'function'
-  ) as HTMLInputElement[]
+const getErrorField = () =>
+  document.querySelector<HTMLElement>('[data-field-has-error="true"]')
 
-const getInputs = (): HTMLInputElement[] => {
-  if (typeof document === 'undefined') return []
+const getErrorFieldAfterNextPaint = () =>
+  new Promise<HTMLElement | null>(resolve => {
+    const resolveField = () => resolve(getErrorField())
 
-  return flatMap(Array.from(document.forms), formInputs)
+    if (typeof requestAnimationFrame === 'undefined') {
+      setTimeout(resolveField, 16)
+    } else {
+      requestAnimationFrame(resolveField)
+    }
+  })
+
+const getErrorFieldWithRetries = async () => {
+  for (let index = 0; index < 3; index++) {
+    const field = await getErrorFieldAfterNextPaint()
+
+    if (field) return field
+  }
 }
 
-const findInputWithError = (inputs: HTMLInputElement[], errors: {}) =>
-  inputs.find(input => input.name && getIn(errors, input.name))
-
-const scrollToError = (errors: object) => {
-  const firstInput = findInputWithError(getInputs(), errors)
-
-  if (!firstInput) return
-
-  firstInput.focus({ preventScroll: true })
-  firstInput.scrollIntoView({ block: 'center', behavior: 'smooth' })
+const scrollTo = (field: HTMLElement) => {
+  field.scrollIntoView({ block: 'center', behavior: 'smooth' })
+  field
+    .querySelector<HTMLInputElement>(UNHIDDEN_INPUT_SELECTOR)
+    ?.focus({ preventScroll: true })
 }
 
 export default () => <T>(form: FormApi<T>) => {
@@ -37,13 +42,13 @@ export default () => <T>(form: FormApi<T>) => {
     { errors: true, submitErrors: true }
   )
 
-  const scrollOnErrors = () => {
+  const scrollOnErrors = async () => {
     const { errors = {}, submitErrors = {} } = state
 
-    if (Object.keys(errors).length) {
-      scrollToError(errors)
-    } else if (Object.keys(submitErrors).length) {
-      scrollToError(submitErrors)
+    if (Object.keys(errors).length || Object.keys(submitErrors).length) {
+      const field = await getErrorFieldWithRetries()
+
+      if (field) scrollTo(field)
     }
   }
 

@@ -15,55 +15,50 @@ const SidebarMenu = () => (
 )
 
 const MainContent = () => (
-  <StyledMainContentContainer padded='medium'>
-    <StyledDetailsContainer padded='medium'>
-      <Container bottom='small'>
-        <Typography variant='heading' size='small'>
-          UI/UX Designer
-        </Typography>
-        <Typography size='small'>Posted at: Nov 24, 2019</Typography>
-      </Container>
-      <Table>
-        <Table.Body>
-          <Table.Row key='talent'>
-            <Table.Cell>
-              <Typography variant='heading' size='small'>
-                Talent:
-              </Typography>
-            </Table.Cell>
-            <Table.Cell>Hugo, John, Dean</Table.Cell>
-          </Table.Row>
-          <Table.Row key='commitment'>
-            <Table.Cell>
-              <Typography variant='heading' size='small'>
-                Commitment:
-              </Typography>
-            </Table.Cell>
-            <Table.Cell>Hourly</Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-    </StyledDetailsContainer>
-  </StyledMainContentContainer>
+  <StyledDetailsContainer top='medium' bottom='medium'>
+    <Container bottom='small'>
+      <Typography variant='heading' size='small'>
+        UI/UX Designer
+      </Typography>
+      <Typography size='small'>Posted at: Nov 24, 2019</Typography>
+    </Container>
+    <Table>
+      <Table.Body>
+        <Table.Row key='talent'>
+          <Table.Cell>
+            <Typography variant='heading' size='small'>
+              Talent:
+            </Typography>
+          </Table.Cell>
+          <Table.Cell>Hugo, John, Dean</Table.Cell>
+        </Table.Row>
+        <Table.Row key='commitment'>
+          <Table.Cell>
+            <Typography variant='heading' size='small'>
+              Commitment:
+            </Typography>
+          </Table.Cell>
+          <Table.Cell>Hourly</Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  </StyledDetailsContainer>
 )
 
 const Example = () => (
   <div style={{ height: '40rem' }}>
     <Page>
-      <Page.Header title='How to layout a page' />
+      <Page.TopBar title='How to layout a page' />
       <Page.Content>
         <SidebarMenu />
-        <MainContent />
+        <Page.Article>
+          <MainContent />
+        </Page.Article>
       </Page.Content>
       <Page.Footer />
     </Page>
   </div>
 )
-
-const StyledMainContentContainer = styled(Container)`
-  background-color: ${palette.grey.light};
-  flex: 1;
-`
 
 const StyledDetailsContainer = styled(Container)`
   background-color: ${palette.common.white};

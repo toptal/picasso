@@ -3,6 +3,340 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.117.1...@toptal/picasso@5.0.0) (2020-12-22)
+
+## Introduction to BASE 2.0
+### By Aleksandar Djuric 
+
+After the official launch of Talent Portal, the team received feedback through UserVoice related to better readability and ergonomics. At that point, Talent Portal was the first product that fully leaned on the first version of BASE, or BASE v1.
+
+We took a deep dive into the analysis and listed out observations. Analysis can be found here.
+
+After analysis, the design team started testing different solutions that were the origin of the evolution of BASE v1 into BASE v2. The goal was to change and build up confidence and approval from our talent audience, regarding implementation of updates that we listed out as possible solutions. Documentation regarding the test can be found here.
+
+### What is BASE v2?
+
+Every interface language has its updates. Version 2 is just another step in our iterative process. We built the technical foundation on the design front where we have an easy way to update components according to user feedback. How technology changes and how the mindset of people using our products changes, our UI and UX are going to follow it, so that we make sure we have world-class product experience in place. 
+
+### Important changes:
+
+* **Toning down interface with better contrast and readability.** Reducing heavy saturated header and unrecognizable sidebar. 
+
+* **Changing form elements to follow the corner radius of buttons (in other words making them consistent).** Due to previous leadership, we had this inconsistency in place that didn’t really have a lot of value in place. Consistent corner radius and rounded corners in general help with usability. With new VP Brand Strategy settling up in Toptal, we decided it is the right time to make them consistent. Here are two good sources on why this holds a lot of value:
+
+  - https://uxdesign.cc/make-sense-of-rounded-corners-on-buttons-dfc8e13ea7f7
+
+  - https://ux.stackexchange.com/questions/11150/how-do-rounded-corners-affect-usability
+
+* **Creating documentation for every component.** This is currently being worked on and we are on the good track to finish more than 85% of it by the end of 2020. Proper documentation will help designers as owners to know how to use the component the right way, but also other partners in the process — such as engineering, content, product or even stakeholders. 
+
+
+### Features
+
+* **Alert**
+  - added Alert.Inline component
+  
+    ![Alert Inline](https://user-images.githubusercontent.com/2836281/103081159-0e4f4900-45e0-11eb-81b1-894645718db8.png)
+
+  - refactored Alert to use BASE 2.0 components
+* **Autocomplete**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - added option description
+  - added checkmark for selected options
+  - removed checkmark and updated padding
+  - fixed that adornment/icon click was not focusing the component
+  - options list does not open on focus anymore. Users should press Space/Enter/ArrowUp/ArrowDown to open it now
+* **Button**
+  - aligned with BASE 2.0 design
+  - added `flexShrink: 0`
+* **Button.Action**
+  - added a new component
+
+    ![Button.Action](https://user-images.githubusercontent.com/2836281/103081204-245d0980-45e0-11eb-9ce4-709e73a32bef.png)
+
+* **Button.Circular**
+  - added a new component
+
+    ![Button.Circular](https://user-images.githubusercontent.com/2836281/103081218-2fb03500-45e0-11eb-9352-7682a9dbc6d5.png)
+
+* **Button.Group**
+  - allow nesting `Button` components
+* **Checkbox**
+  - aligned with BASE 2.0 design
+  - fix `Checkbox.Group` with nested `Checkbox`
+  - set pointer by default, arrow for disabled
+* **Container**
+  - added `rounded` property
+* **Drawer**
+  - aligned with BASE 2.0 design
+* **Datepicker**
+  - set text cursor by default, arrow for disabled, pointer for dates and buttons inside dropdown
+* **FileInput**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - fix adornment/icon click is focusing the component
+* **Form**
+  - exported `FORM_ERROR` constant from `picasso-forms`
+  - if you return a string message from `onSubmit`, the message will be displayed as an error flash notification
+  - spacing between form input components is decreased
+  - added form config for setting required decoration (`asterisk` vs `(optional)`)
+* **Form.Label**
+  - added prop `requiredDecoration` to show `asterisk` or `(optional)`, but the prefered way - `(optional)`
+* **Form.SubmitButton**
+  - added 2 new button types - `circular` and `action`
+* **Helpbox**
+  - aligned with BASE 2.0 design
+  - modified internal padding - set to `medium`
+  - added rounded corners
+* **Indicator**
+  - aligned colors with BASE 2.0 design
+  - `green` color changed to use `darker green` color
+* **Input**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - set text cursor by default, arrow for disabled
+* **Modal**
+  - aligned with BASE 2.0 design
+  - no close on backdrop click
+  - added rounded corners
+  - changed a style of the close button
+  - added scroll shades for the end of the content
+  - increased content paddings
+  - fixed modal close button position
+  - adjusted modal action spacing
+* **MonthSelect**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+* **Notification**
+  - aligned with BASE 2.0 design
+  - added border radius, margin and shadows
+  - content width increased
+  - left-aligned content
+  - icon size reduced
+
+    | Before | After |
+    |--|--|
+    |![Notification before](https://user-images.githubusercontent.com/2836281/103081241-3d65ba80-45e0-11eb-8149-7dbaa838f995.png)|![Notification after](https://user-images.githubusercontent.com/2836281/103081260-45bdf580-45e0-11eb-9588-d5f5852bf1c9.png)|
+    |||
+
+* **NumberInput**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - changed icons to `ArrowUpMinor16` and `ArrowDownMinor16`
+  - fixed adornment/icon click was not focusing the component
+* **OverviewBlock**
+  - aligned with BASE 2.0 design
+  - changed background color to white
+  - changed paddings, added vertical separators
+  - added `OverviewBlock.Row` component to support multiple-line layout for blocks
+* **OverviewBlock.Group**
+  - added `align` and `blockWidth` props
+* **Page.Article**
+  - added a new component
+* **Page.Header**
+  - aligned with BASE 2.0 design
+  - decreased height
+* **PromptModal**
+  - fixed operations on unmounted component
+* **Radio**
+  - aligned with BASE 2.0 design
+  - changed hover & focus styles
+  - set pointer by default, arrow for disabled
+* **Radio.Group**
+  - removed overriding of internal paddings inside `Form.Field`
+* **Sidebar**
+  - aligned with BASE 2.0 design
+  - made width narrower
+  - changed background color to `grey lighter`
+  - increased top offset
+  - induced grey background on the left side of the page
+
+    | Before | After |
+    |--|--|
+    |![Sidebar before](https://user-images.githubusercontent.com/2836281/103081284-52424e00-45e0-11eb-8913-a7c1708da657.png)|![Sidebar after](https://user-images.githubusercontent.com/2836281/103081301-5e2e1000-45e0-11eb-936e-01ba308176f0.png)|
+    |||
+* **Sidebar.Item**
+  - changed the left margin for collapsible and non-collapsible items
+  - added additional horizontal margins to align with BASE 2.0
+  - fixed some issues with text-overflow for items in the collapsible menus
+* **Select**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - fixed issue with multiple highlighted options
+  - added option description
+  - added checkmark for selected options
+  - changed the color of the selected option to black
+  - changed arrow icons
+  - added dedicated search input
+  - disabled input functionality for the select input, instead added Search input inside the options list
+  - added property `searchPlaceholder` to set placeholder for the added Search input inside options list. Default value `Search`
+  - `searchThreshold` default value is set to 10 instead of 4 previously
+  - fixed cursor when hovering disabled component
+  - options list does not open on focus anymore. Users should press Space/Enter/ArrowUp/ArrowDown to open it
+  - open options list on key down for arrow up and arrow down for Native Select
+  - set pointer cursor by default, arrow for disabled
+* **Subheader**
+  - aligned with BASE 2.0 design
+  - removed left padding
+* **Subheader.Breadcrumbs**
+  - not part of Subheader anymore and Breadcrumbs decided to make as a separate component in scope of picasso-lab
+
+    ```
+    import { Breadcrumbs } from '@toptal/picasso-lab'
+    ```
+* **Switch**
+  - added a new component
+
+    ![Switch](https://user-images.githubusercontent.com/2836281/103081319-67b77800-45e0-11eb-9a8e-d492751e3867.png)
+
+* **Tag.Rectangular**
+  - added a new component
+
+    ![Tag.Rectangular](https://user-images.githubusercontent.com/2836281/103081336-71d97680-45e0-11eb-8004-06e34593cb23.png)
+
+    ![Tag.Rectangular indicator](https://user-images.githubusercontent.com/2836281/103081356-79991b00-45e0-11eb-983b-0552327c84b7.png)
+
+* **TagSelector**
+  - aligned with BASE 2.0 design
+  - changed hover and focused outline
+  - options list does not open on focus anymore. Users should press Space/Enter/ArrowUp/ArrowDown to open it
+* **Timepicker**
+  - set default cursor by default, pointer for icon
+* **Tooltip**
+  - prevent tooltip overflow by default
+  - fixed positioning inside a dropdown
+  - uncontrolled `Tooltip` is getting closed after second click/touch on children element
+  - allow click events to propagate
+
+
+### BREAKING CHANGES
+
+* **Accordion**
+  - aligned borders with BASE 2.0
+  - Accordion: `bordered` prop is renamed to `borders`, which has 3 new values - `all`, `middle` and `none`
+
+    Accordion borders:
+    * `bordered: true` -> `all` (default value)
+    * `bordered: false` -> `none`
+    * `middle` is a new variant
+* **Button**
+  - variants have been changed and circular is extracted to separate component. Here is migration path:
+
+    Button variants:
+    * `primary-blue` -> `primary` (default value)
+    * `primary-red` -> `negative`
+    * `primary-green` -> `positive`
+    * `secondary-blue, secondary-red, secondary-green` -> `secondary`
+    * `flat` -> `secondary`
+    * `flat-white` -> `transparent`
+    * `secondary-white` -> `transparent`
+
+  - `<Button circular />` was replaced with `<Button.Circular />` with dedicated variants only for circular button: `primary, flat and transparent`
+* **Colors**
+  - `grey.lighter` changed to `#f3f4f6`
+  - `grey.light` changed to `#e5e7ea`
+  - added new colors `grey.lighter2` and `grey.light2`, which have old color values of `grey.lighter` (`#ebeced`) and `grey.light` (`#d8d9dc`)
+* **Checkbox**
+  - `required` prop changed to `requiredDecoration`, which now supports two options: asterisk or optional
+* **Form.Label**
+  - `required` prop changed to `requiredDecoration`, which now supports two options: asterisk or optional
+* **Label**
+  - renamed to `Tag`
+  - removed white variant
+  - added blue variant
+* **Modal**
+  - `disableBackdropClick` is set by default now and can't be modified
+  - set base `font-size` to `1rem`
+* **Notification**
+  - removed `variant`, `elevated`, `fullWidth` and `icon` props
+* **Page.BannerMessage**
+  - component is removed
+* **Page.Content**
+  - padding is reduced
+  - removed horizontal padding, now you should use `Page.Article` component
+* **Page.Header**
+  - set the default Page.Header variant to dark. If you need a `light` variant - set `variant='light'`.
+  - renamed to `Page.TopBar`
+* **Page.HeaderMenu**
+  - renamed to `Page.TopBarMenu`
+* **PromptModal**
+  - variant prop has changed its values to `positive` or `negative`
+
+    PromptModal variants:
+    * `green` -> `positive` (default value)
+    * `red` -> `negative`
+    * `blue` -> removed
+* **Select**
+  - `onSearchChange` is deprecated and will be removed in the next Picasso version. Select component should not be used with dynamic options anymore. Please use Autocomplete instead for such case
+* **Subheader**
+  - renamed to `PageHead`
+* **Sidebar**
+  - increased horizontal padding
+  - background becomes gray lighter if there is a `Sidebar` on a page
+* **Sidebar.Logo**
+  - increased left padding
+* **Tooltip**
+  - `preventOverflow` property of Tooltip component changed default value from `false` to `true`
+* **UserBadge**
+  - avatar size is reduced
+
+
+* `useModals` is removed, instead use `useModal`
+* `showPrompt` is removed, instead use `showModal` in combination with `PromptModal`
+* `useModal` expect you to add `Modal` or `PromptModal` in your component in explicit way
+* for mutliple modals create declare multiple hooks, one per Modal
+
+  ```
+  import { useModal } from '@toptal/picasso/utils'
+
+  ...
+
+  const {showModal, hideModal, isOpen } = useModal()
+
+  ...
+
+  const handleClick = () => showModal()
+
+  ...
+
+  <Modal open={isOpen} onClose={hideModal} />
+  ```
+
+
+## [4.117.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.117.0...@toptal/picasso@4.117.1) (2020-12-15)
+
+
+### Bug Fixes
+
+* **picasso-forms:** scroll to any field with error ([#1779](https://github.com/toptal/picasso/issues/1779)) ([4ab2533](https://github.com/toptal/picasso/commit/4ab2533481770c52d8228609bfeec4505c847bd3))
+
+
+
+
+
+# [4.117.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.116.0...@toptal/picasso@4.117.0) (2020-12-15)
+
+
+### Features
+
+* **Icon:** add commission icon ([#1785](https://github.com/toptal/picasso/issues/1785)) ([2f83ad0](https://github.com/toptal/picasso/commit/2f83ad09060ee5f9975f182e0c4096f195a07af2))
+
+
+
+
+
+# [4.116.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.115.2...@toptal/picasso@4.116.0) (2020-12-14)
+
+
+### Features
+
+* [SPT-1202] Add tooltip delay on the typography overflow ([#1778](https://github.com/toptal/picasso/issues/1778)) ([0b77ffa](https://github.com/toptal/picasso/commit/0b77ffab2dbd23a55da0b15fb2141d6b525759a1))
+
+
+
+
+
 ## [4.115.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.115.1...@toptal/picasso@4.115.2) (2020-12-09)
 
 **Note:** Version bump only for package @toptal/picasso

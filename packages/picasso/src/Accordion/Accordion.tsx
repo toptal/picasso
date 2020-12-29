@@ -20,6 +20,9 @@ import { ArrowDownMinor16 } from '../Icon'
 import AccordionSummary from '../AccordionSummary'
 import AccordionDetails from '../AccordionDetails'
 import styles from './styles'
+import Button from '../Button'
+
+export type Borders = 'all' | 'middle' | 'none'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoAccordion' })
 
@@ -57,8 +60,8 @@ export interface Props
   disabled?: boolean
   /** Customize icon indicating expanded status */
   expandIcon?: ReactElement
-  /** Defines if the horizontal borders show */
-  bordered?: boolean
+  /** Defines where the horizontal borders show */
+  borders?: Borders
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
@@ -74,6 +77,7 @@ const decorateWithExpandIconClasses = (
     className: cx(expandIcon.props.className, classes)
   })
 
+/* eslint-disable complexity */
 export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   props,
   ref
@@ -84,7 +88,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     expanded,
     defaultExpanded,
     expandIcon,
-    bordered,
+    borders,
     disabled,
     className,
     style,
@@ -94,6 +98,11 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   } = props
 
   const classes = mergeClasses(useStyles(props), externalClasses)
+  const borderClasses: { [key in Borders]: string } = {
+    all: classes.bordersAll,
+    middle: classes.bordersMiddle,
+    none: classes.bordersNone
+  }
   const [summaryExpanded, setSummaryExpanded] = useState(defaultExpanded)
   const [prevExpanded, setPrevExpanded] = useState(defaultExpanded)
 
@@ -111,16 +120,15 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     [classes.expandIconExpanded]: summaryExpanded
   })
 
+  const appliedBorders = children || expanded ? (borders as Borders) : 'none'
+
   return (
     <MUIAccordion
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       classes={{
-        root:
-          children || bordered
-            ? cx(classes.root, { [classes.bordered]: bordered })
-            : ''
+        root: cx(classes.root, borderClasses[appliedBorders])
       }}
       className={className}
       style={style}
@@ -143,7 +151,9 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
             decorateWithExpandIconClasses(expandIcon, expandIconClass)
           ) : (
             <div className={classes.expandIconAlignTop}>
-              <ArrowDownMinor16 className={expandIconClass} />
+              <Button.Action
+                icon={<ArrowDownMinor16 className={expandIconClass} />}
+              />
             </div>
           )}
         </AccordionSummary>
@@ -162,7 +172,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Accordion.defaultProps = {
-  bordered: true,
+  borders: 'all',
   defaultExpanded: false,
   disabled: false,
   expanded: undefined,

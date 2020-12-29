@@ -85,6 +85,16 @@ if needed.
   .addExample('Autocomplete/story/Loading.example.jsx', 'Loading')
   .addExample('Autocomplete/story/Error.example.jsx', 'Error')
   .addExample('Autocomplete/story/WithIcons.example.jsx', 'With Icon')
+  .addExample('Autocomplete/story/WithDescription.example.jsx', {
+    title: 'With Description',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('input')
+      await testPage.waitFor(100)
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
   .addExample(
     'Autocomplete/story/CustomOptionRenderer.example.tsx',
     'Custom options rendering'
@@ -103,7 +113,8 @@ when it makes sense to have autofill enabled.
   }) // picasso-skip-visuals
   .addExample('Autocomplete/story/PoweredByGoogle.example.jsx', {
     title: 'Powered By Google label',
-    description: 'There are situations when we use options in the Autocomplete component from the Google API and ' +
+    description:
+      'There are situations when we use options in the Autocomplete component from the Google API and ' +
       'to meet their requirements https://developers.google.com/places/web-service/policies in such cases ' +
       'we have to show the "Powered By Google" label.'
   }) // picasso-skip-visuals

@@ -3,11 +3,13 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Button, Container, Typography } from '@toptal/picasso'
 import { BaseProps, useDrawer } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso/Icon'
-import React, { FunctionComponent, ReactNode, useEffect } from 'react'
+import React, { FunctionComponent, ReactNode, useLayoutEffect } from 'react'
 
 import styles from './styles'
 
 type AnchorType = 'bottom' | 'left' | 'right' | 'top'
+
+type WidthType = 'regular' | 'wide'
 
 export interface Props extends BaseProps {
   /** Side from which the drawer will appear.  */
@@ -22,22 +24,36 @@ export interface Props extends BaseProps {
   title: ReactNode
   /** Callback fired when the component requests to be closed. */
   onClose?: () => void
+  /** Width of Drawer */
+  width?: WidthType
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoDrawer' })
 
 export const Drawer: FunctionComponent<Props> = props => {
-  const { children, disablePortal, open, onClose, title, ...rest } = props
+  const {
+    children,
+    disablePortal,
+    open,
+    onClose,
+    title,
+    width,
+    ...rest
+  } = props
   const classes = useStyles(props)
-  const { hasDrawer, setHasDrawer } = useDrawer()
+  const { setHasDrawer } = useDrawer()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setHasDrawer(open)
+
+    const cleanup = () => {
+      setHasDrawer(false)
+    }
+
+    return cleanup
   }, [open, setHasDrawer])
 
   const handleOnClose = () => {
-    setHasDrawer(false)
-
     if (onClose) {
       onClose()
     }
@@ -47,11 +63,11 @@ export const Drawer: FunctionComponent<Props> = props => {
     <MUIDrawer
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      open={hasDrawer}
+      open={open}
       onClose={handleOnClose}
       disablePortal={disablePortal}
     >
-      <Container className={classes.drawer}>
+      <Container className={classes[width!]}>
         <Container
           flex
           alignItems='center'
@@ -61,10 +77,9 @@ export const Drawer: FunctionComponent<Props> = props => {
           <Typography variant='heading' size='medium' className={classes.title}>
             {title}
           </Typography>
-          <Button
-            variant='transparent'
+          <Button.Circular
+            variant='flat'
             icon={<CloseMinor16 />}
-            className={classes.closeButton}
             onClick={handleOnClose}
           />
         </Container>
@@ -79,7 +94,8 @@ Drawer.displayName = 'Drawer'
 Drawer.defaultProps = {
   anchor: 'right',
   disablePortal: false,
-  onClose: () => {}
+  onClose: () => {},
+  width: 'regular'
 }
 
 export default Drawer

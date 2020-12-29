@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.17.0...@toptal/picasso-shared@2.0.0) (2020-12-22)
+
+
+### Features
+
+* v5 ([#1487](https://github.com/toptal/picasso/issues/1487)) ([ee77cde](https://github.com/toptal/picasso/commit/ee77cde12f8f7670f50958ae3973327eb513d9f9))
+
+
 # [1.17.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.16.7...@toptal/picasso-shared@1.17.0) (2020-11-10)
 
 

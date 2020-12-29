@@ -5,7 +5,6 @@ import { Button } from '@toptal/picasso'
 import { ClickAwayListener, isPointerDevice } from '@toptal/picasso/utils'
 import { act } from 'react-dom/test-utils'
 
-import Container from '../Container'
 import Tooltip from './Tooltip'
 
 const mockedIsPointerDevice = isPointerDevice as jest.Mock
@@ -14,15 +13,13 @@ describe('Tooltip', () => {
   test('default render', () => {
     // If you don't provide `id` prop, it falls back to a randomly generated id.
     const { container } = render(
-      <Container>
-        <Tooltip
-          id='aria-describedby-id-mock'
-          content='Content goes here...'
-          open
-        >
-          <span>Test</span>
-        </Tooltip>
-      </Container>
+      <Tooltip
+        id='aria-describedby-id-mock'
+        content='Content goes here...'
+        open
+      >
+        <span>Test</span>
+      </Tooltip>
     )
 
     expect(container).toMatchSnapshot()
@@ -31,10 +28,12 @@ describe('Tooltip', () => {
   describe('on touch screens', () => {
     beforeEach(() => {
       mockedIsPointerDevice.mockReturnValue(false)
+      jest.useFakeTimers()
     })
 
     afterEach(() => {
       mockedIsPointerDevice.mockClear()
+      jest.useRealTimers()
     })
 
     test('opens tooltip on touch', async () => {
@@ -49,6 +48,29 @@ describe('Tooltip', () => {
       })
 
       expect(queryByText('Hello')).toBeInTheDocument()
+
+      unmount()
+    })
+
+    test('closes tooltip on second touch', async () => {
+      const { getByText, queryByText, unmount } = render(
+        <Tooltip content='Hello'>
+          <Button>Tap me</Button>
+        </Tooltip>
+      )
+
+      act(() => {
+        fireEvent.click(getByText('Tap me'))
+      })
+
+      expect(queryByText('Hello')).toBeInTheDocument()
+
+      act(() => {
+        fireEvent.click(getByText('Tap me'))
+        jest.advanceTimersByTime(1500)
+      })
+
+      expect(queryByText('Hello')).not.toBeInTheDocument()
 
       unmount()
     })
@@ -126,7 +148,7 @@ describe('Tooltip', () => {
         )
       }
 
-      const { getByText, queryByText } = render(<Component />)
+      const { getByText, queryByText, unmount } = render(<Component />)
 
       const handler = getByText('Hover then click me')
 
@@ -150,6 +172,31 @@ describe('Tooltip', () => {
       })
 
       expect(queryByText('Hello')).not.toBeInTheDocument()
+
+      unmount()
+    })
+
+    test('closes uncontrolled tooltip on button click', async () => {
+      const { getByText, queryByText, unmount } = render(
+        <Tooltip content='Hello'>
+          <Button>Hover me</Button>
+        </Tooltip>
+      )
+
+      act(() => {
+        fireEvent.mouseEnter(getByText('Hover me'))
+        jest.advanceTimersByTime(500)
+      })
+
+      expect(queryByText('Hello')).toBeInTheDocument()
+
+      act(() => {
+        fireEvent.click(getByText('Hover me'))
+        jest.advanceTimersByTime(1500)
+      })
+      expect(queryByText('Hello')).not.toBeInTheDocument()
+
+      unmount()
     })
   })
 })

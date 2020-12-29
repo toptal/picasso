@@ -11,7 +11,7 @@ const ContentContainer = styled(Container)`
 const App = () => (
   <Picasso loadFavicon={false} fixViewport={false}>
     <Page>
-      <Page.Header title='App Page' />
+      <Page.TopBar title='App Page' />
       <Page.Content>
         <ContentContainer top={7} bottom={7} flex justifyContent='center'>
           Your application goes here

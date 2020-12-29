@@ -20,9 +20,10 @@ import {
 
 import {
   CloseMinor16,
-  ExclamationSolid24 as Alert,
-  CheckSolid24 as Tick,
-  Info24 as Info
+  ExclamationSolid16,
+  ExclamationSolid24,
+  CheckSolid24,
+  Info24
 } from '../Icon'
 import Container from '../Container'
 import Button from '../Button'
@@ -32,7 +33,10 @@ import NotificationActions from '../NotificationActions'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+/** `variant`, `elevated` and `icon` props are omitted from the public declaration, since they're only for internal use */
+export interface PrivateProps
+  extends StandardProps,
+    HTMLAttributes<HTMLDivElement> {
   /** Main content of the Notification */
   children: ReactNode
   /** Callback invoked when close is clicked */
@@ -43,9 +47,9 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   icon?: ReactElement
   /** Enable elevated appearance for Notification */
   elevated?: boolean
-  /** Take the full width of a container */
-  fullWidth?: boolean
 }
+
+export type PublicProps = Omit<PrivateProps, 'variant' | 'icon'>
 
 export interface StaticProps {
   Actions: typeof NotificationActions
@@ -54,9 +58,8 @@ export interface StaticProps {
 const renderNotificationCloseButton = ({
   onClose,
   classes
-}: Props & JssProps) => (
-  <Button
-    circular
+}: PrivateProps & JssProps) => (
+  <Button.Circular
     onClick={onClose}
     className={classes.close}
     title='Close Notification'
@@ -68,7 +71,7 @@ const renderNotificationIcon = ({
   icon,
   variant,
   classes
-}: Props & JssProps) => {
+}: PrivateProps & JssProps) => {
   const iconProps = {
     className: classes.icon
   }
@@ -78,30 +81,30 @@ const renderNotificationIcon = ({
   switch (variant) {
     case 'red':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Alert {...iconProps} color='red' />
+      return <ExclamationSolid24 {...iconProps} color='red' />
 
     case 'yellow':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Alert {...iconProps} color='yellow' />
+      return <ExclamationSolid16 {...iconProps} color='yellow' />
 
     case 'green':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Tick {...iconProps} color='green' />
+      return <CheckSolid24 {...iconProps} color='green' />
 
     default: {
       const infoProps = { ...iconProps, color: 'grey' as const }
 
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return icon ? cloneElement(icon, infoProps) : <Info {...infoProps} />
+      return icon ? cloneElement(icon, infoProps) : <Info24 {...infoProps} />
     }
   }
 }
 
-const renderNotificationContent = (props: Props & JssProps) => {
+const renderNotificationContent = (props: PrivateProps & JssProps) => {
   const { classes, children, onClose } = props
 
   return (
-    <>
+    <Container flex className={classes.contentWrapper}>
       <Container flex alignItems='center' className={classes.iconWrapper}>
         {renderNotificationIcon(props)}
       </Container>
@@ -115,22 +118,21 @@ const renderNotificationContent = (props: Props & JssProps) => {
         {children}
       </Typography>
       {onClose && renderNotificationCloseButton(props)}
-    </>
+    </Container>
   )
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme, PrivateProps>(styles, {
   name: 'Notification'
 })
 
 // eslint-disable-next-line react/display-name
-export const Notification = forwardRef<HTMLElement, Props>(
+export const Notification = forwardRef<HTMLElement, PrivateProps>(
   function Notification(props, ref) {
     const {
       className,
       variant,
       elevated,
-      fullWidth,
       classes: externalClasses,
       ...rest
     } = props
@@ -145,7 +147,7 @@ export const Notification = forwardRef<HTMLElement, Props>(
           classes[`notification${capitalize(variant as string)}`],
           {
             [classes.notificationShadow]: elevated,
-            [classes.notificationFullWidth]: fullWidth
+            [classes.roundedBorders]: elevated
           },
           classes.notification,
           className
@@ -158,12 +160,11 @@ export const Notification = forwardRef<HTMLElement, Props>(
       />
     )
   }
-) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
+) as CompoundedComponentWithRef<PrivateProps, HTMLElement, StaticProps>
 
 Notification.defaultProps = {
   elevated: false,
-  fullWidth: false,
-  variant: 'white'
+  variant: 'yellow'
 }
 
 Notification.displayName = 'Notification'
@@ -171,7 +172,7 @@ Notification.displayName = 'Notification'
 Notification.Actions = NotificationActions
 
 export default Notification as PicassoComponentWithRef<
-  Props,
+  PublicProps,
   HTMLElement,
   StaticProps
 >

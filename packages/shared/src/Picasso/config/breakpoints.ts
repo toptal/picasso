@@ -134,7 +134,7 @@ export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) => {
  *
  * The function returned accepts 2 arguments:
  * 1. An object mapping values to screen size nicknames, e.g.
- *   {small: 'secondary-blue', large: 'primary-green'}
+ *   {small: 'secondary', large: 'positive'}
  * 2. A default value to use if no keys match in the object
  *
  * The function returns a value from the first argument that corresponds to the current
@@ -147,18 +147,18 @@ export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) => {
  * <Button
  *   variant={screens(
  *     {
- *       small: 'secondary-blue',
- *       large: 'primary-green'
+ *       small: 'secondary',
+ *       large: 'positive'
  *     },
- *     'primary-blue'
+ *     'primary'
  *   )}
  * >
  * {screens(
  *   {
- *     small: 'small (secondary-blue)',
- *     large: 'large (primary-green)'
+ *     small: 'small (secondary)',
+ *     large: 'large (positive)'
  *   },
- *   'default (primary-blue)'
+ *   'default (primary)'
  * )}
  * </Button>
  */

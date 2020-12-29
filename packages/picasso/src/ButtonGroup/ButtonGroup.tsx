@@ -37,7 +37,9 @@ export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
           Button,
           {
             root: configClasses.button,
-            active: configClasses.active
+            active: configClasses.active,
+            focused: configClasses.focused,
+            hovered: configClasses.hovered
           }
         ]
       ]

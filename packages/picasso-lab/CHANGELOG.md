@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.39.0...@toptal/picasso-lab@3.0.0) (2020-12-22)
+
+
+### Features
+
+* v5 ([#1487](https://github.com/toptal/picasso/issues/1487)) ([ee77cde](https://github.com/toptal/picasso/commit/ee77cde12f8f7670f50958ae3973327eb513d9f9))
+
+
+# [2.39.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.38.2...@toptal/picasso-lab@2.39.0) (2020-12-18)
+
+
+### Features
+
+* **Drawer:** add width prop to drawer ([#1798](https://github.com/toptal/picasso/issues/1798)) ([d5affa1](https://github.com/toptal/picasso/commit/d5affa1e621a02d8710e9cf5b7f4312496d581e2))
+
+
+
+
+
+## [2.38.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.38.1...@toptal/picasso-lab@2.38.2) (2020-12-15)
+
+
+### Bug Fixes
+
+* **OverviewBlock:** fix typecheck in test ([#1791](https://github.com/toptal/picasso/issues/1791)) ([b00f8be](https://github.com/toptal/picasso/commit/b00f8be4e9ad4fb5901a6f6cbd726bb9f1e94c45))
+
+
+
+
+
+## [2.38.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.38.0...@toptal/picasso-lab@2.38.1) (2020-12-15)
+
+
+### Bug Fixes
+
+* **OverviewGroup:** fix non selectable text ([#1786](https://github.com/toptal/picasso/issues/1786)) ([b55be16](https://github.com/toptal/picasso/commit/b55be16d5888451c3058838a91ec10c684c96362))
+
+
+
+
+
+# [2.38.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.37.0...@toptal/picasso-lab@2.38.0) (2020-12-14)
+
+
+### Features
+
+* **SkeletonLoader:** extend ButtonLoader ([#1750](https://github.com/toptal/picasso/issues/1750)) ([6ccbd00](https://github.com/toptal/picasso/commit/6ccbd0072217e3ff26a818bd4495687322d61f65))
+
+
+
+
+
+# [2.37.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.36.6...@toptal/picasso-lab@2.37.0) (2020-12-14)
+
+
+### Features
+
+* [SPT-1202] Add tooltip delay on the typography overflow ([#1778](https://github.com/toptal/picasso/issues/1778)) ([0b77ffa](https://github.com/toptal/picasso/commit/0b77ffab2dbd23a55da0b15fb2141d6b525759a1))
+
+
+
+
+
 ## [2.36.6](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.36.5...@toptal/picasso-lab@2.36.6) (2020-12-07)
 
 

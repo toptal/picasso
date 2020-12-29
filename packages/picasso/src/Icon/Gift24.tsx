@@ -47,7 +47,6 @@ const SvgGift24 = forwardRef(function SvgGift24(
   return (
     <svg
       viewBox='0 0 24 24'
-      xmlns='http://www.w3.org/2000/svg'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}

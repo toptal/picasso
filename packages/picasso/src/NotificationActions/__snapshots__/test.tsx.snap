@@ -6,35 +6,37 @@ exports[`NotificationActions default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiSnackbarContent-root Notification-notificationGreen Notification-notification MuiPaper-elevation6"
+      class="MuiPaper-root MuiSnackbarContent-root Notification-notificationYellow Notification-notification MuiPaper-elevation6"
       role="alert"
     >
       <div
         class="MuiSnackbarContent-message"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+          class="PicassoContainer-flex"
         >
-          <svg
-            class="PicassoSvgCheckSolid24-root PicassoSvgCheckSolid24-green"
-            style="min-width: 24px; min-height: 24px;"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
-            />
-          </svg>
-        </div>
-        <div
-          class="MuiTypography-root PicassoTypography-bodyMedium Notification-content MuiTypography-body1"
-        >
-          The time zone in your profile is set to (UTC -08:00) America - Los
           <div
-            class="PicassoContainer-topxsmallMargin PicassoContainer-flex"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
           >
-            Test
+            <svg
+              class="PicassoSvgExclamationSolid16-root PicassoSvgExclamationSolid16-yellow"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 0a8 8 0 110 16A8 8 0 018 0zm0 11a1 1 0 100 2 1 1 0 000-2zm0-8a1 1 0 00-1 1v5a1 1 0 102 0V4a1 1 0 00-1-1z"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium Notification-content MuiTypography-body1"
+          >
+            The time zone in your profile is set to (UTC -08:00) America - Los
+            <div
+              class="PicassoContainer-topxsmallMargin PicassoContainer-flex"
+            >
+              Test
+            </div>
           </div>
         </div>
       </div>

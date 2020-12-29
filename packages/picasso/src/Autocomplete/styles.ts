@@ -13,8 +13,12 @@ export default ({ sizes: { input, borderWidth }, palette }: Theme) =>
       width: 'auto'
     },
     rootAuto: {},
+    option: {
+      paddingRight: '1rem',
+      paddingLeft: '1rem'
+    },
     otherOption: {
-      borderTop: `${borderWidth} solid ${palette.grey.light}`
+      borderTop: `${borderWidth} solid ${palette.grey.light2}`
     },
     stringContent: {
       fontSize: '0.8125em'

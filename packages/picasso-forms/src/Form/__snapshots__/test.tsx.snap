@@ -1,55 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FormInput default render 1`] = `
+exports[`Form default render 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
-    <form>
-      <div
-        class="PicassoFormField-root"
-      >
+    <div
+      class=""
+    >
+      <form>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+          class="PicassoFormField-root"
+          data-field-has-error="false"
         >
-          <input
-            aria-invalid="false"
-            autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-            id="test"
-            name="test"
-            placeholder="test input"
-            type="text"
-            value=""
-          />
-          <fieldset
-            aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-            style="padding-left: 8px;"
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
           >
-            <legend
-              class="PrivateNotchedOutline-legend"
-              style="width: 0.01px;"
+            <input
+              aria-invalid="false"
+              autocomplete="none"
+              class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+              id="test"
+              name="test"
+              placeholder="test input"
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
             >
-              <span>
-                ​
-              </span>
-            </legend>
-          </fieldset>
+              <legend
+                class="PrivateNotchedOutline-legend"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
         </div>
-      </div>
-      <button
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
-        tabindex="0"
-        type="submit"
-      >
-        <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+        <button
+          class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+          data-component-type="button"
+          tabindex="0"
+          type="submit"
         >
-          Submit
-        </span>
-      </button>
-    </form>
+          <span
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          >
+            Submit
+          </span>
+        </button>
+      </form>
+    </div>
   </div>
 </div>
 `;

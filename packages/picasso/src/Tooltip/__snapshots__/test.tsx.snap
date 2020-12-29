@@ -5,16 +5,12 @@ exports[`Tooltip default render 1`] = `
   <div
     class="Picasso-root"
   >
-    <div
+    <span
+      aria-describedby="aria-describedby-id-mock"
       class=""
     >
-      <span
-        aria-describedby="aria-describedby-id-mock"
-        class=""
-      >
-        Test
-      </span>
-    </div>
+      Test
+    </span>
     <div
       class="MuiTooltip-popper PicassoTooltip-arrowPopper"
       id="aria-describedby-id-mock"

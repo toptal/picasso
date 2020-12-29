@@ -15,10 +15,14 @@ const SidebarMenu = () => (
 const Example = () => (
   <div style={{ height: '40rem' }}>
     <Page>
-      <Page.Header title='How to layout a page' />
+      <Page.TopBar title='How to layout a page' />
       <Page.Content>
         <SidebarMenu />
-        <Container padded='small'>Main Content</Container>
+        <Page.Article>
+          <Container top='medium' bottom='medium'>
+            Main Content
+          </Container>
+        </Page.Article>
       </Page.Content>
       <Page.Footer />
     </Page>

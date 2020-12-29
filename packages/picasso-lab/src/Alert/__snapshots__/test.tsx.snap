@@ -6,28 +6,30 @@ exports[`Alert default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex Alert-alertYellow Alert-alert"
+      class="PicassoContainer-yellowVariant PicassoContainer-smallPadding PicassoContainer-spaceBetweenJustifyContent PicassoContainer-rounded PicassoContainer-flex"
       role="alert"
     >
       <div
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex Alert-iconWrapper"
+        class="PicassoContainer-flex PicassoContainer-inline"
       >
-        <svg
-          class="PicassoSvgExclamation16-root Alert-icon PicassoSvgExclamation16-yellow"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
+        <div
+          class="PicassoContainer-rightsmallMargin"
         >
-          <path
-            d="M7.5 15a7.5 7.5 0 110-15 7.5 7.5 0 010 15zm0-1a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM7 3h1v6H7V3zm0 8h1v1H7v-1z"
-          />
-        </svg>
-      </div>
-      <div
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black Alert-content MuiTypography-body1"
-      >
-        test example string
+          <svg
+            class="PicassoSvgExclamation16-root PicassoSvgExclamation16-yellow"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M7.5 15a7.5 7.5 0 110-15 7.5 7.5 0 010 15zm0-1a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM7 3h1v6H7V3zm0 8h1v1H7v-1z"
+            />
+          </svg>
+        </div>
+        <div
+          class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black PicassoAlertInline-content MuiTypography-body1"
+        >
+          test example string
+        </div>
       </div>
     </div>
   </div>
