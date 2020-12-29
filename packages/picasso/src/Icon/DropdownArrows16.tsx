@@ -51,7 +51,7 @@ const SvgDropdownArrows16 = forwardRef(function SvgDropdownArrows16(
       style={svgStyle}
       ref={ref}
     >
-      <path d='M16 12.3l.7.7-3.7 3.7L9.3 13l.7-.7 3 3 3-3zm-3-9L16.7 7l-.7.7-3-3-3 3-.7-.7 3-3 .7-.7z' />
+      <path d='M10.997 10.29l.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3zm-3-9l3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707z' />
     </svg>
   )
 })
