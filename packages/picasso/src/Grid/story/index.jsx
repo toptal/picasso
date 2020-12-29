@@ -17,8 +17,8 @@ page
 
 page
   .createChapter()
-  .addExample('Grid/story/Alignment.example.jsx', 'Alignment')
-  .addExample('Grid/story/Direction.example.jsx', 'Direction')
-  .addExample('Grid/story/Wrapping.example.jsx', 'Wrapping')
+  .addExample('Grid/story/Alignment.example.tsx', 'Alignment')
+  .addExample('Grid/story/Direction.example.tsx', 'Direction')
+  .addExample('Grid/story/Wrapping.example.tsx', 'Wrapping')
 
 page.connect(gridItemStory.chapter)

@@ -7,7 +7,7 @@ const chapter = PicassoBook.connectToPage(page =>
       'Page.Content',
       'Use to layout correctly your content in Page'
     )
-    .addExample('PageContent/story/Default.example.jsx', 'Default')
+    .addExample('PageContent/story/Default.example.tsx', 'Default')
 )
 
 const componentDocs = PicassoBook.createComponentDocs(

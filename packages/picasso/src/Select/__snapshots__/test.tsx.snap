@@ -69,19 +69,19 @@ exports[`multiple select should checkmark user selected options 1`] = `
           <li
             aria-disabled="false"
             aria-selected="true"
-            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
             role="option"
             tabindex="-1"
             value="val1"
           >
             <div
-              class="Container-flex Container-column MenuItem-content"
+              class="Container-flex Container-column PicassoMenuItem-content"
             >
               <div
                 class="Container-centerAlignItems Container-flex"
               >
                 <div
-                  class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+                  class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
                 >
                   <svg
                     class="SvgCheckMinor16-root"
@@ -94,7 +94,7 @@ exports[`multiple select should checkmark user selected options 1`] = `
                   </svg>
                 </div>
                 <span
-                  class="MenuItem-stringContent MenuItem-stringContentMedium MenuItem-stringContentSemibold"
+                  class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium PicassoMenuItem-stringContentSemibold"
                 >
                   text1
                 </span>
@@ -104,22 +104,22 @@ exports[`multiple select should checkmark user selected options 1`] = `
           <li
             aria-disabled="false"
             aria-selected="false"
-            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
             role="option"
             tabindex="-1"
             value="val2"
           >
             <div
-              class="Container-flex Container-column MenuItem-content"
+              class="Container-flex Container-column PicassoMenuItem-content"
             >
               <div
                 class="Container-centerAlignItems Container-flex"
               >
                 <div
-                  class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+                  class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
                 />
                 <span
-                  class="MenuItem-stringContent MenuItem-stringContentMedium"
+                  class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
                 >
                   text2
                 </span>
@@ -129,19 +129,19 @@ exports[`multiple select should checkmark user selected options 1`] = `
           <li
             aria-disabled="false"
             aria-selected="false"
-            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
             role="option"
             tabindex="-1"
             value="val3"
           >
             <div
-              class="Container-flex Container-column MenuItem-content"
+              class="Container-flex Container-column PicassoMenuItem-content"
             >
               <div
                 class="Container-centerAlignItems Container-flex"
               >
                 <div
-                  class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+                  class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
                 >
                   <svg
                     class="SvgCheckMinor16-root"
@@ -154,7 +154,7 @@ exports[`multiple select should checkmark user selected options 1`] = `
                   </svg>
                 </div>
                 <span
-                  class="MenuItem-stringContent MenuItem-stringContentMedium MenuItem-stringContentSemibold"
+                  class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium PicassoMenuItem-stringContentSemibold"
                 >
                   text3
                 </span>
@@ -378,28 +378,28 @@ exports[`should render description 1`] = `
     <li
       aria-disabled="false"
       aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="val1"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
           />
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             text1
           </span>
         </div>
         <div
-          class="Container-leftmediumMargin MenuItem-description"
+          class="Container-leftmediumMargin PicassoMenuItem-description"
           style="margin-top: 0.25rem;"
         >
           description1
@@ -409,28 +409,28 @@ exports[`should render description 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val2"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
           />
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             text2
           </span>
         </div>
         <div
-          class="Container-leftmediumMargin MenuItem-description"
+          class="Container-leftmediumMargin PicassoMenuItem-description"
           style="margin-top: 0.25rem;"
         >
           description2
@@ -440,28 +440,28 @@ exports[`should render description 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val3"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
           />
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             text3
           </span>
         </div>
         <div
-          class="Container-leftmediumMargin MenuItem-description"
+          class="Container-leftmediumMargin PicassoMenuItem-description"
           style="margin-top: 0.25rem;"
         >
           description3
@@ -485,19 +485,19 @@ exports[`should render options customly 1`] = `
     <li
       aria-disabled="false"
       aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="val1"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
           />
           <div>
             Custom renderered text1
@@ -508,19 +508,19 @@ exports[`should render options customly 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val2"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
           />
           <div>
             Custom renderered text2
@@ -531,19 +531,19 @@ exports[`should render options customly 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val3"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
           />
           <div>
             Custom renderered text3

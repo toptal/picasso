@@ -19,7 +19,7 @@ page
       }
     }
   })
-  .addExample('Input/story/Default.example.jsx', {
+  .addExample('Input/story/Default.example.tsx', {
     title: 'Default',
     effect: async (testPage, makeScreenshot) => {
       await testPage.hover('[data-testid="input"]')
@@ -29,8 +29,8 @@ page
       await makeScreenshot()
     }
   })
-  .addExample('Input/story/Disabled.example.jsx', 'Disabled')
-  .addExample('Input/story/Error.example.jsx', {
+  .addExample('Input/story/Disabled.example.tsx', 'Disabled')
+  .addExample('Input/story/Error.example.tsx', {
     title: 'Error',
     effect: async (testPage, makeScreenshot) => {
       await testPage.hover('[data-testid="input"]')
@@ -40,16 +40,16 @@ page
       await makeScreenshot()
     }
   })
-  .addExample('Input/story/WithIcon.example.jsx', 'With icon')
-  .addExample('Input/story/Sizes.example.jsx', 'Sizes')
-  .addExample('Input/story/FullWidth.example.jsx', 'Full width')
-  .addExample('Input/story/Multiline.example.jsx', 'Multiline | Textarea')
+  .addExample('Input/story/WithIcon.example.tsx', 'With icon')
+  .addExample('Input/story/Sizes.example.tsx', 'Sizes')
+  .addExample('Input/story/FullWidth.example.tsx', 'Full width')
+  .addExample('Input/story/Multiline.example.tsx', 'Multiline | Textarea')
   .addExample(
-    'Input/story/MultilineExpand.example.jsx',
+    'Input/story/MultilineExpand.example.tsx',
     'Multiline expand and resize | Textarea'
   )
   .addExample(
-    'Input/story/AutoFill.example.jsx',
+    'Input/story/AutoFill.example.tsx',
     'AutoComplete defined as email'
   )
   .addExample('Input/story/WithLimit.example.tsx', 'With Limit')

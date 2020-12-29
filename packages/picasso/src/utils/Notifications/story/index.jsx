@@ -50,13 +50,13 @@ Each of them has this list of props:
           description: 'Options of the single notification.'
         }
       ])
-      .addExample('utils/Notifications/story/Default.example.jsx', 'Default') // picasso-skip-visuals
-      .addExample('utils/Notifications/story/Variants.example.jsx', 'Variants') // picasso-skip-visuals
+      .addExample('utils/Notifications/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+      .addExample('utils/Notifications/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
       .addExample(
-        'utils/Notifications/story/GeneralNotifications.example.jsx',
+        'utils/Notifications/story/GeneralNotifications.example.tsx',
         'General Notifications'
       ) // picasso-skip-visuals
-      .addExample('utils/Notifications/story/Options.example.jsx', 'Options') // picasso-skip-visuals
+      .addExample('utils/Notifications/story/Options.example.tsx', 'Options') // picasso-skip-visuals
       .addTextSection(
         `
 Additionally for custom notifications 'useNotifications' hook is providing the special methods:
@@ -103,7 +103,7 @@ With the list of props:
           description: 'Options of the single notification.'
         }
       ])
-      .addExample('utils/Notifications/story/Custom.example.jsx', 'Custom') // picasso-skip-visuals
+      .addExample('utils/Notifications/story/Custom.example.tsx', 'Custom') // picasso-skip-visuals
 )
 
 export default {

@@ -32,7 +32,7 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Select/story/Default.example.jsx', {
+  .addExample('Select/story/Default.example.tsx', {
     title: 'Default',
     effect: async (testPage, makeScreenshot) => {
       const hideInputCaretStyle = `
@@ -78,10 +78,10 @@ page
     Search is enabled when the number of options is greater or equal to \`searchThreshold\`.
       `
   }) // picasso-skip-visuals
-  .addExample('Select/story/Disabled.example.jsx', 'Disabled')
-  .addExample('Select/story/Error.example.jsx', 'Error')
-  .addExample('Select/story/WithIcon.example.jsx', 'With Icon')
-  .addExample('Select/story/WithDescription.example.jsx', {
+  .addExample('Select/story/Disabled.example.tsx', 'Disabled')
+  .addExample('Select/story/Error.example.tsx', 'Error')
+  .addExample('Select/story/WithIcon.example.tsx', 'With Icon')
+  .addExample('Select/story/WithDescription.example.tsx', {
     title: 'With Description',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[data-testid="trigger"] input')
@@ -91,11 +91,11 @@ page
       })
     }
   })
-  .addExample('Select/story/Loading.example.jsx', 'Loading')
-  .addExample('Select/story/Sizes.example.jsx', 'Sizes')
-  .addExample('Select/story/FullWidth.example.jsx', 'Full width')
-  .addExample('Select/story/ShrinkWidth.example.jsx', 'Shrink width')
-  .addExample('Select/story/MenuWidth.example.jsx', {
+  .addExample('Select/story/Loading.example.tsx', 'Loading')
+  .addExample('Select/story/Sizes.example.tsx', 'Sizes')
+  .addExample('Select/story/FullWidth.example.tsx', 'Full width')
+  .addExample('Select/story/ShrinkWidth.example.tsx', 'Shrink width')
+  .addExample('Select/story/MenuWidth.example.tsx', {
     title: 'Menu width',
     effect: async (testPage, makeScreenshot) => {
       const hideInputCaretStyle = `
@@ -113,30 +113,30 @@ page
       })
     }
   })
-  .addExample('Select/story/ChosenOption.example.jsx', {
+  .addExample('Select/story/ChosenOption.example.tsx', {
     title: 'Chosen option',
     description:
       'Renders Select component with already chosen one of the options'
   })
-  .addExample('Select/story/CustomOptions.example.jsx', {
+  .addExample('Select/story/CustomOptions.example.tsx', {
     title: 'Custom options',
     description:
       'Options of the Select component could be not only text, but custom components'
   })
-  .addExample('Select/story/CustomDisplayValue.example.jsx', {
+  .addExample('Select/story/CustomDisplayValue.example.tsx', {
     title: 'Custom display value',
     description: 'Display value of selected value in input can be customized'
   })
-  .addExample('Select/story/Multiple.example.jsx', {
+  .addExample('Select/story/Multiple.example.tsx', {
     title: 'Multiple options',
     description: 'Select component allows to select multiple options'
   })
-  .addExample('Select/story/AutoFocus.example.jsx', {
+  .addExample('Select/story/AutoFocus.example.tsx', {
     title: 'Auto focus',
     description:
       'Demonstrate auto focus capability by switching visibility of Select'
   }) // picasso-skip-visuals
-  .addExample('Select/story/ResetButton.example.jsx', {
+  .addExample('Select/story/ResetButton.example.tsx', {
     title: 'With reset button',
     effect: async (testPage, makeScreenshot) => {
       await testPage.keyboard.press('Tab')

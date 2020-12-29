@@ -11,7 +11,7 @@ page
 
 page
   .createChapter()
-  .addExample('Menu/story/Default.example.jsx', 'Default')
-  .addExample('Menu/story/Drilldown.example.jsx', 'Drill Down')
+  .addExample('Menu/story/Default.example.tsx', 'Default')
+  .addExample('Menu/story/Drilldown.example.tsx', 'Drill Down')
 
 page.connect(menuItemStory.chapter)

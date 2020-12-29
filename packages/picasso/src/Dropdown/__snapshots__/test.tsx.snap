@@ -57,18 +57,18 @@ exports[`Dropdown should render menu 1`] = `
             >
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="0"
               >
                 <div
-                  class="Container-flex Container-column MenuItem-content"
+                  class="Container-flex Container-column PicassoMenuItem-content"
                 >
                   <div
                     class="Container-centerAlignItems Container-flex"
                   >
                     <span
-                      class="MenuItem-stringContent"
+                      class="PicassoMenuItem-stringContent"
                     >
                       Item1
                     </span>
@@ -77,18 +77,18 @@ exports[`Dropdown should render menu 1`] = `
               </li>
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="-1"
               >
                 <div
-                  class="Container-flex Container-column MenuItem-content"
+                  class="Container-flex Container-column PicassoMenuItem-content"
                 >
                   <div
                     class="Container-centerAlignItems Container-flex"
                   >
                     <span
-                      class="MenuItem-stringContent"
+                      class="PicassoMenuItem-stringContent"
                     >
                       Item2
                     </span>
@@ -97,18 +97,18 @@ exports[`Dropdown should render menu 1`] = `
               </li>
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="-1"
               >
                 <div
-                  class="Container-flex Container-column MenuItem-content"
+                  class="Container-flex Container-column PicassoMenuItem-content"
                 >
                   <div
                     class="Container-centerAlignItems Container-flex"
                   >
                     <span
-                      class="MenuItem-stringContent"
+                      class="PicassoMenuItem-stringContent"
                     >
                       Item3
                     </span>
@@ -164,18 +164,18 @@ exports[`Dropdown should render menu with focus 1`] = `
             >
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-focusVisible Mui-focusVisible"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-focusVisible Mui-focusVisible"
                 role="menuitem"
                 tabindex="0"
               >
                 <div
-                  class="Container-flex Container-column MenuItem-content"
+                  class="Container-flex Container-column PicassoMenuItem-content"
                 >
                   <div
                     class="Container-centerAlignItems Container-flex"
                   >
                     <span
-                      class="MenuItem-stringContent"
+                      class="PicassoMenuItem-stringContent"
                     >
                       Item1
                     </span>
@@ -184,18 +184,18 @@ exports[`Dropdown should render menu with focus 1`] = `
               </li>
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="-1"
               >
                 <div
-                  class="Container-flex Container-column MenuItem-content"
+                  class="Container-flex Container-column PicassoMenuItem-content"
                 >
                   <div
                     class="Container-centerAlignItems Container-flex"
                   >
                     <span
-                      class="MenuItem-stringContent"
+                      class="PicassoMenuItem-stringContent"
                     >
                       Item2
                     </span>
@@ -204,18 +204,18 @@ exports[`Dropdown should render menu with focus 1`] = `
               </li>
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="-1"
               >
                 <div
-                  class="Container-flex Container-column MenuItem-content"
+                  class="Container-flex Container-column PicassoMenuItem-content"
                 >
                   <div
                     class="Container-centerAlignItems Container-flex"
                   >
                     <span
-                      class="MenuItem-stringContent"
+                      class="PicassoMenuItem-stringContent"
                     >
                       Item3
                     </span>

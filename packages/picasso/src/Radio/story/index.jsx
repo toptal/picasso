@@ -26,7 +26,7 @@ page
 
 page
   .createChapter()
-  .addExample('Radio/story/Default.example.jsx', {
+  .addExample('Radio/story/Default.example.tsx', {
     title: 'Default',
     effect: async (testPage, makeScreenshot) => {
       await testPage.hover('[data-testid="trigger"]')
@@ -39,14 +39,14 @@ page
       await makeScreenshot()
     }
   })
-  .addExample('Radio/story/Checked.example.jsx', 'Checked')
-  .addExample('Radio/story/Disabled.example.jsx', 'Disabled')
+  .addExample('Radio/story/Checked.example.tsx', 'Checked')
+  .addExample('Radio/story/Disabled.example.tsx', 'Disabled')
   .addExample(
-    'Radio/story/RadioGroupVertical.example.jsx',
+    'Radio/story/RadioGroupVertical.example.tsx',
     'Radio group vertical'
   )
   .addExample(
-    'Radio/story/RadioGroupHorizontal.example.jsx',
+    'Radio/story/RadioGroupHorizontal.example.tsx',
     'Radio group horizontal'
   )
-  .addExample('Radio/story/CustomLabel.example.jsx', 'Custom label')
+  .addExample('Radio/story/CustomLabel.example.tsx', 'Custom label')

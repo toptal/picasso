@@ -12,6 +12,6 @@ page
 
 page
   .createChapter()
-  .addExample('Stepper/story/Default.example.jsx', 'Default')
-  .addExample('Stepper/story/Variants.example.jsx', 'Variants')
-  .addExample('Stepper/story/FullWidth.example.jsx', 'Full width')
+  .addExample('Stepper/story/Default.example.tsx', 'Default')
+  .addExample('Stepper/story/Variants.example.tsx', 'Variants')
+  .addExample('Stepper/story/FullWidth.example.tsx', 'Full width')

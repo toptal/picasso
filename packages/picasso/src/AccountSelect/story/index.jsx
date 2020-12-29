@@ -26,11 +26,11 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('AccountSelect/story/Default.example.jsx', {
+  .addExample('AccountSelect/story/Default.example.tsx', {
     title: 'Default',
     waitUntilImagesLoaded: true
   })
-  .addExample('AccountSelect/story/Page.example.jsx', {
+  .addExample('AccountSelect/story/Page.example.tsx', {
     title: 'Select Account Page',
     waitUntilImagesLoaded: true
   })

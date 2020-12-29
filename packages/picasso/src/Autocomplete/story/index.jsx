@@ -47,8 +47,8 @@ if needed.
 \`\`\`
     `
   )
-  .addExample('Autocomplete/story/Default.example.jsx', 'Default')
-  .addExample('Autocomplete/story/OtherOption.example.jsx', {
+  .addExample('Autocomplete/story/Default.example.tsx', 'Default')
+  .addExample('Autocomplete/story/OtherOption.example.tsx', {
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
       you can set \`showOtherOption={true}\` prop to allow also this new item to appear in the suggestions list. Also,
@@ -56,15 +56,15 @@ if needed.
       \`onOtherOptionSelect\` event handler.`
   }) // picasso-skip-visuals
   .addExample(
-    'Autocomplete/story/InitialSetValue.example.jsx',
+    'Autocomplete/story/InitialSetValue.example.tsx',
     'Initially set value'
   )
   .addExample(
-    'Autocomplete/story/Controlled.example.jsx',
+    'Autocomplete/story/Controlled.example.tsx',
     'Controlled selection'
   )
-  .addExample('Autocomplete/story/FullWidth.example.jsx', 'Full width')
-  .addExample('Autocomplete/story/MenuWidth.example.jsx', {
+  .addExample('Autocomplete/story/FullWidth.example.tsx', 'Full width')
+  .addExample('Autocomplete/story/MenuWidth.example.tsx', {
     title: 'Menu width',
     effect: async (testPage, makeScreenshot) => {
       const hideInputCaretStyle = `
@@ -82,10 +82,10 @@ if needed.
       })
     }
   })
-  .addExample('Autocomplete/story/Loading.example.jsx', 'Loading')
-  .addExample('Autocomplete/story/Error.example.jsx', 'Error')
-  .addExample('Autocomplete/story/WithIcons.example.jsx', 'With Icon')
-  .addExample('Autocomplete/story/WithDescription.example.jsx', {
+  .addExample('Autocomplete/story/Loading.example.tsx', 'Loading')
+  .addExample('Autocomplete/story/Error.example.tsx', 'Error')
+  .addExample('Autocomplete/story/WithIcons.example.tsx', 'With Icon')
+  .addExample('Autocomplete/story/WithDescription.example.tsx', {
     title: 'With Description',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('input')
@@ -99,7 +99,7 @@ if needed.
     'Autocomplete/story/CustomOptionRenderer.example.tsx',
     'Custom options rendering'
   )
-  .addExample('Autocomplete/story/DynamicOptions.example.jsx', {
+  .addExample('Autocomplete/story/DynamicOptions.example.tsx', {
     title: 'Dynamic options',
     description: `If you need to obtain the list of options dynamically from a server.
 It is good practice to set debouncing and a minimum number of chars to limit the number of requests you send to the server.
@@ -111,7 +111,7 @@ Start typing "Mongolia" letter by letter to see this example in action.`
 when it makes sense to have autofill enabled.
     `
   }) // picasso-skip-visuals
-  .addExample('Autocomplete/story/PoweredByGoogle.example.jsx', {
+  .addExample('Autocomplete/story/PoweredByGoogle.example.tsx', {
     title: 'Powered By Google label',
     description:
       'There are situations when we use options in the Autocomplete component from the Google API and ' +

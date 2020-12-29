@@ -5,9 +5,9 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('Circular Button', 'Circular Style Button.')
-    .addExample('ButtonCircular/story/Default.example.jsx', 'Default')
-    .addExample('ButtonCircular/story/Variants.example.jsx', 'Variants')
-    .addExample('ButtonCircular/story/States.example.jsx', 'States')
+    .addExample('ButtonCircular/story/Default.example.tsx', 'Default')
+    .addExample('ButtonCircular/story/Variants.example.tsx', 'Variants')
+    .addExample('ButtonCircular/story/States.example.tsx', 'States')
 )
 
 const componentDocs = PicassoBook.createComponentDocs(

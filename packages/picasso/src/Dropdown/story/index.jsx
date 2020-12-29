@@ -14,7 +14,7 @@ page
 
 page
   .createChapter()
-  .addExample('Dropdown/story/Default.example.jsx', {
+  .addExample('Dropdown/story/Default.example.tsx', {
     title: 'Default',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[data-testid="trigger"]')
@@ -24,14 +24,14 @@ page
       })
     }
   })
-  .addExample('Dropdown/story/ButtonDropdown.example.jsx', 'Button Anchor')
+  .addExample('Dropdown/story/ButtonDropdown.example.tsx', 'Button Anchor')
   .addExample(
-    'Dropdown/story/PositionsAndOffsets.example.jsx',
+    'Dropdown/story/PositionsAndOffsets.example.tsx',
     'Positions & Offsets'
   )
-  .addExample('Dropdown/story/CustomTrigger.example.jsx', {
+  .addExample('Dropdown/story/CustomTrigger.example.tsx', {
     title: 'Custom Anchor',
     waitUntilImagesLoaded: true
   })
-  .addExample('Dropdown/story/CustomContent.example.jsx', 'Custom Content')
-  .addExample('Dropdown/story/SmallArrow.example.jsx', 'Small Arrow Dropdown')
+  .addExample('Dropdown/story/CustomContent.example.tsx', 'Custom Content')
+  .addExample('Dropdown/story/SmallArrow.example.tsx', 'Small Arrow Dropdown')

@@ -18,6 +18,6 @@ page
 
 page
   .createChapter()
-  .addExample('Helpbox/story/Default.example.jsx', 'Default')
-  .addExample('Helpbox/story/Actions.example.jsx', 'With actions')
-  .addExample('Helpbox/story/Closeable.example.jsx', 'Closeable')
+  .addExample('Helpbox/story/Default.example.tsx', 'Default')
+  .addExample('Helpbox/story/Actions.example.tsx', 'With actions')
+  .addExample('Helpbox/story/Closeable.example.tsx', 'Closeable')

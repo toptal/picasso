@@ -13,18 +13,18 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light Autocomplete-option Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Autocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             Belarus
           </span>
@@ -34,18 +34,18 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             Croatia
           </span>
@@ -55,18 +55,18 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             Lithuania
           </span>
@@ -76,18 +76,18 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             Slovakia
           </span>
@@ -97,18 +97,18 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             Ukraine
           </span>

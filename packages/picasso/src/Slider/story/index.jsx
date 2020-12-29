@@ -12,18 +12,18 @@ page
 
 page
   .createChapter()
-  .addExample('Slider/story/Default.example.jsx', 'Default')
-  .addExample('Slider/story/InitialValue.example.jsx', 'Initial value')
-  .addExample('Slider/story/Controlled.example.jsx', 'Controlled value')
+  .addExample('Slider/story/Default.example.tsx', 'Default')
+  .addExample('Slider/story/InitialValue.example.tsx', 'Initial value')
+  .addExample('Slider/story/Controlled.example.tsx', 'Controlled value')
   .addExample('Slider/story/Tooltip.example.tsx', 'Tooltip')
-  .addExample('Slider/story/Range.example.jsx', 'Range')
-  .addExample('Slider/story/Marks.example.jsx', 'Marks')
+  .addExample('Slider/story/Range.example.tsx', 'Range')
+  .addExample('Slider/story/Marks.example.tsx', 'Marks')
   .addExample('Slider/story/CustomTooltip.example.tsx', 'Custom Tooltip') // picasso-skip-visuals
   .addExample(
-    'Slider/story/HideThumb.example.jsx',
+    'Slider/story/HideThumb.example.tsx',
     'Hide thumb when value is null or undefined'
   )
   .addExample(
-    'Slider/story/DisableTrackHighlight.example.jsx',
+    'Slider/story/DisableTrackHighlight.example.tsx',
     'Disable track highlight'
   )

@@ -67,22 +67,22 @@ exports[`YearSelect render in descending order 1`] = `
     <li
       aria-disabled="false"
       aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="2005"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
           />
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             2005
           </span>
@@ -92,22 +92,22 @@ exports[`YearSelect render in descending order 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2004"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
           />
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             2004
           </span>
@@ -117,22 +117,22 @@ exports[`YearSelect render in descending order 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2003"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
           />
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             2003
           </span>
@@ -142,22 +142,22 @@ exports[`YearSelect render in descending order 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2002"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
           />
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             2002
           </span>
@@ -167,22 +167,22 @@ exports[`YearSelect render in descending order 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2001"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
           class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            class="Container-rightxsmallMargin Container-flex Container-inline PicassoMenuItem-iconContainer"
           />
           <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
           >
             2001
           </span>

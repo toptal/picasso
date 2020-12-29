@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from 'react'
 import { Container, Form, Select } from '@toptal/picasso'
 
 const Example = () => {
-  const [value, setValue] = useState<string>()
+  const [value, setValue] = useState<string>('')
 
   const handleChange = (
     event: ChangeEvent<{
