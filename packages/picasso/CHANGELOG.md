@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/toptal/picasso/compare/@toptal/picasso@5.0.0...@toptal/picasso@5.0.1) (2020-12-29)
+
+
+### Bug Fixes
+
+* **PageArticle:** reference to picasso package ([#1816](https://github.com/toptal/picasso/issues/1816)) ([dad13d5](https://github.com/toptal/picasso/commit/dad13d504afd29699fd9a6df85625edb35cf2af1))
+
+
+
+
+
 # [5.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.117.1...@toptal/picasso@5.0.0) (2020-12-22)
 
 ## Introduction to BASE 2.0
