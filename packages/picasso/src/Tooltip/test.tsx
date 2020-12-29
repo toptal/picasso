@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { fireEvent } from '@testing-library/react'
 import { render } from '@toptal/picasso/test-utils'
-import { Button } from '@toptal/picasso'
 import { ClickAwayListener, isPointerDevice } from '@toptal/picasso/utils'
 import { act } from 'react-dom/test-utils'
 
+import Button from '../Button'
 import Tooltip from './Tooltip'
 
 const mockedIsPointerDevice = isPointerDevice as jest.Mock

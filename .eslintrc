@@ -24,6 +24,38 @@
       "rules": {
         "max-lines": 0
       }
+    },
+    // don't allow picasso external imports inside picasso
+    {
+      "files": ["packages/picasso/src/**"],
+      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "rules": {
+        "no-restricted-imports": ["error", "@toptal/picasso"]
+      }
+    },
+    // don't allow picasso-lab external imports inside picasso-lab
+    {
+      "files": ["packages/picasso-lab/src/**"],
+      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "rules": {
+        "no-restricted-imports": ["error", "@toptal/picasso-lab"]
+      }
+    },
+    // don't allow picasso-forms external imports inside picasso-forms
+    {
+      "files": ["packages/picasso-forms/src/**"],
+      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "rules": {
+        "no-restricted-imports": ["error", "@toptal/picasso-forms"]
+      }
+    },
+    // don't allow picasso-charts external imports inside picasso-charts
+    {
+      "files": ["packages/picasso-charts/src/**"],
+      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "rules": {
+        "no-restricted-imports": ["error", "@toptal/picasso-charts"]
+      }
     }
   ]
 }

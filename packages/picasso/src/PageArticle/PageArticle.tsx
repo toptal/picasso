@@ -2,8 +2,8 @@ import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
-import { Container } from '@toptal/picasso'
 
+import Container from '../Container'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
