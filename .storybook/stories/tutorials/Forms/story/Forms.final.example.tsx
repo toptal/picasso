@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Grid, Checkbox, Select, Input, Radio, Form } from '@toptal/picasso'
 
 const Example = () => (

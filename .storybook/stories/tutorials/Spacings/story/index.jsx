@@ -22,7 +22,7 @@ with list of candidates in a pipeline.
  * How to layout component
 `
   )
-  .addExample('tutorials/Spacings/story/Spacings.final.example.jsx', {
+  .addExample('tutorials/Spacings/story/Spacings.final.example.tsx', {
     title: 'End result'
   }) // picasso-skip-visuals
 
@@ -48,7 +48,7 @@ use of size types: \`xsmall, small, medium and large\` to get standard spacings.
       title: 'First step: Define Card container'
     }
   )
-  .addExample('tutorials/Spacings/story/Spacings.1.example.jsx', {
+  .addExample('tutorials/Spacings/story/Spacings.1.example.tsx', {
     id: 'spacings-1'
   }) // picasso-skip-visuals
 
@@ -70,7 +70,7 @@ is a basic building block along with \`Grid\`.
       title: 'Second step: Add Card header'
     }
   )
-  .addExample('tutorials/Spacings/story/Spacings.2.example.jsx', {
+  .addExample('tutorials/Spacings/story/Spacings.2.example.tsx', {
     id: 'spacings-2'
   }) // picasso-skip-visuals
 
@@ -97,6 +97,6 @@ And that's it, we have implemented a simple job position card.
       title: 'Third step: Render candidates list'
     }
   )
-  .addExample('tutorials/Spacings/story/Spacings.final.example.jsx', {
+  .addExample('tutorials/Spacings/story/Spacings.final.example.tsx', {
     id: 'spacings-3'
   }) // picasso-skip-visuals
