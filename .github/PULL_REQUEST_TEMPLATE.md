@@ -17,7 +17,6 @@ Describe the changes and motivations for the pull request.
 ### Review
 
 - [ ] Read [CONTRIBUTING.md](https://github.com/toptal/picasso/blob/master/CONTRIBUTING.md) and [Component API principles](https://github.com/toptal/picasso/blob/master/docs/api-principles.md)
-- [ ] Make sure you've converted all `*.example.js/jsx` file into `*.example.ts/tsx` in your PR
 - [ ] Annotate all `props` in component with documentation
 - [ ] Create `examples` for component
 - [ ] Ensure that deployed demo has expected results and good examples
