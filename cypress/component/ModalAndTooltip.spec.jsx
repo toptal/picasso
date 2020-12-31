@@ -5,19 +5,13 @@ import { DatePicker } from '@toptal/picasso-lab'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const ModalDialog = ({
-  open,
-  onClose
-}: {
-  open: boolean
-  onClose: () => void
-}) => {
+const ModalDialog = ({ open, onClose }) => {
   const initialDate = new Date(2020, 10, 10)
   const [datepickerValue, setDatepickerValue] = useState(initialDate)
 
   return (
     <Modal
-      container={() => document.getElementById('modal-container')!}
+      container={() => document.getElementById('modal-container')}
       onBackdropClick={() => console.log('Clicked backdrop..')}
       onClose={onClose}
       onOpen={() => console.log('onOpen()')}
@@ -34,7 +28,7 @@ const ModalDialog = ({
             width='full'
             value={datepickerValue}
             onChange={date => {
-              setDatepickerValue(date as Date)
+              setDatepickerValue(date)
             }}
           />
         </Form.Field>

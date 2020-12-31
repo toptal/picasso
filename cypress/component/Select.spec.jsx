@@ -1,22 +1,17 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState } from 'react'
 import { Select, Form, Container, NumberInput } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const SelectSearchBehaviourExample = () => {
-  const [value, setValue] = useState<string>()
+  const [value, setValue] = useState()
   const [threshold, setTreshold] = useState(4)
 
-  const handleChange = (
-    event: ChangeEvent<{
-      name?: string
-      value: string
-    }>
-  ) => {
+  const handleChange = event => {
     setValue(event.target.value)
   }
 
-  const handleTresholdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTresholdChange = event => {
     setTreshold(parseInt(event.target.value, 10))
   }
 
