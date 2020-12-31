@@ -7,6 +7,7 @@ const Example = () => {
 
   return (
     <Button
+      data-testid='trigger'
       variant='secondary'
       onClick={() =>
         showInfo("That's one small step for a man, one giant leap for mankind.")

@@ -9,6 +9,7 @@ const Example = () => {
     <Container flex>
       <Container right={1}>
         <Button
+          data-testid='error-trigger'
           variant='secondary'
           onClick={() => showError('Some error text is here')}
         >
@@ -17,6 +18,7 @@ const Example = () => {
       </Container>
       <Container right={1}>
         <Button
+          data-testid='success-trigger'
           variant='secondary'
           onClick={() => showSuccess('Success message')}
         >

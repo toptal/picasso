@@ -17,6 +17,7 @@ const Example = () => {
         </Button>
       </Container>
       <Button
+        data-testid='trigger'
         variant='secondary'
         onClick={() => showInfo('The record was edited', <Pencil16 />)}
       >

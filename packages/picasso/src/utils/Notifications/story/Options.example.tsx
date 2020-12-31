@@ -7,6 +7,7 @@ const Example = () => {
 
   return (
     <Button
+      data-testid='trigger'
       variant='secondary'
       onClick={() => {
         showError('Error message with custom options', undefined, {
