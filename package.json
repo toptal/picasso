@@ -9,8 +9,8 @@
   "scripts": {
     "test": "cross-env TZ=UTC jest",
     "test:watch": "cross-env TZ=UTC jest --watch",
-    "cypress": "cross-env NODE_ENV=test cypress run",
-    "cypress:open": "cross-env NODE_ENV=test cypress open",
+    "cypress": "yarn build:package && cross-env NODE_ENV=test cypress run",
+    "cypress:open": "yarn build:package && cross-env NODE_ENV=test cypress open",
     "test-ci": "cross-env TZ=UTC jest --maxWorkers=4 --ci",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
     "test-ci:visual": "./bin/test-visual --ci",
@@ -136,6 +136,5 @@
   },
   "dependencies": {
     "@storybook/react": "^6.2.0-alpha.3"
-  },
-  "sideEffects": false
+  }
 }

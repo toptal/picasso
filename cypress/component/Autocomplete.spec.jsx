@@ -24,19 +24,17 @@ const OPTIONS = [
   { text: 'Ukraine' }
 ]
 
-const filterOptions = (inputValue: string) =>
-  OPTIONS.filter((option: { text: string }) =>
-    isSubstring(inputValue, option.text)
-  )
+const filterOptions = inputValue =>
+  OPTIONS.filter(option => isSubstring(inputValue, option.text))
 
-const loadOptions = (inputValue: string) =>
-  new Promise<typeof OPTIONS>(resolve => {
+const loadOptions = inputValue =>
+  new Promise(resolve => {
     setTimeout(() => resolve(filterOptions(inputValue)), 1000)
   })
 
 export const StaticOptionsAutocompleteExample = () => {
   const [value, setValue] = useState('')
-  const [options, setOptions] = useState<typeof OPTIONS>([])
+  const [options, setOptions] = useState([])
 
   return (
     <TestingPicasso>
@@ -59,11 +57,11 @@ export const StaticOptionsAutocompleteExample = () => {
 
 export const DynamicOptionsAutocompleteExample = () => {
   const [value, setValue] = useState('')
-  const [options, setOptions] = useState<typeof OPTIONS>([])
+  const [options, setOptions] = useState([])
   const [loading, setLoading] = useState(false)
 
   const handleChangeDebounced = useCallback(
-    debounce(async (inputValue: string) => {
+    debounce(async inputValue => {
       const newOptions = await loadOptions(inputValue.trim().toLowerCase())
 
       setLoading(false)
@@ -72,10 +70,7 @@ export const DynamicOptionsAutocompleteExample = () => {
     []
   )
 
-  const handleChange = (
-    inputValue: string,
-    changedOptions: { isSelected: boolean }
-  ) => {
+  const handleChange = (inputValue, changedOptions) => {
     setValue(inputValue)
 
     if (changedOptions.isSelected) {

@@ -5,24 +5,24 @@ import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 // the emulation of the api call
-const responseWithDelay = async (response: any) =>
+const responseWithDelay = async response =>
   new Promise(resolve => setTimeout(() => resolve(response), 2000))
 
 const api = {
-  successSubmit: (values: any) => {
+  successSubmit: values => {
     // do something with received values
     console.log('Success submit. Form values:', values)
 
     return responseWithDelay(undefined)
   },
-  submitWithInlineError: (values: any) => {
+  submitWithInlineError: values => {
     console.log('Submit with Inline Errors. Form values:', values)
 
     return responseWithDelay({
       inlineErrorName: 'Unknown first name'
     })
   },
-  submitWithCustomNotificationError: (values: any) => {
+  submitWithCustomNotificationError: values => {
     console.log('Submit with Custom Notification Errors. Form values:', values)
 
     return responseWithDelay('Custom Notification Message!')
@@ -31,15 +31,15 @@ const api = {
 
 const FormExample = () => {
   const handleSuccessSubmit = useCallback(
-    (values: any) => api.successSubmit(values),
+    values => api.successSubmit(values),
     []
   )
   const handleSubmitWithInlineError = useCallback(
-    (values: any) => api.submitWithInlineError(values),
+    values => api.submitWithInlineError(values),
     []
   )
   const handleSubmitWithCustomNotificationError = useCallback(
-    (values: any) => api.submitWithCustomNotificationError(values),
+    values => api.submitWithCustomNotificationError(values),
     []
   )
 
