@@ -14,16 +14,12 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('TreeView/story/Default.example.tsx', {
-    title: 'Default',
-    delay: 100,
-    isFullScreen: true
+    title: 'Default'
   })
   .addExample('TreeView/story/Selected.example.tsx', {
     title: 'With selected node',
     description:
-      "To set the particular node selected, you need to set `node`'s attribute *selected* to `true`. Also there is additional attribute `selectedOffset` for adding an scroll offset for particular node",
-    delay: 100,
-    isFullScreen: true
+      "To set the particular node selected, you need to set `node`'s attribute *selected* to `true`. Also there is additional attribute `selectedOffset` for adding an scroll offset for particular node"
   })
   .addExample('TreeView/story/Modal.example.tsx', {
     title: 'With Modal',
@@ -36,12 +32,8 @@ page
     }
   })
   .addExample('TreeView/story/CustomZoom.example.tsx', {
-    title: 'Custom Zoom',
-    delay: 100,
-    isFullScreen: true
+    title: 'Custom Zoom'
   })
   .addExample('TreeView/story/AvatarSize.example.tsx', {
-    title: 'Avatar Size',
-    delay: 100,
-    isFullScreen: true
+    title: 'Avatar Size'
   })
