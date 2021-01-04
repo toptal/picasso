@@ -6,14 +6,14 @@ exports[`Dropdown default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Dropdown-root"
+      class="PicassoDropdown-root"
     >
       <div
-        class="Dropdown-anchor"
+        class="PicassoDropdown-anchor"
       >
         Open Dropdown 
         <span
-          class="DropdownArrow-root DropdownArrow-medium"
+          class="PicassoDropdownArrow-root PicassoDropdownArrow-medium"
         />
       </div>
     </div>
@@ -28,26 +28,26 @@ exports[`Dropdown should render menu 1`] = `
       class="Picasso-root"
     >
       <div
-        class="Dropdown-root"
+        class="PicassoDropdown-root"
       >
         <div
-          class="Dropdown-anchor"
+          class="PicassoDropdown-anchor"
         >
           Open Dropdown 
           <span
-            class="DropdownArrow-root DropdownArrow-medium"
+            class="PicassoDropdownArrow-root PicassoDropdownArrow-medium"
           />
         </div>
       </div>
       <div
-        class="PicassoPopper-root Dropdown-popper"
+        class="PicassoPopper-root PicassoDropdown-popper"
         role="tooltip"
         style="position: absolute; top: 0px; left: 0px;"
         x-placement="bottom-end"
       >
         <div>
           <div
-            class="MuiPaper-root Dropdown-content MuiPaper-elevation2"
+            class="MuiPaper-root PicassoDropdown-content MuiPaper-elevation2"
             style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
             <ul
@@ -62,10 +62,10 @@ exports[`Dropdown should render menu 1`] = `
                 tabindex="0"
               >
                 <div
-                  class="Container-flex Container-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                 >
                   <div
-                    class="Container-centerAlignItems Container-flex"
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                   >
                     <span
                       class="PicassoMenuItem-stringContent"
@@ -82,10 +82,10 @@ exports[`Dropdown should render menu 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="Container-flex Container-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                 >
                   <div
-                    class="Container-centerAlignItems Container-flex"
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                   >
                     <span
                       class="PicassoMenuItem-stringContent"
@@ -102,10 +102,10 @@ exports[`Dropdown should render menu 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="Container-flex Container-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                 >
                   <div
-                    class="Container-centerAlignItems Container-flex"
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                   >
                     <span
                       class="PicassoMenuItem-stringContent"
@@ -134,27 +134,27 @@ exports[`Dropdown should render menu with focus 1`] = `
         class=""
       >
         <div
-          class="Dropdown-root"
+          class="PicassoDropdown-root"
         >
           <div
-            class="Dropdown-anchor"
+            class="PicassoDropdown-anchor"
           >
             Open Dropdown 
             <span
-              class="DropdownArrow-root DropdownArrow-medium"
+              class="PicassoDropdownArrow-root PicassoDropdownArrow-medium"
             />
           </div>
         </div>
       </div>
       <div
-        class="PicassoPopper-root Dropdown-popper"
+        class="PicassoPopper-root PicassoDropdown-popper"
         role="tooltip"
         style="position: absolute; top: 0px; left: 0px; transform: translate3d(NaNpx, NaNpx, 0); will-change: transform;"
         x-placement="bottom-end"
       >
         <div>
           <div
-            class="MuiPaper-root Dropdown-content MuiPaper-elevation2"
+            class="MuiPaper-root PicassoDropdown-content MuiPaper-elevation2"
             style="opacity: 1; transform: none; transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
             <ul
@@ -169,10 +169,10 @@ exports[`Dropdown should render menu with focus 1`] = `
                 tabindex="0"
               >
                 <div
-                  class="Container-flex Container-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                 >
                   <div
-                    class="Container-centerAlignItems Container-flex"
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                   >
                     <span
                       class="PicassoMenuItem-stringContent"
@@ -189,10 +189,10 @@ exports[`Dropdown should render menu with focus 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="Container-flex Container-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                 >
                   <div
-                    class="Container-centerAlignItems Container-flex"
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                   >
                     <span
                       class="PicassoMenuItem-stringContent"
@@ -209,10 +209,10 @@ exports[`Dropdown should render menu with focus 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="Container-flex Container-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                 >
                   <div
-                    class="Container-centerAlignItems Container-flex"
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                   >
                     <span
                       class="PicassoMenuItem-stringContent"
