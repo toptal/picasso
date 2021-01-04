@@ -65,13 +65,16 @@ const Actions: FunctionComponent = ({ children }) => (
 
 export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
   props,
-  ref
+  ref,
+  ...rest
 ) {
   const { children } = props
   const classes = useStyles(props)
 
   return (
     <Container
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       ref={ref}
       className={cx(classes.root, {
         [classes.rightPadding]: props.rightPadding
