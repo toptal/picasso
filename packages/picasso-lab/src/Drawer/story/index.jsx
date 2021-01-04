@@ -49,6 +49,6 @@ page
     }
   })
   .addExample(
-    'Drawer/story/DrawerAndNotification.example.jsx',
+    'Drawer/story/DrawerAndNotification.example.tsx',
     'With notification'
   ) // picasso-skip-visuals

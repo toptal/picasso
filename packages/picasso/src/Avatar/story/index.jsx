@@ -19,19 +19,19 @@ page
 
 page
   .createChapter()
-  .addExample('Avatar/story/Default.example.jsx', {
+  .addExample('Avatar/story/Default.example.tsx', {
     title: 'Default',
     waitUntilImagesLoaded: true
   })
-  .addExample('Avatar/story/Variants.example.jsx', {
+  .addExample('Avatar/story/Variants.example.tsx', {
     title: 'Variants',
     waitUntilImagesLoaded: true
   })
-  .addExample('Avatar/story/Sizes.example.jsx', {
+  .addExample('Avatar/story/Sizes.example.tsx', {
     title: 'Sizes',
     waitUntilImagesLoaded: true
   })
-  .addExample('Avatar/story/LongName.example.jsx', {
+  .addExample('Avatar/story/LongName.example.tsx', {
     title: 'Long Name',
     waitUntilImagesLoaded: true
   })

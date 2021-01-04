@@ -11,11 +11,11 @@ page
 
 page
   .createChapter()
-  .addExample('Checkbox/story/Uncontrolled.example.jsx', {
+  .addExample('Checkbox/story/Uncontrolled.example.tsx', {
     title: 'Uncontrolled',
     description: 'Can control its state by itself'
   })
-  .addExample('Checkbox/story/Controlled.example.jsx', {
+  .addExample('Checkbox/story/Controlled.example.tsx', {
     title: 'Controlled',
     description: 'Stateless checkbox, state should be controlled using prop',
     effect: async (testPage, makeScreenshot) => {
@@ -38,16 +38,16 @@ page
     }
   })
   .addExample(
-    'Checkbox/story/CheckboxGroupVertical.example.jsx',
+    'Checkbox/story/CheckboxGroupVertical.example.tsx',
     'Checkbox group vertical'
   )
   .addExample(
-    'Checkbox/story/CheckboxGroupHorizontal.example.jsx',
+    'Checkbox/story/CheckboxGroupHorizontal.example.tsx',
     'Checkbox group horizontal'
   )
-  .addExample('Checkbox/story/Disabled.example.jsx', 'Disabled')
-  .addExample('Checkbox/story/Indeterminate.example.jsx', {
+  .addExample('Checkbox/story/Disabled.example.tsx', 'Disabled')
+  .addExample('Checkbox/story/Indeterminate.example.tsx', {
     title: 'Indeterminate'
   })
-  .addExample('Checkbox/story/Required.example.jsx', 'Required')
+  .addExample('Checkbox/story/Required.example.tsx', 'Required')
   .addExample('Checkbox/story/CustomLabel.example.tsx', 'Custom label')

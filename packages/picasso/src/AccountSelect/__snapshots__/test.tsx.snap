@@ -12,58 +12,58 @@ exports[`AccountSelect default render 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light AccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="Container-flex Container-column PicassoMenuItem-content"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="Container-centerAlignItems Container-flex"
           >
             <a
-              class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoAccountSelect-accountLink MuiTypography-colorPrimary"
+              class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
             >
               <div
-                class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
               >
                 <div
-                  class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+                  class="Container-flexStartAlignItems Container-flex UserBadge-root"
                 >
                   <div
-                    class="PicassoAvatar-root PicassoAvatar-xsmall"
+                    class="Avatar-root Avatar-xsmall"
                   >
                     <div
-                      class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+                      class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
                     />
                     <p
-                      class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+                      class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
                     >
                       PL
                     </p>
                   </div>
                   <div
-                    class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+                    class="Container-flex Container-column UserBadge-infoContainer"
                   >
                     <div
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                      class="Container-centerAlignItems Container-flex"
                     >
                       <h4
-                        class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                        class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
                       >
                         Phil Leif 1
                       </h4>
                     </div>
                     <p
-                      class="MuiTypography-root PicassoTypography-bodySmall MuiTypography-body1"
+                      class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
                     >
                       Account Owner at Stowaway Cosmetics
                     </p>
                   </div>
                 </div>
                 <svg
-                  class="PicassoSvgChevronRight16-root PicassoSvgChevronRight16-darkGrey"
+                  class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -78,59 +78,59 @@ exports[`AccountSelect default render 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light AccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="Container-flex Container-column PicassoMenuItem-content"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="Container-centerAlignItems Container-flex"
           >
             <a
-              class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoAccountSelect-accountLink MuiTypography-colorPrimary"
+              class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
               href="#"
             >
               <div
-                class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
               >
                 <div
-                  class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+                  class="Container-flexStartAlignItems Container-flex UserBadge-root"
                 >
                   <div
-                    class="PicassoAvatar-root PicassoAvatar-xsmall"
+                    class="Avatar-root Avatar-xsmall"
                   >
                     <div
-                      class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+                      class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
                     />
                     <p
-                      class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+                      class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
                     >
                       PL
                     </p>
                   </div>
                   <div
-                    class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+                    class="Container-flex Container-column UserBadge-infoContainer"
                   >
                     <div
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                      class="Container-centerAlignItems Container-flex"
                     >
                       <h4
-                        class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                        class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
                       >
                         Phil Leif 2
                       </h4>
                     </div>
                     <p
-                      class="MuiTypography-root PicassoTypography-bodySmall MuiTypography-body1"
+                      class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
                     >
                       Company Representative at Marketing Works
                     </p>
                   </div>
                 </div>
                 <svg
-                  class="PicassoSvgChevronRight16-root PicassoSvgChevronRight16-darkGrey"
+                  class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -145,56 +145,56 @@ exports[`AccountSelect default render 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light AccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="Container-flex Container-column PicassoMenuItem-content"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="Container-centerAlignItems Container-flex"
           >
             <a
-              class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoAccountSelect-accountLink MuiTypography-colorPrimary"
+              class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
               href="#"
             >
               <div
-                class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
               >
                 <div
-                  class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+                  class="Container-flexStartAlignItems Container-flex UserBadge-root"
                 >
                   <div
-                    class="PicassoAvatar-root PicassoAvatar-xsmall"
+                    class="Avatar-root Avatar-xsmall"
                   >
                     <img
                       alt="Phil Leif 3"
-                      class="PicassoImage-root PicassoAvatar-image PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+                      class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
                       src="./jacqueline-with-flowers-1954-square.jpg"
                     />
                   </div>
                   <div
-                    class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+                    class="Container-flex Container-column UserBadge-infoContainer"
                   >
                     <div
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                      class="Container-centerAlignItems Container-flex"
                     >
                       <h4
-                        class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                        class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
                       >
                         Phil Leif 3
                       </h4>
                     </div>
                     <p
-                      class="MuiTypography-root PicassoTypography-bodySmall MuiTypography-body1"
+                      class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
                     >
                       Talent
                     </p>
                   </div>
                 </div>
                 <svg
-                  class="PicassoSvgChevronRight16-root PicassoSvgChevronRight16-darkGrey"
+                  class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >

@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from 'react'
 import { Select, Form, Container, NumberInput } from '@toptal/picasso'
 
 const SelectSearchBehaviourExample = () => {
-  const [value, setValue] = useState<string>()
+  const [value, setValue] = useState<string>('')
   const [threshold, setTreshold] = useState(4)
 
   const handleChange = (

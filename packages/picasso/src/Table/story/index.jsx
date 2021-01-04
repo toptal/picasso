@@ -30,14 +30,14 @@ page
 
 page
   .createChapter()
-  .addExample('Table/story/Default.example.jsx', 'Plain table')
-  .addExample('Table/story/Select.example.jsx', 'Selectable table')
+  .addExample('Table/story/Default.example.tsx', 'Plain table')
+  .addExample('Table/story/Select.example.tsx', 'Selectable table')
   .addExample(
-    'Table/story/SectionHeader.example.jsx',
+    'Table/story/SectionHeader.example.tsx',
     'Table with section header'
   )
   .addExample(
-    'Table/story/MultipleSectionHeader.example.jsx',
+    'Table/story/MultipleSectionHeader.example.tsx',
     'Table with multiple sections'
   )
   .addExample('Table/story/ExpandableRows.example.tsx', {

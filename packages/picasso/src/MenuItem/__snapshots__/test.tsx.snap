@@ -12,10 +12,10 @@ exports[`MenuItem default render 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="Container-centerAlignItems Container-flex"
         >
           <span
             class="PicassoMenuItem-stringContent"
@@ -41,10 +41,10 @@ exports[`MenuItem has chevron if has nested menu 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="Container-centerAlignItems Container-flex"
         >
           <span
             class="PicassoMenuItem-stringContent"
@@ -52,10 +52,10 @@ exports[`MenuItem has chevron if has nested menu 1`] = `
             Item
           </span>
           <div
-            class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
+            class="Container-leftxsmallMargin Container-flex Container-inline"
           >
             <svg
-              class="PicassoSvgChevronMinor16-root"
+              class="SvgChevronMinor16-root"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >

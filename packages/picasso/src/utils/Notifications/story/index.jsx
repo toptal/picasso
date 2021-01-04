@@ -50,13 +50,60 @@ Each of them has this list of props:
           description: 'Options of the single notification.'
         }
       ])
-      .addExample('utils/Notifications/story/Default.example.jsx', 'Default') // picasso-skip-visuals
-      .addExample('utils/Notifications/story/Variants.example.jsx', 'Variants') // picasso-skip-visuals
+      .addExample('utils/Notifications/story/Default.example.tsx', {
+        title: 'Default',
+        effect: async (testPage, makeScreenshot) => {
+          testPage.click('[data-testid="trigger"]')
+          await testPage.waitFor(100)
+          await makeScreenshot({
+            isFullScreen: true
+          })
+        }
+      })
+      .addExample('utils/Notifications/story/Variants.example.tsx', {
+        title: 'Variants',
+        effect: async (testPage, makeScreenshot) => {
+          await testPage.click('[data-testid="error-trigger"]')
+          await testPage.waitFor(100)
+
+          await testPage.click('[data-testid="success-trigger"]')
+          await testPage.waitFor(100)
+
+          await makeScreenshot({
+            isFullScreen: true
+          })
+        }
+      })
       .addExample(
-        'utils/Notifications/story/GeneralNotifications.example.jsx',
-        'General Notifications'
-      ) // picasso-skip-visuals
-      .addExample('utils/Notifications/story/Options.example.jsx', 'Options') // picasso-skip-visuals
+        'utils/Notifications/story/GeneralNotifications.example.tsx',
+        {
+          title: 'General Notifications',
+          effect: async (testPage, makeScreenshot) => {
+            testPage.click('[data-testid="trigger"]')
+            await testPage.waitFor(100)
+            await makeScreenshot({
+              isFullScreen: true
+            })
+          }
+        }
+      )
+      .addExample('utils/Notifications/story/Options.example.tsx', {
+        title: 'Options',
+        effect: async (testPage, makeScreenshot) => {
+          testPage.click('[data-testid="trigger"]')
+          await testPage.waitFor(100)
+          await makeScreenshot({
+            isFullScreen: true
+          })
+
+          await testPage.waitFor(1000)
+
+          // by now notification should disappear
+          await makeScreenshot({
+            isFullScreen: true
+          })
+        }
+      })
       .addTextSection(
         `
 Additionally for custom notifications 'useNotifications' hook is providing the special methods:
@@ -103,7 +150,7 @@ With the list of props:
           description: 'Options of the single notification.'
         }
       ])
-      .addExample('utils/Notifications/story/Custom.example.jsx', 'Custom') // picasso-skip-visuals
+      .addExample('utils/Notifications/story/Custom.example.tsx', 'Custom') // picasso-skip-visuals
 )
 
 export default {

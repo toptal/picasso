@@ -6,28 +6,28 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
+      class="Container-flex Container-column Sidebar-root Sidebar-light"
     >
       <div
         class="Sidebar-spacer"
       />
       <ul
-        class="MuiList-root Menu-root PicassoSidebarMenu-root"
+        class="MuiList-root Menu-root SidebarMenu-root"
         role="menu"
         tabindex="-1"
       >
         <div
-          class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersNone Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+          class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersNone Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
         >
           <div
             aria-disabled="false"
             aria-expanded="true"
-            class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary PicassoSidebarItem-collapsibleWrapper PicassoSidebarItem-collapsibleWrapper Mui-expanded"
+            class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary PicassoSidebarItem-collapsibleWrapper Mui-expanded"
             role="button"
             tabindex="0"
           >
             <div
-              class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoSidebarItem-content PicassoSidebarItem-content Mui-expanded"
+              class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content makeStyles-content PicassoSidebarItem-content Mui-expanded"
             >
               <li
                 aria-disabled="false"
@@ -36,19 +36,19 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 tabindex="0"
               >
                 <div
-                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                  class="Container-flex Container-column PicassoMenuItem-content"
                 >
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                    class="Container-centerAlignItems Container-flex"
                   >
                     <div
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItem-noWrap"
+                      class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
+                        class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
                       >
                         <p
-                          class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                          class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
                         >
                           Test item
                         </p>
@@ -58,7 +58,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 </div>
               </li>
               <svg
-                class="PicassoSvgArrowDownMinor16-root PicassoSidebarItem-expandIcon PicassoSidebarItem-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                class="SvgArrowDownMinor16-root PicassoSidebarItem-expandIcon PicassoSidebarItem-lightExpandIcon makeStyles-expandIcon makeStyles-expandIconExpanded"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -82,10 +82,10 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                   role="region"
                 >
                   <div
-                    class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details PicassoSidebarItem-nestedMenu PicassoSidebarItem-nestedMenu PicassoAccordion-details PicassoSidebarItem-nestedMenu PicassoSidebarItem-nestedMenu"
+                    class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details PicassoSidebarItem-nestedMenu"
                   >
                     <ul
-                      class="MuiList-root Menu-root PicassoSidebarMenu-root"
+                      class="MuiList-root Menu-root SidebarMenu-root"
                       role="menu"
                       tabindex="-1"
                     >
@@ -96,19 +96,19 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                         tabindex="0"
                       >
                         <div
-                          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                          class="Container-flex Container-column PicassoMenuItem-content"
                         >
                           <div
-                            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                            class="Container-centerAlignItems Container-flex"
                           >
                             <div
-                              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItem-noWrap"
+                              class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
                             >
                               <div
-                                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
+                                class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
                               >
                                 <p
-                                  class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                                  class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
                                 >
                                   Menu item
                                 </p>
@@ -142,19 +142,19 @@ exports[`SidebarItem default render 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItem-noWrap"
+            class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
+              class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
             >
               <p
-                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
               >
                 Test item
               </p>
@@ -179,16 +179,16 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItem-noWrap"
+            class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
           >
             <svg
-              class="PicassoSvgCandidates16-root"
+              class="SvgCandidates16-root"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -197,10 +197,10 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
               />
             </svg>
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
+              class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
             >
               <p
-                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
               >
                 Test item
               </p>
@@ -213,7 +213,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
       class="PicassoSidebarItem-nestedMenuWithIcon"
     >
       <ul
-        class="MuiList-root Menu-root PicassoSidebarMenu-root"
+        class="MuiList-root Menu-root SidebarMenu-root"
         role="menu"
         tabindex="-1"
       >
@@ -224,19 +224,19 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
           tabindex="0"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="Container-flex Container-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="Container-centerAlignItems Container-flex"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItem-noWrap"
+                class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
               >
                 <div
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
+                  class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
                 >
                   <p
-                    class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                    class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
                   >
                     Menu item
                   </p>
@@ -263,16 +263,16 @@ exports[`SidebarItem is selected 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItem-noWrap"
+            class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
           >
             <svg
-              class="PicassoSvgCandidates16-root"
+              class="SvgCandidates16-root"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -281,10 +281,10 @@ exports[`SidebarItem is selected 1`] = `
               />
             </svg>
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
+              class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
             >
               <p
-                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
               >
                 Test item
               </p>
@@ -303,17 +303,17 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersNone MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersNone MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary PicassoSidebarItem-collapsibleWrapper PicassoSidebarItem-collapsibleWrapper"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary PicassoSidebarItem-collapsibleWrapper"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoSidebarItem-content PicassoSidebarItem-content"
+          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content makeStyles-content PicassoSidebarItem-content"
         >
           <li
             aria-disabled="false"
@@ -322,16 +322,16 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             tabindex="-1"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="Container-flex Container-column PicassoMenuItem-content"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                class="Container-centerAlignItems Container-flex"
               >
                 <div
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItem-noWrap"
+                  class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
                 >
                   <svg
-                    class="PicassoSvgCandidates16-root"
+                    class="SvgCandidates16-root"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
@@ -340,10 +340,10 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                     />
                   </svg>
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
+                    class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
                   >
                     <p
-                      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                      class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
                     >
                       Test item
                     </p>
@@ -353,7 +353,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             </div>
           </li>
           <svg
-            class="PicassoSvgArrowDownMinor16-root PicassoSidebarItem-expandIcon PicassoAccordion-expandIcon"
+            class="SvgArrowDownMinor16-root PicassoSidebarItem-expandIcon makeStyles-expandIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -377,10 +377,10 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details PicassoSidebarItem-nestedMenuWithIcon PicassoSidebarItem-nestedMenuWithIcon PicassoAccordion-details PicassoSidebarItem-nestedMenuWithIcon PicassoSidebarItem-nestedMenuWithIcon"
+                class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details PicassoSidebarItem-nestedMenuWithIcon"
               >
                 <ul
-                  class="MuiList-root Menu-root PicassoSidebarMenu-root"
+                  class="MuiList-root Menu-root SidebarMenu-root"
                   role="menu"
                   tabindex="-1"
                 >
@@ -391,19 +391,19 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                     tabindex="0"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                      class="Container-flex Container-column PicassoMenuItem-content"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="Container-centerAlignItems Container-flex"
                       >
                         <div
-                          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItem-noWrap"
+                          class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
                         >
                           <div
-                            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
+                            class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
                           >
                             <p
-                              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                              class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
                             >
                               Menu item
                             </p>
@@ -435,16 +435,16 @@ exports[`SidebarItem with icon 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="Container-flex Container-column PicassoMenuItem-content"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="Container-centerAlignItems Container-flex"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItem-noWrap"
+            class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
           >
             <svg
-              class="PicassoSvgCandidates16-root"
+              class="SvgCandidates16-root"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -453,10 +453,10 @@ exports[`SidebarItem with icon 1`] = `
               />
             </svg>
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
+              class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
             >
               <p
-                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
               >
                 Test item
               </p>

@@ -12,24 +12,24 @@ page
 
 page
   .createChapter()
-  .addExample('Typography/story/Default.example.jsx', 'Normal text')
-  .addExample('Typography/story/Headings.example.jsx', 'Headings')
-  .addExample('Typography/story/Types.example.jsx', {
+  .addExample('Typography/story/Default.example.tsx', 'Normal text')
+  .addExample('Typography/story/Headings.example.tsx', 'Headings')
+  .addExample('Typography/story/Types.example.tsx', {
     title: 'Types',
     description:
       'Long-form text uses a 1.5 ratio to calculate line-height values.'
   })
-  .addExample('Typography/story/InheritSize.example.jsx', {
+  .addExample('Typography/story/InheritSize.example.tsx', {
     title: 'Inherit size',
     description: `
       In some cases, you may want to use the font size inherited
       from the container where the Topography is nested.
     `
   })
-  .addExample('Typography/story/Alignment.example.jsx', 'Alignment')
-  .addExample('Typography/story/Weights.example.jsx', 'Weights')
-  .addExample('Typography/story/Colors.example.jsx', 'Colors')
-  .addExample('Typography/story/As.example.jsx', {
+  .addExample('Typography/story/Alignment.example.tsx', 'Alignment')
+  .addExample('Typography/story/Weights.example.tsx', 'Weights')
+  .addExample('Typography/story/Colors.example.tsx', 'Colors')
+  .addExample('Typography/story/As.example.tsx', {
     title: 'Augment as another HTML element',
     description: `
       In some cases you may want to change the default
@@ -38,4 +38,4 @@ page
     `
   })
   .addExample('Typography/story/Decoration.example.tsx', 'Decoration')
-  .addExample('Typography/story/LineThrough.example.jsx', 'Line through')
+  .addExample('Typography/story/LineThrough.example.tsx', 'Line through')

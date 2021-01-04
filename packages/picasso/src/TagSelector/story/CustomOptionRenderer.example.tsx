@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
-import { TagSelector, Typography, Container } from '@toptal/picasso'
+import {
+  TagSelector,
+  AutocompleteItem,
+  Typography,
+  Container
+} from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
-import { Item } from '@toptal/picasso/TagSelector'
 
-interface Country extends Item {
+interface Country extends AutocompleteItem {
   country: string
   capital: string
   code: string
@@ -18,7 +22,7 @@ const allOptions: Country[] = [
 ]
 
 const EMPTY_INPUT_VALUE = ''
-const getDisplayValue = (item: Item | null) =>
+const getDisplayValue = (item: AutocompleteItem | null) =>
   (item && (item as Country).country) || EMPTY_INPUT_VALUE
 const filterOptions = (value: string) =>
   value !== ''
@@ -37,7 +41,7 @@ const TagSelectorCustomOptionRendererExample = () => {
         placeholder='Start typing...'
         value={value}
         inputValue={inputValue}
-        getKey={(item: Item) => (item as Country).code}
+        getKey={(item: AutocompleteItem) => (item as Country).code}
         getDisplayValue={getDisplayValue}
         renderOption={(option: Partial<Country>, index?: number) => (
           <Container>
@@ -49,7 +53,7 @@ const TagSelectorCustomOptionRendererExample = () => {
             </Typography>
           </Container>
         )}
-        onChange={(selectedValues: Item[]) => {
+        onChange={(selectedValues: AutocompleteItem[]) => {
           window.console.log('onChange values: ', selectedValues)
           setValue(selectedValues as Country[])
         }}

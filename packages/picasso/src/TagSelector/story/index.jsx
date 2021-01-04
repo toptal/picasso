@@ -14,7 +14,7 @@ page
 
 page
   .createChapter()
-  .addExample('TagSelector/story/Default.example.jsx', {
+  .addExample('TagSelector/story/Default.example.tsx', {
     title: 'Default',
     effect: async (testPage, makeScreenshot) => {
       const hideInputCaretStyle = `
@@ -45,7 +45,7 @@ page
       })
     }
   })
-  .addExample('TagSelector/story/OtherOption.example.jsx', {
+  .addExample('TagSelector/story/OtherOption.example.tsx', {
     title: 'Other option',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[role="combobox"]')
@@ -62,7 +62,7 @@ page
     }
   })
   .addExample(
-    'TagSelector/story/InitialSetValue.example.jsx',
+    'TagSelector/story/InitialSetValue.example.tsx',
     'Initially set value'
   )
   .addExample(
@@ -73,6 +73,6 @@ page
     'TagSelector/story/CustomLabelRenderer.example.tsx',
     'Custom label rendering'
   )
-  .addExample('TagSelector/story/Loading.example.jsx', 'Loading')
-  .addExample('TagSelector/story/Disabled.example.jsx', 'Disabled')
-  .addExample('TagSelector/story/FullWidth.example.jsx', 'Full width')
+  .addExample('TagSelector/story/Loading.example.tsx', 'Loading')
+  .addExample('TagSelector/story/Disabled.example.tsx', 'Disabled')
+  .addExample('TagSelector/story/FullWidth.example.tsx', 'Full width')

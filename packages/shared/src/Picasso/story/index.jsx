@@ -21,8 +21,8 @@ page
 
 page
   .createChapter()
-  .addExample('Picasso/story/Default.example.jsx', 'Default')
+  .addExample('Picasso/story/Default.example.tsx', 'Default')
   .addExample(
-    'Picasso/story/DisableResponsiveUI.example.jsx',
+    'Picasso/story/DisableResponsiveUI.example.tsx',
     'Responsive Disabled'
   ) // picasso-skip-visuals

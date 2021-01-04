@@ -12,4 +12,4 @@ page
 
 page
   .createChapter()
-  .addExample('YearSelect/story/Default.example.jsx', 'Default')
+  .addExample('YearSelect/story/Default.example.tsx', 'Default')

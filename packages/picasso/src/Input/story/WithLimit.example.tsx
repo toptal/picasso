@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { Input, Container, Typography } from '@toptal/picasso'
-import { Props as InputProps } from '@toptal/picasso/Input'
 
-const useInputValue = (
-  defaultValue: string
-): [string, InputProps['onChange']] => {
+type ChangeHandler = (event: React.ChangeEvent<{ value: string }>) => void
+
+const useInputValue = (defaultValue: string): [string, ChangeHandler] => {
   const [value, setValue] = useState(defaultValue)
 
-  const handleChange: InputProps['onChange'] = event => {
+  const handleChange: ChangeHandler = event => {
     setValue(event.target.value)
   }
 

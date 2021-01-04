@@ -10,7 +10,7 @@ const componentDocs = PicassoBook.createComponentDocs(
 const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('Table.Cell', 'Cell for table content')
-    .addExample('TableCell/story/Alignments.example.jsx', 'Alignments')
+    .addExample('TableCell/story/Alignments.example.tsx', 'Alignments')
 )
 
 export default {

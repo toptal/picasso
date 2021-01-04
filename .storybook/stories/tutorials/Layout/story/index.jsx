@@ -19,7 +19,7 @@ header, footer, sidebar and main content.
  * Usage of \`Container\` for defining spacings of components
 `
   )
-  .addExample('tutorials/Layout/story/Layout.final.example.jsx', {
+  .addExample('tutorials/Layout/story/Layout.final.example.tsx', {
     title: 'End result'
   })
 
@@ -52,7 +52,7 @@ content in \`Page.Content\`.
       title: 'First step: Define page'
     }
   )
-  .addExample('tutorials/Layout/story/Layout.1.example.jsx', {
+  .addExample('tutorials/Layout/story/Layout.1.example.tsx', {
     id: 'layout-1'
   }) // picasso-skip-visuals
 
@@ -69,7 +69,7 @@ For demonstration purposes, it's been added additional padding for Sidebar and t
       title: 'Second step: Implement sidebar and main content layout'
     }
   )
-  .addExample('tutorials/Layout/story/Layout.2.example.jsx', {
+  .addExample('tutorials/Layout/story/Layout.2.example.tsx', {
     id: 'layout-2'
   }) // picasso-skip-visuals
 
@@ -84,7 +84,7 @@ which is a part of Picasso librabry. It should fill all available height of the 
       title: 'Third step: Sidebar menu'
     }
   )
-  .addExample('tutorials/Layout/story/Layout.3.example.jsx', {
+  .addExample('tutorials/Layout/story/Layout.3.example.tsx', {
     id: 'layout-3'
   }) // picasso-skip-visuals
 
@@ -110,6 +110,6 @@ And that's it, we have implemented our goal.
       title: 'Forth step: Main content'
     }
   )
-  .addExample('tutorials/Layout/story/Layout.final.example.jsx', {
+  .addExample('tutorials/Layout/story/Layout.final.example.tsx', {
     id: 'layout-4'
   }) // picasso-skip-visuals

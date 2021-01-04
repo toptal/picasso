@@ -11,16 +11,16 @@ import React, {
   useMemo
 } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import MUIMenuItem from '@material-ui/core/MenuItem'
 import {
-  StandardProps,
+  BaseProps,
   ButtonOrAnchorProps,
   TextLabelProps,
   SizeType,
   useTitleCase,
-  mergeClasses
+  OverridableComponent
 } from '@toptal/picasso-shared'
 
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
@@ -35,10 +35,7 @@ export type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
   HTMLAttributes<HTMLDivElement> &
   ButtonOrAnchorProps
 
-export interface Props
-  extends StandardProps,
-    TextLabelProps,
-    MenuItemAttributes {
+export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Component name to render the menu item as */
   as?: ElementType
   /** Whether to render disabled item */
@@ -71,17 +68,18 @@ const generateKey = (() => {
   return () => String(++count)
 })()
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoMenuItem' })
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoMenuItem'
+})
 
-export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
-  props,
-  ref
-) {
+export const MenuItem: OverridableComponent<Props> = forwardRef<
+  HTMLElement,
+  Props
+>(function MenuItem(props, ref) {
   const {
     as,
     children,
     description,
-    classes: externalClasses,
     className,
     disabled,
     disableGutters,
@@ -97,8 +95,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     nonSelectable,
     ...rest
   } = props
+  const classes = useStyles(props)
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
   const { push, refresh } = useContext<MenuContextProps>(MenuContext)
   const key = useMemo(generateKey, [])
 
@@ -109,21 +107,6 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       refresh(key, menu)
     }
   }, [key, menu, refresh])
-
-  const renderChildren = () =>
-    typeof children === 'string' ? (
-      <span
-        className={cx(classes.stringContent, {
-          [classes[`stringContent${size && capitalize(size!)}`]]: size,
-          [classes.stringContentSemibold]: checkmarked
-        })}
-        style={style}
-      >
-        {titleCase ? toTitleCase(children) : children}
-      </span>
-    ) : (
-      children
-    )
 
   const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (menu && push) {
@@ -170,7 +153,19 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
               {checkmarked && <CheckMinor16 />}
             </Container>
           )}
-          {renderChildren()}
+          {typeof children === 'string' ? (
+            <span
+              className={cx(classes.stringContent, {
+                [classes[`stringContent${size && capitalize(size!)}`]]: size,
+                [classes.stringContentSemibold]: checkmarked
+              })}
+              style={style}
+            >
+              {titleCase ? toTitleCase(children) : children}
+            </span>
+          ) : (
+            children
+          )}
           {menu && (
             <Container flex inline left='xsmall'>
               <ChevronMinor16 />

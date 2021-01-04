@@ -12,7 +12,7 @@ page
 
 page
   .createChapter()
-  .addExample('EnvironmentBanner/story/Variants.example.jsx', {
+  .addExample('EnvironmentBanner/story/Variants.example.tsx', {
     title: 'Variants',
     description: 'Click to make them disappear'
   })

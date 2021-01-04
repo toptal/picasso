@@ -20,7 +20,7 @@ We will focus on using \`Form\`, \`Form.Field\`, input components \`Input\`, \`S
  * Creating inline fields
 `
   )
-  .addExample('tutorials/Forms/story/Forms.final.example.jsx', {
+  .addExample('tutorials/Forms/story/Forms.final.example.tsx', {
     title: 'End result'
   }) // picasso-skip-visuals
 
@@ -45,7 +45,7 @@ Let's add one form text field just to be able to test responsivness of our form.
       title: 'First step: Define basic form container'
     }
   )
-  .addExample('tutorials/Forms/story/Forms.1.example.jsx', {
+  .addExample('tutorials/Forms/story/Forms.1.example.tsx', {
     id: 'forms-1'
   }) // picasso-skip-visuals
 
@@ -65,7 +65,7 @@ additional details.
       title: 'Second step: Add form controls'
     }
   )
-  .addExample('tutorials/Forms/story/Forms.2.example.jsx', {
+  .addExample('tutorials/Forms/story/Forms.2.example.tsx', {
     id: 'forms-2'
   }) // picasso-skip-visuals
 
@@ -83,7 +83,7 @@ spacings and grid columns.
       title: 'Third step: Inline form controls'
     }
   )
-  .addExample('tutorials/Forms/story/Forms.3.example.jsx', {
+  .addExample('tutorials/Forms/story/Forms.3.example.tsx', {
     id: 'forms-3'
   }) // picasso-skip-visuals
 
@@ -100,7 +100,7 @@ If you'd like to focus \`Input\` by click on label, you need to specify \`id\` a
       title: 'Fourth step: Use labels instead of placeholders'
     }
   )
-  .addExample('tutorials/Forms/story/Forms.4.example.jsx', {
+  .addExample('tutorials/Forms/story/Forms.4.example.tsx', {
     id: 'forms-4'
   }) // picasso-skip-visuals
 
@@ -118,6 +118,6 @@ And that's it, we have implemented simple form layout.
       title: 'Final step: Radio group'
     }
   )
-  .addExample('tutorials/Forms/story/Forms.final.example.jsx', {
+  .addExample('tutorials/Forms/story/Forms.final.example.tsx', {
     id: 'forms-5'
   }) // picasso-skip-visuals
