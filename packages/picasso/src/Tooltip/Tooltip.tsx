@@ -15,7 +15,7 @@ import { usePicassoRoot, BaseProps } from '@toptal/picasso-shared'
 import { isPointerDevice } from '../utils'
 import styles from './styles'
 
-type VariantType = 'light' | 'dark'
+export type VariantType = 'light' | 'dark'
 
 export type PlacementType = TooltipProps['placement']
 
