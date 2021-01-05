@@ -81,7 +81,7 @@ const matchScreenshot = async (options: Options) => {
 }
 
 // TODO: Make this more universal when we add more components and their variations
-export const assertVisuals = function (
+export const assertVisuals = (
   kind: string,
   type: string,
   options: Options = {
@@ -89,10 +89,10 @@ export const assertVisuals = function (
     waitUntilImagesLoaded: false,
     effect: undefined
   }
-) {
+) => {
   return async () => {
     const {
-      delay,
+      delay = 0,
       waitUntilImagesLoaded,
       effect,
       customSnapshotIdentifier
@@ -104,7 +104,7 @@ export const assertVisuals = function (
       url,
       waitUntilImagesLoaded ? { waitUntil: 'networkidle0' } : {}
     )
-    await page.waitFor(delay || 0)
+    await page.waitFor(delay)
 
     await matchScreenshot(options)
 
