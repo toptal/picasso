@@ -181,7 +181,7 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
 }
 
 const Example = () => (
-  <Container style={{ height: '25em' }}>
+  <Container style={{ height: '25em', maxWidth: 1200 }}>
     <TreeView data={rootNode} renderNode={renderNode} initialScale={0.8} />
   </Container>
 )

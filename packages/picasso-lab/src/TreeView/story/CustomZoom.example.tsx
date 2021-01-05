@@ -196,7 +196,7 @@ const CustomZoom: FC = () => {
 }
 
 const Example = () => (
-  <Container style={{ height: '25em' }}>
+  <Container style={{ height: '25em', maxWidth: 1200 }}>
     <TreeViewContainer>
       <CustomZoom />
       <TreeView data={rootNode} renderNode={renderNode} showZoom={false} />
