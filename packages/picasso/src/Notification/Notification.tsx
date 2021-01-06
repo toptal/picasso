@@ -126,22 +126,16 @@ const renderNotificationContent = (props: PrivateProps & JssProps) => {
   )
 }
 
-const useStyles = makeStyles<Theme, JssProps>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Notification'
 })
 
 // eslint-disable-next-line react/display-name
 export const Notification = forwardRef<HTMLElement, PrivateProps>(
   function Notification(props, ref) {
-    const {
-      className,
-      variant,
-      elevated,
-      classes: externalClasses,
-      ...rest
-    } = props
+    const { className, variant, elevated, ...rest } = props
 
-    const classes = useStyles({ classes: externalClasses })
+    const classes = useStyles()
 
     return (
       <SnackbarContent
