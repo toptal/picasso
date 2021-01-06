@@ -19,7 +19,7 @@ exports[`ButtonGroup render 1`] = `
         />
       </button>
       <button
-        class="MuiButtonBase-root PicassoButton-active PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-active PicassoButtonGroup-active PicassoButton-medium PicassoButton-primary PicassoButton-root"
         data-component-type="button"
         tabindex="0"
         type="button"

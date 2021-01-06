@@ -24,18 +24,20 @@ import Button from '../Button'
 
 export type Borders = 'all' | 'middle' | 'none'
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoAccordion' })
+const useStyles = makeStyles<Theme, JssProps>(styles, {
+  name: 'PicassoAccordion'
+})
 
 const Summary: FunctionComponent<StandardProps> = props => {
   const { children, className } = props
-  const classes = useStyles()
+  const classes = useStyles({})
 
   return <div className={cx(className, classes.summaryWrapper)}>{children}</div>
 }
 
 const Details: FunctionComponent<StandardProps> = props => {
   const { children, className } = props
-  const classes = useStyles()
+  const classes = useStyles({})
 
   return <div className={cx(className, classes.detailsWrapper)}>{children}</div>
 }
@@ -94,10 +96,11 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     className,
     style,
     onChange,
+    classes: externalClasses,
     ...rest
   } = props
 
-  const classes = useStyles()
+  const classes = useStyles({ classes: externalClasses })
   const borderClasses: { [key in Borders]: string } = {
     all: classes.bordersAll,
     middle: classes.bordersMiddle,

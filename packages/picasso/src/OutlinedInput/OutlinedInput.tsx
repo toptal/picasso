@@ -74,7 +74,7 @@ export interface Props
   inputRef?: React.Ref<HTMLInputElement>
 }
 
-const useStyles = makeStyles<Theme>(styles, {
+const useStyles = makeStyles<Theme, JssProps>(styles, {
   name: 'PicassoOutlinedInput'
 })
 
@@ -132,10 +132,11 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     disabled,
     onResetClick,
     inputRef,
+    classes: externalClasses,
     ...rest
   } = props
 
-  const classes = useStyles()
+  const classes = useStyles({ classes: externalClasses })
   const isDark = inputProps?.variant === 'dark'
   const shouldShowReset = enableReset && !disabled
   const endAdornment = shouldShowReset ? (

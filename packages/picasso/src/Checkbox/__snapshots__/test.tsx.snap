@@ -6,8 +6,7 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
     class="Picasso-root"
   >
     <label
-      class="PicassoFormControlLabel-root picasso-checkbox"
-      classes="[object Object]"
+      class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
     >
       <span
         class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
@@ -32,7 +31,7 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
         </span>
       </span>
       <span
-        class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label"
+        class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
       >
         <span
           class="PicassoFormLabel-text"
@@ -208,8 +207,7 @@ exports[`should render default checkbox with label 1`] = `
     class="Picasso-root"
   >
     <label
-      class="PicassoFormControlLabel-root picasso-checkbox"
-      classes="[object Object]"
+      class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
     >
       <span
         class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
@@ -234,7 +232,7 @@ exports[`should render default checkbox with label 1`] = `
         </span>
       </span>
       <span
-        class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label"
+        class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
       >
         <span
           class="PicassoFormLabel-text"

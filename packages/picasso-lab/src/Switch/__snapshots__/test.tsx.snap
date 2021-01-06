@@ -3,7 +3,6 @@
 exports[`behaves correctly when interacting 1`] = `
 <label
   class="PicassoFormControlLabel-root"
-  classes="[object Object]"
   data-testid="switch"
 >
   <span
@@ -31,7 +30,7 @@ exports[`behaves correctly when interacting 1`] = `
     />
   </span>
   <span
-    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label"
+    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoSwitch-label"
   >
     <span
       class="PicassoFormLabel-text"
@@ -79,7 +78,6 @@ exports[`renders default Switch without label 1`] = `
 exports[`renders disabled state 1`] = `
 <label
   class="PicassoFormControlLabel-root PicassoFormControlLabel-disabled"
-  classes="[object Object]"
   data-testid="switch"
 >
   <span
@@ -109,7 +107,7 @@ exports[`renders disabled state 1`] = `
     />
   </span>
   <span
-    class="PicassoFormLabel-root PicassoFormLabel-disabled PicassoFormLabel-inline PicassoFormControlLabel-label"
+    class="PicassoFormLabel-root PicassoFormLabel-disabled PicassoFormLabel-inline PicassoFormControlLabel-label PicassoSwitch-label"
   >
     <span
       class="PicassoFormLabel-text"

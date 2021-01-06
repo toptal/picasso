@@ -10,7 +10,6 @@ exports[`Helpbox default render 1`] = `
     >
       <div
         class="PicassoContainer-bottomsmallMargin"
-        classes="[object Object]"
       >
         <h4
           class="MuiTypography-root PicassoTypography-headingSmall MuiTypography-h4"

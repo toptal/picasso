@@ -1,5 +1,5 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { alpha, outline, mix } from '@toptal/picasso-shared'
+import { alpha, outline, mix, JssProps } from '@toptal/picasso-shared'
 
 const ICON_SPACING = '0.5em'
 
@@ -188,6 +188,6 @@ const styles = ({ palette, sizes, transitions, typography }: Theme) => {
   })
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoButton' })
+const useStyles = makeStyles<Theme, JssProps>(styles, { name: 'PicassoButton' })
 
 export default useStyles

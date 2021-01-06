@@ -19,13 +19,21 @@ export interface Props
   variant?: VariantType
 }
 
-const useStyles = makeStyles<Theme>(styles, {
+const useStyles = makeStyles<Theme, JssProps>(styles, {
   name: 'PicassoCircularProgress'
 })
 
 const CircularProgress: FunctionComponent<Props> = props => {
-  const { className, style, size, value, variant, ...rest } = props
-  const classes = useStyles()
+  const {
+    className,
+    style,
+    size,
+    value,
+    variant,
+    classes: externalClasses,
+    ...rest
+  } = props
+  const classes = useStyles({ classes: externalClasses })
 
   return (
     <MUICircularProgress

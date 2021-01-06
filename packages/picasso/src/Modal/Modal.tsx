@@ -62,7 +62,7 @@ export interface StaticProps {
   Title: typeof ModalTitle
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoModal' })
+const useStyles = makeStyles<Theme, JssProps>(styles, { name: 'PicassoModal' })
 const defaultManager = new ModalManager()
 
 // https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js#L25
@@ -129,9 +129,10 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     transitionDuration,
     paperProps,
     align,
+    classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles()
+  const classes = useStyles({ classes: externalClasses })
   const picassoRootContainer = usePicassoRoot()
   const rootRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
   const modalId = useRef(generateKey())

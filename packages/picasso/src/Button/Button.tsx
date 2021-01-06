@@ -137,9 +137,10 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     type,
     as,
     titleCase: propsTitleCase,
+    classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles()
+  const classes = useStyles({ classes: externalClasses })
 
   const {
     root: rootClass,

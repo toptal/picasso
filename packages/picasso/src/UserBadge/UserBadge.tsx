@@ -40,7 +40,9 @@ export interface Props
   children?: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoUserBadge' })
+const useStyles = makeStyles<Theme, JssProps>(styles, {
+  name: 'PicassoUserBadge'
+})
 
 export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
   props,
@@ -58,9 +60,10 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     children,
     className,
     style,
+    classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles()
+  const classes = useStyles({ classes: externalClasses })
 
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar

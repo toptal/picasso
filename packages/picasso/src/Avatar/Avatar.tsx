@@ -103,9 +103,19 @@ const IE11Image = ({ style, src, ...rest }: OmitInternalProps<ImageProps>) => (
 )
 
 export const Avatar: FunctionComponent<Props> = props => {
-  const { alt, src, className, name, size, style, variant, ...rest } = props
+  const {
+    alt,
+    src,
+    className,
+    name,
+    size,
+    style,
+    variant,
+    classes: externalClasses,
+    ...rest
+  } = props
 
-  const classes = useStyles()
+  const classes = useStyles({ classes: externalClasses })
 
   const sizeClassName = classes[size!]
   const variantClassName = classes[variant!]

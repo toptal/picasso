@@ -33,7 +33,7 @@ export interface Props
   requiredDecoration?: RequiredDecoration
 }
 
-const useStyles = makeStyles<Theme>(styles, {
+const useStyles = makeStyles<Theme, JssProps>(styles, {
   name: 'PicassoFormControlLabel'
 })
 
@@ -46,10 +46,11 @@ const FormControlLabel: FunctionComponent<Props> = props => {
     disabled,
     requiredDecoration,
     titleCase,
+    classes: externalClasses,
     ...rest
   } = props
 
-  const classes = useStyles()
+  const classes = useStyles({ classes: externalClasses })
 
   return (
     <label

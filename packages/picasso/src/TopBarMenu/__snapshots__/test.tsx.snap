@@ -7,14 +7,12 @@ exports[`TopBarMenu default render 1`] = `
   >
     <div
       class="PicassoDropdown-root"
-      classes="[object Object]"
     >
       <div
         class="PicassoDropdown-anchor"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
-          classes="[object Object]"
         >
           <div
             class="PicassoAvatar-root PicassoAvatar-xxsmall"
@@ -32,7 +30,7 @@ exports[`TopBarMenu default render 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <h4
-                class="MuiTypography-root PicassoTypography-invert PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                class="MuiTypography-root PicassoTypography-invert PicassoTypography-headingSmall PicassoUserBadge-name PicassoTopBarMenu-name PicassoTopBarMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
               >
                 Jacqueline Roque
               </h4>

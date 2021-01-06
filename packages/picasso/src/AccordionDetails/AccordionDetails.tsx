@@ -9,12 +9,14 @@ export interface Props extends JssProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoAccordionDetails' })
+const useStyles = makeStyles<Theme, JssProps>(styles, {
+  name: 'PicassoAccordionDetails'
+})
 
 const AccordionDetails: FunctionComponent<Props> = props => {
-  const { children, ...rest } = props
+  const { children, classes: externalClasses, ...rest } = props
 
-  const classes = useStyles()
+  const classes = useStyles({ classes: externalClasses })
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading

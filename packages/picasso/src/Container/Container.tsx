@@ -19,7 +19,9 @@ type DirectionType = 'row' | 'column'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue' | 'grey'
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoContainer' })
+const useStyles = makeStyles<Theme, JssProps>(styles, {
+  name: 'PicassoContainer'
+})
 
 export interface Props
   extends StandardProps,
@@ -82,10 +84,11 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
     rounded = false,
     variant,
     as: Component = inline ? 'span' : 'div',
+    classes: externalClasses,
     ...rest
   } = props
 
-  const classes = useStyles()
+  const classes = useStyles({ classes: externalClasses })
 
   const margins = {
     ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),

@@ -34,7 +34,7 @@ export interface PaginationPageProps extends JssProps {
   onClick: (page: NavigationType) => void
 }
 
-const useStyles = makeStyles<Theme>(styles, {
+const useStyles = makeStyles<Theme, JssProps>(styles, {
   name: 'PicassoPagination'
 })
 
@@ -42,9 +42,10 @@ const PaginationPage: FunctionComponent<PaginationPageProps> = ({
   page,
   activePage,
   disabled,
-  onClick
+  onClick,
+  classes: externalClasses
 }) => {
-  const classes = useStyles()
+  const classes = useStyles({ classes: externalClasses })
 
   return (
     <Button
@@ -59,7 +60,10 @@ const PaginationPage: FunctionComponent<PaginationPageProps> = ({
   )
 }
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props
+  extends StandardProps,
+    HTMLAttributes<HTMLDivElement>,
+    JssProps {
   /** Value of the current highlighted page */
   activePage: number
   /** Shows `Pagination` in disabled state when pages are not changeable */
@@ -74,8 +78,15 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   props,
   ref
 ) {
-  const { activePage, disabled, totalPages, onPageChange, ...rest } = props
-  const classes = useStyles()
+  const {
+    activePage,
+    disabled,
+    totalPages,
+    onPageChange,
+    classes: externalClasses,
+    ...rest
+  } = props
+  const classes = useStyles({ classes: externalClasses })
 
   const pages = useMemo(() => getRange(activePage, totalPages, SIBLING_COUNT), [
     activePage,

@@ -81,7 +81,7 @@ const useDropdownContext = () => {
   return context
 }
 
-const useStyles = makeStyles<Theme>(styles, {
+const useStyles = makeStyles<Theme, JssProps>(styles, {
   name: 'PicassoDropdown'
 })
 
@@ -104,9 +104,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     onOpen,
     popperContainer,
     onClose,
+    classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles()
+  const classes = useStyles({ classes: externalClasses })
 
   const contentRef = useRef<HTMLElement>()
 

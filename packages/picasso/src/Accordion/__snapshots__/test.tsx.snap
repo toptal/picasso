@@ -25,16 +25,16 @@ exports[`controlled version should render collapsed version 1`] = `
             class="PicassoAccordion-expandIconAlignTop"
           >
             <button
-              class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
               data-component-type="button"
               tabindex="0"
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
               >
                 <svg
-                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoAccordion-expandIcon"
+                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon PicassoAccordion-expandIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -61,7 +61,7 @@ exports[`controlled version should render collapsed version 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root"
+                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
               >
                 <div
                   id="details"
@@ -103,16 +103,16 @@ exports[`controlled version should render expanded version 1`] = `
             class="PicassoAccordion-expandIconAlignTop"
           >
             <button
-              class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
               data-component-type="button"
               tabindex="0"
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
               >
                 <svg
-                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -139,7 +139,7 @@ exports[`controlled version should render expanded version 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root"
+                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
               >
                 <div
                   id="details"
@@ -181,16 +181,16 @@ exports[`default version for sections should render default version 1`] = `
             class="PicassoAccordion-expandIconAlignTop"
           >
             <button
-              class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
               data-component-type="button"
               tabindex="0"
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
               >
                 <svg
-                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoAccordion-expandIcon"
+                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon PicassoAccordion-expandIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -217,7 +217,7 @@ exports[`default version for sections should render default version 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root"
+                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
               >
                 <div
                   id="details"
@@ -259,16 +259,16 @@ exports[`default version for sections should render expanded version after click
             class="PicassoAccordion-expandIconAlignTop"
           >
             <button
-              class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
               data-component-type="button"
               tabindex="0"
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
               >
                 <svg
-                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -295,7 +295,7 @@ exports[`default version for sections should render expanded version after click
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root"
+                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
               >
                 <div
                   id="details"
