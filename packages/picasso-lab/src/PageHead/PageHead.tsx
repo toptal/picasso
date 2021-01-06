@@ -68,7 +68,7 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
   ref
 ) {
   const { children } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   return (
     <Container

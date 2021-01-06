@@ -37,10 +37,10 @@ const getBulletOrNumber = (
   return <Index>{index + 1}</Index>
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoListItem' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoListItem' })
 
 export const ListItem = (props: Props) => {
-  const classes = useStyles(props)
+  const classes = useStyles()
   const { children, icon, variant, index, ...rest } = props
 
   const itemIcon = getBulletOrNumber(variant!, index!, icon)

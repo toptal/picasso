@@ -1,11 +1,7 @@
 import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  StandardProps,
-  mergeClasses,
-  useChildrenWithClasses
-} from '@toptal/picasso-shared'
+import { StandardProps, useChildrenWithClasses } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import styles from './styles'
@@ -15,20 +11,14 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoButtonGroup'
 })
 
 export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
   function ButtonGroup(props, ref) {
-    const {
-      children,
-      classes: externalClasses,
-      className,
-      style,
-      ...rest
-    } = props
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const { children, className, style, ...rest } = props
+    const classes = useStyles()
     const childrenWithClasses = useChildrenWithClasses({
       children,
       classes,
@@ -59,9 +49,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-ButtonGroup.defaultProps = {
-  classes: {}
-}
+ButtonGroup.defaultProps = {}
 
 ButtonGroup.displayName = 'ButtonGroup'
 

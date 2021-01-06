@@ -4,8 +4,7 @@ import cx from 'classnames'
 import {
   useTitleCase,
   StandardProps,
-  TextLabelProps,
-  mergeClasses
+  TextLabelProps
 } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -32,7 +31,7 @@ export interface Props
   as?: ComponentType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoFormLabel' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoFormLabel' })
 
 export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
   props,
@@ -42,7 +41,6 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     children,
     disabled,
     htmlFor,
-    classes: externalClasses,
     className,
     style,
     inline,
@@ -52,7 +50,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     ...rest
   } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   const isInline = inline || Component === 'span'
   const titleCase = useTitleCase(propsTitleCase)

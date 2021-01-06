@@ -1,11 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import React, { forwardRef, memo, HTMLAttributes } from 'react'
-import {
-  mergeClasses,
-  PicassoComponentWithRef,
-  StandardProps
-} from '@toptal/picasso-shared'
+import { PicassoComponentWithRef, StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -17,7 +13,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLSpanElement> {
 }
 /** Currency List: https://www.currency-iso.org/en/home/tables/table-a1.html */
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAmount'
 })
 
@@ -25,14 +21,8 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 export const Amount = memo(
   // eslint-disable-next-line react/display-name
   forwardRef<HTMLSpanElement, Props>(function Amount(props, ref) {
-    const {
-      amount,
-      className,
-      currency,
-      classes: externalClasses,
-      ...rest
-    } = props
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const { amount, className, currency, ...rest } = props
+    const classes = useStyles()
 
     const formattedAmount = Intl.NumberFormat('en-US', {
       style: 'currency',

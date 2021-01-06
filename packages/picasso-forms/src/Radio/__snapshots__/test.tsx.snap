@@ -31,7 +31,8 @@ exports[`FormRadio default render 1`] = `
             type="radio"
           >
             <label
-              class="PicassoFormControlLabel-root Radio-root Radio-root Radio-labelWithRightSpacing"
+              class="PicassoFormControlLabel-root Radio-labelWithRightSpacing"
+              classes="[object Object]"
             >
               <span
                 aria-disabled="false"
@@ -53,7 +54,7 @@ exports[`FormRadio default render 1`] = `
                 </span>
               </span>
               <span
-                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label Radio-label"
+                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label"
               >
                 <span
                   class="PicassoFormLabel-text"
@@ -63,7 +64,8 @@ exports[`FormRadio default render 1`] = `
               </span>
             </label>
             <label
-              class="PicassoFormControlLabel-root Radio-root Radio-root Radio-labelWithRightSpacing"
+              class="PicassoFormControlLabel-root Radio-labelWithRightSpacing"
+              classes="[object Object]"
             >
               <span
                 aria-disabled="false"
@@ -86,7 +88,7 @@ exports[`FormRadio default render 1`] = `
                 </span>
               </span>
               <span
-                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label Radio-label"
+                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label"
               >
                 <span
                   class="PicassoFormLabel-text"
@@ -138,7 +140,8 @@ exports[`FormRadio required with asterisk 1`] = `
             type="radio"
           >
             <label
-              class="PicassoFormControlLabel-root Radio-root Radio-root Radio-labelWithRightSpacing"
+              class="PicassoFormControlLabel-root Radio-labelWithRightSpacing"
+              classes="[object Object]"
             >
               <span
                 aria-disabled="false"
@@ -160,7 +163,7 @@ exports[`FormRadio required with asterisk 1`] = `
                 </span>
               </span>
               <span
-                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label Radio-label"
+                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label"
               >
                 <span
                   class="PicassoFormLabel-text"
@@ -170,7 +173,8 @@ exports[`FormRadio required with asterisk 1`] = `
               </span>
             </label>
             <label
-              class="PicassoFormControlLabel-root Radio-root Radio-root Radio-labelWithRightSpacing"
+              class="PicassoFormControlLabel-root Radio-labelWithRightSpacing"
+              classes="[object Object]"
             >
               <span
                 aria-disabled="false"
@@ -193,7 +197,7 @@ exports[`FormRadio required with asterisk 1`] = `
                 </span>
               </span>
               <span
-                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label Radio-label"
+                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label"
               >
                 <span
                   class="PicassoFormLabel-text"

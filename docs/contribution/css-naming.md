@@ -22,7 +22,7 @@ import styles from './styles'
 const useStyles = makeStyles(styles)
 
 const Container = (props) => {
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const { width, children } = props
 
@@ -73,7 +73,7 @@ import styles from './styles'
 const useStyles = makeStyles(styles)
 
 const Button = (props) => {
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const { active, focused, disabled } = props
 

@@ -5,10 +5,10 @@ exports[`regular 1`] = `
   class="Picasso-root"
 >
   <div
-    class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoNumberInput-root PicassoNumberInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+    class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
   >
     <input
-      class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoNumberInput-input PicassoNumberInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+      class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
       max="100"
       min="-100"
       step="5"

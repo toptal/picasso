@@ -1,7 +1,7 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Table, Typography, Tooltip } from '@toptal/picasso'
-import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import {
   PropDocumentation,
@@ -17,13 +17,13 @@ interface Props extends StandardProps {
   documentation: PropDocumentation[]
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoPropsTable'
 })
 
 function useRows(props: Props): JSX.Element {
-  const { documentation, classes: externalClasses } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { documentation } = props
+  const classes = useStyles()
 
   const isEnum = (type: string | PropTypeDocumentation) =>
     type === 'enum' || (type as PropTypeDocumentation).name === 'enum'
@@ -87,8 +87,7 @@ function useRows(props: Props): JSX.Element {
 }
 
 const PropsTable: FunctionComponent<Props> = props => {
-  const { classes: externalClasses } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   const rows = useRows(props)
 

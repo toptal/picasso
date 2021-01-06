@@ -14,7 +14,7 @@ import {
   StandardProps,
   SizeType,
   Classes,
-  mergeClasses
+  JssProps
 } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
@@ -35,6 +35,7 @@ export type BaseInputProps = InputBaseComponentProps & {
 
 export interface Props
   extends StandardProps,
+    JssProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'value' | 'defaultValue' | 'size' | 'color'
@@ -73,7 +74,7 @@ export interface Props
   inputRef?: React.Ref<HTMLInputElement>
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoOutlinedInput'
 })
 
@@ -110,7 +111,6 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   ref
 ) {
   const {
-    classes: externalClasses,
     className,
     style,
     multiline,
@@ -135,7 +135,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     ...rest
   } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
   const isDark = inputProps?.variant === 'dark'
   const shouldShowReset = enableReset && !disabled
   const endAdornment = shouldShowReset ? (

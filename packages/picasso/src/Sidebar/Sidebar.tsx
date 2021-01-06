@@ -12,7 +12,6 @@ import {
   StandardProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef,
-  mergeClasses,
   useSidebar
 } from '@toptal/picasso-shared'
 
@@ -43,8 +42,8 @@ const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProp
   return (
     <Dropdown
       content={children}
-      className={classes.responsiveWrapper}
-      classes={{ content: classes.responsiveWrapperContent }}
+      className={classes?.responsiveWrapper}
+      classes={{ content: classes?.responsiveWrapperContent ?? '' }}
       offset={{ top: 0.4 }}
       popperOptions={{
         modifiers: {
@@ -81,7 +80,7 @@ export const SidebarContext = React.createContext<SidebarContextProps>({
   setExpandedItemKey: () => {}
 })
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Sidebar'
 })
 
@@ -90,14 +89,8 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   props,
   ref
 ) {
-  const {
-    children,
-    variant,
-    className,
-    style,
-    classes: externalClasses
-  } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { children, variant, className, style } = props
+  const classes = useStyles()
   const { setHasSidebar } = useSidebar()
 
   useLayoutEffect(() => {

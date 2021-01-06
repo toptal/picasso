@@ -6,7 +6,7 @@ import FormControlLabel from '@toptal/picasso/FormControlLabel'
 
 import styles from './styles'
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoSwitch' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoSwitch' })
 
 export interface Props
   extends BaseProps,
@@ -46,7 +46,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     ...rest
   } = props
 
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const switchElement = (
     <MUISwitch

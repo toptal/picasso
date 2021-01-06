@@ -22,12 +22,12 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
           <div
             aria-disabled="false"
             aria-expanded="true"
-            class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary PicassoSidebarItem-collapsibleWrapper PicassoSidebarItem-collapsibleWrapper Mui-expanded"
+            class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary Mui-expanded"
             role="button"
             tabindex="0"
           >
             <div
-              class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoSidebarItem-content PicassoSidebarItem-content Mui-expanded"
+              class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content Mui-expanded"
             >
               <li
                 aria-disabled="false"
@@ -82,7 +82,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                   role="region"
                 >
                   <div
-                    class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details PicassoSidebarItem-nestedMenu PicassoSidebarItem-nestedMenu PicassoAccordion-details PicassoSidebarItem-nestedMenu PicassoSidebarItem-nestedMenu"
+                    class="MuiAccordionDetails-root PicassoAccordionDetails-root"
                   >
                     <ul
                       class="MuiList-root Menu-root PicassoSidebarMenu-root"
@@ -308,12 +308,12 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
       <div
         aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary PicassoSidebarItem-collapsibleWrapper PicassoSidebarItem-collapsibleWrapper"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoSidebarItem-content PicassoSidebarItem-content"
+          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content"
         >
           <li
             aria-disabled="false"
@@ -377,7 +377,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details PicassoSidebarItem-nestedMenuWithIcon PicassoSidebarItem-nestedMenuWithIcon PicassoAccordion-details PicassoSidebarItem-nestedMenuWithIcon PicassoSidebarItem-nestedMenuWithIcon"
+                class="MuiAccordionDetails-root PicassoAccordionDetails-root"
               >
                 <ul
                   class="MuiList-root Menu-root PicassoSidebarMenu-root"

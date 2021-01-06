@@ -8,11 +8,7 @@ import MUILink from '@material-ui/core/Link'
 import { Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/styles'
-import {
-  StandardProps,
-  mergeClasses,
-  OverridableComponent
-} from '@toptal/picasso-shared'
+import { StandardProps, OverridableComponent } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -20,7 +16,7 @@ type UnderlineType = 'none' | 'hover' | 'always'
 type VariantType = 'action' | 'anchor'
 type ColorType = 'white' | 'blue' | 'black'
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLink' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLink' })
 
 const sanitizeRel = (rel: string | undefined, target: string | undefined) => {
   if (target !== '_blank') {
@@ -76,11 +72,10 @@ export const Link: OverridableComponent<Props> = forwardRef<
     tabIndex,
     target,
     rel,
-    classes: externalClasses,
     ...rest
   } = props
   const nativeHTMLAttributes = rest
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
   const sanitizedRel = sanitizeRel(rel, target)
 
   return (

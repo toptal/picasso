@@ -1,10 +1,6 @@
 import React, { forwardRef, useRef, RefObject, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import {
-  StandardProps,
-  mergeClasses,
-  OmitInternalProps
-} from '@toptal/picasso-shared'
+import { StandardProps, OmitInternalProps } from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
 
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
@@ -142,7 +138,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
   )
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoNumberInput'
 })
 
@@ -161,11 +157,10 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       enableReset,
       width,
       icon,
-      classes: externalClasses,
       ...rest
     } = props
 
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const classes = useStyles()
 
     const inputRef = useCombinedRefs<HTMLInputElement>(
       ref,

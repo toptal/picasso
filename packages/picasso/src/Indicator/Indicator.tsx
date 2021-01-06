@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -18,15 +18,8 @@ export const Indicator = forwardRef<HTMLDivElement, Props>(function Indicator(
   props,
   ref
 ) {
-  const {
-    classes: externalClasses,
-    className,
-    color,
-    style,
-    ...restProps
-  } = props
-
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { className, color, style, ...restProps } = props
+  const classes = useStyles()
 
   return (
     <div

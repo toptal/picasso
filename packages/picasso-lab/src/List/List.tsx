@@ -15,10 +15,10 @@ export type Props = BaseProps & {
   start?: number
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoList' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoList' })
 
 export const List = (props: Props) => {
-  const classes = useStyles(props)
+  const classes = useStyles()
   const { variant, children, start, ...rest } = props
 
   const listProps = { className: classes.root, ...rest }

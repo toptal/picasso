@@ -2,7 +2,7 @@ import React, { forwardRef, useRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import OutlinedInput from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
@@ -32,11 +32,10 @@ export interface Props extends StandardProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'FileInputContent' })
+const useStyles = makeStyles<Theme>(styles, { name: 'FileInputContent' })
 
 const FileInputContent = (props: Props & InputBaseComponentProps) => {
   const {
-    classes: externalClasses,
     accept,
     onChange,
     value,
@@ -47,7 +46,7 @@ const FileInputContent = (props: Props & InputBaseComponentProps) => {
     inputRef
   } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   const getFilename = () => {
     if (error || progress || !value) {
@@ -86,7 +85,6 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
   ref
 ) {
   const {
-    classes: externalClasses,
     className,
     style,
     width,
@@ -99,7 +97,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     onChange
   } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   // if `ref` is null then we need a ref to control the input
   // so we create another ref manually if needed and merge both of them

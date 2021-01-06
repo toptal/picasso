@@ -36,7 +36,7 @@ export interface Props {
   scaleCoefficient?: number
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTreeView' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTreeView' })
 
 export const TreeView = (props: Props) => {
   const {
@@ -48,7 +48,7 @@ export const TreeView = (props: Props) => {
     scaleCoefficient = 0.5,
     showZoom
   } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
   const rootRef = createRef<SVGSVGElement>()
   const { nodes, links, selectedNode } = useTree({ data })
   const center = useMemo<{ x: number; y: number } | undefined>(() => {

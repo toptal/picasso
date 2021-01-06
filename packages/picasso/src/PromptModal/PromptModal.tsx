@@ -1,6 +1,5 @@
 import React, { forwardRef, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { mergeClasses } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import Typography from '../Typography'
@@ -60,10 +59,9 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
     onAfterSubmit,
     onCancel,
     onClose,
-    classes: externalClasses,
     ...rest
   } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
   const [result, setResult] = useSafeState<unknown>()
   const [loading, setLoading] = useSafeState(false)
   const [error, setError] = useSafeState(false)

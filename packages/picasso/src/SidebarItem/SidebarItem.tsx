@@ -12,8 +12,7 @@ import {
   StandardProps,
   TextLabelProps,
   OverridableComponent,
-  useTitleCase,
-  mergeClasses
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import Container from '../Container'
@@ -48,7 +47,7 @@ export interface Props
   index?: number | null
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItem'
 })
 
@@ -70,10 +69,9 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       expand,
       index,
       titleCase: propsTitleCase,
-      classes: externalClasses,
       ...rest
     } = props
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const classes = useStyles()
 
     const hasIcon = Boolean(icon)
     const hasMenu = Boolean(menu)

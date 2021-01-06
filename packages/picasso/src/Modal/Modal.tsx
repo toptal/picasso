@@ -15,7 +15,7 @@ import {
   usePicassoRoot,
   useBreakpoint,
   SizeType,
-  mergeClasses
+  JssProps
 } from '@toptal/picasso-shared'
 
 import { CloseMinor16 } from '../Icon'
@@ -30,7 +30,10 @@ import styles from './styles'
 type ContainerValue = HTMLElement | (() => HTMLElement)
 type Alignment = 'top' | 'centered'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props
+  extends StandardProps,
+    JssProps,
+    HTMLAttributes<HTMLDivElement> {
   /** Content of Modal component */
   children: ReactNode
   /** Whether modal should be displayed */
@@ -59,7 +62,7 @@ export interface StaticProps {
   Title: typeof ModalTitle
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoModal' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoModal' })
 const defaultManager = new ModalManager()
 
 // https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js#L25
@@ -126,10 +129,9 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     transitionDuration,
     paperProps,
     align,
-    classes: externalClasses,
     ...rest
   } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
   const picassoRootContainer = usePicassoRoot()
   const rootRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
   const modalId = useRef(generateKey())

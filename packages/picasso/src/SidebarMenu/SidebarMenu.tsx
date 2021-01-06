@@ -1,7 +1,7 @@
 import React, { forwardRef, useContext, ReactElement, useCallback } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import Menu, { ListNativeProps } from '../Menu'
 import { SidebarContext } from '../Sidebar'
@@ -14,22 +14,15 @@ export interface Props extends StandardProps, ListNativeProps {
   bottom?: boolean
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarMenu'
 })
 
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
   function SidebarMenu(props, ref) {
-    const {
-      bottom,
-      classes: externalClasses,
-      style,
-      className,
-      children,
-      ...rest
-    } = props
+    const { bottom, style, className, children, ...rest } = props
 
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const classes = useStyles()
 
     const { variant, expandedItemKey, setExpandedItemKey } = useContext<
       SidebarContextProps

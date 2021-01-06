@@ -4,8 +4,7 @@ import cx from 'classnames'
 import {
   StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef,
-  mergeClasses
+  CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
 
 import Container, { VariantType as ContainerVariantType } from '../Container'
@@ -32,7 +31,7 @@ export interface StaticProps {
   Actions: typeof HelpboxActions
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoHelpbox'
 })
 
@@ -41,16 +40,8 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
   props,
   ref
 ) {
-  const {
-    className,
-    style,
-    children,
-    variant,
-    onClose,
-    classes: externalClasses,
-    ...rest
-  } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { className, style, children, variant, onClose, ...rest } = props
+  const classes = useStyles()
 
   return (
     <Container

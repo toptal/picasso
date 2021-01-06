@@ -4,8 +4,7 @@ import MUITable from '@material-ui/core/Table'
 import {
   StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef,
-  mergeClasses
+  CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
 
 import TableCell from '../TableCell'
@@ -34,7 +33,7 @@ export interface StaticProps {
   ExpandableRow: typeof TableExpandableRow
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Table'
 })
 
@@ -43,14 +42,8 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table(
   props,
   ref
 ) {
-  const {
-    className,
-    style,
-    children,
-    classes: externalClasses,
-    ...rest
-  } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { className, style, children, ...rest } = props
+  const classes = useStyles()
 
   return (
     <MUITable

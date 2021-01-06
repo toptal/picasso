@@ -13,8 +13,7 @@ import {
   StandardProps,
   TextLabelProps,
   CompoundedComponentWithRef,
-  useTitleCase,
-  mergeClasses
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
@@ -52,7 +51,7 @@ export interface StaticProps {
   Rectangular: typeof TagRectangular
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLabel' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
 
 // eslint-disable-next-line react/display-name
 export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
@@ -66,12 +65,11 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     variant,
     as,
     titleCase: propsTitleCase,
-    classes: externalClasses,
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   const titleCase = useTitleCase(propsTitleCase)
 

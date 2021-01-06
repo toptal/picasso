@@ -1,7 +1,7 @@
 import React, { ReactNode, forwardRef, useContext, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import styles from './styles'
@@ -13,21 +13,15 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoHelpboxActions'
 })
 
 export const HelpboxActions = forwardRef<HTMLDivElement, Props>(
   function HelpboxActions(props, ref) {
-    const {
-      classes: externalClasses,
-      className,
-      style,
-      children,
-      ...rest
-    } = props
+    const { className, style, children, ...rest } = props
 
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const classes = useStyles()
 
     const { closeable }: HelpboxContextProps = useContext<HelpboxContextProps>(
       HelpboxContext

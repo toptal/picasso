@@ -4,8 +4,7 @@ import cx from 'classnames'
 import {
   useAppConfig,
   EnvironmentType,
-  StandardProps,
-  mergeClasses
+  StandardProps
 } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -19,15 +18,15 @@ export interface Props extends StandardProps {
   productName: string
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoEnvironmentBanner'
 })
 
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
   function EnvironmentBanner(props, ref) {
     const { environment: configEnvironment } = useAppConfig()
-    const { environment, productName, classes: externalClasses } = props
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const { environment, productName } = props
+    const classes = useStyles()
 
     const [isShown, setIsShown] = useState(true)
 

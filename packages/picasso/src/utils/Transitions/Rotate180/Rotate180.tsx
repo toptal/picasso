@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react'
 import cx from 'classnames'
-import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import styles from './styles'
@@ -12,20 +12,13 @@ export interface Props extends StandardProps {
   children: ReactNode
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Rotate180'
 })
 
 export const Rotate180 = (props: Props) => {
-  const {
-    children,
-    style,
-    className,
-    on,
-    classes: externalClasses,
-    ...rest
-  } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { children, style, className, on, ...rest } = props
+  const classes = useStyles()
 
   const childProps = {
     className: cx(className, classes.transition, {

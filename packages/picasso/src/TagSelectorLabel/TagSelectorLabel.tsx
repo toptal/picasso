@@ -1,20 +1,19 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { mergeClasses } from '@toptal/picasso-shared'
 
 import Tag from '../Tag'
 import { Props as TagProps } from '../Tag/Tag'
 import styles from './styles'
 
-const useStyles = makeStyles<Theme, TagProps>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTagSelectorLabel'
 })
 
 export const TagSelectorLabel = forwardRef<HTMLDivElement, TagProps>(
   function TagSelectorLabel(props, ref) {
-    const { children, classes: externalClasses, ...rest } = props
+    const { children, ...rest } = props
 
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const classes = useStyles()
 
     return (
       <Tag

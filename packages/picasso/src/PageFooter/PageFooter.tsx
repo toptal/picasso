@@ -1,7 +1,7 @@
 import React, { useContext, forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
@@ -14,7 +14,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
 
 const currentYear = new Date().getFullYear()
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoPageFooter'
 })
 
@@ -22,14 +22,8 @@ export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
   props,
   ref
 ) {
-  const {
-    classes: externalClasses,
-    className,
-    style,
-    rightContent,
-    ...rest
-  } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { className, style, rightContent, ...rest } = props
+  const classes = useStyles()
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
   const contentClassnames = cx(

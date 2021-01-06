@@ -5,8 +5,7 @@ import MUIStepLabel from '@material-ui/core/StepLabel'
 import {
   StandardProps,
   TextLabelProps,
-  useTitleCase,
-  mergeClasses
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import StepIcon from '../StepIcon'
@@ -23,12 +22,11 @@ export interface Props
   completed?: boolean
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoStepLabel' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepLabel' })
 
 export const StepLabel: FunctionComponent<Props> = props => {
   const {
     active,
-    classes: externalClasses,
     className,
     children,
     completed,
@@ -38,7 +36,7 @@ export const StepLabel: FunctionComponent<Props> = props => {
     ...rest
   } = props
   const titleCase = useTitleCase(propsTitleCase)
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   return (
     <MUIStepLabel

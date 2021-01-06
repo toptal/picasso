@@ -2,7 +2,7 @@ import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
-import { StandardProps, SizeType, mergeClasses } from '@toptal/picasso-shared'
+import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import CircularProgress from '../CircularProgress'
 import styles from './styles'
@@ -28,7 +28,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLoader' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLoader' })
 
 export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
   props,
@@ -36,7 +36,6 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
 ) {
   const {
     children,
-    classes: externalClasses,
     size,
     inline,
     className,
@@ -45,7 +44,7 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
     ...rest
   } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   return (
     <div

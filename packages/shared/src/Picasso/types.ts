@@ -20,7 +20,7 @@ export interface BaseProps {
 }
 
 export interface JssProps {
-  classes: Classes
+  classes?: Classes
 }
 
 export interface TextLabelProps {
@@ -28,7 +28,7 @@ export interface TextLabelProps {
   titleCase?: boolean
 }
 
-export type StandardProps = BaseProps & Partial<JssProps>
+export type StandardProps = BaseProps
 
 // Take all props, excluding props from JssProps
 // type and other passed props
@@ -42,7 +42,7 @@ export type OmitInternalProps<T, K = ''> = Pick<
 >
 
 export type PicassoComponent<P, S = {}> = FunctionComponent<
-  OmitInternalProps<P> & Partial<JssProps>
+  OmitInternalProps<P> & JssProps
 > &
   S
 

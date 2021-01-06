@@ -176,7 +176,7 @@ const generateLineGraphs = (
 
 const positionOverride = { x: 0, y: 0 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'LineChart'
 })
 
@@ -184,7 +184,7 @@ const defaultGetYAxisTicks = (domain: Domain) =>
   getD3Ticks(domain[0], domain[1], NUMBER_OF_TICKS)
 
 export const LineChart = (props: Props) => {
-  const classes = useStyles(props)
+  const classes = useStyles()
   const {
     data,
     lineConfig: lines,

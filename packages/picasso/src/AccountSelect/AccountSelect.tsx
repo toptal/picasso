@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
@@ -33,26 +33,18 @@ export interface Props
   onSelect: (account: Account) => void
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAccountSelect'
 })
 
 export const AccountSelect = forwardRef<HTMLUListElement, Props>(
   function AccountSelect(props, ref) {
-    const {
-      className,
-      accounts,
-      onSelect,
-      style,
-      classes: externalClasses,
-      ...rest
-    } = props
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const { className, accounts, onSelect, style, ...rest } = props
+    const classes = useStyles()
 
     const {
       accountItem: accountItemClass,
-      accountLink: accountLinkClass,
-      ...menuClasses
+      accountLink: accountLinkClass
     } = classes
 
     return (
@@ -60,7 +52,6 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
-        classes={menuClasses}
         className={className}
         style={style}
       >

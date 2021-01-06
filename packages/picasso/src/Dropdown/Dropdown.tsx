@@ -20,7 +20,7 @@ import {
   spacingToRem,
   SpacingType,
   StandardProps,
-  mergeClasses
+  JssProps
 } from '@toptal/picasso-shared'
 
 import DropdownArrow from '../DropdownArrow'
@@ -28,7 +28,10 @@ import Popper from '../Popper'
 import Paper from '../Paper'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props
+  extends StandardProps,
+    JssProps,
+    HTMLAttributes<HTMLDivElement> {
   /** Anchor element that opens content on click */
   children: ReactNode
   /** Content element that opens when anchor is clicked */
@@ -78,7 +81,7 @@ const useDropdownContext = () => {
   return context
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoDropdown'
 })
 
@@ -88,7 +91,6 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   ref
 ) {
   const {
-    classes: externalClasses,
     className,
     style,
     children,
@@ -104,7 +106,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     onClose,
     ...rest
   } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   const contentRef = useRef<HTMLElement>()
 

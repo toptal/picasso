@@ -41,7 +41,7 @@ export const renderAlertIcon = (variant: Props['variant']) => {
   }
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAlertInline'
 })
 
@@ -49,7 +49,7 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {
-  const classes = useStyles(props)
+  const classes = useStyles()
   const { variant, children, className } = props
 
   return (

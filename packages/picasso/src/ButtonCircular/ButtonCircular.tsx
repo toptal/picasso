@@ -47,7 +47,7 @@ export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
       disabled,
       ...rest
     } = props
-    const classes = useStyles(props)
+    const classes = useStyles()
 
     const { root: rootClass, focusVisible: focusVisibleClass } = classes
 

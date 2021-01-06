@@ -10,7 +10,8 @@ exports[`Radio.Group renders radio in group 1`] = `
       role="radiogroup"
     >
       <label
-        class="PicassoFormControlLabel-root Radio-root Radio-root Radio-labelWithRightSpacing"
+        class="PicassoFormControlLabel-root Radio-labelWithRightSpacing"
+        classes="[object Object]"
       >
         <span
           aria-disabled="false"
@@ -32,7 +33,7 @@ exports[`Radio.Group renders radio in group 1`] = `
           </span>
         </span>
         <span
-          class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label Radio-label"
+          class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label"
         >
           <span
             class="PicassoFormLabel-text"
@@ -42,7 +43,8 @@ exports[`Radio.Group renders radio in group 1`] = `
         </span>
       </label>
       <label
-        class="PicassoFormControlLabel-root Radio-root Radio-root Radio-labelWithRightSpacing"
+        class="PicassoFormControlLabel-root Radio-labelWithRightSpacing"
+        classes="[object Object]"
       >
         <span
           aria-disabled="false"
@@ -64,7 +66,7 @@ exports[`Radio.Group renders radio in group 1`] = `
           </span>
         </span>
         <span
-          class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label Radio-label"
+          class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label"
         >
           <span
             class="PicassoFormLabel-text"

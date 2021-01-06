@@ -5,7 +5,7 @@ import React, {
   HTMLAttributes
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps, JssProps, mergeClasses } from '@toptal/picasso-shared'
+import { StandardProps, JssProps } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -19,7 +19,7 @@ const SIBLING_COUNT = 1
 
 const PaginationEllipsis: FunctionComponent<JssProps> = ({ classes }) => {
   return (
-    <Container className={classes.ellipsis}>
+    <Container className={classes!.ellipsis}>
       <Typography size='small' weight='semibold' color='black'>
         {ELLIPSIS}
       </Typography>
@@ -42,10 +42,9 @@ const PaginationPage: FunctionComponent<PaginationPageProps> = ({
   page,
   activePage,
   disabled,
-  classes: externalClasses,
   onClick
 }) => {
-  const classes = mergeClasses(useStyles(), externalClasses)
+  const classes = useStyles()
 
   return (
     <Button
@@ -75,15 +74,8 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   props,
   ref
 ) {
-  const {
-    activePage,
-    classes: externalClasses,
-    disabled,
-    totalPages,
-    onPageChange,
-    ...rest
-  } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { activePage, disabled, totalPages, onPageChange, ...rest } = props
+  const classes = useStyles()
 
   const pages = useMemo(() => getRange(activePage, totalPages, SIBLING_COUNT), [
     activePage,

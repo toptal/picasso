@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react'
 import MUIRadioGroup, { RadioGroupProps } from '@material-ui/core/RadioGroup'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { mergeClasses } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -14,18 +13,18 @@ export interface Props extends RadioGroupProps {
 // Using { index: -1 } to inject CSS link to the bottom of the head
 // in order to prevent FormControlLabel's styles to override RadioGroup's ones
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoRadioGroup',
   index: -1
 })
 
 const RadioGroup: FunctionComponent<Props> = props => {
-  const { horizontal, className, classes: externalClasses, ...rest } = props
+  const { horizontal, className, ...rest } = props
   const {
     horizontal: horizontalClass,
     labelWithRightSpacing,
     ...classes
-  } = mergeClasses(useStyles(props), externalClasses as Record<string, string>)
+  } = useStyles()
 
   const children = React.Children.toArray(rest.children)
 

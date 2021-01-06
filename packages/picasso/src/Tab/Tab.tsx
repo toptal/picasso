@@ -7,7 +7,6 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
 import {
-  mergeClasses,
   StandardProps,
   TextLabelProps,
   useTitleCase
@@ -42,7 +41,7 @@ export interface Props
   onClick?: TabProps['onClick']
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTab' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTab' })
 
 export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
   const {
@@ -54,10 +53,9 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
     onChange,
     onClick,
     titleCase: propsTitleCase,
-    classes: externalClasses,
     ...rest
   } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
   const titleCase = useTitleCase(propsTitleCase)
 
   return (

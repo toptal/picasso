@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import { useBreakpoint } from '../utils'
 import UserBadge from '../UserBadge'
@@ -10,7 +10,7 @@ import Dropdown from '../Dropdown'
 import Typography from '../Typography'
 import styles from './styles'
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTopBarMenu'
 })
 
@@ -29,17 +29,8 @@ export const TopBarMenu = forwardRef<HTMLDivElement, Props>(function TopBarMenu(
   props,
   ref
 ) {
-  const {
-    name,
-    meta,
-    avatar,
-    classes: externalClasses,
-    className,
-    style,
-    children,
-    ...rest
-  } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { name, meta, avatar, className, style, children, ...rest } = props
+  const classes = useStyles()
 
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 

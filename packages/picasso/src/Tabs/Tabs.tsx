@@ -5,8 +5,7 @@ import {
   ButtonOrAnchorProps,
   StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef,
-  mergeClasses
+  CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
 
 import Tab from '../Tab'
@@ -29,7 +28,7 @@ export interface StaticProps {
   Tab: typeof Tab
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Tabs'
 })
 
@@ -38,8 +37,8 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
   props,
   ref
 ) {
-  const { children, onChange, value, classes: externalClasses, ...rest } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { children, onChange, value, ...rest } = props
+  const classes = useStyles()
 
   return (
     <MUITabs

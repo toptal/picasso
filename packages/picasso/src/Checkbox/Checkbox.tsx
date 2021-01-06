@@ -3,7 +3,6 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   ButtonOrAnchorProps,
   CompoundedComponentWithRef,
-  mergeClasses,
   StandardProps,
   TextLabelProps
 } from '@toptal/picasso-shared'
@@ -20,7 +19,7 @@ export interface StaticProps {
   Group: typeof CheckboxGroup
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoCheckbox' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCheckbox' })
 
 export interface Props
   extends StandardProps,
@@ -63,11 +62,10 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
     checked,
     indeterminate,
     titleCase,
-    classes: externalClasses,
     ...rest
   } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
   const rootClasses = {
     root: classes.root,
     disabled: classes.disabled

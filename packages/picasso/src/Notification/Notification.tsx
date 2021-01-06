@@ -14,8 +14,7 @@ import {
   StandardProps,
   JssProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef,
-  mergeClasses
+  CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
 
 import {
@@ -61,9 +60,9 @@ const renderNotificationCloseButton = ({
 }: PrivateProps & JssProps) => (
   <Button.Circular
     onClick={onClose}
-    className={classes.close}
+    className={classes?.close}
     title='Close Notification'
-    icon={<CloseMinor16 className={classes.closeIcon} />}
+    icon={<CloseMinor16 className={classes?.closeIcon} />}
   />
 )
 
@@ -73,7 +72,7 @@ const renderNotificationIcon = ({
   classes
 }: PrivateProps & JssProps) => {
   const iconProps = {
-    className: classes.icon
+    className: classes?.icon
   }
 
   // TODO: these are Icons required circular Icon bg color definitions, all Icons should be white on that color
@@ -104,15 +103,20 @@ const renderNotificationContent = (props: PrivateProps & JssProps) => {
   const { classes, children, onClose } = props
 
   return (
-    <Container flex className={classes.contentWrapper}>
-      <Container flex alignItems='center' className={classes.iconWrapper}>
+    <Container flex className={classes?.contentWrapper}>
+      <Container flex alignItems='center' className={classes?.iconWrapper}>
         {renderNotificationIcon(props)}
       </Container>
       <Typography
         size='medium'
-        className={cx(classes.content, {
-          [classes.contentCloseButton]: onClose
-        })}
+        className={cx(
+          classes?.content,
+          classes?.contentCloseButton
+            ? {
+                [classes.contentCloseButton]: onClose
+              }
+            : undefined
+        )}
         as='div'
       >
         {children}
@@ -122,22 +126,16 @@ const renderNotificationContent = (props: PrivateProps & JssProps) => {
   )
 }
 
-const useStyles = makeStyles<Theme, PrivateProps>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Notification'
 })
 
 // eslint-disable-next-line react/display-name
 export const Notification = forwardRef<HTMLElement, PrivateProps>(
   function Notification(props, ref) {
-    const {
-      className,
-      variant,
-      elevated,
-      classes: externalClasses,
-      ...rest
-    } = props
+    const { className, variant, elevated, ...rest } = props
 
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const classes = useStyles()
 
     return (
       <SnackbarContent

@@ -13,7 +13,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   CompoundedComponentWithRef,
   StandardProps,
-  mergeClasses
+  JssProps
 } from '@toptal/picasso-shared'
 
 import { ArrowDownMinor16 } from '../Icon'
@@ -27,15 +27,15 @@ export type Borders = 'all' | 'middle' | 'none'
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoAccordion' })
 
 const Summary: FunctionComponent<StandardProps> = props => {
-  const { children, classes: externalClasses } = props
-  const classes = mergeClasses(useStyles(), externalClasses)
+  const { children, className } = props
+  const classes = useStyles()
 
-  return <div className={classes.summaryWrapper}>{children}</div>
+  return <div className={cx(className, classes.summaryWrapper)}>{children}</div>
 }
 
 const Details: FunctionComponent<StandardProps> = props => {
-  const { children, classes: externalClasses, className } = props
-  const classes = mergeClasses(useStyles(), externalClasses)
+  const { children, className } = props
+  const classes = useStyles()
 
   return <div className={cx(className, classes.detailsWrapper)}>{children}</div>
 }
@@ -47,6 +47,7 @@ export interface StaticProps {
 
 export interface Props
   extends Partial<StandardProps>,
+    JssProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /** Always visible part of accordion */
   children?: ReactNode
@@ -93,11 +94,10 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     className,
     style,
     onChange,
-    classes: externalClasses,
     ...rest
   } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
   const borderClasses: { [key in Borders]: string } = {
     all: classes.bordersAll,
     middle: classes.bordersMiddle,

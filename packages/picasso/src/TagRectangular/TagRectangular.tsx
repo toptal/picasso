@@ -31,7 +31,7 @@ interface IndicatorOnlyProps
 
 export type Props = VariantOnlyProps | IndicatorOnlyProps
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTagRectangular'
 })
 
@@ -49,7 +49,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
       ...rest
     } = props
 
-    const classes = useStyles(props)
+    const classes = useStyles()
     const titleCase = useTitleCase(propsTitleCase)
 
     return (

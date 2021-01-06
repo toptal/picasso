@@ -9,7 +9,7 @@ import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { SnackbarOrigin } from '@material-ui/core/Snackbar'
-import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import {
   Notification as PicassoNotification,
@@ -30,22 +30,15 @@ interface Props extends StandardProps {
   variant?: VariantType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoNotification'
 })
 
 const StyledNotification =
   // eslint-disable-next-line react/display-name
   forwardRef<HTMLElement, Props>(function Notification(props, ref) {
-    const {
-      content,
-      icon,
-      key,
-      onClose,
-      variant = 'white',
-      classes: externalClasses
-    } = props
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const { content, icon, key, onClose, variant = 'white' } = props
+    const classes = useStyles()
 
     return (
       <PicassoNotification

@@ -13,12 +13,12 @@ interface Props {
   onChange: (event: React.ChangeEvent<{}>, value: number) => void
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTabsSectionHeader'
 })
 
 const TabsSectionHeader: FunctionComponent<Props> = props => {
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const { tabs, selectedTab, onChange } = props
 

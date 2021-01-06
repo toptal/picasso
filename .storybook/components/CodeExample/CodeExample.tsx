@@ -5,7 +5,8 @@ import React, {
   FunctionComponent,
   useState,
   useEffect,
-  useLayoutEffect
+  useLayoutEffect,
+  useMemo
 } from 'react'
 import debounce from 'debounce'
 import styled from 'styled-components'
@@ -14,11 +15,7 @@ import SourceRender, { RenderResult } from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
 import { Typography, Button, Accordion, Container } from '@toptal/picasso'
-import Picasso, {
-  mergeClasses,
-  StandardProps,
-  useScreenSize
-} from '@toptal/picasso-shared'
+import Picasso, { StandardProps, useScreenSize } from '@toptal/picasso-shared'
 import { Code16, Link16 } from '@toptal/picasso/Icon'
 
 import Editor from '../Editor'
@@ -29,7 +26,7 @@ const COPY_LINK_DEFAULT_TEXT = 'Link'
 const COPY_LINK_COPIED_TEXT = 'Copied!'
 const PRESETS = [['typescript', { allExtensions: true, isTSX: true }], 'es2015']
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoCodeExample'
 })
 
@@ -139,9 +136,9 @@ const getOriginalSourceCode = ({
 }
 
 const CodeExample = (props: Props) => {
-  const { permanentLink, showEditCode, classes: externalClasses } = props
+  const { permanentLink, showEditCode } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
   const [sourceCode, setSourceCode] = useState(getOriginalSourceCode(props))
   const [isEditorVisible, setEditorVisible] = useState(false)
   const [copyLinkButtonText, setCopyLinkButtonText] = useState(
@@ -161,7 +158,7 @@ const CodeExample = (props: Props) => {
     }, 2000)
   }
 
-  const handleChangeCode = debounce(setSourceCode, 400)
+  const handleChangeCode = useMemo(() => debounce(setSourceCode, 400), [])
 
   /* When we are building storybook for visual tests we want to have
    * only actual component without source code editor

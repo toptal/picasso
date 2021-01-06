@@ -8,6 +8,7 @@ import React, {
 import cx from 'classnames'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import {
+  JssProps,
   StandardProps,
   SizeType,
   ButtonOrAnchorProps,
@@ -15,7 +16,6 @@ import {
   OverridableComponent,
   useTitleCase,
   TextLabelProps,
-  mergeClasses,
   Classes
 } from '@toptal/picasso-shared'
 
@@ -40,6 +40,7 @@ export type IconPositionType = 'left' | 'right'
 
 export interface Props
   extends StandardProps,
+    JssProps,
     TextLabelProps,
     ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
@@ -136,10 +137,9 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     type,
     as,
     titleCase: propsTitleCase,
-    classes: externalClasses,
     ...rest
   } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   const {
     root: rootClass,

@@ -6,13 +6,13 @@ import styles from './styles'
 
 type Props = HTMLAttributes<HTMLDivElement>
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoOverviewBlockRow'
 })
 
 const OverviewBlockRow: FunctionComponent<Props> = props => {
   const { className, ...rest } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   return (
     <div

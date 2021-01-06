@@ -50,7 +50,7 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
       onClick,
       ...rest
     } = props
-    const classes = useStyles(props)
+    const classes = useStyles()
 
     const {
       root: rootClass,

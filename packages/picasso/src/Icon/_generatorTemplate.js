@@ -63,7 +63,7 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
     import React, { forwardRef, Ref } from 'react'
     import cx from 'classnames'
     import { makeStyles } from '@material-ui/core/styles'
-    import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
+    import { JssProps, StandardProps } from '@toptal/picasso-shared'
 
     import kebabToCamelCase from '../utils/kebab-to-camel-case'
     import styles from './styles'
@@ -76,7 +76,7 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
       | 3
       | 4
 
-    export interface Props extends StandardProps {
+    export interface Props extends StandardProps, JssProps {
       scale?: ScaleType
       color?: string
       base?: number
@@ -86,9 +86,9 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
       props: Props,
       ref: Ref<SVGSVGElement>
     ) {
-      const { classes: externalClasses, className, style = {}, color, scale, base } = props
+      const { className, style = {}, color, scale, base } = props
 
-      const classes: Record<string, string> = mergeClasses(useStyles(props), externalClasses)
+      const classes: Record<string, string> = useStyles()
       const classNames = [classes.root, className]
 
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)

@@ -6,8 +6,7 @@ import {
   CompoundedComponentWithRef,
   StandardProps,
   ButtonOrAnchorProps,
-  TextLabelProps,
-  mergeClasses
+  TextLabelProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -36,7 +35,7 @@ export interface StaticProps {
   Group: typeof RadioGroup
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Radio'
 })
 
@@ -54,10 +53,9 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
     value,
     onChange,
     titleCase,
-    classes: externalClasses,
     ...rest
   } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   const rootClasses = {
     root: classes.root,

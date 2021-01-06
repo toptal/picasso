@@ -2,12 +2,11 @@ import React, { forwardRef, ChangeEvent, ComponentProps } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUISlider, { ValueLabelProps } from '@material-ui/core/Slider'
 import cx from 'classnames'
-import { mergeClasses } from '@toptal/picasso-shared'
 
 import Tooltip from '../Tooltip'
 import styles from './styles'
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme>(styles)
 
 type Value = number | number[]
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
@@ -104,7 +103,6 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     onChange,
     hideThumbOnEmpty,
     disableTrackHighlight,
-    classes: externalClasses,
     ...rest
   } = props
   const {
@@ -114,7 +112,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     markInactive,
     unmarkTrack,
     ...classes
-  } = mergeClasses(useStyles(props), externalClasses as Record<string, string>)
+  } = useStyles()
   const isTooltipAlwaysVisible = tooltip === 'on'
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)

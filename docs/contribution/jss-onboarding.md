@@ -64,7 +64,7 @@ import styles from './styles'
 const useStyles = makeStyles(styles)
 
 const Button = (props) => {
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const { variant } = props
 
@@ -118,7 +118,7 @@ import styles from './styles'
 const useStyles = makeStyles(styles)
 
 const Hero = (props) => {
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const { variant } = props
 

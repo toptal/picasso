@@ -34,6 +34,7 @@ exports[`NotificationActions default render 1`] = `
             The time zone in your profile is set to (UTC -08:00) America - Los
             <div
               class="PicassoContainer-topxsmallMargin PicassoContainer-flex"
+              classes="[object Object]"
             >
               Test
             </div>

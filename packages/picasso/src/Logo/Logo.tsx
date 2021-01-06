@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import { Logo as LogoIcon, LogoEmblem as LogoEmblemIcon } from '../Icon'
 import styles from './styles'
@@ -15,18 +15,12 @@ export interface Props extends StandardProps {
   variant?: VariantType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLogo' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLogo' })
 
 export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
-  const {
-    classes: externalClasses,
-    emblem,
-    variant = 'default',
-    style,
-    className
-  } = props
+  const { emblem, variant = 'default', style, className } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   const rootClass = emblem ? classes.rootEmblem : classes.root
   const colorClass = classes[variant!]

@@ -6,11 +6,7 @@ import React, {
 } from 'react'
 import { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import {
-  mergeClasses,
-  StandardProps,
-  TextLabelProps
-} from '@toptal/picasso-shared'
+import { JssProps, StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import { RequiredDecoration } from '../FormLabel'
@@ -24,6 +20,7 @@ export type FormControlLabelAttributesType = LabelHTMLAttributes<
 
 export interface Props
   extends StandardProps,
+    JssProps,
     TextLabelProps,
     FormControlLabelAttributesType {
   /** A control element. For instance, it can be be a Radio or a Checkbox */
@@ -36,7 +33,7 @@ export interface Props
   requiredDecoration?: RequiredDecoration
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoFormControlLabel'
 })
 
@@ -44,7 +41,6 @@ const FormControlLabel: FunctionComponent<Props> = props => {
   const {
     control,
     label,
-    classes: externalClasses,
     className,
     style,
     disabled,
@@ -53,7 +49,7 @@ const FormControlLabel: FunctionComponent<Props> = props => {
     ...rest
   } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   return (
     <label

@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import RootRef from '@material-ui/core/RootRef'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import styles from './styles'
@@ -38,21 +38,13 @@ const getMoveDirection = (
     : Direction.UP
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoScrollMenu'
 })
 
 const ScrollMenu: FunctionComponent<Props> = props => {
-  const {
-    selectedIndex,
-    onBlur,
-    children,
-    style,
-    fixedHeader,
-    classes: externalClasses,
-    ...rest
-  } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { selectedIndex, onBlur, children, style, fixedHeader, ...rest } = props
+  const classes = useStyles()
   const menuRef = useRef<HTMLDivElement | null>(null)
   const firstItemRef = createRef<HTMLElement>()
   const prevSelectedIndex = useRef(selectedIndex)

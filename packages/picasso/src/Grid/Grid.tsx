@@ -10,8 +10,7 @@ import MUIGrid, {
 import {
   StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef,
-  mergeClasses
+  CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
 
 import GridItem from '../GridItem'
@@ -41,7 +40,7 @@ const humanToMUISpacing = (spacing: number) => {
   return (spacing / 8) as GridSpacing
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoGrid'
 })
 
@@ -59,10 +58,9 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
     wrap,
     className,
     style,
-    classes: externalClasses,
     ...rest
   } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   return (
     <MUIGrid

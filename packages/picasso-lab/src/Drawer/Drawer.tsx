@@ -28,7 +28,7 @@ export interface Props extends BaseProps {
   width?: WidthType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoDrawer' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoDrawer' })
 
 export const Drawer: FunctionComponent<Props> = props => {
   const {
@@ -40,7 +40,7 @@ export const Drawer: FunctionComponent<Props> = props => {
     width,
     ...rest
   } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
   const { setHasDrawer } = useDrawer()
 
   useLayoutEffect(() => {

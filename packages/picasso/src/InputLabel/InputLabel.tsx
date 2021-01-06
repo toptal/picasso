@@ -1,7 +1,7 @@
 import React, { ReactNode, FunctionComponent, LabelHTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIInputLabel from '@material-ui/core/InputLabel'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -19,17 +19,9 @@ export interface Props
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoInputLabel' })
 
 const InputLabel: FunctionComponent<Props> = props => {
-  const {
-    variant,
-    htmlFor,
-    classes: externalClasses,
-    className,
-    style,
-    children,
-    ...rest
-  } = props
+  const { variant, htmlFor, className, style, children, ...rest } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   return (
     <MUIInputLabel

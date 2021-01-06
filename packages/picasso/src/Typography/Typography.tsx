@@ -5,7 +5,7 @@ import { PropTypes } from '@material-ui/core'
 import MUITypography from '@material-ui/core/Typography'
 import cx from 'classnames'
 import {
-  mergeClasses,
+  JssProps,
   StandardProps,
   SizeType,
   ColorType,
@@ -24,6 +24,7 @@ type UnderlineType = 'solid' | 'dashed'
 
 export interface Props
   extends StandardProps,
+    JssProps,
     TextLabelProps,
     HTMLAttributes<HTMLElement> {
   /** Font variant for inner text */
@@ -74,7 +75,7 @@ const VARIANTS: VariantsType = {
   }
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTypography'
 })
 
@@ -88,7 +89,6 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     size,
     align,
     className,
-    classes: externalClasses,
     style,
     inline,
     as,
@@ -101,7 +101,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     titleCase,
     ...rest
   } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   const resolvedVariant = VARIANTS[variant!][size!]
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)

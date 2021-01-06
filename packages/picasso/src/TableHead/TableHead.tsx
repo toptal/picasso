@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableHead from '@material-ui/core/TableHead'
-import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import { TableSectionContext, TableSection } from '../Table'
@@ -13,18 +13,12 @@ export interface Props
   children: ReactNode
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTableHead' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableHead' })
 
 export const TableHead = forwardRef<HTMLTableSectionElement, Props>(
   function TableHead(props, ref) {
-    const {
-      classes: externalClasses,
-      className,
-      style,
-      children,
-      ...rest
-    } = props
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const { className, style, children, ...rest } = props
+    const classes = useStyles()
 
     return (
       <TableSectionContext.Provider value={TableSection.HEAD}>

@@ -13,7 +13,7 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import Input, { InputProps } from '../Input'
 import Menu from '../Menu'
@@ -100,7 +100,7 @@ export interface Props
   poweredByGoogle?: boolean
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAutocomplete'
 })
 
@@ -141,10 +141,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       enableReset,
       name,
       poweredByGoogle,
-      classes: externalClasses,
       ...rest
     } = props
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const classes = useStyles()
 
     const getKey = (item: Item) => {
       if (customGetKey) {

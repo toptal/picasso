@@ -60,7 +60,7 @@ export interface StaticProps {
   Row: FunctionComponent<ComponentPropsWithoutRef<typeof OverviewBlockRow>>
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoOverviewBlock'
 })
 
@@ -77,7 +77,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       titleCase: propsTitleCase,
       ...rest
     } = props
-    const classes = useStyles(props)
+    const classes = useStyles()
     const { align, blockWidth } = useOverviewBlockGroupContext()
 
     const color: ColorSettings = {

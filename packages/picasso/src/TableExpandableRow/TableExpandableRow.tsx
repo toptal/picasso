@@ -8,7 +8,7 @@ import React, {
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUICollapse from '@material-ui/core/Collapse'
-import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import TableRow from '../TableRow'
 import TableCell from '../TableCell'
@@ -16,7 +16,7 @@ import styles from './styles'
 
 const MAX_COL_SPAN = 100
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTableExpandableRow'
 })
 
@@ -45,10 +45,9 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
       stripeEven,
       className,
       style,
-      classes: externalClasses,
       ...rest
     } = props
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const classes = useStyles()
 
     const wasExpandedOnce = useRef(false)
     const shouldTransition = !defaultExpanded || wasExpandedOnce.current

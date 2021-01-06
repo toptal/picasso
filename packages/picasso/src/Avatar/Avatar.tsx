@@ -5,7 +5,6 @@ import {
   StandardProps,
   SizeType,
   OmitInternalProps,
-  mergeClasses,
   JssProps
 } from '@toptal/picasso-shared'
 
@@ -19,7 +18,10 @@ import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
 
 type VariantType = 'square' | 'portrait' | 'landscape'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props
+  extends StandardProps,
+    JssProps,
+    HTMLAttributes<HTMLDivElement> {
   /** Alt text */
   alt?: string
   /** User full name to display initials on the avatar */
@@ -38,7 +40,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoAvatar' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoAvatar' })
 
 const isBrowserSupportsObjectFit = 'objectFit' in document.documentElement.style
 
@@ -52,8 +54,8 @@ const renderLogo = ({
   }
 
   return (
-    <div className={classes.logoContainer}>
-      <Logo emblem variant='white' className={classes.logo} />
+    <div className={classes!.logoContainer}>
+      <Logo emblem variant='white' className={classes!.logo} />
     </div>
   )
 }
@@ -71,9 +73,14 @@ const renderInitials = ({
 
   return (
     <Typography
-      className={cx(classes.text, {
-        [classes.textCapLimit]: initials.length >= AVATAR_INITIALS_LIMIT
-      })}
+      className={cx(
+        classes?.text,
+        classes?.textCapLimit
+          ? {
+              [classes.textCapLimit]: initials.length >= AVATAR_INITIALS_LIMIT
+            }
+          : undefined
+      )}
       invert
     >
       {initials}
@@ -96,19 +103,9 @@ const IE11Image = ({ style, src, ...rest }: OmitInternalProps<ImageProps>) => (
 )
 
 export const Avatar: FunctionComponent<Props> = props => {
-  const {
-    alt,
-    src,
-    classes: externalClasses,
-    className,
-    name,
-    size,
-    style,
-    variant,
-    ...rest
-  } = props
+  const { alt, src, className, name, size, style, variant, ...rest } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   const sizeClassName = classes[size!]
   const variantClassName = classes[variant!]

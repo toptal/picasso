@@ -4,8 +4,7 @@ import cx from 'classnames'
 import {
   StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef,
-  mergeClasses
+  CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
 
 import PageHead from '../PageHead'
@@ -45,7 +44,7 @@ export interface StaticProps {
 
 export const PageContext = React.createContext<PageContextProps>({})
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Page'
 })
 
@@ -54,16 +53,8 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   props,
   ref
 ) {
-  const {
-    children,
-    className,
-    style,
-    width,
-    fullWidth,
-    classes: externalClasses,
-    ...rest
-  } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { children, className, style, width, fullWidth, ...rest } = props
+  const classes = useStyles()
 
   return (
     <div

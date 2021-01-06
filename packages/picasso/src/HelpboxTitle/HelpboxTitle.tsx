@@ -1,6 +1,6 @@
 import React, { forwardRef, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import Container from '../Container'
@@ -11,21 +11,15 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: string
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoHelpboxTitle'
 })
 
 export const HelpboxTitle = forwardRef<HTMLDivElement, Props>(
   function HelpboxTitle(props, ref) {
-    const {
-      classes: externalClasses,
-      className,
-      style,
-      children,
-      ...rest
-    } = props
+    const { className, style, children, ...rest } = props
 
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const classes = useStyles()
 
     return (
       <Container

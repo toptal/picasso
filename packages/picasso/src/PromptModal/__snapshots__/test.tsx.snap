@@ -418,7 +418,7 @@ exports[`PromptModal showPrompt with input returns result on Submit action  1`] 
                   class="PicassoContainer-topxsmallMargin"
                 >
                   <div
-                    class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+                    class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
                   >
                     <input
                       aria-label="test-input"
@@ -474,7 +474,7 @@ exports[`PromptModal showPrompt with input returns result on Submit action  1`] 
               </button>
             </div>
             <button
-              class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root PicassoButtonCircular-flat PicassoButtonCircular-root PicassoModal-closeButton"
+              class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoModal-closeButton"
               data-component-type="button"
               tabindex="0"
               type="button"

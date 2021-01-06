@@ -13,7 +13,7 @@ import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
-import { StandardProps, SizeType, mergeClasses } from '@toptal/picasso-shared'
+import { StandardProps, SizeType } from '@toptal/picasso-shared'
 import { Search16 } from '@toptal/picasso/Icon'
 import PopperJs from 'popper.js'
 
@@ -40,7 +40,7 @@ import noop from '../utils/noop'
 type IconPosition = 'start' | 'end'
 export type ValueType = string | number
 
-const useStyles = makeStyles<Theme, Props<any, any>>(styles)
+const useStyles = makeStyles<Theme>(styles)
 
 const getOptionText = (option: Option | null) =>
   (option && option.text) || EMPTY_INPUT_VALUE
@@ -417,12 +417,11 @@ export const Select = documentable(
         searchThreshold,
         enableAutofill,
         autoComplete,
-        classes: externalClasses,
         searchPlaceholder,
         ...rest
       } = purifyProps(props)
 
-      const classes = mergeClasses(useStyles(props), externalClasses)
+      const classes = useStyles()
 
       const selectRef = useCombinedRefs<HTMLInputElement>(
         ref,

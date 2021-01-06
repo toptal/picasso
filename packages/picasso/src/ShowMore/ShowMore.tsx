@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Truncate from 'react-truncate'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import ChevronRightIcon16 from '../Icon/ChevronRight16'
 import Typography from '../Typography'
@@ -26,7 +26,7 @@ export interface Props extends StandardProps {
   onToggle?: () => void
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoShowMore' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoShowMore' })
 
 export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
   props,
@@ -37,7 +37,6 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
     rows = 4,
     initialExpanded = false,
     disableToggle = false,
-    classes: externalClasses,
     moreText = 'Show more',
     lessText = 'Show less',
     onToggle = () => {},
@@ -45,7 +44,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
     style,
     ...rest
   } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
   const [shownMore, setShownMore] = useState(initialExpanded)
 
   return (

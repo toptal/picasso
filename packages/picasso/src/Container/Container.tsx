@@ -4,10 +4,10 @@ import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
+  JssProps,
   StandardProps,
   SpacingType,
-  spacingToRem,
-  mergeClasses
+  spacingToRem
 } from '@toptal/picasso-shared'
 
 import styles, { AlignItemsType, JustifyContentType } from './styles'
@@ -19,10 +19,11 @@ type DirectionType = 'row' | 'column'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue' | 'grey'
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoContainer' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoContainer' })
 
 export interface Props
   extends StandardProps,
+    JssProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children: ReactNode
@@ -80,12 +81,11 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
     bordered = false,
     rounded = false,
     variant,
-    classes: externalClasses,
     as: Component = inline ? 'span' : 'div',
     ...rest
   } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   const margins = {
     ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),

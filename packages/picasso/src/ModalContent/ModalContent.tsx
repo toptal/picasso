@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import { useCombinedRefs } from '../utils'
@@ -12,19 +12,13 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoModalContent'
 })
 
 export const ModalContent = forwardRef<HTMLDivElement, Props>(
   function ModalContent(props, ref) {
-    const {
-      children,
-      classes: externalClasses,
-      className,
-      style,
-      ...rest
-    } = props
+    const { children, className, style, ...rest } = props
 
     /**
      * This is necessary to ensure if ref is not passed in, there's still a ref to calculate
@@ -34,7 +28,7 @@ export const ModalContent = forwardRef<HTMLDivElement, Props>(
 
     const { top, bottom } = useScrollableShades(modalContentRef)
 
-    const classes = mergeClasses(useStyles(props), externalClasses)
+    const classes = useStyles()
 
     return (
       <div className={cx(classes.shadedWrapper)}>

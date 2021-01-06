@@ -13,12 +13,12 @@ import styles from './styles'
 export interface Props extends StandardProps {
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme>(styles)
 
 export const <%= Name %> = forwardRef<HTMLElement, Props>(function <%= Name %>(props, ref) {
   const { classes: externalClasses } = props
 
-  const classes = mergeStyles(useStyles(props), externalClasses)
+  const classes = mergeStyles(useStyles(), externalClasses)
 
   return null
 })

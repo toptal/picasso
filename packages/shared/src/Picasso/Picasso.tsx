@@ -143,7 +143,7 @@ interface PicassoRootNodeProps {
   children?: ReactNode
 }
 
-const useGlobalStyles = makeStyles<Theme, PicassoRootNodeProps>(globalStyles, {
+const useGlobalStyles = makeStyles<Theme>(globalStyles, {
   name: 'Picasso'
 })
 
@@ -151,7 +151,7 @@ const useGlobalStyles = makeStyles<Theme, PicassoRootNodeProps>(globalStyles, {
 const PicassoRootNode = forwardRef<HTMLDivElement, PicassoRootNodeProps>(
   (props, ref) => {
     const { children } = props
-    const classes = useGlobalStyles(props)
+    const classes = useGlobalStyles()
 
     return (
       <div ref={ref} className={classes.root}>

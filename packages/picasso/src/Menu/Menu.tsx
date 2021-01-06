@@ -13,8 +13,7 @@ import cx from 'classnames'
 import {
   StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef,
-  mergeClasses
+  CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
 
 import { BackMinor16 } from '../Icon'
@@ -37,7 +36,7 @@ export interface StaticProps {
 
 type Menus = Record<string, ReactElement>
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Menu'
 })
 
@@ -46,15 +45,8 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   props,
   ref
 ) {
-  const {
-    children,
-    className,
-    style,
-    allowNestedNavigation,
-    classes: externalClasses,
-    ...rest
-  } = props
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const { children, className, style, allowNestedNavigation, ...rest } = props
+  const classes = useStyles()
 
   const { backButtonIcon, hideMenu, ...restClasses } = classes
   const { pop } = useContext<MenuContextProps>(MenuContext)

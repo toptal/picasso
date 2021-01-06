@@ -68,7 +68,7 @@ const generateKey = (() => {
   return () => String(++count)
 })()
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoMenuItem'
 })
 
@@ -95,7 +95,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     nonSelectable,
     ...rest
   } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const { push, refresh } = useContext<MenuContextProps>(MenuContext)
   const key = useMemo(generateKey, [])

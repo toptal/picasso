@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import AceEditor from 'react-ace'
-import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import 'brace/ext/language_tools'
 import 'brace/mode/jsx'
@@ -16,12 +16,12 @@ interface Props extends StandardProps {
   onChange: (value: string) => void
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoEditor' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoEditor' })
 
 const Editor: FunctionComponent<Props> = props => {
-  const { id, mode, value, classes: externalClasses, ...rest } = props
+  const { id, mode, value, ...rest } = props
 
-  const classes = mergeClasses(useStyles(props), externalClasses)
+  const classes = useStyles()
 
   return (
     <div className={classes.root}>

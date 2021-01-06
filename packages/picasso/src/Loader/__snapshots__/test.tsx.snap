@@ -6,7 +6,7 @@ exports[`props combo 1`] = `
     class="PicassoLoader-root PicassoLoader-inline"
   >
     <div
-      class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerBlue PicassoLoader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+      class="MuiCircularProgress-root PicassoCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
       role="progressbar"
       style="width: 64px; height: 64px;"
     >

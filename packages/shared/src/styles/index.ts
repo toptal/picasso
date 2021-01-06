@@ -43,6 +43,4 @@ export const remToNumber = (value: string) => Number.parseFloat(value)
 
 export { default as useChildrenWithClasses } from './useChildrenWithClasses'
 
-export { default as mergeClasses } from './mergeClasses'
-
 export * from './types'

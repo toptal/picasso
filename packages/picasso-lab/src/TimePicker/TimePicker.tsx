@@ -9,7 +9,7 @@ import cx from 'classnames'
 
 import styles from './styles'
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTimePicker'
 })
 
@@ -43,7 +43,7 @@ export interface Props
 
 export const TimePicker = (props: Props) => {
   const { onChange, value, width, className, ...rest } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
   const browser = detect()
   const isSafari = browser?.name === 'safari'
   const startsWithTwo = value && value[0] === '2'
