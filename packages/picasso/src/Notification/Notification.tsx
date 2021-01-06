@@ -12,7 +12,6 @@ import cx from 'classnames'
 import capitalize from '@material-ui/core/utils/capitalize'
 import {
   StandardProps,
-  JssProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -54,10 +53,7 @@ export interface StaticProps {
   Actions: typeof NotificationActions
 }
 
-const renderNotificationCloseButton = ({
-  onClose,
-  classes
-}: PrivateProps & JssProps) => (
+const renderNotificationCloseButton = ({ onClose, classes }: PrivateProps) => (
   <Button.Circular
     onClick={onClose}
     className={classes?.close}
@@ -66,11 +62,7 @@ const renderNotificationCloseButton = ({
   />
 )
 
-const renderNotificationIcon = ({
-  icon,
-  variant,
-  classes
-}: PrivateProps & JssProps) => {
+const renderNotificationIcon = ({ icon, variant, classes }: PrivateProps) => {
   const iconProps = {
     className: classes?.icon
   }
@@ -99,7 +91,7 @@ const renderNotificationIcon = ({
   }
 }
 
-const renderNotificationContent = (props: PrivateProps & JssProps) => {
+const renderNotificationContent = (props: PrivateProps) => {
   const { classes, children, onClose } = props
 
   return (

@@ -8,7 +8,6 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  JssProps,
   StandardProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef,
@@ -26,7 +25,7 @@ import SidebarLogo from '../SidebarLogo'
 import styles from './styles'
 import { SidebarContextProps, VariantType } from './types'
 
-export interface SmallScreenSidebarWrapperProps extends JssProps {
+export interface SmallScreenSidebarWrapperProps extends StandardProps {
   children?: ReactNode
 }
 

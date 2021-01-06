@@ -14,8 +14,7 @@ import {
   CompoundedComponentWithRef,
   usePicassoRoot,
   useBreakpoint,
-  SizeType,
-  JssProps
+  SizeType
 } from '@toptal/picasso-shared'
 
 import { CloseMinor16 } from '../Icon'
@@ -30,10 +29,7 @@ import styles from './styles'
 type ContainerValue = HTMLElement | (() => HTMLElement)
 type Alignment = 'top' | 'centered'
 
-export interface Props
-  extends StandardProps,
-    JssProps,
-    HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Content of Modal component */
   children: ReactNode
   /** Whether modal should be displayed */
@@ -62,7 +58,9 @@ export interface StaticProps {
   Title: typeof ModalTitle
 }
 
-const useStyles = makeStyles<Theme, JssProps>(styles, { name: 'PicassoModal' })
+const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
+  name: 'PicassoModal'
+})
 const defaultManager = new ModalManager()
 
 // https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js#L25

@@ -4,7 +4,6 @@ import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  JssProps,
   StandardProps,
   SpacingType,
   spacingToRem
@@ -19,13 +18,12 @@ type DirectionType = 'row' | 'column'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue' | 'grey'
 
-const useStyles = makeStyles<Theme, JssProps>(styles, {
+const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
   name: 'PicassoContainer'
 })
 
 export interface Props
   extends StandardProps,
-    JssProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children: ReactNode

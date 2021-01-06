@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import getNameInitials from '@toptal/picasso/utils/get-name-initials'
-import { JssProps, SizeType } from '@toptal/picasso-shared'
+import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props {
+export interface Props extends StandardProps {
   /** User full name to display initials on the avatar */
   name: string
   /** Photo url */
@@ -18,7 +18,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTreeNodeAvatar'
 })
 
-const renderInitials = ({ src, name, classes }: Partial<Props> & JssProps) => {
+const renderInitials = ({ src, name, classes }: Partial<Props>) => {
   if (src || !name) {
     return null
   }

@@ -10,12 +10,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import capitalize from '@material-ui/core/utils/capitalize'
-import {
-  StandardProps,
-  SizeType,
-  Classes,
-  JssProps
-} from '@toptal/picasso-shared'
+import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
 import Button from '../Button'
@@ -35,7 +30,6 @@ export type BaseInputProps = InputBaseComponentProps & {
 
 export interface Props
   extends StandardProps,
-    JssProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'value' | 'defaultValue' | 'size' | 'color'
@@ -74,7 +68,7 @@ export interface Props
   inputRef?: React.Ref<HTMLInputElement>
 }
 
-const useStyles = makeStyles<Theme, JssProps>(styles, {
+const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
   name: 'PicassoOutlinedInput'
 })
 

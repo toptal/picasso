@@ -1,14 +1,14 @@
 import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
-import { JssProps, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 const BASE_SIZE = 32
 
 type ScaleType = 1 | 2 | 3 | 4
-export interface Props extends StandardProps, JssProps {
+export interface Props extends StandardProps {
   scale?: ScaleType
   color?: string
   base?: number

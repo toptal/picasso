@@ -1,15 +1,15 @@
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIAccordionDetails from '@material-ui/core/AccordionDetails'
-import { JssProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props extends JssProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
-const useStyles = makeStyles<Theme, JssProps>(styles, {
+const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
   name: 'PicassoAccordionDetails'
 })
 

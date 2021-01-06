@@ -5,7 +5,7 @@ import React, {
   HTMLAttributes
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps, JssProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -17,7 +17,7 @@ type NavigationType = 'first' | 'last' | 'previous' | 'next' | number
 
 const SIBLING_COUNT = 1
 
-const PaginationEllipsis: FunctionComponent<JssProps> = ({ classes }) => {
+const PaginationEllipsis: FunctionComponent<StandardProps> = ({ classes }) => {
   return (
     <Container className={classes!.ellipsis}>
       <Typography size='small' weight='semibold' color='black'>
@@ -27,14 +27,14 @@ const PaginationEllipsis: FunctionComponent<JssProps> = ({ classes }) => {
   )
 }
 
-export interface PaginationPageProps extends JssProps {
+export interface PaginationPageProps extends StandardProps {
   activePage: number
   disabled?: boolean
   page: number
   onClick: (page: NavigationType) => void
 }
 
-const useStyles = makeStyles<Theme, JssProps>(styles, {
+const useStyles = makeStyles<Theme, StandardProps>(styles, {
   name: 'PicassoPagination'
 })
 
@@ -60,10 +60,7 @@ const PaginationPage: FunctionComponent<PaginationPageProps> = ({
   )
 }
 
-export interface Props
-  extends StandardProps,
-    HTMLAttributes<HTMLDivElement>,
-    JssProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Value of the current highlighted page */
   activePage: number
   /** Shows `Pagination` in disabled state when pages are not changeable */

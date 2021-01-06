@@ -28,7 +28,7 @@ export interface TextLabelProps {
   titleCase?: boolean
 }
 
-export type StandardProps = BaseProps
+export type StandardProps = BaseProps & JssProps
 
 // Take all props, excluding props from JssProps
 // type and other passed props

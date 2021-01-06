@@ -4,8 +4,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   StandardProps,
   SizeType,
-  OmitInternalProps,
-  JssProps
+  OmitInternalProps
 } from '@toptal/picasso-shared'
 
 import Image from '../Image'
@@ -18,10 +17,7 @@ import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
 
 type VariantType = 'square' | 'portrait' | 'landscape'
 
-export interface Props
-  extends StandardProps,
-    JssProps,
-    HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Alt text */
   alt?: string
   /** User full name to display initials on the avatar */
@@ -48,7 +44,7 @@ const renderLogo = ({
   classes,
   src,
   size
-}: Pick<Props, 'src' | 'size'> & JssProps) => {
+}: Pick<Props, 'src' | 'size' | 'classes'>) => {
   if (!src || ['small', 'xsmall', 'xxsmall'].includes(size!)) {
     return null
   }
@@ -64,7 +60,7 @@ const renderInitials = ({
   classes,
   src,
   name
-}: Pick<Props, 'src' | 'name'> & JssProps) => {
+}: Pick<Props, 'src' | 'name' | 'classes'>) => {
   if (src || !name) {
     return null
   }

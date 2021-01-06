@@ -8,7 +8,6 @@ import React, {
 import cx from 'classnames'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import {
-  JssProps,
   StandardProps,
   SizeType,
   ButtonOrAnchorProps,
@@ -40,7 +39,6 @@ export type IconPositionType = 'left' | 'right'
 
 export interface Props
   extends StandardProps,
-    JssProps,
     TextLabelProps,
     ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */

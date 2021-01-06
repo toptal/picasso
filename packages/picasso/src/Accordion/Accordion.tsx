@@ -12,8 +12,7 @@ import MUIAccordion from '@material-ui/core/Accordion'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   CompoundedComponentWithRef,
-  StandardProps,
-  JssProps
+  StandardProps
 } from '@toptal/picasso-shared'
 
 import { ArrowDownMinor16 } from '../Icon'
@@ -24,7 +23,7 @@ import Button from '../Button'
 
 export type Borders = 'all' | 'middle' | 'none'
 
-const useStyles = makeStyles<Theme, JssProps>(styles, {
+const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
   name: 'PicassoAccordion'
 })
 
@@ -48,8 +47,7 @@ export interface StaticProps {
 }
 
 export interface Props
-  extends Partial<StandardProps>,
-    JssProps,
+  extends StandardProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /** Always visible part of accordion */
   children?: ReactNode

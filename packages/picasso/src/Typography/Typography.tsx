@@ -5,7 +5,6 @@ import { PropTypes } from '@material-ui/core'
 import MUITypography from '@material-ui/core/Typography'
 import cx from 'classnames'
 import {
-  JssProps,
   StandardProps,
   SizeType,
   ColorType,
@@ -24,7 +23,6 @@ type UnderlineType = 'solid' | 'dashed'
 
 export interface Props
   extends StandardProps,
-    JssProps,
     TextLabelProps,
     HTMLAttributes<HTMLElement> {
   /** Font variant for inner text */
@@ -75,7 +73,7 @@ const VARIANTS: VariantsType = {
   }
 }
 
-const useStyles = makeStyles<Theme, JssProps>(styles, {
+const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
   name: 'PicassoTypography'
 })
 

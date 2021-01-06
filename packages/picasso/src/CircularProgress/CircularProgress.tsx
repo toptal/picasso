@@ -1,7 +1,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUICircularProgress from '@material-ui/core/CircularProgress'
-import { JssProps, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -9,7 +9,6 @@ type VariantType = 'determinate' | 'indeterminate' | 'static'
 
 export interface Props
   extends StandardProps,
-    JssProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
   /** Size of the component */
   size?: number
@@ -19,7 +18,7 @@ export interface Props
   variant?: VariantType
 }
 
-const useStyles = makeStyles<Theme, JssProps>(styles, {
+const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
   name: 'PicassoCircularProgress'
 })
 

@@ -6,8 +6,7 @@ import {
   CompoundedComponentWithRef,
   StandardProps,
   ButtonOrAnchorProps,
-  TextLabelProps,
-  JssProps
+  TextLabelProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -17,7 +16,6 @@ import styles from './styles'
 
 export interface Props
   extends StandardProps,
-    JssProps,
     TextLabelProps,
     Omit<ButtonOrAnchorProps, 'onChange' | 'value'> {
   /** Text label for the `Radio` */
@@ -37,7 +35,7 @@ export interface StaticProps {
   Group: typeof RadioGroup
 }
 
-const useStyles = makeStyles<Theme, JssProps>(styles, {
+const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
   name: 'Radio'
 })
 

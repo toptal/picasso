@@ -2,7 +2,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, SizeType, JssProps } from '@toptal/picasso-shared'
+import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import Avatar from '../Avatar'
 import Typography from '../Typography'
@@ -11,10 +11,7 @@ import styles from './styles'
 
 type AlignmentType = boolean | 'auto'
 
-export interface Props
-  extends StandardProps,
-    JssProps,
-    HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** User full name to display */
   name: string
   /** Function responsible for rendering the user's name with a custom component */
@@ -40,7 +37,7 @@ export interface Props
   children?: ReactNode
 }
 
-const useStyles = makeStyles<Theme, JssProps>(styles, {
+const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
   name: 'PicassoUserBadge'
 })
 

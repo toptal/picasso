@@ -19,8 +19,7 @@ import {
   PicassoComponentWithRef,
   spacingToRem,
   SpacingType,
-  StandardProps,
-  JssProps
+  StandardProps
 } from '@toptal/picasso-shared'
 
 import DropdownArrow from '../DropdownArrow'
@@ -28,10 +27,7 @@ import Popper from '../Popper'
 import Paper from '../Paper'
 import styles from './styles'
 
-export interface Props
-  extends StandardProps,
-    JssProps,
-    HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Anchor element that opens content on click */
   children: ReactNode
   /** Content element that opens when anchor is clicked */
@@ -81,7 +77,7 @@ const useDropdownContext = () => {
   return context
 }
 
-const useStyles = makeStyles<Theme, JssProps>(styles, {
+const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
   name: 'PicassoDropdown'
 })
 
