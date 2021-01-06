@@ -41,6 +41,6 @@ export const outline = (baseColor: string, width = 3) => ({
 
 export const remToNumber = (value: string) => Number.parseFloat(value)
 
-export { default as useChildrenWithClasses } from './useChildrenWithClasses'
+export { default as addClassesToChildren } from './add-classes-to-children'
 
 export * from './types'

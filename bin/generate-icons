@@ -11,7 +11,6 @@ echo "Converting svg icons into react components ..."
 svgr \
 --out-dir $ICON_PATH \
 --ext tsx \
---typescript \
 --template $ICON_PATH/_generatorTemplate.js \
 --expand-props none $ICON_PATH/svg
 
