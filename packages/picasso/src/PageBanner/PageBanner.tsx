@@ -1,13 +1,10 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import {
-  StandardProps,
-  CompoundedComponentWithRef
-} from '@toptal/picasso-shared'
+import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
 
 import Notification from '../Notification'
 import NotificationActions from '../NotificationActions'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Children components */
   children: ReactNode
 }

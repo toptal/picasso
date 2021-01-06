@@ -1,13 +1,13 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableBody from '@material-ui/core/TableBody'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import { TableSectionContext, TableSection } from '../Table'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     HTMLAttributes<HTMLTableSectionElement> {
   /** The content of the component, normally `Table.Row` */
   children: ReactNode

@@ -1,12 +1,12 @@
 import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, useChildrenWithClasses } from '@toptal/picasso-shared'
+import { BaseProps, useChildrenWithClasses } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** List of `Button` components which you want to render as `ButtonGroup` */
   children: ReactNode
 }

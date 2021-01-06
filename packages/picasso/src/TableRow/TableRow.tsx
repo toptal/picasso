@@ -2,13 +2,11 @@ import React, { forwardRef, ReactNode, MouseEvent, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableRow from '@material-ui/core/TableRow'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props
-  extends StandardProps,
-    HTMLAttributes<HTMLTableRowElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
   /** Should be valid `<tr>` children such as `Table.Cell`. */
   children: ReactNode
   /** If true, the table row will shade on hover */

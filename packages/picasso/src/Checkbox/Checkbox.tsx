@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   ButtonOrAnchorProps,
   CompoundedComponentWithRef,
-  StandardProps,
+  BaseProps,
   TextLabelProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -22,7 +22,7 @@ export interface StaticProps {
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCheckbox' })
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     TextLabelProps,
     Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Show checkbox initially as checked */

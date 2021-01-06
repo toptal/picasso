@@ -2,7 +2,7 @@ import React, { forwardRef, ReactNode, TableHTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITable from '@material-ui/core/Table'
 import {
-  StandardProps,
+  BaseProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -17,7 +17,7 @@ import TableExpandableRow from '../TableExpandableRow'
 import styles from './styles'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     TableHTMLAttributes<HTMLTableElement> {
   /** Children components (`Table.Head`, `Table.Body`, `Table.Footer`) */
   children: ReactNode

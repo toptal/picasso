@@ -1,14 +1,14 @@
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import { Logo as LogoIcon, LogoEmblem as LogoEmblemIcon } from '../Icon'
 import styles from './styles'
 
 type VariantType = 'default' | 'white' | 'black' | 'grey' | 'blue'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** Whether logo should be shown as TT emblem or full word mark */
   emblem?: boolean
   /** Variant of the `Logo` */

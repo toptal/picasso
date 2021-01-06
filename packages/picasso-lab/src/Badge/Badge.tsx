@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  StandardProps,
+  BaseProps,
   TextLabelProps,
   CompoundedComponentWithRef,
   useTitleCase
@@ -15,7 +15,7 @@ import styles from './styles'
 type VariantType = 'white' | 'red'
 type SizeType = 'medium' | 'small'
 
-export interface Props extends StandardProps, TextLabelProps {
+export interface Props extends BaseProps, TextLabelProps {
   /** The `Badge` content */
   content: string
   /** Variant of the `Badge` */

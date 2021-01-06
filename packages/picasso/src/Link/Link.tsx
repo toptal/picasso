@@ -8,7 +8,7 @@ import MUILink from '@material-ui/core/Link'
 import { Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/styles'
-import { StandardProps, OverridableComponent } from '@toptal/picasso-shared'
+import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -32,7 +32,7 @@ const sanitizeRel = (rel: string | undefined, target: string | undefined) => {
   return isRelSafe ? rel : rel.concat(' noopener')
 }
 
-export type Props = StandardProps &
+export type Props = BaseProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
     /** Content of the component */
     children?: ReactNode

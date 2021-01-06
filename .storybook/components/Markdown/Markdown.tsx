@@ -1,12 +1,12 @@
 import React from 'react'
 
 import ReactMarkdown from 'react-markdown'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends BaseProps {
   children: string
 }
 

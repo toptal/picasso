@@ -6,17 +6,13 @@ import React, {
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
-import {
-  StandardProps,
-  TextLabelProps,
-  useTitleCase
-} from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     TextLabelProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /**

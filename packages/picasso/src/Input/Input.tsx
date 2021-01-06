@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
-import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput, { BaseInputProps } from '../OutlinedInput'
@@ -20,7 +20,7 @@ type IconPosition = 'start' | 'end'
 type CounterType = 'remaining' | 'entered'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /** The id of the `input` element. */
   id?: string

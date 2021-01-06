@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
@@ -24,9 +24,7 @@ type Account = {
   avatar?: string
 }
 
-export interface Props
-  extends StandardProps,
-    Omit<ListNativeProps, 'onSelect'> {
+export interface Props extends BaseProps, Omit<ListNativeProps, 'onSelect'> {
   /** List of available accounts */
   accounts: Account[]
   /** Callback invoked when specific role record is clicked in the list */

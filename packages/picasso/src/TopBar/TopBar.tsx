@@ -8,7 +8,7 @@ import React, {
   HTMLAttributes
 } from 'react'
 import cx from 'classnames'
-import { StandardProps, useTopBar } from '@toptal/picasso-shared'
+import { BaseProps, useTopBar } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Logo from '../Logo'
@@ -21,7 +21,7 @@ import styles from './styles'
 
 type VariantType = 'dark' | 'light'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Title which is displayed along the `Logo` */
   title?: string
   /** Link component to wrap `Logo`  */

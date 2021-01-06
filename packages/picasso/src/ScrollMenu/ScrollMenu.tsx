@@ -7,13 +7,13 @@ import React, {
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import RootRef from '@material-ui/core/RootRef'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import styles from './styles'
 
 type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   selectedIndex?: number | null
   onBlur?: FocusEventType
   fixedHeader?: ReactNode

@@ -1,11 +1,11 @@
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import React, { forwardRef, memo, HTMLAttributes } from 'react'
-import { PicassoComponentWithRef, StandardProps } from '@toptal/picasso-shared'
+import { PicassoComponentWithRef, BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLSpanElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLSpanElement> {
   /** The amount to be formatted */
   amount: number
   /** Currency which need to be applied on the amount (ISO format) */

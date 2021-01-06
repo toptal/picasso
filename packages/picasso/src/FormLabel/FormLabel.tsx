@@ -1,11 +1,7 @@
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  useTitleCase,
-  StandardProps,
-  TextLabelProps
-} from '@toptal/picasso-shared'
+import { useTitleCase, BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
@@ -14,7 +10,7 @@ type ComponentType = 'label' | 'span'
 export type RequiredDecoration = 'asterisk' | 'optional'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     TextLabelProps,
     HTMLAttributes<HTMLLabelElement | HTMLSpanElement> {
   /** Content of the label */

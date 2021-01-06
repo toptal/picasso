@@ -9,7 +9,7 @@ import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { MenuItemProps } from '@material-ui/core/MenuItem'
 import {
-  StandardProps,
+  BaseProps,
   TextLabelProps,
   OverridableComponent,
   useTitleCase
@@ -23,10 +23,7 @@ import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../Sidebar/types'
 
-export interface Props
-  extends StandardProps,
-    TextLabelProps,
-    MenuItemAttributes {
+export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
   icon?: ReactElement
   /** Highlights the item as selected */

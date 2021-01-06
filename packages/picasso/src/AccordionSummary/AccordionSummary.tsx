@@ -2,14 +2,14 @@ import { ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIAccordionSummary from '@material-ui/core/AccordionSummary'
 import {
-  StandardProps,
+  BaseProps,
   PicassoComponent,
   ButtonOrAnchorProps
 } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props extends StandardProps, ButtonOrAnchorProps {
+export interface Props extends BaseProps, ButtonOrAnchorProps {
   expandIcon?: ReactNode
   children?: ReactNode
   onClick?: () => void

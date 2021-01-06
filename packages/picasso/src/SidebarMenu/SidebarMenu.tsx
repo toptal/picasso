@@ -1,7 +1,7 @@
 import React, { forwardRef, useContext, ReactElement, useCallback } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Menu, { ListNativeProps } from '../Menu'
 import { SidebarContext } from '../Sidebar'
@@ -9,7 +9,7 @@ import { SidebarContextProps } from '../Sidebar/types'
 import * as SidebarItem from '../SidebarItem'
 import styles from './styles'
 
-export interface Props extends StandardProps, ListNativeProps {
+export interface Props extends BaseProps, ListNativeProps {
   /** Defines is sidebar menu pushed to bottom of sidebar */
   bottom?: boolean
 }

@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import { useBreakpoint } from '../utils'
 import UserBadge from '../UserBadge'
@@ -14,7 +14,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTopBarMenu'
 })
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** User full name to display */
   name: string
   /** Additional content */

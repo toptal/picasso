@@ -2,7 +2,7 @@ import React, { forwardRef, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIStepper from '@material-ui/core/Stepper'
-import { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import Step from '../Step'
 import StepLabel from '../StepLabel'
@@ -11,7 +11,7 @@ import StepConnector from '../StepConnector'
 import styles from './styles'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
   /** The index of the active step */

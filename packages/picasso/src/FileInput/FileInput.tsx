@@ -2,7 +2,7 @@ import React, { forwardRef, useRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import OutlinedInput from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
@@ -13,7 +13,7 @@ import { Check16, UploadDocument16 } from '../Icon'
 import { isNumber, isBoolean, useCombinedRefs } from '../utils'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** If true, the 'FileInput' will be disabled */
   disabled?: boolean
   /** Indicate whether `FileInput` is in error state */

@@ -4,14 +4,14 @@ import cx from 'classnames'
 import {
   useAppConfig,
   EnvironmentType,
-  StandardProps
+  BaseProps
 } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 export type EnvironmentTypes = EnvironmentType<'temploy' | 'test'>
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** Name of the current environment */
   environment: EnvironmentTypes
   /** Name of the product to be rendered alongside environment (i.e. Blackfish, Talent, Portal, Billing) */

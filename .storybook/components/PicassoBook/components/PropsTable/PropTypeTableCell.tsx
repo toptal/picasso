@@ -3,13 +3,13 @@ import React, { FunctionComponent } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { Tooltip, Table } from '@toptal/picasso'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Markdown from '~/.storybook/components/Markdown'
 import { PropTypeDocumentation } from '~/.storybook/utils/documentation-generator'
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends BaseProps {
   className?: string
   type: string | PropTypeDocumentation
 }

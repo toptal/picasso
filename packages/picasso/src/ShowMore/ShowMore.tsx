@@ -2,14 +2,14 @@ import React, { forwardRef, useState } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Truncate from 'react-truncate'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import ChevronRightIcon16 from '../Icon/ChevronRight16'
 import Typography from '../Typography'
 import Link from '../Link'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** Content of the component */
   children: string
   /** Number of characters displayed initially */

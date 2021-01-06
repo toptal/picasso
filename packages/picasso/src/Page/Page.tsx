@@ -2,7 +2,7 @@ import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  StandardProps,
+  BaseProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -19,7 +19,7 @@ import PageArticle from '../PageArticle'
 import { PageContextProps, ViewportWidthType } from './types'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** DEPRECATED! Component becomes responsive with width 100% and overrides width prop */
   fullWidth?: boolean
   /** Define container width `wide` | `full` */

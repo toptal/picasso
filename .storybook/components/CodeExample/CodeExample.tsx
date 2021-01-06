@@ -15,7 +15,7 @@ import SourceRender, { RenderResult } from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
 import { Typography, Button, Accordion, Container } from '@toptal/picasso'
-import Picasso, { StandardProps, useScreenSize } from '@toptal/picasso-shared'
+import Picasso, { BaseProps, useScreenSize } from '@toptal/picasso-shared'
 import { Code16, Link16 } from '@toptal/picasso/Icon'
 
 import Editor from '../Editor'
@@ -30,7 +30,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoCodeExample'
 })
 
-interface Props extends StandardProps {
+interface Props extends BaseProps {
   permanentLink: string
   src: string
   showEditCode?: boolean

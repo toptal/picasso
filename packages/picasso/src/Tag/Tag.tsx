@@ -10,7 +10,7 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  StandardProps,
+  BaseProps,
   TextLabelProps,
   CompoundedComponentWithRef,
   useTitleCase
@@ -28,7 +28,7 @@ type VariantType = 'grey' | 'blue' | 'green' | 'yellow' | 'red'
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
 
-export interface Props extends StandardProps, TextLabelProps, DivOrAnchorProps {
+export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
   /** Text content of the `Tag` component */

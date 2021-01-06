@@ -1,13 +1,11 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIList from '@material-ui/core/List'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props
-  extends StandardProps,
-    HTMLAttributes<HTMLUListElement> {}
+export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {}
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoList' })
 

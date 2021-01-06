@@ -2,18 +2,14 @@ import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIStepLabel from '@material-ui/core/StepLabel'
-import {
-  StandardProps,
-  TextLabelProps,
-  useTitleCase
-} from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import StepIcon from '../StepIcon'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
   hideLabel: boolean

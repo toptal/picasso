@@ -1,13 +1,13 @@
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableFooter from '@material-ui/core/TableFooter'
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import { TableSection, TableSectionContext } from '../Table'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     HTMLAttributes<HTMLTableSectionElement> {
   /** Zero or more Table.Row elements. */
   children: ReactNode

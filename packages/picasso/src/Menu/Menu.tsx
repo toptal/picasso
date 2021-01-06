@@ -11,7 +11,7 @@ import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  StandardProps,
+  BaseProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -25,7 +25,7 @@ import styles from './styles'
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
 
-export interface Props extends StandardProps, ListNativeProps {
+export interface Props extends BaseProps, ListNativeProps {
   // whether or not to handle nested navigation
   allowNestedNavigation?: boolean
 }

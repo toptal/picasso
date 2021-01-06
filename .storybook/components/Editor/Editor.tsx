@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import AceEditor from 'react-ace'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import 'brace/ext/language_tools'
 import 'brace/mode/jsx'
@@ -9,7 +9,7 @@ import 'brace/theme/twilight'
 
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends BaseProps {
   id: string
   mode: 'html' | 'jsx'
   value: string

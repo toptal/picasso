@@ -2,7 +2,7 @@ import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
-import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import CircularProgress from '../CircularProgress'
 import styles from './styles'
@@ -15,7 +15,7 @@ enum SIZES {
 
 type VariantType = 'blue' | 'inherit'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Text content for the `Loader` */
   children?: ReactNode
   /** Shows loader as part of other inline elements such as text */

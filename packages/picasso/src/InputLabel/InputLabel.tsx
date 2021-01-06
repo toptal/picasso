@@ -1,14 +1,14 @@
 import React, { ReactNode, FunctionComponent, LabelHTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIInputLabel from '@material-ui/core/InputLabel'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 type VariantType = 'standard' | 'outlined' | 'filled'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     Omit<LabelHTMLAttributes<HTMLLabelElement>, 'color'> {
   variant?: VariantType
   htmlFor?: string

@@ -1,15 +1,13 @@
 import React, { forwardRef, ImgHTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 type VariantType = 'rectangle' | 'circular'
 
-export interface Props
-  extends StandardProps,
-    ImgHTMLAttributes<HTMLImageElement> {
+export interface Props extends BaseProps, ImgHTMLAttributes<HTMLImageElement> {
   /** Image alt text */
   alt: string
   /** Image url */

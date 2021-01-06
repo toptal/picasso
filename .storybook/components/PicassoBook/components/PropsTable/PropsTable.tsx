@@ -1,7 +1,7 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Table, Typography, Tooltip } from '@toptal/picasso'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import {
   PropDocumentation,
@@ -13,7 +13,7 @@ import EnumsList from './EnumsList'
 import Description from './Description'
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends BaseProps {
   documentation: PropDocumentation[]
 }
 

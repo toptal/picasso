@@ -1,4 +1,4 @@
-export { default, StandardProps } from '@toptal/picasso-shared'
+export { default, BaseProps } from '@toptal/picasso-shared'
 export { default as Accordion } from './Accordion'
 export type { AccordionProps } from './Accordion'
 export { default as AccountSelect } from './AccountSelect'

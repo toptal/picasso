@@ -3,7 +3,7 @@ import cx from 'classnames'
 import MUIPopper from '@material-ui/core/Popper'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import PopperJs, { ReferenceObject, PopperOptions } from 'popper.js'
-import { StandardProps, usePicassoRoot } from '@toptal/picasso-shared'
+import { BaseProps, usePicassoRoot } from '@toptal/picasso-shared'
 
 import { useBreakpoint, useWidthOf } from '../utils'
 import styles from './styles'
@@ -22,7 +22,7 @@ export type PopperPlacementType =
   | 'top-start'
   | 'top'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   children?: ReactNode
   /** if true, the popper is visible */
   open: boolean

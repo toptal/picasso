@@ -1,11 +1,11 @@
 import React, { ReactElement, ReactNode } from 'react'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** Flag for transition execution. */
   on: boolean
   /** Element to apply transitions. */

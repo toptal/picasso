@@ -13,7 +13,7 @@ import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
-import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { Search16 } from '@toptal/picasso/Icon'
 import PopperJs from 'popper.js'
 
@@ -60,7 +60,7 @@ export interface Props<
   M extends boolean = boolean,
   V = M extends true ? T[] : T
 >
-  extends StandardProps,
+  extends BaseProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'onChange' | 'size' | 'color' | 'value'

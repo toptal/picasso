@@ -1,13 +1,13 @@
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 type ColorType = 'red' | 'yellow' | 'blue' | 'green' | 'light-grey'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** Indicator color */
   color: ColorType
 }

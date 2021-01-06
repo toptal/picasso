@@ -8,6 +8,7 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
+  BaseProps,
   StandardProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef,
@@ -63,7 +64,7 @@ const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProp
   )
 }
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** Style variant of Sidebar and subcomponents */
   variant?: VariantType
 }

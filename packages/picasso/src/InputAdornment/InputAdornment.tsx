@@ -2,13 +2,13 @@ import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIInputAdornment from '@material-ui/core/InputAdornment'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 type PositionType = 'start' | 'end'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   position: PositionType
   disabled?: boolean

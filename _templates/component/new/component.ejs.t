@@ -7,10 +7,10 @@ to: src/components/<%= h.changeCase.pascalCase(name) %>/<%= h.changeCase.pascalC
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import { StandardProps, mergeStyles } from '@toptal/picasso-shared'
+import { BaseProps, mergeStyles } from '@toptal/picasso-shared'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles)

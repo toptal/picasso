@@ -4,7 +4,7 @@ import React, {
   forwardRef,
   FunctionComponent
 } from 'react'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import TableCell from '../TableCell'
@@ -15,7 +15,7 @@ import styles from './styles'
 const MAX_COL_SPAN = 100
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     HTMLAttributes<HTMLTableSectionElement> {
   colSpan?: number
   icon?: ReactElement

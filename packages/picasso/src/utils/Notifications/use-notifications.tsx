@@ -9,7 +9,7 @@ import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { SnackbarOrigin } from '@material-ui/core/Snackbar'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import {
   Notification as PicassoNotification,
@@ -22,7 +22,7 @@ const defaultPosition: SnackbarOrigin = {
   horizontal: 'right'
 }
 
-interface Props extends StandardProps {
+interface Props extends BaseProps {
   key: string
   content: ReactNode
   icon?: ReactElement

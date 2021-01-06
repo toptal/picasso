@@ -1,11 +1,11 @@
 import React, { forwardRef, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLSpanElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLSpanElement> {
   /** A Dropdown.Arrow can have different sizes */
   size?: SizeType<'small' | 'medium'>
 }

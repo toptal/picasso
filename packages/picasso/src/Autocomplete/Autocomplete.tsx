@@ -13,7 +13,7 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Input, { InputProps } from '../Input'
 import Menu from '../Menu'
@@ -30,7 +30,7 @@ import styles from './styles'
 import { BaseInputProps } from '../OutlinedInput'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'defaultValue' | 'value' | 'onChange' | 'onSelect' | 'onKeyDown' | 'size'

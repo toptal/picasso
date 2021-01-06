@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITabs, { TabsProps } from '@material-ui/core/Tabs'
 import {
   ButtonOrAnchorProps,
-  StandardProps,
+  BaseProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -12,7 +12,7 @@ import Tab from '../Tab'
 import styles from './styles'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Tabs content containing Tab components */
   children: ReactNode

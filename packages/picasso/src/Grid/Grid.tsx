@@ -8,7 +8,7 @@ import MUIGrid, {
   GridWrap
 } from '@material-ui/core/Grid'
 import {
-  StandardProps,
+  BaseProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -16,7 +16,7 @@ import {
 import GridItem from '../GridItem'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
   children?: ReactNode
   /** Defines amount of space between Grid.Item components (in px) */

@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, RefObject, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps, OmitInternalProps } from '@toptal/picasso-shared'
+import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
 
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
@@ -15,7 +15,7 @@ export interface Props
       OmitInternalProps<OutlinedInputProps>,
       'defaultValue' | 'type' | 'multiline' | 'rows'
     >,
-    StandardProps {
+    BaseProps {
   /** Value of the `input` element. */
   value?: string | number
   /** Minimum value for the `input` element */
