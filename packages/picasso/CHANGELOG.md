@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/toptal/picasso/compare/@toptal/picasso@5.1.2...@toptal/picasso@5.1.3) (2021-01-05)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
 ## [5.1.2](https://github.com/toptal/picasso/compare/@toptal/picasso@5.1.1...@toptal/picasso@5.1.2) (2020-12-31)
 
 **Note:** Version bump only for package @toptal/picasso
@@ -192,7 +200,7 @@ Every interface language has its updates. Version 2 is just another step in our 
 
     | Before | After |
     |--|--|
-    |![Sidebar before](https://user-images.githubusercontent.com/2836281/103081284-52424e00-45e0-11eb-8913-a7c1708da657.png)|![Sidebar after](https://user-images.githubusercontent.com/2836281/103081301-5e2e1000-45e0-11eb-936e-01ba308176f0.png)|
+    |![Sidebar before](https://user-images.githubusercontent.com/2836281/103081284-52424e00-45e0-11eb-8913-a7c1708da657.png)|![Sidebar after](https://user-images.githubusercontent.com/17337276/103614563-1352b780-4f53-11eb-8285-30615c30c889.png)|
     |||
 * **Sidebar.Item**
   - changed the left margin for collapsible and non-collapsible items
