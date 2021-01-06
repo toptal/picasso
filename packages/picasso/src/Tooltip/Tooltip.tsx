@@ -5,7 +5,9 @@ import React, {
   ReactElement,
   ChangeEvent,
   HTMLAttributes,
-  cloneElement
+  cloneElement,
+  useRef,
+  useEffect
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip, { TooltipProps } from '@material-ui/core/Tooltip'
@@ -32,9 +34,9 @@ interface UseTooltipHandlersOptions {
   open?: boolean
   onOpen?(event: ChangeEvent<{}>): void
   onClose?(event: ChangeEvent<{}>): void
-  delay: DelayType
   children: ReactElement<ChildrenProps>
   disableListeners?: boolean
+  delay: DelayType
 }
 
 type ChildrenProps = {
@@ -43,86 +45,121 @@ type ChildrenProps = {
   onMouseLeave?(event: MouseEvent): void
 }
 
+interface UseTooltipStateOptions {
+  externalOpen?: boolean
+  delayDuration: number
+}
+
+const useTooltipState = ({
+  externalOpen,
+  delayDuration
+}: UseTooltipStateOptions) => {
+  const isTooltipControlled = typeof externalOpen !== 'undefined'
+  const [isOpen, setIsOpen] = useState(
+    isTooltipControlled ? externalOpen : false
+  )
+  const [isPristine, setIsPristine] = useState(true)
+  const delayTimeout = useRef<number | undefined>()
+
+  const openTooltip = () => {
+    clearTimeout(delayTimeout.current)
+    delayTimeout.current = window.setTimeout(() => {
+      setIsOpen(true)
+    }, delayDuration)
+  }
+  const closeTooltip = () => {
+    clearTimeout(delayTimeout.current)
+    setIsOpen(false)
+  }
+
+  useEffect(() => {
+    if (isTooltipControlled) {
+      const next = externalOpen ? openTooltip : closeTooltip
+
+      next()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [externalOpen])
+
+  useEffect(() => {
+    return () => clearTimeout(delayTimeout.current)
+  }, [])
+
+  return {
+    isOpen,
+    isControlled: isTooltipControlled,
+    isPristine,
+    openTooltip,
+    closeTooltip,
+    setIsPristine
+  }
+}
+
 const useTooltipHandlers = ({
   open: externalOpen,
   onClose,
   onOpen,
-  delay,
   disableListeners,
-  children
+  children,
+  delay
 }: UseTooltipHandlersOptions) => {
-  const isTouchScreen = !isPointerDevice()
-  const [internalOpen, setInternalOpen] = useState(false)
-  const [isPristine, setIsPristine] = useState(true)
-  const delayDuration = isTouchScreen ? 0 : delayDurations[delay]
-  const isUncontrolledTooltip = externalOpen === undefined
+  const isTouchDevice = !isPointerDevice()
+  const delayDuration = isTouchDevice ? 0 : delayDurations[delay]
 
-  if (isUncontrolledTooltip) {
-    /**
-     * `onClose` is called by MUI when close is requested, for example on click away.
-     * Since we are controlling tooltip here, we have to do actual close on our own.
-     */
+  const {
+    isOpen,
+    isControlled,
+    isPristine,
+    openTooltip,
+    closeTooltip,
+    setIsPristine
+  } = useTooltipState({
+    externalOpen,
+    delayDuration
+  })
 
-    const openTooltip = () => {
-      if (!disableListeners) {
-        setInternalOpen(true)
-        setIsPristine(false)
-      }
-    }
-
-    const closeTooltip = () => {
-      setInternalOpen(false)
-    }
-
-    const handleClose = (event: ChangeEvent<{}>) => {
-      onClose?.(event)
-      closeTooltip()
-    }
-
-    const handleClick = (event: ChangeEvent<{}>) => {
-      children.props.onClick?.(event)
-
-      if (internalOpen) {
-        closeTooltip()
-
-        return
-      }
-      if (isPristine) {
-        openTooltip()
-      }
-    }
-
-    const handleOnMouseOver = (event: MouseEvent) => {
-      event.preventDefault()
-      if (!isTouchScreen && !internalOpen && isPristine) {
-        openTooltip()
-      }
-    }
-
-    const handleOnMouseLeave = (event: MouseEvent) => {
-      event.preventDefault()
-      setIsPristine(true)
-    }
-
+  if (isControlled) {
     return {
-      isOpen: internalOpen,
+      isOpen,
       handleOpen: onOpen,
-      handleClose,
-      delayDuration,
-      children: cloneElement(children, {
-        onClick: handleClick,
-        onMouseOver: handleOnMouseOver,
-        onMouseLeave: handleOnMouseLeave
-      })
+      handleClose: onClose,
+      children
     }
   }
 
+  const handleClose = (event: ChangeEvent<{}>) => {
+    onClose?.(event)
+    closeTooltip()
+  }
+  const handleClick = (event: ChangeEvent<{}>) => {
+    children.props.onClick?.(event)
+    if (isOpen) {
+      closeTooltip()
+    } else if (isPristine && !disableListeners) {
+      openTooltip()
+      setIsPristine(false)
+    }
+  }
+  const handleOnMouseOver = (event: MouseEvent) => {
+    event.preventDefault()
+    if (!isTouchDevice && !isOpen && isPristine) {
+      openTooltip()
+    }
+  }
+  const handleOnMouseLeave = (event: MouseEvent) => {
+    event.preventDefault()
+    setIsPristine(true)
+  }
+
   return {
-    isOpen: externalOpen,
+    isOpen,
     handleOpen: onOpen,
-    handleClose: onClose,
-    delayDuration,
-    children
+    handleClose,
+    children: cloneElement(children, {
+      onClick: handleClick,
+      onMouseOver: handleOnMouseOver,
+      onMouseLeave: handleOnMouseLeave
+    })
   }
 }
 
@@ -187,13 +224,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
   const container = usePicassoRoot()
 
-  const {
-    children,
-    isOpen,
-    handleOpen,
-    handleClose,
-    delayDuration
-  } = useTooltipHandlers({
+  const { children, isOpen, handleOpen, handleClose } = useTooltipHandlers({
     open,
     children: originalChildren as ReactElement<ChildrenProps>,
     disableListeners,
@@ -254,8 +285,6 @@ export const Tooltip: FunctionComponent<Props> = props => {
       disableHoverListener={disableListeners}
       disableFocusListener={disableListeners}
       disableTouchListener
-      enterDelay={delayDuration}
-      enterNextDelay={delayDuration}
     >
       {children as ReactElement}
     </MUITooltip>
