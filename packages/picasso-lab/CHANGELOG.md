@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.0.2...@toptal/picasso-lab@3.0.3) (2021-01-07)
+
+
+### Bug Fixes
+
+* **Tooltip:** fix non-working delay prop ([#1827](https://github.com/toptal/picasso/issues/1827)) ([7120a93](https://github.com/toptal/picasso/commit/7120a9335d38b52968709eb53dfc8a62d6b996eb))
+
+
+
+
+
 ## [3.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.0.1...@toptal/picasso-lab@3.0.2) (2021-01-07)
 
 

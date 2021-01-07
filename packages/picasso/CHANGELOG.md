@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.4](https://github.com/toptal/picasso/compare/@toptal/picasso@5.1.3...@toptal/picasso@5.1.4) (2021-01-07)
+
+
+### Bug Fixes
+
+* **Tooltip:** fix non-working delay prop ([#1827](https://github.com/toptal/picasso/issues/1827)) ([7120a93](https://github.com/toptal/picasso/commit/7120a9335d38b52968709eb53dfc8a62d6b996eb))
+* changelog links ([#1828](https://github.com/toptal/picasso/issues/1828)) ([f87f43d](https://github.com/toptal/picasso/commit/f87f43d776572340ebd358207e2992092b61e70f))
+
+
+
+
+
 ## [5.1.3](https://github.com/toptal/picasso/compare/@toptal/picasso@5.1.2...@toptal/picasso@5.1.3) (2021-01-05)
 
 **Note:** Version bump only for package @toptal/picasso
