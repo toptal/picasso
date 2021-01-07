@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { Tooltip, Typography, TypographyProps } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
-import { DelayType } from '@toptal/picasso/Tooltip/Tooltip'
+import { DelayType, VariantType } from '@toptal/picasso/Tooltip/Tooltip'
 
 import Ellipsis from '../Ellipsis'
 
@@ -12,12 +12,15 @@ export interface Props extends BaseProps, TypographyProps {
   tooltipContent?: ReactNode
   /** A delay in showing the tooltip when typography overflows. */
   tooltipDelay?: DelayType
+  /** Tooltip color variant to use. */
+  tooltipVariant?: VariantType
 }
 
 export const TypographyOverflow = ({
   children,
   tooltipContent,
   tooltipDelay,
+  tooltipVariant,
   noWrap,
   ...rest
 }: Props) => {
@@ -33,6 +36,7 @@ export const TypographyOverflow = ({
       renderWhenEllipsis={child => (
         <Tooltip
           content={tooltipContent ?? children}
+          variant={tooltipVariant}
           placement='top'
           delay={tooltipDelay}
           interactive
