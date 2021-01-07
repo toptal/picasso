@@ -21,7 +21,7 @@ page
        * https://github.com/puppeteer/puppeteer/issues/4820
        */
       // When ellipsed text is hovered then tooltip should appear
-      await testPage.click('[data-testid="ellipsed-text"]')
+      await testPage.hover('[data-testid="ellipsed-text"]')
       await testPage.waitFor(600)
       await makeScreenshot()
     }
@@ -34,7 +34,7 @@ page
        * https://github.com/puppeteer/puppeteer/issues/4820
        */
       // When ellipsed checkbox's label is hovered then tooltip should appear
-      await testPage.click('[data-testid="ellipsed-text"]')
+      await testPage.hover('[data-testid="ellipsed-text"]')
       await testPage.waitFor(600)
       await makeScreenshot()
     }
@@ -47,7 +47,7 @@ page
        * https://github.com/puppeteer/puppeteer/issues/4820
        */
       // When ellipsed checkbox's label is hovered then tooltip should appear
-      await testPage.click('[data-testid="ellipsed-text"]')
+      await testPage.hover('[data-testid="ellipsed-text"]')
       await testPage.waitFor(600)
       await makeScreenshot()
     }
@@ -60,11 +60,11 @@ page
        * https://github.com/puppeteer/puppeteer/issues/4820
        */
       // When ellipsed text is hovered then tooltip should appear
-      await testPage.click('[data-testid="default-delay-tooltip"]')
+      await testPage.hover('[data-testid="default-delay-tooltip"]')
       await testPage.waitFor(200)
       await makeScreenshot()
 
-      await testPage.click('[data-testid="long-delay-tooltip"]')
+      await testPage.hover('[data-testid="long-delay-tooltip"]')
       await testPage.waitFor(500)
       await makeScreenshot()
     }
