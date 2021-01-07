@@ -32,12 +32,7 @@ page
   .addExample('TypographyOverflow/story/CustomTooltip.example.tsx', {
     title: 'Custom tooltip content',
     effect: async (testPage, makeScreenshot) => {
-      /**
-       * TODO: Revert to testPage.hover once the issue below is fixed
-       * https://github.com/puppeteer/puppeteer/issues/4820
-       */
-      // When ellipsed checkbox's label is hovered then tooltip should appear
-      await testPage.click('[data-testid="ellipsed-text"]')
+      await testPage.hover('[data-testid="ellipsed-text"]')
       await testPage.waitFor(200)
       await makeScreenshot()
     }
@@ -45,20 +40,11 @@ page
   .addExample('TypographyOverflow/story/TooltipVariants.example.tsx', {
     title: 'Light tooltip background',
     effect: async (testPage, makeScreenshot) => {
-      /**
-       * TODO: Revert to testPage.hover once the issue below is fixed
-       * https://github.com/puppeteer/puppeteer/issues/4820
-       */
-      // When ellipsed checkbox's label is hovered then tooltip should appear
-      await testPage.click('[data-testid="ellipsed-text-dark"]')
+      await testPage.hover('[data-testid="ellipsed-text-dark"]')
       await testPage.waitFor(200)
       await makeScreenshot()
-      /**
-       * TODO: Revert to testPage.hover once the issue below is fixed
-       * https://github.com/puppeteer/puppeteer/issues/4820
-       */
-      // When ellipsed checkbox's label is hovered then tooltip should appear
-      await testPage.click('[data-testid="ellipsed-text-light"]')
+
+      await testPage.hover('[data-testid="ellipsed-text-light"]')
       await testPage.waitFor(200)
       await makeScreenshot()
     }
