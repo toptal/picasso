@@ -77,39 +77,61 @@ describe('Tooltip', () => {
     })
 
     test('opens tooltip on hover on short delay', async () => {
-      const { getByText, findByText, unmount } = render(
-        <Tooltip content='Hello'>
+      const { getByText, queryByText, unmount } = render(
+        <Tooltip content='Hello' delay='short'>
           <Button>Hover me</Button>
         </Tooltip>
       )
 
       fireEvent.mouseEnter(getByText('Hover me'))
 
-      const tooltip = await findByText('Hello')
+      const SHORT_DELAY_TIMEOUT = 200
 
-      expect(tooltip).toBeInTheDocument()
+      // Tooltip should not appear earlier than the delay
+      await wait(
+        () => {
+          expect(queryByText('Hello')).not.toBeInTheDocument()
+        },
+        { timeout: SHORT_DELAY_TIMEOUT / 2 }
+      )
+      await wait(
+        () => {
+          expect(queryByText('Hello')).toBeInTheDocument()
+        },
+        { timeout: SHORT_DELAY_TIMEOUT }
+      )
+
+      fireEvent.mouseLeave(getByText('Hover me'))
+      await wait(() => {
+        expect(queryByText('Hello')).not.toBeInTheDocument()
+      })
 
       unmount()
     })
 
     test('opens tooltip on hover on long delay then closes it on mouse out', async () => {
       const { getByText, queryByText, unmount } = render(
-        <Tooltip content='Hello'>
+        <Tooltip content='Hello' delay='long'>
           <Button>Hover me</Button>
         </Tooltip>
       )
 
       fireEvent.mouseEnter(getByText('Hover me'))
 
-      expect(queryByText('Hello')).not.toBeInTheDocument()
-
       const LONG_DELAY_TIMEOUT = 500
 
+      // Tooltip should not appear earlier than the delay
       await wait(
         () => {
           expect(queryByText('Hello')).not.toBeInTheDocument()
         },
-        { timeout: LONG_DELAY_TIMEOUT, interval: LONG_DELAY_TIMEOUT }
+        { timeout: LONG_DELAY_TIMEOUT / 2 }
+      )
+      await wait(
+        () => {
+          expect(queryByText('Hello')).toBeInTheDocument()
+        },
+        { timeout: LONG_DELAY_TIMEOUT }
       )
 
       fireEvent.mouseLeave(getByText('Hover me'))

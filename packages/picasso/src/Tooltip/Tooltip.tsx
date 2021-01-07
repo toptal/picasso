@@ -5,9 +5,7 @@ import React, {
   ReactElement,
   ChangeEvent,
   HTMLAttributes,
-  cloneElement,
-  useRef,
-  useEffect
+  cloneElement
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip, { TooltipProps } from '@material-ui/core/Tooltip'
@@ -41,58 +39,37 @@ interface UseTooltipHandlersOptions {
 
 type ChildrenProps = {
   onClick?(event: ChangeEvent<{}>): void
-  onMouseOver?(event: MouseEvent): void
-  onMouseLeave?(event: MouseEvent): void
 }
 
 interface UseTooltipStateOptions {
   externalOpen?: boolean
-  delayDuration: number
 }
 
-const useTooltipState = ({
-  externalOpen,
-  delayDuration
-}: UseTooltipStateOptions) => {
+const useTooltipState = ({ externalOpen }: UseTooltipStateOptions) => {
   const isTooltipControlled = typeof externalOpen !== 'undefined'
   const [isOpen, setIsOpen] = useState(
     isTooltipControlled ? externalOpen : false
   )
-  const [isPristine, setIsPristine] = useState(true)
-  const delayTimeout = useRef<number | undefined>()
 
   const openTooltip = () => {
-    clearTimeout(delayTimeout.current)
-    delayTimeout.current = window.setTimeout(() => {
-      setIsOpen(true)
-    }, delayDuration)
+    setIsOpen(true)
   }
   const closeTooltip = () => {
-    clearTimeout(delayTimeout.current)
     setIsOpen(false)
   }
 
-  useEffect(() => {
-    if (isTooltipControlled) {
-      const next = externalOpen ? openTooltip : closeTooltip
-
-      next()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [externalOpen])
-
-  useEffect(() => {
-    return () => clearTimeout(delayTimeout.current)
-  }, [])
-
   return {
-    isOpen,
+    isOpen: isTooltipControlled ? externalOpen : isOpen,
     isControlled: isTooltipControlled,
-    isPristine,
     openTooltip,
-    closeTooltip,
-    setIsPristine
+    closeTooltip
   }
+}
+
+const getDelayDuration = (delay: DelayType) => {
+  const isTouchDevice = !isPointerDevice()
+
+  return isTouchDevice ? 0 : delayDurations[delay]
 }
 
 const useTooltipHandlers = ({
@@ -100,22 +77,12 @@ const useTooltipHandlers = ({
   onClose,
   onOpen,
   disableListeners,
-  children,
-  delay
+  children
 }: UseTooltipHandlersOptions) => {
   const isTouchDevice = !isPointerDevice()
-  const delayDuration = isTouchDevice ? 0 : delayDurations[delay]
 
-  const {
-    isOpen,
-    isControlled,
-    isPristine,
-    openTooltip,
-    closeTooltip,
-    setIsPristine
-  } = useTooltipState({
-    externalOpen,
-    delayDuration
+  const { isOpen, isControlled, openTooltip, closeTooltip } = useTooltipState({
+    externalOpen
   })
 
   if (isControlled) {
@@ -132,33 +99,28 @@ const useTooltipHandlers = ({
     closeTooltip()
   }
   const handleClick = (event: ChangeEvent<{}>) => {
+    if (disableListeners) {
+      return
+    }
+
     children.props.onClick?.(event)
     if (isOpen) {
-      closeTooltip()
-    } else if (isPristine && !disableListeners) {
-      openTooltip()
-      setIsPristine(false)
+      handleClose(event)
+    } else if (isTouchDevice) {
+      handleOpen(event)
     }
   }
-  const handleOnMouseOver = (event: MouseEvent) => {
-    event.preventDefault()
-    if (!isTouchDevice && !isOpen && isPristine) {
-      openTooltip()
-    }
-  }
-  const handleOnMouseLeave = (event: MouseEvent) => {
-    event.preventDefault()
-    setIsPristine(true)
+  const handleOpen = (event: ChangeEvent<{}>) => {
+    onOpen?.(event)
+    openTooltip()
   }
 
   return {
     isOpen,
-    handleOpen: onOpen,
+    handleOpen,
     handleClose,
     children: cloneElement(children, {
-      onClick: handleClick,
-      onMouseOver: handleOnMouseOver,
-      onMouseLeave: handleOnMouseLeave
+      onClick: handleClick
     })
   }
 }
@@ -224,6 +186,8 @@ export const Tooltip: FunctionComponent<Props> = props => {
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
   const container = usePicassoRoot()
 
+  const delayDuration = getDelayDuration(delay)
+
   const { children, isOpen, handleOpen, handleClose } = useTooltipHandlers({
     open,
     children: originalChildren as ReactElement<ChildrenProps>,
@@ -285,6 +249,8 @@ export const Tooltip: FunctionComponent<Props> = props => {
       disableHoverListener={disableListeners}
       disableFocusListener={disableListeners}
       disableTouchListener
+      enterDelay={delayDuration}
+      enterNextDelay={delayDuration}
     >
       {children as ReactElement}
     </MUITooltip>
