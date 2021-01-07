@@ -8,7 +8,7 @@ const useEllipsis = () => {
     if (!ref || !ref.current) {
       return
     }
-    setIsEllipsis(ref.current.scrollWidth > ref.current.clientWidth)
+    setIsEllipsis(ref.current.scrollWidth >= ref.current.clientWidth)
   }
 
   React.useLayoutEffect(measure)

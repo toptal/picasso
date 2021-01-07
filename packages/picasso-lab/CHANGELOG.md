@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.0.1...@toptal/picasso-lab@3.0.2) (2021-01-07)
+
+
+### Bug Fixes
+
+* **Tooltip:** fix Tooltip showing measure ([#1824](https://github.com/toptal/picasso/issues/1824)) ([4f89898](https://github.com/toptal/picasso/commit/4f89898f199d1b8c3dca0da5c5b9f52d84263c7a))
+
+
+
+
+
 ## [3.0.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.0.0...@toptal/picasso-lab@3.0.1) (2020-12-29)
 
 **Note:** Version bump only for package @toptal/picasso-lab
