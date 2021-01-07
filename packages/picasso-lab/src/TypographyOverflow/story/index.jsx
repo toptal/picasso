@@ -16,11 +16,6 @@ page
   .addExample('TypographyOverflow/story/Default.example.tsx', {
     title: 'Default',
     effect: async (testPage, makeScreenshot) => {
-      /**
-       * TODO: Revert to testPage.hover once the issue below is fixed
-       * https://github.com/puppeteer/puppeteer/issues/4820
-       */
-      // When ellipsed text is hovered then tooltip should appear
       await testPage.hover('[data-testid="ellipsed-text"]')
       await testPage.waitFor(600)
       await makeScreenshot()
@@ -29,11 +24,6 @@ page
   .addExample('TypographyOverflow/story/CheckboxLabel.example.tsx', {
     title: 'Checkbox label',
     effect: async (testPage, makeScreenshot) => {
-      /**
-       * TODO: Revert to testPage.hover once the issue below is fixed
-       * https://github.com/puppeteer/puppeteer/issues/4820
-       */
-      // When ellipsed checkbox's label is hovered then tooltip should appear
       await testPage.hover('[data-testid="ellipsed-text"]')
       await testPage.waitFor(600)
       await makeScreenshot()
@@ -42,11 +32,6 @@ page
   .addExample('TypographyOverflow/story/CustomTooltip.example.tsx', {
     title: 'Custom tooltip content',
     effect: async (testPage, makeScreenshot) => {
-      /**
-       * TODO: Revert to testPage.hover once the issue below is fixed
-       * https://github.com/puppeteer/puppeteer/issues/4820
-       */
-      // When ellipsed checkbox's label is hovered then tooltip should appear
       await testPage.hover('[data-testid="ellipsed-text"]')
       await testPage.waitFor(600)
       await makeScreenshot()
@@ -55,11 +40,6 @@ page
   .addExample('TypographyOverflow/story/Delay.example.tsx', {
     title: 'Delay',
     effect: async (testPage, makeScreenshot) => {
-      /**
-       * TODO: Revert to testPage.hover once the issue below is fixed
-       * https://github.com/puppeteer/puppeteer/issues/4820
-       */
-      // When ellipsed text is hovered then tooltip should appear
       await testPage.hover('[data-testid="default-delay-tooltip"]')
       await testPage.waitFor(200)
       await makeScreenshot()
