@@ -70,3 +70,29 @@ npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/label-tag src/**/
 ```
 
 </details>
+
+#### `accordion-borders`
+
+Updates the Accordion prop `bordered?: boolean` to `borders: 'all' | 'none'`.
+
+The diff should look like this:
+
+```diff
+-<Accordion content='Accordion content' bordered>Summary</Accordion>
+-<Accordion content='Accordion content' bordered={true}>Summary</Accordion>
+-<Accordion content='Accordion content' bordered={false}>Summary</Accordion>
+-<Accordion content='Accordion content'>Summary</Accordion>
++<Accordion content='Accordion content' borders='all'>Summary</Accordion>
++<Accordion content='Accordion content' borders='all'>Summary</Accordion>
++<Accordion content='Accordion content' borders='none'>Summary</Accordion>
++<Accordion content='Accordion content'>Summary</Accordion>
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v5.0.0/accordion-borders src/**/*.tsx
+```
+
+</details>
