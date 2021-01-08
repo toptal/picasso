@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.0.2...@toptal/picasso-codemod@2.1.0) (2021-01-08)
+
+
+### Features
+
+* **picasso-codemod:** add accordion borders codemod ([#1831](https://github.com/toptal/picasso/issues/1831)) ([4aa1b43](https://github.com/toptal/picasso/commit/4aa1b43a8d3b0ef55b50cfc49b50c4e52d24be5e))
+
+
+
+
+
 ## [2.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.0.1...@toptal/picasso-codemod@2.0.2) (2020-12-28)
 
 
