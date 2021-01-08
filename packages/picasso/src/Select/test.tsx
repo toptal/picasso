@@ -1,12 +1,7 @@
 /* eslint-disable max-lines */
 
 import React from 'react'
-import {
-  render,
-  fireEvent,
-  PicassoConfig,
-  TestingPicasso
-} from '@toptal/picasso/test-utils'
+import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
@@ -615,13 +610,11 @@ describe('multiple select', () => {
     expect(selectInput.value).not.toBe(selectedOption.text)
 
     rerender(
-      <TestingPicasso>
-        <Select
-          options={OPTIONS}
-          value={initialProps.value}
-          placeholder={initialProps.placeholder}
-        />
-      </TestingPicasso>
+      <Select
+        options={OPTIONS}
+        value={initialProps.value}
+        placeholder={initialProps.placeholder}
+      />
     )
 
     expect(selectInput.value).toBe(selectedOption.text)
