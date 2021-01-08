@@ -96,3 +96,34 @@ npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v5.0.0/acco
 ```
 
 </details>
+
+#### `subheader-pagehead`
+
+Renames occurrences of `Subheader` to `PageHead`.
+
+```diff
+- import { Subheader } from '@toptal/picasso'
++ import { PageHead } from '@toptal/picasso'
+
+  const Example = () => (
+-   <Subheader>
++   <PageHead>
+-     <Subheader.Main>
++     <PageHead.Main>
+-        <Subheader.Title>Title</Subheader.Title>
++        <PageHead.Title>Title</PageHead.Title>
+-     </Subheader.Main>
++     </PageHead.Main>
+-   </Subheader>
++   </PageHead>
+  )
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/subheader-pagehead src/**/*.tsx --parser=tsx
+```
+
+</details>
