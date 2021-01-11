@@ -10,6 +10,10 @@ This repository contains a collection of codemod scripts based for use with [JSC
 - `npx jscodeshift -t <codemod-script> --parser=tsx <path>`
 - [jscodeshift CLI usage](https://github.com/facebook/jscodeshift#usage-cli)
 
+## Limitations
+
+Codemods do not guarantee the code format preservation. Therefore be sure to run prettier and eslint on your repo after running codemod. For more details take a look here https://github.com/benjamn/recast/issues/140.
+
 ## Included Scripts
 
 ### v5.0.0
