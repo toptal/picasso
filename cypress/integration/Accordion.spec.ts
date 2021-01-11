@@ -1,17 +1,17 @@
-const clickAccordion = () => cy.get('[data-testid=trigger]').click()
+const toggleAccordion = () => cy.get('[data-testid=trigger]').click()
 const getAccordionContent = () => cy.get('[data-testid=content]')
 const clickStartInterviewOnboarding = () =>
   cy.get('[data-testid="start-onboarding"]').click()
 
-describe('Accordion', () => {
+describe('Accordion with custom summary', () => {
   beforeEach(() => {
     cy.visit('iframe.html?id=accordion--custom-summary')
   })
 
   it('closes and opens accordion', () => {
-    clickAccordion()
+    toggleAccordion()
     getAccordionContent().should('not.be.visible')
-    clickAccordion()
+    toggleAccordion()
     getAccordionContent().should('be.visible')
   })
 
