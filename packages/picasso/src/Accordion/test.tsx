@@ -9,7 +9,7 @@ const exampleContent =
 const exampleSummary = 'Lorem ipsum'
 
 describe('Accordion', () => {
-  test('should render successfully', () => {
+  test('renders successfully', () => {
     const { container } = render(
       <Accordion content={exampleContent}>{exampleSummary}</Accordion>
     )
@@ -17,13 +17,13 @@ describe('Accordion', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('should render none when no summary', () => {
+  test('renders none when no summary', () => {
     const { container } = render(<Accordion content={exampleContent} />)
 
     expect(container).toMatchSnapshot()
   })
 
-  test('should render expanded initially', async () => {
+  test('renders expanded initially', () => {
     const { getByText } = render(
       <Accordion content={exampleContent} defaultExpanded>
         {exampleSummary}
@@ -35,7 +35,7 @@ describe('Accordion', () => {
     expect(content).toBeVisible()
   })
 
-  test('should render custom icon when passed', () => {
+  test('renders custom icon when passed', () => {
     const { getByTestId } = render(
       <Accordion
         content={exampleContent}
@@ -48,7 +48,7 @@ describe('Accordion', () => {
     expect(getByTestId('custom-expand-icon')).toBeInTheDocument()
   })
 
-  test('should be controlled', async () => {
+  test('toggles when controlled', async () => {
     const { getByText, rerender } = render(
       <Accordion content={exampleContent} expanded={false}>
         {exampleSummary}
@@ -66,16 +66,21 @@ describe('Accordion', () => {
     expect(getByText(exampleContent)).toBeVisible()
   })
 
-  test('should fire onChange', () => {
+  test('fires onChange', () => {
     const handleChange = jest.fn()
-    const { getByText } = render(
-      <Accordion content={exampleContent} onChange={handleChange}>
+    const { getByText, getByTestId } = render(
+      <Accordion
+        content={exampleContent}
+        onChange={handleChange}
+        expandIcon={<span data-testid='trigger' />}
+      >
         {exampleSummary}
       </Accordion>
     )
 
     fireEvent.click(getByText(exampleSummary))
+    fireEvent.click(getByTestId('trigger'))
 
-    expect(handleChange).toBeCalledTimes(1)
+    expect(handleChange).toBeCalledTimes(2)
   })
 })
