@@ -17,7 +17,11 @@ page
     title: 'Default',
     effect: async (testPage, makeScreenshot) => {
       await testPage.hover('[data-testid="ellipsed-text"]')
-      await testPage.waitFor(600)
+      await testPage.waitFor(200)
+      await makeScreenshot()
+
+      await testPage.hover('[data-testid="ellipsed-text-full-width"]')
+      await testPage.waitFor(200)
       await makeScreenshot()
     }
   })
