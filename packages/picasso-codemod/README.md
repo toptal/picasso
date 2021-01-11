@@ -12,7 +12,7 @@ This repository contains a collection of codemod scripts based for use with [JSC
 
 ## Limitations
 
-Codemods do not guarantee the code format preservation. Therefore be sure to run prettier and eslint on your repo after running codemod. For more details take a look here https://github.com/benjamn/recast/issues/140.
+Codemods do not guarantee the code format preservation. Therefore be sure to run `prettier` and `eslint` on your repo after applying a codemod. Take a look [here](https://github.com/benjamn/recast/issues/140) to learn more about the issue.
 
 ## Included Scripts
 
