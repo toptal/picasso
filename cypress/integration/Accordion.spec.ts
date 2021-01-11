@@ -8,14 +8,14 @@ describe('Accordion with custom summary', () => {
     cy.visit('iframe.html?id=accordion--custom-summary')
   })
 
-  it('closes and opens accordion', () => {
+  test('closes and opens accordion', () => {
     toggleAccordion()
     getAccordionContent().should('not.be.visible')
     toggleAccordion()
     getAccordionContent().should('be.visible')
   })
 
-  it('interacts with accordion content', () => {
+  test('interacts with accordion content', () => {
     clickStartInterviewOnboarding()
     cy.on('window:alert', text => {
       expect(text).toEqual('Onboarding started')
