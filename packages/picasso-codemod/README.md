@@ -10,6 +10,10 @@ This repository contains a collection of codemod scripts based for use with [JSC
 - `npx jscodeshift -t <codemod-script> --parser=tsx <path>`
 - [jscodeshift CLI usage](https://github.com/facebook/jscodeshift#usage-cli)
 
+## Limitations
+
+Codemods do not guarantee the code format preservation. Therefore be sure to run `prettier` and `eslint` on your repo after applying a codemod. Take a look [here](https://github.com/benjamn/recast/issues/140) to learn more about the issue.
+
 ## Included Scripts
 
 ### v5.0.0
@@ -93,6 +97,37 @@ The diff should look like this:
 
 ```sh
 npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v5.0.0/accordion-borders src/**/*.tsx
+```
+
+</details>
+
+#### `subheader-pagehead`
+
+Renames occurrences of `Subheader` to `PageHead`.
+
+```diff
+- import { Subheader } from '@toptal/picasso'
++ import { PageHead } from '@toptal/picasso'
+
+  const Example = () => (
+-   <Subheader>
++   <PageHead>
+-     <Subheader.Main>
++     <PageHead.Main>
+-        <Subheader.Title>Title</Subheader.Title>
++        <PageHead.Title>Title</PageHead.Title>
+-     </Subheader.Main>
++     </PageHead.Main>
+-   </Subheader>
++   </PageHead>
+  )
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/subheader-pagehead src/**/*.tsx --parser=tsx
 ```
 
 </details>
