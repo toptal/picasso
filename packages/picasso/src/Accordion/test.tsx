@@ -11,23 +11,27 @@ const exampleSummary = 'Lorem ipsum'
 const getSummaryContainer = (container: HTMLElement) =>
   container.querySelector('[aria-expanded]') as HTMLElement
 
+const getAccordionContainer = (container: HTMLElement) =>
+  getSummaryContainer(container).parentElement as HTMLElement
+
 describe('Accordion', () => {
   test('renders successfully', () => {
-    const { container } = render(
-      <Accordion
-        content={exampleContent}
-        className='test'
-        style={{ display: 'flex' }}
-      >
-        {exampleSummary}
-      </Accordion>
+    const { container, getByText } = render(
+      <Accordion content={exampleContent}>{exampleSummary}</Accordion>
     )
+
+    expect(getByText(exampleSummary)).toBeVisible()
+    expect(getByText(exampleContent)).not.toBeVisible()
 
     expect(container).toMatchSnapshot()
   })
 
   test('renders none when no summary', () => {
-    const { container } = render(<Accordion content={exampleContent} />)
+    const { container, queryByText } = render(
+      <Accordion content={exampleContent} />
+    )
+
+    expect(queryByText(exampleSummary)).toBeNull()
 
     expect(container).toMatchSnapshot()
   })
@@ -67,6 +71,23 @@ describe('Accordion', () => {
     )
 
     expect(getByTestId('custom-expand-icon')).toBeInTheDocument()
+  })
+
+  test('passes styles correctly', () => {
+    const { container } = render(
+      <Accordion
+        className='foobar'
+        style={{ display: 'table' }}
+        content={exampleContent}
+      >
+        {exampleSummary}
+      </Accordion>
+    )
+
+    const accordionContainer = getAccordionContainer(container)
+
+    expect(accordionContainer).toHaveStyle('display: table;')
+    expect(accordionContainer.classList.contains('foobar')).toBeTruthy()
   })
 
   test('toggles when controlled', async () => {

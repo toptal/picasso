@@ -31,20 +31,7 @@ page
   })
   .addExample('Accordion/story/Group.example.tsx', {
     title: 'Group',
-    description: 'Accordions can be combined in groups',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click(
-        '[data-testid="borders-all"] > [aria-expanded=false]'
-      )
-      await testPage.click(
-        '[data-testid="borders-middle"] > [aria-expanded=false]'
-      )
-      await testPage.click(
-        '[data-testid="borders-none"] > [aria-expanded=false]'
-      )
-
-      await makeScreenshot()
-    }
+    description: 'Accordions can be combined in groups'
   })
   .addExample('Accordion/story/Controlled.example.tsx', {
     title: 'Controlled',
