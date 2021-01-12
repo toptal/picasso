@@ -131,3 +131,28 @@ npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/subheader-pagehea
 ```
 
 </details>
+
+#### `header-topbar`
+
+Renames occurrences of `Page.Header` to `Page.TopBar`.
+
+```diff
+  import { Page } from '@toptal/picasso'
+
+  const Example = () => (
+-   <Page.Header>
++   <Page.TopBar>
+       Content
+-   </Page.Header>
++   </Page.TopBar>
+  )
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/header-topbar src/**/*.tsx --parser=tsx
+```
+
+</details>
