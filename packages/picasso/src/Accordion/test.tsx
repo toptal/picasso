@@ -8,6 +8,9 @@ const exampleContent =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta harum explicabo assumenda doloribus voluptatum cum culpa! Molestias voluptatem placeat at velit vero animi, nostrum culpa, unde aliquam magnam libero eius.'
 const exampleSummary = 'Lorem ipsum'
 
+const getSummaryContainer = (container: HTMLElement) =>
+  container.querySelector('[aria-expanded]') as HTMLElement
+
 describe('Accordion', () => {
   test('renders successfully', () => {
     const { container } = render(
@@ -23,6 +26,18 @@ describe('Accordion', () => {
     expect(container).toMatchSnapshot()
   })
 
+  test('renders disabled', async () => {
+    const { container } = render(
+      <Accordion content={exampleContent} disabled>
+        {exampleSummary}
+      </Accordion>
+    )
+
+    // MUI disabled state adds `pointer-events: none` style rule to the summary container.
+    // It can't be tested via RTL because firing events ignores this rule.
+    expect(container).toMatchSnapshot()
+  })
+
   test('renders expanded initially', async () => {
     const { getByText } = render(
       <Accordion content={exampleContent} defaultExpanded>
@@ -31,9 +46,7 @@ describe('Accordion', () => {
     )
 
     expect(getByText(exampleContent)).toBeVisible()
-
     fireEvent.click(getByText(exampleSummary))
-
     await wait(() => expect(getByText(exampleContent)).not.toBeVisible())
   })
 
@@ -70,7 +83,7 @@ describe('Accordion', () => {
 
   test('toggles', async () => {
     const handleChange = jest.fn()
-    const { getByText, getByTestId } = render(
+    const { container, getByText, getByTestId } = render(
       <Accordion
         content={exampleContent}
         onChange={handleChange}
@@ -80,29 +93,12 @@ describe('Accordion', () => {
       </Accordion>
     )
 
-    fireEvent.click(getByText(exampleSummary))
-
+    fireEvent.click(getSummaryContainer(container))
     await wait(() => expect(getByText(exampleContent)).toBeVisible())
 
     fireEvent.click(getByTestId('trigger'))
-
     await wait(() => expect(getByText(exampleContent)).not.toBeVisible())
 
     expect(handleChange).toBeCalledTimes(2)
-  })
-
-  test('does not toggle when disabled', async () => {
-    const handleChange = jest.fn()
-    const { getByText, container } = render(
-      <Accordion content={exampleContent} onChange={handleChange} disabled>
-        {exampleSummary}
-      </Accordion>
-    )
-
-    // Disabled state makes the parent container non-clickable, so click can't be passed to the children
-    // However clicking the children via Javascript will toggle the accordion.
-    fireEvent.click(container)
-    expect(getByText(exampleContent)).not.toBeVisible()
-    expect(handleChange).toBeCalledTimes(0)
   })
 })
