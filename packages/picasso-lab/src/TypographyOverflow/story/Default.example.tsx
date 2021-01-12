@@ -9,9 +9,17 @@ const Example = () => {
           This typography is very long and therefore it overflows.
         </TypographyOverflow>
       </div>
-      <div style={{ width: '100%' }}>
-        <TypographyOverflow data-testid='ellipsed-text-full-width'>
-          Another typography is very long and has 100% width.
+      <div
+        style={{
+          width: '50%',
+          paddingRight: '20px',
+          resize: 'horizontal',
+          overflow: 'auto',
+          borderRight: '3px solid black'
+        }}
+      >
+        <TypographyOverflow data-testid='ellipsed-text-dynamic-width'>
+          Another typography is very long and has dynamic width. Try to resize.
         </TypographyOverflow>
       </div>
     </>
