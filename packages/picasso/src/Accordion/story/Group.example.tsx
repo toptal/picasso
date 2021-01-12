@@ -11,10 +11,12 @@ const Example = () => {
           </Typography>
         </Container>
 
-        <Accordion content={<DetailsDogDefinitionPanel />} borders='all'>
-          <Accordion.Summary>
-            <span data-testid='all-borders-trigger'>What is a dog?</span>
-          </Accordion.Summary>
+        <Accordion
+          content={<DetailsDogDefinitionPanel />}
+          borders='all'
+          data-testid='borders-all'
+        >
+          <Accordion.Summary data-testid='1'>What is a dog?</Accordion.Summary>
         </Accordion>
         <Accordion content={<DetailsDogKindPanel />} borders='all'>
           <Accordion.Summary>What kinds of dogs are there?</Accordion.Summary>
@@ -31,10 +33,12 @@ const Example = () => {
           </Typography>
         </Container>
 
-        <Accordion content={<DetailsDogDefinitionPanel />} borders='middle'>
-          <Accordion.Summary>
-            <span data-testid='middle-borders-trigger'>What is a dog?</span>
-          </Accordion.Summary>
+        <Accordion
+          content={<DetailsDogDefinitionPanel />}
+          borders='middle'
+          data-testid='borders-middle'
+        >
+          <Accordion.Summary>What is a dog?</Accordion.Summary>
         </Accordion>
         <Accordion content={<DetailsDogKindPanel />} borders='middle'>
           <Accordion.Summary>What kinds of dogs are there?</Accordion.Summary>
@@ -51,10 +55,12 @@ const Example = () => {
           </Typography>
         </Container>
 
-        <Accordion content={<DetailsDogDefinitionPanel />} borders='none'>
-          <Accordion.Summary>
-            <span data-testid='no-borders-trigger'>What is a dog?</span>
-          </Accordion.Summary>
+        <Accordion
+          content={<DetailsDogDefinitionPanel />}
+          borders='none'
+          data-testid='borders-none'
+        >
+          <Accordion.Summary>What is a dog?</Accordion.Summary>
         </Accordion>
         <Accordion content={<DetailsDogKindPanel />} borders='none'>
           <Accordion.Summary>What kinds of dogs are there?</Accordion.Summary>

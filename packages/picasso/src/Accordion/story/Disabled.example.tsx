@@ -4,8 +4,8 @@ import { Accordion } from '@toptal/picasso'
 const Example = () => {
   return (
     <div style={{ width: '430px' }}>
-      <Accordion content={<DetailsDogDefinitionPanel />}>
-        <Accordion.Summary> What is a dog?</Accordion.Summary>
+      <Accordion content={<DetailsDogDefinitionPanel />} disabled>
+        <Accordion.Summary>What is a dog?</Accordion.Summary>
       </Accordion>
     </div>
   )
