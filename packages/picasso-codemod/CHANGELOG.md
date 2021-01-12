@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.1.0...@toptal/picasso-codemod@2.2.0) (2021-01-12)
+
+
+### Features
+
+* **codemod:** rename Subheader to PageHead ([#1832](https://github.com/toptal/picasso/issues/1832)) ([c74a380](https://github.com/toptal/picasso/commit/c74a380f5f449d398016361b821a1cd259fa1256))
+
+
+
+
+
 # [2.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.0.2...@toptal/picasso-codemod@2.1.0) (2021-01-08)
 
 
