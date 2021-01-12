@@ -12,40 +12,35 @@ const useEllipsis = () => {
     /**
      * Pixel value of font render space correction.
      * It's individual for different fonts, so it won't work for 100% cases,
-     * but it allows as to be much closer to actual overflow detection while calculating.
+     * but it allows us to be much closer to actual overflow detection while calculating.
      * Tolerance of the render could be 0-2px depending on the font that is used,
      * and also affected by the right-padding added at Ellipsis component.
      */
-    const fontRenderSpace = 0.475
+    const FONT_RENDER_CORRECTION = 0.475
 
     setIsEllipsis(
-      ref.current.scrollWidth > rect.width + fontRenderSpace ||
-        ref.current.scrollHeight > rect.height + fontRenderSpace
+      ref.current.scrollWidth > rect.width + FONT_RENDER_CORRECTION ||
+        ref.current.scrollHeight > rect.height + FONT_RENDER_CORRECTION
     )
   }
-
-  // @ts-ignore
-  const ro = new window.ResizeObserver(measure)
 
   React.useLayoutEffect(measure)
 
   React.useEffect(() => {
+    // @ts-ignore
+    const resizeObserver = new window.ResizeObserver(measure)
+    const container = ref.current?.parentNode
+
+    resizeObserver.observe(container)
+
     window.addEventListener('resize', measure)
 
     return () => {
+      resizeObserver.unobserve(container)
+
       window.removeEventListener('resize', measure)
     }
   }, [])
-
-  React.useEffect(() => {
-    const container = ref.current?.parentNode
-
-    ro.observe(container)
-
-    return () => {
-      ro.unobserve(container)
-    }
-  }, [ref.current])
 
   return { ref, isEllipsis }
 }
