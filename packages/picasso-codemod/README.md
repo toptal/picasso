@@ -145,6 +145,52 @@ Renames occurrences of `Page.Header` to `Page.TopBar`.
        Content
 -   </Page.Header>
 +   </Page.TopBar>
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/header-topbar src/**/*.tsx --parser=tsx
+```
+
+</details>
+
+#### `button-variants`
+
+Renames variants of button to new values, replaced circular button with `Button.Circular`.
+
+```diff
+  const Example = () => (
+-     <Button variant='primary-blue'>Primary Red</Button>
++     <Button variant='primary'>Primary Red</Button>
+-     <Button variant='primary-red'>Primary Red</Button>
++     <Button variant='negative'>Primary Red</Button>
+-     <Button variant='primary-green'>Primary Green</Button>
++     <Button variant='positive'>Primary Green</Button>
+
+-     <Button variant='secondary-blue'>Secondary Blue</Button>
++     <Button variant='secondary'>Secondary Blue</Button>
+-     <Button variant='secondary-red'>Secondary Red</Button>
++     <Button variant='secondary'>Secondary Red</Button>
+-     <Button variant='secondary-green'>Secondary Green</Button>
++     <Button variant='secondary'>Secondary Green</Button>
+-     <Button variant='secondary-white'>Secondary White</Button>
++     <Button variant='transparent'>Secondary White</Button>
+
+-     <Button variant='flat'>Flat</Button>
++     <Button variant='secondary'>Flat</Button>
+-     <Button variant='flat-white'>Flat White</Button>
++     <Button variant='transparent'>Flat White</Button>
+
+-     <Button variant='transparent-white' icon={<Twitter24 />} />
++     <Button variant='transparent' icon={<Twitter24 />} />
+-     <Button variant='transparent-blue' icon={<Twitter24 />} />
++     <Button variant='transparent' icon={<Twitter24 />} />
+-     <Button variant='transparent-green' icon={<Twitter24 />} />
++     <Button variant='transparent' icon={<Twitter24 />} />
+
+-     <Button icon={<Settings16 />} circular />
++     <Button.Circular icon={<Settings16 />} />
   )
 ```
 
@@ -152,7 +198,7 @@ Renames occurrences of `Page.Header` to `Page.TopBar`.
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/header-topbar src/**/*.tsx --parser=tsx
+npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/button-variants src/**/*.tsx --parser=tsx
 ```
 
 </details>
