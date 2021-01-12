@@ -1,5 +1,5 @@
 import React from 'react'
-import { PageHead as Something } from '@toptal/picasso-lab'
+import { Tag as Something } from '@toptal/picasso'
 
 const DefaultExample = () => <Something>Content</Something>
 
