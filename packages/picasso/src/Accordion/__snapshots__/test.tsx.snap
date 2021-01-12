@@ -1,5 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Accordion renders disabled 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersAll Mui-disabled MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+    >
+      <div
+        aria-disabled="true"
+        aria-expanded="false"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary Mui-disabled Mui-disabled"
+        role="button"
+        tabindex="-1"
+      >
+        <div
+          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content makeStyles-content"
+        >
+          Lorem ipsum
+          <div
+            class="makeStyles-expandIconAlignTop"
+          >
+            <button
+              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              data-component-type="button"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content PicassoButtonAction-content"
+              >
+                <svg
+                  class="SvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon makeStyles-expandIcon"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiCollapse-container MuiCollapse-hidden"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              role="region"
+            >
+              <div
+                class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta harum explicabo assumenda doloribus voluptatum cum culpa! Molestias voluptatem placeat at velit vero animi, nostrum culpa, unde aliquam magnam libero eius.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Accordion renders none when no summary 1`] = `
 <div>
   <div

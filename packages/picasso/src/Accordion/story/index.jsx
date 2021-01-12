@@ -22,23 +22,18 @@ page
   .createChapter()
   .addExample('Accordion/story/Default.example.tsx', {
     title: 'Default',
-    description:
-      'Styled sections is a default behaviour of Accordion when `expanded` prop is not specified (uncontrolled)'
+    description: 'Accordion is uncontrolled until `expanded` prop is specified.'
   })
   .addExample('Accordion/story/AccordionGroup.example.tsx', {
     title: 'Group',
-    description: 'Accordions with styled sections in a group'
+    description: 'Accordions can be combined in groups'
   })
   .addExample('Accordion/story/Controlled.example.tsx', {
-    title: 'Controlled state',
-    description: 'Accordions with controlled expanded property'
-  })
-  .addExample('Accordion/story/CustomFontStyling.example.tsx', {
-    title: 'Custom styling',
-    description:
-      'Summary and Details of Accordion can be decorated with additional styles'
+    title: 'Controlled',
+    description: 'Accordion can be controlled via `expanded` prop.'
   })
   .addExample('Accordion/story/CustomSummary.example.tsx', {
     title: 'Custom Summary',
-    description: 'Summary can be a completely custom component'
+    description:
+      "Accordion's summary is customizable. It either can be passed as `children` or be an external custom component."
   })
