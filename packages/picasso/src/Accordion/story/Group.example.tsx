@@ -14,9 +14,9 @@ const Example = () => {
         <Accordion
           content={<DetailsDogDefinitionPanel />}
           borders='all'
-          data-testid='borders-all'
+          defaultExpanded
         >
-          <Accordion.Summary data-testid='1'>What is a dog?</Accordion.Summary>
+          <Accordion.Summary>What is a dog?</Accordion.Summary>
         </Accordion>
         <Accordion content={<DetailsDogKindPanel />} borders='all'>
           <Accordion.Summary>What kinds of dogs are there?</Accordion.Summary>
@@ -33,11 +33,7 @@ const Example = () => {
           </Typography>
         </Container>
 
-        <Accordion
-          content={<DetailsDogDefinitionPanel />}
-          borders='middle'
-          data-testid='borders-middle'
-        >
+        <Accordion content={<DetailsDogDefinitionPanel />} borders='middle'>
           <Accordion.Summary>What is a dog?</Accordion.Summary>
         </Accordion>
         <Accordion content={<DetailsDogKindPanel />} borders='middle'>
@@ -55,11 +51,7 @@ const Example = () => {
           </Typography>
         </Container>
 
-        <Accordion
-          content={<DetailsDogDefinitionPanel />}
-          borders='none'
-          data-testid='borders-none'
-        >
+        <Accordion content={<DetailsDogDefinitionPanel />} borders='none'>
           <Accordion.Summary>What is a dog?</Accordion.Summary>
         </Accordion>
         <Accordion content={<DetailsDogKindPanel />} borders='none'>
