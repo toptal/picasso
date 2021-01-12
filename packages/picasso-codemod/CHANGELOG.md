@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.2.0...@toptal/picasso-codemod@2.3.0) (2021-01-12)
+
+
+### Features
+
+* **codemod:** rename Page.Header to Page.TopBar ([#1835](https://github.com/toptal/picasso/issues/1835)) ([573fb5e](https://github.com/toptal/picasso/commit/573fb5e56d776b9b9413532be247c9fc1b51637c))
+
+
+
+
+
 # [2.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.1.0...@toptal/picasso-codemod@2.2.0) (2021-01-12)
 
 
