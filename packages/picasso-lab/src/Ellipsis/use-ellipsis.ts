@@ -43,9 +43,7 @@ const useEllipsis = () => {
     ro.observe(container)
 
     return () => {
-      if (ro) {
-        ro.unobserve(container)
-      }
+      ro.unobserve(container)
     }
   }, [ref.current])
 
