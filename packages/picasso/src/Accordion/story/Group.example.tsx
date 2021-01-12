@@ -12,7 +12,9 @@ const Example = () => {
         </Container>
 
         <Accordion content={<DetailsDogDefinitionPanel />} borders='all'>
-          <Accordion.Summary>What is a dog?</Accordion.Summary>
+          <Accordion.Summary>
+            <span data-testid='all-borders-trigger'>What is a dog?</span>
+          </Accordion.Summary>
         </Accordion>
         <Accordion content={<DetailsDogKindPanel />} borders='all'>
           <Accordion.Summary>What kinds of dogs are there?</Accordion.Summary>
@@ -30,7 +32,9 @@ const Example = () => {
         </Container>
 
         <Accordion content={<DetailsDogDefinitionPanel />} borders='middle'>
-          <Accordion.Summary>What is a dog?</Accordion.Summary>
+          <Accordion.Summary>
+            <span data-testid='middle-borders-trigger'>What is a dog?</span>
+          </Accordion.Summary>
         </Accordion>
         <Accordion content={<DetailsDogKindPanel />} borders='middle'>
           <Accordion.Summary>What kinds of dogs are there?</Accordion.Summary>
@@ -48,7 +52,9 @@ const Example = () => {
         </Container>
 
         <Accordion content={<DetailsDogDefinitionPanel />} borders='none'>
-          <Accordion.Summary>What is a dog?</Accordion.Summary>
+          <Accordion.Summary>
+            <span data-testid='no-borders-trigger'>What is a dog?</span>
+          </Accordion.Summary>
         </Accordion>
         <Accordion content={<DetailsDogKindPanel />} borders='none'>
           <Accordion.Summary>What kinds of dogs are there?</Accordion.Summary>
