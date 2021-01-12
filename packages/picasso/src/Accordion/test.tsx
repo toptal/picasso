@@ -14,7 +14,13 @@ const getSummaryContainer = (container: HTMLElement) =>
 describe('Accordion', () => {
   test('renders successfully', () => {
     const { container } = render(
-      <Accordion content={exampleContent}>{exampleSummary}</Accordion>
+      <Accordion
+        content={exampleContent}
+        className='test'
+        style={{ display: 'flex' }}
+      >
+        {exampleSummary}
+      </Accordion>
     )
 
     expect(container).toMatchSnapshot()

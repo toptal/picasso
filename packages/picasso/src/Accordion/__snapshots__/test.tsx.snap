@@ -114,7 +114,8 @@ exports[`Accordion renders successfully 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersAll MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersAll test MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      style="display: flex;"
     >
       <div
         aria-disabled="false"
