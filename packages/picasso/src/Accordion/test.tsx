@@ -61,7 +61,7 @@ describe('Accordion', () => {
   })
 
   test('renders custom icon when passed', () => {
-    const { getByTestId } = render(
+    const { getByTestId, container } = render(
       <Accordion
         content={exampleContent}
         expandIcon={<span data-testid='custom-expand-icon' />}
@@ -71,6 +71,8 @@ describe('Accordion', () => {
     )
 
     expect(getByTestId('custom-expand-icon')).toBeInTheDocument()
+
+    expect(container).toMatchSnapshot()
   })
 
   test('passes styles correctly', () => {
