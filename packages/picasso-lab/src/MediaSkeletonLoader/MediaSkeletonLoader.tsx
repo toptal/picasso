@@ -108,6 +108,7 @@ export const getAttributes = (props: React.PropsWithChildren<Props>) => {
 }
 
 export const MediaSkeletonLoader = (props: Props) => {
+  const { className, style } = props
   const { width, height, borderRadius } = useMemo(() => getAttributes(props), [
     props
   ])
@@ -121,6 +122,8 @@ export const MediaSkeletonLoader = (props: Props) => {
       width={width}
       height={height}
       data-testid={props['data-testid']}
+      className={className}
+      style={style}
     >
       <rect
         x='0'

@@ -156,6 +156,21 @@ describe('getAttributes', () => {
 })
 
 describe('MediaSkeletonLoader', () => {
+  it('supports custom classname and style attributes', () => {
+    const { getByTestId } = render(
+      <SkeletonLoader.Media
+        data-testid='loader'
+        style={{ color: 'red' }}
+        className='toptal-media'
+      />
+    )
+
+    const loader = getByTestId('loader')
+
+    expect(loader).toHaveAttribute('style', 'color: red;')
+    expect(loader).toHaveAttribute('class', 'toptal-media')
+  })
+
   it('renders avatar variants', () => {
     const { getByTestId } = render(
       <>
