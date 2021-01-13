@@ -37,13 +37,13 @@ export const stringToNumber = (value: string) => Number.parseFloat(value)
 export const rem = (px: string, baseFontSize = 16) =>
   `${stringToNumber(px) / baseFontSize}rem`
 
-export const outline = (baseColor: string, width = 3) => ({
-  boxShadow: `0 0 0 ${width}px ${alpha(baseColor, 0.48)}`
-})
-
 // eslint-disable-next-line @typescript-eslint/no-shadow
 export const px = (rem: string, baseFontSize = 16) =>
   `${stringToNumber(rem) * baseFontSize}px`
+
+export const outline = (baseColor: string, width = 3) => ({
+  boxShadow: `0 0 0 ${width}px ${alpha(baseColor, 0.48)}`
+})
 
 export { default as withClasses } from './withClasses'
 
