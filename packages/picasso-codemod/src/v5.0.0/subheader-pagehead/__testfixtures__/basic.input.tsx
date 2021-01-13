@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import { Tabs, Button, Link } from '@toptal/picasso'
 import { Subheader, Breadcrumbs } from '@toptal/picasso-lab'
