@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.1.1...@toptal/picasso-lab@3.1.2) (2021-01-13)
+
+
+### Bug Fixes
+
+* **TypographyOverflow:** add Jest support for ResizeObserver ([#1839](https://github.com/toptal/picasso/issues/1839)) ([eb6244e](https://github.com/toptal/picasso/commit/eb6244e91e377d8d3e317b3fb7a8a1d0d57aa155))
+
+
+
+
+
 ## [3.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.1.0...@toptal/picasso-lab@3.1.1) (2021-01-13)
 
 
