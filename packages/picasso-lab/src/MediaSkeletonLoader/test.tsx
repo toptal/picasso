@@ -153,7 +153,7 @@ describe('getAttributes', () => {
 })
 
 describe('MediaSkeletonLoader', () => {
-  it('renders all avatar variants', () => {
+  it('renders avatar variants', () => {
     const { container } = render(
       <>
         <SkeletonLoader.Media variant='avatar' />
@@ -166,7 +166,7 @@ describe('MediaSkeletonLoader', () => {
 
     expect(container).toMatchSnapshot()
   })
-  it('renders all icon variants', () => {
+  it('renders icon variants', () => {
     const { container } = render(
       <>
         <SkeletonLoader.Media variant='icon' size='medium' />
@@ -178,7 +178,7 @@ describe('MediaSkeletonLoader', () => {
 
     expect(container).toMatchSnapshot()
   })
-  it('renders all icon variants', () => {
+  it('renders image variants', () => {
     const { container } = render(
       <>
         <SkeletonLoader.Media variant='image' width='2rem' height='2rem' />
