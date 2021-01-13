@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.2.0...@toptal/picasso@5.3.0) (2021-01-13)
+
+
+### Features
+
+* **icon:** add career icons ([#1837](https://github.com/toptal/picasso/issues/1837)) ([4557c5b](https://github.com/toptal/picasso/commit/4557c5b0fd3ea17deed3a35dc436663ad310097b))
+
+
+
+
+
 # [5.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.1.4...@toptal/picasso@5.2.0) (2021-01-07)
 
 
