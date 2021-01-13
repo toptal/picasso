@@ -22,20 +22,21 @@ page
   .createChapter()
   .addExample('Accordion/story/Default.example.tsx', {
     title: 'Default',
-    description: 'Accordion is uncontrolled until `expanded` prop is specified.'
+    description:
+      'Accordion is uncontrolled until the `expanded` prop is specified.'
   })
   .addExample('Accordion/story/Disabled.example.tsx', {
     title: 'Disabled',
     description:
-      'Accordion ignores pointer events when `disabled` prop is truthy.'
+      'Accordion ignores pointer events when the `disabled` prop is truthy.'
   })
-  .addExample('Accordion/story/Group.example.tsx', {
-    title: 'Group',
-    description: 'Accordions can be combined in groups'
+  .addExample('Accordion/story/BorderedGroups.example.tsx', {
+    title: 'Borders and Groups',
+    description: 'Accordions have configurable borders and can be grouped'
   })
   .addExample('Accordion/story/Controlled.example.tsx', {
     title: 'Controlled',
-    description: 'Accordion can be controlled via `expanded` prop.'
+    description: 'Accordion can be controlled via the `expanded` prop.'
   })
   .addExample('Accordion/story/CustomSummary.example.tsx', {
     title: 'Custom Summary',

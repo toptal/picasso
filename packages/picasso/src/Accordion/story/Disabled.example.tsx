@@ -1,15 +1,24 @@
 import React from 'react'
-import { Accordion } from '@toptal/picasso'
+import { Accordion, Grid } from '@toptal/picasso'
 
-const Example = () => {
-  return (
-    <div style={{ width: '430px' }}>
-      <Accordion content={<DetailsDogDefinitionPanel />} disabled>
+const Example = () => (
+  <Grid>
+    <Grid.Item small={6}>
+      <Accordion disabled content={<DetailsDogDefinitionPanel />}>
         <Accordion.Summary>What is a dog?</Accordion.Summary>
       </Accordion>
-    </div>
-  )
-}
+    </Grid.Item>
+    <Grid.Item small={6}>
+      <Accordion
+        disabled
+        defaultExpanded
+        content={<DetailsDogDefinitionPanel />}
+      >
+        <Accordion.Summary>What is a dog?</Accordion.Summary>
+      </Accordion>
+    </Grid.Item>
+  </Grid>
+)
 
 const DetailsDogDefinitionPanel = () => (
   <Accordion.Details>
