@@ -6,7 +6,7 @@ import React, {
   useState,
   useEffect,
   useLayoutEffect,
-  useMemo
+  useCallback
 } from 'react'
 import debounce from 'debounce'
 import styled from 'styled-components'
@@ -158,7 +158,7 @@ const CodeExample = (props: Props) => {
     }, 2000)
   }
 
-  const handleChangeCode = useMemo(() => debounce(setSourceCode, 400), [])
+  const handleChangeCode = useCallback(debounce(setSourceCode, 400), [])
 
   /* When we are building storybook for visual tests we want to have
    * only actual component without source code editor

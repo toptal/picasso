@@ -2,7 +2,8 @@ import React, {
   ReactNode,
   HTMLAttributes,
   forwardRef,
-  ComponentType
+  ComponentType,
+  useMemo
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -42,11 +43,15 @@ export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
   function ButtonGroup(props, ref) {
     const { children, className, style, ...rest } = props
     const classes = useStyles()
-    const childrenWithClasses = addClassesToChildren({
-      children,
-      classes,
-      config: getChildrenClassesConfig
-    })
+    const childrenWithClasses = useMemo(
+      () =>
+        addClassesToChildren({
+          children,
+          classes,
+          config: getChildrenClassesConfig
+        }),
+      [children, classes]
+    )
 
     return (
       <div

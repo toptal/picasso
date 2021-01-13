@@ -31,7 +31,7 @@ const Summary: FunctionComponent<StandardProps> = props => {
   const { children, className } = props
   const classes = useStyles({})
 
-  return <div className={cx(className, classes.summaryWrapper)}>{children}</div>
+  return <div className={cx(classes.summaryWrapper, className)}>{children}</div>
 }
 
 const Details: FunctionComponent<StandardProps> = props => {
