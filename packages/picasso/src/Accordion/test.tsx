@@ -15,7 +15,7 @@ const getAccordionContainer = (container: HTMLElement) =>
   getSummaryContainer(container).parentElement as HTMLElement
 
 describe('Accordion', () => {
-  test('renders successfully', () => {
+  it('renders successfully', () => {
     const { container, getByText } = render(
       <Accordion content={exampleContent}>{exampleSummary}</Accordion>
     )
@@ -26,7 +26,7 @@ describe('Accordion', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('renders none when no summary', () => {
+  it('renders none when no summary', () => {
     const { container, queryByText } = render(
       <Accordion content={exampleContent} />
     )
@@ -36,7 +36,7 @@ describe('Accordion', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('renders disabled', async () => {
+  it('renders disabled', async () => {
     const { container } = render(
       <Accordion content={exampleContent} disabled>
         {exampleSummary}
@@ -48,7 +48,7 @@ describe('Accordion', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('renders expanded initially', async () => {
+  it('renders expanded initially', async () => {
     const { getByText } = render(
       <Accordion content={exampleContent} defaultExpanded>
         {exampleSummary}
@@ -60,7 +60,7 @@ describe('Accordion', () => {
     await wait(() => expect(getByText(exampleContent)).not.toBeVisible())
   })
 
-  test('renders custom icon when passed', () => {
+  it('renders custom icon when passed', () => {
     const { getByTestId, container } = render(
       <Accordion
         content={exampleContent}
@@ -75,7 +75,7 @@ describe('Accordion', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('passes styles correctly', () => {
+  it('passes styles correctly', () => {
     const { container } = render(
       <Accordion
         className='foobar'
@@ -92,7 +92,7 @@ describe('Accordion', () => {
     expect(accordionContainer.classList.contains('foobar')).toBeTruthy()
   })
 
-  test('toggles when controlled', async () => {
+  it('toggles when controlled', async () => {
     const { getByText, rerender } = render(
       <Accordion content={exampleContent} expanded={false}>
         {exampleSummary}
@@ -110,7 +110,7 @@ describe('Accordion', () => {
     expect(getByText(exampleContent)).toBeVisible()
   })
 
-  test('toggles', async () => {
+  it('toggles', async () => {
     const handleChange = jest.fn()
     const { container, getByText, getByTestId } = render(
       <Accordion

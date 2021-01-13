@@ -8,15 +8,19 @@ describe('Accordion with custom summary', () => {
     cy.visit('iframe.html?id=accordion--custom-summary')
   })
 
-  test('closes and opens accordion', () => {
+  it('closes and opens', () => {
     toggleAccordion()
     getAccordionContent().should('not.be.visible')
+    // TODO: Add visual regression test
     toggleAccordion()
     getAccordionContent().should('be.visible')
+    // TODO: Add visual regression test
   })
 
-  test('interacts with accordion content', () => {
+  it('interacts with accordion content', () => {
     clickStartInterviewOnboarding()
+    // TODO: Add visual regression test
+
     cy.on('window:alert', text => {
       expect(text).toEqual('Onboarding started')
     })
