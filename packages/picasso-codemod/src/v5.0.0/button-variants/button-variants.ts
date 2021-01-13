@@ -1,7 +1,4 @@
-/* eslint-disable complexity */
 import { Transform } from 'jscodeshift'
-
-import { findComponents } from '../../utils'
 
 const transparentToButtonAction = [
   'transparent-white',
@@ -26,7 +23,7 @@ const transform: Transform = (file, api) => {
 
   const root = j(file.source)
 
-  const buttons = findComponents('Button', root, j)
+  const buttons = root.findJSXElements('Button')
 
   buttons
     .find(j.JSXAttribute, {
