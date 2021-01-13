@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.2.0...@toptal/picasso-codemod@2.3.0) (2021-01-12)
+
+
+### Features
+
+* **codemod:** rename Page.Header to Page.TopBar ([#1835](https://github.com/toptal/picasso/issues/1835)) ([573fb5e](https://github.com/toptal/picasso/commit/573fb5e56d776b9b9413532be247c9fc1b51637c))
+
+
+
+
+
+# [2.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.1.0...@toptal/picasso-codemod@2.2.0) (2021-01-12)
+
+
+### Features
+
+* **codemod:** rename Subheader to PageHead ([#1832](https://github.com/toptal/picasso/issues/1832)) ([c74a380](https://github.com/toptal/picasso/commit/c74a380f5f449d398016361b821a1cd259fa1256))
+
+
+
+
+
+# [2.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.0.2...@toptal/picasso-codemod@2.1.0) (2021-01-08)
+
+
+### Features
+
+* **picasso-codemod:** add accordion borders codemod ([#1831](https://github.com/toptal/picasso/issues/1831)) ([4aa1b43](https://github.com/toptal/picasso/commit/4aa1b43a8d3b0ef55b50cfc49b50c4e52d24be5e))
+
+
+
+
+
 ## [2.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.0.1...@toptal/picasso-codemod@2.0.2) (2020-12-28)
 
 
