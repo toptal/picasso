@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import ContentLoader from 'react-content-loader'
-import { px, stringToNumber } from '@toptal/picasso-shared'
+import { stringToNumber, px } from '@toptal/picasso-shared'
 
 interface ImageProps {
   /** Each variant exposes a different set of props */
@@ -50,7 +50,7 @@ interface LoaderAttributes {
 
 export const getAvatarAttributes = ({
   size = 'xsmall'
-}: AvatarProps): LoaderAttributes => {
+}: Omit<AvatarProps, 'variant'>): LoaderAttributes => {
   const boxSize = AVATAR_SIZES[size]
 
   return {
@@ -63,7 +63,7 @@ export const getAvatarAttributes = ({
 export const getIconAttributes = ({
   size = 'medium',
   circle
-}: IconProps): LoaderAttributes => {
+}: Omit<IconProps, 'variant'>): LoaderAttributes => {
   const boxSize = ICON_SIZES[size]
 
   return {
@@ -77,19 +77,18 @@ export const getImageAttributes = ({
   circle,
   width,
   height
-}: ImageProps): LoaderAttributes => ({
+}: Omit<ImageProps, 'variant'>): LoaderAttributes => ({
   width: typeof width === 'string' ? stringToNumber(px(width)) : width,
   height: typeof height === 'string' ? stringToNumber(px(height)) : height,
   borderRadius: circle ? '50%' : BORDER_RADIUS
 })
 
-export const getAttribute = (props: React.PropsWithChildren<Props>) => {
+export const getAttributes = (props: React.PropsWithChildren<Props>) => {
   let attributes
 
   switch (props.variant) {
     case 'icon':
       attributes = getIconAttributes(props)
-      console.log('attributes:', attributes)
       break
     case 'avatar':
       attributes = getAvatarAttributes(props)
@@ -109,7 +108,7 @@ export const getAttribute = (props: React.PropsWithChildren<Props>) => {
 }
 
 export const MediaSkeletonLoader = (props: Props) => {
-  const { width, height, borderRadius } = useMemo(() => getAttribute(props), [
+  const { width, height, borderRadius } = useMemo(() => getAttributes(props), [
     props
   ])
 
