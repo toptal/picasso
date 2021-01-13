@@ -23,6 +23,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             aria-disabled="false"
             aria-expanded="true"
             class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary PicassoSidebarItem-collapsibleWrapper Mui-expanded"
+            data-testid="accordion-summary"
             role="button"
             tabindex="0"
           >
@@ -83,6 +84,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 >
                   <div
                     class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details PicassoSidebarItem-nestedMenu"
+                    data-testid="accordion-details"
                   >
                     <ul
                       class="MuiList-root Menu-root SidebarMenu-root"
@@ -309,6 +311,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
         aria-disabled="false"
         aria-expanded="false"
         class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary PicassoSidebarItem-collapsibleWrapper"
+        data-testid="accordion-summary"
         role="button"
         tabindex="0"
       >
@@ -378,6 +381,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             >
               <div
                 class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details PicassoSidebarItem-nestedMenuWithIcon"
+                data-testid="accordion-details"
               >
                 <ul
                   class="MuiList-root Menu-root SidebarMenu-root"
