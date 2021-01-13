@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccordionSummary renders successfully 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content"
+      >
+        Lorem ipsum
+      </div>
+    </div>
+  </div>
+</div>
+`;

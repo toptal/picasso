@@ -25,14 +25,18 @@ export type Borders = 'all' | 'middle' | 'none'
 
 const useStyles = makeStyles(styles)
 
-const Summary: FunctionComponent = props => {
+export const EmptyAccordionSummary = () => (
+  <div data-testid='empty-accordion-summary' />
+)
+
+export const Summary: FunctionComponent = props => {
   const { children } = props
   const classes = useStyles(props)
 
   return <div className={classes.summaryWrapper}>{children}</div>
 }
 
-const Details: FunctionComponent<{ className?: string }> = props => {
+export const Details: FunctionComponent<{ className?: string }> = props => {
   const { children, className } = props
   const classes = useStyles(props)
 
@@ -64,9 +68,6 @@ export interface Props
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const EmptyAccordionSummary = ({ expanded }: { expanded?: boolean }) => <div />
 
 const decorateWithExpandIconClasses = (
   expandIcon: ReactElement,
@@ -138,6 +139,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     >
       {children ? (
         <AccordionSummary
+          data-testid='accordion-summary'
           classes={{
             root: classes.summary,
             content: classes.content
@@ -160,6 +162,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
         <EmptyAccordionSummary />
       )}
       <AccordionDetails
+        data-testid='accordion-details'
         classes={{
           root: classes.details
         }}

@@ -1,72 +1,98 @@
-/* eslint-disable react/no-multi-comp */
 import React from 'react'
 import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
 
 import Accordion from './Accordion'
 
-const exampleContent =
+const DETAILS =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta harum explicabo assumenda doloribus voluptatum cum culpa! Molestias voluptatem placeat at velit vero animi, nostrum culpa, unde aliquam magnam libero eius.'
-const exampleSummary = 'Lorem ipsum'
-
-const getSummaryContainer = (container: HTMLElement) =>
-  container.querySelector('[aria-expanded]') as HTMLElement
-
-const getAccordionContainer = (container: HTMLElement) =>
-  getSummaryContainer(container).parentElement as HTMLElement
+const SUMMARY = 'Lorem ipsum'
 
 describe('Accordion', () => {
-  it('renders successfully', () => {
-    const { container, getByText } = render(
-      <Accordion content={exampleContent}>{exampleSummary}</Accordion>
+  it('renders collapsed by default', () => {
+    const { queryByTestId, getByText, getByTestId } = render(
+      <Accordion content={DETAILS}>{SUMMARY}</Accordion>
     )
 
-    expect(getByText(exampleSummary)).toBeVisible()
-    expect(getByText(exampleContent)).not.toBeVisible()
+    expect(queryByTestId('empty-accordion-summary')).toBeNull()
 
-    expect(container).toMatchSnapshot()
+    expect(getByTestId('accordion-summary')).toBeVisible()
+    expect(getByText(SUMMARY)).toBeVisible()
+
+    expect(getByTestId('accordion-details')).not.toBeVisible()
+    expect(getByText(DETAILS)).not.toBeVisible()
   })
 
-  it('renders none when no summary', () => {
-    const { container, queryByText } = render(
-      <Accordion content={exampleContent} />
+  it('renders empty summary when a custom one is not provided', () => {
+    const { getByTestId, queryByTestId } = render(
+      <Accordion content={DETAILS} />
     )
 
-    expect(queryByText(exampleSummary)).toBeNull()
-
-    expect(container).toMatchSnapshot()
+    expect(getByTestId('empty-accordion-summary')).toBeVisible()
+    expect(queryByTestId('accordion-summary')).toBeNull()
+    expect(getByTestId('accordion-details')).not.toBeVisible()
   })
 
-  it('renders disabled', async () => {
+  it('toggles', async () => {
+    const handleChange = jest.fn()
+    const { getByText, getByTestId } = render(
+      <Accordion
+        content={DETAILS}
+        onChange={handleChange}
+        expandIcon={<span data-testid='trigger' />}
+      >
+        {SUMMARY}
+      </Accordion>
+    )
+
+    fireEvent.click(getByTestId('accordion-summary'))
+    await wait(() => expect(getByText(DETAILS)).toBeVisible())
+
+    fireEvent.click(getByTestId('trigger'))
+    await wait(() => expect(getByText(DETAILS)).not.toBeVisible())
+
+    fireEvent.click(getByText(SUMMARY))
+    await wait(() => expect(getByText(DETAILS)).toBeVisible())
+
+    expect(handleChange).toBeCalledTimes(3)
+  })
+
+  test('renders disabled', async () => {
     const { container } = render(
-      <Accordion content={exampleContent} disabled>
-        {exampleSummary}
+      <Accordion content={DETAILS} disabled>
+        {SUMMARY}
       </Accordion>
     )
 
     // MUI disabled state adds `pointer-events: none` style rule to the summary container.
-    // It can't be tested via RTL because firing events ignores this rule.
+    // It can't be tested programmatically `fireEvent` ignores this rule.
     expect(container).toMatchSnapshot()
   })
 
   it('renders expanded initially', async () => {
-    const { getByText } = render(
-      <Accordion content={exampleContent} defaultExpanded>
-        {exampleSummary}
+    const { getByText, getByTestId } = render(
+      <Accordion content={DETAILS} defaultExpanded>
+        {SUMMARY}
       </Accordion>
     )
 
-    expect(getByText(exampleContent)).toBeVisible()
-    fireEvent.click(getByText(exampleSummary))
-    await wait(() => expect(getByText(exampleContent)).not.toBeVisible())
+    expect(getByTestId('accordion-details')).toBeVisible()
+    expect(getByText(DETAILS)).toBeVisible()
+
+    fireEvent.click(getByTestId('accordion-summary'))
+
+    await wait(() => {
+      expect(getByTestId('accordion-details')).not.toBeVisible()
+      expect(getByText(DETAILS)).not.toBeVisible()
+    })
   })
 
   it('renders custom icon when passed', () => {
     const { getByTestId, container } = render(
       <Accordion
-        content={exampleContent}
+        content={DETAILS}
         expandIcon={<span data-testid='custom-expand-icon' />}
       >
-        {exampleSummary}
+        {SUMMARY}
       </Accordion>
     )
 
@@ -76,17 +102,18 @@ describe('Accordion', () => {
   })
 
   it('passes styles correctly', () => {
-    const { container } = render(
+    const { getByTestId } = render(
       <Accordion
+        data-testid='accordion'
         className='foobar'
         style={{ display: 'table' }}
-        content={exampleContent}
+        content={DETAILS}
       >
-        {exampleSummary}
+        {SUMMARY}
       </Accordion>
     )
 
-    const accordionContainer = getAccordionContainer(container)
+    const accordionContainer = getByTestId('accordion')
 
     expect(accordionContainer).toHaveStyle('display: table;')
     expect(accordionContainer.classList.contains('foobar')).toBeTruthy()
@@ -94,40 +121,39 @@ describe('Accordion', () => {
 
   it('toggles when controlled', async () => {
     const { getByText, rerender } = render(
-      <Accordion content={exampleContent} expanded={false}>
-        {exampleSummary}
+      <Accordion content={DETAILS} expanded={false}>
+        {SUMMARY}
       </Accordion>
     )
 
-    expect(getByText(exampleContent)).not.toBeVisible()
+    expect(getByText(DETAILS)).not.toBeVisible()
 
     rerender(
-      <Accordion content={exampleContent} expanded>
-        {exampleSummary}
+      <Accordion content={DETAILS} expanded>
+        {SUMMARY}
       </Accordion>
     )
 
-    expect(getByText(exampleContent)).toBeVisible()
+    expect(getByText(DETAILS)).toBeVisible()
   })
+})
 
-  it('toggles', async () => {
-    const handleChange = jest.fn()
-    const { container, getByText, getByTestId } = render(
-      <Accordion
-        content={exampleContent}
-        onChange={handleChange}
-        expandIcon={<span data-testid='trigger' />}
-      >
-        {exampleSummary}
-      </Accordion>
+describe('Accordion.Summary', () => {
+  it('renders', () => {
+    const { container } = render(
+      <Accordion.Summary>{SUMMARY}</Accordion.Summary>
     )
 
-    fireEvent.click(getSummaryContainer(container))
-    await wait(() => expect(getByText(exampleContent)).toBeVisible())
+    expect(container).toMatchSnapshot()
+  })
+})
 
-    fireEvent.click(getByTestId('trigger'))
-    await wait(() => expect(getByText(exampleContent)).not.toBeVisible())
+describe('Accordion.Details', () => {
+  it('renders', () => {
+    const { container } = render(
+      <Accordion.Details>{DETAILS}</Accordion.Details>
+    )
 
-    expect(handleChange).toBeCalledTimes(2)
+    expect(container).toMatchSnapshot()
   })
 })
