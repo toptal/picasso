@@ -28,15 +28,16 @@ const useEllipsis = () => {
 
   React.useEffect(() => {
     // @ts-ignore
-    const resizeObserver = new window.ResizeObserver(measure)
+    const ResizeObserver = window.ResizeObserver
+    const resizeObserver = ResizeObserver ? new ResizeObserver(measure) : null
     const container = ref.current?.parentNode
 
-    resizeObserver.observe(container)
+    resizeObserver?.observe(container)
 
     window.addEventListener('resize', measure)
 
     return () => {
-      resizeObserver.unobserve(container)
+      resizeObserver?.unobserve(container)
 
       window.removeEventListener('resize', measure)
     }
