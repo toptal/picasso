@@ -1,7 +1,6 @@
 // @ts-nocheck
 import React from 'react'
 import { Button } from '@toptal/picasso'
-import { Twitter24, Settings16 } from '@toptal/picasso/Icon'
 
 const Example = () => (
   <div>
@@ -17,11 +16,12 @@ const Example = () => (
     <Button variant='flat'>Flat</Button>
     <Button variant='flat-white'>Flat White</Button>
 
-    <Button variant='transparent-white' icon={<Twitter24 />} />
-    <Button variant='transparent-blue' icon={<Twitter24 />} />
-    <Button variant='transparent-green' icon={<Twitter24 />} />
+    <Button variant='transparent-white' />
+    <Button variant='transparent-white'>Transparent White</Button>
+    <Button variant='transparent-blue'>Transparent Blue</Button>
+    <Button variant='transparent-green'>Transparent Green</Button>
 
-    <Button icon={<Settings16 />} circular />
+    <Button circular />
   </div>
 )
 

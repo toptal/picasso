@@ -3,6 +3,12 @@ import { Transform } from 'jscodeshift'
 
 import { findComponents } from '../../utils'
 
+const transparentToButtonAction = [
+  'transparent-white',
+  'transparent-blue',
+  'transparent-green'
+]
+
 const transform: Transform = (file, api) => {
   const j = api.jscodeshift
 
@@ -17,8 +23,36 @@ const transform: Transform = (file, api) => {
         name: 'circular'
       }
     })
-    .forEach(el => {
-      el.parent.value.name = 'Button.Circular'
+    .forEach(nodePath => {
+      const { openingElement, closingElement } = nodePath.parent.parent.node
+
+      openingElement.name.name = 'Button.Circular'
+
+      if (closingElement) {
+        closingElement.name.name = 'Button.Circular'
+      }
+    })
+    .remove()
+
+  buttons
+    .find(j.JSXAttribute, {
+      name: {
+        name: 'variant'
+      }
+    })
+    .filter(
+      nodePath =>
+        nodePath.node.value?.type === 'StringLiteral' &&
+        transparentToButtonAction.includes(nodePath.node.value.value)
+    )
+    .forEach(nodePath => {
+      const { openingElement, closingElement } = nodePath.parent.parent.node
+
+      openingElement.name.name = 'Button.Action'
+
+      if (closingElement) {
+        closingElement.name.name = 'Button.Action'
+      }
     })
     .remove()
 
@@ -29,9 +63,14 @@ const transform: Transform = (file, api) => {
         name: 'variant'
       }
     })
-    .find(j.Literal)
+    .filter(
+      nodePath =>
+        nodePath.node.value?.type === 'StringLiteral' &&
+        !transparentToButtonAction.includes(nodePath.node.value.value)
+    )
+    .find(j.StringLiteral)
     .replaceWith(({ node }) => {
-      let newValue = ''
+      let newValue = 'primary-blue'
 
       switch (node.value) {
         case 'primary-blue':
@@ -50,9 +89,6 @@ const transform: Transform = (file, api) => {
           newValue = 'secondary'
           break
 
-        case 'transparent-white':
-        case 'transparent-blue':
-        case 'transparent-green':
         case 'flat-white':
         case 'secondary-white':
           newValue = 'transparent'

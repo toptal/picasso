@@ -182,15 +182,17 @@ Renames variants of button to new values, replaced circular button with `Button.
 -     <Button variant='flat-white'>Flat White</Button>
 +     <Button variant='transparent'>Flat White</Button>
 
--     <Button variant='transparent-white' icon={<Twitter24 />} />
-+     <Button variant='transparent' icon={<Twitter24 />} />
--     <Button variant='transparent-blue' icon={<Twitter24 />} />
-+     <Button variant='transparent' icon={<Twitter24 />} />
--     <Button variant='transparent-green' icon={<Twitter24 />} />
-+     <Button variant='transparent' icon={<Twitter24 />} />
+-     <Button variant='transparent-white' />
+-     <Button variant='transparent-white'>Transparent White</Button>
++     <Button.Action />
++     <Button.Action>Transparent White</Button.Action>
+-     <Button variant='transparent-blue'>Transparent Blue</Button>
++     <Button.Action>Transparent Blue</Button.Action>
+-     <Button variant='transparent-green'>Transparent Green</Button>
++     <Button.Action>Transparent Green</Button.Action>
 
--     <Button icon={<Settings16 />} circular />
-+     <Button.Circular icon={<Settings16 />} />
+-     <Button circular />
++     <Button.Circular />
   )
 ```
 
