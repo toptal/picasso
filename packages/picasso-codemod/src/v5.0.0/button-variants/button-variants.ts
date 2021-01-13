@@ -9,6 +9,18 @@ const transparentToButtonAction = [
   'transparent-green'
 ]
 
+const variantTransforms: Record<string, string> = {
+  'primary-blue': 'primary',
+  'primary-red': 'negative',
+  'primary-green': 'positive',
+  'secondary-blue': 'secondary',
+  'secondary-red': 'secondary',
+  'secondary-green': 'secondary',
+  flat: 'secondary',
+  'flat-white': 'transparent',
+  'secondary-white': 'transparent'
+}
+
 const transform: Transform = (file, api) => {
   const j = api.jscodeshift
 
@@ -70,30 +82,7 @@ const transform: Transform = (file, api) => {
     )
     .find(j.StringLiteral)
     .replaceWith(({ node }) => {
-      let newValue = 'primary-blue'
-
-      switch (node.value) {
-        case 'primary-blue':
-          newValue = 'primary'
-          break
-        case 'primary-red':
-          newValue = 'negative'
-          break
-        case 'primary-green':
-          newValue = 'positive'
-          break
-        case 'secondary-blue':
-        case 'secondary-red':
-        case 'secondary-green':
-        case 'flat':
-          newValue = 'secondary'
-          break
-
-        case 'flat-white':
-        case 'secondary-white':
-          newValue = 'transparent'
-          break
-      }
+      const newValue = variantTransforms[node.value]
 
       return j.stringLiteral(newValue)
     })
