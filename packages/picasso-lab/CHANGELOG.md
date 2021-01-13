@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.1.0...@toptal/picasso-lab@3.1.1) (2021-01-13)
+
+
+### Bug Fixes
+
+* **TypographyOverflow:** tooltip triggers ([#1834](https://github.com/toptal/picasso/issues/1834)) ([d9479d2](https://github.com/toptal/picasso/commit/d9479d2f48cdf902a6fc53e3f43df4d28a517d5b))
+
+
+
+
+
 # [3.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.0.3...@toptal/picasso-lab@3.1.0) (2021-01-07)
 
 

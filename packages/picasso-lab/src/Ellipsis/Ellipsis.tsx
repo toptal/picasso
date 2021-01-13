@@ -20,7 +20,21 @@ export const Ellipsis: FunctionComponent<Props> = ({
   const { ref, isEllipsis } = useEllipsis()
 
   typography = React.cloneElement(typography, {
-    ref
+    ref,
+    style: {
+      ...typography.props.style,
+      /**
+       * Workaround for `text-overflow:ellipsis`.
+       * Browser can show ellipsis at the end, even if it's not required -
+       * it's possible if the text has the very same width as the container
+       * (ellipsis width will be the same as the width of the text hidden by these ellipsis).
+       * It could be also affected by the font itself, when it has wider render bouncing borders.
+       * So to be sure, that text container in slightly wider than parent,
+       * we have to to add some super-minor space at the end.
+       * Working in pair with a `fontRenderSpace` at useEllipsis hook.
+       */
+      paddingRight: '0.9px'
+    }
   })
 
   return isEllipsis && renderWhenEllipsis
