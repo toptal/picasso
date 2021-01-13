@@ -127,6 +127,7 @@ describe('getAttributes', () => {
       borderRadius: DEFAULT_BORDER_RADIUS
     })
   })
+
   it('returns icon attributes', () => {
     expect(getAttributes({ variant: 'icon' })).toStrictEqual({
       width: 16,
@@ -134,6 +135,7 @@ describe('getAttributes', () => {
       borderRadius: DEFAULT_BORDER_RADIUS
     })
   })
+
   it('returns avatar attributes', () => {
     expect(getAttributes({ variant: 'avatar' })).toStrictEqual({
       width: 40,
@@ -141,6 +143,7 @@ describe('getAttributes', () => {
       borderRadius: DEFAULT_BORDER_RADIUS
     })
   })
+
   it('returns image attributes', () => {
     expect(
       getAttributes({ variant: 'image', width: 24, height: 24 })
@@ -154,35 +157,86 @@ describe('getAttributes', () => {
 
 describe('MediaSkeletonLoader', () => {
   it('renders avatar variants', () => {
-    const { container } = render(
+    const { getByTestId } = render(
       <>
-        <SkeletonLoader.Media variant='avatar' />
-        <SkeletonLoader.Media variant='avatar' size='xsmall' />
-        <SkeletonLoader.Media variant='avatar' size='small' />
-        <SkeletonLoader.Media variant='avatar' size='medium' />
-        <SkeletonLoader.Media variant='avatar' size='large' />
-      </>
-    )
-
-    expect(container).toMatchSnapshot()
-  })
-  it('renders icon variants', () => {
-    const { container } = render(
-      <>
-        <SkeletonLoader.Media variant='icon' size='medium' />
-        <SkeletonLoader.Media variant='icon' size='large' />
-        <SkeletonLoader.Media variant='icon' circle />
-        <SkeletonLoader.Media variant='icon' circle size='large' />
-      </>
-    )
-
-    expect(container).toMatchSnapshot()
-  })
-  it('renders image variants', () => {
-    const { container } = render(
-      <>
-        <SkeletonLoader.Media variant='image' width='2rem' height='2rem' />
         <SkeletonLoader.Media
+          data-testid='xxsmall-avatar-loader'
+          variant='avatar'
+          size='xxsmall'
+        />
+        <SkeletonLoader.Media
+          data-testid='default-avatar-loader'
+          variant='avatar'
+        />
+        <SkeletonLoader.Media
+          data-testid='small-avatar-loader'
+          variant='avatar'
+          size='small'
+        />
+        <SkeletonLoader.Media
+          data-testid='medium-avatar-loader'
+          variant='avatar'
+          size='medium'
+        />
+        <SkeletonLoader.Media
+          data-testid='large-avatar-loader'
+          variant='avatar'
+          size='large'
+        />
+      </>
+    )
+
+    expect(getByTestId('xxsmall-avatar-loader')).toBeInTheDocument()
+    expect(getByTestId('default-avatar-loader')).toBeInTheDocument()
+    expect(getByTestId('small-avatar-loader')).toBeInTheDocument()
+    expect(getByTestId('medium-avatar-loader')).toBeInTheDocument()
+    expect(getByTestId('large-avatar-loader')).toBeInTheDocument()
+  })
+
+  it('renders icon variants', () => {
+    const { getByTestId } = render(
+      <>
+        <SkeletonLoader.Media
+          data-testid='medium-rect-icon-loader'
+          variant='icon'
+          size='medium'
+        />
+        <SkeletonLoader.Media
+          data-testid='large-rect-icon-loader'
+          variant='icon'
+          size='large'
+        />
+        <SkeletonLoader.Media
+          data-testid='medium-circle-icon-loader'
+          variant='icon'
+          circle
+        />
+        <SkeletonLoader.Media
+          data-testid='large-circle-icon-loader'
+          variant='icon'
+          circle
+          size='large'
+        />
+      </>
+    )
+
+    expect(getByTestId('medium-rect-icon-loader')).toBeInTheDocument()
+    expect(getByTestId('large-rect-icon-loader')).toBeInTheDocument()
+    expect(getByTestId('medium-circle-icon-loader')).toBeInTheDocument()
+    expect(getByTestId('large-circle-icon-loader')).toBeInTheDocument()
+  })
+
+  it('renders image variants', () => {
+    const { getByTestId } = render(
+      <>
+        <SkeletonLoader.Media
+          data-testid='default-image-loader'
+          variant='image'
+          width='2rem'
+          height='2rem'
+        />
+        <SkeletonLoader.Media
+          data-testid='circle-image-loader'
           circle
           variant='image'
           width='2rem'
@@ -191,6 +245,7 @@ describe('MediaSkeletonLoader', () => {
       </>
     )
 
-    expect(container).toMatchSnapshot()
+    expect(getByTestId('default-image-loader')).toBeInTheDocument()
+    expect(getByTestId('circle-image-loader')).toBeInTheDocument()
   })
 })
