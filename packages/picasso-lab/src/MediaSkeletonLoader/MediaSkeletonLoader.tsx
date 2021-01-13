@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import ContentLoader from 'react-content-loader'
-import { stringToNumber, px } from '@toptal/picasso-shared'
+import { stringToNumber, px, BaseProps } from '@toptal/picasso-shared'
 
-interface ImageProps {
+interface ImageProps extends BaseProps {
   /** Each variant exposes a different set of props */
   variant: 'image'
   width: string | number
@@ -11,12 +11,12 @@ interface ImageProps {
   circle?: boolean
 }
 
-interface AvatarProps {
+interface AvatarProps extends BaseProps {
   variant: 'avatar'
   size?: 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'
 }
 
-interface IconProps {
+interface IconProps extends BaseProps {
   variant: 'icon'
   circle?: boolean
   size?: 'medium' | 'large'
@@ -120,6 +120,7 @@ export const MediaSkeletonLoader = (props: Props) => {
       color={palette.grey.main2}
       width={width}
       height={height}
+      data-testid={props['data-testid']}
     >
       <rect
         x='0'

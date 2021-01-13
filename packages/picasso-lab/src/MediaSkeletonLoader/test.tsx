@@ -1,3 +1,7 @@
+import React from 'react'
+import { render } from '@toptal/picasso/test-utils'
+
+import SkeletonLoader from '../SkeletonLoader'
 import {
   getAttributes,
   getAvatarAttributes,
@@ -145,5 +149,48 @@ describe('getAttributes', () => {
       height: 24,
       borderRadius: DEFAULT_BORDER_RADIUS
     })
+  })
+})
+
+describe('MediaSkeletonLoader', () => {
+  it('renders all avatar variants', () => {
+    const { container } = render(
+      <>
+        <SkeletonLoader.Media variant='avatar' />
+        <SkeletonLoader.Media variant='avatar' size='xsmall' />
+        <SkeletonLoader.Media variant='avatar' size='small' />
+        <SkeletonLoader.Media variant='avatar' size='medium' />
+        <SkeletonLoader.Media variant='avatar' size='large' />
+      </>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+  it('renders all icon variants', () => {
+    const { container } = render(
+      <>
+        <SkeletonLoader.Media variant='icon' size='medium' />
+        <SkeletonLoader.Media variant='icon' size='large' />
+        <SkeletonLoader.Media variant='icon' circle />
+        <SkeletonLoader.Media variant='icon' circle size='large' />
+      </>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+  it('renders all icon variants', () => {
+    const { container } = render(
+      <>
+        <SkeletonLoader.Media variant='image' width='2rem' height='2rem' />
+        <SkeletonLoader.Media
+          circle
+          variant='image'
+          width='2rem'
+          height='2rem'
+        />
+      </>
+    )
+
+    expect(container).toMatchSnapshot()
   })
 })
