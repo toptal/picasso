@@ -163,36 +163,6 @@ Renames variants of button to new values, replaced circular button with `Button.
   const Example = () => (
 -     <Button variant='primary-blue'>Primary Red</Button>
 +     <Button variant='primary'>Primary Red</Button>
--     <Button variant='primary-red'>Primary Red</Button>
-+     <Button variant='negative'>Primary Red</Button>
--     <Button variant='primary-green'>Primary Green</Button>
-+     <Button variant='positive'>Primary Green</Button>
-
--     <Button variant='secondary-blue'>Secondary Blue</Button>
-+     <Button variant='secondary'>Secondary Blue</Button>
--     <Button variant='secondary-red'>Secondary Red</Button>
-+     <Button variant='secondary'>Secondary Red</Button>
--     <Button variant='secondary-green'>Secondary Green</Button>
-+     <Button variant='secondary'>Secondary Green</Button>
--     <Button variant='secondary-white'>Secondary White</Button>
-+     <Button variant='transparent'>Secondary White</Button>
-
--     <Button variant='flat'>Flat</Button>
-+     <Button variant='secondary'>Flat</Button>
--     <Button variant='flat-white'>Flat White</Button>
-+     <Button variant='transparent'>Flat White</Button>
-
--     <Button variant='transparent-white' />
--     <Button variant='transparent-white'>Transparent White</Button>
-+     <Button.Action />
-+     <Button.Action>Transparent White</Button.Action>
--     <Button variant='transparent-blue'>Transparent Blue</Button>
-+     <Button.Action>Transparent Blue</Button.Action>
--     <Button variant='transparent-green'>Transparent Green</Button>
-+     <Button.Action>Transparent Green</Button.Action>
-
--     <Button circular />
-+     <Button.Circular />
   )
 ```
 
