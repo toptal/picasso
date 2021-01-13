@@ -34,12 +34,11 @@ export const mix = (baseColor: string, mixColor: string, amount: number) => {
 
 export const stringToNumber = (value: string) => Number.parseFloat(value)
 
-export const rem = (px: string, baseFontSize = 16) =>
-  `${stringToNumber(px) / baseFontSize}rem`
+export const rem = (pxValue: string, baseFontSize = 16) =>
+  `${stringToNumber(pxValue) / baseFontSize}rem`
 
-// eslint-disable-next-line @typescript-eslint/no-shadow
-export const px = (rem: string, baseFontSize = 16) =>
-  `${stringToNumber(rem) * baseFontSize}px`
+export const px = (remValue: string, baseFontSize = 16) =>
+  `${stringToNumber(remValue) * baseFontSize}px`
 
 export const outline = (baseColor: string, width = 3) => ({
   boxShadow: `0 0 0 ${width}px ${alpha(baseColor, 0.48)}`
