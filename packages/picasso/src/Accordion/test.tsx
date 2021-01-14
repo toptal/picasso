@@ -4,8 +4,8 @@ import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
 import Accordion from './Accordion'
 
 const DETAILS =
-  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta harum explicabo assumenda doloribus voluptatum cum culpa! Molestias voluptatem placeat at velit vero animi, nostrum culpa, unde aliquam magnam libero eius.'
-const SUMMARY = 'Lorem ipsum'
+  'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.'
+const SUMMARY = 'What is a dog?'
 
 describe('Accordion', () => {
   it('renders collapsed by default', () => {
