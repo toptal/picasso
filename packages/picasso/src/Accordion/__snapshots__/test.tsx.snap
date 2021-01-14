@@ -12,14 +12,18 @@ exports[`Accordion renders collapsed by default 1`] = `
         aria-disabled="false"
         aria-expanded="false"
         class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary"
-        data-testid="accordion-summary"
         role="button"
         tabindex="0"
       >
         <div
           class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content makeStyles-content"
         >
-          Lorem ipsum
+          <div
+            class="makeStyles-summaryWrapper"
+            data-testid="accordion-summary"
+          >
+            What is a dog?
+          </div>
           <div
             class="makeStyles-expandIconAlignTop"
           >
@@ -61,9 +65,13 @@ exports[`Accordion renders collapsed by default 1`] = `
             >
               <div
                 class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details"
-                data-testid="accordion-details"
               >
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta harum explicabo assumenda doloribus voluptatum cum culpa! Molestias voluptatem placeat at velit vero animi, nostrum culpa, unde aliquam magnam libero eius.
+                <div
+                  class="makeStyles-detailsWrapper"
+                  data-testid="accordion-details"
+                >
+                  A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
+                </div>
               </div>
             </div>
           </div>
@@ -86,14 +94,18 @@ exports[`Accordion renders custom icon when passed 1`] = `
         aria-disabled="false"
         aria-expanded="false"
         class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary"
-        data-testid="accordion-summary"
         role="button"
         tabindex="0"
       >
         <div
           class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content makeStyles-content"
         >
-          Lorem ipsum
+          <div
+            class="makeStyles-summaryWrapper"
+            data-testid="accordion-summary"
+          >
+            What is a dog?
+          </div>
           <span
             class="makeStyles-expandIcon"
             data-testid="custom-expand-icon"
@@ -115,9 +127,13 @@ exports[`Accordion renders custom icon when passed 1`] = `
             >
               <div
                 class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details"
-                data-testid="accordion-details"
               >
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta harum explicabo assumenda doloribus voluptatum cum culpa! Molestias voluptatem placeat at velit vero animi, nostrum culpa, unde aliquam magnam libero eius.
+                <div
+                  class="makeStyles-detailsWrapper"
+                  data-testid="accordion-details"
+                >
+                  A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
+                </div>
               </div>
             </div>
           </div>
@@ -140,14 +156,18 @@ exports[`Accordion renders disabled 1`] = `
         aria-disabled="true"
         aria-expanded="false"
         class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary Mui-disabled Mui-disabled"
-        data-testid="accordion-summary"
         role="button"
         tabindex="-1"
       >
         <div
           class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content makeStyles-content"
         >
-          Lorem ipsum
+          <div
+            class="makeStyles-summaryWrapper"
+            data-testid="accordion-summary"
+          >
+            What is a dog?
+          </div>
           <div
             class="makeStyles-expandIconAlignTop"
           >
@@ -189,42 +209,18 @@ exports[`Accordion renders disabled 1`] = `
             >
               <div
                 class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details"
-                data-testid="accordion-details"
               >
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta harum explicabo assumenda doloribus voluptatum cum culpa! Molestias voluptatem placeat at velit vero animi, nostrum culpa, unde aliquam magnam libero eius.
+                <div
+                  class="makeStyles-detailsWrapper"
+                  data-testid="accordion-details"
+                >
+                  A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Accordion.Details renders 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="makeStyles-detailsWrapper"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta harum explicabo assumenda doloribus voluptatum cum culpa! Molestias voluptatem placeat at velit vero animi, nostrum culpa, unde aliquam magnam libero eius.
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Accordion.Summary renders 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="makeStyles-summaryWrapper"
-    >
-      Lorem ipsum
     </div>
   </div>
 </div>

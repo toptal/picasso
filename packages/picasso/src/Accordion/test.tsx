@@ -3,33 +3,46 @@ import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
 
 import Accordion from './Accordion'
 
-const DETAILS =
+const DETAILS_TEXT =
   'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.'
-const SUMMARY = 'What is a dog?'
+const SUMMARY_TEXT = 'What is a dog?'
+
+const TestDetails = () => (
+  <Accordion.Details data-testid='accordion-details'>
+    {DETAILS_TEXT}
+  </Accordion.Details>
+)
+const TestSummary = () => (
+  <Accordion.Summary data-testid='accordion-summary'>
+    {SUMMARY_TEXT}
+  </Accordion.Summary>
+)
 
 describe('Accordion', () => {
   it('renders collapsed by default', () => {
     const { container, queryByTestId, getByText, getByTestId } = render(
-      <Accordion content={DETAILS}>{SUMMARY}</Accordion>
+      <Accordion content={<TestDetails />}>
+        <TestSummary />
+      </Accordion>
     )
 
     expect(queryByTestId('empty-accordion-summary')).toBeNull()
 
     expect(getByTestId('accordion-summary')).toBeVisible()
-    expect(getByText(SUMMARY)).toBeVisible()
+    expect(getByText(SUMMARY_TEXT)).toBeVisible()
 
     expect(getByTestId('accordion-details')).not.toBeVisible()
-    expect(getByText(DETAILS)).not.toBeVisible()
+    expect(getByText(DETAILS_TEXT)).not.toBeVisible()
 
     expect(container).toMatchSnapshot()
   })
 
   it('renders empty summary when one is not provided', () => {
     const { getByTestId, queryByTestId } = render(
-      <Accordion content={DETAILS} />
+      <Accordion content={<TestDetails />} />
     )
 
-    expect(getByTestId('empty-accordion-summary')).toBeVisible()
+    expect(getByTestId('picasso-empty-accordion-summary')).toBeVisible()
     expect(queryByTestId('accordion-summary')).toBeNull()
     expect(getByTestId('accordion-details')).not.toBeVisible()
   })
@@ -38,30 +51,30 @@ describe('Accordion', () => {
     const handleChange = jest.fn()
     const { getByText, getByTestId } = render(
       <Accordion
-        content={DETAILS}
+        content={<TestDetails />}
         onChange={handleChange}
         expandIcon={<span data-testid='trigger' />}
       >
-        {SUMMARY}
+        <TestSummary />
       </Accordion>
     )
 
     fireEvent.click(getByTestId('accordion-summary'))
-    await wait(() => expect(getByText(DETAILS)).toBeVisible())
+    await wait(() => expect(getByText(DETAILS_TEXT)).toBeVisible())
 
     fireEvent.click(getByTestId('trigger'))
-    await wait(() => expect(getByText(DETAILS)).not.toBeVisible())
+    await wait(() => expect(getByText(DETAILS_TEXT)).not.toBeVisible())
 
-    fireEvent.click(getByText(SUMMARY))
-    await wait(() => expect(getByText(DETAILS)).toBeVisible())
+    fireEvent.click(getByText(SUMMARY_TEXT))
+    await wait(() => expect(getByText(DETAILS_TEXT)).toBeVisible())
 
     expect(handleChange).toBeCalledTimes(3)
   })
 
   test('renders disabled', async () => {
     const { container } = render(
-      <Accordion content={DETAILS} disabled>
-        {SUMMARY}
+      <Accordion content={<TestDetails />} disabled>
+        <TestSummary />
       </Accordion>
     )
 
@@ -72,29 +85,29 @@ describe('Accordion', () => {
 
   it('renders expanded initially', async () => {
     const { getByText, getByTestId } = render(
-      <Accordion content={DETAILS} defaultExpanded>
-        {SUMMARY}
+      <Accordion content={<TestDetails />} defaultExpanded>
+        <TestSummary />
       </Accordion>
     )
 
     expect(getByTestId('accordion-details')).toBeVisible()
-    expect(getByText(DETAILS)).toBeVisible()
+    expect(getByText(DETAILS_TEXT)).toBeVisible()
 
     fireEvent.click(getByTestId('accordion-summary'))
 
     await wait(() => {
       expect(getByTestId('accordion-details')).not.toBeVisible()
-      expect(getByText(DETAILS)).not.toBeVisible()
+      expect(getByText(DETAILS_TEXT)).not.toBeVisible()
     })
   })
 
   it('renders custom icon when passed', () => {
     const { getByTestId, container } = render(
       <Accordion
-        content={DETAILS}
+        content={<TestDetails />}
         expandIcon={<span data-testid='custom-expand-icon' />}
       >
-        {SUMMARY}
+        <TestSummary />
       </Accordion>
     )
 
@@ -109,9 +122,9 @@ describe('Accordion', () => {
         data-testid='accordion'
         className='foobar'
         style={{ display: 'table' }}
-        content={DETAILS}
+        content={<TestDetails />}
       >
-        {SUMMARY}
+        <TestSummary />
       </Accordion>
     )
 
@@ -123,39 +136,19 @@ describe('Accordion', () => {
 
   it('toggles when controlled', async () => {
     const { getByText, rerender } = render(
-      <Accordion content={DETAILS} expanded={false}>
-        {SUMMARY}
+      <Accordion content={<TestDetails />} expanded={false}>
+        <TestSummary />
       </Accordion>
     )
 
-    expect(getByText(DETAILS)).not.toBeVisible()
+    expect(getByText(DETAILS_TEXT)).not.toBeVisible()
 
     rerender(
-      <Accordion content={DETAILS} expanded>
-        {SUMMARY}
+      <Accordion content={<TestDetails />} expanded>
+        <TestSummary />
       </Accordion>
     )
 
-    expect(getByText(DETAILS)).toBeVisible()
-  })
-})
-
-describe('Accordion.Summary', () => {
-  it('renders', () => {
-    const { container } = render(
-      <Accordion.Summary>{SUMMARY}</Accordion.Summary>
-    )
-
-    expect(container).toMatchSnapshot()
-  })
-})
-
-describe('Accordion.Details', () => {
-  it('renders', () => {
-    const { container } = render(
-      <Accordion.Details>{DETAILS}</Accordion.Details>
-    )
-
-    expect(container).toMatchSnapshot()
+    expect(getByText(DETAILS_TEXT)).toBeVisible()
   })
 })

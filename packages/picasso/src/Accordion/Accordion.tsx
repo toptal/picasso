@@ -4,7 +4,6 @@ import React, {
   HTMLAttributes,
   ReactElement,
   forwardRef,
-  FunctionComponent,
   useState
 } from 'react'
 import cx from 'classnames'
@@ -26,21 +25,37 @@ export type Borders = 'all' | 'middle' | 'none'
 const useStyles = makeStyles(styles)
 
 export const EmptyAccordionSummary = () => (
-  <div data-testid='empty-accordion-summary' />
+  <div data-testid='picasso-empty-accordion-summary' />
 )
 
-export const Summary: FunctionComponent = props => {
-  const { children } = props
-  const classes = useStyles(props)
-
-  return <div className={classes.summaryWrapper}>{children}</div>
+export interface SummaryProps extends Partial<StandardProps> {
+  children: ReactNode
 }
 
-export const Details: FunctionComponent<{ className?: string }> = props => {
-  const { children, className } = props
+export const Summary = (props: SummaryProps) => {
+  const { children, className, ...rest } = props
   const classes = useStyles(props)
 
-  return <div className={cx(className, classes.detailsWrapper)}>{children}</div>
+  return (
+    <div {...rest} className={cx(className, classes.summaryWrapper)}>
+      {children}
+    </div>
+  )
+}
+
+export interface DetailsProps extends Partial<StandardProps> {
+  children: ReactNode
+}
+
+export const Details = (props: DetailsProps) => {
+  const { children, className, ...rest } = props
+  const classes = useStyles(props)
+
+  return (
+    <div {...rest} className={cx(className, classes.detailsWrapper)}>
+      {children}
+    </div>
+  )
 }
 
 export interface StaticProps {
@@ -139,7 +154,6 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     >
       {children ? (
         <AccordionSummary
-          data-testid='accordion-summary'
           classes={{
             root: classes.summary,
             content: classes.content
@@ -162,7 +176,6 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
         <EmptyAccordionSummary />
       )}
       <AccordionDetails
-        data-testid='accordion-details'
         classes={{
           root: classes.details
         }}
