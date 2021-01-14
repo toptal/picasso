@@ -11,7 +11,8 @@ import MUIAccordion from '@material-ui/core/Accordion'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   CompoundedComponentWithRef,
-  StandardProps
+  StandardProps,
+  BaseProps
 } from '@toptal/picasso-shared'
 
 import { ArrowDownMinor16 } from '../Icon'
@@ -22,28 +23,32 @@ import Button from '../Button'
 
 export type Borders = 'all' | 'middle' | 'none'
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAccordion'
 })
 
-interface SummaryProps extends StandardProps {
+interface SummaryProps extends BaseProps {
   children: ReactNode
 }
 
 const Summary = (props: SummaryProps) => {
-  const { children, className, classes } = props
+  const { children, className } = props
+
+  const classes = useStyles()
 
   return (
     <div className={cx(classes?.summaryWrapper, className)}>{children}</div>
   )
 }
 
-interface DetailsProps extends StandardProps {
+interface DetailsProps extends BaseProps {
   children: ReactNode
 }
 
 const Details = (props: DetailsProps) => {
-  const { children, className, classes } = props
+  const { children, className } = props
+
+  const classes = useStyles()
 
   return (
     <div className={cx(className, classes?.detailsWrapper)}>{children}</div>
