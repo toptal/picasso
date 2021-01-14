@@ -22,6 +22,7 @@ const Example = () => (
     <Button variant='transparent-green'>Transparent Green</Button>
 
     <Button circular />
+    <Button circular variant='transparent-blue' />
   </div>
 )
 

@@ -1,4 +1,4 @@
-import { Transform } from 'jscodeshift'
+import { Transform, JSXAttribute, JSXIdentifier } from 'jscodeshift'
 
 const transparentToButtonAction = [
   'transparent-white',
@@ -35,10 +35,25 @@ const transform: Transform = (file, api) => {
     .forEach(nodePath => {
       const { openingElement, closingElement } = nodePath.parent.parent.node
 
+      const transparentVariant = nodePath.parent.node.attributes.find(
+        (attribute: JSXAttribute) => {
+          return (
+            attribute.name.name === 'variant' &&
+            attribute.value?.type === 'StringLiteral' &&
+            transparentToButtonAction.includes(attribute.value.value)
+          )
+        }
+      )
+
       openingElement.name.name = 'Button.Circular'
 
       if (closingElement) {
         closingElement.name.name = 'Button.Circular'
+      }
+
+      if (transparentVariant) {
+        transparentVariant.value.value = 'flat'
+        transparentVariant.value.raw = 'flat'
       }
     })
     .remove()
@@ -66,6 +81,11 @@ const transform: Transform = (file, api) => {
     .remove()
 
   buttons
+    // do not modify Button.Circular - they were already handled
+    .filter(
+      nodePath =>
+        (nodePath.node.openingElement.name as JSXIdentifier).name === 'Button'
+    )
     .find(j.JSXAttribute, {
       name: {
         type: 'JSXIdentifier',

@@ -22,6 +22,7 @@ const Example = () => (
     <Button.Action>Transparent Green</Button.Action>
 
     <Button.Circular />
+    <Button.Circular variant='flat' />
   </div>
 )
 
