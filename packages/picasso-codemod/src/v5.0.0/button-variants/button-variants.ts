@@ -99,9 +99,12 @@ const transform: Transform = (file, api) => {
     )
     .find(j.StringLiteral)
     .replaceWith(({ node }) => {
-      const newValue = variantTransforms[node.value]
+      const oldValue = node.value
+      let newValue = variantTransforms[oldValue]
 
-      if (!newValue) return node.value
+      if (!newValue) {
+        newValue = oldValue
+      }
 
       return j.stringLiteral(newValue)
     })
