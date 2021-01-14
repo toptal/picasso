@@ -46,7 +46,7 @@ jobs:
           yarn install --frozen-lockfile --ignore-optional --offline
 
       - name: Danger
-        run: yarn yarn davinci ci danger --conventionalCommits
+        run: yarn davinci ci danger --conventionalCommits
 
       - name: Lint
         run: yarn lint
