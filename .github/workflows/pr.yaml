@@ -45,5 +45,11 @@ jobs:
           yarn policies set-version
           yarn install --frozen-lockfile --ignore-optional --offline
 
+      - name: Danger
+        run: yarn yarn davinci ci danger --conventionalCommits
+
       - name: Lint
         run: yarn lint
+
+      - name: Jest Tests
+        run: yarn test-ci
