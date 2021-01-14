@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.2.0...@toptal/picasso@5.3.0) (2021-01-13)
+
+
+### Features
+
+* **icon:** add career icons ([#1837](https://github.com/toptal/picasso/issues/1837)) ([4557c5b](https://github.com/toptal/picasso/commit/4557c5b0fd3ea17deed3a35dc436663ad310097b))
+
+
+
+
+
+# [5.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.1.4...@toptal/picasso@5.2.0) (2021-01-07)
+
+
+### Features
+
+* **TypographyOverflow:** tooltip variants ([#1823](https://github.com/toptal/picasso/issues/1823)) ([777796c](https://github.com/toptal/picasso/commit/777796c6162c52d3a47f9e761e34c57824739efc))
+
+
+
+
+
+## [5.1.4](https://github.com/toptal/picasso/compare/@toptal/picasso@5.1.3...@toptal/picasso@5.1.4) (2021-01-07)
+
+
+### Bug Fixes
+
+* **Tooltip:** fix non-working delay prop ([#1827](https://github.com/toptal/picasso/issues/1827)) ([7120a93](https://github.com/toptal/picasso/commit/7120a9335d38b52968709eb53dfc8a62d6b996eb))
+* changelog links ([#1828](https://github.com/toptal/picasso/issues/1828)) ([f87f43d](https://github.com/toptal/picasso/commit/f87f43d776572340ebd358207e2992092b61e70f))
+
+
+
+
+
 ## [5.1.3](https://github.com/toptal/picasso/compare/@toptal/picasso@5.1.2...@toptal/picasso@5.1.3) (2021-01-05)
 
 **Note:** Version bump only for package @toptal/picasso
@@ -56,13 +90,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 After the official launch of Talent Portal, the team received feedback through UserVoice related to better readability and ergonomics. At that point, Talent Portal was the first product that fully leaned on the first version of BASE, or BASE v1.
 
-We took a deep dive into the analysis and listed out observations. Analysis can be found here.
+We took a deep dive into the analysis and listed out observations. Analysis can be found [here](https://toptal-core.atlassian.net/l/c/5KKKmANF).
 
-After analysis, the design team started testing different solutions that were the origin of the evolution of BASE v1 into BASE v2. The goal was to change and build up confidence and approval from our talent audience, regarding implementation of updates that we listed out as possible solutions. Documentation regarding the test can be found here.
+After analysis, the design team started testing different solutions that were the origin of the evolution of BASE v1 into BASE v2. The goal was to change and build up confidence and approval from our talent audience, regarding implementation of updates that we listed out as possible solutions. Documentation regarding the test can be found [here](https://toptal-core.atlassian.net/l/c/2cdeaDu5).
 
 ### What is BASE v2?
 
-Every interface language has its updates. Version 2 is just another step in our iterative process. We built the technical foundation on the design front where we have an easy way to update components according to user feedback. How technology changes and how the mindset of people using our products changes, our UI and UX are going to follow it, so that we make sure we have world-class product experience in place. 
+Every interface language has its updates. Version 2 is just another step in our iterative process. We built the technical foundation on the design front where we have an easy way to update components according to user feedback. How technology changes and how the mindset of people using our products changes, our UI and UX are going to follow it, so that we make sure we have world-class product experience in place.
 
 ### Important changes:
 
@@ -70,9 +104,9 @@ Every interface language has its updates. Version 2 is just another step in our 
 
 * **Changing form elements to follow the corner radius of buttons (in other words making them consistent).** Due to previous leadership, we had this inconsistency in place that didn’t really have a lot of value in place. Consistent corner radius and rounded corners in general help with usability. With new VP Brand Strategy settling up in Toptal, we decided it is the right time to make them consistent. Here are two good sources on why this holds a lot of value:
 
-  - https://uxdesign.cc/make-sense-of-rounded-corners-on-buttons-dfc8e13ea7f7
+  - [https://uxdesign.cc/make-sense-of-rounded-corners-on-buttons-dfc8e13ea7f7](https://uxdesign.cc/make-sense-of-rounded-corners-on-buttons-dfc8e13ea7f7)
 
-  - https://ux.stackexchange.com/questions/11150/how-do-rounded-corners-affect-usability
+  - [https://ux.stackexchange.com/questions/11150/how-do-rounded-corners-affect-usability](https://ux.stackexchange.com/questions/11150/how-do-rounded-corners-affect-usability)
 
 * **Creating documentation for every component.** This is currently being worked on and we are on the good track to finish more than 85% of it by the end of 2020. Proper documentation will help designers as owners to know how to use the component the right way, but also other partners in the process — such as engineering, content, product or even stakeholders. 
 

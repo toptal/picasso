@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.1.1...@toptal/picasso-lab@3.1.2) (2021-01-13)
+
+
+### Bug Fixes
+
+* **TypographyOverflow:** add Jest support for ResizeObserver ([#1839](https://github.com/toptal/picasso/issues/1839)) ([eb6244e](https://github.com/toptal/picasso/commit/eb6244e91e377d8d3e317b3fb7a8a1d0d57aa155))
+
+
+
+
+
+## [3.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.1.0...@toptal/picasso-lab@3.1.1) (2021-01-13)
+
+
+### Bug Fixes
+
+* **TypographyOverflow:** tooltip triggers ([#1834](https://github.com/toptal/picasso/issues/1834)) ([d9479d2](https://github.com/toptal/picasso/commit/d9479d2f48cdf902a6fc53e3f43df4d28a517d5b))
+
+
+
+
+
+# [3.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.0.3...@toptal/picasso-lab@3.1.0) (2021-01-07)
+
+
+### Features
+
+* **TypographyOverflow:** tooltip variants ([#1823](https://github.com/toptal/picasso/issues/1823)) ([777796c](https://github.com/toptal/picasso/commit/777796c6162c52d3a47f9e761e34c57824739efc))
+
+
+
+
+
+## [3.0.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.0.2...@toptal/picasso-lab@3.0.3) (2021-01-07)
+
+
+### Bug Fixes
+
+* **Tooltip:** fix non-working delay prop ([#1827](https://github.com/toptal/picasso/issues/1827)) ([7120a93](https://github.com/toptal/picasso/commit/7120a9335d38b52968709eb53dfc8a62d6b996eb))
+
+
+
+
+
+## [3.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.0.1...@toptal/picasso-lab@3.0.2) (2021-01-07)
+
+
+### Bug Fixes
+
+* **Tooltip:** fix Tooltip showing measure ([#1824](https://github.com/toptal/picasso/issues/1824)) ([4f89898](https://github.com/toptal/picasso/commit/4f89898f199d1b8c3dca0da5c5b9f52d84263c7a))
+
+
+
+
+
 ## [3.0.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.0.0...@toptal/picasso-lab@3.0.1) (2020-12-29)
 
 **Note:** Version bump only for package @toptal/picasso-lab
