@@ -2,7 +2,7 @@ name: Picasso - PR merge CI
 
 on:
   pull_request:
-    branches: [gh-workflow]
+    branches: [master]
 
 jobs:
   specs:
