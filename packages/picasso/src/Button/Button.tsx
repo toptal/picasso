@@ -17,16 +17,19 @@ import {
   TextLabelProps,
   Classes
 } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core'
 
-// Keep it above because of order of makeStyles calls
-// https://material-ui.com/styles/advanced/#makestyles-withstyles-styled
-import useStyles from './styles'
+import styles from './styles'
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
 import Circular from '../ButtonCircular'
 import Action from '../ButtonAction'
 import toTitleCase from '../utils/to-title-case'
+
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoButton'
+})
 
 export type VariantType =
   | 'primary'
@@ -135,10 +138,9 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     type,
     as,
     titleCase: propsTitleCase,
-    classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles({ classes: externalClasses })
+  const classes = useStyles(props)
 
   const {
     root: rootClass,

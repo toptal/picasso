@@ -35,7 +35,7 @@ export interface StaticProps {
   Group: typeof RadioGroup
 }
 
-const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'Radio'
 })
 
@@ -53,10 +53,9 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
     value,
     onChange,
     titleCase,
-    classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles({ classes: externalClasses })
+  const classes = useStyles(props)
 
   const rootClasses = {
     root: classes.root,

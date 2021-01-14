@@ -32,7 +32,7 @@ export interface Props
   requiredDecoration?: RequiredDecoration
 }
 
-const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoFormControlLabel'
 })
 
@@ -45,11 +45,13 @@ const FormControlLabel: FunctionComponent<Props> = props => {
     disabled,
     requiredDecoration,
     titleCase,
+    // Avoid passing classes inside the rest props
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
     ...rest
   } = props
 
-  const classes = useStyles({ classes: externalClasses })
+  const classes = useStyles(props)
 
   return (
     <label

@@ -4,7 +4,6 @@ import React, {
   HTMLAttributes,
   ReactElement,
   forwardRef,
-  FunctionComponent,
   useState
 } from 'react'
 import cx from 'classnames'
@@ -23,22 +22,32 @@ import Button from '../Button'
 
 export type Borders = 'all' | 'middle' | 'none'
 
-const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoAccordion'
 })
 
-const Summary: FunctionComponent<StandardProps> = props => {
-  const { children, className } = props
-  const classes = useStyles({})
-
-  return <div className={cx(classes.summaryWrapper, className)}>{children}</div>
+interface SummaryProps extends StandardProps {
+  children: ReactNode
 }
 
-const Details: FunctionComponent<StandardProps> = props => {
-  const { children, className } = props
-  const classes = useStyles({})
+const Summary = (props: SummaryProps) => {
+  const { children, className, classes } = props
 
-  return <div className={cx(className, classes.detailsWrapper)}>{children}</div>
+  return (
+    <div className={cx(classes?.summaryWrapper, className)}>{children}</div>
+  )
+}
+
+interface DetailsProps extends StandardProps {
+  children: ReactNode
+}
+
+const Details = (props: DetailsProps) => {
+  const { children, className, classes } = props
+
+  return (
+    <div className={cx(className, classes?.detailsWrapper)}>{children}</div>
+  )
 }
 
 export interface StaticProps {
@@ -94,11 +103,10 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     className,
     style,
     onChange,
-    classes: externalClasses,
     ...rest
   } = props
 
-  const classes = useStyles({ classes: externalClasses })
+  const classes = useStyles(props)
   const borderClasses: { [key in Borders]: string } = {
     all: classes.bordersAll,
     middle: classes.bordersMiddle,

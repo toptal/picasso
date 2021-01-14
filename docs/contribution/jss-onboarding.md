@@ -42,7 +42,7 @@ We can create 2 new variants to our button `green` and `red` and define it’s C
 
 **styles.ts**
 
-```jsx
+```tsx
 import { createStyles } from '@material-ui/core/styles'
 
 export default createStyles({
@@ -54,16 +54,19 @@ export default createStyles({
 
 **Button.tsx**
 
-```jsx
+```tsx
 import React from 'react'
 import cx from 'classnames'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles, Theme } from '@material-ui/styles'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-const useStyles = makeStyles(styles)
+interface Props extends BaseProps {}
 
-const Button = (props) => {
+const useStyles = makeStyles<Theme>(styles)
+
+const Button = (props: Props) => {
   const classes = useStyles()
 
   const { variant } = props
@@ -81,6 +84,88 @@ export default Button
 ```
 
 With this approach we will conditionally attach generate classes for either `.root .red` or `.root .green` based on `variant` prop.
+
+## Add classes prop to a Picasso component
+
+There are some situation when you need to override `classes` prop of a Picasso component. You can do it following these steps:
+
+1. Make your Picasso component `Props` type to extend `StandardProps` instead of `BaseProps`.
+2. Add `Props` generic type to `makeStyles` call.
+3. Pass the whole `props` object to `useStyles` call.
+
+```diff
+import React from 'react'
+import cx from 'classnames'
+import { makeStyles, Theme } from '@material-ui/styles'
+-import { BaseProps } from '@toptal/picasso-shared'
++import { StandardProps } from '@toptal/picasso-shared'
+
+import styles from './styles'
+
+-interface Props extends BaseProps {}
++interface Props extends StandardProps {}
+
+-const useStyles = makeStyles<Theme>(styles)
++const useStyles = makeStyles<Theme, Props>(styles)
+
+const Button = (props: Props) => {
+-  const classes = useStyles()
++  const classes = useStyles(props)
+
+  const { variant } = props
+
+  return (
+    <Button
+      classes={{
+        root: cx(classes.root, classes[variant])
+      }}
+    />
+  )
+}
+
+export default Button
+```
+
+**IMPORTANT**
+
+If you are passing rest props `const { children, ...rest } = props` to your component, you should exclude `classes` from it. Otherwise, you'll overwrite the result of `useStyles`.
+
+
+```tsx
+import React from 'react'
+import cx from 'classnames'
+import { makeStyles, Theme } from '@material-ui/styles'
+import { StandardProps } from '@toptal/picasso-shared'
+
+import styles from './styles'
+
+interface Props extends StandardProps {}
+
+const useStyles = makeStyles<Theme>(styles)
+
+const Button = (props: Props) => {
+  const classes = useStyles(props)
+
+  const {
+    variant,
+    // Avoid passing classes inside the rest props
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    classes: externalClasses,
+    ...rest
+  } = props
+
+  return (
+    <Button
+      classes={{
+        root: cx(classes.root, classes[variant])
+      }}
+      {...rest}
+    />
+  )
+}
+
+export default Button
+```
 
 ## Targeting nested rules within JSS stylesheets
 

@@ -5,7 +5,7 @@ import React, {
   HTMLAttributes
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps, JssProps } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -17,9 +17,9 @@ type NavigationType = 'first' | 'last' | 'previous' | 'next' | number
 
 const SIBLING_COUNT = 1
 
-const PaginationEllipsis: FunctionComponent<StandardProps> = ({ classes }) => {
+const PaginationEllipsis: FunctionComponent<JssProps> = ({ classes }) => {
   return (
-    <Container className={classes!.ellipsis}>
+    <Container className={classes.ellipsis}>
       <Typography size='small' weight='semibold' color='black'>
         {ELLIPSIS}
       </Typography>
@@ -38,18 +38,12 @@ const useStyles = makeStyles<Theme, StandardProps>(styles, {
   name: 'PicassoPagination'
 })
 
-const PaginationPage: FunctionComponent<PaginationPageProps> = ({
-  page,
-  activePage,
-  disabled,
-  onClick,
-  classes: externalClasses
-}) => {
-  const classes = useStyles({ classes: externalClasses })
+const PaginationPage: FunctionComponent<PaginationPageProps> = props => {
+  const { page, activePage, disabled, onClick, classes } = props
 
   return (
     <Button
-      className={classes.rangeButton}
+      className={classes?.rangeButton}
       disabled={disabled}
       onClick={() => onClick(page)}
       variant={activePage === page ? 'primary' : 'secondary'}
@@ -75,15 +69,8 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   props,
   ref
 ) {
-  const {
-    activePage,
-    disabled,
-    totalPages,
-    onPageChange,
-    classes: externalClasses,
-    ...rest
-  } = props
-  const classes = useStyles({ classes: externalClasses })
+  const { activePage, disabled, totalPages, onPageChange, ...rest } = props
+  const classes = useStyles(props)
 
   const pages = useMemo(() => getRange(activePage, totalPages, SIBLING_COUNT), [
     activePage,

@@ -73,7 +73,7 @@ const VARIANTS: VariantsType = {
   }
 }
 
-const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoTypography'
 })
 
@@ -97,10 +97,9 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     underline,
     lineThrough,
     titleCase,
-    classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles({ classes: externalClasses })
+  const classes = useStyles(props)
 
   const resolvedVariant = VARIANTS[variant!][size!]
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)

@@ -46,9 +46,12 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   ref
 ) {
   const { children, className, style, allowNestedNavigation, ...rest } = props
-  const classes = useStyles()
+  const {
+    backButtonIcon: backButtonIconClass,
+    hideMenu: hideMenuClass,
+    ...muiClasses
+  } = useStyles()
 
-  const { backButtonIcon, hideMenu, ...restClasses } = classes
   const { pop } = useContext<MenuContextProps>(MenuContext)
 
   const hasParentMenu = !!pop
@@ -68,12 +71,12 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       ref={ref}
       className={className}
       style={style}
-      classes={restClasses}
+      classes={muiClasses}
     >
       {hasParentMenu && allowNestedNavigation && (
         <MenuItem onClick={handleBackClick} key='back'>
           <Typography size='small' color='dark-grey' variant='body'>
-            <BackMinor16 className={backButtonIcon} />
+            <BackMinor16 className={backButtonIconClass} />
             Back
           </Typography>
         </MenuItem>
@@ -134,13 +137,15 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   return (
     <MenuContext.Provider value={menuContext}>
       {React.cloneElement(menu, {
-        className: cx(menu.props.className, { [hideMenu]: isRootMenuHidden })
+        className: cx(menu.props.className, {
+          [hideMenuClass]: isRootMenuHidden
+        })
       })}
       {menusKeys.map((menuKey: string) =>
         React.cloneElement(menus[menuKey], {
           key: menuKey,
           className: cx(menus[menuKey].props.className, {
-            [hideMenu]: menuKey !== currentVisibleMenuKey
+            [hideMenuClass]: menuKey !== currentVisibleMenuKey
           })
         })
       )}

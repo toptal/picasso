@@ -86,9 +86,9 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
       props: Props,
       ref: Ref<SVGSVGElement>
     ) {
-      const { className, style = {}, color, scale, base, classes: externalClasses } = props
+      const { className, style = {}, color, scale, base } = props
 
-      const classes: Record<string, string> = useStyles({ classes: externalClasses })
+      const classes: Record<string, string> = useStyles(props)
       const classNames = [classes.root, className]
 
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)

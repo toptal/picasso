@@ -37,7 +37,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
-const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoUserBadge'
 })
 
@@ -57,10 +57,12 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     children,
     className,
     style,
+    // Avoid passing classes inside the rest props
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles({ classes: externalClasses })
+  const classes = useStyles(props)
 
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar

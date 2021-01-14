@@ -58,7 +58,7 @@ export interface StaticProps {
   Title: typeof ModalTitle
 }
 
-const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoModal'
 })
 const defaultManager = new ModalManager()
@@ -127,10 +127,9 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     transitionDuration,
     paperProps,
     align,
-    classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles({ classes: externalClasses })
+  const classes = useStyles(props)
   const picassoRootContainer = usePicassoRoot()
   const rootRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
   const modalId = useRef(generateKey())

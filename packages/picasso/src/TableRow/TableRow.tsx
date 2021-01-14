@@ -33,15 +33,14 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
       onClick,
       ...rest
     } = props
-    const classes = useStyles()
-    const { stripeEven: stripeEvenClass, ...restClasses } = classes
+    const { stripeEven: stripeEvenClass, ...muiClasses } = useStyles()
 
     return (
       <MUITableRow
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
-        classes={restClasses}
+        classes={muiClasses}
         className={cx(className, {
           [stripeEvenClass]: stripeEven
         })}

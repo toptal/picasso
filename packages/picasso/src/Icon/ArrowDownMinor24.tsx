@@ -18,17 +18,8 @@ const SvgArrowDownMinor24 = forwardRef(function SvgArrowDownMinor24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const {
-    className,
-    style = {},
-    color,
-    scale,
-    base,
-    classes: externalClasses
-  } = props
-  const classes: Record<string, string> = useStyles({
-    classes: externalClasses
-  })
+  const { className, style = {}, color, scale, base } = props
+  const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)

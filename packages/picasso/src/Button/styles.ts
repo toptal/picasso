@@ -1,9 +1,9 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { alpha, outline, mix, StandardProps } from '@toptal/picasso-shared'
+import { createStyles, Theme } from '@material-ui/core/styles'
+import { alpha, outline, mix } from '@toptal/picasso-shared'
 
 const ICON_SPACING = '0.5em'
 
-const styles = ({ palette, sizes, transitions, typography }: Theme) => {
+export default ({ palette, sizes, transitions, typography }: Theme) => {
   const createPrimaryVariant = (mainColor: string) => ({
     border: 'none',
     color: palette.common.white,
@@ -187,9 +187,3 @@ const styles = ({ palette, sizes, transitions, typography }: Theme) => {
     }
   })
 }
-
-const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
-  name: 'PicassoButton'
-})
-
-export default useStyles

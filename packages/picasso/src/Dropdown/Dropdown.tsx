@@ -77,7 +77,7 @@ const useDropdownContext = () => {
   return context
 }
 
-const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoDropdown'
 })
 
@@ -100,10 +100,12 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     onOpen,
     popperContainer,
     onClose,
+    // Avoid passing classes inside the rest props
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles({ classes: externalClasses })
+  const classes = useStyles(props)
 
   const contentRef = useRef<HTMLElement>()
 

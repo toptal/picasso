@@ -18,7 +18,7 @@ type DirectionType = 'row' | 'column'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue' | 'grey'
 
-const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoContainer'
 })
 
@@ -82,11 +82,13 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
     rounded = false,
     variant,
     as: Component = inline ? 'span' : 'div',
+    // Avoid passing classes inside the rest props
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
     ...rest
   } = props
 
-  const classes = useStyles({ classes: externalClasses })
+  const classes = useStyles(props)
 
   const margins = {
     ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),

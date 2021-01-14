@@ -20,7 +20,7 @@ export interface BaseProps {
 }
 
 export interface JssProps {
-  classes?: Classes
+  classes: Classes
 }
 
 export interface TextLabelProps {
@@ -28,7 +28,7 @@ export interface TextLabelProps {
   titleCase?: boolean
 }
 
-export type StandardProps = BaseProps & JssProps
+export type StandardProps = BaseProps & Partial<JssProps>
 
 // Take all props, excluding props from JssProps
 // type and other passed props

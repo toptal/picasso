@@ -4,7 +4,8 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   StandardProps,
   SizeType,
-  OmitInternalProps
+  OmitInternalProps,
+  JssProps
 } from '@toptal/picasso-shared'
 
 import Image from '../Image'
@@ -36,7 +37,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoAvatar' })
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoAvatar' })
 
 const isBrowserSupportsObjectFit = 'objectFit' in document.documentElement.style
 
@@ -44,14 +45,14 @@ const renderLogo = ({
   classes,
   src,
   size
-}: Pick<Props, 'src' | 'size' | 'classes'>) => {
+}: Pick<Props, 'src' | 'size'> & JssProps) => {
   if (!src || ['small', 'xsmall', 'xxsmall'].includes(size!)) {
     return null
   }
 
   return (
-    <div className={classes!.logoContainer}>
-      <Logo emblem variant='white' className={classes!.logo} />
+    <div className={classes.logoContainer}>
+      <Logo emblem variant='white' className={classes.logo} />
     </div>
   )
 }
@@ -60,7 +61,7 @@ const renderInitials = ({
   classes,
   src,
   name
-}: Pick<Props, 'src' | 'name' | 'classes'>) => {
+}: Pick<Props, 'src' | 'name'> & JssProps) => {
   if (src || !name) {
     return null
   }
@@ -69,14 +70,9 @@ const renderInitials = ({
 
   return (
     <Typography
-      className={cx(
-        classes?.text,
-        classes?.textCapLimit
-          ? {
-              [classes.textCapLimit]: initials.length >= AVATAR_INITIALS_LIMIT
-            }
-          : undefined
-      )}
+      className={cx(classes.text, {
+        [classes.textCapLimit]: initials.length >= AVATAR_INITIALS_LIMIT
+      })}
       invert
     >
       {initials}
@@ -99,19 +95,9 @@ const IE11Image = ({ style, src, ...rest }: OmitInternalProps<ImageProps>) => (
 )
 
 export const Avatar: FunctionComponent<Props> = props => {
-  const {
-    alt,
-    src,
-    className,
-    name,
-    size,
-    style,
-    variant,
-    classes: externalClasses,
-    ...rest
-  } = props
+  const { alt, src, className, name, size, style, variant, ...rest } = props
 
-  const classes = useStyles({ classes: externalClasses })
+  const classes = useStyles(props)
 
   const sizeClassName = classes[size!]
   const variantClassName = classes[variant!]

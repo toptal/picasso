@@ -9,14 +9,14 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
-const useStyles = makeStyles<Theme, Pick<StandardProps, 'classes'>>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoAccordionDetails'
 })
 
 const AccordionDetails: FunctionComponent<Props> = props => {
-  const { children, classes: externalClasses, ...rest } = props
+  const { children, ...rest } = props
 
-  const classes = useStyles({ classes: externalClasses })
+  const classes = useStyles(props)
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
