@@ -1,18 +1,25 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import Typography from '../Typography'
 import styles from './styles'
 
+type ContentWidth = 'shrink' | 'full'
 export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Content of Helpbox */
   children: ReactNode
+  /**
+   * Width of the content. If set to `shrink` - the max-width of the content is 640px
+   * @default full
+   */
+  width?: ContentWidth
 }
 
 export const HelpboxContent = forwardRef<HTMLElement, Props>(
   function HelpboxContent(
-    { classes, className, style, children, ...rest },
+    { width, classes, className, style, children, ...rest },
     ref
   ) {
     return (
@@ -20,8 +27,7 @@ export const HelpboxContent = forwardRef<HTMLElement, Props>(
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
-        classes={classes}
-        className={className}
+        className={cx({ [classes.shrinkWidth]: width === 'shrink' }, className)}
         style={style}
         variant='body'
         as='div'
@@ -34,7 +40,9 @@ export const HelpboxContent = forwardRef<HTMLElement, Props>(
   }
 )
 
-HelpboxContent.defaultProps = {}
+HelpboxContent.defaultProps = {
+  width: 'full'
+}
 
 HelpboxContent.displayName = 'HelpboxContent'
 
