@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import ContentLoader from 'react-content-loader'
-import { stringToNumber, px, BaseProps } from '@toptal/picasso-shared'
+import { pxFromRem, BaseProps } from '@toptal/picasso-shared'
 
 interface ImageProps extends BaseProps {
   /** Each variant exposes a different set of props */
@@ -24,9 +24,6 @@ interface IconProps extends BaseProps {
 
 export type Props = ImageProps | AvatarProps | IconProps
 
-// all sizes are in pixels
-const WIDTH = 16
-const HEIGHT = 16
 const BORDER_RADIUS = '5px'
 
 const AVATAR_SIZES = {
@@ -78,8 +75,10 @@ export const getImageAttributes = ({
   width,
   height
 }: Omit<ImageProps, 'variant'>): LoaderAttributes => ({
-  width: typeof width === 'string' ? stringToNumber(px(width)) : width,
-  height: typeof height === 'string' ? stringToNumber(px(height)) : height,
+  width:
+    typeof width === 'string' ? Number.parseFloat(pxFromRem(width)) : width,
+  height:
+    typeof height === 'string' ? Number.parseFloat(pxFromRem(height)) : height,
   borderRadius: circle ? '50%' : BORDER_RADIUS
 })
 
@@ -96,12 +95,6 @@ export const getAttributes = (props: React.PropsWithChildren<Props>) => {
     case 'image':
       attributes = getImageAttributes(props)
       break
-    default:
-      attributes = {
-        width: WIDTH,
-        height: HEIGHT,
-        borderRadius: BORDER_RADIUS
-      }
   }
 
   return attributes

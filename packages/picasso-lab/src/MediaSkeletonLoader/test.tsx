@@ -9,8 +9,6 @@ import {
   getImageAttributes
 } from './MediaSkeletonLoader'
 
-const DEFAULT_WIDTH = 16
-const DEFAULT_HEIGHT = 16
 const DEFAULT_BORDER_RADIUS = '5px'
 
 describe('getAvatarAttributes', () => {
@@ -118,16 +116,6 @@ describe('getImageAttributes', () => {
 })
 
 describe('getAttributes', () => {
-  it('returns default attributes', () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    expect(getAttributes({})).toStrictEqual({
-      width: DEFAULT_WIDTH,
-      height: DEFAULT_HEIGHT,
-      borderRadius: DEFAULT_BORDER_RADIUS
-    })
-  })
-
   it('returns icon attributes', () => {
     expect(getAttributes({ variant: 'icon' })).toStrictEqual({
       width: 16,

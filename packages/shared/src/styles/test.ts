@@ -1,14 +1,4 @@
-import { px, rem, stringToNumber } from './'
-
-describe('String to number converter', () => {
-  it('converts 0.6875rem to number', () => {
-    expect(stringToNumber('0.6875rem')).toBe(0.6875)
-  })
-
-  it('converts 0rem to number', () => {
-    expect(stringToNumber('0rem')).toBe(0)
-  })
-})
+import { pxFromRem, rem } from './'
 
 describe('Px to rem units converter', () => {
   it('converts 0px to rem', () => {
@@ -38,14 +28,14 @@ describe('Px to rem units converter', () => {
 
 describe('rem to px units converter', () => {
   it('converts 0rem to px', () => {
-    expect(px('0rem')).toBe('0px')
+    expect(pxFromRem('0rem')).toBe('0px')
   })
 
   it('converts 0.6875rem to px', () => {
-    expect(px('0.6875rem')).toBe('11px')
+    expect(pxFromRem('0.6875rem')).toBe('11px')
   })
 
   it('converts 1rem to rem with 20px base font size', () => {
-    expect(px('1rem', 20)).toBe('20px')
+    expect(pxFromRem('1rem', 20)).toBe('20px')
   })
 })
