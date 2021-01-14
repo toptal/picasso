@@ -101,6 +101,8 @@ const transform: Transform = (file, api) => {
     .replaceWith(({ node }) => {
       const newValue = variantTransforms[node.value]
 
+      if (!newValue) return node.value
+
       return j.stringLiteral(newValue)
     })
 
