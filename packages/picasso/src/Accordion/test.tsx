@@ -24,7 +24,7 @@ describe('Accordion', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('renders empty summary when a custom one is not provided', () => {
+  it('renders empty summary when one is not provided', () => {
     const { getByTestId, queryByTestId } = render(
       <Accordion content={DETAILS} />
     )
