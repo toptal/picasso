@@ -1,6 +1,6 @@
 import { pxFromRem, rem } from './'
 
-describe('Px to rem units converter', () => {
+describe('Px to rem units converter using the BASE font size by default', () => {
   it('converts 0px to rem', () => {
     expect(rem('0px')).toBe('0rem')
   })
@@ -21,12 +21,12 @@ describe('Px to rem units converter', () => {
     expect(rem('0.5px')).toBe('0.03125rem')
   })
 
-  it('converts 12px to rem with 20px base font size', () => {
+  it('supports formatting with a custom font size', () => {
     expect(rem('12px', 20)).toBe('0.6rem')
   })
 })
 
-describe('rem to px units converter', () => {
+describe('rem to px units converter using the BASE font size by default', () => {
   it('converts 0rem to px', () => {
     expect(pxFromRem('0rem')).toBe('0px')
   })
@@ -35,7 +35,7 @@ describe('rem to px units converter', () => {
     expect(pxFromRem('0.6875rem')).toBe('11px')
   })
 
-  it('converts 1rem to rem with 20px base font size', () => {
+  it('supports formatting with a custom font size', () => {
     expect(pxFromRem('1rem', 20)).toBe('20px')
   })
 })
