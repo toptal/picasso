@@ -9,7 +9,7 @@ const SUMMARY = 'Lorem ipsum'
 
 describe('Accordion', () => {
   it('renders collapsed by default', () => {
-    const { queryByTestId, getByText, getByTestId } = render(
+    const { container, queryByTestId, getByText, getByTestId } = render(
       <Accordion content={DETAILS}>{SUMMARY}</Accordion>
     )
 
@@ -20,6 +20,8 @@ describe('Accordion', () => {
 
     expect(getByTestId('accordion-details')).not.toBeVisible()
     expect(getByText(DETAILS)).not.toBeVisible()
+
+    expect(container).toMatchSnapshot()
   })
 
   it('renders empty summary when a custom one is not provided', () => {
