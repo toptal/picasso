@@ -5,7 +5,7 @@ import React, {
   HTMLAttributes
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps, JssProps } from '@toptal/picasso-shared'
+import { JssProps, BaseProps } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -27,14 +27,14 @@ const PaginationEllipsis: FunctionComponent<JssProps> = ({ classes }) => {
   )
 }
 
-export interface PaginationPageProps extends StandardProps {
+export interface PaginationPageProps extends JssProps {
   activePage: number
   disabled?: boolean
   page: number
   onClick: (page: NavigationType) => void
 }
 
-const useStyles = makeStyles<Theme, StandardProps>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoPagination'
 })
 
@@ -54,7 +54,7 @@ const PaginationPage: FunctionComponent<PaginationPageProps> = props => {
   )
 }
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Value of the current highlighted page */
   activePage: number
   /** Shows `Pagination` in disabled state when pages are not changeable */
@@ -70,7 +70,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   ref
 ) {
   const { activePage, disabled, totalPages, onPageChange, ...rest } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const pages = useMemo(() => getRange(activePage, totalPages, SIBLING_COUNT), [
     activePage,
