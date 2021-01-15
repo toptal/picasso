@@ -1,3 +1,8 @@
 import { createStyles } from '@material-ui/core/styles'
 
-export default () => createStyles({})
+export default () =>
+  createStyles({
+    shrinkWidth: {
+      maxWidth: '640px'
+    }
+  })

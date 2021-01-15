@@ -145,6 +145,24 @@ Renames occurrences of `Page.Header` to `Page.TopBar`.
        Content
 -   </Page.Header>
 +   </Page.TopBar>
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/header-topbar src/**/*.tsx --parser=tsx
+```
+
+</details>
+
+#### `button-variants`
+
+Renames variants of button to new values, replaced circular button with `Button.Circular`.
+
+```diff
+  const Example = () => (
+-     <Button variant='primary-blue'>Primary Red</Button>
++     <Button variant='primary'>Primary Red</Button>
   )
 ```
 
@@ -152,7 +170,7 @@ Renames occurrences of `Page.Header` to `Page.TopBar`.
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/header-topbar src/**/*.tsx --parser=tsx
+npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/button-variants src/**/*.tsx --parser=tsx
 ```
 
 </details>

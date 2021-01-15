@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import { Tag as Something } from '@toptal/picasso'
 

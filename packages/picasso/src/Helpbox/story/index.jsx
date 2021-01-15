@@ -21,3 +21,4 @@ page
   .addExample('Helpbox/story/Default.example.tsx', 'Default')
   .addExample('Helpbox/story/Actions.example.tsx', 'With actions')
   .addExample('Helpbox/story/Closeable.example.tsx', 'Closeable')
+  .addExample('Helpbox/story/Width.example.tsx', 'Width')

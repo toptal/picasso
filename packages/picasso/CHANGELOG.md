@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.3.0...@toptal/picasso@5.4.0) (2021-01-15)
+
+
+### Features
+
+* **helpbox:** add prop width to the content ([#1843](https://github.com/toptal/picasso/issues/1843)) ([ebe98fd](https://github.com/toptal/picasso/commit/ebe98fd1480d68076b984c0a7be06e79f574b0a1))
+
+
+
+
+
 # [5.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.2.0...@toptal/picasso@5.3.0) (2021-01-13)
 
 
