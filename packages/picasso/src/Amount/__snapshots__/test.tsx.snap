@@ -1,11 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Amount default render 1`] = `
+exports[`Amount renders 1`] = `
 <div>
-  <span
-    class=""
+  <div
+    class="Picasso-root"
   >
-    $1,500.00
-  </span>
+    <span
+      class="MuiTypography-root Typography-bodyInherit Typography-green MuiTypography-body1 MuiTypography-displayInline"
+    >
+      €1,500.00
+    </span>
+  </div>
 </div>
 `;

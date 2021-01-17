@@ -36,3 +36,9 @@ export { Maybe } from './monads'
 export { useNotifications } from './Notifications'
 export { useModal } from './Modal'
 export * from './Modal'
+
+export { formatAmount, DEFAULT_CURRENCY, DEFAULT_LOCALE } from './Formatters'
+
+// NOTE: Prevent type removal on prettier format
+// prettier-ignore
+export type { FormatAmount } from './Formatters'

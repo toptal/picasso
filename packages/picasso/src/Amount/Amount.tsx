@@ -1,45 +1,35 @@
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import cx from 'classnames'
-import React, { forwardRef, memo, HTMLAttributes } from 'react'
-import { BaseProps, PicassoComponentWithRef } from '@toptal/picasso-shared'
+import React from 'react'
 
-import styles from './styles'
+import Typography, { TypographyProps } from '../Typography'
+import {
+  formatAmount,
+  DEFAULT_LOCALE,
+  DEFAULT_CURRENCY
+} from '../utils/Formatters'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLSpanElement> {
+export interface Props extends TypographyProps {
   /** The amount to be formatted */
-  amount: number
-  /** Currency which need to be applied on the amount (ISO format) */
+  amount: number | string
+  /** Currency which need to be applied on the amount (ISO format) https://www.currency-iso.org/en/home/tables/table-a1.html */
   currency?: string
+  /** Locale identifiers are case-insensitive ASCII. However, it's conventional to use title case (first letter capitalized, successive letters lower case) for script code, upper case for region codes, and lower case for everything else. */
+  locale?: string
 }
-/** Currency List: https://www.currency-iso.org/en/home/tables/table-a1.html */
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoAmount'
-})
-
-// eslint-disable-next-line react/display-name
-export const Amount = memo(
-  // eslint-disable-next-line react/display-name
-  forwardRef<HTMLSpanElement, Props>(function Amount(props, ref) {
-    const classes = useStyles(props)
-    const { amount, className, currency, ...rest } = props
-
-    const formattedAmount = Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency
-    }).format(amount)
-
-    return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      <span {...rest} ref={ref} className={cx(classes.root, className)}>
-        {formattedAmount}
-      </span>
-    )
-  })
-) as PicassoComponentWithRef<Props, HTMLSpanElement>
-
-Amount.defaultProps = {
-  currency: 'USD'
+export const Amount = ({
+  amount,
+  currency = DEFAULT_CURRENCY,
+  locale = DEFAULT_LOCALE,
+  inline = true,
+  as = 'span',
+  ...typographyProps
+}: Props) => {
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Typography inline={inline} as={as} {...typographyProps}>
+      {formatAmount({ amount, currency, locale })}
+    </Typography>
+  )
 }
 
 Amount.displayName = 'Amount'
