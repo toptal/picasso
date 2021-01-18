@@ -17,7 +17,7 @@ const TestTopBarMenu: FunctionComponent<OmitInternalProps<Props>> = ({
 )
 
 describe('TopBarMenu', () => {
-  test('default render', () => {
+  it('renders', () => {
     const { container } = render(
       <TestTopBarMenu
         name='Jacqueline Roque'

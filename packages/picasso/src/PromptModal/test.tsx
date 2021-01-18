@@ -13,7 +13,7 @@ describe('PromptModal', () => {
     spy.mockClear()
   })
 
-  test('renders', () => {
+  it('renders', () => {
     const { baseElement } = render(
       <PromptModal
         open
@@ -26,7 +26,7 @@ describe('PromptModal', () => {
     expect(baseElement).toMatchSnapshot()
   })
 
-  test('showPrompt opens and closes modal on Submit action', async () => {
+  it('showPrompt opens and closes modal on Submit action', async () => {
     const TestComponent = () => {
       const { showModal, hideModal, isOpen } = useModal()
 
@@ -68,7 +68,7 @@ describe('PromptModal', () => {
 
   const identity = <T extends unknown>(value: T) => value
 
-  test('showPrompt with input returns result on Submit action ', async () => {
+  it('showPrompt with input returns result on Submit action ', async () => {
     const mockResult = jest.fn(identity)
 
     const TestComponent = () => {
@@ -122,7 +122,7 @@ describe('PromptModal', () => {
     expect(baseElement).toMatchSnapshot()
   })
 
-  test('when unmounted while performing submit, should not do further state updates', async () => {
+  it('when unmounted while performing submit, should not do further state updates', async () => {
     const TestComponent = () => {
       const [isSubmitCompleted, setIsSubmitCompleted] = React.useState(false)
       const [shouldRenderPrompt, setShouldRenderPrompt] = React.useState(true)
@@ -170,7 +170,7 @@ describe('PromptModal', () => {
     })
 
     // Ensure React has not logged "Can't perform a React state update on an unmounted component"
-    expect(console.error).not.toBeCalledWith(
+    expect(console.error).not.toHaveBeenCalledWith(
       expect.stringContaining(
         "Can't perform a React state update on an unmounted component"
       ),

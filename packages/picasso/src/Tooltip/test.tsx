@@ -9,7 +9,7 @@ import Tooltip from './Tooltip'
 const mockedIsPointerDevice = isPointerDevice as jest.Mock
 
 describe('Tooltip', () => {
-  test('default render', () => {
+  it('renders', () => {
     // If you don't provide `id` prop, it falls back to a randomly generated id.
     const { container } = render(
       <Tooltip
@@ -33,7 +33,7 @@ describe('Tooltip', () => {
       mockedIsPointerDevice.mockClear()
     })
 
-    test('opens tooltip on touch', async () => {
+    it('opens tooltip on touch', async () => {
       const { getByText, findByText, unmount } = render(
         <Tooltip content='Hello'>
           <Button>Tap me</Button>
@@ -48,7 +48,7 @@ describe('Tooltip', () => {
       unmount()
     })
 
-    test('closes tooltip on second touch', async () => {
+    it('closes tooltip on second touch', async () => {
       const { getByText, findByText, queryByText, unmount } = render(
         <Tooltip content='Hello'>
           <Button>Tap me</Button>
@@ -76,7 +76,7 @@ describe('Tooltip', () => {
       mockedIsPointerDevice.mockClear()
     })
 
-    test('opens tooltip on hover on short delay', async () => {
+    it('opens tooltip on hover on short delay', async () => {
       const { getByText, queryByText, unmount } = render(
         <Tooltip content='Hello' delay='short'>
           <Button>Hover me</Button>
@@ -109,7 +109,7 @@ describe('Tooltip', () => {
       unmount()
     })
 
-    test('opens tooltip on hover on long delay then closes it on mouse out', async () => {
+    it('opens tooltip on hover on long delay then closes it on mouse out', async () => {
       const { getByText, queryByText, unmount } = render(
         <Tooltip content='Hello' delay='long'>
           <Button>Hover me</Button>
@@ -142,7 +142,7 @@ describe('Tooltip', () => {
       unmount()
     })
 
-    test('opens tooltip on click then closes it on outside click', async () => {
+    it('opens tooltip on click then closes it on outside click', async () => {
       const Component = () => {
         const [open, setOpen] = useState(false)
 
@@ -184,7 +184,7 @@ describe('Tooltip', () => {
       unmount()
     })
 
-    test('closes uncontrolled tooltip on button click', async () => {
+    it('closes uncontrolled tooltip on button click', async () => {
       const { getByText, queryByText, findByText, unmount } = render(
         <Tooltip content='Hello'>
           <Button>Hover me</Button>

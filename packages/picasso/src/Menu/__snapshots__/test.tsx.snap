@@ -1,80 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Menu default render 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <ul
-      class="MuiList-root Menu-root"
-      role="menu"
-      tabindex="-1"
-    >
-      <li
-        aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-        role="menuitem"
-        tabindex="0"
-      >
-        <div
-          class="Container-flex Container-column PicassoMenuItem-content"
-        >
-          <div
-            class="Container-centerAlignItems Container-flex"
-          >
-            <span
-              class="PicassoMenuItem-stringContent"
-            >
-              Item 1
-            </span>
-          </div>
-        </div>
-      </li>
-      <li
-        aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-        role="menuitem"
-        tabindex="-1"
-      >
-        <div
-          class="Container-flex Container-column PicassoMenuItem-content"
-        >
-          <div
-            class="Container-centerAlignItems Container-flex"
-          >
-            <span
-              class="PicassoMenuItem-stringContent"
-            >
-              Item 2
-            </span>
-          </div>
-        </div>
-      </li>
-      <li
-        aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-        role="menuitem"
-        tabindex="-1"
-      >
-        <div
-          class="Container-flex Container-column PicassoMenuItem-content"
-        >
-          <div
-            class="Container-centerAlignItems Container-flex"
-          >
-            <span
-              class="PicassoMenuItem-stringContent"
-            >
-              Item 3
-            </span>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
-`;
-
 exports[`Menu has back button when in submenu 1`] = `
 <div>
   <div
@@ -169,6 +94,81 @@ exports[`Menu has back button when in submenu 1`] = `
               class="PicassoMenuItem-stringContent"
             >
               Submenu Item
+            </span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`Menu renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ul
+      class="MuiList-root Menu-root"
+      role="menu"
+      tabindex="-1"
+    >
+      <li
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        role="menuitem"
+        tabindex="0"
+      >
+        <div
+          class="Container-flex Container-column PicassoMenuItem-content"
+        >
+          <div
+            class="Container-centerAlignItems Container-flex"
+          >
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Item 1
+            </span>
+          </div>
+        </div>
+      </li>
+      <li
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <div
+          class="Container-flex Container-column PicassoMenuItem-content"
+        >
+          <div
+            class="Container-centerAlignItems Container-flex"
+          >
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Item 2
+            </span>
+          </div>
+        </div>
+      </li>
+      <li
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <div
+          class="Container-flex Container-column PicassoMenuItem-content"
+        >
+          <div
+            class="Container-centerAlignItems Container-flex"
+          >
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Item 3
             </span>
           </div>
         </div>

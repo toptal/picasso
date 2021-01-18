@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dropdown default render 1`] = `
+exports[`Dropdown renders 1`] = `
 <div>
   <div
     class="Picasso-root"

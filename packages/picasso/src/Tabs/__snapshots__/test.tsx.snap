@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tabs default render 1`] = `
+exports[`Tabs renders 1`] = `
 <div>
   <div
     class="MuiTabs-root"

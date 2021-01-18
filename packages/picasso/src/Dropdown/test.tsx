@@ -6,7 +6,7 @@ import Dropdown from './Dropdown'
 import Container from '../Container'
 
 describe('Dropdown', () => {
-  test('default render', () => {
+  it('renders', () => {
     const { container } = render(
       <Dropdown content={<div>Content</div>}>
         Open Dropdown <Dropdown.Arrow />
@@ -16,7 +16,7 @@ describe('Dropdown', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('should render menu', () => {
+  it('should render menu', () => {
     const { getByText, unmount, baseElement } = render(
       <Dropdown
         content={
@@ -40,7 +40,7 @@ describe('Dropdown', () => {
     unmount()
   })
 
-  test('should render menu with focus', async () => {
+  it('should render menu with focus', async () => {
     const { baseElement, getByText, unmount } = render(
       <Container>
         <Dropdown
@@ -70,7 +70,7 @@ describe('Dropdown', () => {
     unmount()
   })
 
-  test('should trigger `onOpen`, `onClose` callbacks', () => {
+  it('should trigger `onOpen`, `onClose` callbacks', () => {
     const onOpen = jest.fn()
     const onClose = jest.fn()
 

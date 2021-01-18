@@ -27,7 +27,7 @@ describe('TableCell', () => {
     api = renderTableCell()
   })
 
-  test('default render', () => {
+  it('renders', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()

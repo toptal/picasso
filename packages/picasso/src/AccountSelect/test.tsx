@@ -49,13 +49,13 @@ describe('AccountSelect', () => {
       accounts
     })
   })
-  test('default render', () => {
+  it('renders', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()
   })
 
-  test("should fire onSelect event after clicking on account's name", () => {
+  it("should fire onSelect event after clicking on account's name", () => {
     const { getByText } = api
     const row = getByText(accounts[0].name)
 

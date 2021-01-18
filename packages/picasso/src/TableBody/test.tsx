@@ -22,7 +22,7 @@ describe('TableCell', () => {
     api = renderTableBody()
   })
 
-  test('default render', () => {
+  it('renders', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()

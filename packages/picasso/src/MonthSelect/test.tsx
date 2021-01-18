@@ -6,17 +6,17 @@ import MonthSelect from './MonthSelect'
 // Mock console error since toThrow() outputs the error message with stacktrace
 let mockedConsoleError: jest.SpyInstance
 
-beforeEach(() => {
-  mockedConsoleError = jest.spyOn(console, 'error')
-  mockedConsoleError.mockImplementation(() => {})
-})
-
-afterEach(() => {
-  mockedConsoleError.mockRestore()
-})
-
 describe('MonthSelect', () => {
-  test('default render', () => {
+  beforeEach(() => {
+    mockedConsoleError = jest.spyOn(console, 'error')
+    mockedConsoleError.mockImplementation(() => {})
+  })
+
+  afterEach(() => {
+    mockedConsoleError.mockRestore()
+  })
+
+  it('renders', () => {
     const { container } = render(
       <MonthSelect onChange={() => {}} from={1} to={12} />
     )
@@ -24,7 +24,7 @@ describe('MonthSelect', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('wrong range', () => {
+  it('wrong range', () => {
     let from: number, to: number
 
     const errorMessage = () =>

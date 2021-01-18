@@ -1,27 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tab default render 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <button
-      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
-      role="tab"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiTab-wrapper"
-      >
-        Tab Label
-      </span>
-    </button>
-  </div>
-</div>
-`;
-
-exports[`Tab disabled tab 1`] = `
+exports[`Tab Tab disabled tab 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -43,7 +22,28 @@ exports[`Tab disabled tab 1`] = `
 </div>
 `;
 
-exports[`Tab tab with icon 1`] = `
+exports[`Tab Tab renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+      role="tab"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiTab-wrapper"
+      >
+        Tab Label
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Tab Tab tab with icon 1`] = `
 <div>
   <div
     class="Picasso-root"

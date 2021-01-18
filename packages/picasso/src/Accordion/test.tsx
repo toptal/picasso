@@ -68,10 +68,10 @@ describe('Accordion', () => {
     fireEvent.click(getByText(SUMMARY_TEXT))
     await wait(() => expect(getByText(DETAILS_TEXT)).toBeVisible())
 
-    expect(handleChange).toBeCalledTimes(3)
+    expect(handleChange).toHaveBeenCalledTimes(3)
   })
 
-  test('renders disabled', async () => {
+  it('renders disabled', async () => {
     const { container } = render(
       <Accordion content={<TestDetails />} disabled>
         <TestSummary />

@@ -1,34 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MenuItem default render 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <li
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      role="menuitem"
-      tabindex="-1"
-    >
-      <div
-        class="Container-flex Container-column PicassoMenuItem-content"
-      >
-        <div
-          class="Container-centerAlignItems Container-flex"
-        >
-          <span
-            class="PicassoMenuItem-stringContent"
-          >
-            Item
-          </span>
-        </div>
-      </div>
-    </li>
-  </div>
-</div>
-`;
-
 exports[`MenuItem has chevron if has nested menu 1`] = `
 <div>
   <div
@@ -64,6 +35,35 @@ exports[`MenuItem has chevron if has nested menu 1`] = `
               />
             </svg>
           </div>
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;
+
+exports[`MenuItem renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <div
+        class="Container-flex Container-column PicassoMenuItem-content"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <span
+            class="PicassoMenuItem-stringContent"
+          >
+            Item
+          </span>
         </div>
       </div>
     </li>

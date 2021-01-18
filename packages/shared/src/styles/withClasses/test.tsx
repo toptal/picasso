@@ -29,7 +29,7 @@ describe('withClasses', () => {
   beforeEach(() => {
     api = renderComponent()
   })
-  test('default render', () => {
+  it('renders', () => {
     const { container } = api
     const button = container.querySelector('.testing')
 

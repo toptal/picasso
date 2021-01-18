@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Radio.Group renders radio in group 1`] = `
+exports[`Radio Radio.Group renders radio in group 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -78,7 +78,7 @@ exports[`Radio.Group renders radio in group 1`] = `
 </div>
 `;
 
-exports[`disabled radio button renders disabled version 1`] = `
+exports[`Radio disabled radio button renders disabled version 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -107,34 +107,7 @@ exports[`disabled radio button renders disabled version 1`] = `
 </div>
 `;
 
-exports[`radio button renders default radio button 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <span
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
-      data-testid="trigger"
-    >
-      <span
-        class="MuiIconButton-label"
-      >
-        <input
-          class="PrivateSwitchBase-input"
-          type="radio"
-          value=""
-        />
-        <div
-          class="Radio-uncheckedIcon"
-        />
-      </span>
-    </span>
-  </div>
-</div>
-`;
-
-exports[`radio button renders default radio button 2`] = `
+exports[`Radio radio button renders default radio button 1`] = `
 <div>
   <div
     class="Picasso-root"

@@ -16,7 +16,7 @@ afterEach(() => {
 })
 
 describe('YearSelect', () => {
-  test('default render', () => {
+  it('renders', () => {
     const { container } = render(
       <YearSelect from={2001} to={2005} onChange={() => {}} />
     )
@@ -24,7 +24,7 @@ describe('YearSelect', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('render in descending order', () => {
+  it('render in descending order', () => {
     const placeholder = 'Select year'
     const { getByPlaceholderText, getByRole } = render(
       <YearSelect
@@ -40,7 +40,7 @@ describe('YearSelect', () => {
     expect(getByRole('menu')).toMatchSnapshot()
   })
 
-  test('wrong range', () => {
+  it('wrong range', () => {
     let from: number | null, to: number | null
 
     const errorMessage = () =>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`props combo 1`] = `
+exports[`Loader props combo 1`] = `
 <div>
   <div
     class="Loader-root Loader-inline"

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`disabled button renders disabled version 1`] = `
+exports[`Button disabled button renders disabled version 1`] = `
 <div>
   <div
     class="Picasso-root"

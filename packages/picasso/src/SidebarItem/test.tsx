@@ -38,13 +38,13 @@ afterEach(() => {
 })
 
 describe('SidebarItem', () => {
-  test('default render', () => {
+  it('renders', () => {
     const { container } = render(<TestSidebarItem>Test item</TestSidebarItem>)
 
     expect(container).toMatchSnapshot()
   })
 
-  test('with icon', () => {
+  it('with icon', () => {
     const { container } = render(
       <TestSidebarItem icon={<Candidates16 />}>Test item</TestSidebarItem>
     )
@@ -52,7 +52,7 @@ describe('SidebarItem', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('is selected', () => {
+  it('is selected', () => {
     const { container } = render(
       <TestSidebarItem icon={<Candidates16 />} selected>
         Test item
@@ -62,7 +62,7 @@ describe('SidebarItem', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('use accordion for collapsible with menu', () => {
+  it('use accordion for collapsible with menu', () => {
     const menu = (
       <Sidebar.Menu>
         <Sidebar.Item>Menu item</Sidebar.Item>
@@ -78,7 +78,7 @@ describe('SidebarItem', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('collapsible menu is expanded when one of the children is selected', () => {
+  it('collapsible menu is expanded when one of the children is selected', () => {
     const { container } = render(
       <Sidebar>
         <Sidebar.Menu>
@@ -99,7 +99,7 @@ describe('SidebarItem', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test("don't use accordion for non-collapsible with menu", () => {
+  it("don't use accordion for non-collapsible with menu", () => {
     const menu = (
       <Sidebar.Menu>
         <Sidebar.Item>Menu item</Sidebar.Item>
@@ -115,7 +115,7 @@ describe('SidebarItem', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('should transform menu items text to title case when Picasso titleCase property is true', () => {
+  it('should transform menu items text to title case when Picasso titleCase property is true', () => {
     const MENU_TEXT_CONTENT = 'Test vh5'
     const menu = (
       <Sidebar.Menu>
@@ -135,12 +135,12 @@ describe('SidebarItem', () => {
       }
     )
 
-    expect(spiedOnTitleCase).toBeCalledTimes(2)
+    expect(spiedOnTitleCase).toHaveBeenCalledTimes(2)
     expect(spiedOnTitleCase.mock.calls[0]).toEqual([SIDEBAR_ITEM_TEXT_CONTENT])
     expect(spiedOnTitleCase.mock.calls[1]).toEqual([MENU_TEXT_CONTENT])
   })
 
-  test('should not transform menu items text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+  it('should not transform menu items text to title case when Picasso titleCase property is true but the component property overrides it', () => {
     const TEXT_CONTENT = 'Test vi7'
     const menu = (
       <Sidebar.Menu>
@@ -156,6 +156,6 @@ describe('SidebarItem', () => {
       { titleCase: true }
     )
 
-    expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
+    expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
   })
 })

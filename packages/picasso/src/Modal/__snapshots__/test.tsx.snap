@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders Modal 1`] = `
+exports[`Modal renders 1`] = `
 <div
   id="modal-root"
   style="overflow: hidden;"
@@ -92,7 +92,7 @@ exports[`renders Modal 1`] = `
 </div>
 `;
 
-exports[`useModal opens and closes modal 1`] = `
+exports[`Modal useModal opens and closes modal 1`] = `
 <body
   style="overflow: hidden;"
 >
@@ -165,7 +165,7 @@ exports[`useModal opens and closes modal 1`] = `
 </body>
 `;
 
-exports[`useModal opens and closes modal 2`] = `
+exports[`Modal useModal opens and closes modal 2`] = `
 <body
   style=""
 >
@@ -191,7 +191,7 @@ exports[`useModal opens and closes modal 2`] = `
 </body>
 `;
 
-exports[`useModal shows multiple modals at the same time 1`] = `
+exports[`Modal useModal shows multiple modals at the same time 1`] = `
 <body
   style="overflow: hidden;"
 >
