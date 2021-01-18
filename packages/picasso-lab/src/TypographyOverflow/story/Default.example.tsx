@@ -11,7 +11,8 @@ const Example = () => {
       </div>
       <div
         style={{
-          width: '50%',
+          marginTop: '1rem',
+          width: '500px',
           paddingRight: '20px',
           resize: 'horizontal',
           overflow: 'auto',
@@ -20,6 +21,26 @@ const Example = () => {
       >
         <TypographyOverflow data-testid='ellipsed-text-dynamic-width'>
           Another typography is very long and has dynamic width. Try to resize.
+        </TypographyOverflow>
+      </div>
+      <div
+        style={{
+          marginTop: '1rem',
+          width: '300px',
+          paddingRight: '20px',
+          resize: 'horizontal',
+          overflow: 'auto',
+          borderRight: '3px solid black'
+        }}
+      >
+        <TypographyOverflow
+          lines={2}
+          as='p'
+          tooltipVariant='light'
+          data-testid='ellipsed-text-lines'
+        >
+          Two lines typography with a very long text and{' '}
+          <a href='#'>two words link</a> and dynamic width. Try to resize.
         </TypographyOverflow>
       </div>
     </>
