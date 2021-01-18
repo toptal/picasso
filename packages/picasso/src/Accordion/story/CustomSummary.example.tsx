@@ -35,6 +35,7 @@ const Summary = ({
           </Transitions.Rotate180>
         }
         onClick={onClick}
+        data-testid='trigger'
       >
         {expanded ? 'Hide' : 'Show'}
       </Button>
@@ -47,6 +48,7 @@ const InterviewCard = () => (
   <Container
     style={{ flex: 1, border: `1px solid ${palette.grey.light2}` }}
     flex
+    data-testid='content'
   >
     <Container
       flex
@@ -94,7 +96,13 @@ const InterviewCard = () => (
               <Link href='#'>Add to calendar</Link>
             </Typography>
           </Container>
-          <Button size='small'>Start Interview Onboarding</Button>
+          <Button
+            data-testid='start-onboarding'
+            size='small'
+            onClick={() => window.alert('Onboarding started')}
+          >
+            Start Interview Onboarding
+          </Button>
         </Container>
       </Container>
 

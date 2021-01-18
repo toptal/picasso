@@ -1,17 +1,19 @@
 import React from 'react'
-import { Accordion, Container, Typography } from '@toptal/picasso'
+import { Accordion, Container, Grid, Typography } from '@toptal/picasso'
 
 const Example = () => {
   return (
-    <Container flex>
-      <Container style={{ width: '250px' }} right='large'>
+    <Grid>
+      <Grid.Item small={4}>
         <Container bottom='medium'>
-          <Typography variant='heading' size='small' titleCase>
-            Border all
-          </Typography>
+          <Typography variant='heading'>All Borders</Typography>
         </Container>
 
-        <Accordion content={<DetailsDogDefinitionPanel />} borders='all'>
+        <Accordion
+          defaultExpanded
+          borders='all'
+          content={<DetailsDogDefinitionPanel />}
+        >
           <Accordion.Summary>What is a dog?</Accordion.Summary>
         </Accordion>
         <Accordion content={<DetailsDogKindPanel />} borders='all'>
@@ -20,31 +22,30 @@ const Example = () => {
         <Accordion content={<DetailsDogAcquirePanel />} borders='all'>
           <Accordion.Summary>How do you acquire a dog?</Accordion.Summary>
         </Accordion>
-      </Container>
+      </Grid.Item>
 
-      <Container style={{ width: '250px' }} right='large'>
+      <Grid.Item small={4}>
         <Container bottom='medium'>
-          <Typography variant='heading' size='small' titleCase>
-            Border middle
-          </Typography>
+          <Typography variant='heading'>Middle Borders</Typography>
         </Container>
 
         <Accordion content={<DetailsDogDefinitionPanel />} borders='middle'>
           <Accordion.Summary>What is a dog?</Accordion.Summary>
         </Accordion>
-        <Accordion content={<DetailsDogKindPanel />} borders='middle'>
+        <Accordion
+          defaultExpanded
+          content={<DetailsDogKindPanel />}
+          borders='middle'
+        >
           <Accordion.Summary>What kinds of dogs are there?</Accordion.Summary>
         </Accordion>
         <Accordion content={<DetailsDogAcquirePanel />} borders='middle'>
           <Accordion.Summary>How do you acquire a dog?</Accordion.Summary>
         </Accordion>
-      </Container>
-
-      <Container style={{ width: '250px' }} right='large'>
+      </Grid.Item>
+      <Grid.Item small={4}>
         <Container bottom='medium'>
-          <Typography variant='heading' size='small' titleCase>
-            Border none
-          </Typography>
+          <Typography variant='heading'>No Borders</Typography>
         </Container>
 
         <Accordion content={<DetailsDogDefinitionPanel />} borders='none'>
@@ -53,11 +54,15 @@ const Example = () => {
         <Accordion content={<DetailsDogKindPanel />} borders='none'>
           <Accordion.Summary>What kinds of dogs are there?</Accordion.Summary>
         </Accordion>
-        <Accordion content={<DetailsDogAcquirePanel />} borders='none'>
+        <Accordion
+          defaultExpanded
+          content={<DetailsDogAcquirePanel />}
+          borders='none'
+        >
           <Accordion.Summary>How do you acquire a dog?</Accordion.Summary>
         </Accordion>
-      </Container>
-    </Container>
+      </Grid.Item>
+    </Grid>
   )
 }
 

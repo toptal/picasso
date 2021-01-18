@@ -4,7 +4,6 @@ import React, {
   HTMLAttributes,
   ReactElement,
   forwardRef,
-  FunctionComponent,
   useState
 } from 'react'
 import cx from 'classnames'
@@ -25,18 +24,38 @@ export type Borders = 'all' | 'middle' | 'none'
 
 const useStyles = makeStyles(styles)
 
-const Summary: FunctionComponent = props => {
-  const { children } = props
-  const classes = useStyles(props)
+export const EmptyAccordionSummary = () => (
+  <div data-testid='picasso-empty-accordion-summary' />
+)
 
-  return <div className={classes.summaryWrapper}>{children}</div>
+export interface SummaryProps extends Partial<StandardProps> {
+  children: ReactNode
 }
 
-const Details: FunctionComponent<{ className?: string }> = props => {
-  const { children, className } = props
+export const Summary = (props: SummaryProps) => {
+  const { children, className, ...rest } = props
   const classes = useStyles(props)
 
-  return <div className={cx(className, classes.detailsWrapper)}>{children}</div>
+  return (
+    <div {...rest} className={cx(className, classes.summaryWrapper)}>
+      {children}
+    </div>
+  )
+}
+
+export interface DetailsProps extends Partial<StandardProps> {
+  children: ReactNode
+}
+
+export const Details = (props: DetailsProps) => {
+  const { children, className, ...rest } = props
+  const classes = useStyles(props)
+
+  return (
+    <div {...rest} className={cx(className, classes.detailsWrapper)}>
+      {children}
+    </div>
+  )
 }
 
 export interface StaticProps {
@@ -64,9 +83,6 @@ export interface Props
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const EmptyAccordionSummary = ({ expanded }: { expanded?: boolean }) => <div />
 
 const decorateWithExpandIconClasses = (
   expandIcon: ReactElement,

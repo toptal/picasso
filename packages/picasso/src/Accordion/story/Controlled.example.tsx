@@ -1,5 +1,11 @@
 import React from 'react'
-import { Accordion, Button, Container, Typography } from '@toptal/picasso'
+import {
+  Accordion,
+  Button,
+  Container,
+  Typography,
+  Plus16
+} from '@toptal/picasso'
 
 const Example = () => {
   const [expanded, setExpanded] = React.useState(true)
@@ -14,6 +20,7 @@ const Example = () => {
           <Accordion
             content={<DetailsDogDefinitionPanel />}
             expanded={expanded}
+            expandIcon={<Plus16 />}
           >
             <Accordion.Summary>What is a dog?</Accordion.Summary>
           </Accordion>

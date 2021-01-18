@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccordionDetails renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiAccordionDetails-root AccordionDetails-root"
+    >
+      Lorem ipsum
+    </div>
+  </div>
+</div>
+`;
