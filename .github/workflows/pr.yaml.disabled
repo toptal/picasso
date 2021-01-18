@@ -13,13 +13,16 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    # container:
-    #   image: cypress/included:5.3.0
-    #   options: --privileged # thanks to this we can increase number of file watchers below
+    container:
+      image: cypress/included:5.3.0
+      options: --privileged # thanks to this we can increase number of file watchers below
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Increase max_user_watches
+        run: echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
