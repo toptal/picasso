@@ -5,7 +5,7 @@ import Link from '../Link'
 import TopBar from './TopBar'
 
 describe('Page.TopBar', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = render(<TopBar title='Default' />)
 
     expect(container).toMatchSnapshot()

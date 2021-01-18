@@ -10,7 +10,7 @@ exports[`Image circular variant render 1`] = `
 </div>
 `;
 
-exports[`Image default render 1`] = `
+exports[`Image renders 1`] = `
 <div>
   <img
     alt="Default image"

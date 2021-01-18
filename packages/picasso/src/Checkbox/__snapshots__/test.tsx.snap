@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`checkbox interaction should render checked checkbox 1`] = `
+exports[`Checkbox checkbox interaction should render checked checkbox 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -44,7 +44,7 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
 </div>
 `;
 
-exports[`renders default checkbox without label 1`] = `
+exports[`Checkbox renders default checkbox without label 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -75,7 +75,7 @@ exports[`renders default checkbox without label 1`] = `
 </div>
 `;
 
-exports[`renders disabled state 1`] = `
+exports[`Checkbox renders disabled state 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -108,7 +108,7 @@ exports[`renders disabled state 1`] = `
 </div>
 `;
 
-exports[`renders indeterminate state 1`] = `
+exports[`Checkbox renders indeterminate state 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -139,7 +139,7 @@ exports[`renders indeterminate state 1`] = `
 </div>
 `;
 
-exports[`renders with (optional) 1`] = `
+exports[`Checkbox renders with (optional) 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -170,7 +170,7 @@ exports[`renders with (optional) 1`] = `
 </div>
 `;
 
-exports[`renders with asterisk 1`] = `
+exports[`Checkbox renders with asterisk 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -201,7 +201,7 @@ exports[`renders with asterisk 1`] = `
 </div>
 `;
 
-exports[`should render default checkbox with label 1`] = `
+exports[`Checkbox should render default checkbox with label 1`] = `
 <div>
   <div
     class="Picasso-root"

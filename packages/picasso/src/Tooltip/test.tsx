@@ -9,7 +9,7 @@ import Tooltip from './Tooltip'
 const mockedIsPointerDevice = isPointerDevice as jest.Mock
 
 describe('Tooltip', () => {
-  it('default render', () => {
+  it('renders', () => {
     // If you don't provide `id` prop, it falls back to a randomly generated id.
     const { container } = render(
       <Tooltip

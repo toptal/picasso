@@ -36,7 +36,7 @@ afterEach(() => {
 })
 
 describe('Typography', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = render(
       <TestTypography>Just Typography</TestTypography>
     )

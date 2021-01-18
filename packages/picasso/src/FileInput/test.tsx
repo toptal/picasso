@@ -9,7 +9,7 @@ const TestFileInput: FunctionComponent<OmitInternalProps<Props>> = () => (
 )
 
 describe('FileInput', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = render(<TestFileInput />)
 
     expect(container).toMatchSnapshot()

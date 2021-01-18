@@ -9,6 +9,7 @@ const LINE_CONFIG: LineConfig = {
     variant: 'solid'
   }
 }
+
 const REF_DATA = [
   {
     data: {
@@ -34,14 +35,16 @@ const REF_DATA = [
   }
 ]
 
-it('convert line config', () => {
-  const EXPECTED_LINE_CONFIG = {
-    ...LINE_CONFIG,
-    [generateReferenceKey(0)]: { color: 'red', variant: 'reference' },
-    [generateReferenceKey(1)]: { color: 'blue', variant: 'reference' }
-  }
+describe('Name of the group', () => {
+  it('convertsline config', () => {
+    const EXPECTED_LINE_CONFIG = {
+      ...LINE_CONFIG,
+      [generateReferenceKey(0)]: { color: 'red', variant: 'reference' },
+      [generateReferenceKey(1)]: { color: 'blue', variant: 'reference' }
+    }
 
-  const convertedLineConfig = toLineConfigFormat(LINE_CONFIG, REF_DATA)
+    const convertedLineConfig = toLineConfigFormat(LINE_CONFIG, REF_DATA)
 
-  expect(convertedLineConfig).toEqual(EXPECTED_LINE_CONFIG)
+    expect(convertedLineConfig).toEqual(EXPECTED_LINE_CONFIG)
+  })
 })

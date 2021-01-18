@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Page default render 1`] = `
+exports[`Page renders 1`] = `
 <div>
   <div
     class="Picasso-root"

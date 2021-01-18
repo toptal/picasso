@@ -13,22 +13,11 @@ import { Props as ModalActionsProps } from '../ModalActions/ModalActions'
 import { Props as ModalTitleProps } from '../ModalTitle/ModalTitle'
 import { Props as ModalContentProps } from '../ModalContent/ModalContent'
 
-let modalRoot: HTMLElement
-
-beforeAll(() => {
-  modalRoot = document.createElement('div')
-
-  modalRoot.setAttribute('id', 'modal-root')
-  document.body.appendChild(modalRoot)
-})
-
-const TestModal = ({ children, open }: OmitInternalProps<ModalProps>) => {
-  return (
-    <Modal open={open} container={modalRoot}>
-      {children}
-    </Modal>
-  )
-}
+const TestModal = ({ children, open }: OmitInternalProps<ModalProps>) => (
+  <Modal open={open} container={modalRoot}>
+    {children}
+  </Modal>
+)
 
 const TestModalTitle = ({ children }: OmitInternalProps<ModalTitleProps>) => (
   <Modal.Title>{children}</Modal.Title>
@@ -46,144 +35,155 @@ const TestModalActions = ({
   <Modal.Actions>{children}</Modal.Actions>
 )
 
-it('renders Modal', () => {
-  render(
-    <TestModal open>
-      <TestModalTitle>Title</TestModalTitle>
-      <TestModalContent>Modal test content</TestModalContent>
-      <TestModalActions>
-        <Button variant='secondary'>Cancel</Button>
-        <Button onClick={() => window.alert('clicked')} variant='positive'>
-          Update
-        </Button>
-      </TestModalActions>
-    </TestModal>,
-    { container: modalRoot }
-  )
+let modalRoot: HTMLElement
 
-  expect(modalRoot).toMatchSnapshot()
-})
+describe('Modal', () => {
+  beforeAll(() => {
+    modalRoot = document.createElement('div')
 
-it('useModal opens and closes modal', async () => {
-  const TestComponent = () => {
-    const { showModal, hideModal, isOpen } = useModal()
+    modalRoot.setAttribute('id', 'modal-root')
+    document.body.appendChild(modalRoot)
+  })
 
-    return (
-      <>
-        <Button onClick={showModal}>Show</Button>
-        <Modal open={isOpen}>
-          <p>Modal content</p>
-          <Button onClick={hideModal}>Hide</Button>
-        </Modal>
-      </>
+  it('renders', () => {
+    render(
+      <TestModal open>
+        <TestModalTitle>Title</TestModalTitle>
+        <TestModalContent>Modal test content</TestModalContent>
+        <TestModalActions>
+          <Button variant='secondary'>Cancel</Button>
+          <Button onClick={() => window.alert('clicked')} variant='positive'>
+            Update
+          </Button>
+        </TestModalActions>
+      </TestModal>,
+      { container: modalRoot }
     )
-  }
 
-  const { getByText, queryByText, baseElement } = render(<TestComponent />)
+    expect(modalRoot).toMatchSnapshot()
+  })
 
-  const showModalButton = getByText('Show')
+  it('useModal opens and closes modal', async () => {
+    const TestComponent = () => {
+      const { showModal, hideModal, isOpen } = useModal()
 
-  fireEvent.click(showModalButton)
+      return (
+        <>
+          <Button onClick={showModal}>Show</Button>
+          <Modal open={isOpen}>
+            <p>Modal content</p>
+            <Button onClick={hideModal}>Hide</Button>
+          </Modal>
+        </>
+      )
+    }
 
-  expect(queryByText('Modal content')).toBeTruthy()
-  expect(baseElement).toMatchSnapshot()
+    const { getByText, queryByText, baseElement } = render(<TestComponent />)
 
-  const hideModalButton = getByText('Hide')
+    const showModalButton = getByText('Show')
 
-  fireEvent.click(hideModalButton)
-  await waitForElementToBeRemoved(() => getByText('Hide'))
+    fireEvent.click(showModalButton)
 
-  expect(queryByText('Modal content')).toBeFalsy()
-  expect(baseElement).toMatchSnapshot()
-})
+    expect(queryByText('Modal content')).toBeTruthy()
+    expect(baseElement).toMatchSnapshot()
 
-it('given multiple modals are opened, when navigate from page then all modals should be closed', () => {
-  const PageWithModals = () => {
-    const { showModal: showModal1, isOpen: isOpen1 } = useModal()
-    const { showModal: showModal2, isOpen: isOpen2 } = useModal()
+    const hideModalButton = getByText('Hide')
 
-    return (
-      <div>
-        <Button onClick={showModal1}>Show 1</Button>
-        <Button onClick={showModal2}>Show 2</Button>
+    fireEvent.click(hideModalButton)
+    await waitForElementToBeRemoved(() => getByText('Hide'))
 
-        <Modal open={isOpen1}>
-          <p>Modal content 1</p>
-        </Modal>
-        <Modal open={isOpen2}>
-          <p>Modal content 2</p>
-        </Modal>
-      </div>
-    )
-  }
+    expect(queryByText('Modal content')).toBeFalsy()
+    expect(baseElement).toMatchSnapshot()
+  })
 
-  const SimplePage = () => {
-    return <div>Simple Page</div>
-  }
+  it('given multiple modals are opened, when navigate from page then all modals should be closed', () => {
+    const PageWithModals = () => {
+      const { showModal: showModal1, isOpen: isOpen1 } = useModal()
+      const { showModal: showModal2, isOpen: isOpen2 } = useModal()
 
-  const TestComponent = () => {
-    const [showPageWithModals, setShowPageWithModals] = useState(true)
+      return (
+        <div>
+          <Button onClick={showModal1}>Show 1</Button>
+          <Button onClick={showModal2}>Show 2</Button>
 
-    return (
-      <div>
-        {showPageWithModals ? <PageWithModals /> : <SimplePage />}
-        <Button onClick={() => setShowPageWithModals(false)}>
-          Switch pages
-        </Button>
-      </div>
-    )
-  }
+          <Modal open={isOpen1}>
+            <p>Modal content 1</p>
+          </Modal>
+          <Modal open={isOpen2}>
+            <p>Modal content 2</p>
+          </Modal>
+        </div>
+      )
+    }
 
-  const { getByText, queryByText } = render(<TestComponent />)
+    const SimplePage = () => {
+      return <div>Simple Page</div>
+    }
 
-  const showModal1 = getByText('Show 1')
-  const showModal2 = getByText('Show 2')
+    const TestComponent = () => {
+      const [showPageWithModals, setShowPageWithModals] = useState(true)
 
-  // Open modals
-  fireEvent.click(showModal1)
-  fireEvent.click(showModal2)
+      return (
+        <div>
+          {showPageWithModals ? <PageWithModals /> : <SimplePage />}
+          <Button onClick={() => setShowPageWithModals(false)}>
+            Switch pages
+          </Button>
+        </div>
+      )
+    }
 
-  // Check modals opened
-  expect(queryByText('Modal content 1')).toBeInTheDocument()
-  expect(queryByText('Modal content 2')).toBeInTheDocument()
+    const { getByText, queryByText } = render(<TestComponent />)
 
-  // Switch to other page
-  const switchPages = getByText('Switch pages')
+    const showModal1 = getByText('Show 1')
+    const showModal2 = getByText('Show 2')
 
-  fireEvent.click(switchPages)
+    // Open modals
+    fireEvent.click(showModal1)
+    fireEvent.click(showModal2)
 
-  // Check all modals were auto-closed
-  expect(queryByText('Modal content 1')).not.toBeInTheDocument()
-  expect(queryByText('Modal content 2')).not.toBeInTheDocument()
-})
+    // Check modals opened
+    expect(queryByText('Modal content 1')).toBeInTheDocument()
+    expect(queryByText('Modal content 2')).toBeInTheDocument()
 
-it('useModal shows multiple modals at the same time', () => {
-  const TestComponent = () => {
-    const { showModal: showModal1, isOpen: isOpen1 } = useModal()
-    const { showModal: showModal2, isOpen: isOpen2 } = useModal()
+    // Switch to other page
+    const switchPages = getByText('Switch pages')
 
-    return (
-      <>
-        <Button onClick={showModal1}>Show first</Button>
-        <Button onClick={showModal2}>Show second</Button>
+    fireEvent.click(switchPages)
 
-        <Modal open={isOpen1}>
-          <p>First modal content</p>
-        </Modal>
-        <Modal open={isOpen2}>
-          <p>Second modal content</p>
-        </Modal>
-      </>
-    )
-  }
+    // Check all modals were auto-closed
+    expect(queryByText('Modal content 1')).not.toBeInTheDocument()
+    expect(queryByText('Modal content 2')).not.toBeInTheDocument()
+  })
 
-  const { getByText, queryByText, baseElement } = render(<TestComponent />)
+  it('useModal shows multiple modals at the same time', () => {
+    const TestComponent = () => {
+      const { showModal: showModal1, isOpen: isOpen1 } = useModal()
+      const { showModal: showModal2, isOpen: isOpen2 } = useModal()
 
-  fireEvent.click(getByText('Show first'))
-  fireEvent.click(getByText('Show second'))
+      return (
+        <>
+          <Button onClick={showModal1}>Show first</Button>
+          <Button onClick={showModal2}>Show second</Button>
 
-  expect(queryByText('First modal content')).toBeTruthy()
-  expect(queryByText('Second modal content')).toBeTruthy()
+          <Modal open={isOpen1}>
+            <p>First modal content</p>
+          </Modal>
+          <Modal open={isOpen2}>
+            <p>Second modal content</p>
+          </Modal>
+        </>
+      )
+    }
 
-  expect(baseElement).toMatchSnapshot()
+    const { getByText, queryByText, baseElement } = render(<TestComponent />)
+
+    fireEvent.click(getByText('Show first'))
+    fireEvent.click(getByText('Show second'))
+
+    expect(queryByText('First modal content')).toBeTruthy()
+    expect(queryByText('Second modal content')).toBeTruthy()
+
+    expect(baseElement).toMatchSnapshot()
+  })
 })

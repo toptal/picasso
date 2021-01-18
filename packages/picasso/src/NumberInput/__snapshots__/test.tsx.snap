@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`regular 1`] = `
+exports[`NumberInput renders 1`] = `
 <div
   class="Picasso-root"
 >

@@ -16,7 +16,7 @@ afterEach(() => {
 })
 
 describe('YearSelect', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = render(
       <YearSelect from={2001} to={2005} onChange={() => {}} />
     )

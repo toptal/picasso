@@ -9,7 +9,7 @@ const TestMenu: FunctionComponent<OmitInternalProps<Props>> = ({
 }) => <Menu>{children}</Menu>
 
 describe('Menu', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = render(
       <TestMenu>
         <Menu.Item>Item 1</Menu.Item>

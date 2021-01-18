@@ -1,19 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Typography default render 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <p
-      class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
-    >
-      Just Typography
-    </p>
-  </div>
-</div>
-`;
-
 exports[`Typography inherit size render 1`] = `
 <div>
   <div
@@ -23,6 +9,20 @@ exports[`Typography inherit size render 1`] = `
       class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
     >
       Inherit font size
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Typography renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <p
+      class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
+    >
+      Just Typography
     </p>
   </div>
 </div>

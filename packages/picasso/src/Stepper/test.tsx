@@ -7,15 +7,6 @@ import Stepper, { Props } from './Stepper'
 
 jest.mock('ap-style-title-case')
 
-let spiedOnTitleCase: jest.SpyInstance
-
-beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-})
-afterEach(() => {
-  spiedOnTitleCase.mockReset()
-})
-
 const renderStepper = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
@@ -35,8 +26,17 @@ const renderStepper = (
   )
 }
 
+let spiedOnTitleCase: jest.SpyInstance
+
 describe('Stepper', () => {
-  it('default render', () => {
+  beforeEach(() => {
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+  })
+  afterEach(() => {
+    spiedOnTitleCase.mockReset()
+  })
+
+  it('renders', () => {
     const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
     const activeStep = 2
     const { container } = renderStepper({ steps, active: activeStep })

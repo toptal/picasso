@@ -17,7 +17,7 @@ const renderForm = (props: OmitInternalProps<Props>) => {
 }
 
 describe('Form', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = renderForm({
       onSubmit: values => console.log(values)
     })

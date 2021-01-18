@@ -14,7 +14,7 @@ const renderTabs = (
 }
 
 describe('Tabs', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = renderTabs(
       [<Tabs.Tab key={0} label='Tab 1' />, <Tabs.Tab key={1} label='Tab 2' />],
       {

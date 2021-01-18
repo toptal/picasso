@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`dismissable label should render dismissable label 1`] = `
+exports[`Tag dismissable label should render dismissable label 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -39,7 +39,7 @@ exports[`dismissable label should render dismissable label 1`] = `
 </div>
 `;
 
-exports[`renders \`blue\` variant 1`] = `
+exports[`Tag renders \`blue\` variant 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -61,7 +61,7 @@ exports[`renders \`blue\` variant 1`] = `
 </div>
 `;
 
-exports[`renders \`grey\` variant 1`] = `
+exports[`Tag renders \`grey\` variant 1`] = `
 <div>
   <div
     class="Picasso-root"

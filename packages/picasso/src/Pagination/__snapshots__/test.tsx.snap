@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders default 1`] = `
+exports[`Pagination renders 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -115,7 +115,7 @@ exports[`renders default 1`] = `
 </div>
 `;
 
-exports[`renders disabled 1`] = `
+exports[`Pagination renders disabled 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -237,7 +237,7 @@ exports[`renders disabled 1`] = `
 </div>
 `;
 
-exports[`renders nothing for 0 pages 1`] = `
+exports[`Pagination renders nothing for 0 pages 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -245,7 +245,7 @@ exports[`renders nothing for 0 pages 1`] = `
 </div>
 `;
 
-exports[`renders nothing for 1 page 1`] = `
+exports[`Pagination renders nothing for 1 page 1`] = `
 <div>
   <div
     class="Picasso-root"

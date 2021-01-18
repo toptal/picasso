@@ -49,7 +49,7 @@ describe('AccountSelect', () => {
       accounts
     })
   })
-  it('default render', () => {
+  it('renders', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()

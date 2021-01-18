@@ -10,7 +10,7 @@ const TestSidebarLogo = ({ children }: Props) => (
 )
 
 describe('SidebarLogo', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = render(
       <TestSidebarLogo>
         <Logo />

@@ -14,7 +14,7 @@ describe('DatePicker', () => {
     jest.useRealTimers()
   })
 
-  it('default render', () => {
+  it('renders', () => {
     const date = new Date('12-12-2019')
 
     const { container } = render(

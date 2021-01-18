@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tooltip default render 1`] = `
+exports[`Tooltip renders 1`] = `
 <div>
   <div
     class="Picasso-root"

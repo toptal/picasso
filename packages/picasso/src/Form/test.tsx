@@ -8,7 +8,7 @@ const renderForm = () => {
 }
 
 describe('Form', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = renderForm()
 
     expect(container).toMatchSnapshot()

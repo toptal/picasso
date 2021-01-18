@@ -125,49 +125,6 @@ exports[`UserBadge custom title 1`] = `
 </div>
 `;
 
-exports[`UserBadge default render 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="Container-flexStartAlignItems Container-flex UserBadge-root"
-    >
-      <div
-        class="Avatar-root Avatar-xsmall"
-      >
-        <div
-          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
-        />
-        <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
-        >
-          JD
-        </p>
-      </div>
-      <div
-        class="Container-flex Container-column UserBadge-infoContainer"
-      >
-        <div
-          class="Container-centerAlignItems Container-flex"
-        >
-          <h4
-            class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
-          >
-            Joe Doe
-          </h4>
-        </div>
-        <p
-          class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
-        >
-          QA tester
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`UserBadge invert render 1`] = `
 <div>
   <div
@@ -286,6 +243,49 @@ exports[`UserBadge override auto center alignment 1`] = `
             Joe Doe
           </h4>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserBadge renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Container-flexStartAlignItems Container-flex UserBadge-root"
+    >
+      <div
+        class="Avatar-root Avatar-xsmall"
+      >
+        <div
+          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+        />
+        <p
+          class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
+        >
+          JD
+        </p>
+      </div>
+      <div
+        class="Container-flex Container-column UserBadge-infoContainer"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <h4
+            class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+          >
+            Joe Doe
+          </h4>
+        </div>
+        <p
+          class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
+        >
+          QA tester
+        </p>
       </div>
     </div>
   </div>

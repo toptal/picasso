@@ -14,7 +14,7 @@ describe('Paper', () => {
   beforeEach(() => {
     api = renderPaper(<Typography>This is Paper</Typography>)
   })
-  it('default render', () => {
+  it('renders', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()

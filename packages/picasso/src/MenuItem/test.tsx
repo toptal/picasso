@@ -19,15 +19,16 @@ const TestMenuItem: FunctionComponent<OmitInternalProps<Props>> = ({
 
 let spiedOnTitleCase: jest.SpyInstance
 
-beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-})
-afterEach(() => {
-  spiedOnTitleCase.mockReset()
-})
-
 describe('MenuItem', () => {
-  it('default render', () => {
+  beforeEach(() => {
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+  })
+
+  afterEach(() => {
+    spiedOnTitleCase.mockReset()
+  })
+
+  it('renders', () => {
     const { container } = render(<TestMenuItem>Item</TestMenuItem>)
 
     expect(container).toMatchSnapshot()

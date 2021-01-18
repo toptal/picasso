@@ -25,7 +25,7 @@ const renderFormRadio = (
   )
 
 describe('FormRadio', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = renderFormRadio({
       name: 'color'
     })

@@ -11,7 +11,7 @@ const TestSidebar: FunctionComponent<OmitInternalProps<Props>> = ({
 }) => <Sidebar>{children}</Sidebar>
 
 describe('Sidebar', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = render(<TestSidebar />)
 
     expect(container).toMatchSnapshot()

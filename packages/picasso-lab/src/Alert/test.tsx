@@ -14,7 +14,7 @@ const renderAlert = (
 }
 
 describe('Alert', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = renderAlert('test example string', {})
 
     expect(container).toMatchSnapshot()

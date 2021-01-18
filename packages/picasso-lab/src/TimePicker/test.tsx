@@ -4,7 +4,7 @@ import { render, fireEvent } from '@toptal/picasso/test-utils'
 import TimePicker from './TimePicker'
 
 describe('TimePicker', () => {
-  it('default render', () => {
+  it('renders', () => {
     const time = '21:00'
 
     const { container } = render(

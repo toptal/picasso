@@ -130,43 +130,6 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
 </div>
 `;
 
-exports[`SidebarItem default render 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <li
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      role="menuitem"
-      tabindex="-1"
-    >
-      <div
-        class="Container-flex Container-column PicassoMenuItem-content"
-      >
-        <div
-          class="Container-centerAlignItems Container-flex"
-        >
-          <div
-            class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
-          >
-            <div
-              class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
-            >
-              <p
-                class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
-              >
-                Test item
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </li>
-  </div>
-</div>
-`;
-
 exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
 <div>
   <div
@@ -282,6 +245,43 @@ exports[`SidebarItem is selected 1`] = `
             </svg>
             <div
               class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
+              >
+                Test item
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;
+
+exports[`SidebarItem renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <div
+        class="Container-flex Container-column PicassoMenuItem-content"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
+          >
+            <div
+              class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
             >
               <p
                 class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"

@@ -20,7 +20,7 @@ describe('Notification', () => {
     api = renderNotification('test example string', {})
   })
 
-  it('default render', () => {
+  it('renders', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()

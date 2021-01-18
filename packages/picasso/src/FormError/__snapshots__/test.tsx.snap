@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FormError default render 1`] = `
+exports[`FormError renders 1`] = `
 <div>
   <div
     class="Picasso-root"

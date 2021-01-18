@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Calendar default render 1`] = `
+exports[`Calendar renders 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -112,7 +112,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-01-28"
               data-testid="day-button-28"
               type="button"
-              value="Mon Jan 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Mon Jan 28 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               28
             </button>
@@ -121,7 +121,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-01-29"
               data-testid="day-button-29"
               type="button"
-              value="Tue Jan 29 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Tue Jan 29 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               29
             </button>
@@ -130,7 +130,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-01-30"
               data-testid="day-button-30"
               type="button"
-              value="Wed Jan 30 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Wed Jan 30 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               30
             </button>
@@ -139,7 +139,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-01-31"
               data-testid="day-button-31"
               type="button"
-              value="Thu Jan 31 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Thu Jan 31 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               31
             </button>
@@ -148,7 +148,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-01"
               data-testid="day-button-1"
               type="button"
-              value="Fri Feb 01 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Fri Feb 01 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               1
             </button>
@@ -157,7 +157,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-02"
               data-testid="day-button-2"
               type="button"
-              value="Sat Feb 02 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Sat Feb 02 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               2
             </button>
@@ -166,7 +166,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-03"
               data-testid="day-button-3"
               type="button"
-              value="Sun Feb 03 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Sun Feb 03 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               3
             </button>
@@ -179,7 +179,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-04"
               data-testid="day-button-4"
               type="button"
-              value="Mon Feb 04 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Mon Feb 04 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               4
             </button>
@@ -188,7 +188,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-05"
               data-testid="day-button-5"
               type="button"
-              value="Tue Feb 05 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Tue Feb 05 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               5
             </button>
@@ -197,7 +197,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-06"
               data-testid="day-button-6"
               type="button"
-              value="Wed Feb 06 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Wed Feb 06 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               6
             </button>
@@ -206,7 +206,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-07"
               data-testid="day-button-7"
               type="button"
-              value="Thu Feb 07 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Thu Feb 07 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               7
             </button>
@@ -215,7 +215,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-08"
               data-testid="day-button-8"
               type="button"
-              value="Fri Feb 08 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Fri Feb 08 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               8
             </button>
@@ -224,7 +224,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-09"
               data-testid="day-button-9"
               type="button"
-              value="Sat Feb 09 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Sat Feb 09 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               9
             </button>
@@ -233,7 +233,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-10"
               data-testid="day-button-10"
               type="button"
-              value="Sun Feb 10 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Sun Feb 10 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               10
             </button>
@@ -246,7 +246,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-11"
               data-testid="day-button-11"
               type="button"
-              value="Mon Feb 11 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Mon Feb 11 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               11
             </button>
@@ -255,7 +255,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-12"
               data-testid="day-button-12"
               type="button"
-              value="Tue Feb 12 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Tue Feb 12 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               12
             </button>
@@ -264,7 +264,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-13"
               data-testid="day-button-13"
               type="button"
-              value="Wed Feb 13 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Wed Feb 13 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               13
             </button>
@@ -273,7 +273,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-14"
               data-testid="day-button-14"
               type="button"
-              value="Thu Feb 14 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Thu Feb 14 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               14
             </button>
@@ -282,7 +282,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-15"
               data-testid="day-button-15"
               type="button"
-              value="Fri Feb 15 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Fri Feb 15 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               15
             </button>
@@ -291,7 +291,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-16"
               data-testid="day-button-16"
               type="button"
-              value="Sat Feb 16 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Sat Feb 16 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               16
             </button>
@@ -300,7 +300,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-17"
               data-testid="day-button-17"
               type="button"
-              value="Sun Feb 17 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Sun Feb 17 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               17
             </button>
@@ -313,7 +313,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-18"
               data-testid="day-button-18"
               type="button"
-              value="Mon Feb 18 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Mon Feb 18 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               18
             </button>
@@ -322,7 +322,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-19"
               data-testid="day-button-19"
               type="button"
-              value="Tue Feb 19 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Tue Feb 19 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               19
             </button>
@@ -331,7 +331,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-20"
               data-testid="day-button-20"
               type="button"
-              value="Wed Feb 20 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Wed Feb 20 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               20
             </button>
@@ -340,7 +340,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-21"
               data-testid="day-button-21"
               type="button"
-              value="Thu Feb 21 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Thu Feb 21 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               21
             </button>
@@ -349,7 +349,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-22"
               data-testid="day-button-22"
               type="button"
-              value="Fri Feb 22 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Fri Feb 22 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               22
             </button>
@@ -358,7 +358,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-23"
               data-testid="day-button-23"
               type="button"
-              value="Sat Feb 23 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Sat Feb 23 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               23
             </button>
@@ -367,7 +367,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-24"
               data-testid="day-button-24"
               type="button"
-              value="Sun Feb 24 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Sun Feb 24 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               24
             </button>
@@ -380,7 +380,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-25"
               data-testid="day-button-25"
               type="button"
-              value="Mon Feb 25 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Mon Feb 25 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               25
             </button>
@@ -389,7 +389,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-26"
               data-testid="day-button-26"
               type="button"
-              value="Tue Feb 26 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Tue Feb 26 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               26
             </button>
@@ -398,7 +398,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-27"
               data-testid="day-button-27"
               type="button"
-              value="Wed Feb 27 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Wed Feb 27 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               27
             </button>
@@ -407,7 +407,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-02-28"
               data-testid="day-button-28"
               type="button"
-              value="Thu Feb 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Thu Feb 28 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               28
             </button>
@@ -416,7 +416,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-03-01"
               data-testid="day-button-1"
               type="button"
-              value="Fri Mar 01 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Fri Mar 01 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               1
             </button>
@@ -425,7 +425,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-03-02"
               data-testid="day-button-2"
               type="button"
-              value="Sat Mar 02 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Sat Mar 02 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               2
             </button>
@@ -434,7 +434,7 @@ exports[`Calendar default render 1`] = `
               data-simple-react-calendar-day="2019-03-03"
               data-testid="day-button-3"
               type="button"
-              value="Sun Mar 03 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+              value="Sun Mar 03 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
             >
               3
             </button>

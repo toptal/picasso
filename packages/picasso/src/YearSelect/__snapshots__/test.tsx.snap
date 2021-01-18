@@ -1,59 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`YearSelect default render 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="makeStyles-root makeStyles-rootFull"
-    >
-      <div
-        class="makeStyles-inputWrapper"
-      >
-        <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
-          role="textbox"
-        >
-          <input
-            aria-invalid="false"
-            autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
-            readonly=""
-            size="1"
-            type="text"
-            value=""
-          />
-          <fieldset
-            aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
-            style="padding-left: 8px;"
-          >
-            <legend
-              class="PrivateNotchedOutline-legend"
-              style="width: 0.01px;"
-            >
-              <span>
-                ​
-              </span>
-            </legend>
-          </fieldset>
-        </div>
-        <svg
-          class="SvgDropdownArrows16-root makeStyles-caret"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M11 10.3L11.7 11 8 14.7 4.3 11 5 10.3 8 13.3 11 10.3ZM8 1.3L11.7 5 11 5.7 8 2.7 5 5.7 4.3 5 7.3 2 7.3 2 8 1.3Z"
-          />
-        </svg>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`YearSelect render in descending order 1`] = `
 <ul
   class="MuiList-root Menu-root ScrollMenu-menu"
@@ -191,4 +137,58 @@ exports[`YearSelect render in descending order 1`] = `
     </li>
   </div>
 </ul>
+`;
+
+exports[`YearSelect renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="makeStyles-root makeStyles-rootFull"
+    >
+      <div
+        class="makeStyles-inputWrapper"
+      >
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
+          role="textbox"
+        >
+          <input
+            aria-invalid="false"
+            autocomplete="off"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
+            readonly=""
+            size="1"
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+        <svg
+          class="SvgDropdownArrows16-root makeStyles-caret"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M11 10.3L11.7 11 8 14.7 4.3 11 5 10.3 8 13.3 11 10.3ZM8 1.3L11.7 5 11 5.7 8 2.7 5 5.7 4.3 5 7.3 2 7.3 2 8 1.3Z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
 `;

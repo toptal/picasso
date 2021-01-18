@@ -11,7 +11,7 @@ const renderImage = (props: OmitInternalProps<Props>) => {
 }
 
 describe('Image', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = renderImage({
       alt: 'Default image',
       src: 'localhost'

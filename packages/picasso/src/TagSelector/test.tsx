@@ -69,7 +69,7 @@ const selectOption = async (
 }
 
 describe('TagSelector', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = renderTagSelector(testProps)
 
     expect(container).toMatchSnapshot()

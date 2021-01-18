@@ -20,29 +20,32 @@ const renderBreadcrumbsItem = (props: Props, picassoConfig?: PicassoConfig) => {
 
 let spiedOnTitleCase: jest.SpyInstance
 
-beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-})
-afterEach(() => {
-  spiedOnTitleCase.mockReset()
-})
+describe('BreadcrumbsItem', () => {
+  beforeEach(() => {
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+  })
 
-it('should transform text to title case when Picasso titleCase property is true', () => {
-  const TEXT_CONTENT = 'Test ab3'
+  afterEach(() => {
+    spiedOnTitleCase.mockReset()
+  })
 
-  renderBreadcrumbsItem(
-    { active: false, children: TEXT_CONTENT },
-    { titleCase: true }
-  )
+  it('should transform text to title case when Picasso titleCase property is true', () => {
+    const TEXT_CONTENT = 'Test ab3'
 
-  expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
-})
+    renderBreadcrumbsItem(
+      { active: false, children: TEXT_CONTENT },
+      { titleCase: true }
+    )
 
-it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
-  renderBreadcrumbsItem(
-    { active: false, titleCase: false },
-    { titleCase: true }
-  )
+    expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
+  })
 
-  expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
+  it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+    renderBreadcrumbsItem(
+      { active: false, titleCase: false },
+      { titleCase: true }
+    )
+
+    expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
+  })
 })

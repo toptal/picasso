@@ -27,7 +27,7 @@ const renderUserBadge = (
 }
 
 describe('UserBadge', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe'
     })

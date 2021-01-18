@@ -3,25 +3,27 @@ import { render, waitForDomChange } from '@toptal/picasso/test-utils'
 
 import Favicon from './Favicon'
 
-it('default render', async () => {
-  render(<Favicon />)
+describe('Favicon', () => {
+  it('renders', async () => {
+    render(<Favicon />)
 
-  await waitForDomChange()
+    await waitForDomChange()
 
-  expect(document.querySelectorAll('head > link')).toMatchSnapshot()
-})
+    expect(document.querySelectorAll('head > link')).toMatchSnapshot()
+  })
 
-it('with environment specified', async () => {
-  render(<Favicon environment='staging' />)
+  it('renders with environment specified', async () => {
+    render(<Favicon environment='staging' />)
 
-  await waitForDomChange()
+    await waitForDomChange()
 
-  expect(document.querySelectorAll('head > link')).toMatchSnapshot()
-})
+    expect(document.querySelectorAll('head > link')).toMatchSnapshot()
+  })
 
-it('with test environment renders nothing', async () => {
-  const { container } = render(<Favicon environment='test' />)
-  const picassoRoot = container.firstChild as Element
+  it('renders nothing in a test environment', async () => {
+    const { container } = render(<Favicon environment='test' />)
+    const picassoRoot = container.firstChild as Element
 
-  expect(picassoRoot.children).toHaveLength(0)
+    expect(picassoRoot.children).toHaveLength(0)
+  })
 })

@@ -3,8 +3,8 @@ import { render } from '@toptal/picasso/test-utils'
 
 import Tag from '../Tag'
 
-const renderTagGroup = () => {
-  return render(
+const renderTagGroup = () =>
+  render(
     <Tag.Group>
       <Tag>Angular JS</Tag>
       <Tag>React JS</Tag>
@@ -12,10 +12,11 @@ const renderTagGroup = () => {
       <Tag>Vue JS</Tag>
     </Tag.Group>
   )
-}
 
-it('should render label group with 4 labels', () => {
-  const { container } = renderTagGroup()
+describe('TagGroup', () => {
+  it('should render label group with 4 labels', () => {
+    const { container } = renderTagGroup()
 
-  expect(container).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
+  })
 })

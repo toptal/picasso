@@ -42,7 +42,7 @@ const placeholder = 'Placeholder text'
 
 describe('Autocomplete', () => {
   describe('static behavior', () => {
-    it('default render', () => {
+    it('renders', () => {
       const { container } = renderAutocomplete({
         placeholder: 'Start typing here...',
         options: testOptions,

@@ -13,7 +13,7 @@ describe('Page', () => {
   beforeEach(() => {
     api = renderPage(<div>Test</div>)
   })
-  it('default render', () => {
+  it('renders', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()

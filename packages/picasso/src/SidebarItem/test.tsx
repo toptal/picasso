@@ -38,7 +38,7 @@ afterEach(() => {
 })
 
 describe('SidebarItem', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = render(<TestSidebarItem>Test item</TestSidebarItem>)
 
     expect(container).toMatchSnapshot()

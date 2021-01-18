@@ -14,11 +14,13 @@ const renderLoader = (children: ReactNode, props: OmitInternalProps<Props>) => {
   )
 }
 
-it('props combo', () => {
-  const { container } = renderLoader('Testing', {
-    inline: true,
-    size: 'large'
-  })
+describe('Loader', () => {
+  it('props combo', () => {
+    const { container } = renderLoader('Testing', {
+      inline: true,
+      size: 'large'
+    })
 
-  expect(container).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
+  })
 })

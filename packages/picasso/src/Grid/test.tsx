@@ -7,7 +7,7 @@ import Grid, { Props } from './Grid'
 const TestGrid: FunctionComponent<OmitInternalProps<Props>> = () => <Grid />
 
 describe('Grid', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = render(<TestGrid />)
 
     expect(container).toMatchSnapshot()

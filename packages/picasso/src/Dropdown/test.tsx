@@ -6,7 +6,7 @@ import Dropdown from './Dropdown'
 import Container from '../Container'
 
 describe('Dropdown', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = render(
       <Dropdown content={<div>Content</div>}>
         Open Dropdown <Dropdown.Arrow />

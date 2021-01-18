@@ -5,7 +5,7 @@ import { MemoryRouter, Link as RouterLink } from 'react-router-dom'
 import Link from '../Link'
 
 describe('Link', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = render(<Link>Please verify your email</Link>)
 
     expect(container).toMatchSnapshot()
