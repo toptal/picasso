@@ -1,7 +1,8 @@
 import React from 'react'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
 
-import Accordion from './Accordion'
+import Accordion, { Props } from './Accordion'
 
 const DETAILS_TEXT =
   'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.'
@@ -18,13 +19,21 @@ const TestSummary = () => (
   </Accordion.Summary>
 )
 
+const renderAccordion = (props?: Partial<OmitInternalProps<Props>>) =>
+  render(
+    <Accordion content={<TestDetails />} {...props}>
+      <TestSummary />
+    </Accordion>
+  )
+
 describe('Accordion', () => {
   it('renders collapsed by default', () => {
-    const { container, queryByTestId, getByText, getByTestId } = render(
-      <Accordion content={<TestDetails />}>
-        <TestSummary />
-      </Accordion>
-    )
+    const {
+      container,
+      queryByTestId,
+      getByText,
+      getByTestId
+    } = renderAccordion()
 
     expect(queryByTestId('empty-accordion-summary')).toBeNull()
 
@@ -49,15 +58,11 @@ describe('Accordion', () => {
 
   it('toggles', async () => {
     const handleChange = jest.fn()
-    const { getByText, getByTestId } = render(
-      <Accordion
-        content={<TestDetails />}
-        onChange={handleChange}
-        expandIcon={<span data-testid='trigger' />}
-      >
-        <TestSummary />
-      </Accordion>
-    )
+
+    const { getByText, getByTestId } = renderAccordion({
+      onChange: handleChange,
+      expandIcon: <span data-testid='trigger' />
+    })
 
     fireEvent.click(getByTestId('accordion-summary'))
     await wait(() => expect(getByText(DETAILS_TEXT)).toBeVisible())
@@ -72,11 +77,7 @@ describe('Accordion', () => {
   })
 
   it('renders disabled', async () => {
-    const { container } = render(
-      <Accordion content={<TestDetails />} disabled>
-        <TestSummary />
-      </Accordion>
-    )
+    const { container } = renderAccordion({ disabled: true })
 
     // MUI disabled state adds `pointer-events: none` style rule to the summary container.
     // It can't be tested programmatically `fireEvent` ignores this rule.
@@ -84,11 +85,9 @@ describe('Accordion', () => {
   })
 
   it('renders expanded initially', async () => {
-    const { getByText, getByTestId } = render(
-      <Accordion content={<TestDetails />} defaultExpanded>
-        <TestSummary />
-      </Accordion>
-    )
+    const { getByText, getByTestId } = renderAccordion({
+      defaultExpanded: true
+    })
 
     expect(getByTestId('accordion-details')).toBeVisible()
     expect(getByText(DETAILS_TEXT)).toBeVisible()
@@ -102,14 +101,9 @@ describe('Accordion', () => {
   })
 
   it('renders custom icon when passed', () => {
-    const { getByTestId, container } = render(
-      <Accordion
-        content={<TestDetails />}
-        expandIcon={<span data-testid='custom-expand-icon' />}
-      >
-        <TestSummary />
-      </Accordion>
-    )
+    const { getByTestId, container } = renderAccordion({
+      expandIcon: <span data-testid='custom-expand-icon' />
+    })
 
     expect(getByTestId('custom-expand-icon')).toBeInTheDocument()
 
@@ -117,16 +111,11 @@ describe('Accordion', () => {
   })
 
   it('passes styles correctly', () => {
-    const { getByTestId } = render(
-      <Accordion
-        data-testid='accordion'
-        className='foobar'
-        style={{ display: 'table' }}
-        content={<TestDetails />}
-      >
-        <TestSummary />
-      </Accordion>
-    )
+    const { getByTestId } = renderAccordion({
+      'data-testid': 'accordion',
+      className: 'foobar',
+      style: { display: 'table' }
+    })
 
     const accordionContainer = getByTestId('accordion')
 
