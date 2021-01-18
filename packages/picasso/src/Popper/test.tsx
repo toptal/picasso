@@ -45,7 +45,7 @@ const PopperRenderer = () => {
   )
 }
 
-test('default render', () => {
+it('default render', () => {
   const { getByRole } = render(<PopperRenderer />, {
     wrapper: PicassoWithFakeRootNode
   })

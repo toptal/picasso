@@ -12,7 +12,7 @@ const renderFormField = () => {
 }
 
 describe('FormField', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = renderFormField()
 
     expect(container).toMatchSnapshot()

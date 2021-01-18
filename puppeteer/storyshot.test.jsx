@@ -22,7 +22,7 @@ stories.forEach(story => {
     const humanName = createHumanName(story.name, exampleFilename)
 
     describe(`Component ${story.name}`, () => {
-      test(
+      it(
         humanName,
         assertVisuals(story.name, exampleFilename, {
           customSnapshotsDir: snapShotDir(story.file),

@@ -31,7 +31,7 @@ const EXPECTED_DATA = [
   ]
 ]
 
-test('convert to rechart highlight format', () => {
+it('convert to rechart highlight format', () => {
   const highlights = toRechartsHighlightFormat(
     TOP_DOMAIN,
     DATA_POINT_COUNT,

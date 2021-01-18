@@ -17,7 +17,7 @@ const renderPagination = (props: OmitInternalProps<Props>) => {
   )
 }
 
-test('renders default', () => {
+it('renders default', () => {
   const { container } = renderPagination({
     activePage: 5,
     totalPages: 20,
@@ -27,7 +27,7 @@ test('renders default', () => {
   expect(container).toMatchSnapshot()
 })
 
-test('renders disabled', () => {
+it('renders disabled', () => {
   const { container } = renderPagination({
     activePage: 5,
     totalPages: 20,
@@ -38,7 +38,7 @@ test('renders disabled', () => {
   expect(container).toMatchSnapshot()
 })
 
-test('renders nothing for 1 page', () => {
+it('renders nothing for 1 page', () => {
   const { container } = renderPagination({
     activePage: 1,
     totalPages: 1,
@@ -49,7 +49,7 @@ test('renders nothing for 1 page', () => {
   expect(container).toMatchSnapshot()
 })
 
-test('renders nothing for 0 pages', () => {
+it('renders nothing for 0 pages', () => {
   const { container } = renderPagination({
     activePage: 1,
     totalPages: 0,

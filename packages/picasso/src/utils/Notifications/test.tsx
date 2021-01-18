@@ -23,7 +23,7 @@ const renderNotification = () => {
 }
 
 describe('useNotifications', () => {
-  test('error notification render', () => {
+  it('error notification render', () => {
     const { getByText, container } = renderNotification()
     const showErrorButton = getByText('Show Error')
 
@@ -32,7 +32,7 @@ describe('useNotifications', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('info notification render', () => {
+  it('info notification render', () => {
     const { getByText, container } = renderNotification()
     const showInfoButton = getByText('Show Info')
 
@@ -41,7 +41,7 @@ describe('useNotifications', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('success notification render', () => {
+  it('success notification render', () => {
     const { getByText, container } = renderNotification()
     const showSuccessButton = getByText('Show Success')
 

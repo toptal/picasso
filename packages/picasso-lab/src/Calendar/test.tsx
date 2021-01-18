@@ -4,7 +4,7 @@ import { render } from '@toptal/picasso/test-utils'
 import Calendar from './Calendar'
 
 describe('Calendar', () => {
-  test('default render', () => {
+  it('default render', () => {
     const value = new Date('12-12-2019')
 
     const { container } = render(

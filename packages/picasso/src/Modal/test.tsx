@@ -46,7 +46,7 @@ const TestModalActions = ({
   <Modal.Actions>{children}</Modal.Actions>
 )
 
-test('renders Modal', () => {
+it('renders Modal', () => {
   render(
     <TestModal open>
       <TestModalTitle>Title</TestModalTitle>
@@ -64,7 +64,7 @@ test('renders Modal', () => {
   expect(modalRoot).toMatchSnapshot()
 })
 
-test('useModal opens and closes modal', async () => {
+it('useModal opens and closes modal', async () => {
   const TestComponent = () => {
     const { showModal, hideModal, isOpen } = useModal()
 
@@ -97,7 +97,7 @@ test('useModal opens and closes modal', async () => {
   expect(baseElement).toMatchSnapshot()
 })
 
-test('given multiple modals are opened, when navigate from page then all modals should be closed', () => {
+it('given multiple modals are opened, when navigate from page then all modals should be closed', () => {
   const PageWithModals = () => {
     const { showModal: showModal1, isOpen: isOpen1 } = useModal()
     const { showModal: showModal2, isOpen: isOpen2 } = useModal()
@@ -157,7 +157,7 @@ test('given multiple modals are opened, when navigate from page then all modals 
   expect(queryByText('Modal content 2')).not.toBeInTheDocument()
 })
 
-test('useModal shows multiple modals at the same time', () => {
+it('useModal shows multiple modals at the same time', () => {
   const TestComponent = () => {
     const { showModal: showModal1, isOpen: isOpen1 } = useModal()
     const { showModal: showModal2, isOpen: isOpen2 } = useModal()

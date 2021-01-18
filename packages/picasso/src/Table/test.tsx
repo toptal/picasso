@@ -57,23 +57,23 @@ describe('Table', () => {
     api = renderTable()
   })
 
-  test('default render', () => {
+  it('default render', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()
   })
 
-  test('should transform table header text to title case when Picasso titleCase property is true', () => {
+  it('should transform table header text to title case when Picasso titleCase property is true', () => {
     const HEADER_CELL_TEXT = 'Test sr2'
 
     renderTable({ titleCase: true }, {}, [HEADER_CELL_TEXT, 'a', 'b'])
 
-    expect(spiedOnTitleCase).toBeCalledWith(HEADER_CELL_TEXT)
+    expect(spiedOnTitleCase).toHaveBeenCalledWith(HEADER_CELL_TEXT)
   })
 
-  test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+  it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
     renderTable({ titleCase: true }, { titleCase: false })
 
-    expect(spiedOnTitleCase).toBeCalledTimes(0)
+    expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
   })
 })

@@ -69,13 +69,13 @@ const selectOption = async (
 }
 
 describe('TagSelector', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = renderTagSelector(testProps)
 
     expect(container).toMatchSnapshot()
   })
 
-  test('disabled render', async () => {
+  it('disabled render', async () => {
     const { container } = renderTagSelector({
       ...testProps,
       disabled: true,
@@ -85,7 +85,7 @@ describe('TagSelector', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('on type', () => {
+  it('on type', () => {
     const onInputChange = jest.fn()
     const { getByPlaceholderText } = renderTagSelector({
       ...testProps,
@@ -95,10 +95,10 @@ describe('TagSelector', () => {
 
     fireEvent.change(input, { target: { value: 'Al' } })
 
-    expect(onInputChange).toBeCalledWith('Al', { isSelected: false })
+    expect(onInputChange).toHaveBeenCalledWith('Al', { isSelected: false })
   })
 
-  test('preselected value', () => {
+  it('preselected value', () => {
     const { baseElement } = renderTagSelector({
       loading: false,
       otherOptionLabel: 'Add: ',
@@ -110,7 +110,7 @@ describe('TagSelector', () => {
     expect(baseElement).toMatchSnapshot()
   })
 
-  test('selected option', async () => {
+  it('selected option', async () => {
     const onChange = jest.fn()
     const renderResult = renderTagSelector({
       ...testProps,
@@ -122,6 +122,6 @@ describe('TagSelector', () => {
 
     await selectOption(renderResult, input, testOptions[0].text)
 
-    expect(onChange).toBeCalledWith([testOptions[0]])
+    expect(onChange).toHaveBeenCalledWith([testOptions[0]])
   })
 })

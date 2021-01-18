@@ -7,7 +7,7 @@ const CHART_DATA = [
   { order: 3, x: '2020-10-23', test: 2 }
 ]
 
-test('get chart ticks', () => {
+it('get chart ticks', () => {
   const chartTicks = getChartTicks(CHART_DATA)
 
   expect(chartTicks).toEqual([0, 1, 2, 3])

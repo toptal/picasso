@@ -22,7 +22,7 @@ describe('TableFooter', () => {
     api = renderTableFooter()
   })
 
-  test('default render', () => {
+  it('default render', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()

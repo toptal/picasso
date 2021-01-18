@@ -4315,10 +4315,10 @@
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-engine@^1.4.12":
-  version "1.4.12"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-1.4.12.tgz#852d64129a0cbcfa0410b86cec954caa27159a87"
-  integrity sha512-WZUgC9QPo7f0HJ7OtzGzi2fAOkDUJh5wL8ygtC3rtd2FIWMQy9YcLW4U8PXnYXucSN92m8vP9BHjKaQ36OyWdA==
+"@toptal/davinci-engine@^1.4.13":
+  version "1.4.13"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-1.4.13.tgz#7a5baa53b5cd57ef5f38d241897276e886bc8e78"
+  integrity sha512-CO0fniIs4Vr/5FmmXo+QmkkOInB9cvvCLNHamUQNOyobfLDBz+0iiPOppVNMem4S2LaEb4XHNEDeU1vDQCtqHA==
   dependencies:
     "@babel/cli" "^7.10.1"
     "@babel/core" "^7.10.1"
@@ -4336,7 +4336,7 @@
     babel-loader "^8.1.0"
     babel-plugin-module-resolver "^4.0.0"
     babel-plugin-named-asset-import "^0.3.6"
-    babel-plugin-styled-components "^1.10.7"
+    babel-plugin-styled-components "^1.12.0"
     babel-plugin-transform-inline-environment-variables "^0.4.3"
     babel-preset-react-app "^9.1.2"
     bytes "^3.1.0"
@@ -4393,10 +4393,10 @@
   resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-1.4.76.tgz#f87eaba7a93a33f7e4c1ffa8143cad9ab3448d6d"
   integrity sha512-J6304wT5J3eg5hWzO5LM4/r7hSNoWE5xSYqvHm+E1EspbZvixpaI2u0xajJh7iZ8AN3BuUrrSV0JdUBFq9lRwA==
 
-"@toptal/davinci-syntax@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-4.0.0.tgz#e4933f98cf363a928343f80e58cf62b7fe6e72b1"
-  integrity sha512-pAUJzu9qL9ChZ5DJ9maQSyjK4oJc9Y2qw/wi8SI4gfstclpneYGBdwai7+hmTrscCxrqoO+AQjebi75laqj/Ww==
+"@toptal/davinci-syntax@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-4.0.1.tgz#f0f5255f16841f90a6391134fad9b5cd9e4e208e"
+  integrity sha512-mKeOLXbOL/rJqzr3TtMbzL0glbF/lB2E66B8hDNOCdLfqBx4r72x2TEiTlMBaSa4Da/sjEdnaD7TirKErksdBQ==
   dependencies:
     "@toptal/davinci-cli-shared" "^1.0.1"
     "@toptal/eslint-plugin-davinci" "^2.0.0"
@@ -4420,18 +4420,18 @@
     stylelint-config-styled-components "^0.1.1"
     stylelint-processor-styled-components "^1.8.0"
 
-"@toptal/davinci@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-1.0.2.tgz#26ef8e072832f627f19d701700febc617eeb42ad"
-  integrity sha512-WrB7uzcILhEH5ss3hVbBbss/6x7AGJavbGoCAt2xh/LqJvlSIjJJPEJZNiywn1iGbsWL5fmX2V1UeMu19TDw6A==
+"@toptal/davinci@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-1.0.4.tgz#50e70f36b26a17b555c4204b92d24fca6f9e45ff"
+  integrity sha512-aQC+lJrEucBRs3aizwgI005B1OT3wvGPQTlMZl9brz8EW6jI4LplNXdot2sU9YJy9GubFcwkDtc/OOBMhBA5bw==
   dependencies:
     "@toptal/davinci-bootstrap" "^2.1.50"
     "@toptal/davinci-ci" "^1.4.0"
     "@toptal/davinci-cli-shared" "^1.0.1"
     "@toptal/davinci-code" "^0.2.0"
-    "@toptal/davinci-engine" "^1.4.12"
+    "@toptal/davinci-engine" "^1.4.13"
     "@toptal/davinci-qa" "^1.4.4"
-    "@toptal/davinci-syntax" "^4.0.0"
+    "@toptal/davinci-syntax" "^4.0.1"
 
 "@toptal/eslint-plugin-davinci@^2.0.0":
   version "2.0.0"
@@ -6348,10 +6348,10 @@ babel-plugin-react-docgen@^4.0.0, babel-plugin-react-docgen@^4.2.1:
     lodash "^4.17.15"
     react-docgen "^5.0.0"
 
-"babel-plugin-styled-components@>= 1", babel-plugin-styled-components@^1.10.7:
-  version "1.10.7"
-  resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-1.10.7.tgz#3494e77914e9989b33cc2d7b3b29527a949d635c"
-  integrity sha512-MBMHGcIA22996n9hZRf/UJLVVgkEOITuR2SvjHLb5dSTUyR4ZRGn+ngITapes36FI3WLxZHfRhkA1ffHxihOrg==
+"babel-plugin-styled-components@>= 1", babel-plugin-styled-components@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-1.12.0.tgz#1dec1676512177de6b827211e9eda5a30db4f9b9"
+  integrity sha512-FEiD7l5ZABdJPpLssKXjBUJMYqzbcNzBowfXDCdJhOpbhWiewapUaY+LZGT8R4Jg2TwOjGjG4RKeyrO5p9sBkA==
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.0.0"
     "@babel/helper-module-imports" "^7.0.0"

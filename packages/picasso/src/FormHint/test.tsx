@@ -8,7 +8,7 @@ const renderFormHint = (text: string) => {
 }
 
 describe('FormHint', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = renderFormHint(
       'Picasso was born on October 25, 1881 in the city of Malaga, Spain'
     )

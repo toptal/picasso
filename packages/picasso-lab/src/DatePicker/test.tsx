@@ -14,7 +14,7 @@ describe('DatePicker', () => {
     jest.useRealTimers()
   })
 
-  test('default render', () => {
+  it('default render', () => {
     const date = new Date('12-12-2019')
 
     const { container } = render(
@@ -24,7 +24,7 @@ describe('DatePicker', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('custom day rendering', () => {
+  it('custom day rendering', () => {
     const date = new Date('12-12-2019')
 
     const { getByPlaceholderText, getByText } = render(
@@ -56,21 +56,6 @@ describe('DatePicker', () => {
     const tooltip = getByText('tooltip content')
 
     expect(tooltip).toBeInTheDocument()
-  })
-
-  test('custom day rendering', () => {
-    const date = new Date('2015-12-12')
-    const handleChange = jest.fn()
-
-    const { getByPlaceholderText } = render(
-      <DatePicker placeholder='input' value={date} onChange={handleChange} />
-    )
-
-    const input = getByPlaceholderText('input')
-
-    fireEvent.change(input, { target: { value: '' } })
-
-    expect(handleChange).toBeCalledWith(null)
   })
 
   describe('Input', () => {
@@ -193,21 +178,21 @@ describe('DatePicker', () => {
       const input = getByPlaceholderText(defaultProps.placeholder)
 
       fireEvent.change(input, { target: { value: '07-09-2020' } })
-      expect(handleChange).not.toBeCalled()
+      expect(handleChange).not.toHaveBeenCalled()
 
       fireEvent.change(input, { target: { value: '07-26-2020' } })
-      expect(handleChange).not.toBeCalled()
+      expect(handleChange).not.toHaveBeenCalled()
 
       fireEvent.change(input, { target: { value: '07-22-2020' } })
-      expect(handleChange).toBeCalledWith(new Date(2020, 6, 22))
+      expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 22))
 
       // check min edge
       fireEvent.change(input, { target: { value: '07-10-2020' } })
-      expect(handleChange).toBeCalledWith(new Date(2020, 6, 10))
+      expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 10))
 
       // check max edge
       fireEvent.change(input, { target: { value: '07-25-2020' } })
-      expect(handleChange).toBeCalledWith(new Date(2020, 6, 25))
+      expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 25))
     })
 
     it('should work with minDate only', () => {
@@ -224,14 +209,14 @@ describe('DatePicker', () => {
       const input = getByPlaceholderText(defaultProps.placeholder)
 
       fireEvent.change(input, { target: { value: '07-09-2020' } })
-      expect(handleChange).not.toBeCalled()
+      expect(handleChange).not.toHaveBeenCalled()
 
       fireEvent.change(input, { target: { value: '07-22-2020' } })
-      expect(handleChange).toBeCalledWith(new Date(2020, 6, 22))
+      expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 22))
 
       // check min edge
       fireEvent.change(input, { target: { value: '07-10-2020' } })
-      expect(handleChange).toBeCalledWith(new Date(2020, 6, 10))
+      expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 10))
     })
 
     it('should work with maxDate', () => {
@@ -248,14 +233,14 @@ describe('DatePicker', () => {
       const input = getByPlaceholderText(defaultProps.placeholder)
 
       fireEvent.change(input, { target: { value: '07-26-2020' } })
-      expect(handleChange).not.toBeCalled()
+      expect(handleChange).not.toHaveBeenCalled()
 
       fireEvent.change(input, { target: { value: '07-22-2020' } })
-      expect(handleChange).toBeCalledWith(new Date(2020, 6, 22))
+      expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 22))
 
       // check max edge
       fireEvent.change(input, { target: { value: '07-25-2020' } })
-      expect(handleChange).toBeCalledWith(new Date(2020, 6, 25))
+      expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 25))
     })
   })
 

@@ -4,7 +4,7 @@ import { render, fireEvent } from '@toptal/picasso/test-utils'
 import TimePicker from './TimePicker'
 
 describe('TimePicker', () => {
-  test('default render', () => {
+  it('default render', () => {
     const time = '21:00'
 
     const { container } = render(
@@ -14,7 +14,7 @@ describe('TimePicker', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('custom time rendering', () => {
+  it('custom time rendering', () => {
     const time = '22:50'
     const nextTime = '18:30'
     const handleChange = jest.fn()

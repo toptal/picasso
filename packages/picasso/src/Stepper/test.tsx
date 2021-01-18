@@ -36,7 +36,7 @@ const renderStepper = (
 }
 
 describe('Stepper', () => {
-  test('default render', () => {
+  it('default render', () => {
     const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
     const activeStep = 2
     const { container } = renderStepper({ steps, active: activeStep })
@@ -44,7 +44,7 @@ describe('Stepper', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('render with all steps completed', () => {
+  it('render with all steps completed', () => {
     const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
     const activeStep = 4
     const { container } = renderStepper({ steps, active: activeStep })
@@ -52,7 +52,7 @@ describe('Stepper', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('render with hidden labels', () => {
+  it('render with hidden labels', () => {
     const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
     const activeStep = 4
     const { container } = renderStepper({
@@ -64,7 +64,7 @@ describe('Stepper', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('render with full-width', () => {
+  it('render with full-width', () => {
     const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
     const activeStep = 4
     const { container } = renderStepper({
@@ -76,23 +76,23 @@ describe('Stepper', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('should transform text to title case when Picasso titleCase property is true', () => {
+  it('should transform text to title case when Picasso titleCase property is true', () => {
     const STEP_1_TEXT = 'Test pb7'
     const STEP_2_TEXT = 'Test ap0'
 
     renderStepper({ steps: [STEP_1_TEXT, STEP_2_TEXT] }, { titleCase: true })
 
-    expect(spiedOnTitleCase).toBeCalledTimes(2)
+    expect(spiedOnTitleCase).toHaveBeenCalledTimes(2)
     expect(spiedOnTitleCase.mock.calls[0]).toEqual([STEP_1_TEXT])
     expect(spiedOnTitleCase.mock.calls[1]).toEqual([STEP_2_TEXT])
   })
 
-  test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+  it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
     renderStepper(
       { steps: ['abc pd0', 'abc gj5'], titleCase: false },
       { titleCase: true }
     )
 
-    expect(spiedOnTitleCase).toBeCalledTimes(0)
+    expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
   })
 })

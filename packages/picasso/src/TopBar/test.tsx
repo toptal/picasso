@@ -5,13 +5,13 @@ import Link from '../Link'
 import TopBar from './TopBar'
 
 describe('Page.TopBar', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = render(<TopBar title='Default' />)
 
     expect(container).toMatchSnapshot()
   })
 
-  test('render with link', () => {
+  it('render with link', () => {
     const { container } = render(
       <TopBar
         title='Something'

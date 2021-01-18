@@ -27,7 +27,7 @@ const renderUserBadge = (
 }
 
 describe('UserBadge', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe'
     })
@@ -35,7 +35,7 @@ describe('UserBadge', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('small size', () => {
+  it('small size', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe',
       size: 'small'
@@ -44,7 +44,7 @@ describe('UserBadge', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('manual center alignment', () => {
+  it('manual center alignment', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       center: true,
       name: 'Joe Doe'
@@ -53,7 +53,7 @@ describe('UserBadge', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('auto center alignment', () => {
+  it('auto center alignment', () => {
     const { container } = renderUserBadge(null, {
       name: 'Joe Doe'
     })
@@ -61,7 +61,7 @@ describe('UserBadge', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('override auto center alignment', () => {
+  it('override auto center alignment', () => {
     const { container } = renderUserBadge(null, {
       center: false,
       name: 'Joe Doe'
@@ -70,7 +70,7 @@ describe('UserBadge', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('invert render', () => {
+  it('invert render', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe',
       invert: true
@@ -79,7 +79,7 @@ describe('UserBadge', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('custom name', () => {
+  it('custom name', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe',
       renderName: name => <div>{name}</div>
@@ -88,7 +88,7 @@ describe('UserBadge', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('custom title', () => {
+  it('custom title', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe',
       title: 'Custom Title',

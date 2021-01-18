@@ -29,22 +29,22 @@ afterEach(() => {
   spiedOnTitleCase.mockReset()
 })
 
-test('renders Badge', () => {
+it('renders Badge', () => {
   const { container } = renderBadge({ content: 'Badge content' })
 
   expect(container).toMatchSnapshot()
 })
 
-test('should transform text to title case when Picasso titleCase property is true', () => {
+it('should transform text to title case when Picasso titleCase property is true', () => {
   const TEXT_CONTENT = 'Test ao4'
 
   renderBadge({ content: TEXT_CONTENT }, { titleCase: true })
 
-  expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
+  expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
 })
 
-test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
   renderBadge({ content: 'test pe2', titleCase: false }, { titleCase: true })
 
-  expect(spiedOnTitleCase).toBeCalledTimes(0)
+  expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
 })

@@ -29,7 +29,7 @@ const RAW_CHART_DATA = [
 ]
 const X_AXIS_KEY = 'x'
 
-test('convert chart data', () => {
+it('convert chart data', () => {
   const EXPECTED_CHART_DATA = [
     { x: '2020-10-20', projects: 1.7, team: 1.7 },
     { x: '2020-10-21', projects: 2, team: 2 },
@@ -48,7 +48,7 @@ test('convert chart data', () => {
   expect(convertedChartData).toEqual(EXPECTED_CHART_DATA)
 })
 
-test('convert chart data with custom label format', () => {
+it('convert chart data with custom label format', () => {
   const EXPECTED_CHART_DATA = [
     { x: 'Oct 20', projects: 1.7, team: 1.7 },
     { x: 'Oct 21', projects: 2, team: 2 },
@@ -67,7 +67,7 @@ test('convert chart data with custom label format', () => {
   expect(convertedChartData).toEqual(EXPECTED_CHART_DATA)
 })
 
-test('convert chart data with null values', () => {
+it('convert chart data with null values', () => {
   const CHART_DATA_WITH_NULLS = [
     {
       id: 'projects',
@@ -118,7 +118,7 @@ test('convert chart data with null values', () => {
   expect(convertedChartData).toEqual(EXPECTED_CHART_DATA)
 })
 
-test('convert chart data with ref data', () => {
+it('convert chart data with ref data', () => {
   const REF_DATA = [
     {
       data: {

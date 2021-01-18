@@ -7,7 +7,7 @@ const renderAlertInline = (children: ReactNode) =>
   render(<AlertInline>{children}</AlertInline>)
 
 describe('Alert', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = renderAlertInline('test example string')
 
     expect(container).toMatchSnapshot()

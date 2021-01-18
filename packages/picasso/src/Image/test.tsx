@@ -11,7 +11,7 @@ const renderImage = (props: OmitInternalProps<Props>) => {
 }
 
 describe('Image', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = renderImage({
       alt: 'Default image',
       src: 'localhost'
@@ -20,7 +20,7 @@ describe('Image', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('circular variant render', () => {
+  it('circular variant render', () => {
     const { container } = renderImage({
       alt: 'Circular image',
       variant: 'circular',

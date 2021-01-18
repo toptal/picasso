@@ -20,7 +20,7 @@ describe('Notification', () => {
     api = renderNotification('test example string', {})
   })
 
-  test('default render', () => {
+  it('default render', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()
@@ -39,7 +39,7 @@ describe('Notification', () => {
       fireEvent.click(closeButton)
     })
 
-    test('calls `prop.onClose`', () => {
+    it('calls `prop.onClose`', () => {
       expect(onClose).toHaveBeenCalledTimes(1)
     })
   })

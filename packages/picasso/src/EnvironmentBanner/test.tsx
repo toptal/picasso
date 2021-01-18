@@ -14,7 +14,7 @@ const renderEnvironmentBanner = (props: OmitInternalProps<Props>) => {
 }
 
 describe('EnvironmentBanner', () => {
-  test('development render', () => {
+  it('development render', () => {
     const { container } = renderEnvironmentBanner({
       environment: 'development',
       productName: 'Picasso'
@@ -23,7 +23,7 @@ describe('EnvironmentBanner', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('production render', () => {
+  it('production render', () => {
     const { container } = renderEnvironmentBanner({
       environment: 'production',
       productName: 'Picasso'
@@ -32,7 +32,7 @@ describe('EnvironmentBanner', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('render nothing in test environment', () => {
+  it('render nothing in test environment', () => {
     const { container } = renderEnvironmentBanner({
       environment: 'test',
       productName: 'Picasso'

@@ -14,7 +14,7 @@ const renderTagGroup = () => {
   )
 }
 
-test('should render label group with 4 labels', () => {
+it('should render label group with 4 labels', () => {
   const { container } = renderTagGroup()
 
   expect(container).toMatchSnapshot()

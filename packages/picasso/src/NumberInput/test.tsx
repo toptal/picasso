@@ -32,13 +32,13 @@ const renderNumberInput = (
   return render(<NumberInputRenderer initialValue={initialValue} {...props} />)
 }
 
-test('regular', () => {
+it('regular', () => {
   const { container } = renderNumberInput()
 
   expect(container.firstChild).toMatchSnapshot()
 })
 
-test('increase value', async () => {
+it('increase value', async () => {
   const { getByDisplayValue, queryAllByRole } = renderNumberInput()
 
   const input = getByDisplayValue('10') as HTMLInputElement
@@ -51,7 +51,7 @@ test('increase value', async () => {
   expect(input.value).toBe('15')
 })
 
-test('decrease value', () => {
+it('decrease value', () => {
   const { getByDisplayValue, queryAllByRole } = renderNumberInput()
 
   const input = getByDisplayValue('10') as HTMLInputElement
@@ -65,7 +65,7 @@ test('decrease value', () => {
 })
 
 describe('near max/min limits', () => {
-  test('increase value near max limit', () => {
+  it('increase value near max limit', () => {
     const { getByDisplayValue, queryAllByRole } = renderNumberInput({
       initialValue: '97'
     })
@@ -80,7 +80,7 @@ describe('near max/min limits', () => {
     expect(input.value).toBe('100')
   })
 
-  test('decrease value near min limit', () => {
+  it('decrease value near min limit', () => {
     const { getByDisplayValue, queryAllByRole } = renderNumberInput({
       initialValue: '-97'
     })
@@ -95,7 +95,7 @@ describe('near max/min limits', () => {
     expect(input.value).toBe('-100')
   })
 
-  test('decrease value when it is closer than step to max', () => {
+  it('decrease value when it is closer than step to max', () => {
     const { getByDisplayValue, queryAllByRole } = renderNumberInput({
       initialValue: '97'
     })
@@ -110,7 +110,7 @@ describe('near max/min limits', () => {
     expect(input.value).toBe('95')
   })
 
-  test('increase value when it is closer to min than step', () => {
+  it('increase value when it is closer to min than step', () => {
     const { getByDisplayValue, queryAllByRole } = renderNumberInput({
       initialValue: '-97'
     })

@@ -18,7 +18,7 @@ describe('TableSectionHead', () => {
     api = renderTableSectionHead()
   })
 
-  test('default render', () => {
+  it('default render', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()

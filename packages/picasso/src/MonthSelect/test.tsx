@@ -16,7 +16,7 @@ afterEach(() => {
 })
 
 describe('MonthSelect', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = render(
       <MonthSelect onChange={() => {}} from={1} to={12} />
     )
@@ -24,7 +24,7 @@ describe('MonthSelect', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('wrong range', () => {
+  it('wrong range', () => {
     let from: number, to: number
 
     const errorMessage = () =>

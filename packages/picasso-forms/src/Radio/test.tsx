@@ -25,7 +25,7 @@ const renderFormRadio = (
   )
 
 describe('FormRadio', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = renderFormRadio({
       name: 'color'
     })
@@ -33,7 +33,7 @@ describe('FormRadio', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('required with asterisk', () => {
+  it('required with asterisk', () => {
     const { container } = renderFormRadio(
       {
         name: 'color',

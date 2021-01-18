@@ -34,7 +34,7 @@ const REF_DATA = [
   }
 ]
 
-test('convert line config', () => {
+it('convert line config', () => {
   const EXPECTED_LINE_CONFIG = {
     ...LINE_CONFIG,
     [generateReferenceKey(0)]: { color: 'red', variant: 'reference' },

@@ -48,54 +48,54 @@ const renderCheckbox = (
   )
 }
 
-test('renders default checkbox without label', () => {
+it('renders default checkbox without label', () => {
   const { container } = renderCheckbox({})
 
   expect(container).toMatchSnapshot()
 })
 
-test('should render default checkbox with label', () => {
+it('should render default checkbox with label', () => {
   const { container } = renderCheckbox({ label: 'Select item' })
 
   expect(container).toMatchSnapshot()
 })
 
-test('renders disabled state', () => {
+it('renders disabled state', () => {
   const { container } = renderCheckbox({ disabled: true })
 
   expect(container).toMatchSnapshot()
 })
 
-test('renders indeterminate state', () => {
+it('renders indeterminate state', () => {
   const { container } = renderCheckbox({ indeterminate: true })
 
   expect(container).toMatchSnapshot()
 })
 
-test('renders with asterisk', () => {
+it('renders with asterisk', () => {
   const { container } = renderCheckbox({ requiredDecoration: 'asterisk' })
 
   expect(container).toMatchSnapshot()
 })
 
-test('renders with (optional)', () => {
+it('renders with (optional)', () => {
   const { container } = renderCheckbox({ requiredDecoration: 'optional' })
 
   expect(container).toMatchSnapshot()
 })
 
-test('should transform text to title case when Picasso titleCase property is true', () => {
+it('should transform text to title case when Picasso titleCase property is true', () => {
   const LABEL_TEXT = 'abc ac4'
 
   renderCheckbox({ label: LABEL_TEXT }, { titleCase: true })
 
-  expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)
+  expect(spiedOnTitleCase).toHaveBeenCalledWith(LABEL_TEXT)
 })
 
-test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
   renderCheckbox({ label: 'abc dp3', titleCase: false }, { titleCase: true })
 
-  expect(spiedOnTitleCase).toBeCalledTimes(0)
+  expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
 })
 
 describe('checkbox interaction', () => {
@@ -114,13 +114,13 @@ describe('checkbox interaction', () => {
     fireEvent.click(checkboxLabel)
   })
 
-  test('should render checked checkbox', () => {
+  it('should render checked checkbox', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()
   })
 
-  test('should fire onChange event on click on label', () => {
+  it('should fire onChange event on click on label', () => {
     expect(onChange).toHaveBeenCalled()
   })
 })

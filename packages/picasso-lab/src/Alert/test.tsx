@@ -14,14 +14,14 @@ const renderAlert = (
 }
 
 describe('Alert', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = renderAlert('test example string', {})
 
     expect(container).toMatchSnapshot()
   })
 
   describe('with `prop.onClose` is passed', () => {
-    test('calls `prop.onClose`', () => {
+    it('calls `prop.onClose`', () => {
       const onClose = jest.fn()
       const { getByTitle } = renderAlert('test example string', { onClose })
 

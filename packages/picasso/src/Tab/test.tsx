@@ -31,7 +31,7 @@ afterEach(() => {
 })
 
 describe('Tab', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = renderTab({
       label: 'Tab Label'
     })
@@ -39,7 +39,7 @@ describe('Tab', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('disabled tab', () => {
+  it('disabled tab', () => {
     const { container } = renderTab({
       label: 'Tab Label',
       disabled: true
@@ -48,7 +48,7 @@ describe('Tab', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('tab with icon', () => {
+  it('tab with icon', () => {
     const Icon = () => <div id='Icon' />
     const { container } = renderTab({
       label: 'Tab Label',
@@ -58,17 +58,17 @@ describe('Tab', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('should transform text to title case when Picasso titleCase property is true', () => {
+  it('should transform text to title case when Picasso titleCase property is true', () => {
     const LABEL_TEXT = 'Test vh2'
 
     renderTab({ label: LABEL_TEXT }, { titleCase: true })
 
-    expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)
+    expect(spiedOnTitleCase).toHaveBeenCalledWith(LABEL_TEXT)
   })
 
-  test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+  it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
     renderTab({ label: 'abc sp3', titleCase: false }, { titleCase: true })
 
-    expect(spiedOnTitleCase).toBeCalledTimes(0)
+    expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
   })
 })

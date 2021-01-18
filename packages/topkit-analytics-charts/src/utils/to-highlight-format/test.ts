@@ -11,7 +11,7 @@ const HIGHLIGHTS = [
 
 const X_AXIS_KEY = 'x'
 
-test('convert highlight data', () => {
+it('convert highlight data', () => {
   const CHART_DATA = [
     { x: '2020-11-01', test: 2 },
     { x: '2020-11-02', test: 1.5 },
@@ -32,7 +32,7 @@ test('convert highlight data', () => {
   ])
 })
 
-test('convert highlight data with label format', () => {
+it('convert highlight data with label format', () => {
   const CHART_DATA = [
     { x: 'Nov 01', test: 2 },
     { x: 'Nov 02', test: 1.5 },

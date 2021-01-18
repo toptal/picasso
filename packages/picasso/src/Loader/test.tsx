@@ -14,7 +14,7 @@ const renderLoader = (children: ReactNode, props: OmitInternalProps<Props>) => {
   )
 }
 
-test('props combo', () => {
+it('props combo', () => {
   const { container } = renderLoader('Testing', {
     inline: true,
     size: 'large'

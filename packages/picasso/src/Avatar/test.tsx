@@ -11,13 +11,13 @@ const renderAvatar = (props: OmitInternalProps<Props>) => {
 }
 
 describe('Avatar', () => {
-  test('avatar with text render', () => {
+  it('avatar with text render', () => {
     const { container } = renderAvatar({ name: 'Jacqueline Roque' })
 
     expect(container).toMatchSnapshot()
   })
 
-  test('Avatar with long text names', () => {
+  it('Avatar with long text names', () => {
     const { container } = renderAvatar({
       name: 'Jacqueline Roque Bailey Armstrong'
     })
@@ -25,7 +25,7 @@ describe('Avatar', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('avatar with photo render', () => {
+  it('avatar with photo render', () => {
     const { container } = renderAvatar({
       alt: 'Photo alt text',
       src: 'http://example.png',

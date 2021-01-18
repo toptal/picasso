@@ -41,19 +41,19 @@ afterEach(() => {
 })
 
 describe('FormLabel', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = render(<TestFormLabel>Label</TestFormLabel>)
 
     expect(container).toMatchSnapshot()
   })
 
-  test('disabled', () => {
+  it('disabled', () => {
     const { container } = render(<TestFormLabel disabled>Label</TestFormLabel>)
 
     expect(container).toMatchSnapshot()
   })
 
-  test('required with (optional)', () => {
+  it('required with (optional)', () => {
     const { container } = render(
       <TestFormLabel requiredDecoration='optional'>Label</TestFormLabel>
     )
@@ -61,7 +61,7 @@ describe('FormLabel', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('required with asterisk', () => {
+  it('required with asterisk', () => {
     const { container } = render(
       <TestFormLabel requiredDecoration='asterisk'>Label</TestFormLabel>
     )
@@ -69,17 +69,17 @@ describe('FormLabel', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('should transform text to title case when Picasso titleCase property is true', () => {
+  it('should transform text to title case when Picasso titleCase property is true', () => {
     const TEXT_CONTENT = 'Test kb8'
 
     render(<TestFormLabel>{TEXT_CONTENT}</TestFormLabel>, undefined, {
       titleCase: true
     })
 
-    expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
+    expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
   })
 
-  test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+  it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
     render(
       <TestFormLabel titleCase={false}>
         some text with-the-edge case for TEST
@@ -88,6 +88,6 @@ describe('FormLabel', () => {
       { titleCase: true }
     )
 
-    expect(spiedOnTitleCase).toBeCalledTimes(0)
+    expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
   })
 })

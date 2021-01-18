@@ -32,7 +32,7 @@ afterEach(() => {
   spiedOnTitleCase.mockReset()
 })
 
-test('should transform text to title case when Picasso titleCase property is true', () => {
+it('should transform text to title case when Picasso titleCase property is true', () => {
   const LABEL_TEXT = 'abc dj4'
 
   renderOverviewBlock(
@@ -40,16 +40,16 @@ test('should transform text to title case when Picasso titleCase property is tru
     { titleCase: true }
   )
 
-  expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)
+  expect(spiedOnTitleCase).toHaveBeenCalledWith(LABEL_TEXT)
 })
 
-test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
   renderOverviewBlock(
     { value: 'abc dk9', label: 'abc ps0', titleCase: false },
     { titleCase: true }
   )
 
-  expect(spiedOnTitleCase).toBeCalledTimes(0)
+  expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
 })
 
 describe('when OnClick function is defined', () => {

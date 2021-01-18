@@ -9,7 +9,7 @@ const TestGridItem: FunctionComponent<OmitInternalProps<Props>> = () => (
 )
 
 describe('GridItem', () => {
-  test('default render', () => {
+  it('default render', () => {
     const { container } = render(<TestGridItem />)
 
     expect(container).toMatchSnapshot()

@@ -40,7 +40,7 @@ const tooltipRestrictedOutside: PositionTranslate = {
   }
 }
 
-test('should NOT flip the tooltip, keep the cursor position', () => {
+it('should NOT flip the tooltip, keep the cursor position', () => {
   const translateX = getTooltipTranslate(tooltipUnrestricted)
   const { cursorCoordinate, offset } = tooltipUnrestricted
   const expected = cursorCoordinate + offset
@@ -48,7 +48,7 @@ test('should NOT flip the tooltip, keep the cursor position', () => {
   expect(translateX).toEqual(expected)
 })
 
-test('should flip the tooltip to the left of the cursor', () => {
+it('should flip the tooltip to the left of the cursor', () => {
   const translateX = getTooltipTranslate(tooltipRestricted)
   const { cursorCoordinate, offset, tooltipDimension } = tooltipRestricted
   const expected = cursorCoordinate - offset - tooltipDimension
@@ -56,7 +56,7 @@ test('should flip the tooltip to the left of the cursor', () => {
   expect(translateX).toEqual(expected)
 })
 
-test('should translate the tooltip to the chart (top or left) corner when it flips to outside of the screen', () => {
+it('should translate the tooltip to the chart (top or left) corner when it flips to outside of the screen', () => {
   const translateX = getTooltipTranslate(tooltipRestrictedOutside)
   const { viewbox, key } = tooltipRestricted
   const expected = viewbox[key]

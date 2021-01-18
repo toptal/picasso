@@ -51,13 +51,13 @@ describe('disabled radio button', () => {
       disabled: true
     })
   })
-  test('renders disabled version', () => {
+  it('renders disabled version', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()
   })
 
-  test('disables radio events', () => {
+  it('disables radio events', () => {
     const { container } = api
 
     fireEvent.click(container)
@@ -66,35 +66,29 @@ describe('disabled radio button', () => {
 })
 
 describe('radio button', () => {
-  test('renders default radio button', () => {
+  it('renders default radio button', () => {
     const { container } = renderRadio({})
 
     expect(container).toMatchSnapshot()
   })
 
-  test('renders default radio button', () => {
-    const { container } = renderRadio({})
-
-    expect(container).toMatchSnapshot()
-  })
-
-  test('should transform label text to title case when Picasso titleCase property is true', () => {
+  it('should transform label text to title case when Picasso titleCase property is true', () => {
     const LABEL_TEXT = 'Test bh6'
 
     renderRadio({ label: LABEL_TEXT }, { titleCase: true })
 
-    expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)
+    expect(spiedOnTitleCase).toHaveBeenCalledWith(LABEL_TEXT)
   })
 
-  test('should not transform label text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+  it('should not transform label text to title case when Picasso titleCase property is true but the component property overrides it', () => {
     renderRadio({ label: 'test label', titleCase: false }, { titleCase: true })
 
-    expect(spiedOnTitleCase).toBeCalledTimes(0)
+    expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
   })
 })
 
 describe('Radio.Group', () => {
-  test('renders radio in group', () => {
+  it('renders radio in group', () => {
     const { container }: RenderResult = render(
       <Radio.Group name='my-group'>
         <Radio label='LABEL+1' value='VALUE+1' />
