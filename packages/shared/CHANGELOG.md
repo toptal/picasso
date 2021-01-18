@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@2.0.2...@toptal/picasso-shared@2.0.3) (2021-01-18)
+
+
+### Bug Fixes
+
+* **MediaSkeletonLoader:** size variants ([#1840](https://github.com/toptal/picasso/issues/1840)) ([de9dd52](https://github.com/toptal/picasso/commit/de9dd52bec3cb1674d985e850ade7bbeb023ab6b))
+
+
+
+
+
 ## [2.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@2.0.1...@toptal/picasso-shared@2.0.2) (2021-01-05)
 
 **Note:** Version bump only for package @toptal/picasso-shared
