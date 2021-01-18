@@ -106,7 +106,6 @@ describe('Accordion', () => {
     })
 
     expect(getByTestId('custom-expand-icon')).toBeInTheDocument()
-
     expect(container).toMatchSnapshot()
   })
 
