@@ -1,24 +1,21 @@
 import React from 'react'
-import { render, RenderResult } from '@testing-library/react'
+import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Amount, { Props } from './Amount'
 
 const renderAmount = (props: OmitInternalProps<Props>) => {
-  const { amount } = props
-
-  return render(<Amount amount={amount} />)
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return render(<Amount {...props} />)
 }
 
 describe('Amount', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderAmount({ amount: 1500 })
-  })
-
-  test('default render', () => {
-    const { container } = api
+  it('renders', () => {
+    const { container } = renderAmount({
+      amount: 1500,
+      currency: 'EUR',
+      color: 'green'
+    })
 
     expect(container).toMatchSnapshot()
   })
