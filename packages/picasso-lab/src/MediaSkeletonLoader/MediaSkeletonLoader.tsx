@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import ContentLoader from 'react-content-loader'
-import { remToNumber } from '@toptal/picasso-shared'
+import { pxFromRem, BaseProps } from '@toptal/picasso-shared'
 
-interface ImageProps {
+interface ImageProps extends BaseProps {
   /** Each variant exposes a different set of props */
   variant: 'image'
   width: string | number
@@ -11,12 +11,12 @@ interface ImageProps {
   circle?: boolean
 }
 
-interface AvatarProps {
+interface AvatarProps extends BaseProps {
   variant: 'avatar'
   size?: 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'
 }
 
-interface IconProps {
+interface IconProps extends BaseProps {
   variant: 'icon'
   circle?: boolean
   size?: 'medium' | 'large'
@@ -24,9 +24,6 @@ interface IconProps {
 
 export type Props = ImageProps | AvatarProps | IconProps
 
-// all sizes are in pixels
-const WIDTH = 16
-const HEIGHT = 16
 const BORDER_RADIUS = '5px'
 
 const AVATAR_SIZES = {
@@ -48,9 +45,9 @@ interface LoaderAttributes {
   borderRadius: string
 }
 
-const getAvatarAttributes = ({
+export const getAvatarAttributes = ({
   size = 'xsmall'
-}: AvatarProps): LoaderAttributes => {
+}: Omit<AvatarProps, 'variant'>): LoaderAttributes => {
   const boxSize = AVATAR_SIZES[size]
 
   return {
@@ -60,10 +57,10 @@ const getAvatarAttributes = ({
   }
 }
 
-const getIconAttributes = ({
+export const getIconAttributes = ({
   size = 'medium',
   circle
-}: IconProps): LoaderAttributes => {
+}: Omit<IconProps, 'variant'>): LoaderAttributes => {
   const boxSize = ICON_SIZES[size]
 
   return {
@@ -73,17 +70,19 @@ const getIconAttributes = ({
   }
 }
 
-const getImageAttributes = ({
+export const getImageAttributes = ({
   circle,
   width,
   height
-}: ImageProps): LoaderAttributes => ({
-  width: typeof width === 'string' ? remToNumber(width) : width,
-  height: typeof height === 'string' ? remToNumber(height) : height,
+}: Omit<ImageProps, 'variant'>): LoaderAttributes => ({
+  width:
+    typeof width === 'string' ? Number.parseFloat(pxFromRem(width)) : width,
+  height:
+    typeof height === 'string' ? Number.parseFloat(pxFromRem(height)) : height,
   borderRadius: circle ? '50%' : BORDER_RADIUS
 })
 
-const getAttribute = (props: React.PropsWithChildren<Props>) => {
+export const getAttributes = (props: React.PropsWithChildren<Props>) => {
   let attributes
 
   switch (props.variant) {
@@ -96,19 +95,14 @@ const getAttribute = (props: React.PropsWithChildren<Props>) => {
     case 'image':
       attributes = getImageAttributes(props)
       break
-    default:
-      attributes = {
-        width: WIDTH,
-        height: HEIGHT,
-        borderRadius: BORDER_RADIUS
-      }
   }
 
   return attributes
 }
 
 export const MediaSkeletonLoader = (props: Props) => {
-  const { width, height, borderRadius } = useMemo(() => getAttribute(props), [
+  const { className, style } = props
+  const { width, height, borderRadius } = useMemo(() => getAttributes(props), [
     props
   ])
 
@@ -120,6 +114,9 @@ export const MediaSkeletonLoader = (props: Props) => {
       color={palette.grey.main2}
       width={width}
       height={height}
+      data-testid={props['data-testid']}
+      className={className}
+      style={style}
     >
       <rect
         x='0'

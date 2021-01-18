@@ -15,7 +15,7 @@ const Example = () => (
         </Container>
         <Container>
           <Container inline>
-            <SkeletonLoader.Media variant='avatar' size='xxsmall' />
+            <SkeletonLoader.Media size='xxsmall' />
           </Container>
           <Container inline left='small'>
             <SkeletonLoader.Media variant='avatar' size='xsmall' />
