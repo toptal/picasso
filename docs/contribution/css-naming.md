@@ -21,10 +21,8 @@ import styles from './styles'
 
 const useStyles = makeStyles(styles)
 
-const Container = (props) => {
+const Container = ({ width, children }) => {
   const classes = useStyles()
-
-  const { width, children } = props
 
   const rootClassname = cx(classes.root, classes[`root${capitalize(width)}`])
 
@@ -35,7 +33,7 @@ const Container = (props) => {
   )
 }
 
-export default Hero
+export default Container
 
 ```
 
@@ -72,10 +70,8 @@ import styles from './styles'
 
 const useStyles = makeStyles(styles)
 
-const Button = (props) => {
+const Button = ({ active, focused, disabled }) => {
   const classes = useStyles()
-
-  const { active, focused, disabled } = props
 
   const rootClassName = cx(
     {
