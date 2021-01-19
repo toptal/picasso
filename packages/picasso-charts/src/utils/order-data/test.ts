@@ -14,8 +14,10 @@ const ORDERED_CHART_DATA = [
   { order: 3, x: '2020-10-23', test: 2 }
 ]
 
-test('order chart data', () => {
-  const ordered = orderData(CHART_DATA)
+describe('orderData', () => {
+  it('orders chart data', () => {
+    const ordered = orderData(CHART_DATA)
 
-  expect(ordered).toEqual(ORDERED_CHART_DATA)
+    expect(ordered).toEqual(ORDERED_CHART_DATA)
+  })
 })

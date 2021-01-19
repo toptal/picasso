@@ -45,17 +45,19 @@ const PopperRenderer = () => {
   )
 }
 
-test('default render', () => {
-  const { getByRole } = render(<PopperRenderer />, {
-    wrapper: PicassoWithFakeRootNode
+describe('Popper', () => {
+  it('renders', () => {
+    const { getByRole } = render(<PopperRenderer />, {
+      wrapper: PicassoWithFakeRootNode
+    })
+
+    act(() => {
+      fireEvent.click(getByRole('action'))
+    })
+
+    const popper = getByRole('tooltip')
+    const root = getByRole('root')
+
+    expect(root).toContainElement(popper)
   })
-
-  act(() => {
-    fireEvent.click(getByRole('action'))
-  })
-
-  const popper = getByRole('tooltip')
-  const root = getByRole('root')
-
-  expect(root).toContainElement(popper)
 })

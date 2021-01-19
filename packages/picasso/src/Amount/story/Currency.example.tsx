@@ -1,22 +1,16 @@
-import { Amount, Container, Typography } from '@toptal/picasso'
+import { Amount, Container } from '@toptal/picasso'
 import React from 'react'
 
 const Example = () => (
   <div>
     <Container bottom={1}>
-      <Typography>
-        <Amount amount={1500} currency='EUR' />
-      </Typography>
+      <Amount amount={1500} currency='EUR' />
     </Container>
     <Container bottom={1}>
-      <Typography>
-        <Amount amount={150} currency='EUR' />
-      </Typography>
+      <Amount amount={150} currency='USD' />
     </Container>
     <Container bottom={1}>
-      <Typography>
-        <Amount amount={15} currency='EUR' />
-      </Typography>
+      <Amount amount={15} currency='HUF' />
     </Container>
   </div>
 )

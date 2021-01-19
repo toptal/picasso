@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders icon in the beginning 1`] = `
+exports[`Input renders icon in the beginning 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -46,7 +46,7 @@ exports[`renders icon in the beginning 1`] = `
 </div>
 `;
 
-exports[`renders icon in the end 1`] = `
+exports[`Input renders icon in the end 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -92,7 +92,7 @@ exports[`renders icon in the end 1`] = `
 </div>
 `;
 
-exports[`should show manual resize handler 1`] = `
+exports[`Input should show manual resize handler 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -126,7 +126,7 @@ exports[`should show manual resize handler 1`] = `
 </div>
 `;
 
-exports[`should show reset button 1`] = `
+exports[`Input should show reset button 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -184,7 +184,7 @@ exports[`should show reset button 1`] = `
 </div>
 `;
 
-exports[`shows counter for multiline input 1`] = `
+exports[`Input shows counter for multiline input 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -216,7 +216,7 @@ exports[`shows counter for multiline input 1`] = `
 </div>
 `;
 
-exports[`shows counter for regular input 1`] = `
+exports[`Input shows counter for regular input 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -249,7 +249,7 @@ exports[`shows counter for regular input 1`] = `
 </div>
 `;
 
-exports[`shows excess chars for multiline input with exceeded limit 1`] = `
+exports[`Input shows excess chars for multiline input with exceeded limit 1`] = `
 <div
   class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
@@ -264,7 +264,7 @@ exports[`shows excess chars for multiline input with exceeded limit 1`] = `
 </div>
 `;
 
-exports[`shows remaining chars for for multiline input with limit 1`] = `
+exports[`Input shows remaining chars for for multiline input with limit 1`] = `
 <div
   class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"

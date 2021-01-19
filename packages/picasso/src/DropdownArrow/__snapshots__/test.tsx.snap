@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DropdownArrow default render 1`] = `
+exports[`DropdownArrow renders 1`] = `
 <div>
   <span
     class="PicassoDropdownArrow-root PicassoDropdownArrow-medium"

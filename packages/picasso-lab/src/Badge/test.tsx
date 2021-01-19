@@ -22,29 +22,32 @@ const renderBadge = (
 
 let spiedOnTitleCase: jest.SpyInstance
 
-beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-})
-afterEach(() => {
-  spiedOnTitleCase.mockReset()
-})
+describe('Badge', () => {
+  beforeEach(() => {
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+  })
 
-test('renders Badge', () => {
-  const { container } = renderBadge({ content: 'Badge content' })
+  afterEach(() => {
+    spiedOnTitleCase.mockReset()
+  })
 
-  expect(container).toMatchSnapshot()
-})
+  it('renders', () => {
+    const { container } = renderBadge({ content: 'Badge content' })
 
-test('should transform text to title case when Picasso titleCase property is true', () => {
-  const TEXT_CONTENT = 'Test ao4'
+    expect(container).toMatchSnapshot()
+  })
 
-  renderBadge({ content: TEXT_CONTENT }, { titleCase: true })
+  it('should transform text to title case when Picasso titleCase property is true', () => {
+    const TEXT_CONTENT = 'Test ao4'
 
-  expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
-})
+    renderBadge({ content: TEXT_CONTENT }, { titleCase: true })
 
-test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
-  renderBadge({ content: 'test pe2', titleCase: false }, { titleCase: true })
+    expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
+  })
 
-  expect(spiedOnTitleCase).toBeCalledTimes(0)
+  it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+    renderBadge({ content: 'test pe2', titleCase: false }, { titleCase: true })
+
+    expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
+  })
 })

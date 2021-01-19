@@ -17,13 +17,13 @@ describe('Slider', () => {
     api = renderSlider(null, {})
   })
 
-  test('default render', () => {
+  it('renders', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()
   })
 
-  test('with initial value', () => {
+  it('with initial value', () => {
     const { container } = renderSlider(null, { value: 4 })
 
     expect(container).toMatchSnapshot()

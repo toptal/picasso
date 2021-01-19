@@ -1,66 +1,154 @@
-/* eslint-disable react/no-multi-comp */
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
 
 import Accordion from './Accordion'
 
-const summaryHeaderText = 'Fryderyk Chopin'
-const Summary = () => <div>{summaryHeaderText}</div>
+const DETAILS_TEXT =
+  'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.'
+const SUMMARY_TEXT = 'What is a dog?'
 
-const Details = () => (
-  <div id='details'>
-    Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in
-    what was then the Duchy of Warsaw, a Polish state established by Napoleon.
-    The parish baptismal record gives his birthday as 22 February 1810, and
-    cites his given names in the Latin form Fridericus Franciscus (in Polish, he
-    was Fryderyk Franciszek). However, the composer and his family used the
-    birthdate 1 March, which is now generally accepted as the correct date.
-  </div>
+const TestDetails = () => (
+  <Accordion.Details data-testid='accordion-details'>
+    {DETAILS_TEXT}
+  </Accordion.Details>
+)
+const TestSummary = () => (
+  <Accordion.Summary data-testid='accordion-summary'>
+    {SUMMARY_TEXT}
+  </Accordion.Summary>
 )
 
-describe('default version for sections', () => {
-  test('should render default version', () => {
-    const { container } = render(
-      <Accordion content={<Details />}>
-        <Summary />
+describe('Accordion', () => {
+  it('renders collapsed by default', () => {
+    const { container, queryByTestId, getByText, getByTestId } = render(
+      <Accordion content={<TestDetails />}>
+        <TestSummary />
       </Accordion>
     )
+
+    expect(queryByTestId('empty-accordion-summary')).toBeNull()
+
+    expect(getByTestId('accordion-summary')).toBeVisible()
+    expect(getByText(SUMMARY_TEXT)).toBeVisible()
+
+    expect(getByTestId('accordion-details')).not.toBeVisible()
+    expect(getByText(DETAILS_TEXT)).not.toBeVisible()
 
     expect(container).toMatchSnapshot()
   })
 
-  test('should render expanded version after click on summary', () => {
-    const { getByText, container } = render(
-      <Accordion content={<Details />}>
-        <Summary />
+  it('renders empty summary when one is not provided', () => {
+    const { getByTestId, queryByTestId } = render(
+      <Accordion content={<TestDetails />} />
+    )
+
+    expect(getByTestId('picasso-empty-accordion-summary')).toBeVisible()
+    expect(queryByTestId('accordion-summary')).toBeNull()
+    expect(getByTestId('accordion-details')).not.toBeVisible()
+  })
+
+  it('toggles', async () => {
+    const handleChange = jest.fn()
+    const { getByText, getByTestId } = render(
+      <Accordion
+        content={<TestDetails />}
+        onChange={handleChange}
+        expandIcon={<span data-testid='trigger' />}
+      >
+        <TestSummary />
       </Accordion>
     )
-    const summary = getByText(summaryHeaderText)
 
-    fireEvent.click(summary)
+    fireEvent.click(getByTestId('accordion-summary'))
+    await wait(() => expect(getByText(DETAILS_TEXT)).toBeVisible())
+
+    fireEvent.click(getByTestId('trigger'))
+    await wait(() => expect(getByText(DETAILS_TEXT)).not.toBeVisible())
+
+    fireEvent.click(getByText(SUMMARY_TEXT))
+    await wait(() => expect(getByText(DETAILS_TEXT)).toBeVisible())
+
+    expect(handleChange).toHaveBeenCalledTimes(3)
+  })
+
+  it('renders disabled', async () => {
+    const { container } = render(
+      <Accordion content={<TestDetails />} disabled>
+        <TestSummary />
+      </Accordion>
+    )
+
+    // MUI disabled state adds `pointer-events: none` style rule to the summary container.
+    // It can't be tested programmatically `fireEvent` ignores this rule.
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders expanded initially', async () => {
+    const { getByText, getByTestId } = render(
+      <Accordion content={<TestDetails />} defaultExpanded>
+        <TestSummary />
+      </Accordion>
+    )
+
+    expect(getByTestId('accordion-details')).toBeVisible()
+    expect(getByText(DETAILS_TEXT)).toBeVisible()
+
+    fireEvent.click(getByTestId('accordion-summary'))
+
+    await wait(() => {
+      expect(getByTestId('accordion-details')).not.toBeVisible()
+      expect(getByText(DETAILS_TEXT)).not.toBeVisible()
+    })
+  })
+
+  it('renders custom icon when passed', () => {
+    const { getByTestId, container } = render(
+      <Accordion
+        content={<TestDetails />}
+        expandIcon={<span data-testid='custom-expand-icon' />}
+      >
+        <TestSummary />
+      </Accordion>
+    )
+
+    expect(getByTestId('custom-expand-icon')).toBeInTheDocument()
 
     expect(container).toMatchSnapshot()
   })
-})
 
-describe('controlled version', () => {
-  test('should render expanded version', () => {
-    const { container } = render(
-      <Accordion content={<Details />} expanded>
-        <Summary />
+  it('passes styles correctly', () => {
+    const { getByTestId } = render(
+      <Accordion
+        data-testid='accordion'
+        className='foobar'
+        style={{ display: 'table' }}
+        content={<TestDetails />}
+      >
+        <TestSummary />
       </Accordion>
     )
 
-    expect(container).toMatchSnapshot()
+    const accordionContainer = getByTestId('accordion')
+
+    expect(accordionContainer).toHaveStyle('display: table;')
+    expect(accordionContainer.classList.contains('foobar')).toBeTruthy()
   })
 
-  test('should render collapsed version', () => {
-    const { container } = render(
-      <Accordion content={<Details />} expanded={false}>
-        <Summary />
+  it('toggles when controlled', async () => {
+    const { getByText, rerender } = render(
+      <Accordion content={<TestDetails />} expanded={false}>
+        <TestSummary />
       </Accordion>
     )
 
-    expect(container).toMatchSnapshot()
+    expect(getByText(DETAILS_TEXT)).not.toBeVisible()
+
+    rerender(
+      <Accordion content={<TestDetails />} expanded>
+        <TestSummary />
+      </Accordion>
+    )
+
+    expect(getByText(DETAILS_TEXT)).toBeVisible()
   })
 })

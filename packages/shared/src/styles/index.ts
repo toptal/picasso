@@ -32,8 +32,11 @@ export const mix = (baseColor: string, mixColor: string, amount: number) => {
   return baseColorValue.mix(mixColorValue, amount).hex()
 }
 
-export const rem = (px: string, baseFontSize = 16) =>
-  `${Number.parseFloat(px) / baseFontSize}rem`
+export const rem = (pxValue: string, baseFontSize = 16) =>
+  `${Number.parseFloat(pxValue) / baseFontSize}rem`
+
+export const pxFromRem = (remValue: string, baseFontSize = 16) =>
+  `${Number.parseFloat(remValue) * baseFontSize}px`
 
 export const outline = (baseColor: string, width = 3) => ({
   boxShadow: `0 0 0 ${width}px ${alpha(baseColor, 0.48)}`

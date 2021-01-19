@@ -14,7 +14,7 @@ const renderTabs = (
 }
 
 describe('Tabs', () => {
-  test('default render', () => {
+  it('renders', () => {
     const { container } = renderTabs(
       [<Tabs.Tab key={0} label='Tab 1' />, <Tabs.Tab key={1} label='Tab 2' />],
       {
@@ -25,7 +25,7 @@ describe('Tabs', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('with preselected option', () => {
+  it('with preselected option', () => {
     const { container } = renderTabs(
       [<Tabs.Tab key={0} label='Tab 1' />, <Tabs.Tab key={1} label='Tab 2' />],
       {
@@ -36,7 +36,7 @@ describe('Tabs', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('with preselected option using custom value', () => {
+  it('with preselected option using custom value', () => {
     const { container } = renderTabs(
       [
         <Tabs.Tab key={0} value='tab-1' label='Tab 1' />,

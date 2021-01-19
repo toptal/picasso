@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render label group with 4 labels 1`] = `
+exports[`TagGroup should render label group with 4 labels 1`] = `
 <div>
   <div
     class="Picasso-root"

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Calendar default render 1`] = `
+exports[`Calendar renders 1`] = `
 <div>
   <div
     class="Picasso-root"

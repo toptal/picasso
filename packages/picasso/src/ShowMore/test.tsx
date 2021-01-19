@@ -30,7 +30,7 @@ const renderShowMore = (props: OmitInternalProps<Props>) => {
 }
 
 describe('when onToggle function is passed', () => {
-  test('should call onToggle after clicking on the action link', () => {
+  it('should call onToggle after clicking on the action link', () => {
     const onToggle = jest.fn()
     const { getByText } = renderShowMore({
       children:
@@ -56,14 +56,14 @@ describe('ShowMore', () => {
     })
   })
 
-  test('default render', () => {
+  it('renders', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()
   })
 
   describe('when show more link is clicked', () => {
-    test('should render expanded version', () => {
+    it('should render expanded version', () => {
       const { container, getByText } = api
       const toggleText = getByText('Show more')
 
@@ -74,7 +74,7 @@ describe('ShowMore', () => {
   })
 
   describe('when initialExpanded prop is true', () => {
-    test('should render expanded version', () => {
+    it('should render expanded version', () => {
       const { container } = renderShowMore({
         children:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
@@ -85,7 +85,7 @@ describe('ShowMore', () => {
     })
 
     describe('when show less link is clicked', () => {
-      test('should render collapsed version', () => {
+      it('should render collapsed version', () => {
         const { container, getByText } = renderShowMore({
           children:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
@@ -101,7 +101,7 @@ describe('ShowMore', () => {
   })
 
   describe('when disableToggle prop is true', () => {
-    test('should render version without action link', () => {
+    it('should render version without action link', () => {
       const { container } = renderShowMore({
         children:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
@@ -113,7 +113,7 @@ describe('ShowMore', () => {
   })
 
   describe('when custom showMore text is specified', () => {
-    test('should render with custom action link', () => {
+    it('should render with custom action link', () => {
       const { container } = renderShowMore({
         children:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
@@ -125,7 +125,7 @@ describe('ShowMore', () => {
   })
 
   describe('when custom lessText text is specified', () => {
-    test('should render with custom action link', () => {
+    it('should render with custom action link', () => {
       const { container } = renderShowMore({
         children:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',

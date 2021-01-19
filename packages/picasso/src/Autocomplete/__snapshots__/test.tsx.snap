@@ -119,7 +119,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
 </ul>
 `;
 
-exports[`Autocomplete static behavior default render 1`] = `
+exports[`Autocomplete static behavior renders 1`] = `
 <div>
   <div
     class="Picasso-root"

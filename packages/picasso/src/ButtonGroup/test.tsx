@@ -4,7 +4,7 @@ import { render } from '@toptal/picasso/test-utils'
 import Button from '../Button'
 
 describe('ButtonGroup', () => {
-  test('render', () => {
+  it('render', () => {
     const { container } = render(
       <Button.Group>
         <Button key='1' />

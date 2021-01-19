@@ -9,7 +9,7 @@ const TestMenu: FunctionComponent<OmitInternalProps<Props>> = ({
 }) => <Menu>{children}</Menu>
 
 describe('Menu', () => {
-  test('default render', () => {
+  it('renders', () => {
     const { container } = render(
       <TestMenu>
         <Menu.Item>Item 1</Menu.Item>
@@ -21,7 +21,7 @@ describe('Menu', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('has back button when in submenu', () => {
+  it('has back button when in submenu', () => {
     const { container, getByText } = render(
       <TestMenu>
         <Menu.Item

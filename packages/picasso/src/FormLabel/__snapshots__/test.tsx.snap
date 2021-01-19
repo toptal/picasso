@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FormLabel default render 1`] = `
+exports[`FormLabel disabled 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -11,7 +11,7 @@ exports[`FormLabel default render 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="PicassoFormLabel-root PicassoFormLabel-disabled"
         >
           <span
             class="PicassoFormLabel-text"
@@ -25,7 +25,7 @@ exports[`FormLabel default render 1`] = `
 </div>
 `;
 
-exports[`FormLabel disabled 1`] = `
+exports[`FormLabel renders 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -36,7 +36,7 @@ exports[`FormLabel disabled 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root PicassoFormLabel-disabled"
+          class="PicassoFormLabel-root"
         >
           <span
             class="PicassoFormLabel-text"

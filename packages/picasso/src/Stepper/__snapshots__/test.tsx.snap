@@ -1,177 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Stepper default render 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal PicassoStepper-root MuiPaper-elevation0"
-    >
-      <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
-      >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
-        >
-          <span
-            class="MuiStepLabel-iconContainer"
-          >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckMinor24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 1
-              </span>
-            </span>
-          </span>
-        </span>
-      </div>
-      <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-        />
-      </svg>
-      <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
-      >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
-        >
-          <span
-            class="MuiStepLabel-iconContainer"
-          >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckMinor24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 2
-              </span>
-            </span>
-          </span>
-        </span>
-      </div>
-      <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-        />
-      </svg>
-      <div
-        class="MuiStep-root MuiStep-horizontal"
-      >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
-        >
-          <span
-            class="MuiStepLabel-iconContainer"
-          >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-active"
-            />
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 3
-              </span>
-            </span>
-          </span>
-        </span>
-      </div>
-      <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-        />
-      </svg>
-      <div
-        class="MuiStep-root MuiStep-horizontal"
-      >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal Mui-disabled"
-        >
-          <span
-            class="MuiStepLabel-iconContainer"
-          >
-            <div
-              class="PicassoStepIcon-root"
-            />
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 4
-              </span>
-            </span>
-          </span>
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Stepper render with all steps completed 1`] = `
 <div>
   <div
@@ -733,6 +561,178 @@ exports[`Stepper render with hidden labels 1`] = `
           >
             <span
               class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
+            >
+              <span
+                class="PicassoStepLabel-label"
+              >
+                Step 4
+              </span>
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Stepper renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal PicassoStepper-root MuiPaper-elevation0"
+    >
+      <div
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+      >
+        <span
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        >
+          <span
+            class="MuiStepLabel-iconContainer"
+          >
+            <div
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
+            >
+              <svg
+                class="PicassoSvgCheckMinor24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
+            >
+              <span
+                class="PicassoStepLabel-label"
+              >
+                Step 1
+              </span>
+            </span>
+          </span>
+        </span>
+      </div>
+      <svg
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+      >
+        <span
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        >
+          <span
+            class="MuiStepLabel-iconContainer"
+          >
+            <div
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
+            >
+              <svg
+                class="PicassoSvgCheckMinor24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
+            >
+              <span
+                class="PicassoStepLabel-label"
+              >
+                Step 2
+              </span>
+            </span>
+          </span>
+        </span>
+      </div>
+      <svg
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-horizontal"
+      >
+        <span
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        >
+          <span
+            class="MuiStepLabel-iconContainer"
+          >
+            <div
+              class="PicassoStepIcon-root PicassoStepIcon-active"
+            />
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
+            >
+              <span
+                class="PicassoStepLabel-label"
+              >
+                Step 3
+              </span>
+            </span>
+          </span>
+        </span>
+      </div>
+      <svg
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-horizontal"
+      >
+        <span
+          class="MuiStepLabel-root MuiStepLabel-horizontal Mui-disabled"
+        >
+          <span
+            class="MuiStepLabel-iconContainer"
+          >
+            <div
+              class="PicassoStepIcon-root"
+            />
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"

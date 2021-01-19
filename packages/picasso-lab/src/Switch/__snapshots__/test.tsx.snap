@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`behaves correctly when interacting 1`] = `
+exports[`Switch behaves correctly when interacting 1`] = `
 <label
   class="PicassoFormControlLabel-root"
   data-testid="switch"
@@ -41,7 +41,7 @@ exports[`behaves correctly when interacting 1`] = `
 </label>
 `;
 
-exports[`renders default Switch without label 1`] = `
+exports[`Switch renders default Switch without label 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -75,7 +75,7 @@ exports[`renders default Switch without label 1`] = `
 </div>
 `;
 
-exports[`renders disabled state 1`] = `
+exports[`Switch renders disabled state 1`] = `
 <label
   class="PicassoFormControlLabel-root PicassoFormControlLabel-disabled"
   data-testid="switch"

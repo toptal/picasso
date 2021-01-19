@@ -11,8 +11,7 @@ import MUIAccordion from '@material-ui/core/Accordion'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   CompoundedComponentWithRef,
-  StandardProps,
-  BaseProps
+  StandardProps
 } from '@toptal/picasso-shared'
 
 import { ArrowDownMinor16 } from '../Icon'
@@ -27,31 +26,37 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAccordion'
 })
 
-interface SummaryProps extends BaseProps {
+export const EmptyAccordionSummary = () => (
+  <div data-testid='picasso-empty-accordion-summary' />
+)
+
+export interface SummaryProps extends Partial<StandardProps> {
   children: ReactNode
 }
 
-const Summary = (props: SummaryProps) => {
-  const { children, className } = props
-
-  const classes = useStyles()
+export const Summary = (props: SummaryProps) => {
+  const { children, className, ...rest } = props
+  const classes = useStyles(props)
 
   return (
-    <div className={cx(classes?.summaryWrapper, className)}>{children}</div>
+    <div {...rest} className={cx(className, classes.summaryWrapper)}>
+      {children}
+    </div>
   )
 }
 
-interface DetailsProps extends BaseProps {
+export interface DetailsProps extends Partial<StandardProps> {
   children: ReactNode
 }
 
-const Details = (props: DetailsProps) => {
-  const { children, className } = props
-
-  const classes = useStyles()
+export const Details = (props: DetailsProps) => {
+  const { children, className, ...rest } = props
+  const classes = useStyles(props)
 
   return (
-    <div className={cx(className, classes?.detailsWrapper)}>{children}</div>
+    <div {...rest} className={cx(className, classes.detailsWrapper)}>
+      {children}
+    </div>
   )
 }
 
@@ -80,9 +85,6 @@ export interface Props
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const EmptyAccordionSummary = ({ expanded }: { expanded?: boolean }) => <div />
 
 const decorateWithExpandIconClasses = (
   expandIcon: ReactElement,

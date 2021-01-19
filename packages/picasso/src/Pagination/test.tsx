@@ -17,45 +17,47 @@ const renderPagination = (props: OmitInternalProps<Props>) => {
   )
 }
 
-test('renders default', () => {
-  const { container } = renderPagination({
-    activePage: 5,
-    totalPages: 20,
-    onPageChange: () => {}
+describe('Pagination', () => {
+  it('renders', () => {
+    const { container } = renderPagination({
+      activePage: 5,
+      totalPages: 20,
+      onPageChange: () => {}
+    })
+
+    expect(container).toMatchSnapshot()
   })
 
-  expect(container).toMatchSnapshot()
-})
+  it('renders disabled', () => {
+    const { container } = renderPagination({
+      activePage: 5,
+      totalPages: 20,
+      disabled: true,
+      onPageChange: () => {}
+    })
 
-test('renders disabled', () => {
-  const { container } = renderPagination({
-    activePage: 5,
-    totalPages: 20,
-    disabled: true,
-    onPageChange: () => {}
+    expect(container).toMatchSnapshot()
   })
 
-  expect(container).toMatchSnapshot()
-})
+  it('renders nothing for 1 page', () => {
+    const { container } = renderPagination({
+      activePage: 1,
+      totalPages: 1,
+      disabled: true,
+      onPageChange: () => {}
+    })
 
-test('renders nothing for 1 page', () => {
-  const { container } = renderPagination({
-    activePage: 1,
-    totalPages: 1,
-    disabled: true,
-    onPageChange: () => {}
+    expect(container).toMatchSnapshot()
   })
 
-  expect(container).toMatchSnapshot()
-})
+  it('renders nothing for 0 pages', () => {
+    const { container } = renderPagination({
+      activePage: 1,
+      totalPages: 0,
+      disabled: true,
+      onPageChange: () => {}
+    })
 
-test('renders nothing for 0 pages', () => {
-  const { container } = renderPagination({
-    activePage: 1,
-    totalPages: 0,
-    disabled: true,
-    onPageChange: () => {}
+    expect(container).toMatchSnapshot()
   })
-
-  expect(container).toMatchSnapshot()
 })

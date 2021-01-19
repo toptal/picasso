@@ -18,7 +18,7 @@ beforeAll(() => {
   document.body.appendChild(modalRoot)
 })
 
-test('useModal opens and closes modal', async () => {
+it('useModal opens and closes modal', async () => {
   const TestComponent = () => {
     const { showModal, hideModal, isOpen } = useModal()
 
@@ -52,7 +52,7 @@ test('useModal opens and closes modal', async () => {
   expect(baseElement).toMatchSnapshot()
 })
 
-test('useModal shows multiple modals at the same time', () => {
+it('useModal shows multiple modals at the same time', () => {
   const TestComponent = () => {
     const { showModal: showModal1, isOpen: isOpen1 } = useModal()
     const { showModal: showModal2, isOpen: isOpen2 } = useModal()

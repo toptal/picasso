@@ -18,7 +18,7 @@ const TestHelpbox: FunctionComponent<OmitInternalProps<Props>> = ({
 )
 
 describe('Helpbox', () => {
-  test('default render', () => {
+  it('renders', () => {
     const { container } = render(<TestHelpbox>Test</TestHelpbox>)
 
     expect(container).toMatchSnapshot()

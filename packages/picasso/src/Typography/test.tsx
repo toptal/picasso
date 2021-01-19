@@ -36,7 +36,7 @@ afterEach(() => {
 })
 
 describe('Typography', () => {
-  test('default render', () => {
+  it('renders', () => {
     const { container } = render(
       <TestTypography>Just Typography</TestTypography>
     )
@@ -44,7 +44,7 @@ describe('Typography', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('variant heading small render', () => {
+  it('variant heading small render', () => {
     const { container } = render(
       <TestTypography variant='heading' size='small'>
         Heading small
@@ -54,7 +54,7 @@ describe('Typography', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('inherit size render', () => {
+  it('inherit size render', () => {
     const { container } = render(
       <TestTypography size='inherit'>Inherit font size</TestTypography>
     )
@@ -62,11 +62,11 @@ describe('Typography', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('should transform text to title case when titleCase property is true', () => {
+  it('should transform text to title case when titleCase property is true', () => {
     const TEXT_CONTENT = 'Test bh6'
 
     render(<TestTypography titleCase>{TEXT_CONTENT}</TestTypography>)
 
-    expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
+    expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
   })
 })

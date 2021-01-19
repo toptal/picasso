@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.4.4](https://github.com/toptal/picasso/compare/@toptal/picasso@5.4.3...@toptal/picasso@5.4.4) (2021-01-18)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+## [5.4.3](https://github.com/toptal/picasso/compare/@toptal/picasso@5.4.2...@toptal/picasso@5.4.3) (2021-01-18)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+## [5.4.2](https://github.com/toptal/picasso/compare/@toptal/picasso@5.4.1...@toptal/picasso@5.4.2) (2021-01-18)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+## [5.4.1](https://github.com/toptal/picasso/compare/@toptal/picasso@5.4.0...@toptal/picasso@5.4.1) (2021-01-18)
+
+
+### Bug Fixes
+
+* **amount:** expose Amount formatter and extend Amount component ([#1842](https://github.com/toptal/picasso/issues/1842)) ([77f2358](https://github.com/toptal/picasso/commit/77f23582fe79f0ddf9044e5eacf97acc28e46211))
+
+
+
+
+
 # [5.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.3.0...@toptal/picasso@5.4.0) (2021-01-15)
 
 

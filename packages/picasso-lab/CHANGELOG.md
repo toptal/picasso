@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.1.3...@toptal/picasso-lab@3.1.4) (2021-01-18)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+## [3.1.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.1.2...@toptal/picasso-lab@3.1.3) (2021-01-18)
+
+
+### Bug Fixes
+
+* **MediaSkeletonLoader:** size variants ([#1840](https://github.com/toptal/picasso/issues/1840)) ([de9dd52](https://github.com/toptal/picasso/commit/de9dd52bec3cb1674d985e850ade7bbeb023ab6b))
+
+
+
+
+
 ## [3.1.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.1.1...@toptal/picasso-lab@3.1.2) (2021-01-13)
 
 

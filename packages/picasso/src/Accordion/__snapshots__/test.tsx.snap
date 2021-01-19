@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`controlled version should render collapsed version 1`] = `
+exports[`Accordion renders collapsed by default 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -18,8 +18,11 @@ exports[`controlled version should render collapsed version 1`] = `
         <div
           class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content"
         >
-          <div>
-            Fryderyk Chopin
+          <div
+            class="PicassoAccordion-summaryWrapper"
+            data-testid="accordion-summary"
+          >
+            What is a dog?
           </div>
           <div
             class="PicassoAccordion-expandIconAlignTop"
@@ -64,9 +67,10 @@ exports[`controlled version should render collapsed version 1`] = `
                 class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
               >
                 <div
-                  id="details"
+                  class="PicassoAccordion-detailsWrapper"
+                  data-testid="accordion-details"
                 >
-                  Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
+                  A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
                 </div>
               </div>
             </div>
@@ -78,85 +82,7 @@ exports[`controlled version should render collapsed version 1`] = `
 </div>
 `;
 
-exports[`controlled version should render expanded version 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersAll Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
-    >
-      <div
-        aria-disabled="false"
-        aria-expanded="true"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary Mui-expanded"
-        role="button"
-        tabindex="0"
-      >
-        <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content Mui-expanded"
-        >
-          <div>
-            Fryderyk Chopin
-          </div>
-          <div
-            class="PicassoAccordion-expandIconAlignTop"
-          >
-            <button
-              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
-              data-component-type="button"
-              tabindex="0"
-              type="button"
-            >
-              <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
-              >
-                <svg
-                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
-                  style="min-width: 16px; min-height: 16px;"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiCollapse-container MuiCollapse-entered"
-        style="min-height: 0px;"
-      >
-        <div
-          class="MuiCollapse-wrapper"
-        >
-          <div
-            class="MuiCollapse-wrapperInner"
-          >
-            <div
-              role="region"
-            >
-              <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
-              >
-                <div
-                  id="details"
-                >
-                  Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`default version for sections should render default version 1`] = `
+exports[`Accordion renders custom icon when passed 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -174,8 +100,73 @@ exports[`default version for sections should render default version 1`] = `
         <div
           class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content"
         >
-          <div>
-            Fryderyk Chopin
+          <div
+            class="PicassoAccordion-summaryWrapper"
+            data-testid="accordion-summary"
+          >
+            What is a dog?
+          </div>
+          <span
+            class="PicassoAccordion-expandIcon"
+            data-testid="custom-expand-icon"
+          />
+        </div>
+      </div>
+      <div
+        class="MuiCollapse-container MuiCollapse-hidden"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              role="region"
+            >
+              <div
+                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
+              >
+                <div
+                  class="PicassoAccordion-detailsWrapper"
+                  data-testid="accordion-details"
+                >
+                  A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Accordion renders disabled 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersAll Mui-disabled MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+    >
+      <div
+        aria-disabled="true"
+        aria-expanded="false"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary Mui-disabled Mui-disabled"
+        role="button"
+        tabindex="-1"
+      >
+        <div
+          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content"
+        >
+          <div
+            class="PicassoAccordion-summaryWrapper"
+            data-testid="accordion-summary"
+          >
+            What is a dog?
           </div>
           <div
             class="PicassoAccordion-expandIconAlignTop"
@@ -220,87 +211,10 @@ exports[`default version for sections should render default version 1`] = `
                 class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
               >
                 <div
-                  id="details"
+                  class="PicassoAccordion-detailsWrapper"
+                  data-testid="accordion-details"
                 >
-                  Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`default version for sections should render expanded version after click on summary 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersAll Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
-    >
-      <div
-        aria-disabled="false"
-        aria-expanded="true"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary Mui-expanded"
-        role="button"
-        tabindex="0"
-      >
-        <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content Mui-expanded"
-        >
-          <div>
-            Fryderyk Chopin
-          </div>
-          <div
-            class="PicassoAccordion-expandIconAlignTop"
-          >
-            <button
-              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
-              data-component-type="button"
-              tabindex="0"
-              type="button"
-            >
-              <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
-              >
-                <svg
-                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
-                  style="min-width: 16px; min-height: 16px;"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiCollapse-container"
-        style="min-height: 0px; height: 0px; transition-duration: 0ms;"
-      >
-        <div
-          class="MuiCollapse-wrapper"
-        >
-          <div
-            class="MuiCollapse-wrapperInner"
-          >
-            <div
-              role="region"
-            >
-              <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
-              >
-                <div
-                  id="details"
-                >
-                  Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
+                  A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
                 </div>
               </div>
             </div>

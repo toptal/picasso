@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sidebar default render 1`] = `
+exports[`Sidebar renders 1`] = `
 <div>
   <div
     class="Picasso-root"

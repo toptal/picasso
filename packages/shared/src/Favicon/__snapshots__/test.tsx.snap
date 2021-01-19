@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`default render 1`] = `
+exports[`Favicon renders 1`] = `
 NodeList [
   <link
     data-react-helmet="true"
@@ -25,7 +25,7 @@ NodeList [
 ]
 `;
 
-exports[`with environment specified 1`] = `
+exports[`Favicon renders with environment specified 1`] = `
 NodeList [
   <link
     data-react-helmet="true"

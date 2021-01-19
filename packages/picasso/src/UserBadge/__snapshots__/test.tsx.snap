@@ -125,49 +125,6 @@ exports[`UserBadge custom title 1`] = `
 </div>
 `;
 
-exports[`UserBadge default render 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
-    >
-      <div
-        class="PicassoAvatar-root PicassoAvatar-xsmall"
-      >
-        <div
-          class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
-        />
-        <p
-          class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
-        >
-          JD
-        </p>
-      </div>
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
-      >
-        <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-        >
-          <h4
-            class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
-          >
-            Joe Doe
-          </h4>
-        </div>
-        <p
-          class="MuiTypography-root PicassoTypography-bodyInherit MuiTypography-body1"
-        >
-          QA tester
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`UserBadge invert render 1`] = `
 <div>
   <div
@@ -286,6 +243,49 @@ exports[`UserBadge override auto center alignment 1`] = `
             Joe Doe
           </h4>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserBadge renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+    >
+      <div
+        class="PicassoAvatar-root PicassoAvatar-xsmall"
+      >
+        <div
+          class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+        />
+        <p
+          class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+        >
+          JD
+        </p>
+      </div>
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <h4
+            class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+          >
+            Joe Doe
+          </h4>
+        </div>
+        <p
+          class="MuiTypography-root PicassoTypography-bodyInherit MuiTypography-body1"
+        >
+          QA tester
+        </p>
       </div>
     </div>
   </div>

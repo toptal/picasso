@@ -25,7 +25,7 @@ describe('FormError', () => {
   beforeEach(() => {
     api = render(<TestFormError>My Error</TestFormError>)
   })
-  test('default render', () => {
+  it('renders', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()

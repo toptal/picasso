@@ -23,22 +23,23 @@ page
   .addExample('Accordion/story/Default.example.tsx', {
     title: 'Default',
     description:
-      'Styled sections is a default behaviour of Accordion when `expanded` prop is not specified (uncontrolled)'
+      'Accordion is uncontrolled until the `expanded` prop is specified.'
   })
-  .addExample('Accordion/story/AccordionGroup.example.tsx', {
-    title: 'Group',
-    description: 'Accordions with styled sections in a group'
+  .addExample('Accordion/story/Disabled.example.tsx', {
+    title: 'Disabled',
+    description:
+      'Accordion ignores pointer events when the `disabled` prop is truthy.'
+  })
+  .addExample('Accordion/story/BorderedGroups.example.tsx', {
+    title: 'Borders and Groups',
+    description: 'Accordions have configurable borders and can be grouped'
   })
   .addExample('Accordion/story/Controlled.example.tsx', {
-    title: 'Controlled state',
-    description: 'Accordions with controlled expanded property'
-  })
-  .addExample('Accordion/story/CustomFontStyling.example.tsx', {
-    title: 'Custom styling',
-    description:
-      'Summary and Details of Accordion can be decorated with additional styles'
+    title: 'Controlled',
+    description: 'Accordion can be controlled via the `expanded` prop.'
   })
   .addExample('Accordion/story/CustomSummary.example.tsx', {
     title: 'Custom Summary',
-    description: 'Summary can be a completely custom component'
+    description:
+      "Accordion's summary is customizable. It either can be passed as `children` or be an external custom component."
   })
