@@ -87,9 +87,9 @@ With this approach we will conditionally attach generate classes for either `.ro
 
 ## Add classes prop to a Picasso component
 
-There are some situation when you need to override `classes` prop of a Picasso component. You can do it following these steps:
+Occasionally Picasso components need to override styling of other Picasso components, that they use. This can be achieved with the `classes` prop. Here's how:
 
-1. Make your Picasso component `Props` type to extend `StandardProps` instead of `BaseProps`.
+1. Make sure your component `Props` type extends `StandardProps` instead of `BaseProps`.
 2. Add `Props` generic type to `makeStyles` call.
 3. Pass the whole `props` object to `useStyles` call.
 
@@ -148,8 +148,7 @@ const Button = (props: Props) => {
 
   const {
     variant,
-    // Avoid passing classes inside the rest props
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // Avoid passing external classes inside the rest props
     classes: externalClasses,
     ...rest
   } = props

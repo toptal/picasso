@@ -100,7 +100,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     onOpen,
     popperContainer,
     onClose,
-    // Avoid passing classes inside the rest props
+    // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
     ...rest

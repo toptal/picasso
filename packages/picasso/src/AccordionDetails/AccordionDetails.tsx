@@ -16,7 +16,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 const AccordionDetails: FunctionComponent<Props> = props => {
   const {
     children,
-    // Avoid passing classes inside the rest props
+    // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
     ...rest

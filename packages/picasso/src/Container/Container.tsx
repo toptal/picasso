@@ -82,7 +82,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
     rounded = false,
     variant,
     as: Component = inline ? 'span' : 'div',
-    // Avoid passing classes inside the rest props
+    // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
     ...rest

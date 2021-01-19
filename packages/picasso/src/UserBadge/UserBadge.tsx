@@ -57,7 +57,7 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     children,
     className,
     style,
-    // Avoid passing classes inside the rest props
+    // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
     ...rest

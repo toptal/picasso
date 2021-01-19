@@ -45,7 +45,7 @@ const FormControlLabel: FunctionComponent<Props> = props => {
     disabled,
     requiredDecoration,
     titleCase,
-    // Avoid passing classes inside the rest props
+    // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
     ...rest
