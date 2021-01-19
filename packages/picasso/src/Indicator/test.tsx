@@ -10,7 +10,7 @@ const renderIndicator = (
 ) => {
   const { color } = props
 
-  return render(<Indicator color={color}>{children}</Indicator>)
+  return render(<Indicator color={color} />)
 }
 
 describe('Indicator', () => {

@@ -41,11 +41,6 @@ export type OmitInternalProps<T, K = ''> = Pick<
   Exclude<keyof T, keyof JssProps | K>
 >
 
-export type PicassoComponent<P, S = {}> = FunctionComponent<
-  OmitInternalProps<P> & JssProps
-> &
-  S
-
 export type PicassoComponentWithRef<P, R, S = {}> = FunctionComponent<
   P & RefAttributes<R>
 > &
