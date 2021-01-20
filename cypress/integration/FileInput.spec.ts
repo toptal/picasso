@@ -3,7 +3,7 @@ describe('FileInput', () => {
     cy.visit('iframe.html?id=fileinput--default')
   })
 
-  it('opens file picker', () => {
+  it('opens file dialog', () => {
     const openFileDialog = cy.stub().as('openFileDialog')
 
     cy.get('input[type="file"]')
