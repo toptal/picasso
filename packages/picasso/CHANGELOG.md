@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.4.7](https://github.com/toptal/picasso/compare/@toptal/picasso@5.4.6...@toptal/picasso@5.4.7) (2021-01-20)
+
+
+### Bug Fixes
+
+* **FileInput:** not opening file picker ([#1859](https://github.com/toptal/picasso/issues/1859)) ([ac4451c](https://github.com/toptal/picasso/commit/ac4451cd3e71cbf62a252ec522455d346a39b3ab))
+
+
+
+
+
 ## [5.4.6](https://github.com/toptal/picasso/compare/@toptal/picasso@5.4.5...@toptal/picasso@5.4.6) (2021-01-20)
 
 **Note:** Version bump only for package @toptal/picasso
