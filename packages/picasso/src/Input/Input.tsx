@@ -275,6 +275,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     rowsMax,
     type,
     onChange,
+    onClick,
     startAdornment,
     endAdornment,
     limit,
@@ -320,6 +321,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       type={type}
       width={width}
       size={size}
+      onClick={onClick}
       // html attributes
       inputProps={{
         ...rest,
