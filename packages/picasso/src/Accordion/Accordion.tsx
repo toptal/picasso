@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import MUIAccordion from '@material-ui/core/Accordion'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   CompoundedComponentWithRef,
   StandardProps
@@ -22,7 +22,9 @@ import Button from '../Button'
 
 export type Borders = 'all' | 'middle' | 'none'
 
-const useStyles = makeStyles(styles)
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoAccordion'
+})
 
 export const EmptyAccordionSummary = () => (
   <div data-testid='picasso-empty-accordion-summary' />
@@ -64,7 +66,7 @@ export interface StaticProps {
 }
 
 export interface Props
-  extends Partial<StandardProps>,
+  extends StandardProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /** Always visible part of accordion */
   children?: ReactNode
@@ -117,7 +119,6 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     middle: classes.bordersMiddle,
     none: classes.bordersNone
   }
-
   const [summaryExpanded, setSummaryExpanded] = useState(defaultExpanded)
   const [prevExpanded, setPrevExpanded] = useState(defaultExpanded)
 

@@ -21,7 +21,7 @@ export interface Props
   icon?: ReactElement
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTableSectionHead'
 })
 
@@ -31,7 +31,7 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
 >(function TableSectionHead(props, ref) {
   const { colSpan, icon, children, style } = props
 
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   return (
     <TableBody ref={ref}>

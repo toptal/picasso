@@ -8,7 +8,7 @@ import React, {
 import cx from 'classnames'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import {
-  BaseProps,
+  StandardProps,
   SizeType,
   ButtonOrAnchorProps,
   CompoundedComponentWithRef,
@@ -17,16 +17,19 @@ import {
   TextLabelProps,
   Classes
 } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core'
 
-// Keep it above because of order of makeStyles calls
-// https://material-ui.com/styles/advanced/#makestyles-withstyles-styled
-import useStyles from './styles'
+import styles from './styles'
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
 import Circular from '../ButtonCircular'
 import Action from '../ButtonAction'
 import toTitleCase from '../utils/to-title-case'
+
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoButton'
+})
 
 export type VariantType =
   | 'primary'
@@ -37,7 +40,10 @@ export type VariantType =
 
 export type IconPositionType = 'left' | 'right'
 
-export interface Props extends BaseProps, TextLabelProps, ButtonOrAnchorProps {
+export interface Props
+  extends StandardProps,
+    TextLabelProps,
+    ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */

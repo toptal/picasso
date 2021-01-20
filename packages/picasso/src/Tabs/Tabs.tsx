@@ -28,7 +28,7 @@ export interface StaticProps {
   Tab: typeof Tab
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Tabs'
 })
 
@@ -37,8 +37,8 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
   props,
   ref
 ) {
-  const classes = useStyles(props)
   const { children, onChange, value, ...rest } = props
+  const classes = useStyles()
 
   return (
     <MUITabs

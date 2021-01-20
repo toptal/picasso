@@ -51,7 +51,7 @@ export interface Props extends BaseProps {
   enableCompactMode?: boolean
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoPopper' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoPopper' })
 
 const getAnchorEl = (
   anchorEl: null | ReferenceObject | (() => ReferenceObject)
@@ -115,7 +115,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
 
   const picassoRootContainer = usePicassoRoot()
 
-  const classes = useStyles(props)
+  const classes = useStyles()
   const isCompactLayoutResolution = useBreakpoint(['small', 'medium'])
   const isCompactLayout = enableCompactMode && isCompactLayoutResolution
   const widthStyle = useWidthStyle({ autoWidth, width, anchorEl })

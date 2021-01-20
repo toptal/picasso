@@ -5,15 +5,19 @@ to: src/components/<%= h.changeCase.pascalCase(name) %>/<%= h.changeCase.pascalC
   Name = h.changeCase.pascalCase(name)
 -%>
 import React, { forwardRef } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import { StandardProps } from '../Picasso'
+import { BaseProps } from '@toptal/picasso-shared'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
 }
 
+const useStyles = makeStyles<Theme>(styles)
+
 export const <%= Name %> = forwardRef<HTMLElement, Props>(function <%= Name %>(props, ref) {
+  const classes = useStyles()
+
   return null
 })
 
@@ -22,4 +26,4 @@ export const <%= Name %> = forwardRef<HTMLElement, Props>(function <%= Name %>(p
 
 <%= Name %>.displayName = '<%= Name %>'
 
-export default withStyles(styles)(<%= Name %>)
+export default <%= Name %>

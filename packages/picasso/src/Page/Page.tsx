@@ -44,7 +44,7 @@ export interface StaticProps {
 
 export const PageContext = React.createContext<PageContextProps>({})
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Page'
 })
 
@@ -53,8 +53,8 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   props,
   ref
 ) {
-  const classes = useStyles(props)
   const { children, className, style, width, fullWidth, ...rest } = props
+  const classes = useStyles()
 
   return (
     <div

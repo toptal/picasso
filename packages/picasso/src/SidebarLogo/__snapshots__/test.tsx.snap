@@ -6,10 +6,10 @@ exports[`SidebarLogo renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-bottomsmallMargin Container-leftlargeMargin Container-centerAlignItems Container-flex"
+      class="PicassoContainer-bottomsmallMargin PicassoContainer-leftlargeMargin PicassoContainer-centerAlignItems PicassoContainer-flex"
     >
       <svg
-        class="SvgLogo-root Logo-root Logo-default"
+        class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-default"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 109 30"
       >

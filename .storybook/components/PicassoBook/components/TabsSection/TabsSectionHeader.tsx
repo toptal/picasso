@@ -1,5 +1,5 @@
 import React, { Fragment, FunctionComponent } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { Typography, Tabs } from '@toptal/picasso'
 import { Classes } from '@toptal/picasso-shared'
@@ -8,14 +8,19 @@ import { TabOptions } from './TabsSection'
 import styles from './styles'
 
 interface Props {
-  classes: Classes
   tabs: TabOptions[]
   selectedTab: number
   onChange: (event: React.ChangeEvent<{}>, value: number) => void
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoTabsSectionHeader'
+})
+
 const TabsSectionHeader: FunctionComponent<Props> = props => {
-  const { classes, tabs, selectedTab, onChange } = props
+  const classes = useStyles()
+
+  const { tabs, selectedTab, onChange } = props
 
   return (
     <Fragment>
@@ -33,4 +38,4 @@ const TabsSectionHeader: FunctionComponent<Props> = props => {
 
 TabsSectionHeader.displayName = 'TabsSectionHeader'
 
-export default withStyles(styles)(TabsSectionHeader)
+export default TabsSectionHeader

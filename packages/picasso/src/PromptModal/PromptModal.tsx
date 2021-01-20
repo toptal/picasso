@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactNode } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Container from '../Container'
 import Typography from '../Typography'
@@ -18,6 +18,10 @@ export type PromptOptions = {
   setError: (error: boolean) => void
   error: boolean
 }
+
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoPromptModal'
+})
 
 export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   /** Pass input component to allow you get input value from prompt modal */
@@ -57,6 +61,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
     onClose,
     ...rest
   } = props
+  const classes = useStyles()
   const [result, setResult] = useSafeState<unknown>()
   const [loading, setLoading] = useSafeState(false)
   const [error, setError] = useSafeState(false)
@@ -95,8 +100,13 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
   }
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <Modal ref={ref} onClose={onClose && handleClose} {...rest}>
+    <Modal
+      ref={ref}
+      onClose={onClose && handleClose}
+      classes={classes}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+    >
       {title && <Modal.Title>{title}</Modal.Title>}
       <Modal.Content>
         <Typography size='medium'>{message}</Typography>
@@ -140,4 +150,4 @@ PromptModal.defaultProps = {
 
 PromptModal.displayName = 'PromptModal'
 
-export default withStyles(styles)(PromptModal)
+export default PromptModal

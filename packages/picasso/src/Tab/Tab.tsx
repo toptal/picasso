@@ -4,19 +4,15 @@ import React, {
   HTMLAttributes,
   ReactElement
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
-import {
-  StandardProps,
-  TextLabelProps,
-  useTitleCase
-} from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     TextLabelProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /**
@@ -41,8 +37,10 @@ export interface Props
   onClick?: TabProps['onClick']
 }
 
-export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
-  {
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTab' })
+
+export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
+  const {
     disabled,
     value,
     label,
@@ -52,9 +50,8 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
     onClick,
     titleCase: propsTitleCase,
     ...rest
-  },
-  ref
-) {
+  } = props
+  const classes = useStyles()
   const titleCase = useTitleCase(propsTitleCase)
 
   return (
@@ -70,6 +67,7 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
       selected={selected}
       onChange={onChange}
       onClick={onClick}
+      classes={classes}
     />
   )
 })
@@ -78,4 +76,4 @@ Tab.defaultProps = {}
 
 Tab.displayName = 'Tab'
 
-export default withStyles(styles)(Tab)
+export default Tab

@@ -5,7 +5,7 @@ import React, {
   LabelHTMLAttributes
 } from 'react'
 import { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -32,18 +32,26 @@ export interface Props
   requiredDecoration?: RequiredDecoration
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoFormControlLabel'
+})
+
 const FormControlLabel: FunctionComponent<Props> = props => {
   const {
     control,
     label,
-    classes,
     className,
     style,
     disabled,
     requiredDecoration,
     titleCase,
+    // Avoid passing external classes inside the rest props
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    classes: externalClasses,
     ...rest
   } = props
+
+  const classes = useStyles(props)
 
   return (
     <label
@@ -74,4 +82,4 @@ const FormControlLabel: FunctionComponent<Props> = props => {
 
 FormControlLabel.displayName = 'FormControlLabel'
 
-export default withStyles(styles)(FormControlLabel)
+export default FormControlLabel

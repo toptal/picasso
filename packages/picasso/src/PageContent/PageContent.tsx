@@ -1,24 +1,28 @@
 import React, { useContext, forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, useSidebar } from '@toptal/picasso-shared'
+import { BaseProps, useSidebar } from '@toptal/picasso-shared'
 
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Custom components that render content of page */
   children: ReactNode
   /** Use flexbox */
   flex?: boolean
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoPageContent'
+})
+
 export const PageContent = forwardRef<HTMLDivElement, Props>(
-  function PageContent(
-    { children, classes, className, style, flex, ...rest },
-    ref
-  ) {
+  function PageContent(props, ref) {
+    const { children, className, style, flex, ...rest } = props
+
+    const classes = useStyles()
     const { width, fullWidth } = useContext<PageContextProps>(PageContext)
     const { hasSidebar } = useSidebar()
 
@@ -55,4 +59,4 @@ PageContent.defaultProps = {
 
 PageContent.displayName = 'PageContent'
 
-export default withStyles(styles)(PageContent)
+export default PageContent

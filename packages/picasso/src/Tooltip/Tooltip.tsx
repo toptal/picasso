@@ -158,7 +158,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   maxWidth?: MaxWidthType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTooltip' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTooltip' })
 
 export const Tooltip: FunctionComponent<Props> = props => {
   const {
@@ -182,7 +182,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
     ...rest
   } = props
 
-  const classes = useStyles(props)
+  const classes = useStyles()
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
   const container = usePicassoRoot()
 

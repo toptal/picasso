@@ -6,13 +6,13 @@ exports[`Avatar Avatar with long text names 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Avatar-root Avatar-xsmall"
+      class="PicassoAvatar-root PicassoAvatar-xsmall"
     >
       <div
-        class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+        class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
       />
       <p
-        class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text Avatar-textCapLimit MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text PicassoAvatar-textCapLimit MuiTypography-body1"
       >
         JRB
       </p>
@@ -27,11 +27,11 @@ exports[`Avatar avatar with photo render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Avatar-root Avatar-xsmall"
+      class="PicassoAvatar-root PicassoAvatar-xsmall"
     >
       <img
         alt="Photo alt text"
-        class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner"
+        class="PicassoImage-root PicassoAvatar-image PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
         src="http://example.png"
       />
     </div>
@@ -45,13 +45,13 @@ exports[`Avatar avatar with text render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Avatar-root Avatar-xsmall"
+      class="PicassoAvatar-root PicassoAvatar-xsmall"
     >
       <div
-        class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+        class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
       />
       <p
-        class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
       >
         JR
       </p>

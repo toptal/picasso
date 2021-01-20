@@ -4,7 +4,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   PicassoComponentWithRef,
   CompoundedComponentWithRef,
-  BaseProps,
+  StandardProps,
   ButtonOrAnchorProps,
   TextLabelProps
 } from '@toptal/picasso-shared'
@@ -15,7 +15,7 @@ import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
 
 export interface Props
-  extends BaseProps,
+  extends StandardProps,
     TextLabelProps,
     Omit<ButtonOrAnchorProps, 'onChange' | 'value'> {
   /** Text label for the `Radio` */
@@ -44,7 +44,6 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
   props,
   ref
 ) {
-  const classes = useStyles(props)
   const {
     className,
     style,
@@ -56,6 +55,7 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
     titleCase,
     ...rest
   } = props
+  const classes = useStyles(props)
 
   const rootClasses = {
     root: classes.root,

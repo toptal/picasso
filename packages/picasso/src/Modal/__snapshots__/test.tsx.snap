@@ -34,28 +34,28 @@ exports[`Modal renders 1`] = `
         role="dialog"
       >
         <div
-          class="ModalTitle-root"
+          class="PicassoModalTitle-root"
         >
           <h3
-            class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+            class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
           >
             Title
           </h3>
         </div>
         <div
-          class="ModalContent-shadedWrapper"
+          class="PicassoModalContent-shadedWrapper"
         >
           <div
-            class="ModalContent-shadedWrapperEffect"
+            class="PicassoModalContent-shadedWrapperEffect"
           />
           <div
-            class="ModalContent-modalContent"
+            class="PicassoModalContent-modalContent"
           >
             Modal test content
           </div>
         </div>
         <div
-          class="ModalActions-root"
+          class="PicassoModalAction-root"
         >
           <button
             class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
@@ -64,7 +64,7 @@ exports[`Modal renders 1`] = `
             type="button"
           >
             <span
-              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               Cancel
             </span>
@@ -76,7 +76,7 @@ exports[`Modal renders 1`] = `
             type="button"
           >
             <span
-              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               Update
             </span>
@@ -109,7 +109,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>
@@ -148,7 +148,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
               type="button"
             >
               <span
-                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
               >
                 Hide
               </span>
@@ -181,7 +181,7 @@ exports[`Modal useModal opens and closes modal 2`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>
@@ -208,7 +208,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show first
         </span>
@@ -221,7 +221,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show second
         </span>

@@ -1,20 +1,25 @@
 import MUIPaper from '@material-ui/core/Paper'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Content of component */
   elevation?: number
   children: ReactNode
 }
 
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoPaper' })
+
 export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
-  { classes, className, style, elevation, children, ...rest },
+  props,
   ref
 ) {
+  const { className, style, elevation, children, ...rest } = props
+  const classes = useStyles()
+
   return (
     <MUIPaper
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -37,4 +42,4 @@ Paper.defaultProps = {
 
 Paper.displayName = 'Paper'
 
-export default withStyles(styles)(Paper)
+export default Paper

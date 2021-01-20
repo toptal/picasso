@@ -26,7 +26,7 @@ export interface Props extends BaseProps, TextLabelProps {
   size?: SizeType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoOverlayBadge'
 })
 
@@ -41,7 +41,7 @@ export const OverlayBadge = forwardRef<HTMLDivElement, Props>(
       content,
       titleCase: propsTitleCase
     } = props
-    const classes = useStyles(props)
+    const classes = useStyles()
 
     const titleCase = useTitleCase(propsTitleCase)
 

@@ -1,19 +1,15 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIStepLabel from '@material-ui/core/StepLabel'
-import {
-  StandardProps,
-  TextLabelProps,
-  useTitleCase
-} from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import StepIcon from '../StepIcon'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
   hideLabel: boolean
@@ -22,18 +18,21 @@ export interface Props
   completed?: boolean
 }
 
-export const StepLabel: FunctionComponent<Props> = ({
-  active,
-  classes,
-  className,
-  children,
-  completed,
-  hideLabel,
-  style,
-  titleCase: propsTitleCase,
-  ...rest
-}) => {
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepLabel' })
+
+export const StepLabel: FunctionComponent<Props> = props => {
+  const {
+    active,
+    className,
+    children,
+    completed,
+    hideLabel,
+    style,
+    titleCase: propsTitleCase,
+    ...rest
+  } = props
   const titleCase = useTitleCase(propsTitleCase)
+  const classes = useStyles()
 
   return (
     <MUIStepLabel
@@ -62,4 +61,4 @@ StepLabel.defaultProps = {
 
 StepLabel.displayName = 'StepLabel'
 
-export default withStyles(styles)(StepLabel)
+export default StepLabel

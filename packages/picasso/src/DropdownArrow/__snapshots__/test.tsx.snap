@@ -3,7 +3,7 @@
 exports[`DropdownArrow renders 1`] = `
 <div>
   <span
-    class="DropdownArrow-root DropdownArrow-medium"
+    class="PicassoDropdownArrow-root PicassoDropdownArrow-medium"
   />
 </div>
 `;

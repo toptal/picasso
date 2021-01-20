@@ -1,15 +1,13 @@
 import React, { forwardRef, ImgHTMLAttributes } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 type VariantType = 'rectangle' | 'circular'
 
-export interface Props
-  extends StandardProps,
-    ImgHTMLAttributes<HTMLImageElement> {
+export interface Props extends BaseProps, ImgHTMLAttributes<HTMLImageElement> {
   /** Image alt text */
   alt: string
   /** Image url */
@@ -20,19 +18,23 @@ export interface Props
   variant?: VariantType
 }
 
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoImage' })
+
 export const Image = forwardRef<HTMLImageElement, Props>(function Image(
-  {
+  props,
+  ref
+) {
+  const {
     src,
     srcSet,
     alt,
-    classes,
     className,
     variant = 'rectangle',
     style,
     ...rest
-  },
-  ref
-) {
+  } = props
+  const classes = useStyles()
+
   return (
     <img
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -59,4 +61,4 @@ Image.defaultProps = {
 
 Image.displayName = 'Image'
 
-export default withStyles(styles)(Image)
+export default Image

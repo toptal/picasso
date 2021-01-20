@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
@@ -37,8 +37,15 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoUserBadge'
+})
+
 export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
-  {
+  props,
+  ref
+) {
+  const {
     avatar,
     name,
     renderName,
@@ -48,13 +55,15 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     invert,
     center,
     children,
-    classes,
     className,
     style,
+    // Avoid passing external classes inside the rest props
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    classes: externalClasses,
     ...rest
-  },
-  ref
-) {
+  } = props
+  const classes = useStyles(props)
+
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar
   ) : (
@@ -130,4 +139,4 @@ UserBadge.defaultProps = {
 
 UserBadge.displayName = 'UserBadge'
 
-export default withStyles(styles)(UserBadge)
+export default UserBadge

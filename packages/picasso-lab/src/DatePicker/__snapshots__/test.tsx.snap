@@ -6,16 +6,16 @@ exports[`DatePicker renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-inline"
+      class="PicassoContainer-inline"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
       >
         <div
-          class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
+          class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
         >
           <svg
-            class="SvgCalendar16-root"
+            class="PicassoSvgCalendar16-root"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -26,13 +26,13 @@ exports[`DatePicker renders 1`] = `
         </div>
         <input
           autocomplete="off"
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+          class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
           type="text"
           value="Dec 12, 2019"
         />
         <fieldset
           aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
           style="padding-left: 8px;"
         >
           <legend

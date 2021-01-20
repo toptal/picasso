@@ -32,8 +32,12 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   value?: string | number
 }
 
+// Using { index: -1 } to inject CSS link to the bottom of the head
+// in order to prevent Button's styles to override ButtonCircular's ones
+// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonCircular'
+  name: 'PicassoButtonCircular',
+  index: -1
 })
 
 export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
@@ -47,7 +51,7 @@ export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
       disabled,
       ...rest
     } = props
-    const classes = useStyles(props)
+    const classes = useStyles()
 
     const { root: rootClass, focusVisible: focusVisibleClass } = classes
 

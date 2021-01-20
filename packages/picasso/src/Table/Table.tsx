@@ -33,7 +33,7 @@ export interface StaticProps {
   ExpandableRow: typeof TableExpandableRow
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Table'
 })
 
@@ -42,8 +42,8 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table(
   props,
   ref
 ) {
-  const classes = useStyles(props)
   const { className, style, children, ...rest } = props
+  const classes = useStyles()
 
   return (
     <MUITable

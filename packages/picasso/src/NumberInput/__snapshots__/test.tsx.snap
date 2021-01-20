@@ -5,10 +5,10 @@ exports[`NumberInput renders 1`] = `
   class="Picasso-root"
 >
   <div
-    class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoNumberInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+    class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoNumberInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
   >
     <input
-      class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input PicassoNumberInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+      class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoNumberInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
       max="100"
       min="-100"
       step="5"
@@ -16,10 +16,10 @@ exports[`NumberInput renders 1`] = `
       value="10"
     />
     <div
-      class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
+      class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
     >
       <div
-        class="Container-flex Container-inline Container-column"
+        class="PicassoContainer-flex PicassoContainer-inline PicassoContainer-column"
       >
         <button
           class="MuiButtonBase-root PicassoNumberInput-control"
@@ -27,7 +27,7 @@ exports[`NumberInput renders 1`] = `
           type="button"
         >
           <svg
-            class="SvgArrowUpMinor16-root"
+            class="PicassoSvgArrowUpMinor16-root"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -42,7 +42,7 @@ exports[`NumberInput renders 1`] = `
           type="button"
         >
           <svg
-            class="SvgArrowDownMinor16-root"
+            class="PicassoSvgArrowDownMinor16-root"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -55,7 +55,7 @@ exports[`NumberInput renders 1`] = `
     </div>
     <fieldset
       aria-hidden="true"
-      class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+      class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
       style="padding-left: 8px;"
     >
       <legend

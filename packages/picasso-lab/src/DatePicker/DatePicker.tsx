@@ -82,7 +82,7 @@ const DEFAULT_DISPLAY_DATE_FORMAT = 'MMM d, yyyy'
 const DEFAULT_EDIT_DATE_FORMAT = 'MM-dd-yyyy'
 const EMPTY_INPUT_VALUE = ''
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoDatePicker'
 })
 
@@ -107,7 +107,7 @@ export const DatePicker = (props: Props) => {
     size,
     ...rest
   } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const inputProps = rest
 

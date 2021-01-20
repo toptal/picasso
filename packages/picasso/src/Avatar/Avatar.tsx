@@ -1,10 +1,11 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   StandardProps,
   SizeType,
-  OmitInternalProps
+  OmitInternalProps,
+  JssProps
 } from '@toptal/picasso-shared'
 
 import Image from '../Image'
@@ -36,21 +37,31 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoAvatar' })
+
 const isBrowserSupportsObjectFit = 'objectFit' in document.documentElement.style
 
-const renderLogo = ({ classes, src, size }: Partial<Props>) => {
+const renderLogo = ({
+  classes,
+  src,
+  size
+}: Pick<Props, 'src' | 'size'> & JssProps) => {
   if (!src || ['small', 'xsmall', 'xxsmall'].includes(size!)) {
     return null
   }
 
   return (
-    <div className={classes!.logoContainer}>
-      <Logo emblem variant='white' className={classes!.logo} />
+    <div className={classes.logoContainer}>
+      <Logo emblem variant='white' className={classes.logo} />
     </div>
   )
 }
 
-const renderInitials = ({ classes, src, name }: Partial<Props>) => {
+const renderInitials = ({
+  classes,
+  src,
+  name
+}: Pick<Props, 'src' | 'name'> & JssProps) => {
   if (src || !name) {
     return null
   }
@@ -59,8 +70,8 @@ const renderInitials = ({ classes, src, name }: Partial<Props>) => {
 
   return (
     <Typography
-      className={cx(classes!.text, {
-        [classes!.textCapLimit]: initials.length >= AVATAR_INITIALS_LIMIT
+      className={cx(classes.text, {
+        [classes.textCapLimit]: initials.length >= AVATAR_INITIALS_LIMIT
       })}
       invert
     >
@@ -83,17 +94,11 @@ const IE11Image = ({ style, src, ...rest }: OmitInternalProps<ImageProps>) => (
   />
 )
 
-export const Avatar: FunctionComponent<Props> = ({
-  alt,
-  src,
-  classes,
-  className,
-  name,
-  size,
-  style,
-  variant,
-  ...rest
-}) => {
+export const Avatar: FunctionComponent<Props> = props => {
+  const { alt, src, className, name, size, style, variant, ...rest } = props
+
+  const classes = useStyles(props)
+
   const sizeClassName = classes[size!]
   const variantClassName = classes[variant!]
 
@@ -139,4 +144,4 @@ Avatar.defaultProps = {
 
 Avatar.displayName = 'Avatar'
 
-export default withStyles(styles)(Avatar)
+export default Avatar

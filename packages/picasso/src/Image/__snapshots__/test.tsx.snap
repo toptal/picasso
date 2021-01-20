@@ -4,7 +4,7 @@ exports[`Image circular variant render 1`] = `
 <div>
   <img
     alt="Circular image"
-    class="Image-circular Image-root"
+    class="PicassoImage-circular PicassoImage-root"
     src="localhost"
   />
 </div>
@@ -14,7 +14,7 @@ exports[`Image renders 1`] = `
 <div>
   <img
     alt="Default image"
-    class="Image-root"
+    class="PicassoImage-root"
     src="localhost"
   />
 </div>

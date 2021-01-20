@@ -4,8 +4,8 @@ import React, {
   useMemo,
   HTMLAttributes
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps, JssProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { JssProps, BaseProps } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -34,16 +34,16 @@ export interface PaginationPageProps extends JssProps {
   onClick: (page: NavigationType) => void
 }
 
-const PaginationPage: FunctionComponent<PaginationPageProps> = ({
-  page,
-  activePage,
-  disabled,
-  classes,
-  onClick
-}) => {
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoPagination'
+})
+
+const PaginationPage: FunctionComponent<PaginationPageProps> = props => {
+  const { page, activePage, disabled, onClick, classes } = props
+
   return (
     <Button
-      className={classes.rangeButton}
+      className={classes?.rangeButton}
       disabled={disabled}
       onClick={() => onClick(page)}
       variant={activePage === page ? 'primary' : 'secondary'}
@@ -54,7 +54,7 @@ const PaginationPage: FunctionComponent<PaginationPageProps> = ({
   )
 }
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Value of the current highlighted page */
   activePage: number
   /** Shows `Pagination` in disabled state when pages are not changeable */
@@ -66,9 +66,12 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
-  { activePage, classes, disabled, totalPages, onPageChange, ...rest },
+  props,
   ref
 ) {
+  const { activePage, disabled, totalPages, onPageChange, ...rest } = props
+  const classes = useStyles()
+
   const pages = useMemo(() => getRange(activePage, totalPages, SIBLING_COUNT), [
     activePage,
     totalPages
@@ -155,4 +158,4 @@ Pagination.defaultProps = {
 
 Pagination.displayName = 'Pagination'
 
-export default withStyles(styles)(Pagination)
+export default Pagination

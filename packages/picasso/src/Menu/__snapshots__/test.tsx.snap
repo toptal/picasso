@@ -17,10 +17,10 @@ exports[`Menu has back button when in submenu 1`] = `
         tabindex="0"
       >
         <div
-          class="Container-flex Container-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            class="Container-centerAlignItems Container-flex"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <span
               class="PicassoMenuItem-stringContent"
@@ -28,10 +28,10 @@ exports[`Menu has back button when in submenu 1`] = `
               Item 1
             </span>
             <div
-              class="Container-leftxsmallMargin Container-flex Container-inline"
+              class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
             >
               <svg
-                class="SvgChevronMinor16-root"
+                class="PicassoSvgChevronMinor16-root"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -56,16 +56,16 @@ exports[`Menu has back button when in submenu 1`] = `
         tabindex="0"
       >
         <div
-          class="Container-flex Container-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            class="Container-centerAlignItems Container-flex"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <p
-              class="MuiTypography-root Typography-bodySmall Typography-darkGrey MuiTypography-body1"
+              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
             >
               <svg
-                class="SvgBackMinor16-root Menu-backButtonIcon"
+                class="PicassoSvgBackMinor16-root Menu-backButtonIcon"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -85,10 +85,10 @@ exports[`Menu has back button when in submenu 1`] = `
         tabindex="-1"
       >
         <div
-          class="Container-flex Container-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            class="Container-centerAlignItems Container-flex"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <span
               class="PicassoMenuItem-stringContent"
@@ -120,10 +120,10 @@ exports[`Menu renders 1`] = `
         tabindex="0"
       >
         <div
-          class="Container-flex Container-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            class="Container-centerAlignItems Container-flex"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <span
               class="PicassoMenuItem-stringContent"
@@ -140,10 +140,10 @@ exports[`Menu renders 1`] = `
         tabindex="-1"
       >
         <div
-          class="Container-flex Container-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            class="Container-centerAlignItems Container-flex"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <span
               class="PicassoMenuItem-stringContent"
@@ -160,10 +160,10 @@ exports[`Menu renders 1`] = `
         tabindex="-1"
       >
         <div
-          class="Container-flex Container-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            class="Container-centerAlignItems Container-flex"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <span
               class="PicassoMenuItem-stringContent"

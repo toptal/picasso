@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { SnackbarProvider } from 'notistack'
 import React, { FunctionComponent } from 'react'
@@ -6,7 +6,9 @@ import React, { FunctionComponent } from 'react'
 import { useDrawer, useTopBar } from '../Picasso'
 import styles from './styles'
 
-const useStyles = makeStyles(styles)
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoNotificationsProvider'
+})
 
 const MAX_NOTIFICATION_MESSAGES = 5
 

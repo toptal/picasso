@@ -11,8 +11,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent'
 import cx from 'classnames'
 import capitalize from '@material-ui/core/utils/capitalize'
 import {
-  BaseProps,
-  JssProps,
+  StandardProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -34,7 +33,7 @@ export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
 /** `variant`, `elevated` and `icon` props are omitted from the public declaration, since they're only for internal use */
 export interface PrivateProps
-  extends BaseProps,
+  extends StandardProps,
     HTMLAttributes<HTMLDivElement> {
   /** Main content of the Notification */
   children: ReactNode
@@ -54,25 +53,18 @@ export interface StaticProps {
   Actions: typeof NotificationActions
 }
 
-const renderNotificationCloseButton = ({
-  onClose,
-  classes: { close, closeIcon }
-}: PrivateProps & JssProps) => (
+const renderNotificationCloseButton = ({ onClose, classes }: PrivateProps) => (
   <Button.Circular
     onClick={onClose}
-    className={close}
+    className={classes?.close}
     title='Close Notification'
-    icon={<CloseMinor16 className={closeIcon} />}
+    icon={<CloseMinor16 className={classes?.closeIcon} />}
   />
 )
 
-const renderNotificationIcon = ({
-  icon,
-  variant,
-  classes
-}: PrivateProps & JssProps) => {
+const renderNotificationIcon = ({ icon, variant, classes }: PrivateProps) => {
   const iconProps = {
-    className: classes.icon
+    className: classes?.icon
   }
 
   // TODO: these are Icons required circular Icon bg color definitions, all Icons should be white on that color
@@ -99,23 +91,24 @@ const renderNotificationIcon = ({
   }
 }
 
-const renderNotificationContent = (props: PrivateProps & JssProps) => {
-  const {
-    classes: { iconWrapper, content, contentWrapper, contentCloseButton },
-    children,
-    onClose
-  } = props
+const renderNotificationContent = (props: PrivateProps) => {
+  const { classes, children, onClose } = props
 
   return (
-    <Container flex className={contentWrapper}>
-      <Container flex alignItems='center' className={iconWrapper}>
+    <Container flex className={classes?.contentWrapper}>
+      <Container flex alignItems='center' className={classes?.iconWrapper}>
         {renderNotificationIcon(props)}
       </Container>
       <Typography
         size='medium'
-        className={cx(content, {
-          [contentCloseButton]: onClose
-        })}
+        className={cx(
+          classes?.content,
+          classes?.contentCloseButton
+            ? {
+                [classes.contentCloseButton]: onClose
+              }
+            : undefined
+        )}
         as='div'
       >
         {children}
@@ -125,15 +118,16 @@ const renderNotificationContent = (props: PrivateProps & JssProps) => {
   )
 }
 
-const useStyles = makeStyles<Theme, PrivateProps>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Notification'
 })
 
 // eslint-disable-next-line react/display-name
 export const Notification = forwardRef<HTMLElement, PrivateProps>(
   function Notification(props, ref) {
-    const classes = useStyles(props)
     const { className, variant, elevated, ...rest } = props
+
+    const classes = useStyles()
 
     return (
       <SnackbarContent

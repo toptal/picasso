@@ -24,7 +24,7 @@ export interface Props extends BaseProps, TextLabelProps {
   size?: SizeType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoBadge' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoBadge' })
 
 // eslint-disable-next-line react/display-name
 export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
@@ -32,7 +32,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   ref
 ) {
   const { style, variant, size, content, titleCase: propsTitleCase } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const titleCase = useTitleCase(propsTitleCase)
 

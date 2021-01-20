@@ -16,16 +16,16 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   large?: boolean | GridSize
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'GridItem'
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoGridItem'
 })
 
 export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
   props,
   ref
 ) {
-  const classes = useStyles(props)
   const { children, small, medium, large, className, style, ...rest } = props
+  const classes = useStyles()
 
   return (
     <MUIGrid

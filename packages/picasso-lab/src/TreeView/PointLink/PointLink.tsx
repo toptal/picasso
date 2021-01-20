@@ -9,11 +9,11 @@ export interface Props {
   link: DynamicPointLink
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoPointLink' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoPointLink' })
 
 export const PointLink: FC<Props> = props => {
   const { link } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
   const path = useMemo(() => {
     const { source, target } = link
     const sourceY = source.y + (source.rect?.height || 0)

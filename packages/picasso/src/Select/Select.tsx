@@ -40,7 +40,7 @@ import noop from '../utils/noop'
 type IconPosition = 'start' | 'end'
 export type ValueType = string | number
 
-const useStyles = makeStyles<Theme, Props<any, any>>(styles)
+const useStyles = makeStyles<Theme>(styles)
 
 const getOptionText = (option: Option | null) =>
   (option && option.text) || EMPTY_INPUT_VALUE
@@ -421,6 +421,8 @@ export const Select = documentable(
         ...rest
       } = purifyProps(props)
 
+      const classes = useStyles()
+
       const selectRef = useCombinedRefs<HTMLInputElement>(
         ref,
         useRef<HTMLInputElement>(null)
@@ -428,8 +430,6 @@ export const Select = documentable(
       const searchInputRef = useRef<HTMLInputElement>(null)
       const popperRef = useRef<PopperJs>(null)
       const inputWrapperRef = useRef<HTMLDivElement>(null)
-
-      const classes = useStyles(props)
 
       const [selectedOptions, setSelectedOptions] = useState(
         getSelectedOptions(allOptions, value)

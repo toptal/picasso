@@ -1,8 +1,8 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
-import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import CircularProgress from '../CircularProgress'
 import styles from './styles'
@@ -15,7 +15,7 @@ enum SIZES {
 
 type VariantType = 'blue' | 'inherit'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Text content for the `Loader` */
   children?: ReactNode
   /** Shows loader as part of other inline elements such as text */
@@ -28,19 +28,24 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
 }
 
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLoader' })
+
 export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
-  {
+  props,
+  ref
+) {
+  const {
     children,
-    classes,
     size,
     inline,
     className,
     value,
     variant = 'blue',
     ...rest
-  },
-  ref
-) {
+  } = props
+
+  const classes = useStyles()
+
   return (
     <div
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -72,4 +77,4 @@ Loader.defaultProps = {
 
 Loader.displayName = 'Loader'
 
-export default withStyles(styles)(Loader)
+export default Loader

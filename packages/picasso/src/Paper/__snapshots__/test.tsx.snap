@@ -9,7 +9,7 @@ exports[`Paper renders 1`] = `
       class="MuiPaper-root MuiPaper-elevation1"
     >
       <p
-        class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyInherit MuiTypography-body1"
       >
         This is Paper
       </p>

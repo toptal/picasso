@@ -13,7 +13,7 @@ export interface Props extends RadioGroupProps {
 // Using { index: -1 } to inject CSS link to the bottom of the head
 // in order to prevent FormControlLabel's styles to override RadioGroup's ones
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoRadioGroup',
   index: -1
 })
@@ -24,7 +24,7 @@ const RadioGroup: FunctionComponent<Props> = props => {
     horizontal: horizontalClass,
     labelWithRightSpacing,
     ...classes
-  } = useStyles(props)
+  } = useStyles()
 
   const children = React.Children.toArray(rest.children)
 

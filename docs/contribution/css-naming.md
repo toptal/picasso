@@ -15,10 +15,15 @@ To maintain consistency within `Picasso` repository we try to follow some conven
 import React from 'react'
 import cx from 'classnames'
 import capitalize from '@material-ui/core/utils/capitalize'
+import { makeStyles } from '@material-ui/styles'
 
 import styles from './styles'
 
-const Container = ({ classes, width, children }) => {
+const useStyles = makeStyles(styles)
+
+const Container = ({ width, children }) => {
+  const classes = useStyles()
+
   const rootClassname = cx(classes.root, classes[`root${capitalize(width)}`])
 
   return (
@@ -28,7 +33,7 @@ const Container = ({ classes, width, children }) => {
   )
 }
 
-export default withStyles(styles)(Hero)
+export default Container
 
 ```
 
@@ -63,7 +68,11 @@ import cx from 'classnames'
 
 import styles from './styles'
 
-const Button = ({ classes, active, focused, disabled }) => {
+const useStyles = makeStyles(styles)
+
+const Button = ({ active, focused, disabled }) => {
+  const classes = useStyles()
+
   const rootClassName = cx(
     {
       [classes.active]: active,
@@ -79,6 +88,6 @@ const Button = ({ classes, active, focused, disabled }) => {
   )
 }
 
-export default withStyles(styles)(Button)
+export default Button
 
 ```

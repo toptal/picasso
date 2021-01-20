@@ -6,13 +6,13 @@ exports[`Input renders icon in the beginning 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
-          class="SvgSearch16-root PicassoInput-icon"
+          class="PicassoSvgSearch16-root PicassoInput-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
@@ -23,13 +23,13 @@ exports[`Input renders icon in the beginning 1`] = `
       </div>
       <input
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         type="text"
         value=""
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -52,13 +52,13 @@ exports[`Input renders icon in the end 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
-          class="SvgSearch16-root PicassoInput-icon"
+          class="PicassoSvgSearch16-root PicassoInput-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
@@ -69,13 +69,13 @@ exports[`Input renders icon in the end 1`] = `
       </div>
       <input
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         type="text"
         value=""
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -98,18 +98,18 @@ exports[`Input should show manual resize handler 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root PicassoInput-rootMultiline OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-rootMultiline PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <textarea
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input PicassoInput-inputMultilineResizable OutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline OutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoInput-inputMultilineResizable PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         rows="4"
       >
         Some value
       </textarea>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -132,16 +132,16 @@ exports[`Input should show reset button 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <input
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         type="text"
         value="Some value"
       />
       <div
-        class="MuiInputAdornment-root InputAdornment-root OutlinedInput-resetButton OutlinedInput-resetButtonDirty MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root PicassoInputAdornment-root PicassoOutlinedInput-resetButton PicassoOutlinedInput-resetButtonDirty MuiInputAdornment-positionEnd"
       >
         <button
           class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
@@ -151,10 +151,10 @@ exports[`Input should show reset button 1`] = `
           type="button"
         >
           <span
-            class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
           >
             <svg
-              class="SvgCloseMinor16-root PicassoButton-icon"
+              class="PicassoSvgCloseMinor16-root PicassoButton-icon"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -167,7 +167,7 @@ exports[`Input should show reset button 1`] = `
       </div>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -190,16 +190,16 @@ exports[`Input shows counter for multiline input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root PicassoInput-rootMultiline PicassoInput-rootMultilineLimiter OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-rootMultiline PicassoInput-rootMultilineLimiter PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <textarea
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline OutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         rows="4"
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -222,17 +222,17 @@ exports[`Input shows counter for regular input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <input
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         type="text"
         value=""
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -251,7 +251,7 @@ exports[`Input shows counter for regular input 1`] = `
 
 exports[`Input shows excess chars for multiline input with exceeded limit 1`] = `
 <div
-  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
   <span
@@ -266,7 +266,7 @@ exports[`Input shows excess chars for multiline input with exceeded limit 1`] = 
 
 exports[`Input shows remaining chars for for multiline input with limit 1`] = `
 <div
-  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
   <span

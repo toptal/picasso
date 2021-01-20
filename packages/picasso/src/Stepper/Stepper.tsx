@@ -1,8 +1,8 @@
 import React, { forwardRef, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIStepper from '@material-ui/core/Stepper'
-import { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import Step from '../Step'
 import StepLabel from '../StepLabel'
@@ -11,7 +11,7 @@ import StepConnector from '../StepConnector'
 import styles from './styles'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
   /** The index of the active step */
@@ -24,20 +24,24 @@ export interface Props
   steps: string[]
 }
 
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
+
 export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
-  {
+  props,
+  ref
+) {
+  const {
     active = 0,
     steps,
     fullWidth,
     hideLabels,
-    classes,
     className,
     style,
     titleCase,
     ...rest
-  },
-  ref
-) {
+  } = props
+  const classes = useStyles()
+
   return (
     <MUIStepper
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -78,4 +82,4 @@ Stepper.defaultProps = {
 
 Stepper.displayName = 'Stepper'
 
-export default withStyles(styles)(Stepper)
+export default Stepper

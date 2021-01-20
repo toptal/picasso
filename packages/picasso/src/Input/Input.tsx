@@ -98,7 +98,7 @@ type EndAdornmentProps = Pick<
   'icon' | 'iconPosition' | 'disabled' | 'multiline' | 'limit' | 'counter'
 > & { charsLength?: number }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoInput' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoInput' })
 
 const hasRemainingCounter = ({
   counter,
@@ -139,7 +139,7 @@ const getMultilineLabel = ({
 }
 
 const LimitAdornment = (props: LimitAdornmentProps) => {
-  const classes = useStyles(props)
+  const classes = useStyles()
   const { multiline, charsLength, counter, limit } = props
 
   const charsTillLimit = getCharsTillLimit({
@@ -176,7 +176,7 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
 
 const IconAdornment = (props: IconAdornmentProps) => {
   const { position, disabled, icon } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
   const styledIcon = React.cloneElement(icon as ReactElement, {
     className: classes.icon,
     role: 'presentation'
@@ -288,7 +288,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 
   const charsLength = value ? value.length : 0
 
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   return (
     <OutlinedInput

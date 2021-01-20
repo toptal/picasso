@@ -1,13 +1,13 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import Typography from '../Typography'
 import styles from './styles'
 
 type ContentWidth = 'shrink' | 'full'
-export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Content of Helpbox */
   children: ReactNode
   /**
@@ -17,11 +17,16 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   width?: ContentWidth
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoHelpboxContent'
+})
+
 export const HelpboxContent = forwardRef<HTMLElement, Props>(
-  function HelpboxContent(
-    { width, classes, className, style, children, ...rest },
-    ref
-  ) {
+  function HelpboxContent(props, ref) {
+    const { width, className, style, children, ...rest } = props
+
+    const classes = useStyles()
+
     return (
       <Typography
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -46,4 +51,4 @@ HelpboxContent.defaultProps = {
 
 HelpboxContent.displayName = 'HelpboxContent'
 
-export default withStyles(styles)(HelpboxContent)
+export default HelpboxContent

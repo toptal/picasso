@@ -6,13 +6,13 @@ exports[`Alert renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex Container-inline"
+      class="PicassoContainer-flex PicassoContainer-inline"
     >
       <div
-        class="Container-rightsmallMargin"
+        class="PicassoContainer-rightsmallMargin"
       >
         <svg
-          class="SvgExclamation16-root SvgExclamation16-yellow"
+          class="PicassoSvgExclamation16-root PicassoSvgExclamation16-yellow"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
@@ -22,7 +22,7 @@ exports[`Alert renders 1`] = `
         </svg>
       </div>
       <div
-        class="MuiTypography-root Typography-bodyMedium Typography-black PicassoAlertInline-content MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black PicassoAlertInline-content MuiTypography-body1"
       >
         test example string
       </div>

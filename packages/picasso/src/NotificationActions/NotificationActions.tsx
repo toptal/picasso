@@ -1,17 +1,22 @@
 import React, { forwardRef, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {}
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {}
+
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoNotificationActions'
+})
 
 export const NotificationActions = forwardRef<HTMLDivElement, Props>(
-  function NotificationActions(
-    { children, classes, className, style, ...rest },
-    ref
-  ) {
+  function NotificationActions(props, ref) {
+    const { children, className, style, ...rest } = props
+
+    const classes = useStyles()
+
     return (
       <Container
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -33,4 +38,4 @@ NotificationActions.defaultProps = {}
 
 NotificationActions.displayName = 'NotificationActions'
 
-export default withStyles(styles)(NotificationActions)
+export default NotificationActions

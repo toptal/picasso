@@ -102,7 +102,7 @@ module.exports = {
         TEST_ENV: JSON.stringify(env.TEST_ENV)
       }),
       // https://github.com/TypeStrong/ts-loader/issues/653
-      new IgnoreNotFoundPlugin(['OverridableComponent', 'StandardProps'])
+      new IgnoreNotFoundPlugin(['OverridableComponent', 'BaseProps'])
     )
 
     config.node = {

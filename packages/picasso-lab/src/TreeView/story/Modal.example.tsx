@@ -13,7 +13,7 @@ const NodeContainer = styled<typeof Container>(Container)<{
   selected?: boolean
 }>`
   display: flex;
-  alignitems: center;
+  align-items: center;
   width: 236px;
   padding: 0.5rem;
   ${({ selected }) =>

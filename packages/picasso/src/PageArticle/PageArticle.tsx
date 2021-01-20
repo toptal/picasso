@@ -11,7 +11,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoPageArticle'
 })
 
@@ -20,7 +20,7 @@ export const PageArticle: OverridableComponent<Props> = forwardRef<
   Props
 >(function PageArticle(props, ref) {
   const { children, className, style, ...rest } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   return (
     <Container

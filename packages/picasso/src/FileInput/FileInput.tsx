@@ -1,8 +1,8 @@
 import React, { forwardRef, useRef } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import OutlinedInput from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
@@ -13,7 +13,7 @@ import { Check16, UploadDocument16 } from '../Icon'
 import { isNumber, isBoolean, useCombinedRefs } from '../utils'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** If true, the 'FileInput' will be disabled */
   disabled?: boolean
   /** Indicate whether `FileInput` is in error state */
@@ -32,9 +32,10 @@ export interface Props extends StandardProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const FileInputContent = withStyles(styles)(
-  ({
-    classes,
+const useStyles = makeStyles<Theme>(styles, { name: 'FileInputContent' })
+
+const FileInputContent = (props: Props & InputBaseComponentProps) => {
+  const {
     accept,
     onChange,
     value,
@@ -43,43 +44,47 @@ const FileInputContent = withStyles(styles)(
     error,
     progress,
     inputRef
-  }: Props & InputBaseComponentProps) => {
-    const getFilename = () => {
-      if (error || progress || !value) {
-        return status
-      }
+  } = props
 
-      return value.name
+  const classes = useStyles()
+
+  const getFilename = () => {
+    if (error || progress || !value) {
+      return status
     }
 
-    return (
-      <>
-        <Typography
-          inline
-          color='black'
-          className={cx(classes.inputValue, {
-            [classes.inputValueDisabled]: disabled,
-            [classes.inputValueSelected]: value
-          })}
-        >
-          {getFilename()}
-        </Typography>
-
-        <input
-          type='file'
-          className={classes.nativeInput}
-          ref={inputRef}
-          accept={accept}
-          onChange={onChange}
-        />
-      </>
-    )
+    return value.name
   }
-)
+
+  return (
+    <>
+      <Typography
+        inline
+        color='black'
+        className={cx(classes.inputValue, {
+          [classes.inputValueDisabled]: disabled,
+          [classes.inputValueSelected]: value
+        })}
+      >
+        {getFilename()}
+      </Typography>
+
+      <input
+        type='file'
+        className={classes.nativeInput}
+        ref={inputRef}
+        accept={accept}
+        onChange={onChange}
+      />
+    </>
+  )
+}
 
 export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
-  {
-    classes,
+  props,
+  ref
+) {
+  const {
     className,
     style,
     width,
@@ -90,9 +95,10 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     value,
     status,
     onChange
-  },
-  ref
-) {
+  } = props
+
+  const classes = useStyles()
+
   // if `ref` is null then we need a ref to control the input
   // so we create another ref manually if needed and merge both of them
   const inputRef = useCombinedRefs<HTMLInputElement>(
@@ -177,4 +183,4 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
 
 FileInput.displayName = 'FileInput'
 
-export default withStyles(styles)(FileInput)
+export default FileInput

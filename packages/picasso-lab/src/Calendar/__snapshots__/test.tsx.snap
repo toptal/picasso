@@ -22,10 +22,10 @@ exports[`Calendar renders 1`] = `
             type="button"
           >
             <span
-              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               <svg
-                class="SvgBackMinor16-root"
+                class="PicassoSvgBackMinor16-root"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -36,7 +36,7 @@ exports[`Calendar renders 1`] = `
             </span>
           </button>
           <h3
-            class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+            class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
           >
             February 2019
           </h3>
@@ -48,10 +48,10 @@ exports[`Calendar renders 1`] = `
             type="button"
           >
             <span
-              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               <svg
-                class="SvgChevronMinor16-root"
+                class="PicassoSvgChevronMinor16-root"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >

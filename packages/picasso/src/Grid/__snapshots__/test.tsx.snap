@@ -6,7 +6,7 @@ exports[`Grid renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-root MuiGrid-container Grid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
+      class="MuiGrid-root MuiGrid-container PicassoGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
     />
   </div>
 </div>

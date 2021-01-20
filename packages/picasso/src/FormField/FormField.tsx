@@ -1,13 +1,13 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import FormHint from '../FormHint'
 import FormError from '../FormError'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** The text of the hint */
   hint?: string
   /** The text of the error */
@@ -16,10 +16,16 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoFormField' })
+
 export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
-  { classes, className, style, hint, children, error, ...rest },
+  props,
   ref
 ) {
+  const { className, style, hint, children, error, ...rest } = props
+
+  const classes = useStyles()
+
   return (
     <div
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -40,4 +46,4 @@ FormField.defaultProps = {}
 
 FormField.displayName = 'FormField'
 
-export default withStyles(styles)(FormField)
+export default FormField

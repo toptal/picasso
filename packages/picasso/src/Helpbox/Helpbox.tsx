@@ -31,8 +31,8 @@ export interface StaticProps {
   Actions: typeof HelpboxActions
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'Helpbox'
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoHelpbox'
 })
 
 // eslint-disable-next-line react/display-name
@@ -40,8 +40,8 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
   props,
   ref
 ) {
-  const classes = useStyles(props)
   const { className, style, children, variant, onClose, ...rest } = props
+  const classes = useStyles()
 
   return (
     <Container

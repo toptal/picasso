@@ -30,8 +30,12 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   value?: string | number
 }
 
+// Using { index: -1 } to inject CSS link to the bottom of the head
+// in order to prevent Button's styles to override ButtonAction's ones
+// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonAction'
+  name: 'PicassoButtonAction',
+  index: -1
 })
 
 const loaderIcon = <Loader size='small' variant='inherit' />
@@ -50,7 +54,7 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
       onClick,
       ...rest
     } = props
-    const classes = useStyles(props)
+    const classes = useStyles()
 
     const {
       root: rootClass,

@@ -1,6 +1,6 @@
 import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
@@ -13,24 +13,19 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
+const useStyles = makeStyles(styles, { name: 'PicassoSvgDropdownArrows16' })
 const SvgDropdownArrows16 = forwardRef(function SvgDropdownArrows16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const {
-    classes: availableClasses,
-    className,
-    style = {},
-    color,
-    scale,
-    base
-  } = props
-  const classes = [availableClasses.root, className]
+  const { className, style = {}, color, scale, base } = props
+  const classes: Record<string, string> = useStyles(props)
+  const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
 
-  if (availableClasses[colorClassName]) {
-    classes.push(availableClasses[colorClassName])
+  if (classes[colorClassName]) {
+    classNames.push(classes[colorClassName])
   }
 
   const svgStyle = {
@@ -42,14 +37,14 @@ const SvgDropdownArrows16 = forwardRef(function SvgDropdownArrows16(
   return (
     <svg
       viewBox='0 0 16 16'
-      className={cx(...classes)}
+      className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
     >
-      <path d='M11 10.3L11.7 11 8 14.7 4.3 11 5 10.3 8 13.3 11 10.3ZM8 1.3L11.7 5 11 5.7 8 2.7 5 5.7 4.3 5 7.3 2 7.3 2 8 1.3Z' />
+      <path d='M10.997 10.29l.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3zm-3-9l3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707z' />
     </svg>
   )
 })
 
 SvgDropdownArrows16.displayName = 'SvgDropdownArrows16'
-export default withStyles(styles)(SvgDropdownArrows16)
+export default SvgDropdownArrows16

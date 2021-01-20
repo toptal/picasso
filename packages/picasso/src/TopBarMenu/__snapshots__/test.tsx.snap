@@ -6,31 +6,31 @@ exports[`TopBarMenu renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Dropdown-root"
+      class="PicassoDropdown-root"
     >
       <div
-        class="Dropdown-anchor"
+        class="PicassoDropdown-anchor"
       >
         <div
-          class="Container-centerAlignItems Container-flex UserBadge-root"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
         >
           <div
-            class="Avatar-root Avatar-xxsmall"
+            class="PicassoAvatar-root PicassoAvatar-xxsmall"
           >
             <img
               alt="Jacqueline Roque"
-              class="Image-root Avatar-image Avatar-square Avatar-xxsmall Avatar-clippedCorner UserBadge-avatar"
+              class="PicassoImage-root PicassoAvatar-image PicassoAvatar-square PicassoAvatar-xxsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
               src="./jacqueline-with-flowers-1954-square.jpg"
             />
           </div>
           <div
-            class="Container-flex Container-column UserBadge-infoContainer"
+            class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
           >
             <div
-              class="Container-centerAlignItems Container-flex"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <h4
-                class="MuiTypography-root Typography-invert Typography-headingSmall UserBadge-name TopBarMenu-name TopBarMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
+                class="MuiTypography-root PicassoTypography-invert PicassoTypography-headingSmall PicassoUserBadge-name PicassoTopBarMenu-name PicassoTopBarMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
               >
                 Jacqueline Roque
               </h4>
@@ -38,7 +38,7 @@ exports[`TopBarMenu renders 1`] = `
           </div>
         </div>
         <span
-          class="DropdownArrow-root TopBarMenu-arrow DropdownArrow-medium"
+          class="PicassoDropdownArrow-root PicassoTopBarMenu-arrow PicassoDropdownArrow-medium"
         />
       </div>
     </div>

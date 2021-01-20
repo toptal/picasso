@@ -1,7 +1,7 @@
 import React, { Fragment, FunctionComponent } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Table, Typography, Tooltip } from '@toptal/picasso'
-import { Classes } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import {
   PropDocumentation,
@@ -13,12 +13,18 @@ import EnumsList from './EnumsList'
 import Description from './Description'
 import styles from './styles'
 
-interface Props {
+interface Props extends BaseProps {
   documentation: PropDocumentation[]
-  classes: Classes
 }
 
-function renderRows({ documentation, classes }: Props): JSX.Element {
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoPropsTable'
+})
+
+function useRows(props: Props): JSX.Element {
+  const { documentation } = props
+  const classes = useStyles()
+
   const isEnum = (type: string | PropTypeDocumentation) =>
     type === 'enum' || (type as PropTypeDocumentation).name === 'enum'
 
@@ -81,7 +87,9 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
 }
 
 const PropsTable: FunctionComponent<Props> = props => {
-  const { classes } = props
+  const classes = useStyles()
+
+  const rows = useRows(props)
 
   return (
     <div className={classes.root}>
@@ -94,7 +102,7 @@ const PropsTable: FunctionComponent<Props> = props => {
             <Table.Cell className={classes.description}>Description</Table.Cell>
           </Table.Row>
         </Table.Head>
-        <Table.Body>{renderRows(props)}</Table.Body>
+        <Table.Body>{rows}</Table.Body>
       </Table>
     </div>
   )
@@ -102,4 +110,4 @@ const PropsTable: FunctionComponent<Props> = props => {
 
 PropsTable.displayName = 'PropsTable'
 
-export default withStyles(styles)(PropsTable)
+export default PropsTable

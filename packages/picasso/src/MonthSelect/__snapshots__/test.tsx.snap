@@ -12,13 +12,13 @@ exports[`MonthSelect renders 1`] = `
         class="makeStyles-inputWrapper"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
             readonly=""
             size="1"
             type="text"
@@ -26,7 +26,7 @@ exports[`MonthSelect renders 1`] = `
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
@@ -40,12 +40,12 @@ exports[`MonthSelect renders 1`] = `
           </fieldset>
         </div>
         <svg
-          class="SvgDropdownArrows16-root makeStyles-caret"
+          class="PicassoSvgDropdownArrows16-root makeStyles-caret"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
           <path
-            d="M11 10.3L11.7 11 8 14.7 4.3 11 5 10.3 8 13.3 11 10.3ZM8 1.3L11.7 5 11 5.7 8 2.7 5 5.7 4.3 5 7.3 2 7.3 2 8 1.3Z"
+            d="M10.997 10.29l.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3zm-3-9l3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707z"
           />
         </svg>
       </div>

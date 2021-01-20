@@ -12,13 +12,13 @@ export interface Props extends BaseProps {
   children: ReactNode
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Rotate180'
 })
 
 export const Rotate180 = (props: Props) => {
   const { children, style, className, on, ...rest } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const childProps = {
     className: cx(className, classes.transition, {

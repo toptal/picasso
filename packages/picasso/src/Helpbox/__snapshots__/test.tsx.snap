@@ -6,24 +6,24 @@ exports[`Helpbox renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-mediumPadding Container-bordered Container-rounded Helpbox-root"
+      class="PicassoContainer-mediumPadding PicassoContainer-bordered PicassoContainer-rounded PicassoHelpbox-root"
     >
       <div
-        class="Container-bottomsmallMargin"
+        class="PicassoContainer-bottomsmallMargin"
       >
         <h4
-          class="MuiTypography-root Typography-headingSmall MuiTypography-h4"
+          class="MuiTypography-root PicassoTypography-headingSmall MuiTypography-h4"
         >
           Title
         </h4>
       </div>
       <div
-        class="MuiTypography-root Typography-bodyMedium Typography-black MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black MuiTypography-body1"
       >
         Test
       </div>
       <div
-        class="Container-centerAlignItems Container-flex HelpboxActions-root"
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoHelpboxActions-root"
       >
         <button
           class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
@@ -32,7 +32,7 @@ exports[`Helpbox renders 1`] = `
           type="button"
         >
           <span
-            class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
           >
             Button
           </span>

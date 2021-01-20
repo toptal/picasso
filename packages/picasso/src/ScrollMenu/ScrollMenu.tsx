@@ -5,15 +5,15 @@ import React, {
   FunctionComponent,
   ReactNode
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import RootRef from '@material-ui/core/RootRef'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import styles from './styles'
 
 type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   selectedIndex?: number | null
   onBlur?: FocusEventType
   fixedHeader?: ReactNode
@@ -38,15 +38,13 @@ const getMoveDirection = (
     : Direction.UP
 }
 
-const ScrollMenu: FunctionComponent<Props> = ({
-  selectedIndex,
-  onBlur,
-  classes,
-  children,
-  style,
-  fixedHeader,
-  ...rest
-}) => {
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoScrollMenu'
+})
+
+const ScrollMenu: FunctionComponent<Props> = props => {
+  const { selectedIndex, onBlur, children, style, fixedHeader, ...rest } = props
+  const classes = useStyles()
   const menuRef = useRef<HTMLDivElement | null>(null)
   const firstItemRef = createRef<HTMLElement>()
   const prevSelectedIndex = useRef(selectedIndex)
@@ -114,4 +112,4 @@ const ScrollMenu: FunctionComponent<Props> = ({
   )
 }
 
-export default withStyles(styles)(ScrollMenu)
+export default ScrollMenu

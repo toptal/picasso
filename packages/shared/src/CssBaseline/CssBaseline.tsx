@@ -1,11 +1,17 @@
 import React, { FunctionComponent } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { CssBaselineProps } from '@material-ui/core/CssBaseline'
 
 import styles from './styles'
 
-const CssBaseline: FunctionComponent<CssBaselineProps> = ({ children }) => (
-  <>{children}</>
-)
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoCssBaseline'
+})
 
-export default withStyles(styles)(CssBaseline)
+const CssBaseline: FunctionComponent<CssBaselineProps> = ({ children }) => {
+  useStyles()
+
+  return <>{children}</>
+}
+
+export default CssBaseline

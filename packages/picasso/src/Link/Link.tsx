@@ -16,7 +16,7 @@ type UnderlineType = 'none' | 'hover' | 'always'
 type VariantType = 'action' | 'anchor'
 type ColorType = 'white' | 'blue' | 'black'
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLink' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLink' })
 
 const sanitizeRel = (rel: string | undefined, target: string | undefined) => {
   if (target !== '_blank') {
@@ -75,7 +75,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
     ...rest
   } = props
   const nativeHTMLAttributes = rest
-  const classes = useStyles(props)
+  const classes = useStyles()
   const sanitizedRel = sanitizeRel(rel, target)
 
   return (

@@ -7,9 +7,9 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { SnackbarOrigin } from '@material-ui/core/Snackbar'
-import { Classes } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import {
   Notification as PicassoNotification,
@@ -22,21 +22,24 @@ const defaultPosition: SnackbarOrigin = {
   horizontal: 'right'
 }
 
-interface Props {
+interface Props extends BaseProps {
   key: string
   content: ReactNode
   icon?: ReactElement
-  classes: Classes
   onClose?: () => void
   variant?: VariantType
 }
 
-const StyledNotification = withStyles(styles)(
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoNotification'
+})
+
+const StyledNotification =
   // eslint-disable-next-line react/display-name
-  forwardRef<HTMLElement, Props>(function Notification(
-    { content, icon, key, onClose, variant = 'white', classes },
-    ref
-  ) {
+  forwardRef<HTMLElement, Props>(function Notification(props, ref) {
+    const { content, icon, key, onClose, variant = 'white' } = props
+    const classes = useStyles()
+
     return (
       <PicassoNotification
         variant={variant}
@@ -54,7 +57,6 @@ const StyledNotification = withStyles(styles)(
       </PicassoNotification>
     )
   })
-)
 
 export const useNotifications = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()

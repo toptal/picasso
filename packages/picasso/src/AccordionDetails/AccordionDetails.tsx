@@ -1,23 +1,35 @@
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIAccordionDetails from '@material-ui/core/AccordionDetails'
-import { JssProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props extends JssProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
-const AccordionDetails: FunctionComponent<Props> = ({
-  classes,
-  children,
-  ...rest
-}) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <MUIAccordionDetails {...rest} classes={classes}>
-    {children}
-  </MUIAccordionDetails>
-)
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoAccordionDetails'
+})
 
-export default withStyles(styles)(AccordionDetails)
+const AccordionDetails: FunctionComponent<Props> = props => {
+  const {
+    children,
+    // Avoid passing external classes inside the rest props
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    classes: externalClasses,
+    ...rest
+  } = props
+
+  const classes = useStyles(props)
+
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <MUIAccordionDetails {...rest} classes={classes}>
+      {children}
+    </MUIAccordionDetails>
+  )
+}
+
+export default AccordionDetails

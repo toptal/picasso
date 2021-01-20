@@ -2,20 +2,20 @@ declare var TEST_ENV: string // defined by ENV
 
 import React, {
   ReactNode,
-  Component,
   FunctionComponent,
   useState,
   useEffect,
-  useLayoutEffect
+  useLayoutEffect,
+  useCallback
 } from 'react'
 import debounce from 'debounce'
 import styled from 'styled-components'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import SourceRender, { RenderResult } from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
 import { Typography, Button, Accordion, Container } from '@toptal/picasso'
-import Picasso, { useScreenSize, Classes } from '@toptal/picasso-shared'
+import Picasso, { BaseProps, useScreenSize } from '@toptal/picasso-shared'
 import { Code16, Link16 } from '@toptal/picasso/Icon'
 
 import Editor from '../Editor'
@@ -26,8 +26,11 @@ const COPY_LINK_DEFAULT_TEXT = 'Link'
 const COPY_LINK_COPIED_TEXT = 'Copied!'
 const PRESETS = [['typescript', { allExtensions: true, isTSX: true }], 'es2015']
 
-interface Props {
-  classes: Classes
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoCodeExample'
+})
+
+interface Props extends BaseProps {
   permanentLink: string
   src: string
   showEditCode?: boolean
@@ -101,179 +104,164 @@ const requireContext = require.context(
   /^.*story.*\.(js|jsx|ts|tsx)$/
 )
 
-class CodeExample extends Component<Props> {
-  static displayName = 'CodeExample'
+const getOriginalSourceCode = ({
+  src,
+  module
+}: Pick<Props, 'src' | 'module'>) => {
+  try {
+    return requireContext(`./${module}/src/${src}`).default
+  } catch {}
 
-  static defaultProps = {
-    showEditCode: true,
-    module: 'picasso'
+  try {
+    return requireContext(`./picasso-lab/src/${src}`).default
+  } catch {}
+
+  try {
+    return requireContext(`./picasso-forms/src/${src}`).default
+  } catch {}
+
+  try {
+    return requireContext(`./picasso-charts/src/${src}`).default
+  } catch {}
+
+  try {
+    return requireContext(`./topkit-analytics-charts/src/${src}`).default
+  } catch {}
+
+  try {
+    return requireContext(`./shared/src/${src}`).default
+  } catch {}
+
+  return require(`!raw-loader!~/.storybook/stories/${src}`).default
+}
+
+const CodeExample = (props: Props) => {
+  const { permanentLink, showEditCode } = props
+
+  const classes = useStyles()
+  const [sourceCode, setSourceCode] = useState(getOriginalSourceCode(props))
+  const [isEditorVisible, setEditorVisible] = useState(false)
+  const [copyLinkButtonText, setCopyLinkButtonText] = useState(
+    COPY_LINK_DEFAULT_TEXT
+  )
+
+  const toggleEditorVisibility = () => {
+    setEditorVisible(!isEditorVisible)
   }
 
-  state = {
-    sourceCode: '',
-    isEditorVisible: false,
-    copyLinkButtonText: COPY_LINK_DEFAULT_TEXT
-  }
-
-  componentDidMount() {
-    const sourceCode = this.getOriginalSourceCode()
-    this.setState({ sourceCode })
-  }
-
-  getOriginalSourceCode = () => {
-    const { src, module } = this.props
-
-    try {
-      return requireContext(`./${module}/src/${src}`).default
-    } catch {}
-
-    try {
-      return requireContext(`./picasso-lab/src/${src}`).default
-    } catch {}
-
-    try {
-      return requireContext(`./picasso-forms/src/${src}`).default
-    } catch {}
-
-    try {
-      return requireContext(`./picasso-charts/src/${src}`).default
-    } catch {}
-
-    try {
-      return requireContext(`./topkit-analytics-charts/src/${src}`).default
-    } catch {}
-
-    try {
-      return requireContext(`./shared/src/${src}`).default
-    } catch {}
-
-    return require(`!raw-loader!~/.storybook/stories/${src}`).default
-  }
-
-  handleShowEditor = () => {
-    const { isEditorVisible } = this.state
-    this.setState({ isEditorVisible: !isEditorVisible })
-  }
-
-  handleCopyLink = () => {
-    const { permanentLink } = this.props
+  const handleCopyLink = () => {
     copy(permanentLink)
 
-    this.setState({ copyLinkButtonText: COPY_LINK_COPIED_TEXT })
+    setCopyLinkButtonText(COPY_LINK_COPIED_TEXT)
     setTimeout(() => {
-      this.setState({ copyLinkButtonText: COPY_LINK_DEFAULT_TEXT })
+      setCopyLinkButtonText(COPY_LINK_DEFAULT_TEXT)
     }, 2000)
   }
 
-  handleChangeCode = debounce((value: string) => {
-    this.setState({ sourceCode: value })
-  }, 400)
+  const handleChangeCode = useCallback(debounce(setSourceCode, 400), [])
 
-  render() {
-    const { classes, showEditCode } = this.props
-    const { sourceCode, isEditorVisible, copyLinkButtonText } = this.state
-
-    /* When we are building storybook for visual tests we want to have
-     * only actual component without source code editor
-     */
-    if (TEST_ENV === 'visual') {
-      const renderInTestPicasso = (element: ReactNode) => (
-        <Picasso loadFonts={false} fixViewport={false} loadFavicon={false}>
-          <Purifier>{element}</Purifier>
-        </Picasso>
-      )
-
-      return (
-        <div className={classes.componentRenderer}>
-          <SourceRender
-            babelConfig={{
-              presets: PRESETS
-            }}
-            wrap={renderInTestPicasso}
-            resolver={resolver}
-            source={sourceCode}
-            unstable_hot
-          >
-            {({ element }: RenderResult) => element}
-          </SourceRender>
-        </div>
-      )
-    }
-
-    if (!sourceCode) {
-      return null
-    }
-
-    const SourceCodeEditor = (
-      <div className={classes.editor}>
-        <Editor
-          id='some-component-example'
-          mode='jsx'
-          value={sourceCode}
-          onChange={this.handleChangeCode}
-        />
-      </div>
-    )
-
-    const renderInPicasso = (element: ReactNode) => (
-      <PicassoSSR>{element}</PicassoSSR>
+  /* When we are building storybook for visual tests we want to have
+   * only actual component without source code editor
+   */
+  if (TEST_ENV === 'visual') {
+    const renderInTestPicasso = (element: ReactNode) => (
+      <Picasso loadFonts={false} fixViewport={false} loadFavicon={false}>
+        <Purifier>{element}</Purifier>
+      </Picasso>
     )
 
     return (
-      <SourceRender
-        babelConfig={{
-          presets: PRESETS
-        }}
-        wrap={renderInPicasso}
-        resolver={resolver}
-        source={sourceCode}
-        unstable_hot
-      >
-        {({ element, error }: RenderResult) => (
-          <div className={classes.root}>
-            <div className={classes.component}>
-              <Container
-                className={classes.componentRenderer}
-                top='large'
-                bottom='large'
-              >
-                {element}
-                {error && (
-                  <Typography color='red'>{error.toString()}</Typography>
-                )}
-              </Container>
-              <div className={classes.buttons}>
-                {showEditCode && (
-                  <Button
-                    variant='secondary'
-                    size='small'
-                    icon={<Code16 />}
-                    onClick={this.handleShowEditor}
-                  >
-                    Edit code
-                  </Button>
-                )}
+      <div className={classes.componentRenderer}>
+        <SourceRender
+          babelConfig={{
+            presets: PRESETS
+          }}
+          wrap={renderInTestPicasso}
+          resolver={resolver}
+          source={sourceCode}
+          unstable_hot
+        >
+          {({ element }: RenderResult) => element}
+        </SourceRender>
+      </div>
+    )
+  }
+
+  if (!sourceCode) {
+    return null
+  }
+
+  const SourceCodeEditor = (
+    <div className={classes.editor}>
+      <Editor
+        id='some-component-example'
+        mode='jsx'
+        value={sourceCode}
+        onChange={handleChangeCode}
+      />
+    </div>
+  )
+
+  const renderInPicasso = (element: ReactNode) => (
+    <PicassoSSR>{element}</PicassoSSR>
+  )
+
+  return (
+    <SourceRender
+      babelConfig={{
+        presets: PRESETS
+      }}
+      wrap={renderInPicasso}
+      resolver={resolver}
+      source={sourceCode}
+      unstable_hot
+    >
+      {({ element, error }: RenderResult) => (
+        <div className={classes.root}>
+          <div className={classes.component}>
+            <Container
+              className={classes.componentRenderer}
+              top='large'
+              bottom='large'
+            >
+              {element}
+              {error && <Typography color='red'>{error.toString()}</Typography>}
+            </Container>
+            <div className={classes.buttons}>
+              {showEditCode && (
                 <Button
                   variant='secondary'
                   size='small'
-                  icon={<Link16 />}
-                  onClick={this.handleCopyLink}
+                  icon={<Code16 />}
+                  onClick={toggleEditorVisibility}
                 >
-                  {copyLinkButtonText}
+                  Edit code
                 </Button>
-              </div>
-            </div>
-            <div>
-              <Accordion
-                content={SourceCodeEditor}
-                expanded={isEditorVisible}
-              />
+              )}
+              <Button
+                variant='secondary'
+                size='small'
+                icon={<Link16 />}
+                onClick={handleCopyLink}
+              >
+                {copyLinkButtonText}
+              </Button>
             </div>
           </div>
-        )}
-      </SourceRender>
-    )
-  }
+          <div>
+            <Accordion content={SourceCodeEditor} expanded={isEditorVisible} />
+          </div>
+        </div>
+      )}
+    </SourceRender>
+  )
 }
 
-export default withStyles(styles)(CodeExample)
+CodeExample.displayName = 'CodeExample'
+
+CodeExample.defaultProps = {
+  showEditCode: true,
+  module: 'picasso'
+}
+
+export default CodeExample

@@ -1,5 +1,5 @@
 import MUIDrawer from '@material-ui/core/Drawer'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Button, Container, Typography } from '@toptal/picasso'
 import { BaseProps, useDrawer } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso/Icon'
@@ -28,17 +28,18 @@ export interface Props extends BaseProps {
   width?: WidthType
 }
 
-const useStyles = makeStyles(styles, { name: 'PicassoDrawer' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoDrawer' })
 
-export const Drawer: FunctionComponent<Props> = ({
-  children,
-  disablePortal,
-  open,
-  onClose,
-  title,
-  width,
-  ...rest
-}) => {
+export const Drawer: FunctionComponent<Props> = props => {
+  const {
+    children,
+    disablePortal,
+    open,
+    onClose,
+    title,
+    width,
+    ...rest
+  } = props
   const classes = useStyles()
   const { setHasDrawer } = useDrawer()
 

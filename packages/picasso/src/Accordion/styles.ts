@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider, createPropertiesStyles } from '@toptal/picasso-shared'
+import { PicassoProvider } from '@toptal/picasso-shared'
 
 PicassoProvider.override(() => ({
   MuiAccordion: {
@@ -18,7 +18,7 @@ PicassoProvider.override(() => ({
 }))
 
 export default ({ palette, typography }: Theme) => {
-  const separatorStyles = createPropertiesStyles({
+  const separatorStyles = {
     display: 'block',
     left: 0,
     right: 0,
@@ -27,7 +27,7 @@ export default ({ palette, typography }: Theme) => {
     opacity: 1,
     backgroundColor: palette.grey.light2,
     position: 'absolute'
-  })
+  }
 
   return createStyles({
     root: {
@@ -60,9 +60,9 @@ export default ({ palette, typography }: Theme) => {
         display: 'none'
       }
     },
-    summaryFontWeightInherit: createPropertiesStyles({
+    summaryFontWeightInherit: {
       fontWeight: 'inherit'
-    }),
+    },
     expandIcon: {
       fontSize: '0.7em',
       color: palette.grey.dark,

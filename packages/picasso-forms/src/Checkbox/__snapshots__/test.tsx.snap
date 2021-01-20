@@ -10,30 +10,30 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
     >
       <form>
         <div
-          class="FormField-root"
+          class="PicassoFormField-root"
           data-field-has-error="false"
         >
           <label
-            class="FormLabel-root"
+            class="PicassoFormLabel-root"
             for="checkbox-group"
           >
             <span
-              class="FormLabel-text"
+              class="PicassoFormLabel-text"
             >
               checkbox-group-label
                (optional)
             </span>
           </label>
           <div
-            class="MuiFormGroup-root makeStyles-root makeStyles-root makeStyles-vertical"
+            class="MuiFormGroup-root PicassoCheckboxGroup-root PicassoCheckboxGroup-root PicassoCheckboxGroup-vertical"
             label="checkbox-group-label"
             name="checkbox-group"
           >
             <label
-              class="FormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+              class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
             >
               <span
-                class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+                class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
               >
                 <span
                   aria-disabled="false"
@@ -56,20 +56,20 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                 </span>
               </span>
               <span
-                class="FormLabel-root FormLabel-inline FormControlLabel-label PicassoCheckbox-label"
+                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
               >
                 <span
-                  class="FormLabel-text"
+                  class="PicassoFormLabel-text"
                 >
                   checkbox-label-0
                 </span>
               </span>
             </label>
             <label
-              class="FormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+              class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
             >
               <span
-                class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+                class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
               >
                 <span
                   aria-disabled="false"
@@ -92,10 +92,10 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                 </span>
               </span>
               <span
-                class="FormLabel-root FormLabel-inline FormControlLabel-label PicassoCheckbox-label"
+                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
               >
                 <span
-                  class="FormLabel-text"
+                  class="PicassoFormLabel-text"
                 >
                   checkbox-label-1
                 </span>
@@ -119,15 +119,15 @@ exports[`Form.Checkbox default render for single checkbox 1`] = `
     >
       <form>
         <div
-          class="FormField-root"
+          class="PicassoFormField-root"
           data-field-has-error="false"
           data-testid="single-checkbox"
         >
           <label
-            class="FormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+            class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
           >
             <span
-              class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+              class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
             >
               <span
                 aria-disabled="false"
@@ -151,10 +151,10 @@ exports[`Form.Checkbox default render for single checkbox 1`] = `
               </span>
             </span>
             <span
-              class="FormLabel-root FormLabel-inline FormControlLabel-label PicassoCheckbox-label"
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="FormLabel-text"
+                class="PicassoFormLabel-text"
               >
                 checkbox-label
               </span>
@@ -177,15 +177,15 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
     >
       <form>
         <div
-          class="FormField-root"
+          class="PicassoFormField-root"
           data-field-has-error="false"
           data-testid="single-checkbox"
         >
           <label
-            class="FormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+            class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
           >
             <span
-              class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+              class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
             >
               <span
                 aria-disabled="false"
@@ -210,15 +210,15 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
               </span>
             </span>
             <span
-              class="FormLabel-root FormLabel-inline FormControlLabel-label PicassoCheckbox-label"
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="FormLabel-asterisk"
+                class="PicassoFormLabel-asterisk"
               >
                 *
               </span>
               <span
-                class="FormLabel-text"
+                class="PicassoFormLabel-text"
               >
                 checkbox-label
               </span>

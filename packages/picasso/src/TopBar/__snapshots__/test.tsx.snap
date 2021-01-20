@@ -6,26 +6,26 @@ exports[`Page.TopBar render with link 1`] = `
     class="Picasso-root"
   >
     <div
-      class="TopBar-wrapper"
+      class="PicassoTopBar-wrapper"
     >
       <header
-        class="mui-fixed TopBar-root TopBar-dark"
+        class="mui-fixed PicassoTopBar-root PicassoTopBar-dark"
       >
         <div
-          class="TopBar-content"
+          class="PicassoTopBar-content"
         >
           <div
-            class="TopBar-left"
+            class="PicassoTopBar-left"
           >
             <div
-              class="Container-centerAlignItems Container-flex TopBar-logoContainer"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoTopBar-logoContainer"
             >
               <a
                 class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
                 href="https://www.toptal.com"
               >
                 <svg
-                  class="SvgLogo-root Logo-root Logo-white TopBar-logo"
+                  class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logo"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 109 30"
                 >
@@ -41,16 +41,16 @@ exports[`Page.TopBar render with link 1`] = `
               </a>
             </div>
             <div
-              class="Container-leftsmallMargin Container-centerAlignItems Container-flex"
+              class="PicassoContainer-leftsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="TopBar-divider"
+                class="PicassoTopBar-divider"
               />
               <div
-                class="Container-leftsmallMargin"
+                class="PicassoContainer-leftsmallMargin"
               >
                 <p
-                  class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoTypography-light MuiTypography-body1"
                 >
                   Something
                 </p>
@@ -58,7 +58,7 @@ exports[`Page.TopBar render with link 1`] = `
             </div>
           </div>
           <div
-            class="TopBar-right"
+            class="PicassoTopBar-right"
           />
         </div>
       </header>
@@ -73,22 +73,22 @@ exports[`Page.TopBar renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="TopBar-wrapper"
+      class="PicassoTopBar-wrapper"
     >
       <header
-        class="mui-fixed TopBar-root TopBar-dark"
+        class="mui-fixed PicassoTopBar-root PicassoTopBar-dark"
       >
         <div
-          class="TopBar-content"
+          class="PicassoTopBar-content"
         >
           <div
-            class="TopBar-left"
+            class="PicassoTopBar-left"
           >
             <div
-              class="Container-centerAlignItems Container-flex TopBar-logoContainer"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoTopBar-logoContainer"
             >
               <svg
-                class="SvgLogo-root Logo-root Logo-white TopBar-logo"
+                class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logo"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 109 30"
               >
@@ -103,16 +103,16 @@ exports[`Page.TopBar renders 1`] = `
               </svg>
             </div>
             <div
-              class="Container-leftsmallMargin Container-centerAlignItems Container-flex"
+              class="PicassoContainer-leftsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="TopBar-divider"
+                class="PicassoTopBar-divider"
               />
               <div
-                class="Container-leftsmallMargin"
+                class="PicassoContainer-leftsmallMargin"
               >
                 <p
-                  class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoTypography-light MuiTypography-body1"
                 >
                   Default
                 </p>
@@ -120,7 +120,7 @@ exports[`Page.TopBar renders 1`] = `
             </div>
           </div>
           <div
-            class="TopBar-right"
+            class="PicassoTopBar-right"
           />
         </div>
       </header>

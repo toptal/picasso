@@ -138,7 +138,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
   )
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoNumberInput'
 })
 
@@ -160,7 +160,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       ...rest
     } = props
 
-    const classes = useStyles(props)
+    const classes = useStyles()
 
     const inputRef = useCombinedRefs<HTMLInputElement>(
       ref,

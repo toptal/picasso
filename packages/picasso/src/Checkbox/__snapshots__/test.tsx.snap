@@ -6,10 +6,10 @@ exports[`Checkbox checkbox interaction should render checked checkbox 1`] = `
     class="Picasso-root"
   >
     <label
-      class="FormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+      class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
     >
       <span
-        class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+        class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
       >
         <span
           aria-disabled="false"
@@ -31,10 +31,10 @@ exports[`Checkbox checkbox interaction should render checked checkbox 1`] = `
         </span>
       </span>
       <span
-        class="FormLabel-root FormLabel-inline FormControlLabel-label PicassoCheckbox-label"
+        class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
       >
         <span
-          class="FormLabel-text"
+          class="PicassoFormLabel-text"
         >
           Select item
         </span>
@@ -50,7 +50,7 @@ exports[`Checkbox renders default checkbox without label 1`] = `
     class="Picasso-root"
   >
     <span
-      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+      class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
     >
       <span
         aria-disabled="false"
@@ -81,7 +81,7 @@ exports[`Checkbox renders disabled state 1`] = `
     class="Picasso-root"
   >
     <span
-      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+      class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
     >
       <span
         aria-disabled="true"
@@ -114,7 +114,7 @@ exports[`Checkbox renders indeterminate state 1`] = `
     class="Picasso-root"
   >
     <span
-      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+      class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
     >
       <span
         aria-disabled="false"
@@ -145,7 +145,7 @@ exports[`Checkbox renders with (optional) 1`] = `
     class="Picasso-root"
   >
     <span
-      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+      class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
     >
       <span
         aria-disabled="false"
@@ -176,7 +176,7 @@ exports[`Checkbox renders with asterisk 1`] = `
     class="Picasso-root"
   >
     <span
-      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+      class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
     >
       <span
         aria-disabled="false"
@@ -207,10 +207,10 @@ exports[`Checkbox should render default checkbox with label 1`] = `
     class="Picasso-root"
   >
     <label
-      class="FormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+      class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
     >
       <span
-        class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+        class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
       >
         <span
           aria-disabled="false"
@@ -232,10 +232,10 @@ exports[`Checkbox should render default checkbox with label 1`] = `
         </span>
       </span>
       <span
-        class="FormLabel-root FormLabel-inline FormControlLabel-label PicassoCheckbox-label"
+        class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
       >
         <span
-          class="FormLabel-text"
+          class="PicassoFormLabel-text"
         >
           Select item
         </span>

@@ -25,7 +25,7 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
         role="button"
       >
         <svg
-          class="SvgCloseMinor16-root"
+          class="PicassoSvgCloseMinor16-root"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >

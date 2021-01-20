@@ -13,7 +13,7 @@ exports[`Button disabled button renders disabled version 1`] = `
       type="button"
     >
       <span
-        class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
       >
         Click me!
       </span>

@@ -32,7 +32,7 @@ Every MUI component has specific JSS classes map which could be overridden from 
 
 Every component has those available listed keys in the bottom of the docs [Button API - Material-UI](https://material-ui.com/api/button/#css) where you can see which keys are support and picked from the `classes` property on **EVERY** component. This behavior is global and applied to all core components.
 
-The easiest example for a button could be found at [Overrides - Material-UI](https://material-ui.com/customization/overrides/#overriding-with-class-names) which shows how you can wrap core `Button` component with HoC `withStyles` and it will pass `classes` property to your component so you can override the core styling provided by Material-UI.
+The easiest example for a button could be found at [Overriding styles - Material-UI](https://material-ui.com/styles/advanced/#overriding-styles-classes-prop) which shows how you can override default styles with a React hook.
 
 ## Adding additional classes to our components
 
@@ -42,7 +42,7 @@ We can create 2 new variants to our button `green` and `red` and define it’s C
 
 **styles.ts**
 
-```jsx
+```tsx
 import { createStyles } from '@material-ui/core/styles'
 
 export default createStyles({
@@ -54,13 +54,23 @@ export default createStyles({
 
 **Button.tsx**
 
-```jsx
+```tsx
 import React from 'react'
 import cx from 'classnames'
+import { makeStyles, Theme } from '@material-ui/styles'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-const Button = ({ classes, variant }) => {
+interface Props extends BaseProps {}
+
+const useStyles = makeStyles<Theme>(styles)
+
+const Button = (props: Props) => {
+  const classes = useStyles()
+
+  const { variant } = props
+
   return (
     <Button
       classes={{
@@ -70,10 +80,91 @@ const Button = ({ classes, variant }) => {
   )
 }
 
-export default withStyles(styles)(Button)
+export default Button
 ```
 
 With this approach we will conditionally attach generate classes for either `.root .red` or `.root .green` based on `variant` prop.
+
+## Add classes prop to a Picasso component
+
+Occasionally Picasso components need to override styling of other Picasso components, that they use. This can be achieved with the `classes` prop. Here's how:
+
+1. Make sure your component `Props` type extends `StandardProps` instead of `BaseProps`.
+2. Add `Props` generic type to `makeStyles` call.
+3. Pass the whole `props` object to `useStyles` call.
+
+```diff
+import React from 'react'
+import cx from 'classnames'
+import { makeStyles, Theme } from '@material-ui/styles'
+-import { BaseProps } from '@toptal/picasso-shared'
++import { StandardProps } from '@toptal/picasso-shared'
+
+import styles from './styles'
+
+-interface Props extends BaseProps {}
++interface Props extends StandardProps {}
+
+-const useStyles = makeStyles<Theme>(styles)
++const useStyles = makeStyles<Theme, Props>(styles)
+
+const Button = (props: Props) => {
+-  const classes = useStyles()
++  const classes = useStyles(props)
+
+  const { variant } = props
+
+  return (
+    <Button
+      classes={{
+        root: cx(classes.root, classes[variant])
+      }}
+    />
+  )
+}
+
+export default Button
+```
+
+**IMPORTANT**
+
+If you are passing rest props `const { children, ...rest } = props` to your component, you should exclude `classes` from it. Otherwise, you'll overwrite the result of `useStyles`.
+
+
+```tsx
+import React from 'react'
+import cx from 'classnames'
+import { makeStyles, Theme } from '@material-ui/styles'
+import { StandardProps } from '@toptal/picasso-shared'
+
+import styles from './styles'
+
+interface Props extends StandardProps {}
+
+const useStyles = makeStyles<Theme>(styles)
+
+const Button = (props: Props) => {
+  const classes = useStyles(props)
+
+  const {
+    variant,
+    // Avoid passing external classes inside the rest props
+    classes: externalClasses,
+    ...rest
+  } = props
+
+  return (
+    <Button
+      classes={{
+        root: cx(classes.root, classes[variant])
+      }}
+      {...rest}
+    />
+  )
+}
+
+export default Button
+```
 
 ## Targeting nested rules within JSS stylesheets
 
@@ -104,10 +195,17 @@ You can notice `& $title` notation which simply means: “Target this.title rule
 ```jsx
 import React from 'react'
 import cx from 'classnames'
+import { makeStyles } from '@material-ui/styles'
 
 import styles from './styles'
 
-const Hero = ({ classes, variant }) => {
+const useStyles = makeStyles(styles)
+
+const Hero = (props) => {
+  const classes = useStyles()
+
+  const { variant } = props
+
   return (
     <div className={cx(classes.root, classes[variant])}>
       <h1 className={classes.title}>Title</h1>
@@ -116,7 +214,7 @@ const Hero = ({ classes, variant }) => {
   )
 }
 
-export default withStyles(styles)(Hero)
+export default Hero
 ```
 
 In this way, you will affect only `<h1>` element and its font size, not all children in the tree.

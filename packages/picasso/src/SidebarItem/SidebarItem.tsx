@@ -44,13 +44,12 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   index?: number | null
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItem'
 })
 
 export const SidebarItem: OverridableComponent<Props> = memo(
   forwardRef<HTMLElement, Props>(function SidebarItem(props, ref) {
-    const classes = useStyles(props)
     const {
       children,
       icon,
@@ -69,6 +68,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       titleCase: propsTitleCase,
       ...rest
     } = props
+    const classes = useStyles()
 
     const hasIcon = Boolean(icon)
     const hasMenu = Boolean(menu)

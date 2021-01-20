@@ -10,15 +10,18 @@ export interface Props extends FormGroupProps {
   horizontal?: boolean
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoCheckboxGroup'
+})
 
 const CheckboxGroup: FunctionComponent<Props> = props => {
   const { horizontal, className, ...rest } = props
+
   const {
     horizontal: horizontalClass,
     vertical: verticalClass,
     ...classes
-  } = useStyles(props)
+  } = useStyles()
 
   return (
     <FormGroup

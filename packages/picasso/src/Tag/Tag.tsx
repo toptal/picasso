@@ -51,7 +51,7 @@ export interface StaticProps {
   Rectangular: typeof TagRectangular
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLabel' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
 
 // eslint-disable-next-line react/display-name
 export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
@@ -69,7 +69,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const titleCase = useTitleCase(propsTitleCase)
 

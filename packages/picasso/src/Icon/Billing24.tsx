@@ -1,6 +1,6 @@
 import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
@@ -13,24 +13,19 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
+const useStyles = makeStyles(styles, { name: 'PicassoSvgBilling24' })
 const SvgBilling24 = forwardRef(function SvgBilling24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const {
-    classes: availableClasses,
-    className,
-    style = {},
-    color,
-    scale,
-    base
-  } = props
-  const classes = [availableClasses.root, className]
+  const { className, style = {}, color, scale, base } = props
+  const classes: Record<string, string> = useStyles(props)
+  const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
 
-  if (availableClasses[colorClassName]) {
-    classes.push(availableClasses[colorClassName])
+  if (classes[colorClassName]) {
+    classNames.push(classes[colorClassName])
   }
 
   const svgStyle = {
@@ -42,7 +37,7 @@ const SvgBilling24 = forwardRef(function SvgBilling24(
   return (
     <svg
       viewBox='0 0 24 24'
-      className={cx(...classes)}
+      className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
     >
@@ -52,4 +47,4 @@ const SvgBilling24 = forwardRef(function SvgBilling24(
 })
 
 SvgBilling24.displayName = 'SvgBilling24'
-export default withStyles(styles)(SvgBilling24)
+export default SvgBilling24

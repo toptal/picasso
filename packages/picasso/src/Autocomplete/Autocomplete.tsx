@@ -10,10 +10,10 @@ import React, {
   FocusEventHandler,
   MouseEvent
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Input, { InputProps } from '../Input'
 import Menu from '../Menu'
@@ -30,7 +30,7 @@ import styles from './styles'
 import { BaseInputProps } from '../OutlinedInput'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'defaultValue' | 'value' | 'onChange' | 'onSelect' | 'onKeyDown' | 'size'
@@ -100,13 +100,16 @@ export interface Props
   poweredByGoogle?: boolean
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoAutocomplete'
+})
+
 const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
-  function Autocomplete(
-    {
-      classes,
+  function Autocomplete(props, ref) {
+    const {
       className,
       onChange,
       value,
@@ -139,9 +142,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       name,
       poweredByGoogle,
       ...rest
-    },
-    ref
-  ) {
+    } = props
+    const classes = useStyles()
+
     const getKey = (item: Item) => {
       if (customGetKey) {
         return customGetKey(item)
@@ -249,7 +252,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         className={cx(
           classes.root,
           className,
-          classes[`root${capitalize(width!)}`]
+          classes[`root${capitalize(width!)}` as 'rootAuto']
         )}
         style={style}
         role='combobox'
@@ -318,4 +321,4 @@ Autocomplete.defaultProps = {
 
 Autocomplete.displayName = 'Autocomplete'
 
-export default withStyles(styles)(Autocomplete)
+export default Autocomplete

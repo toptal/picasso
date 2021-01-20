@@ -1,20 +1,27 @@
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableFooter from '@material-ui/core/TableFooter'
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import { TableSection, TableSectionContext } from '../Table'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     HTMLAttributes<HTMLTableSectionElement> {
   /** Zero or more Table.Row elements. */
   children: ReactNode
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoTableFooter'
+})
+
 export const TableFooter = forwardRef<HTMLTableSectionElement, Props>(
-  function TableFooter({ classes, className, style, children, ...rest }, ref) {
+  function TableFooter(props, ref) {
+    const { className, style, children, ...rest } = props
+    const classes = useStyles()
+
     return (
       <TableSectionContext.Provider value={TableSection.FOOTER}>
         <MUITableFooter
@@ -36,4 +43,4 @@ TableFooter.defaultProps = {}
 
 TableFooter.displayName = 'TableFooter'
 
-export default withStyles(styles)(TableFooter)
+export default TableFooter

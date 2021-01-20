@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import { useBreakpoint } from '../utils'
 import UserBadge from '../UserBadge'
@@ -10,7 +10,11 @@ import Dropdown from '../Dropdown'
 import Typography from '../Typography'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoTopBarMenu'
+})
+
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** User full name to display */
   name: string
   /** Additional content */
@@ -22,9 +26,12 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 export const TopBarMenu = forwardRef<HTMLDivElement, Props>(function TopBarMenu(
-  { name, meta, avatar, classes, className, style, children, ...rest },
+  props,
   ref
 ) {
+  const { name, meta, avatar, className, style, children, ...rest } = props
+  const classes = useStyles()
+
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
   const metaContent =
@@ -110,4 +117,4 @@ TopBarMenu.defaultProps = {}
 
 TopBarMenu.displayName = 'TopBarMenu'
 
-export default withStyles(styles)(TopBarMenu)
+export default TopBarMenu

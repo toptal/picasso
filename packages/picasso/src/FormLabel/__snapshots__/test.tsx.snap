@@ -7,14 +7,14 @@ exports[`FormLabel disabled 1`] = `
   >
     <form>
       <div
-        class="FormField-root"
+        class="PicassoFormField-root"
         data-field-has-error="false"
       >
         <label
-          class="FormLabel-root FormLabel-disabled"
+          class="PicassoFormLabel-root PicassoFormLabel-disabled"
         >
           <span
-            class="FormLabel-text"
+            class="PicassoFormLabel-text"
           >
             Label
           </span>
@@ -32,14 +32,14 @@ exports[`FormLabel renders 1`] = `
   >
     <form>
       <div
-        class="FormField-root"
+        class="PicassoFormField-root"
         data-field-has-error="false"
       >
         <label
-          class="FormLabel-root"
+          class="PicassoFormLabel-root"
         >
           <span
-            class="FormLabel-text"
+            class="PicassoFormLabel-text"
           >
             Label
           </span>
@@ -57,14 +57,14 @@ exports[`FormLabel required with (optional) 1`] = `
   >
     <form>
       <div
-        class="FormField-root"
+        class="PicassoFormField-root"
         data-field-has-error="false"
       >
         <label
-          class="FormLabel-root"
+          class="PicassoFormLabel-root"
         >
           <span
-            class="FormLabel-text"
+            class="PicassoFormLabel-text"
           >
             Label
              (optional)
@@ -83,19 +83,19 @@ exports[`FormLabel required with asterisk 1`] = `
   >
     <form>
       <div
-        class="FormField-root"
+        class="PicassoFormField-root"
         data-field-has-error="false"
       >
         <label
-          class="FormLabel-root"
+          class="PicassoFormLabel-root"
         >
           <span
-            class="FormLabel-asterisk"
+            class="PicassoFormLabel-asterisk"
           >
             *
           </span>
           <span
-            class="FormLabel-text"
+            class="PicassoFormLabel-text"
           >
             Label
           </span>

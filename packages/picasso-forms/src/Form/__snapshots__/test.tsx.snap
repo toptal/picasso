@@ -10,16 +10,16 @@ exports[`Form renders 1`] = `
     >
       <form>
         <div
-          class="FormField-root"
+          class="PicassoFormField-root"
           data-field-has-error="false"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
           >
             <input
               aria-invalid="false"
               autocomplete="none"
-              class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+              class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
               id="test"
               name="test"
               placeholder="test input"
@@ -28,7 +28,7 @@ exports[`Form renders 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
               style="padding-left: 8px;"
             >
               <legend
@@ -49,7 +49,7 @@ exports[`Form renders 1`] = `
           type="submit"
         >
           <span
-            class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
           >
             Submit
           </span>

@@ -31,19 +31,18 @@ export interface Props extends BaseProps, Omit<ListNativeProps, 'onSelect'> {
   onSelect: (account: Account) => void
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'AccountSelect'
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoAccountSelect'
 })
 
 export const AccountSelect = forwardRef<HTMLUListElement, Props>(
   function AccountSelect(props, ref) {
-    const classes = useStyles(props)
     const { className, accounts, onSelect, style, ...rest } = props
+    const classes = useStyles()
 
     const {
       accountItem: accountItemClass,
-      accountLink: accountLinkClass,
-      ...menuClasses
+      accountLink: accountLinkClass
     } = classes
 
     return (
@@ -51,7 +50,6 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
-        classes={menuClasses}
         className={className}
         style={style}
       >

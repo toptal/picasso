@@ -1,17 +1,24 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Action content (e.g. Buttons) */
   children: ReactNode
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoModalAction'
+})
+
 export const ModalActions = forwardRef<HTMLDivElement, Props>(
-  function ModalActions({ children, classes, className, style, ...rest }, ref) {
+  function ModalActions(props, ref) {
+    const { children, className, style, ...rest } = props
+    const classes = useStyles()
+
     return (
       <div
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -28,4 +35,4 @@ export const ModalActions = forwardRef<HTMLDivElement, Props>(
 
 ModalActions.displayName = 'ModalActions'
 
-export default withStyles(styles)(ModalActions)
+export default ModalActions

@@ -6,13 +6,13 @@ exports[`FileInput renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root FileInputContent-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root InputAdornment-root FileInput-adornmentStart MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root PicassoInputAdornment-root FileInputContent-adornmentStart MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
-          class="SvgUploadDocument16-root"
+          class="PicassoSvgUploadDocument16-root"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
@@ -22,23 +22,23 @@ exports[`FileInput renders 1`] = `
         </svg>
       </div>
       <p
-        class="MuiTypography-root Typography-bodyInherit Typography-black Component-inputValue MuiTypography-body1 MuiTypography-displayInline"
+        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-black FileInputContent-inputValue MuiTypography-body1 MuiTypography-displayInline"
       />
       <input
-        class="Component-nativeInput"
+        class="FileInputContent-nativeInput"
         type="file"
       />
       <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
       >
         <button
-          class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root FileInput-button"
+          class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root FileInputContent-button"
           data-component-type="button"
           tabindex="0"
           type="button"
         >
           <span
-            class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
           >
             Choose File
           </span>
@@ -46,7 +46,7 @@ exports[`FileInput renders 1`] = `
       </div>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend

@@ -36,32 +36,32 @@ exports[`PromptModal renders 1`] = `
         role="dialog"
       >
         <div
-          class="ModalTitle-root"
+          class="PicassoModalTitle-root"
         >
           <h3
-            class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+            class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
           >
             Test title
           </h3>
         </div>
         <div
-          class="ModalContent-shadedWrapper"
+          class="PicassoModalContent-shadedWrapper"
         >
           <div
-            class="ModalContent-shadedWrapperEffect"
+            class="PicassoModalContent-shadedWrapperEffect"
           />
           <div
-            class="ModalContent-modalContent"
+            class="PicassoModalContent-modalContent"
           >
             <p
-              class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
             >
               Test message
             </p>
           </div>
         </div>
         <div
-          class="ModalActions-root"
+          class="PicassoModalAction-root"
         >
           <button
             class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
@@ -70,7 +70,7 @@ exports[`PromptModal renders 1`] = `
             type="button"
           >
             <span
-              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               Cancel
             </span>
@@ -82,7 +82,7 @@ exports[`PromptModal renders 1`] = `
             type="button"
           >
             <span
-              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               Submit
             </span>
@@ -113,7 +113,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>
@@ -140,7 +140,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>
@@ -170,32 +170,32 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
             role="dialog"
           >
             <div
-              class="ModalTitle-root"
+              class="PicassoModalTitle-root"
             >
               <h3
-                class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+                class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
               >
                 Test title
               </h3>
             </div>
             <div
-              class="ModalContent-shadedWrapper"
+              class="PicassoModalContent-shadedWrapper"
             >
               <div
-                class="ModalContent-shadedWrapperEffect"
+                class="PicassoModalContent-shadedWrapperEffect"
               />
               <div
-                class="ModalContent-modalContent"
+                class="PicassoModalContent-modalContent"
               >
                 <p
-                  class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
                 >
                   Test message
                 </p>
               </div>
             </div>
             <div
-              class="ModalActions-root"
+              class="PicassoModalAction-root"
             >
               <button
                 class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
@@ -204,7 +204,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
                 type="button"
               >
                 <span
-                  class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
                 >
                   Cancel
                 </span>
@@ -216,7 +216,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
                 type="button"
               >
                 <span
-                  class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
                 >
                   Submit
                 </span>
@@ -251,7 +251,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>
@@ -281,32 +281,32 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
             role="dialog"
           >
             <div
-              class="ModalTitle-root"
+              class="PicassoModalTitle-root"
             >
               <h3
-                class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+                class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
               >
                 Test title
               </h3>
             </div>
             <div
-              class="ModalContent-shadedWrapper"
+              class="PicassoModalContent-shadedWrapper"
             >
               <div
-                class="ModalContent-shadedWrapperEffect"
+                class="PicassoModalContent-shadedWrapperEffect"
               />
               <div
-                class="ModalContent-modalContent"
+                class="PicassoModalContent-modalContent"
               >
                 <p
-                  class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
                 >
                   Test message
                 </p>
               </div>
             </div>
             <div
-              class="ModalActions-root"
+              class="PicassoModalAction-root"
             >
               <button
                 class="MuiButtonBase-root PicassoButton-medium-8 PicassoButton-secondary-13 PicassoButton-root-4"
@@ -315,7 +315,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
                 type="button"
               >
                 <span
-                  class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
                 >
                   Cancel
                 </span>
@@ -327,7 +327,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
                 type="button"
               >
                 <span
-                  class="Container-centerAlignItems-63 Container-flex-27 Container-inline-29 PicassoButton-content-5"
+                  class="PicassoContainer-centerAlignItems-63 PicassoContainer-flex-27 PicassoContainer-inline-29 PicassoButton-content-5"
                 >
                   Submit
                 </span>
@@ -362,7 +362,7 @@ exports[`PromptModal showPrompt with input returns result on Submit action  1`] 
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>
@@ -392,44 +392,44 @@ exports[`PromptModal showPrompt with input returns result on Submit action  1`] 
             role="dialog"
           >
             <div
-              class="ModalTitle-root"
+              class="PicassoModalTitle-root"
             >
               <h3
-                class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+                class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
               >
                 Test title
               </h3>
             </div>
             <div
-              class="ModalContent-shadedWrapper"
+              class="PicassoModalContent-shadedWrapper"
             >
               <div
-                class="ModalContent-shadedWrapperEffect"
+                class="PicassoModalContent-shadedWrapperEffect"
               />
               <div
-                class="ModalContent-modalContent"
+                class="PicassoModalContent-modalContent"
               >
                 <p
-                  class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
                 >
                   Test message
                 </p>
                 <div
-                  class="Container-topxsmallMargin"
+                  class="PicassoContainer-topxsmallMargin"
                 >
                   <div
-                    class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootFull OutlinedInput-rootMedium MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+                    class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
                   >
                     <input
                       aria-label="test-input"
                       autocomplete="none"
-                      class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+                      class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
                       type="text"
                       value="undefined"
                     />
                     <fieldset
                       aria-hidden="true"
-                      class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+                      class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
                       style="padding-left: 8px;"
                     >
                       <legend
@@ -446,7 +446,7 @@ exports[`PromptModal showPrompt with input returns result on Submit action  1`] 
               </div>
             </div>
             <div
-              class="ModalActions-root"
+              class="PicassoModalAction-root"
             >
               <button
                 class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
@@ -455,7 +455,7 @@ exports[`PromptModal showPrompt with input returns result on Submit action  1`] 
                 type="button"
               >
                 <span
-                  class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
                 >
                   Cancel
                 </span>
@@ -467,7 +467,7 @@ exports[`PromptModal showPrompt with input returns result on Submit action  1`] 
                 type="button"
               >
                 <span
-                  class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
                 >
                   Submit
                 </span>
@@ -480,10 +480,10 @@ exports[`PromptModal showPrompt with input returns result on Submit action  1`] 
               type="button"
             >
               <span
-                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
               >
                 <svg
-                  class="SvgCloseMinor16-root"
+                  class="PicassoSvgCloseMinor16-root"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >

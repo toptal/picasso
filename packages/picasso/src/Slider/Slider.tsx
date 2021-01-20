@@ -6,7 +6,7 @@ import cx from 'classnames'
 import Tooltip from '../Tooltip'
 import styles from './styles'
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme>(styles)
 
 type Value = number | number[]
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
@@ -112,7 +112,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     markInactive,
     unmarkTrack,
     ...classes
-  } = useStyles(props)
+  } = useStyles()
   const isTooltipAlwaysVisible = tooltip === 'on'
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)

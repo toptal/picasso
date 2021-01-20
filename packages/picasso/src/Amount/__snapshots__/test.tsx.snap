@@ -6,7 +6,7 @@ exports[`Amount renders 1`] = `
     class="Picasso-root"
   >
     <span
-      class="MuiTypography-root Typography-bodyInherit Typography-green MuiTypography-body1 MuiTypography-displayInline"
+      class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-green MuiTypography-body1 MuiTypography-displayInline"
     >
       €1,500.00
     </span>

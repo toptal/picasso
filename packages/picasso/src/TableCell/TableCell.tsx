@@ -1,11 +1,7 @@
 import React, { forwardRef, HTMLAttributes, useContext } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableCell from '@material-ui/core/TableCell'
-import {
-  StandardProps,
-  TextLabelProps,
-  useTitleCase
-} from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
@@ -15,7 +11,7 @@ import { TableSection } from '../Table/TableSectionContext'
 type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     TextLabelProps,
     HTMLAttributes<HTMLTableCellElement> {
   /** Set the text-align on the table cell content */
@@ -24,22 +20,23 @@ export interface Props
   colSpan?: number
 }
 
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableCell' })
+
 export const TableCell = forwardRef<HTMLTableCellElement, Props>(
-  function TableCell(
-    {
+  function TableCell(props, ref) {
+    const {
       align,
-      classes,
       className,
       style,
       children,
       colSpan,
       titleCase: propsTitleCase,
       ...rest
-    },
-    ref
-  ) {
-    const tableSection = useContext(TableSectionContext)
+    } = props
 
+    const classes = useStyles()
+
+    const tableSection = useContext(TableSectionContext)
     const titleCase = useTitleCase(propsTitleCase)
 
     return (
@@ -67,4 +64,4 @@ TableCell.defaultProps = {
 
 TableCell.displayName = 'TableCell'
 
-export default withStyles(styles)(TableCell)
+export default TableCell

@@ -27,7 +27,7 @@ export interface Props
   active: boolean
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoBreadcrumbs'
 })
 
@@ -49,7 +49,7 @@ export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
     ...rest
   } = props
   const Component = active ? Active : as || 'span'
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const titleCase = useTitleCase(propsTitleCase)
 

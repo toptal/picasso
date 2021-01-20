@@ -12,10 +12,10 @@ exports[`TableHead renders 1`] = `
         class="MuiTableHead-root"
       >
         <tr
-          class="MuiTableRow-root TableRow-root MuiTableRow-head TableRow-head"
+          class="MuiTableRow-root PicassoTableRow-root MuiTableRow-head PicassoTableRow-head"
         >
           <th
-            class="MuiTableCell-root TableCell-root MuiTableCell-head TableCell-head"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-head PicassoTableCell-head"
             scope="col"
           >
             Head test

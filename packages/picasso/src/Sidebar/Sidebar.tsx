@@ -9,7 +9,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   BaseProps,
-  JssProps,
+  StandardProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef,
   useSidebar
@@ -26,12 +26,14 @@ import SidebarLogo from '../SidebarLogo'
 import styles from './styles'
 import { SidebarContextProps, VariantType } from './types'
 
-export interface SmallScreenSidebarWrapperProps extends BaseProps {
+export interface SmallScreenSidebarWrapperProps extends StandardProps {
   children?: ReactNode
 }
 
-const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProps &
-  JssProps> = ({ classes, children }) => {
+const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProps> = ({
+  classes,
+  children
+}) => {
   const [showSidebar, setShowSidebar] = useState<boolean>(false)
 
   const handleShowSidebar = () => setShowSidebar(true)
@@ -40,8 +42,8 @@ const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProp
   return (
     <Dropdown
       content={children}
-      className={classes.responsiveWrapper}
-      classes={{ content: classes.responsiveWrapperContent }}
+      className={classes?.responsiveWrapper}
+      classes={{ content: classes?.responsiveWrapperContent ?? '' }}
       offset={{ top: 0.4 }}
       popperOptions={{
         modifiers: {
@@ -78,7 +80,7 @@ export const SidebarContext = React.createContext<SidebarContextProps>({
   setExpandedItemKey: () => {}
 })
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'Sidebar'
 })
 
@@ -87,6 +89,8 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   props,
   ref
 ) {
+  const { children, variant, className, style } = props
+  const classes = useStyles()
   const { setHasSidebar } = useSidebar()
 
   useLayoutEffect(() => {
@@ -96,9 +100,6 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       setHasSidebar(false)
     }
   }, [setHasSidebar])
-
-  const classes = useStyles(props)
-  const { children, variant, className, style } = props
 
   const isCompactLayout = useBreakpoint(['small', 'medium'])
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)

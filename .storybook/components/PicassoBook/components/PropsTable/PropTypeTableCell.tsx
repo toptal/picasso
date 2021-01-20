@@ -1,21 +1,27 @@
 import React, { FunctionComponent } from 'react'
 
-import { withStyles } from '@material-ui/core/styles'
-import { ClassNameMap } from '@material-ui/core/styles/withStyles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { Tooltip, Table } from '@toptal/picasso'
+import { BaseProps } from '@toptal/picasso-shared'
+
 import Markdown from '~/.storybook/components/Markdown'
 import { PropTypeDocumentation } from '~/.storybook/utils/documentation-generator'
 import styles from './styles'
 
-interface Props {
+interface Props extends BaseProps {
   className?: string
-  classes: Partial<ClassNameMap<string>>
   type: string | PropTypeDocumentation
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoPropTypeTableCell'
+})
+
 const PropTypeTableCell: FunctionComponent<Props> = props => {
-  const { type, className, classes } = props
+  const classes = useStyles()
+
+  const { type, className } = props
 
   if (typeof type === 'string') {
     return <Table.Cell>{type}</Table.Cell>
@@ -43,4 +49,4 @@ const PropTypeTableCell: FunctionComponent<Props> = props => {
 
 PropTypeTableCell.displayName = 'PropTypeTableCell'
 
-export default withStyles(styles)(PropTypeTableCell)
+export default PropTypeTableCell

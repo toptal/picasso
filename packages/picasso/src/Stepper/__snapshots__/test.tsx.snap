@@ -6,7 +6,7 @@ exports[`Stepper render with all steps completed 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal Stepper-root MuiPaper-elevation0"
+      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal PicassoStepper-root MuiPaper-elevation0"
     >
       <div
         class="MuiStep-root MuiStep-horizontal MuiStep-completed"
@@ -18,10 +18,10 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -32,13 +32,13 @@ exports[`Stepper render with all steps completed 1`] = `
             </div>
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 1
               </span>
@@ -47,7 +47,7 @@ exports[`Stepper render with all steps completed 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -65,10 +65,10 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -79,13 +79,13 @@ exports[`Stepper render with all steps completed 1`] = `
             </div>
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 2
               </span>
@@ -94,7 +94,7 @@ exports[`Stepper render with all steps completed 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -112,10 +112,10 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -126,13 +126,13 @@ exports[`Stepper render with all steps completed 1`] = `
             </div>
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 3
               </span>
@@ -141,7 +141,7 @@ exports[`Stepper render with all steps completed 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -159,10 +159,10 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -173,13 +173,13 @@ exports[`Stepper render with all steps completed 1`] = `
             </div>
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 4
               </span>
@@ -198,7 +198,7 @@ exports[`Stepper render with full-width 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal Stepper-fullWidth Stepper-root MuiPaper-elevation0"
+      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal PicassoStepper-fullWidth PicassoStepper-root MuiPaper-elevation0"
     >
       <div
         class="MuiStep-root MuiStep-horizontal MuiStep-completed"
@@ -210,10 +210,10 @@ exports[`Stepper render with full-width 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -224,13 +224,13 @@ exports[`Stepper render with full-width 1`] = `
             </div>
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 1
               </span>
@@ -239,7 +239,7 @@ exports[`Stepper render with full-width 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -257,10 +257,10 @@ exports[`Stepper render with full-width 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -271,13 +271,13 @@ exports[`Stepper render with full-width 1`] = `
             </div>
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 2
               </span>
@@ -286,7 +286,7 @@ exports[`Stepper render with full-width 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -304,10 +304,10 @@ exports[`Stepper render with full-width 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -318,13 +318,13 @@ exports[`Stepper render with full-width 1`] = `
             </div>
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 3
               </span>
@@ -333,7 +333,7 @@ exports[`Stepper render with full-width 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -351,10 +351,10 @@ exports[`Stepper render with full-width 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -365,13 +365,13 @@ exports[`Stepper render with full-width 1`] = `
             </div>
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 4
               </span>
@@ -390,7 +390,7 @@ exports[`Stepper render with hidden labels 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal Stepper-root MuiPaper-elevation0"
+      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal PicassoStepper-root MuiPaper-elevation0"
     >
       <div
         class="MuiStep-root MuiStep-horizontal MuiStep-completed"
@@ -402,10 +402,10 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -419,10 +419,10 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label StepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 1
               </span>
@@ -431,7 +431,7 @@ exports[`Stepper render with hidden labels 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -449,10 +449,10 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -466,10 +466,10 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label StepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 2
               </span>
@@ -478,7 +478,7 @@ exports[`Stepper render with hidden labels 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -496,10 +496,10 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -513,10 +513,10 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label StepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 3
               </span>
@@ -525,7 +525,7 @@ exports[`Stepper render with hidden labels 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -543,10 +543,10 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -560,10 +560,10 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label StepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 4
               </span>
@@ -582,7 +582,7 @@ exports[`Stepper renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal Stepper-root MuiPaper-elevation0"
+      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal PicassoStepper-root MuiPaper-elevation0"
     >
       <div
         class="MuiStep-root MuiStep-horizontal MuiStep-completed"
@@ -594,10 +594,10 @@ exports[`Stepper renders 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -608,13 +608,13 @@ exports[`Stepper renders 1`] = `
             </div>
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 1
               </span>
@@ -623,7 +623,7 @@ exports[`Stepper renders 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -641,10 +641,10 @@ exports[`Stepper renders 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-completed"
+              class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="SvgCheckMinor24-root"
+                class="PicassoSvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
@@ -655,13 +655,13 @@ exports[`Stepper renders 1`] = `
             </div>
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 2
               </span>
@@ -670,7 +670,7 @@ exports[`Stepper renders 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -688,17 +688,17 @@ exports[`Stepper renders 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root StepIcon-active"
+              class="PicassoStepIcon-root PicassoStepIcon-active"
             />
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 3
               </span>
@@ -707,7 +707,7 @@ exports[`Stepper renders 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -725,17 +725,17 @@ exports[`Stepper renders 1`] = `
             class="MuiStepLabel-iconContainer"
           >
             <div
-              class="StepIcon-root"
+              class="PicassoStepIcon-root"
             />
           </span>
           <span
-            class="MuiStepLabel-labelContainer StepLabel-root"
+            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
               class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
-                class="StepLabel-label"
+                class="PicassoStepLabel-label"
               >
                 Step 4
               </span>

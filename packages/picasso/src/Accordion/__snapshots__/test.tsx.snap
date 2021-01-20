@@ -6,26 +6,26 @@ exports[`Accordion renders collapsed by default 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersAll MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersAll MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content makeStyles-content"
+          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content"
         >
           <div
-            class="makeStyles-summaryWrapper"
+            class="PicassoAccordion-summaryWrapper"
             data-testid="accordion-summary"
           >
             What is a dog?
           </div>
           <div
-            class="makeStyles-expandIconAlignTop"
+            class="PicassoAccordion-expandIconAlignTop"
           >
             <button
               class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
@@ -34,10 +34,10 @@ exports[`Accordion renders collapsed by default 1`] = `
               type="button"
             >
               <span
-                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content PicassoButtonAction-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
               >
                 <svg
-                  class="SvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon makeStyles-expandIcon"
+                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon PicassoAccordion-expandIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -64,10 +64,10 @@ exports[`Accordion renders collapsed by default 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details"
+                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
               >
                 <div
-                  class="makeStyles-detailsWrapper"
+                  class="PicassoAccordion-detailsWrapper"
                   data-testid="accordion-details"
                 >
                   A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
@@ -88,26 +88,26 @@ exports[`Accordion renders custom icon when passed 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersAll MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersAll MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content makeStyles-content"
+          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content"
         >
           <div
-            class="makeStyles-summaryWrapper"
+            class="PicassoAccordion-summaryWrapper"
             data-testid="accordion-summary"
           >
             What is a dog?
           </div>
           <span
-            class="makeStyles-expandIcon"
+            class="PicassoAccordion-expandIcon"
             data-testid="custom-expand-icon"
           />
         </div>
@@ -126,10 +126,10 @@ exports[`Accordion renders custom icon when passed 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details"
+                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
               >
                 <div
-                  class="makeStyles-detailsWrapper"
+                  class="PicassoAccordion-detailsWrapper"
                   data-testid="accordion-details"
                 >
                   A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
@@ -150,26 +150,26 @@ exports[`Accordion renders disabled 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersAll Mui-disabled MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersAll Mui-disabled MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
     >
       <div
         aria-disabled="true"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary Mui-disabled Mui-disabled"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary Mui-disabled Mui-disabled"
         role="button"
         tabindex="-1"
       >
         <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content makeStyles-content"
+          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content"
         >
           <div
-            class="makeStyles-summaryWrapper"
+            class="PicassoAccordion-summaryWrapper"
             data-testid="accordion-summary"
           >
             What is a dog?
           </div>
           <div
-            class="makeStyles-expandIconAlignTop"
+            class="PicassoAccordion-expandIconAlignTop"
           >
             <button
               class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
@@ -178,10 +178,10 @@ exports[`Accordion renders disabled 1`] = `
               type="button"
             >
               <span
-                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content PicassoButtonAction-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
               >
                 <svg
-                  class="SvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon makeStyles-expandIcon"
+                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon PicassoAccordion-expandIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -208,10 +208,10 @@ exports[`Accordion renders disabled 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details"
+                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
               >
                 <div
-                  class="makeStyles-detailsWrapper"
+                  class="PicassoAccordion-detailsWrapper"
                   data-testid="accordion-details"
                 >
                   A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.

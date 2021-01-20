@@ -1,21 +1,26 @@
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 type ColorType = 'red' | 'yellow' | 'blue' | 'green' | 'light-grey'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** Indicator color */
   color: ColorType
 }
 
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoIndicator' })
+
 export const Indicator = forwardRef<HTMLDivElement, Props>(function Indicator(
-  { classes, className, color, style, ...restProps },
+  props,
   ref
 ) {
+  const { className, color, style, ...restProps } = props
+  const classes = useStyles()
+
   return (
     <div
       role='img'
@@ -29,4 +34,4 @@ export const Indicator = forwardRef<HTMLDivElement, Props>(function Indicator(
 
 Indicator.displayName = 'Indicator'
 
-export default withStyles(styles)(Indicator)
+export default Indicator

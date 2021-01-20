@@ -1,24 +1,27 @@
 import React, { FunctionComponent } from 'react'
 import AceEditor from 'react-ace'
-import { withStyles } from '@material-ui/core/styles'
+import { BaseProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import 'brace/ext/language_tools'
 import 'brace/mode/jsx'
 import 'brace/mode/html'
 import 'brace/theme/twilight'
 
 import styles from './styles'
-import { Classes } from '@toptal/picasso-shared'
 
-interface Props {
+interface Props extends BaseProps {
   id: string
   mode: 'html' | 'jsx'
   value: string
-  classes: Classes
   onChange: (value: string) => void
 }
 
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoEditor' })
+
 const Editor: FunctionComponent<Props> = props => {
-  const { id, mode, value, classes, ...rest } = props
+  const { id, mode, value, ...rest } = props
+
+  const classes = useStyles()
 
   return (
     <div className={classes.root}>
@@ -50,4 +53,4 @@ Editor.defaultProps = {
   mode: 'jsx'
 }
 
-export default withStyles(styles)(Editor)
+export default Editor

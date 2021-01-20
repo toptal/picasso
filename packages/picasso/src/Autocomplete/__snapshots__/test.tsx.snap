@@ -2,26 +2,26 @@
 
 exports[`Autocomplete dynamic behavior on focus 1`] = `
 <ul
-  class="MuiList-root Menu-root ScrollMenu-menu"
+  class="MuiList-root Menu-root PicassoScrollMenu-menu"
   role="menu"
   tabindex="-1"
 >
   <div
-    class="ScrollMenu-scrollView"
+    class="PicassoScrollMenu-scrollView"
     tabindex="0"
   >
     <li
       aria-disabled="false"
       aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Autocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
         <div
-          class="Container-centerAlignItems Container-flex"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <span
             class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
@@ -34,15 +34,15 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
         <div
-          class="Container-centerAlignItems Container-flex"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <span
             class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
@@ -55,15 +55,15 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
         <div
-          class="Container-centerAlignItems Container-flex"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <span
             class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
@@ -76,15 +76,15 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
         <div
-          class="Container-centerAlignItems Container-flex"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <span
             class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
@@ -97,15 +97,15 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Autocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
         <div
-          class="Container-centerAlignItems Container-flex"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <span
             class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
@@ -127,25 +127,25 @@ exports[`Autocomplete static behavior renders 1`] = `
     <div
       aria-expanded="false"
       aria-haspopup="listbox"
-      class="Autocomplete-root Autocomplete-rootAuto"
+      class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
       role="combobox"
     >
       <div
-        class="Container-flex"
+        class="PicassoContainer-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <input
             aria-autocomplete="list"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             placeholder="Start typing here..."
             type="text"
             value=""
           />
           <div
-            class="MuiInputAdornment-root InputAdornment-root OutlinedInput-resetButton MuiInputAdornment-positionEnd"
+            class="MuiInputAdornment-root PicassoInputAdornment-root PicassoOutlinedInput-resetButton MuiInputAdornment-positionEnd"
           >
             <button
               class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
@@ -155,10 +155,10 @@ exports[`Autocomplete static behavior renders 1`] = `
               type="button"
             >
               <span
-                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
               >
                 <svg
-                  class="SvgCloseMinor16-root PicassoButton-icon"
+                  class="PicassoSvgCloseMinor16-root PicassoButton-icon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -171,7 +171,7 @@ exports[`Autocomplete static behavior renders 1`] = `
           </div>
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend

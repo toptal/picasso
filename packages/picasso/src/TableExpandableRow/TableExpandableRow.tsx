@@ -16,7 +16,7 @@ import styles from './styles'
 
 const MAX_COL_SPAN = 100
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTableExpandableRow'
 })
 
@@ -35,7 +35,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
 
 export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
   function TableExpandableRow(props, ref) {
-    const classes = useStyles(props)
     const {
       children,
       content,
@@ -46,6 +45,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
       style,
       ...rest
     } = props
+    const classes = useStyles()
 
     const wasExpandedOnce = useRef(false)
     const shouldTransition = !defaultExpanded || wasExpandedOnce.current

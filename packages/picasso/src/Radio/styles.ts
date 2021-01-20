@@ -1,11 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import {
-  PicassoProvider,
-  createPropertiesStyles,
-  rem,
-  outline,
-  mix
-} from '@toptal/picasso-shared'
+import { PicassoProvider, rem, outline, mix } from '@toptal/picasso-shared'
 
 const controlWidth = '1em'
 const controlMarginRight = '0.5em'
@@ -33,22 +27,21 @@ PicassoProvider.override(({ palette, transitions }) => ({
   }
 }))
 
-const centeredCircle = (backgroundColor: string) =>
-  createPropertiesStyles({
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    top: '50%',
-    left: '50%',
-    borderRadius: '50%',
-    transform: 'translate(-50%, -50%)',
-    content: '""',
-    background: backgroundColor,
-    pointerEvents: 'none',
-    transition: 'border-color',
-    transitionDuration: 'inherit',
-    transitionTimingFunction: 'inherit'
-  })
+const centeredCircle = (backgroundColor: string) => ({
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  top: '50%',
+  left: '50%',
+  borderRadius: '50%',
+  transform: 'translate(-50%, -50%)',
+  content: '""',
+  background: backgroundColor,
+  pointerEvents: 'none',
+  transition: 'border-color',
+  transitionDuration: 'inherit',
+  transitionTimingFunction: 'inherit'
+})
 
 interface IconStylesProps {
   backgroundColor: string

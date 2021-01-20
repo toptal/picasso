@@ -40,8 +40,8 @@ const humanToMUISpacing = (spacing: number) => {
   return (spacing / 8) as GridSpacing
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'Grid'
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoGrid'
 })
 
 // eslint-disable-next-line react/display-name
@@ -49,7 +49,6 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   props,
   ref
 ) {
-  const classes = useStyles(props)
   const {
     children,
     spacing,
@@ -61,6 +60,7 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
     style,
     ...rest
   } = props
+  const classes = useStyles()
 
   return (
     <MUIGrid

@@ -1,23 +1,28 @@
 import React, { ReactNode, forwardRef, useContext, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import styles from './styles'
 import { HelpboxContextProps } from '../Helpbox/types'
 import HelpboxContext from '../Helpbox/HelpboxContext'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Actions part of Helpbox */
   children: ReactNode
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoHelpboxActions'
+})
+
 export const HelpboxActions = forwardRef<HTMLDivElement, Props>(
-  function HelpboxActions(
-    { classes, className, style, children, ...rest },
-    ref
-  ) {
+  function HelpboxActions(props, ref) {
+    const { className, style, children, ...rest } = props
+
+    const classes = useStyles()
+
     const { closeable }: HelpboxContextProps = useContext<HelpboxContextProps>(
       HelpboxContext
     )
@@ -48,4 +53,4 @@ HelpboxActions.defaultProps = {}
 
 HelpboxActions.displayName = 'HelpboxActions'
 
-export default withStyles(styles)(HelpboxActions)
+export default HelpboxActions

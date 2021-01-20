@@ -15,13 +15,13 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   icon?: ReactElement
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoEmptyStateCollection'
 })
 
 export const EmptyStateCollection = forwardRef<HTMLDivElement, Props>(
   function EmptyStateCollection(props, ref) {
-    const classes = useStyles(props)
+    const classes = useStyles()
     const { icon, children, style, ...rest } = props
     const iconProps = {
       className: classes.icon,

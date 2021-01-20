@@ -7,9 +7,9 @@ import React, {
   ReactElement,
   HTMLAttributes
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, useTopBar } from '@toptal/picasso-shared'
+import { BaseProps, useTopBar } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Logo from '../Logo'
 import Container from '../Container'
@@ -21,7 +21,7 @@ import styles from './styles'
 
 type VariantType = 'dark' | 'light'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Title which is displayed along the `Logo` */
   title?: string
   /** Link component to wrap `Logo`  */
@@ -36,9 +36,15 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   variant?: VariantType
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoTopBar'
+})
+
 export const TopBar = forwardRef<HTMLElement, Props>(function TopBar(
-  {
-    classes,
+  props,
+  ref
+) {
+  const {
     className,
     style,
     title,
@@ -48,9 +54,8 @@ export const TopBar = forwardRef<HTMLElement, Props>(function TopBar(
     actionItems,
     variant,
     ...rest
-  },
-  ref
-) {
+  } = props
+  const classes = useStyles()
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
   const { setHasTopBar } = useTopBar()
@@ -133,4 +138,4 @@ TopBar.defaultProps = {
 
 TopBar.displayName = 'TopBar'
 
-export default withStyles(styles)(TopBar)
+export default TopBar

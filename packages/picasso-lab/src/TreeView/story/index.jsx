@@ -11,14 +11,17 @@ page.createTabChapter('Props').addComponentDocs({
   name: 'TreeView'
 })
 
+// Skipping visuals because the TreeView has a centering transition on render which takes unknown time
 page
   .createChapter()
-  .addExample('TreeView/story/Default.example.tsx', 'Default')
+  .addExample('TreeView/story/Default.example.tsx', {
+    title: 'Default'
+  }) // picasso-skip-visuals
   .addExample('TreeView/story/Selected.example.tsx', {
     title: 'With selected node',
     description:
       "To set the particular node selected, you need to set `node`'s attribute *selected* to `true`. Also there is additional attribute `selectedOffset` for adding an scroll offset for particular node"
-  })
+  }) // picasso-skip-visuals
   .addExample('TreeView/story/Modal.example.tsx', {
     title: 'With Modal',
     effect: async (testPage, makeScreenshot) => {
@@ -29,5 +32,9 @@ page
       })
     }
   })
-  .addExample('TreeView/story/CustomZoom.example.tsx', 'Custom Zoom')
-  .addExample('TreeView/story/AvatarSize.example.tsx', 'Avatar Size')
+  .addExample('TreeView/story/CustomZoom.example.tsx', {
+    title: 'Custom Zoom'
+  }) // picasso-skip-visuals
+  .addExample('TreeView/story/AvatarSize.example.tsx', {
+    title: 'Avatar Size'
+  }) // picasso-skip-visuals

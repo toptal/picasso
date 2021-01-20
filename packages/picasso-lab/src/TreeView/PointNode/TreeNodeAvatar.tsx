@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import getNameInitials from '@toptal/picasso/utils/get-name-initials'
-import { JssProps, SizeType } from '@toptal/picasso-shared'
+import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props {
+export interface Props extends StandardProps {
   /** User full name to display initials on the avatar */
   name: string
   /** Photo url */
@@ -14,11 +14,11 @@ export interface Props {
   size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTreeNodeAvatar'
 })
 
-const renderInitials = ({ src, name, classes }: Partial<Props> & JssProps) => {
+const renderInitials = ({ src, name, classes }: Partial<Props>) => {
   if (src || !name) {
     return null
   }
@@ -27,10 +27,10 @@ const renderInitials = ({ src, name, classes }: Partial<Props> & JssProps) => {
 
   return (
     <g>
-      <g mask='url(#shape)' className={classes.shape}>
+      <g mask='url(#shape)' className={classes?.shape}>
         <rect x='0' y='0' width='40' height='40' />
       </g>
-      <text x='50%' y='50%' className={classes.text}>
+      <text x='50%' y='50%' className={classes?.text}>
         {initials}
       </text>
     </g>
@@ -46,7 +46,7 @@ const sizeValues = {
 }
 
 export const TreeNodeAvatar: FC<Props> = props => {
-  const classes = useStyles(props)
+  const classes = useStyles()
   const { name, src, size } = props
   const sizeValue = sizeValues[size!]
 
