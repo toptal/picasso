@@ -131,7 +131,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
   )
 
   const endAdornment = (
-    <InputAdornment position='end' disablePointerEvents>
+    <InputAdornment position='end'>
       {inProgress ? (
         <Loader
           className={classes.loader}

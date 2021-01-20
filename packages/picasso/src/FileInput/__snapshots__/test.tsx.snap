@@ -29,7 +29,7 @@ exports[`FileInput renders 1`] = `
         type="file"
       />
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
       >
         <button
           class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root FileInputContent-button"
