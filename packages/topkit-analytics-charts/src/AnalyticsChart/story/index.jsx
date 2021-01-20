@@ -1,5 +1,5 @@
 import AnalyticsChart from '../AnalyticsChart'
-import { sharedChartDocs } from '../../../../picasso-charts/src/LineChart/story'
+import { sharedLineChartDocs } from '../../../../picasso-charts/src/LineChart/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Charts').createPage(
@@ -10,7 +10,7 @@ const page = PicassoBook.section('Charts').createPage(
 page.createTabChapter('Props').addComponentDocs({
   component: AnalyticsChart,
   name: 'AnalyticsChart',
-  additionalDocs: Object.assign(sharedChartDocs, {
+  additionalDocs: Object.assign(sharedLineChartDocs, {
     data: {
       name: 'data',
       type: {

@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useRef } from 'react'
+import React, { ReactNode, useRef } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import cx from 'classnames'
 import {
@@ -27,6 +27,7 @@ import {
 } from '../utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 import styles from './styles'
+import { BaseChartProps } from '../BarChart'
 
 const {
   BOTTOM_DOMAIN,
@@ -69,23 +70,18 @@ export type LineConfig = Record<
 
 export type Domain = [number, number]
 
-export type BaseChartProps = {
-  lineConfig: LineConfig
+export type BaseLineChartProps = BaseChartProps & {
   unit?: string
   xAxisKey?: string
-  height?: number
-  tooltip?: boolean
-  customTooltip?: ReactElement
-  allowTooltipEscapeViewBox?: boolean
-  className?: string
-  showBottomYAxisLabel?: boolean
+  lineConfig: LineConfig
   children?: ReactNode
+  showBottomYAxisLabel?: boolean
   getXAxisTicks?: (orderedChartData: OrderedChartDataPoint[]) => number[]
   getYAxisTicks?: (domain: Domain) => number[]
   formatYAxisTick?: (value: number, domain: Domain) => string
 }
 
-export type Props = BaseChartProps & {
+export type Props = BaseLineChartProps & {
   data: ChartDataPoint[]
   highlights?: HighlightConfig[] | null
   referenceLines?: ReferenceLineType[]

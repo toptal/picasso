@@ -14,7 +14,8 @@ const chartConstants = {
   Y_AXIS_WIDTH: 60,
   TOOLTIP_OFFSET: 10,
   SCROLL_BAR_WIDTH: 16,
-  NUMBER_OF_TICKS: 4
+  NUMBER_OF_TICKS: 4,
+  LEGEND_TOP_OFFSET: 16
 }
 
 export const chartMargins = {
