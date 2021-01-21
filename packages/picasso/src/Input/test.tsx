@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import Input from './Input'
 import Search16 from '../Icon/Search16'
@@ -76,5 +76,18 @@ describe('Input', () => {
     )
 
     expect(container).toMatchSnapshot()
+  })
+
+  it('handles clicks', () => {
+    const handleClick = jest.fn()
+    const { container } = render(<Input onClick={handleClick} />)
+
+    const input = container.querySelector('input')!
+    const inputWrapper = input.parentElement!
+
+    fireEvent.click(input)
+    expect(handleClick).toHaveBeenCalledTimes(1)
+    fireEvent.click(inputWrapper)
+    expect(handleClick).toHaveBeenCalledTimes(2)
   })
 })
