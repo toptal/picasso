@@ -10,7 +10,7 @@ import styles from './styles'
 export interface Props extends BaseProps, TypographyProps {
   /** A typography which can possibly overflow */
   children?: ReactNode
-  /** How many vertical lines of content should be displayed */
+  /** How many lines of content should be displayed */
   lines?: number
   /** A content to show in tooltip when typography overflows. By default, TypographyOverflow's children are used. */
   tooltipContent?: ReactNode
@@ -19,38 +19,44 @@ export interface Props extends BaseProps, TypographyProps {
   /** Tooltip color variant to use. */
   tooltipVariant?: VariantType
   /** Do not show tooltips for shorten content. */
-  tooltipDisabled?: boolean
+  disableTooltip?: boolean
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'TypographyOverflow'
 })
 
-export const TypographyOverflow = ({
-  children,
-  lines = 1,
-  tooltipContent,
-  tooltipDelay,
-  tooltipVariant,
-  tooltipDisabled,
-  ...rest
-}: Props) => {
-  const classes = useStyles({ lines })
+export const TypographyOverflow = (props: Props) => {
+  const {
+    children,
+    tooltipContent,
+    tooltipDelay,
+    tooltipVariant,
+    disableTooltip,
+    ...rest
+  } = props
+
+  const classes = useStyles(props)
 
   return (
     <Ellipsis
-      renderWhenEllipsis={child => (
-        <Tooltip
-          disableListeners={tooltipDisabled}
-          content={tooltipContent ?? children}
-          variant={tooltipVariant}
-          placement='top'
-          delay={tooltipDelay}
-          interactive
-        >
-          {child}
-        </Tooltip>
-      )}
+      renderWhenEllipsis={child =>
+        disableTooltip ? (
+          child
+        ) : (
+          <Tooltip
+            data-testid='TypographyOverflow-Tooltip'
+            disableListeners={disableTooltip}
+            content={tooltipContent ?? children}
+            variant={tooltipVariant}
+            placement='top'
+            delay={tooltipDelay}
+            interactive
+          >
+            {child}
+          </Tooltip>
+        )
+      }
     >
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <Typography {...rest} className={classes.wrapper}>
