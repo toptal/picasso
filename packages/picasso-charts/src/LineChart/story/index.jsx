@@ -7,8 +7,7 @@ const page = PicassoBook.section('Charts').createPage(
   'Responsive line charts'
 )
 
-export const sharedLineChartDocs = {
-  ...sharedChartDocs,
+export const sharedLineChartDocs = Object.assign(sharedChartDocs, {
   unit: {
     name: 'unit',
     type: 'string',
@@ -38,7 +37,7 @@ export const sharedLineChartDocs = {
       "A dictionary of each line name as a key and the line's color and variant for value",
     required: true
   }
-}
+})
 
 page.createTabChapter('Props').addComponentDocs({
   component: LineChart,

@@ -1,9 +1,9 @@
-import BarChart from '../BarChart'
 import PicassoBook from '~/.storybook/components/PicassoBook'
+import BarChart from '../BarChart'
 
 const page = PicassoBook.section('Charts').createPage(
   'BarChart',
-  'Responsive line charts'
+  'Responsive bar charts'
 )
 
 export const sharedChartDocs = {
@@ -59,6 +59,28 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('BarChart/story/Default.example.tsx', 'Default')
-  .addExample('BarChart/story/CustomTooltip.example.tsx', 'Custom tooltip')
-  .addExample('BarChart/story/CustomLabel.example.tsx', 'Custom label')
+  .addExample('BarChart/story/Default.example.tsx', {
+    title: 'Default',
+    delay: 500
+  })
+  .addExample('BarChart/story/TooltipAndLabel.example.tsx', {
+    title: 'Tooltip and label',
+    description:
+      'Bar chart has built-in tooltips and labels support. You can enable them via `tooltip` and `label` props.',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.mouse.move(100, 100)
+      await makeScreenshot()
+    },
+    delay: 500
+  })
+  // TODO: fix screenshot is empty
+  .addExample('BarChart/story/CustomTooltipAndLabel.example.tsx', {
+    title: 'Custom tooltip and label',
+    description:
+      'If you need to customize a tooltip or a label you can pass `customTooltip` or `customLabel` props respectively.',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.mouse.move(100, 100)
+      await makeScreenshot()
+    },
+    delay: 500
+  }) // picasso-skip-visuals

@@ -11,6 +11,6 @@ export type {
 export { default as BarChart } from './BarChart'
 export type {
   BarChartProps,
-  BaseChartProps,
-  BarLabelProps
+  BaseChartProps
 } from './BarChart'
+export type { BarChartLabelProps } from './BarChartLabel'
