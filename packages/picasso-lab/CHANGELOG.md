@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.2.0...@toptal/picasso-lab@3.3.0) (2021-01-21)
+
+
+### Features
+
+* **TypographyOverflow:** add lines support for TypographyOverflow ([#1851](https://github.com/toptal/picasso/issues/1851)) ([f9b234b](https://github.com/toptal/picasso/commit/f9b234bbfa2545adfff41505c3aa9e7a61676309))
+
+
+
+
+
 # [3.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.1.5...@toptal/picasso-lab@3.2.0) (2021-01-21)
 
 
