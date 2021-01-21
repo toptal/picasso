@@ -23,7 +23,7 @@ export const generateUrl = ({ host, kind, type, section }: UrlOptions) => {
   const encodedKind = normalize(kind)
   const encodedType = normalize(type)
 
-  const url = `${host}?path=/story/${encodedKind}--${encodedType}`
+  const url = `${host}?path=/story/${encodedKind}-${encodedType}--${encodedType}`
 
   if (!section) {
     return url
