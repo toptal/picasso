@@ -1,19 +1,21 @@
 import React from 'react'
 import { TypographyOverflow } from '@toptal/picasso-lab'
+import styled from 'styled-components'
+import { Container } from '@toptal/picasso'
+
+const DynamicWidthContainer = styled(Container)`
+  margin-top: 1rem;
+  width: 300px;
+  padding-right: 20px;
+  resize: horizontal;
+  overflow: auto;
+  border-right: 3px solid black;
+`
 
 const Example = () => {
   return (
     <>
-      <div
-        style={{
-          marginTop: 150,
-          width: '300px',
-          paddingRight: '20px',
-          resize: 'horizontal',
-          overflow: 'auto',
-          borderRight: '3px solid black'
-        }}
-      >
+      <DynamicWidthContainer style={{ marginTop: 150 }}>
         <TypographyOverflow
           lines={2}
           as='p'
@@ -23,17 +25,8 @@ const Example = () => {
           Two lines typography with a very long text and{' '}
           <a href='#'>two words link</a> and dynamic width. Try to resize.
         </TypographyOverflow>
-      </div>
-      <div
-        style={{
-          marginTop: '1rem',
-          width: '300px',
-          paddingRight: '20px',
-          resize: 'horizontal',
-          overflow: 'auto',
-          borderRight: '3px solid black'
-        }}
-      >
+      </DynamicWidthContainer>
+      <DynamicWidthContainer>
         <TypographyOverflow
           lines={3}
           as='p'
@@ -44,17 +37,8 @@ const Example = () => {
           a very long text and <a href='#'>two words link</a> and dynamic width.
           Try to resize.
         </TypographyOverflow>
-      </div>
-      <div
-        style={{
-          marginTop: '1rem',
-          width: '300px',
-          paddingRight: '20px',
-          resize: 'horizontal',
-          overflow: 'auto',
-          borderRight: '3px solid black'
-        }}
-      >
+      </DynamicWidthContainer>
+      <DynamicWidthContainer>
         <TypographyOverflow
           lines={4}
           as='p'
@@ -66,7 +50,7 @@ const Example = () => {
           long text and a very long text and <a href='#'>two words link</a> and
           dynamic width. Try to resize.
         </TypographyOverflow>
-      </div>
+      </DynamicWidthContainer>
     </>
   )
 }

@@ -1,5 +1,16 @@
 import React from 'react'
 import { TypographyOverflow } from '@toptal/picasso-lab'
+import styled from 'styled-components'
+import { Container } from '@toptal/picasso'
+
+const DynamicWidthContainer = styled(Container)`
+  margin-top: 1rem;
+  width: 500px;
+  padding-right: 20px;
+  resize: horizontal;
+  overflow: auto;
+  border-right: 3px solid black;
+`
 
 const Example = () => {
   return (
@@ -9,20 +20,11 @@ const Example = () => {
           This typography is very long and therefore it overflows.
         </TypographyOverflow>
       </div>
-      <div
-        style={{
-          marginTop: '1rem',
-          width: '500px',
-          paddingRight: '20px',
-          resize: 'horizontal',
-          overflow: 'auto',
-          borderRight: '3px solid black'
-        }}
-      >
+      <DynamicWidthContainer>
         <TypographyOverflow data-testid='ellipsed-text-dynamic-width'>
           Another typography is very long and has dynamic width. Try to resize.
         </TypographyOverflow>
-      </div>
+      </DynamicWidthContainer>
     </>
   )
 }
