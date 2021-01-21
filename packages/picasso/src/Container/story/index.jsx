@@ -20,13 +20,13 @@ page
     title: 'Spacing',
     description: 'Creating inner and outer space for component',
     extra: `
-Spacing is based on size enum that gets transformed into **em** unit in following manner: 
-- xsmall = 0.5em,
-- small = 1em,
-- medium = 1.5em,
-- large = 2em
-- xlarge = 2.5em
+Spacing is based on size enum that gets transformed into **rem** unit in following manner: 
+- xsmall = 0.5rem,
+- small = 1rem,
+- medium = 1.5rem,
+- large = 2rem
+- xlarge = 2.5rem
 
-For other custom  cases use **number** in em units or **className** to define spacings.
+For other custom  cases use **number** in rem units or **className** to define spacings.
 `
   })
