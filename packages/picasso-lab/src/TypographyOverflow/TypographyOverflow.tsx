@@ -61,8 +61,8 @@ export const TypographyOverflow = (props: Props) => {
         )
       }
     >
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <Typography
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         className={cx(
           classes.wrapper,
