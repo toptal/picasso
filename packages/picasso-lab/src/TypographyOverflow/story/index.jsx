@@ -25,6 +25,22 @@ page
       await makeScreenshot()
     }
   })
+  .addExample('TypographyOverflow/story/Multiline.example.tsx', {
+    title: 'Multiline',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.hover('[data-testid="ellipsed-text-lines2"]')
+      await testPage.waitFor(200)
+      await makeScreenshot()
+
+      await testPage.hover('[data-testid="ellipsed-text-lines3"]')
+      await testPage.waitFor(200)
+      await makeScreenshot()
+
+      await testPage.hover('[data-testid="ellipsed-text-lines4"]')
+      await testPage.waitFor(200)
+      await makeScreenshot()
+    }
+  })
   .addExample('TypographyOverflow/story/CheckboxLabel.example.tsx', {
     title: 'Checkbox label',
     effect: async (testPage, makeScreenshot) => {
