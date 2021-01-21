@@ -73,7 +73,6 @@ page
     },
     delay: 500
   })
-  // TODO: fix screenshot is empty
   .addExample('BarChart/story/CustomTooltipAndLabel.example.tsx', {
     title: 'Custom tooltip and label',
     description:
@@ -83,4 +82,4 @@ page
       await makeScreenshot()
     },
     delay: 500
-  }) // picasso-skip-visuals
+  })

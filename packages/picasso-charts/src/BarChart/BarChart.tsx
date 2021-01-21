@@ -70,15 +70,17 @@ const BarChart = <K extends string>({
     ...dataItem.value
   }))
   const labelElement = useMemo(() => {
+    if (!label) return undefined
+
     if (customLabel) {
       return customLabel
     }
 
-    return label ? <BarChartLabel /> : undefined
+    return customLabel ?? <BarChartLabel />
   }, [label, customLabel])
 
   const tooltipElement = useMemo(() => {
-    return tooltip || customTooltip ? (
+    return tooltip ? (
       <Tooltip
         allowEscapeViewBox={
           allowTooltipEscapeViewBox ? { x: true, y: true } : undefined

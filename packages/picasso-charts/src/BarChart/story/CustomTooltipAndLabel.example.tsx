@@ -1,6 +1,6 @@
 import React from 'react'
 import { Paper, Container, Typography } from '@toptal/picasso'
-import { BarChart, BarChartLabelProps } from '@toptal/picasso-charts'
+import { BarChart } from '@toptal/picasso-charts'
 import { palette } from '@toptal/picasso/utils'
 
 const CHART_DATA = [
@@ -22,54 +22,39 @@ const CHART_DATA = [
   }
 ]
 
-const CustomLabel = ({ value, viewBox }: BarChartLabelProps) => {
-  const width = viewBox?.width ?? 0
-  const xPosition = viewBox?.x ?? 0
-  const yPosition = viewBox?.y ?? 0
+const CustomLabel = ({ value, viewBox }: any) => {
+  const width = viewBox.width
+  const xPosition = viewBox.x
+  const yPosition = viewBox.y
 
   return (
     <text
       x={xPosition + width / 2}
       y={yPosition}
-      fill={palette.blue.main}
+      fill={palette.red.main}
       style={{ fontSize: 14 }}
       textAnchor='middle'
-      dy={-6}
+      dy={-2}
     >
       {value}
     </text>
   )
 }
 
-const CustomTooltip = ({
-  active,
-  payload
-}: {
-  active?: boolean
-  payload?: { payload: { infected: boolean; recovered: boolean } }[]
-}) => {
+const CustomTooltip = ({ active, payload }: any) => {
   if (active) {
-    const { infected, recovered } = payload
-      ? payload[0].payload
-      : {
-          infected: 0,
-          recovered: 0
-        }
+    const { infected, recovered } = payload[0].payload
 
     return (
       <Paper>
         <Container padded='xsmall'>
-          <Container>
-            <Typography inline size='medium' color='blue'>
-              Infected: {infected}
-            </Typography>
-          </Container>
+          <Typography size='medium' color='blue'>
+            Infected: {infected}
+          </Typography>
 
-          <Container>
-            <Typography inline size='medium' color='dark-grey'>
-              Recovered: {recovered}
-            </Typography>
-          </Container>
+          <Typography size='medium' color='dark-grey'>
+            Recovered: {recovered}
+          </Typography>
         </Container>
       </Paper>
     )
@@ -82,8 +67,10 @@ const Example = () => (
   <BarChart
     data={CHART_DATA}
     fill={{ infected: palette.blue.main, recovered: palette.grey.dark }}
-    customTooltip={<CustomTooltip />}
+    label
     customLabel={<CustomLabel />}
+    tooltip
+    customTooltip={<CustomTooltip />}
   />
 )
 
