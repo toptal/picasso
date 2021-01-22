@@ -24,11 +24,9 @@ const Example = () => (
     <Container bottom='small'>
       <Typography weight='semibold'>Semibold</Typography>
     </Container>
-    <Container bottom='small'>
-      <BoldConteiner>
-        <Typography weight='inherit'>Inherit Bold</Typography>
-      </BoldConteiner>
-    </Container>
+    <BoldConteiner bottom='small'>
+      <Typography weight='inherit'>Inherit Bold</Typography>
+    </BoldConteiner>
     <LighterConteiner>
       <Typography weight='inherit'>Inherit Lighter</Typography>
     </LighterConteiner>
