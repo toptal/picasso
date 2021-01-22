@@ -33,23 +33,24 @@ export default ({ palette }: Theme) =>
         backgroundColor: 'inherit'
       }
     },
-    inputWrapper: {
-      width: 'inherit',
-      outline: 0
-    },
-    outlinedInput: {
-      paddingRight: '1.625rem'
-    },
-    searchOutlinedInput: {
-      width: '100%'
-    },
-    searchInputIcon: {
-      marginRight: '0.5rem'
-    },
     nativeInput: {
       padding: 0
     },
     placeholder: {
       color: palette.grey.main2
+    },
+    startAdornment: {
+      position: 'absolute',
+      left: '0.625rem'
+    },
+    endAdornment: {
+      position: 'absolute',
+      right: '1.625rem'
+    },
+    startAdornmentPadding: {
+      paddingLeft: '2.5625rem'
+    },
+    endAdornmentPadding: {
+      paddingRight: '3.5625rem'
     }
   })

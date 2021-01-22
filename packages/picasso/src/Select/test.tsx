@@ -5,17 +5,16 @@ import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Select, { Props } from './Select'
+import Select, { Props as SelectProps } from './Select'
 
 jest.mock('ap-style-title-case')
 
 const renderSelect = (
-  props: OmitInternalProps<Props>,
+  props: OmitInternalProps<SelectProps>,
   picassoConfig?: PicassoConfig
 ) => {
   const {
     options,
-    native,
     value,
     width,
     placeholder,
@@ -33,7 +32,6 @@ const renderSelect = (
       options={options}
       renderOption={renderOption}
       getDisplayValue={getDisplayValue}
-      native={native}
       value={value}
       width={width}
       placeholder={placeholder}
@@ -95,37 +93,6 @@ const OPTIONS_WITH_DESCRIPTIONS = [
 
 const getSelectedOptions = (element: Element) =>
   Array.from(element.querySelectorAll('[class$="selected"]')) as Element[]
-
-it('renders native select', () => {
-  const { container, getByText } = renderSelect({
-    native: true,
-    options: OPTIONS,
-    placeholder: 'Choose an option...',
-    value: 'val1'
-  })
-
-  const emptyOption = getByText('Choose an option...')
-
-  expect(emptyOption).toBeDisabled()
-
-  expect(container).toMatchSnapshot()
-})
-
-it('renders native select with the empty option enabled when enableReset is `true`', () => {
-  const { container, getByText } = renderSelect({
-    enableReset: true,
-    native: true,
-    options: OPTIONS,
-    placeholder: 'Choose an option...',
-    value: 'val1'
-  })
-
-  const emptyOption = getByText('Choose an option...')
-
-  expect(emptyOption).not.toBeDisabled()
-
-  expect(container).toMatchSnapshot()
-})
 
 it('renders select', () => {
   const { container } = renderSelect({
