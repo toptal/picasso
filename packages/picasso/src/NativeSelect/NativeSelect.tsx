@@ -191,7 +191,7 @@ export const Select = documentable(
           }
           value={value}
           onChange={onChange}
-          IconComponent={SelectCaret}
+          IconComponent={() => <SelectCaret disabled={disabled} />}
           classes={{
             root: cx(classes.select, {
               [classes.placeholder]: !selection.isSelected()

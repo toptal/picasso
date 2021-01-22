@@ -303,12 +303,12 @@ export const Select = documentable(
       const inputWrapperRef = useRef<HTMLDivElement>(null)
 
       const {
-        highlightedIndex,
-        isOpen,
         getItemProps,
         getRootProps,
         getInputProps,
         getSearchInputProps,
+        highlightedIndex,
+        isOpen,
         showSearch,
         filterOptionsValue,
         displayValue,
@@ -384,7 +384,7 @@ export const Select = documentable(
               }
               name={enableAutofill ? name : undefined}
             />
-            <SelectCaret />
+            <SelectCaret disabled={disabled} />
           </div>
           {!disabled && (
             <Popper

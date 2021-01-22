@@ -1,30 +1,20 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-statements */
 /* eslint-disable max-lines-per-function */
-import {
-  KeyboardEvent,
-  useState,
-  ChangeEvent,
-  useCallback,
-  HTMLAttributes,
-  useEffect,
-  useMemo
-} from 'react'
+import { KeyboardEvent, ChangeEvent, useCallback, HTMLAttributes } from 'react'
 import PopperJs from 'popper.js'
 
 import { Option, ItemProps, FocusEventType, ValueType } from '../types'
 import {
-  Selection,
   isOptionInSelectedValues,
   getSelection,
   removeDuplicatedOptions,
   isEmpty,
-  getSelectedOptions,
   getNextWrappingIndex,
   normalizeArrowKey
 } from './utils'
-import { isSubstring } from '../../utils'
 import { Props as SelectProps } from '../Select'
+import useSelectState, { UseSelectStateOutput } from './use-select-state'
 
 export const EMPTY_INPUT_VALUE = ''
 
@@ -36,115 +26,84 @@ type GetRootProps = () => {
 type GetInputProps = () => Partial<HTMLAttributes<HTMLInputElement>>
 type GetSearchInputProps = () => Partial<HTMLAttributes<HTMLInputElement>>
 
-interface UseSelectOutput {
+interface UseSelectOutput extends UseSelectStateOutput {
   getItemProps: (index: number, item: Option) => ItemProps
   getRootProps: GetRootProps
   getInputProps: GetInputProps
   getSearchInputProps: GetSearchInputProps
-  isOpen: boolean
-  highlightedIndex: number
-  setHighlightedIndex: (index: number) => void
-  showSearch: boolean
-  filterOptionsValue: string
-  displayValue: string
-  selection: Selection
-  filteredOptions: Option[]
-  emptySelectValue: string | string[]
 }
 
 const useSelect = <T extends ValueType, M extends boolean = false>(
-  externalProps: ExternalProps<T, M>
+  props: UseSelectProps<T, M>
 ): UseSelectOutput => {
-  const internalProps = useInternalProps(externalProps)
+  const selectState = useSelectState(props)
 
-  const handleClick = useClickHandler(internalProps)
-  const handleFocus = internalProps.onFocus
+  const handleFocus = useFocusHandler(selectState)
+  const handleClick = useClickHandler(selectState)
   const handleSelectBlur = useSelectBlurHandler({
-    ...internalProps,
-    popperRef: externalProps.popperRef
+    ...selectState,
+    onBlur: props.onBlur,
+    popperRef: props.popperRef,
+    multiple: props.multiple,
+    value: props.value,
+    options: props.options,
+    getDisplayValue: props.getDisplayValue,
+    name: props.name,
+    onChange: props.onChange as any
+  })
+  const handleSelect = useSelectHandler({
+    ...selectState,
+    multiple: props.multiple,
+    value: props.value,
+    options: props.options,
+    selectRef: props.selectRef,
+    name: props.name,
+    onChange: props.onChange as any
   })
   const handleSearchBlur = useSearchBlurHandler({
-    ...internalProps,
-    popperRef: externalProps.popperRef,
-    selectRef: externalProps.selectRef
+    ...selectState,
+    popperRef: props.popperRef,
+    selectRef: props.selectRef
   })
-  const handleEscapeKeyDown = useEscapeKeyDownHandler(internalProps)
-  const handleEnterOrSpaceKeyDown = useEnterOrSpaceKeyDownHandler(internalProps)
-  const handleArrowsKeyDown = useArrowsKeyDownHandler(internalProps)
-  const handleResetClick = useResetClickHandler(internalProps)
-  const handleSearchChange = useSearchChangeHandler(internalProps)
+  const handleEscapeKeyDown = useEscapeKeyDownHandler(selectState)
+  const handleEnterOrSpaceKeyDown = useEnterOrSpaceKeyDownHandler({
+    ...selectState,
+    handleSelect
+  })
+  const handleArrowsKeyDown = useArrowsKeyDownHandler(selectState)
+  const handleResetClick = useResetClickHandler({
+    ...selectState,
+    handleSelect
+  })
+  const handleSearchChange = useSearchChangeHandler(selectState)
   const handleItemOnMouseDown = useItemOnMouseDownHandler()
-
-  // eslint-disable-next-line max-lines-per-function
-  // eslint-disable-next-line complexity
-  const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    const key = normalizeArrowKey(event)
-
-    if (key === 'Tab') {
-      focusRef(externalProps.selectRef)
-      event.preventDefault()
-    } else if (key === 'ArrowUp' || key === 'ArrowDown') {
-      handleArrowsKeyDown(key, event)
-    } else if (key === 'Enter') {
-      handleEnterOrSpaceKeyDown(event)
-    } else if (key === 'Escape') {
-      handleEscapeKeyDown(event)
-    }
-
-    externalProps.onKeyDown?.(event)
-  }
-
-  // eslint-disable-next-line complexity
-  const handleSelectKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (externalProps.native) {
-      externalProps.onKeyDown?.(event)
-
-      // for the native select we don't want to prevent defaults for the event
-      // and don't need any manual operations for keydown event
-      return
-    }
-
-    const isValidInputValue =
-      Boolean(event.key.match(/^[A-z\d]$/)) || event.key === 'Backspace'
-
-    if (isValidInputValue) {
-      focusRef(externalProps.searchInputRef)
-    }
-
-    const key = normalizeArrowKey(event)
-
-    if (key === 'Tab' && internalProps.isOpen && internalProps.showSearch) {
-      event.preventDefault()
-      focusRef(externalProps.searchInputRef)
-    } else if (key === 'ArrowUp' || key === 'ArrowDown') {
-      handleArrowsKeyDown(key, event)
-    } else if (key === 'Enter' || key === ' ') {
-      handleEnterOrSpaceKeyDown(event)
-    } else if (key === 'Escape') {
-      handleEscapeKeyDown(event)
-    }
-
-    externalProps.onKeyDown?.(event)
-  }
+  const handleItemOnMouseEnter = useItemOnMouseEnter(selectState)
+  const handleItemOnClick = useItemOnClick({ ...selectState, handleSelect })
+  const handleSearchKeyDown = useSearchKeyDownHandler({
+    selectRef: props.selectRef,
+    onKeyDown: props.onKeyDown,
+    handleArrowsKeyDown,
+    handleEnterOrSpaceKeyDown,
+    handleEscapeKeyDown
+  })
+  const handleSelectKeyDown = useSelectKeyDownHandler({
+    ...selectState,
+    native: props.native,
+    onKeyDown: props.onKeyDown,
+    searchInputRef: props.searchInputRef,
+    handleArrowsKeyDown,
+    handleEnterOrSpaceKeyDown,
+    handleEscapeKeyDown
+  })
 
   const getItemProps = (index: number, item: Option): ItemProps => ({
     role: 'option',
-    'aria-selected': internalProps.highlightedIndex === index,
-    onMouseEnter: () => {
-      if (index === internalProps.highlightedIndex) {
-        return
-      }
-
-      internalProps.setHighlightedIndex(index)
-    },
+    'aria-selected': selectState.highlightedIndex === index,
+    onMouseEnter: () => handleItemOnMouseEnter(index),
     onMouseDown: handleItemOnMouseDown,
     close,
-    onItemSelect: internalProps.onSelect,
-    onClick: (event: React.MouseEvent) => {
-      close()
-
-      internalProps.onSelect(event, item)
-    }
+    onItemSelect: handleSelect,
+    onClick: (event: React.MouseEvent) => handleItemOnClick(event, item)
   })
 
   const getRootProps = () => ({
@@ -166,23 +125,15 @@ const useSelect = <T extends ValueType, M extends boolean = false>(
   })
 
   return {
+    ...selectState,
     getItemProps,
     getRootProps,
     getInputProps,
-    getSearchInputProps,
-    isOpen: internalProps.isOpen,
-    highlightedIndex: internalProps.highlightedIndex,
-    setHighlightedIndex: internalProps.setHighlightedIndex,
-    showSearch: internalProps.showSearch,
-    filterOptionsValue: internalProps.filterOptionsValue,
-    displayValue: internalProps.displayValue,
-    selection: internalProps.selection,
-    filteredOptions: internalProps.filteredOptions,
-    emptySelectValue: internalProps.emptySelectValue
+    getSearchInputProps
   }
 }
 
-interface ExternalProps<
+export interface UseSelectProps<
   T extends ValueType = ValueType,
   M extends boolean = boolean,
   V = M extends true ? T[] : T
@@ -193,156 +144,38 @@ interface ExternalProps<
   native?: boolean
 }
 
-type InternalProps = {
-  selectedIndexes: number[]
-  isOpen: boolean
-  canOpen: boolean
-  open: () => void
-  close: () => void
-  onFocus: () => void
-  highlightedIndex: number
-  closeOnEnter: boolean
-  onSelect: (event: React.SyntheticEvent, option: Option | null) => void
-  setHighlightedIndex: (index: number) => void
-  onChange: (newValue: string) => void
-  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void
-  showSearch: boolean
-  filterOptionsValue: string
-  displayValue: string
-  selection: Selection
-  filteredOptions: Option[]
-  emptySelectValue: string | string[]
+const focusRef = <T extends HTMLElement>(ref: React.Ref<T>) => {
+  if (typeof ref === 'object' && ref?.current) {
+    ref.current.focus()
+  }
 }
 
-const useInternalProps = <T extends ValueType, M extends boolean = false>(
-  props: ExternalProps<T, M>
-): InternalProps => {
-  const {
-    selectRef,
-    getDisplayValue,
-    options = [],
-    disabled = false,
-    onChange: externalOnChange,
-    onBlur: externalOnBlur,
-    multiple,
-    value,
-    searchThreshold,
-    onSearchChange,
-    name
-  } = props
+const toggleMultipleSelectValue = (value: ValueType[], option: Option) => {
+  const isInSelectedValues = isOptionInSelectedValues(option, value)
 
-  const [selectedOptions, setSelectedOptions] = useState(
-    getSelectedOptions(options, value)
-  )
-  const selection = useMemo(
-    () =>
-      getSelection(
-        removeDuplicatedOptions([...options, ...selectedOptions]),
-        value
-      ),
-    [options, selectedOptions, value]
-  )
-  const [displayValue, setDisplayValue] = useState(
-    selection.display(getDisplayValue!)
-  )
-  const [filterOptionsValue, setFilterOptionsValue] = useState(
-    EMPTY_INPUT_VALUE
-  )
-  const filteredOptions = useMemo(
-    () =>
-      options.filter(option =>
-        isSubstring(filterOptionsValue, getDisplayValue!(option))
-      ),
-    [options, filterOptionsValue, getDisplayValue]
-  )
-  const selectedIndexes = useMemo(
-    () =>
-      options.reduce(
-        (selected: number[], option: Option, index: number) =>
-          selection.isOptionSelected(option) ? [...selected, index] : selected,
-        []
-      ),
-    [options, selection]
-  )
-  const emptySelectValue: string | string[] = useMemo(
-    () => (multiple ? [] : ''),
-    [multiple]
-  )
-  const showSearch = options.length >= searchThreshold!
-  const [isOpen, setOpen] = useState<boolean>(false)
-  const canOpen = !isOpen && !disabled
-  const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex({
-    selectedIndexes,
-    isOpen
-  })
-
-  useEffect(() => {
-    const newSelect = getSelection(
-      removeDuplicatedOptions([...options, ...selectedOptions]),
-      value
-    )
-
-    setDisplayValue(newSelect.display(getDisplayValue!))
-    setSelectedOptions(getSelectedOptions(options, value))
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, options, getDisplayValue])
-
-  const close = useCallback(() => {
-    setOpen(false)
-  }, [])
-  const open = useCallback(() => {
-    setOpen(true)
-  }, [])
-
-  const fireOnChangeEvent = useCallback(
-    ({ event, value }: { event: any; value: ValueType | ValueType[] }) => {
-      event.persist()
-      event.target = { value, name }
-      externalOnChange?.(event)
-    },
-    [name, externalOnChange]
-  )
-  const internalOnFocus = () => {
-    if (!isOpen) {
-      setFilterOptionsValue(EMPTY_INPUT_VALUE)
-    }
+  if (isInSelectedValues) {
+    return value!.filter(value => value !== option.value)
   }
-  const internalOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (!multiple) {
-      const hasValue = displayValue !== EMPTY_INPUT_VALUE
-      const isInputCleaned = !hasValue && !isEmpty(value)
 
-      if (isInputCleaned) {
-        fireOnChangeEvent({ event, value: EMPTY_INPUT_VALUE })
-        setDisplayValue(EMPTY_INPUT_VALUE)
-      } else {
-        const select = getSelection(
-          removeDuplicatedOptions([...options, ...selectedOptions]),
-          value
-        )
+  return [...value, String(option.value)]
+}
 
-        setDisplayValue(select.display(getDisplayValue!))
-      }
-    }
-
-    setFilterOptionsValue(EMPTY_INPUT_VALUE)
-    externalOnBlur!(event)
-  }
-  const internalOnChange = (newValue: string) => {
-    onSearchChange?.(newValue)
-    setFilterOptionsValue(newValue)
-  }
-  const toggleMultipleSelectValue = (value: ValueType[], option: Option) => {
-    const isInSelectedValues = isOptionInSelectedValues(option, value)
-
-    if (isInSelectedValues) {
-      return value!.filter(value => value !== option.value)
-    }
-
-    return [...value, String(option.value)]
-  }
-  const internalOnSelect = useCallback(
+const useSelectHandler = ({
+  emptySelectValue,
+  multiple,
+  value,
+  setSelectedOptions,
+  options,
+  setFilterOptionsValue,
+  selectRef,
+  name,
+  onChange
+}: UseSelectStateOutput &
+  Pick<
+    UseSelectProps,
+    'multiple' | 'value' | 'options' | 'selectRef' | 'name' | 'onChange'
+  >) =>
+  useCallback(
     (event: React.SyntheticEvent, option: Option | null) => {
       let newValue: ValueType | ValueType[]
 
@@ -365,76 +198,148 @@ const useInternalProps = <T extends ValueType, M extends boolean = false>(
         )
       )
 
-      fireOnChangeEvent({ event, value: newValue })
+      fireOnChangeEvent({ event, value: newValue, name, onChange })
       setFilterOptionsValue(EMPTY_INPUT_VALUE)
 
       focusRef(selectRef)
     },
     [
+      name,
+      onChange,
       options,
       emptySelectValue,
       setFilterOptionsValue,
-      fireOnChangeEvent,
       multiple,
       value,
-      selectRef
+      selectRef,
+      setSelectedOptions
     ]
   )
 
-  return {
-    ...props,
-    filteredOptions,
-    selectedIndexes,
-    isOpen,
-    canOpen,
-    open,
-    close,
-    onFocus: internalOnFocus,
-    highlightedIndex,
-    closeOnEnter: !multiple,
-    onSelect: internalOnSelect,
-    setHighlightedIndex,
-    onChange: internalOnChange,
-    onBlur: internalOnBlur,
-    showSearch,
-    filterOptionsValue,
-    displayValue,
-    selection,
-    emptySelectValue
-  }
-}
+const useSearchKeyDownHandler = ({
+  selectRef,
+  onKeyDown,
+  handleArrowsKeyDown,
+  handleEnterOrSpaceKeyDown,
+  handleEscapeKeyDown
+}: Pick<UseSelectProps, 'selectRef' | 'onKeyDown'> & {
+  handleArrowsKeyDown: ReturnType<typeof useArrowsKeyDownHandler>
+  handleEnterOrSpaceKeyDown: ReturnType<typeof useEnterOrSpaceKeyDownHandler>
+  handleEscapeKeyDown: ReturnType<typeof useEscapeKeyDownHandler>
+}) =>
+  // eslint-disable-next-line complexity
+  useCallback(
+    // eslint-disable-next-line complexity
+    (event: KeyboardEvent<HTMLInputElement>) => {
+      const key = normalizeArrowKey(event)
 
-const focusRef = <T extends HTMLElement>(ref: React.Ref<T>) => {
-  if (typeof ref === 'object' && ref?.current) {
-    ref.current.focus()
-  }
-}
+      if (key === 'Tab') {
+        focusRef(selectRef)
+        event.preventDefault()
+      } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+        handleArrowsKeyDown(key, event)
+      } else if (key === 'Enter') {
+        handleEnterOrSpaceKeyDown(event)
+      } else if (key === 'Escape') {
+        handleEscapeKeyDown(event)
+      }
 
-const useHighlightedIndex = ({
-  selectedIndexes,
-  isOpen
-}: Pick<InternalProps, 'selectedIndexes' | 'isOpen'>) => {
-  const [highlightedIndex, setHighlightedIndex] = useState<number>(0)
+      onKeyDown?.(event)
+    },
+    [
+      selectRef,
+      onKeyDown,
+      handleArrowsKeyDown,
+      handleEnterOrSpaceKeyDown,
+      handleEscapeKeyDown
+    ]
+  )
 
-  useEffect(() => {
+const useSelectKeyDownHandler = ({
+  native,
+  onKeyDown,
+  searchInputRef,
+  isOpen,
+  showSearch,
+  handleArrowsKeyDown,
+  handleEnterOrSpaceKeyDown,
+  handleEscapeKeyDown
+}: UseSelectStateOutput &
+  Pick<
+    UseSelectProps,
+    'onKeyDown' | 'native' | 'onKeyDown' | 'searchInputRef'
+  > & {
+    handleArrowsKeyDown: ReturnType<typeof useArrowsKeyDownHandler>
+    handleEnterOrSpaceKeyDown: ReturnType<typeof useEnterOrSpaceKeyDownHandler>
+    handleEscapeKeyDown: ReturnType<typeof useEscapeKeyDownHandler>
+  }) =>
+  // eslint-disable-next-line complexity
+  useCallback(
+    // eslint-disable-next-line complexity
+    (event: KeyboardEvent<HTMLInputElement>) => {
+      if (native) {
+        onKeyDown?.(event)
+
+        // for the native select we don't want to prevent defaults for the event
+        // and don't need any manual operations for keydown event
+        return
+      }
+
+      const isValidInputValue =
+        Boolean(event.key.match(/^[A-z\d]$/)) || event.key === 'Backspace'
+
+      if (isValidInputValue) {
+        focusRef(searchInputRef)
+      }
+
+      const key = normalizeArrowKey(event)
+
+      if (key === 'Tab' && isOpen && showSearch) {
+        event.preventDefault()
+        focusRef(searchInputRef)
+      } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+        handleArrowsKeyDown(key, event)
+      } else if (key === 'Enter' || key === ' ') {
+        handleEnterOrSpaceKeyDown(event)
+      } else if (key === 'Escape') {
+        handleEscapeKeyDown(event)
+      }
+
+      onKeyDown?.(event)
+    },
+    [
+      native,
+      onKeyDown,
+      searchInputRef,
+      isOpen,
+      showSearch,
+      handleArrowsKeyDown,
+      handleEnterOrSpaceKeyDown,
+      handleEscapeKeyDown
+    ]
+  )
+
+const useFocusHandler = ({
+  isOpen,
+  setFilterOptionsValue
+}: UseSelectStateOutput) =>
+  useCallback(() => {
     if (!isOpen) {
-      setHighlightedIndex(selectedIndexes.length === 1 ? selectedIndexes[0] : 0)
+      setFilterOptionsValue(EMPTY_INPUT_VALUE)
     }
-  }, [isOpen, selectedIndexes])
+  }, [isOpen, setFilterOptionsValue])
 
-  return [highlightedIndex, setHighlightedIndex] as [
-    number,
-    (value: number) => void
-  ]
-}
-
-const useClickHandler = ({ canOpen, open, onFocus }: InternalProps) =>
+const useClickHandler = ({
+  canOpen,
+  open,
+  setFilterOptionsValue
+}: UseSelectStateOutput) =>
   useCallback(() => {
     if (canOpen) {
-      onFocus()
+      setFilterOptionsValue(EMPTY_INPUT_VALUE)
       open()
     }
-  }, [canOpen, open, onFocus])
+  }, [canOpen, open, setFilterOptionsValue])
 
 const useEnterOrSpaceKeyDownHandler = ({
   canOpen,
@@ -442,8 +347,10 @@ const useEnterOrSpaceKeyDownHandler = ({
   filteredOptions,
   highlightedIndex,
   closeOnEnter,
-  onSelect
-}: InternalProps) =>
+  handleSelect
+}: UseSelectStateOutput & {
+  handleSelect: ReturnType<typeof useSelectHandler>
+}) =>
   useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
       event.preventDefault()
@@ -464,9 +371,16 @@ const useEnterOrSpaceKeyDownHandler = ({
         close()
       }
 
-      onSelect?.(event, item)
+      handleSelect(event, item)
     },
-    [canOpen, open, filteredOptions, highlightedIndex, closeOnEnter, onSelect]
+    [
+      canOpen,
+      open,
+      filteredOptions,
+      highlightedIndex,
+      closeOnEnter,
+      handleSelect
+    ]
   )
 
 const useArrowsKeyDownHandler = ({
@@ -475,7 +389,7 @@ const useArrowsKeyDownHandler = ({
   filteredOptions,
   setHighlightedIndex,
   open
-}: InternalProps) =>
+}: UseSelectStateOutput) =>
   useCallback(
     (key: string, event: KeyboardEvent<HTMLInputElement>) => {
       event.preventDefault()
@@ -495,26 +409,97 @@ const useArrowsKeyDownHandler = ({
     [isOpen, highlightedIndex, filteredOptions, setHighlightedIndex, open]
   )
 
+const fireOnChangeEvent = ({
+  event,
+  value: eventValue,
+  name,
+  onChange
+}: {
+  event: any
+  value: ValueType | ValueType[]
+  name?: string
+  onChange: UseSelectProps['onChange']
+}) => {
+  event.persist()
+  event.target = { value: eventValue, name }
+  onChange?.(event)
+}
+
 const useSelectBlurHandler = ({
   onBlur,
   popperRef,
-  close
-}: InternalProps & Pick<ExternalProps, 'popperRef'>) =>
+  close,
+  displayValue,
+  multiple,
+  value,
+  setDisplayValue,
+  selectedOptions,
+  options,
+  getDisplayValue,
+  setFilterOptionsValue,
+  name,
+  onChange
+}: UseSelectStateOutput &
+  Pick<
+    UseSelectProps,
+    | 'popperRef'
+    | 'onBlur'
+    | 'onChange'
+    | 'multiple'
+    | 'value'
+    | 'options'
+    | 'getDisplayValue'
+    | 'name'
+  >) =>
   useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {
+      if (!multiple) {
+        const hasValue = displayValue !== EMPTY_INPUT_VALUE
+        const isInputCleaned = !hasValue && !isEmpty(value)
+
+        if (isInputCleaned) {
+          fireOnChangeEvent({ event, value: EMPTY_INPUT_VALUE, name, onChange })
+          setDisplayValue(EMPTY_INPUT_VALUE)
+        } else {
+          const select = getSelection(
+            removeDuplicatedOptions([...options, ...selectedOptions]),
+            value
+          )
+
+          setDisplayValue(select.display(getDisplayValue!))
+        }
+      }
+
+      setFilterOptionsValue(EMPTY_INPUT_VALUE)
+
       if (!isRelatedTargetInsidePopper(event, popperRef)) {
-        onBlur(event)
         close()
       }
+
+      onBlur?.(event)
     },
-    [onBlur, popperRef, close]
+    [
+      name,
+      onChange,
+      onBlur,
+      popperRef,
+      close,
+      displayValue,
+      multiple,
+      value,
+      setDisplayValue,
+      selectedOptions,
+      options,
+      getDisplayValue,
+      setFilterOptionsValue
+    ]
   )
 
 const useSearchBlurHandler = ({
   selectRef,
   popperRef,
   close
-}: InternalProps & Pick<ExternalProps, 'popperRef' | 'selectRef'>) =>
+}: UseSelectStateOutput & Pick<UseSelectProps, 'popperRef' | 'selectRef'>) =>
   useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {
       if (isRelatedTargetInsidePopper(event, popperRef)) {
@@ -526,7 +511,7 @@ const useSearchBlurHandler = ({
     [selectRef, popperRef, close]
   )
 
-const useEscapeKeyDownHandler = ({ close }: InternalProps) =>
+const useEscapeKeyDownHandler = ({ close }: UseSelectStateOutput) =>
   useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
       event.preventDefault()
@@ -535,7 +520,12 @@ const useEscapeKeyDownHandler = ({ close }: InternalProps) =>
     [close]
   )
 
-const useResetClickHandler = ({ close, onSelect }: InternalProps) =>
+const useResetClickHandler = ({
+  close,
+  handleSelect
+}: UseSelectStateOutput & {
+  handleSelect: ReturnType<typeof useSelectHandler>
+}) =>
   useCallback(
     (event: React.MouseEvent<HTMLInputElement>) => {
       // keep select options closed
@@ -543,17 +533,21 @@ const useResetClickHandler = ({ close, onSelect }: InternalProps) =>
 
       close()
 
-      onSelect?.(event, null)
+      handleSelect(event, null)
     },
-    [close, onSelect]
+    [close, handleSelect]
   )
 
-const useSearchChangeHandler = ({ onChange }: InternalProps) =>
+const useSearchChangeHandler = ({
+  setFilterOptionsValue,
+  onSearchChange
+}: UseSelectStateOutput & Pick<UseSelectProps, 'onSearchChange'>) =>
   useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      onChange?.(event.target.value)
+      onSearchChange?.(event.target.value)
+      setFilterOptionsValue(event.target.value)
     },
-    [onChange]
+    [onSearchChange, setFilterOptionsValue]
   )
 
 const useItemOnMouseDownHandler = () =>
@@ -564,9 +558,39 @@ const useItemOnMouseDownHandler = () =>
     event.preventDefault()
   }, [])
 
+const useItemOnMouseEnter = ({
+  highlightedIndex,
+  setHighlightedIndex
+}: UseSelectStateOutput) =>
+  useCallback(
+    (index: number) => {
+      if (index === highlightedIndex) {
+        return
+      }
+
+      setHighlightedIndex(index)
+    },
+    [highlightedIndex, setHighlightedIndex]
+  )
+
+const useItemOnClick = ({
+  close,
+  handleSelect
+}: UseSelectStateOutput & {
+  handleSelect: ReturnType<typeof useSelectHandler>
+}) =>
+  useCallback(
+    (event: React.MouseEvent, item: Option) => {
+      close()
+
+      handleSelect(event, item)
+    },
+    [close, handleSelect]
+  )
+
 const isRelatedTargetInsidePopper = (
   event: React.FocusEvent,
-  popperRef: ExternalProps['popperRef']
+  popperRef: UseSelectProps['popperRef']
 ) =>
   typeof popperRef === 'object' &&
   popperRef?.current &&

@@ -10,8 +10,7 @@ export interface Props {
   loading?: boolean
 }
 
-export const isLoadingAdorment = ({ position, loading }: Props) =>
-  position === 'end' && loading
+export const isLoadingAdorment = ({ loading }: Props) => loading
 export const isStartAdornment = ({ position, icon }: Props) =>
   position === 'start' && icon
 export const isEndAdornment = ({ position, icon }: Props) =>
