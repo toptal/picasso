@@ -17,7 +17,7 @@ import toTitleCase from '../utils/to-title-case'
 
 type VariantType = 'heading' | 'body'
 
-type WeightType = 'thin' | 'light' | 'regular' | 'semibold'
+type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'inherit'
 
 type UnderlineType = 'solid' | 'dashed'
 
@@ -73,6 +73,17 @@ const VARIANTS: VariantsType = {
   }
 }
 
+const getWeightClass = (
+  classes: Record<string, string>,
+  weight?: WeightType
+) => {
+  if (weight === 'inherit') {
+    return classes.inheritWeight
+  }
+
+  return weight && classes[weight]
+}
+
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoTypography'
 })
@@ -110,7 +121,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
       [classes.invert]: invert
     },
     classes[variantClassName],
-    classes[weight!],
+    getWeightClass(classes, weight),
     classes[colorClassName],
     {
       [classes.underline]: underline,

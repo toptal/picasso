@@ -1,5 +1,14 @@
 import React from 'react'
 import { Typography, Container } from '@toptal/picasso'
+import styled from 'styled-components'
+
+const BoldConteiner = styled(Container)`
+  font-weight: bold;
+`
+
+const LighterConteiner = styled(Container)`
+  font-weight: lighter;
+`
 
 const Example = () => (
   <div>
@@ -15,6 +24,14 @@ const Example = () => (
     <Container bottom='small'>
       <Typography weight='semibold'>Semibold</Typography>
     </Container>
+    <Container bottom='small'>
+      <BoldConteiner>
+        <Typography weight='inherit'>Inherit Bold</Typography>
+      </BoldConteiner>
+    </Container>
+    <LighterConteiner>
+      <Typography weight='inherit'>Inherit Lighter</Typography>
+    </LighterConteiner>
   </div>
 )
 
