@@ -19,7 +19,7 @@ import MenuItem from '../MenuItem'
 import { disableUnsupportedProps, useCombinedRefs } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option, ValueType, ItemProps, FocusEventType } from './types'
-import useSelect from './hooks/use-select'
+import useSelectProps from './hooks/use-select-props'
 import { getOptionText, getSelection } from './hooks/utils'
 import useAdornments from './hooks/use-adornments'
 import styles from './styles'
@@ -27,6 +27,7 @@ import { documentable, forwardRef } from '../utils/forward-ref'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import noop from '../utils/noop'
 import SelectCaret from '../SelectCaret'
+import useSelectState from './hooks/use-select-state'
 
 const useStyles = makeStyles<Theme>(styles)
 
@@ -302,11 +303,8 @@ export const Select = documentable(
       const popperRef = useRef<PopperJs>(null)
       const inputWrapperRef = useRef<HTMLDivElement>(null)
 
+      const selectState = useSelectState(props)
       const {
-        getItemProps,
-        getRootProps,
-        getInputProps,
-        getSearchInputProps,
         highlightedIndex,
         isOpen,
         showSearch,
@@ -314,11 +312,18 @@ export const Select = documentable(
         displayValue,
         selection,
         filteredOptions
-      } = useSelect({
-        ...props,
+      } = selectState
+      const {
+        getItemProps,
+        getRootProps,
+        getInputProps,
+        getSearchInputProps
+      } = useSelectProps({
         selectRef,
         popperRef,
-        searchInputRef
+        searchInputRef,
+        selectProps: props,
+        selectState
       })
 
       const searchInput = showSearch ? (

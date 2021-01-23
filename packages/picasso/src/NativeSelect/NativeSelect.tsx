@@ -4,14 +4,12 @@ import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
-import PopperJs from 'popper.js'
 
 import OutlinedInput from '../OutlinedInput'
 import { disableUnsupportedProps, useCombinedRefs } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option, ValueType, ItemProps } from '../Select/types'
 import { getOptionText } from '../Select/hooks/utils'
-import useSelect from '../Select/hooks/use-select'
 import styles from './styles'
 import { documentable, forwardRef } from '../utils/forward-ref'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
@@ -19,6 +17,8 @@ import noop from '../utils/noop'
 import SelectCaret from '../SelectCaret'
 import { SelectProps } from '../Select'
 import useAdornments from '../Select/hooks/use-adornments'
+import useSelectState from '../Select/hooks/use-select-state'
+import useSelectProps from '../Select/hooks/use-select-props'
 
 const useStyles = makeStyles<Theme>(styles)
 
@@ -136,23 +136,15 @@ export const Select = documentable(
         ref,
         useRef<HTMLInputElement>(null)
       )
-      const searchInputRef = useRef<HTMLInputElement>(null)
-      const popperRef = useRef<PopperJs>(null)
       const inputWrapperRef = useRef<HTMLDivElement>(null)
 
-      const {
-        getItemProps,
-        getInputProps,
-        selection,
-        emptySelectValue
-      } = useSelect({
-        ...props,
-        native: true,
+      const selectState = useSelectState(props)
+      const { selection, emptySelectValue } = selectState
+      const { getItemProps, getInputProps } = useSelectProps({
         selectRef,
-        popperRef,
-        searchInputRef
+        selectProps: props,
+        selectState
       })
-
       const [selectStartAdornment, selectEndAdornment] = useAdornments({
         position: iconPosition,
         icon,

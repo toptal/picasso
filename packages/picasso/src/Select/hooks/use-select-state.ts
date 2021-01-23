@@ -8,9 +8,17 @@ import {
   getSelectedOptions
 } from './utils'
 import { isSubstring } from '../../utils'
-import { UseSelectProps } from './use-select'
 
 export const EMPTY_INPUT_VALUE = ''
+
+interface Props {
+  getDisplayValue?: (option: Option | null) => string
+  options: Option[]
+  disabled?: boolean
+  multiple?: boolean
+  value?: ValueType | ValueType[]
+  searchThreshold?: number
+}
 
 export type UseSelectStateOutput = {
   selectedIndexes: number[]
@@ -33,16 +41,14 @@ export type UseSelectStateOutput = {
   setSelectedOptions: (options: Option<ValueType>[]) => void
 }
 
-const useSelectState = <T extends ValueType, M extends boolean = false>(
-  props: UseSelectProps<T, M>
-): UseSelectStateOutput => {
+const useSelectState = (props: Props): UseSelectStateOutput => {
   const {
     getDisplayValue,
     options = [],
     disabled = false,
     multiple,
     value,
-    searchThreshold
+    searchThreshold = 0
   } = props
 
   const [selectedOptions, setSelectedOptions] = useState(
