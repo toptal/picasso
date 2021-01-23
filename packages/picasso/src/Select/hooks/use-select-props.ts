@@ -1,6 +1,4 @@
 /* eslint-disable max-lines */
-/* eslint-disable max-statements */
-/* eslint-disable max-lines-per-function */
 import { KeyboardEvent, ChangeEvent, useCallback, HTMLAttributes } from 'react'
 import PopperJs from 'popper.js'
 
