@@ -2,18 +2,18 @@
 // @ts-ignore
 const getBar = name => cy.get(`path[name="${name}"]`).first()
 // @ts-ignore
-const hoverBar = name =>
+const hoverOverBar = name =>
   getBar(name)
     .first()
     .trigger('mouseover')
 // @ts-ignore
-const tooltipShouldContain = text => {
+const assertTooltipContent = text => {
   cy.get('.recharts-default-tooltip')
     .should('be.visible')
     .and('contain', text)
 }
 // @ts-ignore
-const customTooltipShouldContain = text => {
+const assertCustomTooltipContent = text => {
   cy.get('[data-testid="tooltip"]')
     .should('be.visible')
     .and('contain', text)
@@ -23,35 +23,35 @@ describe('BarChart', () => {
   it('shows default tooltip on hover', () => {
     cy.visit('iframe.html?id=barchart--tooltip')
 
-    hoverBar('Apple')
-    tooltipShouldContain('Appleengineers hired : 500')
+    hoverOverBar('Apple')
+    assertTooltipContent('Appleengineers hired : 500')
 
-    hoverBar('Google')
-    tooltipShouldContain('Googleengineers hired : 700')
+    hoverOverBar('Google')
+    assertTooltipContent('Googleengineers hired : 700')
 
-    hoverBar('Facebook')
-    tooltipShouldContain('Facebookengineers hired : 600')
+    hoverOverBar('Facebook')
+    assertTooltipContent('Facebookengineers hired : 600')
 
-    hoverBar('Amazon')
-    tooltipShouldContain('Amazonengineers hired : 400')
+    hoverOverBar('Amazon')
+    assertTooltipContent('Amazonengineers hired : 400')
 
-    hoverBar('Toptal')
-    tooltipShouldContain('Toptalengineers hired : 1000')
+    hoverOverBar('Toptal')
+    assertTooltipContent('Toptalengineers hired : 1000')
   })
 
   it('shows custom tooltip on hover', () => {
     cy.visit('iframe.html?id=barchart--customized')
 
-    hoverBar('Berlin')
-    customTooltipShouldContain('Infected: 4000Recovered: 2400')
+    hoverOverBar('Berlin')
+    assertCustomTooltipContent('Infected: 4000Recovered: 2400')
 
-    hoverBar('Milan')
-    customTooltipShouldContain('Infected: 3000Recovered: 1398')
+    hoverOverBar('Milan')
+    assertCustomTooltipContent('Infected: 3000Recovered: 1398')
 
-    hoverBar('Moscow')
-    customTooltipShouldContain('Infected: 2000Recovered: 9800')
+    hoverOverBar('Moscow')
+    assertCustomTooltipContent('Infected: 2000Recovered: 9800')
 
-    hoverBar('Los-Angeles')
-    customTooltipShouldContain('Infected: 2780Recovered: 3908')
+    hoverOverBar('Los-Angeles')
+    assertCustomTooltipContent('Infected: 2780Recovered: 3908')
   })
 })

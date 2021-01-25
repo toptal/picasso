@@ -53,7 +53,10 @@ const StyleOverrides = () => (
   />
 )
 
-const getFillColor = (color: FillColor | undefined, barIndex: number) => {
+export const getFillColor = (
+  color: FillColor | undefined,
+  barIndex: number
+) => {
   if (!color) return barIndex % 2 === 0 ? palette.blue.main : palette.grey.dark
 
   if (color === 'dark-grey') {
@@ -63,13 +66,13 @@ const getFillColor = (color: FillColor | undefined, barIndex: number) => {
   return palette.blue.main
 }
 
-const formatData = <K extends string>(data: Props<K>['data']) =>
+export const formatData = <K extends string>(data: Props<K>['data']) =>
   data.map(dataItem => ({
     name: dataItem.name,
     ...dataItem.value
   }))
 
-const extractValues = <K extends string>(data: Props<K>['data']) =>
+export const extractValues = <K extends string>(data: Props<K>['data']) =>
   data.map(dataItem => dataItem.value)
 
 const BarChart = <K extends string>({
