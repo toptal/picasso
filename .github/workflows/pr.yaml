@@ -56,3 +56,9 @@ jobs:
 
       - name: Jest Tests
         run: yarn test-ci
+
+      - name: Cypress Tests
+        run: yarn cypress:ci
+
+      - name: Check build
+        run: yarn build:package
