@@ -27,15 +27,15 @@ export interface Props
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children: ReactNode
-  /** margin-top for the container transformed to `em` */
+  /** margin-top for the container transformed to `rem` */
   top?: SpacingType
-  /** margin-bottom for the container transformed to `em` */
+  /** margin-bottom for the container transformed to `rem` */
   bottom?: SpacingType
-  /** margin-left for the container transformed to `em` */
+  /** margin-left for the container transformed to `rem` */
   left?: SpacingType
-  /** margin-right for the container transformed to `em` */
+  /** margin-right for the container transformed to `rem` */
   right?: SpacingType
-  /** padding for the container transformed to `em` */
+  /** padding for the container transformed to `rem` */
   padded?: SpacingType
   /** Whether container should act as inline element `display: inline-block` */
   inline?: boolean
