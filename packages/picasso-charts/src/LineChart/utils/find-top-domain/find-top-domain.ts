@@ -1,5 +1,5 @@
-import { ChartDataPoint } from '../../LineChart'
-import CHART_CONSTANTS from '../constants'
+import { ChartDataPoint } from '../../../types'
+import CHART_CONSTANTS from '../../../utils/constants'
 
 const { BOTTOM_DOMAIN, TOP_DOMAIN_OFFSET } = CHART_CONSTANTS
 

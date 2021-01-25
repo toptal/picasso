@@ -1,32 +1,33 @@
 import React from 'react'
 import { BarChart } from '@toptal/picasso-charts'
-import { palette } from '@toptal/picasso/utils'
 
 const CHART_DATA = [
   {
-    name: 'Apple',
-    value: { 'engineers hired': 500 }
+    name: 'Claimed',
+    value: { 'active talent': 23, 'potential talent': 30 }
   },
   {
-    name: 'Google',
-    value: { 'engineers hired': 700 }
+    name: 'Contacted',
+    value: { 'active talent': 5, 'potential talent': 9 }
   },
   {
-    name: 'Facebook',
-    value: { 'engineers hired': 600 }
+    name: 'Approved',
+    value: { 'active talent': 2, 'potential talent': 0 }
   },
   {
-    name: 'Amazon',
-    value: { 'engineers hired': 400 }
+    name: 'Verified',
+    value: { 'active talent': 2, 'potential talent': 0 }
   },
   {
-    name: 'Toptal',
-    value: { 'engineers hired': 1000 }
+    name: 'With a Deposit',
+    value: { 'active talent': 2, 'potential talent': 0 }
+  },
+  {
+    name: 'With an Active engagement',
+    value: { 'active talent': 1, 'potential talent': 0 }
   }
 ]
 
-const Example = () => (
-  <BarChart data={CHART_DATA} fill={{ 'engineers hired': palette.blue.main }} />
-)
+const Example = () => <BarChart data={CHART_DATA} width={720} />
 
 export default Example

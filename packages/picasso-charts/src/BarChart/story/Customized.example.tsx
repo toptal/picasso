@@ -1,7 +1,6 @@
 import React from 'react'
 import { Paper, Container, Typography } from '@toptal/picasso'
 import { BarChart } from '@toptal/picasso-charts'
-import { palette } from '@toptal/picasso/utils'
 
 const CHART_DATA = [
   {
@@ -22,31 +21,12 @@ const CHART_DATA = [
   }
 ]
 
-const CustomLabel = ({ value, viewBox }: any) => {
-  const width = viewBox.width
-  const xPosition = viewBox.x
-  const yPosition = viewBox.y
-
-  return (
-    <text
-      x={xPosition + width / 2}
-      y={yPosition}
-      fill={palette.red.main}
-      style={{ fontSize: 14 }}
-      textAnchor='middle'
-      dy={-2}
-    >
-      {value}
-    </text>
-  )
-}
-
 const CustomTooltip = ({ active, payload }: any) => {
   if (active) {
     const { infected, recovered } = payload[0].payload
 
     return (
-      <Paper>
+      <Paper data-testid='tooltip'>
         <Container padded='xsmall'>
           <Typography size='medium' color='blue'>
             Infected: {infected}
@@ -66,9 +46,10 @@ const CustomTooltip = ({ active, payload }: any) => {
 const Example = () => (
   <BarChart
     data={CHART_DATA}
-    fill={{ infected: palette.blue.main, recovered: palette.grey.dark }}
-    label
-    customLabel={<CustomLabel />}
+    width={720}
+    height={300}
+    fillSchema={{ infected: 'dark-grey', recovered: 'blue' }}
+    labelColorSchema={{ infected: 'red', recovered: 'dark-grey' }}
     tooltip
     customTooltip={<CustomTooltip />}
   />

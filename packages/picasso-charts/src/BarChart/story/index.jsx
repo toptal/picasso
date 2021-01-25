@@ -63,20 +63,20 @@ page
     title: 'Default',
     delay: 500
   })
-  .addExample('BarChart/story/TooltipAndLabel.example.tsx', {
-    title: 'Tooltip and label',
+  .addExample('BarChart/story/Tooltip.example.tsx', {
+    title: 'Tooltip',
     description:
-      'Bar chart has built-in tooltips and labels support. You can enable them via `tooltip` and `label` props.',
+      'Bar chart has built-in tooltips support. You can enable them via `tooltip` prop.',
     effect: async (testPage, makeScreenshot) => {
       await testPage.mouse.move(100, 100)
       await makeScreenshot()
     },
     delay: 500
   })
-  .addExample('BarChart/story/CustomTooltipAndLabel.example.tsx', {
-    title: 'Custom tooltip and label',
+  .addExample('BarChart/story/Customized.example.tsx', {
+    title: 'Customized',
     description:
-      'If you need to customize a tooltip or a label you can pass `customTooltip` or `customLabel` props respectively.',
+      "You can customize chart's tooltip, height, width, fill and label colors.",
     effect: async (testPage, makeScreenshot) => {
       await testPage.mouse.move(100, 100)
       await makeScreenshot()

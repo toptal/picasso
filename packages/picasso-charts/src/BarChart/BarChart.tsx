@@ -5,13 +5,15 @@ import {
   CartesianGrid,
   XAxis,
   Tooltip,
-  Legend,
   Bar,
-  ResponsiveContainer,
-  YAxis
+  YAxis,
+  ResponsiveContainer
 } from 'recharts'
+import { ticks as getD3Ticks } from 'd3-array'
 
-import BarChartLabel from '../BarChartLabel'
+import BarChartLabel, { BarChartLabelProps } from '../BarChartLabel'
+import { BaseChartProps } from '../types'
+import { findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 
 const {
@@ -20,23 +22,19 @@ const {
   TICK_LINE,
   AXIS_LINE,
   Y_AXIS_WIDTH,
-  LEGEND_TOP_OFFSET
+  BOTTOM_DOMAIN,
+  NUMBER_OF_TICKS
 } = CHART_CONSTANTS
 
-export type BaseChartProps = {
-  height?: number
-  tooltip?: boolean
-  customTooltip?: React.ReactElement
-  allowTooltipEscapeViewBox?: boolean
-  className?: string
-}
+type FillColor = 'blue' | 'dark-grey'
 
-export interface Props<K extends string> extends BaseChartProps {
+export interface Props<K extends string | number | symbol>
+  extends BaseChartProps {
   data: { name: string; value: { [key in K]: number } }[]
-  fill: { [key in K]: string }
+  fillSchema?: { [key in K]: FillColor }
+  labelColorSchema?: { [key in K]: BarChartLabelProps['color'] }
   height?: number
-  label?: boolean
-  customLabel?: React.ReactElement
+  width?: number
 }
 
 const StyleOverrides = () => (
@@ -47,59 +45,80 @@ const StyleOverrides = () => (
             font-size: 11px;
             fill: ${palette.grey.dark};
           }
+
+          /* Hide first tick */
+          .recharts-yAxis .recharts-cartesian-axis-tick:first-child {
+            display: none;
+          }
       `
     }}
   />
 )
 
-const BarChart = <K extends string>({
-  data,
-  fill,
-  className,
-  height,
-  tooltip,
-  customTooltip,
-  label,
-  customLabel,
-  allowTooltipEscapeViewBox
-}: Props<K>) => {
-  const dataKeys = Object.keys(data[0].value) as K[]
+const getFillColor = (color: FillColor | undefined, barIndex: number) => {
+  if (!color) return barIndex % 2 === 0 ? palette.blue.main : palette.grey.dark
 
-  const formattedData = data.map(dataItem => ({
+  if (color === 'dark-grey') {
+    return palette.grey.dark
+  }
+
+  return palette.blue.main
+}
+
+const formatData = <K extends string>(data: Props<K>['data']) =>
+  data.map(dataItem => ({
     name: dataItem.name,
     ...dataItem.value
   }))
-  const labelElement = useMemo(() => {
-    if (!label) return undefined
 
-    if (customLabel) {
-      return customLabel
-    }
+const extractValues = <K extends string>(data: Props<K>['data']) =>
+  data.map(dataItem => dataItem.value)
 
-    return customLabel ?? <BarChartLabel />
-  }, [label, customLabel])
+const BarChart = <K extends string>({
+  data,
+  fillSchema,
+  labelColorSchema,
+  className,
+  height,
+  width,
+  tooltip,
+  customTooltip,
+  allowTooltipEscapeViewBox,
+  ...rest
+}: Props<K>) => {
+  const dataKeys = Object.keys(data[0].value) as K[]
 
-  const tooltipElement = useMemo(() => {
-    return tooltip ? (
-      <Tooltip
-        allowEscapeViewBox={
-          allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
-        }
-        content={customTooltip}
-      />
-    ) : (
-      undefined
-    )
-  }, [tooltip, customTooltip, allowTooltipEscapeViewBox])
+  const formattedData = formatData(data)
+
+  const tooltipElement = useMemo(
+    () =>
+      tooltip ? (
+        <Tooltip
+          data-testid='tooltip'
+          allowEscapeViewBox={
+            allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
+          }
+          content={customTooltip}
+        />
+      ) : (
+        undefined
+      ),
+    [tooltip, customTooltip, allowTooltipEscapeViewBox]
+  )
+
+  const topDomain = findTopDomain(extractValues(data))
+  const ticks = getD3Ticks(BOTTOM_DOMAIN, topDomain, NUMBER_OF_TICKS)
 
   return (
-    <div style={{ height }} className={className}>
+    <div style={{ height, width }} className={className} {...rest}>
       <StyleOverrides />
-      <ResponsiveContainer>
+      <ResponsiveContainer width={width} height={height}>
         <RechartsBarChart
           margin={chartMargins}
           data={formattedData}
-          maxBarSize={50}
+          barGap={2}
+          barCategoryGap={50}
+          barSize={32}
         >
           <CartesianGrid
             strokeDasharray='3 3'
@@ -114,27 +133,22 @@ const BarChart = <K extends string>({
             tickMargin={TICK_MARGIN}
           />
           <YAxis
+            type='number'
             tickLine={TICK_LINE}
             axisLine={AXIS_LINE}
             minTickGap={MIN_TICK_GAP}
             tickMargin={TICK_MARGIN}
             width={Y_AXIS_WIDTH}
+            ticks={ticks}
+            domain={[ticks[0], ticks[ticks.length - 1]]}
           />
           {tooltipElement}
-          <Legend
-            wrapperStyle={{
-              fontSize: 11,
-              color: palette.grey.dark,
-              paddingTop: LEGEND_TOP_OFFSET
-            }}
-            iconSize={12}
-          />
-          {dataKeys.map(dataKey => (
+          {dataKeys.map((dataKey, index) => (
             <Bar
               key={dataKey}
               dataKey={dataKey}
-              fill={fill[dataKey]}
-              label={labelElement}
+              fill={getFillColor(fillSchema?.[dataKey], index)}
+              label={<BarChartLabel color={labelColorSchema?.[dataKey]} />}
             />
           ))}
         </RechartsBarChart>
@@ -145,8 +159,8 @@ const BarChart = <K extends string>({
 
 BarChart.defaultProps = {
   height: 200,
-  tooltip: false,
-  label: false
+  width: 'auto',
+  tooltip: false
 }
 
 export default BarChart
