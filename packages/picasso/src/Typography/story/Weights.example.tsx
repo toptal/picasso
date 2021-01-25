@@ -15,6 +15,14 @@ const Example = () => (
     <Container bottom='small'>
       <Typography weight='semibold'>Semibold</Typography>
     </Container>
+    <Container bottom='small'>
+      <Typography weight='semibold' as='div'>
+        <Typography weight='inherit'>Inherit Semibold</Typography>
+      </Typography>
+    </Container>
+    <Typography weight='thin' as='div'>
+      <Typography weight='inherit'>Inherit Thin</Typography>
+    </Typography>
   </div>
 )
 
