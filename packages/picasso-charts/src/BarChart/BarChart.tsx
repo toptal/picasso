@@ -100,6 +100,7 @@ const BarChart = <K extends string>({
             allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
           }
           content={customTooltip}
+          cursor={false}
         />
       ) : (
         undefined
