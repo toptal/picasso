@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, { ReactElement, ReactNode, useRef } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import cx from 'classnames'
@@ -30,7 +31,6 @@ import styles from './styles'
 
 const {
   BOTTOM_DOMAIN,
-  TICK_MARGIN,
   MIN_TICK_GAP,
   TICK_LINE,
   AXIS_LINE,
@@ -47,10 +47,6 @@ export type ReferenceLineType = {
 }
 
 export type ChartDataPoint = Record<string, string | number | boolean>
-
-export type TooltipInstance = Tooltip & {
-  wrapperNode: HTMLDivElement
-}
 
 export type HighlightConfig = {
   from: number
@@ -164,6 +160,7 @@ const generateLineGraphs = (
     return (
       <Line
         key={`line-${index}`}
+        // @ts-ignore
         data={orderedData}
         dataKey={name}
         stroke={line.color}
@@ -217,8 +214,9 @@ export const LineChart = (props: Props) => {
 
   const lineGraphs = generateLineGraphs(lines, orderedData)
 
-  const formatTicks = (tick: unknown) =>
-    orderedData.find(item => item.order === tick)![xAxisKey!]
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const formatTicks = (tick: unknown, index: number) =>
+    orderedData.find(item => item.order === tick)![xAxisKey!] as string
 
   const containerRef = useRef<HTMLDivElement | null>(null)
   const tooltipRef = useRef<HTMLDivElement | null>(null)
@@ -266,7 +264,6 @@ export const LineChart = (props: Props) => {
             interval='preserveStartEnd'
             ticks={xAxisTicks}
             minTickGap={MIN_TICK_GAP}
-            tickMargin={TICK_MARGIN}
             tickFormatter={formatTicks}
             domain={[BOTTOM_DOMAIN, orderedData.length - 1]}
           />
@@ -281,7 +278,6 @@ export const LineChart = (props: Props) => {
             interval={0}
             ticks={getYAxisTicks(yDomain)}
             minTickGap={MIN_TICK_GAP}
-            tickMargin={TICK_MARGIN}
             width={Y_AXIS_WIDTH}
             tickFormatter={
               formatYAxisTick
@@ -316,8 +312,8 @@ export const LineChart = (props: Props) => {
                 allowTooltipEscapeViewBox ? positionOverride : undefined
               }
               content={customTooltip}
-              ref={(instance: TooltipInstance) =>
-                (tooltipRef.current = instance?.wrapperNode || null)
+              ref={(node: any) =>
+                (tooltipRef.current = node?.wrapperNode || null)
               }
             />
           )}
