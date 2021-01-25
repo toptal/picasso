@@ -138,10 +138,7 @@ const CHART_DATA = [
   }
 ]
 
-const CustomTooltip = (props: any) => {
-  console.log(props)
-  const { active, payload } = props
-
+const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length > 0) {
     // eslint-disable-next-line id-length
     const { x, infected, recovered, died } = payload[0].payload
