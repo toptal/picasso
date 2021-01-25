@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.4.9...@toptal/picasso@5.5.0) (2021-01-25)
+
+
+### Features
+
+* **Typography:** add option to inherit weight ([#1862](https://github.com/toptal/picasso/issues/1862)) ([146d3a4](https://github.com/toptal/picasso/commit/146d3a44926ed515c5cc284f3dbd2d459efd39bd))
+
+
+
+
+
 ## [5.4.9](https://github.com/toptal/picasso/compare/@toptal/picasso@5.4.8...@toptal/picasso@5.4.9) (2021-01-21)
 
 **Note:** Version bump only for package @toptal/picasso
