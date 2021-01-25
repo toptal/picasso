@@ -54,6 +54,7 @@ COPY --chown=node:node packages/picasso-lab/package.json ./packages/picasso-lab/
 COPY --chown=node:node packages/picasso-charts/package.json ./packages/picasso-charts/package.json
 COPY --chown=node:node packages/picasso-forms/package.json ./packages/picasso-forms/package.json
 COPY --chown=node:node packages/shared/package.json ./packages/shared/package.json
+COPY --chown=node:node packages/picasso-codemod/package.json ./packages/picasso-codemod/package.json
 COPY --chown=node:node packages/topkit-analytics-charts/package.json ./packages/topkit-analytics-charts/package.json
 
 RUN yarn install --frozen-lockfile
