@@ -18,12 +18,12 @@ import { makeStyles, Theme } from '@material-ui/core'
 
 import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'
-import { CoordinatePayload } from '../utils/types'
 import { getChartTicks, toRechartsHighlightFormat, orderData } from '../utils'
 import { findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 import styles from './styles'
 import {
+  CoordinatePayload,
   BaseLineChartProps,
   ChartDataPoint,
   Domain,

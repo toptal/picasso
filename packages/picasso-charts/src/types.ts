@@ -1,6 +1,26 @@
 import { BaseProps } from '@toptal/picasso'
 import { ReactNode } from 'react'
 
+export type CoordinatePayload = {
+  activeCoordinate: { x: number; y: number }
+  activeLabel: number
+  activePayload: object[]
+  activeTooltipIndex: number
+  chartX: number
+  chartY: number
+  isTooltipActive: boolean
+}
+
+export type PositionTranslate = {
+  key: 'x' | 'y'
+  cursorCoordinate: number
+  chartScreenOffset: number
+  tooltipDimension: number
+  screenDimension: number
+  offset: number
+  viewbox: { x: number; y: number }
+}
+
 export interface BaseChartProps extends BaseProps {
   height?: number
   tooltip?: boolean
