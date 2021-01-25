@@ -5,9 +5,6 @@ helper = new helpers.Helpers()
 buildImageResult = []
 repoName = 'picasso'
 buildImageJobName = "${repoName}-build-image"
-def FAILURE_REASON
-def TOTAL_TESTS = 0
-def FAILED_TESTS = 0
 
 pipeline {
   agent { label 'docker' }
@@ -66,29 +63,6 @@ pipeline {
       } //steps
     } //stage
 
-    stage('Danger checks') {
-      when {
-        expression {
-          ghprbMatchesComment(/danger|all/)
-        }
-      }
-      steps {
-        script {
-          sh """
-            docker run \
-            --rm \
-            -e JENKINS_URL=${JENKINS_URL} \
-            -e ghprbPullId=${ghprbPullId} \
-            -e ghprbGhRepository=${ghprbGhRepository} \
-            -e BUILD_URL=${BUILD_URL} \
-            -e DANGER_GITHUB_API_TOKEN=${DANGER_GITHUB_API_TOKEN} \
-            gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
-            yarn davinci ci danger --conventionalCommits
-          """
-        }
-      } //steps
-    } //stage
-
     stage('Deploy documentation') {
       when {
         expression {
@@ -110,105 +84,6 @@ pipeline {
         }
       }
     }
-
-    stage('Run tests') {
-      parallel {
-
-        stage('Run linter') {
-          when {
-            expression {
-              ghprbMatchesComment(/lint|all/)
-            }
-          }
-
-          steps {
-            script {
-              ghHelper.notifyPR('Lint', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-
-              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn lint"
-            }
-          } //steps
-
-          post {
-            success {
-              success "Lint successful"
-              script {
-                ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-              }
-            }
-            failure {
-              err "Lint failed"
-              script {
-                ghHelper.notifyPR('Lint', 'ERROR', 'Job failed', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-              }
-            }
-          } //post
-        } //stage
-
-        stage('Run jest') {
-          when {
-            expression {
-              ghprbMatchesComment(/test|all/)
-            }
-          }
-
-          steps {
-            script {
-              ghHelper.notifyPR('Jest Tests', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-
-              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn test-ci"
-            }
-          } //steps
-
-          post {
-            success {
-              success "Jest Tests"
-              script {
-                ghHelper.notifyPR('Jest Tests', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-              }
-            }
-            failure {
-              err "Jest Tests"
-              script {
-                ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-              }
-            }
-          } //post
-        } //stage
-
-        stage('Check build') {
-          when {
-            expression {
-              ghprbMatchesComment(/build|all/)
-            }
-          }
-
-          steps {
-            script {
-              ghHelper.notifyPR('Check build', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-
-              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn build:package"
-            }
-          } //steps
-
-          post {
-            success {
-              success "Check build"
-              script {
-                ghHelper.notifyPR('Check build', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-              }
-            }
-            failure {
-              err "Check build"
-              script {
-                ghHelper.notifyPR('Check build', 'ERROR', 'Job failed', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
-              }
-            }
-          } //post
-        }//stage
-
-      } //parallel
-    } //stage
 
     stage('Run visual tests') {
       when {
