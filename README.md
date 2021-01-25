@@ -143,6 +143,7 @@ After Picasso will be released with your changes you can start using your Icon a
    - the `paths` key in `/tsconfig.json`
    - the `alias` key in `/.storybook/webpack.config.js`
    - the `imports` variable in `/.storybook/components/CodeExample/CodeExample.tsx`
+   - the new record to Dockerfile
 
 ## Linking with other projects
 
