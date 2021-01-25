@@ -8,6 +8,8 @@ jest.mock('@toptal/picasso-lab/Ellipsis/use-ellipsis')
 
 describe('TypographyOverflow', () => {
   describe('tooltip render when overflow happened', () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     useEllipsis.mockImplementation(() => ({
       ref: null,
       isEllipsis: true
