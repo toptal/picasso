@@ -11,7 +11,7 @@ const getDataMaxValue = (data: DataItem[]) =>
 
 const findTopDomain = (data: DataItem[]) => {
   const maxValue = getDataMaxValue(data)
-  const base10 = Math.ceil(Math.log10(maxValue))
+  const base10 = Math.floor(Math.log10(maxValue))
   const roundedMaxValue = Math.pow(10, base10)
   const topDomain = roundedMaxValue * Math.ceil(maxValue / roundedMaxValue)
 
