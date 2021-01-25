@@ -33,8 +33,6 @@ export interface Props<K extends string | number | symbol>
   data: { name: string; value: { [key in K]: number } }[]
   fillSchema?: { [key in K]: FillColor }
   labelColorSchema?: { [key in K]: BarChartLabelProps['color'] }
-  height?: number
-  width?: number
 }
 
 const StyleOverrides = () => (

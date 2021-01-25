@@ -7,7 +7,7 @@ const page = PicassoBook.section('Charts').createPage(
   'Responsive line charts'
 )
 
-export const sharedLineChartDocs = Object.assign(sharedChartDocs, {
+export const sharedLineChartDocs = Object.assign({}, sharedChartDocs, {
   unit: {
     name: 'unit',
     type: 'string',

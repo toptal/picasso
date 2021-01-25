@@ -10,8 +10,14 @@ export const sharedChartDocs = {
   height: {
     name: 'height',
     type: 'number',
-    description: 'Fixed height of chart',
+    description: 'Height of chart',
     defaultValue: '200px'
+  },
+  width: {
+    name: 'width',
+    type: 'number',
+    description: 'Width of chart',
+    defaultValue: 'auto'
   },
   tooltip: {
     name: 'tooltip',
@@ -35,7 +41,7 @@ export const sharedChartDocs = {
 page.createTabChapter('Props').addComponentDocs({
   component: BarChart,
   name: 'BarChart',
-  additionalDocs: Object.assign(sharedChartDocs, {
+  additionalDocs: Object.assign({}, sharedChartDocs, {
     data: {
       name: 'data',
       type: {
@@ -45,14 +51,23 @@ page.createTabChapter('Props').addComponentDocs({
       description: 'A list of data points to be rendered as a bar chart',
       required: true
     },
-    fill: {
-      name: 'fill',
+    fillSchema: {
+      name: 'fillSchema',
       type: {
         name: '{}',
-        description: `{ [key: K]: string }`
+        description: "{ [key in K]: 'blue' | 'dark-grey' }"
       },
-      description: 'Mapping data key to fill color',
-      required: true
+      description: "Maps bar's key with a color to fill.",
+      required: false
+    },
+    labelColorSchema: {
+      name: 'labelColorSchema',
+      type: {
+        name: '{}',
+        description: "{ [key in K]: 'red' | 'dark-grey' }"
+      },
+      description: "Maps bar's key with a label color.",
+      required: false
     }
   })
 })

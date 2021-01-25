@@ -23,6 +23,7 @@ export type PositionTranslate = {
 
 export interface BaseChartProps extends BaseProps {
   height?: number
+  width?: number
   tooltip?: boolean
   customTooltip?: React.ReactElement
   allowTooltipEscapeViewBox?: boolean
