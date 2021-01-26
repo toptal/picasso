@@ -62,6 +62,18 @@ describe('ShowMore', () => {
     expect(container).toMatchSnapshot()
   })
 
+  describe('when text is too short to be truncated', () => {
+    it('should render without action link', () => {
+      const { queryByText } = renderShowMore({
+        children: 'Clearly too short to be collapsed'
+      })
+
+      const toggleText = queryByText('Show less')
+
+      expect(toggleText).not.toBeInTheDocument()
+    })
+  })
+
   describe('when show more link is clicked', () => {
     it('should render expanded version', () => {
       const { container, getByText } = api

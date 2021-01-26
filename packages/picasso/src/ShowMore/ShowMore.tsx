@@ -46,6 +46,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
   } = props
   const classes = useStyles()
   const [shownMore, setShownMore] = useState(initialExpanded)
+  const [truncated, setTruncated] = useState(!initialExpanded)
 
   return (
     <>
@@ -57,9 +58,11 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         className={className}
         style={style}
       >
-        <Truncate lines={!shownMore && rows}>{children}</Truncate>
+        <Truncate onTruncate={setTruncated} lines={!shownMore && rows}>
+          {children}
+        </Truncate>
       </Typography>
-      {!disableToggle && (
+      {!disableToggle && (truncated || shownMore) && (
         <Link
           onClick={() => {
             setShownMore(!shownMore)
