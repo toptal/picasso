@@ -60,5 +60,8 @@ jobs:
       # - name: Check build
       #   run: yarn build:package
 
+      - name: Regenerate Cypress binaries
+        run: yarn cypress install
+
       - name: Cypress Tests
         run: yarn cypress:ci
