@@ -48,17 +48,17 @@ jobs:
           yarn policies set-version
           yarn install --frozen-lockfile --ignore-optional --offline
 
-      - name: Danger
-        run: yarn davinci ci danger --conventionalCommits
+      # - name: Danger
+      #   run: yarn davinci ci danger --conventionalCommits
 
-      - name: Lint
-        run: yarn lint
+      # - name: Lint
+      #   run: yarn lint
 
-      - name: Jest Tests
-        run: yarn test-ci
+      # - name: Jest Tests
+      #   run: yarn test-ci
 
-      - name: Check build
-        run: yarn build:package
+      # - name: Check build
+      #   run: yarn build:package
 
       - name: Cypress Tests
         run: yarn cypress:ci
