@@ -23,7 +23,9 @@ const {
   AXIS_LINE,
   Y_AXIS_WIDTH,
   BOTTOM_DOMAIN,
-  NUMBER_OF_TICKS
+  NUMBER_OF_TICKS,
+  TICK_WIDTH,
+  TICK_HEIGHT
 } = CHART_CONSTANTS
 
 type FillColor = 'blue' | 'dark-grey'
@@ -57,7 +59,12 @@ export const getFillColor = (
   color: FillColor | undefined,
   barIndex: number
 ) => {
-  if (!color) return barIndex % 2 === 0 ? palette.blue.main : palette.grey.dark
+  const defaultColor =
+    barIndex % 2 === 0 ? palette.blue.main : palette.grey.dark
+
+  if (!color) {
+    return defaultColor
+  }
 
   if (color === 'dark-grey') {
     return palette.grey.dark
@@ -133,6 +140,9 @@ const BarChart = <K extends string>({
             axisLine={AXIS_LINE}
             minTickGap={MIN_TICK_GAP}
             tickMargin={TICK_MARGIN}
+            height={TICK_HEIGHT}
+            interval={0}
+            tick={{ width: TICK_WIDTH }}
           />
           <YAxis
             type='number'
