@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@1.0.2...@toptal/picasso-forms@1.0.3) (2021-01-26)
+
+
+### Bug Fixes
+
+* **FieldWrapper:** do not pass required attribute to Checkbox ([#1865](https://github.com/toptal/picasso/issues/1865)) ([f10e2b3](https://github.com/toptal/picasso/commit/f10e2b3be402bde8cba9e4fb7d11681a8d395a14))
+
+
+
+
+
 ## [1.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@1.0.1...@toptal/picasso-forms@1.0.2) (2021-01-20)
 
 **Note:** Version bump only for package @toptal/picasso-forms

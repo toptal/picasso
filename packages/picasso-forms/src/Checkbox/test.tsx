@@ -41,6 +41,16 @@ describe('Form.Checkbox', () => {
     expect(container).toMatchSnapshot()
   })
 
+  describe('when required prop is passed', () => {
+    it('does not set "required" attribute to input tag, to avoid Chrome tooltip', () => {
+      const { container } = renderCheckbox({})
+
+      expect(
+        container.querySelector('[name="single-checkbox"]')
+      ).toMatchSnapshot()
+    })
+  })
+
   it('default render for checkboxes in a group', () => {
     const { container } = renderCheckboxInGroup()
 
