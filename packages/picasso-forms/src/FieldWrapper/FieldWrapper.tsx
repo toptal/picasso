@@ -97,7 +97,6 @@ const getProps = ({
   hideFieldLabel?: boolean
   error: string
   label: string
-  required: boolean
 }) => {
   if (hideFieldLabel) {
     return {
@@ -221,7 +220,7 @@ const FieldWrapper = <
     id,
     ...rest,
     ...input,
-    ...getProps({ hideFieldLabel, error, label, required }),
+    ...getProps({ hideFieldLabel, error, label }),
     onChange: (event: ChangeEvent<HTMLElement>) => {
       input.onChange(event)
 
