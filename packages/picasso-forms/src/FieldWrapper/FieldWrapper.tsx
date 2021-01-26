@@ -92,8 +92,7 @@ const getValidators = (required: boolean, validate?: any) => {
 const getProps = ({
   hideFieldLabel,
   error,
-  label,
-  required
+  label
 }: {
   hideFieldLabel?: boolean
   error: string
@@ -102,8 +101,7 @@ const getProps = ({
 }) => {
   if (hideFieldLabel) {
     return {
-      label,
-      required
+      label
     }
   }
 

@@ -199,7 +199,6 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
                     data-indeterminate="false"
                     id="single-checkbox"
                     name="single-checkbox"
-                    required=""
                     type="checkbox"
                     value=""
                   />
@@ -229,4 +228,15 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
     </div>
   </div>
 </div>
+`;
+
+exports[`Form.Checkbox when required prop is passed does not set "required" attribute to input tag, to avoid Chrome tooltip 1`] = `
+<input
+  class="PrivateSwitchBase-input"
+  data-indeterminate="false"
+  id="single-checkbox"
+  name="single-checkbox"
+  type="checkbox"
+  value=""
+/>
 `;
