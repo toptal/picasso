@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders native select 1`] = `
+exports[`NativeSelect renders native select 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -72,7 +72,7 @@ exports[`renders native select 1`] = `
 </div>
 `;
 
-exports[`renders native select with the empty option enabled when enableReset is \`true\` 1`] = `
+exports[`NativeSelect renders native select with the empty option enabled when enableReset is \`true\` 1`] = `
 <div>
   <div
     class="Picasso-root"

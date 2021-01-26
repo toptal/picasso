@@ -3,14 +3,12 @@
 import React from 'react'
 import { render, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import * as titleCaseModule from 'ap-style-title-case'
 
-import NativeSelect, { Props as NativeSelectProps } from './NativeSelect'
-
-jest.mock('ap-style-title-case')
+import NativeSelect from './NativeSelect'
+import { SelectProps } from '../Select'
 
 const renderNativeSelect = (
-  props: OmitInternalProps<NativeSelectProps>,
+  props: OmitInternalProps<SelectProps>,
   picassoConfig?: PicassoConfig
 ) => {
   const {
@@ -43,15 +41,6 @@ const renderNativeSelect = (
   )
 }
 
-let spiedOnTitleCase: jest.SpyInstance
-
-beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-})
-afterEach(() => {
-  spiedOnTitleCase.mockReset()
-})
-
 const OPTIONS = [
   {
     key: 1,
@@ -70,31 +59,33 @@ const OPTIONS = [
   }
 ]
 
-it('renders native select', () => {
-  const { container, getByText } = renderNativeSelect({
-    options: OPTIONS,
-    placeholder: 'Choose an option...',
-    value: 'val1'
+describe('NativeSelect', () => {
+  it('renders native select', () => {
+    const { container, getByText } = renderNativeSelect({
+      options: OPTIONS,
+      placeholder: 'Choose an option...',
+      value: 'val1'
+    })
+
+    const emptyOption = getByText('Choose an option...')
+
+    expect(emptyOption).toBeDisabled()
+
+    expect(container).toMatchSnapshot()
   })
 
-  const emptyOption = getByText('Choose an option...')
+  it('renders native select with the empty option enabled when enableReset is `true`', () => {
+    const { container, getByText } = renderNativeSelect({
+      enableReset: true,
+      options: OPTIONS,
+      placeholder: 'Choose an option...',
+      value: 'val1'
+    })
 
-  expect(emptyOption).toBeDisabled()
+    const emptyOption = getByText('Choose an option...')
 
-  expect(container).toMatchSnapshot()
-})
+    expect(emptyOption).not.toBeDisabled()
 
-it('renders native select with the empty option enabled when enableReset is `true`', () => {
-  const { container, getByText } = renderNativeSelect({
-    enableReset: true,
-    options: OPTIONS,
-    placeholder: 'Choose an option...',
-    value: 'val1'
+    expect(container).toMatchSnapshot()
   })
-
-  const emptyOption = getByText('Choose an option...')
-
-  expect(emptyOption).not.toBeDisabled()
-
-  expect(container).toMatchSnapshot()
 })

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`multiple select should checkmark user selected options 1`] = `
+exports[`NonNativeSelect (multiple) should checkmark user selected options 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -168,7 +168,7 @@ exports[`multiple select should checkmark user selected options 1`] = `
 </div>
 `;
 
-exports[`renders select 1`] = `
+exports[`NonNativeSelect renders select 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -222,7 +222,7 @@ exports[`renders select 1`] = `
 </div>
 `;
 
-exports[`should render description 1`] = `
+exports[`NonNativeSelect should render description 1`] = `
 <ul
   class="MuiList-root Menu-root PicassoScrollMenu-menu"
   role="menu"
@@ -329,7 +329,7 @@ exports[`should render description 1`] = `
 </ul>
 `;
 
-exports[`should render options customly 1`] = `
+exports[`NonNativeSelect should render options customly 1`] = `
 <ul
   class="MuiList-root Menu-root PicassoScrollMenu-menu"
   role="menu"

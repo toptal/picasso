@@ -1,17 +1,13 @@
 import { KeyboardEvent } from 'react'
+import PopperJs from 'popper.js'
 
-import { Option, ValueType } from '../types'
+import { Option, ValueType, Selection } from './types'
 
 export const EMPTY_INPUT_VALUE = ''
+export const DEFAULT_SEARCH_TRESHOLD = 10
 
 export const getOptionText = (option: Option | null) =>
   (option && option.text) || EMPTY_INPUT_VALUE
-
-export type Selection = {
-  isSelected(): boolean
-  isOptionSelected(option: Option): boolean
-  display(getDisplayValue: (option: Option | null) => string): string
-}
 
 export const isOptionInSelectedValues = (option: Option, value: ValueType[]) =>
   value.includes(String(option.value))
@@ -127,3 +123,48 @@ export const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
 
   return key
 }
+
+export const focusRef = <T extends HTMLElement>(
+  ref: React.Ref<T> | undefined
+) => {
+  if (typeof ref === 'object' && ref?.current) {
+    ref.current.focus()
+  }
+}
+
+export const toggleMultipleSelectValue = (
+  value: ValueType[],
+  option: Option
+) => {
+  const isInSelectedValues = isOptionInSelectedValues(option, value)
+
+  if (isInSelectedValues) {
+    return value!.filter(value => value !== option.value)
+  }
+
+  return [...value, String(option.value)]
+}
+
+export const fireOnChangeEvent = ({
+  event,
+  value: eventValue,
+  name,
+  onChange
+}: {
+  event: any
+  value: ValueType | ValueType[]
+  name?: string
+  onChange?: (event: any) => void
+}) => {
+  event.persist()
+  event.target = { value: eventValue, name }
+  onChange?.(event)
+}
+
+export const isRelatedTargetInsidePopper = (
+  event: React.FocusEvent,
+  popperRef: React.Ref<PopperJs> | undefined
+) =>
+  typeof popperRef === 'object' &&
+  popperRef?.current &&
+  popperRef.current.popper.contains(event.relatedTarget as Node)

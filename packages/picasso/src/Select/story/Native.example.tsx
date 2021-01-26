@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from 'react'
-import { Container, Form, NativeSelect } from '@toptal/picasso'
+import { Container, Form, Select } from '@toptal/picasso'
 
 const Example = () => {
   const [value, setValue] = useState<string>('')
@@ -17,23 +17,25 @@ const Example = () => {
     <Container flex>
       <Container right='small'>
         <Form.Label>Reset disabled</Form.Label>
-        <NativeSelect
+        <Select
           onChange={handleChange}
           options={OPTIONS}
           value={value}
           placeholder='Choose an option...'
           width='auto'
+          native
         />
       </Container>
       <Container>
         <Form.Label>Reset enabled</Form.Label>
-        <NativeSelect
+        <Select
           enableReset
           onChange={handleChange}
           options={OPTIONS}
           value={value}
           placeholder='Choose an option...'
           width='auto'
+          native
         />
       </Container>
     </Container>

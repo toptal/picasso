@@ -1,103 +1,33 @@
 /* eslint-disable max-lines, complexity, max-lines-per-function, max-statements */
 import React, { useRef } from 'react'
 import cx from 'classnames'
-import NativeSelect from '@material-ui/core/NativeSelect'
+import MuiNativeSelect from '@material-ui/core/NativeSelect'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 
 import OutlinedInput from '../OutlinedInput'
-import { disableUnsupportedProps, useCombinedRefs } from '../utils'
-import { FeatureOptions } from '../utils/disable-unsupported-props'
-import { Option, ValueType, ItemProps } from '../Select/types'
-import { getOptionText } from '../Select/hooks/utils'
+import { useCombinedRefs } from '../utils'
+import { Option, ValueType } from '../Select/types'
+import { getOptionText } from '../Select/utils'
 import styles from './styles'
 import { documentable, forwardRef } from '../utils/forward-ref'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import noop from '../utils/noop'
 import SelectCaret from '../SelectCaret'
 import { SelectProps } from '../Select'
-import useAdornments from '../Select/hooks/use-adornments'
-import useSelectState from '../Select/hooks/use-select-state'
-import useSelectProps from '../Select/hooks/use-select-props'
+import { useAdornments, useSelectState, useSelectProps } from '../Select/hooks'
+import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
+import NativeSelectOptions from '../NativeSelectOptions'
 
 const useStyles = makeStyles<Theme>(styles)
 
-export type Props<
-  T extends ValueType = ValueType,
-  M extends boolean = boolean,
-  V = M extends true ? T[] : T
-> = SelectProps<T, M, V>
-
-type NativePlaceholderProps = Pick<Props, 'placeholder'> & {
-  emptySelectValue: string | string[]
-  disabled: boolean
-}
-
-type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
-  getItemProps: (index: number, option: Option) => ItemProps
-}
-
 const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
 
-const renderNativePlaceholder = ({
-  emptySelectValue,
-  disabled,
-  placeholder
-}: NativePlaceholderProps) => (
-  <option disabled={disabled} value={emptySelectValue}>
-    {placeholder}
-  </option>
-)
-
-const renderNativeOptions = ({
-  options,
-  renderOption,
-  getItemProps
-}: NativeOptionsProps) =>
-  options.map((option, index) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { close, onItemSelect, ...rest } = getItemProps(index, option)
-
-    return (
-      <option
-        key={option.key || option.value}
-        value={option.value}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-      >
-        {renderOption!(option)}
-      </option>
-    )
-  })
-
-const purifyProps = (props: Props<any, any>): Props<ValueType, boolean> => {
-  const sizeOptions: FeatureOptions<Props> = {
-    featureProps: {
-      size: 'small'
-    },
-    unsupportedProps: {
-      icon: undefined,
-      loading: false
-    }
-  }
-
-  return disableUnsupportedProps('Select', props, sizeOptions)
-}
-
-export const Select = documentable(
+export const NativeSelect = documentable(
   forwardRef(
     <T extends ValueType, M extends boolean = false>(
-      props: Props<T, M>,
+      props: SelectProps<T, M>,
       ref: React.Ref<HTMLInputElement> | null
     ) => {
-      usePropDeprecationWarning({
-        props,
-        name: 'onSearchChange',
-        componentName: 'Select',
-        description:
-          'Use the Autocomplete component if you require dynamic options.'
-      })
-
       const {
         className,
         style,
@@ -117,6 +47,7 @@ export const Select = documentable(
         enableReset,
         onChange,
         options,
+        getDisplayValue,
         /* eslint-disable @typescript-eslint/no-unused-vars */
         menuWidth,
         noOptionsText,
@@ -124,11 +55,11 @@ export const Select = documentable(
         enableAutofill,
         autoComplete,
         searchPlaceholder,
-        getDisplayValue,
         searchThreshold,
+        native,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...rest
-      } = purifyProps(props)
+      } = props
 
       const classes = useStyles()
 
@@ -138,7 +69,13 @@ export const Select = documentable(
       )
       const inputWrapperRef = useRef<HTMLDivElement>(null)
 
-      const selectState = useSelectState(props)
+      const selectState = useSelectState({
+        getDisplayValue: getDisplayValue!,
+        options,
+        disabled,
+        multiple,
+        value
+      })
       const { selection, emptySelectValue } = selectState
       const { getItemProps, getInputProps } = useSelectProps({
         selectRef,
@@ -160,7 +97,7 @@ export const Select = documentable(
       )
 
       const nativeSelectComponent = (
-        <NativeSelect
+        <MuiNativeSelect
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={selectRef}
@@ -170,7 +107,6 @@ export const Select = documentable(
           id={id}
           startAdornment={startAdornment}
           endAdornment={endAdornment}
-          // NativeSelect specific props
           input={
             <OutlinedInput
               width={width}
@@ -182,7 +118,7 @@ export const Select = documentable(
             />
           }
           value={value}
-          onChange={onChange}
+          onChange={onChange as any}
           IconComponent={() => <SelectCaret disabled={disabled} />}
           classes={{
             root: cx(classes.select, {
@@ -196,17 +132,18 @@ export const Select = documentable(
             })
           }}
         >
-          {renderNativePlaceholder({
-            emptySelectValue,
-            disabled: !enableReset,
-            placeholder
-          })}
-          {renderNativeOptions({
-            options,
-            renderOption,
-            getItemProps
-          })}
-        </NativeSelect>
+          <NativeSelectPlaceholder
+            emptySelectValue={emptySelectValue}
+            disabled={!enableReset}
+          >
+            {placeholder}
+          </NativeSelectPlaceholder>
+          <NativeSelectOptions
+            options={options}
+            renderOption={renderOption!}
+            getItemProps={getItemProps}
+          />
+        </MuiNativeSelect>
       )
 
       return (
@@ -229,7 +166,7 @@ export const Select = documentable(
   )
 )
 
-Select.defaultProps = {
+NativeSelect.defaultProps = {
   disabled: false,
   error: false,
   getDisplayValue: getOptionText,
@@ -246,6 +183,6 @@ Select.defaultProps = {
   searchPlaceholder: 'Search'
 }
 
-Select.displayName = 'Select'
+NativeSelect.displayName = 'NativeSelect'
 
-export default Select
+export default NativeSelect

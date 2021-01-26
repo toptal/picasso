@@ -82,7 +82,6 @@ export type {
   ValueType as SelectValueType
 } from './Select'
 export { default as NativeSelect } from './NativeSelect'
-export type { NativeSelectProps } from './NativeSelect'
 export { default as Sidebar } from './Sidebar'
 export type { SidebarProps } from './Sidebar'
 export { default as Slider } from './Slider'

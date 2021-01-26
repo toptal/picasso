@@ -51,6 +51,7 @@
     "@storybook/theming": "^6.0.26",
     "@svgr/cli": "^5.4.0",
     "@testing-library/react": "^9.3.2",
+    "@testing-library/react-hooks": "^5.0.3",
     "@toptal/browserslist-config": "^0.1.0-alpha.2",
     "@toptal/davinci": "^1.0.4",
     "@types/debounce": "^1.2.0",
