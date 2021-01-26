@@ -1,10 +1,11 @@
 export { default as LineChart } from './LineChart'
 export type {
-  BaseChartProps,
-  ChartDataPoint,
   HighlightConfig,
   LineChartProps,
-  LineConfig,
-  OrderedChartDataPoint,
   ReferenceLineType
 } from './LineChart'
+export { default as BarChart } from './BarChart'
+export type { BarChartProps } from './BarChart'
+export { default as BarChartLabel } from './BarChart'
+export type { BarChartLabelProps } from './BarChartLabel'
+export type { BaseChartProps, BaseLineChartProps, LineConfig, ChartDataPoint, OrderedChartDataPoint } from './types'

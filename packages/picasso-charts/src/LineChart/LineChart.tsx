@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useRef } from 'react'
+import React, { useRef } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import cx from 'classnames'
 import {
@@ -18,15 +18,18 @@ import { makeStyles, Theme } from '@material-ui/core'
 
 import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'
-import { CoordinatePayload } from '../utils/types'
-import {
-  findTopDomain,
-  getChartTicks,
-  toRechartsHighlightFormat,
-  orderData
-} from '../utils'
+import { getChartTicks, toRechartsHighlightFormat, orderData } from '../utils'
+import { findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 import styles from './styles'
+import {
+  CoordinatePayload,
+  BaseLineChartProps,
+  ChartDataPoint,
+  Domain,
+  LineConfig,
+  OrderedChartDataPoint
+} from '../types'
 
 const {
   BOTTOM_DOMAIN,
@@ -46,8 +49,6 @@ export type ReferenceLineType = {
   color: string
 }
 
-export type ChartDataPoint = Record<string, string | number | boolean>
-
 export type TooltipInstance = Tooltip & {
   wrapperNode: HTMLDivElement
 }
@@ -58,34 +59,7 @@ export type HighlightConfig = {
   color: string
 }
 
-export type OrderedChartDataPoint = ChartDataPoint & {
-  order: number
-}
-
-export type LineConfig = Record<
-  string,
-  { color: string; variant?: 'solid' | 'reference' }
->
-
-export type Domain = [number, number]
-
-export type BaseChartProps = {
-  lineConfig: LineConfig
-  unit?: string
-  xAxisKey?: string
-  height?: number
-  tooltip?: boolean
-  customTooltip?: ReactElement
-  allowTooltipEscapeViewBox?: boolean
-  className?: string
-  showBottomYAxisLabel?: boolean
-  children?: ReactNode
-  getXAxisTicks?: (orderedChartData: OrderedChartDataPoint[]) => number[]
-  getYAxisTicks?: (domain: Domain) => number[]
-  formatYAxisTick?: (value: number, domain: Domain) => string
-}
-
-export type Props = BaseChartProps & {
+export type Props = BaseLineChartProps & {
   data: ChartDataPoint[]
   highlights?: HighlightConfig[] | null
   referenceLines?: ReferenceLineType[]

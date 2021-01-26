@@ -1,4 +1,5 @@
 import LineChart from '../LineChart'
+import { sharedChartDocs } from '../../BarChart/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Charts').createPage(
@@ -6,7 +7,25 @@ const page = PicassoBook.section('Charts').createPage(
   'Responsive line charts'
 )
 
-export const sharedChartDocs = {
+export const sharedLineChartDocs = Object.assign({}, sharedChartDocs, {
+  unit: {
+    name: 'unit',
+    type: 'string',
+    description: 'Text label to be displayed on the Y axis',
+    defaultValue: 'd'
+  },
+  xAxisKey: {
+    name: 'xAxisKey',
+    type: 'string',
+    description: 'Name of point on the horizontal axis',
+    defaultValue: 'x'
+  },
+  showBottomYAxisLabel: {
+    name: 'showBottomYAxisLabel',
+    type: 'boolean',
+    description: 'Shows the bottom Y axis label',
+    defaultValue: false
+  },
   lineConfig: {
     name: 'lineConfig',
     type: {
@@ -17,54 +36,13 @@ export const sharedChartDocs = {
     description:
       "A dictionary of each line name as a key and the line's color and variant for value",
     required: true
-  },
-  unit: {
-    name: 'unit',
-    type: 'string',
-    description: 'Text label to be displayed on the Y axis',
-    defaultValue: 'd'
-  },
-  height: {
-    name: 'height',
-    type: 'number',
-    description: 'Fixed height of chart',
-    defaultValue: '200px'
-  },
-  xAxisKey: {
-    name: 'xAxisKey',
-    type: 'string',
-    description: 'Name of point on the horizontal axis',
-    defaultValue: 'x'
-  },
-  tooltip: {
-    name: 'tooltip',
-    type: 'boolean',
-    description: 'Toggle tooltip on hover',
-    defaultValue: false
-  },
-  customTooltip: {
-    name: 'customTooltip',
-    type: 'ReactElement',
-    description: 'Requires `tooltip` to be `true`'
-  },
-  allowTooltipEscapeViewBox: {
-    name: 'allowTooltipEscapeViewBox',
-    type: 'boolean',
-    description:
-      'Allows the tooltip to extend beyond the viewBox of the chart itself'
-  },
-  showBottomYAxisLabel: {
-    name: 'showBottomYAxisLabel',
-    type: 'boolean',
-    description: 'Shows the bottom Y axis label',
-    defaultValue: false
   }
-}
+})
 
 page.createTabChapter('Props').addComponentDocs({
   component: LineChart,
   name: 'LineChart',
-  additionalDocs: Object.assign(sharedChartDocs, {
+  additionalDocs: Object.assign(sharedLineChartDocs, {
     data: {
       name: 'data',
       type: {
