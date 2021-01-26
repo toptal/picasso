@@ -92,18 +92,15 @@ const getValidators = (required: boolean, validate?: any) => {
 const getProps = ({
   hideFieldLabel,
   error,
-  label,
-  required
+  label
 }: {
   hideFieldLabel?: boolean
   error: string
   label: string
-  required: boolean
 }) => {
   if (hideFieldLabel) {
     return {
-      label,
-      required
+      label
     }
   }
 
@@ -223,7 +220,7 @@ const FieldWrapper = <
     id,
     ...rest,
     ...input,
-    ...getProps({ hideFieldLabel, error, label, required }),
+    ...getProps({ hideFieldLabel, error, label }),
     onChange: (event: ChangeEvent<HTMLElement>) => {
       input.onChange(event)
 
