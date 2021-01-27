@@ -18,6 +18,9 @@ jobs:
       options: --privileged # thanks to this we can increase number of file watchers below
 
     steps:
+      - name: Cancel Workflow Action
+        uses: styfle/cancel-workflow-action@0.6.0
+
       - name: Checkout
         uses: actions/checkout@v2
 
