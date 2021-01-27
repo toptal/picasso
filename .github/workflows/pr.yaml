@@ -8,6 +8,7 @@ jobs:
   specs:
     if: contains(github.event.pull_request.labels.*.name , 'WIP') != true
     runs-on: ubuntu-latest
+    timeout-minutes: 45
 
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
