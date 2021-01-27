@@ -204,7 +204,7 @@ export const getSelectedSubMenu = (sidebarItem: ReactElement<Props>) => {
   const subMenuItems = React.Children.toArray(menu.props.children)
 
   return subMenuItems.find(
-    (menuChild: ReactElement<Props>) => menuChild.props.selected
+    menuChild => (menuChild as ReactElement<Props>).props.selected
   )
 }
 

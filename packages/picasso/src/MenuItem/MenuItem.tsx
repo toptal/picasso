@@ -53,7 +53,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Checkmarks the item */
   checkmarked?: boolean
   /** Value of the item. Can be used when menu item is used inside Select component. */
-  value?: string | string[] | number
+  value?: string | Readonly<string[]> | number
   /** Variant of colors */
   variant?: VariantType
   /** Size of component */
