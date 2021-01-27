@@ -19,8 +19,10 @@ jobs:
       options: --privileged # thanks to this we can increase number of file watchers below
 
     steps:
-      - name: Cancel Previous Workflow Action
+      - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: ${{ github.token }}
 
       - name: Checkout
         uses: actions/checkout@v2
