@@ -139,6 +139,7 @@ const BarChart = <K extends string>({
             tickLine={TICK_LINE}
             axisLine={AXIS_LINE}
             minTickGap={MIN_TICK_GAP}
+            // @ts-ignore
             tickMargin={TICK_MARGIN}
             height={TICK_HEIGHT}
             interval={0}
@@ -149,6 +150,7 @@ const BarChart = <K extends string>({
             tickLine={TICK_LINE}
             axisLine={AXIS_LINE}
             minTickGap={MIN_TICK_GAP}
+            // @ts-ignore
             tickMargin={TICK_MARGIN}
             width={Y_AXIS_WIDTH}
             ticks={ticks}

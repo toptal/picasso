@@ -22,7 +22,7 @@ const CHART_DATA = [
 ]
 
 const CustomTooltip = ({ active, payload }: any) => {
-  if (active) {
+  if (active && payload && payload.length > 0) {
     const { infected, recovered } = payload[0].payload
 
     return (

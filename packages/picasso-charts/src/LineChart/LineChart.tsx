@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, { useRef } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import cx from 'classnames'
@@ -47,10 +48,6 @@ type RechartsOnMouseMove = CoordinatePayload | null
 export type ReferenceLineType = {
   y: number
   color: string
-}
-
-export type TooltipInstance = Tooltip & {
-  wrapperNode: HTMLDivElement
 }
 
 export type HighlightConfig = {
@@ -138,6 +135,7 @@ const generateLineGraphs = (
     return (
       <Line
         key={`line-${index}`}
+        // @ts-ignore
         data={orderedData}
         dataKey={name}
         stroke={line.color}
@@ -191,8 +189,9 @@ export const LineChart = (props: Props) => {
 
   const lineGraphs = generateLineGraphs(lines, orderedData)
 
-  const formatTicks = (tick: unknown) =>
-    orderedData.find(item => item.order === tick)![xAxisKey!]
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const formatTicks = (tick: unknown, index: number) =>
+    orderedData.find(item => item.order === tick)![xAxisKey!] as string
 
   const containerRef = useRef<HTMLDivElement | null>(null)
   const tooltipRef = useRef<HTMLDivElement | null>(null)
@@ -240,6 +239,7 @@ export const LineChart = (props: Props) => {
             interval='preserveStartEnd'
             ticks={xAxisTicks}
             minTickGap={MIN_TICK_GAP}
+            // @ts-ignore
             tickMargin={TICK_MARGIN}
             tickFormatter={formatTicks}
             domain={[BOTTOM_DOMAIN, orderedData.length - 1]}
@@ -255,6 +255,7 @@ export const LineChart = (props: Props) => {
             interval={0}
             ticks={getYAxisTicks(yDomain)}
             minTickGap={MIN_TICK_GAP}
+            // @ts-ignore
             tickMargin={TICK_MARGIN}
             width={Y_AXIS_WIDTH}
             tickFormatter={
@@ -290,8 +291,8 @@ export const LineChart = (props: Props) => {
                 allowTooltipEscapeViewBox ? positionOverride : undefined
               }
               content={customTooltip}
-              ref={(instance: TooltipInstance) =>
-                (tooltipRef.current = instance?.wrapperNode || null)
+              ref={(node: any) =>
+                (tooltipRef.current = node?.wrapperNode || null)
               }
             />
           )}

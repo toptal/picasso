@@ -1,10 +1,10 @@
 import { palette } from '@toptal/picasso/utils'
 import React, { useMemo } from 'react'
-import { LabelProps, ViewBox } from 'recharts'
+import { LabelProps } from 'recharts'
 
 export type Props = {
   value?: LabelProps['value']
-  viewBox?: ViewBox
+  viewBox?: { width?: number; x?: number; y?: number }
   color?: 'dark-grey' | 'red'
 }
 
