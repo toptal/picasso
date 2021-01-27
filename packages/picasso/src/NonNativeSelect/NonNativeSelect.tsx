@@ -10,9 +10,6 @@ import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
 import MenuItem from '../MenuItem'
 import SelectCaret from '../SelectCaret'
-import { useCombinedRefs } from '../utils'
-import { documentable, forwardRef } from '../utils/forward-ref'
-import noop from '../utils/noop'
 import {
   useAdornments,
   useSelectState,
@@ -23,8 +20,11 @@ import {
   getOptionText,
   DEFAULT_SEARCH_TRESHOLD
 } from '../Select'
-import styles from './styles'
 import NonNativeSelectOptions from '../NonNativeSelectOptions'
+import { useCombinedRefs } from '../utils'
+import { documentable, forwardRef } from '../utils/forward-ref'
+import noop from '../utils/noop'
+import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles)
 

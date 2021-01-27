@@ -6,17 +6,22 @@ import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 
 import OutlinedInput from '../OutlinedInput'
-import { useCombinedRefs } from '../utils'
-import { Option, ValueType } from '../Select/types'
-import { getOptionText } from '../Select/utils'
-import styles from './styles'
-import { documentable, forwardRef } from '../utils/forward-ref'
-import noop from '../utils/noop'
 import SelectCaret from '../SelectCaret'
-import { SelectProps } from '../Select'
-import { useAdornments, useSelectState, useSelectProps } from '../Select/hooks'
+import {
+  Option,
+  ValueType,
+  getOptionText,
+  useAdornments,
+  useSelectState,
+  useSelectProps,
+  SelectProps
+} from '../Select'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
 import NativeSelectOptions from '../NativeSelectOptions'
+import { documentable, forwardRef } from '../utils/forward-ref'
+import { useCombinedRefs } from '../utils'
+import noop from '../utils/noop'
+import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles)
 
