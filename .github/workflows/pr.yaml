@@ -79,4 +79,4 @@ jobs:
         run: yarn build:package
 
       - name: Cypress Tests
-        run: yarn cypress:ci
+        run: yarn cypress
