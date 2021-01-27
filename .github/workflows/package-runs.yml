@@ -1,0 +1,24 @@
+name: Picasso - PR merge CI
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  directories: # Job that list subdirectories
+    runs-on: ubuntu-latest
+    outputs:
+      dir: ${{ steps.set-dirs.outputs.dir }} # generate output name dir by using inner step output
+    steps:
+      - uses: actions/checkout@v2
+      - id: set-dirs # Give it an id to handle to get step outputs in the outputs key above
+        run: cd packages && echo "::set-output name=dir::$(ls -d */ | jq -R -s -c 'split("\n")[:-1]')"
+        # Define step output named dir base on ls command transformed to JSON thanks to jq
+  loop:
+    runs-on: ubuntu-latest
+    needs: [directories] # Depends on previous job
+    strategy:
+      matrix:
+        dir: ${{fromJson(needs.directories.outputs.dir)}} # List matrix strategy from directories dynamically
+    steps:
+      - run: echo ${{matrix.dir}}
