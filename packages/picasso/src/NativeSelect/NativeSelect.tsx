@@ -88,7 +88,7 @@ export const NativeSelect = documentable(
         selectState
       })
       const [selectStartAdornment, selectEndAdornment] = useAdornments({
-        position: iconPosition,
+        position: iconPosition!,
         icon,
         loading,
         disabled

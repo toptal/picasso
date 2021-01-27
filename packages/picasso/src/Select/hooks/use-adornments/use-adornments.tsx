@@ -5,7 +5,7 @@ import Loader from '../../../Loader'
 
 export interface Props {
   disabled?: boolean
-  position?: 'start' | 'end'
+  position: 'start' | 'end'
   icon?: ReactNode
   loading?: boolean
 }
@@ -15,7 +15,7 @@ export const useAdornments = ({ disabled, position, icon, loading }: Props) =>
     const adornment = icon ? (
       <InputAdornment
         disabled={disabled}
-        position={position!}
+        position={position}
         disablePointerEvents
       >
         {icon}

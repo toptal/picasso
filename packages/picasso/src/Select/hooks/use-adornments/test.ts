@@ -4,14 +4,16 @@ import useAdornments from './use-adornments'
 
 describe('useAdornments', () => {
   it('returns loading adornment', () => {
-    const { result } = renderHook(() => useAdornments({ loading: true }))
+    const { result } = renderHook(() =>
+      useAdornments({ loading: true, position: 'start' })
+    )
 
     expect(result.current[0]).toBeNull()
     expect(result.current[1]).not.toBeNull()
   })
 
   it('returns no adornment', () => {
-    const { result } = renderHook(() => useAdornments({}))
+    const { result } = renderHook(() => useAdornments({ position: 'start' }))
 
     expect(result.current[0]).toBeNull()
     expect(result.current[0]).toBeNull()

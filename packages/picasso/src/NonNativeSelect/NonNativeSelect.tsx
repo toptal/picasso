@@ -126,7 +126,7 @@ export const NonNativeSelect = documentable(
       const rootProps = getRootProps()
 
       const [startAdornment, endAdornment] = useAdornments({
-        position: iconPosition,
+        position: iconPosition!,
         icon,
         loading,
         disabled
