@@ -42,7 +42,7 @@ export const sharedLineChartDocs = Object.assign({}, sharedChartDocs, {
 page.createTabChapter('Props').addComponentDocs({
   component: LineChart,
   name: 'LineChart',
-  additionalDocs: Object.assign(sharedLineChartDocs, {
+  additionalDocs: Object.assign({}, sharedLineChartDocs, {
     data: {
       name: 'data',
       type: {

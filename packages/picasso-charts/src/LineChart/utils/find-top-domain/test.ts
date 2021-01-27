@@ -1,4 +1,4 @@
-import findTopDomain from '.'
+import findTopDomain from './'
 
 const CHART_DATA = [
   { x: '2020-10-20', test: 1.7 },

@@ -10,7 +10,7 @@ const page = PicassoBook.section('Charts').createPage(
 page.createTabChapter('Props').addComponentDocs({
   component: AnalyticsChart,
   name: 'AnalyticsChart',
-  additionalDocs: Object.assign(sharedLineChartDocs, {
+  additionalDocs: Object.assign({}, sharedLineChartDocs, {
     data: {
       name: 'data',
       type: {
