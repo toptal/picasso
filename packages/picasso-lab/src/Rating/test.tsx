@@ -1,0 +1,59 @@
+import React from 'react'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
+
+import Rating, { Props } from './Rating'
+
+const defaultProps: Props = {
+  name: 'rating-name',
+  value: 3,
+  onChange: jest.fn()
+}
+
+const renderRating = (props = defaultProps) => render(<Rating {...props} />)
+
+describe('Rating', () => {
+  it('renders properly', () => {
+    const { container } = renderRating()
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('sets the given value', () => {
+    const name = 'custom-rating-name'
+    const value = 5
+
+    const { getByTestId } = renderRating({ ...defaultProps, name, value })
+
+    expect(getByTestId(`${name}-${value}`)).toBeChecked()
+  })
+
+  it('calls onChange', () => {
+    const onChange = jest.fn()
+
+    const name = 'custom-rating-name'
+    const newValue = 4
+
+    const { getByTestId } = renderRating({ ...defaultProps, name, onChange })
+
+    fireEvent.click(getByTestId(`${name}-${newValue}`))
+
+    expect(onChange).toHaveBeenCalledWith(expect.anything(), newValue)
+  })
+
+  it('is readOnly', () => {
+    const onChange = jest.fn()
+
+    const name = 'custom-rating-name'
+
+    const { getByTestId } = renderRating({
+      ...defaultProps,
+      name,
+      onChange,
+      readOnly: true
+    })
+
+    fireEvent.click(getByTestId(`${name}-1`))
+
+    expect(onChange).not.toHaveBeenCalled()
+  })
+})
