@@ -10,8 +10,7 @@ const useSelectKeyDownHandler = <
   T extends ValueType,
   M extends boolean = false
 >({
-  native,
-  selectProps: { onKeyDown },
+  selectProps: { onKeyDown, native },
   searchInputRef,
   selectState: { isOpen, showSearch },
   handleArrowsKeyDown,

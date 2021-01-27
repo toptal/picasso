@@ -152,7 +152,6 @@ export interface UseSelectProps<
   selectRef: React.Ref<HTMLInputElement>
   popperRef?: React.Ref<PopperJs>
   selectProps: SelectProps<T, M, V>
-  native?: boolean
   selectState: UseSelectStateOutput
 }
 

@@ -2,7 +2,10 @@ import { useCallback } from 'react'
 
 import { UseSelectProps, ValueType } from '../../../types'
 
-const useItemOnMouseEnter = <T extends ValueType, M extends boolean = false>({
+const useItemOnMouseEnterHandler = <
+  T extends ValueType,
+  M extends boolean = false
+>({
   selectState: { highlightedIndex, setHighlightedIndex }
 }: UseSelectProps<T, M>) =>
   useCallback(
@@ -16,4 +19,4 @@ const useItemOnMouseEnter = <T extends ValueType, M extends boolean = false>({
     [highlightedIndex, setHighlightedIndex]
   )
 
-export default useItemOnMouseEnter
+export default useItemOnMouseEnterHandler

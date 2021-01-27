@@ -12,7 +12,8 @@ const useEnterOrSpaceKeyDownHandler = <
     open,
     filteredOptions,
     highlightedIndex,
-    closeOnEnter
+    closeOnEnter,
+    close
   },
   handleSelect
 }: UseSelectProps<T, M> & {
@@ -30,7 +31,7 @@ const useEnterOrSpaceKeyDownHandler = <
 
       const item = filteredOptions[highlightedIndex]
 
-      if (item == null) {
+      if (!item) {
         return
       }
 
