@@ -1,4 +1,4 @@
-name: Picasso - PR merge CI
+name: Package Iteration
 
 on:
   pull_request:
