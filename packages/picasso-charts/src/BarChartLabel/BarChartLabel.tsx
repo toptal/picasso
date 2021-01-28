@@ -1,11 +1,11 @@
 import { palette } from '@toptal/picasso/utils'
-import React, { useMemo } from 'react'
+import React from 'react'
 import { LabelProps } from 'recharts'
 
 export type Props = {
   value?: LabelProps['value']
   viewBox?: { width?: number; x?: number; y?: number }
-  color?: 'dark-grey' | 'red'
+  color?: string
 }
 
 const BarChartLabel = ({ value, viewBox, color }: Props) => {
@@ -13,19 +13,11 @@ const BarChartLabel = ({ value, viewBox, color }: Props) => {
   const xPosition = viewBox?.x ?? 0
   const yPosition = viewBox?.y ?? 0
 
-  const fill = useMemo(() => {
-    if (color === 'red') {
-      return palette.red.main
-    }
-
-    return palette.grey.dark
-  }, [color])
-
   return (
     <text
       x={xPosition + width / 2}
       y={yPosition}
-      fill={fill}
+      fill={color}
       style={{ fontSize: 11 }}
       textAnchor='middle'
       dy={-6}
@@ -36,7 +28,7 @@ const BarChartLabel = ({ value, viewBox, color }: Props) => {
 }
 
 BarChartLabel.defaultProps = {
-  color: 'dark-grey'
+  color: palette.grey.dark
 }
 
 export default BarChartLabel

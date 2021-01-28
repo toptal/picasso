@@ -11,7 +11,7 @@ import {
 } from 'recharts'
 import { ticks as getD3Ticks } from 'd3-array'
 
-import BarChartLabel, { BarChartLabelProps } from '../BarChartLabel'
+import BarChartLabel from '../BarChartLabel'
 import { BaseChartProps } from '../types'
 import { findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
@@ -28,13 +28,11 @@ const {
   TICK_HEIGHT
 } = CHART_CONSTANTS
 
-type FillColor = 'blue' | 'dark-grey'
-
 export interface Props<K extends string | number | symbol>
   extends BaseChartProps {
   data: { name: string; value: { [key in K]: number } }[]
-  fillSchema?: { [key in K]: FillColor }
-  labelColorSchema?: { [key in K]: BarChartLabelProps['color'] }
+  fillSchema: { [key in K]: string }
+  labelColorSchema?: { [key in K]: string }
 }
 
 const StyleOverrides = () => (
@@ -54,24 +52,6 @@ const StyleOverrides = () => (
     }}
   />
 )
-
-export const getFillColor = (
-  color: FillColor | undefined,
-  barIndex: number
-) => {
-  const defaultColor =
-    barIndex % 2 === 0 ? palette.blue.main : palette.grey.dark
-
-  if (!color) {
-    return defaultColor
-  }
-
-  if (color === 'dark-grey') {
-    return palette.grey.dark
-  }
-
-  return palette.blue.main
-}
 
 export const formatData = <K extends string>(data: Props<K>['data']) =>
   data.map(dataItem => ({
@@ -157,11 +137,11 @@ const BarChart = <K extends string>({
             domain={[ticks[0], ticks[ticks.length - 1]]}
           />
           {tooltipElement}
-          {dataKeys.map((dataKey, index) => (
+          {dataKeys.map(dataKey => (
             <Bar
               key={dataKey}
               dataKey={dataKey}
-              fill={getFillColor(fillSchema?.[dataKey], index)}
+              fill={fillSchema[dataKey]}
               label={<BarChartLabel color={labelColorSchema?.[dataKey]} />}
             />
           ))}

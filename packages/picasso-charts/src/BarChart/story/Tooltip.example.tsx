@@ -1,5 +1,6 @@
 import React from 'react'
 import { BarChart } from '@toptal/picasso-charts'
+import { palette } from '@toptal/picasso/utils'
 
 const CHART_DATA = [
   {
@@ -24,6 +25,15 @@ const CHART_DATA = [
   }
 ]
 
-const Example = () => <BarChart data={CHART_DATA} width={720} tooltip />
+const Example = () => (
+  <BarChart
+    data={CHART_DATA}
+    fillSchema={{
+      'engineers hired': palette.blue.main
+    }}
+    width={720}
+    tooltip
+  />
+)
 
 export default Example
