@@ -218,54 +218,6 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
 </div>
 `;
 
-exports[`ShowMore when initialExpanded prop is true when show less link is clicked should render collapsed version 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <p
-      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
-    >
-      <span
-        width="0"
-      >
-        <span />
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
-        </span>
-        <span
-          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
-        >
-          …
-        </span>
-      </span>
-    </p>
-    <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoShowMore-toggleText MuiTypography-colorPrimary"
-    >
-      <p
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
-      >
-        Show more
-      </p>
-      <div
-        class="PicassoShowMore-iconWrapper"
-      >
-        <svg
-          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-          />
-        </svg>
-      </div>
-    </a>
-  </div>
-</div>
-`;
-
 exports[`ShowMore when show more link is clicked should render expanded version 1`] = `
 <div>
   <div

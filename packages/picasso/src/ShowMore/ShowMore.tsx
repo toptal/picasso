@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, { forwardRef, useState } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -45,8 +46,10 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
     ...rest
   } = props
   const classes = useStyles()
-  const [shownMore, setShownMore] = useState(initialExpanded)
+  const [expanded, setExpanded] = useState(initialExpanded)
   const [truncated, setTruncated] = useState(!initialExpanded)
+
+  const isToggleLinkVisible = !disableToggle && (truncated || expanded)
 
   return (
     <>
@@ -58,30 +61,32 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         className={className}
         style={style}
       >
-        <Truncate onTruncate={setTruncated} lines={!shownMore && rows}>
+        <Truncate onTruncate={setTruncated} lines={!expanded && rows}>
           {children}
         </Truncate>
       </Typography>
-      {!disableToggle && (truncated || shownMore) && (
+      {isToggleLinkVisible ? (
         <Link
           onClick={() => {
-            setShownMore(!shownMore)
+            setExpanded(!expanded)
             onToggle()
           }}
           className={classes.toggleText}
           underline='none'
         >
           <Typography size='medium' color='blue'>
-            {shownMore ? lessText : moreText}
+            {expanded ? lessText : moreText}
           </Typography>
           <div className={classes.iconWrapper}>
             <ChevronRightIcon16
               className={cx(classes.icon, {
-                [classes.expandedIcon]: shownMore
+                [classes.expandedIcon]: expanded
               })}
             />
           </div>
         </Link>
+      ) : (
+        undefined
       )}
     </>
   )

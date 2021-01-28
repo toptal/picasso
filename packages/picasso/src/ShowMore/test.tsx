@@ -98,16 +98,17 @@ describe('ShowMore', () => {
 
     describe('when show less link is clicked', () => {
       it('should render collapsed version', () => {
-        const { container, getByText } = renderShowMore({
+        const { getByText } = renderShowMore({
           children:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
           initialExpanded: true
         })
+
         const toggleText = getByText('Show less')
 
         fireEvent.click(toggleText)
 
-        expect(container).toMatchSnapshot()
+        expect(getByText('Show more')).toBeInTheDocument()
       })
     })
   })
