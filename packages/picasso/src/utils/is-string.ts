@@ -1,3 +1,3 @@
-const isString = (value: unknown): boolean => typeof value === 'string'
+const isString = (value: unknown): value is string => typeof value === 'string'
 
 export default isString
