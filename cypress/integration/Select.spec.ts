@@ -9,6 +9,8 @@ const setThresholdToHideSelectSearch = () => {
     .type('6')
 }
 
+const getNativeSelect = () => cy.get('select').eq(1)
+
 describe('Select', () => {
   it('focuses Select with and without a search', () => {
     cy.visit('iframe.html?id=select--search-behavior')
@@ -24,5 +26,15 @@ describe('Select', () => {
 
     cy.get('[data-testid=select]').type(' ')
     cy.get('[role=menu]').should('be.visible')
+  })
+
+  it('changes NativeSelect value', () => {
+    cy.visit('iframe.html?id=select--native')
+
+    getNativeSelect().should('be.visible')
+    getNativeSelect().select('1')
+    cy.get('option[role=option][value=1]')
+      .should('have.attr', 'aria-selected')
+      .and('match', /true/)
   })
 })
