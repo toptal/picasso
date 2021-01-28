@@ -1,5 +1,6 @@
 import MUIDrawer from '@material-ui/core/Drawer'
 import { makeStyles, Theme } from '@material-ui/core/styles'
+import cx from 'classnames'
 import { Button, Container, Typography } from '@toptal/picasso'
 import { BaseProps, useDrawer } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso/Icon'
@@ -67,7 +68,7 @@ export const Drawer: FunctionComponent<Props> = props => {
       onClose={handleOnClose}
       disablePortal={disablePortal}
     >
-      <Container className={classes[width!]}>
+      <Container className={cx(classes.container, classes[width!])}>
         <Container
           flex
           alignItems='center'

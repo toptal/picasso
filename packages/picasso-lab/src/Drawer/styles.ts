@@ -1,7 +1,19 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
+import { PicassoProvider } from '@toptal/picasso-shared'
+
+PicassoProvider.override(() => ({
+  MuiDrawer: {
+    paper: {
+      maxWidth: '100%'
+    }
+  }
+}))
 
 export default ({ palette }: Theme) =>
   createStyles({
+    container: {
+      maxWidth: '100%'
+    },
     header: {
       position: 'absolute',
       left: 0,
