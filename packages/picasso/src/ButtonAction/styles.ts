@@ -37,7 +37,7 @@ export default ({ palette, typography }: Theme) =>
       }
     },
     iconless: {
-      '& $content': {
+      '&:not($loading) $content': {
         fontWeight: typography.fontWeights.semibold
       }
     },
