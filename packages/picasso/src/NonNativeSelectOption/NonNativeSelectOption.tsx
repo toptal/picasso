@@ -1,11 +1,10 @@
-/* eslint-disable max-lines, complexity */
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useCallback } from 'react'
 import { SizeType } from '@toptal/picasso-shared'
 
 import MenuItem from '../MenuItem'
 import { Option, ValueType } from '../Select'
 
-interface Props<T extends ValueType> {
+export interface Props<T extends ValueType> {
   children?: ReactNode
   description?: ReactNode
   onMouseDown: (event: React.MouseEvent) => void
@@ -33,6 +32,17 @@ const NonNativeSelectOption = React.memo(
     children,
     close
   }: Props<T>) => {
+    const onClick = useCallback(
+      (event: React.MouseEvent) => {
+        if (!multiple) {
+          close()
+        }
+
+        onItemSelect(event, option)
+      },
+      [multiple, close, onItemSelect, option]
+    )
+
     return (
       <MenuItem
         role='option'
@@ -43,13 +53,7 @@ const NonNativeSelectOption = React.memo(
         checkmarked={selected}
         onMouseDown={onMouseDown}
         onMouseEnter={onMouseEnter}
-        onClick={(event: React.MouseEvent) => {
-          if (!multiple) {
-            close()
-          }
-
-          onItemSelect(event, option)
-        }}
+        onClick={onClick}
         titleCase={false}
         description={description}
       >

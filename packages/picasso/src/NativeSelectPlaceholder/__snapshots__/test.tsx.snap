@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NativeSelectPlaceholder renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <option
+      value=""
+    >
+      Select an option
+    </option>
+  </div>
+</div>
+`;
+
+exports[`NativeSelectPlaceholder renders disabled 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <option
+      disabled=""
+      value=""
+    >
+      Select an option
+    </option>
+  </div>
+</div>
+`;

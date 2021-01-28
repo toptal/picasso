@@ -11,7 +11,7 @@ import {
 } from '../Select'
 import NonNativeSelectOption from '../NonNativeSelectOption/NonNativeSelectOption'
 
-type Props = Pick<
+export type Props = Pick<
   SelectProps,
   'options' | 'value' | 'multiple' | 'size' | 'noOptionsText' | 'renderOption'
 > & {
@@ -37,7 +37,7 @@ const NonNativeSelectOptions = ({
 }: Props) => {
   if (!options.length && filterOptionsValue) {
     return (
-      <ScrollMenu fixedHeader={fixedHeader}>
+      <ScrollMenu data-testid='no-options' fixedHeader={fixedHeader}>
         <MenuItem titleCase={false} disabled>
           {noOptionsText}
         </MenuItem>
