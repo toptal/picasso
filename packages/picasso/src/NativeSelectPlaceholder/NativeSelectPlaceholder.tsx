@@ -1,4 +1,3 @@
-/* eslint-disable max-lines, complexity, max-lines-per-function, max-statements */
 import React, { ReactNode } from 'react'
 
 export interface Props {

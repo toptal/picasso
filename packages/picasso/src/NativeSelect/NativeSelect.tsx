@@ -1,4 +1,3 @@
-/* eslint-disable max-lines, complexity, max-lines-per-function, max-statements */
 import React, { useRef } from 'react'
 import cx from 'classnames'
 import MuiNativeSelect from '@material-ui/core/NativeSelect'

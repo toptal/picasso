@@ -1,4 +1,4 @@
-/* eslint-disable max-lines, complexity */
+/* eslint-disable complexity */
 import React, { useRef } from 'react'
 import PopperJs from 'popper.js'
 import cx from 'classnames'
