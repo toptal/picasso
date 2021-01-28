@@ -1,23 +1,24 @@
 import React, { FC, ReactNode, ChangeEvent, useCallback } from 'react'
-import { Container, Star16, StarSolid16 } from '@toptal/picasso'
+import { Container } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import styles from './styles'
+import RatingIcon from './RatingIcon'
 
 export interface Props extends BaseProps {
   /** Name of the rating input */
   name: string
   /** Current rating */
   value: number
-  /** Optional Callback invoked when a rating icon is clicked and readOnly is false */
+  /** Callback invoked when a rating icon is clicked */
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: number) => void
-  /** Optional callback invoked for each icon. Can be used to customize how icons are rendered */
+  /** Function to customize icon rendering */
   renderItem?: (value: number, defaultIcon: ReactNode) => ReactNode
-  /** Number of rating icons. Defaults to 5 */
+  /** Number of rating icons */
   max?: number
-  /** Optionally make rating readOnly. Defaults to false */
+  /** Flag to ignore interactions with the component */
   readOnly?: boolean
 }
 
@@ -30,8 +31,8 @@ const Rating: FC<Props> = ({
   value,
   onChange,
   renderItem,
-  max,
-  readOnly,
+  max = 5,
+  readOnly = false,
   ...rest
 }) => {
   const classes = useStyles()
@@ -56,17 +57,7 @@ const Rating: FC<Props> = ({
 
         const defaultIcon = (
           <Container as='span'>
-            {itemValue <= value ? (
-              <StarSolid16
-                color='yellow'
-                className={cx({ [classes.clickableIcon]: !readOnly })}
-              />
-            ) : (
-              <Star16
-                color='yellow'
-                className={cx({ [classes.clickableIcon]: !readOnly })}
-              />
-            )}
+            <RatingIcon active={itemValue <= value} readOnly={readOnly} />
           </Container>
         )
 
@@ -97,11 +88,6 @@ const Rating: FC<Props> = ({
       })}
     </Container>
   )
-}
-
-Rating.defaultProps = {
-  max: 5,
-  readOnly: false
 }
 
 Rating.displayName = 'Rating'

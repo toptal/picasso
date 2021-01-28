@@ -16,10 +16,10 @@ page
   .addExample('Rating/story/CustomIcons.example.tsx', {
     title: 'Custom Icon',
     description:
-      'You can also provide a function to render a custom icon or customize the existing one with for example a tooltip'
+      'The icons are fully customizable. You can provide a custom icon to render or add a tooltip to the default one.'
   })
   .addExample('Rating/story/ReadOnly.example.tsx', {
     title: 'ReadOnly',
     description:
-      'You can also make the rating component readonly in case you only need to display information and not let the user change it'
+      'The rating can be used in read-only mode. This mode prohibits changing its value.'
   })
