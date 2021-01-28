@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.3.0...@toptal/picasso-lab@3.3.1) (2021-01-28)
+
+
+### Bug Fixes
+
+* **Drawer:** [FX-1671] Fix drawer width on small screens ([#1869](https://github.com/toptal/picasso/issues/1869)) ([3a67112](https://github.com/toptal/picasso/commit/3a6711212b8f944f237b763792291c1d48dc0612))
+
+
+
+
+
 # [3.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.2.0...@toptal/picasso-lab@3.3.0) (2021-01-21)
 
 
