@@ -1,7 +1,7 @@
 type DataItem = { [key: string]: number }
 
 const getDataItemMaxValue = (dataItem: DataItem) =>
-  Object.values(dataItem).reduce((acc, value) => Math.max(acc, value), 0)
+  Math.max(...Object.values(dataItem))
 
 const getDataMaxValue = (data: DataItem[]) =>
   data.reduce(
