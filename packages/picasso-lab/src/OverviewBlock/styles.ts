@@ -10,20 +10,17 @@ export default ({ palette, sizes }: Theme) =>
       margin: 0,
       minWidth: rem('150px'),
       border: 'none',
+      outline: 'none',
       textDecoration: 'none',
       '&:not(:first-child)': {
         borderLeft: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
       }
     },
-    clickable: {
+    active: {
       cursor: 'pointer',
-      outline: 'none',
       '&:hover': {
         backgroundColor: palette.blue.lighter
       }
-    },
-    disableOutline: {
-      outline: 'none'
     },
     title: {
       fontSize: rem('11px')

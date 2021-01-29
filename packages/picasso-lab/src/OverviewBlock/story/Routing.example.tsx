@@ -10,13 +10,14 @@ const RoutingExample = () => (
   <Router>
     <div>
       <OverviewBlock.Group>
-        <OverviewBlock value='10' label='Home' as={Link} to='/' />
+        <OverviewBlock value='10' label='Home' as={Link} to='/' active />
         <OverviewBlock
           value='11'
           label='About'
           variant='label-green'
           as={Link}
           to='/about'
+          active
         />
         <OverviewBlock
           value='15'
@@ -24,6 +25,7 @@ const RoutingExample = () => (
           variant='label-blue'
           as={Link}
           to='/users'
+          active
         />
       </OverviewBlock.Group>
 

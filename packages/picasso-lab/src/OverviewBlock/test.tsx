@@ -85,14 +85,29 @@ describe('OverviewBlock', () => {
   })
 
   describe('when OnClick function is undefined', () => {
-    it('renders the element as `div`', () => {
-      const { getByTestId } = renderOverviewBlock({
-        value: 'abc dk9',
-        label: 'abc ps0',
-        'data-testid': 'OverviewBlock'
-      })
+    describe('when `active` prop is undefined', () => {
+      it('renders the element as `div`', () => {
+        const { getByTestId } = renderOverviewBlock({
+          value: 'abc dk9',
+          label: 'abc ps0',
+          'data-testid': 'OverviewBlock'
+        })
 
-      expect(getByTestId('OverviewBlock').nodeName).toBe('DIV')
+        expect(getByTestId('OverviewBlock').nodeName).toBe('DIV')
+      })
+    })
+
+    describe('when `active` prop is true', () => {
+      it('renders the element as `button`', () => {
+        const { getByTestId } = renderOverviewBlock({
+          value: 'abc dk9',
+          label: 'abc ps0',
+          active: true,
+          'data-testid': 'OverviewBlock'
+        })
+
+        expect(getByTestId('OverviewBlock').nodeName).toBe('BUTTON')
+      })
     })
   })
 })

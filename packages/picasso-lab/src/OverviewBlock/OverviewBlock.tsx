@@ -51,6 +51,8 @@ export type Props = BaseProps &
     variant?: Variant
     /** Component used for the root node. Either a string to use a DOM element or a component. */
     as?: ElementType
+    /** Whether the user can click OverviewBlock. By default it's true if onClick handler is provided. */
+    active?: boolean
     /** Callback invoked when component is clicked */
     onClick?: (event: MouseEvent) => void
   }
@@ -74,6 +76,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       as,
       className,
       onClick,
+      active = Boolean(onClick),
       titleCase: propsTitleCase,
       ...rest
     } = props
@@ -94,9 +97,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       color[partName] = colorName
     }
 
-    const isClickable = Boolean(onClick)
-
-    const Component = isClickable && as ? as : 'div'
+    const Component = active && as ? as : 'div'
 
     const titleCase = useTitleCase(propsTitleCase)
 
@@ -105,8 +106,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
         {...rest}
         ref={ref}
         className={cx(
-          { [classes.clickable]: isClickable },
-          { [classes.disableOutline]: !isClickable },
+          { [classes.active]: active },
           classes[`${align}Align`],
           classes[`${blockWidth}Width`],
           classes.root,
