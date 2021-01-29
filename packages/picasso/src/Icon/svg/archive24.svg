@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>1C96892C-E12E-4EA0-9ABC-6082754DFAC4@1x</title>
+    <defs>
+        <path d="M24,2 L24,7 L23,7 L23,22 L1,22 L1,7 L0,7 L0,2 L24,2 Z M22,7 L2,7 L2,21 L22,21 L22,7 Z M15,11 L15,12 L9,12 L9,11 L15,11 Z M23,3 L1,3 L1,6 L23,6 L23,3 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Documents-/-24-/-Archive">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#455065" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Group" mask="url(#mask-2)" fill="#455065">
+                <g id="Colors-/-307-Gray-Dark">
+                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
