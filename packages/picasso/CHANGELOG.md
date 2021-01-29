@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.5.2...@toptal/picasso@5.6.0) (2021-01-29)
+
+
+### Features
+
+* **Icon:** add Archive icon ([#1873](https://github.com/toptal/picasso/issues/1873)) ([0db836f](https://github.com/toptal/picasso/commit/0db836f6cb82c2265aa8caa946ead4aca534896e))
+
+
+
+
+
 ## [5.5.2](https://github.com/toptal/picasso/compare/@toptal/picasso@5.5.1...@toptal/picasso@5.5.2) (2021-01-29)
 
 **Note:** Version bump only for package @toptal/picasso
