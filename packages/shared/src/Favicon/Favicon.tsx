@@ -24,7 +24,9 @@ export const Favicon = ({ environment }: Props) => {
   const resolvedEnvironment = environment || configEnvironment
 
   useEffect(() => {
-    if (resolvedEnvironment === 'test') return
+    if (resolvedEnvironment === 'test') {
+      return
+    }
 
     const loadIcons = async () => {
       try {

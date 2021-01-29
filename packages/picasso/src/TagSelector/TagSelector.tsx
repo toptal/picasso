@@ -109,7 +109,9 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     } = props
 
     const handleDelete = (value: Item) => {
-      if (disabled) return
+      if (disabled) {
+        return
+      }
 
       const index = values.indexOf(value)
 
