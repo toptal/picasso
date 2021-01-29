@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.4.3...@topkit/analytics-charts@0.5.0) (2021-01-29)
+
+
+### Features
+
+* **BarChart:** add bar chart ([#1857](https://github.com/toptal/picasso/issues/1857)) ([83c8f23](https://github.com/toptal/picasso/commit/83c8f23157149ab874fdc166ab9c176219b1e74d))
+
+
+
+
+
 ## [0.4.3](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.4.2...@topkit/analytics-charts@0.4.3) (2021-01-20)
 
 **Note:** Version bump only for package @topkit/analytics-charts

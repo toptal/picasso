@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@1.0.3...@toptal/picasso-charts@1.1.0) (2021-01-29)
+
+
+### Features
+
+* **BarChart:** add bar chart ([#1857](https://github.com/toptal/picasso/issues/1857)) ([83c8f23](https://github.com/toptal/picasso/commit/83c8f23157149ab874fdc166ab9c176219b1e74d))
+
+
+
+
+
 ## [1.0.3](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@1.0.2...@toptal/picasso-charts@1.0.3) (2021-01-26)
 
 
