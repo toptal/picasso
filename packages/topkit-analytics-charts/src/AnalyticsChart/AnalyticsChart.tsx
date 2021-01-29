@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { BaseChartProps, LineChart } from '@toptal/picasso-charts'
+import { BaseLineChartProps, LineChart } from '@toptal/picasso-charts'
 
 import {
   toChartFormat,
@@ -27,7 +27,7 @@ export type ReferenceLine = {
   color: string
 }
 
-export type Props = BaseChartProps & {
+export type Props = BaseLineChartProps & {
   data: Point[]
   highlights?: Highlight[]
   referenceLines?: ReferenceLine[]

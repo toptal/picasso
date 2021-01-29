@@ -1,5 +1,5 @@
 import { getTooltipTranslate } from './calculate-tooltip-position'
-import { PositionTranslate } from '../types'
+import { PositionTranslate } from '../../types'
 
 const tooltipUnrestricted: PositionTranslate = {
   key: 'x',

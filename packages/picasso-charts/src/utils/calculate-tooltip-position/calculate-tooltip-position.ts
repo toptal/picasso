@@ -1,7 +1,7 @@
 import debounce from 'debounce'
 
 import CHART_CONSTANTS, { chartMargins } from '../constants'
-import { CoordinatePayload, PositionTranslate } from '../types'
+import { CoordinatePayload, PositionTranslate } from '../../types'
 
 const { SCROLL_BAR_WIDTH, TOOLTIP_OFFSET, Y_AXIS_WIDTH } = CHART_CONSTANTS
 

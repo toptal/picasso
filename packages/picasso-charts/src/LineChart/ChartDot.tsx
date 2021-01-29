@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ChartDataPoint } from './LineChart'
+import { ChartDataPoint } from '../types'
 
 export const ChartDot = ({
   cx,
