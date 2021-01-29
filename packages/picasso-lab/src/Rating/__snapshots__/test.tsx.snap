@@ -15,15 +15,20 @@ exports[`Rating renders properly 1`] = `
         <span
           class=""
         >
-          <svg
-            class="PicassoSvgStarSolid16-root PicassoRating-clickableIcon PicassoSvgStarSolid16-yellow"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
+          <span
+            class=""
+            data-testid="active-rating-icon"
           >
-            <path
-              d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581z"
-            />
-          </svg>
+            <svg
+              class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581z"
+              />
+            </svg>
+          </span>
         </span>
         <input
           class="PicassoRating-radio"
@@ -41,15 +46,20 @@ exports[`Rating renders properly 1`] = `
         <span
           class=""
         >
-          <svg
-            class="PicassoSvgStarSolid16-root PicassoRating-clickableIcon PicassoSvgStarSolid16-yellow"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
+          <span
+            class=""
+            data-testid="active-rating-icon"
           >
-            <path
-              d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581z"
-            />
-          </svg>
+            <svg
+              class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581z"
+              />
+            </svg>
+          </span>
         </span>
         <input
           class="PicassoRating-radio"
@@ -67,15 +77,20 @@ exports[`Rating renders properly 1`] = `
         <span
           class=""
         >
-          <svg
-            class="PicassoSvgStarSolid16-root PicassoRating-clickableIcon PicassoSvgStarSolid16-yellow"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
+          <span
+            class=""
+            data-testid="active-rating-icon"
           >
-            <path
-              d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581z"
-            />
-          </svg>
+            <svg
+              class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581z"
+              />
+            </svg>
+          </span>
         </span>
         <input
           checked=""
@@ -94,15 +109,20 @@ exports[`Rating renders properly 1`] = `
         <span
           class=""
         >
-          <svg
-            class="PicassoSvgStar16-root PicassoRating-clickableIcon PicassoSvgStar16-yellow"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
+          <span
+            class=""
+            data-testid="inactive-rating-icon"
           >
-            <path
-              d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581L8 11.5zm0-1.13l2.786 1.465-.532-3.103 2.254-2.197-3.115-.453L8 3.26 6.607 6.082l-3.115.453 2.254 2.197-.532 3.103L8 10.37z"
-            />
-          </svg>
+            <svg
+              class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581L8 11.5zm0-1.13l2.786 1.465-.532-3.103 2.254-2.197-3.115-.453L8 3.26 6.607 6.082l-3.115.453 2.254 2.197-.532 3.103L8 10.37z"
+              />
+            </svg>
+          </span>
         </span>
         <input
           class="PicassoRating-radio"
@@ -120,15 +140,20 @@ exports[`Rating renders properly 1`] = `
         <span
           class=""
         >
-          <svg
-            class="PicassoSvgStar16-root PicassoRating-clickableIcon PicassoSvgStar16-yellow"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
+          <span
+            class=""
+            data-testid="inactive-rating-icon"
           >
-            <path
-              d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581L8 11.5zm0-1.13l2.786 1.465-.532-3.103 2.254-2.197-3.115-.453L8 3.26 6.607 6.082l-3.115.453 2.254 2.197-.532 3.103L8 10.37z"
-            />
-          </svg>
+            <svg
+              class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581L8 11.5zm0-1.13l2.786 1.465-.532-3.103 2.254-2.197-3.115-.453L8 3.26 6.607 6.082l-3.115.453 2.254 2.197-.532 3.103L8 10.37z"
+              />
+            </svg>
+          </span>
         </span>
         <input
           class="PicassoRating-radio"

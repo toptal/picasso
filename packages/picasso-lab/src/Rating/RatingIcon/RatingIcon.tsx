@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Star16, StarSolid16 } from '@toptal/picasso'
+import { Star16, StarSolid16, Container } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -11,22 +11,23 @@ export interface Props {
 }
 
 const useStyles = makeStyles(styles, {
-  name: 'PicassoRating'
+  name: 'PicassoRatingIcon'
 })
 
 const RatingIcon: FC<Props> = ({ active, readOnly }) => {
   const classes = useStyles()
 
+  const iconColor = 'yellow'
+  const iconClasses = cx({ [classes.clickableIcon]: !readOnly })
+
   return active ? (
-    <StarSolid16
-      color='yellow'
-      className={cx({ [classes.clickableIcon]: !readOnly })}
-    />
+    <Container as='span' data-testid='active-rating-icon'>
+      <StarSolid16 color={iconColor} className={iconClasses} />
+    </Container>
   ) : (
-    <Star16
-      color='yellow'
-      className={cx({ [classes.clickableIcon]: !readOnly })}
-    />
+    <Container as='span' data-testid='inactive-rating-icon'>
+      <Star16 color={iconColor} className={iconClasses} />
+    </Container>
   )
 }
 
