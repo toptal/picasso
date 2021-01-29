@@ -51,7 +51,7 @@ export type Props = BaseProps &
     variant?: Variant
     /** Component used for the root node. Either a string to use a DOM element or a component. */
     as?: ElementType
-    /** Whether the user can click OverviewBlock. By default it's true if onClick handler is provided. */
+    /** Whether the user can click the OverviewBlock. By default it's true if onClick handler is provided. */
     active?: boolean
     /** Callback invoked when component is clicked */
     onClick?: (event: MouseEvent) => void
