@@ -52,7 +52,7 @@
     "@svgr/cli": "^5.4.0",
     "@testing-library/react": "^9.3.2",
     "@toptal/browserslist-config": "^0.1.0-alpha.2",
-    "@toptal/davinci": "^1.0.4",
+    "@toptal/davinci": "^1.0.11",
     "@types/debounce": "^1.2.0",
     "@types/esprima": "^4.0.2",
     "@types/jest": "^26.0.15",
