@@ -190,7 +190,9 @@ export const DatePicker = (props: Props) => {
     >
   ) => {
     // TODO: change this if manual entering of range is needed
-    if (range) return
+    if (range) {
+      return
+    }
 
     const nextValue = e.target.value
 

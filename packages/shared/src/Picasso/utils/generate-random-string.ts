@@ -1,5 +1,7 @@
 const generateRandomStringOrGetEmptyInTest = (base = '') => {
-  if (process.env.NODE_ENV === 'test') return base
+  if (process.env.NODE_ENV === 'test') {
+    return base
+  }
 
   return base + generateRandomString()
 }

@@ -20,7 +20,9 @@ const getErrorFieldWithRetries = async () => {
   for (let index = 0; index < 3; index++) {
     const field = await getErrorFieldAfterNextPaint()
 
-    if (field) return field
+    if (field) {
+      return field
+    }
   }
 }
 
@@ -48,7 +50,9 @@ export default () => <T>(form: FormApi<T>) => {
     if (Object.keys(errors).length || Object.keys(submitErrors).length) {
       const field = await getErrorFieldWithRetries()
 
-      if (field) scrollTo(field)
+      if (field) {
+        scrollTo(field)
+      }
     }
   }
 
