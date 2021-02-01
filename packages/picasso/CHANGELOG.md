@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.6.0...@toptal/picasso@5.7.0) (2021-02-01)
+
+
+### Features
+
+* **Icon:** add Referrals Dashboard icon ([#1876](https://github.com/toptal/picasso/issues/1876)) ([3fbef89](https://github.com/toptal/picasso/commit/3fbef89896f1ee39d493167a704064327576f822))
+
+
+
+
+
 # [5.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.5.2...@toptal/picasso@5.6.0) (2021-01-29)
 
 
