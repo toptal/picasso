@@ -86,7 +86,6 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
 
   return (
     <Chip
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...htmlAttributes}
       ref={ref}
       classes={{

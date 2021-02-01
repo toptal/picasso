@@ -56,7 +56,6 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
 
   return (
     <MUITab
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       tabIndex={0}

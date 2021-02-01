@@ -13,7 +13,6 @@ export const Step: FunctionComponent<Props> = props => {
   const classes = useStyles()
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <MUIStep {...rest} active={active} completed={completed} classes={classes}>
       {children}
     </MUIStep>

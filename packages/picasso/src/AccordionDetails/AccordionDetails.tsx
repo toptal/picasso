@@ -25,7 +25,6 @@ const AccordionDetails: FunctionComponent<Props> = props => {
   const classes = useStyles(props)
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <MUIAccordionDetails {...rest} classes={classes}>
       {children}
     </MUIAccordionDetails>

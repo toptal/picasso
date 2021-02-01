@@ -58,7 +58,6 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
 
     const row = (
       <TableRow
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         className={className}

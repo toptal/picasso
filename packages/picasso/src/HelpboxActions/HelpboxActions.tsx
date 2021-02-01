@@ -29,7 +29,6 @@ export const HelpboxActions = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Container
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         className={cx(

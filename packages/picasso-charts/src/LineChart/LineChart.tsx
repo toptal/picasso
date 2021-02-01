@@ -101,7 +101,6 @@ const generateHighlightedAreas = (
     highlightArea.map((props, highlightIndex: number) => (
       <ReferenceArea
         key={`highlight-area-${index}-${highlightIndex}`}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       />
     ))

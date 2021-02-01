@@ -132,7 +132,6 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
 
   return (
     <MUITypography
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       align={align}

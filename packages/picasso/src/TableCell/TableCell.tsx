@@ -41,7 +41,6 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
 
     return (
       <MUITableCell
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         align={align}

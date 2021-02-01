@@ -82,7 +82,6 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
 
     return (
       <Button
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         icon={usedIcon}

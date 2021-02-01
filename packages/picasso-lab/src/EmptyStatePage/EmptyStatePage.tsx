@@ -27,7 +27,6 @@ export const EmptyStatePage = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Container
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         direction='column'
         alignItems='center'

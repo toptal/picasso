@@ -19,7 +19,6 @@ export const StepIcon: FunctionComponent<Props> = props => {
 
   return (
     <div
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       className={cx(classes.root, {
         [classes.active]: active,

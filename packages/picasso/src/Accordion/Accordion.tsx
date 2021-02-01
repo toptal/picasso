@@ -140,7 +140,6 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
 
   return (
     <MUIAccordion
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       classes={{

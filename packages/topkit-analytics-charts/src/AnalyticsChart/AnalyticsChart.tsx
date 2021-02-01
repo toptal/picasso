@@ -70,7 +70,6 @@ export const AnalyticsChart = ({
       getXAxisTicks={orderedData => getXAxisTicks(orderedData, granularity)}
       getYAxisTicks={domain => getYAxisTicks(domain, unit)}
       formatYAxisTick={(value, domain) => formatYAxisTick(value, domain, unit)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     />
   )

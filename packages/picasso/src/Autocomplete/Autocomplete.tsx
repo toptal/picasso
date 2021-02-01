@@ -190,7 +190,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           <Menu.Item
             size='medium'
             key={getKey(option)}
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getItemProps(index, option)}
             titleCase={false}
             description={option.description}
@@ -207,7 +206,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             size='medium'
             key='other-option'
             className={`${classes.option} ${classes.otherOption}`}
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getOtherItemProps(optionsLength, value)}
             titleCase={false}
           >
@@ -264,9 +262,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             <input type='hidden' value={value} name={name} />
           )}
           <InputComponent
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...rest}
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getInputProps()}
             error={error}
             icon={icon}

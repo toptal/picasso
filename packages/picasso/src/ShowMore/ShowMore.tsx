@@ -50,7 +50,6 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
   return (
     <>
       <Typography
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         size='medium'

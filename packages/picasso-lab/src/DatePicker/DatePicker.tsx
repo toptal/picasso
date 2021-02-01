@@ -292,7 +292,6 @@ export const DatePicker = (props: Props) => {
     <>
       <Container inline={width !== 'full'} ref={inputWrapperRef}>
         <Input
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...inputProps}
           ref={inputRef}
           onKeyDown={handleInputKeydown}

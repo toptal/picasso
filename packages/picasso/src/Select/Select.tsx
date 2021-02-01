@@ -172,12 +172,7 @@ const renderNativeOptions = ({
     const { close: _, ...rest } = getItemProps(index, option)
 
     return (
-      <option
-        key={option.key || option.value}
-        value={option.value}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-      >
+      <option key={option.key || option.value} value={option.value} {...rest}>
         {renderOption!(option)}
       </option>
     )
@@ -638,7 +633,6 @@ export const Select = documentable(
 
       const nativeSelectComponent = (
         <NativeSelect
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={selectRef}
           error={error}
@@ -654,7 +648,6 @@ export const Select = documentable(
               inputProps={{ multiple }}
               size={size}
               className={classes.nativeInput}
-              // eslint-disable-next-line react/jsx-props-no-spreading
               {...getInputProps()}
             />
           }
@@ -695,7 +688,6 @@ export const Select = documentable(
             placeholder={searchPlaceholder}
             size={size}
             value={filterOptionsValue}
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getSearchInputProps()}
           />
         </MenuItem>
@@ -705,16 +697,11 @@ export const Select = documentable(
 
       const selectComponent = (
         <>
-          <div
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...rootProps}
-            className={classes.inputWrapper}
-          >
+          <div {...rootProps} className={classes.inputWrapper}>
             {!enableAutofill && !native && name && (
               <input type='hidden' value={displayValue} name={name} />
             )}
             <OutlinedInput
-              // eslint-disable-next-line react/jsx-props-no-spreading
               {...rest}
               inputRef={selectRef}
               error={error}
@@ -724,7 +711,6 @@ export const Select = documentable(
               endAdornment={endAdornment}
               // Input specific props
               value={displayValue}
-              /* eslint-disable-next-line react/jsx-props-no-spreading */
               {...getInputProps()}
               placeholder={placeholder}
               width={width}

@@ -110,7 +110,6 @@ export const SidebarItem: OverridableComponent<Props> = memo(
 
     const menuItem = (
       <MenuItem
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         as={as}
         ref={ref}

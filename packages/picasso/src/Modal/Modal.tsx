@@ -196,7 +196,6 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
 
   return (
     <Dialog
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={rootRef}
       classes={{

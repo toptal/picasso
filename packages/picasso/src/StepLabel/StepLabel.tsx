@@ -36,7 +36,6 @@ export const StepLabel: FunctionComponent<Props> = props => {
 
   return (
     <MUIStepLabel
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       classes={{
         labelContainer: cx({

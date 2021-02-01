@@ -16,13 +16,7 @@ const Radio = ({ name, ...rest }: Props) => {
   return (
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     <Field name={name || groupName!} type='radio' value={rest.value}>
-      {({ input }) => (
-        <PicassoRadio
-          checked={input.checked}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...rest}
-        />
-      )}
+      {({ input }) => <PicassoRadio checked={input.checked} {...rest} />}
     </Field>
   )
 }

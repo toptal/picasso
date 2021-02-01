@@ -183,7 +183,6 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 
     return (
       <Autocomplete
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         placeholder={values.length === 0 ? placeholder : undefined}

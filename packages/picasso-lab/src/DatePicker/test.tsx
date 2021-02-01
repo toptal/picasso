@@ -267,7 +267,6 @@ describe('DatePicker', () => {
   }
 
   const renderDatePicker = (props: Props = defaultProps) => {
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return render(<DatePicker {...props} />)
   }
 })
