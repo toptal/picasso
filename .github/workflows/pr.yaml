@@ -2,6 +2,7 @@ name: Picasso - PR merge CI
 
 on:
   pull_request:
+    types: [ready_for_review]
     branches: [master]
 
 jobs:
