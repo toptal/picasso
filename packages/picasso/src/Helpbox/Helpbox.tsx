@@ -45,7 +45,6 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
 
   return (
     <Container
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       rounded

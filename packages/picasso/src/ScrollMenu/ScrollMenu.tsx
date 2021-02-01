@@ -98,12 +98,7 @@ const ScrollMenu: FunctionComponent<Props> = props => {
   }, [firstItemRef, selectedIndex, prevSelectedIndex])
 
   return (
-    <Menu
-      className={classes.menu}
-      style={style}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-    >
+    <Menu className={classes.menu} style={style} {...rest}>
       {fixedHeader}
       <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
         {renderChildren}

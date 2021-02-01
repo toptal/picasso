@@ -44,7 +44,6 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
 
   return (
     <MUIStepper
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       activeStep={active}

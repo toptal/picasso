@@ -39,7 +39,6 @@ export const Checkbox = ({
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           input: { value: inputValue, type, ...restInput }
         }: FinalFormFieldProps<CheckboxValue>) => {
-          // eslint-disable-next-line react/jsx-props-no-spreading
           return <PicassoCheckbox {...restProps} {...restInput} />
         }}
       </Field>
@@ -54,16 +53,11 @@ export const Checkbox = ({
       type='checkbox'
       hideFieldLabel
       required={required}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...restProps}
       name={name!}
     >
       {(input: CheckboxProps) => (
-        <PicassoCheckbox
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...input}
-          requiredDecoration={requiredDecoration}
-        />
+        <PicassoCheckbox {...input} requiredDecoration={requiredDecoration} />
       )}
     </FieldWrapper>
   )

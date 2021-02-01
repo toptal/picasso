@@ -32,7 +32,6 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 const Active: FunctionComponent = props => {
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return <Typography weight='semibold' color='black' {...props} />
 }
 
@@ -54,7 +53,6 @@ export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
   const titleCase = useTitleCase(propsTitleCase)
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <Component ref={ref} className={cx(classes.root, className)} {...rest}>
       {titleCase ? toTitleCase(children) : children}
     </Component>

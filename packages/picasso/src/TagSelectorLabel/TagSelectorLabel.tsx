@@ -16,12 +16,7 @@ export const TagSelectorLabel = forwardRef<HTMLDivElement, TagProps>(
     const classes = useStyles()
 
     return (
-      <Tag
-        ref={ref}
-        className={classes.label}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-      >
+      <Tag ref={ref} className={classes.label} {...rest}>
         {children}
       </Tag>
     )

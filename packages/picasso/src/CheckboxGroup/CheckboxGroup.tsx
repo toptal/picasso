@@ -25,7 +25,6 @@ const CheckboxGroup: FunctionComponent<Props> = props => {
 
   return (
     <FormGroup
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       classes={classes}
       className={cx(

@@ -54,7 +54,6 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Chip
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         classes={{

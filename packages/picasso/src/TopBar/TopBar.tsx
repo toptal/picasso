@@ -103,7 +103,6 @@ export const TopBar = forwardRef<HTMLElement, Props>(function TopBar(
   return (
     <div className={classes.wrapper}>
       <header
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         className={cx('mui-fixed', classes.root, classes[variant!], className)}

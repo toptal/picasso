@@ -55,7 +55,6 @@ const FormControlLabel: FunctionComponent<Props> = props => {
 
   return (
     <label
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       className={cx(
         classes.root,

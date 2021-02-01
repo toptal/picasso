@@ -90,7 +90,6 @@ export const TopBarMenu = forwardRef<HTMLDivElement, Props>(function TopBarMenu(
 
   return (
     <Dropdown
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       className={cx(classes.root, className)}

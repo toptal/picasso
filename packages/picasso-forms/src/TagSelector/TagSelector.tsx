@@ -9,10 +9,8 @@ import FieldWrapper, { FieldProps } from '../FieldWrapper'
 export type Props = TagSelectorProps & FieldProps<TagSelectorProps['value']>
 
 export const TagSelector = (props: Props) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <FieldWrapper<TagSelectorProps> {...props}>
     {(inputProps: TagSelectorProps) => {
-      // eslint-disable-next-line react/jsx-props-no-spreading
       return <PicassoTagSelector {...inputProps} />
     }}
   </FieldWrapper>

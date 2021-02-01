@@ -56,7 +56,6 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
 
     return (
       <Menu
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         allowNestedNavigation={false}
         ref={ref}

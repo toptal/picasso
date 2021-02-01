@@ -102,7 +102,6 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
 
     return (
       <Component
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         className={cx(

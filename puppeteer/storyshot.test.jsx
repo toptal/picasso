@@ -1,3 +1,4 @@
+/* eslint-disable jest/valid-title */
 const path = require('path')
 const exec = require('child_process').execSync
 

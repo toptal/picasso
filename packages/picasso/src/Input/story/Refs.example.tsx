@@ -4,11 +4,7 @@ import { Input, Container, Tooltip } from '@toptal/picasso'
 import { Props } from '../Input'
 
 const InputWrapper = React.forwardRef<HTMLInputElement, Props>((props, ref) => (
-  <Input
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...props}
-    outlineRef={ref}
-  />
+  <Input {...props} outlineRef={ref} />
 ))
 
 const RefsExample = () => {

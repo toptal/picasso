@@ -50,7 +50,6 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
 
   const switchElement = (
     <MUISwitch
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       color='primary'
       ref={ref}

@@ -28,7 +28,6 @@ const renderSelect = (
 
   return render(
     <Select
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       options={options}
       renderOption={renderOption}

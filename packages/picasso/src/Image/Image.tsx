@@ -37,7 +37,6 @@ export const Image = forwardRef<HTMLImageElement, Props>(function Image(
 
   return (
     <img
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       src={src}

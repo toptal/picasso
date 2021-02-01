@@ -111,7 +111,6 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
 
   return (
     <Container
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       flex

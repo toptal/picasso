@@ -105,7 +105,6 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   }
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <Container {...rest} ref={ref} flex inline alignItems='center'>
       <Button
         disabled={isFirstActive || disabled}

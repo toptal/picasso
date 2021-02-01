@@ -28,7 +28,6 @@ const CircularProgress: FunctionComponent<Props> = props => {
 
   return (
     <MUICircularProgress
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       classes={classes}
       className={className}

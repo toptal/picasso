@@ -37,7 +37,6 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
 
     return (
       <MUITableRow
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         classes={muiClasses}

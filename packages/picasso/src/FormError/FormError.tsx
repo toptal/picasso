@@ -23,7 +23,6 @@ export const FormError = forwardRef<HTMLDivElement, Props>(function FormError(
 
   return (
     <div
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       className={cx(classes.root, className)}

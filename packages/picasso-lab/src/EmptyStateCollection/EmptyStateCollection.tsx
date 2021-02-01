@@ -30,19 +30,11 @@ export const EmptyStateCollection = forwardRef<HTMLDivElement, Props>(
     const iconElement = icon ? (
       cloneElement(icon, iconProps)
     ) : (
-      // eslint-disable-next-line react/jsx-props-no-spreading
       <Search {...iconProps} />
     )
 
     return (
-      <Container
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-        alignItems='center'
-        flex
-        ref={ref}
-        style={style}
-      >
+      <Container {...rest} alignItems='center' flex ref={ref} style={style}>
         <Container
           alignItems='center'
           className={classes.iconWrapper}

@@ -70,7 +70,6 @@ export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
 
     return (
       <Button
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         classes={{

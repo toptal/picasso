@@ -19,7 +19,6 @@ export const NotificationActions = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Container
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         classes={classes}
         className={className}

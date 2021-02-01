@@ -23,7 +23,6 @@ export const TagGroup = forwardRef<HTMLDivElement, Props>(function TagGroup(
   const classes = useStyles()
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <div {...rest} ref={ref} className={cx(classes.root, className)}>
       {children}
     </div>

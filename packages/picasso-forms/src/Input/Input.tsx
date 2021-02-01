@@ -10,10 +10,8 @@ export type FormInputProps = Omit<InputProps, 'onResetClick'> & {
 export type Props = FormInputProps & FieldProps<InputProps['value']>
 
 export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <FieldWrapper<FormInputProps> {...props}>
     {(inputProps: InputProps) => {
-      // eslint-disable-next-line react/jsx-props-no-spreading
       return <PicassoInput {...inputProps} ref={ref} />
     }}
   </FieldWrapper>

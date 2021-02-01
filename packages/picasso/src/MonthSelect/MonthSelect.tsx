@@ -65,10 +65,7 @@ export const MonthSelect = documentable(
 
       const options = useMemo(() => getFilteredOptions(from, to), [from, to])
 
-      return (
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        <Select {...rest} ref={ref} options={options} />
-      )
+      return <Select {...rest} ref={ref} options={options} />
     }
   )
 )
