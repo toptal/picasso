@@ -22,6 +22,7 @@ Describe the changes and motivations for the pull request.
 - [ ] Ensure that deployed demo has expected results and good examples
 - [ ] Ensure that unit tests pass by running `yarn test`
 - [ ] Ensure that visuals tests pass by running `yarn test:visual`. If not - check the documentation [how to fix visual tests](https://github.com/toptal/picasso/blob/master/docs/contribution/visual-testing.md#fixing-broken-visual-tests-inside-a-pr)
+- [ ] Ensure the changed/created components have no a11y issues. [How to use a11y plugin in storybook](https://github.com/toptal/picasso/blob/master/docs/contribution/a11y.md).
 
 <details>
 <summary>PR commands</summary>
