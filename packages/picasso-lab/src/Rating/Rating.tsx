@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, ChangeEvent, useCallback } from 'react'
+import React, { forwardRef, ReactNode, ChangeEvent, useCallback } from 'react'
 import { Container } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles } from '@material-ui/core/styles'
@@ -26,15 +26,17 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoRating'
 })
 
-const Rating: FC<Props> = ({
-  name,
-  value,
-  onChange,
-  renderItem = (_, icon) => icon,
-  max,
-  interactive = true,
-  ...rest
-}) => {
+const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
+  const {
+    name,
+    value,
+    onChange,
+    renderItem = (_, icon) => icon,
+    max,
+    interactive = true,
+    ...rest
+  } = props
+
   const classes = useStyles()
 
   const handleChange = useCallback(
@@ -50,6 +52,7 @@ const Rating: FC<Props> = ({
     <Container
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
     >
       {[...Array(max)].map((_, index) => {
         const itemValue = index + 1
@@ -84,7 +87,7 @@ const Rating: FC<Props> = ({
       })}
     </Container>
   )
-}
+})
 
 Rating.defaultProps = {
   interactive: true,
