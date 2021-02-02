@@ -56,9 +56,7 @@ const Rating: FC<Props> = ({
         const itemId = `${name}-${itemValue}`
 
         const defaultIcon = (
-          <span>
-            <RatingIcon active={itemValue <= value} interactive={interactive} />
-          </span>
+          <RatingIcon active={itemValue <= value} interactive={interactive} />
         )
 
         return (

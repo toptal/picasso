@@ -9,8 +9,10 @@ const Example = () => {
     setValue(newValue)
   }
 
-  const renderItem = (itemValue: number, itemIcon: ReactNode) => {
-    return <Tooltip content={`The value is ${itemValue}`}>{itemIcon}</Tooltip>
+  const renderItem = (itemValue: number, defaultIcon: ReactNode) => {
+    return (
+      <Tooltip content={`The value is ${itemValue}`}>{defaultIcon}</Tooltip>
+    )
   }
 
   return (

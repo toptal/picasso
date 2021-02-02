@@ -12,7 +12,7 @@ const defaultProps: Props = {
 const renderRating = (props = defaultProps) => render(<Rating {...props} />)
 
 describe('Rating', () => {
-  it('renders properly', () => {
+  it('renders', () => {
     const { container } = renderRating()
 
     expect(container).toMatchSnapshot()
@@ -40,7 +40,7 @@ describe('Rating', () => {
     expect(onChange).toHaveBeenCalledWith(expect.anything(), newValue)
   })
 
-  it('is readOnly', () => {
+  it('is not interactive', () => {
     const onChange = jest.fn()
 
     const name = 'custom-rating-name'

@@ -1,12 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RatingIcon renders properly 1`] = `
+exports[`RatingIcon renders 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <span
-      class=""
       data-testid="active-rating-icon"
     >
       <svg

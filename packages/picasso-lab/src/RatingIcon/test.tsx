@@ -15,7 +15,7 @@ const renderRatingIcon = (props = defaultProps) =>
   render(<RatingIcon {...props} />)
 
 describe('RatingIcon', () => {
-  it('renders properly', () => {
+  it('renders', () => {
     const { container } = renderRatingIcon()
 
     expect(container).toMatchSnapshot()

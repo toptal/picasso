@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import { Star16, StarSolid16, Container } from '@toptal/picasso'
+import React, { forwardRef } from 'react'
+import { Star16, StarSolid16 } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -14,22 +14,30 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoRatingIcon'
 })
 
-const RatingIcon: FC<Props> = ({ active, interactive }) => {
+const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
+  props,
+  ref
+) {
+  const { active, interactive, ...rest } = props
   const classes = useStyles()
 
   const iconColor = 'yellow'
   const iconClasses = cx({ [classes.clickableIcon]: interactive })
 
-  return active ? (
-    <Container as='span' data-testid='active-rating-icon'>
-      <StarSolid16 color={iconColor} className={iconClasses} />
-    </Container>
-  ) : (
-    <Container as='span' data-testid='inactive-rating-icon'>
-      <Star16 color={iconColor} className={iconClasses} />
-    </Container>
+  return (
+    <span
+      {...rest}
+      ref={ref}
+      data-testid={active ? 'active-rating-icon' : 'inactive-rating-icon'}
+    >
+      {active ? (
+        <StarSolid16 color={iconColor} className={iconClasses} />
+      ) : (
+        <Star16 color={iconColor} className={iconClasses} />
+      )}
+    </span>
   )
-}
+})
 
 RatingIcon.defaultProps = {
   interactive: true
