@@ -49,7 +49,7 @@ describe('Rating', () => {
       ...defaultProps,
       name,
       onChange,
-      readOnly: true
+      interactive: false
     })
 
     fireEvent.click(getByTestId(`${name}-1`))

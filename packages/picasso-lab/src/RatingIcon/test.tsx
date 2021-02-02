@@ -8,7 +8,7 @@ const INACTIVE_ICON_TEST_ID = 'inactive-rating-icon'
 
 const defaultProps: Props = {
   active: true,
-  readOnly: false
+  interactive: true
 }
 
 const renderRatingIcon = (props = defaultProps) =>

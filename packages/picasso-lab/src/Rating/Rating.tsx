@@ -5,10 +5,10 @@ import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import styles from './styles'
-import RatingIcon from './RatingIcon'
+import RatingIcon from '../RatingIcon'
 
 export interface Props extends BaseProps {
-  /** Name of the rating input */
+  /** Value of the name attribute of the rating input */
   name: string
   /** Current rating */
   value: number
@@ -18,8 +18,8 @@ export interface Props extends BaseProps {
   renderItem?: (value: number, defaultIcon: ReactNode) => ReactNode
   /** Number of rating icons */
   max?: number
-  /** Flag to ignore interactions with the component */
-  readOnly?: boolean
+  /** Flag to allow or disable interactions with the component */
+  interactive?: boolean
 }
 
 const useStyles = makeStyles(styles, {
@@ -30,20 +30,20 @@ const Rating: FC<Props> = ({
   name,
   value,
   onChange,
-  renderItem,
-  max = 5,
-  readOnly = false,
+  renderItem = (_, icon) => icon,
+  max,
+  interactive = true,
   ...rest
 }) => {
   const classes = useStyles()
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      if (onChange && !readOnly) {
+      if (onChange && interactive) {
         onChange(event, Number(event.target.value))
       }
     },
-    [onChange, readOnly]
+    [onChange, interactive]
   )
 
   return (
@@ -56,9 +56,9 @@ const Rating: FC<Props> = ({
         const itemId = `${name}-${itemValue}`
 
         const defaultIcon = (
-          <Container as='span'>
-            <RatingIcon active={itemValue <= value} readOnly={readOnly} />
-          </Container>
+          <span>
+            <RatingIcon active={itemValue <= value} interactive={interactive} />
+          </span>
         )
 
         return (
@@ -66,19 +66,17 @@ const Rating: FC<Props> = ({
             key={itemId}
             htmlFor={itemId}
             className={cx(classes.label, {
-              [classes.clickableLabel]: !readOnly
+              [classes.clickableLabel]: interactive
             })}
           >
-            {typeof renderItem === 'function'
-              ? renderItem(itemValue, defaultIcon)
-              : defaultIcon}
+            {renderItem(itemValue, defaultIcon)}
             <input
               type='radio'
               name={name}
               id={itemId}
               value={itemValue}
               onChange={handleChange}
-              readOnly={readOnly}
+              readOnly={!interactive}
               checked={itemValue === value}
               className={classes.radio}
               data-testid={itemId}
@@ -90,6 +88,11 @@ const Rating: FC<Props> = ({
   )
 }
 
-Rating.displayName = 'Rating'
+Rating.defaultProps = {
+  interactive: true,
+  max: 5
+}
+
+Rating.displayName = 'PicassoRating'
 
 export default Rating

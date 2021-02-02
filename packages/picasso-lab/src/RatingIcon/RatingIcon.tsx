@@ -7,18 +7,18 @@ import styles from './styles'
 
 export interface Props {
   active: boolean
-  readOnly: boolean
+  interactive: boolean
 }
 
 const useStyles = makeStyles(styles, {
   name: 'PicassoRatingIcon'
 })
 
-const RatingIcon: FC<Props> = ({ active, readOnly }) => {
+const RatingIcon: FC<Props> = ({ active, interactive }) => {
   const classes = useStyles()
 
   const iconColor = 'yellow'
-  const iconClasses = cx({ [classes.clickableIcon]: !readOnly })
+  const iconClasses = cx({ [classes.clickableIcon]: interactive })
 
   return active ? (
     <Container as='span' data-testid='active-rating-icon'>
@@ -31,6 +31,10 @@ const RatingIcon: FC<Props> = ({ active, readOnly }) => {
   )
 }
 
-RatingIcon.displayName = 'RatingIcon'
+RatingIcon.defaultProps = {
+  interactive: true
+}
+
+RatingIcon.displayName = 'PicassoRatingIcon'
 
 export default RatingIcon

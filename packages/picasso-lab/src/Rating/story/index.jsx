@@ -18,8 +18,8 @@ page
     description:
       'The icons are fully customizable. You can provide a custom icon to render or add a tooltip to the default one.'
   })
-  .addExample('Rating/story/ReadOnly.example.tsx', {
-    title: 'ReadOnly',
+  .addExample('Rating/story/NonInteractive.example.tsx', {
+    title: 'Non Interactive',
     description:
-      'The rating can be used in read-only mode. This mode prohibits changing its value.'
+      'The rating can be used in non-interactive mode. This mode prohibits changing its value.'
   })

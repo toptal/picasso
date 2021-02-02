@@ -6,7 +6,7 @@ const Example = () => {
 
   return (
     <div style={{ height: 26 }}>
-      <Rating readOnly name='rating' value={value} />
+      <Rating interactive={false} name='rating' value={value} />
     </div>
   )
 }
