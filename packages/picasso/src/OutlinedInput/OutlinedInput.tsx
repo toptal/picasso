@@ -132,7 +132,6 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   const classes = useStyles(props)
   const isDark = inputProps?.variant === 'dark'
   const shouldShowReset = enableReset && !disabled
-
   const endAdornment = shouldShowReset ? (
     <>
       <ResetButton
