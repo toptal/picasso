@@ -37,7 +37,7 @@ describe('Rating', () => {
 
     fireEvent.click(getByTestId(`${name}-${newValue}`))
 
-    expect(onChange).toHaveBeenCalledWith(expect.anything(), newValue)
+    expect(onChange).toHaveBeenCalledWith(expect.anything())
   })
 
   it('is not interactive', () => {
