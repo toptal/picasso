@@ -48,10 +48,6 @@ if needed.
     `
   )
   .addExample('Autocomplete/story/Default.example.tsx', 'Default')
-  .addExample(
-    'Autocomplete/story/EndAdornment.example.tsx',
-    'With EndAdornment component'
-  )
   .addExample('Autocomplete/story/OtherOption.example.tsx', {
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
