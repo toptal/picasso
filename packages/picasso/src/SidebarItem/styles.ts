@@ -25,20 +25,20 @@ export default ({ palette, sizes }: Theme) =>
 
       '&:hover': {
         color: palette.blue.main,
-        '&$selected': {
+        '&$selected, $selected': {
           color: palette.blue.main,
           backgroundColor: palette.grey.light
         }
       },
-
-      '&$selected': {
+      // to cover cases when Sidebar.Item or Sidebar.Menu has a wrapper component
+      '&$selected, $selected': {
         color: palette.blue.main,
         backgroundColor: palette.grey.light
       },
 
       '&:focus': {
         color: palette.blue.main,
-        '&$selected': {
+        '&$selected, $selected': {
           color: palette.blue.main,
           backgroundColor: palette.grey.light
         }
@@ -47,19 +47,19 @@ export default ({ palette, sizes }: Theme) =>
     dark: {
       '&:hover': {
         color: palette.common.white,
-        '&$selected': {
+        '&$selected, $selected': {
           color: palette.common.white,
           backgroundColor: palette.grey.dark
         }
       },
-      '&$selected': {
+      '&$selected, $selected': {
         color: palette.common.white,
         backgroundColor: palette.grey.dark
       },
 
       '&:focus': {
         color: palette.common.white,
-        '&$selected': {
+        '&$selected, $selected': {
           color: palette.common.white,
           backgroundColor: palette.grey.dark
         }

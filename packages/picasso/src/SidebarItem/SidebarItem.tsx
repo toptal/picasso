@@ -3,7 +3,8 @@ import React, {
   ReactElement,
   ElementType,
   ChangeEvent,
-  memo
+  memo,
+  useContext
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -21,7 +22,8 @@ import Accordion from '../Accordion'
 import MenuItem, { MenuItemAttributes } from '../MenuItem'
 import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
-import { VariantType } from '../Sidebar/types'
+import { SidebarContextProps, VariantType } from '../Sidebar/types'
+import { SidebarContext } from '../Sidebar'
 
 export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
@@ -61,13 +63,14 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       style,
       onClick,
       as,
-      variant,
       isExpanded,
       expand,
       index,
       titleCase: propsTitleCase,
       ...rest
     } = props
+    const context = useContext<SidebarContextProps>(SidebarContext)
+    const variant = props.variant || context.variant
     const classes = useStyles()
 
     const hasIcon = Boolean(icon)
