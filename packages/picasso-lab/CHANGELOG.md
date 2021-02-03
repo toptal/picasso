@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.3.2...@toptal/picasso-lab@3.4.0) (2021-02-03)
+
+
+### Features
+
+* **Rating:** create component ([#1870](https://github.com/toptal/picasso/issues/1870)) ([7e7e475](https://github.com/toptal/picasso/commit/7e7e4754a1e09bc35e2b10469ac4cd6c95f79c2f))
+
+
+
+
+
 ## [3.3.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.3.1...@toptal/picasso-lab@3.3.2) (2021-02-03)
 
 **Note:** Version bump only for package @toptal/picasso-lab
