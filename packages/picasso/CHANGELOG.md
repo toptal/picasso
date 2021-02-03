@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.8.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.7.0...@toptal/picasso@5.8.0) (2021-02-03)
+
+
+### Features
+
+* **InputAdornment:** add stopPropagation prop ([#1883](https://github.com/toptal/picasso/issues/1883)) ([c17f4cd](https://github.com/toptal/picasso/commit/c17f4cd94ce5891e94e45129057b3550b13c1d7b))
+
+
+
+
+
 # [5.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.6.0...@toptal/picasso@5.7.0) (2021-02-01)
 
 
