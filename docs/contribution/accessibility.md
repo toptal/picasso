@@ -1,4 +1,5 @@
 # Accessibility
+
 We want projects using `Picasso` to be accessible to all users, so they can understand, navigate, and interact with the app.
 
 To detect and fix the a11y issues, we have an addon in the Storybook. Here are the steps to open it:
@@ -13,4 +14,4 @@ The addon displays three tabs:
 
 - Violations - rule failed.
 - Passes - rules passed.
-- Incompletions - “incomplete” means that a rule does not definitely pass, but cannot quite tell whether it definitely fails. 
+- Incompletions - “incomplete” means that a rule does not definitely pass, but cannot quite tell whether it definitely fails.
