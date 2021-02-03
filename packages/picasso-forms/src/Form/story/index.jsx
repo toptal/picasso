@@ -197,10 +197,10 @@ All fields should not show any validation error messages until submission is mad
   .addExample(
     'Form/story/FormSpy.example.tsx',
     {
-      title: 'Validate only on submit',
+      title: 'Form Spy',
       description: `
-All fields should not show any validation error messages until submission is made.
-`
+      Sometimes you might want to perform a conditional action based on the value of another field in the form or its overall state.
+      For smaller forms you can just directly work with values, but with a larger form you can avoid prop drilling with FormSpy.`
     },
     'picasso-form'
   ) // picasso-skip-visuals
