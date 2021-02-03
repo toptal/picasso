@@ -25,11 +25,7 @@ const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
   const iconClasses = cx({ [classes.clickableIcon]: interactive })
 
   return (
-    <span
-      {...rest}
-      ref={ref}
-      data-testid={active ? 'active-rating-icon' : 'inactive-rating-icon'}
-    >
+    <span {...rest} ref={ref}>
       {active ? (
         <StarSolid16 color={iconColor} className={iconClasses} />
       ) : (

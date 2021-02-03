@@ -12,9 +12,7 @@ exports[`Rating renders 1`] = `
         class="PicassoRating-label PicassoRating-clickableLabel"
         for="rating-name-1"
       >
-        <span
-          data-testid="active-rating-icon"
-        >
+        <span>
           <svg
             class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
             style="min-width: 16px; min-height: 16px;"
@@ -38,9 +36,7 @@ exports[`Rating renders 1`] = `
         class="PicassoRating-label PicassoRating-clickableLabel"
         for="rating-name-2"
       >
-        <span
-          data-testid="active-rating-icon"
-        >
+        <span>
           <svg
             class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
             style="min-width: 16px; min-height: 16px;"
@@ -64,9 +60,7 @@ exports[`Rating renders 1`] = `
         class="PicassoRating-label PicassoRating-clickableLabel"
         for="rating-name-3"
       >
-        <span
-          data-testid="active-rating-icon"
-        >
+        <span>
           <svg
             class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
             style="min-width: 16px; min-height: 16px;"
@@ -91,9 +85,7 @@ exports[`Rating renders 1`] = `
         class="PicassoRating-label PicassoRating-clickableLabel"
         for="rating-name-4"
       >
-        <span
-          data-testid="inactive-rating-icon"
-        >
+        <span>
           <svg
             class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
             style="min-width: 16px; min-height: 16px;"
@@ -117,9 +109,7 @@ exports[`Rating renders 1`] = `
         class="PicassoRating-label PicassoRating-clickableLabel"
         for="rating-name-5"
       >
-        <span
-          data-testid="inactive-rating-icon"
-        >
+        <span>
           <svg
             class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
             style="min-width: 16px; min-height: 16px;"

@@ -59,21 +59,15 @@ describe('Rating', () => {
 
   it('shows 5 icons by default', () => {
     const DEFAULT_NUMBER_OF_ICONS = 5
-    const value = 2
-    const { getAllByTestId } = renderRating({ ...defaultProps, value })
+    const { getAllByTestId } = renderRating()
 
-    expect(getAllByTestId('active-rating-icon')).toHaveLength(value)
-    expect(getAllByTestId('inactive-rating-icon')).toHaveLength(
-      DEFAULT_NUMBER_OF_ICONS - value
-    )
+    expect(getAllByTestId(/rating-name/i)).toHaveLength(DEFAULT_NUMBER_OF_ICONS)
   })
 
   it('shows max number of icons', () => {
     const max = 8
-    const value = 2
-    const { getAllByTestId } = renderRating({ ...defaultProps, value, max })
+    const { getAllByTestId } = renderRating({ ...defaultProps, max })
 
-    expect(getAllByTestId('active-rating-icon')).toHaveLength(value)
-    expect(getAllByTestId('inactive-rating-icon')).toHaveLength(max - value)
+    expect(getAllByTestId(/rating-name/i)).toHaveLength(max)
   })
 })
