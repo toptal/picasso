@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rating renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class=""
+    >
+      <label
+        class="PicassoRating-label PicassoRating-clickableLabel"
+        for="rating-name-1"
+      >
+        <span>
+          <svg
+            class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581z"
+            />
+          </svg>
+        </span>
+        <input
+          class="PicassoRating-radio"
+          data-testid="rating-name-1"
+          id="rating-name-1"
+          name="rating-name"
+          type="radio"
+          value="1"
+        />
+      </label>
+      <label
+        class="PicassoRating-label PicassoRating-clickableLabel"
+        for="rating-name-2"
+      >
+        <span>
+          <svg
+            class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581z"
+            />
+          </svg>
+        </span>
+        <input
+          class="PicassoRating-radio"
+          data-testid="rating-name-2"
+          id="rating-name-2"
+          name="rating-name"
+          type="radio"
+          value="2"
+        />
+      </label>
+      <label
+        class="PicassoRating-label PicassoRating-clickableLabel"
+        for="rating-name-3"
+      >
+        <span>
+          <svg
+            class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581z"
+            />
+          </svg>
+        </span>
+        <input
+          checked=""
+          class="PicassoRating-radio"
+          data-testid="rating-name-3"
+          id="rating-name-3"
+          name="rating-name"
+          type="radio"
+          value="3"
+        />
+      </label>
+      <label
+        class="PicassoRating-label PicassoRating-clickableLabel"
+        for="rating-name-4"
+      >
+        <span>
+          <svg
+            class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581L8 11.5zm0-1.13l2.786 1.465-.532-3.103 2.254-2.197-3.115-.453L8 3.26 6.607 6.082l-3.115.453 2.254 2.197-.532 3.103L8 10.37z"
+            />
+          </svg>
+        </span>
+        <input
+          class="PicassoRating-radio"
+          data-testid="rating-name-4"
+          id="rating-name-4"
+          name="rating-name"
+          type="radio"
+          value="4"
+        />
+      </label>
+      <label
+        class="PicassoRating-label PicassoRating-clickableLabel"
+        for="rating-name-5"
+      >
+        <span>
+          <svg
+            class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581L8 11.5zm0-1.13l2.786 1.465-.532-3.103 2.254-2.197-3.115-.453L8 3.26 6.607 6.082l-3.115.453 2.254 2.197-.532 3.103L8 10.37z"
+            />
+          </svg>
+        </span>
+        <input
+          class="PicassoRating-radio"
+          data-testid="rating-name-5"
+          id="rating-name-5"
+          name="rating-name"
+          type="radio"
+          value="5"
+        />
+      </label>
+    </div>
+  </div>
+</div>
+`;
