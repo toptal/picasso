@@ -133,12 +133,6 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   const isDark = inputProps?.variant === 'dark'
   const shouldShowReset = enableReset && !disabled
 
-  const endAdornmentContent = userDefinedEndAdornment && (
-    <InputAdornment stopPropagation position='end'>
-      {userDefinedEndAdornment}
-    </InputAdornment>
-  )
-
   const endAdornment = shouldShowReset ? (
     <>
       <ResetButton
@@ -146,10 +140,10 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
         hasValue={Boolean(value)}
         onClick={onResetClick!}
       />
-      {endAdornmentContent}
+      {userDefinedEndAdornment}
     </>
   ) : (
-    endAdornmentContent
+    userDefinedEndAdornment
   )
 
   return (
