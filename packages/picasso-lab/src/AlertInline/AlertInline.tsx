@@ -53,8 +53,15 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   const { variant, children, className } = props
 
   return (
-    <Container inline flex ref={ref}>
-      <Container right='small'>{renderAlertIcon(variant)}</Container>
+    <Container inline flex ref={ref} className={classes.root}>
+      <Container
+        right='xsmall'
+        flex
+        alignItems='center'
+        className={classes.iconWrapper}
+      >
+        {renderAlertIcon(variant)}
+      </Container>
       <Typography
         size='medium'
         as='div'
