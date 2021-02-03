@@ -19,14 +19,7 @@ const renderAutocomplete = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
 ) => {
-  return render(
-    <Autocomplete
-      /* eslint-disable-next-line react/jsx-props-no-spreading */
-      {...props}
-    />,
-    undefined,
-    picassoConfig
-  )
+  return render(<Autocomplete {...props} />, undefined, picassoConfig)
 }
 
 let spiedOnTitleCase: jest.SpyInstance

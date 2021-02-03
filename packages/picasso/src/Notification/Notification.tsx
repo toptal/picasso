@@ -71,21 +71,17 @@ const renderNotificationIcon = ({ icon, variant, classes }: PrivateProps) => {
   // Missing the following: https://github.com/toptal/picasso/issues/253
   switch (variant) {
     case 'red':
-      // eslint-disable-next-line react/jsx-props-no-spreading
       return <ExclamationSolid24 {...iconProps} color='red' />
 
     case 'yellow':
-      // eslint-disable-next-line react/jsx-props-no-spreading
       return <ExclamationSolid16 {...iconProps} color='yellow' />
 
     case 'green':
-      // eslint-disable-next-line react/jsx-props-no-spreading
       return <CheckSolid24 {...iconProps} color='green' />
 
     default: {
       const infoProps = { ...iconProps, color: 'grey' as const }
 
-      // eslint-disable-next-line react/jsx-props-no-spreading
       return icon ? cloneElement(icon, infoProps) : <Info24 {...infoProps} />
     }
   }
@@ -131,7 +127,6 @@ export const Notification = forwardRef<HTMLElement, PrivateProps>(
 
     return (
       <SnackbarContent
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         className={cx(
           classes[`notification${capitalize(variant as string)}`],

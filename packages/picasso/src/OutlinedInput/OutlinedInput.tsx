@@ -147,7 +147,6 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
 
   return (
     <MUIOutlinedInput
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       classes={{
         root: cx(

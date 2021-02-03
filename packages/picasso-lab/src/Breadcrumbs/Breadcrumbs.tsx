@@ -19,7 +19,6 @@ export const Breadcrumbs = forwardRef<HTMLElement, Props>(function Breadcrumbs(
   props,
   ref
 ) {
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return <MuiBreadcrumbs ref={ref} separator={<ChevronRight16 />} {...props} />
 }) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
 

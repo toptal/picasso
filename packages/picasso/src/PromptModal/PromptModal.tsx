@@ -104,7 +104,6 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
       ref={ref}
       onClose={onClose && handleClose}
       classes={classes}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
       {title && <Modal.Title>{title}</Modal.Title>}

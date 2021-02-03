@@ -89,7 +89,6 @@ const IE11Image = ({ style, src, ...rest }: OmitInternalProps<ImageProps>) => (
       backgroundPosition: 'center center',
       ...style
     }}
-    // eslint-disable-next-line react/jsx-props-no-spreading
     {...rest}
   />
 )
@@ -105,7 +104,6 @@ export const Avatar: FunctionComponent<Props> = props => {
   const InputComponent = isBrowserSupportsObjectFit ? Image : IE11Image
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <div {...rest} className={cx(classes.root, sizeClassName)}>
       {src ? (
         <InputComponent

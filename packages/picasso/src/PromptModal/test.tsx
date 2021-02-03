@@ -68,7 +68,7 @@ describe('PromptModal', () => {
 
   const identity = <T extends unknown>(value: T) => value
 
-  it('showPrompt with input returns result on Submit action ', async () => {
+  it('showPrompt with input returns result on Submit action', async () => {
     const mockResult = jest.fn(identity)
 
     const TestComponent = () => {

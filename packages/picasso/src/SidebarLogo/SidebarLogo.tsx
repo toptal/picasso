@@ -13,7 +13,6 @@ export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
   function SidebarLogo({ children, ...rest }, ref) {
     return (
       <Container
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         flex

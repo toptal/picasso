@@ -28,7 +28,9 @@ export type DateRangeType = [Date, Date]
 export { DayProps }
 
 const getNormalizedValue = (value: DateOrDateRangeType | undefined) => {
-  if (!value) return
+  if (!value) {
+    return
+  }
 
   if (value instanceof Date) {
     return value

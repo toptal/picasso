@@ -20,12 +20,7 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
   const { children, className, ...rest } = props
 
   return (
-    <Notification
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      ref={ref}
-      className={className}
-    >
+    <Notification {...rest} ref={ref} className={className}>
       {children}
     </Notification>
   )

@@ -24,7 +24,6 @@ const items = [
   { text: 'Toptal', to: '/usa/software/toptal' }
 ]
 
-// eslint-disable-next-line react/jsx-props-no-spreading
 const ExampleLink: typeof Link = props => <Link as={RouterLink} {...props} />
 
 const Nav = () => {

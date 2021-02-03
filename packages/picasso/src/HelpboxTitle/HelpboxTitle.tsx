@@ -23,7 +23,6 @@ export const HelpboxTitle = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Container
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         classes={classes}

@@ -39,7 +39,7 @@ export const ModalContent = forwardRef<HTMLDivElement, Props>(
             [classes.topBottomShades]: top && bottom
           })}
         />
-        <div // eslint-disable-next-line react/jsx-props-no-spreading
+        <div
           {...rest}
           style={style}
           ref={modalContentRef}

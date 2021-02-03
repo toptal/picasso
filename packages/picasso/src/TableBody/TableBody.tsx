@@ -40,7 +40,6 @@ export const TableBody = forwardRef<HTMLTableSectionElement, Props>(
     return (
       <TableSectionContext.Provider value={TableSection.BODY}>
         <MUITableBody
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={ref}
           classes={classes}

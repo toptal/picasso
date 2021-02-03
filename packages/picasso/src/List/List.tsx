@@ -15,7 +15,6 @@ const List: FunctionComponent<Props> = props => {
   const classes = useStyles()
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <MUIList {...rest} classes={classes} className={className} style={style} />
   )
 }

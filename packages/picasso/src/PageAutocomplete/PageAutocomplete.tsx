@@ -13,7 +13,6 @@ export const PageAutocomplete = ({ variant, ...rest }: Props) => (
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       variant: variant!
     }}
-    // eslint-disable-next-line react/jsx-props-no-spreading
     {...rest}
   />
 )
