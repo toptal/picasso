@@ -16,27 +16,6 @@ exports[`Sidebar renders 1`] = `
 </div>
 `;
 
-exports[`Sidebar with menu  1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
-    >
-      <div
-        class="Sidebar-spacer"
-      />
-      <ul
-        class="MuiList-root Menu-root PicassoSidebarMenu-root"
-        role="menu"
-        tabindex="-1"
-      />
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Sidebar with menu 1`] = `
 <div>
   <div
@@ -50,32 +29,6 @@ exports[`Sidebar with menu 1`] = `
       />
       <ul
         class="MuiList-root Menu-root PicassoSidebarMenu-root"
-        role="menu"
-        tabindex="-1"
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Sidebar with one normal and one bottom menu  1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
-    >
-      <div
-        class="Sidebar-spacer"
-      />
-      <ul
-        class="MuiList-root Menu-root PicassoSidebarMenu-root"
-        role="menu"
-        tabindex="-1"
-      />
-      <ul
-        class="MuiList-root Menu-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
         role="menu"
         tabindex="-1"
       />
