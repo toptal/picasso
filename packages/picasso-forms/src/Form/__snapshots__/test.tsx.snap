@@ -27,7 +27,7 @@ exports[`Form renders 1`] = `
               value=""
             />
             <div
-              class=""
+              class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
             />
             <fieldset
               aria-hidden="true"

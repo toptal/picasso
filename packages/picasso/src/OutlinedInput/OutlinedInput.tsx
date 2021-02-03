@@ -133,7 +133,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   const isDark = inputProps?.variant === 'dark'
   const shouldShowReset = enableReset && !disabled
 
-  const endAdornmentContent = (
+  const endAdornmentContent = userDefinedEndAdornment && (
     <InputAdornment stopPropagation position='end'>
       {userDefinedEndAdornment}
     </InputAdornment>

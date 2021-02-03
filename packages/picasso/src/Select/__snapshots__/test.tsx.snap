@@ -12,21 +12,18 @@ exports[`multiple select should checkmark user selected options 1`] = `
         class="makeStyles-inputWrapper"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
             placeholder="Choose an option..."
             readonly=""
             size="1"
             type="text"
             value="text1, text3"
-          />
-          <div
-            class=""
           />
           <fieldset
             aria-hidden="true"
@@ -180,11 +177,11 @@ exports[`renders native select 1`] = `
       class="makeStyles-root makeStyles-rootFull"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
       >
         <select
           aria-invalid="false"
-          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
         >
           <option
             disabled=""
@@ -223,9 +220,6 @@ exports[`renders native select 1`] = `
             d="M10.997 10.29l.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3zm-3-9l3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707z"
           />
         </svg>
-        <div
-          class=""
-        />
         <fieldset
           aria-hidden="true"
           class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
@@ -255,11 +249,11 @@ exports[`renders native select with the empty option enabled when enableReset is
       class="makeStyles-root makeStyles-rootFull"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
       >
         <select
           aria-invalid="false"
-          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
         >
           <option
             value=""
@@ -297,9 +291,6 @@ exports[`renders native select with the empty option enabled when enableReset is
             d="M10.997 10.29l.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3zm-3-9l3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707z"
           />
         </svg>
-        <div
-          class=""
-        />
         <fieldset
           aria-hidden="true"
           class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
@@ -332,20 +323,17 @@ exports[`renders select 1`] = `
         class="makeStyles-inputWrapper"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
             readonly=""
             size="1"
             type="text"
             value="text1"
-          />
-          <div
-            class=""
           />
           <fieldset
             aria-hidden="true"

@@ -29,7 +29,7 @@ exports[`FileInput renders 1`] = `
         type="file"
       />
       <div
-        class=""
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
       >
         <div
           class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"

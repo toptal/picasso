@@ -170,7 +170,7 @@ exports[`Autocomplete static behavior renders 1`] = `
             </button>
           </div>
           <div
-            class=""
+            class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
           />
           <fieldset
             aria-hidden="true"

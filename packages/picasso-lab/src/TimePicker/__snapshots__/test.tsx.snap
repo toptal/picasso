@@ -16,7 +16,7 @@ exports[`TimePicker renders 1`] = `
         value="21:00"
       />
       <div
-        class=""
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
       >
         <div
           class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"

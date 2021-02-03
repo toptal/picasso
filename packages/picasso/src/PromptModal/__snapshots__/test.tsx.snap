@@ -428,7 +428,7 @@ exports[`PromptModal showPrompt with input returns result on Submit action  1`] 
                       value="undefined"
                     />
                     <div
-                      class=""
+                      class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
                     />
                     <fieldset
                       aria-hidden="true"
