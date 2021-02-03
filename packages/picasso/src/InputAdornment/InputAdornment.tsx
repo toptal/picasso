@@ -2,7 +2,8 @@ import React, {
   ReactNode,
   FunctionComponent,
   HTMLAttributes,
-  MouseEvent
+  MouseEvent,
+  useCallback
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIInputAdornment from '@material-ui/core/InputAdornment'
@@ -40,13 +41,16 @@ const InputAdornment: FunctionComponent<Props> = props => {
   } = props
 
   const classes = useStyles()
-  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (stopPropagation) {
-      event.stopPropagation()
-    }
+  const handleClick = useCallback(
+    (event: MouseEvent<HTMLDivElement>) => {
+      if (stopPropagation) {
+        event.stopPropagation()
+      }
 
-    onClick(event)
-  }
+      onClick(event)
+    },
+    [onClick, stopPropagation]
+  )
 
   return (
     <MUIInputAdornment
