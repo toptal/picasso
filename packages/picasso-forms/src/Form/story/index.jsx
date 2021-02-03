@@ -194,3 +194,13 @@ All fields should not show any validation error messages until submission is mad
     },
     'picasso-form'
   ) // picasso-skip-visuals
+  .addExample(
+    'Form/story/FormSpy.example.tsx',
+    {
+      title: 'Validate only on submit',
+      description: `
+All fields should not show any validation error messages until submission is made.
+`
+    },
+    'picasso-form'
+  ) // picasso-skip-visuals
