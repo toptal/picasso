@@ -58,7 +58,7 @@ exports[`Rating renders 1`] = `
       </label>
       <label
         class="PicassoRating-label PicassoRating-clickableLabel"
-        for="rating-name-3"
+        for="rating-name-reset"
       >
         <span>
           <svg
@@ -129,6 +129,13 @@ exports[`Rating renders 1`] = `
           value="5"
         />
       </label>
+      <input
+        class="PicassoRating-radio"
+        id="rating-name-reset"
+        name="rating-name"
+        type="radio"
+        value=""
+      />
     </div>
   </div>
 </div>
