@@ -29,20 +29,24 @@ exports[`FileInput renders 1`] = `
         type="file"
       />
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
+        class=""
       >
-        <button
-          class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root FileInputContent-button"
-          data-component-type="button"
-          tabindex="0"
-          type="button"
+        <div
+          class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
         >
-          <span
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          <button
+            class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root FileInputContent-button"
+            data-component-type="button"
+            tabindex="0"
+            type="button"
           >
-            Choose File
-          </span>
-        </button>
+            <span
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            >
+              Choose File
+            </span>
+          </button>
+        </div>
       </div>
       <fieldset
         aria-hidden="true"

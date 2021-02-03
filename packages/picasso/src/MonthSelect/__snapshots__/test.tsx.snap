@@ -12,17 +12,20 @@ exports[`MonthSelect renders 1`] = `
         class="makeStyles-inputWrapper"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
           role="textbox"
         >
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             readonly=""
             size="1"
             type="text"
             value=""
+          />
+          <div
+            class=""
           />
           <fieldset
             aria-hidden="true"

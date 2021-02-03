@@ -26,6 +26,9 @@ exports[`Form renders 1`] = `
               type="text"
               value=""
             />
+            <div
+              class=""
+            />
             <fieldset
               aria-hidden="true"
               class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"

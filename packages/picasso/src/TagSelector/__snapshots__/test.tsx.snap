@@ -15,7 +15,7 @@ exports[`TagSelector disabled render 1`] = `
         class="PicassoContainer-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <div
             class="MuiChip-root PicassoLabel-root PicassoLabel-disabled PicassoTagSelectorLabel-label MuiChip-deletable"
@@ -50,10 +50,13 @@ exports[`TagSelector disabled render 1`] = `
           <input
             aria-autocomplete="list"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium Mui-disabled Mui-disabled MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium Mui-disabled Mui-disabled MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             disabled=""
             type="text"
             value=""
+          />
+          <div
+            class=""
           />
           <fieldset
             aria-hidden="true"
@@ -95,7 +98,7 @@ exports[`TagSelector preselected value 1`] = `
           class="PicassoContainer-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
           >
             <div
               class="MuiChip-root PicassoLabel-root PicassoTagSelectorLabel-label MuiChip-deletable"
@@ -130,9 +133,12 @@ exports[`TagSelector preselected value 1`] = `
             <input
               aria-autocomplete="list"
               autocomplete="off"
-              class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+              class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
               type="text"
               value=""
+            />
+            <div
+              class=""
             />
             <fieldset
               aria-hidden="true"
@@ -174,15 +180,18 @@ exports[`TagSelector renders 1`] = `
         class="PicassoContainer-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <input
             aria-autocomplete="list"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             placeholder="Please select..."
             type="text"
             value=""
+          />
+          <div
+            class=""
           />
           <fieldset
             aria-hidden="true"

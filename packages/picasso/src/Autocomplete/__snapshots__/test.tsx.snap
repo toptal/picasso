@@ -169,6 +169,9 @@ exports[`Autocomplete static behavior renders 1`] = `
               </span>
             </button>
           </div>
+          <div
+            class=""
+          />
           <fieldset
             aria-hidden="true"
             class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
