@@ -3,8 +3,7 @@ import React, {
   ReactType,
   ReactNode,
   InputHTMLAttributes,
-  forwardRef,
-  MouseEvent
+  forwardRef
 } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -15,7 +14,6 @@ import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
 import Button from '../Button'
-import Container from '../Container'
 import { CloseMinor16 } from '../Icon'
 import styles from './styles'
 
@@ -135,16 +133,10 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   const isDark = inputProps?.variant === 'dark'
   const shouldShowReset = enableReset && !disabled
 
-  const handleEndAdornmentClick = (event: MouseEvent) => {
-    // Catch clicks on endAdornmentContent to avoid click on input itself
-    // to do not trigger input focus
-    event.stopPropagation()
-  }
-
   const endAdornmentContent = (
-    <Container onClick={handleEndAdornmentClick}>
+    <InputAdornment stopPropagation position='end'>
       {userDefinedEndAdornment}
-    </Container>
+    </InputAdornment>
   )
 
   const endAdornment = shouldShowReset ? (
