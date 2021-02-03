@@ -19,42 +19,38 @@ exports[`NumberInput renders 1`] = `
       class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
     >
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
+        class="PicassoContainer-flex PicassoContainer-inline PicassoContainer-column"
       >
-        <div
-          class="PicassoContainer-flex PicassoContainer-inline PicassoContainer-column"
+        <button
+          class="MuiButtonBase-root PicassoNumberInput-control"
+          tabindex="0"
+          type="button"
         >
-          <button
-            class="MuiButtonBase-root PicassoNumberInput-control"
-            tabindex="0"
-            type="button"
+          <svg
+            class="PicassoSvgArrowUpMinor16-root"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
           >
-            <svg
-              class="PicassoSvgArrowUpMinor16-root"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M7.997 5.29l4.707 4.707-.707.707-4-4-4 4-.707-.707 4-4 .707-.707z"
-              />
-            </svg>
-          </button>
-          <button
-            class="MuiButtonBase-root PicassoNumberInput-control"
-            tabindex="0"
-            type="button"
+            <path
+              d="M7.997 5.29l4.707 4.707-.707.707-4-4-4 4-.707-.707 4-4 .707-.707z"
+            />
+          </svg>
+        </button>
+        <button
+          class="MuiButtonBase-root PicassoNumberInput-control"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            class="PicassoSvgArrowDownMinor16-root"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
           >
-            <svg
-              class="PicassoSvgArrowDownMinor16-root"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
-              />
-            </svg>
-          </button>
-        </div>
+            <path
+              d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+            />
+          </svg>
+        </button>
       </div>
     </div>
     <fieldset

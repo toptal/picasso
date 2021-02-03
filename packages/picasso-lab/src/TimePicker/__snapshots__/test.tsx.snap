@@ -16,21 +16,17 @@ exports[`TimePicker renders 1`] = `
         value="21:00"
       />
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
       >
-        <div
-          class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+        <svg
+          class="PicassoSvgTime16-root PicassoTimePicker-icon PicassoInput-icon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <svg
-            class="PicassoSvgTime16-root PicassoTimePicker-icon PicassoInput-icon"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M7.5 15a7.5 7.5 0 110-15 7.5 7.5 0 010 15zm0-1a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM7 8H4V7h3V2h1v6H7z"
-            />
-          </svg>
-        </div>
+          <path
+            d="M7.5 15a7.5 7.5 0 110-15 7.5 7.5 0 010 15zm0-1a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM7 8H4V7h3V2h1v6H7z"
+          />
+        </svg>
       </div>
       <fieldset
         aria-hidden="true"

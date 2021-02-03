@@ -30,9 +30,6 @@ exports[`DatePicker renders 1`] = `
           type="text"
           value="Dec 12, 2019"
         />
-        <div
-          class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
-        />
         <fieldset
           aria-hidden="true"
           class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"

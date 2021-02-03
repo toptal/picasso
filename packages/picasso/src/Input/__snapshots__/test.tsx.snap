@@ -27,9 +27,6 @@ exports[`Input renders icon in the beginning 1`] = `
         type="text"
         value=""
       />
-      <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
-      />
       <fieldset
         aria-hidden="true"
         class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
@@ -76,9 +73,6 @@ exports[`Input renders icon in the end 1`] = `
         type="text"
         value=""
       />
-      <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
-      />
       <fieldset
         aria-hidden="true"
         class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
@@ -113,9 +107,6 @@ exports[`Input should show manual resize handler 1`] = `
       >
         Some value
       </textarea>
-      <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
-      />
       <fieldset
         aria-hidden="true"
         class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
@@ -174,9 +165,6 @@ exports[`Input should show reset button 1`] = `
           </span>
         </button>
       </div>
-      <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
-      />
       <fieldset
         aria-hidden="true"
         class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
@@ -208,9 +196,6 @@ exports[`Input shows counter for multiline input 1`] = `
         autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         rows="4"
-      />
-      <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
       />
       <fieldset
         aria-hidden="true"
@@ -244,9 +229,6 @@ exports[`Input shows counter for regular input 1`] = `
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         type="text"
         value=""
-      />
-      <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
       />
       <fieldset
         aria-hidden="true"
