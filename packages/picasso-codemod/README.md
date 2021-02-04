@@ -6,7 +6,7 @@ This repository contains a collection of codemod scripts based for use with [JSC
 
 ## Setup & Run
 
-- `npm install -D @toptal/picasso-codemod`
+- `yarn add -D @toptal/picasso-codemod`
 - `npx jscodeshift -t <codemod-script> --parser=tsx <path>`
 - [jscodeshift CLI usage](https://github.com/facebook/jscodeshift#usage-cli)
 
@@ -136,7 +136,7 @@ npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/subheader-pagehea
 
 Renames occurrences of `Page.Header` to `Page.TopBar`.
 
-```diff
+````diff
   import { Page } from '@toptal/picasso'
 
   const Example = () => (
@@ -151,7 +151,7 @@ Renames occurrences of `Page.Header` to `Page.TopBar`.
 
 ```sh
 npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/header-topbar src/**/*.tsx --parser=tsx
-```
+````
 
 </details>
 
