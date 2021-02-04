@@ -29,7 +29,9 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
   )
 
   const handleZoom = (step: number) => {
-    if (!rootRef.current) return
+    if (!rootRef.current) {
+      return
+    }
 
     d3.select(rootRef.current)
       .transition()
@@ -37,7 +39,9 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
   }
 
   useEffect(() => {
-    if (!rootRef.current) return
+    if (!rootRef.current) {
+      return
+    }
 
     const transformContainer = d3.select(rootRef.current.firstElementChild)
 

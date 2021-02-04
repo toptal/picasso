@@ -12,10 +12,8 @@ export type FormDatePickerProps = Omit<DatePickerProps, 'onChange'> & {
 export type Props = FormDatePickerProps & FieldProps<DatePickerProps['value']>
 
 export const DatePicker = (props: Props) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <FieldWrapper<FormDatePickerProps> {...props}>
     {(inputProps: DatePickerProps) => {
-      // eslint-disable-next-line react/jsx-props-no-spreading
       return <PicassoDatePicker {...inputProps} />
     }}
   </FieldWrapper>

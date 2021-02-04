@@ -124,7 +124,9 @@ export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) => {
     noSsr: true
   })
 
-  if (!mediaQueryString) return false
+  if (!mediaQueryString) {
+    return false
+  }
 
   return mediaQuery
 }

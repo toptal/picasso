@@ -62,7 +62,6 @@ export const Drawer: FunctionComponent<Props> = props => {
 
   return (
     <MUIDrawer
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       open={open}
       onClose={handleOnClose}

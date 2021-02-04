@@ -16,7 +16,7 @@ exports[`Sidebar renders 1`] = `
 </div>
 `;
 
-exports[`Sidebar with menu  1`] = `
+exports[`Sidebar with menu 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -37,7 +37,7 @@ exports[`Sidebar with menu  1`] = `
 </div>
 `;
 
-exports[`Sidebar with one normal and one bottom menu  1`] = `
+exports[`Sidebar with one normal and one bottom menu 1`] = `
 <div>
   <div
     class="Picasso-root"

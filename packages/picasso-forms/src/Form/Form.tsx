@@ -148,7 +148,6 @@ export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
         )}
         onSubmit={handleSubmit}
         decorators={[...decorators, scrollToErrorDecorator]}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       />
     </FormContext.Provider>

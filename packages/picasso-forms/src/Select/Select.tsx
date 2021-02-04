@@ -22,7 +22,6 @@ export const Select = <T extends SelectValueType, M extends boolean = false>({
 
   return (
     <FieldWrapper<SelectProps<any, any>>
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       name={name}
       id={randomizedId}
@@ -30,7 +29,6 @@ export const Select = <T extends SelectValueType, M extends boolean = false>({
       {(selectProps: SelectProps) => {
         return (
           <PicassoSelect
-            // eslint-disable-next-line react/jsx-props-no-spreading
             {...selectProps}
             id={randomizedId}
             // if `id` is specified, we have to provide a not correct value for autoComplete, e.g. `none` to trick google chrome

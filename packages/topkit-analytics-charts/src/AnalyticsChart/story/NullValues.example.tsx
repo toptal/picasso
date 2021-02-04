@@ -73,7 +73,9 @@ const CustomTooltip = ({
   active?: boolean
   payload?: Payload[]
 }) => {
-  if (!active) return null
+  if (!active) {
+    return null
+  }
 
   return (
     <Container style={{ background: '#fff' }}>

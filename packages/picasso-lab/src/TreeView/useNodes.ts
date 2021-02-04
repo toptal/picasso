@@ -24,7 +24,9 @@ const updateNodesYPosition = (
   return nodes
     .sort((left, right) => left.depth - right.depth)
     .map(node => {
-      if (!node.ref.current) return node
+      if (!node.ref.current) {
+        return node
+      }
 
       const { offsetWidth: width, offsetHeight: height } = node.ref.current!
         .firstElementChild!.firstElementChild! as HTMLElement
@@ -69,7 +71,9 @@ export const useNodes = (
           latestNode.data.id === node.data.id
       )
 
-      if (!foundNode) return node
+      if (!foundNode) {
+        return node
+      }
 
       return Object.assign(node, {
         data: foundNode.data

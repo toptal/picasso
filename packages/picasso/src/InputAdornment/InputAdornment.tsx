@@ -54,7 +54,6 @@ const InputAdornment: FunctionComponent<Props> = props => {
 
   return (
     <MUIInputAdornment
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       classes={{
         root: cx(classes.root, {

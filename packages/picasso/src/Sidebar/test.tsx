@@ -17,7 +17,7 @@ describe('Sidebar', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('with menu ', () => {
+  it('with menu', () => {
     const { container } = render(
       <TestSidebar>
         <Sidebar.Menu />
@@ -27,7 +27,7 @@ describe('Sidebar', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('with one normal and one bottom menu ', () => {
+  it('with one normal and one bottom menu', () => {
     const { container } = render(
       <TestSidebar>
         <Sidebar.Menu />

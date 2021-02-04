@@ -13,10 +13,7 @@ const renderOverviewBlock = (
 ) => {
   return render(
     <Router>
-      <OverviewBlock
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...props}
-      />
+      <OverviewBlock {...props} />
     </Router>,
     undefined,
     picassoConfig

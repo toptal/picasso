@@ -77,7 +77,9 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
   }
 
   const handleUpClick = () => {
-    if (typeof value === 'undefined') return
+    if (typeof value === 'undefined') {
+      return
+    }
 
     let nextValue = normalizedValue + normalizedStep
 
@@ -94,7 +96,9 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
   }
 
   const handleDownClick = () => {
-    if (typeof value === 'undefined') return
+    if (typeof value === 'undefined') {
+      return
+    }
 
     let nextValue = normalizedValue - normalizedStep
 

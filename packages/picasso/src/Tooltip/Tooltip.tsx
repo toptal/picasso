@@ -208,7 +208,6 @@ export const Tooltip: FunctionComponent<Props> = props => {
 
   return (
     <MUITooltip
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       PopperProps={{
         container,

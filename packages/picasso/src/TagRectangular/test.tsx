@@ -50,7 +50,7 @@ describe('TagRectangular', () => {
   })
 
   describe('when Picasso titleCase property is true but the component property overrides it', () => {
-    it('does not transform text to title case ', () => {
+    it('does not transform text to title case', () => {
       renderTag('test pf9', { titleCase: false }, { titleCase: true })
       expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
     })

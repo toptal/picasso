@@ -53,7 +53,6 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
 
   return (
     <Component
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       htmlFor={htmlFor}

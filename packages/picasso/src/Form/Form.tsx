@@ -32,7 +32,6 @@ export const Form = forwardRef<HTMLFormElement, Props>(function Form(
 ) {
   return (
     <form
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       onSubmit={onSubmit}

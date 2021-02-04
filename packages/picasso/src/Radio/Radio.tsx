@@ -63,7 +63,6 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
   }
   const muiRadio = (
     <MUIRadio
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       checked={checked}

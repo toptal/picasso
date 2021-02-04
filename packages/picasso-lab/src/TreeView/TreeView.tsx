@@ -52,7 +52,9 @@ export const TreeView = (props: Props) => {
   const rootRef = createRef<SVGSVGElement>()
   const { nodes, links, selectedNode } = useTree({ data })
   const center = useMemo<{ x: number; y: number } | undefined>(() => {
-    if (!selectedNode) return undefined
+    if (!selectedNode) {
+      return undefined
+    }
     const { x: xPosition, y: yPosition, data } = selectedNode
 
     return {
@@ -70,7 +72,9 @@ export const TreeView = (props: Props) => {
   const { updateState } = useContext(TreeViewContext)
 
   useEffect(() => {
-    if (!rootRef.current || initialized || !zoom) return
+    if (!rootRef.current || initialized || !zoom) {
+      return
+    }
 
     updateState({
       ref: rootRef.current,

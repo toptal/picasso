@@ -44,7 +44,6 @@ const RadioGroup: FunctionComponent<Props> = props => {
 
   return (
     <MUIRadioGroup
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       classes={classes}
       className={cx({ [horizontalClass]: horizontal }, className)}

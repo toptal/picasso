@@ -42,7 +42,6 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
 
   return (
     <MUITabs
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       classes={classes}
       ref={ref}

@@ -50,10 +50,7 @@ export const YearSelect = documentable(
 
       const options = useMemo(() => generateOptions(from, to), [from, to])
 
-      return (
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        <Select {...rest} ref={ref} options={options} />
-      )
+      return <Select {...rest} ref={ref} options={options} />
     }
   )
 )
