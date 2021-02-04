@@ -4,8 +4,8 @@ import { Rating } from '@toptal/picasso-lab'
 const Example = () => {
   const [value, setValue] = useState(1)
 
-  const onChange = (_: ChangeEvent<HTMLInputElement>, newValue: number) => {
-    setValue(newValue)
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(Number(event.target.value))
   }
 
   return (

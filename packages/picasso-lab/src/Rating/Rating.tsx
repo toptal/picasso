@@ -11,9 +11,9 @@ export interface Props extends BaseProps {
   /** Value of the name attribute of the rating input */
   name: string
   /** Current rating */
-  value: number
+  value?: number
   /** Callback invoked when a rating icon is clicked */
-  onChange?: (event: ChangeEvent<HTMLInputElement>, value: number) => void
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   /** Function to customize icon rendering */
   renderItem?: (value: number, defaultIcon: ReactNode) => ReactNode
   /** Number of rating icons */
@@ -42,11 +42,13 @@ const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       if (onChange && interactive) {
-        onChange(event, Number(event.target.value))
+        onChange(event)
       }
     },
     [onChange, interactive]
   )
+
+  const resetInputId = `${name}-reset`
 
   return (
     <Container
@@ -59,13 +61,19 @@ const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
         const itemId = `${name}-${itemValue}`
 
         const defaultIcon = (
-          <RatingIcon active={itemValue <= value} interactive={interactive} />
+          <RatingIcon
+            active={!!value && itemValue <= value}
+            interactive={interactive}
+          />
         )
+
+        // When the user clicks again on the selected rating, reset the rating
+        const shouldReset = itemValue === Number(value)
 
         return (
           <label
             key={itemId}
-            htmlFor={itemId}
+            htmlFor={shouldReset ? resetInputId : itemId}
             className={cx(classes.label, {
               [classes.clickableLabel]: interactive
             })}
@@ -85,6 +93,16 @@ const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
           </label>
         )
       })}
+
+      {/* Reset input. Triggered when the user clicks on an already selected rating icon */}
+      <input
+        type='radio'
+        name={name}
+        id={resetInputId}
+        value=''
+        onChange={handleChange}
+        className={classes.radio}
+      />
     </Container>
   )
 })
