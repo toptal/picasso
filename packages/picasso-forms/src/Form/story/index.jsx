@@ -1,6 +1,12 @@
+import { doc } from 'storybook-readme'
+import { storiesOf } from '@storybook/react'
+
 import Form from '../Form'
 import formFieldStory from '../../FieldWrapper/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
+import README from '../../../README.md'
+
+storiesOf('Picasso Forms').add('README', doc(README))
 
 const page = PicassoBook.section('Picasso Forms').createPage('Form', 'Form')
 
@@ -156,14 +162,14 @@ however, you may need custom validators for more complex types of fields.
     {
       title: 'Change form input value',
       description: `
-When you use picasso-forms your form input components are no longer
-completely controlled and they are controlled by final-form, which
-gives you the opportunity to rely on it with displaying errors,
-validations, etc.
-
-However, sometimes you may need to be able to modify the form input
-value.
-`
+      When you use picasso-forms your form input components are no longer
+      completely controlled and they are controlled by final-form, which
+      gives you the opportunity to rely on it with displaying errors,
+      validations, etc.
+      
+      However, sometimes you may need to be able to modify the form input
+      value.
+      `
     },
     'picasso-form'
   ) // picasso-skip-visuals
@@ -172,10 +178,10 @@ value.
     {
       title: 'Backend communication',
       description: `
-The form usually need to send data to backend, so we need to have
-backend communication and display the process of submission and
-the results. The form-level results are represented by notifications.
-`
+        The form usually need to send data to backend, so we need to have
+        backend communication and display the process of submission and
+        the results. The form-level results are represented by notifications.
+        `
     },
     'picasso-form'
   ) // picasso-skip-visuals
@@ -189,8 +195,8 @@ the results. The form-level results are represented by notifications.
     {
       title: 'Validate only on submit',
       description: `
-All fields should not show any validation error messages until submission is made.
-`
+            All fields should not show any validation error messages until submission is made.
+            `
     },
     'picasso-form'
   ) // picasso-skip-visuals
@@ -199,8 +205,8 @@ All fields should not show any validation error messages until submission is mad
     {
       title: 'Form Spy',
       description: `
-      Sometimes you might want to perform a conditional action based on the value of another field in the form or its overall state.
-      For smaller forms you can just directly work with values, but with a larger form you can avoid prop drilling with FormSpy.`
+              Sometimes you might want to perform a conditional action based on the value of another field in the form or its overall state.
+              For smaller forms you can just directly work with values, but with a larger form you can avoid prop drilling with FormSpy.`
     },
     'picasso-form'
   ) // picasso-skip-visuals
