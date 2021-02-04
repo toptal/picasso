@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.0...@toptal/picasso-lab@3.5.1) (2021-02-04)
+
+
+### Bug Fixes
+
+* **OverviewBlock:** fix background color ([#1894](https://github.com/toptal/picasso/issues/1894)) ([c375d5b](https://github.com/toptal/picasso/commit/c375d5bf0df2548940ce6a26fa5c9ce040413698))
+
+
+
+
+
 # [3.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.4.1...@toptal/picasso-lab@3.5.0) (2021-02-04)
 
 
