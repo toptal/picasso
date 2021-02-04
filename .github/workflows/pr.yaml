@@ -1,13 +1,12 @@
-name: Picasso - PR merge CI
+name: Consulting the Oracle
 
 on:
   pull_request:
-    types: [ready_for_review]
     branches: [master]
 
 jobs:
-  specs:
-    if: contains(github.event.pull_request.labels.*.name , 'WIP') != true
+  tests:
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
@@ -58,9 +57,6 @@ jobs:
       - name: Danger
         run: yarn davinci ci danger --conventionalCommits
 
-      - name: Type check
-        run: yarn tsc --noEmit
-
       - name: Lint
         run: yarn lint
 
@@ -72,3 +68,6 @@ jobs:
 
       - name: Cypress Tests
         run: yarn cypress
+
+      - name: Type check
+        run: yarn tsc --noEmit
