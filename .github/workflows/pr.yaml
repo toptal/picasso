@@ -58,7 +58,7 @@ jobs:
       - name: Danger
         run: yarn davinci ci danger --conventionalCommits
 
-      - name: Typecheck
+      - name: Type check
         run: yarn tsc --noEmit
 
       - name: Lint
@@ -67,8 +67,8 @@ jobs:
       - name: Jest Tests
         run: yarn test-ci
 
-      - name: Check build
+      - name: Build packages
         run: yarn build:package
 
-      - name: Package build and Cypress Tests
+      - name: Cypress Tests
         run: yarn cypress
