@@ -25,7 +25,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
 }
 
-export const renderAlertIcon = (variant: Props['variant']) => {
+export const renderAlertIcon = (variant?: VariantType) => {
   switch (variant) {
     case 'red':
       return <Exclamation16 color='red' />
