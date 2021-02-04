@@ -12,7 +12,7 @@ PicassoProvider.override(() => ({
 export default ({ typography, palette }: Theme) =>
   createStyles({
     root: {
-      '&:focus, &:visited': {
+      '&:active, &:visited': {
         outline: `1px dotted ${palette.blue.main}`
       }
     },
