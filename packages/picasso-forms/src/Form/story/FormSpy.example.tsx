@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
-import { FormSpy } from 'react-final-form'
+import { Form, FormSpy } from '@toptal/picasso-forms'
 
 const Example = () => (
   <Form onSubmit={values => console.log(values)}>
