@@ -11,6 +11,11 @@ PicassoProvider.override(() => ({
 
 export default ({ typography, palette }: Theme) =>
   createStyles({
+    root: {
+      '&:focus, &:visited': {
+        outline: `1px dotted ${palette.blue.main}`
+      }
+    },
     action: {
       fontWeight: typography.fontWeights.semibold
     },
