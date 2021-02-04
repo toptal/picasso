@@ -68,6 +68,8 @@ In order to run `yarn` commands we need to mount current `components` directory 
 | **yarn test-ci**            | Run unit tests at ci                                                      |
 | **yarn test:visual**        | Run visual regression tests in Docker                                     |
 | **yarn test:visual -u**     | Update visual regression snapshots in docker                              |
+| **yarn cypress:open**       | Run cypress in development mode (need to run `yarn start` and `yarn build:package` before) |
+| **yarn cypress**            | Run cypress tests (need to run `yarn start` and `yarn build:package` before) |
 | **yarn start**              | Start storybook instance and inspect components                           |
 | **yarn release:pre**        | Bump pre-release version in `package.json` and create new version git tag |
 | **yarn generate:component** | Generate a new component template                                         |

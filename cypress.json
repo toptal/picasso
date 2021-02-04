@@ -1,5 +1,7 @@
 {
   "baseUrl": "http://localhost:9001",
   "video": false,
-  "testFiles": "**/*.spec.ts"
+  "testFiles": ["**/*.spec.jsx", "**/*.spec.ts", "**/*.spec.tsx"],
+  "experimentalComponentTesting": true,
+  "componentFolder": "cypress/component"
 }

@@ -1,21 +1,50 @@
-/// <reference types="cypress" />
-// ***********************************************************
-// This example plugins/index.js can be used to load plugins
-//
-// You can change the location of this file or turn off loading
-// the plugins file with the 'pluginsFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/plugins-guide
-// ***********************************************************
-
-// This function is called when a project is opened or re-opened (e.g. due to
-// the project's config changing)
-
-// TODO: likely it's not needed after
-// https:// github.com/cypress-io/cypress/issues/2983
+const path = require('path')
 const webpackPreprocessor = require('@cypress/webpack-preprocessor')
 
-module.exports = on => {
-  on('file:preprocessor', webpackPreprocessor())
+module.exports = (on, config) => {
+  const opts = {
+    ...webpackPreprocessor.defaultOptions
+  }
+
+  const rule = opts.webpackOptions.module.rules[0]
+
+  // add .tsx files to the rule
+  rule.test = /\.jsx|\.tsx?$/
+
+  const babelLoader = opts.webpackOptions.module.rules[0].use[0]
+
+  // add typescript preset to compile TS files
+  babelLoader.options.presets.push(require.resolve('@babel/preset-typescript'))
+  // add React preset to be able to transpile JSX
+  babelLoader.options.presets.push(require.resolve('@babel/preset-react'))
+
+  opts.webpackOptions.resolve = {
+    alias: {
+      '@toptal/picasso': path.resolve(
+        __dirname,
+        '../../packages/picasso/dist-package'
+      ),
+      '@toptal/picasso-shared': path.resolve(
+        __dirname,
+        '../../packages/shared/dist-package'
+      ),
+      '@toptal/picasso-forms': path.resolve(
+        __dirname,
+        '../../packages/picasso-forms/dist-package'
+      ),
+      '@toptal/picasso-lab': path.resolve(
+        __dirname,
+        '../../packages/picasso-lab/dist-package'
+      )
+    }
+  }
+
+  opts.webpackOptions.module.rules.push({
+    test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+    loader: require.resolve('url-loader')
+  })
+
+  on('file:preprocessor', webpackPreprocessor(opts))
+
+  return config
 }
