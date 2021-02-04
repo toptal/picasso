@@ -2,10 +2,7 @@
 // @ts-ignore
 const getBar = name => cy.get(`path[name="${name}"]`).first()
 // @ts-ignore
-const hoverOverBar = name =>
-  getBar(name)
-    .first()
-    .trigger('mouseover')
+const hoverOverBar = name => getBar(name).trigger('mousemove')
 // @ts-ignore
 const assertTooltipContent = text => {
   cy.get('.recharts-default-tooltip')
