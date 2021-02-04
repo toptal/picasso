@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@1.0.4...@toptal/picasso-forms@1.1.0) (2021-02-04)
+
+
+### Features
+
+* create form rating component ([#1888](https://github.com/toptal/picasso/issues/1888)) ([19c8319](https://github.com/toptal/picasso/commit/19c831919f905832605d61a026cc18c5f707b9e6))
+
+
+
+
+
 ## [1.0.4](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@1.0.3...@toptal/picasso-forms@1.0.4) (2021-02-03)
 
 **Note:** Version bump only for package @toptal/picasso-forms

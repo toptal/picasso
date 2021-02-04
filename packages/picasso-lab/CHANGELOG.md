@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.4.1...@toptal/picasso-lab@3.5.0) (2021-02-04)
+
+
+### Features
+
+* create form rating component ([#1888](https://github.com/toptal/picasso/issues/1888)) ([19c8319](https://github.com/toptal/picasso/commit/19c831919f905832605d61a026cc18c5f707b9e6))
+
+
+
+
+
 ## [3.4.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.4.0...@toptal/picasso-lab@3.4.1) (2021-02-03)
 
 **Note:** Version bump only for package @toptal/picasso-lab
