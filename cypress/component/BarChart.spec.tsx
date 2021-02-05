@@ -84,22 +84,19 @@ const TestBarChart = ({ ...rest }) => (
   </TestingPicasso>
 )
 
-// TODO: Make types for function parameters to work
-
-// @ts-ignore
-const getBar = name => {
+const getBar = (name: string) => {
   return cy.get(`path[name="${name}"]`).first()
 }
-// @ts-ignore
-const hoverOverBar = name => getBar(name).trigger('mousemove')
-// @ts-ignore
-const assertTooltipContent = text => {
+
+const hoverOverBar = (name: string) => getBar(name).trigger('mousemove')
+
+const assertTooltipContent = (text: string) => {
   cy.get('.recharts-default-tooltip')
     .should('be.visible')
     .and('contain', text)
 }
-// @ts-ignore
-const assertCustomTooltipContent = text => {
+
+const assertCustomTooltipContent = (text: string) => {
   cy.get('[data-testid="tooltip"]')
     .should('be.visible')
     .and('contain', text)
