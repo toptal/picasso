@@ -15,7 +15,6 @@ export const Quote = forwardRef<HTMLDivElement, Props>(function Quote(
   const { children, className, style, ...rest } = props
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <Container ref={ref} className={className} style={style} flex {...rest}>
       <Container right='small'>
         <QuoteMark />

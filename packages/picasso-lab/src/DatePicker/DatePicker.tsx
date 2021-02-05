@@ -190,7 +190,9 @@ export const DatePicker = (props: Props) => {
     >
   ) => {
     // TODO: change this if manual entering of range is needed
-    if (range) return
+    if (range) {
+      return
+    }
 
     const nextValue = e.target.value
 
@@ -290,7 +292,6 @@ export const DatePicker = (props: Props) => {
     <>
       <Container inline={width !== 'full'} ref={inputWrapperRef}>
         <Input
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...inputProps}
           ref={inputRef}
           onKeyDown={handleInputKeydown}

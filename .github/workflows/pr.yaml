@@ -1,13 +1,14 @@
-name: Picasso - PR merge CI
+name: Consulting the Oracle
 
 on:
   pull_request:
     branches: [master]
 
 jobs:
-  specs:
-    if: contains(github.event.pull_request.labels.*.name , 'WIP') != true
+  tests:
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    timeout-minutes: 45
 
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -18,6 +19,11 @@ jobs:
       options: --privileged # thanks to this we can increase number of file watchers below
 
     steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: ${{ github.token }}
+
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -56,3 +62,12 @@ jobs:
 
       - name: Jest Tests
         run: yarn test-ci
+
+      - name: Build packages
+        run: yarn build:package
+
+      - name: Cypress Tests
+        run: yarn cypress
+
+      - name: Type check
+        run: yarn tsc --noEmit

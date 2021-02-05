@@ -345,7 +345,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
 </body>
 `;
 
-exports[`PromptModal showPrompt with input returns result on Submit action  1`] = `
+exports[`PromptModal showPrompt with input returns result on Submit action 1`] = `
 <body
   style="overflow: hidden;"
 >

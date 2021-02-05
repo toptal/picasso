@@ -47,7 +47,7 @@ else
   fi
 fi
 
-DOCKER_CMD="docker run -t -i --rm --name $REPO_NAME \
+DOCKER_CMD="docker run -it --rm --name $REPO_NAME \
  -v ${PWD}/packages:/app/packages \
  -v ${PWD}/puppeteer:/app/puppeteer \
  -v ${PWD}/.storybook:/app/.storybook \

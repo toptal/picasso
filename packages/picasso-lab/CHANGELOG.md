@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.0...@toptal/picasso-lab@3.5.1) (2021-02-04)
+
+
+### Bug Fixes
+
+* **OverviewBlock:** fix background color ([#1894](https://github.com/toptal/picasso/issues/1894)) ([c375d5b](https://github.com/toptal/picasso/commit/c375d5bf0df2548940ce6a26fa5c9ce040413698))
+
+
+
+
+
+# [3.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.4.1...@toptal/picasso-lab@3.5.0) (2021-02-04)
+
+
+### Features
+
+* create form rating component ([#1888](https://github.com/toptal/picasso/issues/1888)) ([19c8319](https://github.com/toptal/picasso/commit/19c831919f905832605d61a026cc18c5f707b9e6))
+
+
+
+
+
+## [3.4.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.4.0...@toptal/picasso-lab@3.4.1) (2021-02-03)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+# [3.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.3.2...@toptal/picasso-lab@3.4.0) (2021-02-03)
+
+
+### Features
+
+* **Rating:** create component ([#1870](https://github.com/toptal/picasso/issues/1870)) ([7e7e475](https://github.com/toptal/picasso/commit/7e7e4754a1e09bc35e2b10469ac4cd6c95f79c2f))
+
+
+
+
+
+## [3.3.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.3.1...@toptal/picasso-lab@3.3.2) (2021-02-03)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
 ## [3.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.3.0...@toptal/picasso-lab@3.3.1) (2021-01-28)
 
 

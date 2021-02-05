@@ -32,10 +32,7 @@ const OverviewBlockGroup: FunctionComponent<Props> = props => {
   const { children, align = 'default', blockWidth = 'regular', ...rest } = props
 
   return (
-    <section
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-    >
+    <section {...rest}>
       <OverviewBlockGroupContext.Provider value={{ align, blockWidth }}>
         {shouldInjectRow(children) ? (
           <OverviewBlockRow>{children}</OverviewBlockRow>

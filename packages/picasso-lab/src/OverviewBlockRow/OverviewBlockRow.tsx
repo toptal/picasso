@@ -14,13 +14,7 @@ const OverviewBlockRow: FunctionComponent<Props> = props => {
   const { className, ...rest } = props
   const classes = useStyles()
 
-  return (
-    <div
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      className={cx(classes.root, className)}
-    />
-  )
+  return <div {...rest} className={cx(classes.root, className)} />
 }
 
 OverviewBlockRow.displayName = 'OverviewBlockRow'

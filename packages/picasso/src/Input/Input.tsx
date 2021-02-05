@@ -198,7 +198,9 @@ const StartAdornment = ({
   iconPosition,
   disabled
 }: StartAdornmentProps) => {
-  if (!icon || iconPosition !== 'start') return null
+  if (!icon || iconPosition !== 'start') {
+    return null
+  }
 
   return <IconAdornment disabled={disabled} position='start' icon={icon} />
 }

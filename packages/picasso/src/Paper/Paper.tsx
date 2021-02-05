@@ -22,7 +22,6 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
 
   return (
     <MUIPaper
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       classes={classes}

@@ -21,6 +21,7 @@ import TimePicker from '../TimePicker'
 import TagSelector from '../TagSelector'
 import SubmitButton from '../SubmitButton'
 import Switch from '../Switch'
+import Rating from '../Rating'
 import { FormConfigContext } from '../FormConfig'
 import { createScrollToErrorDecorator } from '../utils'
 import {
@@ -147,7 +148,6 @@ export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
         )}
         onSubmit={handleSubmit}
         decorators={[...decorators, scrollToErrorDecorator]}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       />
     </FormContext.Provider>
@@ -173,5 +173,6 @@ Form.TagSelector = TagSelector
 Form.SubmitButton = SubmitButton
 Form.ConfigProvider = FormConfigContext.Provider
 Form.Switch = Switch
+Form.Rating = Rating
 
 export default Form

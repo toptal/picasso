@@ -22,7 +22,6 @@ export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
 
     return (
       <span
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         className={cx(classes.root, className, classes[size!])}

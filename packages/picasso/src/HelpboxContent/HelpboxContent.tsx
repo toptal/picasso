@@ -29,7 +29,6 @@ export const HelpboxContent = forwardRef<HTMLElement, Props>(
 
     return (
       <Typography
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         className={cx({ [classes.shrinkWidth]: width === 'shrink' }, className)}

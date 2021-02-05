@@ -9,7 +9,6 @@ export interface Props extends HelmetProps {
 export const PageHead = (props: Props) => {
   const { children, ...rest } = props
 
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return <Helmet {...rest}>{children}</Helmet>
 }
 

@@ -64,7 +64,6 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
 
   return (
     <MUIGrid
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       container

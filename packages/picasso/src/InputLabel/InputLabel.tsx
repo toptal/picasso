@@ -25,7 +25,6 @@ const InputLabel: FunctionComponent<Props> = props => {
 
   return (
     <MUIInputLabel
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       variant={variant}
       htmlFor={htmlFor}

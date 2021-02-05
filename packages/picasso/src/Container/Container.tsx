@@ -99,7 +99,6 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
 
   return (
     <Component
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       className={cx(

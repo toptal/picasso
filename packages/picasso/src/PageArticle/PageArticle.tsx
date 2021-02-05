@@ -24,7 +24,6 @@ export const PageArticle: OverridableComponent<Props> = forwardRef<
 
   return (
     <Container
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       className={cx(classes.root, className)}

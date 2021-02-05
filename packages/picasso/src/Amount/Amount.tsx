@@ -25,7 +25,6 @@ export const Amount = ({
   ...typographyProps
 }: Props) => {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <Typography inline={inline} as={as} {...typographyProps}>
       {formatAmount({ amount, currency, locale })}
     </Typography>

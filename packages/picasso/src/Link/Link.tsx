@@ -80,7 +80,6 @@ export const Link: OverridableComponent<Props> = forwardRef<
 
   return (
     <MUILink
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...nativeHTMLAttributes}
       ref={ref}
       href={href}

@@ -25,7 +25,6 @@ export const TableFooter = forwardRef<HTMLTableSectionElement, Props>(
     return (
       <TableSectionContext.Provider value={TableSection.FOOTER}>
         <MUITableFooter
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={ref}
           classes={classes}

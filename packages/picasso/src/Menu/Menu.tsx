@@ -66,7 +66,6 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
 
   const menu = (
     <MUIMenuList
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       className={className}

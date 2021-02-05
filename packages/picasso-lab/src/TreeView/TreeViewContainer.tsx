@@ -29,7 +29,9 @@ export const TreeViewContainer: FC = ({ children }) => {
   }
 
   const zoomHandler = (step: number) => {
-    if (!state.ref || !state.zoom) return
+    if (!state.ref || !state.zoom) {
+      return
+    }
 
     d3.select(state.ref)
       .transition()

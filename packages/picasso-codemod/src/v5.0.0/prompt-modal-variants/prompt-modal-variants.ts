@@ -1,8 +1,12 @@
 import { Transform, JSXAttribute, JSXText } from 'jscodeshift'
 
 const getNewVariant = (oldVariant?: string) => {
-  if (oldVariant === 'blue' || oldVariant === 'green') return 'positive'
-  if (oldVariant === 'red') return 'negative'
+  if (oldVariant === 'blue' || oldVariant === 'green') {
+    return 'positive'
+  }
+  if (oldVariant === 'red') {
+    return 'negative'
+  }
 
   return undefined
 }

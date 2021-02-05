@@ -76,7 +76,6 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
   const muiCheckbox = (
     <Container as='span' flex inline className={classes.checkboxWrapper}>
       <MUICheckbox
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...checkboxAttributes}
         ref={ref}
         checked={checked}
