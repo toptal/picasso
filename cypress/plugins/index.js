@@ -35,6 +35,10 @@ module.exports = (on, config) => {
       '@toptal/picasso-lab': path.resolve(
         __dirname,
         '../../packages/picasso-lab/dist-package'
+      ),
+      '@toptal/picasso-charts': path.resolve(
+        __dirname,
+        '../../packages/picasso-charts/dist-package'
       )
     }
   }
