@@ -65,19 +65,21 @@ const SelectNativeExample = () => {
   }
 
   return (
-    <Container flex>
-      <Form.Field>
-        <Form.Label>Native select</Form.Label>
-        <Select
-          onChange={handleChange}
-          options={OPTIONS}
-          value={value}
-          placeholder='Choose an option...'
-          width='auto'
-          native
-        />
-      </Form.Field>
-    </Container>
+    <TestingPicasso>
+      <Container flex>
+        <Form.Field>
+          <Form.Label>Native select</Form.Label>
+          <Select
+            onChange={handleChange}
+            options={OPTIONS}
+            value={value}
+            placeholder='Choose an option...'
+            width='auto'
+            native
+          />
+        </Form.Field>
+      </Container>
+    </TestingPicasso>
   )
 }
 const OPTIONS = [
@@ -98,7 +100,7 @@ const setThresholdToHideSelectSearch = () => {
     .type('6')
 }
 
-const getNativeSelect = () => cy.get('select').eq(1)
+const getNativeSelect = () => cy.get('select')
 
 describe('Select', () => {
   it('focuses Select with and without a search', () => {
