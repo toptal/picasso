@@ -9,6 +9,7 @@
   "scripts": {
     "test": "cross-env TZ=UTC jest",
     "test:watch": "cross-env TZ=UTC jest --watch",
+    "typecheck": "tsc --noEmit & tsc -p ./cypress/tsconfig.json",
     "cypress": "cross-env NODE_ENV=test cypress run",
     "cypress:open": "cross-env NODE_ENV=test cypress open",
     "test-ci": "cross-env TZ=UTC jest --maxWorkers=4 --ci",

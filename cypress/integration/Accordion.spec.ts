@@ -22,7 +22,7 @@ describe('Accordion with custom summary', () => {
     // TODO: Add visual regression test
 
     cy.on('window:alert', text => {
-      expect(text).toEqual('Onboarding started')
+      expect(text).to.equal('Onboarding started')
     })
   })
 })

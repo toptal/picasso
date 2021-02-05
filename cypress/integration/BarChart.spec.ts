@@ -1,19 +1,18 @@
 // TODO: Make types for function parameters to work
-// @ts-ignore
-const getBar = name => cy.get(`path[name="${name}"]`).first()
-// @ts-ignore
-const hoverOverBar = name =>
+const getBar = (name: string) => cy.get(`path[name="${name}"]`).first()
+
+const hoverOverBar = (name: string) =>
   getBar(name)
     .first()
     .trigger('mouseover')
-// @ts-ignore
-const assertTooltipContent = text => {
+
+const assertTooltipContent = (text: string) => {
   cy.get('.recharts-default-tooltip')
     .should('be.visible')
     .and('contain', text)
 }
-// @ts-ignore
-const assertCustomTooltipContent = text => {
+
+const assertCustomTooltipContent = (text: string) => {
   cy.get('[data-testid="tooltip"]')
     .should('be.visible')
     .and('contain', text)
