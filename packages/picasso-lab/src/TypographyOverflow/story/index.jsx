@@ -1,7 +1,7 @@
 import { TypographyOverflow } from '../TypographyOverflow'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Lab').createPage(
+const page = PicassoBook.section('Picasso Lab').createPage(
   'TypographyOverflow',
   'Show tooltip when typography overflows'
 )
