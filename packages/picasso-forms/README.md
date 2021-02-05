@@ -18,9 +18,9 @@ The following peer dependencies are required:
 
 ## Limitations
 
-Not all final-form feature are exposed through this package. If you find a missing one, please [open a Pull Request](../../CONTRIBUTING.md) and add it!
+Not all final-form features are exposed through this package. If you find a missing one, please [open a Pull Request](../../CONTRIBUTING.md) and add it!
 
-For more info on what's available check [the index](./src/index.ts).
+For more info on what's available, check [the index](./src/index.ts).
 
 ## Documentation
 
