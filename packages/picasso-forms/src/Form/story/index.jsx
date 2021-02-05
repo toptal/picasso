@@ -1,12 +1,6 @@
-import { doc } from 'storybook-readme'
-import { storiesOf } from '@storybook/react'
-
 import Form from '../Form'
 import formFieldStory from '../../FieldWrapper/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
-import README from '../../../README.md'
-
-storiesOf('Picasso Forms').add('README', doc(README))
 
 const page = PicassoBook.section('Picasso Forms').createPage('Form', 'Form')
 
@@ -187,8 +181,7 @@ however, you may need custom validators for more complex types of fields.
   ) // picasso-skip-visuals
   .addExample(
     'Form/story/CustomFormLevelConfiguration.example.tsx',
-    'Form Level Configurations',
-    'picasso-form'
+    'Form Level Configurations'
   )
   .addExample(
     'Form/story/ValidateOnSubmit.example.tsx',
@@ -197,16 +190,6 @@ however, you may need custom validators for more complex types of fields.
       description: `
             All fields should not show any validation error messages until submission is made.
             `
-    },
-    'picasso-form'
-  ) // picasso-skip-visuals
-  .addExample(
-    'Form/story/FormSpy.example.tsx',
-    {
-      title: 'Form Spy',
-      description: `
-              Sometimes you might want to perform a conditional action based on the value of another field in the form or its overall state.
-              For smaller forms you can just directly work with values, but with a larger form you can avoid prop drilling with FormSpy.`
     },
     'picasso-form'
   ) // picasso-skip-visuals

@@ -1,7 +1,7 @@
 import { Drawer } from '../Drawer'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Lab').createPage(
+const page = PicassoBook.section('Picasso Lab').createPage(
   'Drawer',
   'Allows rendering a sidebar with custom content'
 )

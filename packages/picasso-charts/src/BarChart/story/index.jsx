@@ -1,7 +1,7 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 import BarChart from '../BarChart'
 
-const page = PicassoBook.section('Charts').createPage(
+const page = PicassoBook.section('Picasso Charts').createPage(
   'BarChart',
   'Responsive bar charts'
 )

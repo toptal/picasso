@@ -4,7 +4,7 @@
 
 This repository contains a collection of codemod scripts based for use with [JSCodeshift](https://github.com/facebook/jscodeshift) that help update Picasso APIs.
 
-## Setup & Run
+## Setup & Usage
 
 - `yarn add -D @toptal/picasso-codemod`
 - `npx jscodeshift -t <codemod-script> --parser=tsx <path>`

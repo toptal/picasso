@@ -1,7 +1,7 @@
 import { PageHead } from '../PageHead'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Lab').createPage('PageHead', null)
+const page = PicassoBook.section('Picasso Lab').createPage('PageHead', null)
 
 page
   .createTabChapter('Props')

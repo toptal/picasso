@@ -1,4 +1,4 @@
-# @toptal/picasso-forms
+# @toptal/picasso-charts
 
 This package combines easy-to-use API of [Recharts](http://recharts.org/en-US/) with the amazing UX of Picasso.
 
@@ -16,4 +16,5 @@ The following peer dependencies are required:
 ## Documentation
 
 Documentation and demos are available at [picasso.toptal.net](https://picasso.toptal.net/).
-****
+
+---
