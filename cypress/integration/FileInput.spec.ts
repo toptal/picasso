@@ -15,7 +15,6 @@ describe('FileInput', () => {
     cy.get('button')
       .first()
       .click()
-      // @ts-ignore
       .should(() => expect(openFileDialog).to.be.called)
   })
 })

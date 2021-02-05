@@ -1,4 +1,5 @@
 module.exports = {
+  roots: ['<rootDir>/packages'],
   transform: {
     '^.+\\.(ts|tsx)$': 'babel-jest'
   },

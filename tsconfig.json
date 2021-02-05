@@ -31,11 +31,9 @@
     "types": [
       "node",
       "jest",
-      "@testing-library/jest-dom",
-      "cypress",
-      "cypress-plugin-tab/src"
+      "@testing-library/jest-dom"
     ]
   },
-  "include": ["packages/*/src", "cypress/integration/*", "cypress/component/*"],
+  "include": ["packages/*/src"],
   "exclude": ["packages/*/dist-package", "**/__testfixtures__"]
 }
