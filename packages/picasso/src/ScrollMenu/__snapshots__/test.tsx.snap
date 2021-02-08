@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScrollMenu renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ul
+      class="MuiList-root Menu-root PicassoScrollMenu-menu"
+      role="menu"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoScrollMenu-scrollView"
+        tabindex="0"
+      >
+        <div>
+          first
+        </div>
+        <div>
+          second
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>
+`;
