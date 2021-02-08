@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.9.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.8.1...@toptal/picasso@5.9.0) (2021-02-08)
+
+
+### Features
+
+* **Link:** add active and visited outline ([#1893](https://github.com/toptal/picasso/issues/1893)) ([906762a](https://github.com/toptal/picasso/commit/906762a51466165b7e028707d8fa5c4b6a013c57))
+
+
+
+
+
 ## [5.8.1](https://github.com/toptal/picasso/compare/@toptal/picasso@5.8.0...@toptal/picasso@5.8.1) (2021-02-03)
 
 **Note:** Version bump only for package @toptal/picasso
