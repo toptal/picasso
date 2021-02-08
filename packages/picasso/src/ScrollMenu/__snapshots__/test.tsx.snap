@@ -14,12 +14,66 @@ exports[`ScrollMenu renders 1`] = `
         class="PicassoScrollMenu-scrollView"
         tabindex="0"
       >
-        <div>
-          first
-        </div>
-        <div>
-          second
-        </div>
+        <li
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <div
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          >
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            >
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                top
+              </span>
+            </div>
+          </div>
+        </li>
+        <li
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <div
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          >
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            >
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                middle
+              </span>
+            </div>
+          </div>
+        </li>
+        <li
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <div
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          >
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            >
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                bottom
+              </span>
+            </div>
+          </div>
+        </li>
       </div>
     </ul>
   </div>
