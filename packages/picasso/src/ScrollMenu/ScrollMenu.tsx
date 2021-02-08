@@ -12,7 +12,7 @@ import styles from './styles'
 
 export interface Props extends BaseProps {
   selectedIndex?: number | null
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: React.FocusEventHandler<HTMLInputElement>
   fixedHeader?: ReactNode
 }
 
