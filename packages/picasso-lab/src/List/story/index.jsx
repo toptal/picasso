@@ -2,7 +2,7 @@ import { List } from '../List'
 import listItemStory from '../../ListItem/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Lab').createPage('List', null)
+const page = PicassoBook.section('Picasso Lab').createPage('List', null)
 
 page
   .createTabChapter('Props')

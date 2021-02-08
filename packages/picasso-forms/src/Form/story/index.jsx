@@ -156,14 +156,14 @@ however, you may need custom validators for more complex types of fields.
     {
       title: 'Change form input value',
       description: `
-When you use picasso-forms your form input components are no longer
-completely controlled and they are controlled by final-form, which
-gives you the opportunity to rely on it with displaying errors,
-validations, etc.
-
-However, sometimes you may need to be able to modify the form input
-value.
-`
+      When you use picasso-forms your form input components are no longer
+      completely controlled and they are controlled by final-form, which
+      gives you the opportunity to rely on it with displaying errors,
+      validations, etc.
+      
+      However, sometimes you may need to be able to modify the form input
+      value.
+      `
     },
     'picasso-form'
   ) // picasso-skip-visuals
@@ -172,25 +172,24 @@ value.
     {
       title: 'Backend communication',
       description: `
-The form usually need to send data to backend, so we need to have
-backend communication and display the process of submission and
-the results. The form-level results are represented by notifications.
-`
+        The form usually need to send data to backend, so we need to have
+        backend communication and display the process of submission and
+        the results. The form-level results are represented by notifications.
+        `
     },
     'picasso-form'
   ) // picasso-skip-visuals
   .addExample(
     'Form/story/CustomFormLevelConfiguration.example.tsx',
-    'Form Level Configurations',
-    'picasso-form'
+    'Form Level Configurations'
   )
   .addExample(
     'Form/story/ValidateOnSubmit.example.tsx',
     {
       title: 'Validate only on submit',
       description: `
-All fields should not show any validation error messages until submission is made.
-`
+            All fields should not show any validation error messages until submission is made.
+            `
     },
     'picasso-form'
   ) // picasso-skip-visuals

@@ -1,7 +1,7 @@
 import { Quote } from '../Quote'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Lab').createPage(
+const page = PicassoBook.section('Picasso Lab').createPage(
   'Quote',
   'Use quotes to highlight quoted content'
 )

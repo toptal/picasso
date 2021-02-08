@@ -1,7 +1,7 @@
 import TreeView from '../TreeView'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Lab').createPage(
+const page = PicassoBook.section('Picasso Lab').createPage(
   'TreeView',
   'Allows rendering a tree view'
 )

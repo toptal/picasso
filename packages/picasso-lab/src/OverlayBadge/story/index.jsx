@@ -1,7 +1,7 @@
 import { OverlayBadge } from '../OverlayBadge'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Lab').createPage(
+const page = PicassoBook.section('Picasso Lab').createPage(
   'OverlayBadge',
   'Renders a small badge to the top-right corner of its child component.'
 )

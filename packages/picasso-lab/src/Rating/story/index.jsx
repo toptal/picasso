@@ -1,7 +1,7 @@
 import Rating from '../Rating'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Lab').createPage('Rating', null)
+const page = PicassoBook.section('Picasso Lab').createPage('Rating', null)
 
 page
   .createTabChapter('Props')

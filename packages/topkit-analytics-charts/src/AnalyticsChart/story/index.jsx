@@ -2,7 +2,7 @@ import AnalyticsChart from '../AnalyticsChart'
 import { sharedLineChartDocs } from '../../../../picasso-charts/src/LineChart/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Charts').createPage(
+const page = PicassoBook.section('Picasso Charts').createPage(
   'AnalyticsChart',
   'Use LineChart with analytics data'
 )

@@ -22,9 +22,9 @@ PicassoBook.addSections([
   'Utils',
   'Forms',
   'Picasso Forms',
-  'Charts',
-  'Widgets',
-  'Lab'
+  'Picasso Charts',
+  'Picasso Lab',
+  'Widgets'
 ])
 
 require('./stories/Picasso') // markdown pages for README & CHANGELOG

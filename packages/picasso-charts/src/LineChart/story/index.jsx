@@ -2,7 +2,7 @@ import LineChart from '../LineChart'
 import { sharedChartDocs } from '../../BarChart/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Charts').createPage(
+const page = PicassoBook.section('Picasso Charts').createPage(
   'LineChart',
   'Responsive line charts'
 )
