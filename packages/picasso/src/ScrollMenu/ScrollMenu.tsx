@@ -1,6 +1,7 @@
 import React, {
   FunctionComponent,
   ReactNode,
+  RefObject,
   useLayoutEffect,
   useRef
 } from 'react'
@@ -12,7 +13,7 @@ import styles from './styles'
 
 export interface Props extends BaseProps {
   selectedIndex?: number | null
-  onBlur?: React.FocusEventHandler<HTMLInputElement>
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
   fixedHeader?: ReactNode
 }
 
@@ -20,27 +21,34 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoScrollMenu'
 })
 
+export const scrollToSelection = (
+  menuRef: RefObject<HTMLDivElement>,
+  selectedIndex?: number | null
+) => {
+  if (!menuRef.current || selectedIndex == null) {
+    return
+  }
+
+  const menuNode = menuRef.current
+  const selectedNode = menuRef.current.children[selectedIndex]
+  const menuRect = menuNode.getBoundingClientRect()
+  const selectedRect = selectedNode.getBoundingClientRect()
+
+  if (selectedRect.top < menuRect.top) {
+    menuNode.scrollTop -= menuRect.top - selectedRect.top
+  } else if (selectedRect.bottom > menuRect.bottom) {
+    menuNode.scrollTop += selectedRect.bottom - menuRect.bottom
+  }
+}
+
 const ScrollMenu: FunctionComponent<Props> = props => {
   const { selectedIndex, onBlur, children, style, fixedHeader, ...rest } = props
   const classes = useStyles()
   const menuRef = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
-    if (!menuRef.current || selectedIndex == null) {
-      return
-    }
-
-    const menuNode = menuRef.current
-    const selectedNode = menuRef.current.children[selectedIndex]
-    const menuRect = menuNode.getBoundingClientRect()
-    const selectedRect = selectedNode.getBoundingClientRect()
-
-    if (selectedRect.top < menuRect.top) {
-      menuNode.scrollTop -= menuRect.top - selectedRect.top
-    } else if (selectedRect.bottom > menuRect.bottom) {
-      menuNode.scrollTop += selectedRect.bottom - menuRect.bottom
-    }
-  }, [selectedIndex])
+  useLayoutEffect(() => scrollToSelection(menuRef, selectedIndex), [
+    selectedIndex
+  ])
 
   return (
     <Menu
