@@ -3,11 +3,11 @@ import { useCallback } from 'react'
 
 import { Option, ValueType, UseSelectProps } from '../../../types'
 import {
-  isOptionInSelectedValues,
   EMPTY_INPUT_VALUE,
   toggleMultipleSelectValue,
   focusRef,
-  fireOnChangeEvent
+  fireOnChangeEvent,
+  getSelectedOptions
 } from '../../../utils'
 
 const useSelectHandler = <T extends ValueType, M extends boolean = false>({
@@ -30,13 +30,7 @@ const useSelectHandler = <T extends ValueType, M extends boolean = false>({
         newValue = option.value
       }
 
-      setSelectedOptions(
-        options.filter(option =>
-          Array.isArray(newValue)
-            ? isOptionInSelectedValues(option, newValue)
-            : newValue === String(option.value)
-        )
-      )
+      setSelectedOptions(getSelectedOptions(options, newValue))
 
       fireOnChangeEvent({ event, value: newValue, name, onChange })
       setFilterOptionsValue(EMPTY_INPUT_VALUE)

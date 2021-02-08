@@ -18,24 +18,24 @@ const Example = () => {
       <Container right='small'>
         <Form.Label>Reset disabled</Form.Label>
         <Select
+          native
           onChange={handleChange}
           options={OPTIONS}
           value={value}
           placeholder='Choose an option...'
           width='auto'
-          native
         />
       </Container>
       <Container>
         <Form.Label>Reset enabled</Form.Label>
         <Select
           enableReset
+          native
           onChange={handleChange}
           options={OPTIONS}
           value={value}
           placeholder='Choose an option...'
           width='auto'
-          native
         />
       </Container>
     </Container>

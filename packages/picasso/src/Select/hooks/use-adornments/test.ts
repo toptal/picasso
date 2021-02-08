@@ -10,6 +10,8 @@ describe('useAdornments', () => {
 
     expect(result.current[0]).toBeNull()
     expect(result.current[1]).not.toBeNull()
+
+    expect(result.current[1]).toMatchSnapshot()
   })
 
   it('returns no adornment', () => {
@@ -26,6 +28,8 @@ describe('useAdornments', () => {
 
     expect(result.current[0]).not.toBeNull()
     expect(result.current[1]).toBeNull()
+
+    expect(result.current[0]).toMatchSnapshot()
   })
 
   it('returns end adornment', () => {
@@ -35,6 +39,8 @@ describe('useAdornments', () => {
 
     expect(result.current[0]).toBeNull()
     expect(result.current[1]).not.toBeNull()
+
+    expect(result.current[1]).toMatchSnapshot()
   })
 
   it('returns start adornment when loading', () => {
@@ -44,5 +50,7 @@ describe('useAdornments', () => {
 
     expect(result.current[0]).not.toBeNull()
     expect(result.current[1]).not.toBeNull()
+
+    expect(result.current).toMatchSnapshot()
   })
 })

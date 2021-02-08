@@ -24,7 +24,7 @@ export type Props = Pick<
 
 const NonNativeSelectOptions = ({
   options,
-  renderOption,
+  renderOption = () => null,
   highlightedIndex,
   getItemProps,
   onBlur,
@@ -66,7 +66,7 @@ const NonNativeSelectOptions = ({
         onItemSelect={onItemSelect}
         description={option.description}
       >
-        {renderOption?.(option)}
+        {renderOption(option)}
       </NonNativeSelectOption>
     )
   })
