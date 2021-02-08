@@ -52,6 +52,36 @@ const SelectSearchBehaviourExample = () => {
   )
 }
 
+const SelectNativeExample = () => {
+  const [value, setValue] = useState<string>('')
+
+  const handleChange = (
+    event: ChangeEvent<{
+      name?: string | undefined
+      value: string
+    }>
+  ) => {
+    setValue(event.target.value)
+  }
+
+  return (
+    <TestingPicasso>
+      <Container flex>
+        <Form.Field>
+          <Form.Label>Native select</Form.Label>
+          <Select
+            onChange={handleChange}
+            options={OPTIONS}
+            value={value}
+            placeholder='Choose an option...'
+            width='auto'
+            native
+          />
+        </Form.Field>
+      </Container>
+    </TestingPicasso>
+  )
+}
 const OPTIONS = [
   { value: '1', text: 'Option 1' },
   { value: '2', text: 'Option 2' },
@@ -70,6 +100,8 @@ const setThresholdToHideSelectSearch = () => {
     .type('6')
 }
 
+const getNativeSelect = () => cy.get('select')
+
 describe('Select', () => {
   it('focuses Select with and without a search', () => {
     mount(<SelectSearchBehaviourExample />)
@@ -85,5 +117,15 @@ describe('Select', () => {
 
     cy.get('[data-testid=select]').type(' ')
     cy.get('[role=menu]').should('be.visible')
+  })
+
+  it('changes NativeSelect value', () => {
+    mount(<SelectNativeExample />)
+
+    getNativeSelect().should('be.visible')
+    getNativeSelect().select('1')
+    cy.get('option[role=option][value=1]')
+      .should('have.attr', 'aria-selected')
+      .and('match', /true/)
   })
 })
