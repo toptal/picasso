@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@1.1.1...@toptal/picasso-forms@1.2.0) (2021-02-08)
+
+
+### Features
+
+* proxy react-final-form-arrays ([#1900](https://github.com/toptal/picasso/issues/1900)) ([22b30ef](https://github.com/toptal/picasso/commit/22b30ef079a79ab5d4a1466855aa3e3383cff281))
+
+
+
+
+
 ## [1.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@1.1.0...@toptal/picasso-forms@1.1.1) (2021-02-05)
 
 **Note:** Version bump only for package @toptal/picasso-forms
