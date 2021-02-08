@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.10.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.9.0...@toptal/picasso@5.10.0) (2021-02-08)
+
+
+### Features
+
+* **NativeSelect:** extract native select ([#1863](https://github.com/toptal/picasso/issues/1863)) ([34b5739](https://github.com/toptal/picasso/commit/34b57397a6d361fe448f92f5a25adf54982ade5f))
+
+
+
+
+
 # [5.9.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.8.1...@toptal/picasso@5.9.0) (2021-02-08)
 
 
