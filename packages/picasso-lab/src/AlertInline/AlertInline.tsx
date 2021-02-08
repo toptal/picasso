@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import {
   Container,
   Typography,
@@ -23,9 +23,10 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
   /** Style variant of Alert */
   variant?: VariantType
+  iconPadding?: SizeType<'xsmall' | 'small'> // undocumented prop, only for internal usage
 }
 
-export const renderAlertIcon = (variant: Props['variant']) => {
+export const renderAlertIcon = (variant?: VariantType) => {
   switch (variant) {
     case 'red':
       return <Exclamation16 color='red' />
@@ -50,11 +51,18 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   ref
 ) {
   const classes = useStyles()
-  const { variant, children, className } = props
+  const { variant, children, className, iconPadding } = props
 
   return (
-    <Container inline flex ref={ref}>
-      <Container right='small'>{renderAlertIcon(variant)}</Container>
+    <Container inline flex ref={ref} className={classes.root}>
+      <Container
+        right={iconPadding}
+        flex
+        alignItems='center'
+        className={classes.iconWrapper}
+      >
+        {renderAlertIcon(variant)}
+      </Container>
       <Typography
         size='medium'
         as='div'
@@ -68,7 +76,8 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
 })
 
 AlertInline.defaultProps = {
-  variant: 'yellow'
+  variant: 'yellow',
+  iconPadding: 'xsmall'
 }
 
 AlertInline.displayName = 'AlertInline'
