@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.10.1](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.0...@toptal/picasso@5.10.1) (2021-02-09)
+
+
+### Bug Fixes
+
+* **ScrollMenu:** fix scrolling behaviour ([#1882](https://github.com/toptal/picasso/issues/1882)) ([6982a29](https://github.com/toptal/picasso/commit/6982a297602b7de626ac66da46819e88e38c5111))
+
+
+
+
+
 # [5.10.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.9.0...@toptal/picasso@5.10.0) (2021-02-08)
 
 
