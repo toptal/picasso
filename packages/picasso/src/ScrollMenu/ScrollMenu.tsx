@@ -1,107 +1,65 @@
 import React, {
-  useLayoutEffect,
-  useRef,
-  createRef,
   FunctionComponent,
-  ReactNode
+  ReactNode,
+  RefObject,
+  useLayoutEffect,
+  useRef
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import RootRef from '@material-ui/core/RootRef'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import styles from './styles'
 
-type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
 export interface Props extends BaseProps {
   selectedIndex?: number | null
-  onBlur?: FocusEventType
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
   fixedHeader?: ReactNode
-}
-
-enum Direction {
-  UP,
-  DOWN
-}
-
-const getMoveDirection = (
-  selectedIndex: number,
-  prevSelectedIndex: number | null | undefined,
-  bottomVisibleItem: number
-) => {
-  if (prevSelectedIndex != null) {
-    return prevSelectedIndex <= selectedIndex ? Direction.DOWN : Direction.UP
-  }
-
-  return selectedIndex === Math.ceil(bottomVisibleItem)
-    ? Direction.DOWN
-    : Direction.UP
 }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoScrollMenu'
 })
 
+export const scrollToSelection = (
+  menuRef: RefObject<HTMLDivElement>,
+  selectedIndex?: number | null
+) => {
+  if (!menuRef.current || selectedIndex == null) {
+    return
+  }
+
+  const menuNode = menuRef.current
+  const selectedNode = menuRef.current.children[selectedIndex]
+  const menuRect = menuNode.getBoundingClientRect()
+  const selectedRect = selectedNode.getBoundingClientRect()
+
+  if (selectedRect.top < menuRect.top) {
+    menuNode.scrollTop -= menuRect.top - selectedRect.top
+  } else if (selectedRect.bottom > menuRect.bottom) {
+    menuNode.scrollTop += selectedRect.bottom - menuRect.bottom
+  }
+}
+
 const ScrollMenu: FunctionComponent<Props> = props => {
   const { selectedIndex, onBlur, children, style, fixedHeader, ...rest } = props
   const classes = useStyles()
-  const menuRef = useRef<HTMLDivElement | null>(null)
-  const firstItemRef = createRef<HTMLElement>()
-  const prevSelectedIndex = useRef(selectedIndex)
+  const menuRef = useRef<HTMLDivElement>(null)
 
-  const renderChildren = React.Children.map(children, (child, index) => {
-    if (index === 0 && child) {
-      return <RootRef rootRef={firstItemRef}>{child}</RootRef>
-    }
-
-    return child
-  })
-
-  useLayoutEffect(() => {
-    if (!menuRef.current || !firstItemRef.current) {
-      return
-    }
-
-    if (selectedIndex === undefined || selectedIndex === null) {
-      return
-    }
-
-    const currentScrollTop = menuRef.current.scrollTop
-    const itemHeight = firstItemRef.current.offsetHeight
-    const scrollViewHeight = menuRef.current.offsetHeight
-
-    const countItemsOnScrollView = scrollViewHeight / itemHeight
-    const topVisibleItem = currentScrollTop / itemHeight
-    const bottomVisibleItem = topVisibleItem + countItemsOnScrollView - 1
-
-    const isHighlightedItemInScrollView =
-      selectedIndex >= topVisibleItem && selectedIndex <= bottomVisibleItem
-
-    if (!isHighlightedItemInScrollView) {
-      const moveDirection = getMoveDirection(
-        selectedIndex,
-        prevSelectedIndex.current,
-        bottomVisibleItem
-      )
-      let scrollTop = 0
-
-      if (moveDirection === Direction.UP) {
-        scrollTop = selectedIndex * itemHeight
-      } else if (moveDirection === Direction.DOWN) {
-        scrollTop = (selectedIndex - countItemsOnScrollView + 1) * itemHeight
-      }
-
-      menuRef.current.scrollTop = scrollTop
-    }
-
-    prevSelectedIndex.current = selectedIndex
-  }, [firstItemRef, selectedIndex, prevSelectedIndex])
+  useLayoutEffect(() => scrollToSelection(menuRef, selectedIndex), [
+    selectedIndex
+  ])
 
   return (
-    <Menu className={classes.menu} style={style} {...rest}>
+    <Menu
+      className={classes.menu}
+      style={style}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+    >
       {fixedHeader}
       <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
-        {renderChildren}
+        {children}
       </div>
     </Menu>
   )
