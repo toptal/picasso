@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.2...@toptal/picasso-lab@3.5.3) (2021-02-08)
+
+
+### Bug Fixes
+
+* **Alert:** fix vertical alignment ([#1885](https://github.com/toptal/picasso/issues/1885)) ([d99b037](https://github.com/toptal/picasso/commit/d99b037365172c59a696a492748202fb7462a6af))
+
+
+
+
+
 ## [3.5.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.1...@toptal/picasso-lab@3.5.2) (2021-02-05)
 
 **Note:** Version bump only for package @toptal/picasso-lab

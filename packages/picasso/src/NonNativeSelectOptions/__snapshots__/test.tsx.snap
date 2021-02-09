@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NonNativeSelectOptions renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ul
+      class="MuiList-root Menu-root PicassoScrollMenu-menu"
+      role="menu"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoScrollMenu-scrollView"
+        tabindex="0"
+      >
+        <li
+          aria-disabled="false"
+          aria-selected="false"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          role="option"
+          tabindex="-1"
+          value="1"
+        >
+          <div
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          >
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            >
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+            </div>
+          </div>
+        </li>
+        <li
+          aria-disabled="false"
+          aria-selected="false"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          role="option"
+          tabindex="-1"
+          value="2"
+        >
+          <div
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          >
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            >
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+            </div>
+          </div>
+        </li>
+        <li
+          aria-disabled="false"
+          aria-selected="false"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          role="option"
+          tabindex="-1"
+          value="3"
+        >
+          <div
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          >
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            >
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+            </div>
+          </div>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`NonNativeSelectOptions renders no option 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ul
+      class="MuiList-root Menu-root PicassoScrollMenu-menu"
+      data-testid="no-options"
+      role="menu"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoScrollMenu-scrollView"
+        tabindex="0"
+      >
+        <li
+          aria-disabled="true"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <div
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          >
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            />
+          </div>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>
+`;

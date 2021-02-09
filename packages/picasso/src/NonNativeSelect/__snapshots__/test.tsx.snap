@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`multiple select should checkmark user selected options 1`] = `
+exports[`NonNativeSelect (multiple) should checkmark user selected options 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -168,150 +168,7 @@ exports[`multiple select should checkmark user selected options 1`] = `
 </div>
 `;
 
-exports[`renders native select 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="makeStyles-root makeStyles-rootFull"
-    >
-      <div
-        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
-      >
-        <select
-          aria-invalid="false"
-          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
-        >
-          <option
-            disabled=""
-            value=""
-          >
-            Choose an option...
-          </option>
-          <option
-            aria-selected="true"
-            role="option"
-            value="val1"
-          >
-            text1
-          </option>
-          <option
-            aria-selected="false"
-            role="option"
-            value="val2"
-          >
-            text2
-          </option>
-          <option
-            aria-selected="false"
-            role="option"
-            value="val3"
-          >
-            text3
-          </option>
-        </select>
-        <svg
-          class="PicassoSvgDropdownArrows16-root makeStyles-caret"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M10.997 10.29l.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3zm-3-9l3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707z"
-          />
-        </svg>
-        <fieldset
-          aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-          style="padding-left: 8px;"
-        >
-          <legend
-            class="PrivateNotchedOutline-legend"
-            style="width: 0.01px;"
-          >
-            <span>
-              ​
-            </span>
-          </legend>
-        </fieldset>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders native select with the empty option enabled when enableReset is \`true\` 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="makeStyles-root makeStyles-rootFull"
-    >
-      <div
-        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
-      >
-        <select
-          aria-invalid="false"
-          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
-        >
-          <option
-            value=""
-          >
-            Choose an option...
-          </option>
-          <option
-            aria-selected="true"
-            role="option"
-            value="val1"
-          >
-            text1
-          </option>
-          <option
-            aria-selected="false"
-            role="option"
-            value="val2"
-          >
-            text2
-          </option>
-          <option
-            aria-selected="false"
-            role="option"
-            value="val3"
-          >
-            text3
-          </option>
-        </select>
-        <svg
-          class="PicassoSvgDropdownArrows16-root makeStyles-caret"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M10.997 10.29l.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3zm-3-9l3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707z"
-          />
-        </svg>
-        <fieldset
-          aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-          style="padding-left: 8px;"
-        >
-          <legend
-            class="PrivateNotchedOutline-legend"
-            style="width: 0.01px;"
-          >
-            <span>
-              ​
-            </span>
-          </legend>
-        </fieldset>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders select 1`] = `
+exports[`NonNativeSelect renders select 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -365,7 +222,7 @@ exports[`renders select 1`] = `
 </div>
 `;
 
-exports[`should render description 1`] = `
+exports[`NonNativeSelect should render description 1`] = `
 <ul
   class="MuiList-root Menu-root PicassoScrollMenu-menu"
   role="menu"
@@ -472,7 +329,7 @@ exports[`should render description 1`] = `
 </ul>
 `;
 
-exports[`should render options customly 1`] = `
+exports[`NonNativeSelect should render options customly 1`] = `
 <ul
   class="MuiList-root Menu-root PicassoScrollMenu-menu"
   role="menu"

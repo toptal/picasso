@@ -21,7 +21,7 @@ exports[`Page.TopBar render with link 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoTopBar-logoContainer"
             >
               <a
-                class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+                class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root MuiTypography-colorPrimary"
                 href="https://www.toptal.com"
               >
                 <svg

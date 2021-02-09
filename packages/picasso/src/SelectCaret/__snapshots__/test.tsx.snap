@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectCaret renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <svg
+      class="PicassoSvgDropdownArrows16-root makeStyles-caret"
+      style="min-width: 16px; min-height: 16px;"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M10.997 10.29l.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3zm-3-9l3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707z"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`SelectCaret renders disabled 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <svg
+      class="PicassoSvgDropdownArrows16-root makeStyles-caret makeStyles-caretDisabled"
+      style="min-width: 16px; min-height: 16px;"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M10.997 10.29l.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3zm-3-9l3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707z"
+      />
+    </svg>
+  </div>
+</div>
+`;

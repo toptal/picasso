@@ -2,7 +2,14 @@ import { createStyles } from '@material-ui/core/styles'
 
 export default () =>
   createStyles({
+    root: {
+      fontSize: '1rem',
+      lineHeight: '1.375em'
+    },
+    iconWrapper: {
+      height: '1.375em'
+    },
     content: {
-      marginTop: '1px'
+      lineHeight: '1.375rem'
     }
   })
