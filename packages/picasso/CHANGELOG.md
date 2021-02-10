@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.10.2](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.1...@toptal/picasso@5.10.2) (2021-02-10)
+
+
+### Bug Fixes
+
+* **Link:** fix visited state ([#1903](https://github.com/toptal/picasso/issues/1903)) ([d8c31ed](https://github.com/toptal/picasso/commit/d8c31ed38bf017ca59e4e46680fe940f522aacdd))
+
+
+
+
+
 ## [5.10.1](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.0...@toptal/picasso@5.10.1) (2021-02-09)
 
 
