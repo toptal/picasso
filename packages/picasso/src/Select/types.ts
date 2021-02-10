@@ -100,9 +100,7 @@ export type ItemProps = {
   'aria-selected': boolean
   onMouseEnter: () => void
   onMouseDown: (event: React.MouseEvent) => void
-  close: () => void
   onClick: (event: React.MouseEvent) => void
-  onItemSelect: (event: React.SyntheticEvent, option: Option | null) => void
 }
 
 export type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void

@@ -13,10 +13,8 @@ const OPTIONS = [
 const defaultGetItemProps = () => ({
   role: 'option',
   'aria-selected': false,
-  close: noop,
   onMouseDown: noop,
   onMouseEnter: noop,
-  onItemSelect: noop,
   onClick: noop
 })
 

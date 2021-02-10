@@ -17,4 +17,23 @@ describe('useItemOnClickHandler', () => {
     expect(handleSelect).toHaveBeenCalledTimes(1)
     expect(handleSelect).toHaveBeenCalledWith(event, item)
   })
+
+  it('does not close and handles multiple select', () => {
+    const handleSelect = jest.fn()
+    const useSelectProps = getUseSelectPropsMock()
+
+    useSelectProps.selectProps.multiple = true
+
+    const props = { ...useSelectProps, handleSelect }
+    const { result } = renderHook(() => useItemOnClickHandler(props))
+    const event = new KeyboardEvent('keydown') as any
+    const item = { text: 'One', value: '1' }
+
+    result.current(event, item)
+
+    expect(props.selectState.close).toHaveBeenCalledTimes(0)
+
+    expect(handleSelect).toHaveBeenCalledTimes(1)
+    expect(handleSelect).toHaveBeenCalledWith(event, item)
+  })
 })

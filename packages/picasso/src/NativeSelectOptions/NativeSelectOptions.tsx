@@ -14,21 +14,16 @@ const NativeSelectOptions = <T extends ValueType>({
   getItemProps
 }: Props<T>) => (
   <>
-    {options.map((option, index) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { close, onItemSelect, ...rest } = getItemProps(option, index)
-
-      return (
-        <option
-          key={(option?.key ?? option.value).toString()}
-          value={option.value.toString()}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...rest}
-        >
-          {renderOption(option, index)}
-        </option>
-      )
-    })}
+    {options.map((option, index) => (
+      <option
+        key={(option?.key ?? option.value).toString()}
+        value={option.value.toString()}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...getItemProps(option, index)}
+      >
+        {renderOption(option, index)}
+      </option>
+    ))}
   </>
 )
 
