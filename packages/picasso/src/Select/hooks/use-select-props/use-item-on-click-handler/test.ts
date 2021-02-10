@@ -8,7 +8,7 @@ describe('useItemOnClickHandler', () => {
     const handleSelect = jest.fn()
     const props = { ...getUseSelectPropsMock(), handleSelect }
     const { result } = renderHook(() => useItemOnClickHandler(props))
-    const event = new KeyboardEvent('keydown') as any
+    const event = new MouseEvent('click') as any
     const item = { text: 'One', value: '1' }
 
     result.current(event, item)
@@ -26,7 +26,7 @@ describe('useItemOnClickHandler', () => {
 
     const props = { ...useSelectProps, handleSelect }
     const { result } = renderHook(() => useItemOnClickHandler(props))
-    const event = new KeyboardEvent('keydown') as any
+    const event = new MouseEvent('click') as any
     const item = { text: 'One', value: '1' }
 
     result.current(event, item)
