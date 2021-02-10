@@ -1,2 +1,2 @@
 export { default } from './NativeSelectPlaceholder'
-export { Props as NativeSelectPlaceholderProps } from './NativeSelectPlaceholder'
+export type { Props as NativeSelectPlaceholderProps } from './NativeSelectPlaceholder'

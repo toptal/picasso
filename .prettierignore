@@ -16,3 +16,5 @@ packages/picasso-lab/src/TimePicker/index.ts
 packages/picasso-forms/src/index.ts
 packages/picasso-forms/src/CheckboxGroup/index.ts
 packages/picasso-forms/src/RadioGroup/index.ts
+packages/picasso/src/NativeSelectPlaceholder/index.tsx
+packages/picasso/src/NativeSelectOptions/index.tsx
