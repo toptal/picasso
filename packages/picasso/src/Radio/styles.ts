@@ -15,6 +15,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
       padding: '0',
       margin: '0.25em 0',
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
+      alignItems: 'flex-start',
 
       '&$disabled': {
         opacity: 0.48,
@@ -94,6 +95,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
+      alignItems: 'flex-start',
 
       '&:hover $uncheckedIcon:before': iconBeforeStyles({
         borderWidth: sizes.borderWidth,
@@ -138,7 +140,8 @@ export default ({ palette, sizes, transitions }: Theme) =>
     }),
     label: {
       // 1px is needed for safari
-      maxWidth: `calc(100% - ${controlWidth} - ${controlMarginRight} + 1px)`
+      maxWidth: `calc(100% - ${controlWidth} - ${controlMarginRight} + 1px)`,
+      margin: '0.25em 0'
     },
     labelWithRightSpacing: {}
   })

@@ -71,6 +71,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
   return (
     <FormControlLabel
       classes={{
+        root: classes.root,
         label: classes.label
       }}
       control={switchElement}
