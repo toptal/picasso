@@ -2,7 +2,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ReactNode,
-  ReactElement
+  ReactComponentElement
 } from 'react'
 
 import { Alignment, BlockWidth } from './settings'
@@ -24,8 +24,10 @@ const shouldInjectRow = (children?: ReactNode) => {
   }
 
   return !React.Children.toArray(children)
-    .filter((el): el is ReactElement => React.isValidElement(el))
-    .some(el => el.type === OverviewBlockRow)
+    .filter((el): el is ReactComponentElement<typeof OverviewBlockRow> =>
+      React.isValidElement(el)
+    )
+    .some(el => el.type.displayName === OverviewBlockRow.displayName)
 }
 
 const OverviewBlockGroup: FunctionComponent<Props> = props => {
