@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.3...@toptal/picasso-lab@3.5.4) (2021-02-11)
+
+
+### Bug Fixes
+
+* **OverviewBlock:** type detection for row injection ([#1908](https://github.com/toptal/picasso/issues/1908)) ([ccd3e37](https://github.com/toptal/picasso/commit/ccd3e376aeb74017a57d386ccedf159c0f9fd0bf))
+
+
+
+
+
 ## [3.5.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.2...@toptal/picasso-lab@3.5.3) (2021-02-08)
 
 
