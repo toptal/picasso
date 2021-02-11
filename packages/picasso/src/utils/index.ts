@@ -12,27 +12,28 @@ export {
   generateRandomStringOrGetEmptyInTest
 } from '@toptal/picasso-shared'
 
-export { default as useWidthOf } from './use-width-of'
-export { default as useCombinedRefs } from './use-combined-refs'
-
 export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListener'
 
-export { default as isString } from './is-string'
-export { default as disableUnsupportedProps } from './disable-unsupported-props'
-export { dashToCamelCase } from './dash-to-camel-case'
-export { default as isNumber } from './is-number'
-export { default as isBoolean } from './is-boolean'
-export { default as isPointerDevice } from './is-pointer-device'
-export { default as isSubstring } from './is-substring'
-export { default as getNameInitials } from './get-name-initials'
-export { default as kebabToCamelCase } from './kebab-to-camel-case'
-export { default as toTitleCase } from './to-title-case'
-export { default as useSafeState } from './use-safe-state'
 export { capitalize } from './capitalize'
+export { dashToCamelCase } from './dash-to-camel-case'
+export { default as disableUnsupportedProps } from './disable-unsupported-props'
+export { forwardRef, documentable } from './forward-ref'
+export { default as getNameInitials } from './get-name-initials'
+export { default as isBoolean } from './is-boolean'
+export { default as isNumber } from './is-number'
+export { default as isPointerDevice } from './is-pointer-device'
+export { default as isString } from './is-string'
+export { default as isSubstring } from './is-substring'
+export { default as kebabToCamelCase } from './kebab-to-camel-case'
+export { Maybe } from './monads'
+export { default as noop } from './noop'
+export { default as toTitleCase } from './to-title-case'
+export { default as useCombinedRefs } from './use-combined-refs'
+export { default as useSafeState } from './use-safe-state'
+export { default as useWidthOf, ReferenceObject } from './use-width-of'
 
 export const Transitions = TransitionUtils
 
-export { Maybe } from './monads'
 export { useNotifications } from './Notifications'
 export { useModal } from './Modal'
 export * from './Modal'
