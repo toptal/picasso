@@ -275,6 +275,24 @@ describe('NonNativeSelect', () => {
     expect(searchInput).toEqual(document.activeElement)
   })
 
+  it('closes when an option is selected', () => {
+    const placeholder = 'Choose an option...'
+    const { getByPlaceholderText, getByText, queryByRole } = renderSelect({
+      options: OPTIONS,
+      placeholder
+    })
+
+    const selectInput = getByPlaceholderText(placeholder)
+
+    fireEvent.click(selectInput)
+
+    expect(queryByRole('menu')).toBeInTheDocument()
+
+    fireEvent.click(getByText(OPTIONS[0].text))
+
+    expect(queryByRole('menu')).not.toBeInTheDocument()
+  })
+
   it('should render noOptionText if the value entered does not match any of the options', () => {
     const placeholder = 'Choose an option...'
     const noOptionsText = 'No results'
@@ -526,6 +544,25 @@ describe('NonNativeSelect (multiple)', () => {
           .closest('li')
           ?.getAttribute('aria-selected')
       ).toBe('true')
+    })
+
+    it('does not close when an option is selected', () => {
+      const placeholder = 'Choose an option...'
+      const { getByPlaceholderText, getByText, queryByRole } = renderSelect({
+        options: OPTIONS,
+        placeholder,
+        multiple: true
+      })
+
+      const selectInput = getByPlaceholderText(placeholder)
+
+      fireEvent.click(selectInput)
+
+      expect(queryByRole('menu')).toBeInTheDocument()
+
+      fireEvent.click(getByText(OPTIONS[0].text))
+
+      expect(queryByRole('menu')).toBeInTheDocument()
     })
   })
 
