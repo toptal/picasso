@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.10.4](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.3...@toptal/picasso@5.10.4) (2021-02-11)
+
+
+### Bug Fixes
+
+* **Sidebar:** make expanded sub menu with wrapper ([#1906](https://github.com/toptal/picasso/issues/1906)) ([c96fdff](https://github.com/toptal/picasso/commit/c96fdff06cfb6733a80ae972245335e55803e052))
+
+
+
+
+
 ## [5.10.3](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.2...@toptal/picasso@5.10.3) (2021-02-10)
 
 **Note:** Version bump only for package @toptal/picasso
