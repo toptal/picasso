@@ -69,8 +69,138 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             </div>
           </div>
           <div
-            class="MuiCollapse-container MuiCollapse-entered"
-            style="min-height: 0px;"
+            class="MuiCollapse-container"
+            style="min-height: 0px; height: 0px; transition-duration: 0ms;"
+          >
+            <div
+              class="MuiCollapse-wrapper"
+            >
+              <div
+                class="MuiCollapse-wrapperInner"
+              >
+                <div
+                  role="region"
+                >
+                  <div
+                    class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details PicassoSidebarItem-nestedMenu"
+                  >
+                    <ul
+                      class="MuiList-root Menu-root PicassoSidebarMenu-root"
+                      role="menu"
+                      tabindex="-1"
+                    >
+                      <li
+                        aria-disabled="false"
+                        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-selected PicassoMenuItem-nonSelectable Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+                        role="menuitem"
+                        tabindex="0"
+                      >
+                        <div
+                          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                        >
+                          <div
+                            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                          >
+                            <div
+                              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItem-noWrap"
+                            >
+                              <div
+                                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
+                              >
+                                <p
+                                  class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                                >
+                                  Menu item
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SidebarItem collapsible menu is expanded when one of the children is selected and subMenu has a wrapper component 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
+    >
+      <div
+        class="Sidebar-spacer"
+      />
+      <ul
+        class="MuiList-root Menu-root PicassoSidebarMenu-root"
+        role="menu"
+        tabindex="-1"
+      >
+        <div
+          class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersNone Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+        >
+          <div
+            aria-disabled="false"
+            aria-expanded="true"
+            class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary PicassoSidebarItem-collapsibleWrapper Mui-expanded"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoSidebarItem-content Mui-expanded"
+            >
+              <li
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-collapsible PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                role="menuitem"
+                tabindex="0"
+              >
+                <div
+                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                >
+                  <div
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                  >
+                    <div
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItem-noWrap"
+                    >
+                      <div
+                        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
+                      >
+                        <p
+                          class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                        >
+                          Test item
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <svg
+                class="PicassoSvgArrowDownMinor16-root PicassoSidebarItem-expandIcon PicassoSidebarItem-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            class="MuiCollapse-container"
+            style="min-height: 0px; height: 0px; transition-duration: 0ms;"
           >
             <div
               class="MuiCollapse-wrapper"

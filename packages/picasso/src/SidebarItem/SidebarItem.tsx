@@ -3,7 +3,8 @@ import React, {
   ReactElement,
   ElementType,
   ChangeEvent,
-  memo
+  memo,
+  useMemo
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -22,6 +23,12 @@ import MenuItem, { MenuItemAttributes } from '../MenuItem'
 import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../Sidebar/types'
+
+export const SubMenuContext = React.createContext<{
+  parentSidebarItemIndex?: number | null
+}>({
+  parentSidebarItemIndex: undefined
+})
 
 export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
@@ -72,6 +79,19 @@ export const SidebarItem: OverridableComponent<Props> = memo(
 
     const hasIcon = Boolean(icon)
     const hasMenu = Boolean(menu)
+
+    const subMenu = useMemo(
+      () => (
+        <SubMenuContext.Provider
+          value={{
+            parentSidebarItemIndex: index
+          }}
+        >
+          {menu}
+        </SubMenuContext.Provider>
+      ),
+      [menu]
+    )
 
     const titleCase = useTitleCase(propsTitleCase)
 
@@ -155,7 +175,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
             details: hasIcon ? classes.nestedMenuWithIcon : classes.nestedMenu,
             content: classes.content
           }}
-          content={menu}
+          content={subMenu}
           borders='none'
           disabled={disabled}
           expanded={isExpanded}
@@ -185,7 +205,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
               hasIcon ? classes.nestedMenuWithIcon : classes.nestedMenu
             }
           >
-            {menu}
+            {subMenu}
           </div>
         )}
       </>
