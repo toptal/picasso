@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.5](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.4...@toptal/picasso-lab@3.5.5) (2021-02-12)
+
+
+### Bug Fixes
+
+* **OverviewBlock:** fix usage with Link ([#1875](https://github.com/toptal/picasso/issues/1875)) ([dcc73fe](https://github.com/toptal/picasso/commit/dcc73fedeb31dfa73e5fb34f53917b89e01a0720))
+
+
+
+
+
 ## [3.5.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.3...@toptal/picasso-lab@3.5.4) (2021-02-11)
 
 
