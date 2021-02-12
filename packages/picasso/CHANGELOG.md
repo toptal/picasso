@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.10.6](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.5...@toptal/picasso@5.10.6) (2021-02-12)
+
+
+### Bug Fixes
+
+* **Select:** make select to close on item click ([#1905](https://github.com/toptal/picasso/issues/1905)) ([dff9157](https://github.com/toptal/picasso/commit/dff91579d1f710b7625c32c96d38596f00fed532))
+
+
+
+
+
 ## [5.10.5](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.4...@toptal/picasso@5.10.5) (2021-02-11)
 
 **Note:** Version bump only for package @toptal/picasso
