@@ -61,8 +61,6 @@ const useSelectProps = <T extends ValueType, M extends boolean = false>(
     'aria-selected': props.selectState.highlightedIndex === index,
     onMouseEnter: () => handleItemOnMouseEnter(index),
     onMouseDown: handleItemOnMouseDown,
-    close,
-    onItemSelect: handleSelect,
     onClick: (event: React.MouseEvent) => handleItemOnClick(event, item)
   })
 

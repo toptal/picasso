@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso/test-utils'
 
 import NonNativeSelectOption, { Props } from './NonNativeSelectOption'
 import noop from '../utils/noop'
@@ -13,12 +13,10 @@ const renderNonNativeSelectOption = ({
   description = DESCRIPTION,
   onMouseDown = noop,
   onMouseEnter = noop,
-  close = noop,
   selected = false,
   highlighted = false,
-  multiple = false,
   size,
-  onItemSelect = noop,
+  onClick = noop,
   option = OPTION
 }: Partial<Props<string>> = {}) =>
   render(
@@ -26,12 +24,10 @@ const renderNonNativeSelectOption = ({
       description={description}
       onMouseDown={onMouseDown}
       onMouseEnter={onMouseEnter}
-      close={close}
       selected={selected}
       highlighted={highlighted}
-      multiple={multiple}
       size={size}
-      onItemSelect={onItemSelect}
+      onClick={onClick}
       option={option}
     >
       {children}
@@ -43,19 +39,5 @@ describe('NonNativeSelectOption', () => {
     const { container } = renderNonNativeSelectOption()
 
     expect(container).toMatchSnapshot()
-  })
-
-  it('handles click', () => {
-    const close = jest.fn()
-    const onItemSelect = jest.fn()
-    const { getByRole } = renderNonNativeSelectOption({
-      close,
-      onItemSelect
-    })
-
-    fireEvent.click(getByRole('option'))
-
-    expect(close).toHaveBeenCalled()
-    expect(onItemSelect.mock.calls[0][1]).toEqual(OPTION)
   })
 })

@@ -29,7 +29,6 @@ const NonNativeSelectOptions = ({
   getItemProps,
   onBlur,
   value,
-  multiple,
   size,
   filterOptionsValue,
   noOptionsText,
@@ -46,7 +45,7 @@ const NonNativeSelectOptions = ({
   }
 
   const optionComponents = options.map((option, currentIndex) => {
-    const { close, onMouseDown, onMouseEnter, onItemSelect } = getItemProps(
+    const { onMouseDown, onMouseEnter, onClick } = getItemProps(
       option,
       currentIndex
     )
@@ -61,9 +60,7 @@ const NonNativeSelectOptions = ({
         onMouseEnter={onMouseEnter}
         selected={selection.isOptionSelected(option)}
         highlighted={highlightedIndex === currentIndex}
-        multiple={multiple}
-        close={close}
-        onItemSelect={onItemSelect}
+        onClick={onClick}
         description={option.description}
       >
         {renderOption(option)}
