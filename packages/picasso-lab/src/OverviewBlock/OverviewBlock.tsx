@@ -94,7 +94,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       color[partName] = colorName
     }
 
-    const isClickable = Boolean(onClick)
+    const isClickable = Boolean(onClick) || typeof as !== 'string'
 
     const Component = isClickable && as ? as : 'div'
 

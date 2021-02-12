@@ -94,5 +94,18 @@ describe('OverviewBlock', () => {
 
       expect(getByTestId('OverviewBlock').nodeName).toBe('DIV')
     })
+
+    it('renders the element as `Link`', () => {
+      const { getByTestId } = renderOverviewBlock({
+        as: Link,
+        to: '/',
+        'data-testid': 'OverviewBlock'
+      })
+      const block = getByTestId('OverviewBlock')
+
+      // By the Link component to -> href
+      expect(block).toHaveAttribute('href', '/')
+      expect(block.nodeName).toBe('A')
+    })
   })
 })
