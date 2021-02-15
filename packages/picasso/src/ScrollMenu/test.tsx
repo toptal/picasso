@@ -28,8 +28,12 @@ const createElement = (opts: Partial<DOMRect>) => {
   return element
 }
 
+const createEmptyMenu = () => {
+  return createElement({ top: 20, bottom: 100 })
+}
+
 const createMenu = () => {
-  const menu = createElement({ top: 20, bottom: 100 })
+  const menu = createEmptyMenu()
 
   menu.append(createElement({ top: 10, bottom: 30 }))
   menu.append(createElement({ top: 40, bottom: 60 }))
@@ -43,11 +47,20 @@ const createRef = (current: HTMLDivElement) => {
 }
 
 describe('scrollToSelection', () => {
-  it('should not scroll when there is no selected item', () => {
+  it('should not scroll when there is no selected index', () => {
     const menu = createMenu()
     const menuRef = createRef(menu)
 
     scrollToSelection(menuRef, undefined)
+
+    expect(menu.scrollTop).toBe(0)
+  })
+
+  it('should not scroll when there is no select item', () => {
+    const menu = createEmptyMenu()
+    const menuRef = createRef(menu)
+
+    scrollToSelection(menuRef, 1)
 
     expect(menu.scrollTop).toBe(0)
   })

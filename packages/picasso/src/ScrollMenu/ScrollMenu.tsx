@@ -21,16 +21,25 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoScrollMenu'
 })
 
+const getMenuSelectedNode = (
+  menuRef: RefObject<HTMLDivElement>,
+  selectedIndex?: number | null
+) =>
+  typeof selectedIndex === 'number'
+    ? menuRef.current?.children[selectedIndex]
+    : undefined
+
 export const scrollToSelection = (
   menuRef: RefObject<HTMLDivElement>,
   selectedIndex?: number | null
 ) => {
-  if (!menuRef.current || selectedIndex == null) {
+  const menuNode = menuRef.current
+  const selectedNode = getMenuSelectedNode(menuRef, selectedIndex)
+
+  if (!menuNode || !selectedNode) {
     return
   }
 
-  const menuNode = menuRef.current
-  const selectedNode = menuRef.current.children[selectedIndex]
   const menuRect = menuNode.getBoundingClientRect()
   const selectedRect = selectedNode.getBoundingClientRect()
 
