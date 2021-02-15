@@ -11,5 +11,9 @@ module.exports = {
       viewport: '1024x768'
     })
   },
-  plugins: [happoStorybookPlugin()]
+  plugins: [
+    happoStorybookPlugin({
+      outputDir: '.happo'
+    })
+  ]
 }
