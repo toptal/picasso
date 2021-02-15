@@ -1,4 +1,4 @@
-export type { Option, ValueType } from './types'
+export type { SelectProps as Props } from './types'
 export { default } from './Select'
 export * from './types'
 export * from './utils'
