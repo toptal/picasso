@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.10.8](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.7...@toptal/picasso@5.10.8) (2021-02-15)
+
+
+### Bug Fixes
+
+* **ScrollMenu:** fix scroll menu error when no item selected ([#1909](https://github.com/toptal/picasso/issues/1909)) ([4bf871d](https://github.com/toptal/picasso/commit/4bf871d5a0008d8eb8385b87ae07bbd96c230deb))
+
+
+
+
+
 ## [5.10.7](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.6...@toptal/picasso@5.10.7) (2021-02-15)
 
 **Note:** Version bump only for package @toptal/picasso
