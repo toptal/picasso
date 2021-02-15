@@ -23,6 +23,16 @@ page
       })
     }
   })
+  .addExample('Drawer/story/FullHeightContent.example.tsx', {
+    title: 'Full height content',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="trigger"]')
+
+      await makeScreenshot({
+        selector: '[data-testid="content"]'
+      })
+    }
+  })
   .addExample('Drawer/story/Widths.example.tsx', {
     title: 'Width',
     effect: async (testPage, makeScreenshot) => {

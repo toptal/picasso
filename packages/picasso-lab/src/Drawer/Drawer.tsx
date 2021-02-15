@@ -67,7 +67,7 @@ export const Drawer: FunctionComponent<Props> = props => {
       onClose={handleOnClose}
       disablePortal={disablePortal}
     >
-      <Container className={cx(classes.container, classes[width!])}>
+      <Container flex className={cx(classes.container, classes[width!])}>
         <Container
           flex
           alignItems='center'
@@ -83,7 +83,9 @@ export const Drawer: FunctionComponent<Props> = props => {
             onClick={handleOnClose}
           />
         </Container>
-        <Container className={classes.content}>{children}</Container>
+        <Container flex className={classes.content}>
+          {children}
+        </Container>
       </Container>
     </MUIDrawer>
   )

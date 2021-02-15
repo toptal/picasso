@@ -16,9 +16,12 @@ const Example = () => {
         onClose={() => setOpen(false)}
       >
         <Container
+          flex
           data-testid='content'
           padded='medium'
-          style={{ width: '100%' }}
+          alignItems='center'
+          justifyContent='center'
+          style={{ flex: 1 }}
         >
           <List variant='ordered'>
             <List.Item>Add at least 10 skills</List.Item>
