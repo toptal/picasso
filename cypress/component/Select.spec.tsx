@@ -117,6 +117,9 @@ describe('Select', () => {
 
     cy.get('[data-testid=select]').type(' ')
     cy.get('[role=menu]').should('be.visible')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    cy.get('[role=menu]').happoScreenshot()
   })
 
   it('changes NativeSelect value', () => {

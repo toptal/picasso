@@ -1,5 +1,6 @@
 const path = require('path')
 const webpackPreprocessor = require('@cypress/webpack-preprocessor')
+const happoTask = require('happo-cypress/task')
 
 module.exports = (on, config) => {
   const opts = {
@@ -49,6 +50,7 @@ module.exports = (on, config) => {
   })
 
   on('file:preprocessor', webpackPreprocessor(opts))
+  on('task', happoTask)
 
   return config
 }

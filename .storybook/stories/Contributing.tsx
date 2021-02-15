@@ -16,6 +16,7 @@ import CREATING_EXAMPLES from '../../docs/contribution/creating-examples.md'
 import VISUAL_SNAPSHOTS from '../../docs/contribution/visual-testing.md'
 
 storiesOf('Contribution', module)
+  .addParameters({ happo: false })
   .add('GitHub workflow', doc(GITHUB_WORKFLOW))
   .add('CSS naming', doc(CSS_NAMING))
   .add('JSS onboarding', doc(JSS_ONBOARDING))
