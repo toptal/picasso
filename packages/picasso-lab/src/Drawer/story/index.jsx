@@ -19,16 +19,7 @@ page
       await testPage.click('[data-testid="trigger"]')
 
       await makeScreenshot({
-        selector: '[data-testid="content"]'
-      })
-    }
-  })
-  .addExample('Drawer/story/FullHeightContent.example.tsx', {
-    title: 'Full height content',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[data-testid="trigger"]')
-
-      await makeScreenshot({
+        isFullScreen: true,
         selector: '[data-testid="content"]'
       })
     }

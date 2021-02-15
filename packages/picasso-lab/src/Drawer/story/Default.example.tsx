@@ -15,11 +15,7 @@ const Example = () => {
         open={open}
         onClose={() => setOpen(false)}
       >
-        <Container
-          data-testid='content'
-          padded='medium'
-          style={{ width: '100%' }}
-        >
+        <Container data-testid='content' padded='medium'>
           <List variant='ordered'>
             <List.Item>Add at least 10 skills</List.Item>
             <List.Item>Set your age</List.Item>
