@@ -4,10 +4,7 @@ export default ({ palette }: Theme) =>
   createStyles({
     header: {
       borderBottom: `1px solid ${palette.grey.lighter}`,
-      paddingLeft: '1.5rem',
-      paddingRight: '1.5rem',
-      paddingBottom: '1rem',
-      paddingTop: '1rem'
+      padding: '1rem 1.5rem'
     },
     title: {
       flexGrow: 1
