@@ -82,7 +82,7 @@ const setup = function() {
   if (yargs.link) {
     log('Firt build dist versions of all the packages')
 
-    exec('yarn build:package', { stdio: 'inherit' })
+    exec('yarn build:packages', { stdio: 'inherit' })
 
     log('Linking process started...')
 
