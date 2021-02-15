@@ -9,7 +9,7 @@ const decorator = (story: () => ReactNode) => (
 )
 
 const DEFAULT_CONFIG = {
-  hasVisualScreenshot: false
+  takeScreenshot: false
 }
 
 const DEFAULT_OPTIONS = {
@@ -26,7 +26,7 @@ export interface SectionConfigType {
   info?: string
   options?: any
   sectionFn: () => ReactNode
-  hasVisualScreenshot?: boolean
+  takeScreenshot?: boolean
 }
 
 class Section extends Base {

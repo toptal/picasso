@@ -80,7 +80,7 @@ class Page extends Base {
 
       const stories = storiesOf(storyName, module)
       chapter.sections.forEach(section => {
-        const parameters = { happo: section.hasVisualScreenshot }
+        const parameters = { happo: section.takeScreenshot }
         stories.add(section.title || section.id, section.sectionFn, parameters)
       })
     })
