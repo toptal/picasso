@@ -1,4 +1,4 @@
-import { createStyles, Theme } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-shared'
 
 PicassoProvider.override(() => ({
@@ -9,26 +9,20 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default ({ palette }: Theme) =>
+export default () =>
   createStyles({
     container: {
       maxWidth: '100%',
-      flex: 1
-    },
-    header: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      borderBottom: `1px solid ${palette.grey.lighter}`,
-      paddingLeft: '1.5rem',
-      paddingRight: '1.5rem'
-    },
-    title: {
-      flexGrow: 1
+      position: 'relative',
+      flex: 1,
     },
     content: {
-      paddingTop: '4.3125rem',
       flex: 1
+    },
+    closeButton: {
+      position: 'absolute',
+      right: '1.5rem',
+      top: '1rem'
     },
     regular: {
       width: '27.5rem'
