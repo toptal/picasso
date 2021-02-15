@@ -9,6 +9,12 @@ module.exports = {
   targets: {
     'chrome-desktop': new RemoteBrowserTarget('chrome', {
       viewport: '1024x768'
+    }),
+    'firefox-desktop': new RemoteBrowserTarget('firefox', {
+      viewport: '1024x768'
+    }),
+    'safari-desktop': new RemoteBrowserTarget('safari', {
+      viewport: '1024x768'
     })
   },
   plugins: [
