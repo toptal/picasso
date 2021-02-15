@@ -8,6 +8,10 @@ const decorator = (story: () => ReactNode) => (
   <Paper className='component-section-container'>{story()}</Paper>
 )
 
+const DEFAULT_CONFIG = {
+  hasVisualScreenshot: false
+}
+
 const DEFAULT_OPTIONS = {
   showSource: false,
   showPropTables: false,
@@ -22,6 +26,7 @@ export interface SectionConfigType {
   info?: string
   options?: any
   sectionFn: () => ReactNode
+  hasVisualScreenshot?: boolean
 }
 
 class Section extends Base {
@@ -29,6 +34,7 @@ class Section extends Base {
 
   constructor(config: SectionConfigType) {
     super({
+      ...DEFAULT_CONFIG,
       ...config,
       options: {
         ...DEFAULT_OPTIONS,

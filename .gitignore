@@ -12,3 +12,6 @@ __diff_output__
 
 # CI needs this to publish lerna
 .npmrc
+
+# Happo build output
+.happo

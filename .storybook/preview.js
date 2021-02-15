@@ -1,4 +1,5 @@
 import React from 'react'
+import 'happo-plugin-storybook/register'
 
 import Picasso from '@toptal/picasso-shared'
 

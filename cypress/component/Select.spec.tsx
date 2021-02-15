@@ -117,6 +117,7 @@ describe('Select', () => {
 
     cy.get('[data-testid=select]').type(' ')
     cy.get('[role=menu]').should('be.visible')
+    cy.get('[role=menu]').happoScreenshot()
   })
 
   it('changes NativeSelect value', () => {

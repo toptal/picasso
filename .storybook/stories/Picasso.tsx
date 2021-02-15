@@ -12,6 +12,7 @@ import SUPPORT from '../../docs/SUPPORT.md'
 import API_PRINCIPLES from '../../docs/api-principles.md'
 
 storiesOf('Picasso', module)
+  .addParameters({ happo: false })
   .add('Readme', doc(README))
   .add('Changelog', doc(CHANGELOG))
   .add('Support Info', doc(SUPPORT))

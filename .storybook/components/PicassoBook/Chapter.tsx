@@ -43,6 +43,7 @@ type Options = {
   id?: string
   extra?: string
   description?: string
+  hasVisualScreenshot?: boolean
 } & Record<string, string | boolean>
 
 class Chapter extends Base {
