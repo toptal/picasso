@@ -68,6 +68,9 @@ jobs:
 
       - name: Cypress Tests
         run: yarn cypress
+        env:
+          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
 
       - name: Type check
         run: yarn typecheck
