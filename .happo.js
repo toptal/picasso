@@ -2,6 +2,7 @@ const { RemoteBrowserTarget } = require('happo.io')
 const happoStorybookPlugin = require('happo-plugin-storybook')
 
 module.exports = {
+  project: 'Picasso',
   apiKey: process.env.HAPPO_API_KEY,
   apiSecret: process.env.HAPPO_API_SECRET,
 
