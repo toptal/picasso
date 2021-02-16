@@ -30,7 +30,9 @@ Describe the changes and motivations for the pull request.
 
 List of available commands:
 
-- `@toptal-bot run test:visual` or `@toptal-bot run visual` - Run visual tests
+- `@toptal-bot run all` - Run whole pipeline
+- `@toptal-bot run build` - Check build
+- `@toptal-bot run visual` - Run visual tests
 - `@toptal-bot run deploy:documentation` - Deploy documentation
 - `@toptal-bot run package:alpha-release` - Release alpha version
 
