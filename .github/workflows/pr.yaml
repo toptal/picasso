@@ -66,15 +66,15 @@ jobs:
       - name: Build packages
         run: yarn build:package
 
+      - name: Type Check
+        run: yarn typecheck
+
       - name: Cypress Tests
         run: yarn cypress
         env:
           HAPPO_PROJECT: Picasso/Cypress
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
-
-      - name: Type Check
-        run: yarn typecheck
 
       - name: Visual Tests
         run: yarn run happo:ci
