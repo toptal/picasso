@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.7](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.6...@toptal/picasso-lab@3.5.7) (2021-02-16)
+
+
+### Bug Fixes
+
+* **drawer:** allow drawer content to grow to the full height ([#1911](https://github.com/toptal/picasso/issues/1911)) ([91c92b7](https://github.com/toptal/picasso/commit/91c92b70f0686b647d8701cd730de339ea9994f3))
+
+
+
+
+
 ## [3.5.6](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.5...@toptal/picasso-lab@3.5.6) (2021-02-15)
 
 **Note:** Version bump only for package @toptal/picasso-lab
