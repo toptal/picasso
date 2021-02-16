@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.10.9](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.8...@toptal/picasso@5.10.9) (2021-02-16)
+
+
+### Bug Fixes
+
+* **ButtonAction + ButtonCircular:** type as overridable component ([#1918](https://github.com/toptal/picasso/issues/1918)) ([2256e54](https://github.com/toptal/picasso/commit/2256e545130e39abf0e45b4e387c44ab52a776de))
+
+
+
+
+
 ## [5.10.8](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.7...@toptal/picasso@5.10.8) (2021-02-15)
 
 
