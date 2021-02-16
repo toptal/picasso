@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.8](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.7...@toptal/picasso-lab@3.5.8) (2021-02-16)
+
+
+### Bug Fixes
+
+* **Drawer:** [FX-1734] Make title optional ([#1912](https://github.com/toptal/picasso/issues/1912)) ([4898797](https://github.com/toptal/picasso/commit/48987972d83384552e8e8330b17e5d3c7524cf22))
+
+
+
+
+
 ## [3.5.7](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.6...@toptal/picasso-lab@3.5.7) (2021-02-16)
 
 
