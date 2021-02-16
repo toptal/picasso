@@ -12,7 +12,7 @@ const Example = () => {
       </Button>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <Container data-testid='content' padded='small'>
-          <Typography>This is content. Title is omitted.</Typography>
+          <Typography>This is the content. The title is omitted.</Typography>
         </Container>
       </Drawer>
     </div>

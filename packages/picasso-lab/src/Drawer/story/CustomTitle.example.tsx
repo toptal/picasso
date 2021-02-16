@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 const Title = () => (
   <Container flex alignItems='center' padded='small'>
-    <Typography>This Drawer has custom title</Typography>
+    <Typography>This Drawer has a custom title</Typography>
     <Button size='small'>OK!</Button>
   </Container>
 )
