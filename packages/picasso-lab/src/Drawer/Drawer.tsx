@@ -68,9 +68,15 @@ export const Drawer: FunctionComponent<Props> = props => {
       onClose={handleOnClose}
       disablePortal={disablePortal}
     >
-      <Container flex className={cx(classes.container, classes[width!])}>
+      <Container
+        flex
+        direction='column'
+        className={cx(classes.container, classes[width!])}
+      >
         <DrawerTitle title={title} />
-        <Container flex className={classes.content}>{children}</Container>
+        <Container flex className={classes.content}>
+          {children}
+        </Container>
         <Button.Circular
           variant='flat'
           icon={<CloseMinor16 />}
