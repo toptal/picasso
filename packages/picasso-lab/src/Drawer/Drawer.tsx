@@ -1,12 +1,13 @@
 import MUIDrawer from '@material-ui/core/Drawer'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { Button, Container, Typography } from '@toptal/picasso'
+import { Button, Container } from '@toptal/picasso'
 import { BaseProps, useDrawer } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso/Icon'
 import React, { FunctionComponent, ReactNode, useLayoutEffect } from 'react'
 
 import styles from './styles'
+import DrawerTitle from '../DrawerTitle'
 
 type AnchorType = 'bottom' | 'left' | 'right' | 'top'
 
@@ -22,7 +23,7 @@ export interface Props extends BaseProps {
   /** Specify if the drawer is opened or not */
   open: boolean
   /** Specify the drawer title */
-  title: ReactNode
+  title?: ReactNode
   /** Callback fired when the component requests to be closed. */
   onClose?: () => void
   /** Width of Drawer */
@@ -67,25 +68,21 @@ export const Drawer: FunctionComponent<Props> = props => {
       onClose={handleOnClose}
       disablePortal={disablePortal}
     >
-      <Container flex className={cx(classes.container, classes[width!])}>
-        <Container
-          flex
-          alignItems='center'
-          padded='small'
-          className={classes.header}
-        >
-          <Typography variant='heading' size='medium' className={classes.title}>
-            {title}
-          </Typography>
-          <Button.Circular
-            variant='flat'
-            icon={<CloseMinor16 />}
-            onClick={handleOnClose}
-          />
-        </Container>
+      <Container
+        flex
+        direction='column'
+        className={cx(classes.container, classes[width!])}
+      >
+        <DrawerTitle title={title} />
         <Container flex className={classes.content}>
           {children}
         </Container>
+        <Button.Circular
+          variant='flat'
+          icon={<CloseMinor16 />}
+          onClick={handleOnClose}
+          className={classes.closeButton}
+        />
       </Container>
     </MUIDrawer>
   )

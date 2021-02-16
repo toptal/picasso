@@ -24,6 +24,26 @@ page
       })
     }
   })
+  .addExample('Drawer/story/WithoutTitle.example.tsx', {
+    title: 'Without Title',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="trigger"]')
+
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
+  .addExample('Drawer/story/CustomTitle.example.tsx', {
+    title: 'Custom Title',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="trigger"]')
+
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
   .addExample('Drawer/story/Widths.example.tsx', {
     title: 'Width',
     effect: async (testPage, makeScreenshot) => {
