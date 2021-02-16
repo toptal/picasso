@@ -1,7 +1,7 @@
 import React, { ReactElement, MouseEvent, forwardRef, ElementType } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
+import { BaseProps, ButtonOrAnchorProps, OverridableComponent } from '@toptal/picasso-shared'
 
 import Button, { IconPositionType } from '../Button'
 import styles from './styles'
@@ -40,7 +40,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 const loaderIcon = <Loader size='small' variant='inherit' />
 
-export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
+export const ButtonAction: OverridableComponent<Props> = forwardRef<HTMLButtonElement, Props>(
   function ButtonAction(props, ref) {
     const {
       className,

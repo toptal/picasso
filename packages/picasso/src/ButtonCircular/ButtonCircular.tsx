@@ -1,7 +1,7 @@
 import React, { ReactElement, MouseEvent, forwardRef, ElementType } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
+import { BaseProps, ButtonOrAnchorProps, OverridableComponent } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
@@ -40,7 +40,7 @@ const useStyles = makeStyles<Theme>(styles, {
   index: -1
 })
 
-export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
+export const ButtonCircular: OverridableComponent<Props> = forwardRef<HTMLButtonElement, Props>(
   function ButtonCircular(props, ref) {
     const {
       className,
