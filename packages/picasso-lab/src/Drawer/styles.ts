@@ -12,7 +12,8 @@ PicassoProvider.override(() => ({
 export default ({ palette }: Theme) =>
   createStyles({
     container: {
-      maxWidth: '100%'
+      maxWidth: '100%',
+      flex: 1
     },
     header: {
       position: 'absolute',
@@ -26,7 +27,8 @@ export default ({ palette }: Theme) =>
       flexGrow: 1
     },
     content: {
-      paddingTop: '4.3125rem'
+      paddingTop: '4.3125rem',
+      flex: 1
     },
     regular: {
       width: '27.5rem'

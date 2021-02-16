@@ -19,6 +19,7 @@ page
       await testPage.click('[data-testid="trigger"]')
 
       await makeScreenshot({
+        isFullScreen: true,
         selector: '[data-testid="content"]'
       })
     }
