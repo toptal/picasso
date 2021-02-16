@@ -37,7 +37,8 @@ page
 
       await testPage.keyboard.press('Tab')
       await makeScreenshot()
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Radio/story/Checked.example.tsx', 'Checked')
   .addExample('Radio/story/Disabled.example.tsx', 'Disabled')

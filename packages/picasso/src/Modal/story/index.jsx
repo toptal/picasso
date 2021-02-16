@@ -40,7 +40,8 @@ component and manage the internal state there.
 
       await testPage.waitFor(1000)
       await makeScreenshot()
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Modal/story/Sizes.example.tsx', {
     title: 'Sizes',
@@ -74,7 +75,8 @@ component and manage the internal state there.
       await makeScreenshot({
         isFullScreen: true
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Modal/story/MaxHeight.example.tsx', {
     title: 'Max Height',
@@ -84,7 +86,8 @@ component and manage the internal state there.
       await makeScreenshot({
         isFullScreen: true
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Modal/story/Tooltips.example.tsx', {
     // TODO title should be 1-2 words, title -> descripion
@@ -99,5 +102,6 @@ component and manage the internal state there.
       await makeScreenshot({
         isFullScreen: true
       })
-    }
+    },
+    takeScreenshot: false
   })

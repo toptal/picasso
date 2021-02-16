@@ -22,7 +22,8 @@ page
       await makeScreenshot({
         selector: '[data-testid="menu"]'
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Dropdown/story/ButtonDropdown.example.tsx', 'Button Anchor')
   .addExample(

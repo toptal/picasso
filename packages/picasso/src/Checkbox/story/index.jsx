@@ -35,7 +35,8 @@ page
       // Checked focused
       await testPage.keyboard.press('Tab')
       await makeScreenshot()
-    }
+    },
+    takeScreenshot: false
   })
   .addExample(
     'Checkbox/story/CheckboxGroupVertical.example.tsx',

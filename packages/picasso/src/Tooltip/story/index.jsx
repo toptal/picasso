@@ -50,5 +50,6 @@ page
       await testPage.click('[data-testid="trigger"]')
 
       await makeScreenshot({ isFullScreen: true })
-    }
+    },
+    takeScreenshot: false
   })

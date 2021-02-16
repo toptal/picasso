@@ -30,7 +30,8 @@ page
       await makeScreenshot({
         isFullScreen: true
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('TreeView/story/CustomZoom.example.tsx', {
     title: 'Custom Zoom'

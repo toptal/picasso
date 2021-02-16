@@ -69,7 +69,8 @@ page
       await makeScreenshot({
         isFullScreen: true
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Select/story/Native.example.tsx', 'Native')
   .addExample('Select/story/SearchBehavior.example.tsx', {
@@ -89,7 +90,8 @@ page
       await makeScreenshot({
         isFullScreen: true
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Select/story/Loading.example.tsx', 'Loading')
   .addExample('Select/story/Sizes.example.tsx', 'Sizes')
@@ -111,7 +113,8 @@ page
       await makeScreenshot({
         isFullScreen: true
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Select/story/ChosenOption.example.tsx', {
     title: 'Chosen option',
@@ -142,6 +145,7 @@ page
       await testPage.keyboard.press('Tab')
 
       await makeScreenshot()
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Select/story/Autofill.example.tsx', 'Disabling autofilling') // picasso-skip-visuals

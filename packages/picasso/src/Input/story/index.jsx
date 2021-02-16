@@ -27,7 +27,8 @@ page
 
       await testPage.click('[data-testid="input"]')
       await makeScreenshot()
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Input/story/Disabled.example.tsx', 'Disabled')
   .addExample('Input/story/Error.example.tsx', {
@@ -38,7 +39,8 @@ page
 
       await testPage.click('[data-testid="input"]')
       await makeScreenshot()
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Input/story/WithIcon.example.tsx', 'With icon')
   .addExample('Input/story/Sizes.example.tsx', 'Sizes')

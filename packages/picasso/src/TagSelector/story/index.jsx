@@ -43,7 +43,8 @@ page
       await makeScreenshot({
         isFullScreen: true
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('TagSelector/story/OtherOption.example.tsx', {
     title: 'Other option',
@@ -59,7 +60,8 @@ page
       await testPage.click('[role="option"]')
       await testPage.waitFor(50)
       await makeScreenshot()
-    }
+    },
+    takeScreenshot: false
   })
   .addExample(
     'TagSelector/story/InitialSetValue.example.tsx',

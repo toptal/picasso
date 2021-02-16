@@ -47,6 +47,7 @@ page
 
       await makeScreenshot()
     },
+    takeScreenshot: false,
     waitUntilImagesLoaded: true
   })
   .addExample('Table/story/ExpandableRowsDefaultExpanded.example.tsx', {
@@ -58,6 +59,7 @@ page
 
       await makeScreenshot()
     },
+    takeScreenshot: false,
     waitUntilImagesLoaded: true
   })
 

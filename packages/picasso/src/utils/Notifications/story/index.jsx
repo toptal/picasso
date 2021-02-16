@@ -58,7 +58,8 @@ Each of them has this list of props:
           await makeScreenshot({
             isFullScreen: true
           })
-        }
+        },
+        takeScreenshot: false
       })
       .addExample('utils/Notifications/story/Variants.example.tsx', {
         title: 'Variants',
@@ -72,7 +73,8 @@ Each of them has this list of props:
           await makeScreenshot({
             isFullScreen: true
           })
-        }
+        },
+        takeScreenshot: false
       })
       .addExample(
         'utils/Notifications/story/GeneralNotifications.example.tsx',
@@ -84,7 +86,8 @@ Each of them has this list of props:
             await makeScreenshot({
               isFullScreen: true
             })
-          }
+          },
+          takeScreenshot: false
         }
       )
       .addExample('utils/Notifications/story/Options.example.tsx', {
@@ -102,7 +105,8 @@ Each of them has this list of props:
           await makeScreenshot({
             isFullScreen: true
           })
-        }
+        },
+        takeScreenshot: false
       })
       .addTextSection(
         `

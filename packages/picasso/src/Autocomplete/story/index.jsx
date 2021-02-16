@@ -80,7 +80,8 @@ if needed.
       await makeScreenshot({
         isFullScreen: true
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Autocomplete/story/Loading.example.tsx', 'Loading')
   .addExample('Autocomplete/story/Error.example.tsx', 'Error')
@@ -93,7 +94,8 @@ if needed.
       await makeScreenshot({
         isFullScreen: true
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample(
     'Autocomplete/story/CustomOptionRenderer.example.tsx',

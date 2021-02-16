@@ -103,7 +103,8 @@ Most of the time you would use Sidebar.Item as a router Link. This is how to do 
         await testPage.click('[test-id="Referrals"]')
         await testPage.waitForSelector('[role="region"]')
         await makeScreenshot()
-      }
+      },
+      takeScreenshot: false
     })
     .addExample('SidebarItem/story/DefaultExpanded.example.tsx', {
       title: 'Expanded by default',

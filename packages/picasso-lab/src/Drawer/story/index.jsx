@@ -22,7 +22,8 @@ page
         isFullScreen: true,
         selector: '[data-testid="content"]'
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample('Drawer/story/Widths.example.tsx', {
     title: 'Width',
@@ -47,7 +48,8 @@ page
         isFullScreen: true,
         selector: '[data-testid="content"]'
       })
-    }
+    },
+    takeScreenshot: false
   })
   .addExample(
     'Drawer/story/DrawerAndNotification.example.tsx',
