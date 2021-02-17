@@ -140,6 +140,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
     }),
     label: {
       // 1px is needed for safari
+      fontSize: '1rem',
       maxWidth: `calc(100% - ${CONTROL_WIDTH} - ${CONTROL_MARGIN_RIGHT} + 1px)`,
       margin: `${RADIO_VERTICAL_MARGIN} 0`
     },

@@ -1,9 +1,9 @@
 import { createStyles } from '@material-ui/core/styles'
 import { outline, PicassoProvider } from '@toptal/picasso-shared'
 
-const CONTROL_WIDTH = '1rem'
-const LABEL_LEFT_MARGIN = '0.5rem'
-const LABEL_TOP_MARGIN = '0.25rem'
+const CONTROL_WIDTH = '1em'
+const LABEL_LEFT_MARGIN = '0.5em'
+const LABEL_TOP_MARGIN = '0.25em'
 
 const THUMB_SIZE = 22
 const TRACK_HEIGHT = THUMB_SIZE + 2
@@ -76,7 +76,7 @@ export default () =>
   createStyles({
     root: { alignItems: 'flex-start' },
     label: {
-      lineHeight: '1rem',
+      fontSize: '1rem',
       marginLeft: LABEL_LEFT_MARGIN,
       marginTop: LABEL_TOP_MARGIN,
       // 1px is needed for safari
