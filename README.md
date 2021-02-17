@@ -43,16 +43,14 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 
 | Command                | Description                                                                    |
 | ---------------------- | ------------------------------------------------------------------------------ |
-| **build:packages**     | Build the packages                                                             |
+| **build:package**      | Build the packages                                                             |
 | **build:storybook**    | Build Storybook as static website                                              |
-| **commit**             | Interactive commits                                                            |
+| **commit**             | Interactive conventional commits                                               |
 | **generate:component** | Generate a new component template                                              |
 | **generate:example**   | Generate a new component component code example                                |
 | **generate:icons**     | [Generate JSX icon components from svgs](#add-icon)                            |
 | **lint**               | Lint all files                                                                 |
 | **start**              | Start storybook instance and inspect components                                |
-| **symlink**            | Symlink current version of library for development                             |
-| **symlink:off**        | Un-symlink current version of library for development                          |
 | **test**               | Run jest and cypress tests                                                     |
 | **test:cypress**       | Run cypress tests                                                              |
 | **test:cypress:open**  | Run cypress in development mode                                                |
@@ -144,7 +142,7 @@ In Picasso project directory:
 
 1. Checkout Picasso project from [Github](https://github.com/toptal/picasso)
 2. Install Picasso dependencies with `yarn install`
-3. Build Picasso inside Picasso package folder (`./packages/picasso/`) with `yarn build:packages`
+3. Build Picasso inside Picasso package folder (`./packages/picasso/`) with `yarn build:package`
 4. Create a link with running in the root path `yarn symlink` (creates all links to Picasso packages and React link)
 
 In your project directory:

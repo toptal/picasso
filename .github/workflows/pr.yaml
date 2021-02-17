@@ -61,16 +61,16 @@ jobs:
         run: yarn lint
 
       - name: Jest Tests
-        run: yarn test:ci:unit
+        run: yarn test:unit:ci
 
       - name: Build packages
-        run: yarn build:packages
+        run: yarn build:package
 
       - name: Type Check
         run: yarn typecheck
 
       - name: Cypress Tests
-        run: yarn cypress:ci
+        run: yarn test:cypress:ci
         env:
           HAPPO_PROJECT: Picasso/Cypress
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}

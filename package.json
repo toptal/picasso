@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build:packages": "lerna run build:package --stream --parallel",
+    "build:package": "lerna run build:package --stream --parallel",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook --quiet",
     "commit": "git-cz",
     "generate:component": "hygen component new",
@@ -22,15 +22,15 @@
     "symlink": "cross-env ./bin/symlink --link",
     "symlink:off": "cross-env ./bin/symlink --unlink",
     "test": "yarn test:unit && yarn test:cypress",
-    "test:ci:cypress": "yarn test:setup && happo-cypress -- cypress run",
-    "test:ci:unit": "yarn test:unit --maxWorkers=4 --ci",
-    "test:ci:visual": "./bin/test-visual --ci",
-    "test:cypress": "yarn build:packages && yarn test:setup && cypress run",
-    "test:cypress:open": "yarn build:packages && yarn test:setup && cypress open",
+    "test:cypress": "yarn build:package && yarn test:setup && cypress run",
+    "test:cypress:ci": "yarn test:setup && happo-cypress -- cypress run",
+    "test:cypress:open": "yarn build:package && yarn test:setup && cypress open",
     "test:setup": "cross-env NODE_ENV=test TZ=UTC",
     "test:unit": "yarn test:setup && jest",
+    "test:unit:ci": "yarn test:unit --maxWorkers=4 --ci",
     "test:unit:watch": "yarn test:unit --watch",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
+    "test:visual:ci": "./bin/test-visual --ci",
     "typecheck": "tsc --noEmit & tsc -p ./cypress/tsconfig.json"
   },
   "repository": {

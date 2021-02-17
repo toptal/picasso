@@ -9,13 +9,13 @@ const { log } = require('./utils')
 
 const PACKAGES_DIR = path.join(__dirname, '../packages/')
 
-const link = function(name) {
+const link = function (name) {
   exec(`yarn link ${name}`, {
     stdio: 'inherit'
   })
 }
 
-const unlink = function(name) {
+const unlink = function (name) {
   try {
     exec(`yarn unlink ${name}`, {
       stdio: 'ignore',
@@ -26,7 +26,7 @@ const unlink = function(name) {
   }
 }
 
-const createLink = function(name, cwd) {
+const createLink = function (name, cwd) {
   log(`Linking ${name}...`)
   exec('yarn link', {
     cwd,
@@ -34,7 +34,7 @@ const createLink = function(name, cwd) {
   })
 }
 
-const removeLink = function(name, cwd) {
+const removeLink = function (name, cwd) {
   try {
     log(`Unlinking ${name}...`)
     exec('yarn unlink', {
@@ -63,7 +63,7 @@ const getPackagePackageJson = packageName => {
   return require(packageJsonPath)
 }
 
-const setup = function() {
+const setup = function () {
   const packages = getPicassoPackages()
 
   const linkPackages = packages.map(package => {
@@ -82,7 +82,7 @@ const setup = function() {
   if (yargs.link) {
     log('Firt build dist versions of all the packages')
 
-    exec('yarn build:packages', { stdio: 'inherit' })
+    exec('yarn build:package', { stdio: 'inherit' })
 
     log('Linking process started...')
 
