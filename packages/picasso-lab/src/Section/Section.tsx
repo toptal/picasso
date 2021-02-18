@@ -1,9 +1,15 @@
 import cx from 'classnames'
 import React, { forwardRef, ReactNode } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { CompoundedComponentWithRef } from '@toptal/shared'
 import { BaseProps, Container } from '@toptal/picasso'
 
 import styles from './styles'
+import SectionContent from '../SectionContent'
+
+export interface StaticProps {
+  Content: typeof SectionContent
+}
 
 export interface Props extends BaseProps {
   children?: ReactNode
@@ -30,8 +36,10 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       {children}
     </Container>
   )
-})
+}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Section.displayName = 'Section'
+
+Section.Content = SectionContent
 
 export default Section

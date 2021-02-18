@@ -1,6 +1,12 @@
 import { Section } from '@toptal/picasso-lab'
 import React from 'react'
 
-const Example = () => <Section>123</Section>
+const Example = () => {
+  return (
+    <Section>
+      <Section.Content>Content</Section.Content>
+    </Section>
+  )
+}
 
 export default Example
