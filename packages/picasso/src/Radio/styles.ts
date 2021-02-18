@@ -1,8 +1,9 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { PicassoProvider, rem, outline, mix } from '@toptal/picasso-shared'
 
-const controlWidth = '1em'
-const controlMarginRight = '0.5em'
+const CONTROL_WIDTH = '1em'
+const CONTROL_MARGIN_RIGHT = '0.5em'
+const RADIO_VERTICAL_MARGIN = '0.25em'
 
 PicassoProvider.override(({ palette, transitions }) => ({
   MuiRadio: {
@@ -13,7 +14,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
       width: '1em',
       height: '1em',
       padding: '0',
-      margin: '0.25em 0',
+      margin: `${RADIO_VERTICAL_MARGIN} 0`,
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
 
       '&$disabled': {
@@ -94,6 +95,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
+      alignItems: 'flex-start',
 
       '&:hover $uncheckedIcon:before': iconBeforeStyles({
         borderWidth: sizes.borderWidth,
@@ -118,7 +120,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
     withLabel: {
-      marginRight: controlMarginRight
+      marginRight: CONTROL_MARGIN_RIGHT
     },
     uncheckedIcon: iconStyles({
       backgroundColor: palette.common.white,
@@ -138,7 +140,8 @@ export default ({ palette, sizes, transitions }: Theme) =>
     }),
     label: {
       // 1px is needed for safari
-      maxWidth: `calc(100% - ${controlWidth} - ${controlMarginRight} + 1px)`
+      maxWidth: `calc(100% - ${CONTROL_WIDTH} - ${CONTROL_MARGIN_RIGHT} + 1px)`,
+      marginTop: RADIO_VERTICAL_MARGIN
     },
     labelWithRightSpacing: {}
   })
