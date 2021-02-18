@@ -12,7 +12,7 @@
 
 ## Installation instructions
 
-```
+```js
 yarn add @toptal/picasso
 ```
 
@@ -33,51 +33,33 @@ render () {
 }
 ```
 
-ℹ️ **_[`Picasso`](/?path=/story/components-folder--picasso) component rendered at root level is required for library theme configuration and theme to work properly._**
+**_A [`Picasso`](/?path=/story/components-folder--picasso) component rendered at root level is required for the library theme configuration and theme to work properly._**
 
 ## Running storybook
 
-In order to run storybook you need to execute `yarn start` which will spin up storybook server on http://localhost:9001
-
-### Running visual tests
-
-To preserve same visual test results we need to always run/update snapshots inside docker to have consistency with CI. Visual tests use `puppeteer` and `chromium`.
-
-In order to run visual tests you need to first build `picasso` docker image.
-
-`yarn test:visual` - Running visual tests
-
-[Need to fix broken visual tests?](https://github.com/toptal/picasso/blob/master/docs/contribution/visual-testing.md#fixing-broken-visual-tests-inside-a-pr)
-
-### Running yarn commands inside docker image
-
-In order to run `yarn` commands we need to mount current `components` directory to docker, so command will be executed against current working directory not the one built inside image.
-
-```bash
-./bin/run-in-docker yarn lint
-```
+In order to run storybook you need to execute `yarn start` which will spin up storybook server on <http://localhost:9001>.
 
 ## Project commands
 
-| Command                     | Description                                                               |
-| --------------------------- | ------------------------------------------------------------------------- |
-| **yarn lint**               | Lint all files                                                            |
-| **yarn test**               | Run unit tests                                                            |
-| **yarn test -u**            | Update jest snapshots to current version                                  |
-| **yarn test:watch**         | Run unit tests in watch mode                                              |
-| **yarn test-ci**            | Run unit tests at ci                                                      |
-| **yarn test:visual**        | Run visual regression tests in Docker                                     |
-| **yarn test:visual -u**     | Update visual regression snapshots in docker                              |
-| **yarn cypress:open**       | Run cypress in development mode (need to run `yarn start` and `yarn build:package` before) |
-| **yarn cypress**            | Run cypress tests (need to run `yarn start` and `yarn build:package` before) |
-| **yarn start**              | Start storybook instance and inspect components                           |
-| **yarn release:pre**        | Bump pre-release version in `package.json` and create new version git tag |
-| **yarn generate:component** | Generate a new component template                                         |
-| **yarn generate:example**   | Generate a new component component code example                           |
-| **yarn build:package**      | Build the packages                                                        |
-| **yarn build:storybook**    | Build Storybook as static website                                         |
-| **yarn symlink**            | Symlink current version of library for development                        |
-| **yarn symlink:off**        | Un-symlink current version of library for development                     |
+| Command                | Description                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------ |
+| **build:package**      | Build the packages                                                             |
+| **build:storybook**    | Build Storybook as static website                                              |
+| **commit**             | Interactive conventional commits                                               |
+| **generate:component** | Generate a new component template                                              |
+| **generate:example**   | Generate a new component component code example                                |
+| **generate:icons**     | [Generate JSX icon components from svgs](#add-icon)                            |
+| **lint**               | Lint all files                                                                 |
+| **start**              | Start storybook instance and inspect components                                |
+| **test**               | Run jest and cypress tests                                                     |
+| **test:cypress**       | Run cypress tests                                                              |
+| **test:cypress:open**  | Run cypress in development mode                                                |
+| **test:unit**          | Run unit tests                                                                 |
+| **test:unit -u**       | Update jest snapshots                                                          |
+| **test:unit:watch**    | Run unit tests in watch mode                                                   |
+| **test:visual**        | Run [visual regression tests](./docs/contribution/visual-testing.md) in Docker |
+| **test:visual -u**     | Update visual regression snapshots in docker                                   |
+| **typecheck**          | Validate typescript compilation                                                |
 
 ## Icons
 
@@ -95,7 +77,7 @@ To add a new Icon to Picasso library please follow these steps:
    > packages/picasso/src/Icon/svg/[your_icon_name].svg
 3. Run the command
 
-   ```
+   ```js
    yarn generate:icons
    ```
 
@@ -111,7 +93,7 @@ After Picasso will be released with your changes you can start using your Icon a
    - `package.json` by running `lerna add`. Specify `Toptal` as the author and `src/index.ts` in the `main` key
    - `tsconfig.build.json` using this template with paths to the `node_modules` of any used packages from the `/packages` directory
 
-   ```
+   ```json
    {
      "extends": "../../tsconfig.build.json",
      "compilerOptions": {
@@ -133,11 +115,11 @@ After Picasso will be released with your changes you can start using your Icon a
 
    - `CHANGELOG.md` using this template (All notable changes to the package will be documented in this file automatically)
 
-   ```
+   ```md
    # Change Log
-   All notable changes to this project will be documented in this file.
-   See [Conventional Commits](https://conventionalcommits.org)   for commit guidelines.
 
+   All notable changes to this project will be documented in this file.
+   See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
    ```
 
 2. Add the new package to:
