@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.10.10](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.9...@toptal/picasso@5.10.10) (2021-02-18)
+
+
+### Bug Fixes
+
+* multiline radio, checkbox and switch label alignment ([#1890](https://github.com/toptal/picasso/issues/1890)) ([f7f4aa0](https://github.com/toptal/picasso/commit/f7f4aa0effa5b7218ae2fd171186eb9c2aa37a2a))
+
+
+
+
+
 ## [5.10.9](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.8...@toptal/picasso@5.10.9) (2021-02-16)
 
 

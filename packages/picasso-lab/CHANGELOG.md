@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.9](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.8...@toptal/picasso-lab@3.5.9) (2021-02-18)
+
+
+### Bug Fixes
+
+* multiline radio, checkbox and switch label alignment ([#1890](https://github.com/toptal/picasso/issues/1890)) ([f7f4aa0](https://github.com/toptal/picasso/commit/f7f4aa0effa5b7218ae2fd171186eb9c2aa37a2a))
+
+
+
+
+
 ## [3.5.8](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.7...@toptal/picasso-lab@3.5.8) (2021-02-16)
 
 
