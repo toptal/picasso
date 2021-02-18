@@ -74,9 +74,8 @@ PicassoProvider.override(({ palette, transitions }) => ({
 
 export default () =>
   createStyles({
-    root: { alignItems: 'flex-start' },
+    root: { alignItems: 'flex-start', fontSize: '1rem' },
     label: {
-      fontSize: '1rem',
       marginLeft: LABEL_LEFT_MARGIN,
       marginTop: LABEL_TOP_MARGIN,
       // 1px is needed for safari
