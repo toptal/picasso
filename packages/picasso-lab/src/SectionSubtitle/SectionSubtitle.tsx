@@ -11,7 +11,9 @@ export const SectionSubtitle = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Container ref={ref} className={className} style={style} {...rest}>
-        <Typography>{children}</Typography>
+        <Typography size='medium' color='dark-grey'>
+          {children}
+        </Typography>
       </Container>
     )
   }

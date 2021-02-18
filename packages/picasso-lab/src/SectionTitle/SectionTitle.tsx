@@ -13,7 +13,9 @@ export const SectionTitle = forwardRef<HTMLDivElement, Props>(function Section(
 
   return (
     <Container ref={ref} className={className} style={style} {...rest}>
-      <Typography>{children}</Typography>
+      <Typography variant='heading' size='medium'>
+        {children}
+      </Typography>
     </Container>
   )
 })
