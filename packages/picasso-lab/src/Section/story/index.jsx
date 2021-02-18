@@ -5,7 +5,10 @@ import sectionSubtitleStory from '../../SectionSubtitle/story'
 import sectionActionsStory from '../../SectionActions/story'
 import sectionContentStory from '../../SectionContent/story'
 
-const page = PicassoBook.section('Picasso Lab').createPage('Section')
+const page = PicassoBook.section('Picasso Lab').createPage(
+  'Section',
+  'Use sections to organize content on the page'
+)
 
 page
   .createTabChapter('Props')

@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section renders with title and content 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoSection-root"
+    >
+      <div
+        class="PicassoSection-header"
+      >
+        <div
+          class="PicassoSectionTitle-root"
+        >
+          <h3
+            class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
+          >
+            Title
+          </h3>
+        </div>
+      </div>
+      <div
+        class="PicassoSectionContent-root"
+      >
+        Content
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Section renders with title, subtitle, actions and content 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoSection-root"
+    >
+      <div
+        class="PicassoSection-header"
+      >
+        <div
+          class="PicassoSectionTitle-root"
+        >
+          <h3
+            class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
+          >
+            Title
+          </h3>
+        </div>
+        <div
+          class="PicassoSectionTitle-root"
+        >
+          <h3
+            class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
+          >
+            Subtitle
+          </h3>
+        </div>
+        <div
+          class="PicassoSectionActions-root"
+        >
+          Actions
+        </div>
+      </div>
+      <div
+        class="PicassoSectionContent-root"
+      >
+        Content
+      </div>
+    </div>
+  </div>
+</div>
+`;
