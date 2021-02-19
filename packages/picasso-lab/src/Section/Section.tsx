@@ -32,10 +32,6 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
   const { className, style, children, ...rest } = props
   const classes = useStyles()
 
-  const elements = React.Children.toArray(children)
-  const onlyLastElement = elements.slice(-1)
-  const elementsWithoutLast = elements.slice(0, -1)
-
   return (
     <Container
       ref={ref}
@@ -43,8 +39,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       style={style}
       {...rest}
     >
-      <Container className={classes.header}>{elementsWithoutLast}</Container>
-      {onlyLastElement}
+      {children}
     </Container>
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>

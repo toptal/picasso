@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import React, { forwardRef, ReactNode } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { BaseProps, Container, Typography } from '@toptal/picasso'
+import { BaseProps, Typography } from '@toptal/picasso'
 
 import styles from './styles'
 
@@ -21,16 +21,16 @@ export const SectionTitle = forwardRef<HTMLDivElement, Props>(function Section(
   const classes = useStyles()
 
   return (
-    <Container
+    <Typography
       ref={ref}
       className={cx(classes.root, className)}
       style={style}
+      variant='heading'
+      size='medium'
       {...rest}
     >
-      <Typography variant='heading' size='medium'>
-        {children}
-      </Typography>
-    </Container>
+      {children}
+    </Typography>
   )
 })
 
