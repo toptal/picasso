@@ -8,7 +8,7 @@ describe('Section', () => {
     const { container } = render(
       <Section>
         <Section.Title>Title</Section.Title>
-        <Section.Title>Subtitle</Section.Title>
+        <Section.Subtitle>Subtitle</Section.Subtitle>
         <Section.Actions>Actions</Section.Actions>
         <Section.Content>Content</Section.Content>
       </Section>
