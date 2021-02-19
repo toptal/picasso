@@ -13,26 +13,25 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoSectionTitle'
 })
 
-export const SectionTitle = forwardRef<HTMLDivElement, Props>(function Section(
-  props,
-  ref
-) {
-  const { children, className, style, ...rest } = props
-  const classes = useStyles()
+export const SectionTitle = forwardRef<HTMLHeadingElement, Props>(
+  function SectionTitle(props, ref) {
+    const { children, className, style, ...rest } = props
+    const classes = useStyles()
 
-  return (
-    <Typography
-      ref={ref}
-      className={cx(classes.root, className)}
-      style={style}
-      variant='heading'
-      size='medium'
-      {...rest}
-    >
-      {children}
-    </Typography>
-  )
-})
+    return (
+      <Typography
+        ref={ref}
+        className={cx(classes.root, className)}
+        style={style}
+        variant='heading'
+        size='medium'
+        {...rest}
+      >
+        {children}
+      </Typography>
+    )
+  }
+)
 
 SectionTitle.displayName = 'SectionTitle'
 

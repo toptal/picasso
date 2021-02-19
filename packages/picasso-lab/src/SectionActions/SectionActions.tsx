@@ -14,7 +14,7 @@ const useStyles = makeStyles(styles, {
 })
 
 export const SectionActions = forwardRef<HTMLDivElement, Props>(
-  function Section(props, ref) {
+  function SectionActions(props, ref) {
     const { children, className, style, ...rest } = props
     const classes = useStyles()
 

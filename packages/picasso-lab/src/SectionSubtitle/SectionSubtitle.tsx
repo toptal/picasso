@@ -13,7 +13,7 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoSectionSubtitle'
 })
 
-export const SectionSubtitle = forwardRef<HTMLDivElement, Props>(
+export const SectionSubtitle = forwardRef<HTMLParagraphElement, Props>(
   function SectionSubtitle(props, ref) {
     const { children, className, style, ...rest } = props
     const classes = useStyles()
