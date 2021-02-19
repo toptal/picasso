@@ -1,8 +1,8 @@
 import cx from 'classnames'
 import React, { forwardRef, ReactNode } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { CompoundedComponentWithRef } from '@toptal/shared'
 import { BaseProps, Container } from '@toptal/picasso'
+import { CompoundedComponentWithRef } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import SectionTitle from '../SectionTitle'
