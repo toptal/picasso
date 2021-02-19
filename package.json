@@ -25,7 +25,7 @@
     "test:cypress": "yarn build:package && cypress run",
     "test:cypress:ci": "happo-cypress -- cypress run",
     "test:cypress:open": "yarn build:package && cypress open",
-    "test:setup": "cross-env NODE_ENV=test TZ=UTC",
+    "test:setup": "cross-env TZ=UTC",
     "test:unit": "yarn test:setup jest",
     "test:unit:ci": "yarn test:unit --maxWorkers=4 --ci",
     "test:unit:watch": "yarn test:unit --watch",
