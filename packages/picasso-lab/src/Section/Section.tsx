@@ -1,23 +1,14 @@
 import cx from 'classnames'
 import React, { forwardRef, ReactNode } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { BaseProps, Container } from '@toptal/picasso'
-import { CompoundedComponentWithRef } from '@toptal/picasso-shared'
+import { BaseProps, Container, Typography } from '@toptal/picasso'
 
 import styles from './styles'
-import SectionTitle from '../SectionTitle'
-import SectionSubtitle from '../SectionSubtitle'
-import SectionActions from '../SectionActions'
-import SectionContent from '../SectionContent'
-
-export interface StaticProps {
-  Title: typeof SectionTitle
-  Subtitle: typeof SectionSubtitle
-  Actions: typeof SectionActions
-  Content: typeof SectionContent
-}
 
 export interface Props extends BaseProps {
+  title: ReactNode
+  subtitle?: ReactNode
+  actions?: ReactNode
   children?: ReactNode
 }
 
@@ -29,7 +20,15 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
   props,
   ref
 ) {
-  const { className, style, children, ...rest } = props
+  const {
+    className,
+    style,
+    title,
+    subtitle,
+    actions,
+    children,
+    ...rest
+  } = props
   const classes = useStyles()
 
   return (
@@ -39,16 +38,28 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       style={style}
       {...rest}
     >
+      <Container className={classes.header}>
+        <Typography className={classes.title} variant='heading' size='medium'>
+          {title}
+        </Typography>
+        {subtitle && (
+          <Typography
+            className={classes.subtitle}
+            size='medium'
+            color='dark-grey'
+          >
+            {subtitle}
+          </Typography>
+        )}
+        {actions && (
+          <Container className={classes.actions}>{actions}</Container>
+        )}
+      </Container>
       {children}
     </Container>
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
+})
 
 Section.displayName = 'Section'
-
-Section.Title = SectionTitle
-Section.Subtitle = SectionSubtitle
-Section.Actions = SectionActions
-Section.Content = SectionContent
 
 export default Section

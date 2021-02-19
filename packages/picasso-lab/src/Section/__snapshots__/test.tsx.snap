@@ -8,26 +8,26 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
     <div
       class="PicassoSection-root"
     >
-      <h3
-        class="MuiTypography-root PicassoTypography-headingMedium PicassoSectionTitle-root MuiTypography-h3"
-      >
-        Title
-      </h3>
-      <p
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey PicassoSectionSubtitle-root MuiTypography-body1"
-      >
-        Subtitle
-      </p>
       <div
-        class="PicassoSectionActions-root"
+        class="PicassoSection-header"
       >
-        Actions
+        <h3
+          class="MuiTypography-root PicassoTypography-headingMedium PicassoSection-title MuiTypography-h3"
+        >
+          Title
+        </h3>
+        <p
+          class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey PicassoSection-subtitle MuiTypography-body1"
+        >
+          Subtitle
+        </p>
+        <div
+          class="PicassoSection-actions"
+        >
+          Actions
+        </div>
       </div>
-      <div
-        class="PicassoSectionContent-root"
-      >
-        Content
-      </div>
+      Content
     </div>
   </div>
 </div>

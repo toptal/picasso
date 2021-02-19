@@ -6,11 +6,8 @@ import Section from './Section'
 describe('Section', () => {
   it('renders with title, subtitle, actions and content', () => {
     const { container } = render(
-      <Section>
-        <Section.Title>Title</Section.Title>
-        <Section.Subtitle>Subtitle</Section.Subtitle>
-        <Section.Actions>Actions</Section.Actions>
-        <Section.Content>Content</Section.Content>
+      <Section title='Title' subtitle='Subtitle' actions='Actions'>
+        Content
       </Section>
     )
 
