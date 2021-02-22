@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@1.1.3...@toptal/picasso-charts@1.1.4) (2021-02-22)
+
+
+### Bug Fixes
+
+* update recharts and fix typings ([#1901](https://github.com/toptal/picasso/issues/1901)) ([f9e1e26](https://github.com/toptal/picasso/commit/f9e1e2605691c4576ddc3754ef9b8187144b9c34))
+
+
+
+
+
 ## [1.1.3](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@1.1.2...@toptal/picasso-charts@1.1.3) (2021-02-15)
 
 **Note:** Version bump only for package @toptal/picasso-charts
