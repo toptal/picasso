@@ -1,10 +1,7 @@
-import { createStyles, Theme } from '@material-ui/core'
+import { createStyles } from '@material-ui/core'
 
-export default ({ layout }: Theme) =>
+export default () =>
   createStyles({
-    root: {
-      padding: `0 ${layout.contentPaddingHorizontal}`
-    },
     header: {
       display: 'flex',
       paddingBottom: '1rem'
@@ -17,6 +14,7 @@ export default ({ layout }: Theme) =>
       marginRight: '1rem'
     },
     actions: {
+      display: 'flex',
       marginLeft: 'auto'
     }
   })
