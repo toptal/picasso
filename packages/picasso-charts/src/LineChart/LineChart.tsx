@@ -134,7 +134,6 @@ const generateLineGraphs = (
     return (
       <Line
         key={`line-${index}`}
-        // @ts-ignore
         data={orderedData}
         dataKey={name}
         stroke={line.color}
@@ -238,7 +237,6 @@ export const LineChart = (props: Props) => {
             interval='preserveStartEnd'
             ticks={xAxisTicks}
             minTickGap={MIN_TICK_GAP}
-            // @ts-ignore
             tickMargin={TICK_MARGIN}
             tickFormatter={formatTicks}
             domain={[BOTTOM_DOMAIN, orderedData.length - 1]}
@@ -254,7 +252,6 @@ export const LineChart = (props: Props) => {
             interval={0}
             ticks={getYAxisTicks(yDomain)}
             minTickGap={MIN_TICK_GAP}
-            // @ts-ignore
             tickMargin={TICK_MARGIN}
             width={Y_AXIS_WIDTH}
             tickFormatter={
