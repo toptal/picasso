@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.9...@toptal/picasso-lab@3.6.0) (2021-02-23)
+
+
+### Features
+
+* **section:** add section component ([#1919](https://github.com/toptal/picasso/issues/1919)) ([6b0015d](https://github.com/toptal/picasso/commit/6b0015d046d59e1cbc988e34cc5009dbb6db7cf1))
+
+
+
+
+
 ## [3.5.9](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.5.8...@toptal/picasso-lab@3.5.9) (2021-02-18)
 
 
