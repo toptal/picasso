@@ -11,12 +11,13 @@ layoutPage
   .addTextSection(
     `
 In this tutorial you will learn how to create page layouts from scratch using components from Picasso.
-We will focus on using \`Page\` and \`Container\` components to create simple page layout consisting of
+We will focus on using \`Page\`, \`PageHead\`, \`Section\` components to create simple page layout consisting of
 header, footer, sidebar and main content.
 
 ### Goals
- * Explain \`Page\` component and it's childs components
- * Usage of \`Container\` for defining spacings of components
+ * Explain \`Page\` component and it's child components
+ * Usage of \`PageHead\` for title of the main content
+ * Usage of \`Section\` for defining content sections
 `
   )
   .addExample('tutorials/Layout/story/Layout.final.example.tsx', {
@@ -92,11 +93,27 @@ which is a part of Picasso librabry. It should fill all available height of the 
 tutorialChapter
   .addTextSection(
     `
-Main content can have various layouts, but for this tutorial, we choose to have simple item
-showing us talent details. We use [\`Container\`](..?path=/story/utils-folder--container) component
-to define inner spacings of the talent details container. Also, it's very important to use use
+Main content can have various layouts, but for this tutorial, we choose to have a title 
+and two sections. We use [\`PageHead\`](..?path=/story/picasso-lab-pagehead--pagehead) for 
+the title and [\`Section\`](..?path=/story/picasso-lab-section--section) for content 
+sections. Also, it's very important to use use
 \`Page.Article\` component, because we use a flexbox wrapper
 around the page and we need to make \`MainContent\` grow and fill all available space.
+  `,
+    {
+      title: 'Forth step: Title and sections'
+    }
+  )
+  .addExample('tutorials/Layout/story/Layout.4.example.tsx', {
+    id: 'layout-4'
+  }) // picasso-skip-visuals
+
+/** Fifth step */
+tutorialChapter
+  .addTextSection(
+    `
+We use [\`Container\`](..?path=/story/utils-folder--container) component
+to define inner spacings of the talent details container.
 
 Picasso defines standard BASE [colors](..?path=/story/utils-folder--colors) so we can
 easily set color of containers by using \`palette\`.
@@ -111,5 +128,5 @@ And that's it, we have implemented our goal.
     }
   )
   .addExample('tutorials/Layout/story/Layout.final.example.tsx', {
-    id: 'layout-4'
+    id: 'layout-5'
   }) // picasso-skip-visuals
