@@ -15,13 +15,27 @@ const page = PicassoBook.section('Picasso Forms').createPage(
   'Final Form'
 )
 
-page.createChapter().addExample(
-  'story/FormSpy.example.tsx',
-  {
-    title: 'Form Spy',
-    description: `
+page
+  .createChapter()
+  .addExample(
+    'story/FormSpy.example.tsx',
+    {
+      title: 'Form Spy',
+      description: `
             Sometimes you might want to perform a conditional action based on the value of another field in the form or its overall state.
             For smaller forms, you can just directly work with values, but with a larger form you can avoid prop drilling with FormSpy.`
-  },
-  'picasso-form'
-) // picasso-skip-visuals
+    },
+    'picasso-form'
+  ) // picasso-skip-visuals
+  .addExample(
+    'story/Deserialization.example.tsx',
+    {
+      title: 'Deserialization',
+      description: `
+            By default final-form converts all values to strings.
+            If want to pass a boolean or a number value to a field, 
+            you should pass it serialized and deserialize it later.
+            `
+    },
+    'picasso-form'
+  ) // picasso-skip-visuals
