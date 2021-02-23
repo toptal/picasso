@@ -1,8 +1,26 @@
-/* eslint-disable no-inline-styles/no-inline-styles */
 import React, { useState } from 'react'
-import { Accordion, Typography, Button, Container, Page } from '@toptal/picasso'
+import {
+  Accordion,
+  AccordionProps,
+  Typography,
+  Button,
+  Container,
+  Check16
+} from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
+
+const TestAccordion = (props: Partial<AccordionProps>) => (
+  <Accordion
+    data-testid='accordion'
+    content='Aliqua ut aliquip dolor velit.'
+    {...props}
+  >
+    <Accordion.Summary>
+      Est amet duis deserunt proident Lorem.
+    </Accordion.Summary>
+  </Accordion>
+)
 
 const Summary = ({
   onClick,
@@ -56,12 +74,13 @@ const AccordionCustomSummary = () => {
 
   return (
     <TestingPicasso>
-      <Page>
-        <Page.Article>
-          <Summary onClick={handleClick} expanded={expanded} />
-          <Accordion content={<Content />} expanded={expanded} borders='none' />
-        </Page.Article>
-      </Page>
+      <Summary onClick={handleClick} expanded={expanded} />
+      <Accordion
+        data-testid='accordion-custom-summary'
+        content={<Content />}
+        expanded={expanded}
+        borders='none'
+      />
     </TestingPicasso>
   )
 }
@@ -71,22 +90,51 @@ const getAccordionContent = () => cy.get('[data-testid=content]')
 const clickStartInterviewOnboarding = () =>
   cy.get('[data-testid="start-onboarding"]').click()
 
+describe('Accordion', () => {
+  it('renders', () => {
+    mount(
+      <TestingPicasso>
+        <TestAccordion borders='none' />
+        <TestAccordion borders='middle' />
+        <TestAccordion borders='all' />
+        <TestAccordion defaultExpanded />
+        <TestAccordion expanded />
+        <TestAccordion expanded={false} />
+        <TestAccordion disabled />
+        <TestAccordion expandIcon={<Check16 />} />
+      </TestingPicasso>
+    )
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    cy.get('body').happoScreenshot()
+  })
+})
 describe('Accordion with custom summary', () => {
   it('closes and opens', () => {
     mount(<AccordionCustomSummary />)
     toggleAccordion()
     getAccordionContent().should('not.be.visible')
-    // TODO: Add visual regression test
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
+
     toggleAccordion()
     getAccordionContent().should('be.visible')
-    // TODO: Add visual regression test
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
   })
 
   it('interacts with accordion content', () => {
     mount(<AccordionCustomSummary />)
 
     clickStartInterviewOnboarding()
-    // TODO: Add visual regression test
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
 
     cy.on('window:alert', text => {
       expect(text).equal('Onboarding started')
