@@ -1,9 +1,9 @@
-#!/usr/bin/env node
-/* eslint-disable no-console  */
+/* eslint-disable func-style */
+/* eslint-disable no-console */
 
+const fs = require('fs')
 const path = require('path')
 const yargs = require('yargs').argv
-const sh = require('shelljs')
 
 const { log, copyPackageJson, safeExec } = require('./utils')
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
@@ -22,7 +22,7 @@ const compile = function (tsConfig, packageJson, packageRootDir) {
 
   function clean() {
     log(`Removing: ${tsConfig.compilerOptions.outDir}`, 'green')
-    sh.rm('-rf', tsConfig.compilerOptions.outDir)
+    fs.rmdirSync(tsConfig.compilerOptions.outDir, { recursive: true })
   }
 
   clean()

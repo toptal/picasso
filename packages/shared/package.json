@@ -15,7 +15,7 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:package": "cross-env NODE_ENV=production ./bin/build",
+    "build:package": "cross-env NODE_ENV=production node ./bin/build.js",
     "prepublishOnly": "../../bin/prepublish"
   },
   "bugs": {
