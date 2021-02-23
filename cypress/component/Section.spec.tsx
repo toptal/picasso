@@ -34,7 +34,8 @@ describe('Section', () => {
   it('renders', () => {
     mount(<SectionExample />)
 
-    // TODO add screenshot when integration with happo works correctly
-    // cy.get('body').happoScreenshot()
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    cy.get('body').happoScreenshot()
   })
 })
