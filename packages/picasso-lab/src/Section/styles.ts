@@ -2,9 +2,12 @@ import { createStyles } from '@material-ui/core'
 
 export default () =>
   createStyles({
+    root: {
+      paddingTop: '2rem'
+    },
     header: {
       display: 'flex',
-      paddingBottom: '1rem'
+      paddingBottom: '1.5rem'
     },
     title: {
       marginRight: '1rem'
