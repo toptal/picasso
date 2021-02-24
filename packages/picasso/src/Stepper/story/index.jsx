@@ -3,7 +3,13 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'Stepper',
-  'Stepper component display progress through a sequence of steps.'
+  `
+    Stepper component display progress through a sequence of steps.
+    
+    ${PicassoBook.createBaseDocsLink(
+      'https://share.goabstract.com/fe19eb54-183d-4359-95f2-43f93bad961c?collectionLayerId=903f1c63-750f-495e-8d0f-cdd889851fa2&mode=design'
+    )}
+  `
 )
 
 page

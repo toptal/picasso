@@ -3,7 +3,13 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Picasso Lab').createPage(
   'Badge',
-  'Renders a small badge.'
+  `
+    Renders a small badge.
+    
+    ${PicassoBook.createBaseDocsLink(
+      'https://share.goabstract.com/c8f5bd0f-f85c-42f8-8132-20429f446f02?collectionLayerId=45b45dcc-3c86-4960-9538-58a979233959&mode=design'
+    )}
+  `
 )
 
 page.createTabChapter('Props').addComponentDocs({

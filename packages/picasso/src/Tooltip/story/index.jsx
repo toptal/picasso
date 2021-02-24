@@ -3,7 +3,13 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Overlays').createPage(
   'Tooltip',
-  'Tooltips display informative text when users hover over, focus on, or tap an element'
+  `
+    Tooltips display informative text when users hover over, focus on, or tap an element
+    
+    ${PicassoBook.createBaseDocsLink(
+      'https://share.goabstract.com/ab7bce05-1d32-4074-aef0-eb5f705c1c04?collectionLayerId=35500bab-2fc9-4120-8789-f96ed95ad683&mode=design'
+    )}
+  `
 )
 
 page
