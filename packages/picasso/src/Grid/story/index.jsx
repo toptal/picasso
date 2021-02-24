@@ -11,7 +11,7 @@ const page = PicassoBook.section('Layout').createPage(
     GridItem components.
     
     ${PicassoBook.createBaseDocsLink(
-      'https://share.goabstract.com/b30dc822-8d49-44ca-bb05-871c964cb45f?collectionLayerId=2969c323-9ea1-4413-96f9-d358ba64ebd1&mode=design'
+      'https://share.goabstract.com/b30dc822-8d49-44ca-bb05-871c964cb45f?collectionLayerId=2969c323-9ea1-4413-96f9-d358ba64ebd1&mode=design&present=true'
     )}
   `
 )

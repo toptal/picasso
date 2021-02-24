@@ -7,7 +7,7 @@ const page = PicassoBook.section('Picasso Lab').createPage(
     Switches are used to toggle the state of an element on or off.
     
     ${PicassoBook.createBaseDocsLink(
-      'https://share.goabstract.com/07bda3d7-0417-47ca-a4cd-9dbb7a9dfcd1?collectionLayerId=1992e79b-f871-4077-a72c-2f9a237da809&mode=design'
+      'https://share.goabstract.com/07bda3d7-0417-47ca-a4cd-9dbb7a9dfcd1?collectionLayerId=1992e79b-f871-4077-a72c-2f9a237da809&mode=design&present=true'
     )}
   `
 )

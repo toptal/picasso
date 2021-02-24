@@ -10,7 +10,7 @@ const page = PicassoBook.section('Components').createPage(
     Container specialized for rendering suggestions
     
     ${PicassoBook.createBaseDocsLink(
-      'https://share.goabstract.com/87f2b162-ed36-40c3-a715-921ac1950eeb?collectionLayerId=01b492e6-1b02-41f4-ba00-b27f273e909b&mode=design'
+      'https://share.goabstract.com/87f2b162-ed36-40c3-a715-921ac1950eeb?collectionLayerId=01b492e6-1b02-41f4-ba00-b27f273e909b&mode=design&present=true'
     )}
   `
 )

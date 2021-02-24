@@ -7,7 +7,7 @@ const page = PicassoBook.section('Components').createPage(
     Profile photo.
     
     ${PicassoBook.createBaseDocsLink(
-      'https://share.goabstract.com/24f865c1-777a-4b7e-9c5b-cfe0d499f952?collectionLayerId=c74010be-d61e-40c8-be12-295ff4fef529&mode=design'
+      'https://share.goabstract.com/24f865c1-777a-4b7e-9c5b-cfe0d499f952?collectionLayerId=c74010be-d61e-40c8-be12-295ff4fef529&mode=design&present=true'
     )}
     
     Additional notes:

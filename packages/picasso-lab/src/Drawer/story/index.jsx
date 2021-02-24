@@ -7,7 +7,7 @@ const page = PicassoBook.section('Picasso Lab').createPage(
     Allows rendering a sidebar with custom content
     
     ${PicassoBook.createBaseDocsLink(
-      'https://share.goabstract.com/22ba178c-50b8-4eb3-9eeb-e527fbed15e5?collectionLayerId=e9a36438-d8c9-42a4-94bc-ea134fd2e2a1&mode=design'
+      'https://share.goabstract.com/22ba178c-50b8-4eb3-9eeb-e527fbed15e5?collectionLayerId=e9a36438-d8c9-42a4-94bc-ea134fd2e2a1&mode=design&present=true'
     )}
   `
 )
