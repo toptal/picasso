@@ -38,7 +38,7 @@ in '.storybook/config.js'.
     }
   }
 
-  createBaseDocs = link => {
+  createBaseDocsLink = link => {
     return `[BASE documentation](${link})`
   }
 
