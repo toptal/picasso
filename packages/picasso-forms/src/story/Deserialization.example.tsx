@@ -9,9 +9,6 @@ const deserializeValue = <T extends unknown>(value: T) => {
   if (value === 'false') {
     return false
   }
-  if (typeof value === 'string' && value.match(/\d+/)) {
-    return Number.parseInt(value, 10)
-  }
 
   return value
 }
