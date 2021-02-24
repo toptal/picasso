@@ -13,9 +13,6 @@ const WithNoHideOnSelect = () => {
         value={datepickerValue}
         hideOnSelect={false}
         onChange={(date: DateOrDateRangeType | null) => {
-          /* eslint-disable-next-line no-console */
-          console.log('selected date is: ', date)
-
           setDatepickerValue(date)
         }}
       />

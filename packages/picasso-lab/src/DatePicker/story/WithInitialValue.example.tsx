@@ -9,9 +9,6 @@ const WithInitialValueExample = () => {
       <DatePicker
         value={datepickerValue}
         onChange={date => {
-          /* eslint-disable-next-line no-console */
-          console.log('selected date is: ', date)
-
           setDatepickerValue(date as Date)
         }}
       />

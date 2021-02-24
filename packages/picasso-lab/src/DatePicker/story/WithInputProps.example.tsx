@@ -14,9 +14,6 @@ const WithInputPropsExample = () => {
         width='full'
         placeholder='Please select date...'
         onChange={date => {
-          /* eslint-disable-next-line no-console */
-          console.log('selected date is: ', date)
-
           setValue(date as Date)
         }}
       />

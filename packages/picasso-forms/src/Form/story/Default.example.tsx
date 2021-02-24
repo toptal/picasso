@@ -53,7 +53,7 @@ const Example = () => {
   return (
     <Form
       autoComplete='off'
-      onSubmit={values => console.log(values)}
+      onSubmit={values => window.alert(values)}
       initialValues={{ gender: 'female' }}
     >
       <Form.Input
