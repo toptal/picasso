@@ -1,6 +1,6 @@
 /* eslint-disable jest/valid-title */
 const path = require('path')
-const exec = require('child_process').execSync
+const fs = require('fs')
 
 const { assertVisuals } = require('./index')
 const config = require('./config')
@@ -13,7 +13,7 @@ const {
 const stories = global.__STORYSHOTS__
 const outputPath = assignOutputDir
 
-exec(`rm -rf ${outputPath}/*`)
+fs.rmdirSync(outputPath, { recursive: true })
 
 const snapShotDir = storyPath =>
   path.resolve(path.dirname(storyPath), '../', config.storyShotsDirName)
