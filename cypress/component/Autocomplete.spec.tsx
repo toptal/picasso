@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { mount } from '@cypress/react'
 import debounce from 'debounce'
-import { Autocomplete } from '@toptal/picasso'
+import { Autocomplete, AutocompleteProps, Globe16 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { isSubstring } from '@toptal/picasso/utils'
 
@@ -110,7 +110,35 @@ const openAutocompleteWithTab = () => {
   cy.get('body').tab()
 }
 
+const TestAutocomplete = (props: Partial<AutocompleteProps>) => (
+  <Autocomplete value='' options={OPTIONS} {...props} />
+)
+
 describe('Autocomplete', () => {
+  it('renders', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete />
+        <TestAutocomplete error />
+        <TestAutocomplete loading />
+        <TestAutocomplete options={null} />
+        <TestAutocomplete options={[]} />
+        <TestAutocomplete value='Croatia' />
+        <TestAutocomplete placeholder='Start typing Mongolia...' />
+        <TestAutocomplete icon={<Globe16 />} />
+        <TestAutocomplete startAdornment={<Globe16 />} />
+        <TestAutocomplete endAdornment={<Globe16 />} />
+        <TestAutocomplete width='full' />
+        <TestAutocomplete width='shrink' />
+        <TestAutocomplete menuWidth='200px' />
+      </TestingPicasso>
+    )
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    cy.get('body').happoScreenshot()
+  })
+
   it('focuses Autocomplete with dynamic options should NOT open options list', () => {
     mount(<DynamicOptionsAutocompleteExample />)
 
