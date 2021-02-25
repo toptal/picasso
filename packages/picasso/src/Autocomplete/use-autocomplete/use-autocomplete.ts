@@ -14,18 +14,6 @@ import { Item, ChangedOptions } from '../types'
 
 export const EMPTY_INPUT_VALUE = ''
 
-const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
-  const { key, keyCode } = event
-
-  // compatibility for older browsers
-  // https://stackoverflow.com/questions/5597060/detecting-arrow-key-presses-in-javascript/9310900#comment91057577_44213036
-  if (keyCode >= 37 && keyCode <= 40 && key.indexOf('Arrow') !== 0) {
-    return `Arrow${key}`
-  }
-
-  return key
-}
-
 /**
  * Returns the new index in the list, in a circular way. If next value is out of bonds from the total,
  * it will wrap to either 0 or itemCount - 1.
@@ -35,7 +23,7 @@ const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
  * @param {number} itemCount The total number of items.
  * @returns {number} The new index after the move.
  */
-const getNextWrappingIndex = (
+export const getNextWrappingIndex = (
   moveAmount: number,
   initialIndex: number | null,
   itemCount: number
@@ -201,13 +189,11 @@ export const useAutocomplete = ({
     onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
       onKeyDown(event, value)
 
-      const key = normalizeArrowKey(event)
-
       const optionsCount = options?.length || 0
       const otherOptionsCount = shouldShowOtherOption ? 1 : 0
       const itemsCount = optionsCount + otherOptionsCount
 
-      if (key === 'ArrowUp') {
+      if (event.key === 'ArrowUp') {
         event.preventDefault()
 
         setOpen(true)
@@ -216,7 +202,7 @@ export const useAutocomplete = ({
         )
       }
 
-      if (key === 'ArrowDown') {
+      if (event.key === 'ArrowDown') {
         event.preventDefault()
 
         setOpen(true)
@@ -225,7 +211,7 @@ export const useAutocomplete = ({
         )
       }
 
-      if (key === 'Backspace') {
+      if (event.key === 'Backspace') {
         if (value !== EMPTY_INPUT_VALUE) {
           return
         }
@@ -234,7 +220,7 @@ export const useAutocomplete = ({
         handleChange(getDisplayValue(null))
       }
 
-      if (key === 'Enter') {
+      if (event.key === 'Enter') {
         event.preventDefault()
 
         if (!isOpen) {
@@ -262,7 +248,7 @@ export const useAutocomplete = ({
         }
       }
 
-      if (key === 'Escape') {
+      if (event.key === 'Escape') {
         event.preventDefault()
 
         setOpen(false)
