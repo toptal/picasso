@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.10.12](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.11...@toptal/picasso@5.10.12) (2021-02-25)
+
+
+### Bug Fixes
+
+* **Notification:** remove custom variant ([#1924](https://github.com/toptal/picasso/issues/1924)) ([235d8f4](https://github.com/toptal/picasso/commit/235d8f4f18f7ac61493489a0df3de22036ff03db))
+
+
+
+
+
 ## [5.10.11](https://github.com/toptal/picasso/compare/@toptal/picasso@5.10.10...@toptal/picasso@5.10.11) (2021-02-25)
 
 **Note:** Version bump only for package @toptal/picasso
