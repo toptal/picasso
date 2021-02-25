@@ -94,26 +94,10 @@ export const useNotifications = () => {
     [closeSnackbar, enqueueSnackbar]
   )
 
-  const showCustomNotification = useCallback(
-    (
-      Content: ReactElement,
-      position?: SnackbarOrigin,
-      options?: OptionsObject
-    ) =>
-      enqueueSnackbar('', {
-        anchorOrigin: position || defaultPosition,
-        // eslint-disable-next-line react/display-name
-        children: (key: string) => React.cloneElement(Content, { key }),
-        ...options
-      }),
-    [enqueueSnackbar]
-  )
-
   return {
     showError: useMemo(() => getNotification('red'), [getNotification]),
     showInfo: useMemo(() => getNotification(), [getNotification]),
     showSuccess: useMemo(() => getNotification('green'), [getNotification]),
-    showCustomNotification: showCustomNotification,
     closeNotification: closeSnackbar
   }
 }
