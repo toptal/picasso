@@ -26,7 +26,7 @@ import Popper from '../Popper'
 import InputAdornment from '../InputAdornment'
 import PoweredByGoogle from './PoweredByGoogle'
 import { Item, ChangedOptions } from './types'
-import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
+import { useAutocomplete, EMPTY_INPUT_VALUE } from './use-autocomplete'
 import styles from './styles'
 import { BaseInputProps } from '../OutlinedInput'
 

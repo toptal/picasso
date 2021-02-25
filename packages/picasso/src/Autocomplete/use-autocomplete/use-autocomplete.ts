@@ -10,7 +10,7 @@ import {
   useMemo
 } from 'react'
 
-import { Item, ChangedOptions } from './types'
+import { Item, ChangedOptions } from '../types'
 
 export const EMPTY_INPUT_VALUE = ''
 
@@ -83,7 +83,7 @@ interface Props {
   showOtherOption?: boolean
 }
 
-const useAutocomplete = ({
+export const useAutocomplete = ({
   value,
   options = [],
   onChange = () => {},
@@ -289,5 +289,3 @@ const useAutocomplete = ({
     shouldShowOtherOption
   }
 }
-
-export default useAutocomplete
