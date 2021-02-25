@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { act, renderHook } from '@testing-library/react-hooks'
 
 import {
@@ -20,7 +21,7 @@ const TEST_OPTIONS = [
   // { text: 'Japan', value: 'JP' }
 ]
 
-const MOCKED_KEYBOARD_EVENT: KeyboardEvent = { target: { value: '' } }
+const MOCKED_EVENT: KeyboardEvent | MouseEvent = { target: { value: '' } }
 
 const defaultGetDisplayValue = jest
   .fn()
@@ -55,7 +56,12 @@ describe('useAutocomplete', () => {
 
   it('returns input props', () => {
     const onFocus = jest.fn()
-    const { result } = renderUseAutocomplete({ onFocus, enableReset: true })
+    const onBlur = jest.fn()
+    const { result } = renderUseAutocomplete({
+      onFocus,
+      onBlur,
+      enableReset: true
+    })
 
     const input = result.current.getInputProps()
 
@@ -63,10 +69,45 @@ describe('useAutocomplete', () => {
     expect(input.enableReset).toBe(true)
 
     act(() => {
-      input.onFocus(MOCKED_KEYBOARD_EVENT)
+      input.onFocus(MOCKED_EVENT)
+      input.onBlur(MOCKED_EVENT)
     })
 
     expect(onFocus).toHaveBeenCalledTimes(1)
+    expect(onBlur).toHaveBeenCalledTimes(1)
+  })
+
+  it('returns item props and selects the first item by default', () => {
+    const { result } = renderUseAutocomplete()
+
+    const firstItemProps = result.current.getItemProps(0, TEST_OPTIONS[0])
+
+    expect(firstItemProps.role).toBe('option')
+    expect(firstItemProps['aria-selected']).toBe(true)
+    expect(firstItemProps.selected).toBe(true)
+
+    const secondItemProps = result.current.getItemProps(1, TEST_OPTIONS[1])
+
+    expect(secondItemProps.role).toBe('option')
+    expect(secondItemProps['aria-selected']).toBe(false)
+    expect(secondItemProps.selected).toBe(false)
+  })
+
+  it('returns other item props', () => {
+    const onOtherOptionSelect = jest.fn()
+    const { result } = renderUseAutocomplete({ onOtherOptionSelect })
+
+    const otherItemProps = result.current.getOtherItemProps(0, 'hello')
+
+    expect(otherItemProps.role).toBe('option')
+    expect(otherItemProps['aria-selected']).toBe(true)
+    expect(otherItemProps.selected).toBe(true)
+
+    act(() => {
+      otherItemProps.onClick(MOCKED_EVENT)
+    })
+
+    expect(onOtherOptionSelect).toHaveBeenCalledTimes(1)
   })
 
   it('shows other options if value is set', () => {
@@ -114,6 +155,56 @@ describe('useAutocomplete', () => {
     expect(result.current.highlightedIndex).toBe(1)
   })
 
+  it('opens menu on input change', () => {
+    const { result } = renderUseAutocomplete()
+
+    expect(result.current.isOpen).toBe(false)
+
+    const input = result.current.getInputProps()
+
+    act(() => {
+      input.onChange(MOCKED_EVENT)
+    })
+
+    expect(result.current.isOpen).toBe(true)
+  })
+
+  it('resets value on reset click', () => {
+    const onChange = jest.fn()
+    const { result } = renderUseAutocomplete({ value: 'Picasso', onChange })
+
+    const input = result.current.getInputProps()
+
+    act(() => {
+      input.onResetClick()
+    })
+
+    expect(onChange).toHaveBeenCalledTimes(1)
+    expect(onChange).toHaveBeenCalledWith('', {
+      isSelected: false
+    })
+  })
+
+  it('closes menu on blur', () => {
+    const { result } = renderUseAutocomplete()
+
+    expect(result.current.isOpen).toBe(false)
+
+    const input = result.current.getInputProps()
+
+    act(() => {
+      input.onChange(MOCKED_EVENT)
+    })
+
+    expect(result.current.isOpen).toBe(true)
+
+    act(() => {
+      input.onBlur(MOCKED_EVENT)
+    })
+
+    expect(result.current.isOpen).toBe(false)
+  })
+
   it('closes menu on item click', () => {
     const { result } = renderUseAutocomplete()
 
@@ -122,7 +213,7 @@ describe('useAutocomplete', () => {
     const input = result.current.getInputProps()
 
     act(() => {
-      input.onChange(MOCKED_KEYBOARD_EVENT)
+      input.onChange(MOCKED_EVENT)
     })
 
     expect(result.current.isOpen).toBe(true)
@@ -133,28 +224,13 @@ describe('useAutocomplete', () => {
     })
 
     act(() => {
-      itemProps.onClick(MOCKED_KEYBOARD_EVENT)
+      itemProps.onClick(MOCKED_EVENT)
     })
 
     expect(result.current.isOpen).toBe(false)
   })
 
-  describe('works with keyboard events', () => {
-    it('opens menu on input change', () => {
-      const onChange = jest.fn()
-      const { result } = renderUseAutocomplete({ value: 'Picasso', onChange })
-
-      expect(result.current.isOpen).toBe(false)
-
-      const input = result.current.getInputProps()
-
-      act(() => {
-        input.onChange(MOCKED_KEYBOARD_EVENT)
-      })
-      expect(onChange).toHaveBeenCalledTimes(1)
-      expect(result.current.isOpen).toBe(true)
-    })
-
+  describe('works with key presses', () => {
     it('opens menu on enter keypress', () => {
       const { result } = renderUseAutocomplete()
 
@@ -245,10 +321,11 @@ describe('useAutocomplete', () => {
       })
 
       expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onChange).toHaveBeenCalledWith(undefined, { isSelected: false })
       expect(result.current.isOpen).toBe(false)
     })
 
-    it('closes menu on Escape keypress', () => {
+    it('closes menu on Escape keypress and resets value', () => {
       const onChange = jest.fn()
 
       const { result } = renderUseAutocomplete({ value: 'Picasso', onChange })
@@ -268,6 +345,7 @@ describe('useAutocomplete', () => {
       })
 
       expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onChange).toHaveBeenCalledWith('', { isSelected: false })
       expect(result.current.isOpen).toBe(false)
     })
   })

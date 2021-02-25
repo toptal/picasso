@@ -234,7 +234,6 @@ export const useAutocomplete = ({
       }
 
       if (event.key === 'Backspace') {
-        console.log('Backspace:')
         if (value !== EMPTY_INPUT_VALUE) {
           return
         }
