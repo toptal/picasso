@@ -29,6 +29,9 @@ import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
 import styles from './styles'
 import { BaseInputProps } from '../OutlinedInput'
 
+const NO_OPTIONS_TEXT = 'No options'
+const OTHER_OPTION_TEXT = 'Other option: '
+
 export interface Props
   extends BaseProps,
     Omit<
@@ -100,9 +103,48 @@ export interface Props
   poweredByGoogle?: boolean
 }
 
+const NoOptionsMenuItem = ({ children }: { children: string }) => (
+  <Menu.Item size='medium' titleCase={false} disabled>
+    {children}
+  </Menu.Item>
+)
+
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAutocomplete'
 })
+const OtherOptionMenuItem = ({
+  value,
+  otherOptionText,
+  renderOtherOption,
+  ...rest
+}: {
+  value: string
+  otherOptionText: string
+  renderOtherOption?: (value: string) => ReactNode
+}) => {
+  const classes = useStyles()
+
+  return (
+    <Menu.Item
+      size='medium'
+      key='other-option'
+      className={`${classes.option} ${classes.otherOption}`}
+      {...rest}
+      titleCase={false}
+    >
+      {renderOtherOption ? (
+        renderOtherOption(value)
+      ) : (
+        <span className={classes.stringContent}>
+          <Typography as='span' color='dark-grey'>
+            {otherOptionText}
+          </Typography>
+          {value}
+        </span>
+      )}
+    </Menu.Item>
+  )
+}
 
 const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
@@ -110,37 +152,37 @@ const getItemText = (item: Item | null) =>
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(props, ref) {
     const {
-      className,
-      onChange,
-      value,
-      onSelect,
-      onOtherOptionSelect,
-      loading,
-      placeholder,
-      otherOptionText,
-      renderOtherOption,
-      noOptionsText,
-      options,
-      getDisplayValue,
-      style,
-      menuWidth,
-      width,
-      showOtherOption,
-      onKeyDown,
-      onFocus,
-      onBlur,
-      inputComponent,
-      renderOption,
-      endAdornment,
-      icon,
-      error,
-      enableAutofill,
       autoComplete,
-      popperContainer,
-      getKey: customGetKey,
+      className,
+      enableAutofill,
       enableReset,
+      endAdornment,
+      error,
+      getDisplayValue,
+      getKey: customGetKey,
+      icon,
+      inputComponent,
+      loading,
+      menuWidth,
       name,
+      noOptionsText = NO_OPTIONS_TEXT,
+      onBlur,
+      onChange,
+      onFocus,
+      onKeyDown,
+      onOtherOptionSelect,
+      onSelect,
+      options,
+      otherOptionText = OTHER_OPTION_TEXT,
+      placeholder,
+      popperContainer,
       poweredByGoogle,
+      renderOption,
+      renderOtherOption,
+      showOtherOption,
+      style,
+      value,
+      width,
       ...rest
     } = props
     const classes = useStyles()
@@ -202,37 +244,19 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         ))}
 
         {shouldShowOtherOption && (
-          <Menu.Item
-            size='medium'
-            key='other-option'
-            className={`${classes.option} ${classes.otherOption}`}
+          <OtherOptionMenuItem
+            value={value}
+            renderOtherOption={renderOtherOption}
+            otherOptionText={otherOptionText}
             {...getOtherItemProps(optionsLength, value)}
-            titleCase={false}
-          >
-            {renderOtherOption ? (
-              renderOtherOption(value)
-            ) : (
-              <span className={classes.stringContent}>
-                <Typography as='span' color='dark-grey'>
-                  {otherOptionText}
-                </Typography>
-                {value}
-              </span>
-            )}
-          </Menu.Item>
+          />
         )}
 
-        {!optionsLength && !shouldShowOtherOption && (
-          <Menu.Item size='medium' titleCase={false} disabled>
-            {noOptionsText}
-          </Menu.Item>
+        {optionsLength > 0 && !shouldShowOtherOption && (
+          <NoOptionsMenuItem>{noOptionsText}</NoOptionsMenuItem>
         )}
 
-        {optionsLength > 0 && poweredByGoogle && (
-          <Container flex justifyContent='flex-end' padded='xsmall'>
-            <PoweredByGoogle />
-          </Container>
-        )}
+        {optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />}
       </ScrollMenu>
     )
 
@@ -300,7 +324,7 @@ Autocomplete.defaultProps = {
   enableAutofill: false,
   getDisplayValue: getItemText,
   loading: false,
-  noOptionsText: 'No options',
+  noOptionsText: NO_OPTIONS_TEXT,
   onChange: () => {},
   onKeyDown: () => {},
   onFocus: () => {},
@@ -308,7 +332,7 @@ Autocomplete.defaultProps = {
   onOtherOptionSelect: () => {},
   onSelect: () => {},
   options: [],
-  otherOptionText: 'Other option: ',
+  otherOptionText: OTHER_OPTION_TEXT,
   showOtherOption: false,
   width: 'auto',
   enableReset: true,
