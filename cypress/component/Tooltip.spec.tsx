@@ -76,7 +76,10 @@ const BehaviourTooltipExample = () => (
 describe('Tooltip', () => {
   it('renders correctly', () => {
     mount(<ScreenshotTooltipExample />)
-    cy.get('body').should('be.visible')
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    cy.get('body').happoScreenshot()
   })
 
   it('opens and closes by mouse navigation', () => {
