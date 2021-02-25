@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.6.1...@toptal/picasso-lab@3.7.0) (2021-02-25)
+
+
+### Features
+
+* cross platform package builds ([#1925](https://github.com/toptal/picasso/issues/1925)) ([21f30be](https://github.com/toptal/picasso/commit/21f30beeb360fcc67c88d70af5c3234d8dcfe213))
+
+
+
+
+
 ## [3.6.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.6.0...@toptal/picasso-lab@3.6.1) (2021-02-25)
 
 **Note:** Version bump only for package @toptal/picasso-lab
