@@ -5,10 +5,16 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'Tag',
-  `Tags are used to describe other topics, including textareas,
+  `
+    Tags are used to describe other topics, including textareas,
     form fields, users, and more. By default, tags are read-only UI elements.
     They are used to surface important information about a topic. Tags may also
-    be used to convey status, or used within a group to show selection.`
+    be used to convey status, or used within a group to show selection.
+  
+    ${PicassoBook.createBaseDocsLink(
+      'https://share.goabstract.com/29d4c2d1-d73a-4998-8d4a-5e007e3374aa?collectionLayerId=c00f3d0a-271f-480e-a5d0-f52b38c0740b&mode=design&present=true'
+    )}  
+  `
 )
 
 page

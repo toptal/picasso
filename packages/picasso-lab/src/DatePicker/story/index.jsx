@@ -3,7 +3,13 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Picasso Lab').createPage(
   'DatePicker',
-  'Date Picker component'
+  `
+    Date Picker component
+    
+    ${PicassoBook.createBaseDocsLink(
+      'https://share.goabstract.com/cc5f669e-ee2c-4375-946d-93b20db16ecc?collectionLayerId=10d3230f-5c9c-4fed-85b2-5cfda0bcd25f&mode=design&present=true'
+    )}
+  `
 )
 
 page

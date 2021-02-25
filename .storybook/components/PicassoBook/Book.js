@@ -38,6 +38,10 @@ in '.storybook/config.js'.
     }
   }
 
+  createBaseDocsLink = link => {
+    return `[BASE documentation](${link})`
+  }
+
   createComponentDocs = (component, name, description, additionalDocs = {}) => {
     return { component, additionalDocs, name, description }
   }
