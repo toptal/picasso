@@ -22,7 +22,10 @@ const compile = function (tsConfig, packageJson, packageRootDir) {
 
   function clean() {
     log(`Removing: ${tsConfig.compilerOptions.outDir}`, 'green')
-    fs.rmdirSync(tsConfig.compilerOptions.outDir, { recursive: true })
+    fs.rmdirSync(tsConfig.compilerOptions.outDir, {
+      recursive: true,
+      force: true
+    })
   }
 
   clean()
