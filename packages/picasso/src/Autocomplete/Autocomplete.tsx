@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 
 import React, {
@@ -29,8 +30,8 @@ import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
 import styles from './styles'
 import { BaseInputProps } from '../OutlinedInput'
 
-const NO_OPTIONS_TEXT = 'No options'
-const OTHER_OPTION_TEXT = 'Other option: '
+const DEFAULT_NO_OPTIONS_TEXT = 'No options'
+const DEFAULT_OTHER_OPTION_TEXT = 'Other option: '
 
 export interface Props
   extends BaseProps,
@@ -103,11 +104,18 @@ export interface Props
   poweredByGoogle?: boolean
 }
 
-const NoOptionsMenuItem = ({ children }: { children: string }) => (
-  <Menu.Item size='medium' titleCase={false} disabled>
-    {children}
-  </Menu.Item>
-)
+const NoOptionsMenuItem = ({ children }: { children: string }) => {
+  return (
+    <Menu.Item
+      size='medium'
+      titleCase={false}
+      disabled
+      data-testid='no-options-text'
+    >
+      {children}
+    </Menu.Item>
+  )
+}
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAutocomplete'
@@ -126,6 +134,7 @@ const OtherOptionMenuItem = ({
 
   return (
     <Menu.Item
+      data-testid='other-option'
       size='medium'
       key='other-option'
       className={`${classes.option} ${classes.otherOption}`}
@@ -165,7 +174,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       loading,
       menuWidth,
       name,
-      noOptionsText = NO_OPTIONS_TEXT,
+      noOptionsText = DEFAULT_NO_OPTIONS_TEXT,
       onBlur,
       onChange,
       onFocus,
@@ -173,7 +182,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onOtherOptionSelect,
       onSelect,
       options,
-      otherOptionText = OTHER_OPTION_TEXT,
+      otherOptionText = DEFAULT_OTHER_OPTION_TEXT,
       placeholder,
       popperContainer,
       poweredByGoogle,
@@ -227,9 +236,10 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const optionsLength = options ? options!.length : 0
 
     const optionsMenu = options && (
-      <ScrollMenu selectedIndex={highlightedIndex}>
+      <ScrollMenu data-testid='scroll-menu' selectedIndex={highlightedIndex}>
         {options!.map((option, index) => (
           <Menu.Item
+            data-test-id='menu-item'
             size='medium'
             key={getKey(option)}
             {...getItemProps(index, option)}
@@ -242,7 +252,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               : getDisplayValue!(option)}
           </Menu.Item>
         ))}
-
         {shouldShowOtherOption && (
           <OtherOptionMenuItem
             value={value}
@@ -251,18 +260,20 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             {...getOtherItemProps(optionsLength, value)}
           />
         )}
-
-        {optionsLength > 0 && !shouldShowOtherOption && (
+        {!optionsLength && !shouldShowOtherOption && (
           <NoOptionsMenuItem>{noOptionsText}</NoOptionsMenuItem>
         )}
-
         {optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />}
       </ScrollMenu>
     )
 
     const InputComponent = inputComponent || Input
     const loadingComponent = (
-      <InputAdornment position='end' disablePointerEvents>
+      <InputAdornment
+        data-testid='loading-adornment'
+        position='end'
+        disablePointerEvents
+      >
         <Loader size='small' />
       </InputAdornment>
     )
@@ -324,7 +335,7 @@ Autocomplete.defaultProps = {
   enableAutofill: false,
   getDisplayValue: getItemText,
   loading: false,
-  noOptionsText: NO_OPTIONS_TEXT,
+  noOptionsText: DEFAULT_NO_OPTIONS_TEXT,
   onChange: () => {},
   onKeyDown: () => {},
   onFocus: () => {},
@@ -332,7 +343,7 @@ Autocomplete.defaultProps = {
   onOtherOptionSelect: () => {},
   onSelect: () => {},
   options: [],
-  otherOptionText: OTHER_OPTION_TEXT,
+  otherOptionText: DEFAULT_OTHER_OPTION_TEXT,
   showOtherOption: false,
   width: 'auto',
   enableReset: true,

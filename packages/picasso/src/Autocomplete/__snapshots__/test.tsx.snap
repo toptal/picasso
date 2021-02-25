@@ -1,8 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Autocomplete dynamic behavior on "arrow up/down" key press renders custom other options 1`] = `
+<div
+  data-testid="my-other-option"
+>
+  Other option!
+</div>
+`;
+
+exports[`Autocomplete dynamic behavior on "arrow up/down" key press renders custom other options text and calls onOtherOptionSelect when selected 1`] = `
+<li
+  aria-disabled="false"
+  aria-selected="false"
+  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option PicassoAutocomplete-otherOption MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+  data-testid="other-option"
+  role="option"
+  tabindex="-1"
+>
+  <div
+    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+  >
+    <div
+      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+    >
+      <span
+        class="PicassoAutocomplete-stringContent"
+      >
+        <span
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-darkGrey MuiTypography-body1"
+        >
+          my option:
+        </span>
+        Other option!
+      </span>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`Autocomplete dynamic behavior on "arrow up/down" key press renders other option with default text 1`] = `
+<li
+  aria-disabled="false"
+  aria-selected="false"
+  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option PicassoAutocomplete-otherOption MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+  data-testid="other-option"
+  role="option"
+  tabindex="-1"
+>
+  <div
+    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+  >
+    <div
+      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+    >
+      <span
+        class="PicassoAutocomplete-stringContent"
+      >
+        <span
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-darkGrey MuiTypography-body1"
+        >
+          Other option: 
+        </span>
+        Other option!
+      </span>
+    </div>
+  </div>
+</li>
+`;
+
 exports[`Autocomplete dynamic behavior on focus 1`] = `
 <ul
   class="MuiList-root Menu-root PicassoScrollMenu-menu"
+  data-testid="scroll-menu"
   role="menu"
   tabindex="-1"
 >
@@ -14,6 +83,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      data-test-id="menu-item"
       role="option"
       tabindex="-1"
     >
@@ -35,6 +105,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item"
       role="option"
       tabindex="-1"
     >
@@ -56,6 +127,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item"
       role="option"
       tabindex="-1"
     >
@@ -77,6 +149,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item"
       role="option"
       tabindex="-1"
     >
@@ -98,6 +171,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item"
       role="option"
       tabindex="-1"
     >
@@ -140,7 +214,7 @@ exports[`Autocomplete static behavior renders 1`] = `
             aria-autocomplete="list"
             autocomplete="off"
             class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-            placeholder="Start typing here..."
+            data-testid="autocomplete"
             type="text"
             value=""
           />
