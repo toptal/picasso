@@ -106,8 +106,7 @@ describe('Autocomplete', () => {
         getKey
       })
 
-      // TODO: figure out why this function is called twice
-      expect(getKey).toHaveBeenCalledTimes(testOptions.length * 2)
+      expect(getKey).toHaveBeenCalledTimes(testOptions.length)
     })
 
     it('renders a value that exists in options', () => {

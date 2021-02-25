@@ -13,45 +13,65 @@ import {
 import { Item, ChangedOptions } from '../types'
 
 export const EMPTY_INPUT_VALUE = ''
+export const INITIAL_HIGHLIGH_INDEX = 0
+
+export const normalizeInitialIndex = ({
+  initialIndex,
+  itemCount,
+  moveAmount
+}: {
+  initialIndex: number
+  itemCount: number
+  moveAmount: number
+}) => {
+  const outOfBounds = initialIndex < 0 || initialIndex >= itemCount
+
+  if (outOfBounds) {
+    const lastIndex = itemCount - 1
+
+    return moveAmount > 0 ? -1 : lastIndex + 1
+  }
+
+  return initialIndex
+}
 
 /**
  * Returns the new index in the list, in a circular way. If next value is out of bonds from the total,
  * it will wrap to either 0 or itemCount - 1.
  *
  * @param {number} moveAmount Number of positions to move. Negative to move backwards, positive forwards.
- * @param {number} initialIndex The initial position to move from.
+ * @param {number} calculatedInitialIndex The initial position to move from.
  * @param {number} itemCount The total number of items.
  * @returns {number} The new index after the move.
  */
+
 export const getNextWrappingIndex = (
   moveAmount: number,
-  initialIndex: number | null,
+  initialIndex: number,
   itemCount: number
 ) => {
-  const itemsLastIndex = itemCount - 1
+  const lastIndex = itemCount - 1
 
-  if (
-    typeof initialIndex !== 'number' ||
-    initialIndex < 0 ||
-    initialIndex >= itemCount
-  ) {
-    initialIndex = moveAmount > 0 ? -1 : itemsLastIndex + 1
-  }
+  const normalizedInitialIndex = normalizeInitialIndex({
+    initialIndex,
+    itemCount,
+    moveAmount
+  })
 
-  const newIndex = initialIndex + moveAmount
+  const newIndex = normalizedInitialIndex + moveAmount
 
   if (newIndex < 0) {
-    return itemsLastIndex
+    return lastIndex
   }
 
-  if (newIndex > itemsLastIndex) {
+  if (newIndex > lastIndex) {
     return 0
   }
 
   return newIndex
 }
 
-interface Props {
+export interface Props {
   value: string
   options?: Item[] | null
   onSelect?: (item: Item, event: MouseEvent | KeyboardEvent) => void
@@ -85,7 +105,9 @@ export const useAutocomplete = ({
   showOtherOption
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
-  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
+  const [highlightedIndex, setHighlightedIndex] = useState<number>(
+    INITIAL_HIGHLIGH_INDEX
+  )
 
   const selectedIndex = useMemo(
     () =>
@@ -103,7 +125,7 @@ export const useAutocomplete = ({
     }
   }, [isOpen, selectedIndex])
 
-  const shouldShowOtherOption = showOtherOption && selectedIndex === -1
+  const shouldShowOtherOption = Boolean(showOtherOption) && selectedIndex === -1
 
   const handleChange = (newValue: string, isSelected = false) => {
     if (newValue !== value) {
@@ -212,6 +234,7 @@ export const useAutocomplete = ({
       }
 
       if (event.key === 'Backspace') {
+        console.log('Backspace:')
         if (value !== EMPTY_INPUT_VALUE) {
           return
         }
