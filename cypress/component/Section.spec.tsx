@@ -31,7 +31,7 @@ const SectionExample = () => {
 }
 
 describe('Section', () => {
-  it('renders', () => {
+  it('renders correctly', () => {
     mount(<SectionExample />)
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
