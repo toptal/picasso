@@ -3,14 +3,6 @@ import { mount } from '@cypress/react'
 import { Button, Grid, Tooltip, Typography } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const BehaviourTooltipExample = () => (
-  <TestingPicasso>
-    <Tooltip content={<Typography data-testid='content'>Content</Typography>}>
-      <Button data-testid='trigger'>Trigger</Button>
-    </Tooltip>
-  </TestingPicasso>
-)
-
 const ScreenshotTooltipExample = () => (
   <TestingPicasso>
     <Grid spacing={80}>
@@ -70,6 +62,14 @@ const ScreenshotTooltipExample = () => (
         </Tooltip>
       </Grid.Item>
     </Grid>
+  </TestingPicasso>
+)
+
+const BehaviourTooltipExample = () => (
+  <TestingPicasso>
+    <Tooltip content={<Typography data-testid='content'>Content</Typography>}>
+      <Button data-testid='trigger'>Trigger</Button>
+    </Tooltip>
   </TestingPicasso>
 )
 
