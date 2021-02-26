@@ -204,7 +204,37 @@ describe('Tooltip', () => {
       unmount()
     })
 
-    it('does not open tooltip on focus with disabled listeners', async () => {
+    it('opens and closes tooltip with event handlers', async () => {
+      const onOpen = jest.fn()
+      const onClose = jest.fn()
+
+      const { getByText, queryByText, unmount } = render(
+        <Tooltip content='Hello' onOpen={onOpen} onClose={onClose}>
+          <Button>Focus me</Button>
+        </Tooltip>
+      )
+
+      expect(onOpen).toHaveBeenCalledTimes(0)
+      expect(onClose).toHaveBeenCalledTimes(0)
+
+      fireEvent.focus(getByText('Focus me'))
+      await wait(() => {
+        expect(queryByText('Hello')).toBeInTheDocument()
+        expect(onOpen).toHaveBeenCalledTimes(1)
+        expect(onClose).toHaveBeenCalledTimes(0)
+      })
+
+      fireEvent.blur(getByText('Focus me'))
+      await wait(() => {
+        expect(queryByText('Hello')).not.toBeInTheDocument()
+        expect(onOpen).toHaveBeenCalledTimes(1)
+        expect(onClose).toHaveBeenCalledTimes(1)
+      })
+
+      unmount()
+    })
+
+    it('does not open tooltip on focus with disabled listeners', () => {
       const { getByText, queryByText, unmount } = render(
         <Tooltip content='Hello' disableListeners>
           <Button>Focus me</Button>
@@ -218,7 +248,7 @@ describe('Tooltip', () => {
       unmount()
     })
 
-    it('does not open tooltip on hover with disabled listeners', async () => {
+    it('does not open tooltip on hover with disabled listeners', () => {
       const { getByText, queryByText, unmount } = render(
         <Tooltip content='Hello' disableListeners>
           <Button>Hover me</Button>

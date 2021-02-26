@@ -37,6 +37,9 @@ const ScreenshotTooltipExample = () => {
           <Tooltip content='Content' open arrow={false}>
             <Button>Default without arrow</Button>
           </Tooltip>
+          <Tooltip content='Content' open disablePortal>
+            <Button>Default without portals</Button>
+          </Tooltip>
         </Section>
         <Section title='Compact'>
           <Tooltip content='Content' open compact>
