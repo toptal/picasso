@@ -116,7 +116,7 @@ describe('Autocomplete', () => {
 
     openAutocompleteWithTab()
 
-    cy.get('[role=menu]').should('not.be.visible')
+    cy.get('[role=menu]').should('not.exist')
 
     cy.clock()
     cy.get('[data-testid=autocomplete]').type('Mon')
@@ -128,7 +128,7 @@ describe('Autocomplete', () => {
     cy.get('[data-testid=autocomplete]').blur()
     openAutocompleteWithTab()
 
-    cy.get('[role=menu]').should('not.be.visible')
+    cy.get('[role=menu]').should('not.exist')
   })
 
   it('focuses Autocomplete with static options should NOT open options list', () => {
@@ -136,7 +136,7 @@ describe('Autocomplete', () => {
 
     openAutocompleteWithTab()
 
-    cy.get('[role=menu]').should('not.be.visible')
+    cy.get('[role=menu]').should('not.exist')
 
     cy.get('[data-testid=autocomplete]').type('Ukr')
     cy.get('[role=menu]').should('be.visible')
@@ -144,6 +144,6 @@ describe('Autocomplete', () => {
     cy.get('[data-testid=autocomplete]').blur()
     openAutocompleteWithTab()
 
-    cy.get('[role=menu]').should('not.be.visible')
+    cy.get('[role=menu]').should('not.exist')
   })
 })

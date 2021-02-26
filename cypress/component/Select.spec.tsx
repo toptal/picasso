@@ -108,12 +108,12 @@ describe('Select', () => {
 
     openSelectWithTab()
 
-    cy.get('[role=menu]').should('not.be.visible')
+    cy.get('[role=menu]').should('not.exist')
 
     setThresholdToHideSelectSearch()
 
     openSelectWithTab()
-    cy.get('[role=menu]').should('not.be.visible')
+    cy.get('[role=menu]').should('not.exist')
 
     cy.get('[data-testid=select]').type(' ')
     cy.get('[role=menu]').should('be.visible')
