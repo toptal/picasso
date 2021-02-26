@@ -70,11 +70,24 @@ const ScreenshotTooltipExample = () => {
           ))}
         </Section>
         <Section title='Max width'>
+          <Tooltip content={'Content '.repeat(10)} open>
+            <Button>Default</Button>
+          </Tooltip>
           <Tooltip content={'Content '.repeat(10)} open maxWidth='none'>
             <Button>None</Button>
           </Tooltip>
-          <Tooltip content={'Content '.repeat(10)} open maxWidth='default'>
+        </Section>
+        <Section title='Prevent overflow'>
+          <Tooltip content={'Content '.repeat(10)} open placement='left'>
             <Button>Default</Button>
+          </Tooltip>
+          <Tooltip
+            content={'Content '.repeat(10)}
+            open
+            placement='left'
+            preventOverflow={false}
+          >
+            <Button>Without overflow prevention</Button>
           </Tooltip>
         </Section>
       </Container>
