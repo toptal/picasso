@@ -18,7 +18,14 @@ const SvgStarSolid16 = forwardRef(function SvgStarSolid16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgStarSolid16 = forwardRef(function SvgStarSolid16(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581z' />
     </svg>

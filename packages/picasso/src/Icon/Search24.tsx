@@ -18,7 +18,14 @@ const SvgSearch24 = forwardRef(function SvgSearch24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgSearch24 = forwardRef(function SvgSearch24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M15.854 15.147l6.353 6.353-.707.707-6.353-6.353a8.5 8.5 0 11.707-.707zM9.5 17a7.5 7.5 0 100-15 7.5 7.5 0 000 15z' />
     </svg>

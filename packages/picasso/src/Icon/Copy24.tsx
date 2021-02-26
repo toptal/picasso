@@ -18,7 +18,14 @@ const SvgCopy24 = forwardRef(function SvgCopy24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgCopy24 = forwardRef(function SvgCopy24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M19 2H2v17H1V1h18v1zM5 5h18v18H5V5zm1 1v16h16V6H6z' />
     </svg>

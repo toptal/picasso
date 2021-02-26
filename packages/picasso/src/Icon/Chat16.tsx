@@ -18,7 +18,14 @@ const SvgChat16 = forwardRef(function SvgChat16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgChat16 = forwardRef(function SvgChat16(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M13 5h3v7h-1l-3 3v-3H7v-2h1v1h5v1.586L14.586 11H15V6h-2V5zM0 1h12v8H5v3L2 9H0V1zm1 1v6h1.414L4 9.586V8h7V2H1z' />
     </svg>

@@ -18,7 +18,14 @@ const SvgUnavailable16 = forwardRef(function SvgUnavailable16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgUnavailable16 = forwardRef(function SvgUnavailable16(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M8 0a8 8 0 110 16A8 8 0 018 0zm5.29 3.416l-9.874 9.875a7 7 0 009.874-9.874zM8 1a7 7 0 00-5.29 11.584l9.874-9.875A6.973 6.973 0 008 1z' />
     </svg>

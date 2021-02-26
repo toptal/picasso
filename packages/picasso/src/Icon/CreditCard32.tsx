@@ -18,7 +18,14 @@ const SvgCreditCard32 = forwardRef(function SvgCreditCard32(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgCreditCard32 = forwardRef(function SvgCreditCard32(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M31 10V7a1 1 0 00-1-1H2a1 1 0 00-1 1v3h30zm0 1H1v14a1 1 0 001 1h28a1 1 0 001-1V11zM2 5h28a2 2 0 012 2v18a2 2 0 01-2 2H2a2 2 0 01-2-2V7a2 2 0 012-2zm2 11h10v1H4v-1zm0 4h5v1H4v-1zm19-4h5v1h-5v-1z' />
     </svg>

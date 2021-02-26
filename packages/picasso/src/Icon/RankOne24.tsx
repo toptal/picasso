@@ -18,7 +18,14 @@ const SvgRankOne24 = forwardRef(function SvgRankOne24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgRankOne24 = forwardRef(function SvgRankOne24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M3.797 14.422L12 7.86l8.203 6.562-.625.78L12 9.14l-7.578 6.063z' />
     </svg>

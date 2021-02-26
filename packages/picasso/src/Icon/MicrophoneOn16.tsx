@@ -18,7 +18,14 @@ const SvgMicrophoneOn16 = forwardRef(function SvgMicrophoneOn16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgMicrophoneOn16 = forwardRef(function SvgMicrophoneOn16(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M7 15v-2.022A5.5 5.5 0 012 7.5h1a4.5 4.5 0 009 0h1a5.5 5.5 0 01-5 5.478V15h3v1H4v-1h3zm.5-15A3.5 3.5 0 0111 3.5v4a3.5 3.5 0 01-7 0v-4A3.5 3.5 0 017.5 0zm0 1A2.5 2.5 0 005 3.5v4a2.5 2.5 0 005 0v-4A2.5 2.5 0 007.5 1z' />
     </svg>

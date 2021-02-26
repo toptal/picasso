@@ -18,7 +18,14 @@ const SvgHeartbeat16 = forwardRef(function SvgHeartbeat16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgHeartbeat16 = forwardRef(function SvgHeartbeat16(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M4.589 8L6 .95l2.025 10.127 1.946-8.75L11.39 8H16v1h-5.388l-.583-2.325-2.055 9.246L6 6.05 5.41 9H0V8z' />
     </svg>

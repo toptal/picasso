@@ -18,7 +18,14 @@ const SvgExclamationSolid24 = forwardRef(function SvgExclamationSolid24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgExclamationSolid24 = forwardRef(function SvgExclamationSolid24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 16a1 1 0 100 2 1 1 0 000-2zm0-10a1 1 0 00-1 1v7a1 1 0 002 0V7a1 1 0 00-1-1z' />
     </svg>

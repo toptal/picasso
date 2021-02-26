@@ -18,7 +18,14 @@ const SvgLogo = forwardRef(function SvgLogo(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgLogo = forwardRef(function SvgLogo(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path
         d='M8.065 0l6.664 6.664c.048.043.097.092.15.145l5.814 5.816-9.455 9.405 4.331 4.332-2.898 2.88-6.621-6.621c-.076-.07-.156-.15-.237-.231L0 16.58l9.422-9.368L5.13 2.918 8.065 0zm4.218 10.442a.425.425 0 00-.259 0c-.086.022-.161.065-.312.215L6.33 16.016c-.156.156-.194.225-.22.311a.422.422 0 000 .258c.026.086.07.162.22.312l1.708 1.71c.156.155.226.193.312.22a.425.425 0 00.259 0c.086-.027.161-.065.307-.215l5.382-5.359c.156-.156.194-.225.22-.311a.422.422 0 000-.258c-.02-.086-.064-.162-.215-.312l-1.708-1.71c-.156-.155-.226-.193-.312-.22z'

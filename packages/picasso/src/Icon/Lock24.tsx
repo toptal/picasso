@@ -18,7 +18,14 @@ const SvgLock24 = forwardRef(function SvgLock24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgLock24 = forwardRef(function SvgLock24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M6 10V6a6 6 0 1112 0v4h3v14H3V10h3zm1 0h10V6A5 5 0 007 6v4zm-1 1H4v12h16V11H6z' />
     </svg>

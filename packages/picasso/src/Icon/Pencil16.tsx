@@ -18,7 +18,14 @@ const SvgPencil16 = forwardRef(function SvgPencil16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgPencil16 = forwardRef(function SvgPencil16(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M11.5.793L15.207 4.5 4.707 15H1v-3.707L8.793 3.5V3.5l.707-.707 2-2zm-2 3.415l-7.5 7.5V14h2.293l7.499-7.5L9.5 4.208zm2-2L10.207 3.5l2.292 2.293L13.793 4.5 11.5 2.207z' />
     </svg>

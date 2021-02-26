@@ -18,7 +18,14 @@ const SvgComponent16 = forwardRef(function SvgComponent16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgComponent16 = forwardRef(function SvgComponent16(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M11 15v1H5v-1h6zm2-12v10H3V3h10zm-1 1H4v8h8V4zM1 5v6H0V5h1zm15 0v6h-1V5h1zm-5-5v1H5V0h6z' />
     </svg>

@@ -18,7 +18,14 @@ const SvgRankTwo16 = forwardRef(function SvgRankTwo16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgRankTwo16 = forwardRef(function SvgRankTwo16(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M8 6.882l6.198 4.508-.588.808L8 8.118l-5.61 4.08-.588-.808L8 6.882zm0-4l6.198 4.508-.588.808L8 4.118l-5.61 4.08-.588-.808L8 2.882z' />
     </svg>

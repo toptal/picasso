@@ -18,7 +18,14 @@ const SvgFunction24 = forwardRef(function SvgFunction24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgFunction24 = forwardRef(function SvgFunction24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M11.5 1a3.5 3.5 0 01.5 6.964V12h8v5h3v7h-7v-7h3v-4H4v4h3v7H0v-7h3v-5h8V7.965A3.5 3.5 0 0111.5 1zM22 18h-5v5h5v-5zM6 18H1v5h5v-5zm5.5-16a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' />
     </svg>
