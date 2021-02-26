@@ -1,4 +1,4 @@
-import { fireEvent, render, wait } from '@toptal/picasso/test-utils'
+import { fireEvent, render, waitFor } from '@toptal/picasso/test-utils'
 import React from 'react'
 
 import Menu from '../Menu'
@@ -61,7 +61,7 @@ describe('Dropdown', () => {
     const trigger = getByText('Open Dropdown')
 
     fireEvent.click(trigger)
-    await wait(() => {
+    await waitFor(() => {
       expect(document.activeElement).toBe(baseElement.querySelector('li'))
     })
 
