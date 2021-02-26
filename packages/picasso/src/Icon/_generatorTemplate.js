@@ -54,6 +54,8 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
   decorateWithIdentifierProp(svgElement, 'style', 'svgStyle')
   // add `ref={ref}` to svg root tag
   decorateWithIdentifierProp(svgElement, 'ref', 'ref')
+  // add `data-testid={testId} to svg root tag
+  decorateWithIdentifierProp(svgElement, 'data-testid', 'testId')
 
   const typeScriptTpl = template.smart({ plugins: ['typescript'] })
 
@@ -70,7 +72,7 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
 
     const BASE_SIZE = ${baseSize}
 
-    type ScaleType = 
+    type ScaleType =
       | 1
       | 2
       | 3
@@ -86,7 +88,7 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
       props: Props,
       ref: Ref<SVGSVGElement>
     ) {
-      const { className, style = {}, color, scale, base } = props
+      const { className, style = {}, color, scale, base, 'data-testid': testId } = props
 
       const classes: Record<string, string> = useStyles(props)
       const classNames = [classes.root, className]

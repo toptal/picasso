@@ -18,7 +18,14 @@ const SvgArrowLongLeft16 = forwardRef(function SvgArrowLongLeft16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgArrowLongLeft16 = forwardRef(function SvgArrowLongLeft16(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M5.5 4.793l.707.707-2.5 2.5H14v1H3.707l2.5 2.5-.707.707L1.793 8.5 5.5 4.793z' />
     </svg>

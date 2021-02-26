@@ -18,7 +18,14 @@ const SvgEyeHidden24 = forwardRef(function SvgEyeHidden24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgEyeHidden24 = forwardRef(function SvgEyeHidden24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M21.5 1.793l.707.707L2.5 22.207l-.707-.707L21.5 1.793zm-2.143 4.97C20.976 8.057 22.524 9.803 24 12c-3.582 5.333-7.582 8-12 8-1.647 0-3.236-.37-4.766-1.112l.754-.753a9.795 9.795 0 003.717.86L12 19c3.845 0 7.395-2.241 10.668-6.833l.117-.167-.117-.167c-1.297-1.82-2.637-3.27-4.022-4.357l.711-.712zM12 4c1.647 0 3.236.37 4.767 1.112l-.755.753a9.795 9.795 0 00-3.717-.86L12 5C8.155 5 4.605 7.241 1.332 11.833L1.214 12l.118.167c1.297 1.82 2.637 3.27 4.023 4.358l-.711.712C3.024 15.945 1.477 14.199 0 12c3.582-5.333 7.582-8 12-8zm4.435 5.688a5 5 0 01-6.746 6.746l.75-.75a4 4 0 005.246-5.244l.75-.752zM12 7c.834 0 1.621.204 2.313.566l-.751.75a4 4 0 00-5.245 5.245l-.751.752A5 5 0 0112 7z' />
     </svg>

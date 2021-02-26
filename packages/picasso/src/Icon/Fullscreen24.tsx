@@ -18,7 +18,14 @@ const SvgFullscreen24 = forwardRef(function SvgFullscreen24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgFullscreen24 = forwardRef(function SvgFullscreen24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M3 18h4v1H2v-5h1v4zM22 6v4h-1V6h-4V5h5v1zM0 3h24v18H0V3zm1 1v16h22V4H1z' />
     </svg>

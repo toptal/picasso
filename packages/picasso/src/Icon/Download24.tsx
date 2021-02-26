@@ -18,7 +18,14 @@ const SvgDownload24 = forwardRef(function SvgDownload24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgDownload24 = forwardRef(function SvgDownload24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M12 17.293l3.5-3.5.707.707-4.707 4.707L6.793 14.5l.707-.707 3.5 3.5V2h1v15.293zM22 21v1H1v-4h1v3h19v-3h1v3z' />
     </svg>

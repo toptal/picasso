@@ -18,7 +18,14 @@ const SvgShare24 = forwardRef(function SvgShare24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgShare24 = forwardRef(function SvgShare24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M19 20v1H0V6h12v1H1v13h17v-9h1v9zM13 3h11v7H13V3zm1 1v5h9V4h-9z' />
     </svg>

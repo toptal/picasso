@@ -20,7 +20,14 @@ const SvgRepresentativesSolid24 = forwardRef(function SvgRepresentativesSolid24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -42,6 +49,7 @@ const SvgRepresentativesSolid24 = forwardRef(function SvgRepresentativesSolid24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M0 0v24l9-6.007L18 24V0z' />
     </svg>

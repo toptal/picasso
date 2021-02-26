@@ -18,7 +18,14 @@ const SvgPod24 = forwardRef(function SvgPod24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgPod24 = forwardRef(function SvgPod24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M6 13a5 5 0 110 10 5 5 0 010-10zm12 0a5 5 0 110 10 5 5 0 010-10zM6 14a4 4 0 100 8 4 4 0 000-8zm12 0a4 4 0 100 8 4 4 0 000-8zM6 1a5 5 0 110 10A5 5 0 016 1zm12 0a5 5 0 110 10 5 5 0 010-10zM6 2a4 4 0 100 8 4 4 0 000-8zm12 0a4 4 0 100 8 4 4 0 000-8z' />
     </svg>

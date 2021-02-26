@@ -18,7 +18,14 @@ const SvgCheck16 = forwardRef(function SvgCheck16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgCheck16 = forwardRef(function SvgCheck16(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M5.5 11.793l9-9 .707.707-9 9-.707.707L.793 8.5l.707-.707 4 4z' />
     </svg>

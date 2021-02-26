@@ -18,7 +18,14 @@ const SvgArrowDownMinor24 = forwardRef(function SvgArrowDownMinor24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
-  const { className, style = {}, color, scale, base } = props
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -40,6 +47,7 @@ const SvgArrowDownMinor24 = forwardRef(function SvgArrowDownMinor24(
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
+      data-testid={testId}
     >
       <path d='M18.007 8.3l.707.707-6 6-.707.707-.707-.707-6-6 .707-.707 6 6 6-6z' />
     </svg>
