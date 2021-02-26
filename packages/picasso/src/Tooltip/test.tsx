@@ -203,5 +203,33 @@ describe('Tooltip', () => {
 
       unmount()
     })
+
+    it('does not open tooltip on focus with disabled listeners', async () => {
+      const { getByText, queryByText, unmount } = render(
+        <Tooltip content='Hello' disableListeners>
+          <Button>Focus me</Button>
+        </Tooltip>
+      )
+
+      fireEvent.focus(getByText('Focus me'))
+
+      expect(queryByText('Hello')).not.toBeInTheDocument()
+
+      unmount()
+    })
+
+    it('does not open tooltip on hover with disabled listeners', async () => {
+      const { getByText, queryByText, unmount } = render(
+        <Tooltip content='Hello' disableListeners>
+          <Button>Hover me</Button>
+        </Tooltip>
+      )
+
+      fireEvent.mouseEnter(getByText('Hover me'))
+
+      expect(queryByText('Hello')).not.toBeInTheDocument()
+
+      unmount()
+    })
   })
 })
