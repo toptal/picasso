@@ -6,6 +6,8 @@ import { render, wait } from '@toptal/picasso/test-utils'
 
 import Tooltip, { Props } from './Tooltip'
 
+const TOOLTIP_SHORT_DELAY = 200
+
 const mockedIsPointerDevice = isPointerDevice as jest.Mock
 
 const TestContent = () => <div data-testid='tooltip-content'>Content</div>
@@ -79,6 +81,29 @@ describe('Tooltip', () => {
     fireEvent.click(getByTestId('tooltip-trigger'))
     await wait(() => {
       expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+    })
+  })
+
+  it('opens tooltip on hover after a short delay', async () => {
+    const { getByTestId, queryByTestId } = renderTooltip({ delay: 'short' })
+
+    fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
+    await wait(
+      () => {
+        expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+      },
+      { timeout: TOOLTIP_SHORT_DELAY / 2 }
+    )
+    await wait(
+      () => {
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      },
+      { timeout: TOOLTIP_SHORT_DELAY }
+    )
+
+    fireEvent.mouseLeave(getByTestId('tooltip-trigger'))
+    await wait(() => {
+      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
     })
   })
 })
