@@ -1,265 +1,84 @@
-import React, { useState } from 'react'
+import React, { forwardRef } from 'react'
 import { fireEvent } from '@testing-library/react'
-import { render, waitFor } from '@toptal/picasso/test-utils'
-import { ClickAwayListener, isPointerDevice } from '@toptal/picasso/utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
+import { isPointerDevice } from '@toptal/picasso/utils'
+import { render, wait } from '@toptal/picasso/test-utils'
 
-import Button from '../Button'
-import Tooltip from './Tooltip'
+import Tooltip, { Props } from './Tooltip'
 
 const mockedIsPointerDevice = isPointerDevice as jest.Mock
 
+const TestContent = () => <div data-testid='tooltip-content'>Content</div>
+
+const TestTrigger = forwardRef<HTMLDivElement>((props, ref) => (
+  <div ref={ref} data-testid='tooltip-trigger' {...props}>
+    Trigger
+  </div>
+))
+
+const renderTooltip = (props?: Partial<OmitInternalProps<Props>>) =>
+  render(
+    <Tooltip id='tooltip-id' content={<TestContent />} {...props}>
+      <TestTrigger />
+    </Tooltip>
+  )
+
 describe('Tooltip', () => {
-  it('renders', () => {
-    // If you don't provide `id` prop, it falls back to a randomly generated id.
-    const { container } = render(
-      <Tooltip
-        id='aria-describedby-id-mock'
-        content='Content goes here...'
-        open
-      >
-        <span>Test</span>
-      </Tooltip>
-    )
+  beforeEach(() => {
+    mockedIsPointerDevice.mockReturnValue(true)
+  })
+
+  afterEach(() => {
+    mockedIsPointerDevice.mockClear()
+  })
+
+  it('renders closed by default', () => {
+    const { container } = renderTooltip()
 
     expect(container).toMatchSnapshot()
   })
 
-  describe('on touch screens', () => {
-    beforeEach(() => {
-      mockedIsPointerDevice.mockReturnValue(false)
-    })
+  it('renders initially opened', () => {
+    const { container } = renderTooltip({ open: true })
 
-    afterEach(() => {
-      mockedIsPointerDevice.mockClear()
-    })
-
-    it('opens tooltip on touch', async () => {
-      const { getByText, findByText, unmount } = render(
-        <Tooltip content='Hello'>
-          <Button>Tap me</Button>
-        </Tooltip>
-      )
-
-      fireEvent.click(getByText('Tap me'))
-      const tooltip = await findByText('Hello')
-
-      expect(tooltip).toBeInTheDocument()
-
-      unmount()
-    })
-
-    it('closes tooltip on second touch', async () => {
-      const { getByText, findByText, queryByText, unmount } = render(
-        <Tooltip content='Hello'>
-          <Button>Tap me</Button>
-        </Tooltip>
-      )
-
-      fireEvent.click(getByText('Tap me'))
-      await findByText('Hello')
-
-      fireEvent.click(getByText('Tap me'))
-      await waitFor(() => {
-        expect(queryByText('Hello')).not.toBeInTheDocument()
-      })
-
-      unmount()
-    })
+    expect(container).toMatchSnapshot()
   })
 
-  describe('on fine pointer devices', () => {
-    beforeEach(() => {
-      mockedIsPointerDevice.mockReturnValue(true)
-    })
+  it('renders with portals disabled', () => {
+    const { container } = renderTooltip({ open: true, disablePortal: true })
 
-    afterEach(() => {
-      mockedIsPointerDevice.mockClear()
-    })
+    expect(container).toMatchSnapshot()
+  })
 
-    it('opens tooltip on hover on short delay', async () => {
-      const { getByText, queryByText, unmount } = render(
-        <Tooltip content='Hello' delay='short'>
-          <Button>Hover me</Button>
-        </Tooltip>
-      )
+  it('opens tooltip with a short delay', async () => {
+    const { getByTestId, findByTestId } = renderTooltip()
 
-      fireEvent.mouseEnter(getByText('Hover me'))
+    fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
+    const content = await findByTestId('tooltip-content')
 
-      const SHORT_DELAY_TIMEOUT = 200
+    expect(content).toBeInTheDocument()
+  })
 
-      // Tooltip should not appear earlier than the delay
-      await waitFor(
-        () => {
-          expect(queryByText('Hello')).not.toBeInTheDocument()
-        },
-        { timeout: SHORT_DELAY_TIMEOUT / 2 }
-      )
-      await waitFor(
-        () => {
-          expect(queryByText('Hello')).toBeInTheDocument()
-        },
-        { timeout: SHORT_DELAY_TIMEOUT }
-      )
+  it('opens tooltip on the first touch on touch screens', async () => {
+    mockedIsPointerDevice.mockReturnValue(false)
+    const { getByTestId, findByTestId } = renderTooltip()
 
-      fireEvent.mouseLeave(getByText('Hover me'))
-      await waitFor(() => {
-        expect(queryByText('Hello')).not.toBeInTheDocument()
-      })
+    fireEvent.click(getByTestId('tooltip-trigger'))
+    const content = await findByTestId('tooltip-content')
 
-      unmount()
-    })
+    expect(content).toBeInTheDocument()
+  })
 
-    it('opens tooltip on hover on long delay then closes it on mouse out', async () => {
-      const { getByText, queryByText, unmount } = render(
-        <Tooltip content='Hello' delay='long'>
-          <Button>Hover me</Button>
-        </Tooltip>
-      )
+  it('closes tooltip on the second touch on touch screens', async () => {
+    mockedIsPointerDevice.mockReturnValue(false)
+    const { getByTestId, queryByTestId, findByTestId } = renderTooltip()
 
-      fireEvent.mouseEnter(getByText('Hover me'))
+    fireEvent.click(getByTestId('tooltip-trigger'))
+    await findByTestId('tooltip-content')
 
-      const LONG_DELAY_TIMEOUT = 500
-
-      // Tooltip should not appear earlier than the delay
-      await waitFor(
-        () => {
-          expect(queryByText('Hello')).not.toBeInTheDocument()
-        },
-        { timeout: LONG_DELAY_TIMEOUT / 2 }
-      )
-      await waitFor(
-        () => {
-          expect(queryByText('Hello')).toBeInTheDocument()
-        },
-        { timeout: LONG_DELAY_TIMEOUT }
-      )
-
-      fireEvent.mouseLeave(getByText('Hover me'))
-      await waitFor(() => {
-        expect(queryByText('Hello')).not.toBeInTheDocument()
-      })
-
-      unmount()
-    })
-
-    it('opens tooltip on click then closes it on outside click', async () => {
-      const Component = () => {
-        const [open, setOpen] = useState(false)
-
-        return (
-          <div>
-            <ClickAwayListener onClickAway={() => setOpen(false)}>
-              <div>
-                <Tooltip open={open} content='Hello'>
-                  <Button onClick={() => setOpen(true)}>
-                    Hover then click me
-                  </Button>
-                </Tooltip>
-              </div>
-            </ClickAwayListener>
-            <Button>Click outside!</Button>
-          </div>
-        )
-      }
-
-      const { getByText, findByText, queryByText, unmount } = render(
-        <Component />
-      )
-
-      const handler = getByText('Hover then click me')
-
-      fireEvent.mouseEnter(handler)
-      expect(queryByText('Hello')).not.toBeInTheDocument()
-
-      fireEvent.click(handler)
-      const tooltip = await findByText('Hello')
-
-      expect(tooltip).toBeInTheDocument()
-
-      fireEvent.click(getByText('Click outside!'))
-      await waitFor(() => {
-        expect(queryByText('Hello')).not.toBeInTheDocument()
-      })
-
-      unmount()
-    })
-
-    it('closes uncontrolled tooltip on button click', async () => {
-      const { getByText, queryByText, findByText, unmount } = render(
-        <Tooltip content='Hello'>
-          <Button>Hover me</Button>
-        </Tooltip>
-      )
-
-      fireEvent.mouseEnter(getByText('Hover me'))
-      const tooltip = await findByText('Hello')
-
-      expect(tooltip).toBeInTheDocument()
-
-      fireEvent.click(getByText('Hover me'))
-      await waitFor(() => {
-        expect(queryByText('Hello')).not.toBeInTheDocument()
-      })
-
-      unmount()
-    })
-
-    it('opens and closes tooltip with event handlers', async () => {
-      const onOpen = jest.fn()
-      const onClose = jest.fn()
-
-      const { getByText, queryByText, unmount } = render(
-        <Tooltip content='Hello' onOpen={onOpen} onClose={onClose}>
-          <Button>Focus me</Button>
-        </Tooltip>
-      )
-
-      expect(onOpen).toHaveBeenCalledTimes(0)
-      expect(onClose).toHaveBeenCalledTimes(0)
-
-      fireEvent.focus(getByText('Focus me'))
-      await wait(() => {
-        expect(queryByText('Hello')).toBeInTheDocument()
-        expect(onOpen).toHaveBeenCalledTimes(1)
-        expect(onClose).toHaveBeenCalledTimes(0)
-      })
-
-      fireEvent.blur(getByText('Focus me'))
-      await wait(() => {
-        expect(queryByText('Hello')).not.toBeInTheDocument()
-        expect(onOpen).toHaveBeenCalledTimes(1)
-        expect(onClose).toHaveBeenCalledTimes(1)
-      })
-
-      unmount()
-    })
-
-    it('does not open tooltip on focus with disabled listeners', () => {
-      const { getByText, queryByText, unmount } = render(
-        <Tooltip content='Hello' disableListeners>
-          <Button>Focus me</Button>
-        </Tooltip>
-      )
-
-      fireEvent.focus(getByText('Focus me'))
-
-      expect(queryByText('Hello')).not.toBeInTheDocument()
-
-      unmount()
-    })
-
-    it('does not open tooltip on hover with disabled listeners', () => {
-      const { getByText, queryByText, unmount } = render(
-        <Tooltip content='Hello' disableListeners>
-          <Button>Hover me</Button>
-        </Tooltip>
-      )
-
-      fireEvent.mouseEnter(getByText('Hover me'))
-
-      expect(queryByText('Hello')).not.toBeInTheDocument()
-
-      unmount()
+    fireEvent.click(getByTestId('tooltip-trigger'))
+    await wait(() => {
+      expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
     })
   })
 })
