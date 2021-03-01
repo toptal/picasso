@@ -63,7 +63,7 @@ describe('Tooltip', () => {
     expect(queryByTestId('tooltip-content')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
 
-    unmount()
+    unmount() // required to avoid updates from popper
   })
 
   it('opens and closes tooltip on focus', async () => {
