@@ -41,24 +41,28 @@ describe('Tooltip', () => {
   })
 
   it('renders closed by default', () => {
-    const { queryByTestId } = renderTooltip()
+    const { container, queryByTestId } = renderTooltip()
 
     expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+    expect(container).toMatchSnapshot()
   })
 
   it('renders initially opened', () => {
-    const { queryByTestId } = renderTooltip({ open: true })
+    const { container, queryByTestId } = renderTooltip({ open: true })
 
     expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+    expect(container).toMatchSnapshot()
   })
 
   it('renders with portals disabled', () => {
-    const { queryByTestId, unmount } = renderTooltip({
+    const { container, queryByTestId, unmount } = renderTooltip({
       open: true,
       disablePortal: true
     })
 
     expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+    expect(container).toMatchSnapshot()
+
     unmount()
   })
 
