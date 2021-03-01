@@ -4,6 +4,7 @@ import React, {
   ReactElement,
   ChangeEvent,
   InputHTMLAttributes,
+  MouseEvent,
   forwardRef
 } from 'react'
 import cx from 'classnames'
@@ -77,7 +78,9 @@ export interface Props
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
   /** Callback invoked when reset button was clicked */
-  onResetClick?: () => void
+  onResetClick?: (
+    event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>
+  ) => void
   /** Ref of the input outline */
   outlineRef?: React.Ref<HTMLElement>
 }

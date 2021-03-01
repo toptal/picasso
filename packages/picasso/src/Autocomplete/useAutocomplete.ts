@@ -272,7 +272,10 @@ const useAutocomplete = ({
 
     onBlur: handleBlur,
     enableReset,
-    onResetClick: () => {
+    onResetClick: (
+      event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>
+    ) => {
+      event.stopPropagation()
       handleChange(getDisplayValue(null))
     }
   })
