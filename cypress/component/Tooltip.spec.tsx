@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { mount } from '@cypress/react'
 import {
   Button,
   Container,
+  Link,
   Tooltip,
   TooltipPlacementType
 } from '@toptal/picasso'
@@ -26,7 +27,7 @@ const TOOLTIP_PLACEMENTS: TooltipPlacementType[] = [
 
 const TOOLTIP_LONG_TEXT = 'Content '.repeat(10)
 
-const TooltipExample = () => (
+const SnapshotTooltipExample = () => (
   <TestingPicasso>
     <Container padded='small'>
       <Section title='Default'>
@@ -93,10 +94,40 @@ const TooltipExample = () => (
   </TestingPicasso>
 )
 
+const LinkTooltipExample = () => {
+  const [count, setCount] = useState(0)
+  const onClick = () => setCount(count + 1)
+
+  return (
+    <TestingPicasso>
+      <Tooltip
+        content={
+          <Link data-testid='tooltip-content' onClick={onClick}>
+            Link
+          </Link>
+        }
+        interactive
+      >
+        <Button data-testid='tooltip-trigger'>Clicked: {count}</Button>
+      </Tooltip>
+    </TestingPicasso>
+  )
+}
+
 describe('Tooltip', () => {
   it('renders correctly', () => {
-    mount(<TooltipExample />)
+    mount(<SnapshotTooltipExample />)
 
     cy.get('body').happoScreenshot()
+  })
+
+  it('renders interactive content', () => {
+    mount(<LinkTooltipExample />)
+
+    cy.get('[data-testid="tooltip-trigger"').click()
+    cy.get('[data-testid="tooltip-trigger"').should('have.text', 'Clicked: 0')
+
+    cy.get('[data-testid="tooltip-content"').click()
+    cy.get('[data-testid="tooltip-trigger"').should('have.text', 'Clicked: 1')
   })
 })
