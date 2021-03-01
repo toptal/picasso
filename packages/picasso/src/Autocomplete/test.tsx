@@ -366,4 +366,27 @@ describe('Autocomplete', () => {
       expect(input.getAttribute('autocomplete')).toBe('country-name')
     })
   })
+
+  describe('reset behavior', () => {
+    it('when reset button clicked', () => {
+      const {
+        getByRole,
+        getByText,
+        getByPlaceholderText,
+        queryByText
+      } = renderAutocomplete({
+        options: testOptions,
+        placeholder,
+        value: ''
+      })
+
+      const input = getByPlaceholderText(placeholder) as HTMLInputElement
+
+      fireEvent.click(input)
+      fireEvent.click(getByText('Slovakia'))
+      fireEvent.click(getByRole('reset'))
+
+      expect(queryByText('Slovakia')).not.toBeInTheDocument()
+    })
+  })
 })

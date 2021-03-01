@@ -3,6 +3,7 @@ import React, {
   ReactType,
   ReactNode,
   InputHTMLAttributes,
+  MouseEvent,
   forwardRef
 } from 'react'
 import cx from 'classnames'
@@ -63,7 +64,9 @@ export interface Props
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
   /** Callback invoked when reset button was clicked */
-  onResetClick?: () => void
+  onResetClick?: (
+    event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>
+  ) => void
   /** Ref of the input element */
   inputRef?: React.Ref<HTMLInputElement>
 }
@@ -79,7 +82,7 @@ const ResetButton = ({
 }: {
   classes: Classes
   hasValue: boolean
-  onClick: () => void
+  onClick: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
 }) => (
   <InputAdornment
     position='end'
