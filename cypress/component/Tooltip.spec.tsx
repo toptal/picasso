@@ -98,16 +98,15 @@ const LinkTooltipExample = () => {
   const [count, setCount] = useState(0)
   const onClick = () => setCount(count + 1)
 
+  const content = (
+    <Link data-testid='tooltip-content' onClick={onClick}>
+      Link
+    </Link>
+  )
+
   return (
     <TestingPicasso>
-      <Tooltip
-        content={
-          <Link data-testid='tooltip-content' onClick={onClick}>
-            Link
-          </Link>
-        }
-        interactive
-      >
+      <Tooltip content={content} interactive>
         <Button data-testid='tooltip-trigger'>Clicked: {count}</Button>
       </Tooltip>
     </TestingPicasso>
