@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.12.1](https://github.com/toptal/picasso/compare/@toptal/picasso@5.12.0...@toptal/picasso@5.12.1) (2021-03-01)
+
+
+### Bug Fixes
+
+* **autocomplete:** fix focus on input reset ([#1930](https://github.com/toptal/picasso/issues/1930)) ([be492b5](https://github.com/toptal/picasso/commit/be492b5b7b89dc7efe9eaab6333fec73ea3c0f0d))
+
+
+
+
+
 # [5.12.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.11.1...@toptal/picasso@5.12.0) (2021-02-26)
 
 
