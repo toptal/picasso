@@ -141,12 +141,6 @@ describe('Tooltip', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders inside and outside of a modal', () => {
-    mount(<ModalTooltipExample />)
-
-    cy.get('body').happoScreenshot()
-  })
-
   it('renders interactive content', () => {
     mount(<LinkTooltipExample />)
 
@@ -159,5 +153,11 @@ describe('Tooltip', () => {
 
     cy.get('[data-testid="tooltip-trigger"').click()
     cy.get('[data-testid="tooltip-content"').should('not.be.visible')
+  })
+
+  it('renders inside and outside of a modal', () => {
+    mount(<ModalTooltipExample />)
+
+    cy.get('body').happoScreenshot()
   })
 })
