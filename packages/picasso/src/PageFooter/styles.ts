@@ -19,6 +19,10 @@ export default ({ palette, screens, layout }: Theme) =>
 
       [screens('small', 'medium', 'large')]: {
         flexDirection: 'column'
+      },
+
+      [screens('small', 'medium')]: {
+        padding: `0.5rem ${layout.contentMobilePaddingHorizontal} 1.5rem`
       }
     },
     centered: {},
