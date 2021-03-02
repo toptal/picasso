@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { fireEvent } from '@testing-library/react'
-import { render, wait } from '@toptal/picasso/test-utils'
+import { render, waitFor } from '@toptal/picasso/test-utils'
 import { ClickAwayListener, isPointerDevice } from '@toptal/picasso/utils'
 
 import Button from '../Button'
@@ -59,7 +59,7 @@ describe('Tooltip', () => {
       await findByText('Hello')
 
       fireEvent.click(getByText('Tap me'))
-      await wait(() => {
+      await waitFor(() => {
         expect(queryByText('Hello')).not.toBeInTheDocument()
       })
 
@@ -88,13 +88,13 @@ describe('Tooltip', () => {
       const SHORT_DELAY_TIMEOUT = 200
 
       // Tooltip should not appear earlier than the delay
-      await wait(
+      await waitFor(
         () => {
           expect(queryByText('Hello')).not.toBeInTheDocument()
         },
         { timeout: SHORT_DELAY_TIMEOUT / 2 }
       )
-      await wait(
+      await waitFor(
         () => {
           expect(queryByText('Hello')).toBeInTheDocument()
         },
@@ -102,7 +102,7 @@ describe('Tooltip', () => {
       )
 
       fireEvent.mouseLeave(getByText('Hover me'))
-      await wait(() => {
+      await waitFor(() => {
         expect(queryByText('Hello')).not.toBeInTheDocument()
       })
 
@@ -121,13 +121,13 @@ describe('Tooltip', () => {
       const LONG_DELAY_TIMEOUT = 500
 
       // Tooltip should not appear earlier than the delay
-      await wait(
+      await waitFor(
         () => {
           expect(queryByText('Hello')).not.toBeInTheDocument()
         },
         { timeout: LONG_DELAY_TIMEOUT / 2 }
       )
-      await wait(
+      await waitFor(
         () => {
           expect(queryByText('Hello')).toBeInTheDocument()
         },
@@ -135,7 +135,7 @@ describe('Tooltip', () => {
       )
 
       fireEvent.mouseLeave(getByText('Hover me'))
-      await wait(() => {
+      await waitFor(() => {
         expect(queryByText('Hello')).not.toBeInTheDocument()
       })
 
@@ -177,7 +177,7 @@ describe('Tooltip', () => {
       expect(tooltip).toBeInTheDocument()
 
       fireEvent.click(getByText('Click outside!'))
-      await wait(() => {
+      await waitFor(() => {
         expect(queryByText('Hello')).not.toBeInTheDocument()
       })
 
@@ -197,7 +197,7 @@ describe('Tooltip', () => {
       expect(tooltip).toBeInTheDocument()
 
       fireEvent.click(getByText('Hover me'))
-      await wait(() => {
+      await waitFor(() => {
         expect(queryByText('Hello')).not.toBeInTheDocument()
       })
 

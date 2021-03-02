@@ -2,7 +2,7 @@ import React from 'react'
 import {
   render,
   fireEvent,
-  waitForElement,
+  waitFor,
   RenderResult
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
@@ -59,7 +59,7 @@ const selectOption = async (
 
   fireEvent.change(input, { target: { value: optionText } })
 
-  const optionElement = await waitForElement(() => getAllByText(optionText), {
+  const optionElement = await waitFor(() => getAllByText(optionText), {
     container
   })
 

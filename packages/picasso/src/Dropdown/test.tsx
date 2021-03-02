@@ -1,4 +1,4 @@
-import { fireEvent, render, wait } from '@toptal/picasso/test-utils'
+import { fireEvent, render, waitFor, act } from '@toptal/picasso/test-utils'
 import React from 'react'
 
 import Menu from '../Menu'
@@ -17,7 +17,7 @@ describe('Dropdown', () => {
   })
 
   it('should render menu', () => {
-    const { getByText, unmount, baseElement } = render(
+    const { getByText, baseElement } = render(
       <Dropdown
         content={
           <Menu>
@@ -36,12 +36,10 @@ describe('Dropdown', () => {
     fireEvent.click(trigger)
 
     expect(baseElement).toMatchSnapshot()
-
-    unmount()
   })
 
   it('should render menu with focus', async () => {
-    const { baseElement, getByText, unmount } = render(
+    const { baseElement, getByText } = render(
       <Container>
         <Dropdown
           content={
@@ -60,21 +58,22 @@ describe('Dropdown', () => {
 
     const trigger = getByText('Open Dropdown')
 
-    fireEvent.click(trigger)
-    await wait(() => {
+    await act(async () => {
+      fireEvent.click(trigger)
+    })
+
+    await waitFor(() => {
       expect(document.activeElement).toBe(baseElement.querySelector('li'))
     })
 
     expect(baseElement).toMatchSnapshot()
-
-    unmount()
   })
 
   it('should trigger `onOpen`, `onClose` callbacks', () => {
     const onOpen = jest.fn()
     const onClose = jest.fn()
 
-    const { getByText, unmount } = render(
+    const { getByText } = render(
       <Dropdown
         content={
           <Menu>
@@ -101,7 +100,5 @@ describe('Dropdown', () => {
 
     expect(onClose).toHaveBeenCalledTimes(1)
     expect(onClose).toHaveBeenCalledWith()
-
-    unmount()
   })
 })

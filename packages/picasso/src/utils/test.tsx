@@ -264,7 +264,7 @@ describe('disableUnsupportedProps', () => {
     const { getByRole } = render(
       <TestDisableUnsupportedProps type='number' max={2} />
     )
-    const input = getByRole('textbox')
+    const input = getByRole('spinbutton')
 
     expect(input).toHaveProperty('type', 'number')
     expect(input).toHaveProperty('max', '2')
