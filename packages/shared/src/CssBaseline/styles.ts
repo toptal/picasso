@@ -13,10 +13,11 @@ export default ({ palette, typography }: Theme) =>
       },
       body: {
         /*
-          font-family should also be set for portals
+          font-family and font-size should also be set for portals
           (https://github.com/mui-org/material-ui-docs/blob/b44886b4283fcaaa8795499a1e0af7557db8f573/packages/material-ui/src/CssBaseline/CssBaseline.js#L16)
         */
-        ...typography.body2,
+        fontFamily: typography.body2.fontFamily,
+        fontSize: typography.body2.fontSize,
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
