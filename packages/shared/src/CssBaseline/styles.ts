@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, typography }: Theme) =>
   createStyles({
     '@global': {
       html: {
@@ -12,6 +12,11 @@ export default ({ palette }: Theme) =>
         boxSizing: 'inherit'
       },
       body: {
+        /*
+          font-family should also be set for portals
+          (https://github.com/mui-org/material-ui-docs/blob/b44886b4283fcaaa8795499a1e0af7557db8f573/packages/material-ui/src/CssBaseline/CssBaseline.js#L16)
+        */
+        ...typography.body2,
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
