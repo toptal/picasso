@@ -14,7 +14,7 @@ export default () =>
     container: {
       maxWidth: '100%',
       position: 'relative',
-      flex: 1,
+      flex: 1
     },
     content: {
       flex: 1
