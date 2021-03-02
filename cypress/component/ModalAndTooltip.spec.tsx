@@ -77,5 +77,6 @@ describe('Modal and tooltip', () => {
       .click()
 
     cy.get('[data-testid="datepicker"]').should('have.value', '11-03-2020')
+    cy.get('body').happoScreenshot()
   })
 })
