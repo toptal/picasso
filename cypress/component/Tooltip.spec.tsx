@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   Link,
+  Modal,
   Tooltip,
   TooltipPlacementType
 } from '@toptal/picasso'
@@ -115,9 +116,33 @@ const LinkTooltipExample = () => {
   )
 }
 
+const ModalTooltipExample = () => {
+  return (
+    <TestingPicasso>
+      <Tooltip content='Content' open>
+        <Button>Button</Button>
+      </Tooltip>
+      <Modal open transitionDuration={0}>
+        <Modal.Title>Title</Modal.Title>
+        <Modal.Actions>
+          <Tooltip content='Content' open>
+            <Button>Button</Button>
+          </Tooltip>
+        </Modal.Actions>
+      </Modal>
+    </TestingPicasso>
+  )
+}
+
 describe('Tooltip', () => {
   it('renders correctly', () => {
     mount(<SnapshotTooltipExample />)
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders inside and outside of a modal', () => {
+    mount(<ModalTooltipExample />)
 
     cy.get('body').happoScreenshot()
   })
