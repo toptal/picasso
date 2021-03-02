@@ -58,13 +58,5 @@ jobs:
       - name: Cypress Tests
         run: yarn test:cypress:ci
         env:
-          HAPPO_PROJECT: Picasso/Cypress
-          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
-
-      - name: Visual Tests
-        run: yarn happo:ci
-        env:
-          HAPPO_PROJECT: Picasso/Storybook
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
