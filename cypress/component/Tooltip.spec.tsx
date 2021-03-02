@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { mount } from '@cypress/react'
 import {
   Button,
@@ -90,16 +90,18 @@ const SnapshotTooltipExample = () => (
           <Button>Without overflow prevention</Button>
         </Tooltip>
       </Section>
+      <Section title='Interactive'>
+        <Tooltip content={<Link>Link</Link>} open interactive>
+          <Button data-testid='tooltip-trigger'>Trigger</Button>
+        </Tooltip>
+      </Section>
     </Container>
   </TestingPicasso>
 )
 
 const LinkTooltipExample = () => {
-  const [count, setCount] = useState(0)
-  const onClick = () => setCount(count + 1)
-
   const content = (
-    <Link data-testid='tooltip-content' onClick={onClick}>
+    <Link href='#link' data-testid='tooltip-content'>
       Link
     </Link>
   )
@@ -107,7 +109,7 @@ const LinkTooltipExample = () => {
   return (
     <TestingPicasso>
       <Tooltip content={content} interactive>
-        <Button data-testid='tooltip-trigger'>Clicked: {count}</Button>
+        <Button data-testid='tooltip-trigger'>Trigger</Button>
       </Tooltip>
     </TestingPicasso>
   )
@@ -124,9 +126,13 @@ describe('Tooltip', () => {
     mount(<LinkTooltipExample />)
 
     cy.get('[data-testid="tooltip-trigger"').click()
-    cy.get('[data-testid="tooltip-trigger"').should('have.text', 'Clicked: 0')
+    cy.get('[data-testid="tooltip-content"').should('be.visible')
 
     cy.get('[data-testid="tooltip-content"').click()
-    cy.get('[data-testid="tooltip-trigger"').should('have.text', 'Clicked: 1')
+    cy.url().should('include', '#link')
+    cy.get('[data-testid="tooltip-content"').should('be.visible')
+
+    cy.get('[data-testid="tooltip-trigger"').click()
+    cy.get('[data-testid="tooltip-content"').should('not.be.visible')
   })
 })
