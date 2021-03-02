@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
+import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
 
 import Button from '../Button'
 import Input from '../Input'
@@ -59,7 +59,7 @@ describe('PromptModal', () => {
 
     fireEvent.click(submitModal)
 
-    await wait(() => {
+    await waitFor(() => {
       expect(queryByText('Modal content')).toBeFalsy()
     })
 
@@ -115,7 +115,7 @@ describe('PromptModal', () => {
 
     fireEvent.click(submitModal)
 
-    await wait(() => {
+    await waitFor(() => {
       expect(mockResult.mock.results[0].value).toBe(expectedResult)
     })
 
@@ -165,7 +165,7 @@ describe('PromptModal', () => {
     fireEvent.click(unmount)
 
     // Wait until submitting is done
-    await wait(() => {
+    await waitFor(() => {
       expect(queryByText('Submitted')).toBeInTheDocument()
     })
 

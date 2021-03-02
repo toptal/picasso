@@ -1,6 +1,6 @@
 import React from 'react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
+import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
 
 import Accordion, { Props } from './Accordion'
 
@@ -65,13 +65,13 @@ describe('Accordion', () => {
     })
 
     fireEvent.click(getByTestId('accordion-summary'))
-    await wait(() => expect(getByText(DETAILS_TEXT)).toBeVisible())
+    await waitFor(() => expect(getByText(DETAILS_TEXT)).toBeVisible())
 
     fireEvent.click(getByTestId('trigger'))
-    await wait(() => expect(getByText(DETAILS_TEXT)).not.toBeVisible())
+    await waitFor(() => expect(getByText(DETAILS_TEXT)).not.toBeVisible())
 
     fireEvent.click(getByText(SUMMARY_TEXT))
-    await wait(() => expect(getByText(DETAILS_TEXT)).toBeVisible())
+    await waitFor(() => expect(getByText(DETAILS_TEXT)).toBeVisible())
 
     expect(handleChange).toHaveBeenCalledTimes(3)
   })
@@ -94,7 +94,7 @@ describe('Accordion', () => {
 
     fireEvent.click(getByTestId('accordion-summary'))
 
-    await wait(() => {
+    await waitFor(() => {
       expect(getByTestId('accordion-details')).not.toBeVisible()
       expect(getByText(DETAILS_TEXT)).not.toBeVisible()
     })
