@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.12.3](https://github.com/toptal/picasso/compare/@toptal/picasso@5.12.2...@toptal/picasso@5.12.3) (2021-03-02)
+
+
+### Bug Fixes
+
+* **PageArticle:** make smaller padding for smaller screens ([#1941](https://github.com/toptal/picasso/issues/1941)) ([c74d603](https://github.com/toptal/picasso/commit/c74d6031a5b9cae00298fc18f20807a25e6be3fe))
+
+
+
+
+
 ## [5.12.2](https://github.com/toptal/picasso/compare/@toptal/picasso@5.12.1...@toptal/picasso@5.12.2) (2021-03-02)
 
 **Note:** Version bump only for package @toptal/picasso
