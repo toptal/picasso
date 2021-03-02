@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react'
-import { fireEvent } from '@testing-library/react'
+import { fireEvent, waitFor } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { isPointerDevice } from '@toptal/picasso/utils'
-import { render, wait } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso/test-utils'
 
 import Tooltip, { Props } from './Tooltip'
 
@@ -73,7 +73,7 @@ describe('Tooltip', () => {
     await findByTestId('tooltip-content')
 
     fireEvent.blur(getByTestId('tooltip-trigger'))
-    await wait(() => {
+    await waitFor(() => {
       expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
     })
   })
@@ -86,7 +86,7 @@ describe('Tooltip', () => {
     await findByTestId('tooltip-content')
 
     fireEvent.click(getByTestId('tooltip-trigger'))
-    await wait(() => {
+    await waitFor(() => {
       expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
     })
   })
@@ -95,13 +95,13 @@ describe('Tooltip', () => {
     const { getByTestId, queryByTestId } = renderTooltip({ delay: 'short' })
 
     fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
-    await wait(
+    await waitFor(
       () => {
         expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
       },
       { timeout: TOOLTIP_SHORT_DELAY / 2 }
     )
-    await wait(
+    await waitFor(
       () => {
         expect(queryByTestId('tooltip-content')).toBeInTheDocument()
       },
@@ -109,8 +109,8 @@ describe('Tooltip', () => {
     )
 
     fireEvent.mouseLeave(getByTestId('tooltip-trigger'))
-    await wait(() => {
-      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+    await waitFor(() => {
+      expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
     })
   })
 
@@ -118,13 +118,13 @@ describe('Tooltip', () => {
     const { getByTestId, queryByTestId } = renderTooltip({ delay: 'long' })
 
     fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
-    await wait(
+    await waitFor(
       () => {
         expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
       },
       { timeout: TOOLTIP_LONG_DELAY / 2 }
     )
-    await wait(
+    await waitFor(
       () => {
         expect(queryByTestId('tooltip-content')).toBeInTheDocument()
       },
@@ -132,19 +132,21 @@ describe('Tooltip', () => {
     )
 
     fireEvent.mouseLeave(getByTestId('tooltip-trigger'))
-    await wait(() => {
-      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+    await waitFor(() => {
+      expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
     })
   })
 
-  it('does not open tooltip on hover with disabled listeners', () => {
-    const { getByTestId, queryByTestId } = renderTooltip({
+  it('does not open tooltip with disabled listeners', async () => {
+    const { getByTestId, findByTestId } = renderTooltip({
       disableListeners: true
     })
 
+    fireEvent.focus(getByTestId('tooltip-trigger'))
+    fireEvent.click(getByTestId('tooltip-trigger'))
     fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
 
-    expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+    await expect(() => findByTestId('tooltip-content')).rejects.toThrow()
   })
 
   it('does not close tooltip when interactive content is used by the user', async () => {
@@ -159,7 +161,7 @@ describe('Tooltip', () => {
     await findByTestId('tooltip-content')
 
     fireEvent.mouseLeave(getByTestId('tooltip-content'))
-    await wait(() => {
+    await waitFor(() => {
       expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
     })
   })
