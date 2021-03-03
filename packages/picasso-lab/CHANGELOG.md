@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.7.1...@toptal/picasso-lab@3.7.2) (2021-03-03)
+
+
+### Bug Fixes
+
+* **Drawer:** use the correct font ([#1942](https://github.com/toptal/picasso/issues/1942)) ([216ca92](https://github.com/toptal/picasso/commit/216ca920963011af90c75759fa9d94ea7546a793))
+
+
+
+
+
 ## [3.7.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.7.0...@toptal/picasso-lab@3.7.1) (2021-03-02)
 
 **Note:** Version bump only for package @toptal/picasso-lab
