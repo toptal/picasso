@@ -1,17 +1,15 @@
-name: Consulting the Oracle
+name: Visual Testing
 
 on:
-  pull_request:
+  push:
     branches: [master]
 
 jobs:
   tests:
-    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
     env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     container:
@@ -54,20 +52,8 @@ jobs:
           yarn policies set-version
           yarn install --frozen-lockfile --ignore-optional --offline
 
-      - name: Danger
-        run: yarn davinci ci danger --conventionalCommits
-
-      - name: Lint
-        run: yarn lint
-
-      - name: Jest Tests
-        run: yarn test:unit:ci
-
       - name: Build packages
         run: yarn build:package
-
-      - name: Type Check
-        run: yarn typecheck
 
       - name: Cypress Tests
         run: yarn test:cypress:ci
