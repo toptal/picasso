@@ -5,7 +5,7 @@ import { PromptModal } from '@toptal/picasso'
 import { noop } from '@toptal/picasso/utils'
 
 describe('PromptModal', () => {
-  it('renders', () => {
+  it('renders on desktop and mobile', () => {
     mount(
       <TestingPicasso>
         <PromptModal
