@@ -54,8 +54,7 @@ pipeline {
           sh """
             mkdir ${WORKSPACE}/deploy-docs
 
-            docker run \
-            --rm \
+            docker run --rm \
             -v ${WORKSPACE}/deploy-docs:/app/deploy-docs \
             -e DEPLOY_DOCS_PATH=/app/deploy-docs \
             -e DEPLOY_DOCS_ARCHIVE=deploy-docs \

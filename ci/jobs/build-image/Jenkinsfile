@@ -44,10 +44,10 @@ pipeline {
         script {
           version = sh(returnStdout: true, script: 'git describe --tags --always').trim()
 
-          sh "gcloud auth activate-service-account --key-file=$GCE_ACCOUNT_KEY"
+          sh 'gcloud auth activate-service-account --key-file=$GCE_ACCOUNT_KEY'
 
           if (!isDockerImagePresentRemotely("gcr.io/toptal-hub/${IMAGE_NAME}", VERSION)) {
-            image = docker.build("toptal-hub/${IMAGE_NAME}:${VERSION}", "--build-arg NPM_TOKEN=${NPM_TOKEN} .")
+            image = docker.build("toptal-hub/${IMAGE_NAME}:${VERSION}", '--build-arg NPM_TOKEN=${NPM_TOKEN} .')
             success "== Built image for version ${VERSION} =="
           } else {
             success "== Found image for version ${VERSION} =="
