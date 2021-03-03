@@ -3,11 +3,14 @@ import { mount } from '@cypress/react'
 import {
   Button,
   Container,
+  Dropdown,
   Grid,
   Link,
+  Menu,
   Modal,
   Tooltip,
-  TooltipProps
+  TooltipProps,
+  Typography
 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
@@ -132,7 +135,7 @@ const ModalTooltipExample = () => {
 }
 
 const LinkTooltipExample = () => {
-  const content = (
+  const tooltipContent = (
     <Link href='#link' data-testid='tooltip-content'>
       Link
     </Link>
@@ -140,9 +143,34 @@ const LinkTooltipExample = () => {
 
   return (
     <TestingPicasso>
-      <Tooltip content={content} interactive>
+      <Tooltip content={tooltipContent} interactive>
         <Button data-testid='tooltip-trigger'>Button</Button>
       </Tooltip>
+    </TestingPicasso>
+  )
+}
+
+const DropdownTooltipExample = () => {
+  const tooltipContent = (
+    <Typography data-testid='tooltip-content'>Content</Typography>
+  )
+
+  const dropdownContent = (
+    <Menu>
+      <Menu.Item>Option 1</Menu.Item>
+      <Tooltip open content={tooltipContent}>
+        <Menu.Item>Option 2</Menu.Item>
+      </Tooltip>
+      <Menu.Item>Option 3</Menu.Item>
+    </Menu>
+  )
+
+  return (
+    <TestingPicasso>
+      <Dropdown content={dropdownContent}>
+        Open Dropdown
+        <Dropdown.Arrow data-testid='dropdown-trigger' />
+      </Dropdown>
     </TestingPicasso>
   )
 }
@@ -165,11 +193,6 @@ describe('Tooltip', () => {
 
   it('renders compact', () => {
     mount(<SnapshotTooltipExample compact />)
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders compact without arrow', () => {
-    mount(<SnapshotTooltipExample compact arrow={false} />)
     cy.get('body').happoScreenshot()
   })
 
@@ -220,6 +243,7 @@ describe('Tooltip', () => {
 
     cy.get('[data-testid="tooltip-trigger"').click()
     cy.get('[data-testid="tooltip-content"').should('be.visible')
+    cy.get('body').happoScreenshot()
 
     cy.get('[data-testid="tooltip-content"').click()
     cy.url().should('include', '#link')
@@ -227,5 +251,13 @@ describe('Tooltip', () => {
 
     cy.get('[data-testid="tooltip-trigger"').click()
     cy.get('[data-testid="tooltip-content"').should('not.be.visible')
+  })
+
+  it('renders inside a dropdown', () => {
+    mount(<DropdownTooltipExample />)
+
+    cy.get('[data-testid="dropdown-trigger"]').click()
+    cy.get('[data-testid="tooltip-content"]').should('be.visible')
+    cy.get('body').happoScreenshot()
   })
 })
