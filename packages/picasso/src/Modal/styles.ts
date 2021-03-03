@@ -15,6 +15,7 @@ export default ({ screens, sizes }: Theme) =>
     },
     container: {},
     paper: {
+      height: 'auto',
       maxHeight,
       maxWidth,
       borderRadius: sizes.borderRadius.medium,
