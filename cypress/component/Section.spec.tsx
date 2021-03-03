@@ -34,8 +34,6 @@ describe('Section', () => {
   it('renders', () => {
     mount(<SectionExample />)
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     cy.get('body').happoScreenshot()
   })
 })

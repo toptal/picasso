@@ -4,7 +4,8 @@
     "noEmit": true,
     "types": [
       "cypress",
-      "cypress-plugin-tab/src"
+      "cypress-plugin-tab/src",
+      "@types/happo-cypress"
     ]
   },
   "include": [
