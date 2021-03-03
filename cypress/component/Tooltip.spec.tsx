@@ -3,115 +3,112 @@ import { mount } from '@cypress/react'
 import {
   Button,
   Container,
+  Grid,
   Link,
   Modal,
   Tooltip,
-  TooltipPlacementType
+  TooltipProps
 } from '@toptal/picasso'
-import { Section } from '@toptal/picasso-lab'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
-
-const TOOLTIP_PLACEMENTS: TooltipPlacementType[] = [
-  'top-end',
-  'top-start',
-  'top',
-  'right-end',
-  'right-start',
-  'right',
-  'bottom-end',
-  'bottom-start',
-  'bottom',
-  'left-end',
-  'left-start',
-  'left'
-]
 
 const TOOLTIP_LONG_TEXT = 'Content '.repeat(10)
 
-const SnapshotTooltipExample = () => (
+const SnapshotTooltipExample = (props?: Partial<TooltipProps>) => (
   <TestingPicasso>
-    <Container padded='small'>
-      <Section title='Default'>
-        <Tooltip content='Content' open>
-          <Button>Default</Button>
-        </Tooltip>
-        <Tooltip content='Content' open arrow={false}>
-          <Button>Default without arrow</Button>
-        </Tooltip>
-        <Tooltip content='Content' open disablePortal>
-          <Button>Default without portals</Button>
-        </Tooltip>
-      </Section>
-      <Section title='Compact'>
-        <Tooltip content='Content' open compact>
-          <Button>Compact</Button>
-        </Tooltip>
-        <Tooltip content='Content' open compact arrow={false}>
-          <Button>Compact without arrow</Button>
-        </Tooltip>
-      </Section>
-      <Section title='Variant'>
-        <Tooltip content='Content' open variant='light'>
-          <Button>Light</Button>
-        </Tooltip>
-        <Tooltip content='Content' open variant='dark'>
-          <Button>Dark</Button>
-        </Tooltip>
-      </Section>
-      <Section title='Placement'>
-        {TOOLTIP_PLACEMENTS.map(placement => (
-          <Tooltip
-            key={placement}
-            content={placement}
-            open
-            placement={placement}
-          >
-            <Button>{placement}</Button>
-          </Tooltip>
-        ))}
-      </Section>
-      <Section title='Max width'>
-        <Tooltip content={TOOLTIP_LONG_TEXT} open>
-          <Button>Default</Button>
-        </Tooltip>
-        <Tooltip content={TOOLTIP_LONG_TEXT} open maxWidth='none'>
-          <Button>None</Button>
-        </Tooltip>
-      </Section>
-      <Section title='Prevent overflow'>
-        <Tooltip content={TOOLTIP_LONG_TEXT} open placement='left'>
-          <Button>Default</Button>
-        </Tooltip>
-        <Tooltip
-          content={TOOLTIP_LONG_TEXT}
-          open
-          placement='left'
-          preventOverflow={false}
-        >
-          <Button>Without overflow prevention</Button>
-        </Tooltip>
-      </Section>
-      <Section title='Interactive'>
-        <Tooltip content={<Link>Link</Link>} open interactive>
-          <Button data-testid='tooltip-trigger'>Trigger</Button>
-        </Tooltip>
-      </Section>
-    </Container>
+    <Tooltip content='Content' open {...props}>
+      <Button>Button</Button>
+    </Tooltip>
   </TestingPicasso>
 )
 
-const LinkTooltipExample = () => {
-  const content = (
-    <Link href='#link' data-testid='tooltip-content'>
-      Link
-    </Link>
-  )
-
+const PlacementTooltipExample = () => {
   return (
     <TestingPicasso>
-      <Tooltip content={content} interactive>
-        <Button data-testid='tooltip-trigger'>Trigger</Button>
-      </Tooltip>
+      <Container style={{ padding: '200px' }}>
+        <Container>
+          <Grid direction='row'>
+            <Grid.Item small={4}>
+              <Tooltip placement='top-start' content='Content' open>
+                <Button fullWidth>top-start</Button>
+              </Tooltip>
+            </Grid.Item>
+            <Grid.Item small={4}>
+              <Tooltip placement='top' content='Content' open>
+                <Button fullWidth>top</Button>
+              </Tooltip>
+            </Grid.Item>
+            <Grid.Item small={4}>
+              <Tooltip placement='top-end' content='Content' open>
+                <Button fullWidth>top-end</Button>
+              </Tooltip>
+            </Grid.Item>
+          </Grid>
+        </Container>
+        <Container bottom='small'>
+          <Grid direction='row'>
+            <Grid.Item small={4}>
+              <Tooltip placement='left-start' content='Content' open>
+                <Button fullWidth>left-start</Button>
+              </Tooltip>
+            </Grid.Item>
+            <Grid.Item small={4} />
+            <Grid.Item small={4}>
+              <Tooltip placement='right-start' content='Content' open>
+                <Button fullWidth>right-start</Button>
+              </Tooltip>
+            </Grid.Item>
+          </Grid>
+        </Container>
+        <Container bottom='small'>
+          <Grid direction='row'>
+            <Grid.Item small={4}>
+              <Tooltip placement='left' content='Content' open>
+                <Button fullWidth>left</Button>
+              </Tooltip>
+            </Grid.Item>
+            <Grid.Item small={4} />
+            <Grid.Item small={4}>
+              <Tooltip placement='right' content='Content' open>
+                <Button fullWidth>right</Button>
+              </Tooltip>
+            </Grid.Item>
+          </Grid>
+        </Container>
+        <Container bottom='small'>
+          <Grid direction='row'>
+            <Grid.Item small={4}>
+              <Tooltip placement='left-end' content='Content' open>
+                <Button fullWidth>left-end</Button>
+              </Tooltip>
+            </Grid.Item>
+            <Grid.Item small={4} />
+            <Grid.Item small={4}>
+              <Tooltip placement='right-end' content='Content' open>
+                <Button fullWidth>right-end</Button>
+              </Tooltip>
+            </Grid.Item>
+          </Grid>
+        </Container>
+        <Container bottom='small'>
+          <Grid direction='row'>
+            <Grid.Item small={4}>
+              <Tooltip placement='bottom-start' content='Content' open>
+                <Button fullWidth>bottom-start</Button>
+              </Tooltip>
+            </Grid.Item>
+            <Grid.Item small={4}>
+              <Tooltip placement='bottom' content='Content' open>
+                <Button fullWidth>bottom</Button>
+              </Tooltip>
+            </Grid.Item>
+            <Grid.Item small={4}>
+              <Tooltip placement='bottom-end' content='Content' open>
+                <Button fullWidth>bottom-end</Button>
+              </Tooltip>
+            </Grid.Item>
+          </Grid>
+        </Container>
+      </Container>
     </TestingPicasso>
   )
 }
@@ -134,10 +131,87 @@ const ModalTooltipExample = () => {
   )
 }
 
-describe('Tooltip', () => {
-  it('renders correctly', () => {
-    mount(<SnapshotTooltipExample />)
+const LinkTooltipExample = () => {
+  const content = (
+    <Link href='#link' data-testid='tooltip-content'>
+      Link
+    </Link>
+  )
 
+  return (
+    <TestingPicasso>
+      <Tooltip content={content} interactive>
+        <Button data-testid='tooltip-trigger'>Button</Button>
+      </Tooltip>
+    </TestingPicasso>
+  )
+}
+
+describe('Tooltip', () => {
+  it('renders by default', () => {
+    mount(<SnapshotTooltipExample />)
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders without arrow', () => {
+    mount(<SnapshotTooltipExample arrow={false} />)
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders with disabled portals', () => {
+    mount(<SnapshotTooltipExample disablePortal />)
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders compact', () => {
+    mount(<SnapshotTooltipExample compact />)
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders compact without arrow', () => {
+    mount(<SnapshotTooltipExample compact arrow={false} />)
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders in light variant', () => {
+    mount(<SnapshotTooltipExample variant='light' />)
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders in dark variant', () => {
+    mount(<SnapshotTooltipExample variant='dark' />)
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders long text with max width', () => {
+    mount(<SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} />)
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders long text with no max width', () => {
+    mount(
+      <SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} maxWidth='none' />
+    )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders without overflow prevention', () => {
+    mount(
+      <SnapshotTooltipExample
+        content={TOOLTIP_LONG_TEXT}
+        preventOverflow={false}
+      />
+    )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders with different placements', () => {
+    mount(<PlacementTooltipExample />)
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders inside and outside of a modal', () => {
+    mount(<ModalTooltipExample />)
     cy.get('body').happoScreenshot()
   })
 
@@ -153,11 +227,5 @@ describe('Tooltip', () => {
 
     cy.get('[data-testid="tooltip-trigger"').click()
     cy.get('[data-testid="tooltip-content"').should('not.be.visible')
-  })
-
-  it('renders inside and outside of a modal', () => {
-    mount(<ModalTooltipExample />)
-
-    cy.get('body').happoScreenshot()
   })
 })

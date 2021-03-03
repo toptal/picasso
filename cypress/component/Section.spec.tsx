@@ -31,7 +31,7 @@ const SectionExample = () => {
 }
 
 describe('Section', () => {
-  it('renders correctly', () => {
+  it('renders', () => {
     mount(<SectionExample />)
 
     cy.get('body').happoScreenshot()
