@@ -4,8 +4,8 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { PromptModal } from '@toptal/picasso'
 import { noop } from '@toptal/picasso/utils'
 
-describe('Modal and tooltip', () => {
-  it('checks two tooltips on the page, one is inside modal', () => {
+describe('PromptModal', () => {
+  it('renders', () => {
     mount(
       <TestingPicasso>
         <PromptModal
@@ -17,6 +17,9 @@ describe('Modal and tooltip', () => {
         />
       </TestingPicasso>
     )
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    cy.get('body').happoScreenshot()
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
