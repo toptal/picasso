@@ -162,12 +162,12 @@ const AutocompleteTooltipExample = () => {
     <TestingPicasso>
       <Autocomplete
         value={value}
-        options={['Belarus', 'Slovakia']}
+        options={[{ text: 'Belarus' }, { text: 'Slovakia' }]}
         placeholder='Start typing country...'
         renderOption={(option, index) => (
           <Tooltip open={!index} content={tooltipContent}>
             <Typography size='medium' weight='semibold'>
-              {option}
+              {option.text}
             </Typography>
           </Tooltip>
         )}
