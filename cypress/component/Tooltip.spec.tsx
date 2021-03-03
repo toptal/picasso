@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { mount } from '@cypress/react'
 import {
+  Autocomplete,
   Button,
   Container,
   Dropdown,
@@ -150,6 +151,33 @@ const LinkTooltipExample = () => {
   )
 }
 
+const AutocompleteTooltipExample = () => {
+  const [value, setValue] = useState('')
+
+  const tooltipContent = (
+    <Typography data-testid='tooltip-content'>Content</Typography>
+  )
+
+  return (
+    <TestingPicasso>
+      <Autocomplete
+        value={value}
+        options={['Belarus', 'Slovakia']}
+        placeholder='Start typing country...'
+        renderOption={(option, index) => (
+          <Tooltip open={!index} content={tooltipContent}>
+            <Typography size='medium' weight='semibold'>
+              {option}
+            </Typography>
+          </Tooltip>
+        )}
+        onChange={setValue}
+        data-testid='autocomplete'
+      />
+    </TestingPicasso>
+  )
+}
+
 const DropdownTooltipExample = () => {
   const tooltipContent = (
     <Typography data-testid='tooltip-content'>Content</Typography>
@@ -251,6 +279,14 @@ describe('Tooltip', () => {
 
     cy.get('[data-testid="tooltip-trigger"').click()
     cy.get('[data-testid="tooltip-content"').should('not.be.visible')
+  })
+
+  it('renders inside an autocomplete', () => {
+    mount(<AutocompleteTooltipExample />)
+
+    cy.get('[data-testid="autocomplete"').click()
+    cy.get('[data-testid="tooltip-content"').should('be.visible')
+    cy.get('body').happoScreenshot()
   })
 
   it('renders inside a dropdown', () => {
