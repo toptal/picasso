@@ -15,13 +15,16 @@ export default ({ screens, sizes }: Theme) =>
     },
     container: {},
     paper: {
+      height: 'auto',
       maxHeight,
       maxWidth,
       borderRadius: sizes.borderRadius.medium,
+      margin: '2rem',
 
       [screens('small')]: {
         maxWidth: 'none',
-        maxHeight: 'none'
+        maxHeight: 'none',
+        margin: '1rem'
       }
     },
     small: {

@@ -1,7 +1,7 @@
 import { PromptModal } from '../PromptModal'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Components').createPage(
+const page = PicassoBook.section('Overlays').createPage(
   'PromptModal',
   'Predefined modal for short prompts that asks user for input.'
 )
