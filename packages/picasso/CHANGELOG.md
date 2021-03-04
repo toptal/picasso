@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.13.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.12.4...@toptal/picasso@5.13.0) (2021-03-04)
+
+
+### Features
+
+* **TableCell:** add rowSpan property ([#1943](https://github.com/toptal/picasso/issues/1943)) ([e7f735b](https://github.com/toptal/picasso/commit/e7f735b72a43398447a9e4640f9fffb7b3b5bc29))
+
+
+
+
+
 ## [5.12.4](https://github.com/toptal/picasso/compare/@toptal/picasso@5.12.3...@toptal/picasso@5.12.4) (2021-03-03)
 
 **Note:** Version bump only for package @toptal/picasso
