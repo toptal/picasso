@@ -21,7 +21,7 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso-charts": "^0.4.0"
+    "@toptal/picasso-charts": "^1"
   },
   "devDependencies": {
     "date-fns": "^2.9.0"
