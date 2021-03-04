@@ -123,7 +123,7 @@ const ModalTooltipExample = () => {
       <Tooltip content='Content' open>
         <Button>Button</Button>
       </Tooltip>
-      <Modal open transitionDuration={0}>
+      <Modal open transitionDuration={0} size='full-screen'>
         <Modal.Title>Title</Modal.Title>
         <Modal.Actions>
           <Tooltip content='Content' open>
