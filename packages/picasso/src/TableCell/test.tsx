@@ -32,4 +32,20 @@ describe('TableCell', () => {
 
     expect(container).toMatchSnapshot()
   })
+
+  it('sets rowSpan', () => {
+    const { getByTestId } = render(
+      <Table>
+        <Table.Head>
+          <Table.Row>
+            <Table.Cell data-testid='cell' rowSpan={10}>
+              Cell test
+            </Table.Cell>
+          </Table.Row>
+        </Table.Head>
+      </Table>
+    )
+
+    expect(getByTestId('cell')).toHaveAttribute('rowspan', '10')
+  })
 })

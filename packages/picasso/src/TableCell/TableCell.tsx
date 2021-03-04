@@ -18,6 +18,8 @@ export interface Props
   align?: AlignType
   /** Indicates for how many columns the cell extends */
   colSpan?: number
+  /** Indicates for how many rows the cell extends */
+  rowSpan?: number
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableCell' })
@@ -30,6 +32,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
       style,
       children,
       colSpan,
+      rowSpan,
       titleCase: propsTitleCase,
       ...rest
     } = props
@@ -48,6 +51,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         className={className}
         style={style}
         colSpan={colSpan}
+        rowSpan={rowSpan}
       >
         {tableSection === TableSection.HEAD && titleCase
           ? toTitleCase(children)
