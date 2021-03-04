@@ -120,6 +120,7 @@ const NoOptionsMenuItem = ({ children }: { children: string }) => {
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAutocomplete'
 })
+
 const OtherOptionMenuItem = ({
   value,
   otherOptionText,
