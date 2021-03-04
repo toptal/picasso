@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.14.1](https://github.com/toptal/picasso/compare/@toptal/picasso@5.14.0...@toptal/picasso@5.14.1) (2021-03-04)
+
+
+### Bug Fixes
+
+* **PromptModal:** rendering on mobile ([#1945](https://github.com/toptal/picasso/issues/1945)) ([3217711](https://github.com/toptal/picasso/commit/3217711cbc4b80ac330521674046c44ead84f0c8))
+
+
+
+
+
 # [5.14.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.13.0...@toptal/picasso@5.14.0) (2021-03-04)
 
 
