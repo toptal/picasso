@@ -104,8 +104,6 @@ describe('Accordion', () => {
         <TestAccordion expandIcon={<Check16 />} />
       </TestingPicasso>
     )
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     cy.get('body').happoScreenshot()
   })
 })
@@ -115,15 +113,11 @@ describe('Accordion with custom summary', () => {
     toggleAccordion()
     getAccordionContent().should('not.be.visible')
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
 
     toggleAccordion()
     getAccordionContent().should('be.visible')
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
   })
 
@@ -132,8 +126,6 @@ describe('Accordion with custom summary', () => {
 
     clickStartInterviewOnboarding()
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
 
     cy.on('window:alert', text => {

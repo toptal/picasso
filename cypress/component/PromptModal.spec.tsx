@@ -17,15 +17,13 @@ describe('PromptModal', () => {
         />
       </TestingPicasso>
     )
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     cy.get('body').happoScreenshot()
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     cy.get('body').happoScreenshot({
       component: 'PromptModal',
       targets: [
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         { name: 'chrome-small', browser: 'chrome', viewport: '400x800' }
       ]
     })
