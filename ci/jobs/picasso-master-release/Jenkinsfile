@@ -27,7 +27,7 @@ pipeline {
   }
 
   environment {
-    GH_TOKEN = credentials('toptal-devbot-personal-token')
+    GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry-publish')
     GIT_AUTHOR_NAME = 'toptal-davinci-bot'
     GIT_COMMITTER_NAME = 'toptal-davinci-bot'
@@ -96,22 +96,23 @@ pipeline {
           // - need to make semantic-release to think
           //   that we are running it inside CI environment
           //
-          // -e GH_TOKEN needed for lerna to authenticated with GitHub
+          // -e GITHUB_TOKEN needed for lerna to authenticated with GitHub
           //
+          // docker is smart enough to get values of env variables from
+          // the host environment
           sh """
-            docker run \
-            --rm \
-            -e GIT_COMMITTER_EMAIL=${GIT_COMMITTER_EMAIL} \
-            -e GIT_COMMITTER_NAME=${GIT_COMMITTER_NAME} \
-            -e GH_TOKEN=${GH_TOKEN} \
-            -e RELEASE_AND_PUBLISH=${RELEASE_AND_PUBLISH} \
-            -e NPM_TOKEN=${NPM_TOKEN} \
-            -e JENKINS_URL=${JENKINS_URL} \
-            -e GIT_BRANCH=${GIT_BRANCH} \
+            docker run --rm \
+            -e GIT_COMMITTER_EMAIL \
+            -e GIT_COMMITTER_NAME \
+            -e GITHUB_TOKEN \
+            -e NPM_TOKEN \
+            -e JENKINS_URL \
+            -e GIT_BRANCH \
+            -e RELEASE_AND_PUBLISH \
+            -e SSH_AUTH_SOCK=/ssh-agent \
             -v ${PWD}:/artifacts \
             -u 469:469 \
             -v $SSH_AUTH_SOCK:/ssh-agent \
-            -e SSH_AUTH_SOCK=/ssh-agent \
             -v ${PWD}/.git:/app/.git \
             --entrypoint=./bin/release \
             gcr.io/toptal-hub/${repoName}:${imageCommitId}

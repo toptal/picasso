@@ -20,7 +20,6 @@ pipeline {
   }
 
   environment {
-    GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
     DANGER_GITHUB_API_TOKEN = credentials('toptal-devbot-personal-token')
   }
 
@@ -75,13 +74,12 @@ pipeline {
       steps {
         script {
           sh """
-            docker run \
-            --rm \
-            -e JENKINS_URL=${JENKINS_URL} \
-            -e ghprbPullId=${ghprbPullId} \
-            -e ghprbGhRepository=${ghprbGhRepository} \
-            -e BUILD_URL=${BUILD_URL} \
-            -e DANGER_GITHUB_API_TOKEN=${DANGER_GITHUB_API_TOKEN} \
+            docker run --rm \
+            -e JENKINS_URL \
+            -e ghprbPullId \
+            -e ghprbGhRepository \
+            -e BUILD_URL \
+            -e DANGER_GITHUB_API_TOKEN \
             gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
             yarn davinci ci danger --conventionalCommits
           """
@@ -126,7 +124,11 @@ pipeline {
           def DIR = pwd() // can't be replaced with ${PWD}, because it's pointing to the jenkins_root folder
           sh """
             mkdir -p ${DIR}/__diff_output__
-            docker run --rm -v ${DIR}/__diff_output__:/app/__diff_output__ gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn run test:visual:ci
+
+            docker run --rm \
+            -v ${DIR}/__diff_output__:/app/__diff_output__ \
+            gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
+            yarn run test:visual:ci
           """
         }
       } //steps
@@ -158,11 +160,11 @@ pipeline {
         )
 
         publishHTML([
-          allowMissing: true, 
-          alwaysLinkToLastBuild: true, 
-          keepAll: true, 
-          reportDir: '__diff_output__/latest', 
-          reportFiles: 'index.html', 
+          allowMissing: true,
+          alwaysLinkToLastBuild: true,
+          keepAll: true,
+          reportDir: '__diff_output__/latest',
+          reportFiles: 'index.html',
           reportName: 'Visual Regression Tests',
           reportTitles: 'All files'
         ])
