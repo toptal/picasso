@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.14.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.13.0...@toptal/picasso@5.14.0) (2021-03-04)
+
+
+### Features
+
+* **outlinedinput:** improve disabled input accessibility ([#1944](https://github.com/toptal/picasso/issues/1944)) ([8c53c52](https://github.com/toptal/picasso/commit/8c53c52731947c964c5b1c864dd5efd02ad811b5))
+
+
+
+
+
 # [5.13.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.12.4...@toptal/picasso@5.13.0) (2021-03-04)
 
 
