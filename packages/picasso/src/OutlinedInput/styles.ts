@@ -53,6 +53,9 @@ PicassoProvider.override(
         },
 
         '&$disabled': {
+          // On Safari the text gets a bit lighter as if it had some transparency applied to it
+          // We need this webkit-specific property to achieve the exact font color
+          '-webkit-text-fill-color': 'currentColor',
           '&::placeholder': {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             color: palette.grey.main,
