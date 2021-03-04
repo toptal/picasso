@@ -98,6 +98,8 @@ pipeline {
           //
           // -e GITHUB_TOKEN needed for lerna to authenticated with GitHub
           //
+          // docker is smart enough to get values of env variables from
+          // the host environment
           sh """
             docker run --rm \
             -e GIT_COMMITTER_EMAIL \
@@ -105,8 +107,8 @@ pipeline {
             -e GITHUB_TOKEN \
             -e NPM_TOKEN \
             -e JENKINS_URL \
-            -e GIT_BRANCH=${GIT_BRANCH} \
-            -e RELEASE_AND_PUBLISH=${RELEASE_AND_PUBLISH} \
+            -e GIT_BRANCH \
+            -e RELEASE_AND_PUBLISH \
             -e SSH_AUTH_SOCK=/ssh-agent \
             -v ${PWD}:/artifacts \
             -u 469:469 \
