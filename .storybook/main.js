@@ -46,12 +46,6 @@ module.exports = {
     }
   },
   webpackFinal: config => {
-    config.entry = [
-      'core-js/stable',
-      'regenerator-runtime/runtime',
-      ...config.entry
-    ]
-
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
       oneOf: [
@@ -62,6 +56,10 @@ module.exports = {
         { use: threadLoaders }
       ]
     })
+
+    // supress an error with dynamic path e.g. require(`${url}`)
+    // https://github.com/webpack/webpack/issues/196
+    config.module.exprContextCritical = false
 
     config.resolve.alias = {
       ...config.resolve.alias,

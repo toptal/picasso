@@ -22,9 +22,9 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso": "^4.x",
-    "@toptal/picasso-lab": "^2.12.10",
-    "@toptal/picasso-shared": "^1.11.1",
+    "@toptal/picasso": "^5",
+    "@toptal/picasso-lab": "^3",
+    "@toptal/picasso-shared": "^2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },

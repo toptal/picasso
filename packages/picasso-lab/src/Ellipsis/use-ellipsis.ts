@@ -32,12 +32,12 @@ const useEllipsis = () => {
     const resizeObserver = ResizeObserver ? new ResizeObserver(measure) : null
     const container = ref.current?.parentNode
 
-    resizeObserver?.observe(container)
+    resizeObserver?.observe(container as Element)
 
     window.addEventListener('resize', measure)
 
     return () => {
-      resizeObserver?.unobserve(container)
+      resizeObserver?.unobserve(container as Element)
 
       window.removeEventListener('resize', measure)
     }
