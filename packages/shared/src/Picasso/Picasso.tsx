@@ -255,6 +255,7 @@ interface PicassoProps extends TextLabelProps {
   theme?: ThemeOptions
 }
 
+// This is LTS Picasso
 const Picasso: FunctionComponent<PicassoProps> = ({
   loadFonts,
   loadFavicon,
