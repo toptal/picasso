@@ -40,7 +40,7 @@ export const normalizeInitialIndex = ({
  * it will wrap to either 0 or itemCount - 1.
  *
  * @param {number} moveAmount Number of positions to move. Negative to move backwards, positive forwards.
- * @param {number} calculatedInitialIndex The initial position to move from.
+ * @param {number} initialIndex The initial position to move from.
  * @param {number} itemCount The total number of items.
  * @returns {number} The new index after the move.
  */
