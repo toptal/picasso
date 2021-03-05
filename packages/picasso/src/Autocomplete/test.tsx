@@ -15,23 +15,17 @@ const testOptions = [
   { text: 'Lithuania', value: 'LU' },
   { text: 'Slovakia', value: 'SK' },
   { text: 'Ukraine', value: 'UA' }
-  // { text: 'Bulgaria', value: 'BG' },
-  // { text: 'Kyrgyzstan', value: 'KG' },
-  // { text: 'Russia', value: 'RU' },
-  // { text: 'Romania', value: 'RO' },
-  // { text: 'Japan', value: 'JP' }
 ]
 
 const renderAutocomplete = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
-) => {
-  return render(
+) =>
+  render(
     <Autocomplete data-testid='autocomplete' {...props} />,
     undefined,
     picassoConfig
   )
-}
 
 let spiedOnTitleCase: jest.SpyInstance
 
@@ -466,17 +460,16 @@ describe('Autocomplete', () => {
   describe('reset behavior', () => {
     it('when reset button clicked', () => {
       const {
+        getByTestId,
         getByRole,
         getByText,
-        getByPlaceholderText,
         queryByText
       } = renderAutocomplete({
         options: testOptions,
-        placeholder,
         value: ''
       })
 
-      const input = getByPlaceholderText(placeholder) as HTMLInputElement
+      const input = getByTestId('autocomplete') as HTMLInputElement
 
       fireEvent.click(input)
       fireEvent.click(getByText('Slovakia'))
