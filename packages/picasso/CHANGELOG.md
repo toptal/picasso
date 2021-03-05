@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.14.2](https://github.com/toptal/picasso/compare/@toptal/picasso@5.14.1...@toptal/picasso@5.14.2) (2021-03-05)
+
+
+### Bug Fixes
+
+* **outlinedinput:** make disabled input text readable on Safari 14 ([#1950](https://github.com/toptal/picasso/issues/1950)) ([c85647e](https://github.com/toptal/picasso/commit/c85647e3137166d19a29e58f8b9896794a7b8a2b))
+
+
+
+
+
 ## [5.14.1](https://github.com/toptal/picasso/compare/@toptal/picasso@5.14.0...@toptal/picasso@5.14.1) (2021-03-04)
 
 
