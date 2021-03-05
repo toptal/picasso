@@ -1,0 +1,222 @@
+@Library('globalLibrary@master') _
+
+helper = new helpers.Helpers()
+ghHelper = new helpers.GithubNotifyHelper()
+
+downStreamBuilds = []
+repoName = 'picasso'
+buildImageJobName = "${repoName}-build-image"
+imageCommitId = ''
+def VERSION
+
+pipeline {
+  agent { label 'docker' }
+
+  parameters {
+    string(name: 'RELEASE_AND_PUBLISH', defaultValue: 'release', description: 'Run build in dry-run mode which will not release new version')
+    string(name: 'GIT_BRANCH', defaultValue: 'v5', description: 'Git branch')
+  }
+
+  options {
+    ansiColor('xterm')
+    timestamps()
+    timeout(time: 30, unit: 'MINUTES')
+    skipDefaultCheckout()
+    disableConcurrentBuilds()
+  }
+
+  environment {
+    GH_TOKEN = credentials('toptal-devbot-personal-token')
+    NPM_TOKEN = credentials('npm-token-for-toptal-private-registry-publish')
+    GIT_AUTHOR_NAME = 'toptal-davinci-bot'
+    GIT_COMMITTER_NAME = 'toptal-davinci-bot'
+    GIT_AUTHOR_EMAIL = 'milos.mosovsky+davinci@toptal.com'
+    GIT_COMMITTER_EMAIL = 'milos.mosovsky+davinci@toptal.com'
+  }
+
+  stages {
+    stage('Git checkout PR') {
+      steps {
+        info "== Checking out $GIT_BRANCH"
+          gitCheckout(
+            branches: "$GIT_BRANCH",
+            credentials: [username: 'toptal-build', description: 'toptal-build-ssh-key'],
+            url: 'git@github.com:toptal/picasso.git',
+            refspec: "+refs/heads/${GIT_BRANCH}:refs/remotes/origin/${GIT_BRANCH}",
+            additionalBehaviours: [
+              checkoutToSpecificLocalBranch: [ localBranch: "$GIT_BRANCH" ],
+              cleanBeforeCheckout         : true,
+              advancedCheckoutBehaviour: [timeout: 30],
+              advancedCloneBehaviour   : [depth: 0, noTags: false, reference: '', shallow: false, timeout: 30]
+            ]
+          )
+
+        info "Git commit: ${gitCommit()}"
+        info "Git branch: ${gitBranch()}"
+        success "Checkout finished"
+      }
+    }//stage
+
+    stage('Build image') {
+      steps {
+        script {
+          imageCommitId = gitCommit()
+          downStreamBuilds[0] = buildWithParameters(
+            jobName: buildImageJobName,
+            propagate: false,
+            wait: true,
+            parameters: [
+              BRANCH: gitBranch(),
+              VERSION: gitCommit(),
+              IMAGE_NAME: repoName
+            ]
+          )
+        }
+      } //steps
+    } //stage
+
+    stage('Run release') {
+      steps {
+        script {
+          PWD = sh(returnStdout: true, script: 'pwd').trim()
+        }
+
+        sshagent(credentials: ['toptal-build-ssh-key']) {
+          // $SSH_AUTH_SOCK - is the ssh key passed from "picasso-ssh-deploy-key" credentials
+          //
+          // -u 469:469 \
+          // - all those need to be passed to reuse jenkins user from Jenkins
+          //   and it's .ssh folder, keys and passwords
+          //
+          // -v ${PWD}:/artifacts - needs to pass .versions file
+          //
+          // -e JENKINS_URL=${JENKINS_URL} \
+          // -e GIT_BRANCH=${GIT_BRANCH} \
+          // - need to make semantic-release to think
+          //   that we are running it inside CI environment
+          //
+          // -e GH_TOKEN needed for lerna to authenticated with GitHub
+          //
+          sh """
+            docker run \
+            --rm \
+            -e GIT_COMMITTER_EMAIL=${GIT_COMMITTER_EMAIL} \
+            -e GIT_COMMITTER_NAME=${GIT_COMMITTER_NAME} \
+            -e GH_TOKEN=${GH_TOKEN} \
+            -e RELEASE_AND_PUBLISH=${RELEASE_AND_PUBLISH} \
+            -e NPM_TOKEN=${NPM_TOKEN} \
+            -e JENKINS_URL=${JENKINS_URL} \
+            -e GIT_BRANCH=${GIT_BRANCH} \
+            -v ${PWD}:/artifacts \
+            -u 469:469 \
+            -v $SSH_AUTH_SOCK:/ssh-agent \
+            -e SSH_AUTH_SOCK=/ssh-agent \
+            -v ${PWD}/.git:/app/.git \
+            --entrypoint=./bin/release \
+            gcr.io/toptal-hub/${repoName}:${imageCommitId}
+          """
+        }
+
+        script {
+          NEW_VERSION = sh(returnStdout: true, script: 'cat .version').trim()
+        }
+      } //steps
+    } //stage
+
+    stage('Build results') {
+      steps {
+        script {
+          helper.printBuildsResults(downStreamBuilds)
+          helper.setBuildStatus(downStreamBuilds)
+        }
+      }
+    }
+  }//stages
+
+  post {
+      always {
+          script {
+            sendBuildData(currentBuild)
+          }
+      }
+      success {
+          script {
+            if (NEW_VERSION != "") {
+              // https://api.slack.com/docs/message-attachments
+              data =
+              '''[
+                {
+                  "title": ":frontend-experience: New version {VERSION} of picasso was released",
+                  "fallback": "New version {VERSION} of picasso was released",
+                  "color": "#36a64f",
+                  "fields": [
+                    {
+                      "title": "Release",
+                      "value": "<https://github.com/toptal/picasso/releases/tag/v{VERSION}|See release v{VERSION}>",
+                      "short": "true"
+                    }
+                  ]
+                }
+              ]'''
+
+              attachments = data.replace('{VERSION}', NEW_VERSION)
+              slackSend color: 'good', channel: '-frontend-exp-core', attachments: attachments
+
+            } else {
+              if (params.RELEASE_AND_PUBLISH == "release") {
+                data = '''[
+                  {
+			              "title": ":nothingtodohere: Have a nice day :wave:"
+      	          }
+                ]'''
+
+                message = "Hey, everything is fine, I wanted to do a release but I didn't find any suitable commits which should trigger a new version."
+                attachments = data.replace('{VERSION}', NEW_VERSION)
+                slackSend color: 'good', channel: '-frontend-exp-team-notifications', attachments: attachments, message: message
+              } else {
+                data = '''[
+                  {
+                    "title": "Current LTS version is ready to be released",
+                    "fallback": "Current LTS version is ready to be released",
+                    "color": "#e2b201",
+                    "fields": [
+                      {
+                        "title": "This was just a test run",
+                        "short": "true"
+                      },
+                      {
+                        "title": "Nothing was released",
+                        "short": "true"
+                      }
+                    ]
+                  }
+                ]'''
+                attachments = data.replace('{VERSION}', NEW_VERSION)
+                slackSend color: 'good', channel: '-frontend-exp-team', attachments: attachments
+              }
+
+            }
+          }
+      }
+
+      failure {
+        script {
+          data = '''[
+          {
+            "title": "<!subteam^SES9F1R0D|@frontend-experience> Current LTS version is broken",
+            "fallback": "<!subteam^SES9F1R0D|@frontend-experience> Current LTS version is broken",
+            "color": "#e20101",
+            "fields": [
+              {
+                "title": "Release failed",
+                "value": "<{BUILD_URL}/consoleFull|Show build results>"
+              }
+            ]
+          }
+        ]'''
+        attachments = data.replace('{BUILD_URL}', "${env.BUILD_URL}")
+        slackSend color: 'good', channel: '-frontend-exp-team', attachments: attachments
+        }
+      }
+  }
+}//pipeline
