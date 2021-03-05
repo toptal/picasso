@@ -242,7 +242,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       >
         {options!.map((option, index) => (
           <Menu.Item
-            data-test-id={testIds?.menuItem}
+            data-test-id={`${testIds?.menuItem}-${index}`}
             size='medium'
             key={getKey(option)}
             {...getItemProps(index, option)}

@@ -198,7 +198,7 @@ describe('Autocomplete', () => {
   describe('dynamic behavior', () => {
     it('on focus', () => {
       const onFocus = jest.fn()
-      const { getByTestId, queryByRole } = renderAutocomplete({
+      const { getByTestId, queryByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
         onFocus
@@ -210,10 +210,10 @@ describe('Autocomplete', () => {
 
       // calls onFocus handler
       expect(onFocus).toHaveBeenCalledTimes(1)
-      expect(queryByRole('menu')).not.toBeInTheDocument()
+      expect(queryByTestId('scroll-menu')).toBeNull()
 
       fireEvent.click(input)
-      expect(queryByRole('menu')).toMatchSnapshot()
+      expect(getByTestId('scroll-menu')).toMatchSnapshot()
     })
 
     it('on type', () => {
@@ -276,7 +276,7 @@ describe('Autocomplete', () => {
     })
 
     it('On "Backspace" key pressed with empty text', async () => {
-      const { getByTestId, queryByRole } = renderAutocomplete({
+      const { getByTestId, queryByTestId } = renderAutocomplete({
         options: testOptions,
         value: ''
       })
@@ -288,7 +288,7 @@ describe('Autocomplete', () => {
         key: 'Backspace'
       })
 
-      const menu = queryByRole('menu')
+      const menu = queryByTestId('scroll-menu')
       // should hide the options list
 
       expect(menu).toBeNull()
