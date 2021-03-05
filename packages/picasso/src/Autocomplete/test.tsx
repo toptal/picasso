@@ -17,12 +17,19 @@ const testOptions = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
+const testIds = {
+  menuItem: 'menu-item',
+  scrollMenu: 'scroll-menu',
+  otherOption: 'other-option',
+  noOptions: 'no-options'
+}
+
 const renderAutocomplete = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
 ) =>
   render(
-    <Autocomplete data-testid='autocomplete' {...props} />,
+    <Autocomplete data-testid='autocomplete' testIds={testIds} {...props} />,
     undefined,
     picassoConfig
   )
@@ -137,7 +144,7 @@ describe('Autocomplete', () => {
       fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
 
       expect(getByText('No options')).not.toBeNull()
-      expect(getByTestId('no-options-text')).not.toBeNull()
+      expect(getByTestId(testIds.noOptions)).not.toBeNull()
     })
 
     it('shows custom no options text when no options are available', () => {
@@ -153,7 +160,7 @@ describe('Autocomplete', () => {
       fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
 
       expect(getByText(noOptionsText)).not.toBeNull()
-      expect(getByTestId('no-options-text')).not.toBeNull()
+      expect(getByTestId(testIds.noOptions)).not.toBeNull()
     })
 
     it('renders custom options', async () => {
@@ -351,7 +358,7 @@ describe('Autocomplete', () => {
         })
 
         expect(getByText('Other option:')).not.toBeNull()
-        expect(getByTestId('other-option')).toMatchSnapshot()
+        expect(getByTestId(testIds.otherOption)).toMatchSnapshot()
       })
 
       it('renders custom other options text and calls onOtherOptionSelect when selected', () => {
@@ -374,7 +381,7 @@ describe('Autocomplete', () => {
 
         expect(getByText('my option:')).not.toBeNull()
 
-        const otherOption = getByTestId('other-option')
+        const otherOption = getByTestId(testIds.otherOption)
 
         expect(otherOption).toMatchSnapshot()
 

@@ -102,24 +102,23 @@ export interface Props
   inputProps?: BaseInputProps
   /** Show the "Powered By Google" label */
   poweredByGoogle?: boolean
-}
-
-const NoOptionsMenuItem = ({ children }: { children: string }) => {
-  return (
-    <Menu.Item
-      size='medium'
-      titleCase={false}
-      disabled
-      data-testid='no-options-text'
-    >
-      {children}
-    </Menu.Item>
-  )
+  testIds?: {
+    menuItem?: string
+    scrollMenu?: string
+    otherOption?: string
+    noOptions?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAutocomplete'
 })
+
+const NoOptionsMenuItem = ({ children, ...rest }: { children: string }) => (
+  <Menu.Item size='medium' titleCase={false} disabled {...rest}>
+    {children}
+  </Menu.Item>
+)
 
 const OtherOptionMenuItem = ({
   value,
@@ -135,7 +134,6 @@ const OtherOptionMenuItem = ({
 
   return (
     <Menu.Item
-      data-testid='other-option'
       size='medium'
       key='other-option'
       className={`${classes.option} ${classes.otherOption}`}
@@ -193,6 +191,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       style,
       value,
       width,
+      testIds,
       ...rest
     } = props
     const classes = useStyles()
@@ -237,10 +236,13 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const optionsLength = options ? options!.length : 0
 
     const optionsMenu = options && (
-      <ScrollMenu data-testid='scroll-menu' selectedIndex={highlightedIndex}>
+      <ScrollMenu
+        data-testid={testIds?.scrollMenu}
+        selectedIndex={highlightedIndex}
+      >
         {options!.map((option, index) => (
           <Menu.Item
-            data-test-id='menu-item'
+            data-test-id={testIds?.menuItem}
             size='medium'
             key={getKey(option)}
             {...getItemProps(index, option)}
@@ -255,6 +257,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         ))}
         {shouldShowOtherOption && (
           <OtherOptionMenuItem
+            data-testid={testIds?.otherOption}
             value={value}
             renderOtherOption={renderOtherOption}
             otherOptionText={otherOptionText}
@@ -262,7 +265,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           />
         )}
         {!optionsLength && !shouldShowOtherOption && (
-          <NoOptionsMenuItem>{noOptionsText}</NoOptionsMenuItem>
+          <NoOptionsMenuItem data-testid={testIds?.noOptions}>
+            {noOptionsText}
+          </NoOptionsMenuItem>
         )}
         {optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />}
       </ScrollMenu>
