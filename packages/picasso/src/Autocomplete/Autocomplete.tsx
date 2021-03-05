@@ -189,9 +189,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       renderOtherOption,
       showOtherOption,
       style,
+      testIds,
       value,
       width,
-      testIds,
       ...rest
     } = props
     const classes = useStyles()
