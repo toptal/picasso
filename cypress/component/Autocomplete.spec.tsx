@@ -169,7 +169,7 @@ describe('Autocomplete', () => {
   it('renders a reset button', () => {
     mount(
       <TestingPicasso>
-        <TestAutocomplete enable Reset />
+        <TestAutocomplete enableReset />
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
