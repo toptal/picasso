@@ -13,7 +13,7 @@ import {
 import { Item, ChangedOptions } from '../types'
 
 export const EMPTY_INPUT_VALUE = ''
-export const INITIAL_HIGHLIGH_INDEX = 0
+export const INITIAL_HIGHLIGHT_INDEX = 0
 
 export const normalizeInitialIndex = ({
   initialIndex,
@@ -106,7 +106,7 @@ export const useAutocomplete = ({
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number>(
-    INITIAL_HIGHLIGH_INDEX
+    INITIAL_HIGHLIGHT_INDEX
   )
 
   const selectedIndex = useMemo(
@@ -235,6 +235,8 @@ export const useAutocomplete = ({
 
       if (event.key === 'Backspace') {
         if (value !== EMPTY_INPUT_VALUE) {
+          console.log('HERE')
+
           return
         }
 

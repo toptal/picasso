@@ -1,0 +1,254 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for packages/picasso/src/Icon/Behance16.tsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">packages/picasso/src/Icon</a> Behance16.tsx</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">30.77% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>4/13</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/7</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">30.77% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>4/13</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { forwardRef, Ref } from 'react'
+import cx from 'classnames'
+import { makeStyles } from '@material-ui/core/styles'
+import { StandardProps } from '@toptal/picasso-shared'
+&nbsp;
+import kebabToCamelCase from '../utils/kebab-to-camel-case'
+import styles from './styles'
+const BASE_SIZE = 16
+&nbsp;
+type ScaleType = 1 | 2 | 3 | 4
+export interface Props extends StandardProps {
+  scale?: ScaleType
+  color?: string
+  base?: number
+}
+const useStyles = makeStyles(styles, { name: 'PicassoSvgBehance16' })
+const SvgBehance16 = forwardRef(function <span class="fstat-no" title="function not covered" >SvgBehance16(</span>
+  props: Props,
+  ref: Ref&lt;SVGSVGElement&gt;
+) {
+  const {
+    className,
+    style = <span class="branch-0 cbranch-no" title="branch not covered" >{},</span>
+    color,
+    scale,
+    base,
+    'data-testid': testId
+  } = <span class="cstat-no" title="statement not covered" >props</span>
+  const classes: Record&lt;string, string&gt; = <span class="cstat-no" title="statement not covered" >useStyles(props)</span>
+  const classNames = <span class="cstat-no" title="statement not covered" >[classes.root, className]</span>
+  const scaledSize = <span class="cstat-no" title="statement not covered" >base || BASE_SIZE * Math.ceil(scale || 1)</span>
+  const colorClassName = <span class="cstat-no" title="statement not covered" >kebabToCamelCase(`${color}`)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (classes[colorClassName]) {</span>
+<span class="cstat-no" title="statement not covered" >    classNames.push(classes[colorClassName])</span>
+  }
+&nbsp;
+  const svgStyle = <span class="cstat-no" title="statement not covered" >{</span>
+    minWidth: `${scaledSize}px`,
+    minHeight: `${scaledSize}px`,
+    ...style
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return (</span>
+    &lt;svg
+      viewBox='0 0 16 16'
+      className={cx(...classNames)}
+      style={svgStyle}
+      ref={ref}
+      data-testid={testId}
+    &gt;
+      &lt;path d='M4.627 3c.468 0 .894.04 1.28.125.385.087.714.22.991.407.273.187.489.434.64.747.15.314.227.7.227 1.154 0 .493-.113.907-.338 1.24-.226.334-.558.6-1.002.814.604.173 1.051.48 1.349.914.298.44.443.967.443 1.574 0 .5-.087.927-.273 1.287a2.468 2.468 0 01-.774.9c-.32.232-.7.4-1.114.512-.406.11-.835.17-1.273.17H0v-9.84h4.627V3zm6.67 8.111c.294.286.716.429 1.264.429.393 0 .733-.099 1.02-.298.283-.194.454-.407.52-.627h1.726c-.268.854-.699 1.467-1.267 1.834-.567.373-1.256.554-2.054.554a4.088 4.088 0 01-1.515-.267 3.3 3.3 0 01-1.147-.76 3.402 3.402 0 01-.718-1.181 4.376 4.376 0 01-.25-1.514c0-.535.09-1.027.27-1.487.18-.467.429-.854.746-1.194.33-.34.71-.597 1.158-.796.45-.2.934-.289 1.48-.289.608 0 1.128.11 1.588.349.447.227.814.547 1.107.933.294.391.5.84.627 1.348.127.5.167 1.027.14 1.587h-5.128c0 .56.186 1.088.473 1.377l-.053.02.014-.018zm-6.829.033c.212 0 .414-.02.605-.062.193-.04.365-.11.508-.2.14-.09.26-.218.347-.388.087-.16.127-.38.127-.64 0-.5-.147-.861-.427-1.081-.287-.214-.66-.32-1.127-.32h-2.34v2.7h2.307v-.02.011zm9.075-3.768c-.235-.256-.627-.394-1.105-.394-.312 0-.57.049-.778.158a1.437 1.437 0 00-.754.894c-.05.173-.08.333-.09.473h3.175c-.046-.5-.22-.867-.453-1.127v.007l.005-.01zm-9.195-.41c.383 0 .7-.09.95-.275.25-.18.37-.48.37-.892 0-.23-.047-.417-.12-.564a.975.975 0 00-.333-.342c-.14-.082-.3-.14-.48-.171a2.952 2.952 0 00-.56-.05h-2.02v2.295h2.193zm6.068-3.306h3.98v.97h-3.98v-.978.008z' /&gt;
+    &lt;/svg&gt;
+  )
+})
+&nbsp;
+SvgBehance16.displayName = 'SvgBehance16'
+export default SvgBehance16
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
+                at Fri Mar 05 2021 09:42:12 GMT+0000 (Coordinated Universal Time)
+            </div>
+        </div>
+        <script src="../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
+    </body>
+</html>
+    

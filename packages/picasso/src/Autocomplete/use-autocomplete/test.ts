@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 import { act, renderHook } from '@testing-library/react-hooks'
 import { waitFor } from '@toptal/picasso/test-utils'
@@ -94,6 +95,33 @@ describe('useAutocomplete', () => {
     expect(secondItemProps.role).toBe('option')
     expect(secondItemProps['aria-selected']).toBe(false)
     expect(secondItemProps.selected).toBe(false)
+  })
+
+  it('does not select if item has no display value', () => {
+    const getDisplayValue = jest.fn().mockReturnValue(null)
+    const onSelect = jest.fn()
+    const { result } = renderUseAutocomplete({
+      getDisplayValue,
+      onSelect
+    })
+
+    result.current
+      .getItemProps(0, {
+        text: 'Ukraine',
+        value: 'UA'
+      })
+      .onClick(MOCKED_EVENT)
+
+    expect(onSelect).not.toHaveBeenCalled()
+  })
+
+  it('prevents focus to be changed from autocomplete', () => {
+    const preventDefault = jest.fn()
+    const { result } = renderUseAutocomplete()
+
+    result.current.getItemProps(0, {}).onMouseDown({ preventDefault } as any)
+
+    expect(preventDefault).toHaveBeenCalledTimes(1)
   })
 
   it('returns other item props', () => {
@@ -300,6 +328,30 @@ describe('useAutocomplete', () => {
       waitFor(() => expect(result.current.isOpen).toBe(false))
     })
 
+    it('selects highlighted item on enter keypress', () => {
+      const onSelect = jest.fn()
+      const { result } = renderUseAutocomplete({ onSelect })
+
+      act(() => {
+        result.current.getInputProps().onClick()
+      })
+
+      expect(result.current.isOpen).toBe(true)
+
+      act(() => {
+        result.current.getItemProps(1, TEST_OPTIONS[1]).onMouseMove()
+      })
+
+      const keydownEvent = { key: 'Enter', preventDefault: jest.fn() } as any
+
+      act(() => {
+        result.current.getInputProps().onKeyDown(keydownEvent)
+      })
+
+      expect(onSelect).toHaveBeenCalledTimes(1)
+      expect(onSelect).toHaveBeenCalledWith(TEST_OPTIONS[1], keydownEvent)
+    })
+
     it('closes menu on backspace keypress if value is empty', () => {
       const onChange = jest.fn()
 
@@ -325,6 +377,30 @@ describe('useAutocomplete', () => {
       })
 
       expect(result.current.isOpen).toBe(false)
+    })
+
+    it('does nothing on backspace keypress if value is not empty', () => {
+      const onChange = jest.fn()
+      const { result } = renderUseAutocomplete({
+        value: 'Not empty',
+        onChange
+      })
+
+      act(() => {
+        result.current.getInputProps().onClick()
+      })
+
+      expect(result.current.isOpen).toBe(true)
+
+      act(() => {
+        result.current.getInputProps().onKeyDown({
+          key: 'Backspace',
+          preventDefault: jest.fn()
+        } as any)
+      })
+
+      expect(result.current.isOpen).toBe(true)
+      expect(onChange).not.toHaveBeenCalled()
     })
 
     it('closes menu on Escape keypress and resets value', () => {
