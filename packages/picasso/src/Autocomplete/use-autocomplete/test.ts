@@ -22,7 +22,9 @@ const TEST_OPTIONS = [
   // { text: 'Japan', value: 'JP' }
 ]
 
-const MOCKED_EVENT: KeyboardEvent | MouseEvent = { target: { value: '' } }
+const MOCKED_EVENT = {
+  target: { value: '' }
+} as any
 
 const defaultGetDisplayValue = jest
   .fn()
@@ -170,16 +172,19 @@ describe('useAutocomplete', () => {
     expect(result.current.isOpen).toBe(true)
   })
 
-  it.skip('resets value on reset click', () => {
+  it('resets value on reset click', () => {
     const onChange = jest.fn()
     const { result } = renderUseAutocomplete({ value: 'Picasso', onChange })
 
     const input = result.current.getInputProps()
 
+    const stopPropagation = jest.fn()
+
     act(() => {
-      input.onResetClick()
+      input.onResetClick({ stopPropagation } as any)
     })
 
+    expect(stopPropagation).toHaveBeenCalledTimes(1)
     expect(onChange).toHaveBeenCalledTimes(1)
     expect(onChange).toHaveBeenCalledWith('', {
       isSelected: false
