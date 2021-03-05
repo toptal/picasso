@@ -83,7 +83,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
-      data-test-id="menu-item"
+      data-test-id="menu-item-0"
       role="option"
       tabindex="-1"
     >
@@ -105,7 +105,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item"
+      data-test-id="menu-item-1"
       role="option"
       tabindex="-1"
     >
@@ -127,7 +127,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item"
+      data-test-id="menu-item-2"
       role="option"
       tabindex="-1"
     >
@@ -149,7 +149,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item"
+      data-test-id="menu-item-3"
       role="option"
       tabindex="-1"
     >
@@ -171,7 +171,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item"
+      data-test-id="menu-item-4"
       role="option"
       tabindex="-1"
     >
