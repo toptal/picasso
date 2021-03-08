@@ -130,8 +130,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   /** Content to be rendered inside tooltip */
   content?: ReactNode
-  /** Whether tooltip should display arrow */
-  arrow?: boolean
   /** Select color variant to use */
   variant?: VariantType
   /** Where should the tooltip be positioned */
@@ -168,7 +166,6 @@ export const Tooltip: FunctionComponent<Props> = props => {
     interactive,
     className,
     style,
-    arrow,
     open,
     onClose,
     onOpen,
@@ -200,9 +197,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
   const title = (
     <>
       {content}
-      {arrow && !compact && (
-        <span className={classes.arrow} ref={setArrowRef} />
-      )}
+      {!compact && <span className={classes.arrow} ref={setArrowRef} />}
     </>
   )
 
@@ -257,7 +252,6 @@ export const Tooltip: FunctionComponent<Props> = props => {
 }
 
 Tooltip.defaultProps = {
-  arrow: true,
   preventOverflow: true,
   placement: 'top',
   variant: 'dark',
