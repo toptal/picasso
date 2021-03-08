@@ -70,6 +70,7 @@ const DefaultTooltip = (
 
   return (
     <Tooltip
+      arrow={!compact}
       content={value}
       open={open || valueLabelDisplay === 'on'}
       placement={isTooltipAlwaysVisible ? 'right' : 'top'}

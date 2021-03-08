@@ -209,6 +209,11 @@ describe('Tooltip', () => {
     cy.get('body').happoScreenshot()
   })
 
+  it('renders without arrow', () => {
+    mount(<SnapshotTooltipExample arrow={false} />)
+    cy.get('body').happoScreenshot()
+  })
+
   it('renders with disabled portals', () => {
     mount(<SnapshotTooltipExample disablePortal />)
     cy.get('body').happoScreenshot()
@@ -280,7 +285,7 @@ describe('Tooltip', () => {
     mount(<AutocompleteTooltipExample />)
 
     cy.get('[data-testid="autocomplete"').click()
-    cy.get('[data-testid="tooltip-content"').should('exist')
+    cy.get('[data-testid="tooltip-content"').should('be.visible')
     cy.get('body').happoScreenshot()
   })
 

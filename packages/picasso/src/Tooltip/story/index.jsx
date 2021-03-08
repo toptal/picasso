@@ -36,9 +36,10 @@ page
 
 page
   .createChapter()
-  .addExample('Tooltip/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('Tooltip/story/Placement.example.tsx', 'Placement') // picasso-skip-visuals
-  .addExample('Tooltip/story/Variant.example.tsx', 'Variant') // picasso-skip-visuals
+  .addExample('Tooltip/story/Default.example.tsx', 'Default')
+  .addExample('Tooltip/story/Placement.example.tsx', 'Placement')
+  .addExample('Tooltip/story/Arrow.example.tsx', 'Arrow')
+  .addExample('Tooltip/story/Variant.example.tsx', 'Variant')
   .addExample('Tooltip/story/Trigger.example.tsx', 'Trigger') // picasso-skip-visuals
   .addExample('Tooltip/story/Interactive.example.tsx', 'Interactive') // picasso-skip-visuals
   .addExample('Tooltip/story/ControlListeners.example.tsx', 'Control Listeners') // picasso-skip-visuals
@@ -47,8 +48,8 @@ page
     'Tooltip on disabled element'
   ) // picasso-skip-visuals
   .addExample('Tooltip/story/Delay.example.tsx', 'Delay') // picasso-skip-visuals
-  .addExample('Tooltip/story/Compact.example.tsx', 'Compact') // picasso-skip-visuals
-  .addExample('Tooltip/story/MaxWidth.example.tsx', 'Max Width') // picasso-skip-visuals
+  .addExample('Tooltip/story/Compact.example.tsx', 'Compact')
+  .addExample('Tooltip/story/MaxWidth.example.tsx', 'Max Width')
   .addExample('Tooltip/story/Dropdown.example.tsx', {
     title: 'Inside of a Dropdown',
     effect: async (testPage, makeScreenshot) => {
@@ -56,4 +57,4 @@ page
 
       await makeScreenshot({ isFullScreen: true })
     }
-  }) // picasso-skip-visuals
+  })
