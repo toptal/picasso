@@ -15,8 +15,8 @@ export default ({ screens }: Theme) =>
     },
     xsmall: {
       [screens('small', 'medium')]: {
-        height: '1.5em',
-        width: '1.5em'
+        height: '2em',
+        width: '2em'
       }
     },
     content: {

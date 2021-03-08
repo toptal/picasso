@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -67,9 +68,7 @@ export const TopBarMenu = forwardRef<HTMLDivElement, Props>(function TopBarMenu(
   const trigger = isCompactLayout ? (
     <Avatar
       size='xxsmall'
-      classes={{
-        xsmall: classes.xsmall
-      }}
+      className={classes.xsmall}
       name={name}
       src={avatar as string}
     />
