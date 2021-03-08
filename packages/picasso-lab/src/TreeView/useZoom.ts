@@ -33,9 +33,7 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
       return
     }
 
-    d3.select(rootRef.current)
-      .transition()
-      .call(zoom.scaleBy, step)
+    d3.select(rootRef.current).transition().call(zoom.scaleBy, step)
   }
 
   useEffect(() => {
@@ -45,8 +43,8 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
 
     const transformContainer = d3.select(rootRef.current.firstElementChild)
 
-    zoom.on('zoom', () => {
-      transformContainer.attr('transform', d3.event.transform)
+    zoom.on('zoom', (event: any) => {
+      transformContainer.attr('transform', event.transform)
     })
 
     if (!initialized) {
