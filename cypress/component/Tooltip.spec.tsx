@@ -280,7 +280,7 @@ describe('Tooltip', () => {
     mount(<AutocompleteTooltipExample />)
 
     cy.get('[data-testid="autocomplete"').click()
-    cy.get('[data-testid="tooltip-content"').should('be.visible')
+    cy.get('[data-testid="tooltip-content"').should('exist')
     cy.get('body').happoScreenshot()
   })
 
