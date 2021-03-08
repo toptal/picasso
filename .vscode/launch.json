@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Tests - Single Run",
+      "type": "node",
+      "runtimeExecutable": "yarn",
+      "request": "launch",
+      "args": ["test:unit", "--runInBand"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Debug Tests - Watch Mode",
+      "type": "node",
+      "runtimeExecutable": "yarn",
+      "request": "launch",
+      "args": ["test:unit", "--runInBand"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Debug Tests - Current File",
+      "type": "node",
+      "runtimeExecutable": "yarn",
+      "request": "launch",
+      "args": ["test:unit", "${relativeFile}", "--runInBand", "--watchAll"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}
