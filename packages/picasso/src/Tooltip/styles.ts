@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
 const shadowColor = 'rgba(0, 0, 0, 0.8)'
-const ARROW_SIZE = '1em'
+const ARROW_SIZE = '1.25em'
 const HORIZONTAL_POSITION = {
   top: '50%',
   transform: 'translateY(-50%)'
