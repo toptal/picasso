@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "d3": "~5.12.0",
+    "d3": "^6.5.0",
     "date-fns": "^2.3.0",
     "date-fns-tz": "^1.0.10",
     "detect-browser": "^5.1.1",
@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.10",
-    "@types/d3": "~5.7.2",
+    "@types/d3": "^6.3.0",
     "@types/detect-browser": "^4.0.0",
     "@types/react-input-mask": "^2.0.5"
   },
