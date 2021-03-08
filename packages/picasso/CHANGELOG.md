@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.14.2...@toptal/picasso@6.0.0) (2021-03-08)
+
+
+### chore
+
+* **tooltip:** compute arrow based on compact prop ([41a39c0](https://github.com/toptal/picasso/commit/41a39c07da609dc8657834f38d9794fc0bf5680a))
+
+
+### Reverts
+
+* Revert "chore(tooltip): adjust arrows and borders (#1952)" ([cb6a549](https://github.com/toptal/picasso/commit/cb6a549f30efe1bc70504bada464e0f7388d3125)), closes [#1952](https://github.com/toptal/picasso/issues/1952)
+
+
+### BREAKING CHANGES
+
+* **tooltip:** removed arrow prop
+
+
+
+
+
 ## [5.14.2](https://github.com/toptal/picasso/compare/@toptal/picasso@5.14.1...@toptal/picasso@5.14.2) (2021-03-05)
 
 
