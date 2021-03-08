@@ -10,7 +10,7 @@ const BottomTooltip = ({
   open: boolean
   value: ReactNode
 }) => (
-  <Tooltip arrow placement='bottom' open={open} content={value} compact>
+  <Tooltip placement='bottom' open={open} content={value} compact>
     {children}
   </Tooltip>
 )

@@ -209,11 +209,6 @@ describe('Tooltip', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders without arrow', () => {
-    mount(<SnapshotTooltipExample arrow={false} />)
-    cy.get('body').happoScreenshot()
-  })
-
   it('renders with disabled portals', () => {
     mount(<SnapshotTooltipExample disablePortal />)
     cy.get('body').happoScreenshot()
