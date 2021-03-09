@@ -2,7 +2,7 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
 import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import { generateRandomString, OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import Autocomplete, { Props } from './Autocomplete'
@@ -164,16 +164,62 @@ describe('Autocomplete', () => {
     })
 
     it('renders custom options', async () => {
-      const api = renderAutocomplete({
+      const getDisplayValue = jest.fn()
+      const renderOption = jest.fn(item => (
+        <div data-testid='custom-option'>{item.value}</div>
+      ))
+
+      const { getAllByTestId, getByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
-        // eslint-disable-next-line react/display-name
-        renderOption: () => <div>Custom renderer</div>
+        renderOption,
+        getDisplayValue,
+        getKey: () => generateRandomString()
       })
-      const input = api.getByTestId('autocomplete')
+      const input = getByTestId('autocomplete')
 
       fireEvent.click(input)
-      expect(api.baseElement.textContent).toContain('Custom renderer')
+
+      // TODO: figure out why renderOption is called twice
+      expect(renderOption).toHaveBeenCalledTimes(10)
+      expect(getAllByTestId('custom-option')).toHaveLength(5)
+      expect(getDisplayValue).not.toHaveBeenCalled()
+      expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
+    })
+
+    it('renders custom display value', async () => {
+      const getDisplayValue = jest.fn(({ text, value }) => text + value)
+
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        getDisplayValue
+      })
+      const input = getByTestId('autocomplete')
+
+      fireEvent.click(input)
+
+      expect(getDisplayValue).toHaveBeenCalledTimes(10)
+      expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
+    })
+
+    it('does not render a custom display value if a custom options is rendered', async () => {
+      const getDisplayValue = jest.fn()
+      const renderOption = jest.fn()
+
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        renderOption,
+        getDisplayValue,
+        getKey: () => generateRandomString()
+      })
+      const input = getByTestId('autocomplete')
+
+      fireEvent.click(input)
+
+      expect(renderOption).toHaveBeenCalledTimes(10)
+      expect(getDisplayValue).not.toHaveBeenCalled()
     })
 
     it('should not transform options text to title case when Picasso titleCase property is true', () => {
@@ -213,7 +259,7 @@ describe('Autocomplete', () => {
       expect(queryByTestId('scroll-menu')).toBeNull()
 
       fireEvent.click(input)
-      expect(getByTestId('scroll-menu')).toMatchSnapshot()
+      expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
     })
 
     it('on type', () => {
@@ -344,9 +390,10 @@ describe('Autocomplete', () => {
       })
 
       it('renders other option with default text', async () => {
+        const value = 'Other option!'
         const { getByTestId, getByText } = renderAutocomplete({
           options: testOptions,
-          value: 'Other option!',
+          value: value,
           showOtherOption: true
         })
         const input = getByTestId('autocomplete')
@@ -394,13 +441,17 @@ describe('Autocomplete', () => {
       })
 
       it('renders custom other options', () => {
+        const renderOtherOption = jest.fn(
+          (value: string): JSX.Element => (
+            <div data-testid='my-other-option'>{value}</div>
+          )
+        )
+
         const { getByTestId } = renderAutocomplete({
           options: testOptions,
           value: 'Other option!',
           showOtherOption: true,
-          renderOtherOption: value => (
-            <div data-testid='my-other-option'>{value}</div>
-          )
+          renderOtherOption: renderOtherOption
         })
 
         const input = getByTestId('autocomplete') as HTMLInputElement
@@ -410,6 +461,9 @@ describe('Autocomplete', () => {
         fireEvent.keyDown(input, {
           key: 'Enter'
         })
+
+        expect(renderOtherOption).toHaveBeenCalledTimes(1)
+        expect(renderOtherOption).toHaveBeenCalledWith('Other option!')
 
         const myOtherOption = getByTestId('my-other-option')
 
