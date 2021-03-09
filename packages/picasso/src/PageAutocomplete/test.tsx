@@ -4,8 +4,6 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import PageAutocomplete, { Props } from './PageAutocomplete'
 
-jest.mock('ap-style-title-case')
-
 const testOptions = [
   { text: 'Belarus', value: 'BY' },
   { text: 'Croatia', value: 'HR' },
@@ -14,17 +12,8 @@ const testOptions = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-const testIds = {
-  menuItem: 'menu-item',
-  scrollMenu: 'scroll-menu',
-  otherOption: 'other-option',
-  noOptions: 'no-options'
-}
-
 const renderAutocomplete = (props: OmitInternalProps<Props>) =>
-  render(
-    <PageAutocomplete data-testid='autocomplete' testIds={testIds} {...props} />
-  )
+  render(<PageAutocomplete data-testid='autocomplete' {...props} />)
 
 describe('PageAutocomplete', () => {
   it('renders', () => {
