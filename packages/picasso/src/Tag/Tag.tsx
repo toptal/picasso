@@ -54,7 +54,7 @@ export interface StaticProps {
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
 
 // eslint-disable-next-line react/display-name
-export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
+export const Tag = forwardRef<HTMLDivElement, Props>(function Tag (props, ref) {
   const {
     children,
     style,
@@ -97,7 +97,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       style={style}
       icon={icon}
       label={
-        <span className={classes.innerLabel}>
+        <span className={classes.innerLabel} data-testid='tag-label'>
           {titleCase ? toTitleCase(children) : children}
         </span>
       }
