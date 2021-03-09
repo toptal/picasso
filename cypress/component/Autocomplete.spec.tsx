@@ -169,9 +169,12 @@ describe('Autocomplete', () => {
   it('renders a reset button', () => {
     mount(
       <TestingPicasso>
-        <TestAutocomplete enableReset />
+        <TestAutocomplete enableReset value='Croatia' />
       </TestingPicasso>
     )
+
+    cy.get('[data-testid=autocomplete]').trigger('mouseenter')
+
     cy.get('body').happoScreenshot()
   })
   it('renders a placeholder', () => {
