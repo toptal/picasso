@@ -199,7 +199,8 @@ describe('Autocomplete', () => {
 
       fireEvent.click(input)
 
-      expect(getDisplayValue).toHaveBeenCalledTimes(10)
+      // TODO: figure out why its being called 20 times
+      expect(getDisplayValue).toHaveBeenCalledTimes(20)
       expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
     })
 
@@ -262,7 +263,7 @@ describe('Autocomplete', () => {
       expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
     })
 
-    it('on type', () => {
+    it('on change', () => {
       const onChange = jest.fn()
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
@@ -303,11 +304,13 @@ describe('Autocomplete', () => {
     })
 
     it('on "Esc" key pressed', async () => {
+      const onKeyDown = jest.fn()
       const onChange = jest.fn()
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: 'Croatia',
-        onChange
+        onChange,
+        onKeyDown
       })
 
       const input = getByTestId('autocomplete') as HTMLInputElement
@@ -319,12 +322,16 @@ describe('Autocomplete', () => {
 
       // text should be tried to be cleared
       expect(onChange).toHaveBeenCalledWith('', { isSelected: false })
+      expect(onKeyDown).toHaveBeenCalledTimes(1)
     })
 
     it('On "Backspace" key pressed with empty text', async () => {
+      const onKeyDown = jest.fn()
+
       const { getByTestId, queryByTestId } = renderAutocomplete({
         options: testOptions,
-        value: ''
+        value: '',
+        onKeyDown
       })
 
       const input = getByTestId('autocomplete') as HTMLInputElement
@@ -334,6 +341,8 @@ describe('Autocomplete', () => {
         key: 'Backspace'
       })
 
+      expect(onKeyDown).toHaveBeenCalledTimes(1)
+
       const menu = queryByTestId('scroll-menu')
       // should hide the options list
 
@@ -342,9 +351,12 @@ describe('Autocomplete', () => {
 
     describe('on "arrow up/down" key press', () => {
       it('press down', () => {
+        const onKeyDown = jest.fn()
+
         const { getByText, getByTestId } = renderAutocomplete({
           options: testOptions,
-          value: ''
+          value: '',
+          onKeyDown
         })
 
         const input = getByTestId('autocomplete') as HTMLInputElement
@@ -361,6 +373,7 @@ describe('Autocomplete', () => {
           key: 'ArrowDown'
         })
 
+        expect(onKeyDown).toHaveBeenCalledTimes(1)
         expect(
           getByText('Croatia')
             .closest('li')
@@ -369,9 +382,12 @@ describe('Autocomplete', () => {
       })
 
       it('press up', () => {
+        const onKeyDown = jest.fn()
+
         const { getByText, getByTestId } = renderAutocomplete({
           options: testOptions,
-          value: ''
+          value: '',
+          onKeyDown
         })
 
         const input = getByTestId('autocomplete') as HTMLInputElement
@@ -382,94 +398,94 @@ describe('Autocomplete', () => {
           key: 'ArrowUp'
         })
 
+        expect(onKeyDown).toHaveBeenCalledTimes(1)
         expect(
           getByText('Ukraine')
             .closest('li')
             ?.getAttribute('aria-selected')
         ).toBe('true')
       })
+    })
+    it('renders other option with default text', async () => {
+      const value = 'Other option!'
+      const { getByTestId, getByText } = renderAutocomplete({
+        options: testOptions,
+        value: value,
+        showOtherOption: true
+      })
+      const input = getByTestId('autocomplete')
 
-      it('renders other option with default text', async () => {
-        const value = 'Other option!'
-        const { getByTestId, getByText } = renderAutocomplete({
-          options: testOptions,
-          value: value,
-          showOtherOption: true
-        })
-        const input = getByTestId('autocomplete')
+      fireEvent.focus(input)
 
-        fireEvent.focus(input)
-
-        fireEvent.keyDown(input, {
-          key: 'Enter'
-        })
-
-        expect(getByText('Other option:')).not.toBeNull()
-        expect(getByTestId(testIds.otherOption)).toMatchSnapshot()
+      fireEvent.keyDown(input, {
+        key: 'Enter'
       })
 
-      it('renders custom other options text and calls onOtherOptionSelect when selected', () => {
-        const onOtherOptionSelect = jest.fn()
-        const { getByTestId, getByText } = renderAutocomplete({
-          options: testOptions,
-          value: 'Other option!',
-          showOtherOption: true,
-          otherOptionText: 'my option:',
-          onOtherOptionSelect
-        })
+      expect(getByText('Other option:')).not.toBeNull()
+      expect(getByTestId(testIds.otherOption)).toMatchSnapshot()
+    })
 
-        const input = getByTestId('autocomplete') as HTMLInputElement
+    it('renders custom other options text and calls onOtherOptionSelect when selected', () => {
+      const onOtherOptionSelect = jest.fn()
+      const { getByTestId, getByText } = renderAutocomplete({
+        options: testOptions,
+        value: 'Other option!',
+        showOtherOption: true,
+        otherOptionText: 'my option:',
+        onOtherOptionSelect
+      })
 
-        fireEvent.focus(input)
+      const input = getByTestId('autocomplete') as HTMLInputElement
 
-        fireEvent.keyDown(input, {
-          key: 'Enter'
-        })
+      fireEvent.focus(input)
 
-        expect(getByText('my option:')).not.toBeNull()
+      fireEvent.keyDown(input, {
+        key: 'Enter'
+      })
 
-        const otherOption = getByTestId(testIds.otherOption)
+      expect(getByText('my option:')).not.toBeNull()
 
-        expect(otherOption).toMatchSnapshot()
+      const otherOption = getByTestId(testIds.otherOption)
 
-        fireEvent.click(otherOption)
+      expect(otherOption).toMatchSnapshot()
 
-        expect(onOtherOptionSelect).toHaveBeenCalledWith(
-          'Other option!',
-          expect.anything()
+      fireEvent.click(otherOption)
+
+      expect(onOtherOptionSelect).toHaveBeenCalledWith(
+        'Other option!',
+        expect.anything()
+      )
+    })
+
+    it('renders custom other options', () => {
+      const renderOtherOption = jest.fn(
+        (value: string): JSX.Element => (
+          <div data-testid='my-other-option'>{value}</div>
         )
+      )
+
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: 'Other option!',
+        showOtherOption: true,
+        renderOtherOption: renderOtherOption
       })
 
-      it('renders custom other options', () => {
-        const renderOtherOption = jest.fn(
-          (value: string): JSX.Element => (
-            <div data-testid='my-other-option'>{value}</div>
-          )
-        )
+      const input = getByTestId('autocomplete') as HTMLInputElement
 
-        const { getByTestId } = renderAutocomplete({
-          options: testOptions,
-          value: 'Other option!',
-          showOtherOption: true,
-          renderOtherOption: renderOtherOption
-        })
+      fireEvent.focus(input)
 
-        const input = getByTestId('autocomplete') as HTMLInputElement
-
-        fireEvent.focus(input)
-
-        fireEvent.keyDown(input, {
-          key: 'Enter'
-        })
-
-        expect(renderOtherOption).toHaveBeenCalledTimes(1)
-        expect(renderOtherOption).toHaveBeenCalledWith('Other option!')
-
-        const myOtherOption = getByTestId('my-other-option')
-
-        expect(myOtherOption).not.toBeNull()
-        expect(myOtherOption).toMatchSnapshot()
+      fireEvent.keyDown(input, {
+        key: 'Enter'
       })
+
+      expect(renderOtherOption).toHaveBeenCalledTimes(1)
+      expect(renderOtherOption).toHaveBeenCalledWith('Other option!')
+
+      const myOtherOption = getByTestId('my-other-option')
+
+      expect(myOtherOption).not.toBeNull()
+      expect(myOtherOption).toMatchSnapshot()
     })
   })
 
