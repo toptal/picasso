@@ -163,7 +163,7 @@ describe('Autocomplete', () => {
       expect(getByTestId(testIds.noOptions)).not.toBeNull()
     })
 
-    it('renders custom options', async () => {
+    it('renders custom options with custom keys', async () => {
       const getDisplayValue = jest.fn()
       const renderOption = jest.fn(item => (
         <div data-testid='custom-option'>{item.value}</div>
