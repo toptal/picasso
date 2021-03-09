@@ -240,6 +240,20 @@ describe('Autocomplete', () => {
 
       expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
     })
+
+    it('uses a custom popper container', () => {
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        popperContainer: (<div />) as any
+      })
+
+      const input = getByTestId('autocomplete')
+
+      fireEvent.focus(input)
+
+      expect(input).toMatchSnapshot()
+    })
   })
 
   describe('dynamic behavior', () => {
