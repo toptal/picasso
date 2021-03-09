@@ -112,7 +112,7 @@ export const useAutocomplete = ({
   const selectedIndex = useMemo(
     () =>
       value && Array.isArray(options)
-        ? options.findIndex(option => getDisplayValue!(option) === value)
+        ? options.findIndex(option => getDisplayValue(option) === value)
         : null,
     [getDisplayValue, options, value]
   )

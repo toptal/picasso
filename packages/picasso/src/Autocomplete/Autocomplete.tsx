@@ -21,10 +21,11 @@ import Menu from '../Menu'
 import Container from '../Container'
 import Loader from '../Loader'
 import ScrollMenu from '../ScrollMenu'
-import Typography from '../Typography'
 import Popper from '../Popper'
 import InputAdornment from '../InputAdornment'
 import PoweredByGoogle from './PoweredByGoogle'
+import NoOptionsMenuItem from './NoOptionsMenuItem'
+import OtherOptionMenuItem from './OtherOptionMenuItem'
 import { Item, ChangedOptions } from './types'
 import { useAutocomplete, EMPTY_INPUT_VALUE } from './use-autocomplete'
 import styles from './styles'
@@ -110,49 +111,9 @@ export interface Props
   }
 }
 
-const useStyles = makeStyles<Theme>(styles, {
+export const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAutocomplete'
 })
-
-const NoOptionsMenuItem = ({ children, ...rest }: { children: string }) => (
-  <Menu.Item size='medium' titleCase={false} disabled {...rest}>
-    {children}
-  </Menu.Item>
-)
-
-const OtherOptionMenuItem = ({
-  value,
-  otherOptionText,
-  renderOtherOption,
-  ...rest
-}: {
-  value: string
-  otherOptionText: string
-  renderOtherOption?: (value: string) => ReactNode
-}) => {
-  const classes = useStyles()
-
-  return (
-    <Menu.Item
-      size='medium'
-      key='other-option'
-      className={`${classes.option} ${classes.otherOption}`}
-      {...rest}
-      titleCase={false}
-    >
-      {renderOtherOption ? (
-        renderOtherOption(value)
-      ) : (
-        <span className={classes.stringContent}>
-          <Typography as='span' color='dark-grey'>
-            {otherOptionText}
-          </Typography>
-          {value}
-        </span>
-      )}
-    </Menu.Item>
-  )
-}
 
 const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
@@ -166,7 +127,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       enableReset,
       endAdornment,
       error,
-      getDisplayValue,
+      getDisplayValue = getItemText,
       getKey: customGetKey,
       icon,
       inputComponent,
@@ -191,7 +152,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       style,
       testIds,
       value,
-      width,
+      width = 'auto',
       ...rest
     } = props
     const classes = useStyles()
@@ -201,7 +162,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         return customGetKey(item)
       }
 
-      const displayValue = getDisplayValue!(item)
+      const displayValue = getDisplayValue(item)
 
       if (!displayValue) {
         console.error(
@@ -222,7 +183,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     } = useAutocomplete({
       value,
       options,
-      getDisplayValue: getDisplayValue!,
+      getDisplayValue,
       onSelect,
       onOtherOptionSelect,
       onChange,
@@ -233,14 +194,14 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       showOtherOption
     })
 
-    const optionsLength = options ? options!.length : 0
+    const optionsLength = options ? options.length : 0
 
     const optionsMenu = options && (
       <ScrollMenu
         data-testid={testIds?.scrollMenu}
         selectedIndex={highlightedIndex}
       >
-        {options!.map((option, index) => (
+        {options?.map((option, index) => (
           <Menu.Item
             data-test-id={`${testIds?.menuItem}-${index}`}
             size='medium'
@@ -252,7 +213,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           >
             {renderOption
               ? renderOption(option, index)
-              : getDisplayValue!(option)}
+              : getDisplayValue(option)}
           </Menu.Item>
         ))}
         {shouldShowOtherOption && (
@@ -291,7 +252,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         className={cx(
           classes.root,
           className,
-          classes[`root${capitalize(width!)}` as 'rootAuto']
+          classes[`root${capitalize(width)}` as 'rootAuto']
         )}
         style={style}
         role='combobox'
