@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.4.0...@toptal/picasso-codemod@3.0.1) (2021-03-09)
+
+
+### Bug Fixes
+
+* bump major version of picasso-codemod ([#1962](https://github.com/toptal/picasso/issues/1962)) ([683e8a1](https://github.com/toptal/picasso/commit/683e8a16c1a512a3d85afd47b813b5d95f20b150))
+
+
+
+
+
 # [2.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso-codemod@2.3.2...@toptal/picasso-codemod@2.4.0) (2021-02-25)
 
 

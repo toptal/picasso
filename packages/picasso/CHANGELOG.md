@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/toptal/picasso/compare/@toptal/picasso@6.0.0...@toptal/picasso@6.0.1) (2021-03-09)
+
+
+### Bug Fixes
+
+* **TopBarMenu:** [TEA-2354] Improve responsiveness ([#1955](https://github.com/toptal/picasso/issues/1955)) ([1f7a646](https://github.com/toptal/picasso/commit/1f7a646dd96afae5208696947f67bd9bcab18c00))
+
+
+
+
+
 # [6.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.14.2...@toptal/picasso@6.0.0) (2021-03-08)
 
 
