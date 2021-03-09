@@ -251,7 +251,7 @@ describe('Autocomplete', () => {
         onFocus
       })
 
-      const input = getByTestId('autocomplete') as HTMLInputElement
+      const input = getByTestId('autocomplete')
 
       fireEvent.focus(input)
 
@@ -271,12 +271,31 @@ describe('Autocomplete', () => {
         onChange
       })
 
-      const input = getByTestId('autocomplete') as HTMLInputElement
+      const input = getByTestId('autocomplete')
 
       fireEvent.focus(input)
       fireEvent.change(input, { target: { value: 't' } })
 
       expect(onChange).toHaveBeenCalledWith('t', { isSelected: false })
+    })
+
+    it('on blur', () => {
+      const onBlur = jest.fn()
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        onBlur
+      })
+
+      const input = getByTestId('autocomplete')
+
+      expect(onBlur).toHaveBeenCalledTimes(0)
+
+      fireEvent.focus(input)
+
+      fireEvent.blur(input)
+
+      expect(onBlur).toHaveBeenCalledTimes(1)
     })
 
     it('on select option', () => {
@@ -289,7 +308,7 @@ describe('Autocomplete', () => {
         onChange
       })
 
-      const input = getByTestId('autocomplete') as HTMLInputElement
+      const input = getByTestId('autocomplete')
 
       fireEvent.click(input)
 
@@ -313,7 +332,7 @@ describe('Autocomplete', () => {
         onKeyDown
       })
 
-      const input = getByTestId('autocomplete') as HTMLInputElement
+      const input = getByTestId('autocomplete')
 
       fireEvent.focus(input)
       fireEvent.keyDown(input, {
@@ -546,7 +565,7 @@ describe('Autocomplete', () => {
         value: ''
       })
 
-      const input = getByTestId('autocomplete') as HTMLInputElement
+      const input = getByTestId('autocomplete')
 
       fireEvent.click(input)
       fireEvent.click(getByText('Slovakia'))
