@@ -17,7 +17,7 @@ export default ({ palette, screens, zIndex }: Theme) =>
     responsiveWrapper: {
       position: 'fixed',
       top: '0.75em',
-      left: '0.375em',
+      left: '0.75em',
       zIndex: zIndex.appBar
     },
     responsiveWrapperContent: {
