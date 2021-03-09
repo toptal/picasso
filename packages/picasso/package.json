@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "5.14.2",
+  "version": "6.0.0",
   "description": "Toptal UI components library",
   "publishConfig": {
     "access": "public"
@@ -30,7 +30,7 @@
     "@toptal/picasso-shared": "^2.1.2",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.2.6",
-    "notistack": "^0.9.11",
+    "notistack": "^1.0.5",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "react-truncate": "^2.4.0"

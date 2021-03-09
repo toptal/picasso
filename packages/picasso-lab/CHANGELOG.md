@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.7.3...@toptal/picasso-lab@4.0.0) (2021-03-08)
+
+
+### chore
+
+* **tooltip:** compute arrow based on compact prop ([41a39c0](https://github.com/toptal/picasso/commit/41a39c07da609dc8657834f38d9794fc0bf5680a))
+
+
+### Reverts
+
+* Revert "chore(tooltip): adjust arrows and borders (#1952)" ([cb6a549](https://github.com/toptal/picasso/commit/cb6a549f30efe1bc70504bada464e0f7388d3125)), closes [#1952](https://github.com/toptal/picasso/issues/1952)
+
+
+### BREAKING CHANGES
+
+* **tooltip:** removed arrow prop
+
+
+
+
+
 ## [3.7.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.7.2...@toptal/picasso-lab@3.7.3) (2021-03-04)
 
 **Note:** Version bump only for package @toptal/picasso-lab
