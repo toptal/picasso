@@ -208,6 +208,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         getDisplayValue={getDisplayValue}
         renderOption={renderOption}
         enableReset={false}
+        data-testid='tag-selector-autocomplete'
         getKey={getKey}
       />
     )
