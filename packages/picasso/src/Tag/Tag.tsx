@@ -97,7 +97,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       style={style}
       icon={icon}
       label={
-        <span className={classes.innerLabel}>
+        <span className={classes.innerLabel} data-testid='tag-label'>
           {titleCase ? toTitleCase(children) : children}
         </span>
       }
