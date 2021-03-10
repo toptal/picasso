@@ -173,7 +173,14 @@ describe('Autocomplete', () => {
       </TestingPicasso>
     )
 
-    cy.get('[data-testid=autocomplete]').trigger('mouseenter')
+    // Cypress does not go well with :hover CSS selectors
+    // It can fire mouse events via JS, but can't simulate browser cursor behaviour
+    // To fix this issue we're using a force method to show the button so the screenshot is correct
+    cy.get('[data-testid="reset-adornment"]').invoke(
+      'attr',
+      'style',
+      'visibility: visible'
+    )
 
     cy.get('body').happoScreenshot()
   })
@@ -231,6 +238,11 @@ describe('Autocomplete', () => {
         <TestAutocomplete value='Croatia' disabled />
       </TestingPicasso>
     )
+
+    // Wait for loading spinner to start animation
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(100)
+
     cy.get('body').happoScreenshot()
   })
 

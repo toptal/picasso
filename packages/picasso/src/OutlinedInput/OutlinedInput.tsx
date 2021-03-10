@@ -85,6 +85,7 @@ const ResetButton = ({
   onClick: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
 }) => (
   <InputAdornment
+    data-testid='reset-adornment'
     position='end'
     className={cx(classes.resetButton, {
       [classes.resetButtonDirty]: hasValue
@@ -103,7 +104,7 @@ const ResetButton = ({
   </InputAdornment>
 )
 
-const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
+const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput (
   props,
   ref
 ) {
