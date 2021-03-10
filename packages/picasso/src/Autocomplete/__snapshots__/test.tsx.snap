@@ -220,6 +220,7 @@ exports[`Autocomplete static behavior renders 1`] = `
           />
           <div
             class="MuiInputAdornment-root PicassoInputAdornment-root PicassoOutlinedInput-resetButton MuiInputAdornment-positionEnd"
+            data-testid="reset-adornment"
           >
             <button
               class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"

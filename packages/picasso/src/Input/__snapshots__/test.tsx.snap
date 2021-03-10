@@ -142,6 +142,7 @@ exports[`Input should show reset button 1`] = `
       />
       <div
         class="MuiInputAdornment-root PicassoInputAdornment-root PicassoOutlinedInput-resetButton PicassoOutlinedInput-resetButtonDirty MuiInputAdornment-positionEnd"
+        data-testid="reset-adornment"
       >
         <button
           class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
