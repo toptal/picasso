@@ -7,6 +7,7 @@ export default ({ palette, typography }: Theme) =>
       minWidth: 'unset',
       paddingLeft: '0',
       paddingRight: '0',
+      backgroundColor: 'transparent',
       '&:active, &$active, &:hover, &$hovered': {
         backgroundColor: 'transparent',
         color: palette.blue.main,
@@ -17,6 +18,7 @@ export default ({ palette, typography }: Theme) =>
         cursor: 'default'
       },
       '&$disabled': {
+        backgroundColor: 'transparent',
         opacity: 0.48
       }
     },
