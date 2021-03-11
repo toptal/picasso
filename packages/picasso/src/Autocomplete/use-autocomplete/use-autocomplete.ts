@@ -235,8 +235,6 @@ export const useAutocomplete = ({
 
       if (event.key === 'Backspace') {
         if (value !== EMPTY_INPUT_VALUE) {
-          console.log('HERE')
-
           return
         }
 
