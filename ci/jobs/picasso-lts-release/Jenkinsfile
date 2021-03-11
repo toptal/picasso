@@ -3,11 +3,9 @@
 helper = new helpers.Helpers()
 ghHelper = new helpers.GithubNotifyHelper()
 
-downStreamBuilds = []
 repoName = 'picasso'
 buildImageJobName = "${repoName}-build-image"
-imageCommitId = ''
-def VERSION
+imageCommitId = gitCommit()
 
 pipeline {
   agent { label 'docker' }
@@ -59,11 +57,10 @@ pipeline {
 
     stage('Build image') {
       steps {
-        script {
-          imageCommitId = gitCommit()
-          downStreamBuilds[0] = buildWithParameters(
+        script {         
+          buildWithParameters(
             jobName: buildImageJobName,
-            propagate: false,
+            propagate: true,
             wait: true,
             parameters: [
               BRANCH: gitBranch(),
@@ -82,21 +79,6 @@ pipeline {
         }
 
         sshagent(credentials: ['toptal-build-ssh-key']) {
-          // $SSH_AUTH_SOCK - is the ssh key passed from "picasso-ssh-deploy-key" credentials
-          //
-          // -u 469:469 \
-          // - all those need to be passed to reuse jenkins user from Jenkins
-          //   and it's .ssh folder, keys and passwords
-          //
-          // -v ${PWD}:/artifacts - needs to pass .versions file
-          //
-          // -e JENKINS_URL=${JENKINS_URL} \
-          // -e GIT_BRANCH=${GIT_BRANCH} \
-          // - need to make semantic-release to think
-          //   that we are running it inside CI environment
-          //
-          // -e GH_TOKEN needed for lerna to authenticated with GitHub
-          //
           sh """
             docker run \
             --rm \
@@ -122,15 +104,6 @@ pipeline {
         }
       } //steps
     } //stage
-
-    stage('Build results') {
-      steps {
-        script {
-          helper.printBuildsResults(downStreamBuilds)
-          helper.setBuildStatus(downStreamBuilds)
-        }
-      }
-    }
   }//stages
 
   post {
