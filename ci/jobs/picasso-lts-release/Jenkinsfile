@@ -5,7 +5,6 @@ ghHelper = new helpers.GithubNotifyHelper()
 
 repoName = 'picasso'
 buildImageJobName = "${repoName}-build-image"
-imageCommitId = gitCommit()
 
 pipeline {
   agent { label 'docker' }
@@ -57,7 +56,8 @@ pipeline {
 
     stage('Build image') {
       steps {
-        script {         
+        script { 
+          imageCommitId = gitCommit()
           buildWithParameters(
             jobName: buildImageJobName,
             propagate: true,
