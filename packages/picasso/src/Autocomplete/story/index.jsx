@@ -1,10 +1,7 @@
 import { Autocomplete } from '../Autocomplete'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Forms').createPage(
-  'Autocomplete',
-  'Input with the autocomplete'
-)
+const page = PicassoBook.section('Forms').createPage('Autocomplete')
 
 page.createTabChapter('Props').addComponentDocs({
   component: Autocomplete,
@@ -58,47 +55,24 @@ if needed.
   .addExample(
     'Autocomplete/story/InitialSetValue.example.tsx',
     'Initially set value'
-  )
+  ) // picasso-skip-visuals
   .addExample(
     'Autocomplete/story/Controlled.example.tsx',
     'Controlled selection'
-  )
-  .addExample('Autocomplete/story/FullWidth.example.tsx', 'Full width')
-  .addExample('Autocomplete/story/MenuWidth.example.tsx', {
-    title: 'Menu width',
-    effect: async (testPage, makeScreenshot) => {
-      const hideInputCaretStyle = `
-        input {
-          caret-color: transparent !important;
-        }
-      `
-
-      await testPage.addStyleTag({ content: hideInputCaretStyle })
-
-      await testPage.click('[role="combobox"]')
-      await testPage.waitFor(50)
-      await makeScreenshot({
-        isFullScreen: true
-      })
-    }
-  })
-  .addExample('Autocomplete/story/Loading.example.tsx', 'Loading')
-  .addExample('Autocomplete/story/Error.example.tsx', 'Error')
-  .addExample('Autocomplete/story/WithIcons.example.tsx', 'With Icon')
-  .addExample('Autocomplete/story/WithDescription.example.tsx', {
-    title: 'With Description',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click('input')
-      await testPage.waitFor(100)
-      await makeScreenshot({
-        isFullScreen: true
-      })
-    }
-  })
+  ) // picasso-skip-visuals
+  .addExample('Autocomplete/story/FullWidth.example.tsx', 'Full width') // picasso-skip-visuals
+  .addExample('Autocomplete/story/MenuWidth.example.tsx', 'Menu width') // picasso-skip-visuals
+  .addExample('Autocomplete/story/Loading.example.tsx', 'Loading') // picasso-skip-visuals
+  .addExample('Autocomplete/story/Error.example.tsx', 'Error') // picasso-skip-visuals
+  .addExample('Autocomplete/story/WithIcons.example.tsx', 'With Icon') // picasso-skip-visuals
+  .addExample(
+    'Autocomplete/story/WithDescription.example.tsx',
+    'With Description'
+  ) // picasso-skip-visuals
   .addExample(
     'Autocomplete/story/CustomOptionRenderer.example.tsx',
     'Custom options rendering'
-  )
+  ) // picasso-skip-visuals
   .addExample('Autocomplete/story/DynamicOptions.example.tsx', {
     title: 'Dynamic options',
     description: `If you need to obtain the list of options dynamically from a server.

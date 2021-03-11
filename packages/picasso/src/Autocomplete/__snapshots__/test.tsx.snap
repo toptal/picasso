@@ -3,6 +3,7 @@
 exports[`Autocomplete dynamic behavior on focus 1`] = `
 <ul
   class="MuiList-root Menu-root PicassoScrollMenu-menu"
+  data-testid="scroll-menu"
   role="menu"
   tabindex="-1"
 >
@@ -14,6 +15,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      data-test-id="menu-item-0"
       role="option"
       tabindex="-1"
     >
@@ -35,6 +37,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-1"
       role="option"
       tabindex="-1"
     >
@@ -56,6 +59,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-2"
       role="option"
       tabindex="-1"
     >
@@ -77,6 +81,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-3"
       role="option"
       tabindex="-1"
     >
@@ -98,6 +103,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-4"
       role="option"
       tabindex="-1"
     >
@@ -117,6 +123,74 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     </li>
   </div>
 </ul>
+`;
+
+exports[`Autocomplete dynamic behavior renders custom other options 1`] = `
+<div
+  data-testid="my-other-option"
+>
+  Other option!
+</div>
+`;
+
+exports[`Autocomplete dynamic behavior renders custom other options text and calls onOtherOptionSelect when selected 1`] = `
+<li
+  aria-disabled="false"
+  aria-selected="false"
+  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option PicassoAutocomplete-otherOption MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+  data-testid="other-option"
+  role="option"
+  tabindex="-1"
+>
+  <div
+    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+  >
+    <div
+      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+    >
+      <span
+        class="PicassoAutocomplete-stringContent"
+      >
+        <span
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-darkGrey MuiTypography-body1"
+        >
+          my option:
+        </span>
+        Other option!
+      </span>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`Autocomplete dynamic behavior renders other option with default text 1`] = `
+<li
+  aria-disabled="false"
+  aria-selected="false"
+  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option PicassoAutocomplete-otherOption MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+  data-testid="other-option"
+  role="option"
+  tabindex="-1"
+>
+  <div
+    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+  >
+    <div
+      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+    >
+      <span
+        class="PicassoAutocomplete-stringContent"
+      >
+        <span
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-darkGrey MuiTypography-body1"
+        >
+          Other option: 
+        </span>
+        Other option!
+      </span>
+    </div>
+  </div>
+</li>
 `;
 
 exports[`Autocomplete static behavior renders 1`] = `
@@ -140,12 +214,13 @@ exports[`Autocomplete static behavior renders 1`] = `
             aria-autocomplete="list"
             autocomplete="off"
             class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-            placeholder="Start typing here..."
+            data-testid="autocomplete"
             type="text"
             value=""
           />
           <div
             class="MuiInputAdornment-root PicassoInputAdornment-root PicassoOutlinedInput-resetButton MuiInputAdornment-positionEnd"
+            data-testid="reset-adornment"
           >
             <button
               class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
@@ -191,4 +266,265 @@ exports[`Autocomplete static behavior renders 1`] = `
     </div>
   </div>
 </div>
+`;
+
+exports[`Autocomplete static behavior renders custom display value 1`] = `
+<ul
+  class="MuiList-root Menu-root PicassoScrollMenu-menu"
+  data-testid="scroll-menu"
+  role="menu"
+  tabindex="-1"
+>
+  <div
+    class="PicassoScrollMenu-scrollView"
+    tabindex="0"
+  >
+    <li
+      aria-disabled="false"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      data-test-id="menu-item-0"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          >
+            BelarusBY
+          </span>
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-1"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          >
+            CroatiaHR
+          </span>
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-2"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          >
+            LithuaniaLU
+          </span>
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-3"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          >
+            SlovakiaSK
+          </span>
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-4"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          >
+            UkraineUA
+          </span>
+        </div>
+      </div>
+    </li>
+  </div>
+</ul>
+`;
+
+exports[`Autocomplete static behavior renders custom options with custom keys 1`] = `
+<ul
+  class="MuiList-root Menu-root PicassoScrollMenu-menu"
+  data-testid="scroll-menu"
+  role="menu"
+  tabindex="-1"
+>
+  <div
+    class="PicassoScrollMenu-scrollView"
+    tabindex="0"
+  >
+    <li
+      aria-disabled="false"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      data-test-id="menu-item-0"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            data-testid="custom-option"
+          >
+            BY
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-1"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            data-testid="custom-option"
+          >
+            HR
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-2"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            data-testid="custom-option"
+          >
+            LU
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-3"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            data-testid="custom-option"
+          >
+            SK
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-4"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            data-testid="custom-option"
+          >
+            UA
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>
+</ul>
+`;
+
+exports[`Autocomplete static behavior uses a custom popper container 1`] = `
+<input
+  aria-autocomplete="list"
+  autocomplete="off"
+  class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+  data-testid="autocomplete"
+  type="text"
+  value=""
+/>
 `;

@@ -10,20 +10,29 @@ import {
   useMemo
 } from 'react'
 
-import { Item, ChangedOptions } from './types'
+import { Item, ChangedOptions } from '../types'
 
 export const EMPTY_INPUT_VALUE = ''
+export const INITIAL_HIGHLIGHT_INDEX = 0
 
-const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
-  const { key, keyCode } = event
+export const normalizeInitialIndex = ({
+  initialIndex,
+  itemCount,
+  moveAmount
+}: {
+  initialIndex: number
+  itemCount: number
+  moveAmount: number
+}) => {
+  const outOfBounds = initialIndex < 0 || initialIndex >= itemCount
 
-  // compatibility for older browsers
-  // https://stackoverflow.com/questions/5597060/detecting-arrow-key-presses-in-javascript/9310900#comment91057577_44213036
-  if (keyCode >= 37 && keyCode <= 40 && key.indexOf('Arrow') !== 0) {
-    return `Arrow${key}`
+  if (outOfBounds) {
+    const lastIndex = itemCount - 1
+
+    return moveAmount > 0 ? -1 : lastIndex + 1
   }
 
-  return key
+  return initialIndex
 }
 
 /**
@@ -35,35 +44,34 @@ const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
  * @param {number} itemCount The total number of items.
  * @returns {number} The new index after the move.
  */
-const getNextWrappingIndex = (
+
+export const getNextWrappingIndex = (
   moveAmount: number,
-  initialIndex: number | null,
+  initialIndex: number,
   itemCount: number
 ) => {
-  const itemsLastIndex = itemCount - 1
+  const lastIndex = itemCount - 1
 
-  if (
-    typeof initialIndex !== 'number' ||
-    initialIndex < 0 ||
-    initialIndex >= itemCount
-  ) {
-    initialIndex = moveAmount > 0 ? -1 : itemsLastIndex + 1
-  }
+  const normalizedInitialIndex = normalizeInitialIndex({
+    initialIndex,
+    itemCount,
+    moveAmount
+  })
 
-  const newIndex = initialIndex + moveAmount
+  const newIndex = normalizedInitialIndex + moveAmount
 
   if (newIndex < 0) {
-    return itemsLastIndex
+    return lastIndex
   }
 
-  if (newIndex > itemsLastIndex) {
+  if (newIndex > lastIndex) {
     return 0
   }
 
   return newIndex
 }
 
-interface Props {
+export interface Props {
   value: string
   options?: Item[] | null
   onSelect?: (item: Item, event: MouseEvent | KeyboardEvent) => void
@@ -83,7 +91,7 @@ interface Props {
   showOtherOption?: boolean
 }
 
-const useAutocomplete = ({
+export const useAutocomplete = ({
   value,
   options = [],
   onChange = () => {},
@@ -97,12 +105,14 @@ const useAutocomplete = ({
   showOtherOption
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
-  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
+  const [highlightedIndex, setHighlightedIndex] = useState<number>(
+    INITIAL_HIGHLIGHT_INDEX
+  )
 
   const selectedIndex = useMemo(
     () =>
       value && Array.isArray(options)
-        ? options.findIndex(option => getDisplayValue!(option) === value)
+        ? options.findIndex(option => getDisplayValue(option) === value)
         : null,
     [getDisplayValue, options, value]
   )
@@ -115,7 +125,7 @@ const useAutocomplete = ({
     }
   }, [isOpen, selectedIndex])
 
-  const shouldShowOtherOption = showOtherOption && selectedIndex === -1
+  const shouldShowOtherOption = Boolean(showOtherOption) && selectedIndex === -1
 
   const handleChange = (newValue: string, isSelected = false) => {
     if (newValue !== value) {
@@ -201,13 +211,11 @@ const useAutocomplete = ({
     onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
       onKeyDown(event, value)
 
-      const key = normalizeArrowKey(event)
-
       const optionsCount = options?.length || 0
       const otherOptionsCount = shouldShowOtherOption ? 1 : 0
       const itemsCount = optionsCount + otherOptionsCount
 
-      if (key === 'ArrowUp') {
+      if (event.key === 'ArrowUp') {
         event.preventDefault()
 
         setOpen(true)
@@ -216,7 +224,7 @@ const useAutocomplete = ({
         )
       }
 
-      if (key === 'ArrowDown') {
+      if (event.key === 'ArrowDown') {
         event.preventDefault()
 
         setOpen(true)
@@ -225,7 +233,7 @@ const useAutocomplete = ({
         )
       }
 
-      if (key === 'Backspace') {
+      if (event.key === 'Backspace') {
         if (value !== EMPTY_INPUT_VALUE) {
           return
         }
@@ -234,7 +242,7 @@ const useAutocomplete = ({
         handleChange(getDisplayValue(null))
       }
 
-      if (key === 'Enter') {
+      if (event.key === 'Enter') {
         event.preventDefault()
 
         if (!isOpen) {
@@ -262,7 +270,7 @@ const useAutocomplete = ({
         }
       }
 
-      if (key === 'Escape') {
+      if (event.key === 'Escape') {
         event.preventDefault()
 
         setOpen(false)
@@ -289,5 +297,3 @@ const useAutocomplete = ({
     shouldShowOtherOption
   }
 }
-
-export default useAutocomplete

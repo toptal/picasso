@@ -1,7 +1,12 @@
 import React, { useState, useCallback } from 'react'
 import { mount } from '@cypress/react'
 import debounce from 'debounce'
-import { Autocomplete } from '@toptal/picasso'
+import {
+  Autocomplete,
+  AutocompleteProps,
+  Globe16,
+  Check16
+} from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { isSubstring } from '@toptal/picasso/utils'
 
@@ -110,7 +115,200 @@ const openAutocompleteWithTab = () => {
   cy.get('body').tab()
 }
 
+const TestAutocomplete = (props: Partial<AutocompleteProps>) => (
+  <Autocomplete
+    data-testid='autocomplete'
+    value=''
+    options={OPTIONS}
+    {...props}
+  />
+)
+
 describe('Autocomplete', () => {
+  it('renders', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete />
+      </TestingPicasso>
+    )
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders a list of options when clicked', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete />
+      </TestingPicasso>
+    )
+
+    cy.get('[data-testid=autocomplete]').click()
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders a list of options with descriptions when clicked', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete
+          options={[
+            { text: 'Belarus', description: 'Population: 9.5M' },
+            { text: 'Croatia', description: 'Population: 4M' },
+            { text: 'Lithuania', description: 'Population: 3M' },
+            { text: 'Slovakia', description: 'Population: 5.5M' },
+            { text: 'Ukraine', description: 'Population: 42M' }
+          ]}
+        />
+      </TestingPicasso>
+    )
+
+    cy.get('[data-testid=autocomplete]').click()
+
+    cy.get('body').happoScreenshot()
+  })
+  it('renders a reset button', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete enableReset value='Croatia' />
+      </TestingPicasso>
+    )
+
+    // Cypress does not go well with :hover CSS selectors
+    // It can fire mouse events via JS, but can't simulate browser cursor behaviour
+    // To fix this issue we're using a force method to show the button so the screenshot is correct
+    cy.get('[data-testid="reset-adornment"]').invoke(
+      'attr',
+      'style',
+      'visibility: visible'
+    )
+
+    cy.get('body').happoScreenshot()
+  })
+  it('renders a placeholder', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete placeholder='Start a country...' />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders the selected value even if a placeholder is specified', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete value='Croatia' />
+        <TestAutocomplete value='Croatia' placeholder='Start a country...' />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders start and end adornments', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete startAdornment={<Globe16 />} />
+        <TestAutocomplete endAdornment={<Globe16 />} />
+        <TestAutocomplete
+          startAdornment={<Globe16 />}
+          endAdornment={<Globe16 />}
+        />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders an icon unless a start adornment is specified', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete icon={<Check16 />} />
+        <TestAutocomplete icon={<Check16 />} startAdornment={<Globe16 />} />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders loading, error and disabled states', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete error />
+        <TestAutocomplete loading />
+        <TestAutocomplete disabled />
+        <TestAutocomplete value='Croatia' error />
+        <TestAutocomplete value='Croatia' loading />
+        <TestAutocomplete value='Croatia' disabled />
+      </TestingPicasso>
+    )
+
+    // Wait for loading spinner to start animation
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(100)
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders in different widths', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete width='auto' />
+        <TestAutocomplete width='full' />
+        <TestAutocomplete width='shrink' />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders in different menu widths', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete menuWidth='200px' />
+      </TestingPicasso>
+    )
+
+    cy.get('[data-testid=autocomplete]').click()
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders other option', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete showOtherOption options={[]} value='picasso' />
+      </TestingPicasso>
+    )
+
+    cy.get('[data-testid=autocomplete]').click()
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders no options text', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete
+          showOtherOption
+          options={[]}
+          noOptionsText='Nothing found'
+        />
+      </TestingPicasso>
+    )
+
+    cy.get('[data-testid=autocomplete]').click()
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders powered by google', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete poweredByGoogle options={[{ text: 'Belarus' }]} />
+      </TestingPicasso>
+    )
+
+    cy.get('[data-testid=autocomplete]').click()
+
+    cy.get('body').happoScreenshot()
+  })
+
   it('focuses Autocomplete with dynamic options should NOT open options list', () => {
     mount(<DynamicOptionsAutocompleteExample />)
 

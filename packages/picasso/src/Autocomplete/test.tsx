@@ -1,6 +1,8 @@
+/* eslint-disable max-lines */
+/* eslint-disable max-lines-per-function */
 import React from 'react'
 import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import { generateRandomString, OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import Autocomplete, { Props } from './Autocomplete'
@@ -15,29 +17,36 @@ const testOptions = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
+const testIds = {
+  menuItem: 'menu-item',
+  scrollMenu: 'scroll-menu',
+  otherOption: 'other-option',
+  noOptions: 'no-options'
+}
+
 const renderAutocomplete = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
-) => {
-  return render(<Autocomplete {...props} />, undefined, picassoConfig)
-}
+) =>
+  render(
+    <Autocomplete data-testid='autocomplete' testIds={testIds} {...props} />,
+    undefined,
+    picassoConfig
+  )
 
 let spiedOnTitleCase: jest.SpyInstance
 
-beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-})
-afterEach(() => {
-  spiedOnTitleCase.mockReset()
-})
-
-const placeholder = 'Placeholder text'
-
 describe('Autocomplete', () => {
+  beforeEach(() => {
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+  })
+
+  afterEach(() => {
+    spiedOnTitleCase.mockReset()
+  })
   describe('static behavior', () => {
     it('renders', () => {
       const { container } = renderAutocomplete({
-        placeholder: 'Start typing here...',
         options: testOptions,
         value: ''
       })
@@ -45,51 +54,238 @@ describe('Autocomplete', () => {
       expect(container).toMatchSnapshot()
     })
 
-    it('render option text when passed `value` prop', () => {
-      const { getByPlaceholderText } = renderAutocomplete({
-        placeholder,
+    it('renders a placeholder', () => {
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        placeholder: 'test'
+      })
+
+      const input = getByTestId('autocomplete') as HTMLInputElement
+
+      expect(input.placeholder).toEqual('test')
+    })
+
+    it('renders a loading indicator', () => {
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        loading: true
+      })
+
+      expect(getByTestId('loading-adornment')).not.toBeNull()
+    })
+
+    it('renders custom adornments', () => {
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        startAdornment: <div data-testid='start-adornment' />,
+        endAdornment: <div data-testid='end-adornment' />
+      })
+
+      expect(getByTestId('start-adornment')).not.toBeNull()
+      expect(getByTestId('end-adornment')).not.toBeNull()
+    })
+
+    it('renders an icon', () => {
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        icon: <div data-testid='icon' />
+      })
+
+      expect(getByTestId('icon')).not.toBeNull()
+    })
+
+    it('uses custom menu keys', () => {
+      const getKey = jest.fn(({ value }) => value)
+
+      renderAutocomplete({
+        options: testOptions,
+        value: '',
+        getKey
+      })
+
+      expect(getKey).toHaveBeenCalledTimes(testOptions.length)
+    })
+
+    it('renders a value that exists in options', () => {
+      const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: 'Ukraine'
       })
 
-      const input = getByPlaceholderText(placeholder) as HTMLInputElement
+      const input = getByTestId('autocomplete') as HTMLInputElement
 
       expect(input.value).toEqual('Ukraine')
+    })
+
+    it('with custom input component', async () => {
+      const { getByTestId } = renderAutocomplete({
+        value: '',
+        // eslint-disable-next-line react/display-name
+        inputComponent: () => <input data-testid='custom-input' />
+      })
+
+      const input = getByTestId('custom-input')
+
+      expect(input).not.toBeNull()
+    })
+
+    it('shows default no options text when no options are available', () => {
+      const { getByTestId, getByText } = renderAutocomplete({
+        value: 'Picasso'
+      })
+
+      const input = getByTestId('autocomplete')
+
+      fireEvent.focus(input)
+      fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
+
+      expect(getByText('No options')).not.toBeNull()
+      expect(getByTestId(testIds.noOptions)).not.toBeNull()
+    })
+
+    it('shows custom no options text when no options are available', () => {
+      const noOptionsText = 'my no options text'
+      const { getByText, getByTestId } = renderAutocomplete({
+        noOptionsText,
+        value: ''
+      })
+
+      const input = getByTestId('autocomplete')
+
+      fireEvent.focus(input)
+      fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
+
+      expect(getByText(noOptionsText)).not.toBeNull()
+      expect(getByTestId(testIds.noOptions)).not.toBeNull()
+    })
+
+    it('renders custom options with custom keys', async () => {
+      const getDisplayValue = jest.fn()
+      const renderOption = jest.fn(item => (
+        <div data-testid='custom-option'>{item.value}</div>
+      ))
+
+      const { getAllByTestId, getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        renderOption,
+        getDisplayValue,
+        getKey: () => generateRandomString()
+      })
+      const input = getByTestId('autocomplete')
+
+      fireEvent.click(input)
+
+      // TODO: figure out why renderOption is called twice
+      expect(renderOption).toHaveBeenCalledTimes(10)
+      expect(getAllByTestId('custom-option')).toHaveLength(5)
+      expect(getDisplayValue).not.toHaveBeenCalled()
+      expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
+    })
+
+    it('renders custom display value', async () => {
+      const getDisplayValue = jest.fn(({ text, value }) => text + value)
+
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        getDisplayValue
+      })
+      const input = getByTestId('autocomplete')
+
+      fireEvent.click(input)
+
+      // TODO: figure out why its being called 20 times
+      expect(getDisplayValue).toHaveBeenCalledTimes(20)
+      expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
+    })
+
+    it('does not render a custom display value if a custom options is rendered', async () => {
+      const getDisplayValue = jest.fn()
+      const renderOption = jest.fn()
+
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        renderOption,
+        getDisplayValue,
+        getKey: () => generateRandomString()
+      })
+      const input = getByTestId('autocomplete')
+
+      fireEvent.click(input)
+
+      expect(renderOption).toHaveBeenCalledTimes(10)
+      expect(getDisplayValue).not.toHaveBeenCalled()
+    })
+
+    it('should not transform options text to title case when Picasso titleCase property is true', () => {
+      const { getByTestId } = renderAutocomplete(
+        {
+          options: testOptions,
+          value: ''
+        },
+        {
+          titleCase: true
+        }
+      )
+
+      const input = getByTestId('autocomplete')
+
+      fireEvent.focus(input)
+
+      expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
+    })
+
+    it('uses a custom popper container', () => {
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        popperContainer: (<div />) as any
+      })
+
+      const input = getByTestId('autocomplete')
+
+      fireEvent.focus(input)
+
+      expect(input).toMatchSnapshot()
     })
   })
 
   describe('dynamic behavior', () => {
     it('on focus', () => {
       const onFocus = jest.fn()
-      const { getByPlaceholderText, queryByRole } = renderAutocomplete({
-        placeholder,
+      const { getByTestId, queryByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
         onFocus
       })
 
-      const input = getByPlaceholderText(placeholder) as HTMLInputElement
+      const input = getByTestId('autocomplete')
 
       fireEvent.focus(input)
 
       // calls onFocus handler
       expect(onFocus).toHaveBeenCalledTimes(1)
-      expect(queryByRole('menu')).not.toBeInTheDocument()
+      expect(queryByTestId('scroll-menu')).toBeNull()
 
       fireEvent.click(input)
-      expect(queryByRole('menu')).toMatchSnapshot()
+      expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
     })
 
-    it('on type', () => {
+    it('on change', () => {
       const onChange = jest.fn()
-      const { getByPlaceholderText } = renderAutocomplete({
+      const { getByTestId } = renderAutocomplete({
         options: testOptions,
-        placeholder,
         value: '',
         onChange
       })
 
-      const input = getByPlaceholderText(placeholder) as HTMLInputElement
+      const input = getByTestId('autocomplete')
 
       fireEvent.focus(input)
       fireEvent.change(input, { target: { value: 't' } })
@@ -97,18 +293,36 @@ describe('Autocomplete', () => {
       expect(onChange).toHaveBeenCalledWith('t', { isSelected: false })
     })
 
+    it('on blur', () => {
+      const onBlur = jest.fn()
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: '',
+        onBlur
+      })
+
+      const input = getByTestId('autocomplete')
+
+      expect(onBlur).toHaveBeenCalledTimes(0)
+
+      fireEvent.focus(input)
+
+      fireEvent.blur(input)
+
+      expect(onBlur).toHaveBeenCalledTimes(1)
+    })
+
     it('on select option', () => {
       const onSelect = jest.fn()
       const onChange = jest.fn()
-      const { getByText, getByPlaceholderText } = renderAutocomplete({
+      const { getByText, getByTestId } = renderAutocomplete({
         options: testOptions,
-        placeholder,
         value: '',
         onSelect,
         onChange
       })
 
-      const input = getByPlaceholderText(placeholder) as HTMLInputElement
+      const input = getByTestId('autocomplete')
 
       fireEvent.click(input)
 
@@ -123,15 +337,16 @@ describe('Autocomplete', () => {
     })
 
     it('on "Esc" key pressed', async () => {
+      const onKeyDown = jest.fn()
       const onChange = jest.fn()
-      const { getByPlaceholderText } = renderAutocomplete({
-        placeholder,
+      const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: 'Croatia',
-        onChange
+        onChange,
+        onKeyDown
       })
 
-      const input = getByPlaceholderText(placeholder) as HTMLInputElement
+      const input = getByTestId('autocomplete')
 
       fireEvent.focus(input)
       fireEvent.keyDown(input, {
@@ -140,23 +355,28 @@ describe('Autocomplete', () => {
 
       // text should be tried to be cleared
       expect(onChange).toHaveBeenCalledWith('', { isSelected: false })
+      expect(onKeyDown).toHaveBeenCalledTimes(1)
     })
 
     it('On "Backspace" key pressed with empty text', async () => {
-      const { getByPlaceholderText, queryByRole } = renderAutocomplete({
-        placeholder,
+      const onKeyDown = jest.fn()
+
+      const { getByTestId, queryByTestId } = renderAutocomplete({
         options: testOptions,
-        value: ''
+        value: '',
+        onKeyDown
       })
 
-      const input = getByPlaceholderText(placeholder) as HTMLInputElement
+      const input = getByTestId('autocomplete') as HTMLInputElement
 
       fireEvent.focus(input)
       fireEvent.keyDown(input, {
         key: 'Backspace'
       })
 
-      const menu = queryByRole('menu')
+      expect(onKeyDown).toHaveBeenCalledTimes(1)
+
+      const menu = queryByTestId('scroll-menu')
       // should hide the options list
 
       expect(menu).toBeNull()
@@ -164,13 +384,15 @@ describe('Autocomplete', () => {
 
     describe('on "arrow up/down" key press', () => {
       it('press down', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete({
-          placeholder,
+        const onKeyDown = jest.fn()
+
+        const { getByText, getByTestId } = renderAutocomplete({
           options: testOptions,
-          value: ''
+          value: '',
+          onKeyDown
         })
 
-        const input = getByPlaceholderText(placeholder) as HTMLInputElement
+        const input = getByTestId('autocomplete') as HTMLInputElement
 
         fireEvent.click(input)
 
@@ -184,6 +406,7 @@ describe('Autocomplete', () => {
           key: 'ArrowDown'
         })
 
+        expect(onKeyDown).toHaveBeenCalledTimes(1)
         expect(
           getByText('Croatia')
             .closest('li')
@@ -192,13 +415,15 @@ describe('Autocomplete', () => {
       })
 
       it('press up', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete({
-          placeholder,
+        const onKeyDown = jest.fn()
+
+        const { getByText, getByTestId } = renderAutocomplete({
           options: testOptions,
-          value: ''
+          value: '',
+          onKeyDown
         })
 
-        const input = getByPlaceholderText(placeholder) as HTMLInputElement
+        const input = getByTestId('autocomplete') as HTMLInputElement
 
         fireEvent.focus(input)
 
@@ -206,148 +431,124 @@ describe('Autocomplete', () => {
           key: 'ArrowUp'
         })
 
+        expect(onKeyDown).toHaveBeenCalledTimes(1)
         expect(
           getByText('Ukraine')
             .closest('li')
             ?.getAttribute('aria-selected')
         ).toBe('true')
       })
-
-      it('when entered other option and press Enter then onOtherOptionSelect is called', () => {
-        const onOtherOptionSelect = jest.fn()
-        const { getByPlaceholderText } = renderAutocomplete({
-          placeholder,
-          options: [], // simulate situation when no option matches the input
-          value: 'Other option!',
-          onOtherOptionSelect
-        })
-
-        const input = getByPlaceholderText(placeholder) as HTMLInputElement
-
-        fireEvent.focus(input)
-        fireEvent.keyDown(input, { key: 'ArrowDown', code: 'ArrowDown' })
-
-        fireEvent.keyDown(input, {
-          key: 'Enter'
-        })
-
-        expect(onOtherOptionSelect).toHaveBeenCalledWith(
-          'Other option!',
-          expect.anything()
-        )
-      })
     })
-  })
-
-  it('with "inputComponent" prop', async () => {
-    const { getByPlaceholderText } = renderAutocomplete({
-      // eslint-disable-next-line react/display-name
-      inputComponent: () => <input placeholder='myCustomInputComponent' />,
-      value: ''
-    })
-
-    const input = getByPlaceholderText('myCustomInputComponent')
-
-    expect(input).not.toBeNull()
-  })
-
-  it('with "noOptionsText" prop', async () => {
-    const noOptionsText = 'my no options text'
-    const { getByText, getByPlaceholderText } = renderAutocomplete({
-      placeholder,
-      noOptionsText,
-      value: 'non existing option'
-    })
-
-    const input = getByPlaceholderText(placeholder) as HTMLInputElement
-
-    fireEvent.focus(input)
-    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
-
-    expect(getByText(noOptionsText)).not.toBeNull()
-  })
-
-  it('when "options" prop is null, no options are shown on focus', () => {
-    const PLACEHOLDER_TEXT = 'Start typing here...'
-    const NO_OPTIONS_TEXT = 'No options'
-
-    const { getByPlaceholderText, queryByText } = renderAutocomplete({
-      placeholder: PLACEHOLDER_TEXT,
-      noOptionsText: NO_OPTIONS_TEXT,
-      value: '',
-      options: null
-    })
-
-    const input = getByPlaceholderText(PLACEHOLDER_TEXT)
-
-    fireEvent.focus(input)
-    expect(queryByText(NO_OPTIONS_TEXT)).toBeNull()
-  })
-
-  it('renders options customly', async () => {
-    const api = renderAutocomplete({
-      placeholder: 'Start typing here...',
-      options: testOptions,
-      value: '',
-      // eslint-disable-next-line react/display-name
-      renderOption: () => <div>Custom renderer</div>
-    })
-    const input = api.getByPlaceholderText('Start typing here...')
-
-    fireEvent.click(input)
-    expect(api.baseElement.textContent).toContain('Custom renderer')
-  })
-
-  it('should not transform options text to title case when Picasso titleCase property is true', () => {
-    const placeholder = 'Choose an option...'
-    const { getByPlaceholderText } = renderAutocomplete(
-      {
+    it('renders other option with default text', async () => {
+      const value = 'Other option!'
+      const { getByTestId, getByText } = renderAutocomplete({
         options: testOptions,
-        value: '',
-        placeholder
-      },
-      {
-        titleCase: true
-      }
-    )
+        value: value,
+        showOtherOption: true
+      })
+      const input = getByTestId('autocomplete')
 
-    const input = getByPlaceholderText(placeholder)
+      fireEvent.focus(input)
 
-    fireEvent.focus(input)
+      fireEvent.keyDown(input, {
+        key: 'Enter'
+      })
 
-    expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
+      expect(getByText('Other option:')).not.toBeNull()
+      expect(getByTestId(testIds.otherOption)).toMatchSnapshot()
+    })
+
+    it('renders custom other options text and calls onOtherOptionSelect when selected', () => {
+      const onOtherOptionSelect = jest.fn()
+      const { getByTestId, getByText } = renderAutocomplete({
+        options: testOptions,
+        value: 'Other option!',
+        showOtherOption: true,
+        otherOptionText: 'my option:',
+        onOtherOptionSelect
+      })
+
+      const input = getByTestId('autocomplete') as HTMLInputElement
+
+      fireEvent.focus(input)
+
+      fireEvent.keyDown(input, {
+        key: 'Enter'
+      })
+
+      expect(getByText('my option:')).not.toBeNull()
+
+      const otherOption = getByTestId(testIds.otherOption)
+
+      expect(otherOption).toMatchSnapshot()
+
+      fireEvent.click(otherOption)
+
+      expect(onOtherOptionSelect).toHaveBeenCalledWith(
+        'Other option!',
+        expect.anything()
+      )
+    })
+
+    it('renders custom other options', () => {
+      const renderOtherOption = jest.fn(
+        (value: string): JSX.Element => (
+          <div data-testid='my-other-option'>{value}</div>
+        )
+      )
+
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: 'Other option!',
+        showOtherOption: true,
+        renderOtherOption: renderOtherOption
+      })
+
+      const input = getByTestId('autocomplete') as HTMLInputElement
+
+      fireEvent.focus(input)
+
+      fireEvent.keyDown(input, {
+        key: 'Enter'
+      })
+
+      expect(renderOtherOption).toHaveBeenCalledTimes(1)
+      expect(renderOtherOption).toHaveBeenCalledWith('Other option!')
+
+      const myOtherOption = getByTestId('my-other-option')
+
+      expect(myOtherOption).not.toBeNull()
+      expect(myOtherOption).toMatchSnapshot()
+    })
   })
 
   describe('Autofill', () => {
     it('when autoComplete value is not passed and autofill is not enabled', () => {
-      const { getByPlaceholderText } = renderAutocomplete({
-        placeholder: 'Start typing here...',
+      const { getByTestId } = renderAutocomplete({
         value: ''
       })
-      const input = getByPlaceholderText('Start typing here...')
+      const input = getByTestId('autocomplete')
 
       expect(input.getAttribute('autocomplete')).toBe('off')
     })
 
     it('when autoComplete value is not passed and autofill is enabled', () => {
-      const { getByPlaceholderText } = renderAutocomplete({
-        placeholder: 'Start typing here...',
+      const { getByTestId } = renderAutocomplete({
         value: '',
         enableAutofill: true
       })
-      const input = getByPlaceholderText('Start typing here...')
+      const input = getByTestId('autocomplete')
 
       // disabled because of default value in Input
       expect(input.getAttribute('autocomplete')).toBe('none')
     })
 
     it('when autoComplete value is passed and autofill is not enabled', () => {
-      const { getByPlaceholderText } = renderAutocomplete({
-        placeholder: 'Start typing here...',
+      const { getByTestId } = renderAutocomplete({
         value: '',
         autoComplete: 'country-name'
       })
-      const input = getByPlaceholderText('Start typing here...')
+      const input = getByTestId('autocomplete')
 
       // user should be able to override autocomplete value if needed
       // even when autoComplete itself is not enabled
@@ -355,13 +556,12 @@ describe('Autocomplete', () => {
     })
 
     it('when autoComplete value is passed and autofill is enabled', () => {
-      const { getByPlaceholderText } = renderAutocomplete({
-        placeholder: 'Start typing here...',
+      const { getByTestId } = renderAutocomplete({
         value: '',
         enableAutofill: true,
         autoComplete: 'country-name'
       })
-      const input = getByPlaceholderText('Start typing here...')
+      const input = getByTestId('autocomplete')
 
       expect(input.getAttribute('autocomplete')).toBe('country-name')
     })
@@ -370,17 +570,16 @@ describe('Autocomplete', () => {
   describe('reset behavior', () => {
     it('when reset button clicked', () => {
       const {
+        getByTestId,
         getByRole,
         getByText,
-        getByPlaceholderText,
         queryByText
       } = renderAutocomplete({
         options: testOptions,
-        placeholder,
         value: ''
       })
 
-      const input = getByPlaceholderText(placeholder) as HTMLInputElement
+      const input = getByTestId('autocomplete')
 
       fireEvent.click(input)
       fireEvent.click(getByText('Slovakia'))

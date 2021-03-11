@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 
 import React, {
@@ -20,14 +21,18 @@ import Menu from '../Menu'
 import Container from '../Container'
 import Loader from '../Loader'
 import ScrollMenu from '../ScrollMenu'
-import Typography from '../Typography'
 import Popper from '../Popper'
 import InputAdornment from '../InputAdornment'
 import PoweredByGoogle from './PoweredByGoogle'
+import NoOptionsMenuItem from './NoOptionsMenuItem'
+import OtherOptionMenuItem from './OtherOptionMenuItem'
 import { Item, ChangedOptions } from './types'
-import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
+import { useAutocomplete, EMPTY_INPUT_VALUE } from './use-autocomplete'
 import styles from './styles'
 import { BaseInputProps } from '../OutlinedInput'
+
+const DEFAULT_NO_OPTIONS_TEXT = 'No options'
+const DEFAULT_OTHER_OPTION_TEXT = 'Other option: '
 
 export interface Props
   extends BaseProps,
@@ -98,9 +103,15 @@ export interface Props
   inputProps?: BaseInputProps
   /** Show the "Powered By Google" label */
   poweredByGoogle?: boolean
+  testIds?: {
+    menuItem?: string
+    scrollMenu?: string
+    otherOption?: string
+    noOptions?: string
+  }
 }
 
-const useStyles = makeStyles<Theme>(styles, {
+export const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAutocomplete'
 })
 
@@ -110,37 +121,38 @@ const getItemText = (item: Item | null) =>
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(props, ref) {
     const {
-      className,
-      onChange,
-      value,
-      onSelect,
-      onOtherOptionSelect,
-      loading,
-      placeholder,
-      otherOptionText,
-      renderOtherOption,
-      noOptionsText,
-      options,
-      getDisplayValue,
-      style,
-      menuWidth,
-      width,
-      showOtherOption,
-      onKeyDown,
-      onFocus,
-      onBlur,
-      inputComponent,
-      renderOption,
-      endAdornment,
-      icon,
-      error,
-      enableAutofill,
       autoComplete,
-      popperContainer,
-      getKey: customGetKey,
+      className,
+      enableAutofill,
       enableReset,
+      endAdornment,
+      error,
+      getDisplayValue = getItemText,
+      getKey: customGetKey,
+      icon,
+      inputComponent,
+      loading,
+      menuWidth,
       name,
+      noOptionsText = DEFAULT_NO_OPTIONS_TEXT,
+      onBlur,
+      onChange,
+      onFocus,
+      onKeyDown,
+      onOtherOptionSelect,
+      onSelect,
+      options,
+      otherOptionText = DEFAULT_OTHER_OPTION_TEXT,
+      placeholder,
+      popperContainer,
       poweredByGoogle,
+      renderOption,
+      renderOtherOption,
+      showOtherOption,
+      style,
+      testIds,
+      value,
+      width = 'auto',
       ...rest
     } = props
     const classes = useStyles()
@@ -150,7 +162,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         return customGetKey(item)
       }
 
-      const displayValue = getDisplayValue!(item)
+      const displayValue = getDisplayValue(item)
 
       if (!displayValue) {
         console.error(
@@ -171,7 +183,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     } = useAutocomplete({
       value,
       options,
-      getDisplayValue: getDisplayValue!,
+      getDisplayValue,
       onSelect,
       onOtherOptionSelect,
       onChange,
@@ -182,12 +194,16 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       showOtherOption
     })
 
-    const optionsLength = options ? options!.length : 0
+    const optionsLength = options ? options.length : 0
 
     const optionsMenu = options && (
-      <ScrollMenu selectedIndex={highlightedIndex}>
-        {options!.map((option, index) => (
+      <ScrollMenu
+        data-testid={testIds?.scrollMenu}
+        selectedIndex={highlightedIndex}
+      >
+        {options?.map((option, index) => (
           <Menu.Item
+            data-test-id={`${testIds?.menuItem}-${index}`}
             size='medium'
             key={getKey(option)}
             {...getItemProps(index, option)}
@@ -197,48 +213,34 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           >
             {renderOption
               ? renderOption(option, index)
-              : getDisplayValue!(option)}
+              : getDisplayValue(option)}
           </Menu.Item>
         ))}
-
         {shouldShowOtherOption && (
-          <Menu.Item
-            size='medium'
-            key='other-option'
-            className={`${classes.option} ${classes.otherOption}`}
+          <OtherOptionMenuItem
+            data-testid={testIds?.otherOption}
+            value={value}
+            renderOtherOption={renderOtherOption}
+            otherOptionText={otherOptionText}
             {...getOtherItemProps(optionsLength, value)}
-            titleCase={false}
-          >
-            {renderOtherOption ? (
-              renderOtherOption(value)
-            ) : (
-              <span className={classes.stringContent}>
-                <Typography as='span' color='dark-grey'>
-                  {otherOptionText}
-                </Typography>
-                {value}
-              </span>
-            )}
-          </Menu.Item>
+          />
         )}
-
         {!optionsLength && !shouldShowOtherOption && (
-          <Menu.Item size='medium' titleCase={false} disabled>
+          <NoOptionsMenuItem data-testid={testIds?.noOptions}>
             {noOptionsText}
-          </Menu.Item>
+          </NoOptionsMenuItem>
         )}
-
-        {optionsLength > 0 && poweredByGoogle && (
-          <Container flex justifyContent='flex-end' padded='xsmall'>
-            <PoweredByGoogle />
-          </Container>
-        )}
+        {optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />}
       </ScrollMenu>
     )
 
     const InputComponent = inputComponent || Input
     const loadingComponent = (
-      <InputAdornment position='end' disablePointerEvents>
+      <InputAdornment
+        data-testid='loading-adornment'
+        position='end'
+        disablePointerEvents
+      >
         <Loader size='small' />
       </InputAdornment>
     )
@@ -250,7 +252,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         className={cx(
           classes.root,
           className,
-          classes[`root${capitalize(width!)}` as 'rootAuto']
+          classes[`root${capitalize(width)}` as 'rootAuto']
         )}
         style={style}
         role='combobox'
@@ -300,7 +302,7 @@ Autocomplete.defaultProps = {
   enableAutofill: false,
   getDisplayValue: getItemText,
   loading: false,
-  noOptionsText: 'No options',
+  noOptionsText: DEFAULT_NO_OPTIONS_TEXT,
   onChange: () => {},
   onKeyDown: () => {},
   onFocus: () => {},
@@ -308,7 +310,7 @@ Autocomplete.defaultProps = {
   onOtherOptionSelect: () => {},
   onSelect: () => {},
   options: [],
-  otherOptionText: 'Other option: ',
+  otherOptionText: DEFAULT_OTHER_OPTION_TEXT,
   showOtherOption: false,
   width: 'auto',
   enableReset: true,
