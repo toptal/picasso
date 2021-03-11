@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso@6.0.1...@toptal/picasso@6.0.2) (2021-03-11)
+
+
+### Bug Fixes
+
+* **ButtonAction:** make button transparent ([#1964](https://github.com/toptal/picasso/issues/1964)) ([9a30c7b](https://github.com/toptal/picasso/commit/9a30c7b646c5e1971601c5203bb824731f7a26fc))
+
+
+
+
+
 ## [6.0.1](https://github.com/toptal/picasso/compare/@toptal/picasso@6.0.0...@toptal/picasso@6.0.1) (2021-03-09)
 
 
