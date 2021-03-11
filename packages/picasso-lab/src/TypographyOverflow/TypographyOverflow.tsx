@@ -35,6 +35,7 @@ export const TypographyOverflow = (props: Props) => {
     tooltipDelay,
     tooltipVariant,
     disableTooltip,
+    className,
     ...rest
   } = props
 
@@ -65,7 +66,8 @@ export const TypographyOverflow = (props: Props) => {
         {...rest}
         className={cx(
           classes.wrapper,
-          multiline ? classes.multiLine : classes.singleLine
+          multiline ? classes.multiLine : classes.singleLine,
+          className
         )}
       >
         {children}
