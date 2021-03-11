@@ -65,28 +65,6 @@ pipeline {
       } //steps
     } //stage
 
-    stage('Danger checks') {
-      when {
-        expression {
-          ghprbMatchesComment(/danger|all/)
-        }
-      }
-      steps {
-        script {
-          sh """
-            docker run --rm \
-            -e JENKINS_URL \
-            -e ghprbPullId \
-            -e ghprbGhRepository \
-            -e BUILD_URL \
-            -e DANGER_GITHUB_API_TOKEN \
-            gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
-            yarn davinci ci danger --conventionalCommits
-          """
-        }
-      } //steps
-    } //stage
-
     stage('Deploy documentation') {
       when {
         expression {
