@@ -6,21 +6,23 @@ exports[`Loader props combo 1`] = `
     class="PicassoLoader-root PicassoLoader-inline"
   >
     <div
-      class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+      aria-valuenow="0"
+      class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-static"
       role="progressbar"
-      style="width: 64px; height: 64px;"
+      style="width: 64px; height: 64px; transform: rotate(-90deg);"
     >
       <svg
         class="MuiCircularProgress-svg"
         viewBox="22 22 44 44"
       >
         <circle
-          class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+          class="MuiCircularProgress-circle MuiCircularProgress-circleStatic"
           cx="44"
           cy="44"
           fill="none"
           r="20.2"
           stroke-width="3.6"
+          style="stroke-dasharray: 126.920; stroke-dashoffset: 126.920px;"
         />
       </svg>
     </div>

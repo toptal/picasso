@@ -268,6 +268,39 @@ exports[`Autocomplete static behavior renders 1`] = `
 </div>
 `;
 
+exports[`Autocomplete static behavior renders a loading indicator 1`] = `
+<div
+  class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  data-testid="loading-adornment"
+>
+  <div
+    class="PicassoLoader-root"
+  >
+    <div
+      aria-valuenow="0"
+      class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-static"
+      role="progressbar"
+      style="width: 16px; height: 16px; transform: rotate(-90deg);"
+    >
+      <svg
+        class="MuiCircularProgress-svg"
+        viewBox="22 22 44 44"
+      >
+        <circle
+          class="MuiCircularProgress-circle MuiCircularProgress-circleStatic"
+          cx="44"
+          cy="44"
+          fill="none"
+          r="20.2"
+          stroke-width="3.6"
+          style="stroke-dasharray: 126.920; stroke-dashoffset: 126.920px;"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Autocomplete static behavior renders custom display value 1`] = `
 <ul
   class="MuiList-root Menu-root PicassoScrollMenu-menu"
