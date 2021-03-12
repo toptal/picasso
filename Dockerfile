@@ -9,9 +9,6 @@ ENV GIT_SHA ${GIT_SHA}
 ARG APK_BRANCH=3.10
 ENV APK_BRANCH ${APK_BRANCH}
 
-# Lerna uses GH_TOKEN name https://github.com/lerna/lerna/blob/main/commands/version/README.md#--create-release-type
-ENV GH_TOKEN ${GITHUB_TOKEN}
-
 ENV PATH="${PATH}:/app/node_modules/.bin"
 
 # TODO replace with puppeteer-core
