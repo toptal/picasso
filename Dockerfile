@@ -12,16 +12,14 @@ ENV APK_BRANCH ${APK_BRANCH}
 ENV PATH="${PATH}:/app/node_modules/.bin"
 
 # TODO replace with puppeteer-core
-ARG PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD ${PUPPETEER_SKIP_CHROMIUM_DOWNLOAD}
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 # Installs Chromium (77) package.
 ENV CHROME_BIN /usr/bin/chromium-browser
 
 RUN echo $APK_BRANCH
-RUN echo http://nl.alpinelinux.org/alpine/v$APK_BRANCH/community > /etc/apk/repositories
-RUN echo http://nl.alpinelinux.org/alpine/v$APK_BRANCH/main >> /etc/apk/repositories
-RUN apk --no-cache add \
+RUN printf "http://nl.alpinelinux.org/alpine/v$APK_BRANCH/%s\n" community main > /etc/apk/repositories && \
+  apk add --no-cache \
   harfbuzz \
   nss \
   git \
