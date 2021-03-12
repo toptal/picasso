@@ -30,14 +30,22 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLoader' })
 
+const calcVariant = (value?: number) => {
+  if (process.env.NODE_ENV === 'test' || value) {
+    return 'static'
+  }
+
+  return 'indeterminate'
+}
+
 export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
   props,
   ref
 ) {
   const {
     children,
-    size,
-    inline,
+    size = 'medium',
+    inline = false,
     className,
     value,
     variant = 'blue',
@@ -56,11 +64,11 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
     >
       <CircularProgress
         classes={{
-          root: classes[`spinner${capitalize(variant!)}`]
+          root: classes[`spinner${capitalize(variant)}`]
         }}
-        size={SIZES[size!]}
+        size={SIZES[size]}
         value={value}
-        variant={value ? 'static' : 'indeterminate'}
+        variant={calcVariant(value)}
       />
 
       {children && <div className={classes.label}>{children}</div>}
