@@ -96,7 +96,8 @@ pipeline {
           // - need to make semantic-release to think
           //   that we are running it inside CI environment
           //
-          // -e GITHUB_TOKEN needed for lerna to authenticated with GitHub
+          // -e GH_TOKEN needed for lerna to authenticated with GitHub
+          // https://github.com/lerna/lerna/blob/main/commands/version/README.md#--create-release-type
           //
           // docker is smart enough to get values of env variables from
           // the host environment
@@ -104,14 +105,14 @@ pipeline {
             docker run --rm \
             -e GIT_COMMITTER_EMAIL \
             -e GIT_COMMITTER_NAME \
-            -e GITHUB_TOKEN \
+            -e GH_TOKEN=${GITHUB_TOKEN} \
             -e NPM_TOKEN \
             -e JENKINS_URL \
             -e GIT_BRANCH \
             -e RELEASE_AND_PUBLISH \
             -e SSH_AUTH_SOCK=/ssh-agent \
-            -v ${PWD}:/artifacts \
             -u 469:469 \
+            -v ${PWD}:/artifacts \
             -v $SSH_AUTH_SOCK:/ssh-agent \
             -v ${PWD}/.git:/app/.git \
             --entrypoint=./bin/release \
