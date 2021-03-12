@@ -1,6 +1,5 @@
 import { Theme, ThemeOptions } from '@material-ui/core/styles'
 import { Overrides } from '@material-ui/core/styles/overrides'
-// @ts-ignore
 import { deepmerge } from '@material-ui/utils'
 
 export class PicassoProvider {
