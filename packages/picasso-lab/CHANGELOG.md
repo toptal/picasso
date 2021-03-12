@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@4.0.0...@toptal/picasso-lab@4.0.1) (2021-03-12)
+
+
+### Bug Fixes
+
+* **TypographyOverflow:** handle external className ([#1969](https://github.com/toptal/picasso/issues/1969)) ([446df04](https://github.com/toptal/picasso/commit/446df04ad1e412cf0c4b6a2f8c17199285ec941a))
+
+
+
+
+
 # [4.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@3.7.3...@toptal/picasso-lab@4.0.0) (2021-03-08)
 
 
