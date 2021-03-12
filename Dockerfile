@@ -3,21 +3,13 @@ FROM node:14-alpine
 ARG NPM_TOKEN
 ENV NPM_TOKEN ${NPM_TOKEN}
 
-ARG GIT_SHA
-ENV GIT_SHA ${GIT_SHA}
+ENV PATH="${PATH}:/app/node_modules/.bin" \
+  APK_BRANCH=3.10 \
+  # TODO replace with puppeteer-core
+  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+  # Installs Chromium (77) package.
+  CHROME_BIN=/usr/bin/chromium-browser
 
-ARG APK_BRANCH=3.10
-ENV APK_BRANCH ${APK_BRANCH}
-
-ENV PATH="${PATH}:/app/node_modules/.bin"
-
-# TODO replace with puppeteer-core
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-
-# Installs Chromium (77) package.
-ENV CHROME_BIN /usr/bin/chromium-browser
-
-RUN echo $APK_BRANCH
 RUN printf "http://nl.alpinelinux.org/alpine/v$APK_BRANCH/%s\n" community main > /etc/apk/repositories && \
   apk add --no-cache \
   harfbuzz \
