@@ -26,10 +26,12 @@ RUN printf "http://nl.alpinelinux.org/alpine/v$APK_BRANCH/%s\n" community main >
 # all necessary rights for npm/yarn publish
 RUN groupmod -g 469 node && usermod -u 469 -g 469 node
 
-USER node
-
-# Must be after USER node
 WORKDIR /app
+
+# Fix permissions to a workdir
+RUN chown -R node /app
+
+USER node
 
 # Enables layer caching
 COPY --chown=node:node package.json yarn.lock ./
