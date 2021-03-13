@@ -50,6 +50,3 @@ RUN yarn install --frozen-lockfile
 
 # COPY sources to workdir
 COPY --chown=node:node . /app
-
-# Must be after yarn install to avoid passing NPM_TOKEN at this step
-# RUN printf '//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true\n' > .npmrc
