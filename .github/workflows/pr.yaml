@@ -7,12 +7,11 @@ on:
         synchronize, # PR was updated
         opened, # PR was open
         reopened, # PR was closed and is now open again
-        ready_for_review, # PR was converted from draft to open
+        ready_for_review # PR was converted from draft to open
       ]
 
 jobs:
   tests:
-    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
