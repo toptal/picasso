@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@2.0.1...@toptal/picasso-forms@2.0.2) (2021-03-15)
+
+
+### Bug Fixes
+
+* versions dependency between packages ([#1981](https://github.com/toptal/picasso/issues/1981)) ([ca4ab84](https://github.com/toptal/picasso/commit/ca4ab84934204323c8842991fe382745f56b5ff6))
+
+
+
+
+
 ## [2.0.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@1.3.1...@toptal/picasso-forms@2.0.1) (2021-03-10)
 
 **Note:** Version bump only for package @toptal/picasso-forms
