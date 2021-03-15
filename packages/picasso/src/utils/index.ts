@@ -30,7 +30,10 @@ export { default as noop } from './noop'
 export { default as toTitleCase } from './to-title-case'
 export { default as useCombinedRefs } from './use-combined-refs'
 export { default as useSafeState } from './use-safe-state'
-export { default as useWidthOf, ReferenceObject } from './use-width-of'
+export { default as useWidthOf } from './use-width-of'
+// NOTE: Prevent type removal on prettier format
+// prettier-ignore
+export type { ReferenceObject } from './use-width-of'
 
 export const Transitions = TransitionUtils
 

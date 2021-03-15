@@ -23,8 +23,8 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.0",
-    "@toptal/picasso": "^5",
-    "@toptal/picasso-shared": "^2",
+    "@toptal/picasso": "^6",
+    "@toptal/picasso-shared": "^3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
