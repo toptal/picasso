@@ -36,6 +36,7 @@ export const TabScrollButton = forwardRef<HTMLButtonElement, Props>(
         )}
         style={style}
         disabled={disabled}
+        aria-label={`${direction} button`}
         data-testid={`tab-scroll-button-${direction}`}
       >
         {direction === 'left' ? <BackMinor16 /> : <ChevronMinor16 />}

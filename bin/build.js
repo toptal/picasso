@@ -13,14 +13,14 @@ const compile = function (tsConfig, packageJson, packageRootDir) {
 
   log(`Building ${packageJson.name}:${packageJson.version}`)
 
-  function build() {
+  function build () {
     const cmd = `${tscPath} -p tsconfig.build.json ${args.join(' ')}`
 
     safeExec(cmd)
     log(`Build ready in: ${tsConfig.compilerOptions.outDir}`, 'green')
   }
 
-  function clean() {
+  function clean () {
     log(`Removing: ${tsConfig.compilerOptions.outDir}`, 'green')
     fs.rmdirSync(tsConfig.compilerOptions.outDir, {
       recursive: true,
