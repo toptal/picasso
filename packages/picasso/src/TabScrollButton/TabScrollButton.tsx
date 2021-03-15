@@ -10,7 +10,9 @@ import styles from './styles'
 type DirectionType = 'left' | 'right'
 
 export interface Props extends BaseProps {
+  /** The direction the button should indicate. */
   direction: DirectionType
+  /** If `true`, the component is disabled. */
   disabled?: boolean
 }
 
