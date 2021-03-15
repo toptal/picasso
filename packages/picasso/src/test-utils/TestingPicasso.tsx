@@ -10,6 +10,7 @@ export const TestingPicasso: FunctionComponent<Partial<TextLabelProps>> = ({
     loadFonts={false}
     fixViewport={false}
     titleCase={titleCase}
+    disableTransitions
   >
     {children}
   </Picasso>
