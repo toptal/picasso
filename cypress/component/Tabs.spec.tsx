@@ -24,7 +24,7 @@ const ScrollButtonsExample = () => {
   )
 }
 
-describe('Tags', () => {
+describe('Tabs', () => {
   it('navigates with scroll buttons', () => {
     mount(<ScrollButtonsExample />)
 
