@@ -1,3 +1,8 @@
-import { createStyles } from '@material-ui/core/styles'
+import { createStyles, Theme } from '@material-ui/core/styles'
 
-export default () => createStyles({})
+export default ({ sizes, palette }: Theme) =>
+  createStyles({
+    root: {
+      borderTop: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
+    }
+  })

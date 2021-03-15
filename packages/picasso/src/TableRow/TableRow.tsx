@@ -1,10 +1,17 @@
-import React, { forwardRef, ReactNode, MouseEvent, HTMLAttributes } from 'react'
+import React, {
+  forwardRef,
+  ReactNode,
+  MouseEvent,
+  HTMLAttributes,
+  useContext
+} from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableRow from '@material-ui/core/TableRow'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
+import { TableContext } from '../Table'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
   /** Should be valid `<tr>` children such as `Table.Cell`. */
@@ -22,7 +29,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableRow' })
 
 export const TableRow = forwardRef<HTMLTableRowElement, Props>(
-  function TableRow(props, ref) {
+  function TableRow (props, ref) {
     const {
       className,
       style,
@@ -33,7 +40,12 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
       onClick,
       ...rest
     } = props
-    const { stripeEven: stripeEvenClass, ...muiClasses } = useStyles()
+    const {
+      stripeEven: stripeEvenClass,
+      bordered: borderedClass,
+      ...muiClasses
+    } = useStyles()
+    const tableConfig = useContext(TableContext)
 
     return (
       <MUITableRow
@@ -41,7 +53,8 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
         ref={ref}
         classes={muiClasses}
         className={cx(className, {
-          [stripeEvenClass]: stripeEven
+          [stripeEvenClass]: stripeEven,
+          [borderedClass]: tableConfig.bordered
         })}
         style={style}
         hover={hover}

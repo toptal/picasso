@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, RenderResult } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso/test-utils'
 
 import Table from '../Table'
 
@@ -16,14 +16,8 @@ const renderTableRow = () => {
 }
 
 describe('TableRow', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderTableRow()
-  })
-
   it('renders', () => {
-    const { container } = api
+    const { container } = renderTableRow()
 
     expect(container).toMatchSnapshot()
   })

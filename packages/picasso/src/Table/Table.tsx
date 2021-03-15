@@ -14,6 +14,7 @@ import TableHead from '../TableHead'
 import TableSectionHead from '../TableSectionHead'
 import TableFooter from '../TableFooter'
 import TableExpandableRow from '../TableExpandableRow'
+import TableContext from './TableContext'
 import styles from './styles'
 
 export interface Props
@@ -21,6 +22,12 @@ export interface Props
     TableHTMLAttributes<HTMLTableElement> {
   /** Children components (`Table.Head`, `Table.Body`, `Table.Footer`) */
   children: ReactNode
+  /** Show a compact table */
+  compact?: boolean
+  /** Add borders for each row */
+  bordered?: boolean
+  /** Stripes even rows */
+  striped?: boolean
 }
 
 export interface StaticProps {
@@ -38,27 +45,41 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Table = forwardRef<HTMLTableElement, Props>(function Table(
+export const Table = forwardRef<HTMLTableElement, Props>(function Table (
   props,
   ref
 ) {
-  const { className, style, children, ...rest } = props
+  const {
+    className,
+    style,
+    children,
+    compact,
+    bordered,
+    striped,
+    ...rest
+  } = props
   const classes = useStyles()
 
   return (
-    <MUITable
-      {...rest}
-      ref={ref}
-      classes={classes}
-      className={className}
-      style={style}
-    >
-      {children}
-    </MUITable>
+    <TableContext.Provider value={{ compact, bordered, striped }}>
+      <MUITable
+        {...rest}
+        ref={ref}
+        classes={classes}
+        className={className}
+        style={style}
+        data-bordered={bordered}
+        data-compact={compact}
+      >
+        {children}
+      </MUITable>
+    </TableContext.Provider>
   )
 }) as CompoundedComponentWithRef<Props, HTMLTableElement, StaticProps>
 
-Table.defaultProps = {}
+Table.defaultProps = {
+  striped: true
+}
 
 Table.displayName = 'Table'
 

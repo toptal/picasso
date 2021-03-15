@@ -2,11 +2,11 @@ import React, { forwardRef, HTMLAttributes, useContext } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableCell from '@material-ui/core/TableCell'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
-import { TableSectionContext } from '../Table'
-import { TableSection } from '../Table/TableSectionContext'
+import { TableContext, TableSectionContext, TableSection } from '../Table'
 
 type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
 
@@ -25,7 +25,7 @@ export interface Props
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableCell' })
 
 export const TableCell = forwardRef<HTMLTableCellElement, Props>(
-  function TableCell(props, ref) {
+  function TableCell (props, ref) {
     const {
       align,
       className,
@@ -37,25 +37,36 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
       ...rest
     } = props
 
-    const classes = useStyles()
+    const {
+      compact: compactClass,
+      footer: footerClass,
+      header: headerClass,
+      ...muiClasses
+    } = useStyles()
 
     const tableSection = useContext(TableSectionContext)
+    const tableConfig = useContext(TableContext)
     const titleCase = useTitleCase(propsTitleCase)
+
+    const isHead = tableSection === TableSection.HEAD
+    const isFooter = tableSection === TableSection.FOOTER
 
     return (
       <MUITableCell
         {...rest}
         ref={ref}
         align={align}
-        classes={classes}
-        className={className}
+        classes={muiClasses}
+        className={cx(className, {
+          [compactClass]: tableConfig.compact,
+          [footerClass]: isFooter,
+          [headerClass]: isHead
+        })}
         style={style}
         colSpan={colSpan}
         rowSpan={rowSpan}
       >
-        {tableSection === TableSection.HEAD && titleCase
-          ? toTitleCase(children)
-          : children}
+        {isHead && titleCase ? toTitleCase(children) : children}
       </MUITableCell>
     )
   }

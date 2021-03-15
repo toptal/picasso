@@ -9,13 +9,13 @@ exports[`Table renders 1`] = `
       class="MuiTable-root"
     >
       <thead
-        class="MuiTableHead-root"
+        class="MuiTableHead-root PicassoTableHead-root"
       >
         <tr
-          class="MuiTableRow-root PicassoTableRow-root MuiTableRow-head PicassoTableRow-head"
+          class="MuiTableRow-root PicassoTableRow-root MuiTableRow-head"
         >
           <th
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-head PicassoTableCell-head"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-head PicassoTableCell-header"
             scope="col"
           >
             Table test
@@ -36,13 +36,13 @@ exports[`Table renders 1`] = `
         </tr>
       </tbody>
       <tfoot
-        class="MuiTableFooter-root"
+        class="MuiTableFooter-root PicassoTableFooter-root"
       >
         <tr
           class="MuiTableRow-root PicassoTableRow-root MuiTableRow-footer"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer PicassoTableCell-footer"
           >
             Table test
           </td>

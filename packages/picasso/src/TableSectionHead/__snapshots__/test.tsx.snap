@@ -15,7 +15,7 @@ exports[`TableSectionHead renders 1`] = `
           class="MuiTableRow-root PicassoTableRow-root PicassoTableSectionHead-sectionHeaderRow"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableSectionHead-sectionHeaderCell"
             colspan="100"
           >
             Test

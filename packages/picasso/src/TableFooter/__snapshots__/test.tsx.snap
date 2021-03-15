@@ -9,13 +9,13 @@ exports[`TableFooter renders 1`] = `
       class="MuiTable-root"
     >
       <tfoot
-        class="MuiTableFooter-root"
+        class="MuiTableFooter-root PicassoTableFooter-root"
       >
         <tr
           class="MuiTableRow-root PicassoTableRow-root MuiTableRow-footer"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer PicassoTableCell-footer"
           >
             Footer test
           </td>

@@ -31,6 +31,9 @@ page
 page
   .createChapter()
   .addExample('Table/story/Default.example.tsx', 'Plain table')
+  .addExample('Table/story/Compact.example.tsx', 'Compact table')
+  .addExample('Table/story/DisableStripe.example.tsx', 'Disable stripe')
+  .addExample('Table/story/Bordered.example.tsx', 'Bordered')
   .addExample('Table/story/Select.example.tsx', 'Selectable table')
   .addExample(
     'Table/story/SectionHeader.example.tsx',
