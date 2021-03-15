@@ -9,6 +9,7 @@ import {
 } from '@toptal/picasso-shared'
 
 import Tab from '../Tab'
+import TabScrollButton from '../TabScrollButton'
 import styles from './styles'
 
 export interface Props
@@ -33,7 +34,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
+export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs (
   props,
   ref
 ) {
@@ -48,7 +49,8 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
       onChange={onChange}
       value={value}
       variant='scrollable'
-      scrollButtons='off'
+      scrollButtons='auto'
+      ScrollButtonComponent={TabScrollButton}
     >
       {children}
     </MUITabs>
