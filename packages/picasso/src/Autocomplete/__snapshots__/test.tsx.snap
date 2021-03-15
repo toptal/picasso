@@ -277,7 +277,7 @@ exports[`Autocomplete static behavior renders a loading indicator 1`] = `
     class="PicassoLoader-root"
   >
     <div
-      aria-valuenow="0"
+      aria-valuenow="35"
       class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-static"
       role="progressbar"
       style="width: 16px; height: 16px; transform: rotate(-90deg);"
@@ -293,7 +293,7 @@ exports[`Autocomplete static behavior renders a loading indicator 1`] = `
           fill="none"
           r="20.2"
           stroke-width="3.6"
-          style="stroke-dasharray: 126.920; stroke-dashoffset: 126.920px;"
+          style="stroke-dasharray: 126.920; stroke-dashoffset: 82.498px;"
         />
       </svg>
     </div>

@@ -127,8 +127,6 @@ export const useSidebar = () => {
 export const useAppConfig = () => {
   const context = useContext(RootContext)
 
-  console.log('context:', context)
-
   return {
     environment: context.environment,
     titleCase: context.titleCase,
