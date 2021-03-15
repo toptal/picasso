@@ -138,10 +138,11 @@
   },
   "resolutions": {
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.12",
+    "lodash": "^4.17.20",
     "**/marksy/marked": "^0.6.0",
-    "**/npx/npm": "^5.7.1",
-    "prettierx": "^0.17.0"
+    "**/npx/npm": "^7.6.3",
+    "prettierx": "^0.17.0",
+    "npm": "^7.6.3"
   },
   "dependencies": {
     "@storybook/react": "^6.2.0-alpha.3"
