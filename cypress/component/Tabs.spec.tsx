@@ -25,7 +25,7 @@ const ScrollButtonsExample = () => {
 }
 
 describe('Tags', () => {
-  it('renders with scroll buttons', () => {
+  it('navigates with scroll buttons', () => {
     mount(<ScrollButtonsExample />)
 
     cy.get(`[data-testid="tab-0"]`).should('be.visible')
