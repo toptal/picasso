@@ -2,10 +2,12 @@ import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, SizeType, useAppConfig } from '@toptal/picasso-shared'
 
 import CircularProgress from '../CircularProgress'
 import styles from './styles'
+
+const DEFAULT_PROGRESS = 35
 
 enum SIZES {
   small = 16,
@@ -30,15 +32,15 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLoader' })
 
-const calcVariant = (value?: number) => {
-  if (process.env.NODE_ENV === 'test' || value) {
+const calcVariant = (disableTransitions: boolean, value?: number) => {
+  if (disableTransitions || value) {
     return 'static'
   }
 
   return 'indeterminate'
 }
 
-export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
+export const Loader = forwardRef<HTMLDivElement, Props>(function Loader (
   props,
   ref
 ) {
@@ -53,6 +55,14 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
   } = props
 
   const classes = useStyles()
+  const { disableTransitions } = useAppConfig()
+
+  const circularProgressVariant = calcVariant(
+    Boolean(disableTransitions),
+    value
+  )
+
+  const circularProgressValue = disableTransitions ? DEFAULT_PROGRESS : value
 
   return (
     <div
@@ -67,8 +77,8 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
           root: classes[`spinner${capitalize(variant)}`]
         }}
         size={SIZES[size]}
-        value={value}
-        variant={calcVariant(value)}
+        value={circularProgressValue}
+        variant={circularProgressVariant}
       />
 
       {children && <div className={classes.label}>{children}</div>}
