@@ -22,17 +22,17 @@ const renderTag = (
 let mockedConsoleError: jest.SpyInstance
 let spiedOnTitleCase: jest.SpyInstance
 
-beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-  mockedConsoleError = jest.spyOn(console, 'error')
-  mockedConsoleError.mockImplementation(() => {})
-})
-afterEach(() => {
-  spiedOnTitleCase.mockReset()
-  mockedConsoleError.mockRestore()
-})
-
 describe('TagRectangular', () => {
+  beforeEach(() => {
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+    mockedConsoleError = jest.spyOn(console, 'error')
+    mockedConsoleError.mockImplementation(() => {})
+  })
+
+  afterEach(() => {
+    spiedOnTitleCase.mockReset()
+    mockedConsoleError.mockRestore()
+  })
   it('renders rectangular Tag', () => {
     const { container } = renderTag('Reactangular Tag', {})
 

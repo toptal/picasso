@@ -30,14 +30,15 @@ const TestSidebarItem: FunctionComponent<OmitInternalProps<Props>> = ({
 
 let spiedOnTitleCase: jest.SpyInstance
 
-beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-})
-afterEach(() => {
-  spiedOnTitleCase.mockReset()
-})
-
 describe('SidebarItem', () => {
+  beforeEach(() => {
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+  })
+
+  afterEach(() => {
+    spiedOnTitleCase.mockReset()
+  })
+
   it('renders', () => {
     const { container } = render(<TestSidebarItem>Test item</TestSidebarItem>)
 

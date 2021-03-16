@@ -28,14 +28,15 @@ const TestTypography: FunctionComponent<OmitInternalProps<Props>> = ({
 
 let spiedOnTitleCase: jest.SpyInstance
 
-beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-})
-afterEach(() => {
-  spiedOnTitleCase.mockReset()
-})
-
 describe('Typography', () => {
+  beforeEach(() => {
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+  })
+
+  afterEach(() => {
+    spiedOnTitleCase.mockReset()
+  })
+
   it('renders', () => {
     const { container } = render(
       <TestTypography>Just Typography</TestTypography>

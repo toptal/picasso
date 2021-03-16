@@ -6,16 +6,16 @@ import YearSelect from './YearSelect'
 // Mock console error since toThrow() outputs the error message with stacktrace
 let mockedConsoleError: jest.SpyInstance
 
-beforeEach(() => {
-  mockedConsoleError = jest.spyOn(console, 'error')
-  mockedConsoleError.mockImplementation(() => {})
-})
-
-afterEach(() => {
-  mockedConsoleError.mockRestore()
-})
-
 describe('YearSelect', () => {
+  beforeEach(() => {
+    mockedConsoleError = jest.spyOn(console, 'error')
+    mockedConsoleError.mockImplementation(() => {})
+  })
+
+  afterEach(() => {
+    mockedConsoleError.mockRestore()
+  })
+
   it('renders', () => {
     const { container } = render(
       <YearSelect from={2001} to={2005} onChange={() => {}} />
