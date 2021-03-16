@@ -32,14 +32,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLoader' })
 
-const calcVariant = (disableTransitions: boolean, value?: number) => {
-  if (disableTransitions || value) {
-    return 'static'
-  }
-
-  return 'indeterminate'
-}
-
 export const Loader = forwardRef<HTMLDivElement, Props>(function Loader (
   props,
   ref
@@ -57,12 +49,9 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader (
   const classes = useStyles()
   const { disableTransitions } = useAppConfig()
 
-  const circularProgressVariant = calcVariant(
-    Boolean(disableTransitions),
-    value
-  )
-
-  const circularProgressValue = disableTransitions ? DEFAULT_PROGRESS : value
+  const progress = disableTransitions ? DEFAULT_PROGRESS : value
+  const progressVariant =
+    disableTransitions || value ? 'static' : 'indeterminate'
 
   return (
     <div
@@ -77,8 +66,8 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader (
           root: classes[`spinner${capitalize(variant)}`]
         }}
         size={SIZES[size]}
-        value={circularProgressValue}
-        variant={circularProgressVariant}
+        value={progress}
+        variant={progressVariant}
       />
 
       {children && <div className={classes.label}>{children}</div>}
