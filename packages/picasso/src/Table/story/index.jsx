@@ -32,6 +32,7 @@ page
   .createChapter()
   .addExample('Table/story/Default.example.tsx', 'Plain table')
   .addExample('Table/story/Compact.example.tsx', 'Compact table') // picasso-skip-visuals
+  .addExample('Table/story/Alignments.example.tsx', 'Cell alignments') // picasso-skip-visuals
   .addExample(
     'Table/story/Bordered.example.tsx',
     'Bordered table without stripes'

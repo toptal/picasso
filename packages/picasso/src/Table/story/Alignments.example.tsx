@@ -45,32 +45,32 @@ const data = [
 ]
 
 const Example = () => (
-  <Table compact>
+  <Table>
     <Table.Head>
       <Table.Row>
         <Table.Cell>Name</Table.Cell>
-        <Table.Cell>Talent type</Table.Cell>
-        <Table.Cell>Company</Table.Cell>
-        <Table.Cell>Role</Table.Cell>
-        <Table.Cell>Country</Table.Cell>
+        <Table.Cell align='center'>Talent type</Table.Cell>
+        <Table.Cell align='center'>Company</Table.Cell>
+        <Table.Cell align='center'>Role</Table.Cell>
+        <Table.Cell align='right'>Country</Table.Cell>
       </Table.Row>
     </Table.Head>
     <Table.Body>
       {data.map(row => (
         <Table.Row key={row.id}>
           <Table.Cell>{row.name}</Table.Cell>
-          <Table.Cell>{row.talentType}</Table.Cell>
-          <Table.Cell>{row.company}</Table.Cell>
-          <Table.Cell>{row.role}</Table.Cell>
-          <Table.Cell>{row.country}</Table.Cell>
+          <Table.Cell align='center'>{row.talentType}</Table.Cell>
+          <Table.Cell align='center'>{row.company}</Table.Cell>
+          <Table.Cell align='center'>{row.role}</Table.Cell>
+          <Table.Cell align='right'>{row.country}</Table.Cell>
         </Table.Row>
       ))}
     </Table.Body>
     <Table.Footer>
       <Table.Row>
         <Table.Cell colSpan={3}>Total</Table.Cell>
-        <Table.Cell>Role</Table.Cell>
-        <Table.Cell>Country</Table.Cell>
+        <Table.Cell align='center'>Role</Table.Cell>
+        <Table.Cell align='right'>Country</Table.Cell>
       </Table.Row>
     </Table.Footer>
   </Table>

@@ -4,7 +4,7 @@ import { rem } from '@toptal/picasso-shared'
 const getCellStyles = (compact = false) => ({
   fontSize: rem('12px'),
   padding: compact ? '0.25rem 0.5rem' : '0.5rem 1rem',
-  height: compact ? '1.25rem' : '2.5rem',
+  height: compact ? '1.5rem' : '2.5rem',
   lineHeight: compact ? '0.625rem' : '1.25rem',
   borderBottom: 'none',
 

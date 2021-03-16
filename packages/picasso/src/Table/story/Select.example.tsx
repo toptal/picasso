@@ -1,6 +1,48 @@
 import React, { useState } from 'react'
 import { Table, Checkbox } from '@toptal/picasso'
-import { tableMockData } from '@toptal/picasso/test-utils'
+
+const data = [
+  {
+    id: 0,
+    name: 'Delia Floyd',
+    talentType: 'Designer',
+    company: 'Airbnb',
+    role: 'UX lead',
+    country: 'United States'
+  },
+  {
+    id: 1,
+    name: 'Linnie Sims',
+    talentType: 'Designer',
+    company: 'Facebook',
+    role: 'Art director',
+    country: 'Spain'
+  },
+  {
+    id: 2,
+    name: 'Charles Watson',
+    talentType: 'Developer',
+    company: 'Amazon',
+    role: 'Ruby developer',
+    country: 'Germany'
+  },
+  {
+    id: 3,
+    name: 'Leila Pena',
+    talentType: 'Developer',
+    company: 'Invision',
+    role: 'Web developer',
+    country: 'Poland'
+  },
+  {
+    id: 4,
+    name: 'Logan Burton',
+    talentType: 'Developer',
+    company: 'Microsoft',
+    role: 'CTO',
+    country: 'United States'
+  }
+]
 
 const Example = () => {
   const [selected, setSelected] = useState<number[]>([])
@@ -30,29 +72,27 @@ const Example = () => {
         </Table.Row>
       </Table.Head>
       <Table.Body>
-        {tableMockData.map(
-          ({ id, name, talentType, company, role, country }) => {
-            const isSelected = selected.includes(id)
+        {data.map(({ id, name, talentType, company, role, country }) => {
+          const isSelected = selected.includes(id)
 
-            return (
-              <Table.Row
-                key={id}
-                hover
-                selected={isSelected}
-                onClick={event => handleClick(event, id)}
-              >
-                <Table.Cell>
-                  <Checkbox checked={isSelected} />
-                </Table.Cell>
-                <Table.Cell>{name}</Table.Cell>
-                <Table.Cell>{talentType}</Table.Cell>
-                <Table.Cell>{company}</Table.Cell>
-                <Table.Cell>{role}</Table.Cell>
-                <Table.Cell>{country}</Table.Cell>
-              </Table.Row>
-            )
-          }
-        )}
+          return (
+            <Table.Row
+              key={id}
+              hover
+              selected={isSelected}
+              onClick={event => handleClick(event, id)}
+            >
+              <Table.Cell>
+                <Checkbox checked={isSelected} />
+              </Table.Cell>
+              <Table.Cell>{name}</Table.Cell>
+              <Table.Cell>{talentType}</Table.Cell>
+              <Table.Cell>{company}</Table.Cell>
+              <Table.Cell>{role}</Table.Cell>
+              <Table.Cell>{country}</Table.Cell>
+            </Table.Row>
+          )
+        })}
       </Table.Body>
     </Table>
   )
