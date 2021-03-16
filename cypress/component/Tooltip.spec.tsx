@@ -144,7 +144,7 @@ const LinkTooltipExample = () => {
 
   return (
     <TestingPicasso>
-      <Tooltip content={tooltipContent} interactive>
+      <Tooltip content={tooltipContent} delay={0} interactive>
         <Button data-testid='tooltip-trigger'>Button</Button>
       </Tooltip>
     </TestingPicasso>

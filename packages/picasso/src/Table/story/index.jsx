@@ -32,8 +32,10 @@ page
   .createChapter()
   .addExample('Table/story/Default.example.tsx', 'Plain table')
   .addExample('Table/story/Compact.example.tsx', 'Compact table') // picasso-skip-visuals
-  .addExample('Table/story/DisableStripe.example.tsx', 'Disable stripe') // picasso-skip-visuals
-  .addExample('Table/story/Bordered.example.tsx', 'Bordered') // picasso-skip-visuals
+  .addExample(
+    'Table/story/Bordered.example.tsx',
+    'Bordered table without stripes'
+  ) // picasso-skip-visuals
   .addExample('Table/story/Select.example.tsx', 'Selectable table')
   .addExample(
     'Table/story/SectionHeader.example.tsx',

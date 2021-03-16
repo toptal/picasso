@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Table, Checkbox } from '@toptal/picasso'
+import { tableMockData } from '@toptal/picasso/test-utils'
 
 const Example = () => {
   const [selected, setSelected] = useState<number[]>([])
@@ -29,77 +30,32 @@ const Example = () => {
         </Table.Row>
       </Table.Head>
       <Table.Body>
-        {data.map(({ id, name, talentType, company, role, country }) => {
-          const isSelected = selected.includes(id)
+        {tableMockData.map(
+          ({ id, name, talentType, company, role, country }) => {
+            const isSelected = selected.includes(id)
 
-          return (
-            <Table.Row
-              key={id}
-              hover
-              selected={isSelected}
-              onClick={event => handleClick(event, id)}
-            >
-              <Table.Cell>
-                <Checkbox checked={isSelected} />
-              </Table.Cell>
-              <Table.Cell>{name}</Table.Cell>
-              <Table.Cell>{talentType}</Table.Cell>
-              <Table.Cell>{company}</Table.Cell>
-              <Table.Cell>{role}</Table.Cell>
-              <Table.Cell>{country}</Table.Cell>
-            </Table.Row>
-          )
-        })}
+            return (
+              <Table.Row
+                key={id}
+                hover
+                selected={isSelected}
+                onClick={event => handleClick(event, id)}
+              >
+                <Table.Cell>
+                  <Checkbox checked={isSelected} />
+                </Table.Cell>
+                <Table.Cell>{name}</Table.Cell>
+                <Table.Cell>{talentType}</Table.Cell>
+                <Table.Cell>{company}</Table.Cell>
+                <Table.Cell>{role}</Table.Cell>
+                <Table.Cell>{country}</Table.Cell>
+              </Table.Row>
+            )
+          }
+        )}
       </Table.Body>
     </Table>
   )
 }
-
-const createData = (
-  id: number,
-  name: string,
-  talentType: string,
-  company: string,
-  role: string,
-  country: string
-) => {
-  return { id, name, talentType, company, role, country }
-}
-
-const data = [
-  createData(
-    0,
-    'Delia Floyd',
-    'Designer',
-    'Airbnb',
-    'UX lead',
-    'United States'
-  ),
-  createData(1, 'Linnie Sims', 'Designer', 'Facebook', 'Art director', 'Spain'),
-  createData(
-    2,
-    'Charles Watson',
-    'Developer',
-    'Amazon',
-    'Ruby developer',
-    'Germany'
-  ),
-  createData(
-    3,
-    'Leila Pena',
-    'Developer',
-    'Invision',
-    'Web developer',
-    'Poland'
-  ),
-  createData(
-    4,
-    'Logan Burton',
-    'Developer',
-    'Microsoft',
-    'CTO',
-    'United States'
-  )
-]
 
 export default Example

@@ -1,54 +1,7 @@
 import React from 'react'
 import { Table, TableProps } from '@toptal/picasso'
-import mount from '@cypress/react/dist'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
-
-const createData = (
-  id: number,
-  name: string,
-  talentType: string,
-  company: string,
-  role: string,
-  country: string
-) => {
-  return { id, name, talentType, company, role, country }
-}
-
-const data = [
-  createData(
-    0,
-    'Delia Floyd',
-    'Designer',
-    'Airbnb',
-    'UX lead',
-    'United States'
-  ),
-  createData(1, 'Linnie Sims', 'Designer', 'Facebook', 'Art director', 'Spain'),
-  createData(
-    2,
-    'Charles Watson',
-    'Developer',
-    'Amazon',
-    'Ruby developer',
-    'Germany'
-  ),
-  createData(
-    3,
-    'Leila Pena',
-    'Developer',
-    'Invision',
-    'Web developer',
-    'Poland'
-  ),
-  createData(
-    4,
-    'Logan Burton',
-    'Developer',
-    'Microsoft',
-    'CTO',
-    'United States'
-  )
-]
+import { mount } from '@cypress/react'
+import { tableMockData, TestingPicasso } from '@toptal/picasso/test-utils'
 
 const renderTable = (props: Omit<TableProps, 'children'> = {}) => (
   <TestingPicasso>
@@ -63,7 +16,7 @@ const renderTable = (props: Omit<TableProps, 'children'> = {}) => (
         </Table.Row>
       </Table.Head>
       <Table.Body>
-        {data.map(row => (
+        {tableMockData.map(row => (
           <Table.Row key={row.id}>
             <Table.Cell>{row.name}</Table.Cell>
             <Table.Cell>{row.talentType}</Table.Cell>
@@ -99,6 +52,18 @@ describe('Table', () => {
 
   it('renders non-striped', () => {
     mount(renderTable({ striped: false }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders bordered and non-striped', () => {
+    mount(renderTable({ bordered: true, striped: false }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders bordered, non-striped and compact', () => {
+    mount(renderTable({ bordered: true, striped: false, compact: true }))
 
     cy.get('body').happoScreenshot()
   })

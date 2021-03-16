@@ -1,5 +1,6 @@
 import React from 'react'
 import { Calendar16, Table } from '@toptal/picasso'
+import { tableMockData } from '@toptal/picasso/test-utils'
 
 const Example = () => (
   <div>
@@ -15,7 +16,7 @@ const Example = () => (
       </Table.Head>
       <Table.SectionHead icon={<Calendar16 />}>Overdue</Table.SectionHead>
       <Table.Body>
-        {data.map(row => (
+        {tableMockData.map(row => (
           <Table.Row key={row.id}>
             <Table.Cell>{row.name}</Table.Cell>
             <Table.Cell>{row.talentType}</Table.Cell>
@@ -35,52 +36,5 @@ const Example = () => (
     </Table>
   </div>
 )
-
-const createData = (
-  id: number,
-  name: string,
-  talentType: string,
-  company: string,
-  role: string,
-  country: string
-) => {
-  return { id, name, talentType, company, role, country }
-}
-
-const data = [
-  createData(
-    0,
-    'Delia Floyd',
-    'Designer',
-    'Airbnb',
-    'UX lead',
-    'United States'
-  ),
-  createData(1, 'Linnie Sims', 'Designer', 'Facebook', 'Art director', 'Spain'),
-  createData(
-    2,
-    'Charles Watson',
-    'Developer',
-    'Amazon',
-    'Ruby developer',
-    'Germany'
-  ),
-  createData(
-    3,
-    'Leila Pena',
-    'Developer',
-    'Invision',
-    'Web developer',
-    'Poland'
-  ),
-  createData(
-    4,
-    'Logan Burton',
-    'Developer',
-    'Microsoft',
-    'CTO',
-    'United States'
-  )
-]
 
 export default Example
