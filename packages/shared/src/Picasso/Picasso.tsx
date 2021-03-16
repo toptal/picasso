@@ -77,6 +77,7 @@ interface RootContextProps extends TextLabelProps {
   environment: EnvironmentType<'test' | 'temploy'>
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
+  disableTransitions?: boolean
 }
 export const RootContext = React.createContext<RootContextProps>({
   hasTopBar: false,
@@ -86,7 +87,8 @@ export const RootContext = React.createContext<RootContextProps>({
   environment: 'development',
   titleCase: false,
   hasDrawer: false,
-  setHasDrawer: () => {}
+  setHasDrawer: () => {},
+  disableTransitions: false
 })
 
 export const usePicassoRoot = () => {
@@ -127,7 +129,8 @@ export const useAppConfig = () => {
 
   return {
     environment: context.environment,
-    titleCase: context.titleCase
+    titleCase: context.titleCase,
+    disableTransitions: context.disableTransitions
   }
 }
 
@@ -137,6 +140,7 @@ interface PicassoGlobalStylesProviderProps extends TextLabelProps {
     PicassoRootNodeProps & RefAttributes<HTMLDivElement>
   >
   environment: EnvironmentType<'test' | 'temploy'>
+  disableTransitions?: boolean
 }
 
 interface PicassoRootNodeProps {
@@ -164,7 +168,13 @@ const PicassoRootNode = forwardRef<HTMLDivElement, PicassoRootNodeProps>(
 const PicassoGlobalStylesProvider = (
   props: PicassoGlobalStylesProviderProps
 ) => {
-  const { children, RootComponent, environment, titleCase } = props
+  const {
+    children,
+    RootComponent,
+    environment,
+    titleCase,
+    disableTransitions
+  } = props
 
   const rootRef = useRef<HTMLDivElement>(null)
   const [contextValue, setContextValue] = useState({
@@ -191,7 +201,8 @@ const PicassoGlobalStylesProvider = (
         ...contextValue,
         hasSidebar
       })
-    }
+    },
+    disableTransitions
   })
 
   return (
@@ -215,7 +226,7 @@ const Viewport = () => {
     if (!warned) {
       console.warn(
         'PICASSO:',
-        `I wanted to add viewport meta tag to your page but failed as it already containes ${nonPicassoViewportTags.length}.`,
+        `I wanted to add viewport meta tag to your page but failed as it already contains ${nonPicassoViewportTags.length}.`,
         `My viewport meta tag content is "${content}".`,
         'The absence of this content may cause some of my features to work incorrectly.',
         'For example, inputs will be scaled when focused on Safari, iOS.',
@@ -253,6 +264,8 @@ interface PicassoProps extends TextLabelProps {
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
   theme?: ThemeOptions
+  /** Disables transitions for components like Loader, to make testing easier */
+  disableTransitions?: boolean
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
@@ -266,7 +279,8 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   notificationContainer,
   RootComponent,
   titleCase,
-  theme
+  theme,
+  disableTransitions
 }) => {
   if (theme) {
     PicassoProvider.extendTheme(theme)
@@ -290,6 +304,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
           RootComponent={RootComponent!}
           environment={environment!}
           titleCase={titleCase}
+          disableTransitions={disableTransitions}
         >
           {fixViewport && <Viewport />}
           {loadFonts && <FontsLoader />}

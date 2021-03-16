@@ -73,7 +73,10 @@ describe('Autocomplete', () => {
         loading: true
       })
 
-      expect(getByTestId('loading-adornment')).not.toBeNull()
+      const loader = getByTestId('loading-adornment')
+
+      expect(loader).not.toBeNull()
+      expect(loader).toMatchSnapshot()
     })
 
     it('renders custom adornments', () => {
