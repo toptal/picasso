@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.6](https://github.com/toptal/picasso/compare/@toptal/picasso@6.0.5...@toptal/picasso@6.0.6) (2021-03-16)
+
+
+### Bug Fixes
+
+* **Autocomplete:** loading test case ([#1972](https://github.com/toptal/picasso/issues/1972)) ([6df7f0a](https://github.com/toptal/picasso/commit/6df7f0ace3c95ca73cc71e7501d4c2bb1902ca6c))
+
+
+
+
+
 ## [6.0.5](https://github.com/toptal/picasso/compare/@toptal/picasso@6.0.4...@toptal/picasso@6.0.5) (2021-03-16)
 
 **Note:** Version bump only for package @toptal/picasso
