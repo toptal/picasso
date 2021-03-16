@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, TableProps } from '@toptal/picasso'
 import mount from '@cypress/react/dist'
+import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const createData = (
   id: number,
@@ -50,35 +51,37 @@ const data = [
 ]
 
 const renderTable = (props: Omit<TableProps, 'children'> = {}) => (
-  <Table {...props}>
-    <Table.Head>
-      <Table.Row>
-        <Table.Cell>Name</Table.Cell>
-        <Table.Cell>Talent type</Table.Cell>
-        <Table.Cell>Company</Table.Cell>
-        <Table.Cell>Role</Table.Cell>
-        <Table.Cell>Country</Table.Cell>
-      </Table.Row>
-    </Table.Head>
-    <Table.Body>
-      {data.map(row => (
-        <Table.Row key={row.id}>
-          <Table.Cell>{row.name}</Table.Cell>
-          <Table.Cell>{row.talentType}</Table.Cell>
-          <Table.Cell>{row.company}</Table.Cell>
-          <Table.Cell>{row.role}</Table.Cell>
-          <Table.Cell>{row.country}</Table.Cell>
+  <TestingPicasso>
+    <Table {...props}>
+      <Table.Head>
+        <Table.Row>
+          <Table.Cell>Name</Table.Cell>
+          <Table.Cell>Talent type</Table.Cell>
+          <Table.Cell>Company</Table.Cell>
+          <Table.Cell>Role</Table.Cell>
+          <Table.Cell>Country</Table.Cell>
         </Table.Row>
-      ))}
-    </Table.Body>
-    <Table.Footer>
-      <Table.Row>
-        <Table.Cell colSpan={3}>Total</Table.Cell>
-        <Table.Cell>Role</Table.Cell>
-        <Table.Cell>Country</Table.Cell>
-      </Table.Row>
-    </Table.Footer>
-  </Table>
+      </Table.Head>
+      <Table.Body>
+        {data.map(row => (
+          <Table.Row key={row.id}>
+            <Table.Cell>{row.name}</Table.Cell>
+            <Table.Cell>{row.talentType}</Table.Cell>
+            <Table.Cell>{row.company}</Table.Cell>
+            <Table.Cell>{row.role}</Table.Cell>
+            <Table.Cell>{row.country}</Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+      <Table.Footer>
+        <Table.Row>
+          <Table.Cell colSpan={3}>Total</Table.Cell>
+          <Table.Cell>Role</Table.Cell>
+          <Table.Cell>Country</Table.Cell>
+        </Table.Row>
+      </Table.Footer>
+    </Table>
+  </TestingPicasso>
 )
 
 describe('Table', () => {
