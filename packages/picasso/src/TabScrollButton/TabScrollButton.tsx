@@ -31,7 +31,11 @@ export const TabScrollButton = forwardRef<HTMLButtonElement, Props>(
         ref={ref}
         className={cx(
           classes.root,
-          { [classes.disabled]: disabled },
+          {
+            [classes.disabled]: disabled,
+            [classes.left]: direction === 'left',
+            [classes.right]: direction === 'right'
+          },
           className
         )}
         style={style}
