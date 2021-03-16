@@ -12,6 +12,7 @@ const useCombinedRefs = <T>(...refs: (RefObject<T> | Ref<T>)[]) => {
       if (typeof ref === 'function') {
         ref(targetRef.current)
       } else {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         ref.current = targetRef.current
       }

@@ -1,5 +1,4 @@
 import { ButtonCircular } from '../ButtonCircular'
-// @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const chapter = PicassoBook.connectToPage(page =>

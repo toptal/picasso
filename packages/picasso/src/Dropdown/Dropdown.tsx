@@ -82,7 +82,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
+export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
   props,
   ref
 ) {
@@ -172,9 +172,11 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
     const { firstChild } = contentRef.current
     // TODO: add focusable interface to Picasso.Menu and other components that expose focus
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
 
     if (firstChild && firstChild.focus) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       return firstChild.focus()
     }

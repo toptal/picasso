@@ -75,6 +75,7 @@ export const TimePicker = (props: Props) => {
           <InputMask
             mask={inputMask}
             alwaysShowMask
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             maskPlaceholder='-'
             value={value}
