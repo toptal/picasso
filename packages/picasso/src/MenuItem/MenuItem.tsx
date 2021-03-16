@@ -26,8 +26,9 @@ import {
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
 import Container from '../Container'
 import MenuContext, { MenuContextProps } from '../Menu/menuContext'
-import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
+import noop from '../utils/noop'
+import toTitleCase from '../utils/to-title-case'
 
 export type VariantType = 'light' | 'dark'
 
@@ -75,9 +76,9 @@ const useStyles = makeStyles<Theme>(styles, {
 export const MenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
->(function MenuItem(props, ref) {
+>(function MenuItem (props, ref) {
   const {
-    as,
+    as = 'li',
     children,
     description,
     className,
@@ -89,7 +90,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     checkmarked,
     style,
     value,
-    variant,
+    variant = 'light',
     size,
     titleCase: propsTitleCase,
     nonSelectable,
@@ -123,14 +124,14 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     <MUIMenuItem
       {...rest}
       ref={ref}
-      component={as!}
+      component={as}
       classes={{
         root: cx({
-          [classes[`gutters${size && capitalize(size!)}`]]: size
+          [classes[`gutters${size && capitalize(size)}`]]: size
         }),
         selected: classes.selected
       }}
-      className={cx(classes.root, classes[variant!], className, {
+      className={cx(classes.root, classes[variant], className, {
         [classes.nonSelectable]: nonSelectable
       })}
       disabled={disabled}
@@ -155,7 +156,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           {typeof children === 'string' ? (
             <span
               className={cx(classes.stringContent, {
-                [classes[`stringContent${size && capitalize(size!)}`]]: size,
+                [classes[`stringContent${size && capitalize(size)}`]]: size,
                 [classes.stringContentSemibold]: checkmarked
               })}
               style={style}
@@ -187,7 +188,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
 
 MenuItem.defaultProps = {
   as: 'li',
-  onClick: () => {},
+  onClick: noop,
   variant: 'light',
   nonSelectable: false
 }

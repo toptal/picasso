@@ -115,13 +115,12 @@ export default ({ palette, typography }: Theme) =>
     },
 
     // Text decorations
-    underline: {
-      textDecoration: 'underline'
-    },
     solid: {
+      textDecoration: 'underline',
       textDecorationStyle: 'solid'
     },
     dashed: {
+      textDecoration: 'underline',
       textDecorationStyle: 'dashed'
     },
     lineThrough: {

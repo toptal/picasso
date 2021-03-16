@@ -45,7 +45,7 @@ const screenshotDOMElement = async ({
       if (!component) {
         throw new Error('Rendered story was not found!')
       }
-      const componentRect: ClientRect = component!.getBoundingClientRect()
+      const componentRect: ClientRect = component.getBoundingClientRect()
 
       return {
         x: componentRect.left,

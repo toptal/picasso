@@ -41,6 +41,7 @@ export const TreeViewContainer: FC = ({ children }) => {
         index: number,
         groups: any
       ) {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const defaultExtent = state.zoom!.extent()
         const k0 = zoomTransform(this).k
         const extent = defaultExtent.apply(this, [datum, index, groups])

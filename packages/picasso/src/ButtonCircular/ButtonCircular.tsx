@@ -1,7 +1,11 @@
 import React, { ReactElement, MouseEvent, forwardRef, ElementType } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, ButtonOrAnchorProps, OverridableComponent } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  ButtonOrAnchorProps,
+  OverridableComponent
+} from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
@@ -40,52 +44,53 @@ const useStyles = makeStyles<Theme>(styles, {
   index: -1
 })
 
-export const ButtonCircular: OverridableComponent<Props> = forwardRef<HTMLButtonElement, Props>(
-  function ButtonCircular(props, ref) {
-    const {
-      className,
-      variant,
-      active,
-      focused,
-      hovered,
-      disabled,
-      ...rest
-    } = props
-    const classes = useStyles()
+export const ButtonCircular: OverridableComponent<Props> = forwardRef<
+  HTMLButtonElement,
+  Props
+>(function ButtonCircular (props, ref) {
+  const {
+    className,
+    variant = 'primary',
+    active,
+    focused,
+    hovered,
+    disabled,
+    ...rest
+  } = props
+  const classes = useStyles()
 
-    const { root: rootClass, focusVisible: focusVisibleClass } = classes
+  const { root: rootClass, focusVisible: focusVisibleClass } = classes
 
-    const variantClassName = classes[kebabToCamelCase(variant!)]
+  const variantClassName = classes[kebabToCamelCase(variant)]
 
-    const rootClassName = cx(
-      {
-        [classes.active]: active,
-        [classes.focused]: focused,
-        [classes.hovered]: hovered,
-        [classes.disabled]: disabled
-      },
-      variantClassName,
-      rootClass
-    )
+  const rootClassName = cx(
+    {
+      [classes.active]: active,
+      [classes.focused]: focused,
+      [classes.hovered]: hovered,
+      [classes.disabled]: disabled
+    },
+    variantClassName,
+    rootClass
+  )
 
-    return (
-      <Button
-        {...rest}
-        ref={ref}
-        classes={{
-          root: rootClassName,
-          focusVisible: focusVisibleClass
-        }}
-        className={className}
-        size='small'
-        active={active}
-        hovered={hovered}
-        focused={focused}
-        disabled={disabled}
-      />
-    )
-  }
-)
+  return (
+    <Button
+      {...rest}
+      ref={ref}
+      classes={{
+        root: rootClassName,
+        focusVisible: focusVisibleClass
+      }}
+      className={className}
+      size='small'
+      active={active}
+      hovered={hovered}
+      focused={focused}
+      disabled={disabled}
+    />
+  )
+})
 
 ButtonCircular.defaultProps = {
   variant: 'primary'

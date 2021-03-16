@@ -77,8 +77,8 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader (
 
 Loader.defaultProps = {
   inline: false,
-  size: 'medium',
-  variant: 'blue'
+  size: 'medium' as const,
+  variant: 'blue' as const
 }
 
 Loader.displayName = 'Loader'

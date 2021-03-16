@@ -54,7 +54,7 @@ export interface StaticProps {
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
 
 // eslint-disable-next-line react/display-name
-export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
+export const Tag = forwardRef<HTMLDivElement, Props>(function Tag (props, ref) {
   const {
     children,
     style,
@@ -62,8 +62,8 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     icon,
     disabled,
     onDelete,
-    variant,
-    as,
+    variant = 'grey',
+    as = 'div',
     titleCase: propsTitleCase,
     ...rest
   } = props
@@ -89,7 +89,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       {...htmlAttributes}
       ref={ref}
       classes={{
-        root: cx(classes.root, classes[variant!], {
+        root: cx(classes.root, classes[variant], {
           [classes.disabled]: disabled
         })
       }}
@@ -110,7 +110,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
           <CloseMinor16 />
         </span>
       }
-      component={as!}
+      component={as}
       onDelete={onDelete ? handleDelete : undefined}
     />
   )

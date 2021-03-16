@@ -24,12 +24,16 @@ const updateNodesYPosition = (
   return nodes
     .sort((left, right) => left.depth - right.depth)
     .map(node => {
-      if (!node.ref.current) {
+      if (
+        !node.ref.current ||
+        !node.ref.current.firstElementChild ||
+        !node.ref.current.firstElementChild.firstElementChild
+      ) {
         return node
       }
 
-      const { offsetWidth: width, offsetHeight: height } = node.ref.current!
-        .firstElementChild!.firstElementChild! as HTMLElement
+      const { offsetWidth: width, offsetHeight: height } = node.ref.current
+        .firstElementChild.firstElementChild as HTMLElement
 
       if (!height || !width) {
         return node

@@ -39,7 +39,7 @@ export const Drawer: FunctionComponent<Props> = props => {
     open,
     onClose,
     title,
-    width,
+    width = 'regular',
     ...rest
   } = props
   const classes = useStyles()
@@ -73,7 +73,7 @@ export const Drawer: FunctionComponent<Props> = props => {
       <Container
         flex
         direction='column'
-        className={cx(classes.container, classes[width!])}
+        className={cx(classes.container, classes[width])}
       >
         <DrawerTitle title={title} />
         <Container flex className={classes.content}>

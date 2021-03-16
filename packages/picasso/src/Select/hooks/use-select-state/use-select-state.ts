@@ -5,7 +5,7 @@ import {
   getSelection,
   removeDuplicatedOptions,
   getSelectedOptions,
-  DEFAULT_SEARCH_TRESHOLD
+  DEFAULT_SEARCH_THRESHOLD
 } from '../../utils'
 import { isSubstring } from '../../../utils'
 import useHighlightedIndex from '../use-highlighted-index'
@@ -28,7 +28,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     disabled = false,
     multiple,
     value,
-    searchThreshold = DEFAULT_SEARCH_TRESHOLD
+    searchThreshold = DEFAULT_SEARCH_THRESHOLD
   } = props
 
   const [selectedOptions, setSelectedOptions] = useState(

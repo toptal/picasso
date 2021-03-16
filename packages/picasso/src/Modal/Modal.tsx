@@ -94,9 +94,9 @@ const isFocusInsideTooltip = () => {
     return false
   }
 
-  const tooltipContainsFocusedElement = Array.from(tooltipContainers).some(
-    container => container.contains(document.activeElement)
-  )
+  const tooltipContainsFocusedElement = Array.from(
+    tooltipContainers
+  ).some(container => container.contains(document.activeElement))
 
   if (tooltipContainsFocusedElement) {
     return true
@@ -112,21 +112,24 @@ const generateKey = (() => {
 })()
 
 // eslint-disable-next-line react/display-name
-export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
+export const Modal = forwardRef<HTMLElement, Props>(function Modal (
+  props,
+  ref
+) {
   const {
     children,
     open,
-    size,
+    size = 'medium',
     onBackdropClick,
     onClose,
     onOpen,
     className,
     style,
     container,
-    hideBackdrop,
-    transitionDuration,
+    hideBackdrop = false,
+    transitionDuration = 300,
     paperProps,
-    align,
+    align = 'centered',
     ...rest
   } = props
   const classes = useStyles(props)
@@ -201,7 +204,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       classes={{
         root: classes.root,
         container: classes.container,
-        paper: cx(classes.paper, classes[size!], {
+        paper: cx(classes.paper, classes[size], {
           [classes.topAlignedDialog]: align === 'top'
         })
       }}

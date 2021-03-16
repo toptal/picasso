@@ -85,18 +85,18 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
+export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar (
   props,
   ref
 ) {
-  const { children, variant, className, style } = props
+  const { children, variant = 'light', className, style } = props
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
 
   useLayoutEffect(() => {
     setHasSidebar(true)
 
-    return function cleanup() {
+    return function cleanup () {
       setHasSidebar(false)
     }
   }, [setHasSidebar])
@@ -110,7 +110,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       flex
       direction='column'
       style={style}
-      className={cx(classes.root, className, classes[variant!])}
+      className={cx(classes.root, className, classes[variant])}
     >
       <div className={classes.spacer} />
       <SidebarContext.Provider

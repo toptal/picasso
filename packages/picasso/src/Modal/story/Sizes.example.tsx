@@ -31,13 +31,7 @@ const ModalDialog = ({
   onClose: () => void
   size: ModalProps['size']
 }) => (
-  <Modal
-    open={open}
-    size={size}
-    onClose={onClose}
-    container={() => document.getElementById('modal-container-sizes')!} // Only for demo purposes
-    transitionDuration={0} // Only for demo purposes, should not be used
-  >
+  <Modal open={open} size={size} onClose={onClose} transitionDuration={0}>
     <Modal.Title>Edit address details</Modal.Title>
     <Modal.Content>
       <Form.Field>
@@ -87,37 +81,35 @@ const Example = () => {
   } = useModal()
 
   return (
-    <div id='modal-container-sizes'>
-      <Container flex>
-        <Button onClick={showModalSmall} data-testid='trigger-small'>
-          Open small
-        </Button>
-        <ModalDialog open={isOpenSmall} onClose={hideModalSmall} size='small' />
+    <Container flex>
+      <Button onClick={showModalSmall} data-testid='trigger-small'>
+        Open small
+      </Button>
+      <ModalDialog open={isOpenSmall} onClose={hideModalSmall} size='small' />
 
-        <Button onClick={showModalMedium} data-testid='trigger-medium'>
-          Open medium (default)
-        </Button>
-        <ModalDialog
-          open={isOpenMedium}
-          onClose={hideModalMedium}
-          size='medium'
-        />
+      <Button onClick={showModalMedium} data-testid='trigger-medium'>
+        Open medium (default)
+      </Button>
+      <ModalDialog
+        open={isOpenMedium}
+        onClose={hideModalMedium}
+        size='medium'
+      />
 
-        <Button onClick={showModalLarge} data-testid='trigger-large'>
-          Open large
-        </Button>
-        <ModalDialog open={isOpenLarge} onClose={hideModalLarge} size='large' />
+      <Button onClick={showModalLarge} data-testid='trigger-large'>
+        Open large
+      </Button>
+      <ModalDialog open={isOpenLarge} onClose={hideModalLarge} size='large' />
 
-        <Button onClick={showModalFullscreen} data-testid='trigger-full-screen'>
-          Open full-screen
-        </Button>
-        <ModalDialog
-          open={isOpenFullscreen}
-          onClose={hideModalFullscreen}
-          size='full-screen'
-        />
-      </Container>
-    </div>
+      <Button onClick={showModalFullscreen} data-testid='trigger-full-screen'>
+        Open full-screen
+      </Button>
+      <ModalDialog
+        open={isOpenFullscreen}
+        onClose={hideModalFullscreen}
+        size='full-screen'
+      />
+    </Container>
   )
 }
 

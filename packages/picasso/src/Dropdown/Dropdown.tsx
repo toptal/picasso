@@ -26,6 +26,7 @@ import DropdownArrow from '../DropdownArrow'
 import Popper from '../Popper'
 import Paper from '../Paper'
 import styles from './styles'
+import noop from '../utils/noop'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Anchor element that opens content on click */
@@ -48,9 +49,9 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disablePortal?: boolean
   popperOptions?: PopperOptions
   /** Callback invoked when component is opened */
-  onOpen?(): void
+  onOpen?: () => void
   /** Callback invoked when component is closed */
-  onClose?(): void
+  onClose?: () => void
   popperContainer?: HTMLElement
 }
 
@@ -97,9 +98,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
     disableAutoFocus,
     disablePortal,
     popperOptions,
-    onOpen,
+    onOpen = noop,
     popperContainer,
-    onClose,
+    onClose = noop,
     // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
@@ -118,7 +119,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
   const open = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setAnchorEl(event.currentTarget)
     setIsOpen(true)
-    onOpen!()
+    onOpen()
   }
 
   const toggleOpen = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -158,7 +159,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
   const forceClose = () => {
     setAnchorEl(undefined)
     setIsOpen(false)
-    onClose!()
+    onClose()
   }
 
   const focus = () => {
@@ -186,15 +187,16 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
     }
   }
 
-  const paperMargins = useMemo(
-    () => ({
-      ...(offset!.top && { marginTop: spacingToRem(offset!.top) }),
-      ...(offset!.bottom && { marginBottom: spacingToRem(offset!.bottom) }),
-      ...(offset!.left && { marginLeft: spacingToRem(offset!.left) }),
-      ...(offset!.right && { marginRight: spacingToRem(offset!.right) })
-    }),
-    [offset]
-  )
+  const paperMargins = useMemo(() => {
+    if (offset) {
+      return {
+        ...(offset?.top && { marginTop: spacingToRem(offset.top) }),
+        ...(offset?.bottom && { marginBottom: spacingToRem(offset.bottom) }),
+        ...(offset?.left && { marginLeft: spacingToRem(offset.left) }),
+        ...(offset?.right && { marginRight: spacingToRem(offset.right) })
+      }
+    }
+  }, [offset])
 
   // here you can expose other methods, states to child components
   const context = {
@@ -265,9 +267,8 @@ Dropdown.defaultProps = {
   disableAutoClose: false,
   disableAutoFocus: true,
   disablePortal: false,
-  offset: {},
-  onClose: () => {},
-  onOpen: () => {},
+  onClose: noop,
+  onOpen: noop,
   placement: 'bottom-end',
   popperOptions: {}
 }

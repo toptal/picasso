@@ -46,8 +46,7 @@ type NumberAdornmentProps = {
   disabled?: boolean
 }
 
-const DEFAULT_NUMBER_INPUT_VALUE = 0
-
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const nativeInputValueSetter = (Object.getOwnPropertyDescriptor(
   window.HTMLInputElement.prototype,
   'value'
@@ -147,11 +146,11 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const NumberInput = forwardRef<HTMLInputElement, Props>(
-  function NumberInput(props, ref) {
+  function NumberInput (props, ref) {
     const {
-      step,
-      min,
-      max,
+      step = 1,
+      min = -Infinity,
+      max = Infinity,
       hideControls,
       value,
       onChange,
@@ -173,9 +172,9 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
 
     const endAdornment = hideControls ? null : (
       <NumberAdornment
-        step={step!}
-        min={min!}
-        max={max!}
+        step={step}
+        min={min}
+        max={max}
         value={value}
         inputRef={inputRef}
         classes={classes}
@@ -219,7 +218,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
 
 NumberInput.defaultProps = {
   onChange: () => {},
-  value: DEFAULT_NUMBER_INPUT_VALUE,
+  value: 0,
   step: 1,
   min: -Infinity,
   max: Infinity,

@@ -7,13 +7,13 @@ import capitalize from '@material-ui/core/utils/capitalize'
 import OutlinedInput from '../OutlinedInput'
 import SelectCaret from '../SelectCaret'
 import {
-  Option,
   ValueType,
   getOptionText,
   useAdornments,
   useSelectState,
   useSelectProps,
-  SelectProps
+  SelectProps,
+  renderOption as defaultRenderOption
 } from '../Select'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
 import NativeSelectOptions from '../NativeSelectOptions'
@@ -35,13 +35,13 @@ export const NativeSelect = documentable(
       const {
         className,
         style,
-        width,
+        width = 'full',
         loading,
         id,
         icon,
-        iconPosition,
+        iconPosition = 'start',
         name,
-        renderOption,
+        renderOption = defaultRenderOption,
         placeholder,
         disabled,
         error,
@@ -51,7 +51,7 @@ export const NativeSelect = documentable(
         enableReset,
         onChange,
         options,
-        getDisplayValue,
+        getDisplayValue = getOptionText,
         /* eslint-disable @typescript-eslint/no-unused-vars */
         menuWidth,
         noOptionsText,
@@ -74,7 +74,7 @@ export const NativeSelect = documentable(
       const inputWrapperRef = useRef<HTMLDivElement>(null)
 
       const selectState = useSelectState({
-        getDisplayValue: getDisplayValue!,
+        getDisplayValue,
         options,
         disabled,
         multiple,
@@ -87,7 +87,7 @@ export const NativeSelect = documentable(
         selectState
       })
       const [selectStartAdornment, selectEndAdornment] = useAdornments({
-        position: iconPosition!,
+        position: iconPosition,
         icon,
         loading,
         disabled
@@ -144,7 +144,7 @@ export const NativeSelect = documentable(
           </NativeSelectPlaceholder>
           <NativeSelectOptions
             options={options}
-            renderOption={renderOption!}
+            renderOption={renderOption}
             getItemProps={getItemProps}
           />
         </MuiNativeSelect>
@@ -155,7 +155,7 @@ export const NativeSelect = documentable(
           className={cx(
             classes.root,
             className,
-            classes[`root${capitalize(width!)}`],
+            classes[`root${capitalize(width)}`],
             {
               [classes.rootDisabled]: disabled
             }
@@ -179,7 +179,7 @@ NativeSelect.defaultProps = {
   noOptionsText: 'No matches found',
   onChange: noop,
   onBlur: noop,
-  renderOption: (option: Option) => option.text,
+  renderOption: defaultRenderOption,
   size: 'medium',
   width: 'full',
   searchThreshold: 10,

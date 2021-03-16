@@ -183,12 +183,7 @@ const ModalTreeDialog: FC<{
   onClose(): void
 }> = ({ open, onClose }) => {
   return (
-    <Modal
-      container={() => document.getElementById('modal-container')!}
-      onClose={onClose}
-      open={open}
-      size='full-screen'
-    >
+    <Modal onClose={onClose} open={open} size='full-screen'>
       <Modal.Title>Modal Tree View</Modal.Title>
       <Modal.Content data-testid='tree-dialog-content'>
         <TreeView data={rootNode} renderNode={renderNode} />
@@ -201,12 +196,12 @@ const Example = () => {
   const { showModal, hideModal, isOpen } = useModal()
 
   return (
-    <div id='modal-container'>
+    <>
       <Button data-testid='open' onClick={showModal}>
         Open
       </Button>
       <ModalTreeDialog open={isOpen} onClose={hideModal} />
-    </div>
+    </>
   )
 }
 

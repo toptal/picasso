@@ -41,9 +41,9 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoListItem' })
 
 export const ListItem = (props: Props) => {
   const classes = useStyles()
-  const { children, icon, variant, index, ...rest } = props
+  const { children, icon, variant = 'unordered', index = 1, ...rest } = props
 
-  const itemIcon = getBulletOrNumber(variant!, index!, icon)
+  const itemIcon = getBulletOrNumber(variant, index, icon)
 
   return (
     <li {...rest}>

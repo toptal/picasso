@@ -3,6 +3,7 @@ import { Modal, Button, Form, Tooltip } from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
 import { DatePicker } from '@toptal/picasso-lab'
 
+const initialDate = new Date(2020, 10, 10)
 const ModalDialog = ({
   open,
   onClose
@@ -10,15 +11,11 @@ const ModalDialog = ({
   open: boolean
   onClose: () => void
 }) => {
-  const initialDate = new Date(2020, 10, 10)
-  const [datepickerValue, setDatepickerValue] = useState(initialDate)
+  const [date, setDate] = useState(initialDate)
 
   return (
     <Modal
-      container={() => document.getElementById('modal-container')!}
-      onBackdropClick={() => console.log('Clicked backdrop..')}
       onClose={onClose}
-      onOpen={() => console.log('onOpen()')}
       open={open}
       transitionDuration={0} // Only for demo purposes, should not be used
     >
@@ -30,9 +27,9 @@ const ModalDialog = ({
           <DatePicker
             data-testid='datepicker'
             width='full'
-            value={datepickerValue}
-            onChange={date => {
-              setDatepickerValue(date as Date)
+            value={date}
+            onChange={newDate => {
+              setDate(newDate as Date)
             }}
           />
         </Form.Field>
@@ -45,7 +42,7 @@ const Example = () => {
   const { showModal, hideModal, isOpen } = useModal()
 
   return (
-    <div id='modal-container'>
+    <>
       <Tooltip open content='tooltip'>
         <Button data-testid='trigger' onClick={showModal}>
           Open
@@ -53,7 +50,7 @@ const Example = () => {
       </Tooltip>
 
       <ModalDialog open={isOpen} onClose={hideModal} />
-    </div>
+    </>
   )
 }
 

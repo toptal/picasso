@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import { useState, useEffect, useCallback } from 'react'
-import { Breakpoints } from '@material-ui/core/styles/createBreakpoints'
+import { BreakpointValues } from '@material-ui/core/styles/createBreakpoints'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'
@@ -10,7 +10,7 @@ type BreakpointsList = {
 }
 
 class BreakpointProvider {
-  breakpoints: Partial<Breakpoints> = {
+  breakpoints: Record<'values', BreakpointValues> = {
     values: {
       xs: 0,
       sm: 576,
@@ -25,21 +25,19 @@ class BreakpointProvider {
   }
 
   constructor() {
+    const { sm, md, lg } = this.breakpoints.values
+
     this.mediaQueries = {
-      small: `(max-width: ${this.breakpoints.values!.sm}px)`,
-      medium: `(min-width: ${this.breakpoints.values!.sm}px) and (max-width: ${
-        this.breakpoints.values!.md
-      }px)`,
-      large: `(min-width: ${this.breakpoints.values!.md}px) and (max-width: ${
-        this.breakpoints.values!.lg
-      }px)`,
-      'extra-large': `(min-width: ${this.breakpoints.values!.lg}px)`
+      small: `(max-width: ${sm}px)`,
+      medium: `(min-width: ${sm}px) and (max-width: ${md}px)`,
+      large: `(min-width: ${md}px) and (max-width: ${lg}px)`,
+      'extra-large': `(min-width: ${lg}px)`
     }
   }
 
   disableMobileBreakpoints() {
-    this.breakpoints.values!.xs = 768
-    this.breakpoints.values!.sm = 768
+    this.breakpoints.values.xs = 768
+    this.breakpoints.values.sm = 768
 
     this.mediaQueries.small = ''
     this.mediaQueries.medium = ''
@@ -49,10 +47,10 @@ class BreakpointProvider {
 export const PicassoBreakpoints = new BreakpointProvider()
 
 export const breakpointsList: BreakpointsList = {
-  small: PicassoBreakpoints.breakpoints.values!.sm,
-  medium: PicassoBreakpoints.breakpoints.values!.md,
-  large: PicassoBreakpoints.breakpoints.values!.lg,
-  'extra-large': PicassoBreakpoints.breakpoints.values!.xl
+  small: PicassoBreakpoints.breakpoints.values.sm,
+  medium: PicassoBreakpoints.breakpoints.values.md,
+  large: PicassoBreakpoints.breakpoints.values.lg,
+  'extra-large': PicassoBreakpoints.breakpoints.values.xl
 }
 
 export const screens = (...sizes: BreakpointKeys[]) => {
@@ -79,7 +77,7 @@ const screenSizeToBreakpointKey = (size: number): BreakpointKeys => {
    * @param {number} size Screen size
    */
 
-  const { sm, md, lg } = PicassoBreakpoints.breakpoints.values!
+  const { sm, md, lg } = PicassoBreakpoints.breakpoints.values
 
   if (size < sm) {
     return 'small'

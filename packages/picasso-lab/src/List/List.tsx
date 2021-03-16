@@ -19,13 +19,13 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoList' })
 
 export const List = (props: Props) => {
   const classes = useStyles()
-  const { variant, children, start, ...rest } = props
+  const { variant, children, start = 1, ...rest } = props
 
   const listProps = { className: classes.root, ...rest }
   const listItems = React.Children.map(children, (child, index) =>
     React.cloneElement(child as ReactElement, {
       variant,
-      index: index + start! - 1
+      index: index + start - 1
     })
   )
 

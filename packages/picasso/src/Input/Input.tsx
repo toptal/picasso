@@ -120,6 +120,7 @@ const getCharsTillLimit = ({
   limit,
   counter
 }: Pick<LimitAdornmentProps, 'charsLength' | 'limit' | 'counter'>) =>
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   hasRemainingCounter({ counter, limit }) ? limit! - charsLength : charsLength
 
 const getMultilineLabel = ({
@@ -187,6 +188,7 @@ const IconAdornment = (props: IconAdornmentProps) => {
 
   return (
     <InputAdornment
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       position={position!}
       disabled={disabled}
       disablePointerEvents
@@ -228,6 +230,7 @@ const EndAdornment = (props: EndAdornmentProps) => {
       <LimitAdornment
         charsLength={charsLength}
         multiline={multiline}
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         counter={counter!}
         limit={limit}
       />
@@ -254,7 +257,7 @@ const purifyProps = (props: Props) => {
   return disableUnsupportedProps('Input', props, sizeOptions)
 }
 
-export const Input = forwardRef<HTMLInputElement, Props>(function Input(
+export const Input = forwardRef<HTMLInputElement, Props>(function Input (
   props,
   ref
 ) {

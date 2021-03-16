@@ -7,8 +7,8 @@ import disableUnsupportedProps, {
 } from '../utils/disable-unsupported-props'
 import noop from '../utils/noop'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import { Option, SelectProps, ValueType } from './types'
-import { DEFAULT_SEARCH_TRESHOLD, getOptionText } from './utils'
+import { SelectProps, ValueType } from './types'
+import { DEFAULT_SEARCH_THRESHOLD, getOptionText, renderOption } from './utils'
 
 const purifyProps = (
   props: SelectProps<any, any>
@@ -56,10 +56,10 @@ Select.defaultProps = {
   noOptionsText: 'No matches found',
   onChange: noop,
   onBlur: noop,
-  renderOption: (option: Option) => option.text,
+  renderOption: renderOption,
   size: 'medium',
   width: 'full',
-  searchThreshold: DEFAULT_SEARCH_TRESHOLD,
+  searchThreshold: DEFAULT_SEARCH_THRESHOLD,
   enableAutofill: false,
   searchPlaceholder: 'Search',
   native: false

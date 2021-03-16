@@ -18,6 +18,7 @@ export default ({ palette, sizes: { input } }: Theme) =>
       color: palette.grey.dark
     },
     inputValueDisabled: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       color: alpha(palette.grey.dark!, 0.48)
     },
     inputValueSelected: {

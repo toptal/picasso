@@ -73,16 +73,15 @@ const CustomTooltip = ({
   active?: boolean
   payload?: Payload[]
 }) => {
-  if (!active) {
+  if (!active || !payload) {
     return null
   }
 
   return (
     <Container style={{ background: '#fff' }}>
-      {payload!.map(({ name, value, payload }) => (
+      {payload.map(({ name, value, payload: data }) => (
         <Container key={name}>
-          <b>{name}</b>:{' '}
-          {payload[`${name}IsEmpty`] ? 'No data provided.' : value}
+          <b>{name}</b>: {data[`${name}IsEmpty`] ? 'No data provided.' : value}
         </Container>
       ))}
     </Container>
