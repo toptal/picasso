@@ -37,9 +37,6 @@ const WithCustomDayRendering = () => {
           return children
         }}
         onChange={date => {
-          /* eslint-disable-next-line no-console */
-          console.log('selected date is: ', date)
-
           setDatepickerValue(date as Date)
         }}
       />

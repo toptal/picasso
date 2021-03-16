@@ -18,9 +18,6 @@ const AutocompleteExample = () => {
             name='date'
             value={datepickerValue}
             onChange={date => {
-              /* eslint-disable-next-line no-console */
-              console.log('selected date is: ', date)
-
               setDatepickerValue(date as Date)
             }}
           />
@@ -32,9 +29,6 @@ const AutocompleteExample = () => {
             value={datepickerValue}
             autoComplete='cc-exp'
             onChange={date => {
-              /* eslint-disable-next-line no-console */
-              console.log('selected date is: ', date)
-
               setDatepickerValue(date as Date)
             }}
           />

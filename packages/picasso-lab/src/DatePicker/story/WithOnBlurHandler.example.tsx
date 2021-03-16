@@ -12,13 +12,9 @@ const WithOnBlurHandlerExample = () => {
       <DatePicker
         value={datepickerValue}
         onBlur={() => {
-          /* eslint-disable-next-line no-console */
-          console.log('fire of the onBlur handler')
+          // handle on blur
         }}
         onChange={(date: DateOrDateRangeType | null) => {
-          /* eslint-disable-next-line no-console */
-          console.log('selected date is: ', date)
-
           setDatepickerValue(date)
         }}
       />

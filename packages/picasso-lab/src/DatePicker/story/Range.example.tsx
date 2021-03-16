@@ -12,11 +12,6 @@ const RangeExample = () => {
         onChange={dates => {
           const [start, end] = dates as [Date, Date]
 
-          // eslint-disable-next-line no-console
-          console.log('start date', start)
-          // eslint-disable-next-line no-console
-          console.log('end date', end)
-
           setValue([start, end])
         }}
       />

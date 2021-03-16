@@ -14,9 +14,6 @@ const DefaultExample = () => {
             value={datepickerValue}
             error
             onChange={date => {
-              /* eslint-disable-next-line no-console */
-              console.log('selected date is: ', date)
-
               setDatepickerValue(date as Date)
             }}
           />

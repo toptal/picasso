@@ -64,7 +64,6 @@ const TagSelectorCustomOptionRendererExample = () => {
         }}
         showOtherOption
         onOtherOptionSelect={(newValue: string) => {
-          console.log('onOtherOptionSelect returns item value:', newValue)
           setValue([
             ...value,
             {

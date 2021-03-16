@@ -19,7 +19,7 @@ const renderForm = (props: OmitInternalProps<Props>) => {
 describe('Form', () => {
   it('renders', () => {
     const { container } = renderForm({
-      onSubmit: values => console.log(values)
+      onSubmit: () => {}
     })
 
     expect(container).toMatchSnapshot()
