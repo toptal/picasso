@@ -45,7 +45,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Table = forwardRef<HTMLTableElement, Props>(function Table (
+export const Table = forwardRef<HTMLTableElement, Props>(function Table(
   props,
   ref
 ) {

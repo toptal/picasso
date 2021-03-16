@@ -25,7 +25,7 @@ export interface Props
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableCell' })
 
 export const TableCell = forwardRef<HTMLTableCellElement, Props>(
-  function TableCell (props, ref) {
+  function TableCell(props, ref) {
     const {
       align,
       className,

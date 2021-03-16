@@ -28,7 +28,7 @@ const useStyles = makeStyles<Theme>(styles, {
 export const TableSectionHead: FunctionComponent<Props> = forwardRef<
   HTMLTableSectionElement,
   Props
->(function TableSectionHead (props, ref) {
+>(function TableSectionHead(props, ref) {
   const { colSpan, icon, children, style } = props
 
   const classes = useStyles()

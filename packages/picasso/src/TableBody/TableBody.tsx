@@ -33,7 +33,7 @@ const stripeRows = (children: React.ReactNode) => {
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableBody' })
 
 export const TableBody = forwardRef<HTMLTableSectionElement, Props>(
-  function TableBody (props, ref) {
+  function TableBody(props, ref) {
     const { className, style, children, ...rest } = props
     const classes = useStyles()
     const tableConfig = useContext(TableContext)
