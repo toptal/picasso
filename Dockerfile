@@ -19,10 +19,9 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD ${PUPPETEER_SKIP_CHROMIUM_DOWNLOAD}
 ENV CHROME_BIN /usr/bin/chromium-browser
 
 RUN echo $APK_BRANCH
-RUN apk update && apk upgrade && \
-  echo http://nl.alpinelinux.org/alpine/v$APK_BRANCH/community > /etc/apk/repositories && \
-  echo http://nl.alpinelinux.org/alpine/v$APK_BRANCH/main >> /etc/apk/repositories && \
-  apk add --no-cache \
+RUN echo http://nl.alpinelinux.org/alpine/v$APK_BRANCH/community > /etc/apk/repositories
+RUN echo http://nl.alpinelinux.org/alpine/v$APK_BRANCH/main >> /etc/apk/repositories
+RUN apk --no-cache add \
   harfbuzz \
   nss \
   git \
@@ -44,7 +43,7 @@ RUN chown -R node /app
 
 USER node
 
-RUN printf '//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true\n' > .npmrc
+RUN printf "//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true\n" > .npmrc
 
 # Enables layer caching
 COPY --chown=node:node package.json yarn.lock ./
