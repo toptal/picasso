@@ -184,7 +184,7 @@ export const useScreens = <T = unknown>() => {
 
       return defaultValue
     },
-    [screenKey]
+    [T, screenKey]
   )
 }
 

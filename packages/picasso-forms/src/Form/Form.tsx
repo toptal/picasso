@@ -83,27 +83,30 @@ export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
 
   const validationObject = useRef<FormContextProps>(createFormContext())
 
-  const showSuccessNotification = () => {
+  const showSuccessNotification = useCallback(() => {
     if (!successSubmitMessage) {
       return
     }
 
     showSuccess(successSubmitMessage)
-  }
+  }, [showSuccess, successSubmitMessage])
 
-  const showErrorNotification = (errors: SubmissionErrors) => {
-    if (typeof errors === 'string') {
-      showError(errors, undefined, { persist: true })
+  const showErrorNotification = useCallback(
+    (errors: SubmissionErrors) => {
+      if (typeof errors === 'string') {
+        showError(errors, undefined, { persist: true })
 
-      return
-    }
+        return
+      }
 
-    if (!failedSubmitMessage) {
-      return
-    }
+      if (!failedSubmitMessage) {
+        return
+      }
 
-    showError(failedSubmitMessage, undefined, { persist: true })
-  }
+      showError(failedSubmitMessage, undefined, { persist: true })
+    },
+    [failedSubmitMessage, showError]
+  )
 
   const handleSubmit = useCallback(
     async (values, form, callback) => {
@@ -127,13 +130,7 @@ export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
 
       return submissionErrors
     },
-    [
-      failedSubmitMessage,
-      onSubmit,
-      showError,
-      showSuccess,
-      successSubmitMessage
-    ]
+    [onSubmit, showErrorNotification, showSuccessNotification]
   )
 
   return (

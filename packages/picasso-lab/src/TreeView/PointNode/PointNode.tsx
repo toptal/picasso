@@ -27,7 +27,7 @@ export const PointNode = forwardRef<any, Props>(
       const xPosition = node.x - nodeWidth / 2
 
       return `translate(${xPosition},${node.y})`
-    }, [node.x, node.y])
+    }, [node.x, node.y, nodeWidth])
 
     useLayoutEffect(() => {
       if (nodeRef.current) {
@@ -41,7 +41,7 @@ export const PointNode = forwardRef<any, Props>(
           })
         }
       }
-    }, [nodeRef.current, dimensions])
+    }, [dimensions, node.ref])
 
     return (
       <g id={node.id} transform={transform} ref={ref}>

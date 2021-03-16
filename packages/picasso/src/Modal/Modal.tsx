@@ -112,10 +112,7 @@ const generateKey = (() => {
 })()
 
 // eslint-disable-next-line react/display-name
-export const Modal = forwardRef<HTMLElement, Props>(function Modal(
-  props,
-  ref
-) {
+export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   const {
     children,
     open,
@@ -175,23 +172,24 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(
     const resetBodyOverflow = () => {
       document.body.style.overflow = bodyOverflow.current
     }
+    const currentModal = modalId.current
 
     if (open) {
       // TODO: to be improved as part of https://toptal-core.atlassian.net/browse/FX-1069
       bodyOverflow.current = document.body.style.overflow
       document.body.style.overflow = 'hidden'
 
-      defaultManager.add(modalId.current)
+      defaultManager.add(currentModal)
     } else {
       resetBodyOverflow()
 
-      defaultManager.remove(modalId.current)
+      defaultManager.remove(currentModal)
     }
 
     return () => {
       resetBodyOverflow()
 
-      defaultManager.remove(modalId.current)
+      defaultManager.remove(currentModal)
     }
   }, [open])
 

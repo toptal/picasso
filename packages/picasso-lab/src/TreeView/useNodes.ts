@@ -65,7 +65,7 @@ export const useNodes = (
   const [initialized, setInitializedState] = useState<boolean>(false)
   const initialNodes = useMemo(() => {
     return getDynamicNodes(rootNode.descendants())
-  }, [])
+  }, [rootNode])
   const dynamicNodes = useMemo(() => {
     const latestNodes = rootNode.descendants()
 
@@ -88,7 +88,7 @@ export const useNodes = (
   // we have to render nodes twice: first for the initial showing data, and the second one — with the correct positions.
   const nodes = useMemo<DynamicPointNode[]>(() => {
     return updateNodesYPosition(dynamicNodes)
-  }, [dynamicNodes, initialized])
+  }, [dynamicNodes])
 
   useLayoutEffect(() => {
     if (!dynamicNodes[0].ref.current || initialized) {

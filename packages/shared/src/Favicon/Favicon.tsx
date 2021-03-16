@@ -45,7 +45,7 @@ export const Favicon = ({ environment }: Props) => {
     }
 
     loadIcons()
-  }, [resolvedEnvironment])
+  }, [resolvedEnvironment, setIcons])
 
   if (resolvedEnvironment === 'test') {
     // do not load favicons in tests (e.g. in e2e)
