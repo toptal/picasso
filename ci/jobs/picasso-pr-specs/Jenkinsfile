@@ -37,8 +37,7 @@ pipeline {
                   advancedCheckoutBehaviour: [timeout: 120],
                   advancedCloneBehaviour   : [depth: 0, noTags: true, reference: '', shallow: false, timeout: 340],
                   cleanBeforeCheckout      : false,
-                  calculateChangelog       : [compareRemote: 'origin', compareTarget: "${ghprbTargetBranch}"],
-                  mergeBeforeBuild         : [mergeRemote: 'origin', mergeTarget: "${ghprbTargetBranch}", mergeStrategy: 'DEFAULT', fastForwardMode: 'FF']
+                  calculateChangelog       : [compareRemote: 'origin', compareTarget: "${ghprbTargetBranch}"]
           ]
         )
 
