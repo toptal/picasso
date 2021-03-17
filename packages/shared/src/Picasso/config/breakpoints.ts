@@ -184,7 +184,8 @@ export const useScreens = <T = unknown>() => {
 
       return defaultValue
     },
-    [T, screenKey]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [screenKey]
   )
 }
 
