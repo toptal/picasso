@@ -17,13 +17,13 @@ const Example = () => {
       </Tabs>
 
       {value === 0 && (
-        <Container top='small'>Content for the first tab</Container>
+        <Container top='small'>Content of the first tab</Container>
       )}
       {value === 1 && (
-        <Container top='small'>Content for the second tab</Container>
+        <Container top='small'>Content of the second tab</Container>
       )}
       {value === 2 && (
-        <Container top='small'>Content for the third tab</Container>
+        <Container top='small'>Content of the third tab</Container>
       )}
     </div>
   )
