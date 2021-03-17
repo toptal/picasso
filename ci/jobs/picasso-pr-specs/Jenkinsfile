@@ -37,8 +37,7 @@ pipeline {
                   advancedCheckoutBehaviour: [timeout: 120],
                   advancedCloneBehaviour   : [depth: 0, noTags: true, reference: '', shallow: false, timeout: 340],
                   cleanBeforeCheckout      : false,
-                  calculateChangelog       : [compareRemote: 'origin', compareTarget: "${ghprbTargetBranch}"],
-                  mergeBeforeBuild         : [mergeRemote: 'origin', mergeTarget: "${ghprbTargetBranch}", mergeStrategy: 'DEFAULT', fastForwardMode: 'FF']
+                  calculateChangelog       : [compareRemote: 'origin', compareTarget: "${ghprbTargetBranch}"]
           ]
         )
 
@@ -65,28 +64,6 @@ pipeline {
       } //steps
     } //stage
 
-    stage('Danger checks') {
-      when {
-        expression {
-          ghprbMatchesComment(/danger|all/)
-        }
-      }
-      steps {
-        script {
-          sh """
-            docker run --rm \
-            -e JENKINS_URL \
-            -e ghprbPullId \
-            -e ghprbGhRepository \
-            -e BUILD_URL \
-            -e DANGER_GITHUB_API_TOKEN \
-            gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
-            yarn davinci ci danger --conventionalCommits
-          """
-        }
-      } //steps
-    } //stage
-
     stage('Deploy documentation') {
       when {
         expression {
@@ -94,10 +71,10 @@ pipeline {
         }
       }
       steps {
-        info "== Deploying docs"
+        info '== Deploying docs'
         script {
           buildWithParameters(
-            jobName: "picasso-docs",
+            jobName: 'picasso-docs',
             propagate: false,
             wait: false,
             parameters: [
@@ -135,15 +112,15 @@ pipeline {
 
       post {
         success {
-          success "Visual Tests"
+          success 'Visual Tests'
           script {
             ghHelper.notifyPR('Visual Tests', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}/Visual_20Regression_20Tests/", repoName)
           }
         }
         failure {
-          err "Visual Tests"
+          err 'Visual Tests'
           script {
-            ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${ghprbActualCommit}","${BUILD_URL}/Visual_20Regression_20Tests/", repoName)
+            ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${ghprbActualCommit}", "${BUILD_URL}/Visual_20Regression_20Tests/", repoName)
           }
         }
       } //post
@@ -154,7 +131,7 @@ pipeline {
     always {
       script {
         archiveArtifacts(
-          artifacts: "__diff_output__/latest/**/*.*",
+          artifacts: '__diff_output__/latest/**/*.*',
           fingerprint: true,
           allowEmptyArchive: true
         )
