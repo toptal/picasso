@@ -33,6 +33,7 @@ describe('Tabs', () => {
     cy.get('[data-testid="tab-4"]').should('not.be.visible')
     cy.get('[data-testid="tab-scroll-button-left"]').should('not.exist')
     cy.get('[data-testid="tab-scroll-button-right"]').should('be.visible')
+    cy.get('body').happoScreenshot()
 
     cy.get('[data-testid="tab-scroll-button-right"]').click()
     cy.get('[data-testid="tab-0"]').should('not.be.visible')
