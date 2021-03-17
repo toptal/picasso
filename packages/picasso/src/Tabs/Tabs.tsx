@@ -11,6 +11,7 @@ import {
 import Tab from '../Tab'
 import TabScrollButton from '../TabScrollButton'
 import styles from './styles'
+import useTabAction from './use-tab-action'
 
 export interface Props
   extends BaseProps,
@@ -40,6 +41,7 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs (
 ) {
   const { children, onChange, value, ...rest } = props
   const classes = useStyles()
+  const action = useTabAction()
 
   return (
     <MUITabs
@@ -49,6 +51,7 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs (
       onChange={onChange}
       value={value}
       variant='scrollable'
+      action={action}
       scrollButtons='auto'
       ScrollButtonComponent={TabScrollButton}
     >

@@ -18,6 +18,7 @@ const ScrollButtonsExample = () => {
           <Tabs.Tab label='Label' data-testid='tab-1' />
           <Tabs.Tab label='Label' data-testid='tab-2' />
           <Tabs.Tab label='Label' data-testid='tab-3' />
+          <Tabs.Tab label='Label' data-testid='tab-4' />
         </Tabs>
       </div>
     </TestingPicasso>
@@ -29,20 +30,20 @@ describe('Tabs', () => {
     mount(<ScrollButtonsExample />)
 
     cy.get('[data-testid="tab-0"]').should('be.visible')
+    cy.get('[data-testid="tab-4"]').should('not.be.visible')
     cy.get('[data-testid="tab-scroll-button-left"]').should('not.exist')
     cy.get('[data-testid="tab-scroll-button-right"]').should('be.visible')
-    cy.get('body').happoScreenshot()
 
     cy.get('[data-testid="tab-scroll-button-right"]').click()
-    cy.get('[data-testid="tab-3"]').should('be.visible')
+    cy.get('[data-testid="tab-0"]').should('not.be.visible')
+    cy.get('[data-testid="tab-4"]').should('be.visible')
     cy.get('[data-testid="tab-scroll-button-left"]').should('be.visible')
     cy.get('[data-testid="tab-scroll-button-right"]').should('not.exist')
-    cy.get('body').happoScreenshot()
 
     cy.get('[data-testid="tab-scroll-button-left"]').click()
     cy.get('[data-testid="tab-0"]').should('be.visible')
+    cy.get('[data-testid="tab-4"]').should('not.be.visible')
     cy.get('[data-testid="tab-scroll-button-left"]').should('not.exist')
     cy.get('[data-testid="tab-scroll-button-right"]').should('be.visible')
-    cy.get('body').happoScreenshot()
   })
 })
