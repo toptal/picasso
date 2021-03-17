@@ -37,8 +37,7 @@ pipeline {
                   advancedCheckoutBehaviour: [timeout: 120],
                   advancedCloneBehaviour   : [depth: 0, noTags: true, reference: '', shallow: false, timeout: 340],
                   cleanBeforeCheckout      : false,
-                  calculateChangelog       : [compareRemote: 'origin', compareTarget: "${ghprbTargetBranch}"],
-                  mergeBeforeBuild         : [mergeRemote: 'origin', mergeTarget: "${ghprbTargetBranch}", mergeStrategy: 'DEFAULT', fastForwardMode: 'FF']
+                  calculateChangelog       : [compareRemote: 'origin', compareTarget: "${ghprbTargetBranch}"]
           ]
         )
 
@@ -61,28 +60,6 @@ pipeline {
               IMAGE_NAME: repoName
             ]
           )
-        }
-      } //steps
-    } //stage
-
-    stage('Danger checks') {
-      when {
-        expression {
-          ghprbMatchesComment(/danger|all/)
-        }
-      }
-      steps {
-        script {
-          sh """
-            docker run --rm \
-            -e JENKINS_URL \
-            -e ghprbPullId \
-            -e ghprbGhRepository \
-            -e BUILD_URL \
-            -e DANGER_GITHUB_API_TOKEN \
-            gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
-            yarn davinci ci danger --conventionalCommits
-          """
         }
       } //steps
     } //stage
