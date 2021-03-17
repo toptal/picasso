@@ -1,6 +1,8 @@
 import React from 'react'
 import { Container, Tabs } from '@toptal/picasso'
 
+const TAB_COUNT = 10
+
 const Example = () => {
   const [value, setValue] = React.useState(0)
 
@@ -11,24 +13,11 @@ const Example = () => {
   return (
     <div style={{ width: '13rem' }}>
       <Tabs value={value} onChange={handleChange}>
-        <Tabs.Tab label='Label' />
-        <Tabs.Tab label='Label' />
-        <Tabs.Tab label='Label' />
-        <Tabs.Tab label='Label' />
+        {Array.from({ length: TAB_COUNT }).map((_, index) => (
+          <Tabs.Tab key={index} label='Label' />
+        ))}
       </Tabs>
-
-      {value === 0 && (
-        <Container top='small'>Content for the first tab</Container>
-      )}
-      {value === 1 && (
-        <Container top='small'>Content for the second tab</Container>
-      )}
-      {value === 2 && (
-        <Container top='small'>Content for the third tab</Container>
-      )}
-      {value === 3 && (
-        <Container top='small'>Content for the fourth tab</Container>
-      )}
+      <Container top='small'>Content of tab #{value}</Container>
     </div>
   )
 }

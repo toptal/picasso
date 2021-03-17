@@ -1,35 +1,37 @@
-import { createStyles, Theme } from '@material-ui/core'
+import { createStyles } from '@material-ui/core'
+import { Theme } from '@material-ui/core/styles'
+import { alpha } from '@toptal/picasso-shared'
 
-export default ({ palette }: Theme) =>
-  createStyles({
+export default ({ palette }: Theme) => {
+  const color = palette.common.white
+  const colorStops = `${color} 0%, ${color} 50%, ${alpha(color, 0)} 100%`
+
+  return createStyles({
     root: {
-      position: 'relative',
-      width: '1rem',
-      flexShrink: 0,
-
-      '&::after': {
-        position: 'absolute',
-        content: '""',
-        top: '0.5rem',
-        bottom: '0.5rem',
-        width: '1.5rem',
-        // to overlap tag labels
-        zIndex: 1
+      position: 'relative'
+    },
+    gradient: {
+      position: 'absolute',
+      width: '2.5rem',
+      height: '100%',
+      zIndex: 2,
+      '&$left': {
+        background: `linear-gradient(90deg, ${colorStops})`
+      },
+      '&$right': {
+        background: `linear-gradient(270deg, ${colorStops})`
       }
+    },
+    button: {
+      position: 'absolute',
+      width: '1rem',
+      height: '100%'
     },
     left: {
-      '&::after': {
-        left: '100%',
-        background: `linear-gradient(90deg, ${palette.common.white}, transparent)`
-      }
+      left: 0
     },
     right: {
-      '&::after': {
-        right: '100%',
-        background: `linear-gradient(270deg, ${palette.common.white}, transparent)`
-      }
-    },
-    disabled: {
-      opacity: 0
+      right: 0
     }
   })
+}
