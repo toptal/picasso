@@ -71,10 +71,10 @@ pipeline {
         }
       }
       steps {
-        info '== Deploying docs'
+        info "== Deploying docs"
         script {
           buildWithParameters(
-            jobName: 'picasso-docs',
+            jobName: "picasso-docs",
             propagate: false,
             wait: false,
             parameters: [
@@ -112,15 +112,15 @@ pipeline {
 
       post {
         success {
-          success 'Visual Tests'
+          success "Visual Tests"
           script {
             ghHelper.notifyPR('Visual Tests', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}/Visual_20Regression_20Tests/", repoName)
           }
         }
         failure {
-          err 'Visual Tests'
+          err "Visual Tests"
           script {
-            ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${ghprbActualCommit}", "${BUILD_URL}/Visual_20Regression_20Tests/", repoName)
+            ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${ghprbActualCommit}","${BUILD_URL}/Visual_20Regression_20Tests/", repoName)
           }
         }
       } //post
@@ -131,7 +131,7 @@ pipeline {
     always {
       script {
         archiveArtifacts(
-          artifacts: '__diff_output__/latest/**/*.*',
+          artifacts: "__diff_output__/latest/**/*.*",
           fingerprint: true,
           allowEmptyArchive: true
         )
