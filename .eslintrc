@@ -29,9 +29,7 @@
           {
             "exceptions": ["e", "_", "j"]
           }
-        ],
-        "react/jsx-props-no-spreading": "off",
-        "typescript-eslint/ban-ts-comment": "off"
+        ]
       }
     },
     // Generated files
