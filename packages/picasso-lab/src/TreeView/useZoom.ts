@@ -25,7 +25,8 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
   const [initialized, setInitialized] = useState(false)
   const zoom = useMemo(
     () => d3.zoom<ZoomRefElement, unknown>().scaleExtent(scaleExtent),
-    [ZoomRefElement, scaleExtent]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [scaleExtent]
   )
 
   const handleZoom = (step: number) => {
