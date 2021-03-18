@@ -43,19 +43,17 @@ const renderTable = (
 
 let spiedOnTitleCase: jest.SpyInstance
 
-beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-})
-afterEach(() => {
-  spiedOnTitleCase.mockReset()
-})
-
 describe('Table', () => {
-  let api: RenderResult
-
   beforeEach(() => {
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
     api = renderTable()
   })
+
+  afterEach(() => {
+    spiedOnTitleCase.mockReset()
+  })
+
+  let api: RenderResult
 
   it('renders', () => {
     const { container } = api
