@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@6.0.6...@toptal/picasso@6.1.0) (2021-03-18)
+
+
+### Features
+
+* **tabs:** add scroll buttons ([#1980](https://github.com/toptal/picasso/issues/1980)) ([3f705e7](https://github.com/toptal/picasso/commit/3f705e7f158c3142d4bb49f3345ccbf0d26fc614))
+
+
+
+
+
 ## [6.0.6](https://github.com/toptal/picasso/compare/@toptal/picasso@6.0.5...@toptal/picasso@6.0.6) (2021-03-16)
 
 
