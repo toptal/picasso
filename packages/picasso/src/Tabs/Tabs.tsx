@@ -9,7 +9,9 @@ import {
 } from '@toptal/picasso-shared'
 
 import Tab from '../Tab'
+import TabScrollButton from '../TabScrollButton'
 import styles from './styles'
+import useTabAction from './use-tab-action'
 
 export interface Props
   extends BaseProps,
@@ -33,12 +35,13 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
+export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs (
   props,
   ref
 ) {
   const { children, onChange, value, ...rest } = props
   const classes = useStyles()
+  const action = useTabAction()
 
   return (
     <MUITabs
@@ -48,7 +51,9 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
       onChange={onChange}
       value={value}
       variant='scrollable'
-      scrollButtons='off'
+      action={action}
+      scrollButtons='auto'
+      ScrollButtonComponent={TabScrollButton}
     >
       {children}
     </MUITabs>
