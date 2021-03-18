@@ -2,7 +2,6 @@
 
 ghHelper = new helpers.GithubNotifyHelper()
 helper = new helpers.Helpers()
-buildImageResult = []
 repoName = 'picasso'
 buildImageJobName = "${repoName}-build-image"
 def FAILURE_REASON
@@ -50,9 +49,9 @@ pipeline {
     stage('Build image') {
       steps {
         script {
-          buildImageResult[0] = buildWithParameters(
+          buildWithParameters(
             jobName: buildImageJobName,
-            propagate: false,
+            propagate: true,
             wait: true,
             parameters: [
               BRANCH: ghprbSourceBranch,
