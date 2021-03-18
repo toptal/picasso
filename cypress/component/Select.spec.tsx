@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from 'react'
 import { mount } from '@cypress/react'
 import { Select, Form, Container, NumberInput } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
+import { palette } from '@toptal/picasso/utils'
 
 const SelectSearchBehaviourExample = () => {
   const [value, setValue] = useState<string>()
@@ -16,7 +17,9 @@ const SelectSearchBehaviourExample = () => {
     setValue(event.target.value)
   }
 
-  const handleTresholdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleThresholdChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setTreshold(parseInt(event.target.value, 10))
   }
 
@@ -42,7 +45,7 @@ const SelectSearchBehaviourExample = () => {
             <Form.Label>Search threshold</Form.Label>
             <NumberInput
               value={threshold}
-              onChange={handleTresholdChange}
+              onChange={handleThresholdChange}
               data-testid='input-threshold'
             />
           </Form.Field>
@@ -82,6 +85,35 @@ const SelectNativeExample = () => {
     </TestingPicasso>
   )
 }
+
+const SelectOverviewExample = () => (
+  <TestingPicasso>
+    <Container flex>
+      <Form.Field>
+        <Form.Label>Select</Form.Label>
+        <Select options={OPTIONS} placeholder='Choose an option...' />
+      </Form.Field>
+      <Form.Field>
+        <Form.Label>Native elect</Form.Label>
+        <Select options={OPTIONS} placeholder='Choose an option...' native />
+      </Form.Field>
+      <Form.Field>
+        <Form.Label>Select with error</Form.Label>
+        <Select options={OPTIONS} placeholder='Choose an option...' error />
+      </Form.Field>
+      <Form.Field>
+        <Form.Label>Native elect with error</Form.Label>
+        <Select
+          options={OPTIONS}
+          placeholder='Choose an option...'
+          native
+          error
+        />
+      </Form.Field>
+    </Container>
+  </TestingPicasso>
+)
+
 const OPTIONS = [
   { value: '1', text: 'Option 1' },
   { value: '2', text: 'Option 2' },
@@ -95,9 +127,7 @@ const openSelectWithTab = () => {
 }
 
 const setThresholdToHideSelectSearch = () => {
-  cy.get('[data-testid=input-threshold]')
-    .type('{backspace}')
-    .type('6')
+  cy.get('[data-testid=input-threshold]').type('{backspace}').type('6')
 }
 
 const getNativeSelect = () => cy.get('select')
@@ -117,8 +147,6 @@ describe('Select', () => {
 
     cy.get('[data-testid=select]').type(' ')
     cy.get('[role=menu]').should('be.visible')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     cy.get('[role=menu]').happoScreenshot()
   })
 
@@ -130,5 +158,15 @@ describe('Select', () => {
     cy.get('option[role=option][value=1]')
       .should('have.attr', 'aria-selected')
       .and('match', /true/)
+  })
+
+  it('renders as non-transparent on a colorful background', () => {
+    mount(
+      <div style={{ background: palette.yellow.main }}>
+        <SelectOverviewExample />
+      </div>
+    )
+
+    cy.get('body').happoScreenshot()
   })
 })
