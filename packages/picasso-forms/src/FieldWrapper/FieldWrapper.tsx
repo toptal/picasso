@@ -234,6 +234,13 @@ const FieldWrapper = <
       if (rest.onBlur) {
         rest.onBlur(event)
       }
+    },
+    onFocus: (event: FocusEvent<HTMLElement>) => {
+      input.onFocus(event)
+
+      if (rest.onFocus) {
+        rest.onFocus(event)
+      }
     }
   }
 
