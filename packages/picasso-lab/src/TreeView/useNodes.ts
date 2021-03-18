@@ -88,7 +88,8 @@ export const useNodes = (
   // we have to render nodes twice: first for the initial showing data, and the second one — with the correct positions.
   const nodes = useMemo<DynamicPointNode[]>(() => {
     return updateNodesYPosition(dynamicNodes)
-  }, [dynamicNodes])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dynamicNodes, initialized])
 
   useLayoutEffect(() => {
     if (!dynamicNodes[0].ref.current || initialized) {
