@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import debounce from 'debounce'
 import { Autocomplete, AutocompleteItem } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
@@ -38,12 +38,16 @@ const Example = () => {
   const [options, setOptions] = useState<AutocompleteItem[] | null>()
   const [loading, setLoading] = useState(false)
 
-  const handleChangeDebounced = debounce(async (inputValue: string) => {
-    const newOptions = await loadOptions(inputValue.trim().toLowerCase())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleChangeDebounced = useCallback(
+    debounce(async (inputValue: string) => {
+      const newOptions = await loadOptions(inputValue.trim().toLowerCase())
 
-    setLoading(false)
-    setOptions(newOptions)
-  }, 500)
+      setLoading(false)
+      setOptions(newOptions)
+    }, 500),
+    []
+  )
 
   const handleChange = (
     inputValue: string,
