@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@2.0.3...@toptal/picasso-forms@2.0.4) (2021-03-18)
+
+
+### Bug Fixes
+
+* **form-input:** forward onFocus prop to the underlying component ([#1982](https://github.com/toptal/picasso/issues/1982)) ([0f0e563](https://github.com/toptal/picasso/commit/0f0e563ea5455e58850dabc3ca90a62421937c08))
+
+
+
+
+
 ## [2.0.3](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@2.0.2...@toptal/picasso-forms@2.0.3) (2021-03-16)
 
 **Note:** Version bump only for package @toptal/picasso-forms
