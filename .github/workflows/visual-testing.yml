@@ -2,7 +2,7 @@ name: Visual Testing
 
 on:
   push:
-    branches: [master]
+    branches: [v5]
 
 jobs:
   tests:
