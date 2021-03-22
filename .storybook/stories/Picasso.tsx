@@ -1,3 +1,4 @@
+// eslint-disable-file @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { doc } from 'storybook-readme'
 import { storiesOf } from '@storybook/react'

@@ -1,4 +1,5 @@
 import React, { forwardRef, ReactNode } from 'react'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import SimpleReactCalendar from 'simple-react-calendar'
 import cx from 'classnames'
@@ -64,7 +65,7 @@ const isDateRange = (
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
 
-export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
+export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar (
   props,
   ref
 ) {

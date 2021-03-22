@@ -27,7 +27,6 @@ const useEllipsis = () => {
   React.useLayoutEffect(measure)
 
   React.useEffect(() => {
-    // @ts-ignore
     const ResizeObserver = window.ResizeObserver
     const resizeObserver = ResizeObserver ? new ResizeObserver(measure) : null
     const container = ref.current?.parentNode
