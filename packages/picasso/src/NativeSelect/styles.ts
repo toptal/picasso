@@ -34,7 +34,8 @@ export default ({ palette }: Theme) =>
       }
     },
     nativeInput: {
-      padding: 0
+      padding: 0,
+      backgroundColor: palette.common.white
     },
     placeholder: {
       color: palette.grey.main2
