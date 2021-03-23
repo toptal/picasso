@@ -1,4 +1,4 @@
-import { createStyles, Theme } from '@material-ui/core'
+import { createStyles, Theme } from '@material-ui/core/styles'
 
 export default ({ typography }: Theme) =>
   createStyles({

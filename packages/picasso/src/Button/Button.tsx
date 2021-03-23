@@ -17,7 +17,7 @@ import {
   TextLabelProps,
   Classes
 } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import styles from './styles'
 import Loader from '../Loader'
@@ -114,7 +114,7 @@ const getIcon = (
   })
 }
 
-export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
+export const Button = forwardRef<HTMLButtonElement, Props>(function Button (
   props,
   ref
 ) {

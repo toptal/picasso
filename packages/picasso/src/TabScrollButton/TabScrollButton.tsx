@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import React, { forwardRef } from 'react'
-import { ButtonBase } from '@material-ui/core'
+import ButtonBase from '@material-ui/core/ButtonBase'
 import { makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 

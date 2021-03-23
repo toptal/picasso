@@ -1,4 +1,4 @@
-import { createStyles } from '@material-ui/core'
+import { createStyles } from '@material-ui/core/styles'
 
 // --- need to move to shared config
 export const headerHeight = { default: '4.5rem', smallAndMedium: '3rem' }

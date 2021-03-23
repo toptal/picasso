@@ -15,7 +15,7 @@ import {
   Tooltip
 } from 'recharts'
 import { ticks as getD3Ticks } from 'd3-array'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'

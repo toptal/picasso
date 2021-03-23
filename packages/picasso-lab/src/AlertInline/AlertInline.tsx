@@ -9,7 +9,7 @@ import {
   Info16
 } from '@toptal/picasso'
 import { VariantType as ContainerVariants } from '@toptal/picasso/Container'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import styles from './styles'
 
@@ -46,7 +46,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAlertInline'
 })
 
-export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
+export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert (
   props,
   ref
 ) {

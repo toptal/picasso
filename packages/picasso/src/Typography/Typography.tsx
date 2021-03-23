@@ -1,8 +1,12 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Variant as MUIVariant } from '@material-ui/core/styles/createTypography'
-import { PropTypes } from '@material-ui/core'
 import MUITypography from '@material-ui/core/Typography'
+// TODO: check does it mean we load whole the imports here just for types?
+import { PropTypes } from '@material-ui/core'
+import {
+  makeStyles,
+  Theme,
+  TypographyVariant as MUIVariant
+} from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   StandardProps,
@@ -88,7 +92,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoTypography'
 })
 
-export const Typography = forwardRef<HTMLElement, Props>(function Typography(
+export const Typography = forwardRef<HTMLElement, Props>(function Typography (
   props,
   ref
 ) {
