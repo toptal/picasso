@@ -105,7 +105,7 @@ const ResetButton = ({
   </InputAdornment>
 )
 
-const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput (
+const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   props,
   ref
 ) {

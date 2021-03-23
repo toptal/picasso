@@ -146,7 +146,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const NumberInput = forwardRef<HTMLInputElement, Props>(
-  function NumberInput (props, ref) {
+  function NumberInput(props, ref) {
     const {
       step = 1,
       min = -Infinity,

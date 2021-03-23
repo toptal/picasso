@@ -81,7 +81,7 @@ const FileInputContent = (props: Props & InputBaseComponentProps) => {
 }
 
 export const FileInput = forwardRef<HTMLInputElement, Props>(
-  function FileInput (props, ref) {
+  function FileInput(props, ref) {
     const {
       className,
       style,

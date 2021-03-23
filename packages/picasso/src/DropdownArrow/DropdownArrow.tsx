@@ -15,7 +15,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
-  function DropdownArrow (props, ref) {
+  function DropdownArrow(props, ref) {
     const { className, style, size = 'medium', ...rest } = props
 
     const classes = useStyles()

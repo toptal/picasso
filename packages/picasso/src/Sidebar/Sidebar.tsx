@@ -85,7 +85,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar (
+export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   props,
   ref
 ) {
@@ -96,7 +96,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar (
   useLayoutEffect(() => {
     setHasSidebar(true)
 
-    return function cleanup () {
+    return function cleanup() {
       setHasSidebar(false)
     }
   }, [setHasSidebar])

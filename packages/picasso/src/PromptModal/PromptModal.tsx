@@ -44,7 +44,7 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   onClose?: () => void
 }
 
-export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal (
+export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
   props,
   ref
 ) {

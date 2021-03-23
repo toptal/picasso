@@ -112,7 +112,7 @@ const generateKey = (() => {
 })()
 
 // eslint-disable-next-line react/display-name
-export const Modal = forwardRef<HTMLElement, Props>(function Modal (
+export const Modal = forwardRef<HTMLElement, Props>(function Modal(
   props,
   ref
 ) {

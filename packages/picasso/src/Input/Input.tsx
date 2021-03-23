@@ -257,7 +257,7 @@ const purifyProps = (props: Props) => {
   return disableUnsupportedProps('Input', props, sizeOptions)
 }
 
-export const Input = forwardRef<HTMLInputElement, Props>(function Input (
+export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   props,
   ref
 ) {

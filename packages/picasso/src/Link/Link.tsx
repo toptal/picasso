@@ -58,7 +58,7 @@ export type Props = BaseProps &
 export const Link: OverridableComponent<Props> = forwardRef<
   HTMLAnchorElement,
   Props
->(function Link (props, ref) {
+>(function Link(props, ref) {
   const {
     href,
     underline,

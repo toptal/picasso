@@ -47,7 +47,7 @@ const useStyles = makeStyles<Theme>(styles, {
 export const ButtonCircular: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
   Props
->(function ButtonCircular (props, ref) {
+>(function ButtonCircular(props, ref) {
   const {
     className,
     variant = 'primary',

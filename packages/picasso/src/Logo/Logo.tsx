@@ -17,7 +17,7 @@ export interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLogo' })
 
-export const Logo = forwardRef<SVGSVGElement, Props>(function Logo (
+export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(
   props,
   ref
 ) {

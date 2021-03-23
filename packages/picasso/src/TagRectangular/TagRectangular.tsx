@@ -36,7 +36,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const TagRectangular = forwardRef<HTMLDivElement, Props>(
-  function TagRectangular (props, ref) {
+  function TagRectangular(props, ref) {
     const {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       color,

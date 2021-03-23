@@ -76,7 +76,7 @@ const useStyles = makeStyles<Theme>(styles, {
 export const MenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
->(function MenuItem (props, ref) {
+>(function MenuItem(props, ref) {
   const {
     as = 'li',
     children,

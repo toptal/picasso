@@ -32,7 +32,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLoader' })
 
-export const Loader = forwardRef<HTMLDivElement, Props>(function Loader (
+export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
   props,
   ref
 ) {

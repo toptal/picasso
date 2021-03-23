@@ -26,7 +26,7 @@ export interface Props
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
 
-export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper (
+export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
   props,
   ref
 ) {

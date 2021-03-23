@@ -88,7 +88,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoTypography'
 })
 
-export const Typography = forwardRef<HTMLElement, Props>(function Typography (
+export const Typography = forwardRef<HTMLElement, Props>(function Typography(
   props,
   ref
 ) {

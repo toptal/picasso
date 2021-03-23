@@ -65,7 +65,7 @@ const isDateRange = (
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
 
-export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar (
+export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   props,
   ref
 ) {
