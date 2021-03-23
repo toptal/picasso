@@ -30,15 +30,15 @@ const delayDurations: { [k in DelayType]: number } = {
 
 interface UseTooltipHandlersOptions {
   open?: boolean
-  onOpen?(event: ChangeEvent<{}>): void
-  onClose?(event: ChangeEvent<{}>): void
+  onOpen?: (event: ChangeEvent<{}>) => void
+  onClose?: (event: ChangeEvent<{}>) => void
   children: ReactElement<ChildrenProps>
   disableListeners?: boolean
   delay: DelayType
 }
 
 type ChildrenProps = {
-  onClick?(event: ChangeEvent<{}>): void
+  onClick?: (event: ChangeEvent<{}>) => void
 }
 
 interface UseTooltipStateOptions {

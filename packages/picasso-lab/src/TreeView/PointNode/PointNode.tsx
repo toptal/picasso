@@ -12,7 +12,7 @@ import { NodeContent } from './NodeContent'
 
 export interface Props {
   node: DynamicPointNode
-  renderNode?(pointNode: DynamicPointNode): ReactNode
+  renderNode?: (pointNode: DynamicPointNode) => ReactNode
   nodeWidth: number
 }
 

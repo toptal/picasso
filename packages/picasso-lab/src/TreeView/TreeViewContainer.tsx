@@ -6,7 +6,7 @@ import { TreeViewContextProps } from './types'
 
 type TreeViewContextValue = {
   state: TreeViewContextProps
-  updateState(newState: Partial<TreeViewContextProps>): void
+  updateState: (newState: Partial<TreeViewContextProps>) => void
 }
 
 const treeContextValue: TreeViewContextValue = {

@@ -106,9 +106,9 @@ export type ItemProps = {
 export type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
 
 export type Selection = {
-  isSelected(): boolean
-  isOptionSelected(option: Option): boolean
-  display(getDisplayValue: (option: Option | null) => string): string
+  isSelected: () => boolean
+  isOptionSelected: (option: Option) => boolean
+  display: (getDisplayValue: (option: Option | null) => string) => string
 }
 
 export interface UseSelectStateProps {

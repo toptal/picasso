@@ -180,7 +180,7 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
 
 const ModalTreeDialog: FC<{
   open: boolean
-  onClose(): void
+  onClose: () => void
 }> = ({ open, onClose }) => {
   return (
     <Modal onClose={onClose} open={open} size='full-screen'>

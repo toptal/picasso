@@ -13,7 +13,7 @@ export interface UseZoomArguments<
 
 export interface UseZoomResponse<ZoomRefElement extends ZoomedElementBaseType> {
   zoom: ZoomBehavior<ZoomRefElement, unknown>
-  handleZoom(step: number): void
+  handleZoom: (step: number) => void
 }
 
 export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
