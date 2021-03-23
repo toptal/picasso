@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.14.6](https://github.com/toptal/picasso/compare/@toptal/picasso@5.14.5...@toptal/picasso@5.14.6) (2021-03-23)
+
+
+### Bug Fixes
+
+* **select:** fix background color ([#1994](https://github.com/toptal/picasso/issues/1994)) ([84383fb](https://github.com/toptal/picasso/commit/84383fbb49fd336414a07e630f9a48936094659d))
+
+
+
+
+
 ## [5.14.5](https://github.com/toptal/picasso/compare/@toptal/picasso@5.14.2...@toptal/picasso@5.14.5) (2021-03-11)
 
 **Note:** Version bump only for package @toptal/picasso
