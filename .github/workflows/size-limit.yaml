@@ -9,7 +9,33 @@ jobs:
     env:
       CI_JOB_NUMBER: 1
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+      - uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v1
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Dependencies (from network)
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: |
+          yarn policies set-version
+          yarn install --frozen-lockfile --ignore-optional
+
+      - name: Install Dependencies (from cache)
+        if: steps.yarn-cache.outputs.cache-hit == 'true'
+        run: |
+          yarn policies set-version
+          yarn install --frozen-lockfile --ignore-optional --offline
+
       - uses: andresz1/size-limit-action@v1.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
