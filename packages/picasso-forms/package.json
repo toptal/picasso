@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "final-form": "^4.20.1",
+    "final-form": "^4.20.2",
     "final-form-arrays": "^3.0.2",
     "react-final-form": "^6.5.1",
     "react-final-form-arrays": "^3.1.3"
