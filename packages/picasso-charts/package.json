@@ -20,6 +20,7 @@
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
   },
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-charts#readme",
   "peerDependencies": {
     "@toptal/picasso": "^6",
     "@toptal/picasso-shared": "^3"
