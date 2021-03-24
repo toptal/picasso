@@ -13,11 +13,14 @@ import {
   useSafeState,
   forwardRef,
   documentable,
-  disableUnsupportedProps,
-  noop
+  disableUnsupportedProps
 } from '@toptal/picasso/utils'
 import { render, act } from '@toptal/picasso/test-utils'
 import React, { createRef, Ref, useEffect } from 'react'
+
+import unsafeErrorLog from './unsafe-error-log'
+
+jest.mock('./unsafe-error-log')
 
 describe('capitalize', () => {
   it('should capitalize first letter', () => {
@@ -249,17 +252,6 @@ const TestDisableUnsupportedProps = (props: {
 }
 
 describe('disableUnsupportedProps', () => {
-  let spiedOnWarn: jest.SpyInstance
-
-  beforeEach(() => {
-    spiedOnWarn = jest.spyOn(console, 'warn')
-    spiedOnWarn.mockImplementation(noop)
-  })
-
-  afterEach(() => {
-    spiedOnWarn.mockRestore()
-  })
-
   it('should render with supported props', () => {
     const { getByRole } = render(
       <TestDisableUnsupportedProps type='number' max={2} />
@@ -268,7 +260,7 @@ describe('disableUnsupportedProps', () => {
 
     expect(input).toHaveProperty('type', 'number')
     expect(input).toHaveProperty('max', '2')
-    expect(spiedOnWarn.mock.calls).toHaveLength(0)
+    expect(unsafeErrorLog).not.toHaveBeenCalled()
   })
 
   it('should override unsupported props and warn the developer', () => {
@@ -279,6 +271,8 @@ describe('disableUnsupportedProps', () => {
 
     expect(input).toHaveProperty('type', 'text')
     expect(input).toHaveProperty('max', '')
-    expect(spiedOnWarn.mock.calls).toHaveLength(1)
+    expect(unsafeErrorLog).toHaveBeenCalledWith(
+      'TestDisableUnsupportedProps doesn\'t support: max props when used with {"type":"text"}'
+    )
   })
 })
