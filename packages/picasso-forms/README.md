@@ -1,5 +1,7 @@
 # @toptal/picasso-forms
 
+[![Picasso NPM package](https://img.shields.io/npm/v/@toptal/picasso-forms?color=green&logo=toptal)](https://www.npmjs.com/package/@toptal/picasso-forms)
+
 This package combines the state-management power of [React Final Form](https://final-form.org/react) with the amazing UX of Picasso. It also provides access to [React Final Form Arrays](https://github.com/final-form/react-final-form-arrays).
 
 ## Prerequisites

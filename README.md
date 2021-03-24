@@ -1,39 +1,11 @@
 <div align="center"><img src="https://user-images.githubusercontent.com/437214/54037817-b4da1800-41c7-11e9-81f5-59ed43e38500.png" height="80px" /></div>
 
-<br/>
-
-[Check out documentation](https://picasso.toptal.net)
-
-<br/>
-
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
-[![](https://img.shields.io/npm/v/@toptal/picasso?color=green&logo=toptal)](https://www.npmjs.com/package/@toptal/picasso)
 [![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://slack.com)
 
-## Installation instructions
+## Contributing
 
-```js
-yarn add @toptal/picasso
-```
-
-Have an issue with the bundle size? - [Check tree-shaking section](#tree-shaking)
-
-## Start using library
-
-```jsx
-import Picasso, { Button } from '@toptal/picasso'
-...
-
-render () {
-  return (
-    <Picasso>
-      <Button>Hello world!</Button>
-    </Picasso>
-  )
-}
-```
-
-**_A [`Picasso`](/?path=/story/components-folder--picasso) component rendered at root level is required for the library theme configuration and theme to work properly._**
+Please read our documentation [here](./CONTRIBUTING.md)
 
 ## Running storybook
 
@@ -63,7 +35,7 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 
 ## Icons
 
-### Add Icon
+### Add an icon
 
 In Picasso, we keep icons in `svg` format and transform them into react components to make usage in react projects easier. This transformation is processed by the [`svgr`](https://github.com/smooth-code/svgr) tool.
 
