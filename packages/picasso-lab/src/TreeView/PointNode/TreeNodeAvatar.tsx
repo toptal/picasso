@@ -47,8 +47,8 @@ const sizeValues = {
 
 export const TreeNodeAvatar: FC<Props> = props => {
   const classes = useStyles()
-  const { name, src, size } = props
-  const sizeValue = sizeValues[size!]
+  const { name, src, size = 'xxsmall' } = props
+  const sizeValue = sizeValues[size]
 
   return (
     <svg width={sizeValue} height={sizeValue} viewBox='0 0 40 40'>

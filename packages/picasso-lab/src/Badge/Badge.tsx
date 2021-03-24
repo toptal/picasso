@@ -31,7 +31,13 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   props,
   ref
 ) {
-  const { style, variant, size, content, titleCase: propsTitleCase } = props
+  const {
+    style,
+    variant = 'white',
+    size = 'medium',
+    content,
+    titleCase: propsTitleCase
+  } = props
   const classes = useStyles()
 
   const titleCase = useTitleCase(propsTitleCase)
@@ -42,8 +48,8 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
       style={style}
       label={titleCase ? toTitleCase(content) : content}
       classes={{
-        root: cx(classes.root, classes[variant!], classes[size!]),
-        label: cx(classes[`${size!}Label`])
+        root: cx(classes.root, classes[variant], classes[size]),
+        label: cx(classes[`${size}Label`])
       }}
     />
   )

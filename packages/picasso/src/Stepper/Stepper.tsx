@@ -32,9 +32,9 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
 ) {
   const {
     active = 0,
-    steps,
-    fullWidth,
-    hideLabels,
+    steps = [],
+    fullWidth = false,
+    hideLabels = false,
     className,
     style,
     titleCase,
@@ -61,7 +61,7 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
         <Step key={label}>
           <StepLabel
             active={stepIndex === active}
-            hideLabel={hideLabels!}
+            hideLabel={hideLabels}
             titleCase={titleCase}
           >
             {label}

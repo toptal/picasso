@@ -12,4 +12,5 @@ export { default as toggleMultipleSelectValue } from './toggle-multiple-select-v
 export { default as focusRef } from './focus-ref'
 export { default as fireOnChangeEvent } from './fire-on-change-event'
 export { default as isRelatedTargetInsidePopper } from './is-related-target-inside-popper'
+export { default as renderOption } from './render-option'
 export * from './constants'

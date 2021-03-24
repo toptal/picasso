@@ -36,8 +36,8 @@ export const OverlayBadge = forwardRef<HTMLDivElement, Props>(
     const {
       children,
       style,
-      variant,
-      size,
+      variant = 'white',
+      size = 'medium',
       content,
       titleCase: propsTitleCase
     } = props
@@ -45,7 +45,6 @@ export const OverlayBadge = forwardRef<HTMLDivElement, Props>(
 
     const titleCase = useTitleCase(propsTitleCase)
 
-    // TODO: modify
     return (
       <MuiBadge
         ref={ref}
@@ -54,8 +53,8 @@ export const OverlayBadge = forwardRef<HTMLDivElement, Props>(
         classes={{
           anchorOriginTopRightRectangle: cx(
             classes.root,
-            classes[variant!],
-            classes[size!]
+            classes[variant],
+            classes[size]
           )
         }}
       >

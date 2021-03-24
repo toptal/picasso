@@ -93,7 +93,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
         [classes.black]: color === 'black'
       })}
       style={style}
-      component={as!}
+      component={as}
       tabIndex={tabIndex}
     >
       {children}

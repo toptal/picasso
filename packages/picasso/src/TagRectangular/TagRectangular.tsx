@@ -44,7 +44,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
       style,
       className,
       titleCase: propsTitleCase,
-      variant,
+      variant = 'light-grey',
       indicator,
       ...rest
     } = props
@@ -57,7 +57,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         {...rest}
         ref={ref}
         classes={{
-          root: cx(classes.root, classes[dashToCamelCase(variant!)]),
+          root: cx(classes.root, classes[dashToCamelCase(variant)]),
           label: classes.label,
           icon: classes.icon
         }}

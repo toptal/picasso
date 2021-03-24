@@ -55,28 +55,25 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoPopper' })
 
 const getAnchorEl = (
   anchorEl: null | ReferenceObject | (() => ReferenceObject)
-) => {
-  return typeof anchorEl === 'function' ? anchorEl() : anchorEl
-}
+) => (typeof anchorEl === 'function' ? anchorEl() : anchorEl)
 
-const getPopperOptions = (popperOptions: PopperOptions) => {
-  return {
-    ...popperOptions,
-    modifiers: {
-      ...popperOptions.modifiers,
-      flip: {
-        enabled: true,
-        ...popperOptions.modifiers?.flip
-      },
-      preventOverflow: {
-        enabled: true,
-        boundariesElement: 'viewport',
-        padding: 5,
-        ...popperOptions.modifiers?.preventOverflow
-      }
+const getPopperOptions = (popperOptions: PopperOptions) => ({
+  ...popperOptions,
+
+  modifiers: {
+    ...popperOptions.modifiers,
+    flip: {
+      enabled: true,
+      ...popperOptions.modifiers?.flip
+    },
+    preventOverflow: {
+      enabled: true,
+      boundariesElement: 'viewport',
+      padding: 5,
+      ...popperOptions.modifiers?.preventOverflow
     }
   }
-}
+})
 
 const useWidthStyle = ({
   anchorEl,
@@ -104,7 +101,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
     anchorEl,
     className,
     container,
-    popperOptions,
+    popperOptions = {},
     autoWidth,
     width,
     enableCompactMode,
@@ -140,7 +137,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
       anchorEl={anchorEl}
       className={cx(classes.root, className)}
       popperRef={ref}
-      popperOptions={getPopperOptions(popperOptions!)}
+      popperOptions={getPopperOptions(popperOptions)}
       disablePortal={disablePortal}
       style={{
         ...style,

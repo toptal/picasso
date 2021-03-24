@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from 'react'
 
 export interface ReferenceObject {
   offsetParent?: Element
-  getBoundingClientRect(): ClientRect
+  getBoundingClientRect: () => ClientRect
 }
 
 const useWidthOf = <T extends ReferenceObject>(element: T | null) => {

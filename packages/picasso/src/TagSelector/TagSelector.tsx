@@ -14,6 +14,7 @@ import TagSelectorInput from '../TagSelectorInput'
 import { Props as InputProps } from '../Input'
 import TagSelectorLabel from '../TagSelectorLabel'
 import unsafeErrorLog from '../utils/unsafe-error-log'
+import noop from '../utils/noop'
 
 export interface Item extends AutocompleteItem {
   value?: string
@@ -84,28 +85,28 @@ export interface StaticProps {
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
-  function TagSelector (props, ref) {
+  function TagSelector(props, ref) {
     const {
-      loading,
       disabled,
-      placeholder,
+      enableAutofill,
+      getDisplayValue = getItemText,
+      getKey: customGetKey,
+      inputValue = '',
+      loading,
+      noOptionsText,
+      onBlur,
+      onChange = noop,
+      onFocus,
+      onInputChange = noop,
+      onOtherOptionSelect = noop,
       options = [],
       otherOptionLabel,
-      onOtherOptionSelect,
-      showOtherOption,
-      noOptionsText,
-      value: values = [],
-      getDisplayValue,
-      onChange,
-      inputValue = '',
-      onInputChange,
-      onFocus,
-      onBlur,
-      width,
-      enableAutofill,
-      getKey: customGetKey,
-      renderOption,
+      placeholder,
       renderLabel: customRenderLabel,
+      renderOption,
+      showOtherOption,
+      value: values = [],
+      width,
       ...rest
     } = props
 
@@ -116,7 +117,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 
       const index = values.indexOf(value)
 
-      onChange!([...values.slice(0, index), ...values.slice(index + 1)])
+      onChange([...values.slice(0, index), ...values.slice(index + 1)])
     }
 
     const handleKeyDown = (
@@ -134,13 +135,13 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const handleSelect = (autocompleteItem: AutocompleteItem) => {
       const item = autocompleteItem as Item
 
-      onChange!([...values, item])
-      onInputChange!('')
+      onChange([...values, item])
+      onInputChange('')
     }
 
     const handleOtherOptionSelect = (value: string) => {
-      onInputChange!('')
-      onOtherOptionSelect!(value)
+      onInputChange('')
+      onOtherOptionSelect(value)
     }
 
     const getKey = (item: Item): string => {
@@ -163,7 +164,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       options && options.filter(option => !isIncluded(values, option))
 
     const renderLabel = (item: Item) => {
-      const displayValue = getDisplayValue!(item)
+      const displayValue = getDisplayValue(item)
       const handleItemDelete = () => handleDelete(item)
 
       if (customRenderLabel) {
@@ -196,7 +197,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         onFocus={onFocus}
         onBlur={onBlur}
         startAdornment={values.map(item => (
-          <Fragment key={getKey!(item)}>{renderLabel(item)}</Fragment>
+          <Fragment key={getKey(item)}>{renderLabel(item)}</Fragment>
         ))}
         loading={loading}
         disabled={disabled}
@@ -219,9 +220,9 @@ TagSelector.defaultProps = {
   enableAutofill: false,
   getDisplayValue: getItemText,
   loading: false,
-  onChange: () => {},
-  onInputChange: () => {},
-  onOtherOptionSelect: () => {},
+  onChange: noop,
+  onInputChange: noop,
+  onOtherOptionSelect: noop,
   options: [],
   otherOptionLabel: 'Add new option: ',
   noOptionsText: 'No matches found',

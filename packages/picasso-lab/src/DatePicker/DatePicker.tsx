@@ -16,6 +16,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import { Container, Input, InputAdornment, InputProps } from '@toptal/picasso'
 import Popper from '@toptal/picasso/Popper'
 import { Calendar16 } from '@toptal/picasso/Icon'
+import { noop } from '@toptal/picasso/utils'
 
 import Calendar, {
   DateOrDateRangeType,
@@ -78,8 +79,6 @@ export interface Props
   timezone?: string
 }
 
-const DEFAULT_DISPLAY_DATE_FORMAT = 'MMM d, yyyy'
-const DEFAULT_EDIT_DATE_FORMAT = 'MM-dd-yyyy'
 const EMPTY_INPUT_VALUE = ''
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -90,9 +89,9 @@ export const DatePicker = (props: Props) => {
   const {
     range,
     hideOnSelect,
-    displayDateFormat,
-    editDateFormat,
-    onBlur,
+    displayDateFormat = 'MMM d, yyyy',
+    editDateFormat = 'MM-dd-yyyy',
+    onBlur = noop,
     onChange,
     value,
     width,
@@ -131,10 +130,10 @@ export const DatePicker = (props: Props) => {
   const formatInputValue = useCallback(
     (valueToFormat: DateOrDateRangeType) => {
       return Array.isArray(valueToFormat)
-        ? formatDateRange(valueToFormat as DateRangeType, displayDateFormat!)
+        ? formatDateRange(valueToFormat as DateRangeType, displayDateFormat)
         : formatDate(
             valueToFormat as Date,
-            isInputFocused ? editDateFormat! : displayDateFormat!
+            isInputFocused ? editDateFormat : displayDateFormat
           )
     },
     [isInputFocused, editDateFormat, displayDateFormat]
@@ -179,7 +178,7 @@ export const DatePicker = (props: Props) => {
     }
 
     hideCalendar()
-    onBlur!()
+    onBlur()
 
     setIsInputFocused(false)
   }
@@ -201,8 +200,8 @@ export const DatePicker = (props: Props) => {
 
     if (!nextValue) {
       onChange(null)
-    } else if (isDateValid(nextValue, editDateFormat!)) {
-      const parsedNextValue = parse(nextValue, editDateFormat!, new Date())
+    } else if (isDateValid(nextValue, editDateFormat)) {
+      const parsedNextValue = parse(nextValue, editDateFormat, new Date())
       const nextTimezoneValue = timezoneFormat(parsedNextValue, timezone)
 
       if (!isDateWithinInterval(nextTimezoneValue, minDate, maxDate)) {
@@ -284,9 +283,7 @@ export const DatePicker = (props: Props) => {
       <InputAdornment position='start' disablePointerEvents>
         {icon || <Calendar16 />}
       </InputAdornment>
-    ) : (
-      undefined
-    )
+    ) : undefined
 
   return (
     <>
@@ -338,9 +335,9 @@ export const DatePicker = (props: Props) => {
 DatePicker.defaultProps = {
   range: false,
   hideOnSelect: true,
-  onBlur: () => {},
-  editDateFormat: DEFAULT_EDIT_DATE_FORMAT,
-  displayDateFormat: DEFAULT_DISPLAY_DATE_FORMAT,
+  onBlur: noop,
+  editDateFormat: 'MM-dd-yyyy',
+  displayDateFormat: 'MMM d, yyyy',
   autoComplete: 'off'
 }
 

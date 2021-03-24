@@ -20,6 +20,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
       borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
     },
     stripeEven: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       background: alpha(palette.grey.lighter2!, 0.32)
     },
     hover: {

@@ -25,6 +25,7 @@ import Container from '../Container'
 import Group from '../ButtonGroup'
 import Circular from '../ButtonCircular'
 import Action from '../ButtonAction'
+import noop from '../utils/noop'
 import toTitleCase from '../utils/to-title-case'
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -84,10 +85,8 @@ export interface StaticProps {
   Action: typeof Action
 }
 
-const defaultOnClick = () => {}
-
 const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
-  loading ? defaultOnClick : handler
+  loading ? noop : handler
 
 const getIcon = (
   classes: Classes,
@@ -126,8 +125,8 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     className,
     style,
     fullWidth,
-    variant,
-    size,
+    variant = 'primary',
+    size = 'medium',
     focused,
     hovered,
     disabled,
@@ -136,7 +135,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     title,
     value,
     type,
-    as,
+    as = 'button',
     titleCase: propsTitleCase,
     ...rest
   } = props
@@ -163,8 +162,8 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     }
   }
 
-  const variantClassName = classes[variant!]
-  const sizeClassName = classes[size!]
+  const variantClassName = classes[variant]
+  const sizeClassName = classes[size]
 
   const rootClassName = cx(
     {
@@ -194,7 +193,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       title={title}
       value={value}
       type={type}
-      component={as!}
+      component={as}
       data-component-type='button'
     >
       <Container
@@ -225,7 +224,7 @@ Button.defaultProps = {
   hovered: false,
   iconPosition: 'left',
   loading: false,
-  onClick: defaultOnClick,
+  onClick: noop,
   size: 'medium',
   type: 'button',
   variant: 'primary'

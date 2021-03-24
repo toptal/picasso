@@ -22,17 +22,10 @@ const ModalDialog = ({
   onClose: () => void
 }) => {
   const [isLoading, setLoading] = useState(false)
-  const [datepickerValue, setDatepickerValue] = useState<Date>()
+  const [date, setDate] = useState<Date>()
 
   return (
-    <Modal
-      container={() => document.getElementById('modal-container')!}
-      onBackdropClick={() => console.log('Clicked backdrop..')}
-      onClose={onClose}
-      onOpen={() => console.log('onOpen()')}
-      open={open}
-      transitionDuration={0} // Only for demo purposes, should not be used
-    >
+    <Modal onClose={onClose} open={open}>
       <Modal.Title>Edit address details</Modal.Title>
       <Modal.Content>
         <Form.Field>
@@ -47,12 +40,12 @@ const ModalDialog = ({
         <Form.Field>
           <DatePicker
             width='full'
-            value={datepickerValue}
+            value={date}
             onChange={date => {
               /* eslint-disable-next-line no-console */
               console.log('selected date is: ', date)
 
-              setDatepickerValue(date as Date)
+              setDate(date as Date)
             }}
           />
         </Form.Field>
@@ -88,12 +81,12 @@ const Example = () => {
   const { showModal, hideModal, isOpen } = useModal()
 
   return (
-    <div id='modal-container'>
+    <>
       <Button data-testid='open' onClick={showModal}>
         Open
       </Button>
       <ModalDialog open={isOpen} onClose={hideModal} />
-    </div>
+    </>
   )
 }
 

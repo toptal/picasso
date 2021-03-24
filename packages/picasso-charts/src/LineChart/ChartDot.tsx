@@ -16,7 +16,7 @@ export const ChartDot = ({
   value?: number | string | null
   color: string
 }) => {
-  const isEmptyValue = payload![`${dataKey}IsEmpty`]
+  const isEmptyValue = payload && payload[`${dataKey}IsEmpty`]
 
   return (
     <circle

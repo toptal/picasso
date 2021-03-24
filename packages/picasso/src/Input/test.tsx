@@ -80,14 +80,19 @@ describe('Input', () => {
 
   it('handles clicks', () => {
     const handleClick = jest.fn()
-    const { container } = render(<Input onClick={handleClick} />)
+    const { getByTestId } = render(
+      <Input data-testid='input' onClick={handleClick} />
+    )
 
-    const input = container.querySelector('input')!
-    const inputWrapper = input.parentElement!
+    const input = getByTestId('input')
+    const inputWrapper = input.parentElement
+
+    expect(inputWrapper).not.toBeNull()
 
     fireEvent.click(input)
     expect(handleClick).toHaveBeenCalledTimes(1)
-    fireEvent.click(inputWrapper)
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    fireEvent.click(inputWrapper!)
     expect(handleClick).toHaveBeenCalledTimes(2)
   })
 })

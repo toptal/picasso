@@ -9,17 +9,8 @@ const ModalDialog = ({
   open: boolean
   onClose: () => void
 }) => {
-  const container = document.getElementById('modal-container')!
-
   return (
-    <Modal
-      container={() => container}
-      onBackdropClick={() => console.log('Clicked backdrop..')}
-      onClose={onClose}
-      onOpen={() => console.log('onOpen()')}
-      open={open}
-      transitionDuration={0} // Only for demo purposes, should not be used
-    >
+    <Modal onClose={onClose} open={open}>
       <Modal.Title>A lot of data</Modal.Title>
       <Modal.Content>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -112,12 +103,12 @@ const Example = () => {
   const { showModal, hideModal, isOpen } = useModal()
 
   return (
-    <div id='modal-container'>
+    <>
       <Button data-testid='trigger' onClick={showModal}>
         Open
       </Button>
       <ModalDialog open={isOpen} onClose={hideModal} />
-    </div>
+    </>
   )
 }
 

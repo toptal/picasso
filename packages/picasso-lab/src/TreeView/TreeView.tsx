@@ -23,7 +23,7 @@ export interface Props {
   /** Root node of the Tree */
   data: TreeNodeInterface
   /** Custom function for rendering Node. It expect the `node: HierarchyPointNode<TreeNodeInterface>` as an argument */
-  renderNode?(pointNode: HierarchyPointNode<TreeNodeInterface>): ReactNode
+  renderNode?: (pointNode: HierarchyPointNode<TreeNodeInterface>) => ReactNode
   /** exact node width in pixels. Default value is 236 */
   nodeWidth?: number
   /** Set the scale extent to the specified array of numbers [k0, k1] where k0 is the minimum allowed scale factor and k1 is the maximum allowed scale factor */

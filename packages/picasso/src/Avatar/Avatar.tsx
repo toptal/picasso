@@ -46,7 +46,7 @@ const renderLogo = ({
   src,
   size
 }: Pick<Props, 'src' | 'size'> & JssProps) => {
-  if (!src || ['small', 'xsmall', 'xxsmall'].includes(size!)) {
+  if (!src || !size || ['small', 'xsmall', 'xxsmall'].includes(size)) {
     return null
   }
 
@@ -94,12 +94,21 @@ const IE11Image = ({ style, src, ...rest }: OmitInternalProps<ImageProps>) => (
 )
 
 export const Avatar: FunctionComponent<Props> = props => {
-  const { alt, src, className, name, size, style, variant, ...rest } = props
+  const {
+    alt,
+    src,
+    className,
+    name,
+    size = 'xsmall',
+    style,
+    variant = 'square',
+    ...rest
+  } = props
 
   const classes = useStyles(props)
 
-  const sizeClassName = classes[size!]
-  const variantClassName = classes[variant!]
+  const sizeClassName = classes[size]
+  const variantClassName = classes[variant]
 
   const InputComponent = isBrowserSupportsObjectFit ? Image : IE11Image
 

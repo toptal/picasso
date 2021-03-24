@@ -22,7 +22,7 @@ const useStyles = makeStyles(styles, {
 })
 
 export const TabScrollButton = forwardRef<HTMLDivElement, Props>(
-  function TabScrollButton (props, ref) {
+  function TabScrollButton(props, ref) {
     const { className, style, direction, disabled, ...rest } = props
     const classes = useStyles()
 

@@ -14,12 +14,7 @@ const ModalDialog = ({
   const [isLoading] = useState(false)
 
   return (
-    <Modal
-      align={align}
-      container={() => document.getElementById('modal-container')!}
-      onClose={onClose}
-      open={open}
-    >
+    <Modal align={align} onClose={onClose} open={open}>
       <Modal.Title>Alignment is "{align}"</Modal.Title>
       <Modal.Content>
         <Typography variant='heading'>
@@ -44,7 +39,7 @@ const Example = () => {
   const { showModal, hideModal, isOpen } = useModal()
 
   return (
-    <div id='modal-container'>
+    <>
       <Button data-testid='align-top-open' onClick={showTopAlignedModal}>
         Open Top Aligned Modal
       </Button>
@@ -59,7 +54,7 @@ const Example = () => {
         align='top'
       />
       <ModalDialog open={isOpen} onClose={hideModal} />
-    </div>
+    </>
   )
 }
 

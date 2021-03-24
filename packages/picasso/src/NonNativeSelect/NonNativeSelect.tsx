@@ -14,11 +14,11 @@ import {
   useAdornments,
   useSelectState,
   useSelectProps,
-  Option,
+  renderOption as defaultRenderOption,
   ValueType,
   SelectProps,
   getOptionText,
-  DEFAULT_SEARCH_TRESHOLD
+  DEFAULT_SEARCH_THRESHOLD
 } from '../Select'
 import NonNativeSelectOptions from '../NonNativeSelectOptions'
 import { useCombinedRefs } from '../utils'
@@ -39,15 +39,15 @@ export const NonNativeSelect = documentable(
       const {
         className,
         style,
-        width,
+        width = 'full',
         menuWidth,
         loading,
         id,
         icon,
-        iconPosition,
+        iconPosition = 'start',
         name,
         noOptionsText,
-        renderOption,
+        renderOption = defaultRenderOption,
         placeholder,
         disabled,
         error,
@@ -59,8 +59,8 @@ export const NonNativeSelect = documentable(
         enableAutofill,
         autoComplete,
         searchPlaceholder,
-        searchThreshold,
-        getDisplayValue,
+        searchThreshold = DEFAULT_SEARCH_THRESHOLD,
+        getDisplayValue = getOptionText,
         options,
         onChange,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -79,12 +79,12 @@ export const NonNativeSelect = documentable(
       const inputWrapperRef = useRef<HTMLDivElement>(null)
 
       const selectState = useSelectState({
-        getDisplayValue: getDisplayValue!,
+        getDisplayValue,
         options,
         disabled,
         multiple,
         value,
-        searchThreshold: searchThreshold!
+        searchThreshold
       })
       const {
         highlightedIndex,
@@ -126,7 +126,7 @@ export const NonNativeSelect = documentable(
       const rootProps = getRootProps()
 
       const [startAdornment, endAdornment] = useAdornments({
-        position: iconPosition!,
+        position: iconPosition,
         icon,
         loading,
         disabled
@@ -210,7 +210,7 @@ export const NonNativeSelect = documentable(
           className={cx(
             classes.root,
             className,
-            classes[`root${capitalize(width!)}`],
+            classes[`root${capitalize(width)}`],
             {
               [classes.rootDisabled]: disabled
             }
@@ -234,10 +234,10 @@ NonNativeSelect.defaultProps = {
   noOptionsText: 'No matches found',
   onChange: noop,
   onBlur: noop,
-  renderOption: (option: Option) => option.text,
+  renderOption: defaultRenderOption,
   size: 'medium',
   width: 'full',
-  searchThreshold: DEFAULT_SEARCH_TRESHOLD,
+  searchThreshold: DEFAULT_SEARCH_THRESHOLD,
   enableAutofill: false,
   searchPlaceholder: 'Search'
 }

@@ -17,13 +17,16 @@ export interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLogo' })
 
-export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
+export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(
+  props,
+  ref
+) {
   const { emblem, variant = 'default', style, className } = props
 
   const classes = useStyles()
 
   const rootClass = emblem ? classes.rootEmblem : classes.root
-  const colorClass = classes[variant!]
+  const colorClass = classes[variant]
   const LogoComponent = emblem ? LogoEmblemIcon : LogoIcon
 
   return (

@@ -39,15 +39,15 @@ export const AnalyticsChart = ({
   data,
   highlights,
   referenceLines,
-  xAxisKey,
+  xAxisKey = 'x',
   lineConfig: lines,
-  formatXAxisLabel,
+  formatXAxisLabel = (label: string) => label,
   granularity,
   unit,
   ...rest
 }: Props) => {
   const chartData = useMemo(
-    () => toChartFormat(data, referenceLines, xAxisKey!, formatXAxisLabel!),
+    () => toChartFormat(data, referenceLines, xAxisKey, formatXAxisLabel),
     [data, referenceLines, xAxisKey, formatXAxisLabel]
   )
   const lineConfig = useMemo(
@@ -57,7 +57,7 @@ export const AnalyticsChart = ({
   const highlightsData = useMemo(
     () =>
       highlights &&
-      toHighlightFormat(chartData, highlights, xAxisKey!, formatXAxisLabel!),
+      toHighlightFormat(chartData, highlights, xAxisKey, formatXAxisLabel),
     [chartData, formatXAxisLabel, highlights, xAxisKey]
   )
 

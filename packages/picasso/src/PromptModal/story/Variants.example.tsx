@@ -18,7 +18,7 @@ const PromptModalDefaultExample = () => {
   const { showInfo } = useNotifications()
 
   return (
-    <div id='modal-container' style={{ width: '400px', height: '50px' }}>
+    <>
       <Container flex>
         <Button onClick={showModalPositive}>Open positive</Button>
         <PromptModal
@@ -28,8 +28,6 @@ const PromptModalDefaultExample = () => {
           message='This is positive variant.'
           onSubmit={async () => showInfo('Submitted')}
           onClose={hideModalPositive}
-          // for purpose of code example
-          container={() => document.getElementById('modal-container')!}
         />
 
         <Button onClick={showModalNegative}>Open negative</Button>
@@ -40,11 +38,9 @@ const PromptModalDefaultExample = () => {
           message='This is negative variant.'
           onSubmit={async () => showInfo('Submitted')}
           onClose={hideModalNegative}
-          // for purpose of code example
-          container={() => document.getElementById('modal-container')!}
         />
       </Container>
-    </div>
+    </>
   )
 }
 

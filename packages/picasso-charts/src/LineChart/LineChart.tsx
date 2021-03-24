@@ -159,7 +159,7 @@ export const LineChart = (props: Props) => {
     data,
     lineConfig: lines,
     unit,
-    xAxisKey,
+    xAxisKey = 'x',
     height,
     tooltip,
     customTooltip,
@@ -175,7 +175,7 @@ export const LineChart = (props: Props) => {
 
   const yKey = Object.keys(lines)[0]
   const isSingleChart = countNonReferenceLines(lines) === 1
-  const topDomain = findTopDomain(data, xAxisKey!)
+  const topDomain = findTopDomain(data, xAxisKey)
   const orderedData = orderData(data)
   const xAxisTicks = getXAxisTicks(orderedData)
   const referenceLineList = generateReferenceLines(referenceLines)
@@ -187,9 +187,8 @@ export const LineChart = (props: Props) => {
 
   const lineGraphs = generateLineGraphs(lines, orderedData)
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const formatTicks = (tick: unknown, index: number) =>
-    orderedData.find(item => item.order === tick)![xAxisKey!] as string
+  const formatTicks = (tick: unknown) =>
+    orderedData.find(item => item.order === tick)?.[xAxisKey] as string
 
   const containerRef = useRef<HTMLDivElement | null>(null)
   const tooltipRef = useRef<HTMLDivElement | null>(null)

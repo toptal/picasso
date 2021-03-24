@@ -99,6 +99,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
 
       '&:hover $uncheckedIcon:before': iconBeforeStyles({
         borderWidth: sizes.borderWidth,
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         borderColor: palette.grey.main2!,
         backgroundColor: palette.common.white
       }),
@@ -124,8 +125,10 @@ export default ({ palette, sizes, transitions }: Theme) =>
     },
     uncheckedIcon: iconStyles({
       backgroundColor: palette.common.white,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       borderColor: palette.grey.main!,
       borderWidth: sizes.borderWidth,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       dotColor: palette.grey.main!,
       dotOpacity: 0,
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`

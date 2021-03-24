@@ -267,7 +267,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
@@ -312,7 +312,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
       >
         <li
           aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="menuitem"
           tabindex="0"
         >
@@ -351,7 +351,7 @@ exports[`SidebarItem is selected 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-selected PicassoMenuItem-nonSelectable Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-selected PicassoMenuItem-nonSelectable Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="menuitem"
       tabindex="-1"
     >
@@ -397,7 +397,7 @@ exports[`SidebarItem renders 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
@@ -447,7 +447,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
         >
           <li
             aria-disabled="false"
-            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-collapsible PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-collapsible PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
             role="menuitem"
             tabindex="-1"
           >
@@ -483,7 +483,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             </div>
           </li>
           <svg
-            class="PicassoSvgArrowDownMinor16-root PicassoSidebarItem-expandIcon PicassoAccordion-expandIcon"
+            class="PicassoSvgArrowDownMinor16-root PicassoSidebarItem-expandIcon PicassoSidebarItem-lightExpandIcon PicassoAccordion-expandIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -516,7 +516,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 >
                   <li
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                     role="menuitem"
                     tabindex="0"
                   >
@@ -560,7 +560,7 @@ exports[`SidebarItem with icon 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >

@@ -18,6 +18,7 @@ export default ({ palette }: Theme) =>
   createStyles({
     root: {},
     rootDisabled: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       color: alpha(palette.grey.dark!, 0.48)
     }
   })

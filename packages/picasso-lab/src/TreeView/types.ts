@@ -5,7 +5,7 @@ import { ZoomBehavior } from 'd3-zoom'
 export interface TreeViewContextProps {
   zoom?: ZoomBehavior<SVGSVGElement, unknown>
   ref?: SVGSVGElement
-  zoomHandler?(step: number): void
+  zoomHandler?: (step: number) => void
 }
 
 export interface TreeNodeInterface {

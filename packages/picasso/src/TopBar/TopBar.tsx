@@ -52,7 +52,7 @@ export const TopBar = forwardRef<HTMLElement, Props>(function TopBar(
     leftContent,
     rightContent,
     actionItems,
-    variant,
+    variant = 'dark',
     ...rest
   } = props
   const classes = useStyles()
@@ -105,7 +105,7 @@ export const TopBar = forwardRef<HTMLElement, Props>(function TopBar(
       <header
         {...rest}
         ref={ref}
-        className={cx('mui-fixed', classes.root, classes[variant!], className)}
+        className={cx('mui-fixed', classes.root, classes[variant], className)}
         style={style}
       >
         <div className={innerClassName}>

@@ -23,6 +23,7 @@ import MenuItem, { MenuItemAttributes } from '../MenuItem'
 import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../Sidebar/types'
+import noop from '../utils/noop'
 
 export const SubMenuContext = React.createContext<{
   parentSidebarItemIndex?: number | null
@@ -58,21 +59,21 @@ const useStyles = makeStyles<Theme>(styles, {
 export const SidebarItem: OverridableComponent<Props> = memo(
   forwardRef<HTMLElement, Props>(function SidebarItem(props, ref) {
     const {
-      children,
-      icon,
-      selected,
-      collapsible,
-      menu,
-      disabled,
-      className,
-      style,
-      onClick,
       as,
-      variant,
-      isExpanded,
-      expand,
+      children,
+      className,
+      collapsible,
+      disabled,
+      expand = noop,
+      icon,
       index,
+      isExpanded,
+      menu,
+      onClick = noop,
+      selected,
+      style,
       titleCase: propsTitleCase,
+      variant = 'light',
       ...rest
     } = props
     const classes = useStyles()
@@ -99,7 +100,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       event: React.MouseEvent<HTMLElement, MouseEvent>
     ) => {
       if (!hasMenu) {
-        onClick!(event)
+        onClick(event)
       }
     }
 
@@ -109,7 +110,8 @@ export const SidebarItem: OverridableComponent<Props> = memo(
     ) => {
       event.stopPropagation()
       if (expansion) {
-        expand!(index!)
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        expand(index!)
       }
     }
 
@@ -138,7 +140,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
           classes.root,
           classes.noWrap,
           classes.roundedBorder,
-          classes[variant!],
+          classes[variant],
           {
             [classes.selected]: !hasMenu && selected,
             [classes.collapsible]: hasMenu && collapsible
@@ -229,9 +231,9 @@ export const getSelectedSubMenu = (sidebarItem: ReactElement<Props>) => {
 
 SidebarItem.defaultProps = {
   collapsible: false,
-  onClick: () => {},
+  onClick: noop,
   selected: false,
-  expand: () => {}
+  expand: noop
 }
 
 SidebarItem.displayName = 'SidebarItem'

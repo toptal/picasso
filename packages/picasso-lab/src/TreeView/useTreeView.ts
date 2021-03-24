@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { TreeViewContext } from './TreeViewContainer'
 
 interface UseTreeViewResponse {
-  zoomHandler(step: number): void
+  zoomHandler: (step: number) => void
 }
 
 const defaultZoomHandler = () => {}

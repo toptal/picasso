@@ -93,26 +93,26 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
   ref
 ) {
   const {
-    variant,
-    children,
-    size,
     align,
-    className,
-    style,
-    inline,
     as,
-    weight,
+    children,
+    className,
     color,
+    inline,
     invert,
-    noWrap,
-    underline,
     lineThrough,
+    noWrap,
+    size = 'inherit',
+    style,
     titleCase,
+    underline,
+    variant = 'body',
+    weight,
     ...rest
   } = props
   const classes = useStyles(props)
 
-  const resolvedVariant = VARIANTS[variant!][size!]
+  const resolvedVariant = VARIANTS[variant][size]
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
   const colorClassName = kebabToCamelCase(`${color}`)
 
@@ -124,10 +124,10 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     getWeightClass(classes, weight),
     classes[colorClassName],
     {
-      [classes.underline]: underline,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      [classes[underline!]]: underline,
       [classes.lineThrough]: lineThrough
-    },
-    classes[underline!]
+    }
   )
 
   return (
@@ -142,6 +142,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
       style={style}
       variant={resolvedVariant}
       display={inline ? 'inline' : 'initial'}
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       component={as!}
       noWrap={noWrap}
     >

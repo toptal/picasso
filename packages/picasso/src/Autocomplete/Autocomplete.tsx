@@ -32,9 +32,6 @@ import styles from './styles'
 import { BaseInputProps } from '../OutlinedInput'
 import unsafeErrorLog from '../utils/unsafe-error-log'
 
-const DEFAULT_NO_OPTIONS_TEXT = 'No options'
-const DEFAULT_OTHER_OPTION_TEXT = 'Other option: '
-
 export interface Props
   extends BaseProps,
     Omit<
@@ -120,7 +117,7 @@ const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
-  function Autocomplete (props, ref) {
+  function Autocomplete(props, ref) {
     const {
       autoComplete,
       className,
@@ -135,7 +132,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       loading,
       menuWidth,
       name,
-      noOptionsText = DEFAULT_NO_OPTIONS_TEXT,
+      noOptionsText = 'No options',
       onBlur,
       onChange,
       onFocus,
@@ -143,7 +140,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onOtherOptionSelect,
       onSelect,
       options,
-      otherOptionText = DEFAULT_OTHER_OPTION_TEXT,
+      otherOptionText = 'Other option: ',
       placeholder,
       popperContainer,
       poweredByGoogle,
@@ -303,7 +300,7 @@ Autocomplete.defaultProps = {
   enableAutofill: false,
   getDisplayValue: getItemText,
   loading: false,
-  noOptionsText: DEFAULT_NO_OPTIONS_TEXT,
+  noOptionsText: 'No options',
   onChange: () => {},
   onKeyDown: () => {},
   onFocus: () => {},
@@ -311,7 +308,7 @@ Autocomplete.defaultProps = {
   onOtherOptionSelect: () => {},
   onSelect: () => {},
   options: [],
-  otherOptionText: DEFAULT_OTHER_OPTION_TEXT,
+  otherOptionText: 'Other option: ',
   showOtherOption: false,
   width: 'auto',
   enableReset: true,

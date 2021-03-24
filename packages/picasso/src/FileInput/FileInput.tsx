@@ -80,106 +80,106 @@ const FileInputContent = (props: Props & InputBaseComponentProps) => {
   )
 }
 
-export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
-  props,
-  ref
-) {
-  const {
-    className,
-    style,
-    width,
-    accept,
-    progress,
-    error,
-    disabled,
-    value,
-    status,
-    onChange
-  } = props
+export const FileInput = forwardRef<HTMLInputElement, Props>(
+  function FileInput(props, ref) {
+    const {
+      className,
+      style,
+      width,
+      accept,
+      progress,
+      error,
+      disabled,
+      value,
+      status,
+      onChange
+    } = props
 
-  const classes = useStyles()
+    const classes = useStyles()
 
-  // if `ref` is null then we need a ref to control the input
-  // so we create another ref manually if needed and merge both of them
-  const inputRef = useCombinedRefs<HTMLInputElement>(
-    ref,
-    useRef<HTMLInputElement>(null)
-  )
+    // if `ref` is null then we need a ref to control the input
+    // so we create another ref manually if needed and merge both of them
+    const inputRef = useCombinedRefs<HTMLInputElement>(
+      ref,
+      useRef<HTMLInputElement>(null)
+    )
 
-  const inProgress =
-    (isNumber(progress) && progress! <= 100) ||
-    (isBoolean(progress) && progress)
+    const inProgress =
+      progress &&
+      ((isNumber(progress) && progress <= 100) ||
+        (isBoolean(progress) && progress))
 
-  const uploadButtonTitle =
-    value || error ? 'Choose different file' : 'Choose File'
+    const uploadButtonTitle =
+      value || error ? 'Choose different file' : 'Choose File'
 
-  const loaderValue = isNumber(progress) && progress
+    const loaderValue = isNumber(progress) && progress
 
-  const startAdornment = (
-    <InputAdornment
-      className={classes.adornmentStart}
-      disabled={disabled}
-      position='start'
-      disablePointerEvents
-    >
-      {value ? (
-        <Check16 color={!disabled ? 'green' : undefined} />
-      ) : (
-        <UploadDocument16 />
-      )}
-    </InputAdornment>
-  )
+    const startAdornment = (
+      <InputAdornment
+        className={classes.adornmentStart}
+        disabled={disabled}
+        position='start'
+        disablePointerEvents
+      >
+        {value ? (
+          <Check16 color={!disabled ? 'green' : undefined} />
+        ) : (
+          <UploadDocument16 />
+        )}
+      </InputAdornment>
+    )
 
-  const endAdornment = (
-    <InputAdornment position='end'>
-      {inProgress ? (
-        <Loader
-          className={classes.loader}
-          size='small'
-          value={isNumber(progress) ? (loaderValue as number) : undefined}
-        />
-      ) : (
-        <Button
-          className={classes.button}
-          size='small'
-          variant='secondary'
-          disabled={disabled}
-          onClick={() => inputRef.current && inputRef.current.click()}
-        >
-          {uploadButtonTitle}
-        </Button>
-      )}
-    </InputAdornment>
-  )
+    const endAdornment = (
+      <InputAdornment position='end'>
+        {inProgress ? (
+          <Loader
+            className={classes.loader}
+            size='small'
+            value={isNumber(progress) ? (loaderValue as number) : undefined}
+          />
+        ) : (
+          <Button
+            className={classes.button}
+            size='small'
+            variant='secondary'
+            disabled={disabled}
+            onClick={() => inputRef.current && inputRef.current.click()}
+          >
+            {uploadButtonTitle}
+          </Button>
+        )}
+      </InputAdornment>
+    )
 
-  return (
-    <OutlinedInput
-      inputRef={inputRef}
-      className={className}
-      style={style}
-      classes={{
-        root: classes.root,
-        input: classes.input
-      }}
-      error={error}
-      disabled={disabled}
-      width={width}
-      type='file'
-      inputComponent={FileInputContent}
-      inputProps={{
-        progress,
-        error,
-        disabled,
-        value,
-        onChange,
-        accept,
-        status
-      }}
-      startAdornment={startAdornment}
-      endAdornment={endAdornment}
-    />
-  )
-})
+    return (
+      <OutlinedInput
+        inputRef={inputRef}
+        className={className}
+        style={style}
+        classes={{
+          root: classes.root,
+          input: classes.input
+        }}
+        error={error}
+        disabled={disabled}
+        width={width}
+        type='file'
+        inputComponent={FileInputContent}
+        inputProps={{
+          progress,
+          error,
+          disabled,
+          value,
+          onChange,
+          accept,
+          status
+        }}
+        startAdornment={startAdornment}
+        endAdornment={endAdornment}
+      />
+    )
+  }
+)
 
 FileInput.displayName = 'FileInput'
 

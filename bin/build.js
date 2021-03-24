@@ -8,7 +8,7 @@ const yargs = require('yargs').argv
 const { log, copyPackageJson, safeExec } = require('./utils')
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 
-const compile = function (tsConfig, packageJson, packageRootDir) {
+const compile = function(tsConfig, packageJson, packageRootDir) {
   const args = []
 
   log(`Building ${packageJson.name}:${packageJson.version}`)

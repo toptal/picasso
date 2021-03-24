@@ -274,11 +274,11 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   loadFavicon,
   reset,
   responsive,
-  environment,
+  environment = 'development',
   children,
   fixViewport,
   notificationContainer,
-  RootComponent,
+  RootComponent = PicassoRootNode,
   titleCase,
   theme,
   disableTransitions
@@ -302,8 +302,8 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     <StylesProvider generateClassName={generateClassName}>
       <MuiThemeProvider theme={PicassoProvider.theme}>
         <PicassoGlobalStylesProvider
-          RootComponent={RootComponent!}
-          environment={environment!}
+          RootComponent={RootComponent}
+          environment={environment}
           titleCase={titleCase}
           disableTransitions={disableTransitions}
         >

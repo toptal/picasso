@@ -6,7 +6,7 @@ import Typography from '../Typography'
 import Modal, { Props as ModalProps } from '../Modal'
 import Button, { VariantType as ButtonVariantType } from '../Button'
 import styles from './styles'
-import { useSafeState } from '../utils'
+import { noop, useSafeState } from '../utils'
 
 export type VariantType = 'positive' | 'negative'
 
@@ -56,8 +56,8 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
     submitText,
     cancelText,
     onSubmit,
-    onAfterSubmit,
-    onCancel,
+    onAfterSubmit = noop,
+    onCancel = noop,
     onClose,
     ...rest
   } = props
@@ -82,12 +82,12 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
   }
 
   const handleOnAfterSubmit = () => {
-    onAfterSubmit!()
+    onAfterSubmit()
     handleClose()
   }
 
   const handleCancel = () => {
-    onCancel!()
+    onCancel()
     handleClose()
   }
 
@@ -95,7 +95,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
     setResult(undefined)
 
     if (onClose) {
-      onClose!()
+      onClose()
     }
   }
 
@@ -140,11 +140,11 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
 
 PromptModal.defaultProps = {
   cancelText: 'Cancel',
-  onCancel: () => {},
+  onCancel: noop,
   size: 'small',
   submitText: 'Submit',
   variant: 'positive',
-  onAfterSubmit: () => {}
+  onAfterSubmit: noop
 }
 
 PromptModal.displayName = 'PromptModal'

@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Button, Container } from '@toptal/picasso'
 
 export interface Props {
-  handleZoom(step: number): void
+  handleZoom: (step: number) => void
   scaleCoefficient: number
 }
 

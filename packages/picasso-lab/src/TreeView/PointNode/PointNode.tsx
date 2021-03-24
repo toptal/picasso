@@ -12,7 +12,7 @@ import { NodeContent } from './NodeContent'
 
 export interface Props {
   node: DynamicPointNode
-  renderNode?(pointNode: DynamicPointNode): ReactNode
+  renderNode?: (pointNode: DynamicPointNode) => ReactNode
   nodeWidth: number
 }
 
@@ -31,8 +31,8 @@ export const PointNode = forwardRef<any, Props>(
 
     useLayoutEffect(() => {
       if (nodeRef.current) {
-        const { offsetWidth: width, offsetHeight: height } = node.ref.current!
-          .firstElementChild!.firstElementChild! as HTMLElement
+        const { offsetWidth: width, offsetHeight: height } = node.ref?.current
+          ?.firstElementChild?.firstElementChild as HTMLElement
 
         if (dimensions.height !== height || dimensions.width !== width) {
           setDimensions({

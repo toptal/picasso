@@ -6,7 +6,7 @@ import { TreeViewContextProps } from './types'
 
 type TreeViewContextValue = {
   state: TreeViewContextProps
-  updateState(newState: Partial<TreeViewContextProps>): void
+  updateState: (newState: Partial<TreeViewContextProps>) => void
 }
 
 const treeContextValue: TreeViewContextValue = {
@@ -35,12 +35,13 @@ export const TreeViewContainer: FC = ({ children }) => {
 
     d3.select(state.ref)
       .transition()
-      .call(state.zoom.scaleTo, function (
+      .call(state.zoom.scaleTo, function(
         this: SVGSVGElement,
         datum: unknown,
         index: number,
         groups: any
       ) {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const defaultExtent = state.zoom!.extent()
         const k0 = zoomTransform(this).k
         const extent = defaultExtent.apply(this, [datum, index, groups])

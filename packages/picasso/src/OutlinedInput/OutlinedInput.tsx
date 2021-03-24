@@ -17,6 +17,7 @@ import InputAdornment from '../InputAdornment'
 import Button from '../Button'
 import { CloseMinor16 } from '../Icon'
 import styles from './styles'
+import noop from '../utils/noop'
 
 type ValueType =
   | (string | number | boolean | object)[]
@@ -104,7 +105,7 @@ const ResetButton = ({
   </InputAdornment>
 )
 
-const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput (
+const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   props,
   ref
 ) {
@@ -115,7 +116,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput (
     autoFocus,
     rows,
     rowsMax,
-    width,
+    width = 'auto',
     inputComponent,
     inputProps,
     defaultValue,
@@ -125,10 +126,10 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput (
     startAdornment,
     endAdornment: userDefinedEndAdornment,
     onChange,
-    size,
+    size = 'medium',
     enableReset,
     disabled,
-    onResetClick,
+    onResetClick = noop,
     inputRef,
     ...rest
   } = props
@@ -141,7 +142,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput (
       <ResetButton
         classes={classes}
         hasValue={Boolean(value)}
-        onClick={onResetClick!}
+        onClick={onResetClick}
       />
       {userDefinedEndAdornment}
     </>
@@ -155,12 +156,12 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput (
       classes={{
         root: cx(
           classes.root,
-          classes[`root${capitalize(width!)}`],
-          classes[`root${capitalize(size!)}`],
+          classes[`root${capitalize(width)}`],
+          classes[`root${capitalize(size)}`],
           { [`${classes.hidden}`]: type === 'hidden' },
           { [classes.rootDark]: isDark }
         ),
-        input: cx(classes.input, classes[`input${capitalize(size!)}`], {
+        input: cx(classes.input, classes[`input${capitalize(size)}`], {
           [classes.inputDark]: isDark
         }),
         inputMultiline: classes.inputMultiline,
@@ -196,7 +197,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput (
 OutlinedInput.defaultProps = {
   width: 'auto',
   size: 'medium',
-  onResetClick: () => {}
+  onResetClick: noop
 }
 
 OutlinedInput.displayName = 'OutlinedInput'

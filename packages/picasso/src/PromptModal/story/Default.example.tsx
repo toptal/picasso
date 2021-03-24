@@ -11,7 +11,7 @@ const PromptModalDefaultExample = () => {
   const { showInfo } = useNotifications()
 
   return (
-    <div id='modal-container' style={{ width: '400px', height: '50px' }}>
+    <>
       <Button onClick={showModal}>Open prompt</Button>
       <PromptModal
         open={isOpen}
@@ -24,10 +24,8 @@ const PromptModalDefaultExample = () => {
           showInfo('Submitted')
         }}
         onClose={hideModal}
-        // for purpose of code example
-        container={() => document.getElementById('modal-container')!}
       />
-    </div>
+    </>
   )
 }
 

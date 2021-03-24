@@ -51,7 +51,7 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
 ) {
   const {
     children,
-    spacing,
+    spacing = 32,
     direction,
     alignItems,
     justifyContent,
@@ -67,7 +67,7 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
       {...rest}
       ref={ref}
       container
-      spacing={humanToMUISpacing(spacing!)}
+      spacing={humanToMUISpacing(spacing)}
       direction={direction}
       alignItems={alignItems}
       justify={justifyContent}
