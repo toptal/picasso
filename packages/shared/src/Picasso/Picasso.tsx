@@ -20,6 +20,7 @@ import React, {
 } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Helmet } from 'react-helmet'
+import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -225,12 +226,12 @@ const Viewport = () => {
   if (nonPicassoViewportTags.length > 0) {
     if (!warned) {
       unsafeErrorLog(
-        'PICASSO:',
-        `I wanted to add viewport meta tag to your page but failed as it already contains ${nonPicassoViewportTags.length}.`,
-        `My viewport meta tag content is "${content}".`,
-        'The absence of this content may cause some of my features to work incorrectly.',
-        'For example, inputs will be scaled when focused on Safari, iOS.',
-        'Please, delete your viewport meta tag so I can insert mine.'
+        `PICASSO:
+        I wanted to add viewport meta tag to your page but failed as it already contains ${nonPicassoViewportTags.length}.
+        My viewport meta tag content is "${content}".
+        The absence of this content may cause some of my features to work incorrectly.
+        For example, inputs will be scaled when focused on Safari, iOS.
+        Please, delete your viewport meta tag so I can insert mine.`
       )
       setWarned(true)
     }
