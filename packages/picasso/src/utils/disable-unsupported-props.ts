@@ -1,3 +1,5 @@
+import unsafeErrorLog from './unsafe-error-log'
+
 type PIndex = { [index: string]: unknown }
 
 export type FeatureOptions<P extends object> = {
@@ -30,7 +32,7 @@ export default <P extends object>(
   // Check for unsupported props if there are props that are enabled, if so
   // warn developer in console and reset props to turn off unsupported props
   if (unsupportedPropNames.some(propName => (props as PIndex)[propName])) {
-    console.warn(
+    unsafeErrorLog(
       `${componentName} doesn't support: ${unsupportedPropNames.join(
         ', '
       )} props when used with ${JSON.stringify(featureProps)}`

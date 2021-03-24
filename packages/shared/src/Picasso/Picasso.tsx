@@ -224,7 +224,7 @@ const Viewport = () => {
 
   if (nonPicassoViewportTags.length > 0) {
     if (!warned) {
-      console.warn(
+      unsafeErrorLog(
         'PICASSO:',
         `I wanted to add viewport meta tag to your page but failed as it already contains ${nonPicassoViewportTags.length}.`,
         `My viewport meta tag content is "${content}".`,

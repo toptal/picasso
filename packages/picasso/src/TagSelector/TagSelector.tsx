@@ -13,6 +13,7 @@ import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
 import TagSelectorInput from '../TagSelectorInput'
 import { Props as InputProps } from '../Input'
 import TagSelectorLabel from '../TagSelectorLabel'
+import unsafeErrorLog from '../utils/unsafe-error-log'
 
 export interface Item extends AutocompleteItem {
   value?: string
@@ -83,7 +84,7 @@ export interface StaticProps {
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
-  function TagSelector(props, ref) {
+  function TagSelector (props, ref) {
     const {
       loading,
       disabled,
@@ -151,7 +152,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         return item.value
       }
 
-      console.error(
+      unsafeErrorLog(
         'TagSelector expects you to provide key prop value with getKey or Item.value!'
       )
 

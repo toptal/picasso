@@ -31,6 +31,7 @@ export { default as toTitleCase } from './to-title-case'
 export { default as useCombinedRefs } from './use-combined-refs'
 export { default as useSafeState } from './use-safe-state'
 export { default as useWidthOf } from './use-width-of'
+export { default as unsafeErrorLog } from './unsafe-error-log'
 // NOTE: Prevent type removal on prettier format
 // prettier-ignore
 export type { ReferenceObject } from './use-width-of'
