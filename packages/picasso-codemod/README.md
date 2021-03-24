@@ -1,5 +1,7 @@
 # @toptal/picasso-codemod
 
+[![Picasso NPM package](https://img.shields.io/npm/v/@toptal/picasso-codemod?color=green&logo=toptal)](https://www.npmjs.com/package/@toptal/picasso-codemod)
+
 > Codemod scripts for Picasso
 
 This repository contains a collection of codemod scripts based for use with [JSCodeshift](https://github.com/facebook/jscodeshift) that help update Picasso APIs.

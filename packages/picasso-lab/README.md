@@ -1,5 +1,7 @@
 # @toptal/picasso-lab
 
+[![Picasso NPM package](https://img.shields.io/npm/v/@toptal/picasso-lab?color=green&logo=toptal)](https://www.npmjs.com/package/@toptal/picasso-lab)
+
 This package is a home of experimental features. Once APIs are battle tested and proven to work they are moved to `@toptal/picasso`.
 
 ## Prerequisites
