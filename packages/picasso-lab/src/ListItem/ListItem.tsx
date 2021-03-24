@@ -23,14 +23,14 @@ const Index = ({ children }: { children: ReactNode }) => (
 
 const getBulletOrNumber = (
   variant: ListVariant,
-  index?: number,
+  index: number,
   icon?: ReactNode
 ): ReactNode => {
   if (icon) {
     return icon
   }
 
-  if (variant === 'unordered' || !index) {
+  if (variant === 'unordered') {
     return <Bullet16 />
   }
 
@@ -41,7 +41,7 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoListItem' })
 
 export const ListItem = (props: Props) => {
   const classes = useStyles()
-  const { children, icon, variant = 'unordered', index, ...rest } = props
+  const { children, icon, variant = 'unordered', index = 1, ...rest } = props
 
   const itemIcon = getBulletOrNumber(variant, index, icon)
 
