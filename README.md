@@ -1,7 +1,20 @@
 <div align="center"><img src="https://user-images.githubusercontent.com/437214/54037817-b4da1800-41c7-11e9-81f5-59ed43e38500.png" height="80px" /></div>
 
+<div align="center">
+
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 [![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://slack.com)
+
+</div>
+
+This repository is the home for all of Toptal's reusable UI, split up into distinct monorepo packages distributed through NPM:
+
+- [@toptal/picasso](./packages/picasso/README.md) - core UI building blocks
+- [@toptal/picasso-lab](./packages/picasso-lab/README.md) - new components are added here first to battle tests them and iron out their APIs
+- [@toptal/picasso-charts](./packages/picasso-charts/README.md) - reusable charts, based on `recharts`
+- [@toptal/picasso-forms](./packages/picasso-forms/README.md) - a form solution, based on `react-final-form`
+- [@toptal/picasso-codemod](./packages/picasso-codemod/README.md) - scripts that help developers migrate to the latest version
+- [@toptal/picasso-shared](./packages/picasso-shared/README.md) - shared utilities between the packages
 
 ## Contributing
 
