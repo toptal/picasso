@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build:package": "cross-env NODE_ENV=production node ./bin/build.js",
-    "prepublishOnly": "../../bin/prepublish"
+    "prepublishOnly": "../../bin/prepublish.js"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
