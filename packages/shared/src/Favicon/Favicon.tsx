@@ -37,10 +37,9 @@ export const Favicon = ({ environment }: Props) => {
 
         setIcons(loadedIcons)
       } catch {
-        // eslint-disable-next-line no-console
         unsafeErrorLog(
-          'favicons were not loaded properly for environment',
-          resolvedEnvironment
+          'favicons were not loaded properly for environment' +
+            resolvedEnvironment
         )
       }
     }
