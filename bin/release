@@ -10,13 +10,8 @@ mkdir ~/.ssh
 chmod 700 ~/.ssh
 ssh-keyscan -t ssh-rsa github.com >> ~/.ssh/known_hosts
 
-# Needs to be updated for publishing package to npm
-echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN} \
-always-auth=true ' > .npmrc
-git update-index --assume-unchanged .npmrc
-
 # Build all packages
-npx lerna run build:package
+yarn lerna run build:package
 
 git config user.email "$GIT_COMMITTER_EMAIL"
 git config user.name "$GIT_COMMITTER_NAME"
@@ -34,4 +29,4 @@ else
 fi
 
 # Send data about published packages to jenkins
-npx lerna changed --json | jq '.[] | .name + "-" + .version' | xargs echo > /artifacts/.version
+yarn lerna changed --json | jq '.[] | .name + "-" + .version' | xargs echo > /artifacts/.version
