@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 // so it led to cross dependencies and error
 import { Helmet } from 'react-helmet'
 import useSafeState from '@toptal/picasso/utils/use-safe-state'
-import { unsafeErrorLog } from '@toptal/picasso/utils'
+import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 
 import { getIcons } from './icons'
 import { useAppConfig, EnvironmentType } from '../Picasso'
