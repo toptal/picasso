@@ -1,5 +1,7 @@
 import React from 'react'
 
+import unsafeErrorLog from './unsafe-error-log'
+
 interface UseDeprecationWarningArgs {
   description?: string
   name: string
@@ -17,7 +19,7 @@ const useDeprecationWarning = ({
     `${description ? `\n${description}` : ''}`
 
   React.useEffect(() => {
-    console.warn(message)
+    unsafeErrorLog(message)
   }, [message])
 }
 
@@ -45,7 +47,7 @@ const usePropDeprecationWarning = <P>({
 
   React.useEffect(() => {
     if (isDeprecatedPropUsed) {
-      console.warn(message)
+      unsafeErrorLog(message)
     }
   }, [isDeprecatedPropUsed, message])
 }

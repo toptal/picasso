@@ -30,6 +30,7 @@ import { Item, ChangedOptions } from './types'
 import { useAutocomplete, EMPTY_INPUT_VALUE } from './use-autocomplete'
 import styles from './styles'
 import { BaseInputProps } from '../OutlinedInput'
+import unsafeErrorLog from '../utils/unsafe-error-log'
 
 const DEFAULT_NO_OPTIONS_TEXT = 'No options'
 const DEFAULT_OTHER_OPTION_TEXT = 'Other option: '
@@ -119,7 +120,7 @@ const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
-  function Autocomplete(props, ref) {
+  function Autocomplete (props, ref) {
     const {
       autoComplete,
       className,
@@ -165,7 +166,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       const displayValue = getDisplayValue(item)
 
       if (!displayValue) {
-        console.error(
+        unsafeErrorLog(
           'Autocomplete expects you to provide key prop value with getKey or Item.value!'
         )
       }
