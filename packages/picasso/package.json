@@ -9,7 +9,7 @@
   "module": "index.js",
   "scripts": {
     "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json",
-    "prepublishOnly": "../../bin/prepublish.js"
+    "prepublishOnly": "../../bin/prepublish"
   },
   "repository": {
     "type": "git",
