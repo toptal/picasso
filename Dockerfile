@@ -1,14 +1,27 @@
 FROM node:14-alpine
 
-ENV PATH="${PATH}:/app/node_modules/.bin" \
-  # Defines version of dependencies for apk add
-  APK_BRANCH=3.10 \
-  # Replace when puppetter is replaced with puppeteer-core
-  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-  # Installs Chromium (77) package.
-  CHROME_BIN=/usr/bin/chromium-browser
+ARG NPM_TOKEN
+ENV NPM_TOKEN ${NPM_TOKEN}
 
-RUN printf "http://nl.alpinelinux.org/alpine/v$APK_BRANCH/%s\n" community main > /etc/apk/repositories && \
+ARG GIT_SHA
+ENV GIT_SHA ${GIT_SHA}
+
+ARG APK_BRANCH=3.10
+ENV APK_BRANCH ${APK_BRANCH}
+
+ENV PATH="${PATH}:/app/node_modules/.bin"
+
+# TODO replace with puppeteer-core
+ARG PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD ${PUPPETEER_SKIP_CHROMIUM_DOWNLOAD}
+
+# Installs Chromium (77) package.
+ENV CHROME_BIN /usr/bin/chromium-browser
+
+RUN echo $APK_BRANCH
+RUN apk update && apk upgrade && \
+  echo http://nl.alpinelinux.org/alpine/v$APK_BRANCH/community > /etc/apk/repositories && \
+  echo http://nl.alpinelinux.org/alpine/v$APK_BRANCH/main >> /etc/apk/repositories && \
   apk add --no-cache \
   harfbuzz \
   nss \
@@ -27,16 +40,15 @@ RUN printf "http://nl.alpinelinux.org/alpine/v$APK_BRANCH/%s\n" community main >
 RUN groupmod -g 469 node && usermod -u 469 -g 469 node
 
 WORKDIR /app
-
-# Fix permissions to a workdir
 RUN chown -R node /app
 
 USER node
 
+RUN printf '//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true\n' > .npmrc
+
 # Enables layer caching
 COPY --chown=node:node package.json yarn.lock ./
-
-# Copy package.json to restore symlinks in a single yarn install
+# I know it's not optimal, will be optimized later
 COPY --chown=node:node packages/picasso/package.json ./packages/picasso/package.json
 COPY --chown=node:node packages/picasso-lab/package.json ./packages/picasso-lab/package.json
 COPY --chown=node:node packages/picasso-charts/package.json ./packages/picasso-charts/package.json
@@ -45,11 +57,6 @@ COPY --chown=node:node packages/shared/package.json ./packages/shared/package.js
 COPY --chown=node:node packages/picasso-codemod/package.json ./packages/picasso-codemod/package.json
 COPY --chown=node:node packages/topkit-analytics-charts/package.json ./packages/topkit-analytics-charts/package.json
 
-# Install node_modules
 RUN yarn install --frozen-lockfile
 
-# COPY sources to workdir
 COPY --chown=node:node . /app
-
-# Needed for alpha releases. Must be after yarn install
-RUN printf "//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true\n" > .npmrc
