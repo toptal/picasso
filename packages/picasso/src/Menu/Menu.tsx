@@ -21,6 +21,7 @@ import Typography from '../Typography'
 import MenuItem from '../MenuItem'
 import MenuContext, { MenuContextProps } from './menuContext'
 import styles from './styles'
+import noop from '../utils/noop'
 
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
@@ -41,7 +42,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
+export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
   props,
   ref
 ) {
@@ -52,7 +53,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     ...muiClasses
   } = useStyles()
 
-  const { pop } = useContext<MenuContextProps>(MenuContext)
+  const { pop = noop } = useContext<MenuContextProps>(MenuContext)
 
   const hasParentMenu = !!pop
 
@@ -60,9 +61,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     event: React.MouseEvent<HTMLElement, MouseEvent>
   ) => {
     event.stopPropagation()
-    if (pop) {
-      pop()
-    }
+    pop()
   }
 
   const menu = (
