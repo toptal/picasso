@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.7](https://github.com/toptal/picasso/compare/@toptal/picasso@6.1.6...@toptal/picasso@6.1.7) (2021-03-24)
+
+
+### Bug Fixes
+
+* prepublish ([#2004](https://github.com/toptal/picasso/issues/2004)) ([800db08](https://github.com/toptal/picasso/commit/800db08bd0f47fb2b3f0752e6e5b3952ae503723))
+
+
+
+
+
 ## [6.1.6](https://github.com/toptal/picasso/compare/@toptal/picasso@6.1.5...@toptal/picasso@6.1.6) (2021-03-24)
 
 **Note:** Version bump only for package @toptal/picasso
