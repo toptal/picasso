@@ -1,19 +1,9 @@
 #!/usr/bin/env sh
-CWD="$(dirname "$0")"
-cd "$CWD/../"
-BASE_PATH=$(pwd)
-
-NODE_MODULES="$BASE_PATH/node_modules/"
 
 # add github to known_hosts
 mkdir ~/.ssh
 chmod 700 ~/.ssh
 ssh-keyscan -t ssh-rsa github.com >> ~/.ssh/known_hosts
-
-# Needs to be updated for publishing package to npm
-echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN} \
-always-auth=true ' > .npmrc
-git update-index --assume-unchanged .npmrc
 
 # Build all packages
 npx lerna run build:package
@@ -24,13 +14,13 @@ git config user.name "$GIT_COMMITTER_NAME"
 # Publish packages
 if [[ $RELEASE_AND_PUBLISH == "release" ]]; then
   echo "=== WARNING RUNNING LIVE RELEASE FOR PACKAGES ==="
-  $NODE_MODULES/.bin/lerna publish --contents dist-package
+  npx lerna publish --contents dist-package
 elif [[ $RELEASE_AND_PUBLISH == "force-release-all" ]]; then
   echo "=== WARNING RUNNING LIVE FORCE RELEASE FOR ALL PACKAGES ==="
-  $NODE_MODULES/.bin/lerna publish --contents dist-package --force-publish
+  npx lerna publish --contents dist-package --force-publish
 else
   echo "=== RUNNING TEST RELEASE FOR PACKAGES. NOTHING WILL BE PUBLISHED ==="
-  $NODE_MODULES/.bin/lerna changed
+  npx lerna changed
 fi
 
 # Send data about published packages to jenkins
