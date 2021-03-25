@@ -7,17 +7,17 @@ const { BUILD_FOLDER } = require('./constants')
 const copyReadme = packageRootDir => {
   log('')
   log(
-    `Copying README.md to build folder "${BUILD_FOLDER}" of the package: ${packageRootDir}`
+    `Copying README.md to the build folder "${BUILD_FOLDER}" of the package: ${packageRootDir}`
   )
 
-  const rootPackageJson = path.resolve(packageRootDir, './README.md')
+  const packageReadmeDir = path.resolve(packageRootDir, './README.md')
 
-  const outputPackageJson = path.resolve(
+  const outputReadmeDir = path.resolve(
     packageRootDir,
     `./${BUILD_FOLDER}/README.md`
   )
 
-  fs.copyFileSync(rootPackageJson, outputPackageJson)
+  fs.copyFileSync(packageReadmeDir, outputReadmeDir)
 
   log('')
 }
