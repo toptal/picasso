@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.8](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.0.7...@toptal/picasso-charts@2.0.8) (2021-03-25)
+
+
+### Bug Fixes
+
+* readme not being published to npm ([#2006](https://github.com/toptal/picasso/issues/2006)) ([1b82c73](https://github.com/toptal/picasso/commit/1b82c7382acbc4d17423c28e42f1dadf773abe11))
+
+
+
+
+
 ## [2.0.7](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.0.6...@toptal/picasso-charts@2.0.7) (2021-03-24)
 
 **Note:** Version bump only for package @toptal/picasso-charts
