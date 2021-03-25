@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
   },
-  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"

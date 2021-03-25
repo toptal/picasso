@@ -5,7 +5,7 @@ const fs = require('fs')
 const path = require('path')
 const yargs = require('yargs').argv
 
-const { log, copyPackageJson, safeExec } = require('./utils')
+const { log, copyPackageJson, copyReadme, safeExec } = require('./utils')
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 
 const compile = function(tsConfig, packageJson, packageRootDir) {
@@ -32,6 +32,7 @@ const compile = function(tsConfig, packageJson, packageRootDir) {
   build()
 
   copyPackageJson(packageRootDir)
+  copyReadme(packageRootDir)
 
   if (yargs.watch) {
     args.unshift('--watch')
