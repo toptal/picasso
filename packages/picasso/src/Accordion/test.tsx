@@ -46,6 +46,30 @@ describe('Accordion', () => {
     expect(container).toMatchSnapshot()
   })
 
+  it('renders expanded by default', async () => {
+    const { getByText, getByTestId } = renderAccordion({
+      defaultExpanded: true
+    })
+
+    expect(getByTestId('accordion-details')).toBeVisible()
+    expect(getByText(DETAILS_TEXT)).toBeVisible()
+
+    fireEvent.click(getByTestId('accordion-summary'))
+
+    await waitFor(() => {
+      expect(getByTestId('accordion-details')).not.toBeVisible()
+      expect(getByText(DETAILS_TEXT)).not.toBeVisible()
+    })
+  })
+
+  it('renders disabled', async () => {
+    const { container } = renderAccordion({ disabled: true })
+
+    // MUI disabled state adds `pointer-events: none` style rule to the summary container.
+    // It can't be tested programmatically `fireEvent` ignores this rule.
+    expect(container).toMatchSnapshot()
+  })
+
   it('renders empty summary when one is not provided', () => {
     const { getByTestId, queryByTestId } = render(
       <Accordion content={<TestDetails />} />
@@ -76,28 +100,22 @@ describe('Accordion', () => {
     expect(handleChange).toHaveBeenCalledTimes(3)
   })
 
-  it('renders disabled', async () => {
-    const { container } = renderAccordion({ disabled: true })
+  it('toggles when controlled', async () => {
+    const { getByText, rerender } = render(
+      <Accordion content={<TestDetails />} expanded={false}>
+        <TestSummary />
+      </Accordion>
+    )
 
-    // MUI disabled state adds `pointer-events: none` style rule to the summary container.
-    // It can't be tested programmatically `fireEvent` ignores this rule.
-    expect(container).toMatchSnapshot()
-  })
+    expect(getByText(DETAILS_TEXT)).not.toBeVisible()
 
-  it('renders expanded initially', async () => {
-    const { getByText, getByTestId } = renderAccordion({
-      defaultExpanded: true
-    })
+    rerender(
+      <Accordion content={<TestDetails />} expanded>
+        <TestSummary />
+      </Accordion>
+    )
 
-    expect(getByTestId('accordion-details')).toBeVisible()
     expect(getByText(DETAILS_TEXT)).toBeVisible()
-
-    fireEvent.click(getByTestId('accordion-summary'))
-
-    await waitFor(() => {
-      expect(getByTestId('accordion-details')).not.toBeVisible()
-      expect(getByText(DETAILS_TEXT)).not.toBeVisible()
-    })
   })
 
   it('renders custom icon when passed', () => {
@@ -120,23 +138,5 @@ describe('Accordion', () => {
 
     expect(accordionContainer).toHaveStyle('display: table;')
     expect(accordionContainer.classList.contains('foobar')).toBeTruthy()
-  })
-
-  it('toggles when controlled', async () => {
-    const { getByText, rerender } = render(
-      <Accordion content={<TestDetails />} expanded={false}>
-        <TestSummary />
-      </Accordion>
-    )
-
-    expect(getByText(DETAILS_TEXT)).not.toBeVisible()
-
-    rerender(
-      <Accordion content={<TestDetails />} expanded>
-        <TestSummary />
-      </Accordion>
-    )
-
-    expect(getByText(DETAILS_TEXT)).toBeVisible()
   })
 })
