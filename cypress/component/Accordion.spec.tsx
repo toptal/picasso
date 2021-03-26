@@ -94,12 +94,54 @@ describe('Accordion', () => {
   it('renders', () => {
     mount(
       <TestingPicasso>
+        <TestAccordion />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+  it('renders disabled', () => {
+    mount(
+      <TestingPicasso>
+        <TestAccordion disabled />
+        <TestAccordion expandIcon={<Check16 />} />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+  it('renders border variants', () => {
+    mount(
+      <TestingPicasso>
         <TestAccordion borders='none' />
         <TestAccordion borders='middle' />
         <TestAccordion borders='all' />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+  it('renders expanded initially', () => {
+    mount(
+      <TestingPicasso>
         <TestAccordion defaultExpanded />
         <TestAccordion expanded />
         <TestAccordion expanded={false} />
+        <TestAccordion disabled />
+        <TestAccordion expandIcon={<Check16 />} />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+  it('renders collapsed initially', () => {
+    mount(
+      <TestingPicasso>
+        <TestAccordion expanded={false} />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders custom expand icon', () => {
+    mount(
+      <TestingPicasso>
         <TestAccordion disabled />
         <TestAccordion expandIcon={<Check16 />} />
       </TestingPicasso>
