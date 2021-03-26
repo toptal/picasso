@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.15.0](https://github.com/toptal/picasso/compare/@toptal/picasso@5.14.6...@toptal/picasso@5.15.0) (2021-03-26)
+
+
+### Features
+
+* **icon:** add time-convert icon ([#2009](https://github.com/toptal/picasso/issues/2009)) ([e1829e2](https://github.com/toptal/picasso/commit/e1829e2211adc117fa8509153b0d59db74f1f205))
+
+
+
+
+
 ## [5.14.6](https://github.com/toptal/picasso/compare/@toptal/picasso@5.14.5...@toptal/picasso@5.14.6) (2021-03-23)
 
 
