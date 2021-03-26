@@ -163,15 +163,15 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion (
           onClick={handleSummaryClick}
         >
           {children}
-          {expandIcon ? (
-            decorateWithExpandIconClasses(expandIcon, expandIconClass)
-          ) : (
-            <div className={classes.expandIconAlignTop}>
-              <Button.Action
-                icon={<ArrowDownMinor16 className={expandIconClass} />}
-              />
-            </div>
-          )}
+          <Button.Action
+            icon={
+              expandIcon ? (
+                decorateWithExpandIconClasses(expandIcon, expandIconClass)
+              ) : (
+                <ArrowDownMinor16 className={expandIconClass} />
+              )
+            }
+          />
         </AccordionSummary>
       ) : (
         <EmptyAccordionSummary />
