@@ -172,6 +172,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion (
               )
             }
           />
+          )
         </AccordionSummary>
       ) : (
         <EmptyAccordionSummary />
