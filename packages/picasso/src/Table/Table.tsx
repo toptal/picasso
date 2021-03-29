@@ -28,6 +28,8 @@ export interface Props
   bordered?: boolean
   /** Stripes even rows */
   striped?: boolean
+  /** Reduces cells' horizontal padding */
+  narrow?: boolean
 }
 
 export interface StaticProps {
@@ -45,7 +47,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Table = forwardRef<HTMLTableElement, Props>(function Table(
+export const Table = forwardRef<HTMLTableElement, Props>(function Table (
   props,
   ref
 ) {
@@ -56,12 +58,13 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table(
     compact,
     bordered,
     striped,
+    narrow,
     ...rest
   } = props
   const classes = useStyles()
 
   return (
-    <TableContext.Provider value={{ compact, bordered, striped }}>
+    <TableContext.Provider value={{ compact, bordered, striped, narrow }}>
       <MUITable
         {...rest}
         ref={ref}

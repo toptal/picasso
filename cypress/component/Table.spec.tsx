@@ -87,6 +87,12 @@ describe('Table', () => {
     cy.get('body').happoScreenshot()
   })
 
+  it('renders narrow', () => {
+    mount(renderTable({ narrow: true }))
+
+    cy.get('body').happoScreenshot()
+  })
+
   it('renders compact', () => {
     mount(renderTable({ compact: true }))
 

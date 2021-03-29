@@ -25,7 +25,7 @@ export interface Props
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableCell' })
 
 export const TableCell = forwardRef<HTMLTableCellElement, Props>(
-  function TableCell(props, ref) {
+  function TableCell (props, ref) {
     const {
       align,
       className,
@@ -41,6 +41,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
       compact: compactClass,
       footer: footerClass,
       header: headerClass,
+      narrow: narrowClass,
       ...muiClasses
     } = useStyles()
 
@@ -59,6 +60,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         classes={muiClasses}
         className={cx(className, {
           [compactClass]: tableConfig.compact,
+          [narrowClass]: tableConfig.narrow,
           [footerClass]: isFooter,
           [headerClass]: isHead
         })}

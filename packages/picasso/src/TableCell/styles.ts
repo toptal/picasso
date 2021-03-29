@@ -1,22 +1,43 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
-const getCellStyles = (compact = false) => ({
+const baseCellStyles = {
   fontSize: rem('12px'),
-  padding: compact ? '0.25rem 0.5rem' : '0.5rem 1rem',
-  height: compact ? '1.5rem' : '2.5rem',
-  lineHeight: compact ? '0.625rem' : '1.25rem',
-  borderBottom: 'none',
+  borderBottom: 'none'
+}
+
+const regularCellStyles = {
+  ...baseCellStyles,
+  padding: '0.5rem 1rem',
+  height: '2.5rem',
+  lineHeight: '1.25rem',
 
   '&:last-child': {
-    paddingRight: compact ? '0.75rem' : '1.5rem'
+    paddingRight: '1.5rem'
   }
-})
+}
+
+const compactCellStyles = {
+  ...baseCellStyles,
+  padding: '0.25rem 0.5rem',
+  height: '1.5rem',
+  lineHeight: '0.625rem',
+
+  '&:last-child': {
+    paddingRight: '0.75rem'
+  }
+}
+
+const narrowCellStyles = {
+  paddingLeft: '0.5rem',
+  paddingRight: '0.5rem'
+}
 
 export default ({ palette, typography }: Theme) =>
   createStyles({
-    root: getCellStyles(),
-    compact: getCellStyles(true),
+    root: regularCellStyles,
+    compact: compactCellStyles,
+    narrow: narrowCellStyles,
     header: {
       fontWeight: typography.fontWeights.semibold,
       color: palette.text.primary
