@@ -8,7 +8,7 @@ export interface ReferenceObject {
 const useWidthOf = <T extends ReferenceObject>(element: T | null) => {
   const [menuWidth, setMenuWidth] = useState<string | undefined>()
 
-  const parent = element?.offsetParent
+  const offsetParent = element?.offsetParent
 
   useLayoutEffect(() => {
     if (!element) {
@@ -17,7 +17,7 @@ const useWidthOf = <T extends ReferenceObject>(element: T | null) => {
     const { width } = element.getBoundingClientRect()
 
     setMenuWidth(`${width}px`)
-  }, [element, parent])
+  }, [element, offsetParent])
 
   return menuWidth
 }
