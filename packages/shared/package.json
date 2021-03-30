@@ -4,7 +4,7 @@
   "description": "Shared types, utils for Picasso internal usage",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-shared#readme",
-  "license": "ISC",
+  "license": "MIT",
   "main": "index.js",
   "module": "index.js",
   "publishConfig": {
