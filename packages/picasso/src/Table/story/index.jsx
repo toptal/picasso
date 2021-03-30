@@ -18,7 +18,14 @@ page
   .addComponentDocs({
     component: Table,
     name: 'Table',
-    description: 'Root component representing table'
+    description: 'Root component representing table',
+    additionalDocs: {
+      variant: {
+        name: 'variant',
+        type: { name: 'enum', enums: ['"regular"', '"compact"', '"narrow"'] },
+        description: 'Appearance variant'
+      }
+    }
   })
   .addComponentDocs(tableHeadStory.componentDocs)
   .addComponentDocs(tableSectionHeadStory.componentDocs)

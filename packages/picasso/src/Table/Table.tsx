@@ -24,7 +24,7 @@ export interface Props
     TableHTMLAttributes<HTMLTableElement> {
   /** Children components (`Table.Head`, `Table.Body`, `Table.Footer`) */
   children: ReactNode
-  /** Appearance ariant */
+  /** Appearance variant */
   variant?: TableVariant
   /** Add borders for each row */
   bordered?: boolean
