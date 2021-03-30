@@ -83,55 +83,49 @@ export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
 
   const validationObject = useRef<FormContextProps>(createFormContext())
 
-  const showSuccessNotification = useCallback(() => {
+  const showSuccessNotification = () => {
     if (!successSubmitMessage) {
       return
     }
 
     showSuccess(successSubmitMessage)
-  }, [showSuccess, successSubmitMessage])
+  }
 
-  const showErrorNotification = useCallback(
-    (errors: SubmissionErrors) => {
-      if (typeof errors === 'string') {
-        showError(errors, undefined, { persist: true })
+  const showErrorNotification = (errors: SubmissionErrors) => {
+    if (typeof errors === 'string') {
+      showError(errors, undefined, { persist: true })
 
-        return
-      }
+      return
+    }
 
-      if (!failedSubmitMessage) {
-        return
-      }
+    if (!failedSubmitMessage) {
+      return
+    }
 
-      showError(failedSubmitMessage, undefined, { persist: true })
-    },
-    [failedSubmitMessage, showError]
-  )
+    showError(failedSubmitMessage, undefined, { persist: true })
+  }
 
-  const handleSubmit = useCallback(
-    async (values, form, callback) => {
-      const validationErrors = getValidationErrors(
-        validationObject.current.getValidators(),
-        values,
-        form
-      )
+  const handleSubmit = async (values, form, callback) => {
+    const validationErrors = getValidationErrors(
+      validationObject.current.getValidators(),
+      values,
+      form
+    )
 
-      if (validationErrors) {
-        return validationErrors
-      }
+    if (validationErrors) {
+      return validationErrors
+    }
 
-      const submissionErrors = await onSubmit(values, form, callback)
+    const submissionErrors = await onSubmit(values, form, callback)
 
-      if (!submissionErrors) {
-        showSuccessNotification()
-      } else {
-        showErrorNotification(submissionErrors)
-      }
+    if (!submissionErrors) {
+      showSuccessNotification()
+    } else {
+      showErrorNotification(submissionErrors)
+    }
 
-      return submissionErrors
-    },
-    [onSubmit, showErrorNotification, showSuccessNotification]
-  )
+    return submissionErrors
+  }
 
   return (
     <FormContext.Provider value={validationObject}>
