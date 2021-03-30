@@ -151,7 +151,7 @@ In your project directory:
 
 ### Tree shaking
 
-If you use [davinci](https://github.com/toptal/davinci) to manage your application - tree shaking works by default when you build your project in the `production` mode.
+If you use [davinci](https://www.npmjs.com/package/@toptal/davinci) to manage your application - tree shaking works by default when you build your project in the `production` mode.
 
 In other cases when you use custom webpack build configuration you should check these three things to make sure you will have Picasso tree-shaked:
 
