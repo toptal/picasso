@@ -17,19 +17,19 @@ import TableExpandableRow from '../TableExpandableRow'
 import TableContext from './TableContext'
 import styles from './styles'
 
+export type TableVariant = 'compact' | 'narrow' | 'regular'
+
 export interface Props
   extends BaseProps,
     TableHTMLAttributes<HTMLTableElement> {
   /** Children components (`Table.Head`, `Table.Body`, `Table.Footer`) */
   children: ReactNode
-  /** Show a compact table */
-  compact?: boolean
+  /** Appearance ariant */
+  variant?: TableVariant
   /** Add borders for each row */
   bordered?: boolean
   /** Stripes even rows */
   striped?: boolean
-  /** Reduces cells' horizontal padding */
-  narrow?: boolean
 }
 
 export interface StaticProps {
@@ -55,16 +55,15 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table (
     className,
     style,
     children,
-    compact,
+    variant = 'regular',
     bordered,
     striped,
-    narrow,
     ...rest
   } = props
   const classes = useStyles()
 
   return (
-    <TableContext.Provider value={{ compact, bordered, striped, narrow }}>
+    <TableContext.Provider value={{ variant, bordered, striped }}>
       <MUITable
         {...rest}
         ref={ref}
@@ -72,7 +71,7 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table (
         className={className}
         style={style}
         data-bordered={bordered}
-        data-compact={compact}
+        data-variant={variant}
       >
         {children}
       </MUITable>
@@ -81,7 +80,8 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table (
 }) as CompoundedComponentWithRef<Props, HTMLTableElement, StaticProps>
 
 Table.defaultProps = {
-  striped: true
+  striped: true,
+  variant: 'regular'
 }
 
 Table.displayName = 'Table'

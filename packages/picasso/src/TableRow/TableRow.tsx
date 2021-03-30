@@ -45,7 +45,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
       bordered: borderedClass,
       ...muiClasses
     } = useStyles()
-    const tableConfig = useContext(TableContext)
+    const { bordered } = useContext(TableContext)
 
     return (
       <MUITableRow
@@ -54,7 +54,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
         classes={muiClasses}
         className={cx(className, {
           [stripeEvenClass]: stripeEven,
-          [borderedClass]: tableConfig.bordered
+          [borderedClass]: bordered
         })}
         style={style}
         hover={hover}

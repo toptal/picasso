@@ -1,8 +1,9 @@
 import { createContext } from 'react'
 
-interface TableConfig {
-  compact?: boolean
-  narrow?: boolean
+import { TableVariant } from './Table'
+
+export interface TableConfig {
+  variant?: TableVariant
   bordered?: boolean
   striped?: boolean
 }

@@ -44,13 +44,14 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
       narrow: narrowClass,
       ...muiClasses
     } = useStyles()
-
+    const { variant } = useContext(TableContext)
     const tableSection = useContext(TableSectionContext)
-    const tableConfig = useContext(TableContext)
-    const titleCase = useTitleCase(propsTitleCase)
-
     const isHead = tableSection === TableSection.HEAD
     const isFooter = tableSection === TableSection.FOOTER
+    const titleCase = useTitleCase(propsTitleCase)
+
+    const renderChildren = () =>
+      isHead && titleCase ? toTitleCase(children) : children
 
     return (
       <MUITableCell
@@ -59,8 +60,8 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         align={align}
         classes={muiClasses}
         className={cx(className, {
-          [compactClass]: tableConfig.compact,
-          [narrowClass]: tableConfig.narrow,
+          [compactClass]: variant === 'compact',
+          [narrowClass]: variant === 'narrow',
           [footerClass]: isFooter,
           [headerClass]: isHead
         })}
@@ -68,7 +69,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         colSpan={colSpan}
         rowSpan={rowSpan}
       >
-        {isHead && titleCase ? toTitleCase(children) : children}
+        {renderChildren()}
       </MUITableCell>
     )
   }

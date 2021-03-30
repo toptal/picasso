@@ -5,37 +5,39 @@ exports[`TableCell renders 1`] = `
   <div
     class="Picasso-root"
   >
-    <table
-      class="MuiTable-root"
+    <td
+      class="MuiTableCell-root PicassoTableCell-root"
     >
-      <thead
-        class="MuiTableHead-root PicassoTableHead-root"
-      >
-        <tr
-          class="MuiTableRow-root PicassoTableRow-root MuiTableRow-head"
-        >
-          <th
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-head PicassoTableCell-header"
-            scope="col"
-          >
-            Cell test
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        class="MuiTableBody-root"
-      >
-        <tr
-          class="MuiTableRow-root PicassoTableRow-root"
-        >
-          <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"
-          >
-            Cell test
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      Cell
+    </td>
+  </div>
+</div>
+`;
+
+exports[`TableCell renders compact 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <td
+      class="MuiTableCell-root PicassoTableCell-root PicassoTableCell-compact"
+    >
+      Cell
+    </td>
+  </div>
+</div>
+`;
+
+exports[`TableCell renders narrow 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <td
+      class="MuiTableCell-root PicassoTableCell-root PicassoTableCell-narrow"
+    >
+      Cell
+    </td>
   </div>
 </div>
 `;

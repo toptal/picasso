@@ -1,51 +1,81 @@
 import React from 'react'
-import { render, RenderResult } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso/test-utils'
 
-import Table from '../Table'
+import Table, { TableConfig, TableContext } from '../Table'
+import { Props } from './TableCell'
 
-const renderTableCell = () => {
+const renderTableCell = (
+  { children = 'Cell', ...rest }: Partial<Props> = {},
+  tableConfig: TableConfig = {}
+) => {
   return render(
-    <Table>
-      <Table.Head>
-        <Table.Row>
-          <Table.Cell>Cell test</Table.Cell>
-        </Table.Row>
-      </Table.Head>
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell>Cell test</Table.Cell>
-        </Table.Row>
-      </Table.Body>
-    </Table>
+    <TableContext.Provider value={tableConfig}>
+      <Table.Cell {...rest}>{children}</Table.Cell>
+    </TableContext.Provider>
   )
 }
 
 describe('TableCell', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderTableCell()
-  })
-
   it('renders', () => {
-    const { container } = api
+    const { container } = renderTableCell()
 
     expect(container).toMatchSnapshot()
   })
 
-  it('sets rowSpan', () => {
+  it('renders compact', () => {
+    const { container } = renderTableCell({}, { variant: 'compact' })
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders narrow', () => {
+    const { container } = renderTableCell({}, { variant: 'narrow' })
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('sets attribuites correctly', () => {
+    const { getByTestId } = renderTableCell({
+      'data-testid': 'cell',
+      rowSpan: 10,
+      colSpan: 2,
+      style: { background: 'red' }
+    })
+
+    const cell = getByTestId('cell')
+
+    expect(cell).toHaveAttribute('rowspan', '10')
+    expect(cell).toHaveAttribute('colspan', '2')
+    expect(cell).toHaveAttribute('style', 'background: red;')
+  })
+
+  it('capitalizes in head if titleCase is truthy', () => {
     const { getByTestId } = render(
       <Table>
         <Table.Head>
           <Table.Row>
-            <Table.Cell data-testid='cell' rowSpan={10}>
-              Cell test
-            </Table.Cell>
+            <Table.Cell data-testid='head-cell'>head</Table.Cell>
+          </Table.Row>
+        </Table.Head>
+      </Table>,
+      undefined,
+      { titleCase: true }
+    )
+
+    expect(getByTestId('head-cell')).toHaveTextContent('Head')
+  })
+
+  it('does not capitalize in head if titleCase is falsy', () => {
+    const { getByTestId } = render(
+      <Table>
+        <Table.Head>
+          <Table.Row>
+            <Table.Cell data-testid='head-cell'>head</Table.Cell>
           </Table.Row>
         </Table.Head>
       </Table>
     )
 
-    expect(getByTestId('cell')).toHaveAttribute('rowspan', '10')
+    expect(getByTestId('head-cell')).toHaveTextContent('head')
   })
 })
