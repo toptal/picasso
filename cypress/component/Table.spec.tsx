@@ -88,13 +88,13 @@ describe('Table', () => {
   })
 
   it('renders narrow', () => {
-    mount(renderTable({ narrow: true }))
+    mount(renderTable({ variant: 'narrow' }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders compact', () => {
-    mount(renderTable({ compact: true }))
+    mount(renderTable({ variant: 'compact' }))
 
     cy.get('body').happoScreenshot()
   })
@@ -112,7 +112,7 @@ describe('Table', () => {
   })
 
   it('renders bordered, non-striped and compact', () => {
-    mount(renderTable({ bordered: true, striped: false, compact: true }))
+    mount(renderTable({ bordered: true, striped: false, variant: 'compact' }))
 
     cy.get('body').happoScreenshot()
   })

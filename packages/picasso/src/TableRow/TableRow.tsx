@@ -29,7 +29,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableRow' })
 
 export const TableRow = forwardRef<HTMLTableRowElement, Props>(
-  function TableRow (props, ref) {
+  function TableRow(props, ref) {
     const {
       className,
       style,

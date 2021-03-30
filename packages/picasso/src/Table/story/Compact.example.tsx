@@ -45,7 +45,7 @@ const data = [
 ]
 
 const Example = () => (
-  <Table compact>
+  <Table variant='compact'>
     <Table.Head>
       <Table.Row>
         <Table.Cell>Name</Table.Cell>
