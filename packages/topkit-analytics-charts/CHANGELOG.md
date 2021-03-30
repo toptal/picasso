@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@1.0.6...@topkit/analytics-charts@1.0.7) (2021-03-30)
+
+
+### Bug Fixes
+
+* readme not being published to npm ([#2006](https://github.com/toptal/picasso/issues/2006)) ([1b82c73](https://github.com/toptal/picasso/commit/1b82c7382acbc4d17423c28e42f1dadf773abe11))
+
+
+
+
+
 ## [1.0.6](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@1.0.5...@topkit/analytics-charts@1.0.6) (2021-03-24)
 
 **Note:** Version bump only for package @topkit/analytics-charts
