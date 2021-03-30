@@ -7,13 +7,14 @@ exports[`Table renders 1`] = `
   >
     <table
       class="MuiTable-root"
-      data-variant="regular"
+      data-spacing="regular"
+      data-variant="bordered"
     >
       <thead
         class="MuiTableHead-root PicassoTableHead-root"
       >
         <tr
-          class="MuiTableRow-root PicassoTableRow-root MuiTableRow-head"
+          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered MuiTableRow-head"
         >
           <th
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-head PicassoTableCell-header"
@@ -27,7 +28,7 @@ exports[`Table renders 1`] = `
         class="MuiTableBody-root"
       >
         <tr
-          class="MuiTableRow-root PicassoTableRow-root"
+          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
         >
           <td
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"
@@ -40,7 +41,7 @@ exports[`Table renders 1`] = `
         class="MuiTableFooter-root PicassoTableFooter-root"
       >
         <tr
-          class="MuiTableRow-root PicassoTableRow-root MuiTableRow-footer"
+          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered MuiTableRow-footer"
         >
           <td
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer PicassoTableCell-footer"

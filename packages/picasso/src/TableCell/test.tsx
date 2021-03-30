@@ -23,13 +23,13 @@ describe('TableCell', () => {
   })
 
   it('renders compact', () => {
-    const { container } = renderTableCell({}, { variant: 'compact' })
+    const { container } = renderTableCell({}, { spacing: 'compact' })
 
     expect(container).toMatchSnapshot()
   })
 
   it('renders narrow', () => {
-    const { container } = renderTableCell({}, { variant: 'narrow' })
+    const { container } = renderTableCell({}, { spacing: 'narrow' })
 
     expect(container).toMatchSnapshot()
   })

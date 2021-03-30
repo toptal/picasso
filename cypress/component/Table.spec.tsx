@@ -81,38 +81,44 @@ const renderTable = (props: Omit<TableProps, 'children'> = {}) => (
 )
 
 describe('Table', () => {
+  it('renders clear', () => {
+    mount(renderTable({ variant: 'clear' }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders striped', () => {
+    mount(renderTable({ variant: 'striped' }))
+
+    cy.get('body').happoScreenshot()
+  })
+
   it('renders bordered', () => {
-    mount(renderTable({ bordered: true }))
+    mount(renderTable({ variant: 'bordered' }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders narrow', () => {
-    mount(renderTable({ variant: 'narrow' }))
+    mount(renderTable({ spacing: 'narrow' }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders compact', () => {
-    mount(renderTable({ variant: 'compact' }))
+    mount(renderTable({ spacing: 'compact' }))
 
     cy.get('body').happoScreenshot()
   })
 
-  it('renders non-striped', () => {
-    mount(renderTable({ striped: false }))
+  it('renders compact and striped', () => {
+    mount(renderTable({ variant: 'striped', spacing: 'compact' }))
 
     cy.get('body').happoScreenshot()
   })
 
-  it('renders bordered and non-striped', () => {
-    mount(renderTable({ bordered: true, striped: false }))
-
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders bordered, non-striped and compact', () => {
-    mount(renderTable({ bordered: true, striped: false, variant: 'compact' }))
+  it('renders narrow and clear', () => {
+    mount(renderTable({ variant: 'clear', spacing: 'narrow' }))
 
     cy.get('body').happoScreenshot()
   })

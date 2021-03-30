@@ -36,7 +36,7 @@ export const TableBody = forwardRef<HTMLTableSectionElement, Props>(
   function TableBody(props, ref) {
     const { className, style, children, ...rest } = props
     const classes = useStyles()
-    const { striped } = useContext(TableContext)
+    const { variant } = useContext(TableContext)
 
     return (
       <TableSectionContext.Provider value={TableSection.BODY}>
@@ -47,7 +47,7 @@ export const TableBody = forwardRef<HTMLTableSectionElement, Props>(
           className={className}
           style={style}
         >
-          {striped ? stripeRows(children) : children}
+          {variant === 'striped' ? stripeRows(children) : children}
         </MUITableBody>
       </TableSectionContext.Provider>
     )

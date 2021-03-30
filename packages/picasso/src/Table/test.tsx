@@ -20,7 +20,7 @@ const renderTable = (
   cellsProps: [CellProps, CellProps, CellProps] = DEFAULT_CELLS_PROPS,
   tableProps: Pick<
     TableProps,
-    'bordered' | 'className' | 'style' | 'variant'
+    'className' | 'style' | 'spacing' | 'variant'
   > = {}
 ) => {
   return render(
@@ -72,14 +72,14 @@ describe('Table', () => {
   it('sets attributes correctly', () => {
     const { container } = renderTable(undefined, undefined, {
       className: 'foo',
-      variant: 'compact',
-      bordered: true
+      spacing: 'compact',
+      variant: 'bordered'
     })
 
     const table = container.querySelector('table')
 
-    expect(table?.getAttribute('data-variant')).toBe('compact')
-    expect(table?.getAttribute('data-bordered')).toBe('true')
+    expect(table?.getAttribute('data-spacing')).toBe('compact')
+    expect(table?.getAttribute('data-variant')).toBe('bordered')
     expect(table?.classList.contains('foo')).toBeTruthy()
   })
 

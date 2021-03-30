@@ -7,13 +7,14 @@ exports[`TableCell renders 1`] = `
   >
     <table
       class="MuiTable-root"
-      data-variant="regular"
+      data-spacing="regular"
+      data-variant="bordered"
     >
       <tbody
         class="MuiTableBody-root"
       >
         <tr
-          class="MuiTableRow-root PicassoTableRow-root"
+          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
         >
           <td
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"

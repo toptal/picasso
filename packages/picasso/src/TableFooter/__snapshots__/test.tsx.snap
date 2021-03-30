@@ -7,13 +7,14 @@ exports[`TableFooter renders 1`] = `
   >
     <table
       class="MuiTable-root"
-      data-variant="regular"
+      data-spacing="regular"
+      data-variant="bordered"
     >
       <tfoot
         class="MuiTableFooter-root PicassoTableFooter-root"
       >
         <tr
-          class="MuiTableRow-root PicassoTableRow-root MuiTableRow-footer"
+          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered MuiTableRow-footer"
         >
           <td
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer PicassoTableCell-footer"

@@ -44,7 +44,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
       narrow: narrowClass,
       ...muiClasses
     } = useStyles()
-    const { variant } = useContext(TableContext)
+    const { spacing } = useContext(TableContext)
     const tableSection = useContext(TableSectionContext)
     const isHead = tableSection === TableSection.HEAD
     const isFooter = tableSection === TableSection.FOOTER
@@ -60,8 +60,8 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         align={align}
         classes={muiClasses}
         className={cx(className, {
-          [compactClass]: variant === 'compact',
-          [narrowClass]: variant === 'narrow',
+          [compactClass]: spacing === 'compact',
+          [narrowClass]: spacing === 'narrow',
           [footerClass]: isFooter,
           [headerClass]: isHead
         })}

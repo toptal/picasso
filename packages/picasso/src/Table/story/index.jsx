@@ -20,9 +20,14 @@ page
     name: 'Table',
     description: 'Root component representing table',
     additionalDocs: {
+      spacing: {
+        name: 'spacing',
+        type: { name: 'enum', enums: ['"regular"', '"compact"', '"narrow"'] },
+        description: 'Inner spacing'
+      },
       variant: {
         name: 'variant',
-        type: { name: 'enum', enums: ['"regular"', '"compact"', '"narrow"'] },
+        type: { name: 'enum', enums: ['"clear"', '"bordered"', '"striped"'] },
         description: 'Appearance variant'
       }
     }
@@ -38,12 +43,9 @@ page
 page
   .createChapter()
   .addExample('Table/story/Default.example.tsx', 'Plain table')
-  .addExample('Table/story/Compact.example.tsx', 'Compact table') // picasso-skip-visuals
+  .addExample('Table/story/Variants.example.tsx', 'Appearance variants') // picasso-skip-visuals
+  .addExample('Table/story/Spacings.example.tsx', 'Inner spacing') // picasso-skip-visuals
   .addExample('Table/story/Alignments.example.tsx', 'Cell alignments') // picasso-skip-visuals
-  .addExample(
-    'Table/story/Bordered.example.tsx',
-    'Bordered table without stripes'
-  ) // picasso-skip-visuals
   .addExample('Table/story/Select.example.tsx', 'Selectable table')
   .addExample(
     'Table/story/SectionHeader.example.tsx',
