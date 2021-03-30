@@ -4,7 +4,7 @@
   "description": "Lab components of Picasso",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
-  "license": "ISC",
+  "license": "MIT",
   "main": "index.js",
   "module": "index.js",
   "publishConfig": {

@@ -38,7 +38,7 @@
     "url": "git@github.com:toptal/picasso.git"
   },
   "author": "Toptal",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
   },

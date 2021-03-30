@@ -3,7 +3,7 @@
   "version": "1.0.6",
   "description": "Charts utilities",
   "author": "Toptal",
-  "license": "ISC",
+  "license": "MIT",
   "main": "index.js",
   "module": "index.js",
   "repository": {
