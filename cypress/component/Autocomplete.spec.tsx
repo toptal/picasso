@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { mount } from '@cypress/react'
 import debounce from 'debounce'
 import {
@@ -67,9 +67,10 @@ export const DynamicOptionsAutocompleteExample = () => {
   const [options, setOptions] = useState<typeof OPTIONS>([])
   const [loading, setLoading] = useState(false)
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChangeDebounced = useCallback(
-    debounce(async (inputValue: string) => {
-      const newOptions = await loadOptions(inputValue.trim().toLowerCase())
+    debounce(async (newValue: string) => {
+      const newOptions = await loadOptions(newValue.trim().toLowerCase())
 
       setLoading(false)
       setOptions(newOptions)

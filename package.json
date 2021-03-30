@@ -57,7 +57,7 @@
     "@svgr/cli": "^5.5.0",
     "@testing-library/react": "^11.2.5",
     "@testing-library/react-hooks": "^5.0.3",
-    "@toptal/browserslist-config": "^0.1.0-alpha.2",
+    "@toptal/browserslist-config": "^1.1.0",
     "@toptal/davinci": "^1.0.63",
     "@types/debounce": "^1.2.0",
     "@types/esprima": "^4.0.2",

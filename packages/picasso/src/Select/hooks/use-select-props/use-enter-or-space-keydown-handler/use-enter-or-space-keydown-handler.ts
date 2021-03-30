@@ -43,11 +43,12 @@ const useEnterOrSpaceKeyDownHandler = <
     },
     [
       canOpen,
-      open,
       filteredOptions,
       highlightedIndex,
       closeOnEnter,
-      handleSelect
+      handleSelect,
+      open,
+      close
     ]
   )
 

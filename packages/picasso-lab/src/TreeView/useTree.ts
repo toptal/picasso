@@ -60,7 +60,7 @@ export const useTree = ({
       leaves,
       nodeWidth: fullNodeWidth
     })
-  }, [data])
+  }, [data, fullNodeWidth])
 
   const nodes = useNodes(rootNode)
 

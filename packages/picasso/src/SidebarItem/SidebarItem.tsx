@@ -57,7 +57,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const SidebarItem: OverridableComponent<Props> = memo(
-  forwardRef<HTMLElement, Props>(function SidebarItem(props, ref) {
+  forwardRef<HTMLElement, Props>(function SidebarItem (props, ref) {
     const {
       as,
       children,
@@ -91,7 +91,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
           {menu}
         </SubMenuContext.Provider>
       ),
-      [menu]
+      [index, menu]
     )
 
     const titleCase = useTitleCase(propsTitleCase)

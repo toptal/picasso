@@ -63,7 +63,7 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
         .duration(750)
         .call(zoom.translateTo, center.x, center.y)
     }
-  }, [rootRef.current, zoom, initialized, center])
+  }, [zoom, initialized, center, rootRef, initialScale])
 
   return {
     zoom,

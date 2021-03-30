@@ -184,7 +184,7 @@ const FieldWrapper = <
         clearValidators(name)
       }
     }
-  }, [])
+  }, [clearValidators, formConfig.validateOnSubmit, name])
 
   const { meta, input } = useField<TInputValue>(name, {
     validate: formConfig.validateOnSubmit ? undefined : validators,

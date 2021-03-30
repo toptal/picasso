@@ -51,17 +51,20 @@ export const TreeView = (props: Props) => {
   const classes = useStyles()
   const rootRef = createRef<SVGSVGElement>()
   const { nodes, links, selectedNode } = useTree({ data })
+
   const center = useMemo<{ x: number; y: number } | undefined>(() => {
     if (!selectedNode) {
       return undefined
     }
-    const { x: xPosition, y: yPosition, data } = selectedNode
+
+    const { x: xPosition, y: yPosition, data: nodeData } = selectedNode
 
     return {
-      x: xPosition + (data.selectedOffset?.x || 0),
-      y: yPosition + (data.selectedOffset?.y || 0)
+      x: xPosition + (nodeData.selectedOffset?.x || 0),
+      y: yPosition + (nodeData.selectedOffset?.y || 0)
     }
-  }, [selectedNode, selectedNode?.data])
+  }, [selectedNode])
+
   const { handleZoom, zoom } = useZoom<SVGSVGElement>({
     rootRef,
     scaleExtent,
@@ -81,7 +84,7 @@ export const TreeView = (props: Props) => {
       zoom
     })
     setInitialized(true)
-  }, [rootRef, initialized, zoom])
+  }, [rootRef, initialized, zoom, updateState])
 
   return (
     <div className={classes.root}>
