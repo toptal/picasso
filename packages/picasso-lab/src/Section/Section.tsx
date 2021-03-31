@@ -14,13 +14,19 @@ export interface Props extends BaseProps {
   actions?: ReactNode
   /** Main content of the Section */
   children?: ReactNode
+  testIds?: {
+    header?: string
+    title?: string
+    subtitle?: string
+    actions?: string
+  }
 }
 
 const useStyles = makeStyles(styles, {
   name: 'PicassoSection'
 })
 
-export const Section = forwardRef<HTMLDivElement, Props>(function Section(
+export const Section = forwardRef<HTMLDivElement, Props>(function Section (
   props,
   ref
 ) {
@@ -31,9 +37,46 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
     subtitle,
     actions,
     children,
+    testIds,
     ...rest
   } = props
   const classes = useStyles()
+
+  const hasTitle = typeof title !== 'undefined'
+  const hasSubtitle = typeof subtitle !== 'undefined'
+  const hasActions = typeof actions !== 'undefined'
+  const hasHeader = hasTitle || hasSubtitle || hasActions
+
+  const renderTitle = () =>
+    hasTitle ? (
+      <Typography
+        className={classes.title}
+        data-testid={testIds?.title}
+        variant='heading'
+        size='medium'
+      >
+        {title}
+      </Typography>
+    ) : null
+
+  const renderSubtitle = () =>
+    hasSubtitle ? (
+      <Typography
+        className={classes.subtitle}
+        data-testid={testIds?.subtitle}
+        size='medium'
+        color='dark-grey'
+      >
+        {subtitle}
+      </Typography>
+    ) : null
+
+  const renderActions = () =>
+    hasActions ? (
+      <Container data-testid={testIds?.actions} className={classes.actions}>
+        {actions}
+      </Container>
+    ) : null
 
   return (
     <Container
@@ -42,25 +85,13 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       style={style}
       {...rest}
     >
-      <Container className={classes.header}>
-        {title && (
-          <Typography className={classes.title} variant='heading' size='medium'>
-            {title}
-          </Typography>
-        )}
-        {subtitle && (
-          <Typography
-            className={classes.subtitle}
-            size='medium'
-            color='dark-grey'
-          >
-            {subtitle}
-          </Typography>
-        )}
-        {actions && (
-          <Container className={classes.actions}>{actions}</Container>
-        )}
-      </Container>
+      {hasHeader && (
+        <Container data-testid={testIds?.header} className={classes.header}>
+          {renderTitle()}
+          {renderSubtitle()}
+          {renderActions()}
+        </Container>
+      )}
       {children}
     </Container>
   )
