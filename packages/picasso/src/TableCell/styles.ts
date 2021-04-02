@@ -40,7 +40,8 @@ export default ({ palette, typography }: Theme) =>
     narrow: narrowCellStyles,
     header: {
       fontWeight: typography.fontWeights.semibold,
-      color: palette.text.primary
+      color: palette.text.primary,
+      lineHeight: '1.125rem'
     },
     body: {
       fontSize: rem('13px'),
