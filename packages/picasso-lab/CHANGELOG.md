@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@4.0.11...@toptal/picasso-lab@5.0.0) (2021-04-05)
+
+
+### Features
+
+* **Table:** add appearance and spacing variants ([d140fb7](https://github.com/toptal/picasso/commit/d140fb727c8d1985619778d769e32af2d505ead7))
+
+
+### BREAKING CHANGES
+
+* **Table:** Updated appearance and props schema
+
+
+
+
+
 ## [4.0.11](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@4.0.10...@toptal/picasso-lab@4.0.11) (2021-03-31)
 
 **Note:** Version bump only for package @toptal/picasso-lab

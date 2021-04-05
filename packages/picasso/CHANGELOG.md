@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@6.2.2...@toptal/picasso@7.0.0) (2021-04-05)
+
+
+### Features
+
+* **Table:** add appearance and spacing variants ([d140fb7](https://github.com/toptal/picasso/commit/d140fb727c8d1985619778d769e32af2d505ead7))
+
+
+### BREAKING CHANGES
+
+* **Table:** Updated appearance and props schema
+
+
+
+
+
 ## [6.2.2](https://github.com/toptal/picasso/compare/@toptal/picasso@6.2.1...@toptal/picasso@6.2.2) (2021-03-30)
 
 **Note:** Version bump only for package @toptal/picasso
