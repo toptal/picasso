@@ -1,5 +1,7 @@
 import React from 'react'
-import { Table } from '@toptal/picasso'
+import { Table, TableProps } from '@toptal/picasso'
+import { mount } from '@cypress/react'
+import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const data = [
   {
@@ -44,9 +46,9 @@ const data = [
   }
 ]
 
-const Example = () => (
-  <div>
-    <Table>
+const renderTable = (props: Omit<TableProps, 'children'> = {}) => (
+  <TestingPicasso>
+    <Table {...props}>
       <Table.Head>
         <Table.Row>
           <Table.Cell>Name</Table.Cell>
@@ -56,19 +58,6 @@ const Example = () => (
           <Table.Cell>Country</Table.Cell>
         </Table.Row>
       </Table.Head>
-      <Table.SectionHead>January 2020</Table.SectionHead>
-      <Table.Body>
-        {data.map(row => (
-          <Table.Row key={row.id}>
-            <Table.Cell>{row.name}</Table.Cell>
-            <Table.Cell>{row.talentType}</Table.Cell>
-            <Table.Cell>{row.company}</Table.Cell>
-            <Table.Cell>{row.role}</Table.Cell>
-            <Table.Cell>{row.country}</Table.Cell>
-          </Table.Row>
-        ))}
-      </Table.Body>
-      <Table.SectionHead>February 2020</Table.SectionHead>
       <Table.Body>
         {data.map(row => (
           <Table.Row key={row.id}>
@@ -88,7 +77,49 @@ const Example = () => (
         </Table.Row>
       </Table.Footer>
     </Table>
-  </div>
+  </TestingPicasso>
 )
 
-export default Example
+describe('Table', () => {
+  it('renders clear', () => {
+    mount(renderTable({ variant: 'clear' }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders striped', () => {
+    mount(renderTable({ variant: 'striped' }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders bordered', () => {
+    mount(renderTable({ variant: 'bordered' }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders narrow', () => {
+    mount(renderTable({ spacing: 'narrow' }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders compact', () => {
+    mount(renderTable({ spacing: 'compact' }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders compact and striped', () => {
+    mount(renderTable({ variant: 'striped', spacing: 'compact' }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders narrow and clear', () => {
+    mount(renderTable({ variant: 'clear', spacing: 'narrow' }))
+
+    cy.get('body').happoScreenshot()
+  })
+})

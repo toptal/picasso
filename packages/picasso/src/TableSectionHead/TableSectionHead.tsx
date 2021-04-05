@@ -36,7 +36,7 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
   return (
     <TableBody ref={ref}>
       <TableRow className={classes.sectionHeaderRow} style={style}>
-        <TableCell colSpan={colSpan}>
+        <TableCell className={classes.sectionHeaderCell} colSpan={colSpan}>
           {icon && <span className={classes.iconWrapper}>{icon}</span>}
           {children}
         </TableCell>

@@ -12,7 +12,7 @@ exports[`TableRow renders 1`] = `
         class="MuiTableBody-root"
       >
         <tr
-          class="MuiTableRow-root PicassoTableRow-root"
+          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
         >
           <td
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"

@@ -1,10 +1,10 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes, useContext } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableBody from '@material-ui/core/TableBody'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import { TableSectionContext, TableSection } from '../Table'
+import { TableSectionContext, TableSection, TableContext } from '../Table'
 
 export interface Props
   extends BaseProps,
@@ -13,7 +13,7 @@ export interface Props
   children: ReactNode
 }
 
-const decorateRows = (children: React.ReactNode) => {
+const stripeRows = (children: React.ReactNode) => {
   let stripeIndex = -1
 
   return React.Children.map(children, child => {
@@ -36,6 +36,7 @@ export const TableBody = forwardRef<HTMLTableSectionElement, Props>(
   function TableBody(props, ref) {
     const { className, style, children, ...rest } = props
     const classes = useStyles()
+    const { variant } = useContext(TableContext)
 
     return (
       <TableSectionContext.Provider value={TableSection.BODY}>
@@ -46,7 +47,7 @@ export const TableBody = forwardRef<HTMLTableSectionElement, Props>(
           className={className}
           style={style}
         >
-          {decorateRows(children)}
+          {variant === 'striped' ? stripeRows(children) : children}
         </MUITableBody>
       </TableSectionContext.Provider>
     )

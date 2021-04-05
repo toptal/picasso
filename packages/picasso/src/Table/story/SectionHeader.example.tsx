@@ -1,6 +1,49 @@
 import React from 'react'
 import { Calendar16, Table } from '@toptal/picasso'
 
+const data = [
+  {
+    id: 0,
+    name: 'Delia Floyd',
+    talentType: 'Designer',
+    company: 'Airbnb',
+    role: 'UX lead',
+    country: 'United States'
+  },
+  {
+    id: 1,
+    name: 'Linnie Sims',
+    talentType: 'Designer',
+    company: 'Facebook',
+    role: 'Art director',
+    country: 'Spain'
+  },
+  {
+    id: 2,
+    name: 'Charles Watson',
+    talentType: 'Developer',
+    company: 'Amazon',
+    role: 'Ruby developer',
+    country: 'Germany'
+  },
+  {
+    id: 3,
+    name: 'Leila Pena',
+    talentType: 'Developer',
+    company: 'Invision',
+    role: 'Web developer',
+    country: 'Poland'
+  },
+  {
+    id: 4,
+    name: 'Logan Burton',
+    talentType: 'Developer',
+    company: 'Microsoft',
+    role: 'CTO',
+    country: 'United States'
+  }
+]
+
 const Example = () => (
   <div>
     <Table>
@@ -35,52 +78,5 @@ const Example = () => (
     </Table>
   </div>
 )
-
-const createData = (
-  id: number,
-  name: string,
-  talentType: string,
-  company: string,
-  role: string,
-  country: string
-) => {
-  return { id, name, talentType, company, role, country }
-}
-
-const data = [
-  createData(
-    0,
-    'Delia Floyd',
-    'Designer',
-    'Airbnb',
-    'UX lead',
-    'United States'
-  ),
-  createData(1, 'Linnie Sims', 'Designer', 'Facebook', 'Art director', 'Spain'),
-  createData(
-    2,
-    'Charles Watson',
-    'Developer',
-    'Amazon',
-    'Ruby developer',
-    'Germany'
-  ),
-  createData(
-    3,
-    'Leila Pena',
-    'Developer',
-    'Invision',
-    'Web developer',
-    'Poland'
-  ),
-  createData(
-    4,
-    'Logan Burton',
-    'Developer',
-    'Microsoft',
-    'CTO',
-    'United States'
-  )
-]
 
 export default Example

@@ -16,12 +16,11 @@ export default ({ palette, sizes, transitions }: Theme) =>
         backgroundColor: palette.blue.lighter
       }
     },
-    head: {
+    bordered: {
       borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
     },
     stripeEven: {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      background: alpha(palette.grey.lighter2!, 0.32)
+      background: palette.grey.lighter
     },
     hover: {
       transition: transitions.create('background-color', {
