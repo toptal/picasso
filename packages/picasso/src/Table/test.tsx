@@ -75,10 +75,12 @@ describe('Table', () => {
       <Table className='foo' spacing='compact' variant='bordered'>
         <TableContext.Consumer>
           {({ variant, spacing }) => (
-            <>
-              <span data-testid='variant'>{variant}</span>
-              <span data-testid='spacing'>{spacing}</span>
-            </>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell data-testid='variant'>{variant}</Table.Cell>
+                <Table.Cell data-testid='spacing'>{spacing}</Table.Cell>
+              </Table.Row>
+            </Table.Body>
           )}
         </TableContext.Consumer>
       </Table>
