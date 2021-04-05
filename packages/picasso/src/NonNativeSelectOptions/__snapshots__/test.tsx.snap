@@ -15,6 +15,7 @@ exports[`NonNativeSelectOptions renders 1`] = `
         tabindex="0"
       >
         <li
+          aria-checked="false"
           aria-disabled="false"
           aria-selected="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
@@ -35,6 +36,7 @@ exports[`NonNativeSelectOptions renders 1`] = `
           </div>
         </li>
         <li
+          aria-checked="false"
           aria-disabled="false"
           aria-selected="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
@@ -55,6 +57,7 @@ exports[`NonNativeSelectOptions renders 1`] = `
           </div>
         </li>
         <li
+          aria-checked="false"
           aria-disabled="false"
           aria-selected="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"

@@ -31,6 +31,7 @@ const NonNativeSelectOption = React.memo(
     return (
       <MenuItem
         role='option'
+        aria-checked={selected}
         aria-selected={highlighted}
         value={option.value}
         size={size}

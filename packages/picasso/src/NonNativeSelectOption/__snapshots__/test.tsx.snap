@@ -6,6 +6,7 @@ exports[`NonNativeSelectOption renders 1`] = `
     class="Picasso-root"
   >
     <li
+      aria-checked="false"
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
