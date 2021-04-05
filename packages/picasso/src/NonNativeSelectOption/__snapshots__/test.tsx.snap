@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NonNativeSelectOption renders 1`] = `
+exports[`NonNativeSelectOption renders correctly 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -25,6 +25,57 @@ exports[`NonNativeSelectOption renders 1`] = `
           />
           <span
             class="PicassoMenuItem-stringContent"
+          >
+            Test
+          </span>
+        </div>
+        <div
+          class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+          style="margin-top: 0.25rem;"
+        >
+          Test description
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;
+
+exports[`NonNativeSelectOption sets attributes correctly 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      aria-checked="true"
+      aria-disabled="false"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      role="option"
+      tabindex="-1"
+      value="option1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+          >
+            <svg
+              class="PicassoSvgCheckMinor16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
+              />
+            </svg>
+          </div>
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentSemibold"
           >
             Test
           </span>
