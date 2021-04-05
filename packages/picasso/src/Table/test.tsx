@@ -4,6 +4,7 @@ import * as titleCaseModule from 'ap-style-title-case'
 import { TextLabelProps } from '@toptal/picasso-shared'
 
 import Table, { TableProps } from '../Table'
+import TableContext from './TableContext'
 
 jest.mock('ap-style-title-case')
 
@@ -70,16 +71,23 @@ describe('Table', () => {
   })
 
   it('sets attributes correctly', () => {
-    const { container } = renderTable(undefined, undefined, {
-      className: 'foo',
-      spacing: 'compact',
-      variant: 'bordered'
-    })
+    const { container, getByTestId } = render(
+      <Table className='foo' spacing='compact' variant='bordered'>
+        <TableContext.Consumer>
+          {({ variant, spacing }) => (
+            <>
+              <span data-testid='variant'>{variant}</span>
+              <span data-testid='spacing'>{spacing}</span>
+            </>
+          )}
+        </TableContext.Consumer>
+      </Table>
+    )
 
     const table = container.querySelector('table')
 
-    expect(table?.getAttribute('data-spacing')).toBe('compact')
-    expect(table?.getAttribute('data-variant')).toBe('bordered')
+    expect(getByTestId('spacing').textContent).toBe('compact')
+    expect(getByTestId('variant').textContent).toBe('bordered')
     expect(table?.classList.contains('foo')).toBeTruthy()
   })
 

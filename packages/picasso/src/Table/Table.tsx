@@ -46,7 +46,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Table = forwardRef<HTMLTableElement, Props>(function Table(
+export const Table = forwardRef<HTMLTableElement, Props>(function Table (
   props,
   ref
 ) {
@@ -68,8 +68,6 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table(
         classes={classes}
         className={className}
         style={style}
-        data-variant={variant}
-        data-spacing={spacing}
       >
         {children}
       </MUITable>

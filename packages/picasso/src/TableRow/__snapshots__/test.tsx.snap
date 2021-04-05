@@ -7,8 +7,6 @@ exports[`TableRow renders 1`] = `
   >
     <table
       class="MuiTable-root"
-      data-spacing="regular"
-      data-variant="bordered"
     >
       <tbody
         class="MuiTableBody-root"
