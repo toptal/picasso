@@ -6,11 +6,15 @@ import { Props } from './TableCell'
 
 const renderTableCell = (
   { children = 'Cell', ...rest }: Partial<Props> = {},
-  tableConfig: TableConfig = {}
+  { spacing = 'regular', variant = 'bordered' }: Partial<TableConfig> = {}
 ) => {
   return render(
-    <TableContext.Provider value={tableConfig}>
-      <Table.Cell {...rest}>{children}</Table.Cell>
+    <TableContext.Provider value={{ spacing, variant }}>
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell {...rest}>{children}</Table.Cell>
+        </Table.Row>
+      </Table.Body>
     </TableContext.Provider>
   )
 }

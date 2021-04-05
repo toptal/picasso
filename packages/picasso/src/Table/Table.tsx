@@ -1,4 +1,9 @@
-import React, { forwardRef, ReactNode, TableHTMLAttributes } from 'react'
+import React, {
+  forwardRef,
+  ReactNode,
+  TableHTMLAttributes,
+  useMemo
+} from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITable from '@material-ui/core/Table'
 import {
@@ -46,7 +51,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Table = forwardRef<HTMLTableElement, Props>(function Table(
+export const Table = forwardRef<HTMLTableElement, Props>(function Table (
   props,
   ref
 ) {
@@ -60,8 +65,10 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table(
   } = props
   const classes = useStyles()
 
+  const tableConfig = useMemo(() => ({ spacing, variant }), [spacing, variant])
+
   return (
-    <TableContext.Provider value={{ spacing, variant }}>
+    <TableContext.Provider value={tableConfig}>
       <MUITable
         {...rest}
         ref={ref}
@@ -76,8 +83,8 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table(
 }) as CompoundedComponentWithRef<Props, HTMLTableElement, StaticProps>
 
 Table.defaultProps = {
-  variant: 'bordered',
-  spacing: 'regular'
+  spacing: 'regular',
+  variant: 'bordered'
 }
 
 Table.displayName = 'Table'

@@ -1,16 +1,14 @@
 import React from 'react'
 import { render, PicassoConfig } from '@toptal/picasso/test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
-import { TextLabelProps } from '@toptal/picasso-shared'
 
 import Table, { TableProps } from '../Table'
 import TableContext from './TableContext'
+import { TableCellProps } from '../TableCell'
 
 jest.mock('ap-style-title-case')
 
-type CellProps = Partial<TextLabelProps> & { children: React.ReactNode }
-
-const DEFAULT_CELLS_PROPS: [CellProps, CellProps, CellProps] = [
+const DEFAULT_CELLS_PROPS: [TableCellProps, TableCellProps, TableCellProps] = [
   { children: 'Table test' },
   { children: 'Table test' },
   { children: 'Table test' }
@@ -18,7 +16,11 @@ const DEFAULT_CELLS_PROPS: [CellProps, CellProps, CellProps] = [
 
 const renderTable = (
   picassoConfig: PicassoConfig = { titleCase: false },
-  cellsProps: [CellProps, CellProps, CellProps] = DEFAULT_CELLS_PROPS,
+  cellsProps: [
+    TableCellProps,
+    TableCellProps,
+    TableCellProps
+  ] = DEFAULT_CELLS_PROPS,
   tableProps: Pick<
     TableProps,
     'className' | 'style' | 'spacing' | 'variant'
@@ -71,8 +73,13 @@ describe('Table', () => {
   })
 
   it('sets attributes correctly', () => {
-    const { container, getByTestId } = render(
-      <Table className='foo' spacing='compact' variant='bordered'>
+    const { getByTestId } = render(
+      <Table
+        data-testid='table'
+        className='foo'
+        spacing='compact'
+        variant='bordered'
+      >
         <TableContext.Consumer>
           {({ variant, spacing }) => (
             <Table.Body>
@@ -86,7 +93,7 @@ describe('Table', () => {
       </Table>
     )
 
-    const table = container.querySelector('table')
+    const table = getByTestId('table')
 
     expect(getByTestId('spacing').textContent).toBe('compact')
     expect(getByTestId('variant').textContent).toBe('bordered')
@@ -95,11 +102,9 @@ describe('Table', () => {
 
   describe('when Picasso titleCase property is true', () => {
     describe('when component does not override titleCase property', () => {
-      beforeEach(() => {
-        renderTable({ titleCase: true })
-      })
-
       it('should transform table header text to title case', () => {
+        renderTable({ titleCase: true })
+
         expect(spiedOnTitleCase).toHaveBeenCalledTimes(1)
         expect(spiedOnTitleCase).toHaveBeenCalledWith(
           DEFAULT_CELLS_PROPS[0].children
@@ -108,16 +113,14 @@ describe('Table', () => {
     })
 
     describe('when component overrides titleCase property', () => {
-      const cellsProps = DEFAULT_CELLS_PROPS.map(cellProps => ({
-        ...cellProps,
-        titleCase: false
-      })) as typeof DEFAULT_CELLS_PROPS
-
-      beforeEach(() => {
-        renderTable({ titleCase: true }, cellsProps)
-      })
-
       it('should not transform table header text to title case', () => {
+        const cellsProps = DEFAULT_CELLS_PROPS.map(cellProps => ({
+          ...cellProps,
+          titleCase: false
+        })) as typeof DEFAULT_CELLS_PROPS
+
+        renderTable({ titleCase: true }, cellsProps)
+
         expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
       })
     })

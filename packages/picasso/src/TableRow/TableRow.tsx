@@ -29,7 +29,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableRow' })
 
 export const TableRow = forwardRef<HTMLTableRowElement, Props>(
-  function TableRow(props, ref) {
+  function TableRow (props, ref) {
     const {
       className,
       style,
@@ -46,7 +46,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
       ...muiClasses
     } = useStyles()
     const { variant } = useContext(TableContext)
-    const shouldHaveBorders = variant === 'bordered' || variant === 'striped'
+    const isBordered = variant === 'bordered' || variant === 'striped'
 
     return (
       <MUITableRow
@@ -55,7 +55,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
         classes={muiClasses}
         className={cx(className, {
           [stripeEvenClass]: stripeEven,
-          [borderedClass]: shouldHaveBorders
+          [borderedClass]: isBordered
         })}
         style={style}
         hover={hover}

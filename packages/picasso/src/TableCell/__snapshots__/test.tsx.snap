@@ -5,11 +5,19 @@ exports[`TableCell renders 1`] = `
   <div
     class="Picasso-root"
   >
-    <td
-      class="MuiTableCell-root PicassoTableCell-root"
+    <tbody
+      class="MuiTableBody-root"
     >
-      Cell
-    </td>
+      <tr
+        class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
+      >
+        <td
+          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"
+        >
+          Cell
+        </td>
+      </tr>
+    </tbody>
   </div>
 </div>
 `;
@@ -19,11 +27,19 @@ exports[`TableCell renders compact 1`] = `
   <div
     class="Picasso-root"
   >
-    <td
-      class="MuiTableCell-root PicassoTableCell-root PicassoTableCell-compact"
+    <tbody
+      class="MuiTableBody-root"
     >
-      Cell
-    </td>
+      <tr
+        class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
+      >
+        <td
+          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableCell-compact"
+        >
+          Cell
+        </td>
+      </tr>
+    </tbody>
   </div>
 </div>
 `;
@@ -33,11 +49,19 @@ exports[`TableCell renders narrow 1`] = `
   <div
     class="Picasso-root"
   >
-    <td
-      class="MuiTableCell-root PicassoTableCell-root PicassoTableCell-narrow"
+    <tbody
+      class="MuiTableBody-root"
     >
-      Cell
-    </td>
+      <tr
+        class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
+      >
+        <td
+          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableCell-narrow"
+        >
+          Cell
+        </td>
+      </tr>
+    </tbody>
   </div>
 </div>
 `;
