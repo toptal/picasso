@@ -93,7 +93,7 @@ const getHighlightedOptions = (element: Element) =>
 
 // eslint-disable-next-line max-lines-per-function
 describe('NonNativeSelect', () => {
-  it('renders correctly', () => {
+  it('renders', () => {
     const { container } = renderSelect({
       options: OPTIONS,
       value: 'val1'

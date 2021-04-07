@@ -35,7 +35,7 @@ const renderNonNativeSelectOption = ({
   )
 
 describe('NonNativeSelectOption', () => {
-  it('renders correctly', () => {
+  it('renders', () => {
     const { container } = renderNonNativeSelectOption()
 
     expect(container).toMatchSnapshot()
@@ -70,15 +70,12 @@ describe('NonNativeSelectOption', () => {
     const option = getByRole('option')
 
     fireEvent.mouseDown(option)
-
     expect(onMouseDown).toHaveBeenCalledTimes(1)
 
     fireEvent.mouseEnter(option)
-
     expect(onMouseEnter).toHaveBeenCalledTimes(1)
 
     fireEvent.click(option)
-
     expect(onClick).toHaveBeenCalledTimes(1)
   })
 })
