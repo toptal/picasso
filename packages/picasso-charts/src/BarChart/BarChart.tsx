@@ -7,7 +7,8 @@ import {
   Tooltip,
   Bar,
   YAxis,
-  ResponsiveContainer
+  ResponsiveContainer,
+  Cell
 } from 'recharts'
 import { ticks as getD3Ticks } from 'd3-array'
 
@@ -31,8 +32,17 @@ const {
 export interface Props<K extends string | number | symbol>
   extends BaseChartProps {
   data: { name: string; value: { [key in K]: number } }[]
-  fillSchema: { [key in K]: string }
+  fillSchema?: { [key in K]: string }
   labelColorSchema?: { [key in K]: string }
+  labelKey?: string
+  getBarColor: (
+    dataKey: string,
+    entry: {
+      name: string
+      value: { [key in K]: number }
+    },
+    index: number
+  ) => string
 }
 
 const StyleOverrides = () => (
@@ -55,8 +65,8 @@ const StyleOverrides = () => (
 
 export const formatData = <K extends string>(data: Props<K>['data']) =>
   data.map(dataItem => ({
-    name: dataItem.name,
-    ...dataItem.value
+    ...dataItem.value,
+    ...dataItem
   }))
 
 export const extractValues = <K extends string>(data: Props<K>['data']) =>
@@ -72,6 +82,8 @@ const BarChart = <K extends string>({
   tooltip,
   customTooltip,
   allowTooltipEscapeViewBox,
+  getBarColor,
+  labelKey,
   ...rest
 }: Props<K>) => {
   const dataKeys = Object.keys(data[0].value) as K[]
@@ -89,9 +101,7 @@ const BarChart = <K extends string>({
           content={customTooltip}
           cursor={false}
         />
-      ) : (
-        undefined
-      ),
+      ) : undefined,
     [tooltip, customTooltip, allowTooltipEscapeViewBox]
   )
 
@@ -115,7 +125,7 @@ const BarChart = <K extends string>({
             vertical={false}
           />
           <XAxis
-            dataKey='name'
+            dataKey={labelKey || 'name'}
             tickLine={TICK_LINE}
             axisLine={AXIS_LINE}
             minTickGap={MIN_TICK_GAP}
@@ -139,9 +149,15 @@ const BarChart = <K extends string>({
             <Bar
               key={dataKey}
               dataKey={dataKey}
-              fill={fillSchema[dataKey]}
               label={<BarChartLabel color={labelColorSchema?.[dataKey]} />}
-            />
+            >
+              {data.map((entry, index) => {
+                const fill =
+                  getBarColor?.(dataKey, entry, index) || fillSchema?.[dataKey]
+
+                return <Cell key={index} fill={fill} />
+              })}
+            </Bar>
           ))}
         </RechartsBarChart>
       </ResponsiveContainer>
