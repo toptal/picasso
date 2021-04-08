@@ -78,13 +78,18 @@ const SelectNativeExample = () => {
   )
 }
 
-const OPTIONS = [
-  { value: '1', text: 'Option 1' },
-  { value: '2', text: 'Option 2' },
-  { value: '3', text: 'Option 3' },
-  { value: '4', text: 'Option 4' },
-  { value: '5', text: 'Option 5' }
-]
+const getOptions = (count: number) =>
+  Array(count)
+    .fill(0)
+    .map((_, index) => ({
+      value: (index + 1).toString(),
+      text: `Option ${index + 1}`
+    }))
+
+const OPTIONS = getOptions(5)
+
+const getOption = (value: string | number) =>
+  cy.get(`[role="option"][value="${value}"]`)
 
 const openSelect = () => {
   cy.get('[data-testid="select"]').click()
@@ -113,6 +118,44 @@ describe('Select', () => {
     openSelect()
 
     cy.get('body').happoScreenshot()
+  })
+
+  it.only('scrolls to option when it is hovered', () => {
+    mount(
+      <TestingPicasso>
+        <TestSelect options={getOptions(10)} />
+      </TestingPicasso>
+    )
+
+    openSelect()
+
+    getOption(8).trigger('mouseover')
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('scrolls to option when it is hovered with native JS', () => {
+    mount(
+      <TestingPicasso>
+        <TestSelect options={getOptions(10)} />
+      </TestingPicasso>
+    )
+
+    openSelect()
+
+    // eslint-disable-next-line
+    cy.window().then(window => {
+      const option = window.document.querySelector('[role="option"][value="8"]')
+      const mouseOverEvent = new MouseEvent('mouseover', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      })
+
+      option?.dispatchEvent(mouseOverEvent)
+
+      return cy.get('body').happoScreenshot()
+    })
   })
 
   it('renders disabled', () => {
@@ -253,12 +296,10 @@ describe('Select', () => {
 
     getNativeSelect().should('be.visible')
     getNativeSelect().select('1')
-    cy.get('option[role=option][value=1]')
-      .should('have.attr', 'aria-selected')
-      .and('match', /true/)
+    getOption(1).should('have.attr', 'aria-selected').and('match', /true/)
   })
 
-  it('sets background correctly', () => {
+  it('sets background correctly to various select states', () => {
     mount(
       <TestingPicasso>
         <div style={{ background: palette.yellow.main }}>
