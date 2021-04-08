@@ -32,23 +32,22 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Select/story/Default.example.tsx') // picasso-skip-visuals
+  .addExample('Select/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('Select/story/Native.example.tsx', 'Native') // picasso-skip-visuals
   .addExample('Select/story/SearchBehavior.example.tsx', {
     title: 'Search behavior',
-    description: `
-    Search is enabled when the number of options is greater or equal to \`searchThreshold\`.
-      `
+    description:
+      'Search is enabled when the number of options is greater or equal to `searchThreshold`.'
   }) // picasso-skip-visuals
   .addExample('Select/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
   .addExample('Select/story/Error.example.tsx', 'Error') // picasso-skip-visuals
-  .addExample('Select/story/WithIcon.example.tsx', 'With Icon') // picasso-skip-visuals
-  .addExample('Select/story/WithDescription.example.tsx') // picasso-skip-visuals
+  .addExample('Select/story/WithIcon.example.tsx', 'With icon') // picasso-skip-visuals
+  .addExample('Select/story/WithDescription.example.tsx', 'With description') // picasso-skip-visuals
   .addExample('Select/story/Loading.example.tsx', 'Loading') // picasso-skip-visuals
   .addExample('Select/story/Sizes.example.tsx', 'Sizes') // picasso-skip-visuals
   .addExample('Select/story/FullWidth.example.tsx', 'Full width') // picasso-skip-visuals
   .addExample('Select/story/ShrinkWidth.example.tsx', 'Shrink width') // picasso-skip-visuals
-  .addExample('Select/story/MenuWidth.example.tsx') // picasso-skip-visuals
+  .addExample('Select/story/MenuWidth.example.tsx', 'Custom menu width') // picasso-skip-visuals
   .addExample('Select/story/ChosenOption.example.tsx', {
     title: 'Chosen option',
     description:
@@ -72,5 +71,5 @@ page
     description:
       'Demonstrate auto focus capability by switching visibility of Select'
   }) // picasso-skip-visuals
-  .addExample('Select/story/ResetButton.example.tsx') // picasso-skip-visuals
-  .addExample('Select/story/Autofill.example.tsx', 'Disabling autofilling') // picasso-skip-visuals
+  .addExample('Select/story/ResetButton.example.tsx', 'With reset button') // picasso-skip-visuals
+  .addExample('Select/story/Autofill.example.tsx', 'Disable autofilling') // picasso-skip-visuals
