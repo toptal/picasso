@@ -6,7 +6,9 @@ ENV PATH="${PATH}:/app/node_modules/.bin" \
   # Replace when puppetter is replaced with puppeteer-core
   PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
   # Installs Chromium (77) package.
-  CHROME_BIN=/usr/bin/chromium-browser
+  CHROME_BIN=/usr/bin/chromium-browser \
+  # We don't pass real value here, workaround to bypass npm check on from .npmrc
+  NPM_TOKEN=''
 
 RUN printf "http://nl.alpinelinux.org/alpine/v$APK_BRANCH/%s\n" community main > /etc/apk/repositories && \
   apk add --no-cache \
@@ -50,3 +52,6 @@ RUN yarn install --frozen-lockfile
 
 # COPY sources to workdir
 COPY --chown=node:node . /app
+
+# Need this file for publishing packages to npm
+RUN printf '//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true\n' > .npmrc
