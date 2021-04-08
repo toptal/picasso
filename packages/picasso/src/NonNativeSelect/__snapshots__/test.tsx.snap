@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NonNativeSelect renders correctly 1`] = `
+exports[`NonNativeSelect renders 1`] = `
 <div>
   <div
     class="Picasso-root"

@@ -28,3 +28,17 @@ exports[`NativeSelectPlaceholder renders disabled 1`] = `
   </div>
 </div>
 `;
+
+exports[`NativeSelectPlaceholder renders with emptySelectValue 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <option
+      value="foo"
+    >
+      Select an option
+    </option>
+  </div>
+</div>
+`;
