@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.0.0...@toptal/picasso-lab@5.1.0) (2021-04-08)
+
+
+### Features
+
+* **Section:** prevent rendering empty header ([#2019](https://github.com/toptal/picasso/issues/2019)) ([43e87dd](https://github.com/toptal/picasso/commit/43e87dd4d7eab9b762ecebdc649699fe9f3b1f42))
+
+
+
+
+
 # [5.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@4.0.11...@toptal/picasso-lab@5.0.0) (2021-04-05)
 
 
