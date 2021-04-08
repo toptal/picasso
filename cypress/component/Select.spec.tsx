@@ -120,17 +120,20 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it.only('scrolls to option when it is hovered', () => {
+  it('scrolls to option when it is hovered', () => {
     mount(
       <TestingPicasso>
-        <TestSelect options={getOptions(10)} />
+        <TestSelect options={getOptions(20)} />
       </TestingPicasso>
     )
 
     openSelect()
 
-    getOption(8).trigger('mouseover')
+    const partiallyVisibleOption = getOption(8)
 
+    partiallyVisibleOption.trigger('mouseover')
+
+    // Option #8 should be fully visible
     cy.get('body').happoScreenshot()
   })
 
@@ -145,14 +148,16 @@ describe('Select', () => {
 
     // eslint-disable-next-line
     cy.window().then(window => {
-      const option = window.document.querySelector('[role="option"][value="8"]')
+      const partiallyVisibleOption = window.document.querySelector(
+        '[role="option"][value="8"]'
+      )
       const mouseOverEvent = new MouseEvent('mouseover', {
         view: window,
         bubbles: true,
         cancelable: true
       })
 
-      option?.dispatchEvent(mouseOverEvent)
+      partiallyVisibleOption?.dispatchEvent(mouseOverEvent)
 
       return cy.get('body').happoScreenshot()
     })
