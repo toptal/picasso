@@ -42,13 +42,8 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
   } = props
   const classes = useStyles()
 
-  const hasTitle = typeof title !== 'undefined'
-  const hasSubtitle = typeof subtitle !== 'undefined'
-  const hasActions = typeof actions !== 'undefined'
-  const hasHeader = hasTitle || hasSubtitle || hasActions
-
   const renderTitle = () =>
-    hasTitle ? (
+    title ? (
       <Typography
         className={classes.title}
         data-testid={testIds?.title}
@@ -60,7 +55,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
     ) : null
 
   const renderSubtitle = () =>
-    hasSubtitle ? (
+    subtitle ? (
       <Typography
         className={classes.subtitle}
         data-testid={testIds?.subtitle}
@@ -72,11 +67,13 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
     ) : null
 
   const renderActions = () =>
-    hasActions ? (
+    actions ? (
       <Container data-testid={testIds?.actions} className={classes.actions}>
         {actions}
       </Container>
     ) : null
+
+  const hasHeader = title || subtitle || actions
 
   return (
     <Container
