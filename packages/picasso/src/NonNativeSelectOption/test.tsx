@@ -50,7 +50,6 @@ describe('NonNativeSelectOption', () => {
 
     const option = getByRole('option')
 
-    expect(option.getAttribute('aria-checked')).toEqual('true')
     expect(option.getAttribute('aria-selected')).toEqual('true')
     expect(option.getAttribute('value')).toEqual('option1')
 

@@ -65,7 +65,6 @@ exports[`NonNativeSelect renders custom options 1`] = `
     tabindex="0"
   >
     <li
-      aria-checked="false"
       aria-disabled="false"
       aria-selected="true"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
@@ -91,7 +90,6 @@ exports[`NonNativeSelect renders custom options 1`] = `
       </div>
     </li>
     <li
-      aria-checked="false"
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
@@ -117,7 +115,6 @@ exports[`NonNativeSelect renders custom options 1`] = `
       </div>
     </li>
     <li
-      aria-checked="false"
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
@@ -157,7 +154,6 @@ exports[`NonNativeSelect renders description 1`] = `
     tabindex="0"
   >
     <li
-      aria-checked="false"
       aria-disabled="false"
       aria-selected="true"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
@@ -189,7 +185,6 @@ exports[`NonNativeSelect renders description 1`] = `
       </div>
     </li>
     <li
-      aria-checked="false"
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
@@ -221,7 +216,6 @@ exports[`NonNativeSelect renders description 1`] = `
       </div>
     </li>
     <li
-      aria-checked="false"
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
