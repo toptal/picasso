@@ -78,15 +78,19 @@ const SelectNativeExample = () => {
   )
 }
 
-const getOptions = (count: number) =>
-  Array(count)
-    .fill(0)
-    .map((_, index) => ({
-      value: (index + 1).toString(),
-      text: `Option ${index + 1}`
-    }))
-
-const OPTIONS = getOptions(5)
+const MANY_OPTIONS = [
+  { value: '1', text: 'Option 1' },
+  { value: '2', text: 'Option 2' },
+  { value: '3', text: 'Option 3' },
+  { value: '4', text: 'Option 4' },
+  { value: '5', text: 'Option 5' },
+  { value: '6', text: 'Option 6' },
+  { value: '7', text: 'Option 7' },
+  { value: '8', text: 'Option 8' },
+  { value: '9', text: 'Option 9' },
+  { value: '10', text: 'Option 10' }
+]
+const OPTIONS = MANY_OPTIONS.slice(0, 5)
 
 const getOptionQuerySelector = (value: string | number) =>
   `[role="option"][value="${value}"]`
@@ -126,7 +130,7 @@ describe('Select', () => {
   it('reveals partially visible option when it is hovered', () => {
     mount(
       <TestingPicasso>
-        <TestSelect options={getOptions(10)} />
+        <TestSelect options={MANY_OPTIONS} />
       </TestingPicasso>
     )
 
