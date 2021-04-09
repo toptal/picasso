@@ -4,7 +4,7 @@ export default () =>
   createStyles({
     header: {
       display: 'flex',
-      paddingBottom: '1.5rem'
+      paddingBottom: '1rem'
     },
     title: {
       marginRight: '1rem'
