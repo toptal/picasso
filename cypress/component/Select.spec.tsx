@@ -88,8 +88,11 @@ const getOptions = (count: number) =>
 
 const OPTIONS = getOptions(5)
 
+const getOptionQuerySelector = (value: string | number) =>
+  `[role="option"][value="${value}"]`
+
 const getOption = (value: string | number) =>
-  cy.get(`[role="option"][value="${value}"]`)
+  cy.get(getOptionQuerySelector(value))
 
 const openSelect = () => {
   cy.get('[data-testid="select"]').click()
@@ -120,24 +123,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('scrolls to option when it is hovered', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect options={getOptions(20)} />
-      </TestingPicasso>
-    )
-
-    openSelect()
-
-    const partiallyVisibleOption = getOption(8)
-
-    partiallyVisibleOption.trigger('mouseover')
-
-    // Option #8 should be fully visible
-    cy.get('body').happoScreenshot()
-  })
-
-  it('scrolls to option when it is hovered with native JS', () => {
+  it('reveals partially visible option when it is hovered', () => {
     mount(
       <TestingPicasso>
         <TestSelect options={getOptions(10)} />
@@ -146,10 +132,15 @@ describe('Select', () => {
 
     openSelect()
 
-    // eslint-disable-next-line
+    // cy.get & cy.trigger scroll to the element so custom scrolling behaviour can't be tested
+    // using window to avoid cypress auto scrolling
+
+    // eslint-disable-next-line promise/catch-or-return
     cy.window().then(window => {
-      const partiallyVisibleOption = window.document.querySelector(
-        '[role="option"][value="8"]'
+      // select the last visible option in the list
+      // which is half hidden by the scroll
+      const lastHalfVisibleOption = window.document.querySelector(
+        getOptionQuerySelector(8)
       )
       const mouseOverEvent = new MouseEvent('mouseover', {
         view: window,
@@ -157,8 +148,10 @@ describe('Select', () => {
         cancelable: true
       })
 
-      partiallyVisibleOption?.dispatchEvent(mouseOverEvent)
+      // when you hover this last partially shown option
+      lastHalfVisibleOption?.dispatchEvent(mouseOverEvent)
 
+      // the options list should slightly scroll to show the hovered option
       return cy.get('body').happoScreenshot()
     })
   })
