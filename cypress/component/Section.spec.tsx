@@ -7,36 +7,35 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 const SectionExample = () => {
   return (
     <TestingPicasso>
-      <Container bottom='small'>
+      <Container bottom='xlarge' bordered>
         <Section title='Title'>
           <Typography>Title only</Typography>
         </Section>
       </Container>
-      <Container bottom='small'>
+      <Container bottom='xlarge' bordered>
         <Section title='Title' subtitle='Subtitle'>
           <Typography>Title and subtitle</Typography>
         </Section>
       </Container>
-
-      <Container bottom='small'>
+      <Container bottom='xlarge' bordered>
         <Section actions={<Button size='small'>Action</Button>}>
           <Typography>Actions only</Typography>
         </Section>
       </Container>
-
-      <Container bottom='small'>
+      <Container bottom='xlarge' bordered>
         <Section title='Title' actions={<Button size='small'>Action</Button>}>
           <Typography>Title and actions</Typography>
         </Section>
       </Container>
-
-      <Section
-        title='Title'
-        subtitle='Subtitle'
-        actions={<Button size='small'>Action</Button>}
-      >
-        <Typography>Title, subtitle and actions</Typography>
-      </Section>
+      <Container bordered>
+        <Section
+          title='Title'
+          subtitle='Subtitle'
+          actions={<Button size='small'>Action</Button>}
+        >
+          <Typography>Title, subtitle and actions</Typography>
+        </Section>
+      </Container>
     </TestingPicasso>
   )
 }
