@@ -26,6 +26,14 @@ describe('NativeSelectPlaceholder', () => {
     expect(container).toMatchSnapshot()
   })
 
+  it('renders with emptySelectValue', () => {
+    const { container } = renderNativeSelectPlaceholder({
+      emptySelectValue: 'foo'
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+
   it('renders disabled', () => {
     const { container } = renderNativeSelectPlaceholder({ disabled: true })
 
