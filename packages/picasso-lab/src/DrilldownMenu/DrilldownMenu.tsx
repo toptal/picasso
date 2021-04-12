@@ -2,34 +2,32 @@ import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
 import SelectList, { SelectListAttributes } from '@toptal/picasso/SelectList'
 import React, { forwardRef, useMemo, useState } from 'react'
 
-import DrilldownItem from '../DrilldownItem'
-import DrilldownContext from './DrilldownContext'
+import DrilldownMenuItem from '../DrilldownMenuItem'
+import DrilldownMenuContext from './DrilldownMenuContext'
 
 export interface Props extends BaseProps, SelectListAttributes {}
 
 export interface StaticProps {
-  Item: typeof DrilldownItem
+  Item: typeof DrilldownMenuItem
 }
 
-const Drilldown = forwardRef<HTMLUListElement, Props>(function Drilldown (
+const DrilldownMenu = forwardRef<HTMLUListElement, Props>(function Drilldown (
   props,
   ref
 ) {
   const { className, style, children, ...rest } = props
-  const [focusedKey, setFocusedKey] = useState<string>()
-  const context = useMemo(() => ({ focusedKey, setFocusedKey }), [
-    focusedKey
-  ])
+  const [menuKey, setMenuKey] = useState<string>()
+  const context = useMemo(() => ({ menuKey, setMenuKey }), [menuKey])
 
   return (
-    <DrilldownContext.Provider value={context}>
+    <DrilldownMenuContext.Provider value={context}>
       <SelectList {...rest} ref={ref} className={className} style={style}>
         {children}
       </SelectList>
-    </DrilldownContext.Provider>
+    </DrilldownMenuContext.Provider>
   )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
 
-Drilldown.Item = DrilldownItem
+DrilldownMenu.Item = DrilldownMenuItem
 
-export default Drilldown
+export default DrilldownMenu

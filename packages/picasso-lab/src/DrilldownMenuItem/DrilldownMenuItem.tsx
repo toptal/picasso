@@ -16,11 +16,11 @@ import React, {
 } from 'react'
 
 import styles from './styles'
-import DrilldownContext from '../Drilldown/DrilldownContext'
+import DrilldownMenuContext from '../DrilldownMenu/DrilldownMenuContext'
 
 export interface Props extends Omit<SelectListItemProps, 'nested'> {
-  /** Nested drilldown */
-  drilldown?: ReactElement
+  /** Nested menu */
+  menu?: ReactElement
   /** Container for the the nested drilldown */
   popperContainer?: HTMLElement
 }
@@ -35,15 +35,15 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoDrilldown'
 })
 
-const DrilldownItem: OverridableComponent<Props> = forwardRef<
+const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
->(function DrilldownItem(props, ref) {
+>(function DrilldownItem (props) {
   const {
     className,
     style,
     selected,
-    drilldown,
+    menu,
     popperContainer,
     onClick,
     ...rest
@@ -51,27 +51,27 @@ const DrilldownItem: OverridableComponent<Props> = forwardRef<
   const classes = useStyles()
   const anchorRef = useRef<HTMLElement>(null)
   const [currentKey] = useState(generateKey)
-  const { focusedKey, setFocusedKey } = useContext(DrilldownContext)
-  const focused = currentKey === focusedKey
+  const { menuKey, setMenuKey } = useContext(DrilldownMenuContext)
+  const opened = currentKey === menuKey
 
   const handleItemClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      if (drilldown && setFocusedKey) {
+      if (menu && setMenuKey) {
         event.stopPropagation()
-        setFocusedKey(currentKey)
+        setMenuKey(currentKey)
       }
       if (onClick) {
         onClick(event)
       }
     },
-    [currentKey, drilldown, setFocusedKey, onClick]
+    [currentKey, menu, setMenuKey, onClick]
   )
 
   const handleAwayClick = useCallback(() => {
-    if (setFocusedKey) {
-      setFocusedKey(undefined)
+    if (setMenuKey) {
+      setMenuKey(undefined)
     }
-  }, [setFocusedKey])
+  }, [setMenuKey])
 
   return (
     <>
@@ -80,11 +80,11 @@ const DrilldownItem: OverridableComponent<Props> = forwardRef<
         ref={anchorRef}
         className={className}
         style={style}
-        nested={Boolean(drilldown)}
-        selected={focused || selected}
+        nested={Boolean(menu)}
+        selected={opened || selected}
         onClick={handleItemClick}
       />
-      {drilldown && focused && (
+      {menu && opened && (
         <Popper
           className={classes.popper}
           anchorEl={anchorRef.current}
@@ -95,9 +95,7 @@ const DrilldownItem: OverridableComponent<Props> = forwardRef<
           container={popperContainer}
         >
           <ClickAwayListener onClickAway={handleAwayClick}>
-            <Paper className={classes.content}>
-              {drilldown}
-            </Paper>
+            <Paper className={classes.content}>{menu}</Paper>
           </ClickAwayListener>
         </Popper>
       )}
@@ -105,4 +103,4 @@ const DrilldownItem: OverridableComponent<Props> = forwardRef<
   )
 })
 
-export default DrilldownItem
+export default DrilldownMenuItem
