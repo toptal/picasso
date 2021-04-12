@@ -25,14 +25,11 @@ import styles from './styles'
 
 export type VariantType = 'light' | 'dark'
 
-export type SelectListItemAttributes = LiHTMLAttributes<HTMLLIElement> &
+export type Attributes = LiHTMLAttributes<HTMLLIElement> &
   HTMLAttributes<HTMLDivElement> &
   ButtonOrAnchorProps
 
-export interface Props
-  extends BaseProps,
-    TextLabelProps,
-    SelectListItemAttributes {
+export interface Props extends BaseProps, TextLabelProps, Attributes {
   /** Component name to render the item as */
   as?: ElementType
   /** Whether to render disabled item */

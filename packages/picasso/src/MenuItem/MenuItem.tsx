@@ -1,17 +1,7 @@
-import {
-  BaseProps,
-  ButtonOrAnchorProps,
-  OverridableComponent,
-  SizeType,
-  TextLabelProps
-} from '@toptal/picasso-shared'
+import { OverridableComponent } from '@toptal/picasso-shared'
 import React, {
-  ElementType,
   forwardRef,
-  HTMLAttributes,
-  LiHTMLAttributes,
   ReactElement,
-  ReactNode,
   useCallback,
   useContext,
   useEffect,
@@ -19,41 +9,18 @@ import React, {
 } from 'react'
 
 import MenuContext, { MenuContextProps } from '../Menu/MenuContext'
-import SelectListItem from '../SelectListItem'
+import SelectListItem, {
+  SelectListItemAttributes,
+  SelectListItemProps
+} from '../SelectListItem'
 
 export type VariantType = 'light' | 'dark'
 
-export type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
-  HTMLAttributes<HTMLDivElement> &
-  ButtonOrAnchorProps
+export type Attributes = SelectListItemAttributes
 
-export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
-  /** Component name to render the menu item as */
-  as?: ElementType
-  /** Whether to render disabled item */
-  disabled?: boolean
-  /** Whether to render without internal padding */
-  disableGutters?: boolean
+export interface Props extends Omit<SelectListItemProps, 'nested'> {
   /** Nested menu */
   menu?: ReactElement
-  /** Highlights the item as selected */
-  selected?: boolean
-  /** Checkmarks the item */
-  checkmarked?: boolean
-  /** Value of the item. Can be used when menu item is used inside Select component. */
-  value?: string | Readonly<string[]> | number
-  /** Variant of colors */
-  variant?: VariantType
-  /** Size of component */
-  size?: SizeType<'small' | 'medium'>
-  /** Disables changing colors on hover/focus */
-  nonSelectable?: boolean
-  /** The main content of the item */
-  children?: ReactNode
-  /** The additional description */
-  description?: ReactNode
-  /** Callback when menu item is clicked */
-  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
 const generateKey = (() => {
