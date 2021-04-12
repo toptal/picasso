@@ -39,10 +39,10 @@ export interface Props
   disabled?: boolean
   /** Whether to render without internal padding */
   disableGutters?: boolean
+  /** Adds an arrow to the item */
+  arrow?: boolean
   /** Highlights the item as selected */
   selected?: boolean
-  /** Adds an arrow to the item */
-  nested?: boolean
   /** Checkmarks the item */
   checkmarked?: boolean
   /** Value of the item */
@@ -76,7 +76,7 @@ export const SelectListItem: OverridableComponent<Props> = forwardRef<
     className,
     disabled,
     disableGutters,
-    nested,
+    arrow,
     selected,
     checkmarked,
     style,
@@ -135,7 +135,7 @@ export const SelectListItem: OverridableComponent<Props> = forwardRef<
           ) : (
             children
           )}
-          {nested && (
+          {arrow && (
             <Container flex inline left='xsmall'>
               <ChevronMinor16 />
             </Container>
