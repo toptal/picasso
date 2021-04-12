@@ -37,18 +37,31 @@ const DrilldownItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
 >(function DrilldownItem (props, ref) {
-  const { className, style, drilldown, popperContainer, ...rest } = props
+  const {
+    className,
+    style,
+    drilldown,
+    popperContainer,
+    onClick,
+    ...rest
+  } = props
   const classes = useStyles()
   const anchorRef = useRef<HTMLElement>(null)
   const [currentKey] = useState(generateKey)
   const { selectedKey, setSelectedKey } = useContext(DrilldownContext)
   const selected = currentKey === selectedKey
 
-  const handleClick = useCallback(() => {
-    if (setSelectedKey) {
-      setSelectedKey(currentKey)
-    }
-  }, [currentKey, setSelectedKey])
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      if (setSelectedKey) {
+        setSelectedKey(currentKey)
+      }
+      if (onClick) {
+        onClick(event)
+      }
+    },
+    [currentKey, setSelectedKey, onClick]
+  )
 
   return (
     <>
