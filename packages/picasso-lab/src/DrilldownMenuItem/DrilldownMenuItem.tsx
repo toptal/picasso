@@ -90,7 +90,7 @@ const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
           anchorEl={anchorRef.current}
           placement='right'
           open
-          autoWidth
+          autoWidth={false}
           enableCompactMode
           container={popperContainer}
         >
