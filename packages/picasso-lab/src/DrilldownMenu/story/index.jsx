@@ -16,5 +16,5 @@ page
 
 page
   .createChapter()
-  .addExample('DrilldownMenu/story/Default.example.tsx', 'Default')
-  .addExample('DrilldownMenu/story/Dropdown.example.tsx', 'Dropdown')
+  .addExample('DrilldownMenu/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+  .addExample('DrilldownMenu/story/Dropdown.example.tsx', 'Dropdown') // picasso-skip-visuals
