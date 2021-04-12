@@ -10,10 +10,10 @@ import React, { forwardRef, HTMLAttributes } from 'react'
 import SelectListItem from '../SelectListItem'
 import styles from './styles'
 
-export interface Props
-  extends BaseProps,
-    HTMLAttributes<HTMLUListElement>,
-    Pick<MenuListProps, 'onKeyDown'> {}
+export type SelectListAttributes = HTMLAttributes<HTMLUListElement> &
+  Pick<MenuListProps, 'onKeyDown'>
+
+export interface Props extends BaseProps, SelectListAttributes {}
 
 export interface StaticProps {
   Item: typeof SelectListItem
