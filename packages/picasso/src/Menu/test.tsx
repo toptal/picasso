@@ -2,9 +2,9 @@ import React, { FunctionComponent } from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Menu, { Props } from './'
+import Menu, { MenuProps } from './'
 
-const TestMenu: FunctionComponent<OmitInternalProps<Props>> = ({
+const TestMenu: FunctionComponent<OmitInternalProps<MenuProps>> = ({
   children
 }) => <Menu>{children}</Menu>
 

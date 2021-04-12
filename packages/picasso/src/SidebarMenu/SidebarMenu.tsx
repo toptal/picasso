@@ -9,13 +9,14 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import Menu, { ListNativeProps } from '../Menu'
+import Menu from '../Menu'
+import { SelectListAttributes } from '../SelectList'
 import { SidebarContext } from '../Sidebar'
 import { SidebarContextProps } from '../Sidebar/types'
 import * as SidebarItem from '../SidebarItem'
 import styles from './styles'
 
-export interface Props extends BaseProps, ListNativeProps {
+export interface Props extends BaseProps, SelectListAttributes {
   /** Defines is sidebar menu pushed to bottom of sidebar */
   bottom?: boolean
 }
@@ -25,7 +26,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
-  function SidebarMenu(props, ref) {
+  function SidebarMenu (props, ref) {
     const { bottom, style, className, children, ...rest } = props
     const { parentSidebarItemIndex } = useContext(SidebarItem.SubMenuContext)
 

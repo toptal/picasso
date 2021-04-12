@@ -1,5 +1,4 @@
 import React, {
-  HTMLAttributes,
   forwardRef,
   useState,
   useMemo,
@@ -16,16 +15,13 @@ import {
 } from '@toptal/picasso-shared'
 
 import { BackMinor16 } from '../Icon'
-import SelectList, { SelectListProps } from '../SelectList'
+import SelectList, { SelectListAttributes } from '../SelectList'
 import Typography from '../Typography'
 import MenuItem from '../MenuItem'
 import MenuContext, { MenuContextProps } from './MenuContext'
 import styles from './styles'
 
-export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
-  Pick<SelectListProps, 'onKeyDown'>
-
-export interface Props extends BaseProps, ListNativeProps {
+export interface Props extends BaseProps, SelectListAttributes {
   // whether or not to handle nested navigation
   allowNestedNavigation?: boolean
 }
