@@ -35,7 +35,7 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoDrilldown'
 })
 
-const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
+export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
 >(function DrilldownItem (props) {
