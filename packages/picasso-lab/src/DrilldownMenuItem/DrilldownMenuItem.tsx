@@ -33,7 +33,7 @@ const generateKey = (() => {
 })()
 
 const useStyles = makeStyles(styles, {
-  name: 'PicassoDrilldown'
+  name: 'PicassoDrilldownMenuItem'
 })
 
 export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
