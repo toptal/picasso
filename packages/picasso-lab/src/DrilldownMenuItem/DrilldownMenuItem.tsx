@@ -6,6 +6,7 @@ import SelectListItem, {
   SelectListItemProps
 } from '@toptal/picasso/SelectListItem'
 import { OverridableComponent } from '@toptal/picasso-shared'
+import { useCombinedRefs } from '@toptal/picasso/utils'
 import React, {
   forwardRef,
   ReactElement,
@@ -38,7 +39,7 @@ const useStyles = makeStyles(styles, {
 export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
->(function DrilldownItem (props) {
+>(function DrilldownItem (props, ref) {
   const {
     className,
     style,
@@ -48,36 +49,38 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
     onClick,
     ...rest
   } = props
+
   const classes = useStyles()
   const anchorRef = useRef<HTMLElement>(null)
-  const [currentKey] = useState(generateKey)
-  const { menuKey, setMenuKey } = useContext(DrilldownMenuContext)
-  const opened = currentKey === menuKey
+  const rootRef = useCombinedRefs(ref, anchorRef)
+  const [currentMenuKey] = useState(generateKey)
+  const { activeMenuKey, setActiveMenuKey } = useContext(DrilldownMenuContext)
+  const opened = activeMenuKey === currentMenuKey
 
   const handleItemClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      if (menu && setMenuKey) {
+      if (menu && setActiveMenuKey) {
         event.stopPropagation()
-        setMenuKey(currentKey)
+        setActiveMenuKey(currentMenuKey)
       }
       if (onClick) {
         onClick(event)
       }
     },
-    [currentKey, menu, setMenuKey, onClick]
+    [currentMenuKey, menu, setActiveMenuKey, onClick]
   )
 
   const handleAwayClick = useCallback(() => {
-    if (setMenuKey) {
-      setMenuKey(undefined)
+    if (setActiveMenuKey) {
+      setActiveMenuKey(undefined)
     }
-  }, [setMenuKey])
+  }, [setActiveMenuKey])
 
   return (
     <>
       <SelectListItem
         {...rest}
-        ref={anchorRef}
+        ref={rootRef}
         className={className}
         style={style}
         arrow={Boolean(menu)}
@@ -86,7 +89,6 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
       />
       {menu && opened && (
         <Popper
-          className={classes.popper}
           anchorEl={anchorRef.current}
           placement='right'
           open

@@ -17,8 +17,10 @@ export interface StaticProps {
 export const DrilldownMenu = forwardRef<HTMLUListElement, Props>(
   function Drilldown (props, ref) {
     const { className, style, children, ...rest } = props
-    const [menuKey, setMenuKey] = useState<string>()
-    const context = useMemo(() => ({ menuKey, setMenuKey }), [menuKey])
+    const [activeMenuKey, setActiveMenuKey] = useState<string>()
+    const context = useMemo(() => ({ activeMenuKey, setActiveMenuKey }), [
+      activeMenuKey
+    ])
 
     return (
       <DrilldownMenuContext.Provider value={context}>
