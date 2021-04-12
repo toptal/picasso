@@ -1,4 +1,6 @@
+import { ClickAwayListener } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import { Paper } from '@toptal/picasso'
 import Popper from '@toptal/picasso/Popper'
 import SelectListItem, {
   SelectListItemProps
@@ -36,10 +38,11 @@ const useStyles = makeStyles(styles, {
 const DrilldownItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
->(function DrilldownItem (props, ref) {
+>(function DrilldownItem(props, ref) {
   const {
     className,
     style,
+    selected,
     drilldown,
     popperContainer,
     onClick,
@@ -48,41 +51,56 @@ const DrilldownItem: OverridableComponent<Props> = forwardRef<
   const classes = useStyles()
   const anchorRef = useRef<HTMLElement>(null)
   const [currentKey] = useState(generateKey)
-  const { selectedKey, setSelectedKey } = useContext(DrilldownContext)
-  const selected = currentKey === selectedKey
+  const { focusedKey, setFocusedKey } = useContext(DrilldownContext)
+  const focused = currentKey === focusedKey
 
-  const handleClick = useCallback(
+  const handleItemClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      if (setSelectedKey) {
-        setSelectedKey(currentKey)
+      if (drilldown && setFocusedKey) {
+        event.stopPropagation()
+        setFocusedKey(currentKey)
       }
       if (onClick) {
         onClick(event)
       }
     },
-    [currentKey, setSelectedKey, onClick]
+    [currentKey, drilldown, setFocusedKey, onClick]
   )
+
+  const handleAwayClick = useCallback(() => {
+    if (setFocusedKey) {
+      setFocusedKey(undefined)
+    }
+  }, [setFocusedKey])
 
   return (
     <>
       <SelectListItem
         {...rest}
-        ref={ref}
+        ref={anchorRef}
         className={className}
         style={style}
         nested={Boolean(drilldown)}
-        onClick={handleClick}
+        selected={focused || selected}
+        onClick={handleItemClick}
       />
-      <Popper
-        className={classes.popper}
-        open={selected}
-        anchorEl={anchorRef.current}
-        autoWidth
-        enableCompactMode
-        container={popperContainer}
-      >
-        {drilldown}
-      </Popper>
+      {drilldown && focused && (
+        <Popper
+          className={classes.popper}
+          anchorEl={anchorRef.current}
+          placement='right'
+          open
+          autoWidth
+          enableCompactMode
+          container={popperContainer}
+        >
+          <ClickAwayListener onClickAway={handleAwayClick}>
+            <Paper className={classes.content}>
+              {drilldown}
+            </Paper>
+          </ClickAwayListener>
+        </Popper>
+      )}
     </>
   )
 })

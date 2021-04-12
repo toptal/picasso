@@ -12,4 +12,4 @@ page
   .createTabChapter('Props')
   .addComponentDocs({ component: Drilldown, name: 'Drilldown' })
 
-page.createChapter().addExample('Quote/story/Default.example.tsx', 'Default')
+page.createChapter().addExample('Drilldown/story/Default.example.tsx', 'Default')

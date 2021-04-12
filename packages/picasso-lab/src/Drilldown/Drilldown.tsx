@@ -16,9 +16,9 @@ const Drilldown = forwardRef<HTMLUListElement, Props>(function Drilldown (
   ref
 ) {
   const { className, style, children, ...rest } = props
-  const [selectedKey, setSelectedKey] = useState<string>()
-  const context = useMemo(() => ({ selectedKey, setSelectedKey }), [
-    selectedKey
+  const [focusedKey, setFocusedKey] = useState<string>()
+  const context = useMemo(() => ({ focusedKey, setFocusedKey }), [
+    focusedKey
   ])
 
   return (
@@ -29,5 +29,7 @@ const Drilldown = forwardRef<HTMLUListElement, Props>(function Drilldown (
     </DrilldownContext.Provider>
   )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
+
+Drilldown.Item = DrilldownItem
 
 export default Drilldown

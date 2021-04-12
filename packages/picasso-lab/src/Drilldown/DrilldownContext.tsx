@@ -1,8 +1,8 @@
 import { createContext } from 'react'
 
 export interface DrilldownContextProps {
-  selectedKey?: string
-  setSelectedKey?: (key: string) => void
+  focusedKey?: string
+  setFocusedKey?: (key?: string) => void
 }
 
 export default createContext<DrilldownContextProps>({})
