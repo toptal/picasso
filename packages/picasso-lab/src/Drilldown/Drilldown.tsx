@@ -15,7 +15,7 @@ const Drilldown = forwardRef<HTMLUListElement, Props>(function Drilldown (
   props,
   ref
 ) {
-  const { className, style, children } = props
+  const { className, style, children, ...rest } = props
   const [selectedKey, setSelectedKey] = useState<string>()
   const context = useMemo(() => ({ selectedKey, setSelectedKey }), [
     selectedKey
@@ -23,7 +23,7 @@ const Drilldown = forwardRef<HTMLUListElement, Props>(function Drilldown (
 
   return (
     <DrilldownContext.Provider value={context}>
-      <SelectList ref={ref} className={className} style={style}>
+      <SelectList {...rest} ref={ref} className={className} style={style}>
         {children}
       </SelectList>
     </DrilldownContext.Provider>
