@@ -19,7 +19,7 @@ import {
 import { BackMinor16 } from '../Icon'
 import Typography from '../Typography'
 import MenuItem from '../MenuItem'
-import MenuContext, { MenuContextProps } from './menuContext'
+import MenuContext, { MenuContextProps } from './MenuContext'
 import styles from './styles'
 
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &

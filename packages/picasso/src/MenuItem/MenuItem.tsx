@@ -1,34 +1,25 @@
-/* eslint-disable complexity */
-import React, {
-  forwardRef,
-  ReactNode,
-  LiHTMLAttributes,
-  HTMLAttributes,
-  ElementType,
-  ReactElement,
-  useContext,
-  useEffect,
-  useMemo
-} from 'react'
-import cx from 'classnames'
-import { Theme, makeStyles } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
-import MUIMenuItem from '@material-ui/core/MenuItem'
 import {
   BaseProps,
   ButtonOrAnchorProps,
-  TextLabelProps,
+  OverridableComponent,
   SizeType,
-  useTitleCase,
-  OverridableComponent
+  TextLabelProps
 } from '@toptal/picasso-shared'
+import React, {
+  ElementType,
+  forwardRef,
+  HTMLAttributes,
+  LiHTMLAttributes,
+  ReactElement,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 
-import { ChevronMinor16, CheckMinor16 } from '../Icon'
-import Container from '../Container'
-import MenuContext, { MenuContextProps } from '../Menu/menuContext'
-import styles from './styles'
-import noop from '../utils/noop'
-import toTitleCase from '../utils/to-title-case'
+import MenuContext, { MenuContextProps } from '../Menu/MenuContext'
+import SelectListItem from '../SelectListItem'
 
 export type VariantType = 'light' | 'dark'
 
@@ -43,12 +34,8 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   disabled?: boolean
   /** Whether to render without internal padding */
   disableGutters?: boolean
-  children?: ReactNode
-  description?: ReactNode
   /** Nested menu */
   menu?: ReactElement
-  /** Callback when menu item is clicked */
-  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Highlights the item as selected */
   selected?: boolean
   /** Checkmarks the item */
@@ -61,6 +48,12 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   size?: SizeType<'small' | 'medium'>
   /** Disables changing colors on hover/focus */
   nonSelectable?: boolean
+  /** The main content of the item */
+  children?: ReactNode
+  /** The additional description */
+  description?: ReactNode
+  /** Callback when menu item is clicked */
+  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
 const generateKey = (() => {
@@ -69,39 +62,13 @@ const generateKey = (() => {
   return () => String(++count)
 })()
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoMenuItem'
-})
-
 export const MenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
->(function MenuItem(props, ref) {
-  const {
-    as = 'li',
-    children,
-    description,
-    className,
-    disabled,
-    disableGutters,
-    menu,
-    onClick,
-    selected,
-    checkmarked,
-    style,
-    value,
-    variant = 'light',
-    size,
-    titleCase: propsTitleCase,
-    nonSelectable,
-    ...rest
-  } = props
-  const classes = useStyles()
-
+>(function MenuItem (props, ref) {
+  const { className, style, menu, onClick, ...rest } = props
+  const [key] = useState(generateKey)
   const { push, refresh } = useContext<MenuContextProps>(MenuContext)
-  const key = useMemo(generateKey, [])
-
-  const titleCase = useTitleCase(propsTitleCase)
 
   useEffect(() => {
     if (menu && refresh) {
@@ -109,86 +76,34 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     }
   }, [key, menu, refresh])
 
-  const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    if (menu && push) {
-      event.stopPropagation()
-      push(key, menu)
-    }
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+      if (menu && push) {
+        event.stopPropagation()
+        push(key, menu)
+      }
 
-    if (onClick) {
-      onClick(event)
-    }
-  }
+      if (onClick) {
+        onClick(event)
+      }
+    },
+    [key, menu, push, onClick]
+  )
 
   return (
-    <MUIMenuItem
+    <SelectListItem
       {...rest}
       ref={ref}
-      component={as}
-      classes={{
-        root: cx({
-          [classes[`gutters${size && capitalize(size)}`]]: size
-        }),
-        selected: classes.selected
-      }}
-      className={cx(classes.root, classes[variant], className, {
-        [classes.nonSelectable]: nonSelectable
-      })}
-      disabled={disabled}
-      disableGutters={disableGutters}
-      onClick={handleClick}
+      className={className}
       style={style}
-      value={value}
-      selected={selected}
-    >
-      <Container flex direction='column' className={classes.content}>
-        <Container flex alignItems='center'>
-          {checkmarked !== undefined && (
-            <Container
-              className={classes.iconContainer}
-              flex
-              inline
-              right='xsmall'
-            >
-              {checkmarked && <CheckMinor16 />}
-            </Container>
-          )}
-          {typeof children === 'string' ? (
-            <span
-              className={cx(classes.stringContent, {
-                [classes[`stringContent${size && capitalize(size)}`]]: size,
-                [classes.stringContentSemibold]: checkmarked
-              })}
-              style={style}
-            >
-              {titleCase ? toTitleCase(children) : children}
-            </span>
-          ) : (
-            children
-          )}
-          {menu && (
-            <Container flex inline left='xsmall'>
-              <ChevronMinor16 />
-            </Container>
-          )}
-        </Container>
-        {description && (
-          <Container
-            className={classes.description}
-            left={checkmarked === undefined ? undefined : 'medium'}
-            top={0.25}
-          >
-            {description}
-          </Container>
-        )}
-      </Container>
-    </MUIMenuItem>
+      nested={Boolean(menu)}
+      onClick={handleClick}
+    />
   )
 })
 
 MenuItem.defaultProps = {
   as: 'li',
-  onClick: noop,
   variant: 'light',
   nonSelectable: false
 }
