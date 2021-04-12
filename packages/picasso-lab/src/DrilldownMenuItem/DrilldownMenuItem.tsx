@@ -18,7 +18,7 @@ import React, {
 import styles from './styles'
 import DrilldownMenuContext from '../DrilldownMenu/DrilldownMenuContext'
 
-export interface Props extends Omit<SelectListItemProps, 'nested'> {
+export interface Props extends Omit<SelectListItemProps, 'arrow'> {
   /** Nested menu */
   menu?: ReactElement
   /** Container for the the nested drilldown */
@@ -80,7 +80,7 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
         ref={anchorRef}
         className={className}
         style={style}
-        nested={Boolean(menu)}
+        arrow={Boolean(menu)}
         selected={opened || selected}
         onClick={handleItemClick}
       />
