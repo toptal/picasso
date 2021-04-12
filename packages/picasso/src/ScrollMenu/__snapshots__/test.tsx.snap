@@ -6,7 +6,7 @@ exports[`ScrollMenu renders 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root Menu-root PicassoScrollMenu-menu"
+      class="MuiList-root PicassoSelectList-root PicassoScrollMenu-menu"
       role="menu"
       tabindex="-1"
     >
@@ -16,18 +16,18 @@ exports[`ScrollMenu renders 1`] = `
       >
         <li
           aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="menuitem"
           tabindex="-1"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="PicassoSelectListItem-stringContent"
               >
                 top
               </span>
@@ -36,18 +36,18 @@ exports[`ScrollMenu renders 1`] = `
         </li>
         <li
           aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="menuitem"
           tabindex="-1"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="PicassoSelectListItem-stringContent"
               >
                 middle
               </span>
@@ -56,18 +56,18 @@ exports[`ScrollMenu renders 1`] = `
         </li>
         <li
           aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="menuitem"
           tabindex="-1"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="PicassoSelectListItem-stringContent"
               >
                 bottom
               </span>

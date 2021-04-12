@@ -6,24 +6,24 @@ exports[`Menu has back button when in submenu 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root Menu-root Menu-hideMenu"
+      class="MuiList-root PicassoSelectList-root PicassoMenu-hideMenu"
       role="menu"
       tabindex="-1"
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
         >
           <div
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoSelectListItem-stringContent"
             >
               Item 1
             </span>
@@ -45,18 +45,18 @@ exports[`Menu has back button when in submenu 1`] = `
       </li>
     </ul>
     <ul
-      class="MuiList-root Menu-root"
+      class="MuiList-root PicassoSelectList-root"
       role="menu"
       tabindex="-1"
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
         >
           <div
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -65,7 +65,7 @@ exports[`Menu has back button when in submenu 1`] = `
               class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
             >
               <svg
-                class="PicassoSvgBackMinor16-root Menu-backButtonIcon"
+                class="PicassoSvgBackMinor16-root PicassoMenu-backButtonIcon"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -80,18 +80,18 @@ exports[`Menu has back button when in submenu 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
         >
           <div
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoSelectListItem-stringContent"
             >
               Submenu Item
             </span>
@@ -109,24 +109,24 @@ exports[`Menu renders 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root Menu-root"
+      class="MuiList-root PicassoSelectList-root"
       role="menu"
       tabindex="-1"
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
         >
           <div
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoSelectListItem-stringContent"
             >
               Item 1
             </span>
@@ -135,18 +135,18 @@ exports[`Menu renders 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
         >
           <div
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoSelectListItem-stringContent"
             >
               Item 2
             </span>
@@ -155,18 +155,18 @@ exports[`Menu renders 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
         >
           <div
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoSelectListItem-stringContent"
             >
               Item 3
             </span>

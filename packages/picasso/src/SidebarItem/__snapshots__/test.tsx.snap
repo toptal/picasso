@@ -12,7 +12,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
         class="Sidebar-spacer"
       />
       <ul
-        class="MuiList-root Menu-root PicassoSidebarMenu-root"
+        class="MuiList-root PicassoSelectList-root PicassoSidebarMenu-root"
         role="menu"
         tabindex="-1"
       >
@@ -31,12 +31,12 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             >
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-collapsible PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-collapsible PicassoSelectListItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="0"
               >
                 <div
-                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
                 >
                   <div
                     class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -85,18 +85,18 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details PicassoSidebarItem-nestedMenu"
                   >
                     <ul
-                      class="MuiList-root Menu-root PicassoSidebarMenu-root"
+                      class="MuiList-root PicassoSelectList-root PicassoSidebarMenu-root"
                       role="menu"
                       tabindex="-1"
                     >
                       <li
                         aria-disabled="false"
-                        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-selected PicassoMenuItem-nonSelectable Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+                        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-selected PicassoSelectListItem-nonSelectable Mui-selected PicassoSelectListItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
                         role="menuitem"
                         tabindex="0"
                       >
                         <div
-                          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                          class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
                         >
                           <div
                             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -142,7 +142,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
         class="Sidebar-spacer"
       />
       <ul
-        class="MuiList-root Menu-root PicassoSidebarMenu-root"
+        class="MuiList-root PicassoSelectList-root PicassoSidebarMenu-root"
         role="menu"
         tabindex="-1"
       >
@@ -161,12 +161,12 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             >
               <li
                 aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-collapsible PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-collapsible PicassoSelectListItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                 role="menuitem"
                 tabindex="0"
               >
                 <div
-                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
                 >
                   <div
                     class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -215,18 +215,18 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details PicassoSidebarItem-nestedMenu"
                   >
                     <ul
-                      class="MuiList-root Menu-root PicassoSidebarMenu-root"
+                      class="MuiList-root PicassoSelectList-root PicassoSidebarMenu-root"
                       role="menu"
                       tabindex="-1"
                     >
                       <li
                         aria-disabled="false"
-                        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-selected PicassoMenuItem-nonSelectable Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+                        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-selected PicassoSelectListItem-nonSelectable Mui-selected PicassoSelectListItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
                         role="menuitem"
                         tabindex="0"
                       >
                         <div
-                          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                          class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
                         >
                           <div
                             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -267,12 +267,12 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSelectListItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -306,18 +306,18 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
       class="PicassoSidebarItem-nestedMenuWithIcon"
     >
       <ul
-        class="MuiList-root Menu-root PicassoSidebarMenu-root"
+        class="MuiList-root PicassoSelectList-root PicassoSidebarMenu-root"
         role="menu"
         tabindex="-1"
       >
         <li
           aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSelectListItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="menuitem"
           tabindex="0"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -351,12 +351,12 @@ exports[`SidebarItem is selected 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-selected PicassoMenuItem-nonSelectable Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-selected PicassoSelectListItem-nonSelectable Mui-selected PicassoSelectListItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -397,12 +397,12 @@ exports[`SidebarItem renders 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSelectListItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -447,12 +447,12 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
         >
           <li
             aria-disabled="false"
-            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-collapsible PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-collapsible PicassoSelectListItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
             role="menuitem"
             tabindex="-1"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
             >
               <div
                 class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -510,18 +510,18 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details PicassoSidebarItem-nestedMenuWithIcon"
               >
                 <ul
-                  class="MuiList-root Menu-root PicassoSidebarMenu-root"
+                  class="MuiList-root PicassoSelectList-root PicassoSidebarMenu-root"
                   role="menu"
                   tabindex="-1"
                 >
                   <li
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSelectListItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                     role="menuitem"
                     tabindex="0"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                      class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
                     >
                       <div
                         class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -560,12 +560,12 @@ exports[`SidebarItem with icon 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSelectListItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
