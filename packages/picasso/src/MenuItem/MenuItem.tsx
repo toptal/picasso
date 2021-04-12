@@ -9,14 +9,9 @@ import React, {
 } from 'react'
 
 import MenuContext, { MenuContextProps } from '../Menu/MenuContext'
-import SelectListItem, {
-  SelectListItemAttributes,
-  SelectListItemProps
-} from '../SelectListItem'
+import SelectListItem, { SelectListItemProps } from '../SelectListItem'
 
 export type VariantType = 'light' | 'dark'
-
-export type Attributes = SelectListItemAttributes
 
 export interface Props extends Omit<SelectListItemProps, 'nested'> {
   /** Nested menu */
