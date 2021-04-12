@@ -13,7 +13,7 @@ import SelectListItem, { SelectListItemProps } from '../SelectListItem'
 
 export type VariantType = 'light' | 'dark'
 
-export interface Props extends Omit<SelectListItemProps, 'nested'> {
+export interface Props extends Omit<SelectListItemProps, 'arrow'> {
   /** Nested menu */
   menu?: ReactElement
 }
@@ -58,7 +58,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
       ref={ref}
       className={className}
       style={style}
-      nested={Boolean(menu)}
+      arrow={Boolean(menu)}
       onClick={handleClick}
     />
   )
