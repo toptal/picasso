@@ -23,7 +23,6 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSelectList'
 })
 
-// eslint-disable-next-line react/display-name
 export const SelectList = forwardRef<HTMLUListElement, Props>(
   function SelectList (props, ref) {
     const { children, className, style, ...rest } = props
