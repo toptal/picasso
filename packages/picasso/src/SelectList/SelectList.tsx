@@ -10,13 +10,10 @@ import React, { forwardRef, HTMLAttributes } from 'react'
 import SelectListItem from '../SelectListItem'
 import styles from './styles'
 
-export type SelectListNativeProps = HTMLAttributes<HTMLUListElement> &
-  Pick<MenuListProps, 'onKeyDown'>
-
-export interface Props extends BaseProps, SelectListNativeProps {
-  // whether or not to handle nested navigation
-  allowNestedNavigation?: boolean
-}
+export interface Props
+  extends BaseProps,
+    HTMLAttributes<HTMLUListElement>,
+    Pick<MenuListProps, 'onKeyDown'> {}
 
 export interface StaticProps {
   Item: typeof SelectListItem
