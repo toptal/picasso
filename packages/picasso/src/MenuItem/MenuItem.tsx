@@ -10,6 +10,7 @@ import React, {
 
 import MenuContext, { MenuContextProps } from '../Menu/MenuContext'
 import SelectListItem, { SelectListItemProps } from '../SelectListItem'
+import { noop } from '../utils'
 
 export type VariantType = 'light' | 'dark'
 
@@ -66,6 +67,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
 
 MenuItem.defaultProps = {
   as: 'li',
+  onClick: noop,
   variant: 'light',
   nonSelectable: false
 }

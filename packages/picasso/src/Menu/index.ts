@@ -4,3 +4,4 @@ import { Props } from './Menu'
 
 export { default } from './Menu'
 export type MenuProps = OmitInternalProps<Props>
+export * from './Menu'
