@@ -23,7 +23,7 @@ const createHumanName = (component, test) => `${component}:${test}`
 const parseHumanName = name => name.split(':')
 
 const asyncGlob = pattern => {
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     glob(pattern, (error, result) => {
       if (error) {
         reject(error)
