@@ -13,13 +13,24 @@ page.createTabChapter('Props').addComponentDocs({
   additionalDocs: {
     options: {
       type: {
-        name: 'Option',
+        name: 'Option[] | OptionGroups',
         description: `
-{\n
-  value: string\n
-  text: string\n
-}
-          `
+    [\n
+      { text: string, value: string },\n
+      { text: string, value: string }\n
+    }\n
+or\n
+    {\n
+      string: [\n
+        { text: string, value: string },\n
+        { text: string, value: string }\n
+      ],\n
+      string: [\n
+        { text: string, value: string },\n
+        { text: string, value: string }\n
+      ]\n
+    }
+        `
       }
     },
     multiple: {
@@ -65,6 +76,10 @@ page
   .addExample('Select/story/Multiple.example.tsx', {
     title: 'Multiple options',
     description: 'Select component allows to select multiple options'
+  }) // picasso-skip-visuals
+  .addExample('Select/story/Grouped.example.tsx', {
+    title: 'Grouped options',
+    description: 'Select component allows to define grouped options'
   }) // picasso-skip-visuals
   .addExample('Select/story/AutoFocus.example.tsx', {
     title: 'Auto focus',

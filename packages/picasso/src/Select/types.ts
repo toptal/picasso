@@ -58,8 +58,8 @@ export interface SelectProps<
   onSearchChange?: (value: string) => void
   /** Label to show when no options were found */
   noOptionsText?: string
-  /** List of options to be rendered as `Select` */
-  options: Option<T>[]
+  /** List of options or option groups to be rendered as `Select` */
+  options: Option<T>[] | OptionGroups<T>
   /** Callback responsible for rendering the option given the option and its index in the list of options */
   renderOption?: (option: Option<T>, index?: number) => ReactNode
   /** A function that takes a display value from the option item */
@@ -93,6 +93,10 @@ export type Option<T extends string | number = string | number> = {
   description?: string
   value: T
   [prop: string]: string | number | undefined
+}
+
+export type OptionGroups<T extends string | number = string | number> = {
+  [group: string]: Option<T>[]
 }
 
 export type ItemProps = {
@@ -135,7 +139,7 @@ export type UseSelectStateOutput = {
   displayValue: string
   setDisplayValue: (value: string) => void
   selection: Selection
-  filteredOptions: Option[]
+  filteredOptions: Option[] | OptionGroups
   emptySelectValue: string | string[]
   selectedOptions: Option[]
   setSelectedOptions: (options: Option[]) => void

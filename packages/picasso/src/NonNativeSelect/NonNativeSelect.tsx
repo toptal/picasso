@@ -21,9 +21,7 @@ import {
   DEFAULT_SEARCH_THRESHOLD
 } from '../Select'
 import NonNativeSelectOptions from '../NonNativeSelectOptions'
-import { useCombinedRefs } from '../utils'
-import { documentable, forwardRef } from '../utils/forward-ref'
-import noop from '../utils/noop'
+import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles)
