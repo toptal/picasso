@@ -32,8 +32,6 @@ const {
 export interface Props<K extends string | number | symbol>
   extends BaseChartProps {
   data: { name: string; value: { [key in K]: number } }[]
-  fillSchema?: { [key in K]: string }
-  labelColorSchema?: { [key in K]: string }
   labelKey?: string
   getBarColor: (
     dataKey: string,
@@ -43,6 +41,7 @@ export interface Props<K extends string | number | symbol>
     },
     index: number
   ) => string
+  getBarLabelColor: (params: { dataKey: string; index?: number }) => string
 }
 
 const StyleOverrides = () => (
@@ -74,8 +73,6 @@ export const extractValues = <K extends string>(data: Props<K>['data']) =>
 
 const BarChart = <K extends string>({
   data,
-  fillSchema,
-  labelColorSchema,
   className,
   height,
   width,
@@ -84,6 +81,7 @@ const BarChart = <K extends string>({
   allowTooltipEscapeViewBox,
   getBarColor,
   labelKey,
+  getBarLabelColor,
   ...rest
 }: Props<K>) => {
   const dataKeys = Object.keys(data[0].value) as K[]
@@ -149,11 +147,15 @@ const BarChart = <K extends string>({
             <Bar
               key={dataKey}
               dataKey={dataKey}
-              label={<BarChartLabel color={labelColorSchema?.[dataKey]} />}
+              label={
+                <BarChartLabel
+                  dataKey={dataKey}
+                  getBarLabelColor={getBarLabelColor}
+                />
+              }
             >
               {data.map((entry, index) => {
-                const fill =
-                  getBarColor?.(dataKey, entry, index) || fillSchema?.[dataKey]
+                const fill = getBarColor?.(dataKey, entry, index)
 
                 return <Cell key={index} fill={fill} />
               })}

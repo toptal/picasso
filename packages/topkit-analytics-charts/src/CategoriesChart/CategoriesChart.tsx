@@ -28,6 +28,18 @@ export type Labels = Record<string, string>
 
 export type Tooltips = Record<string, Record<string, Record<string, string>>>
 
+const DEFAULT_COLORS = [palette.blue.main, palette.blue.darker]
+
+const COLORS: Record<string, string[]> = {
+  bad_leads: [palette.red.main, palette.red.main],
+  paused: [palette.yellow.main, palette.yellow.main],
+  removed: [palette.green.main, palette.green.main],
+  collections: [palette.red.main, palette.red.main],
+  pending: [palette.yellow.main, palette.yellow.main]
+}
+
+const COLOR_FOR_BAD_RESULT = palette.red.main
+
 const sum = (values: number[]) =>
   values.reduce((total, value) => total + value, 0)
 
@@ -57,17 +69,17 @@ const formatData = (data: Bar[], labels: Labels) => {
 
 const getBarColor = (
   dataKey: string,
-  entry: { value: { team: number; user: number } }
+  entry: { name: string; value: { team: number; user: number } }
 ) => {
   if (dataKey === 'team') {
-    return palette.blue.main
+    return COLORS[entry.name]?.[0] || DEFAULT_COLORS[0]
   }
 
-  if (entry.value.team > entry.value.user) {
-    return palette.red.main
+  if (entry.value.team > entry.value.user && entry.name !== 'claimed') {
+    return COLOR_FOR_BAD_RESULT
   }
 
-  return palette.blue.darker
+  return COLORS[entry.name]?.[1] || DEFAULT_COLORS[1]
 }
 
 const CustomTooltip = ({
@@ -93,7 +105,7 @@ const CustomTooltip = ({
             {teamLabel}: {team}
           </Typography>
 
-          <Typography size='medium' color={team > user ? 'red' : 'blue'}>
+          <Typography size='medium' color={team > user ? 'red' : 'dark-grey'}>
             {userLabel}: {user}
           </Typography>
         </Container>
@@ -112,11 +124,32 @@ export const CategoriesChart = ({
 }: Props) => {
   const chartData = useMemo(() => formatData(data, labels), [data, labels])
 
+  const getBarLabelColor = ({
+    index,
+    dataKey
+  }: {
+    index?: number
+    dataKey: string
+  }) => {
+    if (index === undefined) {
+      return palette.grey.dark
+    }
+
+    const { team, user } = chartData[index].value
+
+    if (dataKey === 'team') {
+      return palette.grey.dark
+    }
+
+    return user < team ? palette.red.main : palette.grey.dark
+  }
+
   return (
     <BarChart
       labelKey='label'
       data={chartData}
       tooltip
+      getBarLabelColor={getBarLabelColor}
       // @ts-expect-error: There is some magic in recharts that adding the props for us
       customTooltip={<CustomTooltip tooltips={tooltips} />}
       getBarColor={getBarColor}
