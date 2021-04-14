@@ -3,8 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Paper } from '@toptal/picasso'
 import Popper from '@toptal/picasso/Popper'
 import MenuListItem, { MenuListItemProps } from '@toptal/picasso/MenuListItem'
-import { OverridableComponent } from '@toptal/picasso-shared'
-import { useCombinedRefs } from '@toptal/picasso/utils'
+import { OverridableComponent, pxFromRem } from '@toptal/picasso-shared'
 import React, {
   forwardRef,
   ReactElement,
@@ -50,7 +49,6 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
 
   const classes = useStyles()
   const anchorRef = useRef<HTMLElement>(null)
-  const rootRef = useCombinedRefs(ref, anchorRef)
   const [currentMenuKey] = useState(generateKey)
   const { activeMenuKey, setActiveMenuKey } = useContext(DrilldownMenuContext)
   const opened = activeMenuKey === currentMenuKey
@@ -78,11 +76,12 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
     <>
       <MenuListItem
         {...rest}
-        ref={rootRef}
+        ref={ref}
         className={className}
         style={style}
         arrow={Boolean(menu)}
         selected={opened || selected}
+        anchorRef={anchorRef}
         onClick={handleItemClick}
       />
       {menu && opened && (
@@ -93,6 +92,13 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
           autoWidth={false}
           enableCompactMode
           container={popperContainer}
+          popperOptions={{
+            modifiers: {
+              offset: {
+                offset: `0,${pxFromRem('0.375rem')}`
+              }
+            }
+          }}
         >
           <ClickAwayListener onClickAway={handleAwayClick}>
             <Paper className={classes.content}>{menu}</Paper>

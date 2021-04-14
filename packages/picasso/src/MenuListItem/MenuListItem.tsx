@@ -15,7 +15,8 @@ import React, {
   forwardRef,
   HTMLAttributes,
   LiHTMLAttributes,
-  ReactNode
+  ReactNode,
+  Ref
 } from 'react'
 
 import Container from '../Container'
@@ -57,6 +58,8 @@ export interface Props
   children?: ReactNode
   /** The additional description */
   description?: ReactNode
+  /** Ref of the item inner content element */
+  anchorRef?: Ref<HTMLDivElement>
   /** Callback when item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
@@ -85,6 +88,7 @@ export const MenuListItem: OverridableComponent<Props> = forwardRef<
     size,
     titleCase: propsTitleCase,
     nonSelectable,
+    anchorRef,
     ...rest
   } = props
   const classes = useStyles()
@@ -110,7 +114,12 @@ export const MenuListItem: OverridableComponent<Props> = forwardRef<
       value={value}
       selected={selected}
     >
-      <Container flex direction='column' className={classes.content}>
+      <Container
+        ref={anchorRef}
+        flex
+        direction='column'
+        className={classes.content}
+      >
         <Container flex alignItems='center'>
           {checkmarked !== undefined && (
             <Container
