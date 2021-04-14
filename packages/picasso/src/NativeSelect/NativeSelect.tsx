@@ -15,6 +15,7 @@ import {
   SelectProps,
   renderOption as defaultRenderOption
 } from '../Select'
+import NativeSelectLoader from '../NativeSelectLoader'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
 import NativeSelectOptions from '../NativeSelectOptions'
 import { documentable, forwardRef } from '../utils/forward-ref'
@@ -36,6 +37,7 @@ export const NativeSelect = documentable(
         className,
         style,
         width = 'full',
+        loading,
         id,
         icon,
         iconPosition = 'start',
@@ -140,11 +142,15 @@ export const NativeSelect = documentable(
           >
             {placeholder}
           </NativeSelectPlaceholder>
-          <NativeSelectOptions
-            options={options}
-            renderOption={renderOption}
-            getItemProps={getItemProps}
-          />
+          {loading ? (
+            <NativeSelectLoader />
+          ) : (
+            <NativeSelectOptions
+              options={options}
+              renderOption={renderOption}
+              getItemProps={getItemProps}
+            />
+          )}
         </MuiNativeSelect>
       )
 

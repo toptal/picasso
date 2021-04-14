@@ -10,6 +10,7 @@ import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
 import MenuItem from '../MenuItem'
 import SelectCaret from '../SelectCaret'
+import NonNativeSelectLoader from '../NonNativeSelectLoader'
 import {
   useAdornments,
   useSelectState,
@@ -169,17 +170,19 @@ export const NonNativeSelect = documentable(
             />
             <SelectCaret disabled={disabled} />
           </div>
-          {!disabled && (
+          {!disabled && isOpen && (
             <Popper
               ref={popperRef}
               autoWidth
               width={menuWidth}
               placement='bottom-start'
-              open={isOpen}
+              open
               anchorEl={inputWrapperRef.current}
               container={popperContainer}
             >
-              {isOpen && (
+              {loading ? (
+                <NonNativeSelectLoader />
+              ) : (
                 <NonNativeSelectOptions
                   options={filteredOptions}
                   renderOption={renderOption as any}
@@ -190,7 +193,6 @@ export const NonNativeSelect = documentable(
                   value={value}
                   filterOptionsValue={filterOptionsValue}
                   size={size}
-                  loading={loading}
                   multiple={multiple}
                   noOptionsText={noOptionsText}
                   fixedHeader={searchInput}
