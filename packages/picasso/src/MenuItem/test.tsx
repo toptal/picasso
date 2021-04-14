@@ -3,11 +3,11 @@ import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import MenuItem, { Props } from '../MenuItem'
+import MenuItem, { MenuItemProps } from '../MenuItem'
 
 jest.mock('ap-style-title-case')
 
-const TestMenuItem: FunctionComponent<OmitInternalProps<Props>> = ({
+const TestMenuItem: FunctionComponent<OmitInternalProps<MenuItemProps>> = ({
   children,
   titleCase,
   menu

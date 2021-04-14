@@ -1,5 +1,4 @@
 import React, {
-  HTMLAttributes,
   forwardRef,
   useState,
   useMemo,
@@ -7,7 +6,6 @@ import React, {
   ReactElement,
   useCallback
 } from 'react'
-import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
@@ -17,15 +15,13 @@ import {
 } from '@toptal/picasso-shared'
 
 import { BackMinor16 } from '../Icon'
+import SelectList, { MenuListAttributes } from '../MenuList'
 import Typography from '../Typography'
 import MenuItem from '../MenuItem'
-import MenuContext, { MenuContextProps } from './menuContext'
+import MenuContext, { MenuContextProps } from './MenuContext'
 import styles from './styles'
 
-export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
-  Pick<MenuListProps, 'onKeyDown'>
-
-export interface Props extends BaseProps, ListNativeProps {
+export interface Props extends BaseProps, MenuListAttributes {
   // whether or not to handle nested navigation
   allowNestedNavigation?: boolean
 }
@@ -37,10 +33,9 @@ export interface StaticProps {
 type Menus = Record<string, ReactElement>
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'Menu'
+  name: 'PicassoMenu'
 })
 
-// eslint-disable-next-line react/display-name
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
   props,
   ref
@@ -48,31 +43,25 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
   const { children, className, style, allowNestedNavigation, ...rest } = props
   const {
     backButtonIcon: backButtonIconClass,
-    hideMenu: hideMenuClass,
-    ...muiClasses
+    hideMenu: hideMenuClass
   } = useStyles()
 
   const { pop } = useContext<MenuContextProps>(MenuContext)
 
   const hasParentMenu = !!pop
 
-  const handleBackClick = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>
-  ) => {
-    event.stopPropagation()
-    if (pop) {
-      pop()
-    }
-  }
+  const handleBackClick = useCallback(
+    (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+      event.stopPropagation()
+      if (pop) {
+        pop()
+      }
+    },
+    [pop]
+  )
 
   const menu = (
-    <MUIMenuList
-      {...rest}
-      ref={ref}
-      className={className}
-      style={style}
-      classes={muiClasses}
-    >
+    <SelectList {...rest} ref={ref} className={className} style={style}>
       {hasParentMenu && allowNestedNavigation && (
         <MenuItem onClick={handleBackClick} key='back'>
           <Typography size='small' color='dark-grey' variant='body'>
@@ -82,7 +71,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
         </MenuItem>
       )}
       {children}
-    </MUIMenuList>
+    </SelectList>
   )
 
   const [menus, setMenus] = useState<Menus>({})

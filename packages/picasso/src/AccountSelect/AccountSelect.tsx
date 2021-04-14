@@ -5,7 +5,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
 import Menu from '../Menu'
-import { ListNativeProps } from '../Menu/Menu'
+import { MenuListAttributes } from '../MenuList'
 import Link from '../Link'
 import Container from '../Container'
 import { ChevronRight16 } from '../Icon'
@@ -24,7 +24,7 @@ type Account = {
   avatar?: string
 }
 
-export interface Props extends BaseProps, Omit<ListNativeProps, 'onSelect'> {
+export interface Props extends BaseProps, Omit<MenuListAttributes, 'onSelect'> {
   /** List of available accounts */
   accounts: Account[]
   /** Callback invoked when specific role record is clicked in the list */
@@ -36,7 +36,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const AccountSelect = forwardRef<HTMLUListElement, Props>(
-  function AccountSelect(props, ref) {
+  function AccountSelect (props, ref) {
     const { className, accounts, onSelect, style, ...rest } = props
     const classes = useStyles()
 
