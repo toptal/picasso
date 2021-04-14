@@ -2,9 +2,7 @@ import { ClickAwayListener } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Paper } from '@toptal/picasso'
 import Popper from '@toptal/picasso/Popper'
-import SelectListItem, {
-  SelectListItemProps
-} from '@toptal/picasso/SelectListItem'
+import MenuListItem, { MenuListItemProps } from '@toptal/picasso/MenuListItem'
 import { OverridableComponent } from '@toptal/picasso-shared'
 import { useCombinedRefs } from '@toptal/picasso/utils'
 import React, {
@@ -19,7 +17,7 @@ import React, {
 import styles from './styles'
 import DrilldownMenuContext from '../DrilldownMenu/DrilldownMenuContext'
 
-export interface Props extends Omit<SelectListItemProps, 'arrow'> {
+export interface Props extends Omit<MenuListItemProps, 'arrow'> {
   /** Nested menu */
   menu?: ReactElement
   /** Container for the the nested drilldown */
@@ -78,7 +76,7 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
 
   return (
     <>
-      <SelectListItem
+      <MenuListItem
         {...rest}
         ref={rootRef}
         className={className}

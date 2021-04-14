@@ -1,11 +1,11 @@
 import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
-import SelectList, { SelectListAttributes } from '@toptal/picasso/SelectList'
+import MenuList, { MenuListAttributes } from '@toptal/picasso/MenuList'
 import React, { forwardRef, ReactNode, useMemo, useState } from 'react'
 
 import DrilldownMenuItem from '../DrilldownMenuItem'
 import DrilldownMenuContext from './DrilldownMenuContext'
 
-export interface Props extends BaseProps, SelectListAttributes {
+export interface Props extends BaseProps, MenuListAttributes {
   /* Menu items */
   children?: ReactNode
 }
@@ -24,9 +24,9 @@ export const DrilldownMenu = forwardRef<HTMLUListElement, Props>(
 
     return (
       <DrilldownMenuContext.Provider value={context}>
-        <SelectList {...rest} ref={ref} className={className} style={style}>
+        <MenuList {...rest} ref={ref} className={className} style={style}>
           {children}
-        </SelectList>
+        </MenuList>
       </DrilldownMenuContext.Provider>
     )
   }
