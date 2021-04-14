@@ -26,6 +26,19 @@ exports[`DrilldownMenuItem renders 1`] = `
             >
               Item
             </span>
+            <div
+              class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
+            >
+              <svg
+                class="PicassoSvgChevronMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </li>
