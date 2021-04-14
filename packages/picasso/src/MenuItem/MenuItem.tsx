@@ -9,12 +9,12 @@ import React, {
 } from 'react'
 
 import MenuContext, { MenuContextProps } from '../Menu/MenuContext'
-import SelectListItem, { SelectListItemProps } from '../SelectListItem'
+import MenuListItem, { MenuListItemProps } from '../MenuListItem'
 import { noop } from '../utils'
 
 export type VariantType = 'light' | 'dark'
 
-export interface Props extends Omit<SelectListItemProps, 'arrow'> {
+export interface Props extends Omit<MenuListItemProps, 'arrow'> {
   /** Nested menu */
   menu?: ReactElement
 }
@@ -54,7 +54,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
   )
 
   return (
-    <SelectListItem
+    <MenuListItem
       {...rest}
       ref={ref}
       className={className}

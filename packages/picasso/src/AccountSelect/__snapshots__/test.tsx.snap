@@ -6,18 +6,18 @@ exports[`AccountSelect renders 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root PicassoSelectList-root"
+      class="MuiList-root PicassoMenuList-root"
       role="menu"
       tabindex="-1"
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoAccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light PicassoAccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
         >
           <div
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -78,12 +78,12 @@ exports[`AccountSelect renders 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoAccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light PicassoAccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
         >
           <div
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -145,12 +145,12 @@ exports[`AccountSelect renders 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light PicassoAccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light PicassoAccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
         >
           <div
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"

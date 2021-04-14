@@ -10,13 +10,13 @@ import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
-import { SelectListAttributes } from '../SelectList'
+import { MenuListAttributes } from '../MenuList'
 import { SidebarContext } from '../Sidebar'
 import { SidebarContextProps } from '../Sidebar/types'
 import * as SidebarItem from '../SidebarItem'
 import styles from './styles'
 
-export interface Props extends BaseProps, SelectListAttributes {
+export interface Props extends BaseProps, MenuListAttributes {
   /** Defines is sidebar menu pushed to bottom of sidebar */
   bottom?: boolean
 }

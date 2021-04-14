@@ -15,13 +15,13 @@ import {
 } from '@toptal/picasso-shared'
 
 import { BackMinor16 } from '../Icon'
-import SelectList, { SelectListAttributes } from '../SelectList'
+import SelectList, { MenuListAttributes } from '../MenuList'
 import Typography from '../Typography'
 import MenuItem from '../MenuItem'
 import MenuContext, { MenuContextProps } from './MenuContext'
 import styles from './styles'
 
-export interface Props extends BaseProps, SelectListAttributes {
+export interface Props extends BaseProps, MenuListAttributes {
   // whether or not to handle nested navigation
   allowNestedNavigation?: boolean
 }

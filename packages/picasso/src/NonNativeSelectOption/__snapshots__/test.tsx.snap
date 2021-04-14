@@ -8,28 +8,28 @@ exports[`NonNativeSelectOption renders 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value=""
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <div
-            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoSelectListItem-iconContainer"
+            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuListItem-iconContainer"
           />
           <span
-            class="PicassoSelectListItem-stringContent"
+            class="PicassoMenuListItem-stringContent"
           >
             Test
           </span>
         </div>
         <div
-          class="PicassoContainer-leftmediumMargin PicassoSelectListItem-description"
+          class="PicassoContainer-leftmediumMargin PicassoMenuListItem-description"
           style="margin-top: 0.25rem;"
         >
           Test description
@@ -48,19 +48,19 @@ exports[`NonNativeSelectOption sets attributes correctly 1`] = `
     <li
       aria-disabled="false"
       aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoSelectListItem-root PicassoSelectListItem-light Mui-selected PicassoSelectListItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light Mui-selected PicassoMenuListItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="option1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoSelectListItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <div
-            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoSelectListItem-iconContainer"
+            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuListItem-iconContainer"
           >
             <svg
               class="PicassoSvgCheckMinor16-root"
@@ -73,13 +73,13 @@ exports[`NonNativeSelectOption sets attributes correctly 1`] = `
             </svg>
           </div>
           <span
-            class="PicassoSelectListItem-stringContent PicassoSelectListItem-stringContentSemibold"
+            class="PicassoMenuListItem-stringContent PicassoMenuListItem-stringContentSemibold"
           >
             Test
           </span>
         </div>
         <div
-          class="PicassoContainer-leftmediumMargin PicassoSelectListItem-description"
+          class="PicassoContainer-leftmediumMargin PicassoMenuListItem-description"
           style="margin-top: 0.25rem;"
         >
           Test description

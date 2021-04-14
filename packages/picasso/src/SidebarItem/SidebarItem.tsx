@@ -22,7 +22,7 @@ import Accordion from '../Accordion'
 import MenuItem from '../MenuItem'
 import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
-import { SelectListItemAttributes } from '../SelectListItem'
+import { MenuListItemAttributes } from '../MenuListItem'
 import { VariantType } from '../Sidebar/types'
 import noop from '../utils/noop'
 
@@ -35,7 +35,7 @@ export const SubMenuContext = React.createContext<{
 export interface Props
   extends BaseProps,
     TextLabelProps,
-    SelectListItemAttributes {
+    MenuListItemAttributes {
   /** Pass icon to be used as part of item */
   icon?: ReactElement
   /** Highlights the item as selected */

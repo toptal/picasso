@@ -6,7 +6,7 @@ exports[`SidebarMenu renders 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root PicassoSelectList-root PicassoSidebarMenu-root"
+      class="MuiList-root PicassoMenuList-root PicassoSidebarMenu-root"
       role="menu"
       tabindex="-1"
     />
@@ -20,7 +20,7 @@ exports[`SidebarMenu with bottom 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root PicassoSelectList-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
+      class="MuiList-root PicassoMenuList-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
       role="menu"
       tabindex="-1"
     />

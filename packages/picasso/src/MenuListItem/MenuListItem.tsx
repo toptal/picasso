@@ -25,14 +25,14 @@ import styles from './styles'
 
 export type VariantType = 'light' | 'dark'
 
-export type SelectListItemAttributes = LiHTMLAttributes<HTMLLIElement> &
+export type MenuListItemAttributes = LiHTMLAttributes<HTMLLIElement> &
   HTMLAttributes<HTMLDivElement> &
   ButtonOrAnchorProps
 
 export interface Props
   extends BaseProps,
     TextLabelProps,
-    SelectListItemAttributes {
+    MenuListItemAttributes {
   /** Component name to render the item as */
   as?: ElementType
   /** Whether to render disabled item */
@@ -62,13 +62,13 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSelectListItem'
+  name: 'PicassoMenuListItem'
 })
 
-export const SelectListItem: OverridableComponent<Props> = forwardRef<
+export const MenuListItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
->(function SelectListItem (props, ref) {
+>(function MenuListItem (props, ref) {
   const {
     as = 'li',
     children,
@@ -155,12 +155,12 @@ export const SelectListItem: OverridableComponent<Props> = forwardRef<
   )
 })
 
-SelectListItem.defaultProps = {
+MenuListItem.defaultProps = {
   as: 'li',
   variant: 'light',
   nonSelectable: false
 }
 
-SelectListItem.displayName = 'SelectListItem'
+MenuListItem.displayName = 'MenuListItem'
 
-export default SelectListItem
+export default MenuListItem
