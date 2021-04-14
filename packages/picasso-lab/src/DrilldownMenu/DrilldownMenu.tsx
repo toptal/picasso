@@ -17,13 +17,15 @@ export interface StaticProps {
 export const DrilldownMenu = forwardRef<HTMLUListElement, Props>(
   function Drilldown (props, ref) {
     const { className, style, children, ...rest } = props
-    const [activeMenuKey, setActiveMenuKey] = useState<string>()
-    const context = useMemo(() => ({ activeMenuKey, setActiveMenuKey }), [
+    const [activeMenuKey, setActiveMenuKey] = useState<string | undefined>(
+      undefined
+    )
+    const contextValue = useMemo(() => ({ activeMenuKey, setActiveMenuKey }), [
       activeMenuKey
     ])
 
     return (
-      <DrilldownMenuContext.Provider value={context}>
+      <DrilldownMenuContext.Provider value={contextValue}>
         <MenuList {...rest} ref={ref} className={className} style={style}>
           {children}
         </MenuList>
