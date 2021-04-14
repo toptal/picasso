@@ -4,8 +4,8 @@ import PopperJs from 'popper.js'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
-import { Search16 } from '@toptal/picasso/Icon'
 
+import { Search16 } from '../Icon'
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
 import MenuItem from '../MenuItem'
@@ -128,17 +128,12 @@ export const NonNativeSelect = documentable(
       const [startAdornment, endAdornment] = useAdornments({
         position: iconPosition,
         icon,
-        loading,
         disabled
       })
 
       const selectComponent = (
         <>
-          <div
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...rootProps}
-            className={classes.inputWrapper}
-          >
+          <div {...rootProps} className={classes.inputWrapper}>
             {!enableAutofill && name && (
               <input type='hidden' value={displayValue} name={name} />
             )}
@@ -194,8 +189,9 @@ export const NonNativeSelect = documentable(
                   onBlur={rootProps.onBlur}
                   value={value}
                   filterOptionsValue={filterOptionsValue}
-                  multiple={multiple}
                   size={size}
+                  loading={loading}
+                  multiple={multiple}
                   noOptionsText={noOptionsText}
                   fixedHeader={searchInput}
                 />

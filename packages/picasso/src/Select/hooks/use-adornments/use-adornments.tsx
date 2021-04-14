@@ -1,16 +1,14 @@
 import React, { ReactNode, useMemo } from 'react'
 
 import InputAdornment from '../../../InputAdornment'
-import Loader from '../../../Loader'
 
 export interface Props {
   disabled?: boolean
   position: 'start' | 'end'
   icon?: ReactNode
-  loading?: boolean
 }
 
-export const useAdornments = ({ disabled, position, icon, loading }: Props) =>
+export const useAdornments = ({ disabled, position, icon }: Props) =>
   useMemo(() => {
     const adornment = icon ? (
       <InputAdornment
@@ -23,16 +21,9 @@ export const useAdornments = ({ disabled, position, icon, loading }: Props) =>
     ) : null
 
     const startAdornment = position === 'start' ? adornment : null
-    const endIconAdornment = position === 'end' ? adornment : null
-    const endAdornment = loading ? (
-      <InputAdornment key='loading' position='end' disablePointerEvents>
-        <Loader size='small' />
-      </InputAdornment>
-    ) : (
-      endIconAdornment
-    )
+    const endAdornment = position === 'end' ? adornment : null
 
     return [startAdornment, endAdornment]
-  }, [disabled, position, icon, loading])
+  }, [disabled, position, icon])
 
 export default useAdornments

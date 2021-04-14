@@ -36,7 +36,6 @@ export const NativeSelect = documentable(
         className,
         style,
         width = 'full',
-        loading,
         id,
         icon,
         iconPosition = 'start',
@@ -89,7 +88,6 @@ export const NativeSelect = documentable(
       const [selectStartAdornment, selectEndAdornment] = useAdornments({
         position: iconPosition,
         icon,
-        loading,
         disabled
       })
 

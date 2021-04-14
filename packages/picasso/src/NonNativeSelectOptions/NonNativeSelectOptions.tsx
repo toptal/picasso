@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react'
 
+import Container from '../Container'
+import Loader from '../Loader'
 import ScrollMenu from '../ScrollMenu'
 import MenuItem from '../MenuItem'
 import {
@@ -18,6 +20,7 @@ export type Props = Pick<
   highlightedIndex: number | null
   filterOptionsValue: string
   getItemProps: (option: Option, index: number) => ItemProps
+  loading?: boolean
   onBlur?: FocusEventType
   fixedHeader?: ReactNode
 }
@@ -30,10 +33,21 @@ const NonNativeSelectOptions = ({
   onBlur,
   value,
   size,
+  loading,
   filterOptionsValue,
   noOptionsText,
   fixedHeader
 }: Props) => {
+  if (loading) {
+    return (
+      <ScrollMenu data-testid='loader'>
+        <Container padded='small'>
+          <Loader size='small' />
+        </Container>
+      </ScrollMenu>
+    )
+  }
+
   if (!options.length && filterOptionsValue) {
     return (
       <ScrollMenu data-testid='no-options' fixedHeader={fixedHeader}>
