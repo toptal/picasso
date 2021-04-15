@@ -15,7 +15,6 @@ import {
   SelectProps,
   renderOption as defaultRenderOption
 } from '../Select'
-import NativeSelectLoader from '../NativeSelectLoader'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
 import NativeSelectOptions from '../NativeSelectOptions'
 import { documentable, forwardRef } from '../utils/forward-ref'
@@ -90,6 +89,7 @@ export const NativeSelect = documentable(
       const [selectStartAdornment, selectEndAdornment] = useAdornments({
         position: iconPosition,
         icon,
+        loading,
         disabled
       })
 
@@ -142,15 +142,11 @@ export const NativeSelect = documentable(
           >
             {placeholder}
           </NativeSelectPlaceholder>
-          {loading ? (
-            <NativeSelectLoader />
-          ) : (
-            <NativeSelectOptions
-              options={options}
-              renderOption={renderOption}
-              getItemProps={getItemProps}
-            />
-          )}
+          <NativeSelectOptions
+            options={options}
+            renderOption={renderOption}
+            getItemProps={getItemProps}
+          />
         </MuiNativeSelect>
       )
 

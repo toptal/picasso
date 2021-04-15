@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NonNativeSelectLoader renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ul
+      class="MuiList-root PicassoMenuList-root PicassoScrollMenu-menu"
+      data-testid="loader"
+      role="menu"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoScrollMenu-scrollView"
+        tabindex="0"
+      >
+        <div
+          class="PicassoContainer-smallPadding"
+        >
+          <div
+            class="PicassoLoader-root"
+          >
+            <div
+              aria-valuenow="35"
+              class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-static"
+              role="progressbar"
+              style="width: 16px; height: 16px; transform: rotate(-90deg);"
+            >
+              <svg
+                class="MuiCircularProgress-svg"
+                viewBox="22 22 44 44"
+              >
+                <circle
+                  class="MuiCircularProgress-circle MuiCircularProgress-circleStatic"
+                  cx="44"
+                  cy="44"
+                  fill="none"
+                  r="20.2"
+                  stroke-width="3.6"
+                  style="stroke-dasharray: 126.920; stroke-dashoffset: 82.498px;"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>
+`;
