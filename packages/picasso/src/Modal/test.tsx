@@ -13,8 +13,12 @@ import { Props as ModalActionsProps } from '../ModalActions/ModalActions'
 import { Props as ModalTitleProps } from '../ModalTitle/ModalTitle'
 import { Props as ModalContentProps } from '../ModalContent/ModalContent'
 
+const testIds = {
+  closeButton: 'close-modal'
+}
+
 const TestModal = ({ children, open }: OmitInternalProps<ModalProps>) => (
-  <Modal open={open} container={modalRoot}>
+  <Modal open={open} container={modalRoot} onClose={() => {}} testIds={testIds}>
     {children}
   </Modal>
 )
