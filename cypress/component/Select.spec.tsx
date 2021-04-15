@@ -208,6 +208,8 @@ describe('Select', () => {
       </TestingPicasso>
     )
 
+    openSelect()
+
     cy.get('body').happoScreenshot()
   })
 
