@@ -82,6 +82,27 @@ exports[`Modal renders 1`] = `
             </span>
           </button>
         </div>
+        <button
+          class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root PicassoModal-closeButton"
+          data-component-type="button"
+          data-testid="close-modal"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          >
+            <svg
+              class="PicassoSvgCloseMinor16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+              />
+            </svg>
+          </span>
+        </button>
       </div>
     </div>
     <div

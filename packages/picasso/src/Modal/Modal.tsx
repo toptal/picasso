@@ -50,6 +50,9 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   align?: Alignment
   transitionDuration?: number
   paperProps?: PaperProps
+  testIds?: {
+    closeButton?: string
+  }
 }
 
 export interface StaticProps {
@@ -127,6 +130,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     transitionDuration,
     paperProps,
     align,
+    testIds,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -226,6 +230,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
           variant='flat'
           className={classes.closeButton}
           onClick={onClose}
+          data-testid={testIds?.closeButton}
         >
           <CloseMinor16 />
         </Button.Circular>
