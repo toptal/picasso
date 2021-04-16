@@ -59,7 +59,7 @@ export interface Props
   /** The additional description */
   description?: ReactNode
   /** Ref of the item inner content element */
-  anchorRef?: Ref<HTMLDivElement>
+  contentRef?: Ref<HTMLDivElement>
   /** Callback when item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
@@ -88,7 +88,7 @@ export const MenuListItem: OverridableComponent<Props> = forwardRef<
     size,
     titleCase: propsTitleCase,
     nonSelectable,
-    anchorRef,
+    contentRef,
     ...rest
   } = props
   const classes = useStyles()
@@ -115,7 +115,7 @@ export const MenuListItem: OverridableComponent<Props> = forwardRef<
       selected={selected}
     >
       <Container
-        ref={anchorRef}
+        ref={contentRef}
         flex
         direction='column'
         className={classes.content}

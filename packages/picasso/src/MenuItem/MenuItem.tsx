@@ -14,7 +14,7 @@ import { noop } from '../utils'
 
 export type VariantType = 'light' | 'dark'
 
-export interface Props extends Omit<MenuListItemProps, 'arrow' | 'anchorRef'> {
+export interface Props extends Omit<MenuListItemProps, 'arrow' | 'contentRef'> {
   /** Nested menu */
   menu?: ReactElement
 }
