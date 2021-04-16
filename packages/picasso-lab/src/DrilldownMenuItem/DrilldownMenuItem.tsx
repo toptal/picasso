@@ -6,7 +6,6 @@ import MenuListItem, { MenuListItemProps } from '@toptal/picasso/MenuListItem'
 import { OverridableComponent } from '@toptal/picasso-shared'
 import React, {
   forwardRef,
-  ReactElement,
   useCallback,
   useContext,
   useRef,
@@ -16,12 +15,7 @@ import React, {
 import styles from './styles'
 import DrilldownMenuContext from '../DrilldownMenu/DrilldownMenuContext'
 
-export interface Props extends Omit<MenuListItemProps, 'arrow' | 'contentRef'> {
-  /** Nested menu */
-  menu?: ReactElement
-  /** Container for the the nested drilldown */
-  popperContainer?: HTMLElement
-}
+export type Props = Omit<MenuListItemProps, 'contentRef'>
 
 const generateKey = (() => {
   let count = 0
@@ -37,15 +31,7 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
 >(function DrilldownItem (props, ref) {
-  const {
-    className,
-    style,
-    selected,
-    menu,
-    popperContainer,
-    onClick,
-    ...rest
-  } = props
+  const { className, style, selected, menu, onClick, ...rest } = props
 
   const classes = useStyles()
   const anchorRef = useRef<HTMLElement>(null)
@@ -79,7 +65,7 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
         ref={ref}
         className={className}
         style={style}
-        arrow={Boolean(menu)}
+        menu={menu}
         selected={opened || selected}
         contentRef={anchorRef}
         onClick={handleItemClick}
@@ -91,7 +77,6 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
           open
           autoWidth={false}
           enableCompactMode
-          container={popperContainer}
           popperOptions={{
             modifiers: {
               offset: {

@@ -1,7 +1,6 @@
 import { OverridableComponent } from '@toptal/picasso-shared'
 import React, {
   forwardRef,
-  ReactElement,
   useCallback,
   useContext,
   useEffect,
@@ -14,10 +13,7 @@ import { noop } from '../utils'
 
 export type VariantType = 'light' | 'dark'
 
-export interface Props extends Omit<MenuListItemProps, 'arrow' | 'contentRef'> {
-  /** Nested menu */
-  menu?: ReactElement
-}
+export type Props = Omit<MenuListItemProps, 'contentRef'>
 
 const generateKey = (() => {
   let count = 0
