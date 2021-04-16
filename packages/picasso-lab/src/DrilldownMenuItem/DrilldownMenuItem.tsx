@@ -16,7 +16,7 @@ import React, {
 import styles from './styles'
 import DrilldownMenuContext from '../DrilldownMenu/DrilldownMenuContext'
 
-export interface Props extends Omit<MenuListItemProps, 'arrow'> {
+export interface Props extends Omit<MenuListItemProps, 'arrow' | 'anchorRef'> {
   /** Nested menu */
   menu?: ReactElement
   /** Container for the the nested drilldown */

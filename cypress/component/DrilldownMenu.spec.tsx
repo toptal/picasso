@@ -5,26 +5,26 @@ import { DrilldownMenu } from '@toptal/picasso-lab'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const DrilldownMenuExample = () => {
-  const menuB1 = (
+  const menuForItemB1 = (
     <DrilldownMenu data-testid='menu-b1'>
       <DrilldownMenu.Item data-testid='item-b1-1'>Item B1-1</DrilldownMenu.Item>
       <DrilldownMenu.Item data-testid='item-b1-2'>Item B1-2</DrilldownMenu.Item>
     </DrilldownMenu>
   )
 
-  const menuB2 = (
+  const menuForItemB2 = (
     <DrilldownMenu data-testid='menu-b2'>
       <DrilldownMenu.Item data-testid='item-b2-1'>Item B2-1</DrilldownMenu.Item>
       <DrilldownMenu.Item data-testid='item-b2-2'>Item B2-2</DrilldownMenu.Item>
     </DrilldownMenu>
   )
 
-  const menuB = (
+  const menuForItemB = (
     <DrilldownMenu data-testid='menu-b'>
-      <DrilldownMenu.Item menu={menuB1} data-testid='item-b1'>
+      <DrilldownMenu.Item menu={menuForItemB1} data-testid='item-b1'>
         Item B1
       </DrilldownMenu.Item>
-      <DrilldownMenu.Item menu={menuB2} data-testid='item-b2'>
+      <DrilldownMenu.Item menu={menuForItemB2} data-testid='item-b2'>
         Item B2
       </DrilldownMenu.Item>
     </DrilldownMenu>
@@ -35,7 +35,7 @@ const DrilldownMenuExample = () => {
       <Container style={{ width: '240px' }}>
         <DrilldownMenu data-testid='menu'>
           <DrilldownMenu.Item data-testid='item-a'>Item A</DrilldownMenu.Item>
-          <DrilldownMenu.Item menu={menuB} data-testid='item-b'>
+          <DrilldownMenu.Item menu={menuForItemB} data-testid='item-b'>
             Item B
           </DrilldownMenu.Item>
         </DrilldownMenu>
