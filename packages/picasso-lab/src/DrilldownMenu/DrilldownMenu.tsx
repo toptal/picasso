@@ -17,9 +17,7 @@ export interface StaticProps {
 export const DrilldownMenu = forwardRef<HTMLUListElement, Props>(
   function Drilldown (props, ref) {
     const { className, style, children, ...rest } = props
-    const [activeMenuKey, setActiveMenuKey] = useState<string | undefined>(
-      undefined
-    )
+    const [activeMenuKey, setActiveMenuKey] = useState<string>()
     const contextValue = useMemo(() => ({ activeMenuKey, setActiveMenuKey }), [
       activeMenuKey
     ])

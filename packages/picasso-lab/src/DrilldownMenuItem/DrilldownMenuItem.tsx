@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Paper } from '@toptal/picasso'
 import Popper from '@toptal/picasso/Popper'
 import MenuListItem, { MenuListItemProps } from '@toptal/picasso/MenuListItem'
-import { OverridableComponent, pxFromRem } from '@toptal/picasso-shared'
+import { OverridableComponent } from '@toptal/picasso-shared'
 import React, {
   forwardRef,
   ReactElement,
@@ -87,7 +87,7 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
       {menu && opened && (
         <Popper
           anchorEl={anchorRef.current}
-          placement='right'
+          placement='right-start'
           open
           autoWidth={false}
           enableCompactMode
@@ -95,7 +95,7 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
           popperOptions={{
             modifiers: {
               offset: {
-                offset: `0,${pxFromRem('0.375rem')}`
+                offset: `-10px,6px`
               }
             }
           }}
