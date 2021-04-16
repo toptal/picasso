@@ -1,7 +1,7 @@
 import React from 'react'
 import { fireEvent, render, TestingPicasso } from '@toptal/picasso/test-utils'
 
-import DrilldownMenu from './'
+import DrilldownMenu from './DrilldownMenu'
 
 const TestDrilldownMenu = () => {
   const menuB1 = (

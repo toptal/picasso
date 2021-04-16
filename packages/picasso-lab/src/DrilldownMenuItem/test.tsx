@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { fireEvent, render, TestingPicasso } from '@toptal/picasso/test-utils'
 
-import DrilldownMenuItem from './'
+import DrilldownMenuItem from './DrilldownMenuItem'
 import DrilldownMenuContext from '../DrilldownMenu/DrilldownMenuContext'
 
 const TestDrilldownMenuItem = () => {
