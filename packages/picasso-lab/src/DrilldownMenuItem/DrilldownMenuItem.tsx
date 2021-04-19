@@ -31,32 +31,25 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
 >(function DrilldownItem (props, ref) {
-  const { className, style, selected, menu, onClick, ...rest } = props
+  const { className, style, selected, menu, ...rest } = props
 
   const classes = useStyles()
   const anchorRef = useRef<HTMLElement>(null)
-  const [currentMenuKey] = useState(generateKey)
-  const { activeMenuKey, setActiveMenuKey } = useContext(DrilldownMenuContext)
-  const opened = activeMenuKey === currentMenuKey
-
-  const handleItemClick = useCallback(
-    (event: React.MouseEvent<HTMLElement>) => {
-      if (menu && setActiveMenuKey) {
-        event.stopPropagation()
-        setActiveMenuKey(currentMenuKey)
-      }
-      if (onClick) {
-        onClick(event)
-      }
-    },
-    [currentMenuKey, menu, setActiveMenuKey, onClick]
+  const [currentItemKey] = useState(generateKey)
+  const { activeItemKey, onMouseEnter, onClickAway } = useContext(
+    DrilldownMenuContext
   )
+  const opened = activeItemKey === currentItemKey
 
-  const handleAwayClick = useCallback(() => {
-    if (setActiveMenuKey) {
-      setActiveMenuKey(undefined)
-    }
-  }, [setActiveMenuKey])
+  const handleMouseEnter = useCallback(() => onMouseEnter?.(currentItemKey), [
+    currentItemKey,
+    onMouseEnter
+  ])
+
+  const handleClickAway = useCallback(() => onClickAway?.(currentItemKey), [
+    currentItemKey,
+    onClickAway
+  ])
 
   return (
     <>
@@ -68,7 +61,7 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
         menu={menu}
         selected={opened || selected}
         contentRef={anchorRef}
-        onClick={handleItemClick}
+        onMouseEnter={handleMouseEnter}
       />
       {menu && opened && (
         <Popper
@@ -85,7 +78,7 @@ export const DrilldownMenuItem: OverridableComponent<Props> = forwardRef<
             }
           }}
         >
-          <ClickAwayListener onClickAway={handleAwayClick}>
+          <ClickAwayListener onClickAway={handleClickAway}>
             <Paper className={classes.content}>{menu}</Paper>
           </ClickAwayListener>
         </Popper>

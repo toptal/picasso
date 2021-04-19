@@ -1,19 +1,26 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { fireEvent, render, TestingPicasso } from '@toptal/picasso/test-utils'
 
 import DrilldownMenuItem from './DrilldownMenuItem'
-import DrilldownMenuContext from '../DrilldownMenu/DrilldownMenuContext'
+import DrilldownMenuContext, {
+  DrilldownMenuContextProps
+} from '../DrilldownMenu/DrilldownMenuContext'
 
 const TestDrilldownMenuItem = () => {
-  const [activeMenuKey, setActiveMenuKey] = useState<string | undefined>(
-    undefined
+  const [activeItemKey, setActiveItemKey] = useState<string>()
+
+  const contextValue = useMemo(
+    (): DrilldownMenuContextProps => ({
+      activeItemKey,
+      onMouseEnter: (itemKey: string) => setActiveItemKey(itemKey),
+      onClickAway: () => setActiveItemKey(undefined)
+    }),
+    [activeItemKey]
   )
 
   return (
     <TestingPicasso>
-      <DrilldownMenuContext.Provider
-        value={{ activeMenuKey, setActiveMenuKey }}
-      >
+      <DrilldownMenuContext.Provider value={contextValue}>
         <DrilldownMenuItem menu={<div data-testid='menu' />} data-testid='item'>
           Item
         </DrilldownMenuItem>
@@ -29,18 +36,18 @@ describe('DrilldownMenuItem', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('sets active menu key when clicked', () => {
+  it('delegates mouse enter events', () => {
     const { getByTestId, queryByTestId } = render(<TestDrilldownMenuItem />)
 
-    fireEvent.click(getByTestId('item'))
+    fireEvent.mouseEnter(getByTestId('item'))
 
     expect(queryByTestId('menu')).toBeInTheDocument()
   })
 
-  it('clears active menu key when clicked outside of the inner menu', () => {
+  it('delegates click away events', () => {
     const { getByTestId, queryByTestId } = render(<TestDrilldownMenuItem />)
 
-    fireEvent.click(getByTestId('item'))
+    fireEvent.mouseEnter(getByTestId('item'))
     fireEvent.click(document.body)
 
     expect(queryByTestId('menu')).not.toBeInTheDocument()

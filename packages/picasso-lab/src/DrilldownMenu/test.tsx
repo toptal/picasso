@@ -48,12 +48,12 @@ describe('DrilldownMenu', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('opens the first level menu on click', () => {
+  it('opens the first level menu on mouse enter', () => {
     const { container, getByTestId, queryByTestId } = render(
       <TestDrilldownMenu />
     )
 
-    fireEvent.click(getByTestId('item-b'))
+    fireEvent.mouseEnter(getByTestId('item-b'))
 
     expect(queryByTestId('menu-b')).toBeInTheDocument()
     expect(queryByTestId('menu-b1')).not.toBeInTheDocument()
@@ -62,17 +62,31 @@ describe('DrilldownMenu', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('opens the second level menu on click', () => {
+  it('opens the second level menu on mouse enter', () => {
     const { container, getByTestId, queryByTestId } = render(
       <TestDrilldownMenu />
     )
 
-    fireEvent.click(getByTestId('item-b'))
-    fireEvent.click(getByTestId('item-b1'))
+    fireEvent.mouseEnter(getByTestId('item-b'))
+    fireEvent.mouseEnter(getByTestId('item-b1'))
 
     expect(queryByTestId('menu-b')).toBeInTheDocument()
     expect(queryByTestId('menu-b1')).toBeInTheDocument()
     expect(queryByTestId('menu-b2')).not.toBeInTheDocument()
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('closes menu on mouse leave', () => {
+    const { container, getByTestId, queryByTestId } = render(
+      <TestDrilldownMenu />
+    )
+
+    fireEvent.mouseEnter(getByTestId('item-b'))
+    fireEvent.mouseLeave(getByTestId('menu-b'))
+
+    expect(queryByTestId('menu')).toBeInTheDocument()
+    expect(queryByTestId('menu-b')).not.toBeInTheDocument()
 
     expect(container).toMatchSnapshot()
   })
@@ -82,7 +96,7 @@ describe('DrilldownMenu', () => {
       <TestDrilldownMenu />
     )
 
-    fireEvent.click(getByTestId('item-b'))
+    fireEvent.mouseEnter(getByTestId('item-b'))
     fireEvent.click(document.body)
 
     expect(queryByTestId('menu')).toBeInTheDocument()

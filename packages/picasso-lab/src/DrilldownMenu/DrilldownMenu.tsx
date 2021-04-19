@@ -1,9 +1,17 @@
 import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
 import MenuList, { MenuListAttributes } from '@toptal/picasso/MenuList'
-import React, { forwardRef, ReactNode, useMemo, useState } from 'react'
+import React, {
+  forwardRef,
+  ReactNode,
+  useCallback,
+  useMemo,
+  useState
+} from 'react'
 
 import DrilldownMenuItem from '../DrilldownMenuItem'
-import DrilldownMenuContext from './DrilldownMenuContext'
+import DrilldownMenuContext, {
+  DrilldownMenuContextProps
+} from './DrilldownMenuContext'
 
 export interface Props extends BaseProps, MenuListAttributes {
   /* Menu items */
@@ -17,14 +25,35 @@ export interface StaticProps {
 export const DrilldownMenu = forwardRef<HTMLUListElement, Props>(
   function Drilldown (props, ref) {
     const { className, style, children, ...rest } = props
-    const [activeMenuKey, setActiveMenuKey] = useState<string>()
-    const contextValue = useMemo(() => ({ activeMenuKey, setActiveMenuKey }), [
-      activeMenuKey
-    ])
+    const [activeItemKey, setActiveItemKey] = useState<string>()
+
+    const handleMouseEnter = useCallback(
+      (itemKey: string) => setActiveItemKey(itemKey),
+      []
+    )
+
+    const handleMouseLeave = useCallback(() => setActiveItemKey(undefined), [])
+
+    const handleClickAway = useCallback(() => setActiveItemKey(undefined), [])
+
+    const contextValue = useMemo(
+      (): DrilldownMenuContextProps => ({
+        activeItemKey,
+        onMouseEnter: handleMouseEnter,
+        onClickAway: handleClickAway
+      }),
+      [activeItemKey, handleMouseEnter, handleClickAway]
+    )
 
     return (
       <DrilldownMenuContext.Provider value={contextValue}>
-        <MenuList {...rest} ref={ref} className={className} style={style}>
+        <MenuList
+          {...rest}
+          ref={ref}
+          className={className}
+          style={style}
+          onMouseLeave={handleMouseLeave}
+        >
           {children}
         </MenuList>
       </DrilldownMenuContext.Provider>
