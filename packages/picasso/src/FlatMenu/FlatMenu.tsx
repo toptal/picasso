@@ -65,7 +65,11 @@ export const FlatMenu = forwardRef<HTMLUListElement, Props>(function FlatMenu (
   const menu = (
     <MenuList {...rest} ref={ref} className={className} style={style}>
       {hasParentMenu && allowNestedNavigation && (
-        <FlatMenuItem onClick={handleBackClick} key='back'>
+        <FlatMenuItem
+          key='back'
+          onClick={handleBackClick}
+          data-testid='menu-back'
+        >
           <Typography size='small' color='dark-grey' variant='body'>
             <BackMinor16 className={backButtonIconClass} />
             Back

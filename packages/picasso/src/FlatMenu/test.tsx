@@ -5,13 +5,13 @@ import FlatMenu from '../FlatMenu'
 
 const TestFlatMenu = () => {
   const menu = (
-    <FlatMenu>
+    <FlatMenu data-testid='menu-a'>
       <FlatMenu.Item>Item A1</FlatMenu.Item>
     </FlatMenu>
   )
 
   return (
-    <FlatMenu>
+    <FlatMenu data-testid='menu'>
       <FlatMenu.Item menu={menu} data-testid='item-a'>
         Item A
       </FlatMenu.Item>
@@ -27,11 +27,15 @@ describe('FlatMenu', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('has back button when in submenu', () => {
-    const { container, getByTestId } = render(<TestFlatMenu />)
+  it('navigates between menu and submenu', () => {
+    const { getByTestId, queryByTestId } = render(<TestFlatMenu />)
 
     fireEvent.click(getByTestId('item-a'))
+    expect(queryByTestId('menu-back')).toBeInTheDocument()
+    expect(queryByTestId('menu-a')).toBeInTheDocument()
 
-    expect(container).toMatchSnapshot()
+    fireEvent.click(getByTestId('menu-back'))
+    expect(queryByTestId('back')).not.toBeInTheDocument()
+    expect(queryByTestId('menu-a')).not.toBeInTheDocument()
   })
 })
