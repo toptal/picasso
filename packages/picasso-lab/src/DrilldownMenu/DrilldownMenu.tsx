@@ -27,22 +27,18 @@ export const DrilldownMenu = forwardRef<HTMLUListElement, Props>(
     const { className, style, children, ...rest } = props
     const [activeItemKey, setActiveItemKey] = useState<string>()
 
-    const handleMouseEnter = useCallback(
-      (itemKey: string) => setActiveItemKey(itemKey),
+    const clearActiveItemKey = useCallback(
+      () => setActiveItemKey(undefined),
       []
     )
-
-    const handleMouseLeave = useCallback(() => setActiveItemKey(undefined), [])
-
-    const handleClickAway = useCallback(() => setActiveItemKey(undefined), [])
 
     const contextValue = useMemo(
       (): DrilldownMenuContextProps => ({
         activeItemKey,
-        onMouseEnter: handleMouseEnter,
-        onClickAway: handleClickAway
+        onMouseEnter: setActiveItemKey,
+        onClickAway: clearActiveItemKey
       }),
-      [activeItemKey, handleMouseEnter, handleClickAway]
+      [activeItemKey, clearActiveItemKey]
     )
 
     return (
@@ -52,7 +48,7 @@ export const DrilldownMenu = forwardRef<HTMLUListElement, Props>(
           ref={ref}
           className={className}
           style={style}
-          onMouseLeave={handleMouseLeave}
+          onMouseLeave={clearActiveItemKey}
         >
           {children}
         </MenuList>
