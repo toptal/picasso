@@ -1,12 +1,12 @@
 import React from 'react'
 import { fireEvent, render } from '@toptal/picasso/test-utils'
 
-import FlatMenuItem from '../FlatMenuItem'
-import FlatMenuContext from '../FlatMenu/FlatMenuContext'
+import StackMenuItem from '../StackMenuItem'
+import StackMenuContext from '../StackMenu/StackMenuContext'
 
-describe('FlatMenuItem', () => {
+describe('StackMenuItem', () => {
   it('renders', () => {
-    const { container } = render(<FlatMenuItem>Item</FlatMenuItem>)
+    const { container } = render(<StackMenuItem>Item</StackMenuItem>)
 
     expect(container).toMatchSnapshot()
   })
@@ -16,9 +16,9 @@ describe('FlatMenuItem', () => {
     const refresh = jest.fn()
 
     render(
-      <FlatMenuContext.Provider value={{ refresh }}>
-        <FlatMenuItem menu={menu}>Item</FlatMenuItem>
-      </FlatMenuContext.Provider>
+      <StackMenuContext.Provider value={{ refresh }}>
+        <StackMenuItem menu={menu}>Item</StackMenuItem>
+      </StackMenuContext.Provider>
     )
 
     expect(refresh).toHaveBeenCalledWith(expect.any(String), menu)
@@ -29,11 +29,11 @@ describe('FlatMenuItem', () => {
     const push = jest.fn()
 
     const { getByTestId } = render(
-      <FlatMenuContext.Provider value={{ push }}>
-        <FlatMenuItem menu={menu} data-testid='item'>
+      <StackMenuContext.Provider value={{ push }}>
+        <StackMenuItem menu={menu} data-testid='item'>
           Item
-        </FlatMenuItem>
-      </FlatMenuContext.Provider>
+        </StackMenuItem>
+      </StackMenuContext.Provider>
     )
 
     fireEvent.click(getByTestId('item'))

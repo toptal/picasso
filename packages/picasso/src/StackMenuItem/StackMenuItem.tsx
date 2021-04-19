@@ -7,10 +7,10 @@ import React, {
 } from 'react'
 import { OverridableComponent } from '@toptal/picasso-shared'
 
-import FlatMenuContext, {
-  FlatMenuContextProps
-} from '../FlatMenu/FlatMenuContext'
 import MenuListItem, { MenuListItemProps } from '../MenuListItem'
+import StackMenuContext, {
+  StackMenuContextProps
+} from '../StackMenu/StackMenuContext'
 
 export type VariantType = 'light' | 'dark'
 
@@ -22,13 +22,13 @@ const generateKey = (() => {
   return () => String(++count)
 })()
 
-export const FlatMenuItem: OverridableComponent<Props> = forwardRef<
+export const StackMenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
->(function FlatMenuItem (props, ref) {
+>(function StackMenuItem (props, ref) {
   const { className, style, menu, onClick, ...rest } = props
   const [key] = useState(generateKey)
-  const { push, refresh } = useContext<FlatMenuContextProps>(FlatMenuContext)
+  const { push, refresh } = useContext<StackMenuContextProps>(StackMenuContext)
 
   useEffect(() => {
     if (menu && refresh) {
@@ -62,6 +62,6 @@ export const FlatMenuItem: OverridableComponent<Props> = forwardRef<
   )
 })
 
-FlatMenuItem.displayName = 'FlatMenuItem'
+StackMenuItem.displayName = 'StackMenuItem'
 
-export default FlatMenuItem
+export default StackMenuItem

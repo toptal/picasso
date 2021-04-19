@@ -1,34 +1,34 @@
 import React from 'react'
 import { fireEvent, render } from '@toptal/picasso/test-utils'
 
-import FlatMenu from '../FlatMenu'
+import StackMenu from '../StackMenu'
 
-const TestFlatMenu = () => {
+const TestStackMenu = () => {
   const menu = (
-    <FlatMenu data-testid='menu-a'>
-      <FlatMenu.Item>Item A1</FlatMenu.Item>
-    </FlatMenu>
+    <StackMenu data-testid='menu-a'>
+      <StackMenu.Item>Item A1</StackMenu.Item>
+    </StackMenu>
   )
 
   return (
-    <FlatMenu data-testid='menu'>
-      <FlatMenu.Item menu={menu} data-testid='item-a'>
+    <StackMenu data-testid='menu'>
+      <StackMenu.Item menu={menu} data-testid='item-a'>
         Item A
-      </FlatMenu.Item>
-      <FlatMenu.Item>Item B</FlatMenu.Item>
-    </FlatMenu>
+      </StackMenu.Item>
+      <StackMenu.Item>Item B</StackMenu.Item>
+    </StackMenu>
   )
 }
 
-describe('FlatMenu', () => {
+describe('StackMenu', () => {
   it('renders', () => {
-    const { container } = render(<TestFlatMenu />)
+    const { container } = render(<TestStackMenu />)
 
     expect(container).toMatchSnapshot()
   })
 
   it('navigates between menu and submenu', () => {
-    const { getByTestId, queryByTestId } = render(<TestFlatMenu />)
+    const { getByTestId, queryByTestId } = render(<TestStackMenu />)
 
     fireEvent.click(getByTestId('item-a'))
     expect(queryByTestId('menu-back')).toBeInTheDocument()
