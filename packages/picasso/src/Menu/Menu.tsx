@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useContext } from 'react'
 import {
   PicassoComponentWithRef,
   CompoundedComponentWithRef
@@ -6,8 +6,11 @@ import {
 
 import FlatMenu, { FlatMenuProps } from '../FlatMenu'
 import MenuItem from '../MenuItem'
+import MenuContext from './MenuContext'
 
-export type Props = FlatMenuProps
+export interface Props extends FlatMenuProps {
+  drilldown?: boolean
+}
 
 export interface StaticProps {
   Item: typeof MenuItem
@@ -17,7 +20,13 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
   props,
   ref
 ) {
-  return <FlatMenu ref={ref} {...props} />
+  const { drilldown = props.drilldown } = useContext(MenuContext)
+
+  return (
+    <MenuContext.Provider value={{ drilldown }}>
+      {!drilldown ? <FlatMenu ref={ref} {...props} /> : undefined}
+    </MenuContext.Provider>
+  )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
 
 Menu.defaultProps = {
