@@ -69,8 +69,12 @@ const formatData = (data: Bar[], labels: Labels) => {
 
 const getBarColor = (
   dataKey: string,
-  entry: { name: string; value: { team: number; user: number } }
+  entry?: { name: string; value: { team: number; user: number } }
 ) => {
+  if (!entry) {
+    return DEFAULT_COLORS[0]
+  }
+
   if (dataKey === 'team') {
     return COLORS[entry.name]?.[0] || DEFAULT_COLORS[0]
   }
@@ -95,6 +99,7 @@ const CustomTooltip = ({
     const { team, user } = payload[0].payload
 
     const id = payload[0].payload.name
+    // TODO: this logic will need to be revised when new design is done
     const teamLabel = tooltips[id].team[id] || tooltips[id].team.viable
     const userLabel = tooltips[id].user[id] || tooltips[id].user.viable
 

@@ -29,13 +29,16 @@ const CHART_DATA = [
   }
 ]
 
+const COLORS_MAPPING: Record<string, string> = {
+  'active talent': palette.blue.main,
+  'potential talent': palette.grey.dark
+}
+
 const Example = () => (
   <BarChart
     data={CHART_DATA}
-    fillSchema={{
-      'active talent': palette.blue.main,
-      'potential talent': palette.grey.dark
-    }}
+    getBarColor={dataKey => COLORS_MAPPING[dataKey]}
+    getBarLabelColor={() => palette.grey.dark}
     width={720}
   />
 )
