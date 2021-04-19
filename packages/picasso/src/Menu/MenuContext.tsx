@@ -1,7 +1,9 @@
 import { createContext } from 'react'
 
+import { ModeType } from './Menu'
+
 export interface MenuContextProps {
-  drilldown?: boolean
+  mode?: ModeType
 }
 
 export default createContext<MenuContextProps>({})

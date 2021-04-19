@@ -1,5 +1,5 @@
-import React, { forwardRef, useContext } from 'react'
 import { OverridableComponent } from '@toptal/picasso-shared'
+import React, { forwardRef, useContext } from 'react'
 
 import FlatMenuItem, { FlatMenuItemProps } from '../FlatMenuItem'
 import MenuContext from '../Menu/MenuContext'
@@ -10,9 +10,9 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
 >(function MenuItem (props, ref) {
-  const { drilldown } = useContext(MenuContext)
+  const { mode } = useContext(MenuContext)
 
-  return !drilldown ? <FlatMenuItem ref={ref} {...props} /> : undefined
+  return mode === 'flat' ? <FlatMenuItem ref={ref} {...props} /> : undefined
 })
 
 MenuItem.defaultProps = {

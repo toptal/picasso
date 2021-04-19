@@ -30,25 +30,11 @@ const Example = () => {
     </Menu>
   )
 
-  const drilldownMenu = (
-    <Menu drilldown>
-      <Menu.Item>Item A</Menu.Item>
-      <Menu.Item menu={menuForItemB}>Item B</Menu.Item>
-    </Menu>
-  )
-
   return (
     <Container flex>
       <Container right='small'>
         <Form.Label>Default</Form.Label>
         <Dropdown content={regularMenu}>
-          Open Dropdown
-          <Dropdown.Arrow />
-        </Dropdown>
-      </Container>
-      <Container>
-        <Form.Label>Drilldown</Form.Label>
-        <Dropdown content={drilldownMenu}>
           Open Dropdown
           <Dropdown.Arrow />
         </Dropdown>

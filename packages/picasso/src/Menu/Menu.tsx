@@ -1,15 +1,17 @@
-import React, { forwardRef, useContext } from 'react'
+import React, { forwardRef, useContext, useMemo } from 'react'
 import {
-  PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  PicassoComponentWithRef
 } from '@toptal/picasso-shared'
 
 import FlatMenu, { FlatMenuProps } from '../FlatMenu'
 import MenuItem from '../MenuItem'
 import MenuContext from './MenuContext'
 
+export type ModeType = 'flat'
+
 export interface Props extends FlatMenuProps {
-  drilldown?: boolean
+  mode?: ModeType
 }
 
 export interface StaticProps {
@@ -20,16 +22,18 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
   props,
   ref
 ) {
-  const { drilldown = props.drilldown } = useContext(MenuContext)
+  const { mode = props.mode } = useContext(MenuContext)
+  const contextValue = useMemo(() => ({ mode }), [mode])
 
   return (
-    <MenuContext.Provider value={{ drilldown }}>
-      {!drilldown ? <FlatMenu ref={ref} {...props} /> : undefined}
+    <MenuContext.Provider value={contextValue}>
+      {mode === 'flat' ? <FlatMenu ref={ref} {...props} /> : undefined}
     </MenuContext.Provider>
   )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
 
 Menu.defaultProps = {
+  mode: 'flat',
   allowNestedNavigation: true
 }
 
