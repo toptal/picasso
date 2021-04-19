@@ -28,9 +28,7 @@ const CHART_DATA = [
 const Example = () => (
   <BarChart
     data={CHART_DATA}
-    fillSchema={{
-      'engineers hired': palette.blue.main
-    }}
+    getBarColor={() => palette.blue.main}
     width={720}
     tooltip
   />

@@ -35,13 +35,13 @@ export interface Props<K extends string | number | symbol>
   labelKey?: string
   getBarColor: (
     dataKey: string,
-    entry: {
+    entry?: {
       name: string
       value: { [key in K]: number }
     },
-    index: number
+    index?: number
   ) => string
-  getBarLabelColor: (params: { dataKey: string; index?: number }) => string
+  getBarLabelColor?: (params: { dataKey: string; index?: number }) => string
 }
 
 const StyleOverrides = () => (
@@ -79,9 +79,9 @@ const BarChart = <K extends string>({
   tooltip,
   customTooltip,
   allowTooltipEscapeViewBox,
-  getBarColor,
+  getBarColor = () => palette.blue.main,
   labelKey,
-  getBarLabelColor,
+  getBarLabelColor = () => palette.grey.dark,
   ...rest
 }: Props<K>) => {
   const dataKeys = Object.keys(data[0].value) as K[]
@@ -147,6 +147,7 @@ const BarChart = <K extends string>({
             <Bar
               key={dataKey}
               dataKey={dataKey}
+              fill={getBarColor(dataKey)}
               label={
                 <BarChartLabel
                   dataKey={dataKey}
