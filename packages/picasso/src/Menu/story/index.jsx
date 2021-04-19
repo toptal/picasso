@@ -12,6 +12,7 @@ page
 page
   .createChapter()
   .addExample('Menu/story/Default.example.tsx', 'Default')
-  .addExample('Menu/story/Dropdown.example.tsx', 'Drill Down')
+  .addExample('Menu/story/Nested.example.tsx', 'Nested')
+  .addExample('Menu/story/Dropdown.example.tsx', 'Dropdown')
 
 page.connect(menuItemStory.chapter)
