@@ -8,7 +8,8 @@ export default () =>
     },
     multiLine: {
       display: '-webkit-box',
-      whiteSpace: 'initial'
+      whiteSpace: 'initial',
+      wordBreak: 'break-word'
     },
     wrapper: ({ lines = 1 }: { lines?: number }) => ({
       '-webkit-line-clamp': lines,
