@@ -51,12 +51,12 @@ describe('DrilldownMenu', () => {
     cy.get('[data-testid="menu-b"]').should('not.exist')
     cy.get('body').happoScreenshot()
 
-    cy.get('[data-testid="item-b"').click()
+    cy.get('[data-testid="item-b"').trigger('mouseover')
     cy.get('[data-testid="menu-b"]').should('be.visible')
     cy.get('[data-testid="menu-b1"]').should('not.exist')
     cy.get('body').happoScreenshot()
 
-    cy.get('[data-testid="item-b1"').click()
+    cy.get('[data-testid="item-b1"').trigger('mouseover')
     cy.get('[data-testid="menu-b"]').should('be.visible')
     cy.get('[data-testid="menu-b1"]').should('be.visible')
     cy.get('[data-testid="menu-b2"]').should('not.exist')
