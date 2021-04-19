@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { fireEvent, render, TestingPicasso } from '@toptal/picasso/test-utils'
 
 import DrilldownMenuItem from './DrilldownMenuItem'
@@ -9,13 +9,15 @@ import DrilldownMenuContext, {
 const TestDrilldownMenuItem = () => {
   const [activeItemKey, setActiveItemKey] = useState<string>()
 
+  const clearActiveItemKey = useCallback(() => setActiveItemKey(undefined), [])
+
   const contextValue = useMemo(
     (): DrilldownMenuContextProps => ({
       activeItemKey,
-      onMouseEnter: (itemKey: string) => setActiveItemKey(itemKey),
-      onClickAway: () => setActiveItemKey(undefined)
+      onMouseEnter: setActiveItemKey,
+      onClickAway: clearActiveItemKey
     }),
-    [activeItemKey]
+    [activeItemKey, clearActiveItemKey]
   )
 
   return (
