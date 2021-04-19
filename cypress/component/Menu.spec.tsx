@@ -47,6 +47,7 @@ describe('Menu', () => {
   it('navigates stack menu', () => {
     mount(<MenuExample />)
     cy.get('[data-testid="menu-b"]').should('not.exist')
+    cy.get('[data-testid="menu-back"]').should('not.exist')
     cy.get('body').happoScreenshot()
 
     cy.get('[data-testid="item-b"').click()
