@@ -17,8 +17,8 @@ import {
 import { BackMinor16 } from '../Icon'
 import MenuList, { MenuListAttributes } from '../MenuList'
 import Typography from '../Typography'
-import MenuItem from '../MenuItem'
-import MenuContext, { FlatMenuContextProps } from './FlatMenuContext'
+import FlatMenuItem from '../FlatMenuItem'
+import FlatMenuContext, { FlatMenuContextProps } from './FlatMenuContext'
 import styles from './styles'
 
 export interface Props extends BaseProps, MenuListAttributes {
@@ -27,7 +27,7 @@ export interface Props extends BaseProps, MenuListAttributes {
 }
 
 export interface StaticProps {
-  Item: typeof MenuItem
+  Item: typeof FlatMenuItem
 }
 
 type Menus = Record<string, ReactElement>
@@ -36,7 +36,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoFlatMenu'
 })
 
-export const FlatMenu = forwardRef<HTMLUListElement, Props>(function Menu (
+export const FlatMenu = forwardRef<HTMLUListElement, Props>(function FlatMenu (
   props,
   ref
 ) {
@@ -46,7 +46,7 @@ export const FlatMenu = forwardRef<HTMLUListElement, Props>(function Menu (
     hideMenu: hideMenuClass
   } = useStyles()
 
-  const { pop } = useContext<FlatMenuContextProps>(MenuContext)
+  const { pop } = useContext<FlatMenuContextProps>(FlatMenuContext)
 
   const hasParentMenu = !!pop
 
@@ -63,12 +63,12 @@ export const FlatMenu = forwardRef<HTMLUListElement, Props>(function Menu (
   const menu = (
     <MenuList {...rest} ref={ref} className={className} style={style}>
       {hasParentMenu && allowNestedNavigation && (
-        <MenuItem onClick={handleBackClick} key='back'>
+        <FlatMenuItem onClick={handleBackClick} key='back'>
           <Typography size='small' color='dark-grey' variant='body'>
             <BackMinor16 className={backButtonIconClass} />
             Back
           </Typography>
-        </MenuItem>
+        </FlatMenuItem>
       )}
       {children}
     </MenuList>
@@ -124,7 +124,7 @@ export const FlatMenu = forwardRef<HTMLUListElement, Props>(function Menu (
   const isRootMenuHidden = Boolean(currentVisibleMenuKey)
 
   return (
-    <MenuContext.Provider value={menuContext}>
+    <FlatMenuContext.Provider value={menuContext}>
       {React.cloneElement(menu, {
         className: cx(menu.props.className, {
           [hideMenuClass]: isRootMenuHidden
@@ -138,7 +138,7 @@ export const FlatMenu = forwardRef<HTMLUListElement, Props>(function Menu (
           })
         })
       )}
-    </MenuContext.Provider>
+    </FlatMenuContext.Provider>
   )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
 
@@ -148,7 +148,7 @@ FlatMenu.defaultProps = {
 
 FlatMenu.displayName = 'FlatMenu'
 
-FlatMenu.Item = MenuItem
+FlatMenu.Item = FlatMenuItem
 
 export default FlatMenu as PicassoComponentWithRef<
   Props,

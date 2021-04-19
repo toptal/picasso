@@ -1,4 +1,3 @@
-import { OverridableComponent } from '@toptal/picasso-shared'
 import React, {
   forwardRef,
   useCallback,
@@ -6,8 +5,11 @@ import React, {
   useEffect,
   useState
 } from 'react'
+import { OverridableComponent } from '@toptal/picasso-shared'
 
-import MenuContext, { MenuContextProps } from '../Menu/MenuContext'
+import FlatMenuContext, {
+  FlatMenuContextProps
+} from '../FlatMenu/FlatMenuContext'
 import MenuListItem, { MenuListItemProps } from '../MenuListItem'
 import { noop } from '../utils'
 
@@ -27,7 +29,7 @@ export const FlatMenuItem: OverridableComponent<Props> = forwardRef<
 >(function FlatMenuItem (props, ref) {
   const { className, style, menu, onClick, ...rest } = props
   const [key] = useState(generateKey)
-  const { push, refresh } = useContext<MenuContextProps>(MenuContext)
+  const { push, refresh } = useContext<FlatMenuContextProps>(FlatMenuContext)
 
   useEffect(() => {
     if (menu && refresh) {
@@ -55,7 +57,7 @@ export const FlatMenuItem: OverridableComponent<Props> = forwardRef<
       ref={ref}
       className={className}
       style={style}
-      arrow={Boolean(menu)}
+      menu={menu}
       onClick={handleClick}
     />
   )
