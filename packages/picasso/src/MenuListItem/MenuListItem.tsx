@@ -15,7 +15,9 @@ import React, {
   forwardRef,
   HTMLAttributes,
   LiHTMLAttributes,
-  ReactNode
+  ReactElement,
+  ReactNode,
+  Ref
 } from 'react'
 
 import Container from '../Container'
@@ -40,7 +42,7 @@ export interface Props
   /** Whether to render without internal padding */
   disableGutters?: boolean
   /** Adds an arrow to the item */
-  arrow?: boolean
+  menu?: ReactElement
   /** Highlights the item as selected */
   selected?: boolean
   /** Checkmarks the item */
@@ -57,6 +59,8 @@ export interface Props
   children?: ReactNode
   /** The additional description */
   description?: ReactNode
+  /** Ref of the item inner content element, for usage with popper only */
+  contentRef?: Ref<HTMLDivElement>
   /** Callback when item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
@@ -76,7 +80,7 @@ export const MenuListItem: OverridableComponent<Props> = forwardRef<
     className,
     disabled,
     disableGutters,
-    arrow,
+    menu,
     selected,
     checkmarked,
     style,
@@ -85,6 +89,7 @@ export const MenuListItem: OverridableComponent<Props> = forwardRef<
     size,
     titleCase: propsTitleCase,
     nonSelectable,
+    contentRef,
     ...rest
   } = props
   const classes = useStyles()
@@ -110,7 +115,12 @@ export const MenuListItem: OverridableComponent<Props> = forwardRef<
       value={value}
       selected={selected}
     >
-      <Container flex direction='column' className={classes.content}>
+      <Container
+        ref={contentRef}
+        flex
+        direction='column'
+        className={classes.content}
+      >
         <Container flex alignItems='center'>
           {checkmarked !== undefined && (
             <Container
@@ -135,7 +145,7 @@ export const MenuListItem: OverridableComponent<Props> = forwardRef<
           ) : (
             children
           )}
-          {arrow && (
+          {menu && (
             <Container flex inline left='xsmall'>
               <ChevronMinor16 />
             </Container>
