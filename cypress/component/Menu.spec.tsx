@@ -44,7 +44,7 @@ const MenuExample = (props: MenuProps) => {
 }
 
 describe('Menu', () => {
-  it('navigates flat menu', () => {
+  it('navigates stack menu', () => {
     mount(<MenuExample />)
     cy.get('[data-testid="menu-b"]').should('not.exist')
     cy.get('body').happoScreenshot()
