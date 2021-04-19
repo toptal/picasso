@@ -1,15 +1,15 @@
 import { OverridableComponent } from '@toptal/picasso-shared'
 import React, { forwardRef } from 'react'
 
-import FlatMenuItem, { FlatMenuItemProps } from '../FlatMenuItem'
+import StackMenuItem, { StackMenuItemProps } from '../StackMenuItem'
 
-export type Props = FlatMenuItemProps
+export type Props = StackMenuItemProps
 
 export const MenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
 >(function MenuItem (props, ref) {
-  return <FlatMenuItem ref={ref} {...props} />
+  return <StackMenuItem ref={ref} {...props} />
 })
 
 MenuItem.defaultProps = {

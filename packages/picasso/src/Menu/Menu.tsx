@@ -4,10 +4,10 @@ import {
   PicassoComponentWithRef
 } from '@toptal/picasso-shared'
 
-import FlatMenu, { FlatMenuProps } from '../FlatMenu'
+import StackMenu, { StackMenuProps } from '../StackMenu'
 import MenuItem from '../MenuItem'
 
-export type Props = FlatMenuProps
+export type Props = StackMenuProps
 
 export interface StaticProps {
   Item: typeof MenuItem
@@ -17,7 +17,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
   props,
   ref
 ) {
-  return <FlatMenu ref={ref} {...props} />
+  return <StackMenu ref={ref} {...props} />
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
 
 Menu.defaultProps = {
