@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.1.1...@toptal/picasso-lab@5.1.2) (2021-04-19)
+
+
+### Bug Fixes
+
+* **TypographyOverflow:** fix for long names ([#2035](https://github.com/toptal/picasso/issues/2035)) ([9219bda](https://github.com/toptal/picasso/commit/9219bda1e82fa9d978b8655e057619da043b2840))
+
+
+
+
+
 ## [5.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.1.0...@toptal/picasso-lab@5.1.1) (2021-04-12)
 
 **Note:** Version bump only for package @toptal/picasso-lab
