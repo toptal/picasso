@@ -8,11 +8,7 @@ import React, {
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  BaseProps,
-  PicassoComponentWithRef,
-  CompoundedComponentWithRef
-} from '@toptal/picasso-shared'
+import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
 
 import { BackMinor16 } from '../Icon'
 import MenuList, { MenuListAttributes } from '../MenuList'
@@ -40,7 +36,13 @@ export const FlatMenu = forwardRef<HTMLUListElement, Props>(function FlatMenu (
   props,
   ref
 ) {
-  const { children, className, style, allowNestedNavigation, ...rest } = props
+  const {
+    children,
+    className,
+    style,
+    allowNestedNavigation = true,
+    ...rest
+  } = props
   const {
     backButtonIcon: backButtonIconClass,
     hideMenu: hideMenuClass
@@ -142,16 +144,8 @@ export const FlatMenu = forwardRef<HTMLUListElement, Props>(function FlatMenu (
   )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
 
-FlatMenu.defaultProps = {
-  allowNestedNavigation: true
-}
-
 FlatMenu.displayName = 'FlatMenu'
 
 FlatMenu.Item = FlatMenuItem
 
-export default FlatMenu as PicassoComponentWithRef<
-  Props,
-  HTMLUListElement,
-  StaticProps
->
+export default FlatMenu

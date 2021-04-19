@@ -11,7 +11,6 @@ import FlatMenuContext, {
   FlatMenuContextProps
 } from '../FlatMenu/FlatMenuContext'
 import MenuListItem, { MenuListItemProps } from '../MenuListItem'
-import { noop } from '../utils'
 
 export type VariantType = 'light' | 'dark'
 
@@ -62,13 +61,6 @@ export const FlatMenuItem: OverridableComponent<Props> = forwardRef<
     />
   )
 })
-
-FlatMenuItem.defaultProps = {
-  as: 'li',
-  onClick: noop,
-  variant: 'light',
-  nonSelectable: false
-}
 
 FlatMenuItem.displayName = 'FlatMenuItem'
 

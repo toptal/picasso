@@ -165,12 +165,6 @@ export const MenuListItem: OverridableComponent<Props> = forwardRef<
   )
 })
 
-MenuListItem.defaultProps = {
-  as: 'li',
-  variant: 'light',
-  nonSelectable: false
-}
-
 MenuListItem.displayName = 'MenuListItem'
 
 export default MenuListItem
