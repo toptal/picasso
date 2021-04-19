@@ -15,7 +15,7 @@ import {
 } from '@toptal/picasso-shared'
 
 import { BackMinor16 } from '../Icon'
-import SelectList, { MenuListAttributes } from '../MenuList'
+import MenuList, { MenuListAttributes } from '../MenuList'
 import Typography from '../Typography'
 import MenuItem from '../MenuItem'
 import MenuContext, { MenuContextProps } from './MenuContext'
@@ -61,7 +61,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
   )
 
   const menu = (
-    <SelectList {...rest} ref={ref} className={className} style={style}>
+    <MenuList {...rest} ref={ref} className={className} style={style}>
       {hasParentMenu && allowNestedNavigation && (
         <MenuItem onClick={handleBackClick} key='back'>
           <Typography size='small' color='dark-grey' variant='body'>
@@ -71,7 +71,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
         </MenuItem>
       )}
       {children}
-    </SelectList>
+    </MenuList>
   )
 
   const [menus, setMenus] = useState<Menus>({})
