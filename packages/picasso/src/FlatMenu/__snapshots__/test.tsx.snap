@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlatMenu renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ul
+      class="MuiList-root PicassoMenuList-root"
+      data-testid="menu"
+      role="menu"
+      tabindex="-1"
+    >
+      <li
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-testid="item-a"
+        role="menuitem"
+        tabindex="0"
+      >
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
+        >
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          >
+            <span
+              class="PicassoMenuListItem-stringContent"
+            >
+              Item A
+            </span>
+            <div
+              class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
+            >
+              <svg
+                class="PicassoSvgChevronMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
+        >
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          >
+            <span
+              class="PicassoMenuListItem-stringContent"
+            >
+              Item B
+            </span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
