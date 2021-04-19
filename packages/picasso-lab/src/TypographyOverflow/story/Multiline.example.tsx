@@ -45,6 +45,7 @@ const Example = () => {
           tooltipVariant='light'
           data-testid='ellipsed-text-lines4'
         >
+          &lt;https://longlong.longlong.html/very/long/html/link/very/long/html/link/&gt;
           Four lines typography with a very long text and a very long text and a
           very long text and a very long text and a very long text and a very
           long text and a very long text and <a href='#'>two words link</a> and
