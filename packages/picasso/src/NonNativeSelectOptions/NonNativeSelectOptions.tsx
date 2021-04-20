@@ -1,22 +1,22 @@
 import React, { ReactNode, useMemo } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import ScrollMenu from '../ScrollMenu'
 import MenuItem from '../MenuItem'
-import Typography from '../Typography'
-import {
-  Option,
-  ItemProps,
-  FocusEventType,
-  getSelection,
-  SelectProps,
-  isOptionsType,
-  OptionGroups,
-  flattenOptions
-} from '../Select'
 import NonNativeSelectOption from '../NonNativeSelectOption'
+import ScrollMenu from '../ScrollMenu'
+import {
+  flattenOptions,
+  getSelection,
+  isOptionsType,
+  FocusEventType,
+  ItemProps,
+  Option,
+  OptionGroups,
+  SelectProps
+} from '../Select'
+import Typography from '../Typography'
 
-// Replace with a real component as soon as it's implemented
+// TODO: Replace with a real component as soon as it's implemented
 // https://toptal-core.atlassian.net/browse/FX-1479
 interface MenuGroupProps extends BaseProps {
   group: string
@@ -98,12 +98,12 @@ const NonNativeSelectOptions = ({
     })
 
   const groupedOptionComponents = (optionGroups: OptionGroups) => {
-    let counter = 0
+    let cursor = 0
 
     return Object.keys(optionGroups).map((group) => {
-      const offset = counter
+      const offset = cursor
 
-      counter += optionGroups[group].length
+      cursor += optionGroups[group].length
 
       return (
         <MenuGroup key={group} group={group}>

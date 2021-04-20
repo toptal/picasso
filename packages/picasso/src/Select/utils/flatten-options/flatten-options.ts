@@ -7,7 +7,7 @@ const flattenOptions = (options: Option[] | OptionGroups): Option[] => {
   }
 
   return Object.values(options)
-    .reduce((result: Option[], optionList) => [...result, ...optionList], [])
+    .reduce((result: Option[], optionList) => result.concat(optionList), [])
 }
 
 export default flattenOptions
