@@ -1,7 +1,7 @@
 import { Option, OptionGroups } from '../../types'
 import { isOptionsType } from '../../utils'
 
-const getFlatOptions = (options: Option[] | OptionGroups): Option[] => {
+const flattenOptions = (options: Option[] | OptionGroups): Option[] => {
   if (isOptionsType(options)) {
     return options
   }
@@ -10,4 +10,4 @@ const getFlatOptions = (options: Option[] | OptionGroups): Option[] => {
     .reduce((result: Option[], optionList) => [...result, ...optionList], [])
 }
 
-export default getFlatOptions
+export default flattenOptions

@@ -12,7 +12,7 @@ import {
   SelectProps,
   isOptionsType,
   OptionGroups,
-  getFlatOptions
+  flattenOptions
 } from '../Select'
 import NonNativeSelectOption from '../NonNativeSelectOption'
 
@@ -58,7 +58,7 @@ const NonNativeSelectOptions = ({
   fixedHeader
 }: Props) => {
   const flatOptions: Option[] = useMemo(
-    () => getFlatOptions(options),
+    () => flattenOptions(options),
     [options]
   )
 

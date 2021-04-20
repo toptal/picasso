@@ -7,7 +7,7 @@ import {
   getSelectedOptions,
   DEFAULT_SEARCH_THRESHOLD,
   filterOptions,
-  getFlatOptions
+  flattenOptions
 } from '../../utils'
 import useHighlightedIndex from '../use-highlighted-index'
 
@@ -33,7 +33,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   } = props
 
   const flatOptions: Option[] = useMemo(
-    () => getFlatOptions(options),
+    () => flattenOptions(options),
     [options]
   )
 

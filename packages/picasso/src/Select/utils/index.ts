@@ -1,7 +1,7 @@
 export { default as filterOptions } from './filter-options'
 export { default as fireOnChangeEvent } from './fire-on-change-event'
+export { default as flattenOptions } from './flatten-options'
 export { default as focusRef } from './focus-ref'
-export { default as getFlatOptions } from './get-flat-options'
 export { default as getMultipleSelection } from './get-multiple-selection'
 export { default as getNextWrappingIndex } from './get-next-wrapping-index'
 export { default as getOptionText } from './get-option-text'

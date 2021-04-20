@@ -1,7 +1,7 @@
 import { KeyboardEvent, useCallback } from 'react'
 
 import { ValueType, UseSelectProps } from '../../../types'
-import getFlatOptions from '../../../utils/get-flat-options'
+import flattenOptions from '../../../utils/flatten-options'
 import useSelectHandler from '../use-select-handler'
 
 const useEnterOrSpaceKeyDownHandler = <
@@ -30,7 +30,7 @@ const useEnterOrSpaceKeyDownHandler = <
         return
       }
 
-      const item = getFlatOptions(filteredOptions)[highlightedIndex]
+      const item = flattenOptions(filteredOptions)[highlightedIndex]
 
       if (!item) {
         return
