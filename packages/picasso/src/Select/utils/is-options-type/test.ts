@@ -18,7 +18,7 @@ describe('isOptionsType', () => {
   }
 
   it('checks correctly', () => {
-    expect(isOptionsType(simpleOptions)).toBeTruthy()
-    expect(isOptionsType(groupedOptions)).toBeFalsy()
+    expect(isOptionsType(simpleOptions)).toEqual(true)
+    expect(isOptionsType(groupedOptions)).toEqual(false)
   })
 })
