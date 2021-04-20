@@ -24,7 +24,7 @@ interface MenuGroupProps extends BaseProps {
 }
 const MenuGroup = ({ group, children, ...rest }: MenuGroupProps) => (
   <>
-    <MenuItem role='option' titleCase={false} {...rest}>
+    <MenuItem role='option' titleCase={false} nonSelectable {...rest}>
       <Typography size='small' weight='semibold' color='dark-grey'>
         {group}
       </Typography>
