@@ -2,7 +2,7 @@ import { Option, OptionGroups } from '../../../Select'
 import flattenOptions from './flatten-options'
 
 describe('flattenOptions', () => {
-  const simpleOptions: Option[] = [
+  const options: Option[] = [
     { text: 'Option 1', value: '1' },
     { text: 'Option 2', value: '2' }
   ]
@@ -18,7 +18,7 @@ describe('flattenOptions', () => {
   }
 
   it('returns a flat list of options', () => {
-    expect(flattenOptions(simpleOptions)).toEqual(simpleOptions)
+    expect(flattenOptions(options)).toEqual(options)
     expect(flattenOptions(groupedOptions)).toEqual(
       [
         { text: 'Option 1', value: '1' },

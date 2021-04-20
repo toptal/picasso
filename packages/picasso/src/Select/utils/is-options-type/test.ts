@@ -2,7 +2,7 @@ import { Option, OptionGroups } from '../../../Select'
 import isOptionsType from './is-options-type'
 
 describe('isOptionsType', () => {
-  const simpleOptions: Option[] = [
+  const options: Option[] = [
     { text: 'Option 1', value: '1' },
     { text: 'Option 2', value: '2' }
   ]
@@ -18,7 +18,7 @@ describe('isOptionsType', () => {
   }
 
   it('checks correctly', () => {
-    expect(isOptionsType(simpleOptions)).toBe(true)
+    expect(isOptionsType(options)).toBe(true)
     expect(isOptionsType(groupedOptions)).toBe(false)
   })
 })
