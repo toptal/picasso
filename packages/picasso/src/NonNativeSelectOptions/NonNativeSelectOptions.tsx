@@ -1,5 +1,6 @@
 import React, { ReactNode, useMemo } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import MenuItem from '../MenuItem'
 import NonNativeSelectOption from '../NonNativeSelectOption'
@@ -15,6 +16,9 @@ import {
   SelectProps
 } from '../Select'
 import Typography from '../Typography'
+import styles from './styles'
+
+const useStyles = makeStyles<Theme>(styles)
 
 // TODO: Replace with a real component as soon as it's implemented
 // https://toptal-core.atlassian.net/browse/FX-1479
@@ -28,7 +32,7 @@ const MenuGroup = ({ group, children, ...rest }: MenuGroupProps) => (
       role='option'
       titleCase={false}
       nonSelectable
-      style={{ padding: '16px 16px 10px' }}
+      className={useStyles().menuGroup}
       {...rest}
     >
       <Typography size='small' weight='semibold' color='dark-grey'>
