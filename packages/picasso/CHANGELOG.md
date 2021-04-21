@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@7.1.0...@toptal/picasso@7.2.0) (2021-04-21)
+
+
+### Features
+
+* **Icon:** add icons to talent portfolio modal ([#2040](https://github.com/toptal/picasso/issues/2040)) ([44fe4d3](https://github.com/toptal/picasso/commit/44fe4d3d869c641ae6aad6156d5cf88e5a9eec32))
+
+
+
+
+
 # [7.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@7.0.3...@toptal/picasso@7.1.0) (2021-04-21)
 
 
