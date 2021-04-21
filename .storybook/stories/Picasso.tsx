@@ -9,9 +9,11 @@ import README from '../../packages/picasso/README.md'
 import CHANGELOG from '../../packages/picasso/CHANGELOG.md'
 // @ts-ignore
 import API_PRINCIPLES from '../../docs/api-principles.md'
+import Demo from './Demo'
 
 storiesOf('Picasso', module)
   .addParameters({ happo: false })
   .add('Readme', doc(README))
   .add('Changelog', doc(CHANGELOG))
   .add('API Principles', doc(API_PRINCIPLES))
+  .add('Demo', Demo)
