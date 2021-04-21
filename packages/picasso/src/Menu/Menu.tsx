@@ -27,7 +27,6 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'Menu'
 })
 
-// eslint-disable-next-line react/display-name
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
   props,
   ref
