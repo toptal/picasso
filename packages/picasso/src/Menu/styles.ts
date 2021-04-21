@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider } from '@toptal/picasso-shared'
+import { PicassoProvider, rem } from '@toptal/picasso-shared'
 
 import '../List/styles'
 
@@ -10,10 +10,18 @@ PicassoProvider.override(({ shadows }: Theme) => ({
     }
   }
 }))
-
 export default () =>
   createStyles({
     root: {
       outline: 0
+    },
+    backButtonIcon: {
+      verticalAlign: 'middle',
+      marginTop: rem('-1px'),
+      marginRight: rem('4px'),
+      marginLeft: rem('-5px')
+    },
+    hideMenu: {
+      display: 'none'
     }
   })
