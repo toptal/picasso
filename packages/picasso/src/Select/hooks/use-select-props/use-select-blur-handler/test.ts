@@ -2,17 +2,13 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { getUseSelectPropsMock } from '../mocks'
 import useSelectBlurHandler from './use-select-blur-handler'
-import { isRelatedTargetInsidePopper } from '../../../utils'
+import isRelatedTargetInsidePopper from '../../../utils/is-related-target-inside-popper'
 
 const mockedIsRelatedTargetInsidePopper = isRelatedTargetInsidePopper as jest.MockedFunction<
   typeof isRelatedTargetInsidePopper
 >
 
-jest.mock('../../../utils', () =>
-  Object.assign({}, jest.requireActual('../../../utils'), {
-    isRelatedTargetInsidePopper: jest.fn()
-  })
-)
+jest.mock('../../../utils/is-related-target-inside-popper', () => jest.fn())
 
 describe('useSelectBlurHandler', () => {
   beforeEach(() => {
