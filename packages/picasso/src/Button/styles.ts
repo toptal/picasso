@@ -4,17 +4,21 @@ import { alpha, outline, mix } from '@toptal/picasso-shared'
 const ICON_SPACING = '0.5em'
 
 export default ({ palette, sizes, transitions, typography }: Theme) => {
-  const createPrimaryVariant = (mainColor: string) => ({
+  const createPrimaryVariant = (mainColor: {
+    main: string
+    lighter?: string
+    contrastText?: string
+  }) => ({
     border: 'none',
-    color: palette.common.white,
-    backgroundColor: mainColor,
+    color: mainColor.lighter || mainColor.contrastText,
+    backgroundColor: mainColor.main,
 
     '&:hover, &$hovered': {
-      backgroundColor: mix(mainColor, palette.common.white, 0.152)
+      backgroundColor: mix(mainColor.main, palette.common.white, 0.152)
     },
 
     '&:active, &$active': {
-      backgroundColor: mix(mainColor, palette.common.black, 0.172)
+      backgroundColor: mix(mainColor.main, palette.common.black, 0.172)
     },
 
     '&$disabled': {
@@ -111,13 +115,13 @@ export default ({ palette, sizes, transitions, typography }: Theme) => {
     },
 
     // variants
-    primary: createPrimaryVariant(palette.primary.main),
-    negative: createPrimaryVariant(palette.red.main),
-    positive: createPrimaryVariant(palette.green.main),
+    primary: createPrimaryVariant(palette.primary),
+    negative: createPrimaryVariant(palette.red),
+    positive: createPrimaryVariant(palette.green),
 
     secondary: {
-      color: palette.common.black,
-      backgroundColor: palette.common.white,
+      color: palette.secondary.contrastText,
+      backgroundColor: palette.secondary.main,
 
       '&:hover, &$hovered': {
         borderColor: palette.common.black
