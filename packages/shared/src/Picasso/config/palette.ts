@@ -9,6 +9,10 @@ interface ColorSample {
   main2?: string
   dark?: string
   darker?: string
+  secondary: {
+    main: string
+    contrastText: string
+  }
 }
 
 declare module '@material-ui/core/styles/createPalette' {
@@ -28,7 +32,7 @@ declare module '@material-ui/core' {
 
 export const colors = dark
 
-const paletteLight = {
+export const paletteLight = {
   // MUI adds additional colors, like `contrastText` to the
   // palette. So to prevent changing colors object we should
   // deep copy it.
@@ -71,9 +75,8 @@ const paletteDark = {
   },
   background: {
     default: dark.common.white
-  }
-  // type: 'dark'
+  },
+  type: 'dark'
 }
 
-export { paletteLight }
 export default paletteDark

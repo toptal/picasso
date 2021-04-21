@@ -33,19 +33,23 @@ export const light = {
   common: {
     black: '#000',
     white: '#fff'
+  },
+  secondary: {
+    main: '#fff',
+    contrastText: '#000'
   }
 }
 
 export const dark = {
   grey: {
     lighter: '#131518',
-    lighter2: '#ebeced', // not translated
+    lighter2: '#131518', // not translated
     light: '#1d2026',
     light2: '#84888e',
     main: '#c4c6ca', // not translated
     main2: '#84888e', // not translated
     dark: '#c4c6ca',
-    darker: '#262d3d' // not translated
+    darker: '#c4c6ca'
   },
   blue: {
     lighter: '#edf1fd', // not translated
@@ -69,36 +73,26 @@ export const dark = {
     darker: '#05947c' // not translated
   },
   common: {
-    white: '#fff',
-    black: '#000'
+    white: '#000',
+    black: '#fff'
+  },
+  secondary: {
+    main: '#262d3d',
+    contrastText: '#c4c6ca'
   }
 }
 
 export const colorsdark = {
   background: {
-    darker: '#131518',
     dark: '#181a1e',
     light: '#1b1d21',
     lighter: '#272d3c'
   },
 
   text: {
-    light: '#ffffff',
-    primary: '#c4c6ca',
     dark: '#c0c2c6',
-    link: '#50a9e9',
     disabled: '#455065'
   },
 
-  button: {
-    border: '#84888e',
-    fill: '#262d3d',
-    text: '#ffffff'
-  },
-
-  pill: {
-    fill: '#262d3d',
-    border: '#84888e',
-    text: '#c4c6ca'
-  }
+  fill: '#262d3d'
 }
