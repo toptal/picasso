@@ -26,22 +26,27 @@ interface MenuGroupProps extends BaseProps {
   group: string
   children: ReactNode
 }
-const MenuGroup = ({ group, children, ...rest }: MenuGroupProps) => (
-  <>
-    <MenuItem
-      role='option'
-      titleCase={false}
-      nonSelectable
-      className={useStyles().menuGroup}
-      {...rest}
-    >
-      <Typography size='small' weight='semibold' color='dark-grey'>
-        {group}
-      </Typography>
-    </MenuItem>
-    {children}
-  </>
-)
+const MenuGroup = (props: MenuGroupProps) => {
+  const { group, children, ...rest } = props
+  const classes = useStyles()
+
+  return (
+    <>
+      <MenuItem
+        role='option'
+        titleCase={false}
+        nonSelectable
+        className={classes.menuGroup}
+        {...rest}
+      >
+        <Typography size='small' weight='semibold' color='dark-grey'>
+          {group}
+        </Typography>
+      </MenuItem>
+      {children}
+    </>
+  )
+}
 
 export type Props = Pick<
   SelectProps,
@@ -67,10 +72,9 @@ const NonNativeSelectOptions = ({
   noOptionsText,
   fixedHeader
 }: Props) => {
-  const flatOptions: Option[] = useMemo(
-    () => flattenOptions(options),
-    [options]
-  )
+  const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
+    options
+  ])
 
   if (!flatOptions.length && filterOptionsValue) {
     return (
@@ -110,7 +114,7 @@ const NonNativeSelectOptions = ({
   const groupedOptionComponents = (optionGroups: OptionGroups) => {
     let cursor = 0
 
-    return Object.keys(optionGroups).map((group) => {
+    return Object.keys(optionGroups).map(group => {
       const offset = cursor
 
       cursor += optionGroups[group].length
