@@ -2,14 +2,11 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { getUseSelectPropsMock } from '../mocks'
 import useSearchBlurHandler from './use-search-blur-handler'
-import { isRelatedTargetInsidePopper, focusRef } from '../../../utils'
+import focusRef from '../../../utils/focus-ref'
+import isRelatedTargetInsidePopper from '../../../utils/is-related-target-inside-popper'
 
-jest.mock('../../../utils', () =>
-  Object.assign({}, jest.requireActual('../../../utils'), {
-    isRelatedTargetInsidePopper: jest.fn(),
-    focusRef: jest.fn()
-  })
-)
+jest.mock('../../../utils/focus-ref', () => jest.fn())
+jest.mock('../../../utils/is-related-target-inside-popper', () => jest.fn())
 
 const mockedIsRelatedTargetInsidePopper = isRelatedTargetInsidePopper as jest.MockedFunction<
   typeof isRelatedTargetInsidePopper

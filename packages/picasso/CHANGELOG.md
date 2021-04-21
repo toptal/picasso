@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@7.0.3...@toptal/picasso@7.1.0) (2021-04-21)
+
+
+### Features
+
+* **select:** [TEA-2501] add grouped options ([#2033](https://github.com/toptal/picasso/issues/2033)) ([f330405](https://github.com/toptal/picasso/commit/f3304054787c65023e326e3eb123363cd7f9336c))
+
+
+
+
+
 ## [7.0.3](https://github.com/toptal/picasso/compare/@toptal/picasso@7.0.2...@toptal/picasso@7.0.3) (2021-04-15)
 
 **Note:** Version bump only for package @toptal/picasso

@@ -1,20 +1,21 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
 
-import { Option, ValueType, UseSelectStateOutput } from '../../types'
+import { Option, OptionGroups, ValueType, UseSelectStateOutput } from '../../types'
 import {
   getSelection,
   removeDuplicatedOptions,
   getSelectedOptions,
-  DEFAULT_SEARCH_THRESHOLD
+  DEFAULT_SEARCH_THRESHOLD,
+  filterOptions,
+  flattenOptions
 } from '../../utils'
-import { isSubstring } from '../../../utils'
 import useHighlightedIndex from '../use-highlighted-index'
 
 export const EMPTY_INPUT_VALUE = ''
 
 export interface Props {
   getDisplayValue: (option: Option | null) => string
-  options: Option[]
+  options: Option[] | OptionGroups
   disabled?: boolean
   multiple?: boolean
   value?: ValueType | ValueType[]
@@ -31,16 +32,21 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     searchThreshold = DEFAULT_SEARCH_THRESHOLD
   } = props
 
+  const flatOptions: Option[] = useMemo(
+    () => flattenOptions(options),
+    [options]
+  )
+
   const [selectedOptions, setSelectedOptions] = useState(
     getSelectedOptions(options, value)
   )
   const selection = useMemo(
     () =>
       getSelection(
-        removeDuplicatedOptions([...options, ...selectedOptions]),
+        removeDuplicatedOptions([...flatOptions, ...selectedOptions]),
         value
       ),
-    [options, selectedOptions, value]
+    [flatOptions, selectedOptions, value]
   )
   const [displayValue, setDisplayValue] = useState(
     selection.display(getDisplayValue)
@@ -49,26 +55,23 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     EMPTY_INPUT_VALUE
   )
   const filteredOptions = useMemo(
-    () =>
-      options.filter(option =>
-        isSubstring(filterOptionsValue, getDisplayValue(option))
-      ),
+    () => filterOptions({ options, filterOptionsValue, getDisplayValue }),
     [options, filterOptionsValue, getDisplayValue]
   )
   const selectedIndexes = useMemo(
     () =>
-      options.reduce(
+      flatOptions.reduce(
         (selected: number[], option: Option, index: number) =>
           selection.isOptionSelected(option) ? [...selected, index] : selected,
         []
       ),
-    [options, selection]
+    [flatOptions, selection]
   )
   const emptySelectValue: string | string[] = useMemo(
     () => (multiple ? [] : ''),
     [multiple]
   )
-  const showSearch = options.length >= searchThreshold
+  const showSearch = flatOptions.length >= searchThreshold
   const [isOpen, setOpen] = useState<boolean>(false)
   const canOpen = !isOpen && !disabled
   const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex({
@@ -78,7 +81,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
 
   useEffect(() => {
     const newSelect = getSelection(
-      removeDuplicatedOptions([...options, ...selectedOptions]),
+      removeDuplicatedOptions([...flatOptions, ...selectedOptions]),
       value
     )
 
@@ -86,7 +89,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     setSelectedOptions(getSelectedOptions(options, value))
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, options])
+  }, [value, options, flatOptions])
 
   const close = useCallback(() => {
     setOpen(false)

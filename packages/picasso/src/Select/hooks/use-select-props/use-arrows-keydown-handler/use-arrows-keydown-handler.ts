@@ -1,4 +1,4 @@
-import { getNextWrappingIndex } from '@toptal/picasso/Select/utils'
+import { flattenOptions, getNextWrappingIndex } from '@toptal/picasso/Select/utils'
 import { KeyboardEvent, useCallback } from 'react'
 
 import { ValueType, UseSelectProps } from '../../../types'
@@ -24,7 +24,7 @@ const useArrowsKeyDownHandler = <
           getNextWrappingIndex(
             key === 'ArrowDown' ? 1 : -1,
             highlightedIndex,
-            filteredOptions.length
+            flattenOptions(filteredOptions).length
           )
         )
       } else {

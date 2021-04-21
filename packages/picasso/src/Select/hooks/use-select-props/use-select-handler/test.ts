@@ -2,15 +2,11 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { getUseSelectPropsMock } from '../mocks'
 import useSelectHandler from './use-select-handler'
-import { focusRef } from '../../../utils'
+import focusRef from '../../../utils/focus-ref'
 
 const mockedFocusRef = focusRef as jest.MockedFunction<typeof focusRef>
 
-jest.mock('../../../utils', () =>
-  Object.assign({}, jest.requireActual('../../../utils'), {
-    focusRef: jest.fn()
-  })
-)
+jest.mock('../../../utils/focus-ref', () => jest.fn())
 
 const OPTIONS = [
   { text: 'One', value: '1' },

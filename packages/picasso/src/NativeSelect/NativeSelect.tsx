@@ -15,11 +15,9 @@ import {
   SelectProps,
   renderOption as defaultRenderOption
 } from '../Select'
-import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
 import NativeSelectOptions from '../NativeSelectOptions'
-import { documentable, forwardRef } from '../utils/forward-ref'
-import { useCombinedRefs } from '../utils'
-import noop from '../utils/noop'
+import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
+import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles)

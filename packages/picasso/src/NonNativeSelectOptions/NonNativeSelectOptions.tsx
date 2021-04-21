@@ -1,20 +1,58 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useMemo } from 'react'
+import { BaseProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import ScrollMenu from '../ScrollMenu'
 import MenuItem from '../MenuItem'
+import NonNativeSelectOption from '../NonNativeSelectOption'
+import ScrollMenu from '../ScrollMenu'
 import {
-  Option,
-  ItemProps,
-  FocusEventType,
+  flattenOptions,
   getSelection,
+  isOptionsType,
+  FocusEventType,
+  ItemProps,
+  Option,
+  OptionGroups,
   SelectProps
 } from '../Select'
-import NonNativeSelectOption from '../NonNativeSelectOption/NonNativeSelectOption'
+import Typography from '../Typography'
+import styles from './styles'
+
+const useStyles = makeStyles<Theme>(styles)
+
+// TODO: Replace with a real component as soon as it's implemented
+// https://toptal-core.atlassian.net/browse/FX-1479
+interface MenuGroupProps extends BaseProps {
+  group: string
+  children: ReactNode
+}
+const MenuGroup = (props: MenuGroupProps) => {
+  const { group, children, ...rest } = props
+  const classes = useStyles()
+
+  return (
+    <>
+      <MenuItem
+        role='option'
+        titleCase={false}
+        nonSelectable
+        className={classes.menuGroup}
+        {...rest}
+      >
+        <Typography size='small' weight='semibold' color='dark-grey'>
+          {group}
+        </Typography>
+      </MenuItem>
+      {children}
+    </>
+  )
+}
 
 export type Props = Pick<
   SelectProps,
-  'options' | 'value' | 'multiple' | 'size' | 'noOptionsText' | 'renderOption'
+  'value' | 'multiple' | 'size' | 'noOptionsText' | 'renderOption'
 > & {
+  options: Option[] | OptionGroups
   highlightedIndex: number | null
   filterOptionsValue: string
   getItemProps: (option: Option, index: number) => ItemProps
@@ -34,7 +72,11 @@ const NonNativeSelectOptions = ({
   noOptionsText,
   fixedHeader
 }: Props) => {
-  if (!options.length && filterOptionsValue) {
+  const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
+    options
+  ])
+
+  if (!flatOptions.length && filterOptionsValue) {
     return (
       <ScrollMenu data-testid='no-options' fixedHeader={fixedHeader}>
         <MenuItem titleCase={false} disabled>
@@ -44,29 +86,50 @@ const NonNativeSelectOptions = ({
     )
   }
 
-  const optionComponents = options.map((option, currentIndex) => {
-    const { onMouseDown, onMouseEnter, onClick } = getItemProps(
-      option,
-      currentIndex
-    )
-    const selection = getSelection(options, value)
+  const flatOptionComponents = (optionsList: Option[], offset = 0) =>
+    optionsList.map((option, currentIndex) => {
+      const { onMouseDown, onMouseEnter, onClick } = getItemProps(
+        option,
+        currentIndex + offset
+      )
+      const selection = getSelection(flatOptions, value)
 
-    return (
-      <NonNativeSelectOption
-        key={option.key || option.value}
-        option={option}
-        size={size}
-        onMouseDown={onMouseDown}
-        onMouseEnter={onMouseEnter}
-        selected={selection.isOptionSelected(option)}
-        highlighted={highlightedIndex === currentIndex}
-        onClick={onClick}
-        description={option.description}
-      >
-        {renderOption(option)}
-      </NonNativeSelectOption>
-    )
-  })
+      return (
+        <NonNativeSelectOption
+          key={option.key || option.value}
+          option={option}
+          size={size}
+          onMouseDown={onMouseDown}
+          onMouseEnter={onMouseEnter}
+          selected={selection.isOptionSelected(option)}
+          highlighted={highlightedIndex === currentIndex + offset}
+          onClick={onClick}
+          description={option.description}
+        >
+          {renderOption(option)}
+        </NonNativeSelectOption>
+      )
+    })
+
+  const groupedOptionComponents = (optionGroups: OptionGroups) => {
+    let cursor = 0
+
+    return Object.keys(optionGroups).map(group => {
+      const offset = cursor
+
+      cursor += optionGroups[group].length
+
+      return (
+        <MenuGroup key={group} group={group}>
+          {flatOptionComponents(optionGroups[group], offset)}
+        </MenuGroup>
+      )
+    })
+  }
+
+  const optionComponents = isOptionsType(options)
+    ? flatOptionComponents(options)
+    : groupedOptionComponents(options)
 
   return (
     <ScrollMenu
