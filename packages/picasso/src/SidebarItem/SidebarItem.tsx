@@ -19,10 +19,9 @@ import {
 import Container from '../Container'
 import Typography from '../Typography'
 import Accordion from '../Accordion'
-import MenuItem from '../MenuItem'
+import MenuItem, { MenuItemAttributes } from '../MenuItem'
 import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
-import { MenuListItemAttributes } from '../MenuListItem'
 import { VariantType } from '../Sidebar/types'
 import noop from '../utils/noop'
 
@@ -32,10 +31,7 @@ export const SubMenuContext = React.createContext<{
   parentSidebarItemIndex: undefined
 })
 
-export interface Props
-  extends BaseProps,
-    TextLabelProps,
-    MenuListItemAttributes {
+export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
   icon?: ReactElement
   /** Highlights the item as selected */

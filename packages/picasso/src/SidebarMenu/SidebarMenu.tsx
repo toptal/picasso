@@ -9,14 +9,13 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import Menu from '../Menu'
-import { MenuListAttributes } from '../MenuList'
+import Menu, { MenuAttributes } from '../Menu'
 import { SidebarContext } from '../Sidebar'
 import { SidebarContextProps } from '../Sidebar/types'
 import * as SidebarItem from '../SidebarItem'
 import styles from './styles'
 
-export interface Props extends BaseProps, MenuListAttributes {
+export interface Props extends BaseProps, MenuAttributes {
   /** Defines is sidebar menu pushed to bottom of sidebar */
   bottom?: boolean
 }
