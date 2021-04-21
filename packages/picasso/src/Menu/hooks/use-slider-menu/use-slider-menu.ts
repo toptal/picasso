@@ -43,6 +43,7 @@ const useSliderMenu = () => {
 
   return {
     menu: lastMenu,
+    hasBackButton: Boolean(onBackClick),
     onItemUpdate: onItemUpdate ?? handleItemUpdate,
     onItemClick: onItemClick ?? handleItemClick,
     onBackClick: onBackClick ?? handleBackClick

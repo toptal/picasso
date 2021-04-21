@@ -1,17 +1,17 @@
-import { useMemo } from 'react'
-
+import useMenuContext from '../use-menu-context'
 import useSliderMenu from '../use-slider-menu'
 
 const useMenu = () => {
-  const { menu, onItemClick, onItemUpdate, onBackClick } = useSliderMenu()
-
-  const context = useMemo(() => ({ onItemClick, onItemUpdate, onBackClick }), [
+  const {
+    menu,
+    hasBackButton,
     onItemClick,
     onItemUpdate,
     onBackClick
-  ])
+  } = useSliderMenu()
+  const context = useMenuContext({ onItemClick, onItemUpdate, onBackClick })
 
-  return { menu, context }
+  return { menu, context, hasBackButton }
 }
 
 export default useMenu
