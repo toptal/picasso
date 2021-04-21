@@ -13,10 +13,13 @@ import {
   useSafeState,
   forwardRef,
   documentable,
-  disableUnsupportedProps
+  disableUnsupportedProps,
+  isDarkMode
 } from '@toptal/picasso/utils'
 import { render, act } from '@toptal/picasso/test-utils'
 import React, { createRef, Ref, useEffect } from 'react'
+import MatchMediaMock from 'jest-matchmedia-mock'
+import type MatchMedia from 'jest-matchmedia-mock'
 
 import unsafeErrorLog from './unsafe-error-log'
 
@@ -45,6 +48,40 @@ describe('getNameInitials', () => {
 
   it('should extract up to 3 letters', () => {
     expect(getNameInitials('John Doe John Doe')).toBe('JDJ')
+  })
+})
+
+describe('isDarkMode', () => {
+  let matchMedia: MatchMedia
+
+  beforeAll(() => {
+    matchMedia = new MatchMediaMock()
+  })
+
+  afterEach(() => {
+    matchMedia.clear()
+  })
+
+  it('should return true for dark mode', () => {
+    const mediaQuery = '(prefers-color-scheme: dark)'
+
+    matchMedia.useMediaQuery(mediaQuery)
+
+    expect(isDarkMode()).toBe(true)
+  })
+
+  it('should return false for light mode', () => {
+    const mediaQuery = '(prefers-color-scheme: light)'
+
+    matchMedia.useMediaQuery(mediaQuery)
+
+    expect(isDarkMode()).toBe(false)
+  })
+
+  it('should return false when there is no support for matchMedia', () => {
+    matchMedia.clear()
+
+    expect(isDarkMode()).toBe(false)
   })
 })
 
