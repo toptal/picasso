@@ -34,7 +34,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
   const { children, className, style, allowNestedNavigation, ...rest } = props
   const classes = useStyles()
   const { menu, context, hasBackButton } = useMenu()
-  const { onBackClick: handleBackClick } = context
+  const { onBackClick } = context
 
   return (
     <MenuContext.Provider value={context}>
@@ -46,7 +46,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
           style={style}
         >
           {hasBackButton && allowNestedNavigation && (
-            <MenuItem key='back' onClick={handleBackClick}>
+            <MenuItem key='back' onClick={onBackClick}>
               <Typography size='small' color='dark-grey' variant='body'>
                 <BackMinor16 className={classes.backButtonIcon} />
                 Back

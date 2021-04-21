@@ -88,10 +88,10 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     ...rest
   } = props
 
-  const key = useMenuItemKey()
   const classes = useStyles()
-  const { onClick } = useMenuItemSlider({ key, menu, onClick: propOnClick })
   const titleCase = useTitleCase(propTitleCase)
+  const key = useMenuItemKey()
+  const { onClick } = useMenuItemSlider({ key, menu, onClick: propOnClick })
 
   return (
     <MUIMenuItem
