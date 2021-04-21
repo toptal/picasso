@@ -4,15 +4,17 @@ import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
 
+import { BackMinor16 } from '../Icon'
 import MenuItem from '../MenuItem'
+import Typography from '../Typography'
+import useMenu from './hooks/use-menu'
 import MenuContext from './MenuContext'
-import useMenuContext from './hooks/use-menu-context'
 import styles from './styles'
 
-export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
+export type MenuAttributes = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
 
-export interface Props extends BaseProps, ListNativeProps {
+export interface Props extends BaseProps, MenuAttributes {
   // whether or not to handle nested navigation
   allowNestedNavigation?: boolean
 }
@@ -30,20 +32,30 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
   props,
   ref
 ) {
-  const { children, className, style, ...rest } = props
+  const { children, className, style, allowNestedNavigation, ...rest } = props
   const classes = useStyles()
-  const context = useMenuContext()
+  const { menu, context } = useMenu()
 
   return (
     <MenuContext.Provider value={context}>
-      <MUIMenuList
-        {...rest}
-        ref={ref}
-        className={cx(classes.root, className)}
-        style={style}
-      >
-        {children}
-      </MUIMenuList>
+      {menu ?? (
+        <MUIMenuList
+          {...rest}
+          ref={ref}
+          className={cx(classes.root, className)}
+          style={style}
+        >
+          {allowNestedNavigation && (
+            <MenuItem key='back'>
+              <Typography size='small' color='dark-grey' variant='body'>
+                <BackMinor16 className={classes.backButtonIcon} />
+                Back
+              </Typography>
+            </MenuItem>
+          )}
+          {children}
+        </MUIMenuList>
+      )}
     </MenuContext.Provider>
   )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>

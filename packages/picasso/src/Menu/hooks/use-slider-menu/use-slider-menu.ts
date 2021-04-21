@@ -12,6 +12,10 @@ const useSliderMenu = () => {
     return keys.length ? keys[keys.length - 1] : undefined
   }, [items])
 
+  const lastMenu = useMemo(() => {
+    return lastKey && items[lastKey]
+  }, [items, lastKey])
+
   const handleItemUpdate = useCallback(
     (key: string, menu: ReactElement) => {
       if (items[key]) {
@@ -38,6 +42,7 @@ const useSliderMenu = () => {
   }, [items, lastKey])
 
   return {
+    menu: lastMenu,
     onItemUpdate: onItemUpdate ?? handleItemUpdate,
     onItemClick: onItemClick ?? handleItemClick,
     onBackClick: onBackClick ?? handleBackClick
