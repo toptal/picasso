@@ -27,7 +27,14 @@ import {
   Phone16,
   Skype16,
   Tag,
-  ShowMore
+  ShowMore,
+  Time16,
+  VideoOn16,
+  Info16,
+  Table,
+  ArrowDownMinor16,
+  Star16,
+  StarSolid16
 } from '@toptal/picasso'
 import {
   SkeletonLoader,
@@ -128,14 +135,147 @@ const Content = () => (
     <hr />
 
     <Section title='Interviews'>
-      <Container bordered rounded padded='medium'>
-        Foo
+      <Container bordered rounded padded='medium' flex>
+        <div
+          style={{
+            borderRight: '1px solid rgb(235, 236, 237)',
+            paddingRight: 20
+          }}
+        >
+          <Typography align='center' size='small'>
+            Fri
+          </Typography>
+          <Typography align='center' style={{ fontSize: 24 }}>
+            18
+          </Typography>
+          <Typography align='center' size='small'>
+            Jan
+          </Typography>
+        </div>
+        <Container
+          flex
+          alignItems='center'
+          justifyContent='space-between'
+          style={{ flex: 1 }}
+          left='small'
+        >
+          <div>
+            <Container bottom='xsmall'>
+              <Container inline right='small'>
+                <Time16 />
+              </Container>
+              <Typography inline style={{ fontSize: 13 }}>
+                10:30 AM (UTC+02:00) Europe - Belgrade
+              </Typography>
+            </Container>
+            <Container bottom='xsmall'>
+              <Container inline right='small'>
+                <VideoOn16 />
+              </Container>
+              <Container inline right='small'>
+                <Button size='small'>Join Inerview</Button>
+              </Container>
+              <Typography inline style={{ fontSize: 12 }}>
+                <Link>Show URL</Link>
+              </Typography>
+            </Container>
+            <Container>
+              <Container inline right='small'>
+                <Candidates16 />
+              </Container>
+              <Typography inline style={{ fontSize: 13 }}>
+                “Please prepare two case studies from your portfolio to
+                present.”
+              </Typography>
+            </Container>
+          </div>
+          <Container>
+            <Bell16 />
+            <Container inline left='xsmall' right='xsmall'>
+              <Typography inline style={{ fontSize: 12 }}>
+                <Link>Add Calendar Reminder</Link>
+              </Typography>
+            </Container>
+            <Button size='small' variant='secondary'>
+              Reschedule
+            </Button>
+          </Container>
+        </Container>
       </Container>
     </Section>
 
+    <Container top='small'>
+      <Table>
+        <Table.Head>
+          <Table.Row>
+            <Table.Cell>Previous Interviews</Table.Cell>
+            <Table.Cell>Rating</Table.Cell>
+            <Table.Cell></Table.Cell>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>Fri Jan 18, 2019 at 10:30 AM</Table.Cell>
+            <Table.Cell>
+              <StarSolid16 />
+              <StarSolid16 />
+              <StarSolid16 />
+              <StarSolid16 />
+              <Star16 />
+            </Table.Cell>
+            <Table.Cell align='right'>
+              <ArrowDownMinor16 />
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    </Container>
+
     <Section title='Candidate Details'>
-      <Container bordered rounded padded='medium' bottom='medium'>
-        Foo
+      <Container flex alignItems='stretch' bottom='medium'>
+        <Avatar src='./filippo.jpeg' size='large' />
+        <Container
+          bordered
+          rounded
+          padded='medium'
+          style={{
+            flex: 1,
+            borderLeft: 'none',
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0
+          }}
+        >
+          <Container flex justifyContent='space-between'>
+            <Container
+              flex
+              direction='column'
+              justifyContent='space-between'
+              style={{ height: '100%' }}
+            >
+              <div>
+                <Typography>Filippo Conforti</Typography>
+                <Typography style={{ fontSize: 12 }}>UX/UI Desinger</Typography>
+              </div>
+              <Typography style={{ fontSize: 14 }}>
+                <Link>View Profile</Link>
+              </Typography>
+            </Container>
+            <div>
+              <Typography inline weight='semibold'>
+                $ 45.00
+              </Typography>
+              <Typography inline weight='semibold' style={{ fontSize: 12 }}>
+                /hour
+              </Typography>
+              <Container inline left='xsmall' right='xsmall'>
+                <Info16 />
+              </Container>
+              <Typography inline style={{ fontSize: 12 }}>
+                Full-time
+              </Typography>
+            </div>
+          </Container>
+        </Container>
       </Container>
       <Container flex>
         <div style={{ flex: 2, marginRight: 16 }}>
@@ -152,10 +292,7 @@ const Content = () => (
             client ideas into ready viable projects that will change the world
             and be profitable.
             <Container flex top='small'>
-              <Avatar
-                src='./jacqueline-with-flowers-1954-square.jpg'
-                alt='Default image'
-              />
+              <Avatar src='./danielle.jpeg' alt='Default image' />
               <Container left='xsmall'>
                 <Typography size='medium' weight='semibold'>
                   Danielle Ried
