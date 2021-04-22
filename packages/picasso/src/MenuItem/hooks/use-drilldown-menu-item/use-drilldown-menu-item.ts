@@ -9,18 +9,27 @@ export interface Props {
 
 const useDrilldownMenuItem = (props: Props) => {
   const { key, menu } = props
-  const { activeItemKey, onItemMouseEnter } = useContext(MenuContext)
+  const { activeItemKey, onItemMouseEnter, onAwayClick } = useContext(
+    MenuContext
+  )
   const isOpened = key === activeItemKey
 
   const handleItemMouseEnter = useCallback(() => {
-    if (menu && onItemMouseEnter) {
-      onItemMouseEnter(key)
+    if (onItemMouseEnter) {
+      onItemMouseEnter(key, menu)
     }
   }, [key, menu, onItemMouseEnter])
 
+  const handleAwayClick = useCallback(() => {
+    if (onAwayClick) {
+      onAwayClick()
+    }
+  }, [onAwayClick])
+
   return {
     isOpened,
-    onItemMouseEnter: handleItemMouseEnter
+    onItemMouseEnter: handleItemMouseEnter,
+    onAwayClick: handleAwayClick
   }
 }
 

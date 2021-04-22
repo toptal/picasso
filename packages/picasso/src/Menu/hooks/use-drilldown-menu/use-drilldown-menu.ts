@@ -1,11 +1,16 @@
-import { useCallback, useState } from 'react'
+import { ReactElement, useCallback, useState } from 'react'
 
 const useDrilldownMenu = () => {
   const [activeItemKey, setActiveItemKey] = useState<string>()
 
-  const handleItemMouseEnter = useCallback((key: string) => {
-    setActiveItemKey(key)
-  }, [])
+  const handleItemMouseEnter = useCallback(
+    (key: string, menu?: ReactElement) => {
+      if (menu) {
+        setActiveItemKey(key)
+      }
+    },
+    []
+  )
 
   const handleMenuMouseLeave = useCallback(() => {
     setActiveItemKey(undefined)

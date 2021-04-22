@@ -17,8 +17,8 @@ const useSliderMenu = () => {
   }, [items, lastKey])
 
   const handleItemUpdate = useCallback(
-    (key: string, menu: ReactElement) => {
-      if (items[key]) {
+    (key: string, menu?: ReactElement) => {
+      if (menu && items[key]) {
         setItems({ ...items, [key]: menu })
       }
     },
@@ -26,8 +26,10 @@ const useSliderMenu = () => {
   )
 
   const handleItemClick = useCallback(
-    (key: string, menu: ReactElement) => {
-      setItems({ ...items, [key]: menu })
+    (key: string, menu?: ReactElement) => {
+      if (menu) {
+        setItems({ ...items, [key]: menu })
+      }
     },
     [items]
   )

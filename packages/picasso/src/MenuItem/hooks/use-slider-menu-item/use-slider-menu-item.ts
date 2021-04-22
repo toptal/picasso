@@ -13,7 +13,7 @@ const useSliderMenuItem = (props: Props) => {
   const { onItemClick, onItemUpdate } = useContext(MenuContext)
 
   useEffect(() => {
-    if (menu && onItemUpdate) {
+    if (onItemUpdate) {
       onItemUpdate(key, menu)
     }
   }, [key, menu, onItemUpdate])

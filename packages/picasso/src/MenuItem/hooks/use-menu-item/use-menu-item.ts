@@ -13,9 +13,12 @@ const useMenuItem = (props: Props) => {
   const { menu, onClick } = props
   const key = useMenuItemKey()
   const { onItemClick } = useSliderMenuItem({ key, menu, onClick })
-  const { isOpened, onItemMouseEnter } = useDrilldownMenuItem({ key, menu })
+  const { isOpened, onItemMouseEnter, onAwayClick } = useDrilldownMenuItem({
+    key,
+    menu
+  })
 
-  return { isOpened, onItemClick, onItemMouseEnter }
+  return { isOpened, onItemClick, onItemMouseEnter, onAwayClick }
 }
 
 export default useMenuItem

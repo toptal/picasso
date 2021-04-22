@@ -4,7 +4,8 @@ import React, {
   LiHTMLAttributes,
   HTMLAttributes,
   ElementType,
-  ReactElement
+  ReactElement,
+  useRef
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
@@ -21,7 +22,9 @@ import {
 
 import Container from '../Container'
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
-import { toTitleCase } from '../utils'
+import Paper from '../Paper'
+import Popper from '../Popper'
+import { ClickAwayListener, toTitleCase } from '../utils'
 import { useMenuItem } from './hooks'
 import styles from './styles'
 
@@ -89,73 +92,104 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
   } = props
 
   const classes = useStyles()
+  const anchorRef = useRef<HTMLDivElement>(null)
   const titleCase = useTitleCase(propTitleCase)
-  const { onItemClick, onItemMouseEnter } = useMenuItem({ menu, onClick })
+  const { isOpened, onItemClick, onItemMouseEnter, onAwayClick } = useMenuItem({
+    menu,
+    onClick
+  })
 
   return (
-    <MUIMenuItem
-      {...rest}
-      ref={ref}
-      component={as}
-      classes={{
-        root: cx({
-          [classes[`gutters${size && capitalize(size)}`]]: size
-        }),
-        selected: classes.selected
-      }}
-      className={cx(classes.root, classes[variant], className, {
-        [classes.nonSelectable]: nonSelectable
-      })}
-      disabled={disabled}
-      disableGutters={disableGutters}
-      onClick={onItemClick}
-      onMouseEnter={onItemMouseEnter}
-      style={style}
-      value={value}
-      selected={selected}
-    >
-      <Container flex direction='column' className={classes.content}>
-        <Container flex alignItems='center'>
-          {checkmarked !== undefined && (
+    <>
+      <MUIMenuItem
+        {...rest}
+        ref={ref}
+        component={as}
+        classes={{
+          root: cx({
+            [classes[`gutters${size && capitalize(size)}`]]: size
+          }),
+          selected: classes.selected
+        }}
+        className={cx(classes.root, classes[variant], className, {
+          [classes.nonSelectable]: nonSelectable
+        })}
+        disabled={disabled}
+        disableGutters={disableGutters}
+        onClick={onItemClick}
+        onMouseEnter={onItemMouseEnter}
+        style={style}
+        value={value}
+        selected={selected}
+      >
+        <Container
+          ref={anchorRef}
+          flex
+          direction='column'
+          className={classes.content}
+        >
+          <Container flex alignItems='center'>
+            {checkmarked !== undefined && (
+              <Container
+                className={classes.iconContainer}
+                flex
+                inline
+                right='xsmall'
+              >
+                {checkmarked && <CheckMinor16 />}
+              </Container>
+            )}
+            {typeof children === 'string' ? (
+              <span
+                className={cx(classes.stringContent, {
+                  [classes[`stringContent${size && capitalize(size)}`]]: size,
+                  [classes.stringContentSemibold]: checkmarked
+                })}
+                style={style}
+              >
+                {titleCase ? toTitleCase(children) : children}
+              </span>
+            ) : (
+              children
+            )}
+            {menu && (
+              <Container flex inline left='xsmall'>
+                <ChevronMinor16 />
+              </Container>
+            )}
+          </Container>
+          {description && (
             <Container
-              className={classes.iconContainer}
-              flex
-              inline
-              right='xsmall'
+              className={classes.description}
+              left={checkmarked === undefined ? undefined : 'medium'}
+              top={0.25}
             >
-              {checkmarked && <CheckMinor16 />}
-            </Container>
-          )}
-          {typeof children === 'string' ? (
-            <span
-              className={cx(classes.stringContent, {
-                [classes[`stringContent${size && capitalize(size)}`]]: size,
-                [classes.stringContentSemibold]: checkmarked
-              })}
-              style={style}
-            >
-              {titleCase ? toTitleCase(children) : children}
-            </span>
-          ) : (
-            children
-          )}
-          {menu && (
-            <Container flex inline left='xsmall'>
-              <ChevronMinor16 />
+              {description}
             </Container>
           )}
         </Container>
-        {description && (
-          <Container
-            className={classes.description}
-            left={checkmarked === undefined ? undefined : 'medium'}
-            top={0.25}
-          >
-            {description}
-          </Container>
-        )}
-      </Container>
-    </MUIMenuItem>
+      </MUIMenuItem>
+      {menu && isOpened && (
+        <Popper
+          anchorEl={anchorRef.current}
+          placement='right-start'
+          open
+          autoWidth={false}
+          enableCompactMode
+          popperOptions={{
+            modifiers: {
+              offset: {
+                offset: `-10px,6px`
+              }
+            }
+          }}
+        >
+          <ClickAwayListener onClickAway={onAwayClick}>
+            <Paper className={classes.content}>{menu}</Paper>
+          </ClickAwayListener>
+        </Popper>
+      )}
+    </>
   )
 })
 
