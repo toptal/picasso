@@ -90,7 +90,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
 
   const classes = useStyles()
   const titleCase = useTitleCase(propTitleCase)
-  const { onItemClick } = useMenuItem({ menu, onClick })
+  const { onItemClick, onItemMouseEnter } = useMenuItem({ menu, onClick })
 
   return (
     <MUIMenuItem
@@ -109,6 +109,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
       disabled={disabled}
       disableGutters={disableGutters}
       onClick={onItemClick}
+      onMouseEnter={onItemMouseEnter}
       style={style}
       value={value}
       selected={selected}
