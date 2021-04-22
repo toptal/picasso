@@ -23,8 +23,15 @@ const Example = () => {
     </Menu>
   )
 
-  const regularMenu = (
+  const sliderMenu = (
     <Menu>
+      <Menu.Item>Item A</Menu.Item>
+      <Menu.Item menu={menuForItemB}>Item B</Menu.Item>
+    </Menu>
+  )
+
+  const drilldownMenu = (
+    <Menu mode='drilldown'>
       <Menu.Item>Item A</Menu.Item>
       <Menu.Item menu={menuForItemB}>Item B</Menu.Item>
     </Menu>
@@ -34,7 +41,11 @@ const Example = () => {
     <Container flex>
       <Container right='small'>
         <Form.Label>Default</Form.Label>
-        <Container style={{ width: '240px' }}>{regularMenu}</Container>
+        <Container style={{ width: '240px' }}>{sliderMenu}</Container>
+      </Container>
+      <Container>
+        <Form.Label>Drilldown</Form.Label>
+        <Container style={{ width: '240px' }}>{drilldownMenu}</Container>
       </Container>
     </Container>
   )
