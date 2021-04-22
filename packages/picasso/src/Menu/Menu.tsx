@@ -43,12 +43,12 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
     ...rest
   } = props
   const classes = useStyles()
-  const { menu, context, hasBackButton } = useMenu({ mode })
+  const { context, innerMenu, hasBackButton } = useMenu({ mode })
   const { onBackClick, onMenuMouseLeave } = context
 
   return (
     <MenuContext.Provider value={context}>
-      {menu ?? (
+      {innerMenu ?? (
         <MUIMenuList
           {...rest}
           ref={ref}

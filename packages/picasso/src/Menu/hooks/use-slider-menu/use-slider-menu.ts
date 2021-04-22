@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useContext, useMemo, useState } from 'react'
 
-import MenuContext from '../../MenuContext'
+import MenuContext, { MenuContextProps } from '../../MenuContext'
 
 const useSliderMenu = () => {
   const [items, setItems] = useState<Record<string, ReactElement>>({})
@@ -43,12 +43,26 @@ const useSliderMenu = () => {
     }
   }, [items, lastKey])
 
+  const context = useMemo(
+    (): MenuContextProps => ({
+      onItemUpdate: onItemUpdate ?? handleItemUpdate,
+      onItemClick: onItemClick ?? handleItemClick,
+      onBackClick: onBackClick ?? handleBackClick
+    }),
+    [
+      onItemUpdate,
+      onItemClick,
+      onBackClick,
+      handleItemUpdate,
+      handleItemClick,
+      handleBackClick
+    ]
+  )
+
   return {
-    menu: lastMenu,
-    hasBackButton: Boolean(onBackClick),
-    onItemUpdate: onItemUpdate ?? handleItemUpdate,
-    onItemClick: onItemClick ?? handleItemClick,
-    onBackClick: onBackClick ?? handleBackClick
+    context,
+    innerMenu: lastMenu,
+    hasBackButton: Boolean(onBackClick)
   }
 }
 

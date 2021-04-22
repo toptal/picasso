@@ -1,4 +1,6 @@
-import { ReactElement, useCallback, useState } from 'react'
+import { ReactElement, useCallback, useMemo, useState } from 'react'
+
+import { MenuContextProps } from '../../../Menu/MenuContext'
 
 const useDrilldownMenu = () => {
   const [activeItemKey, setActiveItemKey] = useState<string>()
@@ -20,11 +22,20 @@ const useDrilldownMenu = () => {
     setActiveItemKey(undefined)
   }, [])
 
+  const context = useMemo(
+    (): MenuContextProps => ({
+      activeItemKey,
+      onItemMouseEnter: handleItemMouseEnter,
+      onMenuMouseLeave: handleMenuMouseLeave,
+      onAwayClick: handleAwayClick
+    }),
+    [activeItemKey, handleItemMouseEnter, handleMenuMouseLeave, handleAwayClick]
+  )
+
   return {
-    activeItemKey,
-    onItemMouseEnter: handleItemMouseEnter,
-    onMenuMouseLeave: handleMenuMouseLeave,
-    onAwayClick: handleAwayClick
+    context,
+    innerMenu: undefined,
+    hasBackButton: false
   }
 }
 

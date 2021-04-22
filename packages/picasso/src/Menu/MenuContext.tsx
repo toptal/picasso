@@ -7,7 +7,7 @@ export interface MenuContextProps {
   onAwayClick?: () => void
   onItemUpdate?: (key: string, menu?: ReactElement) => void
   onItemMouseEnter?: (key: string, menu?: ReactElement) => void
-  onMenuMouseLeave?: (key: string) => void
+  onMenuMouseLeave?: () => void
 }
 
 export default createContext<MenuContextProps>({})
