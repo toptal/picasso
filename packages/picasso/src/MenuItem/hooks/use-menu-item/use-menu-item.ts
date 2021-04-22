@@ -12,13 +12,11 @@ interface Props {
 const useMenuItem = (props: Props) => {
   const { menu, onClick } = props
   const key = useMenuItemKey()
-  const { onItemClick } = useSliderMenuItem({ key, menu, onClick })
-  const { isOpened, onItemMouseEnter, onAwayClick } = useDrilldownMenuItem({
-    key,
-    menu
-  })
 
-  return { isOpened, onItemClick, onItemMouseEnter, onAwayClick }
+  return {
+    ...useSliderMenuItem({ key, menu, onClick }),
+    ...useDrilldownMenuItem({ key, menu })
+  }
 }
 
 export default useMenuItem

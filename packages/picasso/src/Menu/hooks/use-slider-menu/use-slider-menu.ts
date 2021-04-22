@@ -45,6 +45,7 @@ const useSliderMenu = () => {
 
   const context = useMemo(
     (): MenuContextProps => ({
+      mode: 'slider',
       onItemUpdate: onItemUpdate ?? handleItemUpdate,
       onItemClick: onItemClick ?? handleItemClick,
       onBackClick: onBackClick ?? handleBackClick

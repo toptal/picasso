@@ -1,6 +1,9 @@
 import { createContext, ReactElement } from 'react'
 
+import { MenuMode } from './types'
+
 export interface MenuContextProps {
+  mode?: MenuMode
   activeItemKey?: string
   onItemClick?: (key: string, menu?: ReactElement) => void
   onBackClick?: () => void
