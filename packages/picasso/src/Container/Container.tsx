@@ -11,14 +11,22 @@ import {
 
 import styles, { AlignItemsType, JustifyContentType } from './styles'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
+import isDarkMode from '../utils/is-dark-mode'
 
 type ContainerType = 'div' | 'span'
 
 type DirectionType = 'row' | 'column'
 
-export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue' | 'grey'
+export type VariantType =
+  | 'transparent'
+  | 'red'
+  | 'green'
+  | 'white'
+  | 'yellow'
+  | 'blue'
+  | 'grey'
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme, Props & { dark: boolean }>(styles, {
   name: 'PicassoContainer'
 })
 
@@ -60,7 +68,7 @@ export interface Props
 /**
  * Container component used for spacing 2 elements
  */
-export const Container = forwardRef<HTMLDivElement, Props>(function Container(
+export const Container = forwardRef<HTMLDivElement, Props>(function Container (
   props,
   ref
 ) {
@@ -88,7 +96,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
     ...rest
   } = props
 
-  const classes = useStyles(props)
+  const classes = useStyles({ ...props, dark: isDarkMode() })
 
   const margins = {
     ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),

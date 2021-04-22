@@ -135,7 +135,7 @@ const Content = () => (
     <hr />
 
     <Section title='Interviews'>
-      <Container bordered rounded padded='medium' flex>
+      <Container bordered rounded padded='medium' flex variant='white'>
         <div
           style={{
             borderRight: '1px solid rgb(235, 236, 237)',
@@ -235,6 +235,7 @@ const Content = () => (
       <Container flex alignItems='stretch' bottom='medium'>
         <Avatar src='./filippo.jpeg' size='large' />
         <Container
+          variant='white'
           bordered
           rounded
           padded='medium'
