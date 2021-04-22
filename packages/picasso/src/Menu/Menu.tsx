@@ -27,7 +27,7 @@ export interface StaticProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'Menu'
+  name: 'PicassoMenu'
 })
 
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
