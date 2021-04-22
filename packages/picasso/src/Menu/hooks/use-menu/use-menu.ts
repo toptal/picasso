@@ -1,7 +1,16 @@
-import useMenuContext from '../use-menu-context'
+import { useMemo } from 'react'
+
+import { MenuMode } from '../../types'
+import useDrilldownMenu from '../use-drilldown-menu'
 import useSliderMenu from '../use-slider-menu'
 
-const useMenu = () => {
+export interface Props {
+  mode?: MenuMode
+}
+
+const useMenu = (props: Props) => {
+  const { mode } = props
+
   const {
     menu,
     hasBackButton,
@@ -9,7 +18,39 @@ const useMenu = () => {
     onItemUpdate,
     onBackClick
   } = useSliderMenu()
-  const context = useMenuContext({ onItemClick, onItemUpdate, onBackClick })
+
+  const {
+    activeItemKey,
+    onItemMouseEnter,
+    onMenuMouseLeave,
+    onAwayClick
+  } = useDrilldownMenu()
+
+  const context = useMemo(
+    () =>
+      mode !== 'drilldown'
+        ? {
+            onItemClick,
+            onItemUpdate,
+            onBackClick
+          }
+        : {
+            activeItemKey,
+            onItemMouseEnter,
+            onMenuMouseLeave,
+            onAwayClick
+          },
+    [
+      mode,
+      activeItemKey,
+      onItemClick,
+      onItemUpdate,
+      onBackClick,
+      onItemMouseEnter,
+      onMenuMouseLeave,
+      onAwayClick
+    ]
+  )
 
   return { menu, context, hasBackButton }
 }

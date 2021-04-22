@@ -7,15 +7,18 @@ import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
 import { BackMinor16 } from '../Icon'
 import MenuItem from '../MenuItem'
 import Typography from '../Typography'
-import useMenu from './hooks/use-menu'
+import { useMenu } from './hooks'
 import MenuContext from './MenuContext'
 import styles from './styles'
+import { MenuMode } from './types'
 
 export type MenuAttributes = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
 
 export interface Props extends BaseProps, MenuAttributes {
-  // whether or not to handle nested navigation
+  // Switches between slider and drilldown modes
+  mode?: MenuMode
+  // Whether or not to handle nested navigation
   allowNestedNavigation?: boolean
 }
 
@@ -31,10 +34,17 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
   props,
   ref
 ) {
-  const { children, className, style, allowNestedNavigation, ...rest } = props
+  const {
+    children,
+    className,
+    style,
+    mode,
+    allowNestedNavigation,
+    ...rest
+  } = props
   const classes = useStyles()
-  const { menu, context, hasBackButton } = useMenu()
-  const { onBackClick } = context
+  const { menu, context, hasBackButton } = useMenu({ mode })
+  const { onBackClick, onMenuMouseLeave } = context
 
   return (
     <MenuContext.Provider value={context}>
@@ -44,6 +54,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
           ref={ref}
           className={cx(classes.root, className)}
           style={style}
+          onMouseLeave={onMenuMouseLeave}
         >
           {hasBackButton && allowNestedNavigation && (
             <MenuItem key='back' onClick={onBackClick}>
@@ -61,6 +72,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
 
 Menu.defaultProps = {
+  mode: 'slider',
   allowNestedNavigation: true
 }
 

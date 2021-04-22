@@ -22,7 +22,7 @@ import {
 import Container from '../Container'
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
 import { toTitleCase } from '../utils'
-import { useMenuItemKey, useMenuItemSlider } from './hooks'
+import { useMenuItem } from './hooks'
 import styles from './styles'
 
 export type VariantType = 'light' | 'dark'
@@ -76,7 +76,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     disabled,
     disableGutters,
     menu,
-    onClick: propOnClick,
+    onClick,
     titleCase: propTitleCase,
     selected,
     checkmarked,
@@ -90,8 +90,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
 
   const classes = useStyles()
   const titleCase = useTitleCase(propTitleCase)
-  const key = useMenuItemKey()
-  const { onClick } = useMenuItemSlider({ key, menu, onClick: propOnClick })
+  const { onItemClick } = useMenuItem({ menu, onClick })
 
   return (
     <MUIMenuItem
@@ -109,7 +108,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
       })}
       disabled={disabled}
       disableGutters={disableGutters}
-      onClick={onClick}
+      onClick={onItemClick}
       style={style}
       value={value}
       selected={selected}

@@ -8,7 +8,7 @@ export interface Props {
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
-const useMenuItemSlider = (props: Props) => {
+const useSliderMenuItem = (props: Props) => {
   const { key, menu, onClick } = props
   const { onItemClick, onItemUpdate } = useContext(MenuContext)
 
@@ -18,7 +18,7 @@ const useMenuItemSlider = (props: Props) => {
     }
   }, [key, menu, onItemUpdate])
 
-  const handleClick = useCallback(
+  const handleItemClick = useCallback(
     (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
       if (menu && onItemClick) {
         event.stopPropagation()
@@ -33,8 +33,8 @@ const useMenuItemSlider = (props: Props) => {
   )
 
   return {
-    onClick: handleClick
+    onItemClick: handleItemClick
   }
 }
 
-export default useMenuItemSlider
+export default useSliderMenuItem
