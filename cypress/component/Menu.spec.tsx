@@ -44,7 +44,7 @@ const MenuExample = (props: MenuProps) => {
 }
 
 describe('Menu', () => {
-  it('navigates stack menu', () => {
+  it('navigates slider menu', () => {
     mount(<MenuExample />)
     cy.get('[data-testid="menu-b"]').should('not.exist')
     cy.get('[data-testid="menu-back"]').should('not.exist')
