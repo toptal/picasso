@@ -50,10 +50,12 @@ export const paletteLight: Palette = {
     ...light.grey
   },
   text: {
-    primary: light.grey.dark
+    secondary: light.grey.dark,
+    primary: light.common.black
   },
   background: {
-    default: light.common.white
+    default: light.common.white,
+    paper: light.common.white
   },
   action: {
     active: light.common.black,

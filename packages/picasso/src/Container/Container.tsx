@@ -6,12 +6,12 @@ import cx from 'classnames'
 import {
   StandardProps,
   SpacingType,
-  spacingToRem
+  spacingToRem,
+  useTheme
 } from '@toptal/picasso-shared'
 
 import styles, { AlignItemsType, JustifyContentType } from './styles'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
-import isDarkMode from '../utils/is-dark-mode'
 
 type ContainerType = 'div' | 'span'
 
@@ -96,7 +96,8 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container (
     ...rest
   } = props
 
-  const classes = useStyles({ ...props, dark: isDarkMode() })
+  const { isInDarkMode } = useTheme()
+  const classes = useStyles({ ...props, dark: isInDarkMode })
 
   const margins = {
     ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),

@@ -27,42 +27,42 @@ export default ({ palette, typography }: Theme) =>
     bodySmall: {
       fontSize: '12px',
       fontWeight: typography.fontWeights.regular,
-      color: palette.text.primary
+      color: palette.text.secondary
     },
     bodyMedium: {
       fontSize: '14px',
       fontWeight: typography.fontWeights.regular,
-      color: palette.text.primary
+      color: palette.text.secondary
     },
     bodyLarge: {
       fontSize: '16px',
       fontWeight: typography.fontWeights.regular,
-      color: palette.common.black
+      color: palette.text.secondary
     },
     bodyInherit: {
       fontSize: '1em',
       fontWeight: typography.fontWeights.regular,
-      color: palette.text.primary
+      color: palette.text.secondary
     },
     headingSmall: {
       fontSize: '14px',
       fontWeight: typography.fontWeights.semibold,
-      color: palette.common.black
+      color: palette.text.primary
     },
     headingMedium: {
       fontSize: '16px',
       fontWeight: typography.fontWeights.semibold,
-      color: palette.common.black
+      color: palette.text.primary
     },
     headingLarge: {
       fontSize: '20px',
       fontWeight: typography.fontWeights.semibold,
-      color: palette.common.black
+      color: palette.text.primary
     },
     headingXlarge: {
       fontSize: '28px',
       fontWeight: typography.fontWeights.semibold,
-      color: palette.common.black
+      color: palette.text.primary
     },
 
     // weight
@@ -102,7 +102,7 @@ export default ({ palette, typography }: Theme) =>
       color: palette.grey.main
     },
     darkGrey: {
-      color: palette.text.primary
+      color: palette.text.secondary
     },
     black: {
       color: palette.common.black

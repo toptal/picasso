@@ -6,7 +6,9 @@ export default ({ layout, palette }: Theme) =>
       flex: 1,
       width: '100%',
       display: 'flex',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      // hasSidebar fix
+      background: `linear-gradient(90deg, ${palette.background.default} 50%, ${palette.secondary.main} 50%)`
     },
     content: {
       height: '100%',

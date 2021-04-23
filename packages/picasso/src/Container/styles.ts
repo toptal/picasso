@@ -101,7 +101,7 @@ justifyContentVariants.forEach(variant => {
 export default ({ palette, sizes: { borderRadius } }: Theme) =>
   createStyles({
     bordered: {
-      border: `1px solid ${palette.grey.lighter2}`
+      border: `1px solid ${palette.secondary.dark}`
     },
 
     rounded: {
@@ -130,7 +130,7 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
 
     whiteVariant: {
       backgroundColor: (props: { dark: boolean }) =>
-        props.dark ? palette.grey.light : palette.common.white
+        props.dark ? palette.secondary.light : palette.common.white
     },
 
     redVariant: colorVariant(palette.red),
