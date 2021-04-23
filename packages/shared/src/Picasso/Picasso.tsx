@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
+import store from 'store'
 import {
-  createMuiTheme,
   MuiThemeProvider,
   Theme,
   ThemeOptions,
@@ -23,17 +23,7 @@ import { Helmet } from 'react-helmet'
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 
 import CssBaseline from '../CssBaseline'
-import {
-  palette,
-  layout,
-  breakpoints,
-  screens,
-  transitions,
-  typography,
-  sizes,
-  shadows,
-  PicassoBreakpoints
-} from './config'
+import { themes, PicassoBreakpoints } from './config'
 import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
 import NotificationsProvider from './NotificationsProvider'
@@ -42,32 +32,7 @@ import Favicon from '../Favicon'
 import { generateRandomStringOrGetEmptyInTest } from './utils'
 import { EnvironmentType, TextLabelProps } from './types'
 
-const picasso = {
-  palette,
-  layout,
-  transitions,
-  sizes,
-  breakpoints,
-  screens,
-  shadows,
-  typography,
-  props: {
-    MuiButtonBase: {
-      disableRipple: true
-    },
-    MuiList: {
-      disablePadding: true
-    },
-    MuiPaper: {
-      square: true
-    },
-    MuiOutlinedInput: {
-      notched: false
-    }
-  }
-}
-
-const PicassoProvider = new Provider(createMuiTheme(picasso))
+const PicassoProvider = new Provider(themes)
 
 interface RootContextProps extends TextLabelProps {
   rootRef?: RefObject<HTMLDivElement>
@@ -79,6 +44,8 @@ interface RootContextProps extends TextLabelProps {
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
   disableTransitions?: boolean
+  isInDarkMode: boolean
+  setDarkMode: (value: boolean) => void
 }
 export const RootContext = React.createContext<RootContextProps>({
   hasTopBar: false,
@@ -89,7 +56,9 @@ export const RootContext = React.createContext<RootContextProps>({
   titleCase: false,
   hasDrawer: false,
   setHasDrawer: () => {},
-  disableTransitions: false
+  disableTransitions: false,
+  isInDarkMode: false,
+  setDarkMode: () => {}
 })
 
 export const usePicassoRoot = () => {
@@ -135,6 +104,15 @@ export const useAppConfig = () => {
   }
 }
 
+export const useTheme = () => {
+  const context = useContext(RootContext)
+
+  return {
+    isInDarkMode: context.isInDarkMode,
+    setDarkMode: context.setDarkMode
+  }
+}
+
 interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   children?: ReactNode
   RootComponent: ForwardRefExoticComponent<
@@ -142,6 +120,7 @@ interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   >
   environment: EnvironmentType<'test' | 'temploy'>
   disableTransitions?: boolean
+  setTheme: (value: boolean) => void
 }
 
 interface PicassoRootNodeProps {
@@ -174,7 +153,8 @@ const PicassoGlobalStylesProvider = (
     RootComponent,
     environment,
     titleCase,
-    disableTransitions
+    disableTransitions,
+    setTheme
   } = props
 
   const rootRef = useRef<HTMLDivElement>(null)
@@ -201,6 +181,14 @@ const PicassoGlobalStylesProvider = (
       setContextValue({
         ...contextValue,
         hasSidebar
+      })
+    },
+    isInDarkMode: store.get('isInDarkMode') || false,
+    setDarkMode: (isInDarkMode: boolean) => {
+      setTheme(isInDarkMode)
+      setContextValue({
+        ...contextValue,
+        isInDarkMode
       })
     },
     disableTransitions
@@ -298,14 +286,23 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     seed: generateRandomStringOrGetEmptyInTest()
   })
 
+  const [selectedTheme, setTheme] = useState(PicassoProvider.theme)
+
+  const handleSetTheme = (isInDarkMode: boolean) => {
+    setTheme(
+      isInDarkMode ? PicassoProvider.themes.dark : PicassoProvider.themes.light
+    )
+  }
+
   return (
     <StylesProvider generateClassName={generateClassName}>
-      <MuiThemeProvider theme={PicassoProvider.theme}>
+      <MuiThemeProvider theme={selectedTheme}>
         <PicassoGlobalStylesProvider
           RootComponent={RootComponent}
           environment={environment}
           titleCase={titleCase}
           disableTransitions={disableTransitions}
+          setTheme={handleSetTheme}
         >
           {fixViewport && <Viewport />}
           {loadFonts && <FontsLoader />}

@@ -28,11 +28,13 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "color": "^3.1.1",
-    "notistack": "^1.0.5"
+    "notistack": "^1.0.5",
+    "store": "^2.0.12"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.10",
-    "@types/color": "^3.0.1"
+    "@types/color": "^3.0.1",
+    "@types/store": "^2.0.2"
   },
   "sideEffects": [
     "**/styles.ts",
