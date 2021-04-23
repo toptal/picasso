@@ -31,7 +31,7 @@ export default ({ typography, palette }: Theme) =>
       }
     },
     light: {
-      color: palette.common.black,
+      color: palette.text.primary,
 
       '&:hover': {
         color: palette.common.black,
@@ -59,7 +59,7 @@ export default ({ typography, palette }: Theme) =>
       }
     },
     dark: {
-      color: palette.grey.main,
+      color: palette.text.primary,
 
       '&:hover': {
         backgroundColor: palette.grey.dark,

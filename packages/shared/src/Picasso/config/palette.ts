@@ -55,6 +55,14 @@ export const paletteLight: Palette = {
   background: {
     default: light.common.white
   },
+  action: {
+    active: light.common.black,
+    hover: light.blue.main,
+    selected: light.blue.main,
+    focus: light.blue.main,
+    disabled: light.grey.main
+  },
+  divider: light.grey.lighter2,
   type: 'light'
 }
 
@@ -81,6 +89,14 @@ const paletteDark: Palette = {
     default: dark.grey.dark,
     paper: dark.common.white
   },
+  action: {
+    active: dark.common.white,
+    hover: dark.common.white,
+    selected: dark.common.white,
+    focus: dark.common.white,
+    disabled: dark.grey.main
+  },
+  divider: dark.common.black,
   type: 'dark'
 }
 

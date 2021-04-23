@@ -21,30 +21,32 @@ export default ({ palette, sizes }: Theme) =>
       borderRadius: sizes.borderRadius.small
     },
     light: {
-      color: palette.grey.dark,
+      color: palette.text.secondary,
 
       '&:hover': {
-        color: palette.blue.main,
+        color: palette.action.hover,
         '&$selected': {
-          color: palette.blue.main,
-          backgroundColor: palette.grey.light
+          color: palette.action.active,
+          backgroundColor: palette.secondary.light
         }
       },
 
       '&$selected': {
-        color: palette.blue.main,
-        backgroundColor: palette.grey.light
+        color: palette.action.selected,
+        backgroundColor: palette.secondary.light
       },
 
       '&:focus': {
-        color: palette.blue.main,
+        color: palette.action.focus,
         '&$selected': {
-          color: palette.blue.main,
-          backgroundColor: palette.grey.light
+          color: palette.action.active,
+          backgroundColor: palette.secondary.light
         }
       }
     },
     dark: {
+      color: palette.text.secondary,
+
       '&:hover': {
         color: palette.common.white,
         '&$selected': {
@@ -84,13 +86,13 @@ export default ({ palette, sizes }: Theme) =>
       fontSize: '1em'
     },
     lightExpandIcon: {
-      color: palette.grey.dark
+      color: palette.text.secondary
     },
     darkExpandIcon: {
-      color: palette.grey.main
+      color: palette.text.secondary
     },
     expandIconDisabled: {
-      color: palette.grey.main
+      color: palette.action.disabled
     },
     noWrap: {
       flex: 1,

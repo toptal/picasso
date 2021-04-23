@@ -12,7 +12,7 @@ export default ({ palette }: Theme) =>
     },
     default: {
       color: palette.blue.main,
-      '--logo-text-color': palette.common.black,
+      '--logo-text-color': palette.text.primary,
       '--logo-emblem-color': palette.blue.main
     },
     blue: {

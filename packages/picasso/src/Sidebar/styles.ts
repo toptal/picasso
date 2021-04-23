@@ -43,11 +43,11 @@ export default ({ palette, screens, zIndex }: Theme) =>
       height: '100%'
     },
     light: {
-      boxShadow: `inset -1px 0px 0px 0px ${palette.grey.lighter2}`,
-      backgroundColor: palette.grey.lighter
+      boxShadow: `inset -1px 0px 0px 0px ${palette.divider}`,
+      backgroundColor: palette.background.default
     },
     dark: {
-      boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
-      backgroundColor: palette.grey.darker
+      boxShadow: `inset -1px 0px 0px 0px ${palette.divider}`,
+      backgroundColor: palette.background.default
     }
   })

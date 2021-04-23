@@ -61,7 +61,9 @@ const useGetData = (): boolean => {
 const SidebarMenu = () => (
   <Sidebar>
     <Sidebar.Menu>
-      <Sidebar.Item icon={<Overview16 />}>Overview</Sidebar.Item>
+      <Sidebar.Item selected icon={<Overview16 />}>
+        Overview
+      </Sidebar.Item>
       <Sidebar.Item icon={<Jobs16 />}>Jobs</Sidebar.Item>
       <Sidebar.Item icon={<Services16 />}>Overview</Sidebar.Item>
       <Sidebar.Item icon={<Candidates16 />}>Interviews</Sidebar.Item>

@@ -35,7 +35,9 @@ export const light = {
     white: '#fff'
   },
   secondary: {
+    light: '#eef1fc',
     main: '#fff',
+    dark: '#ebeced',
     contrastText: '#000'
   }
 }
@@ -77,7 +79,9 @@ export const dark = {
     black: '#000'
   },
   secondary: {
-    main: '#262d3d',
+    light: '#1d2026',
+    main: '#181a1e',
+    dark: '#131518',
     contrastText: '#c4c6ca'
   }
 }
