@@ -1,3 +1,5 @@
+import { light, dark } from './colors'
+
 interface ColorSample {
   lighter?: string
   lighter2?: string
@@ -7,6 +9,10 @@ interface ColorSample {
   main2?: string
   dark?: string
   darker?: string
+  secondary: {
+    main: string
+    contrastText: string
+  }
 }
 
 declare module '@material-ui/core/styles/createPalette' {
@@ -24,65 +30,53 @@ declare module '@material-ui/core' {
   export interface Color extends ColorSample {}
 }
 
-export const colors = {
-  grey: {
-    lighter: '#f3f4f6',
-    lighter2: '#ebeced',
-    light: '#e5e7ea',
-    light2: '#d8d9dc',
-    main: '#c4c6ca',
-    main2: '#84888e',
-    dark: '#455065',
-    darker: '#262d3d'
-  },
-  blue: {
-    lighter: '#edf1fd',
-    light: '#25a9ef',
-    main: '#204ecf',
-    dark: '#183a9e',
-    darker: '#0f256e'
-  },
-  yellow: {
-    lighter: '#fff5e3',
-    main: '#e59c01'
-  },
-  red: {
-    lighter: '#fbedf1',
-    main: '#d42551'
-  },
-  green: {
-    lighter: '#eafbf5',
-    main: '#00cc83',
-    dark: '#03b080',
-    darker: '#05947c'
-  },
-  common: {
-    black: '#000',
-    white: '#fff'
-  }
-}
+export const colors = dark
 
-const palette = {
+export const paletteLight = {
   // MUI adds additional colors, like `contrastText` to the
   // palette. So to prevent changing colors object we should
   // deep copy it.
-  ...JSON.parse(JSON.stringify(colors)),
-  primary: JSON.parse(JSON.stringify(colors.blue)),
-  error: JSON.parse(JSON.stringify(colors.red)),
+  ...JSON.parse(JSON.stringify(light)),
+  primary: JSON.parse(JSON.stringify(light.blue)),
+  error: JSON.parse(JSON.stringify(light.red)),
   grey: {
-    100: colors.grey.lighter2,
-    200: colors.grey.light2,
-    300: colors.grey.main,
-    400: colors.grey.dark,
-    500: colors.grey.darker,
-    ...colors.grey
+    100: light.grey.lighter2,
+    200: light.grey.light2,
+    300: light.grey.main,
+    400: light.grey.dark,
+    500: light.grey.darker,
+    ...light.grey
   },
   text: {
-    primary: colors.grey.dark
+    primary: light.grey.dark
   },
   background: {
-    default: colors.common.white
+    default: light.common.white
   }
 }
 
-export default palette
+const paletteDark = {
+  // MUI adds additional colors, like `contrastText` to the
+  // palette. So to prevent changing colors object we should
+  // deep copy it.
+  ...JSON.parse(JSON.stringify(dark)),
+  primary: JSON.parse(JSON.stringify(dark.blue)),
+  error: JSON.parse(JSON.stringify(dark.red)),
+  grey: {
+    100: dark.grey.lighter2,
+    200: dark.grey.light2,
+    300: dark.grey.main,
+    400: dark.grey.dark,
+    500: dark.grey.darker,
+    ...dark.grey
+  },
+  text: {
+    primary: dark.grey.dark
+  },
+  background: {
+    default: dark.common.white
+  },
+  type: 'dark'
+}
+
+export default paletteDark

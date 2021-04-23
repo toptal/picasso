@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DarkThemeSwitcher renders dark variant 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoDarkThemeSwitcher-wrapper"
+    >
+      <div
+        class="PicassoDarkThemeSwitcher-iconSun PicassoDarkThemeSwitcher-dark"
+      >
+        <svg
+          class="PicassoSvgAfternoon16-root"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M7.5 11a3.5 3.5 0 110-7 3.5 3.5 0 010 7zm0-1a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM7 0h1v3H7V0zm5.45 1.843l.707.707-2.121 2.122-.708-.708 2.122-2.12zM15 7v1h-3V7h3zm-1.843 5.45l-.707.707-2.122-2.121.708-.708 2.12 2.122zM8 15H7v-3h1v3zm-5.45-1.843l-.707-.707 2.121-2.122.708.708-2.122 2.12zM0 8V7h3v1H0zm1.843-5.45l.707-.707 2.122 2.121-.708.708-2.12-2.122z"
+          />
+        </svg>
+      </div>
+      <span
+        class="MuiSwitch-root"
+      >
+        <span
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-checked Mui-checked"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input MuiSwitch-input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="MuiSwitch-thumb"
+            />
+          </span>
+        </span>
+        <span
+          class="MuiSwitch-track"
+        />
+      </span>
+      <div
+        class="PicassoDarkThemeSwitcher-iconMoon PicassoDarkThemeSwitcher-dark"
+      >
+        <svg
+          class="PicassoSvgNight16-root"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M14 9V8h1v1h1v1h-1v1h-1v-1h-1V9h1zm-2-7V0h1v2h2v1h-2v2h-1V3h-2V2h2zM5.346 6.667c0 3.79 2.96 6.878 6.654 6.996A6.803 6.803 0 016.874 16C3.077 16 0 12.866 0 9s3.077-7 6.874-7c.073 0 .146.001.22.004a7.047 7.047 0 00-1.748 4.663zm-1 0c0-1.19.257-2.34.736-3.383C2.716 4.057 1 6.322 1 9c0 3.318 2.634 6 5.874 6a5.758 5.758 0 002.84-.747c-3.127-1.065-5.368-4.067-5.368-7.586z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DarkThemeSwitcher renders light variant 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoDarkThemeSwitcher-wrapper"
+    >
+      <div
+        class="PicassoDarkThemeSwitcher-iconSun PicassoDarkThemeSwitcher-light"
+      >
+        <svg
+          class="PicassoSvgAfternoon16-root"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M7.5 11a3.5 3.5 0 110-7 3.5 3.5 0 010 7zm0-1a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM7 0h1v3H7V0zm5.45 1.843l.707.707-2.121 2.122-.708-.708 2.122-2.12zM15 7v1h-3V7h3zm-1.843 5.45l-.707.707-2.122-2.121.708-.708 2.12 2.122zM8 15H7v-3h1v3zm-5.45-1.843l-.707-.707 2.121-2.122.708.708-2.122 2.12zM0 8V7h3v1H0zm1.843-5.45l.707-.707 2.122 2.121-.708.708-2.12-2.122z"
+          />
+        </svg>
+      </div>
+      <span
+        class="MuiSwitch-root"
+      >
+        <span
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <input
+              class="PrivateSwitchBase-input MuiSwitch-input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="MuiSwitch-thumb"
+            />
+          </span>
+        </span>
+        <span
+          class="MuiSwitch-track"
+        />
+      </span>
+      <div
+        class="PicassoDarkThemeSwitcher-iconMoon PicassoDarkThemeSwitcher-light"
+      >
+        <svg
+          class="PicassoSvgNight16-root"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M14 9V8h1v1h1v1h-1v1h-1v-1h-1V9h1zm-2-7V0h1v2h2v1h-2v2h-1V3h-2V2h2zM5.346 6.667c0 3.79 2.96 6.878 6.654 6.996A6.803 6.803 0 016.874 16C3.077 16 0 12.866 0 9s3.077-7 6.874-7c.073 0 .146.001.22.004a7.047 7.047 0 00-1.748 4.663zm-1 0c0-1.19.257-2.34.736-3.383C2.716 4.057 1 6.322 1 9c0 3.318 2.634 6 5.874 6a5.758 5.758 0 002.84-.747c-3.127-1.065-5.368-4.067-5.368-7.586z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;

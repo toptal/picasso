@@ -124,8 +124,13 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
       display: 'inline-block'
     },
 
+    transparentVariant: {
+      backgroundColor: 'transparent'
+    },
+
     whiteVariant: {
-      backgroundColor: palette.common.white
+      backgroundColor: (props: { dark: boolean }) =>
+        props.dark ? palette.grey.light : palette.common.white
     },
 
     redVariant: colorVariant(palette.red),

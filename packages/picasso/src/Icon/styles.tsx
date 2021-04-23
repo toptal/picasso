@@ -7,7 +7,8 @@ export default ({ palette }: Theme) =>
       display: 'inline-block',
       fontSize: 'inherit',
       height: '1em',
-      verticalAlign: '-.125em'
+      verticalAlign: '-.125em',
+      color: palette.secondary.contrastText
     },
 
     // colors
