@@ -10,7 +10,9 @@ const Example = () => {
         <Checkbox label='Checkbox 2' value='checkbox2' />
         <Checkbox
           label={
-            <TypographyOverflow>Radio 3 with some long text</TypographyOverflow>
+            <TypographyOverflow>
+              Checkbox 3 with some long text
+            </TypographyOverflow>
           }
           value='checkbox3'
         />
