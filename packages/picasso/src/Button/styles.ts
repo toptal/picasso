@@ -121,7 +121,7 @@ export default ({ palette, sizes, transitions, typography }: Theme) => {
 
     secondary: {
       color: palette.secondary.contrastText,
-      backgroundColor: palette.secondary.main,
+      backgroundColor: palette.secondary.light,
 
       '&:hover, &$hovered': {
         borderColor: palette.common.black

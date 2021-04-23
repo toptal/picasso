@@ -124,10 +124,12 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar (
         }}
       >
         {children}
-        <DarkThemeSwitcher
-          checked={isInDarkMode}
-          onChange={() => setDarkMode(!isInDarkMode)}
-        />
+        <div className={classes.switcher}>
+          <DarkThemeSwitcher
+            checked={isInDarkMode}
+            onChange={() => setDarkMode(!isInDarkMode)}
+          />
+        </div>
       </SidebarContext.Provider>
     </Container>
   )

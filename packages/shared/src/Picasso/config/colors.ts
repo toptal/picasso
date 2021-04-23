@@ -35,7 +35,7 @@ export const light = {
     white: '#fff'
   },
   secondary: {
-    light: '#eef1fc',
+    light: '#fff',
     main: '#fff',
     dark: '#ebeced',
     contrastText: '#000'

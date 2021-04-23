@@ -20,6 +20,12 @@ export default ({ palette, screens, zIndex }: Theme) =>
       left: '0.75em',
       zIndex: zIndex.appBar
     },
+    switcher: {
+      position: 'fixed',
+      top: '4rem',
+      right: '0.2rem',
+      zIndex: 10000
+    },
     responsiveWrapperContent: {
       maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
