@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso@7.2.0...@toptal/picasso@7.3.0) (2021-04-23)
+
+
+### Features
+
+* **select:** show loader instead of options for Select ([#2032](https://github.com/toptal/picasso/issues/2032)) ([cce8b7e](https://github.com/toptal/picasso/commit/cce8b7e2ad25a371dfed591ae6379b55eac445f2))
+
+
+
+
+
 # [7.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@7.1.0...@toptal/picasso@7.2.0) (2021-04-21)
 
 
