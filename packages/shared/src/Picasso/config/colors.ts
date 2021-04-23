@@ -42,14 +42,14 @@ export const light = {
 
 export const dark = {
   grey: {
-    lighter: '#131518',
-    lighter2: '#131518', // not translated
-    light: '#1d2026',
-    light2: '#84888e',
-    main: '#c4c6ca', // not translated
-    main2: '#84888e', // not translated
-    dark: '#c4c6ca',
-    darker: '#c4c6ca'
+    lighter: '#c4c6ca',
+    lighter2: '#c4c6ca', // not translated
+    light: '#84888e',
+    light2: '#c4c6ca',
+    main: '#84888e', // not translated
+    main2: '#1d2026', // not translated
+    dark: '#131518',
+    darker: '#131518'
   },
   blue: {
     lighter: '#edf1fd', // not translated
@@ -73,8 +73,8 @@ export const dark = {
     darker: '#05947c' // not translated
   },
   common: {
-    white: '#000',
-    black: '#fff'
+    white: '#fff',
+    black: '#000'
   },
   secondary: {
     main: '#262d3d',
