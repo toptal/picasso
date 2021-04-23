@@ -185,7 +185,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           }}
         >
           <ClickAwayListener onClickAway={onAwayClick}>
-            <Paper className={classes.content}>{menu}</Paper>
+            <Paper className={classes.paper}>{menu}</Paper>
           </ClickAwayListener>
         </Popper>
       )}

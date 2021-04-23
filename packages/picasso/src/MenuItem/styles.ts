@@ -23,7 +23,7 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default ({ typography, palette }: Theme) =>
+export default ({ typography, palette, shadows }: Theme) =>
   createStyles({
     root: {
       '&$nonSelectable:hover, &$nonSelectable:focus': {
@@ -118,5 +118,11 @@ export default ({ typography, palette }: Theme) =>
     description: {
       fontSize: '0.6875em',
       color: palette.text.primary
+    },
+    paper: {
+      background: palette.common.white,
+      maxHeight: '14.75rem', // 6.5 lines to show
+      overflowY: 'auto',
+      boxShadow: shadows[2]
     }
   })
