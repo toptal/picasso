@@ -3,32 +3,46 @@ import { Overrides } from '@material-ui/core/styles/overrides'
 import { deepmerge } from '@material-ui/utils'
 
 export class PicassoProvider {
+  themes: Record<string, Theme>
   theme: Theme
 
-  constructor(theme: Theme) {
-    this.theme = theme
+  constructor(themes: Record<'light' | 'dark', Theme>) {
+    this.themes = themes
+    this.theme = themes.light
   }
 
   disableResponsiveStyle() {
-    this.theme.layout.contentMinWidth = '768px'
+    for (const theme in this.themes) {
+      this.themes[theme].layout.contentMinWidth = '768px'
+    }
   }
 
   override(getOverride: (theme: Theme) => Partial<Overrides>) {
-    const newOverride = getOverride(this.theme)
+    for (const theme in this.themes) {
+      const newOverride = getOverride(this.themes[theme])
 
-    this.extendThemeOverrides(newOverride)
+      this.extendThemeOverrides(newOverride)
+    }
   }
 
   extendThemeOverrides(newOverride: Partial<Overrides>) {
-    const overrides = this.theme.overrides || {}
+    for (const theme in this.themes) {
+      const overrides = this.themes[theme].overrides || {}
 
-    Object.assign(overrides, newOverride)
+      Object.assign(overrides, newOverride)
 
-    this.theme.overrides = overrides
+      this.themes[theme].overrides = overrides
+    }
   }
 
-  extendTheme(theme: ThemeOptions) {
-    this.theme = deepmerge(this.theme, theme)
+  extendTheme(themeOptions: ThemeOptions) {
+    for (const theme in this.themes) {
+      this.theme = deepmerge(this.themes[theme], themeOptions)
+    }
+  }
+
+  setDarkMode(isInDarkMode: boolean) {
+    this.theme = isInDarkMode ? this.themes.dark : this.themes.light
   }
 }
 

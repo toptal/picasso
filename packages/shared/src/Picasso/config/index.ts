@@ -1,5 +1,5 @@
-import './theme'
-export { default as palette, colors } from './palette'
+export { default as themes } from './theme'
+export { paletteLight, paletteDark, colors } from './palette'
 export { default as transitions } from './transitions'
 export { default as typography } from './typography'
 export { default as sizes } from './sizes'

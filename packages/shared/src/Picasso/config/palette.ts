@@ -55,7 +55,7 @@ export const paletteLight = {
   }
 }
 
-const paletteDark = {
+export const paletteDark = {
   // MUI adds additional colors, like `contrastText` to the
   // palette. So to prevent changing colors object we should
   // deep copy it.
@@ -78,5 +78,3 @@ const paletteDark = {
   },
   type: 'dark'
 }
-
-export default paletteDark

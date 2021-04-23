@@ -6,6 +6,7 @@ export {
   useAppConfig,
   useDrawer,
   useSidebar,
+  useTheme,
   RootContext
 } from './Picasso'
 

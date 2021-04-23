@@ -12,8 +12,10 @@ import {
   StandardProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef,
-  useSidebar
+  useSidebar,
+  useTheme
 } from '@toptal/picasso-shared'
+import { DarkThemeSwitcher } from '@toptal/picasso-lab'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -92,6 +94,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const { children, variant = 'light', className, style } = props
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
+  const { isInDarkMode, setDarkMode } = useTheme()
 
   useLayoutEffect(() => {
     setHasSidebar(true)
@@ -121,6 +124,10 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         }}
       >
         {children}
+        <DarkThemeSwitcher
+          checked={isInDarkMode}
+          onChange={() => setDarkMode(!isInDarkMode)}
+        />
       </SidebarContext.Provider>
     </Container>
   )
