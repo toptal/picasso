@@ -45,6 +45,10 @@ page
     'Checkbox/story/CheckboxGroupHorizontal.example.tsx',
     'Checkbox group horizontal'
   )
+  .addExample(
+    'Checkbox/story/CheckboxGroupGrid.example.tsx',
+    'Checkbox group grid'
+  )
   .addExample('Checkbox/story/Disabled.example.tsx', 'Disabled')
   .addExample('Checkbox/story/Indeterminate.example.tsx', {
     title: 'Indeterminate'

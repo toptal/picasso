@@ -30,71 +30,83 @@ exports[`FormRadio renders 1`] = `
             role="radiogroup"
             type="radio"
           >
-            <label
-              class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+            <div
+              class="MuiGrid-root PicassoRadioGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-direction-xs MuiGrid-align-items-xs-flex"
             >
-              <span
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-                data-testid="trigger"
+              <div
+                class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item"
               >
-                <span
-                  class="MuiIconButton-label"
+                <label
+                  class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
                 >
-                  <input
-                    class="PrivateSwitchBase-input"
-                    name="color"
-                    type="radio"
-                    value="#ed143d"
-                  />
-                  <div
-                    class="Radio-uncheckedIcon"
-                  />
-                </span>
-              </span>
-              <span
-                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+                  <span
+                    aria-disabled="false"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+                    data-testid="trigger"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <input
+                        class="PrivateSwitchBase-input"
+                        name="color"
+                        type="radio"
+                        value="#ed143d"
+                      />
+                      <div
+                        class="Radio-uncheckedIcon"
+                      />
+                    </span>
+                  </span>
+                  <span
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+                  >
+                    <span
+                      class="PicassoFormLabel-text"
+                    >
+                      Crimson
+                    </span>
+                  </span>
+                </label>
+              </div>
+              <div
+                class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item"
               >
-                <span
-                  class="PicassoFormLabel-text"
+                <label
+                  class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
                 >
-                  Crimson
-                </span>
-              </span>
-            </label>
-            <label
-              class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
-            >
-              <span
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel PrivateSwitchBase-checked Mui-checked"
-                data-testid="trigger"
-              >
-                <span
-                  class="MuiIconButton-label"
-                >
-                  <input
-                    checked=""
-                    class="PrivateSwitchBase-input"
-                    name="color"
-                    type="radio"
-                    value="#ffe4b5"
-                  />
-                  <div
-                    class="Radio-checkedIcon"
-                  />
-                </span>
-              </span>
-              <span
-                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
-              >
-                <span
-                  class="PicassoFormLabel-text"
-                >
-                  Moccasin
-                </span>
-              </span>
-            </label>
+                  <span
+                    aria-disabled="false"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel PrivateSwitchBase-checked Mui-checked"
+                    data-testid="trigger"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <input
+                        checked=""
+                        class="PrivateSwitchBase-input"
+                        name="color"
+                        type="radio"
+                        value="#ffe4b5"
+                      />
+                      <div
+                        class="Radio-checkedIcon"
+                      />
+                    </span>
+                  </span>
+                  <span
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+                  >
+                    <span
+                      class="PicassoFormLabel-text"
+                    >
+                      Moccasin
+                    </span>
+                  </span>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </form>
@@ -137,71 +149,83 @@ exports[`FormRadio required with asterisk 1`] = `
             role="radiogroup"
             type="radio"
           >
-            <label
-              class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+            <div
+              class="MuiGrid-root PicassoRadioGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-direction-xs MuiGrid-align-items-xs-flex"
             >
-              <span
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-                data-testid="trigger"
+              <div
+                class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item"
               >
-                <span
-                  class="MuiIconButton-label"
+                <label
+                  class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
                 >
-                  <input
-                    class="PrivateSwitchBase-input"
-                    name="color"
-                    type="radio"
-                    value="#ed143d"
-                  />
-                  <div
-                    class="Radio-uncheckedIcon"
-                  />
-                </span>
-              </span>
-              <span
-                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+                  <span
+                    aria-disabled="false"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+                    data-testid="trigger"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <input
+                        class="PrivateSwitchBase-input"
+                        name="color"
+                        type="radio"
+                        value="#ed143d"
+                      />
+                      <div
+                        class="Radio-uncheckedIcon"
+                      />
+                    </span>
+                  </span>
+                  <span
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+                  >
+                    <span
+                      class="PicassoFormLabel-text"
+                    >
+                      Crimson
+                    </span>
+                  </span>
+                </label>
+              </div>
+              <div
+                class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item"
               >
-                <span
-                  class="PicassoFormLabel-text"
+                <label
+                  class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
                 >
-                  Crimson
-                </span>
-              </span>
-            </label>
-            <label
-              class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
-            >
-              <span
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel PrivateSwitchBase-checked Mui-checked"
-                data-testid="trigger"
-              >
-                <span
-                  class="MuiIconButton-label"
-                >
-                  <input
-                    checked=""
-                    class="PrivateSwitchBase-input"
-                    name="color"
-                    type="radio"
-                    value="#ffe4b5"
-                  />
-                  <div
-                    class="Radio-checkedIcon"
-                  />
-                </span>
-              </span>
-              <span
-                class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
-              >
-                <span
-                  class="PicassoFormLabel-text"
-                >
-                  Moccasin
-                </span>
-              </span>
-            </label>
+                  <span
+                    aria-disabled="false"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel PrivateSwitchBase-checked Mui-checked"
+                    data-testid="trigger"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <input
+                        checked=""
+                        class="PrivateSwitchBase-input"
+                        name="color"
+                        type="radio"
+                        value="#ffe4b5"
+                      />
+                      <div
+                        class="Radio-checkedIcon"
+                      />
+                    </span>
+                  </span>
+                  <span
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+                  >
+                    <span
+                      class="PicassoFormLabel-text"
+                    >
+                      Moccasin
+                    </span>
+                  </span>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </form>

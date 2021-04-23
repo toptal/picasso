@@ -2,11 +2,14 @@ import { createStyles } from '@material-ui/core/styles'
 
 export default () =>
   createStyles({
-    horizontal: {
-      flexDirection: 'row'
+    grid: {
+      marginTop: 0,
+      marginBottom: 0
     },
 
-    labelWithRightSpacing: {
-      marginRight: '1em'
+    gridItem: {
+      lineHeight: 1,
+      paddingTop: '0 !important',
+      paddingBottom: '0 !important'
     }
   })
