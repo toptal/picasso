@@ -12,8 +12,10 @@ import {
   StandardProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef,
-  useSidebar
+  useSidebar,
+  useTheme
 } from '@toptal/picasso-shared'
+import { DarkThemeSwitcher } from '@toptal/picasso-lab'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -85,18 +87,19 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
+export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar (
   props,
   ref
 ) {
   const { children, variant = 'light', className, style } = props
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
+  const { isInDarkMode, setDarkMode } = useTheme()
 
   useLayoutEffect(() => {
     setHasSidebar(true)
 
-    return function cleanup() {
+    return function cleanup () {
       setHasSidebar(false)
     }
   }, [setHasSidebar])
@@ -121,6 +124,10 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         }}
       >
         {children}
+        <DarkThemeSwitcher
+          checked={isInDarkMode}
+          onChange={() => setDarkMode(!isInDarkMode)}
+        />
       </SidebarContext.Provider>
     </Container>
   )

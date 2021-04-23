@@ -85,18 +85,3 @@ export const dark = {
     contrastText: '#c4c6ca'
   }
 }
-
-export const colorsdark = {
-  background: {
-    dark: '#181a1e',
-    light: '#1b1d21',
-    lighter: '#272d3c'
-  },
-
-  text: {
-    dark: '#c0c2c6',
-    disabled: '#455065'
-  },
-
-  fill: '#262d3d'
-}
