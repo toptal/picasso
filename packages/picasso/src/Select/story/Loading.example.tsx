@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Select } from '@toptal/picasso'
+import { Container, Form, Select } from '@toptal/picasso'
 
 const Example = () => {
   const [value, setValue] = useState<string>('')
@@ -10,14 +10,31 @@ const Example = () => {
   }
 
   return (
-    <Select
-      loading
-      onChange={handleChange}
-      options={OPTIONS}
-      value={value}
-      placeholder='Choose an option...'
-      width='auto'
-    />
+    <Container flex>
+      <Container right='small'>
+        <Form.Label>Default</Form.Label>
+        <Select
+          loading
+          onChange={handleChange}
+          options={OPTIONS}
+          value={value}
+          placeholder='Choose an option...'
+          width='auto'
+        />
+      </Container>
+      <Container>
+        <Form.Label>Native</Form.Label>
+        <Select
+          native
+          loading
+          onChange={handleChange}
+          options={OPTIONS}
+          value={value}
+          placeholder='Choose an option...'
+          width='auto'
+        />
+      </Container>
+    </Container>
   )
 }
 

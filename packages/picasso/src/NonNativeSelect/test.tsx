@@ -148,6 +148,27 @@ describe('NonNativeSelect', () => {
     expect(queryByRole('menu')).toBeInTheDocument()
   })
 
+  it('shows loader instead of options when opened in loading state', () => {
+    const placeholder = 'Choose an option...'
+
+    const {
+      getByPlaceholderText,
+      queryByTestId,
+      queryAllByRole
+    } = renderSelect({
+      options: OPTIONS,
+      placeholder,
+      loading: true
+    })
+
+    const selectInput = getByPlaceholderText(placeholder)
+
+    fireEvent.click(selectInput)
+
+    expect(queryAllByRole('option')).toHaveLength(0)
+    expect(queryByTestId('loader')).toBeInTheDocument()
+  })
+
   it('filters options based on entered value to the input field', () => {
     const placeholder = 'Choose an option...'
     const searchPlaceholder = 'Search for an option'

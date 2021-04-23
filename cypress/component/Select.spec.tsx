@@ -208,6 +208,18 @@ describe('Select', () => {
       </TestingPicasso>
     )
 
+    openSelect()
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders loading in native mode', () => {
+    mount(
+      <TestingPicasso>
+        <TestSelect native loading />
+      </TestingPicasso>
+    )
+
     cy.get('body').happoScreenshot()
   })
 

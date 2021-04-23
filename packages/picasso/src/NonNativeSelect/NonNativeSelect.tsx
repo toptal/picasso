@@ -4,12 +4,13 @@ import PopperJs from 'popper.js'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
-import { Search16 } from '@toptal/picasso/Icon'
 
+import { Search16 } from '../Icon'
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
 import MenuItem from '../MenuItem'
 import SelectCaret from '../SelectCaret'
+import NonNativeSelectLoader from '../NonNativeSelectLoader'
 import {
   useAdornments,
   useSelectState,
@@ -126,17 +127,12 @@ export const NonNativeSelect = documentable(
       const [startAdornment, endAdornment] = useAdornments({
         position: iconPosition,
         icon,
-        loading,
         disabled
       })
 
       const selectComponent = (
         <>
-          <div
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...rootProps}
-            className={classes.inputWrapper}
-          >
+          <div {...rootProps} className={classes.inputWrapper}>
             {!enableAutofill && name && (
               <input type='hidden' value={displayValue} name={name} />
             )}
@@ -172,17 +168,19 @@ export const NonNativeSelect = documentable(
             />
             <SelectCaret disabled={disabled} />
           </div>
-          {!disabled && (
+          {!disabled && isOpen && (
             <Popper
               ref={popperRef}
               autoWidth
               width={menuWidth}
               placement='bottom-start'
-              open={isOpen}
+              open
               anchorEl={inputWrapperRef.current}
               container={popperContainer}
             >
-              {isOpen && (
+              {loading ? (
+                <NonNativeSelectLoader />
+              ) : (
                 <NonNativeSelectOptions
                   options={filteredOptions}
                   renderOption={renderOption as any}
@@ -192,8 +190,8 @@ export const NonNativeSelect = documentable(
                   onBlur={rootProps.onBlur}
                   value={value}
                   filterOptionsValue={filterOptionsValue}
-                  multiple={multiple}
                   size={size}
+                  multiple={multiple}
                   noOptionsText={noOptionsText}
                   fixedHeader={searchInput}
                 />
