@@ -51,9 +51,10 @@
     "@babel/standalone": "^7.13.9",
     "@cypress/react": "^4.16.4",
     "@cypress/webpack-preprocessor": "^5.4.8",
-    "@storybook/addon-a11y": "^6.1.11",
-    "@storybook/addon-viewport": "^6.0.26",
-    "@storybook/theming": "^6.0.26",
+    "@storybook/addon-a11y": "^6.2.9",
+    "@storybook/addon-viewport": "^6.2.9",
+    "@storybook/react": "^6.2.9",
+    "@storybook/theming": "^6.2.9",
     "@svgr/cli": "^5.5.0",
     "@testing-library/react": "^11.2.5",
     "@testing-library/react-hooks": "^5.0.3",
@@ -142,8 +143,5 @@
     "**/marksy/marked": "^0.6.0",
     "**/npx/npm": "^5.7.1",
     "prettierx": "^0.17.0"
-  },
-  "dependencies": {
-    "@storybook/react": "^6.2.0-alpha.3"
   }
 }
