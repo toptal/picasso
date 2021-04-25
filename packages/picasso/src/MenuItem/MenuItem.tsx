@@ -61,6 +61,8 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   description?: ReactNode
   /** Callback when item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  /** Callback when item is hovered */
+  onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -79,7 +81,6 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     disabled,
     disableGutters,
     menu,
-    onClick,
     titleCase: propTitleCase,
     selected,
     checkmarked,
@@ -88,6 +89,8 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     variant = 'light',
     size,
     nonSelectable,
+    onClick,
+    onMouseEnter,
     ...rest
   } = props
 
@@ -96,7 +99,8 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
   const titleCase = useTitleCase(propTitleCase)
   const { isOpened, onItemClick, onItemMouseEnter, onAwayClick } = useMenuItem({
     menu,
-    onClick
+    onClick,
+    onMouseEnter
   })
 
   return (

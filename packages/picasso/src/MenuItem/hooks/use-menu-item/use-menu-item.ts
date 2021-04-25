@@ -7,15 +7,16 @@ import useDrilldownMenuItem from '../use-drilldown-menu-item'
 interface Props {
   menu?: ReactElement
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
 const useMenuItem = (props: Props) => {
-  const { menu, onClick } = props
+  const { menu, onClick, onMouseEnter } = props
   const key = useMenuItemKey()
 
   return {
     ...useSliderMenuItem({ key, menu, onClick }),
-    ...useDrilldownMenuItem({ key, menu })
+    ...useDrilldownMenuItem({ key, menu, onMouseEnter })
   }
 }
 
