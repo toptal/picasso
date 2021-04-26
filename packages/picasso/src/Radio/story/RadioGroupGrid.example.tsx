@@ -3,7 +3,7 @@ import { Container, Radio } from '@toptal/picasso'
 import { TypographyOverflow } from '@toptal/picasso-lab'
 
 const Example = () => {
-  const [value, setValue] = useState<string>('')
+  const [value, setValue] = useState('')
 
   return (
     <Container style={{ width: '500px' }}>
