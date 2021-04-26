@@ -3,6 +3,8 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import '../InputLabel/styles'
 import '../InputBase/styles'
 import '../Input/styles'
+import '../Menu/styles'
+import '../MenuItem/styles'
 import '../Loader/styles'
 
 export default ({ palette }: Theme) =>
