@@ -27,6 +27,7 @@ const CHART_DATA = [
 
 const Example = () => (
   <BarChart
+    dataKeys={['engineers hired']}
     data={CHART_DATA}
     getBarColor={() => palette.blue.main}
     width={720}

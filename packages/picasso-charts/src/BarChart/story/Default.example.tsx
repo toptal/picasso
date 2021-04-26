@@ -36,6 +36,7 @@ const COLORS_MAPPING: Record<string, string> = {
 
 const Example = () => (
   <BarChart
+    dataKeys={['active talent', 'potential talent']}
     data={CHART_DATA}
     getBarColor={dataKey => COLORS_MAPPING[dataKey]}
     getBarLabelColor={() => palette.grey.dark}

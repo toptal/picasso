@@ -51,6 +51,7 @@ const COLORS_MAPPING: Record<string, string> = {
 
 const Example = () => (
   <BarChart
+    dataKeys={['infected', 'recovered']}
     data={CHART_DATA}
     width={720}
     height={300}

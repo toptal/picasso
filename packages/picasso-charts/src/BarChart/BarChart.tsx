@@ -14,8 +14,8 @@ import { ticks as getD3Ticks } from 'd3-array'
 
 import BarChartLabel from '../BarChartLabel'
 import { BaseChartProps } from '../types'
-import { findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
+import { findTopDomain } from './utils'
 
 const {
   TICK_MARGIN,
@@ -29,19 +29,26 @@ const {
   TICK_HEIGHT
 } = CHART_CONSTANTS
 
-export interface Props<K extends string | number | symbol>
-  extends BaseChartProps {
-  data: { name: string; value: { [key in K]: number } }[]
+export interface Props<
+  K extends string | number | symbol,
+  V = { [key in K]?: number }
+> extends BaseChartProps {
+  data: {
+    name: string
+    value: V
+  }[]
+  dataKeys: K[]
   labelKey?: string
   getBarColor: (
     dataKey: string,
     entry?: {
       name: string
-      value: { [key in K]: number }
+      value: V
     },
     index?: number
   ) => string
   getBarLabelColor?: (params: { dataKey: string; index?: number }) => string
+  getBarStackId?: (dataKey: string) => string | undefined
 }
 
 const StyleOverrides = () => (
@@ -73,6 +80,7 @@ export const extractValues = <K extends string>(data: Props<K>['data']) =>
 
 const BarChart = <K extends string>({
   data,
+  dataKeys,
   className,
   height,
   width,
@@ -82,10 +90,9 @@ const BarChart = <K extends string>({
   getBarColor = () => palette.blue.main,
   labelKey,
   getBarLabelColor = () => palette.grey.dark,
+  getBarStackId = () => undefined,
   ...rest
 }: Props<K>) => {
-  const dataKeys = Object.keys(data[0].value) as K[]
-
   const formattedData = formatData(data)
 
   const tooltipElement = useMemo(
@@ -105,6 +112,31 @@ const BarChart = <K extends string>({
 
   const topDomain = findTopDomain(extractValues(data))
   const ticks = getD3Ticks(BOTTOM_DOMAIN, topDomain, NUMBER_OF_TICKS)
+
+  const renderBars = () => {
+    return dataKeys.map(dataKey => {
+      return (
+        <Bar
+          key={dataKey}
+          dataKey={dataKey}
+          stackId={getBarStackId(dataKey)}
+          fill={getBarColor(dataKey)}
+          label={
+            <BarChartLabel
+              dataKey={dataKey}
+              getBarLabelColor={getBarLabelColor}
+            />
+          }
+        >
+          {data.map((entry, entryIndex) => {
+            const fill = getBarColor?.(dataKey, entry, entryIndex)
+
+            return <Cell key={`cell-${entryIndex}`} fill={fill} />
+          })}
+        </Bar>
+      )
+    })
+  }
 
   return (
     <div style={{ height, width }} className={className} {...rest}>
@@ -143,25 +175,7 @@ const BarChart = <K extends string>({
             domain={[ticks[0], ticks[ticks.length - 1]]}
           />
           {tooltipElement}
-          {dataKeys.map(dataKey => (
-            <Bar
-              key={dataKey}
-              dataKey={dataKey}
-              fill={getBarColor(dataKey)}
-              label={
-                <BarChartLabel
-                  dataKey={dataKey}
-                  getBarLabelColor={getBarLabelColor}
-                />
-              }
-            >
-              {data.map((entry, index) => {
-                const fill = getBarColor?.(dataKey, entry, index)
-
-                return <Cell key={index} fill={fill} />
-              })}
-            </Bar>
-          ))}
+          {renderBars()}
         </RechartsBarChart>
       </ResponsiveContainer>
     </div>

@@ -98,3 +98,7 @@ page
     },
     delay: 500
   })
+  .addExample('BarChart/story/Stacked.example.tsx', {
+    title: 'Stacked',
+    delay: 500
+  })
