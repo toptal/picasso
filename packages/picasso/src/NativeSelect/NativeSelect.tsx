@@ -17,7 +17,9 @@ import {
 } from '../Select'
 import NativeSelectOptions from '../NativeSelectOptions'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
-import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
+import { documentable, forwardRef } from '../utils/forward-ref'
+import { useCombinedRefs } from '../utils'
+import noop from '../utils/noop'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles)
