@@ -9,7 +9,7 @@ PicassoProvider.override(
         color: palette.common.black,
 
         '& $notchedOutline': {
-          borderColor: palette.grey.light2,
+          borderColor: palette.secondary.contrastText,
           borderRadius: borderRadius.small,
           top: 0,
           '& legend': {
@@ -35,7 +35,7 @@ PicassoProvider.override(
 
         '&:hover:not($disabled)': {
           '&:not($error)&:not($focused) $notchedOutline': {
-            borderColor: palette.grey.main2
+            borderColor: palette.secondary.contrastText
           }
         }
       },

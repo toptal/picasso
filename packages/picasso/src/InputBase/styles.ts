@@ -5,7 +5,7 @@ PicassoProvider.override(({ typography, palette }: Theme) => ({
   MuiInputBase: {
     root: {
       fontSize: 'unset',
-      backgroundColor: palette.common.white
+      backgroundColor: palette.primary.main
     },
     input: {
       fontSize: typography.inputSize,

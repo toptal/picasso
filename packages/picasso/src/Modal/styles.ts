@@ -4,7 +4,7 @@ const maxHeight = 'calc(100% - 6rem)'
 const maxWidth = 'calc(100% - 6rem)'
 const maxHeightForTopAligned = 'calc(100% - 4rem)'
 
-export default ({ screens, sizes }: Theme) =>
+export default ({ screens, sizes, palette }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -20,6 +20,7 @@ export default ({ screens, sizes }: Theme) =>
       maxWidth,
       borderRadius: sizes.borderRadius.medium,
       margin: '2rem',
+      backgroundColor: palette.secondary.main,
 
       [screens('small')]: {
         maxWidth: 'none',

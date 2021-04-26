@@ -91,28 +91,16 @@ const ModalDialog = ({
       <Modal.Title>Edit address details</Modal.Title>
       <Modal.Content>
         <Form.Field>
-          <Input width='full' placeholder='City' value='Alabaster' />
+          <Input width='full' placeholder='City' value='John' />
         </Form.Field>
         <Form.Field>
-          <Input width='full' placeholder='Street' value='John Fruit' />
+          <Input width='full' placeholder='Street' value='Fruit' />
         </Form.Field>
         <Form.Field>
-          <Select placeholder='State' options={STATES} value='Alabama' />
+          <Input width='full' placeholder='Street' value='john@toptal.com' />
         </Form.Field>
         <Form.Field>
-          <DatePicker
-            width='full'
-            value={date}
-            onChange={date => {
-              /* eslint-disable-next-line no-console */
-              console.log('selected date is: ', date)
-
-              setDate(date as Date)
-            }}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Checkbox label='Use shipping address for billing' />
+          <Input width='full' placeholder='Street' value='Johny' />
         </Form.Field>
       </Modal.Content>
       <Modal.Actions>
