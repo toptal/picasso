@@ -42,14 +42,16 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   collapsible?: boolean
   /** Renders nested sidebar menu */
   menu?: ReactElement
-  /** Callback when item is clicked */
-  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Component name to render the menu item as */
   as?: ElementType<MenuItemProps>
   variant?: VariantType
   isExpanded?: boolean
   expand?: (index: number | null) => void
   index?: number | null
+  /** Callback when item is clicked */
+  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  /** Callback when item is hovered */
+  onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
 const useStyles = makeStyles<Theme>(styles, {
