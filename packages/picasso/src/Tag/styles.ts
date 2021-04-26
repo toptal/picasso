@@ -5,7 +5,8 @@ import '../Chip/styles'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      fontSize: '1rem'
+      fontSize: '1rem',
+      maxWidth: '100%'
     },
     disabled: {
       borderColor: palette.grey.lighter2,
@@ -30,7 +31,8 @@ export default ({ palette }: Theme) =>
     },
     innerLabel: {
       fontSize: '0.75rem',
-      fontWeight: 600
+      fontWeight: 600,
+      minWidth: 0
     },
     deleteIcon: {
       width: 'auto',
