@@ -16,7 +16,9 @@ exports[`ButtonGroup render 1`] = `
       >
         <span
           class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-        />
+        >
+          One
+        </span>
       </button>
       <button
         class="MuiButtonBase-root PicassoButton-active PicassoButtonGroup-active PicassoButton-medium PicassoButton-primary PicassoButton-root"
@@ -26,7 +28,9 @@ exports[`ButtonGroup render 1`] = `
       >
         <span
           class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-        />
+        >
+          Two
+        </span>
       </button>
       <button
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
@@ -36,7 +40,9 @@ exports[`ButtonGroup render 1`] = `
       >
         <span
           class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-        />
+        >
+          Three
+        </span>
       </button>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import {
   render,
   fireEvent,
@@ -13,11 +13,10 @@ import Button, { Props } from './Button'
 jest.mock('ap-style-title-case')
 
 const renderButton = (
-  children: ReactNode,
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { disabled, loading, onClick, titleCase } = props
+  const { children, disabled, loading, onClick, titleCase } = props
 
   return render(
     <Button
@@ -45,7 +44,7 @@ describe('Button', () => {
 
   it('onClick callback should be fired after clicking the button', () => {
     const onClick = jest.fn()
-    const { getByText } = renderButton('Click me!', { onClick })
+    const { getByText } = renderButton({ children: 'Click me!', onClick })
 
     fireEvent.click(getByText('Click me!'))
 
@@ -54,7 +53,11 @@ describe('Button', () => {
 
   it('onClick callback should not be fired when clicked button is in loading state', () => {
     const onClick = jest.fn()
-    const { getByText } = renderButton('Click me!', { onClick, loading: true })
+    const { getByText } = renderButton({
+      children: 'Click me!',
+      onClick,
+      loading: true
+    })
 
     fireEvent.click(getByText('Click me!'))
 
@@ -64,15 +67,19 @@ describe('Button', () => {
   it('should transform text to title case when Picasso titleCase property is true', () => {
     const TEXT_CONTENT = 'Test bk9'
 
-    renderButton(TEXT_CONTENT, { onClick: () => {} }, { titleCase: true })
+    renderButton(
+      { children: TEXT_CONTENT, onClick: () => {} },
+      { titleCase: true }
+    )
 
     expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
   })
 
   it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+    const TEXT_CONTENT = 'some text with-the-edge case for TESTING'
+
     renderButton(
-      'some text with-the-edge case for TESTING',
-      { onClick: () => {}, titleCase: false },
+      { children: TEXT_CONTENT, onClick: () => {}, titleCase: false },
       { titleCase: true }
     )
 
@@ -86,7 +93,8 @@ describe('Button', () => {
     beforeEach(() => {
       onClick = jest.fn()
 
-      api = renderButton('Click me!', {
+      api = renderButton({
+        children: 'Click me!',
         onClick,
         disabled: true
       })

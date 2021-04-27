@@ -52,7 +52,7 @@ export interface Props
   /** Disables button */
   disabled?: boolean
   /** Content of Button component */
-  children?: ReactNode
+  children: ReactNode
   // TODO: should it be exposed?
   focused?: boolean
   /** Take the full width of a container */
@@ -113,7 +113,7 @@ const getIcon = (
   })
 }
 
-export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
+export const Button = forwardRef<HTMLButtonElement, Props>(function Button (
   props,
   ref
 ) {

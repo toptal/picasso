@@ -190,7 +190,6 @@ page
   })
   .addExample('Button/story/Sizes.example.tsx', 'Sizes')
   .addExample('Button/story/FullWidth.example.tsx', 'Full width')
-  .addExample('Button/story/IconButtons.example.tsx', 'Button with Icon')
   .addExample(
     'Button/story/IconButtonsWithText.example.tsx',
     'Button with text and Icon'

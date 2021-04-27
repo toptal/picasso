@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Button, ButtonProps } from '@toptal/picasso'
 import { useFormState } from 'react-final-form'
 import { ButtonCircularProps } from '@toptal/picasso/ButtonCircular'
@@ -6,6 +6,7 @@ import { ButtonCircularProps } from '@toptal/picasso/ButtonCircular'
 type ButtonTypeProps = {
   buttonType: 'rectangular'
   variant?: ButtonProps['variant']
+  children: ReactNode
 }
 
 type CircularButtonTypeProps = {
@@ -16,11 +17,12 @@ type CircularButtonTypeProps = {
 type ActionButtonTypeProps = {
   buttonType: 'action'
   variant?: null
+  children?: ReactNode
 }
 
 // Intersection with the type { id?: string } is needed here because of
 // TS compiler issue https://github.com/microsoft/TypeScript/issues/34793
-export type Props = Omit<ButtonProps, 'type' | 'variant'> & {
+export type Props = Omit<ButtonProps, 'type' | 'variant' | 'children'> & {
   id?: string
 } & (CircularButtonTypeProps | ActionButtonTypeProps | ButtonTypeProps)
 
