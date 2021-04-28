@@ -7,16 +7,21 @@ export default () =>
       marginBottom: '-0.5em',
 
       '& .picasso-checkbox': {
-        marginRight: '1em',
         marginBottom: '0.5em'
       }
     },
 
-    horizontal: {
-      flexDirection: 'row'
+    grid: {
+      marginTop: 0,
+      marginBottom: 0
     },
 
-    vertical: {
-      flexDirection: 'column'
+    gridItem: {
+      lineHeight: 1,
+
+      '&&': {
+        paddingTop: 0,
+        paddingBottom: 0
+      }
     }
   })

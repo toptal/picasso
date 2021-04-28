@@ -49,4 +49,5 @@ page
     'Radio/story/RadioGroupHorizontal.example.tsx',
     'Radio group horizontal'
   )
+  .addExample('Radio/story/RadioGroupGrid.example.tsx', 'Radio group grid')
   .addExample('Radio/story/CustomLabel.example.tsx', 'Custom label')

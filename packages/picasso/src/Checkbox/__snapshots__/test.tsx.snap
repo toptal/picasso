@@ -1,5 +1,256 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiFormGroup-root PicassoCheckboxGroup-root PicassoCheckboxGroup-root"
+    >
+      <div
+        class="MuiGrid-root PicassoCheckboxGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
+      >
+        <div
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+        >
+          <label
+            class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+          >
+            <span
+              class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
+            >
+              <span
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PicassoCheckbox-withLabel MuiIconButton-colorSecondary"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <input
+                    class="PrivateSwitchBase-input"
+                    data-indeterminate="false"
+                    type="checkbox"
+                    value="checkbox1"
+                  />
+                  <div
+                    class="PicassoCheckbox-uncheckedIcon"
+                  />
+                </span>
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
+            >
+              <span
+                class="PicassoFormLabel-text"
+              >
+                Checkbox 1
+              </span>
+            </span>
+          </label>
+        </div>
+        <div
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+        >
+          <label
+            class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+          >
+            <span
+              class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
+            >
+              <span
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PicassoCheckbox-withLabel MuiIconButton-colorSecondary"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <input
+                    class="PrivateSwitchBase-input"
+                    data-indeterminate="false"
+                    type="checkbox"
+                    value="checkbox2"
+                  />
+                  <div
+                    class="PicassoCheckbox-uncheckedIcon"
+                  />
+                </span>
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
+            >
+              <span
+                class="PicassoFormLabel-text"
+              >
+                Checkbox 2
+              </span>
+            </span>
+          </label>
+        </div>
+        <div
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+        >
+          <label
+            class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+          >
+            <span
+              class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
+            >
+              <span
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PicassoCheckbox-withLabel MuiIconButton-colorSecondary"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <input
+                    class="PrivateSwitchBase-input"
+                    data-indeterminate="false"
+                    type="checkbox"
+                    value="checkbox3"
+                  />
+                  <div
+                    class="PicassoCheckbox-uncheckedIcon"
+                  />
+                </span>
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
+            >
+              <span
+                class="PicassoFormLabel-text"
+              >
+                Checkbox 3
+              </span>
+            </span>
+          </label>
+        </div>
+        <div
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+        >
+          <label
+            class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+          >
+            <span
+              class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
+            >
+              <span
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PicassoCheckbox-withLabel MuiIconButton-colorSecondary"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <input
+                    class="PrivateSwitchBase-input"
+                    data-indeterminate="false"
+                    type="checkbox"
+                    value="checkbox4"
+                  />
+                  <div
+                    class="PicassoCheckbox-uncheckedIcon"
+                  />
+                </span>
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
+            >
+              <span
+                class="PicassoFormLabel-text"
+              >
+                Checkbox 4
+              </span>
+            </span>
+          </label>
+        </div>
+        <div
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+        >
+          <label
+            class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+          >
+            <span
+              class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
+            >
+              <span
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PicassoCheckbox-withLabel MuiIconButton-colorSecondary"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <input
+                    class="PrivateSwitchBase-input"
+                    data-indeterminate="false"
+                    type="checkbox"
+                    value="checkbox5"
+                  />
+                  <div
+                    class="PicassoCheckbox-uncheckedIcon"
+                  />
+                </span>
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
+            >
+              <span
+                class="PicassoFormLabel-text"
+              >
+                Checkbox 5
+              </span>
+            </span>
+          </label>
+        </div>
+        <div
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+        >
+          <label
+            class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+          >
+            <span
+              class="PicassoContainer-flex PicassoContainer-inline PicassoCheckbox-checkboxWrapper"
+            >
+              <span
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PicassoCheckbox-withLabel MuiIconButton-colorSecondary"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <input
+                    class="PrivateSwitchBase-input"
+                    data-indeterminate="false"
+                    type="checkbox"
+                    value="checkbox6"
+                  />
+                  <div
+                    class="PicassoCheckbox-uncheckedIcon"
+                  />
+                </span>
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
+            >
+              <span
+                class="PicassoFormLabel-text"
+              >
+                Checkbox 6
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Checkbox checkbox interaction should render checked checkbox 1`] = `
 <div>
   <div
