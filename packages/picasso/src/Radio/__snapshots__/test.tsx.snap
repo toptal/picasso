@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Radio Radio.Group renders radio in grid group 1`] = `
+exports[`Radio Radio.Group renders radio in a grid group 1`] = `
 <div>
   <div
     class="Picasso-root"
