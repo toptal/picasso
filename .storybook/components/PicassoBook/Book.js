@@ -36,8 +36,9 @@ in '.storybook/config.js'.
         return page
       },
 
-      createDocPage: (title, sectionFn) => {
-        const page = new Page({ title, section: name, sectionFn })
+      createDocPage: (title, sectionFn, options = {}) => {
+        const { alwaysOnTop = false } = options
+        const page = new Page({ title, section: name, sectionFn, alwaysOnTop })
         this.collection.push(page)
         return page
       }
@@ -57,19 +58,29 @@ in '.storybook/config.js'.
   generate() {
     // {
     //   'Tutorials': 0,
-    //   'Components': 1,
+    //   'Components': 2,
     //   ...
     // }
     const sectionsOrder = {}
     for (let index in this.sections) {
-      sectionsOrder[this.sections[index]] = Number(index)
+      sectionsOrder[this.sections[index]] = Number(index) * 2
     }
 
     this.collection
-      .sort(
-        (page1, page2) =>
-          sectionsOrder[page1.section] - sectionsOrder[page2.section]
-      )
+      .sort((page1, page2) => {
+        let page1Rating = sectionsOrder[page1.section]
+        let page2Rating = sectionsOrder[page2.section]
+
+        if (page1.alwaysOnTop) {
+          page1Rating -= 1
+        }
+
+        if (page2.alwaysOnTop) {
+          page2Rating -= 1
+        }
+
+        return page1Rating - page2Rating
+      })
       .forEach(page => page.generate())
   }
 }

@@ -12,13 +12,15 @@ class Page extends Base {
   title = ''
   section = COMPONENTS_SECTION
   sectionFn = null
+  alwaysOnTop = false
 
   constructor({
     title = null,
     subtitle = null,
     info = null,
     sectionFn = null,
-    section = COMPONENTS_SECTION
+    section = COMPONENTS_SECTION,
+    alwaysOnTop = false
   }) {
     super({
       title,
@@ -30,6 +32,7 @@ class Page extends Base {
 
     this.title = title
     this.section = section
+    this.alwaysOnTop = alwaysOnTop
   }
 
   setDescription(description = '') {

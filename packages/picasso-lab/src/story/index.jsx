@@ -6,5 +6,5 @@ import CHANGELOG from '../../CHANGELOG.md'
 
 const section = PicassoBook.section('Picasso Lab')
 
-section.createDocPage('README', doc(README))
-section.createDocPage('CHANGELOG', doc(CHANGELOG))
+section.createDocPage('README', doc(README), { alwaysOnTop: true })
+section.createDocPage('CHANGELOG', doc(CHANGELOG), { alwaysOnTop: true })

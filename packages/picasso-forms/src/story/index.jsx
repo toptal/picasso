@@ -6,8 +6,8 @@ import CHANGELOG from '../../CHANGELOG.md'
 
 const section = PicassoBook.section('Picasso Forms')
 
-section.createDocPage('README', doc(README))
-section.createDocPage('CHANGELOG', doc(CHANGELOG))
+section.createDocPage('README', doc(README), { alwaysOnTop: true })
+section.createDocPage('CHANGELOG', doc(CHANGELOG), { alwaysOnTop: true })
 
 const page = section.createPage('Final Form', 'Final Form')
 
