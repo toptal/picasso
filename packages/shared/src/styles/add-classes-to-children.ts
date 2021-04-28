@@ -1,21 +1,17 @@
-import React, { ReactNode } from 'react'
+import React, { ElementType, ReactNode } from 'react'
 
 import { Classes } from './types'
 
-type ConfigItem<T> = [T, Classes]
-type Config<T> = (classes: Classes) => ConfigItem<T>[]
+type ConfigItem = [ElementType, Classes]
+type Config = (classes: Classes) => ConfigItem[]
 
-export interface Arguments<T> {
+export interface Arguments {
   classes: Classes
   children: ReactNode
-  config: Config<T>
+  config: Config
 }
 
-const addClassesToChildren = <T extends unknown>({
-  classes,
-  children,
-  config
-}: Arguments<T>) => {
+const addClassesToChildren = ({ classes, children, config }: Arguments) => {
   return React.Children.map(children, childNode => {
     if (!React.isValidElement(childNode)) {
       return childNode
@@ -23,8 +19,8 @@ const addClassesToChildren = <T extends unknown>({
 
     let childResult = childNode
 
-    config(classes).forEach(([componentType, configClasses]) => {
-      if (childNode.type === componentType) {
+    config(classes).forEach(([elementType, configClasses]) => {
+      if (childNode.type === elementType) {
         childResult = React.cloneElement(childNode, {
           classes: configClasses
         })
