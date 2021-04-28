@@ -29,10 +29,7 @@ PicassoBook.addSections([
   'Widgets'
 ])
 
-reqStorybook.keys().forEach(filename => {
-  console.log(filename)
-  return reqStorybook(filename)
-})
+reqStorybook.keys().forEach(filename => reqStorybook(filename))
 reqPackagesComponents
   .keys()
   .forEach(filename => reqPackagesComponents(filename))
