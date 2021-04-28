@@ -34,6 +34,12 @@ in '.storybook/config.js'.
         const page = new Page({ title, info, section: name })
         this.collection.push(page)
         return page
+      },
+
+      createDocPage: (title, sectionFn) => {
+        const page = new Page({ title, section: name, sectionFn })
+        this.collection.push(page)
+        return page
       }
     }
   }

@@ -1,19 +1,15 @@
 import { doc } from 'storybook-readme'
-import { storiesOf } from '@storybook/react'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 import README from '../../README.md'
 import CHANGELOG from '../../CHANGELOG.md'
 
-storiesOf('Picasso Forms', module)
-  .addParameters({ happo: false })
-  .add('README', doc(README))
-  .add('CHANGELOG', doc(CHANGELOG))
+const section = PicassoBook.section('Picasso Forms')
 
-const page = PicassoBook.section('Picasso Forms').createPage(
-  'Final Form',
-  'Final Form'
-)
+section.createDocPage('README', doc(README))
+section.createDocPage('CHANGELOG', doc(CHANGELOG))
+
+const page = section.createPage('Final Form', 'Final Form')
 
 page
   .createChapter()

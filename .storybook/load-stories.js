@@ -1,6 +1,6 @@
 import PicassoBook from './components/PicassoBook'
 
-/** Tutorials */
+/** Tutorials, Picasso readme and Contribution */
 const reqStorybook = require.context(
   '~/.storybook/stories',
   true,
@@ -15,6 +15,8 @@ const reqPackagesComponents = require.context(
 )
 
 PicassoBook.addSections([
+  'Picasso',
+  'Contribution',
   'Tutorials',
   'Components',
   'Layout',
@@ -27,9 +29,10 @@ PicassoBook.addSections([
   'Widgets'
 ])
 
-require('./stories/Picasso') // markdown pages for README & CHANGELOG
-require('./stories/Contributing') // markdown pages for contribution guide
-reqStorybook.keys().forEach(filename => reqStorybook(filename))
+reqStorybook.keys().forEach(filename => {
+  console.log(filename)
+  return reqStorybook(filename)
+})
 reqPackagesComponents
   .keys()
   .forEach(filename => reqPackagesComponents(filename))
