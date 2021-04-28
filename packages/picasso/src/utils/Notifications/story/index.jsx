@@ -101,7 +101,14 @@ Each of them has this list of props:
       }
     })
     .addExample('utils/Notifications/story/Custom.example.tsx', {
-      title: 'Custom'
+      title: 'Custom',
+      effect: async (testPage, makeScreenshot) => {
+        testPage.click('[data-testid="trigger"]')
+        await testPage.waitFor(100)
+        await makeScreenshot({
+          isFullScreen: true
+        })
+      }
     })
 )
 
