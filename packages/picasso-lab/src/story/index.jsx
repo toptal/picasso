@@ -1,10 +1,10 @@
 import { doc } from 'storybook-readme'
-import { storiesOf } from '@storybook/react'
 
+import PicassoBook from '~/.storybook/components/PicassoBook'
 import README from '../../README.md'
 import CHANGELOG from '../../CHANGELOG.md'
 
-storiesOf('Picasso Lab', module)
-  .addParameters({ happo: false })
-  .add('README', doc(README))
-  .add('CHANGELOG', doc(CHANGELOG))
+const section = PicassoBook.section('Picasso Lab')
+
+section.createDocPage('README', doc(README), { alwaysOnTop: true })
+section.createDocPage('CHANGELOG', doc(CHANGELOG), { alwaysOnTop: true })

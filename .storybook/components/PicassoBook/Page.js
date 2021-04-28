@@ -11,22 +11,28 @@ class Page extends Base {
   type = 'Page'
   title = ''
   section = COMPONENTS_SECTION
+  sectionFn = null
+  alwaysOnTop = false
 
   constructor({
     title = null,
     subtitle = null,
     info = null,
-    section = COMPONENTS_SECTION
+    sectionFn = null,
+    section = COMPONENTS_SECTION,
+    alwaysOnTop = false
   }) {
     super({
       title,
       subtitle,
       info,
-      section
+      section,
+      sectionFn
     })
 
     this.title = title
     this.section = section
+    this.alwaysOnTop = alwaysOnTop
   }
 
   setDescription(description = '') {
@@ -68,6 +74,12 @@ class Page extends Base {
   generateHumanStories() {
     const page = this.toStoryBook()
     const stories = storiesOf(page.section + '/' + page.title, module)
+
+    if (page.sectionFn) {
+      stories.add(page.title, page.sectionFn)
+      return
+    }
+
     chaptersAddon.addWithChapters.call(stories, page.title, page)
   }
 
