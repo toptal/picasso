@@ -47,7 +47,7 @@ export interface PrivateProps
   elevated?: boolean
 }
 
-export type PublicProps = Omit<PrivateProps, 'variant' | 'icon'>
+export type PublicProps = Omit<PrivateProps, 'elevated' | 'icon'>
 
 export interface StaticProps {
   Actions: typeof NotificationActions
@@ -118,9 +118,8 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'Notification'
 })
 
-// eslint-disable-next-line react/display-name
 export const Notification = forwardRef<HTMLElement, PrivateProps>(
-  function Notification(props, ref) {
+  function Notification (props, ref) {
     const { className, variant, elevated, ...rest } = props
 
     const classes = useStyles()

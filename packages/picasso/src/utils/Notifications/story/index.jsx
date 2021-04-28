@@ -100,6 +100,9 @@ Each of them has this list of props:
         })
       }
     })
+    .addExample('utils/Notifications/story/Custom.example.tsx', {
+      title: 'Custom'
+    })
 )
 
 export default {

@@ -23,7 +23,7 @@ const defaultPosition: SnackbarOrigin = {
 }
 
 interface Props extends BaseProps {
-  key: string
+  key?: string
   content: ReactNode
   icon?: ReactElement
   onClose?: () => void
@@ -36,7 +36,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 const StyledNotification =
   // eslint-disable-next-line react/display-name
-  forwardRef<HTMLElement, Props>(function Notification(props, ref) {
+  forwardRef<HTMLElement, Props>(function Notification (props, ref) {
     const { content, icon, key, onClose, variant = 'white' } = props
     const classes = useStyles()
 
@@ -62,9 +62,8 @@ export const useNotifications = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
   const getNotification = useCallback(
-    (variant?: VariantType) => (
-      content: ReactNode,
-      icon?: ReactElement,
+    () => (
+      notificationComponent: React.ReactElement,
       options?: OptionsObject
     ) => {
       const closeNotification = () => {
@@ -76,16 +75,11 @@ export const useNotifications = () => {
       }
       const notificationId = enqueueSnackbar('', {
         anchorOrigin: defaultPosition,
-        // eslint-disable-next-line react/display-name
-        content: (key: string) => (
-          <StyledNotification
-            content={content}
-            icon={icon}
-            key={key}
-            variant={variant}
-            onClose={closeNotification}
-          />
-        ),
+        content: (key: string) =>
+          React.cloneElement(notificationComponent, {
+            key,
+            onClose: closeNotification
+          }),
         ...options
       })
 
@@ -94,10 +88,32 @@ export const useNotifications = () => {
     [closeSnackbar, enqueueSnackbar]
   )
 
+  const getPicassoNotification = useCallback(
+    (variant?: VariantType) => (
+      content: ReactNode,
+      icon?: ReactElement,
+      options?: OptionsObject
+    ) => {
+      const notificationComponent = (
+        <StyledNotification content={content} icon={icon} variant={variant} />
+      )
+      const showNotificaiton = getNotification()
+      const notificationId = showNotificaiton(notificationComponent, options)
+
+      return notificationId
+    },
+    [getNotification]
+  )
+
   return {
-    showError: useMemo(() => getNotification('red'), [getNotification]),
-    showInfo: useMemo(() => getNotification(), [getNotification]),
-    showSuccess: useMemo(() => getNotification('green'), [getNotification]),
+    showError: useMemo(() => getPicassoNotification('red'), [
+      getPicassoNotification
+    ]),
+    showInfo: useMemo(() => getPicassoNotification(), [getPicassoNotification]),
+    showSuccess: useMemo(() => getPicassoNotification('green'), [
+      getPicassoNotification
+    ]),
+    showCustom: useMemo(() => getNotification(), [getNotification]),
     closeNotification: closeSnackbar
   }
 }
