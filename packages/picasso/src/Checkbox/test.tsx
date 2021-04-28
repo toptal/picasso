@@ -128,8 +128,8 @@ describe('Checkbox', () => {
   })
 
   describe('Checkbox.Group', () => {
-    it('renders checkbox in grid group', () => {
-      const { container }: RenderResult = render(
+    it('renders checkbox in a grid group', () => {
+      const { container } = render(
         <Checkbox.Group horizontal small={4}>
           <Checkbox label='Checkbox 1' value='checkbox1' />
           <Checkbox label='Checkbox 2' value='checkbox2' />

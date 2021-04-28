@@ -9,7 +9,10 @@ export default () =>
 
     gridItem: {
       lineHeight: 1,
-      paddingTop: '0 !important',
-      paddingBottom: '0 !important'
+
+      '&&': {
+        paddingTop: 0,
+        paddingBottom: 0
+      }
     }
   })

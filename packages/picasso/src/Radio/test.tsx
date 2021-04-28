@@ -104,8 +104,8 @@ describe('Radio', () => {
       expect(container).toMatchSnapshot()
     })
 
-    it('renders radio in grid group', () => {
-      const { container }: RenderResult = render(
+    it('renders radio in a grid group', () => {
+      const { container } = render(
         <Radio.Group horizontal small={4} name='my-group'>
           <Radio label='LABEL+1' value='VALUE+1' />
           <Radio label='LABEL+2' value='VALUE+2' />

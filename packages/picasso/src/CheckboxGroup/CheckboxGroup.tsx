@@ -12,7 +12,7 @@ type GridSpacing = GridProps['spacing']
 export interface Props extends FormGroupProps {
   /** Align checkboxes horizontally  */
   horizontal?: boolean
-  /** Defines amount of space between radio buttons components (in px) */
+  /** Defines amount of space between checkbox components (in px) */
   spacing?: GridSpacing
   /** Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority */
   small?: boolean | GridSize
