@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@7.3.1...@toptal/picasso@7.4.0) (2021-04-28)
+
+
+### Features
+
+* add grid support for radio and checkbox group ([#2042](https://github.com/toptal/picasso/issues/2042)) ([2563a0c](https://github.com/toptal/picasso/commit/2563a0cf809b9ee51e9c4dc0b35dc183e2444f1d))
+
+
+
+
+
 ## [7.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso@7.3.0...@toptal/picasso@7.3.1) (2021-04-28)
 
 **Note:** Version bump only for package @toptal/picasso

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@2.0.12...@toptal/picasso-forms@2.1.0) (2021-04-28)
+
+
+### Features
+
+* add grid support for radio and checkbox group ([#2042](https://github.com/toptal/picasso/issues/2042)) ([2563a0c](https://github.com/toptal/picasso/commit/2563a0cf809b9ee51e9c4dc0b35dc183e2444f1d))
+
+
+
+
+
 ## [2.0.12](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@2.0.11...@toptal/picasso-forms@2.0.12) (2021-04-28)
 
 **Note:** Version bump only for package @toptal/picasso-forms
