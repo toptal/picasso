@@ -31,7 +31,6 @@ import NotificationActions from '../NotificationActions'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
-/** `variant`, `elevated` and `icon` props are omitted from the public declaration, since they're only for internal use */
 export interface PrivateProps
   extends StandardProps,
     HTMLAttributes<HTMLDivElement> {
@@ -47,7 +46,8 @@ export interface PrivateProps
   elevated?: boolean
 }
 
-export type PublicProps = Omit<PrivateProps, 'variant' | 'icon'>
+/** `elevated` and `icon` props are omitted from the public declaration, since they're only for internal use */
+export type PublicProps = Omit<PrivateProps, 'elevated' | 'icon'>
 
 export interface StaticProps {
   Actions: typeof NotificationActions
@@ -118,9 +118,8 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'Notification'
 })
 
-// eslint-disable-next-line react/display-name
 export const Notification = forwardRef<HTMLElement, PrivateProps>(
-  function Notification(props, ref) {
+  function Notification (props, ref) {
     const { className, variant, elevated, ...rest } = props
 
     const classes = useStyles()
