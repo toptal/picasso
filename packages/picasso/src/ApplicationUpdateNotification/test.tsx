@@ -20,23 +20,31 @@ describe('ApplicationUpdateNotification', () => {
 
   it('when click on "Update Later" the corresponding callback is called', () => {
     const onCloseMock = jest.fn()
+    const updateLaterButtonTestId = 'btn-update-later'
 
     renderApplicationUpdateNotification({
-      onClose: onCloseMock
+      onClose: onCloseMock,
+      testIds: {
+        updateLaterButton: updateLaterButtonTestId
+      }
     })
 
-    screen.getByText('Update Later').click()
+    screen.getByTestId(updateLaterButtonTestId).click()
     expect(onCloseMock).toHaveBeenCalled()
   })
 
   it('when click on "Reload Now" the corresponding callback is called', () => {
-    const onReloadClickonCloseMock = jest.fn()
+    const onReloadClickMock = jest.fn()
+    const reloadNowButtonTestId = 'btn-reload-now'
 
     renderApplicationUpdateNotification({
-      onReloadClick: onReloadClickonCloseMock
+      onReloadClick: onReloadClickMock,
+      testIds: {
+        reloadNowButton: reloadNowButtonTestId
+      }
     })
 
-    screen.getByText('Reload Now').click()
-    expect(onReloadClickonCloseMock).toHaveBeenCalled()
+    screen.getByTestId(reloadNowButtonTestId).click()
+    expect(onReloadClickMock).toHaveBeenCalled()
   })
 })

@@ -14,6 +14,10 @@ export interface Props extends BaseProps {
   description?: string
   onReloadClick?: () => void
   onClose?: () => void
+  testIds?: {
+    reloadNowButton?: string
+    updateLaterButton?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -22,7 +26,14 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
   function ApplicationUpdateNotification (props, ref) {
-    const { title, description, onReloadClick, onClose, ...rest } = props
+    const {
+      title,
+      description,
+      onReloadClick,
+      onClose,
+      testIds,
+      ...rest
+    } = props
     const classes = useStyles()
 
     const notification = (
@@ -52,10 +63,18 @@ export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
         </Container>
 
         <Container top='small'>
-          <Button variant='secondary' onClick={onReloadClick}>
+          <Button
+            variant='secondary'
+            onClick={onReloadClick}
+            data-testid={testIds?.reloadNowButton}
+          >
             Reload Now
           </Button>
-          <Button variant='transparent' onClick={onClose}>
+          <Button
+            variant='transparent'
+            onClick={onClose}
+            data-testid={testIds?.updateLaterButton}
+          >
             Update Later
           </Button>
         </Container>
