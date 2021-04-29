@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationUpdateNotification renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiPaper-root MuiSnackbarContent-root ApplicationUpdateNotification-root ApplicationUpdateNotification-positionRelative MuiPaper-elevation6"
+      role="alert"
+    >
+      <div
+        class="MuiSnackbarContent-message ApplicationUpdateNotification-message"
+      >
+        <svg
+          class="ApplicationUpdateNotification-icon"
+          height="105"
+          viewBox="0 0 105 105"
+          width="105"
+        >
+          <path
+            d="M8.364 72.364h32v8h-21.47c.829.99 1.701 1.942 2.614 2.855C29.641 91.353 40.63 96 52.364 96 76.464 96 96 76.463 96 52.364h8.727c0 28.92-23.444 52.363-52.363 52.363A52.192 52.192 0 0116.363 90.39v13.975h-8v-32zM52.364 0a52.192 52.192 0 0136 14.338V.364h8v32h-32v-8l21.469-.001a43.924 43.924 0 00-2.614-2.855c-8.133-8.133-19.12-12.78-30.855-12.78-24.1 0-43.637 19.536-43.637 43.636H0C0 23.444 23.444 0 52.364 0z"
+          />
+        </svg>
+        <h3
+          class="MuiTypography-root PicassoTypography-headingMedium PicassoTypography-inherit ApplicationUpdateNotification-positionRelative MuiTypography-h3"
+        >
+          A newer version of this application is available.
+          <br />
+          Please reload to update.
+        </h3>
+        <div
+          class="PicassoContainer-topxsmallMargin ApplicationUpdateNotification-positionRelative"
+        >
+          <p
+            class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1"
+          >
+            IMPORTANT: On reload, any unsaved data (e.g., filled-out forms) will be lost.
+          </p>
+        </div>
+        <div
+          class="PicassoContainer-topsmallMargin"
+        >
+          <button
+            class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
+            data-component-type="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            >
+              Reload Now
+            </span>
+          </button>
+          <button
+            class="MuiButtonBase-root PicassoButton-medium PicassoButton-transparent PicassoButton-root"
+            data-component-type="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            >
+              Update Later
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
