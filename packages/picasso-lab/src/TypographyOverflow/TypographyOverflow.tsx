@@ -1,6 +1,6 @@
 import React, { MouseEvent, ReactNode, useState } from 'react'
 import { Tooltip, Typography, TypographyProps } from '@toptal/picasso'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, isOverflown } from '@toptal/picasso-shared'
 import { DelayType, VariantType } from '@toptal/picasso/Tooltip/Tooltip'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -26,15 +26,6 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'TypographyOverflow'
 })
 
-/**
- * Pixel value of font render space correction.
- * It's individual for different fonts, so it won't work for 100% cases,
- * but it allows us to be much closer to actual overflow detection while calculating.
- * Tolerance of the render could be 0-2px depending on the font that is used,
- * and also affected by the right-padding added at Ellipsis component.
- */
-const FONT_RENDER_CORRECTION = 0.475
-
 export const TypographyOverflow = (props: Props) => {
   const {
     children,
@@ -46,22 +37,19 @@ export const TypographyOverflow = (props: Props) => {
     className,
     ...rest
   } = props
-  const [isTooltipOpen, setIsTooltipOpen] = useState(false)
   const classes = useStyles(props)
-
-  const isMultiline = lines > 1
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false)
 
   const handleMouseOver = (event: MouseEvent<HTMLElement>) => {
-    const { scrollWidth, scrollHeight } = event.currentTarget
-    const { width, height } = event.currentTarget.getBoundingClientRect()
-    const shouldShowTooltip =
-      scrollWidth > width + FONT_RENDER_CORRECTION ||
-      scrollHeight > height + FONT_RENDER_CORRECTION
+    if (disableTooltip) {
+      return
+    }
 
-    if (shouldShowTooltip) {
+    if (isOverflown(event.currentTarget)) {
       setIsTooltipOpen(true)
     }
   }
+
   const handleMouseOut = () => setIsTooltipOpen(false)
 
   return (
@@ -76,13 +64,11 @@ export const TypographyOverflow = (props: Props) => {
     >
       <Typography
         {...rest}
-        onMouseOver={disableTooltip ? undefined : handleMouseOver}
-        onMouseOut={
-          disableTooltip && !isTooltipOpen ? undefined : handleMouseOut
-        }
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
         className={cx(
           classes.wrapper,
-          isMultiline ? classes.multiLine : classes.singleLine,
+          lines > 1 ? classes.multiLine : classes.singleLine,
           className
         )}
       >
