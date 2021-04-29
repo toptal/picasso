@@ -1,9 +1,17 @@
+import { ApplicationUpdateNotification } from '../ApplicationUpdateNotification'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Widgets').createPage(
   'ApplicationUpdateNotification',
   null
 )
+
+page
+  .createTabChapter('Props')
+  .addComponentDocs({
+    component: ApplicationUpdateNotification,
+    name: 'ApplicationUpdateNotification'
+  })
 
 page
   .createChapter()
