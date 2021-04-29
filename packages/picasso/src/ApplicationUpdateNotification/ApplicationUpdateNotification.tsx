@@ -10,9 +10,13 @@ import Button from '../Button'
 import styles from './styles'
 
 export interface Props extends BaseProps {
+  /** Notification title */
   title?: ReactNode
+  /** Notification decription text */
   description?: string
+  /** Callback invoked when "Reload Now" button is clicked */
   onReloadClick?: () => void
+  /** Callback invoked when "Update Later" button is clicked */
   onClose?: () => void
   testIds?: {
     reloadNowButton?: string
