@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@2.1.0...@toptal/picasso-forms@3.0.0) (2021-04-29)
+
+
+### Features
+
+* **button:** make children required ([#2049](https://github.com/toptal/picasso/issues/2049)) ([d38f7ea](https://github.com/toptal/picasso/commit/d38f7ea871c16aa2808eddcebc7be0ab56713bdf))
+
+
+### BREAKING CHANGES
+
+* **button:** use Button.Circular for buttons without text
+
+
+
+
+
 # [2.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@2.0.12...@toptal/picasso-forms@2.1.0) (2021-04-28)
 
 

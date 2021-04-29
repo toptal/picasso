@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@7.4.0...@toptal/picasso@8.0.0) (2021-04-29)
+
+
+### Features
+
+* **button:** make children required ([#2049](https://github.com/toptal/picasso/issues/2049)) ([d38f7ea](https://github.com/toptal/picasso/commit/d38f7ea871c16aa2808eddcebc7be0ab56713bdf))
+
+
+### BREAKING CHANGES
+
+* **button:** use Button.Circular for buttons without text
+
+
+
+
+
 # [7.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@7.3.1...@toptal/picasso@7.4.0) (2021-04-28)
 
 
