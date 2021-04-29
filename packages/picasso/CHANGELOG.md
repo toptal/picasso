@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.0.0...@toptal/picasso@8.1.0) (2021-04-29)
+
+
+### Features
+
+* **Notification:** [FX-1872] Add showCustom for useNotifications ([#2054](https://github.com/toptal/picasso/issues/2054)) ([8c35e44](https://github.com/toptal/picasso/commit/8c35e44d034cc44f1371883f49e65e8101c75fa6))
+
+
+
+
+
 # [8.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@7.4.0...@toptal/picasso@8.0.0) (2021-04-29)
 
 
