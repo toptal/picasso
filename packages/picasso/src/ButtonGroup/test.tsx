@@ -7,9 +7,11 @@ describe('ButtonGroup', () => {
   it('render', () => {
     const { container } = render(
       <Button.Group>
-        <Button key='1' />
-        <Button key='2' active />
-        <Button key='3' />
+        <Button key='1'>One</Button>
+        <Button key='2' active>
+          Two
+        </Button>
+        <Button key='3'>Three</Button>
       </Button.Group>
     )
 

@@ -2,7 +2,7 @@ import React, {
   ReactNode,
   HTMLAttributes,
   forwardRef,
-  ComponentType,
+  ElementType,
   useMemo
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -27,7 +27,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 const getChildrenClassesConfig = (
   classes: Classes
-): [ComponentType, Classes][] => [
+): [ElementType, Classes][] => [
   [
     Button,
     {
@@ -40,7 +40,7 @@ const getChildrenClassesConfig = (
 ]
 
 export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
-  function ButtonGroup(props, ref) {
+  function ButtonGroup (props, ref) {
     const { children, className, style, ...rest } = props
     const classes = useStyles()
     const childrenWithClasses = useMemo(

@@ -1,8 +1,8 @@
-import React, { ComponentType, ReactNode } from 'react'
+import React, { ElementType, ReactNode } from 'react'
 
 import { Classes } from './types'
 
-type ConfigItem = [ComponentType, Classes]
+type ConfigItem = [ElementType, Classes]
 type Config = (classes: Classes) => ConfigItem[]
 
 export interface Arguments {
@@ -11,7 +11,7 @@ export interface Arguments {
   config: Config
 }
 
-export default ({ classes, children, config }: Arguments) => {
+const addClassesToChildren = ({ classes, children, config }: Arguments) => {
   return React.Children.map(children, childNode => {
     if (!React.isValidElement(childNode)) {
       return childNode
@@ -19,8 +19,8 @@ export default ({ classes, children, config }: Arguments) => {
 
     let childResult = childNode
 
-    config(classes).forEach(([componentType, configClasses]) => {
-      if (childNode.type === componentType) {
+    config(classes).forEach(([elementType, configClasses]) => {
+      if (childNode.type === elementType) {
         childResult = React.cloneElement(childNode, {
           classes: configClasses
         })
@@ -30,3 +30,5 @@ export default ({ classes, children, config }: Arguments) => {
     return childResult
   })
 }
+
+export default addClassesToChildren
