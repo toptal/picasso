@@ -63,7 +63,7 @@ export const useNotifications = () => {
 
   const getNotification = useCallback(
     () => (
-      notificationComponent: React.ReactElement,
+      notificationElement: React.ReactElement,
       options?: OptionsObject
     ) => {
       const closeNotification = () => {
@@ -76,7 +76,7 @@ export const useNotifications = () => {
       const notificationId = enqueueSnackbar('', {
         anchorOrigin: defaultPosition,
         content: (key: string) =>
-          React.cloneElement(notificationComponent, {
+          React.cloneElement(notificationElement, {
             key,
             onClose: closeNotification
           }),
