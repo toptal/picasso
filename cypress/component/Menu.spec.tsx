@@ -44,7 +44,7 @@ const MenuExample = (props: MenuProps) => {
 }
 
 describe('Menu', () => {
-  it('navigates slider menu', () => {
+  it('navigates slide menu', () => {
     mount(<MenuExample />)
     cy.get('[data-testid="menu-b"]').should('not.exist')
     cy.get('[data-testid="menu-back"]').should('not.exist')
@@ -72,7 +72,7 @@ describe('Menu', () => {
   })
 
   it('navigates drilldown menu', () => {
-    mount(<MenuExample mode='drilldown' />)
+    mount(<MenuExample variant='drilldown' />)
     cy.get('[data-testid="menu-b"]').should('not.exist')
     cy.get('body').happoScreenshot()
 

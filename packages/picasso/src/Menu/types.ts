@@ -1,1 +1,1 @@
-export type MenuMode = 'slider' | 'drilldown'
+export type MenuVariant = 'slide' | 'drilldown'

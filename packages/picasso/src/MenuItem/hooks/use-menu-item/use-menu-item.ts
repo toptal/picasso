@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 
 import useMenuItemKey from '../use-menu-item-key'
-import useSliderMenuItem from '../use-slider-menu-item'
+import useSlideMenuItem from '../use-slide-menu-item'
 import useDrilldownMenuItem from '../use-drilldown-menu-item'
 
 interface Props {
@@ -15,7 +15,7 @@ const useMenuItem = (props: Props) => {
   const key = useMenuItemKey()
 
   return {
-    ...useSliderMenuItem({ key, menu, onClick }),
+    ...useSlideMenuItem({ key, menu, onClick }),
     ...useDrilldownMenuItem({ key, menu, onMouseEnter })
   }
 }

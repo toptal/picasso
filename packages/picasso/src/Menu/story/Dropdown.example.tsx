@@ -31,7 +31,7 @@ const Example = () => {
   )
 
   const drilldownMenu = (
-    <Menu mode='drilldown'>
+    <Menu variant='drilldown'>
       <Menu.Item>Item A</Menu.Item>
       <Menu.Item menu={menuForItemB}>Item B</Menu.Item>
     </Menu>

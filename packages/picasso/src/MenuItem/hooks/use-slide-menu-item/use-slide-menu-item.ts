@@ -8,7 +8,7 @@ export interface Props {
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
-const useSliderMenuItem = (props: Props) => {
+const useSlideMenuItem = (props: Props) => {
   const { key, menu, onClick } = props
   const { onItemClick, onItemUpdate } = useContext(MenuContext)
 
@@ -37,4 +37,4 @@ const useSliderMenuItem = (props: Props) => {
   }
 }
 
-export default useSliderMenuItem
+export default useSlideMenuItem

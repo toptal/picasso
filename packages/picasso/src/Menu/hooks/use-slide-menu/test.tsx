@@ -1,14 +1,14 @@
 import React, { FC } from 'react'
 import { act, renderHook } from '@testing-library/react-hooks'
 
-import useSliderMenu from './use-slider-menu'
+import useSlideMenu from './use-slide-menu'
 import MenuContext, { MenuContextProps } from '../../MenuContext'
 
-describe('useSliderMenu', () => {
+describe('useSlideMenu', () => {
   it('renders initially', () => {
-    const { result } = renderHook(() => useSliderMenu())
+    const { result } = renderHook(() => useSlideMenu())
 
-    expect(result.current.context.mode).toBe('slider')
+    expect(result.current.context.variant).toBe('slide')
     expect(result.current.innerMenu).toBeUndefined()
     expect(result.current.hasBackButton).toBeFalsy()
   })
@@ -16,7 +16,7 @@ describe('useSliderMenu', () => {
   it('navigates back and forth', () => {
     const menu1 = <div />
     const menu2 = <div />
-    const { result } = renderHook(() => useSliderMenu())
+    const { result } = renderHook(() => useSlideMenu())
 
     act(() => result.current.context.onItemClick?.('1', menu1))
     expect(result.current.innerMenu).toBe(menu1)
@@ -34,7 +34,7 @@ describe('useSliderMenu', () => {
   it('updates inner menu when it changes', () => {
     const menu1 = <div />
     const menu2 = <div />
-    const { result } = renderHook(() => useSliderMenu())
+    const { result } = renderHook(() => useSlideMenu())
 
     act(() => result.current.context.onItemClick?.('1', menu1))
     act(() => result.current.context.onItemUpdate?.('1', menu2))
@@ -51,7 +51,7 @@ describe('useSliderMenu', () => {
     const wrapper: FC = ({ children }) => (
       <MenuContext.Provider value={context}>{children}</MenuContext.Provider>
     )
-    const { result } = renderHook(() => useSliderMenu(), { wrapper })
+    const { result } = renderHook(() => useSlideMenu(), { wrapper })
 
     act(() => result.current.context.onItemClick?.('1', menu))
 

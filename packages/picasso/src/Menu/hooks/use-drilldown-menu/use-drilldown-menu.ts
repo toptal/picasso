@@ -24,7 +24,7 @@ const useDrilldownMenu = () => {
 
   const context = useMemo(
     (): MenuContextProps => ({
-      mode: 'drilldown',
+      variant: 'drilldown',
       activeItemKey,
       onItemMouseEnter: handleItemMouseEnter,
       onMenuMouseLeave: handleMenuMouseLeave,

@@ -1,18 +1,18 @@
-import { MenuMode } from '../../types'
-import useMenuMode from '../use-menu-mode'
+import { MenuVariant } from '../../types'
+import useMenuVariant from '../use-menu-variant'
 import useDrilldownMenu from '../use-drilldown-menu'
-import useSliderMenu from '../use-slider-menu'
+import useSlideMenu from '../use-slide-menu'
 
 export interface Props {
-  mode?: MenuMode
+  variant?: MenuVariant
 }
 
 const useMenu = (props: Props) => {
-  const mode = useMenuMode(props)
-  const slider = useSliderMenu()
+  const variant = useMenuVariant(props)
+  const slide = useSlideMenu()
   const drilldown = useDrilldownMenu()
 
-  return mode !== 'drilldown' ? slider : drilldown
+  return variant !== 'drilldown' ? slide : drilldown
 }
 
 export default useMenu

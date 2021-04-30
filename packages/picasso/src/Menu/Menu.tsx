@@ -10,14 +10,14 @@ import Typography from '../Typography'
 import { useMenu } from './hooks'
 import MenuContext from './MenuContext'
 import styles from './styles'
-import { MenuMode } from './types'
+import { MenuVariant } from './types'
 
 export type MenuAttributes = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
 
 export interface Props extends BaseProps, MenuAttributes {
-  // Switches between slider and drilldown modes
-  mode?: MenuMode
+  // Switches between slide and drilldown variants
+  variant?: MenuVariant
   // Whether or not to handle nested navigation
   allowNestedNavigation?: boolean
 }
@@ -38,12 +38,12 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
     children,
     className,
     style,
-    mode,
+    variant,
     allowNestedNavigation,
     ...rest
   } = props
   const classes = useStyles()
-  const { context, innerMenu, hasBackButton } = useMenu({ mode })
+  const { context, innerMenu, hasBackButton } = useMenu({ variant })
   const { onBackClick, onMenuMouseLeave } = context
 
   return (
@@ -72,7 +72,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
 
 Menu.defaultProps = {
-  mode: 'slider',
+  variant: 'slide',
   allowNestedNavigation: true
 }
 

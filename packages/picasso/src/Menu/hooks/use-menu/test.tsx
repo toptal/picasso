@@ -1,17 +1,19 @@
 import { renderHook } from '@testing-library/react-hooks'
 
 import useMenu from './use-menu'
-import useMenuMode from '../use-menu-mode'
-import useSliderMenu from '../use-slider-menu'
+import useMenuVariant from '../use-menu-variant'
+import useSlideMenu from '../use-slide-menu'
 import useDrilldownMenu from '../use-drilldown-menu'
 
-jest.mock('../use-menu-mode')
-jest.mock('../use-slider-menu')
+jest.mock('../use-menu-variant')
+jest.mock('../use-slide-menu')
 jest.mock('../use-drilldown-menu')
 
-const mockedUseMenuMode = useMenuMode as jest.MockedFunction<typeof useMenuMode>
-const mockedUseSliderMenu = useSliderMenu as jest.MockedFunction<
-  typeof useSliderMenu
+const mockedUseMenuVariant = useMenuVariant as jest.MockedFunction<
+  typeof useMenuVariant
+>
+const mockedUseSlideMenu = useSlideMenu as jest.MockedFunction<
+  typeof useSlideMenu
 >
 const mockedUseDrilldownMenu = useDrilldownMenu as jest.MockedFunction<
   typeof useDrilldownMenu
@@ -19,9 +21,9 @@ const mockedUseDrilldownMenu = useDrilldownMenu as jest.MockedFunction<
 
 describe('useMenu', () => {
   beforeEach(() => {
-    mockedUseSliderMenu.mockReturnValue({
+    mockedUseSlideMenu.mockReturnValue({
       context: {
-        mode: 'slider'
+        variant: 'slide'
       },
       innerMenu: undefined,
       hasBackButton: true
@@ -29,28 +31,28 @@ describe('useMenu', () => {
 
     mockedUseDrilldownMenu.mockReturnValue({
       context: {
-        mode: 'drilldown'
+        variant: 'drilldown'
       },
       innerMenu: undefined,
       hasBackButton: false
     })
   })
 
-  it('uses slider if mode is slider', () => {
-    const mode = 'slider'
+  it('uses slide if variant is slide', () => {
+    const variant = 'slide'
 
-    mockedUseMenuMode.mockReturnValue(mode)
-    const { result } = renderHook(() => useMenu({ mode }))
+    mockedUseMenuVariant.mockReturnValue(variant)
+    const { result } = renderHook(() => useMenu({ variant }))
 
-    expect(result.current.context.mode).toBe(mode)
+    expect(result.current.context.variant).toBe(variant)
   })
 
-  it('uses drilldown if mode is drilldown', () => {
-    const mode = 'drilldown'
+  it('uses drilldown if variant is drilldown', () => {
+    const variant = 'drilldown'
 
-    mockedUseMenuMode.mockReturnValue(mode)
-    const { result } = renderHook(() => useMenu({ mode }))
+    mockedUseMenuVariant.mockReturnValue(variant)
+    const { result } = renderHook(() => useMenu({ variant }))
 
-    expect(result.current.context.mode).toBe(mode)
+    expect(result.current.context.variant).toBe(variant)
   })
 })

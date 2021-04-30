@@ -7,7 +7,7 @@ describe('useDrilldownMenu', () => {
   it('renders initially', () => {
     const { result } = renderHook(() => useDrilldownMenu())
 
-    expect(result.current.context.mode).toBe('drilldown')
+    expect(result.current.context.variant).toBe('drilldown')
     expect(result.current.context.activeItemKey).toBeUndefined()
     expect(result.current.innerMenu).toBeUndefined()
     expect(result.current.hasBackButton).toBeFalsy()

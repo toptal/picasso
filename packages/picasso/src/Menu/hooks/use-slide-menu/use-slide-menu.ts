@@ -2,7 +2,7 @@ import { ReactElement, useCallback, useContext, useMemo, useState } from 'react'
 
 import MenuContext, { MenuContextProps } from '../../MenuContext'
 
-const useSliderMenu = () => {
+const useSlideMenu = () => {
   const [items, setItems] = useState<Record<string, ReactElement>>({})
   const { onItemUpdate, onItemClick, onBackClick } = useContext(MenuContext)
 
@@ -45,7 +45,7 @@ const useSliderMenu = () => {
 
   const context = useMemo(
     (): MenuContextProps => ({
-      mode: 'slider',
+      variant: 'slide',
       onItemUpdate: onItemUpdate ?? handleItemUpdate,
       onItemClick: onItemClick ?? handleItemClick,
       onBackClick: onBackClick ?? handleBackClick
@@ -67,4 +67,4 @@ const useSliderMenu = () => {
   }
 }
 
-export default useSliderMenu
+export default useSlideMenu

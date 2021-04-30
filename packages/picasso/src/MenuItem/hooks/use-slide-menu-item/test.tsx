@@ -2,9 +2,9 @@ import { act, renderHook } from '@testing-library/react-hooks'
 import React, { FC } from 'react'
 
 import MenuContext, { MenuContextProps } from '../../../Menu/MenuContext'
-import useSliderMenuItem, { Props } from './use-slider-menu-item'
+import useSlideMenuItem, { Props } from './use-slide-menu-item'
 
-const renderUseSliderMenuItem = (
+const renderUseSlideMenuItem = (
   props: Props,
   contextProps: MenuContextProps
 ) => {
@@ -12,16 +12,16 @@ const renderUseSliderMenuItem = (
     <MenuContext.Provider value={contextProps}>{children}</MenuContext.Provider>
   )
 
-  return renderHook(() => useSliderMenuItem(props), { wrapper })
+  return renderHook(() => useSlideMenuItem(props), { wrapper })
 }
 
-describe('useSliderMenuItem', () => {
+describe('useSlideMenuItem', () => {
   it('updates menu when renders', () => {
     const key = '1'
     const menu = <div />
     const onItemUpdate = jest.fn()
 
-    renderUseSliderMenuItem({ key, menu }, { onItemUpdate })
+    renderUseSlideMenuItem({ key, menu }, { onItemUpdate })
 
     expect(onItemUpdate).toHaveBeenCalledWith(key, menu)
     expect(onItemUpdate).toHaveBeenCalledTimes(1)
@@ -34,7 +34,7 @@ describe('useSliderMenuItem', () => {
     const onItemClick = jest.fn()
     const onStopPropagation = jest.spyOn(event, 'stopPropagation')
 
-    const { result } = renderUseSliderMenuItem({ key, menu }, { onItemClick })
+    const { result } = renderUseSlideMenuItem({ key, menu }, { onItemClick })
 
     act(() => result.current.onItemClick(event))
     expect(onItemClick).toHaveBeenCalledTimes(1)
