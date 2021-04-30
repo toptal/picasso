@@ -1,4 +1,10 @@
-import { ReactElement, useCallback, useContext, useMemo, useState } from 'react'
+import React, {
+  ReactElement,
+  useCallback,
+  useContext,
+  useMemo,
+  useState
+} from 'react'
 
 import MenuContext, { MenuContextProps } from '../../MenuContext'
 
@@ -34,14 +40,21 @@ const useSlideMenu = () => {
     [items]
   )
 
-  const handleBackClick = useCallback(() => {
-    if (lastKey) {
-      const newItems = { ...items }
+  const handleBackClick = useCallback(
+    (event?: React.MouseEvent<HTMLElement, MouseEvent>) => {
+      if (event) {
+        event.stopPropagation()
+      }
 
-      delete newItems[lastKey]
-      setItems(newItems)
-    }
-  }, [items, lastKey])
+      if (lastKey) {
+        const newItems = { ...items }
+
+        delete newItems[lastKey]
+        setItems(newItems)
+      }
+    },
+    [items, lastKey]
+  )
 
   const context = useMemo(
     (): MenuContextProps => ({
