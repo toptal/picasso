@@ -4,9 +4,7 @@ import React, {
   ElementType,
   ChangeEvent,
   memo,
-  useMemo,
-  LiHTMLAttributes,
-  HTMLAttributes
+  useMemo
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -15,14 +13,13 @@ import {
   BaseProps,
   TextLabelProps,
   OverridableComponent,
-  useTitleCase,
-  ButtonOrAnchorProps
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import Typography from '../Typography'
 import Accordion from '../Accordion'
-import MenuItem from '../MenuItem'
+import MenuItem, { MenuItemAttributes } from '../MenuItem'
 import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../Sidebar/types'
@@ -34,12 +31,7 @@ export const SubMenuContext = React.createContext<{
   parentSidebarItemIndex: undefined
 })
 
-export interface Props
-  extends BaseProps,
-    TextLabelProps,
-    LiHTMLAttributes<HTMLLIElement>,
-    HTMLAttributes<HTMLDivElement>,
-    ButtonOrAnchorProps {
+export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
   icon?: ReactElement
   /** Highlights the item as selected */
