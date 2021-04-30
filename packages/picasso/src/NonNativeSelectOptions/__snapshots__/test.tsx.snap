@@ -121,7 +121,7 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root PicassoMenuList-root PicassoScrollMenu-menu"
+      class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
       role="menu"
       tabindex="-1"
     >
@@ -131,12 +131,12 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
       >
         <li
           aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light makeStyles-menuGroup PicassoMenuListItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-menuGroup PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="option"
           tabindex="-1"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -152,19 +152,19 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="option"
           tabindex="-1"
           value="1"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuListItem-iconContainer"
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
               />
             </div>
           </div>
@@ -172,19 +172,19 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="option"
           tabindex="-1"
           value="2"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuListItem-iconContainer"
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
               />
             </div>
           </div>
@@ -192,31 +192,31 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="option"
           tabindex="-1"
           value="3"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuListItem-iconContainer"
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
               />
             </div>
           </div>
         </li>
         <li
           aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light makeStyles-menuGroup PicassoMenuListItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-menuGroup PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="option"
           tabindex="-1"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
@@ -232,19 +232,19 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="option"
           tabindex="-1"
           value="4"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuListItem-iconContainer"
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
               />
             </div>
           </div>
@@ -252,19 +252,19 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="option"
           tabindex="-1"
           value="5"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuListItem-iconContainer"
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
               />
             </div>
           </div>
