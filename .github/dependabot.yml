@@ -22,28 +22,6 @@ updates:
   labels:
   - no-jira
   versioning-strategy: increase
-  ignore:
-  - dependency-name: "@material-ui/core"
-    versions:
-    - 4.11.3
-  - dependency-name: "@toptal/davinci"
-    versions:
-    - 1.0.65
-  - dependency-name: d3-array
-    versions:
-    - 2.11.0
-  - dependency-name: cypress
-    versions:
-    - 6.3.0
-    - 6.4.0
-    - 6.5.0
-  - dependency-name: "@testing-library/react"
-    versions:
-    - 11.2.3
-    - 11.2.5
-  - dependency-name: ssri
-    versions:
-    - 5.3.0
   registries:
   - npm-registry-registry-npmjs-org
 - package-ecosystem: docker
