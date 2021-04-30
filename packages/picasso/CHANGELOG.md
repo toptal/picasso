@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso@8.1.0...@toptal/picasso@8.1.1) (2021-04-30)
+
+
+### Bug Fixes
+
+* **select:** fix indexing for grouped options ([#2058](https://github.com/toptal/picasso/issues/2058)) ([72ac94e](https://github.com/toptal/picasso/commit/72ac94e402d38d923e29804b8c310c259c8e326c))
+
+
+
+
+
 # [8.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.0.0...@toptal/picasso@8.1.0) (2021-04-29)
 
 
