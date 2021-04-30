@@ -10,6 +10,18 @@ const OPTIONS = [
   { text: 'Three', value: '3' }
 ]
 
+const OPTION_GROUPS = {
+  'Group 1': [
+    { text: 'One', value: '1' },
+    { text: 'Two', value: '2' },
+    { text: 'Three', value: '3' }
+  ],
+  'Group 2': [
+    { text: 'Four', value: '4' },
+    { text: 'Five', value: '5' }
+  ]
+}
+
 const defaultGetItemProps = () => ({
   role: 'option',
   'aria-selected': false,
@@ -50,6 +62,14 @@ const renderNonNativeSelectOptions = ({
 describe('NonNativeSelectOptions', () => {
   it('renders', () => {
     const { container } = renderNonNativeSelectOptions()
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders option groups', () => {
+    const { container } = renderNonNativeSelectOptions({
+      options: OPTION_GROUPS
+    })
 
     expect(container).toMatchSnapshot()
   })

@@ -10,6 +10,15 @@ const OPTION_GROUPS = {
     { value: '3', text: 'Option 3' },
     { value: '4', text: 'Option 4' },
     { value: '5', text: 'Option 5' }
+  ],
+  'Group 3': [
+    { value: '6', text: 'Option 6' },
+    { value: '7', text: 'Option 7' }
+  ],
+  'Group 4': [
+    { value: '8', text: 'Option 8' },
+    { value: '9', text: 'Option 9' },
+    { value: '10', text: 'Option 10' }
   ]
 }
 

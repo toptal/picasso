@@ -22,6 +22,10 @@ const useStyles = makeStyles<Theme>(styles)
 
 // TODO: Replace with a real component as soon as it's implemented
 // https://toptal-core.atlassian.net/browse/FX-1479
+// Note: In the current implementation children are siblings for the group node.
+// If in the new MenuGroup children are inside the group node, that will
+// brake the current implementation of highlightedIndex calculations in this
+// component and selectedIndex in ScrollMenu component.
 interface MenuGroupProps extends BaseProps {
   group: string
   children: ReactNode
@@ -115,6 +119,7 @@ const NonNativeSelectOptions = ({
     let cursor = 0
 
     return Object.keys(optionGroups).map(group => {
+      cursor += 1 // for the group item itself
       const offset = cursor
 
       cursor += optionGroups[group].length
