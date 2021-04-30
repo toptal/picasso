@@ -124,7 +124,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
         onMouseEnter={onItemMouseEnter}
         style={style}
         value={value}
-        selected={selected}
+        selected={selected || isOpened}
       >
         <Container
           ref={anchorRef}
