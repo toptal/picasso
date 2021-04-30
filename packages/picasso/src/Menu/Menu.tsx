@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, forwardRef } from 'react'
 import cx from 'classnames'
-import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
+import MUIMenuList from '@material-ui/core/MenuList'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
 
@@ -12,10 +12,7 @@ import MenuContext from './MenuContext'
 import styles from './styles'
 import { MenuVariant } from './types'
 
-export type MenuAttributes = HTMLAttributes<HTMLUListElement> &
-  Pick<MenuListProps, 'onKeyDown'>
-
-export interface Props extends BaseProps, MenuAttributes {
+export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
   // Switches between slide and drilldown variants
   variant?: MenuVariant
   // Whether or not to handle nested navigation

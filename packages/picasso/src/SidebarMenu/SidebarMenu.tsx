@@ -3,19 +3,20 @@ import React, {
   useContext,
   ReactElement,
   useCallback,
-  useEffect
+  useEffect,
+  HTMLAttributes
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import Menu, { MenuAttributes } from '../Menu'
+import Menu from '../Menu'
 import { SidebarContext } from '../Sidebar'
 import { SidebarContextProps } from '../Sidebar/types'
 import * as SidebarItem from '../SidebarItem'
 import styles from './styles'
 
-export interface Props extends BaseProps, MenuAttributes {
+export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
   /** Defines is sidebar menu pushed to bottom of sidebar */
   bottom?: boolean
 }

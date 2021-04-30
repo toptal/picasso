@@ -1,10 +1,10 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
-import Menu, { MenuAttributes } from '../Menu'
+import Menu from '../Menu'
 import Link from '../Link'
 import Container from '../Container'
 import { ChevronRight16 } from '../Icon'
@@ -23,7 +23,9 @@ type Account = {
   avatar?: string
 }
 
-export interface Props extends BaseProps, Omit<MenuAttributes, 'onSelect'> {
+export interface Props
+  extends BaseProps,
+    Omit<HTMLAttributes<HTMLUListElement>, 'onSelect'> {
   /** List of available accounts */
   accounts: Account[]
   /** Callback invoked when specific role record is clicked in the list */
