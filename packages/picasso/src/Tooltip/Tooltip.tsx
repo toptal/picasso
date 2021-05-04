@@ -228,8 +228,8 @@ export const Tooltip: FunctionComponent<Props> = props => {
         }
       }}
       TransitionProps={{
-        onExiting: onTransitionExiting,
-        onExited: onTransitionExited
+        ...(onTransitionExiting && { onExiting: onTransitionExiting }),
+        ...(onTransitionExited && { onExiting: onTransitionExited })
       }}
       classes={{
         popper:
