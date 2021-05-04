@@ -134,10 +134,10 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
   /** Where should the tooltip be positioned */
   placement?: PlacementType
-  /** Called when tooltip is closed */
-  onClose?: (event: ChangeEvent<{}>) => void
   /** Called when tooltip is opened */
   onOpen?: (event: ChangeEvent<{}>) => void
+  /** Called when tooltip is closed */
+  onClose?: (event: ChangeEvent<{}>) => void
   /** Whether user can interact with tooltip content */
   interactive?: boolean
   /** Programatically control tooltip's visibility */
@@ -154,6 +154,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   compact?: boolean
   /** Max width of a tooltip */
   maxWidth?: MaxWidthType
+  onTransitionExiting?: () => void
+  onTransitionExited?: () => void
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTooltip' })
@@ -167,8 +169,10 @@ export const Tooltip: FunctionComponent<Props> = props => {
     className,
     style,
     open,
-    onClose,
     onOpen,
+    onClose,
+    onTransitionExiting,
+    onTransitionExited,
     variant,
     disableListeners,
     preventOverflow,
@@ -222,6 +226,11 @@ export const Tooltip: FunctionComponent<Props> = props => {
             }
           }
         }
+      }}
+      TransitionProps={{
+        // passing undefined onExiting or onExited changes Tooltip behavior
+        ...(onTransitionExiting && { onExiting: onTransitionExiting }),
+        ...(onTransitionExited && { onExiting: onTransitionExited })
       }}
       classes={{
         popper:

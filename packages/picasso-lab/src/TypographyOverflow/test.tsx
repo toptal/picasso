@@ -1,33 +1,60 @@
 import React from 'react'
-import { render } from '@toptal/picasso/test-utils'
+import { fireEvent, render, waitFor } from '@toptal/picasso/test-utils'
 
 import TypographyOverflow from '.'
 
-jest.mock('@toptal/picasso-lab/Ellipsis/use-ellipsis', () => {
-  return jest.fn(() => ({
-    ref: null,
-    isEllipsis: true
-  }))
-})
+jest.mock('@toptal/picasso/utils', () => ({
+  ...(jest.requireActual('@toptal/picasso/utils') as {}),
+  isOverflown: jest.fn(() => true),
+  isPointerDevice: jest.fn(() => true)
+}))
 
 describe('TypographyOverflow', () => {
-  describe('tooltip render when overflow happened', () => {
-    it('renders tooltip by default', () => {
-      const { queryByTestId } = render(
-        <TypographyOverflow>Just Typography</TypographyOverflow>
+  describe('when overflow happened', () => {
+    it('renders tooltip by default', async () => {
+      const { getByTestId, queryByTestId } = render(
+        <TypographyOverflow
+          tooltipContent={<p data-testid='tooltip' />}
+          data-testid='typography'
+        >
+          Just Typography
+        </TypographyOverflow>
       )
 
-      expect(queryByTestId('TypographyOverflow-Tooltip')).toBeInTheDocument()
+      // no tooltip by default
+      expect(queryByTestId('tooltip')).not.toBeInTheDocument()
+
+      // check tooltip opens
+      // current implementation swaps elements on mouse enter, so another event is needed
+      fireEvent.mouseOver(getByTestId('typography'))
+      fireEvent.mouseOver(getByTestId('typography'))
+      await waitFor(() => {
+        expect(queryByTestId('tooltip')).toBeInTheDocument()
+      })
+
+      // check tooltip hides
+      fireEvent.mouseLeave(getByTestId('typography'))
+      await waitFor(() => {
+        expect(queryByTestId('tooltip')).not.toBeInTheDocument()
+      })
     })
 
-    it('does not render tooltip if it is disabled', () => {
-      const { queryByTestId } = render(
-        <TypographyOverflow disableTooltip>Just Typography</TypographyOverflow>
+    it('does not render tooltip if it is disabled', async () => {
+      const { getByTestId, queryByTestId } = render(
+        <TypographyOverflow
+          disableTooltip
+          tooltipContent={<p data-testid='tooltip' />}
+          data-testid='typography'
+        >
+          Just Typography
+        </TypographyOverflow>
       )
 
-      expect(
-        queryByTestId('TypographyOverflow-Tooltip')
-      ).not.toBeInTheDocument()
+      // check tooltip never opens
+      fireEvent.mouseEnter(getByTestId('typography'))
+      await waitFor(() => {
+        expect(queryByTestId('tooltip')).not.toBeInTheDocument()
+      })
     })
   })
 })

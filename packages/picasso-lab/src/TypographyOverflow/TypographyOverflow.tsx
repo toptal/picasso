@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react'
+import cx from 'classnames'
+import React, { ReactNode, useCallback, useState } from 'react'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Tooltip, Typography, TypographyProps } from '@toptal/picasso'
+import { isOverflown } from '@toptal/picasso/utils'
 import { BaseProps } from '@toptal/picasso-shared'
 import { DelayType, VariantType } from '@toptal/picasso/Tooltip/Tooltip'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import cx from 'classnames'
 
-import Ellipsis from '../Ellipsis'
 import styles from './styles'
 
 export interface Props extends BaseProps, TypographyProps {
@@ -36,44 +36,97 @@ export const TypographyOverflow = (props: Props) => {
     tooltipVariant,
     disableTooltip,
     className,
+    onClick,
+    onMouseEnter,
     ...rest
   } = props
 
-  const multiline = lines > 1
   const classes = useStyles(props)
+  const [isTooltipActive, setIsTooltipActive] = useState(false)
+  const [isTooltipOpened, setIsTooltipOpened] = useState(false)
+  const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
+  const isTooltipRendered = isTooltipActive || isTooltipAnimating
+  const isMultiline = lines > 1
 
-  return (
-    <Ellipsis
-      renderWhenEllipsis={child =>
-        disableTooltip ? (
-          child
-        ) : (
-          <Tooltip
-            data-testid='TypographyOverflow-Tooltip'
-            disableListeners={disableTooltip}
-            content={tooltipContent ?? children}
-            variant={tooltipVariant}
-            placement='top'
-            delay={tooltipDelay}
-            interactive
-          >
-            {child}
-          </Tooltip>
-        )
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      if (!isTooltipOpened && isOverflown(event.currentTarget)) {
+        setIsTooltipOpened(true)
+        setIsTooltipActive(true)
       }
-    >
-      <Typography
-        {...rest}
-        className={cx(
-          classes.wrapper,
-          multiline ? classes.multiLine : classes.singleLine,
-          className
-        )}
-      >
-        {children}
-      </Typography>
-    </Ellipsis>
+
+      if (onClick) {
+        onClick(event)
+      }
+    },
+    [isTooltipOpened, onClick]
   )
+
+  const handleMouseEnter = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      if (isOverflown(event.currentTarget)) {
+        setIsTooltipActive(true)
+        setIsTooltipAnimating(true)
+      }
+
+      if (onMouseEnter) {
+        onMouseEnter(event)
+      }
+    },
+    [onMouseEnter]
+  )
+
+  const handleTooltipOpen = useCallback(() => {
+    setIsTooltipOpened(true)
+  }, [])
+
+  const handleTooltipClose = useCallback(() => {
+    setIsTooltipActive(false)
+    setIsTooltipOpened(false)
+  }, [])
+
+  const handleTransitionExiting = useCallback(() => {
+    setIsTooltipAnimating(true)
+  }, [])
+
+  const handleTransitionExited = useCallback(() => {
+    setIsTooltipAnimating(false)
+  }, [])
+
+  const typography = (
+    <Typography
+      {...rest}
+      className={cx(
+        classes.wrapper,
+        isMultiline ? classes.multiLine : classes.singleLine,
+        className
+      )}
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+    >
+      {children}
+    </Typography>
+  )
+
+  const tooltip = (
+    <Tooltip
+      open={isTooltipOpened}
+      content={tooltipContent ?? children}
+      variant={tooltipVariant}
+      placement='top'
+      delay={tooltipDelay}
+      interactive
+      disableListeners={disableTooltip}
+      onOpen={handleTooltipOpen}
+      onClose={handleTooltipClose}
+      onTransitionExiting={handleTransitionExiting}
+      onTransitionExited={handleTransitionExited}
+    >
+      {typography}
+    </Tooltip>
+  )
+
+  return isTooltipRendered ? tooltip : typography
 }
 
 TypographyOverflow.displayName = 'TypographyOverflow'
