@@ -138,10 +138,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   onOpen?: (event: ChangeEvent<{}>) => void
   /** Called when tooltip is closed */
   onClose?: (event: ChangeEvent<{}>) => void
-  /** Called when tooltip's closing animation has started */
-  onTransitionExiting?: () => void
-  /** Called when tooltip's closing animation has finished */
-  onTransitionExited?: () => void
   /** Whether user can interact with tooltip content */
   interactive?: boolean
   /** Programatically control tooltip's visibility */
@@ -158,6 +154,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   compact?: boolean
   /** Max width of a tooltip */
   maxWidth?: MaxWidthType
+  onTransitionExiting?: () => void
+  onTransitionExited?: () => void
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTooltip' })
