@@ -72,7 +72,7 @@ export const TypographyOverflow = (props: Props) => {
     setIsTooltipAnimating(false)
   }, [])
 
-  const text = (
+  const typography = (
     <Typography
       {...rest}
       className={cx(
@@ -99,11 +99,11 @@ export const TypographyOverflow = (props: Props) => {
       onTransitionExiting={handleTransitionExiting}
       onTransitionExited={handleTransitionExited}
     >
-      {text}
+      {typography}
     </Tooltip>
   )
 
-  return isTooltipRendered ? tooltip : text
+  return isTooltipRendered ? tooltip : typography
 }
 
 TypographyOverflow.displayName = 'TypographyOverflow'
