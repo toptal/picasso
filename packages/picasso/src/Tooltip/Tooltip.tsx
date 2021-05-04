@@ -134,10 +134,14 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
   /** Where should the tooltip be positioned */
   placement?: PlacementType
-  /** Called when tooltip is closed */
-  onClose?: (event: ChangeEvent<{}>) => void
   /** Called when tooltip is opened */
   onOpen?: (event: ChangeEvent<{}>) => void
+  /** Called when tooltip is closed */
+  onClose?: (event: ChangeEvent<{}>) => void
+  /** Called when tooltip's closing animation has started */
+  onTransitionExiting?: () => void
+  /** Called when tooltip's closing animation has finished */
+  onTransitionExited?: () => void
   /** Whether user can interact with tooltip content */
   interactive?: boolean
   /** Programatically control tooltip's visibility */
@@ -167,8 +171,10 @@ export const Tooltip: FunctionComponent<Props> = props => {
     className,
     style,
     open,
-    onClose,
     onOpen,
+    onClose,
+    onTransitionExiting,
+    onTransitionExited,
     variant,
     disableListeners,
     preventOverflow,
@@ -222,6 +228,10 @@ export const Tooltip: FunctionComponent<Props> = props => {
             }
           }
         }
+      }}
+      TransitionProps={{
+        onExiting: onTransitionExiting,
+        onExited: onTransitionExited
       }}
       classes={{
         popper:

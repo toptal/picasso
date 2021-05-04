@@ -1,11 +1,10 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useCallback, useState } from 'react'
 import { Tooltip, Typography, TypographyProps } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
 import { DelayType, VariantType } from '@toptal/picasso/Tooltip/Tooltip'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import Ellipsis from '../Ellipsis'
 import styles from './styles'
 
 export interface Props extends BaseProps, TypographyProps {
@@ -27,6 +26,23 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'TypographyOverflow'
 })
 
+const isTextOverflow = (element: HTMLElement) => {
+  const rect = element.getBoundingClientRect()
+  /**
+   * Pixel value of font render space correction.
+   * It's individual for different fonts, so it won't work for 100% cases,
+   * but it allows us to be much closer to actual overflow detection while calculating.
+   * Tolerance of the render could be 0-2px depending on the font that is used,
+   * and also affected by the right-padding added at Ellipsis component.
+   */
+  const FONT_RENDER_CORRECTION = 0.475
+
+  return (
+    element.scrollWidth > rect.width + FONT_RENDER_CORRECTION ||
+    element.scrollHeight > rect.height + FONT_RENDER_CORRECTION
+  )
+}
+
 export const TypographyOverflow = (props: Props) => {
   const {
     children,
@@ -36,44 +52,75 @@ export const TypographyOverflow = (props: Props) => {
     tooltipVariant,
     disableTooltip,
     className,
+    onMouseEnter,
     ...rest
   } = props
 
-  const multiline = lines > 1
   const classes = useStyles(props)
+  const [isTooltipOpened, setIsTooltipOpened] = useState(false)
+  const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
+  const isTooltipRendered =
+    (isTooltipOpened || isTooltipAnimating) && !disableTooltip
+  const isMultiline = lines > 1
 
-  return (
-    <Ellipsis
-      renderWhenEllipsis={child =>
-        disableTooltip ? (
-          child
-        ) : (
-          <Tooltip
-            data-testid='TypographyOverflow-Tooltip'
-            disableListeners={disableTooltip}
-            content={tooltipContent ?? children}
-            variant={tooltipVariant}
-            placement='top'
-            delay={tooltipDelay}
-            interactive
-          >
-            {child}
-          </Tooltip>
-        )
+  const handleMouseEnter = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      if (isTextOverflow(event.currentTarget)) {
+        setIsTooltipOpened(true)
+        setIsTooltipAnimating(true)
       }
-    >
-      <Typography
-        {...rest}
-        className={cx(
-          classes.wrapper,
-          multiline ? classes.multiLine : classes.singleLine,
-          className
-        )}
-      >
-        {children}
-      </Typography>
-    </Ellipsis>
+
+      if (onMouseEnter) {
+        onMouseEnter(event)
+      }
+    },
+    [onMouseEnter]
   )
+
+  const handleTooltipClose = useCallback(() => {
+    setIsTooltipOpened(false)
+  }, [])
+
+  const handleTransitionExiting = useCallback(() => {
+    setIsTooltipAnimating(true)
+  }, [])
+
+  const handleTransitionExited = useCallback(() => {
+    setIsTooltipAnimating(false)
+  }, [])
+
+  const text = (
+    <Typography
+      {...rest}
+      className={cx(
+        classes.wrapper,
+        isMultiline ? classes.multiLine : classes.singleLine,
+        className
+      )}
+      onMouseEnter={handleMouseEnter}
+    >
+      {children}
+    </Typography>
+  )
+
+  const tooltip = (
+    <Tooltip
+      data-testid='TypographyOverflow-Tooltip'
+      content={tooltipContent ?? children}
+      variant={tooltipVariant}
+      placement='top'
+      delay={tooltipDelay}
+      open={isTooltipOpened}
+      interactive
+      onClose={handleTooltipClose}
+      onTransitionExiting={handleTransitionExiting}
+      onTransitionExited={handleTransitionExited}
+    >
+      {text}
+    </Tooltip>
+  )
+
+  return isTooltipRendered ? tooltip : text
 }
 
 TypographyOverflow.displayName = 'TypographyOverflow'
