@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.1.3...@toptal/picasso-lab@5.1.4) (2021-05-04)
+
+
+### Bug Fixes
+
+* **TypographyOverflow:** fix initial render perf issue ([#2061](https://github.com/toptal/picasso/issues/2061)) ([f2d3d7f](https://github.com/toptal/picasso/commit/f2d3d7fc23a252a19a94f254700559585bd18c12))
+
+
+
+
+
 ## [5.1.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.1.2...@toptal/picasso-lab@5.1.3) (2021-04-28)
 
 **Note:** Version bump only for package @toptal/picasso-lab

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso@8.3.0...@toptal/picasso@8.3.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **TypographyOverflow:** fix initial render perf issue ([#2061](https://github.com/toptal/picasso/issues/2061)) ([f2d3d7f](https://github.com/toptal/picasso/commit/f2d3d7fc23a252a19a94f254700559585bd18c12))
+
+
+
+
+
 # [8.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.2.0...@toptal/picasso@8.3.0) (2021-05-04)
 
 
