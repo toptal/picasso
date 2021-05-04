@@ -228,6 +228,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
         }
       }}
       TransitionProps={{
+        // passing undefined onExiting or onExited changes Tooltip behavior
         ...(onTransitionExiting && { onExiting: onTransitionExiting }),
         ...(onTransitionExited && { onExiting: onTransitionExited })
       }}
