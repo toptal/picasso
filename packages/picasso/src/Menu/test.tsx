@@ -1,42 +1,16 @@
-import React, { FunctionComponent } from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import React from 'react'
+import { render } from '@toptal/picasso/test-utils'
 
-import Menu, { MenuProps } from './'
-
-const TestMenu: FunctionComponent<OmitInternalProps<MenuProps>> = ({
-  children
-}) => <Menu>{children}</Menu>
+import Menu from './Menu'
 
 describe('Menu', () => {
   it('renders', () => {
     const { container } = render(
-      <TestMenu>
-        <Menu.Item>Item 1</Menu.Item>
-        <Menu.Item>Item 2</Menu.Item>
-        <Menu.Item>Item 3</Menu.Item>
-      </TestMenu>
+      <Menu>
+        <Menu.Item>1</Menu.Item>
+        <Menu.Item>2</Menu.Item>
+      </Menu>
     )
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('has back button when in submenu', () => {
-    const { container, getByText } = render(
-      <TestMenu>
-        <Menu.Item
-          menu={
-            <TestMenu>
-              <Menu.Item>Submenu Item</Menu.Item>
-            </TestMenu>
-          }
-        >
-          Item 1
-        </Menu.Item>
-      </TestMenu>
-    )
-
-    fireEvent.click(getByText('Item 1'))
 
     expect(container).toMatchSnapshot()
   })

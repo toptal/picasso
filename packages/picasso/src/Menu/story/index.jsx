@@ -11,7 +11,8 @@ page
 
 page
   .createChapter()
-  .addExample('Menu/story/Default.example.tsx', 'Default')
-  .addExample('Menu/story/Drilldown.example.tsx', 'Drill Down')
+  .addExample('Menu/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+  .addExample('Menu/story/Nested.example.tsx', 'Nested') // picasso-skip-visuals
+  .addExample('Menu/story/Dropdown.example.tsx', 'Dropdown') // picasso-skip-visuals
 
 page.connect(menuItemStory.chapter)

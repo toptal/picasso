@@ -1,62 +1,47 @@
-import React, { FunctionComponent } from 'react'
-import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
-import * as titleCaseModule from 'ap-style-title-case'
+import React from 'react'
+import { render, TestingPicasso } from '@toptal/picasso/test-utils'
 
-import MenuItem, { MenuItemProps } from '../MenuItem'
-
-jest.mock('ap-style-title-case')
-
-const TestMenuItem: FunctionComponent<OmitInternalProps<MenuItemProps>> = ({
-  children,
-  titleCase,
-  menu
-}) => (
-  <MenuItem menu={menu} titleCase={titleCase}>
-    {children}
-  </MenuItem>
-)
-
-let spiedOnTitleCase: jest.SpyInstance
+import MenuItem from './MenuItem'
 
 describe('MenuItem', () => {
-  beforeEach(() => {
-    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-  })
-
-  afterEach(() => {
-    spiedOnTitleCase.mockReset()
-  })
-
   it('renders', () => {
-    const { container } = render(<TestMenuItem>Item</TestMenuItem>)
+    const { container } = render(<MenuItem>1</MenuItem>)
 
     expect(container).toMatchSnapshot()
   })
 
-  it('has chevron if has nested menu', () => {
+  it('renders checkmarked', () => {
+    const { container } = render(<MenuItem checkmarked>1</MenuItem>)
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders with description', () => {
+    const { container } = render(<MenuItem description='details'>1</MenuItem>)
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders with a sub menu arrow', () => {
+    const menu = <div />
+    const { container } = render(<MenuItem menu={menu}>1</MenuItem>)
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders in title case with local prop', () => {
+    const { container } = render(<MenuItem titleCase>arrow</MenuItem>)
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders in title case with global prop', () => {
     const { container } = render(
-      <TestMenuItem menu={<div />}>Item</TestMenuItem>
+      <TestingPicasso titleCase>
+        <MenuItem>arrow</MenuItem>
+      </TestingPicasso>
     )
 
     expect(container).toMatchSnapshot()
-  })
-
-  it('should transform text to title case when Picasso titleCase property is true', () => {
-    const TEXT_CONTENT = 'Test pb8'
-
-    render(<TestMenuItem>{TEXT_CONTENT}</TestMenuItem>, undefined, {
-      titleCase: true
-    })
-
-    expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
-  })
-
-  it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
-    render(<TestMenuItem titleCase={false}>Item</TestMenuItem>, undefined, {
-      titleCase: true
-    })
-
-    expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
   })
 })

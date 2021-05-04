@@ -1,26 +1,159 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MenuItem has chevron if has nested menu 1`] = `
+exports[`MenuItem renders 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <span
-            class="PicassoMenuListItem-stringContent"
+            class="PicassoMenuItem-stringContent"
           >
-            Item
+            1
+          </span>
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;
+
+exports[`MenuItem renders checkmarked 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+          >
+            <svg
+              class="PicassoSvgCheckMinor16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
+              />
+            </svg>
+          </div>
+          <span
+            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentSemibold"
+          >
+            1
+          </span>
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;
+
+exports[`MenuItem renders in title case with global prop 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Picasso-root"
+    >
+      <li
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        >
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          >
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Arrow
+            </span>
+          </div>
+        </div>
+      </li>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`MenuItem renders in title case with local prop 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <span
+            class="PicassoMenuItem-stringContent"
+          >
+            Arrow
+          </span>
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;
+
+exports[`MenuItem renders with a sub menu arrow 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <span
+            class="PicassoMenuItem-stringContent"
+          >
+            1
           </span>
           <div
             class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
@@ -42,28 +175,34 @@ exports[`MenuItem has chevron if has nested menu 1`] = `
 </div>
 `;
 
-exports[`MenuItem renders 1`] = `
+exports[`MenuItem renders with description 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuListItem-root PicassoMenuListItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuListItem-content"
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
       >
         <div
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <span
-            class="PicassoMenuListItem-stringContent"
+            class="PicassoMenuItem-stringContent"
           >
-            Item
+            1
           </span>
+        </div>
+        <div
+          class="PicassoMenuItem-description"
+          style="margin-top: 0.25rem;"
+        >
+          details
         </div>
       </div>
     </li>
