@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.1.1...@toptal/picasso@8.2.0) (2021-05-04)
+
+
+### Features
+
+* **ApplicationUpdateNotification:** [FX-1875] Add a new component ([#2055](https://github.com/toptal/picasso/issues/2055)) ([a1091b1](https://github.com/toptal/picasso/commit/a1091b1cc1b44685fbaffe02aea0d45c5de1f620))
+
+
+
+
+
 ## [8.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso@8.1.0...@toptal/picasso@8.1.1) (2021-04-30)
 
 
