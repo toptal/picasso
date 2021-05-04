@@ -83,7 +83,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
+export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
   props,
   ref
 ) {
@@ -224,10 +224,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
         {children}
       </div>
 
-      {anchorEl && (
+      {anchorEl && isOpen && (
         <Popper
           className={classes.popper}
-          open={isOpen}
           anchorEl={anchorEl}
           popperOptions={{
             onCreate: focus,
@@ -237,6 +236,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           style={paperMargins}
           disablePortal={disablePortal}
           autoWidth={false}
+          open
           enableCompactMode
           container={popperContainer}
         >
