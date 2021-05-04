@@ -105,5 +105,7 @@ export { default as UserBadge } from './UserBadge'
 export type { UserBadgeProps } from './UserBadge'
 export { default as YearSelect } from './YearSelect'
 export type { YearSelectProps } from './YearSelect'
+export { default as ApplicationUpdateNotification } from './ApplicationUpdateNotification'
+export type { ApplicationUpdateNotificationProps } from './ApplicationUpdateNotification'
 
 export * from './Icon'
