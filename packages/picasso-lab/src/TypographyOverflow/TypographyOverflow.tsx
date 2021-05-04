@@ -36,15 +36,31 @@ export const TypographyOverflow = (props: Props) => {
     tooltipVariant,
     disableTooltip,
     className,
+    onClick,
     onMouseEnter,
     ...rest
   } = props
 
   const classes = useStyles(props)
   const [isTooltipActive, setIsTooltipActive] = useState(false)
+  const [isTooltipOpened, setIsTooltipOpened] = useState(false)
   const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
   const isTooltipRendered = isTooltipActive || isTooltipAnimating
   const isMultiline = lines > 1
+
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      if (!isTooltipOpened && isOverflown(event.currentTarget)) {
+        setIsTooltipOpened(true)
+        setIsTooltipActive(true)
+      }
+
+      if (onClick) {
+        onClick(event)
+      }
+    },
+    [isTooltipOpened, onClick]
+  )
 
   const handleMouseEnter = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
@@ -60,8 +76,13 @@ export const TypographyOverflow = (props: Props) => {
     [onMouseEnter]
   )
 
+  const handleTooltipOpen = useCallback(() => {
+    setIsTooltipOpened(true)
+  }, [])
+
   const handleTooltipClose = useCallback(() => {
     setIsTooltipActive(false)
+    setIsTooltipOpened(false)
   }, [])
 
   const handleTransitionExiting = useCallback(() => {
@@ -80,6 +101,7 @@ export const TypographyOverflow = (props: Props) => {
         isMultiline ? classes.multiLine : classes.singleLine,
         className
       )}
+      onClick={handleClick}
       onMouseEnter={handleMouseEnter}
     >
       {children}
@@ -88,12 +110,14 @@ export const TypographyOverflow = (props: Props) => {
 
   const tooltip = (
     <Tooltip
+      open={isTooltipOpened}
       content={tooltipContent ?? children}
       variant={tooltipVariant}
       placement='top'
       delay={tooltipDelay}
       interactive
       disableListeners={disableTooltip}
+      onOpen={handleTooltipOpen}
       onClose={handleTooltipClose}
       onTransitionExiting={handleTransitionExiting}
       onTransitionExited={handleTransitionExited}
