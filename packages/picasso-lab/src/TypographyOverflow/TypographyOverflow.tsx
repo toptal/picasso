@@ -1,9 +1,10 @@
+import cx from 'classnames'
 import React, { ReactNode, useCallback, useState } from 'react'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Tooltip, Typography, TypographyProps } from '@toptal/picasso'
+import { isOverflown } from '@toptal/picasso/utils'
 import { BaseProps } from '@toptal/picasso-shared'
 import { DelayType, VariantType } from '@toptal/picasso/Tooltip/Tooltip'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import cx from 'classnames'
 
 import styles from './styles'
 
@@ -26,23 +27,6 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'TypographyOverflow'
 })
 
-const isTextOverflow = (element: HTMLElement) => {
-  const rect = element.getBoundingClientRect()
-  /**
-   * Pixel value of font render space correction.
-   * It's individual for different fonts, so it won't work for 100% cases,
-   * but it allows us to be much closer to actual overflow detection while calculating.
-   * Tolerance of the render could be 0-2px depending on the font that is used,
-   * and also affected by the right-padding added at Ellipsis component.
-   */
-  const FONT_RENDER_CORRECTION = 0.475
-
-  return (
-    element.scrollWidth > rect.width + FONT_RENDER_CORRECTION ||
-    element.scrollHeight > rect.height + FONT_RENDER_CORRECTION
-  )
-}
-
 export const TypographyOverflow = (props: Props) => {
   const {
     children,
@@ -57,16 +41,15 @@ export const TypographyOverflow = (props: Props) => {
   } = props
 
   const classes = useStyles(props)
-  const [isTooltipOpened, setIsTooltipOpened] = useState(false)
+  const [isTooltipActive, setIsTooltipActive] = useState(false)
   const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
-  const isTooltipRendered =
-    (isTooltipOpened || isTooltipAnimating) && !disableTooltip
+  const isTooltipRendered = isTooltipActive || isTooltipAnimating
   const isMultiline = lines > 1
 
   const handleMouseEnter = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      if (isTextOverflow(event.currentTarget)) {
-        setIsTooltipOpened(true)
+      if (isOverflown(event.currentTarget)) {
+        setIsTooltipActive(true)
         setIsTooltipAnimating(true)
       }
 
@@ -78,7 +61,7 @@ export const TypographyOverflow = (props: Props) => {
   )
 
   const handleTooltipClose = useCallback(() => {
-    setIsTooltipOpened(false)
+    setIsTooltipActive(false)
   }, [])
 
   const handleTransitionExiting = useCallback(() => {
@@ -110,8 +93,8 @@ export const TypographyOverflow = (props: Props) => {
       variant={tooltipVariant}
       placement='top'
       delay={tooltipDelay}
-      open={isTooltipOpened}
       interactive
+      disableListeners={disableTooltip}
       onClose={handleTooltipClose}
       onTransitionExiting={handleTransitionExiting}
       onTransitionExited={handleTransitionExited}
