@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.2.0...@toptal/picasso@8.3.0) (2021-05-04)
+
+
+### Bug Fixes
+
+* **dropdown:** render popper only when opened ([#2060](https://github.com/toptal/picasso/issues/2060)) ([7d56a5b](https://github.com/toptal/picasso/commit/7d56a5b5da163267985b0aa4d0a80a628d6d804e))
+
+
+### Features
+
+* **menu:** add drilldown mode ([#2041](https://github.com/toptal/picasso/issues/2041)) ([d047431](https://github.com/toptal/picasso/commit/d04743196024be5130f651ec66ef1e4a34b058e6))
+
+
+
+
+
 # [8.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.1.1...@toptal/picasso@8.2.0) (2021-05-04)
 
 
