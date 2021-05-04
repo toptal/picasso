@@ -88,7 +88,6 @@ export const TypographyOverflow = (props: Props) => {
 
   const tooltip = (
     <Tooltip
-      data-testid='TypographyOverflow-Tooltip'
       content={tooltipContent ?? children}
       variant={tooltipVariant}
       placement='top'
