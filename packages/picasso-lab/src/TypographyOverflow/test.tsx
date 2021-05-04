@@ -25,6 +25,7 @@ describe('TypographyOverflow', () => {
       expect(queryByTestId('tooltip')).not.toBeInTheDocument()
 
       // check tooltip opens
+      // current implementation swaps elements on mouse enter, so another event is needed
       fireEvent.mouseOver(getByTestId('typography'))
       fireEvent.mouseOver(getByTestId('typography'))
       await waitFor(() => {
