@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.3.1...@toptal/picasso@8.4.0) (2021-05-06)
+
+
+### Features
+
+* **Icon:** add asterisk solid icon ([#2059](https://github.com/toptal/picasso/issues/2059)) ([830444f](https://github.com/toptal/picasso/commit/830444fce36f2c76312fbce2ce2c44a155e7a3f5))
+
+
+
+
+
 ## [8.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso@8.3.0...@toptal/picasso@8.3.1) (2021-05-04)
 
 
