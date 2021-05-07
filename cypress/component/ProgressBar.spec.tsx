@@ -14,7 +14,7 @@ describe('ProgressBar', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders empty progress bar', () => {
+  it('renders empty progress bar when value  <= 0', () => {
     mount(
       <TestingPicasso>
         <ProgressBar value={0} />
@@ -24,7 +24,7 @@ describe('ProgressBar', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders full progress bar', () => {
+  it('renders full progress bar when value >= 100', () => {
     mount(
       <TestingPicasso>
         <ProgressBar value={100} />
@@ -34,7 +34,7 @@ describe('ProgressBar', () => {
     cy.get('body').happoScreenshot()
   })
 
-  describe('ProgressBar with percentage', () => {
+  describe('with percentage', () => {
     it('renders', () => {
       mount(
         <TestingPicasso>
@@ -45,7 +45,7 @@ describe('ProgressBar', () => {
       cy.get('body').happoScreenshot()
     })
 
-    it('renders empty progress bar', () => {
+    it('renders empty progress bar when value <= 0', () => {
       mount(
         <TestingPicasso>
           <ProgressBar value={0} showPercentage />
@@ -55,7 +55,7 @@ describe('ProgressBar', () => {
       cy.get('body').happoScreenshot()
     })
 
-    it('renders full progress bar', () => {
+    it('renders full progress bar when value >= 100', () => {
       mount(
         <TestingPicasso>
           <ProgressBar value={100} showPercentage />
