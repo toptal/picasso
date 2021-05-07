@@ -25,6 +25,7 @@ import Container from '../Container'
 import Group from '../ButtonGroup'
 import Circular from '../ButtonCircular'
 import Action from '../ButtonAction'
+import Split from '../ButtonSplit'
 import noop from '../utils/noop'
 import toTitleCase from '../utils/to-title-case'
 
@@ -43,8 +44,8 @@ export type IconPositionType = 'left' | 'right'
 
 export interface Props
   extends StandardProps,
-    TextLabelProps,
-    ButtonOrAnchorProps {
+  TextLabelProps,
+  ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */
@@ -83,6 +84,7 @@ export interface StaticProps {
   Group: typeof Group
   Circular: typeof Circular
   Action: typeof Action
+  Split: typeof Split
 }
 
 const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
@@ -113,7 +115,7 @@ const getIcon = (
   })
 }
 
-export const Button = forwardRef<HTMLButtonElement, Props>(function Button (
+export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   props,
   ref
 ) {
@@ -235,5 +237,6 @@ Button.displayName = 'Button'
 Button.Group = Group
 Button.Circular = Circular
 Button.Action = Action
+Button.Split = Split
 
 export default Button as OverridableComponent<Props> & StaticProps

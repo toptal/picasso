@@ -1,6 +1,7 @@
 import buttonGroupStory from '../../ButtonGroup/story'
 import buttonCircularStory from '../../ButtonCircular/story'
 import buttonActionStory from '../../ButtonAction/story'
+import buttonSplitStory from '../../ButtonSplit/story'
 import { Button } from '../Button'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -8,10 +9,10 @@ const page = PicassoBook.section('Components').createPage(
   'Button',
   `
     A Button indicates a possible user action.
-    
+
     ${PicassoBook.createBaseDocsLink(
-      'https://share.goabstract.com/e48c56eb-28d6-4770-abaa-ebff35e02833?collectionLayerId=d7452441-b6bd-4625-8303-e66e17e10304&mode=design&present=true'
-    )}
+    'https://share.goabstract.com/e48c56eb-28d6-4770-abaa-ebff35e02833?collectionLayerId=d7452441-b6bd-4625-8303-e66e17e10304&mode=design&present=true'
+  )}
    `
 )
 
@@ -178,6 +179,7 @@ page
   .addComponentDocs(buttonCircularStory.componentDocs)
   .addComponentDocs(buttonActionStory.componentDocs)
   .addComponentDocs(buttonGroupStory.componentDocs)
+  .addComponentDocs(buttonSplitStory.componentDocs)
 
 page
   .createChapter()
@@ -204,3 +206,4 @@ page
 page.connect(buttonCircularStory.chapter)
 page.connect(buttonActionStory.chapter)
 page.connect(buttonGroupStory.chapter)
+page.connect(buttonSplitStory.chapter)
