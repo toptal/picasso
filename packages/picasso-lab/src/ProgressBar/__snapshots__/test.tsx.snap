@@ -12,50 +12,7 @@ exports[`ProgressBar renders 1`] = `
         class="PicassoProgressBar-progressBar"
       >
         <div
-          class="PicassoProgressBar-progressIndicator"
-          style="width: 50%;"
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`ProgressBar renders empty progress bar when value <0 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-    >
-      <div
-        class="PicassoProgressBar-progressBar"
-      >
-        <div
-          class="PicassoProgressBar-progressIndicator"
-          style="width: 0%;"
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`ProgressBar renders full profress bar when value >100 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-    >
-      <div
-        class="PicassoProgressBar-progressBar"
-      >
-        <div
-          class="PicassoProgressBar-progressIndicator"
-          style="width: 100%;"
+          class="PicassoProgressBar-progressIndicator PicassoProgressBar-progressIndicator"
         />
       </div>
     </div>
@@ -75,12 +32,11 @@ exports[`ProgressBar renders with percentage 1`] = `
         class="PicassoProgressBar-progressBar"
       >
         <div
-          class="PicassoProgressBar-progressIndicator"
-          style="width: 50%;"
+          class="PicassoProgressBar-progressIndicator PicassoProgressBar-progressIndicator"
         />
       </div>
       <p
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoProgressBar-percentageValue MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-semibold PicassoProgressBar-percentageValue MuiTypography-body1"
       >
         50
         %

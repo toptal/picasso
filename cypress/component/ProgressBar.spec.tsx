@@ -27,7 +27,7 @@ describe('ProgressBar', () => {
   it('renders full progress bar', () => {
     mount(
       <TestingPicasso>
-        <ProgressBar value={50} />
+        <ProgressBar value={100} />
       </TestingPicasso>
     )
 
@@ -58,7 +58,7 @@ describe('ProgressBar', () => {
     it('renders full progress bar', () => {
       mount(
         <TestingPicasso>
-          <ProgressBar value={50} showPercentage />
+          <ProgressBar value={100} showPercentage />
         </TestingPicasso>
       )
 
