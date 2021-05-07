@@ -43,14 +43,16 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
         </div>
 
         {showPercentage && (
-          <Typography
-            variant='body'
-            size='small'
-            weight='semibold'
-            className={cx(classes.percentageValue)}
-          >
-            {percentage}%
-          </Typography>
+          <Container left='xsmall'>
+            <Typography
+              variant='body'
+              size='small'
+              weight='semibold'
+              className={cx(classes.percentageValue)}
+            >
+              {percentage}%
+            </Typography>
+          </Container>
         )}
       </Container>
     )

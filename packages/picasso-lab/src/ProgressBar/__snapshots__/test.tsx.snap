@@ -35,12 +35,16 @@ exports[`ProgressBar renders with percentage 1`] = `
           class="PicassoProgressBar-progressIndicator PicassoProgressBar-progressIndicator"
         />
       </div>
-      <p
-        class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-semibold PicassoProgressBar-percentageValue MuiTypography-body1"
+      <div
+        class="PicassoContainer-leftxsmallMargin"
       >
-        50
-        %
-      </p>
+        <p
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-semibold PicassoProgressBar-percentageValue MuiTypography-body1"
+        >
+          50
+          %
+        </p>
+      </div>
     </div>
   </div>
 </div>

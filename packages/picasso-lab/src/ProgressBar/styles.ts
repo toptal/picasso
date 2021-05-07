@@ -18,7 +18,6 @@ export default ({ palette, sizes }: Theme) =>
     }),
     percentageValue: {
       minWidth: rem('29px'),
-      marginLeft: '0.5rem',
       lineHeight: rem('18px')
     }
   })
