@@ -5,6 +5,9 @@ import { ProgressBar } from '@toptal/picasso-lab'
 const Example = () => (
   <Container flex direction='column' style={{ maxWidth: '200px' }}>
     <Container top='small'>
+      <ProgressBar value={0} showPercentage />
+    </Container>
+    <Container top='small'>
       <ProgressBar value={10} showPercentage />
     </Container>
     <Container top='small'>

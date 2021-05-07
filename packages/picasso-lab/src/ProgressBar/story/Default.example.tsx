@@ -6,6 +6,9 @@ const Example = () => {
   return (
     <Container flex direction='column' style={{ maxWidth: '200px' }}>
       <Container top='small'>
+        <ProgressBar value={0} />
+      </Container>
+      <Container top='small'>
         <ProgressBar value={10} />
       </Container>
       <Container top='small'>
