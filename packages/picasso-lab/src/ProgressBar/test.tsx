@@ -15,16 +15,4 @@ describe('ProgressBar', () => {
 
     expect(container).toMatchSnapshot()
   })
-
-  it('renders empty progress bar when value <0', () => {
-    const { container } = render(<ProgressBar value={-50} />)
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('renders full profress bar when value >100', () => {
-    const { container } = render(<ProgressBar value={110} />)
-
-    expect(container).toMatchSnapshot()
-  })
 })

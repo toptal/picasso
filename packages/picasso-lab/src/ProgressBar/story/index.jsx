@@ -16,9 +16,9 @@ page
 
 page
   .createChapter()
-  .addExample('ProgressBar/story/Default.example.tsx', 'Default')
-  .addExample('ProgressBar/story/WithPercentage.example.tsx', 'With Percentage')
+  .addExample('ProgressBar/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+  .addExample('ProgressBar/story/WithPercentage.example.tsx', 'With Percentage') // picasso-skip-visuals
   .addExample(
     'ProgressBar/story/AnimatingProgressChange.example.tsx',
     'Animating Progress Change'
-  )
+  ) // picasso-skip-visuals
