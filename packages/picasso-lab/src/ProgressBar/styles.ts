@@ -1,4 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { rem } from '@toptal/picasso-shared'
 
 export default ({ palette, sizes }: Theme) =>
   createStyles({
@@ -16,8 +17,8 @@ export default ({ palette, sizes }: Theme) =>
       transition: 'width 0.3s ease-in-out'
     }),
     percentageValue: {
-      minWidth: '29px',
+      minWidth: rem('29px'),
       marginLeft: '0.5em',
-      lineHeight: '18px'
+      lineHeight: rem('18px')
     }
   })
