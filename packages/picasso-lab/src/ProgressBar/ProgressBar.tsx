@@ -10,20 +10,25 @@ const MIN_VALUE = 0
 const MAX_VALUE = 100
 
 export interface Props extends BaseProps {
-  /** Value in percentage */
+  /** Percentage of completed progress */
   value: number
-  /** Show percentage value */
+  /** Whether to show percentage value */
   showPercentage?: boolean
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoProgressBar' })
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoProgressBar'
+})
+
+const normalizeValue = (value: number) =>
+  Math.min(Math.max(value, MIN_VALUE), MAX_VALUE)
 
 export const ProgressBar = forwardRef<HTMLDivElement, Props>(
   function ProgressBar (props, ref) {
     const { value, showPercentage, ...restProps } = props
-    const classes = useStyles()
+    const classes = useStyles(props)
 
-    const percentage = Math.min(Math.max(value, MIN_VALUE), MAX_VALUE)
+    const percentage = normalizeValue(value)
 
     return (
       <Container
@@ -34,16 +39,14 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
         ref={ref}
       >
         <div className={cx(classes.progressBar)}>
-          <div
-            className={cx(classes.progressIndicator)}
-            style={{ width: `${percentage}%` }}
-          />
+          <div className={cx(classes.progressIndicator)} />
         </div>
 
         {showPercentage && (
           <Typography
             variant='body'
-            size='medium'
+            size='small'
+            weight='semibold'
             className={cx(classes.percentageValue)}
           >
             {percentage}%
