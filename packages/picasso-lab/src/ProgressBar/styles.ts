@@ -5,6 +5,7 @@ export default ({ palette, sizes }: Theme) =>
   createStyles({
     progressBar: {
       width: '100%',
+      minWidth: rem('80px'),
       height: '0.5rem',
       background: palette.grey.light,
       borderRadius: sizes.borderRadius.small
