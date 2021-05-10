@@ -45,10 +45,13 @@ exports[`PromptModal renders 1`] = `
           </h3>
         </div>
         <div
-          class="PicassoModalContent-shadedWrapper"
+          class="PicassoModalContent-wrapper"
         >
           <div
-            class="PicassoModalContent-shadedWrapperEffect"
+            class="PicassoModalContent-shade"
+          />
+          <div
+            class="PicassoModalContent-shade"
           />
           <div
             class="PicassoModalContent-modalContent"
@@ -179,10 +182,13 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
               </h3>
             </div>
             <div
-              class="PicassoModalContent-shadedWrapper"
+              class="PicassoModalContent-wrapper"
             >
               <div
-                class="PicassoModalContent-shadedWrapperEffect"
+                class="PicassoModalContent-shade"
+              />
+              <div
+                class="PicassoModalContent-shade"
               />
               <div
                 class="PicassoModalContent-modalContent"
@@ -290,10 +296,13 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
               </h3>
             </div>
             <div
-              class="PicassoModalContent-shadedWrapper"
+              class="PicassoModalContent-wrapper"
             >
               <div
-                class="PicassoModalContent-shadedWrapperEffect"
+                class="PicassoModalContent-shade"
+              />
+              <div
+                class="PicassoModalContent-shade"
               />
               <div
                 class="PicassoModalContent-modalContent"
@@ -401,10 +410,13 @@ exports[`PromptModal showPrompt with input returns result on Submit action 1`] =
               </h3>
             </div>
             <div
-              class="PicassoModalContent-shadedWrapper"
+              class="PicassoModalContent-wrapper"
             >
               <div
-                class="PicassoModalContent-shadedWrapperEffect"
+                class="PicassoModalContent-shade"
+              />
+              <div
+                class="PicassoModalContent-shade"
               />
               <div
                 class="PicassoModalContent-modalContent"

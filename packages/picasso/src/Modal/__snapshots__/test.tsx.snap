@@ -43,10 +43,13 @@ exports[`Modal renders 1`] = `
           </h3>
         </div>
         <div
-          class="PicassoModalContent-shadedWrapper"
+          class="PicassoModalContent-wrapper"
         >
           <div
-            class="PicassoModalContent-shadedWrapperEffect"
+            class="PicassoModalContent-shade"
+          />
+          <div
+            class="PicassoModalContent-shade"
           />
           <div
             class="PicassoModalContent-modalContent"

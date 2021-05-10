@@ -1,34 +1,34 @@
 import { createStyles } from '@material-ui/core'
 
+const WRAPPER_PADDING = '2em'
+
 export default () =>
   createStyles({
     modalContent: {
-      padding: '2em',
       overflow: 'auto',
       flex: '1 1 auto'
     },
-    shadedWrapper: {
+    wrapper: {
+      padding: WRAPPER_PADDING,
       display: 'flex',
       position: 'relative',
       flex: '1 1 auto',
       overflowY: 'hidden'
     },
-    shadedWrapperEffect: {
-      top: 0,
+    shade: {
       left: 0,
       right: 0,
-      bottom: 0,
       zIndex: 1,
       position: 'absolute',
-      pointerEvents: 'none'
+      pointerEvents: 'none',
+      height: 80
     },
     topShade: {
-      background: 'linear-gradient(180deg, white 0%, rgba(255,255,255,0) 5rem)'
+      top: WRAPPER_PADDING,
+      background: `linear-gradient(180deg, white 0%, rgba(255,255,255,0) 5rem)`
     },
     bottomShade: {
-      background: 'linear-gradient(0deg, white 0%, rgba(255,255,255,0) 5rem)'
-    },
-    topBottomShades: {
-      background: `linear-gradient(0deg, white 0%, rgba(255,255,255,0) 5rem, rgba(255,255,255,0) calc(100% - 5rem), white 100%)`
+      bottom: WRAPPER_PADDING,
+      background: `linear-gradient(0deg, white 0%, rgba(255,255,255,0) 5rem)`
     }
   })
