@@ -32,10 +32,8 @@ export const ModalContent = forwardRef<HTMLDivElement, Props>(
 
     return (
       <div className={cx(classes.wrapper)}>
-        <div className={cx(classes.shade, { [classes.topShade]: !!top })} />
-        <div
-          className={cx(classes.shade, { [classes.bottomShade]: !!bottom })}
-        />
+        {top && <div className={cx(classes.topShade)} />}
+        {bottom && <div className={cx(classes.bottomShade)} />}
         <div
           {...rest}
           style={style}

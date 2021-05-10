@@ -46,12 +46,6 @@ exports[`Modal renders 1`] = `
           class="PicassoModalContent-wrapper"
         >
           <div
-            class="PicassoModalContent-shade"
-          />
-          <div
-            class="PicassoModalContent-shade"
-          />
-          <div
             class="PicassoModalContent-modalContent"
           >
             Modal test content

@@ -48,12 +48,6 @@ exports[`PromptModal renders 1`] = `
           class="PicassoModalContent-wrapper"
         >
           <div
-            class="PicassoModalContent-shade"
-          />
-          <div
-            class="PicassoModalContent-shade"
-          />
-          <div
             class="PicassoModalContent-modalContent"
           >
             <p
@@ -185,12 +179,6 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
               class="PicassoModalContent-wrapper"
             >
               <div
-                class="PicassoModalContent-shade"
-              />
-              <div
-                class="PicassoModalContent-shade"
-              />
-              <div
                 class="PicassoModalContent-modalContent"
               >
                 <p
@@ -299,12 +287,6 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
               class="PicassoModalContent-wrapper"
             >
               <div
-                class="PicassoModalContent-shade"
-              />
-              <div
-                class="PicassoModalContent-shade"
-              />
-              <div
                 class="PicassoModalContent-modalContent"
               >
                 <p
@@ -412,12 +394,6 @@ exports[`PromptModal showPrompt with input returns result on Submit action 1`] =
             <div
               class="PicassoModalContent-wrapper"
             >
-              <div
-                class="PicassoModalContent-shade"
-              />
-              <div
-                class="PicassoModalContent-shade"
-              />
               <div
                 class="PicassoModalContent-modalContent"
               >
