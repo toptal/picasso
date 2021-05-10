@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.1.4...@toptal/picasso-lab@5.2.0) (2021-05-10)
+
+
+### Features
+
+* **ProgressBar:** [TEA-2569] Introduce ProgressBar component ([#2063](https://github.com/toptal/picasso/issues/2063)) ([7eff9dd](https://github.com/toptal/picasso/commit/7eff9dde32d4e4075f5cbe1d2ad94563e127d927))
+
+
+
+
+
 ## [5.1.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.1.3...@toptal/picasso-lab@5.1.4) (2021-05-04)
 
 
