@@ -17,7 +17,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const ModalContent = forwardRef<HTMLDivElement, Props>(
-  function ModalContent(props, ref) {
+  function ModalContent (props, ref) {
     const { children, className, style, ...rest } = props
 
     /**
@@ -31,14 +31,9 @@ export const ModalContent = forwardRef<HTMLDivElement, Props>(
     const classes = useStyles()
 
     return (
-      <div className={cx(classes.shadedWrapper)}>
-        <div
-          className={cx(classes.shadedWrapperEffect, {
-            [classes.topShade]: top && !bottom,
-            [classes.bottomShade]: bottom && !top,
-            [classes.topBottomShades]: top && bottom
-          })}
-        />
+      <div className={cx(classes.wrapper)}>
+        {top && <div className={cx(classes.topShade)} />}
+        {bottom && <div className={cx(classes.bottomShade)} />}
         <div
           {...rest}
           style={style}
