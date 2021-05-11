@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.4.1](https://github.com/toptal/picasso/compare/@toptal/picasso@8.4.0...@toptal/picasso@8.4.1) (2021-05-11)
+
+
+### Bug Fixes
+
+* **Modal:** add scrollable shades paddings ([1be0c8d](https://github.com/toptal/picasso/commit/1be0c8d2075a3b7cae6f3681da85d05e93e60f37))
+
+
+
+
+
 # [8.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.3.1...@toptal/picasso@8.4.0) (2021-05-06)
 
 

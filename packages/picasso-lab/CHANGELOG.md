@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.2.0...@toptal/picasso-lab@5.2.1) (2021-05-11)
+
+
+### Bug Fixes
+
+* **Modal:** add scrollable shades paddings ([1be0c8d](https://github.com/toptal/picasso/commit/1be0c8d2075a3b7cae6f3681da85d05e93e60f37))
+
+
+
+
+
 # [5.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.1.4...@toptal/picasso-lab@5.2.0) (2021-05-10)
 
 
