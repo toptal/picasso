@@ -11,8 +11,7 @@ export default ({ palette }: Theme) =>
       right: '0.3125rem',
       color: palette.grey.dark,
       fontSize: '1rem',
-      cursor: 'inherit',
-      pointerEvents: 'none'
+      cursor: 'inherit'
     },
     caretDisabled: {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

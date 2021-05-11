@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks'
 
 import { getUseSelectPropsMock } from '../mocks'
-import useSelectBlurHandler from './use-select-blur-handler'
+import useBlurHandler from './use-blur-handler'
 import isRelatedTargetInsidePopper from '../../../utils/is-related-target-inside-popper'
 
 const mockedIsRelatedTargetInsidePopper = isRelatedTargetInsidePopper as jest.MockedFunction<
@@ -10,7 +10,7 @@ const mockedIsRelatedTargetInsidePopper = isRelatedTargetInsidePopper as jest.Mo
 
 jest.mock('../../../utils/is-related-target-inside-popper', () => jest.fn())
 
-describe('useSelectBlurHandler', () => {
+describe('useBlurHandler', () => {
   beforeEach(() => {
     mockedIsRelatedTargetInsidePopper.mockClear()
   })
@@ -22,7 +22,7 @@ describe('useSelectBlurHandler', () => {
     props.selectProps.onBlur = jest.fn()
     mockedIsRelatedTargetInsidePopper.mockReturnValue(false)
 
-    const { result } = renderHook(() => useSelectBlurHandler(props))
+    const { result } = renderHook(() => useBlurHandler(props))
     const event = new FocusEvent('focus') as any
 
     result.current(event)
@@ -41,7 +41,7 @@ describe('useSelectBlurHandler', () => {
     props.selectProps.onBlur = jest.fn()
     mockedIsRelatedTargetInsidePopper.mockReturnValue(true)
 
-    const { result } = renderHook(() => useSelectBlurHandler(props))
+    const { result } = renderHook(() => useBlurHandler(props))
     const event = new FocusEvent('focus') as any
 
     result.current(event)
