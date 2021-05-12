@@ -39,6 +39,7 @@ interface UseTooltipHandlersOptions {
 
 type ChildrenProps = {
   onClick?: (event: ChangeEvent<{}>) => void
+  onMouseLeave?: () => void
 }
 
 interface UseTooltipStateOptions {
@@ -80,7 +81,8 @@ const useTooltipHandlers = ({
   children
 }: UseTooltipHandlersOptions) => {
   const isTouchDevice = !isPointerDevice()
-
+  // After closing with click the tooltip should not be opened againg until the mouse leave event
+  const [ignoreOpening, setIgnoreOpening] = useState(false)
   const { isOpen, isControlled, openTooltip, closeTooltip } = useTooltipState({
     externalOpen
   })
@@ -93,10 +95,17 @@ const useTooltipHandlers = ({
       children
     }
   }
-
   const handleClose = (event: ChangeEvent<{}>) => {
     onClose?.(event)
     closeTooltip()
+  }
+  const handleOpen = (event: ChangeEvent<{}>) => {
+    if (ignoreOpening) {
+      return
+    }
+
+    onOpen?.(event)
+    openTooltip()
   }
   const handleClick = (event: ChangeEvent<{}>) => {
     if (disableListeners) {
@@ -105,14 +114,14 @@ const useTooltipHandlers = ({
 
     children.props.onClick?.(event)
     if (isOpen) {
+      setIgnoreOpening(true)
       handleClose(event)
     } else if (isTouchDevice) {
       handleOpen(event)
     }
   }
-  const handleOpen = (event: ChangeEvent<{}>) => {
-    onOpen?.(event)
-    openTooltip()
+  const handleMouseLeave = () => {
+    setIgnoreOpening(false)
   }
 
   return {
@@ -120,7 +129,8 @@ const useTooltipHandlers = ({
     handleOpen,
     handleClose,
     children: cloneElement(children, {
-      onClick: handleClick
+      onClick: handleClick,
+      onMouseLeave: handleMouseLeave
     })
   }
 }
