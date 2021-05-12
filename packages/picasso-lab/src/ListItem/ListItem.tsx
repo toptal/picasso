@@ -56,7 +56,9 @@ export const ListItem = (props: Props) => {
         >
           {itemIcon}
         </Container>
-        <Typography size='medium'>{children}</Typography>
+        <Typography as='div' size='medium'>
+          {children}
+        </Typography>
       </Container>
     </li>
   )
