@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.4.1...@toptal/picasso@8.5.0) (2021-05-12)
+
+
+### Features
+
+* **shared:** export used helpers & group colorutils ([#2068](https://github.com/toptal/picasso/issues/2068)) ([b43688f](https://github.com/toptal/picasso/commit/b43688f10cfc569d6c41d4bdd02f6e2c14e1a249))
+
+
+
+
+
 ## [8.4.1](https://github.com/toptal/picasso/compare/@toptal/picasso@8.4.0...@toptal/picasso@8.4.1) (2021-05-11)
 
 
