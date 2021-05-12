@@ -1,21 +1,22 @@
 # Those files need to be removed from here after this
 # version of prettier https://github.com/prettier/prettier/issues/7263 will
 # be supported in prettier-standard
-packages/picasso/src/index.ts
-packages/picasso-charts/src/LineChart/index.ts
 packages/picasso-charts/src/index.ts
-packages/topkit-analytics-charts/src/AnalyticsChart/index.ts
-packages/picasso/src/utils/Transitions/index.ts
-packages/picasso/src/Select/index.ts
-packages/picasso/src/MonthSelect/index.ts
-packages/picasso/src/YearSelect/index.ts
-packages/picasso/src/FormLabel/index.ts
-packages/picasso/src/ApplicationUpdateNotification/index.ts
-packages/picasso-lab/src/index.ts
-packages/picasso-lab/src/DatePicker/index.ts
-packages/picasso-lab/src/TimePicker/index.ts
-packages/picasso-forms/src/index.ts
+packages/picasso-charts/src/LineChart/index.ts
 packages/picasso-forms/src/CheckboxGroup/index.ts
+packages/picasso-forms/src/index.ts
 packages/picasso-forms/src/RadioGroup/index.ts
-packages/picasso/src/NativeSelectPlaceholder/index.tsx
+packages/picasso-lab/src/DatePicker/index.ts
+packages/picasso-lab/src/index.ts
+packages/picasso-lab/src/TimePicker/index.ts
+packages/picasso/src/ApplicationUpdateNotification/index.ts
+packages/picasso/src/FormLabel/index.ts
+packages/picasso/src/Grid/index.ts
+packages/picasso/src/index.ts
+packages/picasso/src/MonthSelect/index.ts
 packages/picasso/src/NativeSelectOptions/index.tsx
+packages/picasso/src/NativeSelectPlaceholder/index.tsx
+packages/picasso/src/Select/index.ts
+packages/picasso/src/utils/Transitions/index.ts
+packages/picasso/src/YearSelect/index.ts
+packages/topkit-analytics-charts/src/AnalyticsChart/index.ts
