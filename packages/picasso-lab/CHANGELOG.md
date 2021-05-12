@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.2.1...@toptal/picasso-lab@5.2.2) (2021-05-12)
+
+
+### Bug Fixes
+
+* **list:** render ListItem as div to avoid nested paragraph warning ([#2066](https://github.com/toptal/picasso/issues/2066)) ([836cc20](https://github.com/toptal/picasso/commit/836cc2033e784cb8858ed795748292b81d8feb23))
+
+
+
+
+
 ## [5.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.2.0...@toptal/picasso-lab@5.2.1) (2021-05-11)
 
 
