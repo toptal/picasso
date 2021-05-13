@@ -284,7 +284,7 @@ describe('Tooltip', () => {
     cy.get('[data-testid="tooltip-content"').should('be.visible')
 
     cy.get('[data-testid="tooltip-trigger"').click()
-    cy.get('[data-testid="tooltip-content"').should('not.exist')
+    cy.get('[data-testid="tooltip-content"').should('not.be.visible')
   })
 
   it('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
@@ -301,7 +301,7 @@ describe('Tooltip', () => {
       position: 'bottomRight'
     })
 
-    cy.get('[data-testid="tooltip-content"').should('not.exist')
+    cy.get('[data-testid="tooltip-content"').should('not.be.visible')
   })
 
   it('renders interactive content', () => {
