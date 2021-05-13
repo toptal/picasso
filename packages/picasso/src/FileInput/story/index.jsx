@@ -28,4 +28,4 @@ page
   .addExample('FileInput/story/FileList.example.tsx', {
     title: 'FileList',
     description: 'List of files'
-  })
+  }) // picasso-skip-visuals
