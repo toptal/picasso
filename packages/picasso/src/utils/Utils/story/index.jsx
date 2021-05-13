@@ -20,3 +20,7 @@ page
     title: 'React',
     showEditCode: false
   }) // picasso-skip-visuals
+  .addExample('utils/Utils/story/Colors.example.tsx', {
+    title: 'Colors',
+    showEditCode: false
+  }) // picasso-skip-visuals
