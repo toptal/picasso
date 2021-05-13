@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.5.1](https://github.com/toptal/picasso/compare/@toptal/picasso@8.5.0...@toptal/picasso@8.5.1) (2021-05-13)
+
+
+### Bug Fixes
+
+* **Select:** close menu on second click ([#2065](https://github.com/toptal/picasso/issues/2065)) ([ce9ddb3](https://github.com/toptal/picasso/commit/ce9ddb3ddc465b01afdcb9a227d8949073308c2f))
+
+
+
+
+
 # [8.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.4.1...@toptal/picasso@8.5.0) (2021-05-12)
 
 
