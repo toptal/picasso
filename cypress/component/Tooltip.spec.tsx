@@ -17,6 +17,20 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const TOOLTIP_LONG_TEXT = 'Content '.repeat(10)
 
+const BasicTooltipExample = () => {
+  const tooltipContent = <span data-testid='tooltip-content'>Content</span>
+
+  return (
+    <TestingPicasso>
+      <Tooltip content={tooltipContent}>
+        <Button data-testid='tooltip-trigger'>
+          <span style={{ padding: '20px' }}>Button</span>
+        </Button>
+      </Tooltip>
+    </TestingPicasso>
+  )
+}
+
 const SnapshotTooltipExample = (props?: Partial<TooltipProps>) => (
   <TestingPicasso>
     <Tooltip content='Content' open {...props}>
@@ -259,6 +273,35 @@ describe('Tooltip', () => {
   it('renders inside and outside of a modal', () => {
     mount(<ModalTooltipExample />)
     cy.get('body').happoScreenshot()
+  })
+
+  it('renders on hover, and hides on click', () => {
+    mount(<BasicTooltipExample />)
+
+    cy.get('[data-testid="tooltip-content"').should('not.exist')
+    cy.get('[data-testid="tooltip-trigger"').realHover()
+
+    cy.get('[data-testid="tooltip-content"').should('be.visible')
+
+    cy.get('[data-testid="tooltip-trigger"').click()
+    cy.get('[data-testid="tooltip-content"').should('not.be.visible')
+  })
+
+  it('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
+    mount(<BasicTooltipExample />)
+
+    cy.get('[data-testid="tooltip-content"').should('not.exist')
+    cy.get('[data-testid="tooltip-trigger"').realHover()
+
+    cy.get('[data-testid="tooltip-content"').should('be.visible')
+
+    cy.get('[data-testid="tooltip-trigger"').click()
+    cy.get('[data-testid="tooltip-trigger"').realHover({ position: 'topLeft' })
+    cy.get('[data-testid="tooltip-trigger"').realHover({
+      position: 'bottomRight'
+    })
+
+    cy.get('[data-testid="tooltip-content"').should('not.be.visible')
   })
 
   it('renders interactive content', () => {
