@@ -3,7 +3,7 @@ import { useCallback } from 'react'
 import { ValueType, UseSelectProps } from '../../../types'
 import { isRelatedTargetInsidePopper, EMPTY_INPUT_VALUE } from '../../../utils'
 
-const useSelectBlurHandler = <T extends ValueType, M extends boolean = false>({
+const useBlurHandler = <T extends ValueType, M extends boolean = false>({
   popperRef,
   selectState: { close, setFilterOptionsValue },
   selectProps: { onBlur }
@@ -21,4 +21,4 @@ const useSelectBlurHandler = <T extends ValueType, M extends boolean = false>({
     [close, onBlur, setFilterOptionsValue, popperRef]
   )
 
-export default useSelectBlurHandler
+export default useBlurHandler

@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-
 import React from 'react'
 import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
@@ -283,6 +282,21 @@ describe('NonNativeSelect', () => {
     expect(queryByRole('menu')).toBeInTheDocument()
 
     fireEvent.click(getByText(OPTIONS[0].text))
+    expect(queryByRole('menu')).not.toBeInTheDocument()
+  })
+
+  it('closes opened menu after a click on select', () => {
+    const placeholder = 'Choose an option...'
+    const { getByPlaceholderText, queryByRole } = renderSelect({
+      options: OPTIONS,
+      placeholder
+    })
+
+    const selectInput = getByPlaceholderText(placeholder)
+
+    fireEvent.click(selectInput)
+    expect(queryByRole('menu')).toBeInTheDocument()
+    fireEvent.click(selectInput)
     expect(queryByRole('menu')).not.toBeInTheDocument()
   })
 

@@ -15,10 +15,23 @@ describe('useClickHandler', () => {
     expect(props.selectState.open).toHaveBeenCalledTimes(1)
   })
 
-  it("does nothing when can't be open", () => {
+  it('closes when open', () => {
     const props = getUseSelectPropsMock()
 
     props.selectState.canOpen = false
+    props.selectState.isOpen = true
+    const { result } = renderHook(() => useClickHandler(props))
+
+    result.current()
+
+    expect(props.selectState.close).toHaveBeenCalledTimes(1)
+  })
+
+  it("does nothing when can't be open and not open", () => {
+    const props = getUseSelectPropsMock()
+
+    props.selectState.canOpen = false
+    props.selectState.isOpen = false
     const { result } = renderHook(() => useClickHandler(props))
 
     result.current()

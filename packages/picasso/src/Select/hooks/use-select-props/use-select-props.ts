@@ -7,7 +7,7 @@ import {
 } from '../../types'
 import useFocusHandler from './use-focus-handler'
 import useClickHandler from './use-click-handler'
-import useSelectBlurHandler from './use-select-blur-handler'
+import useBlurHandler from './use-blur-handler'
 import useSelectHandler from './use-select-handler'
 import useSearchBlurHandler from './use-search-blur-handler'
 import useEscapeKeyDownHandler from './use-escape-keydown-handler'
@@ -26,7 +26,7 @@ const useSelectProps = <T extends ValueType, M extends boolean = false>(
 ): UseSelectOutput => {
   const handleFocus = useFocusHandler(props)
   const handleClick = useClickHandler(props)
-  const handleSelectBlur = useSelectBlurHandler(props)
+  const handleBlur = useBlurHandler(props)
   const handleSelect = useSelectHandler(props)
   const handleSearchBlur = useSearchBlurHandler(props)
   const handleEscapeKeyDown = useEscapeKeyDownHandler(props)
@@ -67,7 +67,7 @@ const useSelectProps = <T extends ValueType, M extends boolean = false>(
   const getRootProps = () => ({
     onFocus: handleFocus,
     onClick: handleClick,
-    onBlur: handleSelectBlur
+    onBlur: handleBlur
   })
 
   const getInputProps = () => ({
