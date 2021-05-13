@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.5.3](https://github.com/toptal/picasso/compare/@toptal/picasso@8.5.2...@toptal/picasso@8.5.3) (2021-05-13)
+
+
+### Bug Fixes
+
+* reappearing tooltip after moving mouse within boundaries of triggered button ([#2069](https://github.com/toptal/picasso/issues/2069)) ([9cd7b12](https://github.com/toptal/picasso/commit/9cd7b12ac18d903b0a685918f51a0c4166b32586))
+
+
+
+
+
 ## [8.5.2](https://github.com/toptal/picasso/compare/@toptal/picasso@8.5.1...@toptal/picasso@8.5.2) (2021-05-13)
 
 **Note:** Version bump only for package @toptal/picasso
