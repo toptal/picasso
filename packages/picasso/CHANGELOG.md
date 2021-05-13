@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.5.2](https://github.com/toptal/picasso/compare/@toptal/picasso@8.5.1...@toptal/picasso@8.5.2) (2021-05-13)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
 ## [8.5.1](https://github.com/toptal/picasso/compare/@toptal/picasso@8.5.0...@toptal/picasso@8.5.1) (2021-05-13)
 
 
