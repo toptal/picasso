@@ -1,12 +1,13 @@
-import React, { forwardRef, useState, ReactNode } from 'react'
+import React, { forwardRef, useState, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import { ArrowUpMinor24, ArrowDownMinor24 } from '../Icon'
 import styles from './styles'
 
-interface Props {
-  size?: 'small' | 'medium' | 'large'
+interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+  size?: SizeType<'small' | 'medium' | 'large'>
   disabled?: boolean
   children: ReactNode
 }
@@ -24,8 +25,8 @@ const ButtonSplit = forwardRef<HTMLDivElement, Props>(function ButtonSplit(props
 
   return (
     <Button.Group ref={ref} style={style} className={className} {...rest}>
-      <Button disabled variant='secondary'>{children}</Button>
-      <Button style={{ minWidth: '3rem' }} disabled variant='secondary' onClick={handleArrowButtonClick}>{isContentShown ? <ArrowUpMinor24 /> : <ArrowDownMinor24 />}</Button>
+      <Button disabled={disabled} variant='secondary' si>{children}</Button>
+      <Button className={classes.triggerButton} disabled={disabled} variant='secondary' onClick={handleArrowButtonClick}>{isContentShown ? <ArrowUpMinor24 /> : <ArrowDownMinor24 />}</Button>
     </Button.Group>
   )
 })
