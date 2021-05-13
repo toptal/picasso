@@ -84,7 +84,7 @@ export default ({ palette, typography }: Theme) =>
 
     // colors
     green: {
-      color: palette.green.main
+      color: palette.green.darker
     },
     red: {
       color: palette.red.main
