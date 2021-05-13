@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileList renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoContainer-flex PicassoContainer-column FileList-root"
+    >
+      <div
+        class="PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex FileList-fileListItem"
+      >
+        <div
+          class="PicassoContainer-flex PicassoContainer-column"
+        >
+          <div
+            class="PicassoContainer-flex"
+          >
+            <div
+              class="PicassoContainer-rightxsmallMargin"
+            >
+              <svg
+                class="PicassoSvgLink16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3 10a3 3 0 01-3-3V6a3 3 0 013-3h5a3 3 0 013 3h2a3 3 0 013 3v1a3 3 0 01-3 3H8a3 3 0 01-3-3H3zm10-3h-2a3 3 0 01-3 3H6a2 2 0 002 2h5a2 2 0 002-2V9a2 2 0 00-2-2zM8 4H3a2 2 0 00-2 2v1a2 2 0 002 2h2a3 3 0 013-3h2a2 2 0 00-2-2zm2 3H8a2 2 0 00-2 2h2a2 2 0 002-2z"
+                />
+              </svg>
+            </div>
+            <p
+              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black MuiTypography-body1"
+            >
+              user-profile-picture.png
+            </p>
+          </div>
+          <p
+            class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-red MuiTypography-body1"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
