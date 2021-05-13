@@ -2,10 +2,9 @@ import { Table } from '@toptal/picasso'
 import React from 'react'
 
 const data = {
-  noop: `A function that does nothing, a replacement for () => {}`,
-  isBoolean: `Checks if the provided value is a boolean`,
-  isNumber: `Checks if the provided value is a number`,
-  isString: `Checks if the provided value is a string`
+  'colorUtils.alpha': `Sets the alpha channel for the color and returns the hex color format`,
+  'colorUtils.lighten': `Sets the lightness of the color and returns the hex color format`,
+  'colorUtils.darken': `Sets the darkness of the color and returns the hex color format`
 }
 
 const Example = () => (
