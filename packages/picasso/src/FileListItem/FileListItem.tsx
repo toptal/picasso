@@ -1,7 +1,7 @@
 import React from 'react'
-import cx from 'classnames'
+// import cx from 'classnames'
 import { ProgressBar } from '@toptal/picasso-lab'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+// import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Container from '../Container'
 import Typography from '../Typography'
@@ -9,21 +9,21 @@ import Tooltip from '../Tooltip'
 import Button from '../Button'
 import { Link16, Trash16, Close16 } from '../Icon'
 import { File } from '../FileList/types'
-import styles from './styles'
+// import styles from './styles'
 
 export interface Props {
   file: File
   onRemove?: (fileName: string) => void
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'FileListItem'
-})
+// const useStyles = makeStyles<Theme>(styles, {
+//   name: 'FileListItem'
+// })
 
 const FileListItem = ({ file, onRemove }: Props) => {
   const { uploading, progress = 0, error, name } = file
 
-  const classes = useStyles()
+  // const classes = useStyles()
 
   const handleRemove = () => {
     onRemove?.(name)
@@ -75,7 +75,7 @@ const FileListItem = ({ file, onRemove }: Props) => {
       direction='row'
       alignItems='center'
       justifyContent='space-between'
-      className={cx(classes.root)}
+      // className={cx(classes.root)}
     >
       {uploading && error === undefined ? uploadingNode : fileNode}
     </Container>

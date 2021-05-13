@@ -1,21 +1,21 @@
 import React, { forwardRef, HTMLAttributes } from 'react'
-import cx from 'classnames'
+// import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+// import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Container from '../Container'
 import FileListItem from '../FileListItem'
 import { File } from './types'
-import styles from './styles'
+// import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   files: File[]
   onItemRemove?: (fileName: string) => void
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'FileList'
-})
+// const useStyles = makeStyles<Theme>(styles, {
+//   name: 'FileList'
+// })
 
 export const FileList = forwardRef<HTMLDivElement, Props>(function FileList (
   props,
@@ -23,7 +23,7 @@ export const FileList = forwardRef<HTMLDivElement, Props>(function FileList (
 ) {
   const { files, onItemRemove, ...rest } = props
 
-  const classes = useStyles()
+  // const classes = useStyles()
 
   return (
     <Container
@@ -31,7 +31,7 @@ export const FileList = forwardRef<HTMLDivElement, Props>(function FileList (
       ref={ref}
       flex
       direction='column'
-      className={cx(classes.root)}
+      // className={cx(classes.root)}
     >
       {files.map(file => (
         <FileListItem file={file} onRemove={onItemRemove} key={file.name} />

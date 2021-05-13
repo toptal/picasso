@@ -6,10 +6,10 @@ exports[`FileList renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column FileList-root"
+      class="PicassoContainer-flex PicassoContainer-column"
     >
       <div
-        class="PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex FileListItem-root"
+        class="PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
       >
         <div
           class="PicassoContainer-flex PicassoContainer-column"
