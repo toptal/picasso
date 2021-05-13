@@ -26,9 +26,7 @@ const FileListItem = ({ file, onRemove }: Props) => {
   const classes = useStyles()
 
   const handleRemove = () => {
-    if (onRemove !== undefined) {
-      onRemove(name)
-    }
+    onRemove?.(name)
   }
 
   const uploadingNode = (
