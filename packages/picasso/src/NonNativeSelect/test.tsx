@@ -285,7 +285,7 @@ describe('NonNativeSelect', () => {
     expect(queryByRole('menu')).not.toBeInTheDocument()
   })
 
-  it('closes menu when open and select is clicked', () => {
+  it('closes opened menu after a click on select', () => {
     const placeholder = 'Choose an option...'
     const { getByPlaceholderText, queryByRole } = renderSelect({
       options: OPTIONS,
