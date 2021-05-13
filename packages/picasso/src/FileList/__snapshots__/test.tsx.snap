@@ -9,7 +9,7 @@ exports[`FileList renders 1`] = `
       class="PicassoContainer-flex PicassoContainer-column FileList-root"
     >
       <div
-        class="PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex FileList-fileListItem"
+        class="PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex FileListItem-root"
       >
         <div
           class="PicassoContainer-flex PicassoContainer-column"
