@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.5.3...@toptal/picasso@8.6.0) (2021-05-14)
+
+
+### Features
+
+* **Typography:** update green color ([#2071](https://github.com/toptal/picasso/issues/2071)) ([6591aac](https://github.com/toptal/picasso/commit/6591aac722c0567d116f003dab9d168ccd1362c2))
+
+
+
+
+
 ## [8.5.3](https://github.com/toptal/picasso/compare/@toptal/picasso@8.5.2...@toptal/picasso@8.5.3) (2021-05-13)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.0.10...@toptal/picasso-charts@2.1.0) (2021-05-14)
+
+
+### Features
+
+* **Typography:** update green color ([#2071](https://github.com/toptal/picasso/issues/2071)) ([6591aac](https://github.com/toptal/picasso/commit/6591aac722c0567d116f003dab9d168ccd1362c2))
+
+
+
+
+
 ## [2.0.10](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.0.9...@toptal/picasso-charts@2.0.10) (2021-04-28)
 
 **Note:** Version bump only for package @toptal/picasso-charts

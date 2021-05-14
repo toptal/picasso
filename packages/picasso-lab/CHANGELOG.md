@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.2.2...@toptal/picasso-lab@5.3.0) (2021-05-14)
+
+
+### Features
+
+* **Typography:** update green color ([#2071](https://github.com/toptal/picasso/issues/2071)) ([6591aac](https://github.com/toptal/picasso/commit/6591aac722c0567d116f003dab9d168ccd1362c2))
+
+
+
+
+
 ## [5.2.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.2.1...@toptal/picasso-lab@5.2.2) (2021-05-12)
 
 
