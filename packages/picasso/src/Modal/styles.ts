@@ -4,6 +4,7 @@ const maxHeight = 'calc(100% - 6rem)'
 const maxWidth = 'calc(100% - 6rem)'
 const maxHeightForTopAligned = 'calc(100% - 4rem)'
 const maxHeightForSmall = 'calc(100% - 2rem)'
+const maxWidthForSmall = 'calc(100% - 2rem)'
 
 export default ({ screens, sizes }: Theme) =>
   createStyles({
@@ -23,8 +24,8 @@ export default ({ screens, sizes }: Theme) =>
       margin: '2rem',
 
       [screens('small')]: {
-        maxWidth: 'none',
         maxHeight: maxHeightForSmall,
+        maxWidth: maxWidthForSmall,
         margin: '1rem'
       }
     },
@@ -44,7 +45,11 @@ export default ({ screens, sizes }: Theme) =>
     topAlignedDialog: {
       position: 'absolute',
       top: 0,
-      maxHeight: maxHeightForTopAligned
+      maxHeight: maxHeightForTopAligned,
+
+      [screens('small')]: {
+        maxHeight: maxHeightForSmall
+      }
     },
     closeButton: {
       position: 'absolute',
