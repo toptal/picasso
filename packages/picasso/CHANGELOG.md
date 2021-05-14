@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.6.0...@toptal/picasso@8.7.0) (2021-05-14)
+
+
+### Features
+
+* **FileList:** [TEA-2545] Implement internal file list component ([#2067](https://github.com/toptal/picasso/issues/2067)) ([1dfbc86](https://github.com/toptal/picasso/commit/1dfbc86a285f5ba42397e7fc7bac17798c4c6e91))
+
+
+
+
+
 # [8.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.5.3...@toptal/picasso@8.6.0) (2021-05-14)
 
 
