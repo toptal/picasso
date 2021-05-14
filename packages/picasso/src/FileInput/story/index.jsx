@@ -25,3 +25,7 @@ page
     description:
       'Showcase how to integrate FileInput with uploading logic. Randomly returns errors and allows only upload of image files'
   })
+  .addExample('FileInput/story/FileList.example.tsx', {
+    title: 'FileList',
+    description: 'List of files'
+  }) // picasso-skip-visuals
