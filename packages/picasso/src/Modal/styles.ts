@@ -3,6 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 const maxHeight = 'calc(100% - 6rem)'
 const maxWidth = 'calc(100% - 6rem)'
 const maxHeightForTopAligned = 'calc(100% - 4rem)'
+const maxHeightForSmall = 'calc(100% - 2rem)'
 
 export default ({ screens, sizes }: Theme) =>
   createStyles({
@@ -23,7 +24,7 @@ export default ({ screens, sizes }: Theme) =>
 
       [screens('small')]: {
         maxWidth: 'none',
-        maxHeight: 'none',
+        maxHeight: maxHeightForSmall,
         margin: '1rem'
       }
     },
