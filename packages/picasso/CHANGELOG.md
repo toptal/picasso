@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.7.1](https://github.com/toptal/picasso/compare/@toptal/picasso@8.7.0...@toptal/picasso@8.7.1) (2021-05-17)
+
+
+### Bug Fixes
+
+* **modal:** the content is not scrollable on mobile ([#2072](https://github.com/toptal/picasso/issues/2072)) ([56bef03](https://github.com/toptal/picasso/commit/56bef036a89618ee040385bfe3a905ffccf0e8ff))
+
+
+
+
+
 # [8.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso@8.6.0...@toptal/picasso@8.7.0) (2021-05-14)
 
 
