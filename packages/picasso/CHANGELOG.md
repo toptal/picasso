@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.7.2](https://github.com/toptal/picasso/compare/@toptal/picasso@8.7.1...@toptal/picasso@8.7.2) (2021-05-17)
+
+
+### Bug Fixes
+
+* **Modal:** fix width and height of top aligned modal on small screens ([#2075](https://github.com/toptal/picasso/issues/2075)) ([eba896c](https://github.com/toptal/picasso/commit/eba896ce89c555f47d2212301a55135ab477e9f9))
+
+
+
+
+
 ## [8.7.1](https://github.com/toptal/picasso/compare/@toptal/picasso@8.7.0...@toptal/picasso@8.7.1) (2021-05-17)
 
 
