@@ -6,58 +6,24 @@ exports[`FileInput renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root FileInputContent-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="FileInputContent-root"
     >
-      <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root FileInputContent-adornmentStart MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
+      <button
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+        data-component-type="button"
+        tabindex="0"
+        type="button"
       >
-        <svg
-          class="PicassoSvgUploadDocument16-root"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
+        <span
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
-          <path
-            d="M1 15h7v1H0V0h13v8h-1V1H1v14zm12-3.293V16h-1v-4.293l-1.5 1.5-.707-.707L12.5 9.793l.707.707 2 2-.707.707-1.5-1.5zM3 4h7v1H3V4zm0 2h7v1H3V6zm0 2h3v1H3V8z"
-          />
-        </svg>
-      </div>
-      <p
-        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-black FileInputContent-inputValue MuiTypography-body1 MuiTypography-displayInline"
-      />
+          Choose File
+        </span>
+      </button>
       <input
         class="FileInputContent-nativeInput"
         type="file"
       />
-      <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
-      >
-        <button
-          class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root FileInputContent-button"
-          data-component-type="button"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-          >
-            Choose File
-          </span>
-        </button>
-      </div>
-      <fieldset
-        aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="PrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
     </div>
   </div>
 </div>

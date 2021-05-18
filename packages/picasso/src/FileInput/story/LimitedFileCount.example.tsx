@@ -37,7 +37,8 @@ const Example = () => {
       value={files}
       onChange={addFiles}
       onRemove={removeFile}
-      hint='Max file size: 25MB'
+      maxFiles={3}
+      hint='Max. 3 files'
     />
   )
 }

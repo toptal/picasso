@@ -9,7 +9,7 @@ const renderFileListItem = (props: OmitInternalProps<Props>) =>
 
 describe('FileListItem', () => {
   const file = {
-    name: 'user-profile-picture.png',
+    file: new File(['user-profile-picture.png'], 'user-profile-picture.png'),
     uploading: false,
     progress: 0,
     error: undefined
@@ -18,6 +18,7 @@ describe('FileListItem', () => {
   it('renders', () => {
     const { container } = renderFileListItem({
       file,
+      index: 0,
       onRemove: jest.fn()
     })
 
@@ -29,6 +30,7 @@ describe('FileListItem', () => {
 
     const { getByRole } = renderFileListItem({
       file,
+      index: 0,
       onRemove: handleRemove
     })
 
@@ -40,7 +42,8 @@ describe('FileListItem', () => {
   describe('when file is uploading', () => {
     it(`renders 'Uploading...' label and progress bar`, () => {
       const { queryByText, queryByTestId } = renderFileListItem({
-        file: { ...file, uploading: true, progress: 30 }
+        file: { ...file, uploading: true, progress: 30 },
+        index: 0
       })
 
       expect(queryByText('Uploading...')).toBeInTheDocument()
@@ -55,7 +58,8 @@ describe('FileListItem', () => {
             uploading: true,
             progress: 30,
             error: 'File is too large'
-          }
+          },
+          index: 0
         })
 
         expect(queryByText('Uploading...')).not.toBeInTheDocument()
@@ -77,7 +81,8 @@ describe('FileListItem', () => {
           uploading: true,
           progress: 30,
           error: 'File is too large'
-        }
+        },
+        index: 0
       })
 
       expect(queryByText('user-profile-picture.png')).toBeInTheDocument()

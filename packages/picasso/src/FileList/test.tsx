@@ -12,7 +12,7 @@ describe('FileList', () => {
     uploading: false,
     progress: 0,
     error: undefined,
-    name: 'user-profile-picture.png'
+    file: new File(['user-profile-picture.png'], 'user-profile-picture.png')
   }
 
   it('renders', () => {

@@ -193,3 +193,7 @@ however, you may need custom validators for more complex types of fields.
     },
     'picasso-form'
   ) // picasso-skip-visuals
+  .addExample('Form/story/FileInput.example.tsx', {
+    title: 'File input on a Form',
+    description: 'Showcase how to upload files on the form submission'
+  }) // picasso-skip-visuals
