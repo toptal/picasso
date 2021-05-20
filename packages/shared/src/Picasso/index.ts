@@ -2,7 +2,7 @@ export {
   default,
   PicassoProvider,
   usePicassoRoot,
-  useTopBar,
+  usePageTopBar,
   useAppConfig,
   useDrawer,
   useSidebar,
