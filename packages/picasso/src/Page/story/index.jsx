@@ -1,6 +1,6 @@
 import pageTopBarStory from '../../PageTopBar/story'
-import pageHeadStory from '../../PageHead/story'
 import pageTopBarMenuStory from '../../PageTopBarMenu/story'
+import pageHelmetStory from '../../PageHelmet/story'
 import pageContentStory from '../../PageContent/story'
 import pageFooterStory from '../../PageFooter/story'
 import pageBannerStory from '../../PageBanner/story'
@@ -18,8 +18,8 @@ page
   .createTabChapter('Props')
   .addComponentDocs({ component: Page, name: 'Page' })
   .addComponentDocs(pageTopBarStory.componentDocs)
-  .addComponentDocs(pageHeadStory.componentDocs)
   .addComponentDocs(pageTopBarMenuStory.componentDocs)
+  .addComponentDocs(pageHelmetStory.componentDocs)
   .addComponentDocs(pageContentStory.componentDocs)
   .addComponentDocs(pageArticleStory.componentDocs)
   .addComponentDocs(pageFooterStory.componentDocs)
@@ -56,7 +56,7 @@ page
 
 page.connect(pageTopBarStory.chapter)
 
-page.connect(pageHeadStory.chapter)
+page.connect(pageHelmetStory.chapter)
 
 page.connect(pageContentStory.chapter)
 
