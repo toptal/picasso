@@ -8,7 +8,7 @@ import React, {
   HTMLAttributes
 } from 'react'
 import cx from 'classnames'
-import { BaseProps, useTopBar } from '@toptal/picasso-shared'
+import { BaseProps, usePageTopBar } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Logo from '../Logo'
@@ -40,7 +40,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTopBar'
 })
 
-export const TopBar = forwardRef<HTMLElement, Props>(function TopBar(
+export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar (
   props,
   ref
 ) {
@@ -58,12 +58,12 @@ export const TopBar = forwardRef<HTMLElement, Props>(function TopBar(
   const classes = useStyles()
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
-  const { setHasTopBar } = useTopBar()
+  const { setHasTopBar } = usePageTopBar()
 
   useLayoutEffect(() => {
     setHasTopBar(true)
 
-    return function cleanup() {
+    return function cleanup () {
       setHasTopBar(false)
     }
   }, [setHasTopBar])
@@ -131,10 +131,10 @@ export const TopBar = forwardRef<HTMLElement, Props>(function TopBar(
   )
 })
 
-TopBar.defaultProps = {
+PageTopBar.defaultProps = {
   variant: 'dark'
 }
 
-TopBar.displayName = 'TopBar'
+PageTopBar.displayName = 'PageTopBar'
 
-export default TopBar
+export default PageTopBar

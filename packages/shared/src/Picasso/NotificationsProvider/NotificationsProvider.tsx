@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { SnackbarProvider } from 'notistack'
 import React, { FunctionComponent } from 'react'
 
-import { useDrawer, useTopBar } from '../Picasso'
+import { useDrawer, usePageTopBar } from '../Picasso'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -21,7 +21,7 @@ const NotificationsProvider: FunctionComponent<Props> = ({
   children,
   container
 }) => {
-  const { hasTopBar } = useTopBar()
+  const { hasTopBar } = usePageTopBar()
   const classes = useStyles()
   const { hasDrawer } = useDrawer()
 

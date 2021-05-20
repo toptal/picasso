@@ -8,15 +8,15 @@ import {
 } from '@toptal/picasso-shared'
 
 import PageHead from '../PageHead'
-import TopBar from '../TopBar'
-import TopBarMenu from '../TopBarMenu'
+import PageTopBar from '../PageTopBar'
+import PageTopBarMenu from '../PageTopBarMenu'
 import PageFooter from '../PageFooter'
 import PageContent from '../PageContent'
-import PageSidebar from '../Sidebar'
 import PageBanner from '../PageBanner'
 import PageAutocomplete from '../PageAutocomplete'
 import PageArticle from '../PageArticle'
 import { PageContextProps, ViewportWidthType } from './types'
+import PageSidebar from '../Sidebar'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -32,8 +32,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 
 export interface StaticProps {
   Head: typeof PageHead
-  TopBar: typeof TopBar
-  TopBarMenu: typeof TopBarMenu
+  TopBar: typeof PageTopBar
+  TopBarMenu: typeof PageTopBarMenu
   Content: typeof PageContent
   Footer: typeof PageFooter
   Sidebar: typeof PageSidebar
@@ -49,7 +49,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Page = forwardRef<HTMLDivElement, Props>(function Page(
+export const Page = forwardRef<HTMLDivElement, Props>(function Page (
   props,
   ref
 ) {
@@ -72,9 +72,9 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
 
 Page.displayName = 'Page'
 
-Page.TopBar = TopBar
+Page.TopBar = PageTopBar
 
-Page.TopBarMenu = TopBarMenu
+Page.TopBarMenu = PageTopBarMenu
 
 Page.Content = PageContent
 
