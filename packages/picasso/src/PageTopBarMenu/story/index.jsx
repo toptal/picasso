@@ -1,8 +1,8 @@
-import { TopBarMenu } from '../TopBarMenu'
+import { PageTopBarMenu } from '../PageTopBarMenu'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(
-  TopBarMenu,
+  PageTopBarMenu,
   'Page.TopBarMenu'
 )
 

@@ -98,7 +98,7 @@ export const usePicassoRoot = () => {
   return context && context.rootRef ? context.rootRef.current : null
 }
 
-export const useTopBar = () => {
+export const usePageTopBar = () => {
   const context = useContext(RootContext)
 
   return {

@@ -2,18 +2,18 @@ import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
 import Link from '../Link'
-import TopBar from './TopBar'
+import PageTopBar from './PageTopBar'
 
 describe('Page.TopBar', () => {
   it('renders', () => {
-    const { container } = render(<TopBar title='Default' />)
+    const { container } = render(<PageTopBar title='Default' />)
 
     expect(container).toMatchSnapshot()
   })
 
   it('render with link', () => {
     const { container } = render(
-      <TopBar
+      <PageTopBar
         title='Something'
         logoLink={<Link href='https://www.toptal.com' />}
       />
