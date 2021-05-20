@@ -7,7 +7,7 @@ import {
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
 
-import PageHead from '../PageHead'
+import PageHelmet from '../PageHelmet'
 import PageTopBar from '../PageTopBar'
 import PageTopBarMenu from '../PageTopBarMenu'
 import PageFooter from '../PageFooter'
@@ -31,7 +31,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 export interface StaticProps {
-  Head: typeof PageHead
+  Helmet: typeof PageHelmet
   TopBar: typeof PageTopBar
   TopBarMenu: typeof PageTopBarMenu
   Content: typeof PageContent
@@ -49,7 +49,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Page = forwardRef<HTMLDivElement, Props>(function Page (
+export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   props,
   ref
 ) {
@@ -84,7 +84,7 @@ Page.Sidebar = PageSidebar
 
 Page.Banner = PageBanner
 
-Page.Head = PageHead
+Page.Helmet = PageHelmet
 
 Page.Autocomplete = PageAutocomplete
 

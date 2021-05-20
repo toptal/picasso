@@ -6,12 +6,12 @@ export interface Props extends HelmetProps {
   children?: ReactNode
 }
 
-export const PageHead = (props: Props) => {
+export const PageHelmet = (props: Props) => {
   const { children, ...rest } = props
 
   return <Helmet {...rest}>{children}</Helmet>
 }
 
-PageHead.displayName = 'PageHead'
+PageHelmet.displayName = 'PageHelmet'
 
-export default PageHead
+export default PageHelmet
