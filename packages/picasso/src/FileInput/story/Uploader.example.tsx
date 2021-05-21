@@ -1,79 +1,105 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FileInput, Form } from '@toptal/picasso'
 
-const useUploader = (config: { maxSize: number; file?: File }) => {
-  const [error, setError] = useState<string | undefined>(undefined)
-  const [progress, setProgress] = useState(false)
-  const [file, setFile] = useState(config.file)
-  const [status, setStatus] = useState('No file uploaded.')
+import { FileUpload } from '../../FileInput/types'
+
+const useUploader = (config: { maxSize: number; files?: FileUpload[] }) => {
+  let intervalID: number | null = null
+  const [files, setFiles] = useState(config.files || [])
+  const maxSize = config.maxSize ? config.maxSize * 1024 * 1024 : undefined
+
+  useEffect(() => {
+    return () => {
+      if (intervalID !== null) {
+        clearInterval(intervalID)
+      }
+    }
+  }, [])
+
+  const remove = (fileName: string, fileIndex: number) => {
+    const updatedFiles = files.filter((_, index) => index !== fileIndex)
+
+    setFiles(updatedFiles)
+  }
 
   const upload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setError(undefined)
-
     if (!event.target || !event.target.files || !event.target.files.length) {
       return null
     }
 
-    const newFile = event.target.files[0]
+    const previousFiles = files
+    const newFiles = Array.from(event.target.files).map(newFile => {
+      const invalidFile = (maxSize && newFile.size > maxSize) || false
+
+      return {
+        file: newFile,
+        uploading: !invalidFile,
+        progress: !invalidFile ? 0 : undefined,
+        error: invalidFile
+          ? `File size exceeds the ${config.maxSize}MB limit.`
+          : undefined
+      }
+    })
 
     // reset input
     event.target.value = ''
 
-    if (config.maxSize && newFile.size > config.maxSize * 1024 * 1024) {
-      setError(`File size exceeds the ${config.maxSize}MB limit.`)
-      setStatus('Upload failed.')
+    setFiles([...previousFiles, ...newFiles])
 
-      return
-    }
+    let progress = 0
 
-    setProgress(true)
-    setStatus('File uploading in progress...')
+    intervalID = window.setInterval(() => {
+      progress += 10
+      const uploadFinished = progress >= 100
 
-    setTimeout(() => {
-      setProgress(false)
+      const updatedFiles = newFiles.map(file => {
+        if (!file.uploading) {
+          return file
+        }
 
-      if (Math.random() < 0.5) {
-        setError('Timout exceeded.')
-        setStatus('Upload failed.')
+        return {
+          ...file,
+          uploading: !uploadFinished,
+          progress,
+          error:
+            uploadFinished && Math.random() < 0.5 ? 'Server error.' : undefined
+        }
+      })
 
-        return
+      setFiles([...previousFiles, ...updatedFiles])
+
+      if (uploadFinished && intervalID !== null) {
+        clearInterval(intervalID)
       }
-
-      setFile(newFile)
-      setStatus('Success.')
-    }, 2000)
+    }, 200)
   }
 
   return {
-    error,
-    progress,
-    status,
-    file,
-    upload
+    files,
+    upload,
+    remove
   }
 }
 
 const Example = () => {
   const MAX_SIZE = 2
 
-  const { error, progress, file, status, upload } = useUploader({
+  const { files, upload, remove } = useUploader({
     maxSize: MAX_SIZE
   })
 
   return (
-    <div>
-      <Form.Field hint={`Max file size: ${MAX_SIZE}MB.`} error={error}>
-        <Form.Label>Profile picture</Form.Label>
-        <FileInput
-          value={file}
-          accept='image/*'
-          error={Boolean(error)}
-          progress={progress}
-          status={status}
-          onChange={upload}
-        />
-      </Form.Field>
-    </div>
+    <Form.Field>
+      <Form.Label>Profile picture</Form.Label>
+      <FileInput
+        value={files}
+        accept='image/*'
+        hint={`Accept all image files. Max file size: ${MAX_SIZE}MB.`}
+        onChange={upload}
+        onRemove={remove}
+        maxFiles={null}
+      />
+    </Form.Field>
   )
 }
 

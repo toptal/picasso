@@ -6,13 +6,28 @@ const page = PicassoBook.section('Forms').createPage(
   'Input file control'
 )
 
-page
-  .createTabChapter('Props')
-  .addComponentDocs({ component: FileInput, name: 'FileInput' })
+page.createTabChapter('Props').addComponentDocs({
+  component: FileInput,
+  name: 'FileInput',
+  additionalDocs: {
+    maxFiles: {
+      name: 'maxFiles',
+      type: 'number | null',
+      description:
+        'Maximum number of files allowed. When the value is null, unlimited files can be added and multiple files can be selected on the file selection dialog',
+      defaultValue: 1
+    }
+  }
+})
 
 page
   .createChapter()
   .addExample('FileInput/story/Default.example.tsx', 'Default')
+  .addExample('FileInput/story/InitialValue.example.tsx', 'Initial value')
+  .addExample(
+    'FileInput/story/LimitedFileCount.example.tsx',
+    'Limited file count'
+  )
   .addExample('FileInput/story/Error.example.tsx', 'Error')
   .addExample('FileInput/story/Disabled.example.tsx', 'Disabled')
   .addExample('FileInput/story/Uploading.example.tsx', 'Uploading')
