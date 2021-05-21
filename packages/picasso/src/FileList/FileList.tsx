@@ -5,12 +5,13 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Container from '../Container'
 import FileListItem from '../FileListItem'
-import { File } from './types'
+import { FileUpload } from '../FileInput/types'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
-  files: File[]
-  onItemRemove?: (fileName: string) => void
+  files: FileUpload[]
+  onItemRemove?: (fileName: string, index: number) => void
+  disabled?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -21,7 +22,7 @@ export const FileList = forwardRef<HTMLDivElement, Props>(function FileList (
   props,
   ref
 ) {
-  const { files, onItemRemove, ...rest } = props
+  const { files, disabled, onItemRemove, ...rest } = props
 
   const classes = useStyles()
 
@@ -33,8 +34,14 @@ export const FileList = forwardRef<HTMLDivElement, Props>(function FileList (
       direction='column'
       className={cx(classes.root)}
     >
-      {files.map(file => (
-        <FileListItem file={file} onRemove={onItemRemove} key={file.name} />
+      {files.map((fileUpload, index) => (
+        <FileListItem
+          file={fileUpload}
+          index={index}
+          onRemove={onItemRemove}
+          disabled={disabled}
+          key={`${fileUpload.file.name}-${index}`}
+        />
       ))}
     </Container>
   )

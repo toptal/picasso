@@ -7,6 +7,7 @@ import {
 } from 'react-final-form'
 import { Form as PicassoForm, RequiredDecoration } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
+import { FileUpload } from '@toptal/picasso/FileInput'
 import { DateOrDateRangeType } from '@toptal/picasso-lab'
 
 import { useFormContext } from '../Form/FormContext'
@@ -22,7 +23,7 @@ type ValueType =
   | boolean
   | null
   | undefined
-  | File
+  | FileUpload[]
   | DateOrDateRangeType
   | Item
   | Item[]
@@ -221,7 +222,8 @@ const FieldWrapper = <
     ...rest,
     ...input,
     ...getProps({ hideFieldLabel, error, label }),
-    onChange: (event: ChangeEvent<HTMLElement>) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onChange: (event: ChangeEvent<HTMLElement> | any) => {
       input.onChange(event)
 
       if (rest.onChange) {
