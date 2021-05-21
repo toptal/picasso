@@ -5,7 +5,7 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const TestFileInput = () => (
   <TestingPicasso>
-    <FileInput status='No file uploaded.' />
+    <FileInput hint='No file uploaded.' />
   </TestingPicasso>
 )
 

@@ -3,7 +3,16 @@ import { FileInput } from '@toptal/picasso'
 
 const Example = () => (
   <div>
-    <FileInput error status='Upload failed.' />
+    <FileInput
+      value={[
+        {
+          file: new File(['resume.pdf'], 'resume.pdf'),
+          error: 'File size exceeds the 25MB limit.'
+        }
+      ]}
+      hint='Max file size: 25MB'
+      onRemove={() => undefined}
+    />
   </div>
 )
 

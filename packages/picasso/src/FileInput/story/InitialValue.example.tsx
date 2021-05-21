@@ -30,7 +30,9 @@ const useFiles = (initialFiles?: FileUpload[]) => {
 }
 
 const Example = () => {
-  const { files, addFiles, removeFile } = useFiles()
+  const { files, addFiles, removeFile } = useFiles([
+    { file: new File(['image.png'], 'image.png') }
+  ])
 
   return (
     <FileInput

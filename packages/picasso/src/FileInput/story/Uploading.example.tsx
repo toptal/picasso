@@ -1,14 +1,43 @@
 import React from 'react'
-import { FileInput, Container } from '@toptal/picasso'
+import { FileInput, Container, Typography } from '@toptal/picasso'
 
 const Example = () => (
   <div>
-    <Container bottom='small'>
-      <FileInput progress={42} status='File uploading in progress...' />
+    <Container bottom='medium'>
+      <Container bottom='small'>
+        <Typography variant='heading' size='medium'>
+          Progress:
+        </Typography>
+      </Container>
+
+      <FileInput
+        value={[
+          {
+            file: new File(['image.png'], 'image.png'),
+            progress: 42,
+            uploading: true
+          }
+        ]}
+        hint='Max file size: 25MB'
+      />
     </Container>
 
-    <Container>
-      <FileInput progress status='File uploading in progress...' />
+    <Container bottom='medium'>
+      <Container bottom='small'>
+        <Typography variant='heading' size='medium'>
+          Undetermined:
+        </Typography>
+      </Container>
+
+      <FileInput
+        value={[
+          {
+            file: new File(['image.png'], 'image.png'),
+            uploading: true
+          }
+        ]}
+        hint='Max file size: 25MB'
+      />
     </Container>
   </div>
 )
