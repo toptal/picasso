@@ -1,5 +1,5 @@
-import { Button, Typography, Container } from '@toptal/picasso'
-import { Drawer, List } from '@toptal/picasso-lab'
+import { Button, Typography, Container, List } from '@toptal/picasso'
+import { Drawer } from '@toptal/picasso-lab'
 import React, { useState } from 'react'
 
 const Title = () => (

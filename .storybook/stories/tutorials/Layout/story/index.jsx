@@ -94,7 +94,7 @@ tutorialChapter
   .addTextSection(
     `
 Main content can have various layouts, but for this tutorial, we choose to have a title
-and two sections. We use [\`PageHead\`](..?path=/story/picasso-lab-pagehead--pagehead) for
+and two sections. We use [\`PageHead\`](..?path=/story/picasso-pagehead--pagehead) for
 the title and [\`Section\`](..?path=/story/picasso-lab-section--section) for content
 sections. Also, it's very important to use use
 \`Page.Article\` component, because we use a flexbox wrapper

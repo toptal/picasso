@@ -1,6 +1,5 @@
 import React from 'react'
-import { Checkbox, Container } from '@toptal/picasso'
-import { TypographyOverflow } from '@toptal/picasso-lab'
+import { Checkbox, Container, TypographyOverflow } from '@toptal/picasso'
 
 const Example = () => {
   return (

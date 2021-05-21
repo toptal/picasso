@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProgressBar } from '@toptal/picasso-lab'
+import { ProgressBar } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
