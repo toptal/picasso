@@ -1,5 +1,5 @@
 import React from 'react'
-import { Rating as PicassoRating, RatingProps } from '@toptal/picasso-lab'
+import { Rating as PicassoRating, RatingProps } from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 

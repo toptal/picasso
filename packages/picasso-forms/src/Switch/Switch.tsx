@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch as PicassoSwitch, SwitchProps } from '@toptal/picasso-lab'
+import { Switch as PicassoSwitch, SwitchProps } from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 

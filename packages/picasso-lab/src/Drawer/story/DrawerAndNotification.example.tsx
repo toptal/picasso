@@ -1,5 +1,5 @@
-import { Button, Container } from '@toptal/picasso'
-import { Drawer, List } from '@toptal/picasso-lab'
+import { Button, Container, List } from '@toptal/picasso'
+import { Drawer } from '@toptal/picasso-lab'
 import { useNotifications } from '@toptal/picasso/utils'
 import React, { useState } from 'react'
 

@@ -5,9 +5,10 @@ import {
   Typography,
   Table,
   Sidebar,
-  Helpbox
+  Helpbox,
+  PageHead
 } from '@toptal/picasso'
-import { PageHead, Section } from '@toptal/picasso-lab'
+import { Section } from '@toptal/picasso-lab'
 import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
 
 const SidebarMenu = () => (
