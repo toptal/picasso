@@ -1,12 +1,10 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider } from '@toptal/picasso-shared'
+import { createStyles } from '@material-ui/core/styles'
 
-PicassoProvider.override(({ shadows }: Theme) => ({
-  MuiList: {
+export default () =>
+  createStyles({
     root: {
-      boxShadow: shadows[1]
+      listStyle: 'none',
+      padding: 0,
+      margin: 0
     }
-  }
-}))
-
-export default () => createStyles({})
+  })
