@@ -1,7 +1,7 @@
 import { Badge } from '../Badge'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Picasso Lab').createPage(
+const page = PicassoBook.section('Components').createPage(
   'Badge',
   `
     Renders a small badge.
