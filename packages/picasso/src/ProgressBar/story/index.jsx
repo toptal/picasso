@@ -1,7 +1,7 @@
 import { ProgressBar } from '../ProgressBar'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Picasso Lab').createPage(
+const page = PicassoBook.section('Components').createPage(
   'ProgressBar',
   `
   ${PicassoBook.createBaseDocsLink(

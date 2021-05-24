@@ -2,7 +2,7 @@ import { Alert } from '../Alert'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 import alertInlineStory from '../../AlertInline/story'
 
-const page = PicassoBook.section('Picasso Lab').createPage(
+const page = PicassoBook.section('Components').createPage(
   'Alert',
   `
     Use to alert user about important information

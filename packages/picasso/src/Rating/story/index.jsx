@@ -1,7 +1,7 @@
 import Rating from '../Rating'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Picasso Lab').createPage(
+const page = PicassoBook.section('Components').createPage(
   'Rating',
   `
     Ratings provide a way for users to express their opinion

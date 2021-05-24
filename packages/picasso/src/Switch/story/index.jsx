@@ -1,7 +1,7 @@
 import { Switch } from '../Switch'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Picasso Lab').createPage(
+const page = PicassoBook.section('Components').createPage(
   'Switch',
   `
     Switches are used to toggle the state of an element on or off.

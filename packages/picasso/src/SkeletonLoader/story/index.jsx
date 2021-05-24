@@ -4,7 +4,7 @@ import headerLoaderStory from '../../HeaderLoader/story'
 import buttonLoaderStory from '../../ButtonLoader/story'
 import mediaLoaderStory from '../../MediaSkeletonLoader/story'
 
-const page = PicassoBook.section('Picasso Lab').createPage('SkeletonLoader')
+const page = PicassoBook.section('Components').createPage('SkeletonLoader')
 
 page
   .createTabChapter('Props')
