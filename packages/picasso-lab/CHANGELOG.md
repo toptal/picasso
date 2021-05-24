@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.3.0...@toptal/picasso-lab@6.0.0) (2021-05-24)
+
+
+### Features
+
+* migrate stable components from lab to picasso ([#2081](https://github.com/toptal/picasso/issues/2081)) ([1070a04](https://github.com/toptal/picasso/commit/1070a046a5860841e35481ac63ae9b1c4d5dfe8c))
+
+
+### BREAKING CHANGES
+
+* stable components were moved from lab to picasso
+
+
+
+
+
 # [5.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@5.2.2...@toptal/picasso-lab@5.3.0) (2021-05-14)
 
 

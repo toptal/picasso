@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@3.0.0...@toptal/picasso-forms@4.0.0) (2021-05-24)
+
+
+### Features
+
+* migrate stable components from lab to picasso ([#2081](https://github.com/toptal/picasso/issues/2081)) ([1070a04](https://github.com/toptal/picasso/commit/1070a046a5860841e35481ac63ae9b1c4d5dfe8c))
+* **FileInput:** implement multiple file input ([#2077](https://github.com/toptal/picasso/issues/2077)) ([b3ed80d](https://github.com/toptal/picasso/commit/b3ed80dc14d4a042cca57e5d3d914e8de299303f))
+
+
+### BREAKING CHANGES
+
+* stable components were moved from lab to picasso
+* **FileInput:** The API of the `FileInput` component was changed and the migration requires manual intervention:
+
+- Modified properties:
+  - `value`: Instead of a `File` object, an array of  [FileUpload](https://github.com/toptal/picasso/blob/f8bf6379dffc3c6b9d21fef5349e7c6d0df8da72/packages/picasso/src/FileInput/types.ts) objects should be provided.
+  - `onChange`: This callback is now called when one or more files are selected and should be added to the component state.
+- Removed properties:
+  - `width`: The new component has a fixed width.
+  - `progress` and `error`: Both properties are now handled on a per-file basis and should be included in the objects passed to the `value` property (see [FileUpload](https://github.com/toptal/picasso/blob/f8bf6379dffc3c6b9d21fef5349e7c6d0df8da72/packages/picasso/src/FileInput/types.ts) interface).
+  - `status`: The new component doesn't have a global status label. You can use the `hint` property for instructions.
+- New properties:
+  - `hint`: Form field hint that can be used for instructions.
+  - `maxFiles`: Limit the number of files that can be added to the component state.
+  - `onRemove`: Callback called when a file is removed and should be excluded from the component state.
+
+
+
+
+
 # [3.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@2.1.0...@toptal/picasso-forms@3.0.0) (2021-04-29)
 
 

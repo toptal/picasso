@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@4.0.0...@toptal/picasso-shared@4.1.0) (2021-05-24)
+
+
+### Features
+
+* **Page:** make naming consistent ([#2078](https://github.com/toptal/picasso/issues/2078)) ([a679bab](https://github.com/toptal/picasso/commit/a679bab9bc6af46963b6866ab8e918ca318a9ecc))
+
+
+
+
+
 # [4.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@3.0.11...@toptal/picasso-shared@4.0.0) (2021-04-29)
 
 
