@@ -8,3 +8,7 @@
 
 # These owners will be the default owners for everything in the repo.
 * @toptal/frontend-experience-eng
+
+# CI Infrastructure team
+ci/jobs/ @toptal/ci-infrastructure-eng @toptal/frontend-experience-eng
+.github/workflows/ @toptal/ci-infrastructure-eng @toptal/frontend-experience-eng
