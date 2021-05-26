@@ -2,7 +2,9 @@ name: Request review on PRs
 
 on:
   pull_request:
-    branches: [ master ]
+    types: [
+      opened
+    ]
 
 jobs:
   request:
@@ -19,5 +21,5 @@ jobs:
               owner: 'toptal',
               repo: 'picasso',
               pull_number: ${{ github.event.number }},
-              reviewers: ['@toptal/fx-codeowners']
+              team_reviewers: ['@toptal/fx-codeowners']
             })
