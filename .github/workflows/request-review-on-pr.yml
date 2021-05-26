@@ -19,5 +19,5 @@ jobs:
               owner: 'toptal',
               repo: 'picasso',
               pull_number: ${{ github.event.number }},
-              team_reviewers: ['@toptal/fx-codeowners']
+              reviewers: ['@toptal/fx-codeowners']
             })
