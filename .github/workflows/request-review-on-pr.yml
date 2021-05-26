@@ -14,11 +14,11 @@ jobs:
       - name: Create PR review request
         uses: actions/github-script@v4
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             octokit.rest.pulls.requestReviewers({
               owner: 'toptal',
               repo: 'picasso',
-              pull_number: github.event.number,
+              pull_number: ${{ github.event.number }},
               team_reviewers: ['@toptal/fx-codeowners']
             })
