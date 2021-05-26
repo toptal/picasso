@@ -18,8 +18,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
 
       '&$disabled': {
-        opacity: 0.48,
-        pointerEvents: 'auto'
+        opacity: 0.48
       }
     },
     checked: {
