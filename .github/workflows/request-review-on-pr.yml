@@ -15,7 +15,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            octokit.rest.pulls.requestReviewers({
+            github.pulls.requestReviewers({
               owner: 'toptal',
               repo: 'picasso',
               pull_number: ${{ github.event.number }},
