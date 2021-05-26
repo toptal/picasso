@@ -15,5 +15,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr edit ${{ github.event.pull_request.html_url }} \
+          gh pr edit ${{ github.event.number }} \
               --add-reviewer @toptal/fx-codeowners
