@@ -2,8 +2,9 @@ name: Request review on PRs
 
 on:
   pull_request:
-    types:
-      - opened
+    types: [
+      opened
+    ]
 
 jobs:
   request:
@@ -12,8 +13,13 @@ jobs:
 
     steps:
       - name: Create PR review request
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh pr edit ${{ github.event.pull_request.html_url }} \
-              --add-reviewer @toptal/fx-codeowners
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.pulls.requestReviewers({
+              owner: 'toptal',
+              repo: 'picasso',
+              pull_number: ${{ github.event.number }},
+              team_reviewers: ['@toptal/fx-codeowners']
+            })
