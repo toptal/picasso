@@ -9,7 +9,6 @@ import {
   Link,
   Menu,
   Modal,
-  Radio,
   Tooltip,
   TooltipProps,
   Typography
@@ -218,22 +217,6 @@ const DropdownTooltipExample = () => {
   )
 }
 
-const DisabledRadioTooltipExample = () => {
-  const tooltipContent = <span data-testid='tooltip-content'>Content</span>
-
-  return (
-    <TestingPicasso>
-      <Container style={{ marginTop: '200px', marginLeft: '200px' }}>
-        <Tooltip content={tooltipContent}>
-          <Container as='span'>
-            <Radio disabled label='Radio 1' value='radio1' />
-          </Container>
-        </Tooltip>
-      </Container>
-    </TestingPicasso>
-  )
-}
-
 describe('Tooltip', () => {
   it('renders by default', () => {
     mount(<SnapshotTooltipExample />)
@@ -350,13 +333,5 @@ describe('Tooltip', () => {
     cy.get('[data-testid="dropdown-trigger"]').click()
     cy.get('[data-testid="tooltip-content"]').should('be.visible')
     cy.get('body').happoScreenshot()
-  })
-
-  it('renders on hover a disabled radio button', () => {
-    mount(<DisabledRadioTooltipExample />)
-
-    // hover the radio button itself (not the label)
-    cy.get('[data-testid="trigger"').realHover()
-    cy.get('[data-testid="tooltip-content"]').should('be.visible')
   })
 })
