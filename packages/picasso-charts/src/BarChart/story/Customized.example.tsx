@@ -54,7 +54,7 @@ const Example = () => (
     data={CHART_DATA}
     width={720}
     height={300}
-    getBarColor={dataKey => COLORS_MAPPING[dataKey]}
+    getBarColor={({ dataKey }) => COLORS_MAPPING[dataKey]}
     getBarLabelColor={({ dataKey }) => COLORS_MAPPING[dataKey]}
     tooltip
     customTooltip={<CustomTooltip />}

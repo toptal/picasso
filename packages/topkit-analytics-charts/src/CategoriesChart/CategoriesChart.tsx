@@ -3,30 +3,8 @@ import { Paper, Container, Typography } from '@toptal/picasso'
 import { BarChartProps, BarChart } from '@toptal/picasso-charts'
 import { palette } from '@toptal/picasso/utils'
 
-export type ChartGranularity = 'month' | 'week' | 'day' | 'hour'
-
-type Value = {
-  id: string
-  value: number
-}
-
-export type Bar = {
-  id: string
-  values: [
-    {
-      id: string
-      values: Value[]
-    },
-    {
-      id: string
-      values: Value[]
-    }
-  ]
-}
-
-export type Labels = Record<string, string>
-
-export type Tooltips = Record<string, Record<string, Record<string, string>>>
+import { Bar, Labels, Tooltips } from './types'
+import { formatData } from './utils'
 
 const DEFAULT_COLORS = [palette.blue.main, palette.blue.darker]
 
@@ -38,10 +16,7 @@ const COLORS: Record<string, string[]> = {
   pending: [palette.yellow.main, palette.yellow.main]
 }
 
-const COLOR_FOR_BAD_RESULT = palette.red.main
-
-const sum = (values: number[]) =>
-  values.reduce((total, value) => total + value, 0)
+const BAD_RESULT_COLOR = palette.red.main
 
 export type Props = Pick<BarChartProps<string>, 'width' | 'height'> & {
   data: Bar[]
@@ -49,28 +24,13 @@ export type Props = Pick<BarChartProps<string>, 'width' | 'height'> & {
   tooltips: Tooltips
 }
 
-const formatData = (data: Bar[], labels: Labels) => {
-  return data.map(({ id, values }) => {
-    const [team, user] = values
-
-    const sumTeam = sum(team.values.map(({ value }) => value))
-    const sumUser = sum(user.values.map(({ value }) => value))
-
-    return {
-      name: id,
-      label: labels[id],
-      value: {
-        team: sumTeam,
-        user: sumUser
-      }
-    }
-  })
-}
-
-const getBarColor = (
-  dataKey: string,
+const getBarColor = ({
+  dataKey,
+  entry
+}: {
+  dataKey: string
   entry?: { name: string; value: { team: number; user: number } }
-) => {
+}) => {
   if (!entry) {
     return DEFAULT_COLORS[0]
   }
@@ -80,7 +40,7 @@ const getBarColor = (
   }
 
   if (entry.value.team > entry.value.user && entry.name !== 'claimed') {
-    return COLOR_FOR_BAD_RESULT
+    return BAD_RESULT_COLOR
   }
 
   return COLORS[entry.name]?.[1] || DEFAULT_COLORS[1]
@@ -89,30 +49,58 @@ const getBarColor = (
 const CustomTooltip = ({
   active,
   payload,
-  tooltips
+  tooltips,
+  originalData
 }: {
   active: boolean
   payload: { payload: { name: string; team: number; user: number } }[]
   tooltips: Tooltips
+  originalData: Bar[]
 }) => {
   if (active && payload && payload.length > 0) {
     const { team, user } = payload[0].payload
 
     const id = payload[0].payload.name
-    // TODO: this logic will need to be revised when new design is done
-    const teamLabel = tooltips[id].team[id] || tooltips[id].team.viable
-    const userLabel = tooltips[id].user[id] || tooltips[id].user.viable
+
+    const currentOriginalData = originalData.find(
+      ({ id: dataId }) => dataId === id
+    )?.values
+
+    if (!currentOriginalData) {
+      return null
+    }
+
+    const [
+      { values: originalTeamValues },
+      { values: originalUserValues }
+    ] = currentOriginalData
 
     return (
       <Paper data-testid='tooltip'>
         <Container padded='xsmall'>
-          <Typography size='medium' color='blue'>
-            {teamLabel}: {team}
-          </Typography>
+          {originalTeamValues
+            .filter(({ value }) => !!value)
+            .map(({ id: teamValueId, value }) => (
+              <Typography
+                size='medium'
+                color='blue'
+                key={`team-${teamValueId}`}
+              >
+                {tooltips[id].team[teamValueId]}: {value}
+              </Typography>
+            ))}
 
-          <Typography size='medium' color={team > user ? 'red' : 'dark-grey'}>
-            {userLabel}: {user}
-          </Typography>
+          {originalUserValues
+            .filter(({ value }) => !!value)
+            .map(({ id: userValueId, value }) => (
+              <Typography
+                size='medium'
+                color={team > user ? 'red' : 'dark-grey'}
+                key={`user-${userValueId}`}
+              >
+                {tooltips[id].user[userValueId]}: {value}
+              </Typography>
+            ))}
         </Container>
       </Paper>
     )
@@ -156,7 +144,7 @@ export const CategoriesChart = ({
       tooltip
       getBarLabelColor={getBarLabelColor}
       // @ts-expect-error: There is some magic in recharts that adding the props for us
-      customTooltip={<CustomTooltip tooltips={tooltips} />}
+      customTooltip={<CustomTooltip originalData={data} tooltips={tooltips} />}
       getBarColor={getBarColor}
       {...restProps}
     />
