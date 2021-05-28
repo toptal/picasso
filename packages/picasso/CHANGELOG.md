@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso@9.0.1...@toptal/picasso@9.0.2) (2021-05-28)
+
+
+### Bug Fixes
+
+* show tooltip on disabled radio button ([#2089](https://github.com/toptal/picasso/issues/2089)) ([0ac30d1](https://github.com/toptal/picasso/commit/0ac30d1cc5c1cf037f98c8eff8b50f4a47bf9419))
+
+
+
+
+
 ## [9.0.1](https://github.com/toptal/picasso/compare/@toptal/picasso@9.0.0...@toptal/picasso@9.0.1) (2021-05-24)
 
 
