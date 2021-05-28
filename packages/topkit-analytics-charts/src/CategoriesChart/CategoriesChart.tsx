@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react'
-import { Paper, Container, Typography } from '@toptal/picasso'
 import { BarChartProps, BarChart } from '@toptal/picasso-charts'
 import { palette } from '@toptal/picasso/utils'
 
 import { Bar, Labels, Tooltips } from './types'
 import { formatData } from './utils'
+import CategoriesChartTooltip from '../CategoriesChartTooltip'
 
 const DEFAULT_COLORS = [palette.blue.main, palette.blue.darker]
 
@@ -46,69 +46,6 @@ const getBarColor = ({
   return COLORS[entry.name]?.[1] || DEFAULT_COLORS[1]
 }
 
-const CustomTooltip = ({
-  active,
-  payload,
-  tooltips,
-  originalData
-}: {
-  active: boolean
-  payload: { payload: { name: string; team: number; user: number } }[]
-  tooltips: Tooltips
-  originalData: Bar[]
-}) => {
-  if (active && payload && payload.length > 0) {
-    const { team, user } = payload[0].payload
-
-    const id = payload[0].payload.name
-
-    const currentOriginalData = originalData.find(
-      ({ id: dataId }) => dataId === id
-    )?.values
-
-    if (!currentOriginalData) {
-      return null
-    }
-
-    const [
-      { values: originalTeamValues },
-      { values: originalUserValues }
-    ] = currentOriginalData
-
-    return (
-      <Paper data-testid='tooltip'>
-        <Container padded='xsmall'>
-          {originalTeamValues
-            .filter(({ value }) => !!value)
-            .map(({ id: teamValueId, value }) => (
-              <Typography
-                size='medium'
-                color='blue'
-                key={`team-${teamValueId}`}
-              >
-                {tooltips[id].team[teamValueId]}: {value}
-              </Typography>
-            ))}
-
-          {originalUserValues
-            .filter(({ value }) => !!value)
-            .map(({ id: userValueId, value }) => (
-              <Typography
-                size='medium'
-                color={team > user ? 'red' : 'dark-grey'}
-                key={`user-${userValueId}`}
-              >
-                {tooltips[id].user[userValueId]}: {value}
-              </Typography>
-            ))}
-        </Container>
-      </Paper>
-    )
-  }
-
-  return null
-}
-
 export const CategoriesChart = ({
   data,
   labels,
@@ -144,7 +81,9 @@ export const CategoriesChart = ({
       tooltip
       getBarLabelColor={getBarLabelColor}
       // @ts-expect-error: There is some magic in recharts that adding the props for us
-      customTooltip={<CustomTooltip originalData={data} tooltips={tooltips} />}
+      customTooltip={
+        <CategoriesChartTooltip originalData={data} tooltips={tooltips} />
+      }
       getBarColor={getBarColor}
       {...restProps}
     />

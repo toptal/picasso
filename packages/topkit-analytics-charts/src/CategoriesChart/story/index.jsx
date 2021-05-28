@@ -55,6 +55,7 @@ page.createTabChapter('Props').addComponentDocs({
   )
 })
 
-page
-  .createChapter()
-  .addExample('CategoriesChart/story/Default.example.tsx', 'Default')
+page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
+  title: 'Default',
+  delay: 500
+})

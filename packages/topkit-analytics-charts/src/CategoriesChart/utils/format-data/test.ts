@@ -89,38 +89,6 @@ describe('formatData', () => {
           team: 189,
           user: 421
         }
-      },
-      {
-        name: 'approved',
-        label: 'Approved',
-        value: {
-          team: 29,
-          user: 27
-        }
-      },
-      {
-        name: 'verified',
-        label: 'Verified',
-        value: {
-          team: 22,
-          user: 21
-        }
-      },
-      {
-        name: 'with_deposit',
-        label: 'With a Deposit',
-        value: {
-          team: 16,
-          user: 17
-        }
-      },
-      {
-        name: 'with_active_engagement',
-        label: 'With an Active Engagement',
-        value: {
-          team: 7,
-          user: 5
-        }
       }
     ]
 
