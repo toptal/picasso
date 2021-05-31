@@ -35,7 +35,7 @@ export const CategoriesChart = ({
       tooltip
       getBarLabelColor={getBarLabelColor}
       customTooltip={
-        // @ts-expect-error: There is some magic in recharts that adding the props for us
+        // @ts-expect-error: Recharts passes 2 props under the hood: active and payload. We need to assume they are there without explicitly passing them.
         <CategoriesChartTooltip originalData={data} tooltips={tooltips} />
       }
       getBarColor={getColor}
