@@ -1,7 +1,7 @@
 import { createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
-export const TAG_SELECTOR_INPUT_GUTTER_SIZE = rem('6px')
+export const TAG_SELECTOR_INPUT_GUTTER_SIZE = rem('4px')
 const END_ADORNMENT_PADDING = '0.625em'
 const END_ADORNMENT_HEIGHT = '1em'
 
