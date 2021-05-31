@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@9.0.2...@toptal/picasso@9.1.0) (2021-05-31)
+
+
+### Features
+
+* **Tag:** add styles for tag content overflow ([#2048](https://github.com/toptal/picasso/issues/2048)) ([8b4abd0](https://github.com/toptal/picasso/commit/8b4abd08b35118c263f3c606e8c8fcc4cd915e37))
+
+
+
+
+
 ## [9.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso@9.0.1...@toptal/picasso@9.0.2) (2021-05-28)
 
 
