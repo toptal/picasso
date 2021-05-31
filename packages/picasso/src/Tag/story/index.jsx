@@ -39,7 +39,6 @@ page
   .addExample('Tag/story/Dismissable.example.tsx', 'Dismissable')
   .addExample('Tag/story/WithIcon.example.tsx', 'With icon')
   .addExample('Tag/story/Disabled.example.tsx', 'Disabled')
-  .addExample('Tag/story/Overflown.example.tsx', 'Layout overflow')
 
 page.connect(tagGroupStory.chapter)
 page.connect(tagRectangularStory.chapter)
