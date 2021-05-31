@@ -1,9 +1,9 @@
 import formatData from './format-data'
-import { Bar } from '../../types'
+import { DataItem } from '../../types'
 
 describe('formatData', () => {
   it('formats categories chart data', () => {
-    const ORIGINAL_DATA: Bar[] = [
+    const ORIGINAL_DATA: DataItem[] = [
       {
         id: 'claimed',
         values: [

@@ -13,7 +13,8 @@ import {
   useSafeState,
   forwardRef,
   documentable,
-  disableUnsupportedProps
+  disableUnsupportedProps,
+  sum
 } from '@toptal/picasso/utils'
 import { render, act } from '@toptal/picasso/test-utils'
 import React, { createRef, Ref, useEffect } from 'react'
@@ -115,6 +116,12 @@ describe('isSubstring', () => {
 describe('kebabToCamelCase', () => {
   it('should convert kebab to camel case', () => {
     expect(kebabToCamelCase('a-test-string')).toBe('aTestString')
+  })
+})
+
+describe('sum', () => {
+  it('returns the total of all numbers in an array', () => {
+    expect(sum([0, 1, 2, 3])).toBe(6)
   })
 })
 

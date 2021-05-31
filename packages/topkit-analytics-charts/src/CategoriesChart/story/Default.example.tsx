@@ -1,7 +1,7 @@
 import React from 'react'
-import { Bar, CategoriesChart } from '@topkit/analytics-charts'
+import { DataItem, CategoriesChart } from '@topkit/analytics-charts'
 
-const CHART_DATA: Bar[] = [
+const CHART_DATA: DataItem[] = [
   {
     id: 'claimed',
     values: [

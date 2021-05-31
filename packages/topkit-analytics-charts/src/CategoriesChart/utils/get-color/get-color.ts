@@ -2,7 +2,7 @@ import { palette } from '@toptal/picasso/utils'
 
 const DEFAULT_COLORS = [palette.blue.main, palette.blue.darker]
 
-const COLORS: Record<string, string[]> = {
+const COLOR_MAP: Record<string, string[]> = {
   bad_leads: [palette.red.main, palette.red.main],
   paused: [palette.yellow.main, palette.yellow.main],
   removed: [palette.green.main, palette.green.main],
@@ -24,14 +24,14 @@ const getColor = ({
   }
 
   if (dataKey === 'team') {
-    return COLORS[entry.name]?.[0] || DEFAULT_COLORS[0]
+    return COLOR_MAP[entry.name]?.[0] || DEFAULT_COLORS[0]
   }
 
   if (entry.value.team > entry.value.user && entry.name !== 'claimed') {
     return BAD_RESULT_COLOR
   }
 
-  return COLORS[entry.name]?.[1] || DEFAULT_COLORS[1]
+  return COLOR_MAP[entry.name]?.[1] || DEFAULT_COLORS[1]
 }
 
 export default getColor

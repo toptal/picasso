@@ -1,2 +1,2 @@
 export { default } from './CategoriesChart'
-export type { Bar } from './types'
+export type { DataItem } from './types'

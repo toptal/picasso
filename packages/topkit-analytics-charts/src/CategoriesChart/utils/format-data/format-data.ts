@@ -1,9 +1,8 @@
-import { Bar, Labels } from '../../types'
+import { sum } from '@toptal/picasso/utils'
 
-const sum = (values: number[]) =>
-  values.reduce((total, value) => total + value, 0)
+import { DataItem, LabelMap } from '../../types'
 
-const formatData = (data: Bar[], labels: Labels) => {
+const formatData = (data: DataItem[], labels: LabelMap) => {
   return data.map(({ id, values }) => {
     const [team, user] = values
 

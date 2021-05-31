@@ -1,14 +1,14 @@
 import React, { FC } from 'react'
 import { Paper, Container, Typography } from '@toptal/picasso'
 
-import { Bar, Tooltips } from '../CategoriesChart/types'
+import { DataItem, TooltipMap } from '../CategoriesChart/types'
 import { getDisplayTexts } from './utils'
 
 export type Props = {
   active: boolean
   payload: { payload: { name: string; team: number; user: number } }[]
-  tooltips: Tooltips
-  originalData: Bar[]
+  tooltips: TooltipMap
+  originalData: DataItem[]
 }
 
 const CategoriesChartTooltip: FC<Props> = ({
@@ -33,7 +33,7 @@ const CategoriesChartTooltip: FC<Props> = ({
     })
 
     return (
-      <Paper data-testid='tooltip'>
+      <Paper data-testid='tooltip-content'>
         <Container padded='xsmall'>
           {teamTexts.map(({ key, label, value, color }) => (
             <Typography size='medium' style={{ color }} key={key}>

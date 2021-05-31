@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react'
 import { BarChartProps, BarChart } from '@toptal/picasso-charts'
 
-import { Bar, Labels, Tooltips } from './types'
+import { DataItem, LabelMap, TooltipMap } from './types'
 import { formatData, getColor } from './utils'
 import CategoriesChartTooltip from '../CategoriesChartTooltip'
 
 export type Props = Pick<BarChartProps<string>, 'width' | 'height'> & {
-  data: Bar[]
-  labels: Labels
-  tooltips: Tooltips
+  data: DataItem[]
+  labels: LabelMap
+  tooltips: TooltipMap
 }
 
 export const CategoriesChart = ({

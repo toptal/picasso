@@ -1,9 +1,9 @@
-type Value = {
+export type Value = {
   id: string
   value: number
 }
 
-export type Bar = {
+export type DataItem = {
   id: string
   values: [
     {
@@ -17,6 +17,6 @@ export type Bar = {
   ]
 }
 
-export type Labels = Record<string, string>
+export type LabelMap = Record<string, string>
 
-export type Tooltips = Record<string, Record<string, Record<string, string>>>
+export type TooltipMap = Record<string, Record<string, Record<string, string>>>
