@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso@9.1.0...@toptal/picasso@9.1.1) (2021-06-01)
+
+
+### Bug Fixes
+
+* **TagSelector:** reduce height ([#2091](https://github.com/toptal/picasso/issues/2091)) ([339172f](https://github.com/toptal/picasso/commit/339172ffea8cb0f9330ef705f9c4e8c192e90ed1))
+
+
+
+
+
 # [9.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@9.0.2...@toptal/picasso@9.1.0) (2021-05-31)
 
 
