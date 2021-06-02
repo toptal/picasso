@@ -44,16 +44,18 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null
 }
 
+const COLORS_MAPPING: Record<string, string> = {
+  infected: palette.red.main,
+  recovered: palette.green.main
+}
+
 const Example = () => (
   <BarChart
     data={CHART_DATA}
     width={720}
     height={300}
-    fillSchema={{ infected: palette.red.main, recovered: palette.green.main }}
-    labelColorSchema={{
-      infected: palette.red.main,
-      recovered: palette.green.main
-    }}
+    getBarColor={({ dataKey }) => COLORS_MAPPING[dataKey]}
+    getBarLabelColor={({ dataKey }) => COLORS_MAPPING[dataKey]}
     tooltip
     customTooltip={<CustomTooltip />}
   />

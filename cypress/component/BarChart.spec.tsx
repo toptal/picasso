@@ -74,9 +74,8 @@ const TestBarChart = ({ ...rest }) => (
   <TestingPicasso>
     <BarChart
       data={CHART_DATA_DEFAULT}
-      fillSchema={{
-        'engineers hired': palette.blue.main
-      }}
+      getBarColor={() => palette.blue.main}
+      getBarLabelColor={() => palette.grey.dark}
       width={720}
       tooltip
       {...rest}
@@ -91,15 +90,11 @@ const getBar = (name: string) => {
 const hoverOverBar = (name: string) => getBar(name).trigger('mousemove')
 
 const assertTooltipContent = (text: string) => {
-  cy.get('.recharts-default-tooltip')
-    .should('be.visible')
-    .and('contain', text)
+  cy.get('.recharts-default-tooltip').should('be.visible').and('contain', text)
 }
 
 const assertCustomTooltipContent = (text: string) => {
-  cy.get('[data-testid="tooltip"]')
-    .should('be.visible')
-    .and('contain', text)
+  cy.get('[data-testid="tooltip"]').should('be.visible').and('contain', text)
 }
 
 describe('BarChart', () => {

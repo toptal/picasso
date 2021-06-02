@@ -51,20 +51,27 @@ page.createTabChapter('Props').addComponentDocs({
       description: 'A list of data points to be rendered as a bar chart',
       required: true
     },
-    fillSchema: {
-      name: 'fillSchema',
+    getBarColor: {
+      name: 'getBarColor',
       type: {
-        name: '{}',
-        description: "{ [key in K]: 'blue' | 'dark-grey' }"
+        name: 'function',
+        description: `(params: {
+          dataKey: string
+          entry?: {
+            name: string
+            value: { [key in K]: number }
+          }
+          index?: number
+        }) => string`
       },
       description: "Maps bar's key with a color to fill.",
       required: false
     },
-    labelColorSchema: {
-      name: 'labelColorSchema',
+    getBarLabelColor: {
+      name: 'getBarLabelColor',
       type: {
-        name: '{}',
-        description: "{ [key in K]: 'red' | 'dark-grey' }"
+        name: 'function',
+        description: '(params: { dataKey: string; index?: number }) => string'
       },
       description: "Maps bar's key with a label color.",
       required: false
