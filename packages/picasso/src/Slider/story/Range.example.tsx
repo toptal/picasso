@@ -32,6 +32,7 @@ const Example = () => {
           tooltip='on'
           tooltipFormat={renderLabel}
           compact
+          disablePortal
         />
       </Container>
     </Container>
