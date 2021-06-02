@@ -1,8 +1,15 @@
-import React, { forwardRef, ChangeEvent, ComponentProps } from 'react'
+import React, {
+  forwardRef,
+  ChangeEvent,
+  ComponentProps,
+  useRef,
+  useState
+} from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUISlider, { ValueLabelProps } from '@material-ui/core/Slider'
 import cx from 'classnames'
 
+import useCombinedRefs from '../utils/use-combined-refs'
 import Tooltip from '../Tooltip'
 import styles from './styles'
 
@@ -52,27 +59,43 @@ export interface Props extends ComponentProps<typeof MUISlider> {
 // This type is needed because ValueLabelProps does not describe all exposed props
 type ValueLabelComponentProps = ValueLabelProps & {
   valueLabelDisplay: ValueLabelDisplay
+  index: number
 }
 
 const DefaultTooltip = (
   isTooltipAlwaysVisible: boolean,
   disablePortal?: boolean,
-  compact?: boolean
+  compact?: boolean,
+  isTooltipReversed?: boolean
+  // eslint-disable-next-line max-params
 ): React.FunctionComponent<ValueLabelComponentProps> => ({
   children,
   open,
   value,
-  valueLabelDisplay
+  valueLabelDisplay,
+  index
 }) => {
   if (valueLabelDisplay === 'off') {
     return children
+  }
+
+  const placement = () => {
+    if (!isTooltipAlwaysVisible) {
+      return 'top'
+    }
+
+    if (isTooltipReversed) {
+      return index === 0 ? 'left' : 'right'
+    }
+
+    return index === 0 ? 'right' : 'left'
   }
 
   return (
     <Tooltip
       content={value}
       open={open || valueLabelDisplay === 'on'}
-      placement={isTooltipAlwaysVisible ? 'right' : 'top'}
+      placement={placement()}
       preventOverflow={isTooltipAlwaysVisible}
       disablePortal={disablePortal}
       compact={compact}
@@ -82,7 +105,7 @@ const DefaultTooltip = (
   )
 }
 
-export const Slider = forwardRef<HTMLElement, Props>(function Slider(
+export const Slider = forwardRef<HTMLElement, Props>(function Slider (
   props,
   ref
 ) {
@@ -112,6 +135,9 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     unmarkTrack,
     ...classes
   } = useStyles()
+  const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
+  const [isTooltipReversed, setIsTooltipReversed] = useState(false)
+
   const isTooltipAlwaysVisible = tooltip === 'on'
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
@@ -119,14 +145,48 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     DefaultTooltip(
       isTooltipAlwaysVisible,
       disablePortal,
-      compact
+      compact,
+      isTooltipReversed
     )) as typeof UserDefinedTooltip
+
+  const watchTooltipsPlacement = () => {
+    if (sliderRef.current) {
+      const tooltips: NodeListOf<HTMLElement> = sliderRef.current.querySelectorAll(
+        '[role="tooltip"]'
+      )
+      const sliders: NodeListOf<HTMLElement> = sliderRef.current.querySelectorAll(
+        '[role="slider"]'
+      )
+
+      if (sliders.length === 2 && tooltips.length === 2) {
+        const minDistance = Array.from(tooltips).reduce((acc, cur) => {
+          return acc + cur.offsetWidth
+        }, 0)
+
+        const distance = sliders[1].offsetLeft - sliders[0].offsetLeft
+
+        if (distance < minDistance) {
+          setIsTooltipReversed(true)
+        } else {
+          setIsTooltipReversed(false)
+        }
+      }
+    }
+  }
+
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: Value) => {
+    onChange?.(event, newValue)
+
+    if (disablePortal && Array.isArray(value) && value.length === 2) {
+      watchTooltipsPlacement()
+    }
+  }
 
   return (
     <div className={wrapper}>
       <MUISlider
         {...rest}
-        ref={ref}
+        ref={sliderRef}
         defaultValue={defaultValue}
         value={value}
         min={min}
@@ -153,7 +213,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         }
         valueLabelFormat={tooltipFormat}
         valueLabelDisplay={tooltip}
-        onChange={onChange}
+        onChange={handleChange}
       />
     </div>
   )
