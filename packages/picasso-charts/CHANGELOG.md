@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.1.0...@toptal/picasso-charts@2.2.0) (2021-06-02)
+
+
+### Features
+
+* **CategoriesChart:** add categories chart ([#2024](https://github.com/toptal/picasso/issues/2024)) ([c0860fb](https://github.com/toptal/picasso/commit/c0860fb7a0c8153ad7d62f9d6684abff6c7455ad))
+
+
+
+
+
 # [2.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.0.10...@toptal/picasso-charts@2.1.0) (2021-05-14)
 
 
