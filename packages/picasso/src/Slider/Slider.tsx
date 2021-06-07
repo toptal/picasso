@@ -3,7 +3,8 @@ import React, {
   ChangeEvent,
   ComponentProps,
   useRef,
-  useState
+  useState,
+  useMemo
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUISlider, { ValueLabelProps } from '@material-ui/core/Slider'
@@ -62,13 +63,19 @@ type ValueLabelComponentProps = ValueLabelProps & {
   index: number
 }
 
-const DefaultTooltip = (
-  isTooltipAlwaysVisible: boolean,
-  disablePortal?: boolean,
-  compact?: boolean,
+type DefaultTooltipProps = {
+  isTooltipAlwaysVisible: boolean
+  disablePortal?: boolean
+  compact?: boolean
   isTooltipReversed?: boolean
-  // eslint-disable-next-line max-params
-): React.FunctionComponent<ValueLabelComponentProps> => ({
+}
+
+const DefaultTooltip = ({
+  isTooltipAlwaysVisible,
+  disablePortal,
+  compact,
+  isTooltipReversed
+}: DefaultTooltipProps): React.FunctionComponent<ValueLabelComponentProps> => ({
   children,
   open,
   value,
@@ -141,13 +148,23 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider (
   const isTooltipAlwaysVisible = tooltip === 'on'
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
-  const ValueLabelComponent = (UserDefinedTooltip ||
-    DefaultTooltip(
-      isTooltipAlwaysVisible,
-      disablePortal,
+  const ValueLabelComponent = useMemo(
+    () =>
+      (UserDefinedTooltip ||
+        DefaultTooltip({
+          isTooltipAlwaysVisible,
+          disablePortal,
+          compact,
+          isTooltipReversed
+        })) as typeof UserDefinedTooltip,
+    [
+      UserDefinedTooltip,
       compact,
+      disablePortal,
+      isTooltipAlwaysVisible,
       isTooltipReversed
-    )) as typeof UserDefinedTooltip
+    ]
+  )
 
   const watchTooltipsPlacement = () => {
     if (sliderRef.current) {
@@ -209,7 +226,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider (
         }}
         ValueLabelComponent={
           // From Workaround for https://github.com/mui-org/material-ui/issues/21889
-          ValueLabelComponent as React.ElementType<ValueLabelProps>
+          (ValueLabelComponent as unknown) as React.ElementType<ValueLabelProps>
         }
         valueLabelFormat={tooltipFormat}
         valueLabelDisplay={tooltip}
