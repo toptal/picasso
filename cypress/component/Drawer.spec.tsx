@@ -10,8 +10,7 @@ const TestDrawer = () => {
   const { isOpen, showModal, hideModal } = useModal()
 
   return (
-    <div>
-      <div style={{ position: 'fixed', height: '100%' }} />
+    <div style={{ height: '660px' }}>
       <div id='modal-container' />
       <Modal
         open={isOpen}
