@@ -11,6 +11,7 @@ const TestDrawer = () => {
 
   return (
     <div>
+      <div style={{ position: 'fixed', height: '100%' }} />
       <div id='modal-container' />
       <Modal
         open={isOpen}
