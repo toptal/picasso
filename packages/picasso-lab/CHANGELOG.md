@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@6.0.1...@toptal/picasso-lab@6.0.2) (2021-06-08)
+
+
+### Bug Fixes
+
+* **Drawer:** fix incorrect z-index of the Drawer ([#2093](https://github.com/toptal/picasso/issues/2093)) ([ff90e4a](https://github.com/toptal/picasso/commit/ff90e4a5ce3f743c32fac5a9a4b6846b49a0510e))
+
+
+
+
+
 ## [6.0.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@6.0.0...@toptal/picasso-lab@6.0.1) (2021-05-24)
 
 
