@@ -14,6 +14,7 @@ const Example = () => {
       title='Talents'
       subtitle={`${data.length} people`}
       actions={<SectionActions />}
+      collapsible
     >
       <Table>
         <Table.Head>

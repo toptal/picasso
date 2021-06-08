@@ -32,8 +32,21 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
         </div>
       </div>
       <div
-        data-testid="content"
-      />
+        class="MuiCollapse-container MuiCollapse-entered"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              data-testid="content"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -48,8 +61,21 @@ exports[`Section renders without header 1`] = `
       class="PicassoSection-root"
     >
       <div
-        data-testid="content"
-      />
+        class="MuiCollapse-container MuiCollapse-entered"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              data-testid="content"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

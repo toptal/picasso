@@ -1,7 +1,14 @@
 import cx from 'classnames'
-import React, { forwardRef, ReactNode } from 'react'
+import React, { forwardRef, ReactNode, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { BaseProps, Container, Typography } from '@toptal/picasso'
+import {
+  ArrowDownMinor16,
+  BaseProps,
+  Button,
+  Container,
+  Typography
+} from '@toptal/picasso'
+import { Collapse } from '@material-ui/core'
 
 import styles from './styles'
 
@@ -14,11 +21,14 @@ export interface Props extends BaseProps {
   actions?: ReactNode
   /** Main content of the Section */
   children?: ReactNode
+  /** Whether section can be collapsed */
+  collapsible?: boolean
   testIds?: {
     header?: string
     title?: string
     subtitle?: string
     actions?: string
+    collapse?: string
   }
 }
 
@@ -38,9 +48,13 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
     actions,
     children,
     testIds,
+    collapsible,
     ...rest
   } = props
   const classes = useStyles()
+  const [collapsed, setCollapsed] = useState(false)
+
+  const handleCollapse = () => setCollapsed(!collapsed)
 
   const renderTitle = () =>
     title ? (
@@ -66,14 +80,29 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
       </Typography>
     ) : null
 
+  const renderCollapse = () =>
+    collapsible ? (
+      <Button.Circular
+        className={cx(classes.collapse, {
+          [classes.collapseActive]: collapsed
+        })}
+        onClick={handleCollapse}
+        data-testid={testIds?.collapse}
+        variant='flat'
+        icon={<ArrowDownMinor16 />}
+      />
+    ) : null
+
+  const hasActions = actions || collapsible
   const renderActions = () =>
-    actions ? (
+    hasActions ? (
       <Container data-testid={testIds?.actions} className={classes.actions}>
         {actions}
+        {renderCollapse()}
       </Container>
     ) : null
 
-  const hasHeader = title || subtitle || actions
+  const hasHeader = title || subtitle || hasActions
 
   return (
     <Container
@@ -89,11 +118,14 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
           {renderActions()}
         </Container>
       )}
-      {children}
+      <Collapse in={!collapsed} unmountOnExit>
+        {children}
+      </Collapse>
     </Container>
   )
 })
 
 Section.displayName = 'Section'
+Section.defaultProps = { collapsible: false }
 
 export default Section
