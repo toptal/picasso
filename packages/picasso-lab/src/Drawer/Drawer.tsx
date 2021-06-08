@@ -1,5 +1,5 @@
 import MUIDrawer from '@material-ui/core/Drawer'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { Button, Container } from '@toptal/picasso'
 import { BaseProps, useDrawer, usePicassoRoot } from '@toptal/picasso-shared'
@@ -44,6 +44,7 @@ export const Drawer: FunctionComponent<Props> = props => {
   } = props
   const classes = useStyles()
   const { setHasDrawer } = useDrawer()
+  const theme = useTheme()
   const container = usePicassoRoot()
 
   useLayoutEffect(() => {
@@ -69,6 +70,7 @@ export const Drawer: FunctionComponent<Props> = props => {
       onClose={handleOnClose}
       disablePortal={disablePortal}
       container={container}
+      ModalProps={{ style: { zIndex: theme.zIndex.drawer } }}
     >
       <Container
         flex
