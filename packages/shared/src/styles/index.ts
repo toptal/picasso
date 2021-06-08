@@ -42,11 +42,6 @@ export const outline = (baseColor: string, width = 3) => ({
 
 export const remToNumber = (value: string) => Number.parseFloat(value)
 
-export const rotate180 = (active: boolean) => ({
-  transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-  transform: active ? 'rotate(180deg)' : undefined
-})
-
 export { default as addClassesToChildren } from './add-classes-to-children'
 
 export * from './types'

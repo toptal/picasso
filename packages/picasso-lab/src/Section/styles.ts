@@ -1,5 +1,4 @@
 import { createStyles } from '@material-ui/core'
-import { rotate180 } from '@toptal/picasso-shared'
 
 export default () =>
   createStyles({
@@ -20,11 +19,5 @@ export default () =>
     actions: {
       display: 'flex',
       marginLeft: 'auto'
-    },
-    collapse: {
-      ...rotate180(false)
-    },
-    collapseActive: {
-      ...rotate180(true)
     }
   })

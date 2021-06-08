@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider, rotate180 } from '@toptal/picasso-shared'
+import { PicassoProvider } from '@toptal/picasso-shared'
 
 PicassoProvider.override(() => ({
   MuiAccordion: {
@@ -66,10 +66,10 @@ export default ({ palette, typography }: Theme) => {
     expandIcon: {
       fontSize: '0.7em',
       color: palette.grey.dark,
-      ...rotate180(false)
+      transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms'
     },
     expandIconExpanded: {
-      ...rotate180(true)
+      transform: 'rotate(180deg)'
     },
     expandIconAlignTop: {
       display: 'flex',

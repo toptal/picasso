@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import React, { forwardRef, ReactNode, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { Collapse } from '@material-ui/core'
 import {
   ArrowDownMinor16,
   BaseProps,
@@ -8,7 +9,7 @@ import {
   Container,
   Typography
 } from '@toptal/picasso'
-import { Collapse } from '@material-ui/core'
+import { Rotate180 } from '@toptal/picasso/utils/Transitions'
 
 import styles from './styles'
 
@@ -83,13 +84,14 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
   const renderCollapse = () =>
     collapsible ? (
       <Button.Circular
-        className={cx(classes.collapse, {
-          [classes.collapseActive]: collapsed
-        })}
         onClick={handleCollapse}
         data-testid={testIds?.collapse}
         variant='flat'
-        icon={<ArrowDownMinor16 />}
+        icon={
+          <Rotate180 on={collapsed}>
+            <ArrowDownMinor16 />
+          </Rotate180>
+        }
       />
     ) : null
 
