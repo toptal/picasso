@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Table } from '@toptal/picasso'
+import { Table, Button } from '@toptal/picasso'
 import { Section } from '@toptal/picasso-lab'
 
 const Example = () => {
@@ -12,6 +12,7 @@ const Example = () => {
           More
         </Button>
       }
+      collapsible
     >
       <Table>
         <Table.Head>

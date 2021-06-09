@@ -24,6 +24,8 @@ export interface Props extends BaseProps {
   children?: ReactNode
   /** Whether section can be collapsed */
   collapsible?: boolean
+  /** Default collapsed value **(applied if `collapsible: true`)** */
+  defaultCollapsed?: boolean
   testIds?: {
     header?: string
     title?: string
@@ -49,11 +51,12 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
     actions,
     children,
     testIds,
-    collapsible,
+    collapsible = false,
+    defaultCollapsed = true,
     ...rest
   } = props
   const classes = useStyles()
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(defaultCollapsed)
 
   const handleCollapse = () => setCollapsed(!collapsed)
 
@@ -105,6 +108,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
     ) : null
 
   const hasHeader = title || subtitle || hasActions
+  const shouldCollapse = collapsible ? !collapsed : true
 
   return (
     <Container
@@ -120,7 +124,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
           {renderActions()}
         </Container>
       )}
-      <Collapse in={!collapsed} unmountOnExit>
+      <Collapse in={shouldCollapse} unmountOnExit>
         {children}
       </Collapse>
     </Container>
@@ -128,6 +132,6 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
 })
 
 Section.displayName = 'Section'
-Section.defaultProps = { collapsible: false }
+Section.defaultProps = { collapsible: false, defaultCollapsed: true }
 
 export default Section

@@ -11,3 +11,6 @@ page
   .addComponentDocs({ component: Section, name: 'Section' })
 
 page.createChapter().addExample('Section/story/Default.example.tsx', 'Default')
+page
+  .createChapter()
+  .addExample('Section/story/Collapsible.example.tsx', 'Collapsible')
