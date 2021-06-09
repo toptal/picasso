@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.1.0...@toptal/picasso-forms@4.2.0) (2021-06-09)
+
+
+### Features
+
+* add `final-forms` exports ([#2095](https://github.com/toptal/picasso/issues/2095)) ([f14eca8](https://github.com/toptal/picasso/commit/f14eca852bbe2765ca899bfa2f81485ff012b9b9))
+
+
+
+
+
 # [4.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.0.0...@toptal/picasso-forms@4.1.0) (2021-05-25)
 
 
