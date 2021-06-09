@@ -1,6 +1,6 @@
 
 // Final Form exports
-export { FORM_ERROR, FormApi, MutableState, AnyObject } from 'final-form'
+export { FORM_ERROR, FormApi, MutableState, AnyObject, FieldValidator, SubmissionErrors } from 'final-form'
 export { useForm, useField, useFormState, FormSpy, Form as FinalForm, Field as FinalField } from 'react-final-form'
 export type { FieldMetaState, FieldRenderProps, FormRenderProps, FieldProps, FormProps, FieldInputProps } from 'react-final-form'
 export { useFieldArray, FieldArray } from 'react-final-form-arrays'
