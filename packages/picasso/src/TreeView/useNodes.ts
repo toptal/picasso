@@ -65,7 +65,9 @@ export const useNodes = (
   const [initialized, setInitializedState] = useState<boolean>(false)
   const initialNodes = useMemo(() => {
     return getDynamicNodes(rootNode.descendants())
-  }, [rootNode])
+    // we don't want to lose the initial nodes data (e.g. assigned x and y coordinates) even if the rootNode object has changed
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   const dynamicNodes = useMemo(() => {
     const latestNodes = rootNode.descendants()
 
