@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.2](https://github.com/toptal/picasso/compare/@toptal/picasso@9.2.1...@toptal/picasso@9.2.2) (2021-06-10)
+
+
+### Bug Fixes
+
+* **TreeView:** fix tree view node selection ([#2098](https://github.com/toptal/picasso/issues/2098)) ([f07a4d8](https://github.com/toptal/picasso/commit/f07a4d88d245eca3af175cfb5b17bc72bf7c272c))
+
+
+
+
+
 ## [9.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso@9.2.0...@toptal/picasso@9.2.1) (2021-06-10)
 
 
