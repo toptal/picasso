@@ -63,10 +63,10 @@ export const useNodes = (
   rootNode: HierarchyPointNode<TreeNodeInterface>
 ): DynamicPointNode[] => {
   const [initialized, setInitializedState] = useState<boolean>(false)
-  const initialNodes = useRef<DynamicPointNode[] | null>(null)
+  const initialNodes = useRef<DynamicPointNode[] | undefined>()
 
-  // we only need to prepare initial nodes once on a first render
-  if (initialNodes.current === null) {
+  // we only need to prepare initial nodes once, on a first render
+  if (!initialNodes.current) {
     initialNodes.current = getDynamicNodes(rootNode.descendants())
   }
 
