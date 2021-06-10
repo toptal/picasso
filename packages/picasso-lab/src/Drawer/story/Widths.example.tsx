@@ -1,32 +1,31 @@
-import { Button, Container, List } from '@toptal/picasso'
+import { Container, List, Button } from '@toptal/picasso'
 import { Drawer } from '@toptal/picasso-lab'
 import React, { useState } from 'react'
 
-type WidthType = 'regular' | 'wide'
+type WidthType = 'narrow' | 'regular' | 'medium' | 'wide' | 'ultra-wide'
+
+const types: WidthType[] = ['narrow', 'regular', 'medium', 'wide', 'ultra-wide']
 
 const Example = () => {
-  const [width, setWidth] = useState<WidthType>('regular')
+  const [width, setWidth] = useState<WidthType>('narrow')
   const [open, setOpen] = useState(false)
 
-  const handleOnButtonClick = (width: WidthType) => {
-    setWidth(width)
+  const handleClick = (type: WidthType) => {
+    setWidth(type)
     setOpen(!open)
   }
 
   return (
     <div>
-      <Button
-        data-testid='show-regular'
-        onClick={() => handleOnButtonClick('regular')}
-      >
-        Show regular drawer
-      </Button>
-      <Button
-        data-testid='show-wide'
-        onClick={() => handleOnButtonClick('wide')}
-      >
-        Show wide drawer
-      </Button>
+      {types.map(type => (
+        <Button
+          data-testid={`show-${type}`}
+          onClick={() => handleClick(type)}
+          key={type}
+        >
+          Show {type} drawer
+        </Button>
+      ))}
       <Drawer
         title='My Operational Issues'
         open={open}

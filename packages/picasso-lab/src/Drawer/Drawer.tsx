@@ -11,7 +11,7 @@ import DrawerTitle from '../DrawerTitle'
 
 type AnchorType = 'bottom' | 'left' | 'right' | 'top'
 
-type WidthType = 'regular' | 'wide'
+type WidthType = 'narrow' | 'regular' | 'medium' | 'wide' | 'ultra-wide'
 
 export interface Props extends BaseProps {
   /** Side from which the drawer will appear.  */
