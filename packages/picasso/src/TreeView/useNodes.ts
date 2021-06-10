@@ -1,4 +1,4 @@
-import { createRef, useMemo, useLayoutEffect, useState } from 'react'
+import { createRef, useMemo, useRef, useLayoutEffect, useState } from 'react'
 import { HierarchyPointNode } from 'd3-hierarchy'
 
 import { DynamicPointNode, TreeNodeInterface } from './types'
@@ -63,13 +63,21 @@ export const useNodes = (
   rootNode: HierarchyPointNode<TreeNodeInterface>
 ): DynamicPointNode[] => {
   const [initialized, setInitializedState] = useState<boolean>(false)
-  const initialNodes = useMemo(() => {
-    return getDynamicNodes(rootNode.descendants())
-  }, [rootNode])
+  const initialNodes = useRef<DynamicPointNode[] | undefined>()
+
+  // we only need to prepare initial nodes once, on a first render
+  if (!initialNodes.current) {
+    initialNodes.current = getDynamicNodes(rootNode.descendants())
+  }
+
   const dynamicNodes = useMemo(() => {
     const latestNodes = rootNode.descendants()
 
-    return initialNodes.map<DynamicPointNode>(node => {
+    if (!initialNodes.current) {
+      return []
+    }
+
+    return initialNodes.current.map<DynamicPointNode>(node => {
       const foundNode = latestNodes.find(
         (latestNode: HierarchyPointNode<TreeNodeInterface>) =>
           latestNode.data.id === node.data.id
