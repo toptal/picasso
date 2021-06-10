@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso@9.2.0...@toptal/picasso@9.2.1) (2021-06-10)
+
+
+### Bug Fixes
+
+* **picasso:** pin d3-array version ([#2097](https://github.com/toptal/picasso/issues/2097)) ([3dd9196](https://github.com/toptal/picasso/commit/3dd919681edbc99d695dabfc1dce2f9b33ef1e01))
+
+
+
+
+
 # [9.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@9.1.1...@toptal/picasso@9.2.0) (2021-06-02)
 
 
