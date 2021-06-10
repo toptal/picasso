@@ -13,4 +13,7 @@ page
 page.createChapter().addExample('Section/story/Default.example.tsx', 'Default')
 page
   .createChapter()
+  .addExample('Section/story/Actions.example.tsx', 'With Actions')
+page
+  .createChapter()
   .addExample('Section/story/Collapsible.example.tsx', 'Collapsible')

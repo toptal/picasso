@@ -76,19 +76,40 @@ describe('Section', () => {
     expect(queryByTestId(DEFAULT_ACTIONS_TEST_ID)).not.toBeInTheDocument()
   })
 
+  it('renders collapsible initially collapsed', async () => {
+    const { container, getByTestId } = renderSection({
+      collapsible: true
+    })
+
+    expect(getByTestId(DEFAULT_CONTENT_TEST_ID)).not.toBeInTheDocument()
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders collapsible initially expanded', async () => {
+    const { container, getByTestId } = renderSection({
+      collapsible: true,
+      defaultCollapsed: false
+    })
+
+    expect(getByTestId(DEFAULT_CONTENT_TEST_ID)).toBeInTheDocument()
+
+    expect(container).toMatchSnapshot()
+  })
+
   it('collapses and expands', async () => {
     const { findByTestId, getByTestId } = renderSection({
       collapsible: true
     })
 
-    expect(getByTestId(DEFAULT_CONTENT_TEST_ID)).toBeInTheDocument()
+    expect(getByTestId(DEFAULT_CONTENT_TEST_ID)).not.toBeInTheDocument()
 
     const collapse = getByTestId(DEFAULT_COLLAPSE_TEST_ID)
 
     fireEvent.click(collapse)
-    await waitForElementToBeRemoved(getByTestId(DEFAULT_CONTENT_TEST_ID))
+    expect(await findByTestId(DEFAULT_CONTENT_TEST_ID)).toBeInTheDocument()
 
     fireEvent.click(collapse)
-    expect(await findByTestId(DEFAULT_CONTENT_TEST_ID)).toBeInTheDocument()
+    await waitForElementToBeRemoved(getByTestId(DEFAULT_CONTENT_TEST_ID))
   })
 })
