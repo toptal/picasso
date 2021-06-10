@@ -77,11 +77,11 @@ describe('Section', () => {
   })
 
   it('renders collapsible initially collapsed', async () => {
-    const { container, getByTestId } = renderSection({
+    const { container, queryByTestId } = renderSection({
       collapsible: true
     })
 
-    expect(getByTestId(DEFAULT_CONTENT_TEST_ID)).not.toBeInTheDocument()
+    expect(queryByTestId(DEFAULT_CONTENT_TEST_ID)).not.toBeInTheDocument()
 
     expect(container).toMatchSnapshot()
   })
@@ -98,11 +98,11 @@ describe('Section', () => {
   })
 
   it('collapses and expands', async () => {
-    const { findByTestId, getByTestId } = renderSection({
+    const { findByTestId, getByTestId, queryByTestId } = renderSection({
       collapsible: true
     })
 
-    expect(getByTestId(DEFAULT_CONTENT_TEST_ID)).not.toBeInTheDocument()
+    expect(queryByTestId(DEFAULT_CONTENT_TEST_ID)).not.toBeInTheDocument()
 
     const collapse = getByTestId(DEFAULT_COLLAPSE_TEST_ID)
 
