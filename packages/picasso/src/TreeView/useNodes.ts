@@ -1,4 +1,4 @@
-import { createRef, useMemo, useLayoutEffect, useState } from 'react'
+import { createRef, useMemo, useRef, useLayoutEffect, useState } from 'react'
 import { HierarchyPointNode } from 'd3-hierarchy'
 
 import { DynamicPointNode, TreeNodeInterface } from './types'
@@ -63,16 +63,21 @@ export const useNodes = (
   rootNode: HierarchyPointNode<TreeNodeInterface>
 ): DynamicPointNode[] => {
   const [initialized, setInitializedState] = useState<boolean>(false)
-  const initialNodes = useMemo(
-    () => getDynamicNodes(rootNode.descendants()),
-    // we don't want to lose the initial nodes refs even if the rootNode object has changed
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
+  const initialNodes = useRef<DynamicPointNode[] | null>(null)
+
+  // we only need to prepare initial nodes once on a first render
+  if (initialNodes.current === null) {
+    initialNodes.current = getDynamicNodes(rootNode.descendants())
+  }
+
   const dynamicNodes = useMemo(() => {
     const latestNodes = rootNode.descendants()
 
-    return initialNodes.map<DynamicPointNode>(node => {
+    if (!initialNodes.current) {
+      return []
+    }
+
+    return initialNodes.current.map<DynamicPointNode>(node => {
       const foundNode = latestNodes.find(
         (latestNode: HierarchyPointNode<TreeNodeInterface>) =>
           latestNode.data.id === node.data.id
