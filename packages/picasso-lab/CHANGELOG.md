@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@6.1.0...@toptal/picasso-lab@6.2.0) (2021-06-11)
+
+
+### Features
+
+* **Section:** make collapsible ([#2094](https://github.com/toptal/picasso/issues/2094)) ([b48aa15](https://github.com/toptal/picasso/commit/b48aa15c2b806f5288e2c2d129ff8a54d8fb75de))
+
+
+
+
+
 # [6.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@6.0.2...@toptal/picasso-lab@6.1.0) (2021-06-11)
 
 
