@@ -1,10 +1,18 @@
 import React from 'react'
-import { Table } from '@toptal/picasso'
+import { Button, Table } from '@toptal/picasso'
 import { Section } from '@toptal/picasso-lab'
 
 const Example = () => {
   return (
-    <Section title='Talents' subtitle={`${data.length} people`}>
+    <Section
+      title='Talents'
+      subtitle={`${data.length} people`}
+      actions={
+        <Button size='small' variant='secondary'>
+          More
+        </Button>
+      }
+    >
       <Table>
         <Table.Head>
           <Table.Row>

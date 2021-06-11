@@ -1,5 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Section renders collapsible initially collapsed 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoSection-root"
+    >
+      <div
+        class="PicassoSection-header"
+        data-testid="header"
+      >
+        <div
+          class="PicassoSection-actions"
+          data-testid="actions"
+        >
+          <button
+            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+            data-component-type="button"
+            data-testid="collapse"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            >
+              <svg
+                class="PicassoSvgArrowDownMinor16-root PicassoButton-icon Rotate180-transition"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Section renders collapsible initially expanded 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoSection-root"
+    >
+      <div
+        class="PicassoSection-header"
+        data-testid="header"
+      >
+        <div
+          class="PicassoSection-actions"
+          data-testid="actions"
+        >
+          <button
+            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+            data-component-type="button"
+            data-testid="collapse"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            >
+              <svg
+                class="PicassoSvgArrowDownMinor16-root PicassoButton-icon Rotate180-transition Rotate180-rotate180"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="MuiCollapse-container MuiCollapse-entered"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              data-testid="content"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Section renders with title, subtitle, actions and content 1`] = `
 <div>
   <div
@@ -32,8 +136,21 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
         </div>
       </div>
       <div
-        data-testid="content"
-      />
+        class="MuiCollapse-container MuiCollapse-entered"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              data-testid="content"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -48,8 +165,21 @@ exports[`Section renders without header 1`] = `
       class="PicassoSection-root"
     >
       <div
-        data-testid="content"
-      />
+        class="MuiCollapse-container MuiCollapse-entered"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              data-testid="content"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
