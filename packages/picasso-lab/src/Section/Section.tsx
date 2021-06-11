@@ -56,9 +56,11 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
     ...rest
   } = props
   const classes = useStyles()
-  const [collapsed, setCollapsed] = useState(defaultCollapsed)
+  const [collapsed, setCollapsed] = useState(
+    collapsible ? defaultCollapsed : false
+  )
 
-  const handleCollapse = () => setCollapsed(!collapsed)
+  const toggleCollapse = () => setCollapsed(!collapsed)
 
   const renderTitle = () =>
     title ? (
@@ -87,11 +89,11 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
   const renderCollapse = () =>
     collapsible ? (
       <Button.Circular
-        onClick={handleCollapse}
+        onClick={toggleCollapse}
         data-testid={testIds?.collapse}
         variant='flat'
         icon={
-          <Rotate180 on={collapsed}>
+          <Rotate180 on={!collapsed}>
             <ArrowDownMinor16 />
           </Rotate180>
         }
@@ -108,7 +110,6 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
     ) : null
 
   const hasHeader = title || subtitle || hasActions
-  const shouldCollapse = collapsible ? !collapsed : true
 
   return (
     <Container
@@ -124,7 +125,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
           {renderActions()}
         </Container>
       )}
-      <Collapse in={shouldCollapse} unmountOnExit>
+      <Collapse in={!collapsed} unmountOnExit>
         {children}
       </Collapse>
     </Container>

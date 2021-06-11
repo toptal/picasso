@@ -10,10 +10,10 @@ page
   .createTabChapter('Props')
   .addComponentDocs({ component: Section, name: 'Section' })
 
-page.createChapter().addExample('Section/story/Default.example.tsx', 'Default')
+page.createChapter().addExample('Section/story/Default.example.tsx', 'Default') // picasso-skip-visuals
 page
   .createChapter()
-  .addExample('Section/story/Actions.example.tsx', 'With Actions')
+  .addExample('Section/story/Actions.example.tsx', 'With Actions') // picasso-skip-visuals
 page
   .createChapter()
-  .addExample('Section/story/Collapsible.example.tsx', 'Collapsible')
+  .addExample('Section/story/Collapsible.example.tsx', 'Collapsible') // picasso-skip-visuals

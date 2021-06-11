@@ -27,7 +27,7 @@ exports[`Section renders collapsible initially collapsed 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               <svg
-                class="PicassoSvgArrowDownMinor16-root PicassoButton-icon Rotate180-transition Rotate180-rotate180"
+                class="PicassoSvgArrowDownMinor16-root PicassoButton-icon Rotate180-transition"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -71,7 +71,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               <svg
-                class="PicassoSvgArrowDownMinor16-root PicassoButton-icon Rotate180-transition"
+                class="PicassoSvgArrowDownMinor16-root PicassoButton-icon Rotate180-transition Rotate180-rotate180"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
