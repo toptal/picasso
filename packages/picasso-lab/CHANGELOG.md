@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@6.0.2...@toptal/picasso-lab@6.1.0) (2021-06-11)
+
+
+### Features
+
+* **drawer:** add all types of the drawer ([#2099](https://github.com/toptal/picasso/issues/2099)) ([29ec08d](https://github.com/toptal/picasso/commit/29ec08d04ba600c03bb5b5dc97186fde92a97e44))
+
+
+
+
+
 ## [6.0.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@6.0.1...@toptal/picasso-lab@6.0.2) (2021-06-08)
 
 
