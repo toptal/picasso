@@ -53,26 +53,25 @@ page
   .addExample('Drawer/story/Widths.example.tsx', {
     title: 'Width',
     effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[data-testid="show-regular"]')
-      await testPage.waitFor('[data-testid="content"]', {
-        visible: true
-      })
-      await makeScreenshot({
-        isFullScreen: true,
-        selector: '[data-testid="content"]'
-      })
-      await testPage.click('[data-testid="show-regular"]')
-      await testPage.waitFor('[data-testid="content"]', {
-        hidden: true
-      })
-      await testPage.click('[data-testid="show-wide"]')
-      await testPage.waitFor('[data-testid="content"]', {
-        visible: true
-      })
-      await makeScreenshot({
-        isFullScreen: true,
-        selector: '[data-testid="content"]'
-      })
+      const types = ['narrow', 'regular', 'medium', 'wide', 'ultra-wide']
+      const contentSelector = '[data-testid="content"]'
+
+      for (const type in types) {
+        const buttonSelector = `[data-testid="show-${types[type]}"]`
+
+        await testPage.click(buttonSelector)
+        await testPage.waitFor(contentSelector, {
+          visible: true
+        })
+        await makeScreenshot({
+          isFullScreen: true,
+          selector: contentSelector
+        })
+        await testPage.click('[role="presentation"] button')
+        await testPage.waitFor(contentSelector, {
+          hidden: true
+        })
+      }
     }
   })
   .addExample(

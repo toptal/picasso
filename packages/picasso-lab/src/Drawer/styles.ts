@@ -24,10 +24,19 @@ export default () =>
       right: '1.5rem',
       top: '1rem'
     },
-    regular: {
+    narrow: {
       width: '27.5rem'
     },
+    regular: {
+      width: '35rem'
+    },
+    medium: {
+      width: '40rem'
+    },
     wide: {
-      width: '34.5rem'
+      width: '60rem'
+    },
+    'ultra-wide': {
+      width: '73.75rem'
     }
   })
