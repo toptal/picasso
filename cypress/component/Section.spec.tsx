@@ -3,7 +3,6 @@ import { mount } from '@cypress/react'
 import { Table, Button } from '@toptal/picasso'
 import { Section, SectionProps } from '@toptal/picasso-lab'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
-import { describe } from 'mocha'
 
 const talents = [
   {
