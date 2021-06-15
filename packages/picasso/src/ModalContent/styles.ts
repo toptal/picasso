@@ -1,7 +1,5 @@
 import { createStyles } from '@material-ui/core'
 
-const WRAPPER_PADDING = '2em'
-
 const shadeStyles = {
   left: 0,
   right: 0,
@@ -14,11 +12,11 @@ const shadeStyles = {
 export default () =>
   createStyles({
     modalContent: {
+      padding: '2em',
       overflow: 'auto',
       flex: '1 1 auto'
     },
     wrapper: {
-      padding: WRAPPER_PADDING,
       display: 'flex',
       position: 'relative',
       flex: '1 1 auto',
@@ -26,12 +24,12 @@ export default () =>
     },
     topShade: {
       ...shadeStyles,
-      top: WRAPPER_PADDING,
+      top: 0,
       background: `linear-gradient(180deg, white 0%, rgba(255,255,255,0) 5rem)`
     },
     bottomShade: {
       ...shadeStyles,
-      bottom: WRAPPER_PADDING,
+      bottom: 0,
       background: `linear-gradient(0deg, white 0%, rgba(255,255,255,0) 5rem)`
     }
   })
