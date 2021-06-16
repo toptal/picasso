@@ -43,7 +43,7 @@ const getValidationErrors = (
   formValues: any,
   form: FormApi<any>
 ): SubmissionErrors | void => {
-  let errors: SubmissionErrors
+  let errors: SubmissionErrors = {}
 
   Object.entries(validators).forEach(([key, validator]) => {
     const fieldValue = getIn(formValues, key)
@@ -80,6 +80,8 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
   )
 
   const validationObject = useRef<FormContextProps>(createFormContext())
+
+  console.log('render valobj', validationObject)
 
   const showSuccessNotification = () => {
     if (!successSubmitMessage) {
