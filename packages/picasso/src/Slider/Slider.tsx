@@ -68,13 +68,15 @@ type DefaultTooltipProps = {
   disablePortal?: boolean
   compact?: boolean
   isTooltipReversed?: boolean
+  isRange?: boolean
 }
 
 const DefaultTooltip = ({
   isTooltipAlwaysVisible,
   disablePortal,
   compact,
-  isTooltipReversed
+  isTooltipReversed,
+  isRange
 }: DefaultTooltipProps): React.FunctionComponent<ValueLabelComponentProps> => ({
   children,
   open,
@@ -87,15 +89,15 @@ const DefaultTooltip = ({
   }
 
   const placement = () => {
-    if (!isTooltipAlwaysVisible) {
-      return 'top'
+    if (!isRange) {
+      return 'right'
     }
 
     if (isTooltipReversed) {
-      return index === 0 ? 'left' : 'right'
+      return index === 0 ? 'top-end' : 'top-start'
     }
 
-    return index === 0 ? 'right' : 'left'
+    return 'top'
   }
 
   return (
@@ -112,7 +114,7 @@ const DefaultTooltip = ({
   )
 }
 
-export const Slider = forwardRef<HTMLElement, Props>(function Slider (
+export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   props,
   ref
 ) {
@@ -146,6 +148,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider (
   const [isTooltipReversed, setIsTooltipReversed] = useState(false)
 
   const isTooltipAlwaysVisible = tooltip === 'on'
+  const isRange = Array.isArray(value) && value.length === 2
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
   const ValueLabelComponent = useMemo(
@@ -155,14 +158,16 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider (
           isTooltipAlwaysVisible,
           disablePortal,
           compact,
-          isTooltipReversed
+          isTooltipReversed,
+          isRange
         })) as typeof UserDefinedTooltip,
     [
       UserDefinedTooltip,
       compact,
       disablePortal,
       isTooltipAlwaysVisible,
-      isTooltipReversed
+      isTooltipReversed,
+      isRange
     ]
   )
 
@@ -176,16 +181,17 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider (
       )
 
       if (sliders.length === 2 && tooltips.length === 2) {
-        const minDistance = Array.from(tooltips).reduce((acc, cur) => {
-          return acc + cur.offsetWidth
-        }, 0)
+        const minDistance =
+          Array.from(tooltips).reduce((acc, cur) => {
+            return acc + cur.offsetWidth
+          }, 0) / 2
 
         const distance = sliders[1].offsetLeft - sliders[0].offsetLeft
 
-        if (distance < minDistance) {
-          setIsTooltipReversed(true)
-        } else {
+        if (distance > minDistance || distance === 0) {
           setIsTooltipReversed(false)
+        } else {
+          setIsTooltipReversed(true)
         }
       }
     }
@@ -194,7 +200,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider (
   const handleChange = (event: React.ChangeEvent<{}>, newValue: Value) => {
     onChange?.(event, newValue)
 
-    if (disablePortal && Array.isArray(value) && value.length === 2) {
+    if (isRange && disablePortal) {
       watchTooltipsPlacement()
     }
   }

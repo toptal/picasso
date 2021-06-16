@@ -4,6 +4,14 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({
   MuiSlider: {
+    root: {
+      '& [x-placement*="top-start"]': {
+        left: '-10px !important'
+      },
+      '& [x-placement*="top-end"]': {
+        left: '10px !important'
+      }
+    },
     thumb: {
       '&:hover, &$active, &$focusVisible': {
         boxShadow: 'none'
