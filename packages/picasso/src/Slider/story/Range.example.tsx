@@ -23,7 +23,7 @@ const Example = () => {
       <Typography variant='heading' size='small'>
         Time Zone
       </Typography>
-      <Container top='large'>
+      <Container top='xlarge' right='large' left='large'>
         <Slider
           value={value}
           min={0}
