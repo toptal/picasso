@@ -43,7 +43,7 @@ const getValidationErrors = (
   formValues: any,
   form: FormApi<any>
 ): SubmissionErrors | void => {
-  let errors: SubmissionErrors = {}
+  let errors: SubmissionErrors
 
   Object.entries(validators).forEach(([key, validator]) => {
     const fieldValue = getIn(formValues, key)
@@ -55,8 +55,8 @@ const getValidationErrors = (
 
     const error = validator(fieldValue, formValues, fieldMetaState)
 
-    if (errors && error) {
-      errors = setIn(errors, key, error)
+    if (error) {
+      errors = setIn(errors || {}, key, error)
     }
   })
 

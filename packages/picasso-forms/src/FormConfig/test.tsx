@@ -9,11 +9,7 @@ const TEXT_INPUT_LABEL = 'Test text field'
 const renderForm = (configProps: FormConfigProps) => {
   return render(
     <Form.ConfigProvider value={configProps}>
-      <Form
-        onSubmit={() => {
-          console.log('test')
-        }}
-      >
+      <Form onSubmit={() => {}}>
         <Form.Input label={TEXT_INPUT_LABEL} required name='test' />
         <Form.SubmitButton>Submit</Form.SubmitButton>
       </Form>
