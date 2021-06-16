@@ -3,12 +3,14 @@ import { mount } from '@cypress/react'
 import {
   Autocomplete,
   Button,
+  Checkbox,
   Container,
   Dropdown,
   Grid,
   Link,
   Menu,
   Modal,
+  Radio,
   Tooltip,
   TooltipProps,
   Typography
@@ -165,6 +167,30 @@ const LinkTooltipExample = () => {
   )
 }
 
+const CheckboxTooltipExample = () => {
+  const tooltipContent = <span data-testid='tooltip-content'>Content</span>
+
+  return (
+    <TestingPicasso>
+      <Tooltip content={tooltipContent} interactive>
+        <Checkbox label='Checkbox' data-testid='tooltip-trigger' />
+      </Tooltip>
+    </TestingPicasso>
+  )
+}
+
+const RadioTooltipExample = () => {
+  const tooltipContent = <span data-testid='tooltip-content'>Content</span>
+
+  return (
+    <TestingPicasso>
+      <Tooltip content={tooltipContent} interactive>
+        <Radio label='Radio' data-testid='trigger' />
+      </Tooltip>
+    </TestingPicasso>
+  )
+}
+
 const AutocompleteTooltipExample = () => {
   const [value, setValue] = useState('')
 
@@ -284,6 +310,30 @@ describe('Tooltip', () => {
     cy.get('[data-testid="tooltip-content"').should('be.visible')
 
     cy.get('[data-testid="tooltip-trigger"').click()
+    cy.get('[data-testid="tooltip-content"').should('not.be.visible')
+  })
+
+  it('renders on hover, and hides on click for Checkbox', () => {
+    mount(<CheckboxTooltipExample />)
+
+    cy.get('[data-testid="tooltip-content"').should('not.exist')
+    cy.get('[data-testid="tooltip-trigger"').realHover()
+
+    cy.get('[data-testid="tooltip-content"').should('be.visible')
+    cy.get('body').happoScreenshot()
+    cy.get('[data-testid="tooltip-trigger"').click()
+    cy.get('[data-testid="tooltip-content"').should('not.be.visible')
+  })
+
+  it('renders on hover, and hides on click for Radio', () => {
+    mount(<RadioTooltipExample />)
+
+    cy.get('[data-testid="tooltip-content"').should('not.exist')
+    cy.get('[data-testid="trigger"').realHover()
+
+    cy.get('[data-testid="tooltip-content"').should('be.visible')
+    cy.get('body').happoScreenshot()
+    cy.get('[data-testid="trigger"').click()
     cy.get('[data-testid="tooltip-content"').should('not.be.visible')
   })
 

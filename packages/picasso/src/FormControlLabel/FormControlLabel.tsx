@@ -1,8 +1,8 @@
 import React, {
-  FunctionComponent,
   ReactElement,
   ReactNode,
-  LabelHTMLAttributes
+  LabelHTMLAttributes,
+  forwardRef
 } from 'react'
 import { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -36,48 +36,51 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoFormControlLabel'
 })
 
-const FormControlLabel: FunctionComponent<Props> = props => {
-  const {
-    control,
-    label,
-    className,
-    style,
-    disabled,
-    requiredDecoration,
-    titleCase,
-    // Avoid passing external classes inside the rest props
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    classes: externalClasses,
-    ...rest
-  } = props
+const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
+  function FormControlLabel (props, ref) {
+    const {
+      control,
+      label,
+      className,
+      style,
+      disabled,
+      requiredDecoration,
+      titleCase,
+      // Avoid passing external classes inside the rest props
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      classes: externalClasses,
+      ...rest
+    } = props
 
-  const classes = useStyles(props)
+    const classes = useStyles(props)
 
-  return (
-    <label
-      {...rest}
-      className={cx(
-        classes.root,
-        {
-          [classes.disabled]: disabled
-        },
-        className
-      )}
-      style={style}
-    >
-      {React.cloneElement(control, { disabled })}
-      <Form.Label
-        className={classes.label}
-        as='span'
-        requiredDecoration={requiredDecoration}
-        disabled={disabled}
-        titleCase={titleCase}
+    return (
+      <label
+        {...rest}
+        ref={ref}
+        className={cx(
+          classes.root,
+          {
+            [classes.disabled]: disabled
+          },
+          className
+        )}
+        style={style}
       >
-        {label}
-      </Form.Label>
-    </label>
-  )
-}
+        {React.cloneElement(control, { disabled })}
+        <Form.Label
+          className={classes.label}
+          as='span'
+          requiredDecoration={requiredDecoration}
+          disabled={disabled}
+          titleCase={titleCase}
+        >
+          {label}
+        </Form.Label>
+      </label>
+    )
+  }
+)
 
 FormControlLabel.displayName = 'FormControlLabel'
 
