@@ -81,8 +81,6 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
 
   const validationObject = useRef<FormContextProps>(createFormContext())
 
-  console.log('render valobj', validationObject)
-
   const showSuccessNotification = () => {
     if (!successSubmitMessage) {
       return
