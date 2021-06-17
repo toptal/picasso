@@ -1,9 +1,7 @@
-import { createStyles } from '@material-ui/core'
+import { createStyles, hexToRgb, Theme } from '@material-ui/core'
 
 const WRAPPER_PADDING = '2em'
 const SHADE_HEIGHT = '80px'
-const BACKGROUND_STARTING_COLOR = '#fff'
-const BACKGROUND_FINISHING_COLOR = 'rgba(255, 255, 255, 0)'
 
 const shadeCommonStyles = {
   zIndex: 1,
@@ -27,7 +25,6 @@ const shadePseudoStyles = {
 
 const shadePseudoBeforeStyles = {
   ...shadePseudoStyles,
-  backgroundColor: BACKGROUND_STARTING_COLOR,
   height: WRAPPER_PADDING
 }
 
@@ -36,8 +33,11 @@ const shadePseudoAfterStyles = {
   height: SHADE_HEIGHT
 }
 
-export default () =>
-  createStyles({
+export default ({ palette }: Theme) => {
+  const BACKGROUND_STARTING_COLOR = palette.background.default
+  const BACKGROUND_FINISHING_COLOR = hexToRgb(`${palette.common.black}0`)
+
+  return createStyles({
     modalContent: {
       padding: WRAPPER_PADDING,
       overflow: 'auto',
@@ -54,6 +54,7 @@ export default () =>
       top: 0,
       '&:before': {
         ...shadePseudoBeforeStyles,
+        backgroundColor: BACKGROUND_STARTING_COLOR,
         top: 0
       },
       '&:after': {
@@ -67,6 +68,7 @@ export default () =>
       bottom: 0,
       '&:before': {
         ...shadePseudoBeforeStyles,
+        backgroundColor: BACKGROUND_STARTING_COLOR,
         bottom: 0
       },
       '&:after': {
@@ -76,3 +78,4 @@ export default () =>
       }
     }
   })
+}
