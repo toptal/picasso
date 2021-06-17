@@ -13,24 +13,15 @@ const shadeStyles = {
   ...shadeCommonStyles,
   right: WRAPPER_PADDING,
   left: WRAPPER_PADDING,
-  height: `calc(${SHADE_HEIGHT} + ${WRAPPER_PADDING})`
+  height: SHADE_HEIGHT
 }
 
 const shadePseudoStyles = {
   ...shadeCommonStyles,
   right: 0,
   left: 0,
-  content: '""'
-}
-
-const shadePseudoBeforeStyles = {
-  ...shadePseudoStyles,
+  content: '""',
   height: WRAPPER_PADDING
-}
-
-const shadePseudoAfterStyles = {
-  ...shadePseudoStyles,
-  height: SHADE_HEIGHT
 }
 
 export default ({ palette }: Theme) => {
@@ -51,30 +42,22 @@ export default ({ palette }: Theme) => {
     },
     topShade: {
       ...shadeStyles,
-      top: 0,
+      top: WRAPPER_PADDING,
+      background: `linear-gradient(180deg, ${BACKGROUND_STARTING_COLOR} 0%, ${BACKGROUND_FINISHING_COLOR} 5rem)`,
       '&:before': {
-        ...shadePseudoBeforeStyles,
+        ...shadePseudoStyles,
         backgroundColor: BACKGROUND_STARTING_COLOR,
-        top: 0
-      },
-      '&:after': {
-        ...shadePseudoAfterStyles,
-        top: WRAPPER_PADDING,
-        background: `linear-gradient(180deg, ${BACKGROUND_STARTING_COLOR} 0%, ${BACKGROUND_FINISHING_COLOR} 5rem)`
+        top: `-${WRAPPER_PADDING}`
       }
     },
     bottomShade: {
       ...shadeStyles,
-      bottom: 0,
+      bottom: WRAPPER_PADDING,
+      background: `linear-gradient(0deg, ${BACKGROUND_STARTING_COLOR} 0%, ${BACKGROUND_FINISHING_COLOR} 5rem)`,
       '&:before': {
-        ...shadePseudoBeforeStyles,
+        ...shadePseudoStyles,
         backgroundColor: BACKGROUND_STARTING_COLOR,
-        bottom: 0
-      },
-      '&:after': {
-        ...shadePseudoAfterStyles,
-        bottom: WRAPPER_PADDING,
-        background: `linear-gradient(0deg, ${BACKGROUND_STARTING_COLOR} 0%, ${BACKGROUND_FINISHING_COLOR} 5rem)`
+        bottom: `-${WRAPPER_PADDING}`
       }
     }
   })
