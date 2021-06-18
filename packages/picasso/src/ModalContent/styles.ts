@@ -1,24 +1,28 @@
-import { createStyles } from '@material-ui/core'
+import { createStyles, Theme } from '@material-ui/core'
 
 const WRAPPER_PADDING = '2em'
+const SHADE_HEIGHT = '80px'
 
 const shadeStyles = {
-  left: 0,
-  right: 0,
   zIndex: 1,
   position: 'absolute' as const,
   pointerEvents: 'none' as const,
-  height: 80
+  right: WRAPPER_PADDING,
+  left: WRAPPER_PADDING,
+  height: `calc(${SHADE_HEIGHT} + ${WRAPPER_PADDING})`
 }
 
-export default () =>
-  createStyles({
+export default ({ palette }: Theme) => {
+  const BACKGROUND_STARTING_COLOR = palette.background.default
+  const BACKGROUND_FINISHING_COLOR = 'transparent'
+
+  return createStyles({
     modalContent: {
+      padding: WRAPPER_PADDING,
       overflow: 'auto',
       flex: '1 1 auto'
     },
     wrapper: {
-      padding: WRAPPER_PADDING,
       display: 'flex',
       position: 'relative',
       flex: '1 1 auto',
@@ -26,12 +30,13 @@ export default () =>
     },
     topShade: {
       ...shadeStyles,
-      top: WRAPPER_PADDING,
-      background: `linear-gradient(180deg, white 0%, rgba(255,255,255,0) 5rem)`
+      top: 0,
+      background: `linear-gradient(180deg, ${BACKGROUND_STARTING_COLOR} 0%, ${BACKGROUND_STARTING_COLOR} ${WRAPPER_PADDING}, ${BACKGROUND_FINISHING_COLOR} 100%)`
     },
     bottomShade: {
       ...shadeStyles,
-      bottom: WRAPPER_PADDING,
-      background: `linear-gradient(0deg, white 0%, rgba(255,255,255,0) 5rem)`
+      bottom: 0,
+      background: `linear-gradient(0deg, ${BACKGROUND_STARTING_COLOR} 0%, ${BACKGROUND_STARTING_COLOR} ${WRAPPER_PADDING}, ${BACKGROUND_FINISHING_COLOR} 100%)`
     }
   })
+}
