@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.4](https://github.com/toptal/picasso/compare/@toptal/picasso@9.2.3...@toptal/picasso@9.2.4) (2021-06-18)
+
+
+### Bug Fixes
+
+* **AppUpdateNotification:** [ER-12060] Fix non-intractable action buttons ([#2103](https://github.com/toptal/picasso/issues/2103)) ([9de2732](https://github.com/toptal/picasso/commit/9de2732fb2d1c31f21c938a35c5869a752fb3305))
+
+
+
+
+
 ## [9.2.3](https://github.com/toptal/picasso/compare/@toptal/picasso@9.2.2...@toptal/picasso@9.2.3) (2021-06-18)
 
 **Note:** Version bump only for package @toptal/picasso

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@4.1.0...@toptal/picasso-shared@4.1.1) (2021-06-18)
+
+
+### Bug Fixes
+
+* **AppUpdateNotification:** [ER-12060] Fix non-intractable action buttons ([#2103](https://github.com/toptal/picasso/issues/2103)) ([9de2732](https://github.com/toptal/picasso/commit/9de2732fb2d1c31f21c938a35c5869a752fb3305))
+
+
+
+
+
 # [4.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@4.0.0...@toptal/picasso-shared@4.1.0) (2021-05-24)
 
 
