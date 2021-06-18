@@ -16876,7 +16876,7 @@ normalize-url@^5.0.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-5.3.0.tgz#8959b3cdaa295b61592c1f245dded34b117618dd"
   integrity sha512-9/nOVLYYe/dO/eJeQUNaGUF4m4Z5E7cb9oNTKabH+bNf19mqj60txTcveQxL0GlcWLXCxkOu2/LwL8oW0idIDA==
 
-notistack@^1.0.5:
+notistack@1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/notistack/-/notistack-1.0.5.tgz#239d5888105c89a9a7f26d75a07d279446dc1624"
   integrity sha512-xCMG0OhzEdczmDs2lDABEiphKQMZUavdOIRAJhfIcyJkCA4UqBDANL3YCLt+mz8VbAPCeKTn76kbCmYQIqksnA==
