@@ -1,4 +1,4 @@
-import { createStyles, hexToRgb, Theme } from '@material-ui/core'
+import { createStyles, Theme } from '@material-ui/core'
 
 const WRAPPER_PADDING = '2em'
 const SHADE_HEIGHT = '80px'
@@ -14,7 +14,7 @@ const shadeStyles = {
 
 export default ({ palette }: Theme) => {
   const BACKGROUND_STARTING_COLOR = palette.background.default
-  const BACKGROUND_FINISHING_COLOR = hexToRgb(`${palette.common.black}0`)
+  const BACKGROUND_FINISHING_COLOR = 'transparent'
 
   return createStyles({
     modalContent: {
