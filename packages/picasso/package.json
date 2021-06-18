@@ -32,7 +32,7 @@
     "classnames": "^2.2.6",
     "d3": "^6.6.2",
     "detect-browser": "^5.2.0",
-    "notistack": "^1.0.5",
+    "notistack": "1.0.5",
     "react-content-loader": "^5.1.0",
     "react-helmet": "^6.1.0",
     "react-input-mask": "^3.0.0-alpha.2",
