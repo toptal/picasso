@@ -12,7 +12,17 @@ const ApplicationUpdateNotificationExample = () => {
       data-testid='trigger'
       variant='secondary'
       onClick={() =>
-        showCustom(<ApplicationUpdateNotification />, { persist: true })
+        showCustom(
+          <ApplicationUpdateNotification
+            data-testid='application-update-notification'
+            testIds={{
+              updateLaterButton: 'update-later-button'
+            }}
+          />,
+          {
+            persist: true
+          }
+        )
       }
     >
       Show App Update Notification
@@ -30,5 +40,24 @@ describe('ApplicationUpdateNotification', () => {
 
     cy.get('[data-testid="trigger"').click()
     cy.get('body').happoScreenshot()
+  })
+
+  it('renders notification when click on trigger and close when click on notification button', () => {
+    mount(
+      <TestingPicasso>
+        <ApplicationUpdateNotificationExample />
+      </TestingPicasso>
+    )
+
+    cy.get('[data-testid="trigger"').click()
+    cy.get('[data-testid="application-update-notification"').should(
+      'be.visible'
+    )
+
+    cy.get('[data-testid="update-later-button"').click()
+
+    cy.get('[data-testid="application-update-notification"').should(
+      'not.be.visible'
+    )
   })
 })
