@@ -15,7 +15,8 @@ import SourceRender, { RenderResult } from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
 import { Typography, Button, Accordion, Container } from '@toptal/picasso'
-import Picasso, { BaseProps, useScreenSize } from '@toptal/picasso-shared'
+import Picasso from '@toptal/picasso-provider'
+import { BaseProps, useScreenSize } from '@toptal/picasso-shared'
 import { Code16, Link16 } from '@toptal/picasso/Icon'
 
 import Editor from '../Editor'
@@ -53,7 +54,8 @@ const imports: Record<string, object> = {
   '@topkit/analytics-charts': require('@topkit/analytics-charts'),
   '@topkit/analytics-charts/utils': require('@topkit/analytics-charts'),
   '@toptal/picasso/utils': require('@toptal/picasso/utils'),
-  '@toptal/picasso/Icon': require('@toptal/picasso/Icon')
+  '@toptal/picasso/Icon': require('@toptal/picasso/Icon'),
+  '@toptal/picasso-provider': require('@toptal/picasso-provider')
 }
 
 const resolver = (path: string) => imports[path]
@@ -130,6 +132,10 @@ const getOriginalSourceCode = ({
 
   try {
     return requireContext(`./shared/src/${src}`).default
+  } catch {}
+
+  try {
+    return requireContext(`./picasso-provider/src/${src}`).default
   } catch {}
 
   return require(`!raw-loader!~/.storybook/stories/${src}`).default

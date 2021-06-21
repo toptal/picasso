@@ -1,8 +1,44 @@
-import { Theme, ThemeOptions } from '@material-ui/core/styles'
+import { Theme, ThemeOptions, createMuiTheme } from '@material-ui/core/styles'
 import { Overrides } from '@material-ui/core/styles/overrides'
 import { deepmerge } from '@material-ui/utils'
 
-export class PicassoProvider {
+import {
+  palette,
+  layout,
+  breakpoints,
+  screens,
+  transitions,
+  typography,
+  sizes,
+  shadows
+} from './config'
+
+const picasso = {
+  palette,
+  layout,
+  transitions,
+  sizes,
+  breakpoints,
+  screens,
+  shadows,
+  typography,
+  props: {
+    MuiButtonBase: {
+      disableRipple: true
+    },
+    MuiList: {
+      disablePadding: true
+    },
+    MuiPaper: {
+      square: true
+    },
+    MuiOutlinedInput: {
+      notched: false
+    }
+  }
+}
+
+class Provider {
   theme: Theme
 
   constructor(theme: Theme) {
@@ -31,5 +67,7 @@ export class PicassoProvider {
     this.theme = deepmerge(this.theme, theme)
   }
 }
+
+const PicassoProvider = new Provider(createMuiTheme(picasso))
 
 export default PicassoProvider

@@ -70,6 +70,14 @@
       "rules": {
         "no-restricted-imports": ["error", "@toptal/picasso-charts"]
       }
+    },
+    // don't allow picasso-provider external imports inside picasso-charts
+    {
+      "files": ["packages/picasso-provider/src/**"],
+      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "rules": {
+        "no-restricted-imports": ["error", "@toptal/picasso-provider"]
+      }
     }
   ]
 }

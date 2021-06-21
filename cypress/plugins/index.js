@@ -40,6 +40,10 @@ module.exports = (on, config) => {
       '@toptal/picasso-charts': path.resolve(
         __dirname,
         '../../packages/picasso-charts/dist-package'
+      ),
+      '@toptal/picasso-provider': path.resolve(
+        __dirname,
+        '../../packages/picasso-provider/dist-package'
       )
     }
   }

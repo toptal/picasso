@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
-import Picasso, { TextLabelProps } from '@toptal/picasso-shared'
+import Picasso from '@toptal/picasso-provider'
+import { TextLabelProps } from '@toptal/picasso-shared'
 
 export const TestingPicasso: FunctionComponent<Partial<TextLabelProps>> = ({
   children,

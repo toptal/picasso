@@ -92,6 +92,10 @@ module.exports = {
       '@topkit/analytics-charts': path.resolve(
         __dirname,
         '../packages/topkit-analytics-charts/src'
+      ),
+      '@toptal/picasso-provider': path.resolve(
+        __dirname,
+        '../packages/picasso-provider/src'
       )
     }
 

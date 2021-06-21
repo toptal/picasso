@@ -1,6 +1,5 @@
 /* eslint-disable complexity */
 import {
-  createMuiTheme,
   MuiThemeProvider,
   Theme,
   ThemeOptions,
@@ -11,8 +10,6 @@ import React, {
   FunctionComponent,
   ReactNode,
   useRef,
-  RefObject,
-  useContext,
   useState,
   forwardRef,
   ForwardRefExoticComponent,
@@ -21,119 +18,20 @@ import React, {
 import { makeStyles } from '@material-ui/styles'
 import { Helmet } from 'react-helmet'
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
+import {
+  generateRandomStringOrGetEmptyInTest,
+  EnvironmentType,
+  TextLabelProps,
+  PicassoBreakpoints,
+  PicassoProvider,
+  RootContext
+} from '@toptal/picasso-shared'
 
 import CssBaseline from '../CssBaseline'
-import {
-  palette,
-  layout,
-  breakpoints,
-  screens,
-  transitions,
-  typography,
-  sizes,
-  shadows,
-  PicassoBreakpoints
-} from './config'
 import FontsLoader from './FontsLoader'
-import Provider from './PicassoProvider'
 import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
 import Favicon from '../Favicon'
-import { generateRandomStringOrGetEmptyInTest } from './utils'
-import { EnvironmentType, TextLabelProps } from './types'
-
-const picasso = {
-  palette,
-  layout,
-  transitions,
-  sizes,
-  breakpoints,
-  screens,
-  shadows,
-  typography,
-  props: {
-    MuiButtonBase: {
-      disableRipple: true
-    },
-    MuiList: {
-      disablePadding: true
-    },
-    MuiPaper: {
-      square: true
-    },
-    MuiOutlinedInput: {
-      notched: false
-    }
-  }
-}
-
-const PicassoProvider = new Provider(createMuiTheme(picasso))
-
-interface RootContextProps extends TextLabelProps {
-  rootRef?: RefObject<HTMLDivElement>
-  hasTopBar: boolean
-  setHasTopBar: (value: boolean) => void
-  hasSidebar: boolean
-  setHasSidebar: (value: boolean) => void
-  environment: EnvironmentType<'test' | 'temploy'>
-  hasDrawer: boolean
-  setHasDrawer: (value: boolean) => void
-  disableTransitions?: boolean
-}
-export const RootContext = React.createContext<RootContextProps>({
-  hasTopBar: false,
-  setHasTopBar: () => {},
-  hasSidebar: false,
-  setHasSidebar: () => {},
-  environment: 'development',
-  titleCase: false,
-  hasDrawer: false,
-  setHasDrawer: () => {},
-  disableTransitions: false
-})
-
-export const usePicassoRoot = () => {
-  const context = useContext(RootContext)
-
-  return context && context.rootRef ? context.rootRef.current : null
-}
-
-export const usePageTopBar = () => {
-  const context = useContext(RootContext)
-
-  return {
-    hasTopBar: context.hasTopBar,
-    setHasTopBar: context.setHasTopBar
-  }
-}
-
-export const useDrawer = () => {
-  const context = useContext(RootContext)
-
-  return {
-    hasDrawer: context.hasDrawer,
-    setHasDrawer: context.setHasDrawer
-  }
-}
-
-export const useSidebar = () => {
-  const context = useContext(RootContext)
-
-  return {
-    hasSidebar: context.hasSidebar,
-    setHasSidebar: context.setHasSidebar
-  }
-}
-
-export const useAppConfig = () => {
-  const context = useContext(RootContext)
-
-  return {
-    environment: context.environment,
-    titleCase: context.titleCase,
-    disableTransitions: context.disableTransitions
-  }
-}
 
 interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   children?: ReactNode
@@ -330,5 +228,4 @@ Picasso.defaultProps = {
   RootComponent: PicassoRootNode
 }
 
-export { PicassoProvider }
 export default Picasso

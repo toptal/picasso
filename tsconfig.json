@@ -25,6 +25,7 @@
       "@toptal/picasso-shared": ["packages/shared/src"],
       "@toptal/picasso-forms/*": ["packages/picasso-forms/src/*"],
       "@toptal/picasso-charts/*": ["packages/picasso-charts/src/*"],
+      "@toptal/picasso-provider/*": ["packages/picasso-provider/src/*"],
       "*": ["@types/*"],
       "~/*": ["./*"]
     },

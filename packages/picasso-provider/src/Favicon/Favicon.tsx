@@ -4,9 +4,9 @@ import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import useSafeState from '@toptal/picasso/utils/use-safe-state'
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
+import { EnvironmentType, useAppConfig } from '@toptal/picasso-shared'
 
 import { getIcons } from './icons'
-import { useAppConfig, EnvironmentType } from '../Picasso'
 
 export interface Props {
   /** Choose an icon color based on this variable */

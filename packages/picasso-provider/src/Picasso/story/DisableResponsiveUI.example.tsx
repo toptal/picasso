@@ -1,9 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
 // In actual application you can simply do
-// import Picasso, { Page, Container } from '@toptal/picasso'
+// import Picasso from '@toptal/picasso-provider'
+import { default as Picasso } from '@toptal/picasso-provider'
 import {
-  default as Picasso,
   Grid,
   Page,
   Container,
@@ -18,7 +17,9 @@ const Example = () => (
       <Page.TopBar rightContent={<RightContent />} title='Default example' />
       <Page.Content>
         <SidebarMenu />
-        <Content />
+        <Page.Article>
+          <Content />
+        </Page.Article>
       </Page.Content>
       <Page.Footer />
     </Page>
@@ -48,16 +49,9 @@ const RightContent = () => (
     </Menu>
   </Page.TopBarMenu>
 )
-const StyledMainContentContainer = styled(Container)`
-  flex: 1;
-`
+
 const Content = () => (
-  <StyledMainContentContainer
-    top='small'
-    bottom='small'
-    left='small'
-    right='small'
-  >
+  <Container top='small' bottom='small' left='small' right='small'>
     <Typography align='center' variant='heading' size='large'>
       Default example
     </Typography>
@@ -85,7 +79,7 @@ const Content = () => (
         </p>
       </Grid.Item>
     </Grid>
-  </StyledMainContentContainer>
+  </Container>
 )
 
 const Index = () => (

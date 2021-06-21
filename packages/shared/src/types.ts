@@ -9,7 +9,7 @@ import {
   ComponentPropsWithRef
 } from 'react'
 
-import { Classes } from '../styles/types'
+import { Classes } from './styles'
 
 export interface BaseProps {
   /** Classnames applied to root element */

@@ -7,9 +7,6 @@ const generateRandomStringOrGetEmptyInTest = (base = '') => {
 }
 
 // https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
-const generateRandomString = () =>
-  Math.random()
-    .toString(36)
-    .substring(7)
+const generateRandomString = () => Math.random().toString(36).substring(7)
 
 export { generateRandomString, generateRandomStringOrGetEmptyInTest }

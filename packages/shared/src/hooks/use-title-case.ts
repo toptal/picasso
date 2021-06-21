@@ -1,4 +1,4 @@
-import { useAppConfig } from '../Picasso'
+import { useAppConfig } from '../Picasso/RootContext'
 
 export const useTitleCase = (componentTitleCase?: boolean) => {
   const { titleCase: appTitleCase } = useAppConfig()

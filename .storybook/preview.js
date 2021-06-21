@@ -1,7 +1,7 @@
 import React from 'react'
 import 'happo-plugin-storybook/register'
 
-import Picasso from '@toptal/picasso-shared'
+import Picasso from '@toptal/picasso-provider'
 
 export const parameters = {
   layout: 'padded',
