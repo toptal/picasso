@@ -1,5 +1,6 @@
 import { createStyles } from '@material-ui/core/styles'
-import { outline, PicassoProvider } from '@toptal/picasso-shared'
+import { outline } from '@toptal/picasso-shared'
+import { PicassoProvider } from '@toptal/picasso-provider'
 
 const CONTROL_WIDTH = '1em'
 const LABEL_LEFT_MARGIN = '0.5em'

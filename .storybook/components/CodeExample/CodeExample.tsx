@@ -15,8 +15,8 @@ import SourceRender, { RenderResult } from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
 import { Typography, Button, Accordion, Container } from '@toptal/picasso'
-import Picasso from '@toptal/picasso-provider'
-import { BaseProps, useScreenSize } from '@toptal/picasso-shared'
+import Picasso, { useScreenSize } from '@toptal/picasso-provider'
+import { BaseProps } from '@toptal/picasso-shared'
 import { Code16, Link16 } from '@toptal/picasso/Icon'
 
 import Editor from '../Editor'

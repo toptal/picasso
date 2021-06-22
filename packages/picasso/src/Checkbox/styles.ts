@@ -1,5 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { mix, outline, PicassoProvider } from '@toptal/picasso-shared'
+import { mix, outline } from '@toptal/picasso-shared'
+import { PicassoProvider } from '@toptal/picasso-provider'
 
 const controlWidth = '1em'
 const labelMargin = '0.5em'

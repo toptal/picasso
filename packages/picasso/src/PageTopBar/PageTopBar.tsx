@@ -8,7 +8,8 @@ import React, {
   HTMLAttributes
 } from 'react'
 import cx from 'classnames'
-import { BaseProps, usePageTopBar } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
+import { usePageTopBar } from '@toptal/picasso-provider'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Logo from '../Logo'

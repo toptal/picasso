@@ -18,20 +18,17 @@ import React, {
 import { makeStyles } from '@material-ui/styles'
 import { Helmet } from 'react-helmet'
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
-import {
-  generateRandomStringOrGetEmptyInTest,
-  EnvironmentType,
-  TextLabelProps,
-  PicassoBreakpoints,
-  PicassoProvider,
-  RootContext
-} from '@toptal/picasso-shared'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
 import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
 import Favicon from '../Favicon'
+import { EnvironmentType, TextLabelProps } from '../types'
+import { generateRandomStringOrGetEmptyInTest } from './utils'
+import { RootContext } from './RootContext'
+import { PicassoBreakpoints } from './config'
+import PicassoProvider from './PicassoProvider'
 
 interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   children?: ReactNode

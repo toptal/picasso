@@ -20,7 +20,5 @@
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
   },
-  "dependencies": {
-    "@toptal/picasso-shared": "^4.1.1"
-  }
+  "dependencies": {}
 }

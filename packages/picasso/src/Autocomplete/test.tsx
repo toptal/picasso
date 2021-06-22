@@ -2,7 +2,8 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
 import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
-import { generateRandomString, OmitInternalProps } from '@toptal/picasso-shared'
+import { OmitInternalProps } from '@toptal/picasso-shared'
+import { generateRandomString } from '@toptal/picasso-provider'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import Autocomplete, { Props } from './Autocomplete'
@@ -400,9 +401,7 @@ describe('Autocomplete', () => {
         fireEvent.click(input)
 
         expect(
-          getByText('Belarus')
-            .closest('li')
-            ?.getAttribute('aria-selected')
+          getByText('Belarus').closest('li')?.getAttribute('aria-selected')
         ).toBe('true')
 
         fireEvent.keyDown(input, {
@@ -411,9 +410,7 @@ describe('Autocomplete', () => {
 
         expect(onKeyDown).toHaveBeenCalledTimes(1)
         expect(
-          getByText('Croatia')
-            .closest('li')
-            ?.getAttribute('aria-selected')
+          getByText('Croatia').closest('li')?.getAttribute('aria-selected')
         ).toBe('true')
       })
 
@@ -436,9 +433,7 @@ describe('Autocomplete', () => {
 
         expect(onKeyDown).toHaveBeenCalledTimes(1)
         expect(
-          getByText('Ukraine')
-            .closest('li')
-            ?.getAttribute('aria-selected')
+          getByText('Ukraine').closest('li')?.getAttribute('aria-selected')
         ).toBe('true')
       })
     })

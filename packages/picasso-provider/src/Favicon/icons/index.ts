@@ -1,4 +1,4 @@
-import { EnvironmentType } from '@toptal/picasso-shared'
+import { EnvironmentType } from '../../types'
 
 const getIcons = (environment: EnvironmentType<'temploy'>) => {
   if (environment === 'temploy') {

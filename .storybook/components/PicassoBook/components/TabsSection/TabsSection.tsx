@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode } from 'react'
 
 import { Paper, Container, Typography } from '@toptal/picasso'
-import { useBreakpoint } from '@toptal/picasso-shared'
+import { useBreakpoint } from '@toptal/picasso-provider'
 
 import TabsSectionHeader from './TabsSectionHeader'
 
@@ -21,7 +21,7 @@ const TabsSection: FunctionComponent<Props> = props => {
 
   const [selectedTab, setSelectedTab] = React.useState(0)
 
-  function handleChange(event: any, value: number) {
+  function handleChange (event: any, value: number) {
     setSelectedTab(value)
   }
 

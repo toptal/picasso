@@ -1,5 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider, rem, outline, mix } from '@toptal/picasso-shared'
+import { rem, outline, mix } from '@toptal/picasso-shared'
+import { PicassoProvider } from '@toptal/picasso-provider'
 
 const CONTROL_WIDTH = '1em'
 const CONTROL_MARGIN_RIGHT = '0.5em'

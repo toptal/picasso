@@ -12,10 +12,9 @@ import cx from 'classnames'
 import {
   StandardProps,
   CompoundedComponentWithRef,
-  usePicassoRoot,
-  useBreakpoint,
   SizeType
 } from '@toptal/picasso-shared'
+import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 
 import { CloseMinor16 } from '../Icon'
 import useCombinedRefs from '../utils/use-combined-refs'

@@ -20,7 +20,7 @@ export {
   colors as palette,
   generateRandomString,
   generateRandomStringOrGetEmptyInTest
-} from '@toptal/picasso-shared'
+} from '@toptal/picasso-provider'
 
 export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListener'
 

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { SnackbarProvider } from 'notistack'
-import { usePageTopBar } from '@toptal/picasso-shared'
+import { usePageTopBar } from '@toptal/picasso-provider'
 
 import { headerHeight } from '../../PageTopBar/styles'
 
