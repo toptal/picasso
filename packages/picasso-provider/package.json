@@ -14,7 +14,7 @@
     "access": "public"
   },
   "scripts": {
-    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json",
+    "build:package": "cross-env NODE_ENV=production node ./bin/build.js",
     "prepublishOnly": "../../bin/prepublish.js"
   },
   "bugs": {
