@@ -71,12 +71,20 @@
         "no-restricted-imports": ["error", "@toptal/picasso-charts"]
       }
     },
-    // don't allow picasso-provider external imports inside picasso-charts
+    // don't allow picasso-provider external imports inside picasso-provider
     {
       "files": ["packages/picasso-provider/src/**"],
       "excludedFiles": ["*.example.jsx", "*.example.tsx"],
       "rules": {
         "no-restricted-imports": ["error", "@toptal/picasso-provider"]
+      }
+    },
+    // don't allow picasso-shared external imports inside picasso-provider
+    {
+      "files": ["packages/picasso-provider/src/**"],
+      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "rules": {
+        "no-restricted-imports": ["error", "@toptal/picasso-shared"]
       }
     }
   ]
