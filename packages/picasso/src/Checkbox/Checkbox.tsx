@@ -7,7 +7,7 @@ import {
   TextLabelProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import React, { forwardRef, ReactNode } from 'react'
+import React, { ComponentProps, forwardRef, ReactNode } from 'react'
 
 import { RequiredDecoration } from '../FormLabel'
 import CheckboxGroup from '../CheckboxGroup'
@@ -46,76 +46,88 @@ export interface Props
   value?: string
 }
 
-export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
-  props,
-  ref
-) {
-  const {
-    label,
-    id,
-    className,
-    style,
-    disabled,
-    requiredDecoration,
-    onChange,
-    value,
-    checked,
-    indeterminate,
-    titleCase,
-    ...rest
-  } = props
+export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
+  function Checkbox (props, ref) {
+    const {
+      label,
+      id,
+      className,
+      style,
+      disabled,
+      requiredDecoration,
+      onChange,
+      value,
+      checked,
+      indeterminate,
+      titleCase,
+      ...rest
+    } = props
 
-  const classes = useStyles()
-  const rootClasses = {
-    root: classes.root,
-    disabled: classes.disabled
-  }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { color, ...checkboxAttributes } = rest
+    const classes = useStyles()
+    const rootClasses = {
+      root: classes.root,
+      disabled: classes.disabled
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { color, ...checkboxAttributes } = rest
 
-  const muiCheckbox = (
-    <Container as='span' flex inline className={classes.checkboxWrapper}>
-      <MUICheckbox
-        {...checkboxAttributes}
-        ref={ref}
-        checked={checked}
-        icon={<div className={classes.uncheckedIcon} />}
-        checkedIcon={<div className={classes.checkedIcon} />}
-        indeterminateIcon={<div className={classes.indeterminateIcon} />}
-        classes={rootClasses}
-        className={cx(className, {
-          [classes.withLabel]: Boolean(label)
-        })}
-        style={style}
+    const muiCheckbox = (
+      <Container as='span' flex inline className={classes.checkboxWrapper}>
+        <MUICheckbox
+          {...checkboxAttributes}
+          ref={
+            label ? undefined : (ref as React.ForwardedRef<HTMLButtonElement>)
+          }
+          checked={checked}
+          icon={<div className={classes.uncheckedIcon} />}
+          checkedIcon={<div className={classes.checkedIcon} />}
+          indeterminateIcon={<div className={classes.indeterminateIcon} />}
+          classes={rootClasses}
+          className={cx(className, {
+            [classes.withLabel]: Boolean(label)
+          })}
+          style={style}
+          disabled={disabled}
+          id={id}
+          indeterminate={indeterminate}
+          onChange={onChange}
+          value={value}
+          focusVisibleClassName={classes.focused}
+        />
+      </Container>
+    )
+
+    if (!label) {
+      return muiCheckbox
+    }
+
+    const externalEventListeners = {
+      onMouseLeave: rest.onMouseLeave,
+      onMouseOver: rest.onMouseOver
+    } as ComponentProps<typeof FormControlLabel>
+
+    return (
+      <FormControlLabel
+        {...externalEventListeners}
+        ref={ref as React.ForwardedRef<HTMLLabelElement>}
+        classes={{
+          ...rootClasses,
+          label: classes.label
+        }}
+        control={muiCheckbox}
+        requiredDecoration={requiredDecoration}
         disabled={disabled}
-        id={id}
-        indeterminate={indeterminate}
-        onChange={onChange}
-        value={value}
-        focusVisibleClassName={classes.focused}
+        label={label}
+        titleCase={titleCase}
+        className='picasso-checkbox'
       />
-    </Container>
-  )
-
-  if (!label) {
-    return muiCheckbox
+    )
   }
-
-  return (
-    <FormControlLabel
-      classes={{
-        ...rootClasses,
-        label: classes.label
-      }}
-      control={muiCheckbox}
-      requiredDecoration={requiredDecoration}
-      disabled={disabled}
-      label={label}
-      titleCase={titleCase}
-      className='picasso-checkbox'
-    />
-  )
-}) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
+) as CompoundedComponentWithRef<
+  Props,
+  HTMLButtonElement | HTMLLabelElement,
+  StaticProps
+>
 
 Checkbox.defaultProps = {
   disabled: false,
