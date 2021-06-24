@@ -78,6 +78,8 @@ export interface Props
     onDelete: () => void
     disabled?: boolean
   }) => ReactNode
+  /** DOM element that wraps the Popper */
+  popperContainer?: HTMLElement
 }
 
 export interface StaticProps {
@@ -85,7 +87,7 @@ export interface StaticProps {
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
-  function TagSelector(props, ref) {
+  function TagSelector (props, ref) {
     const {
       disabled,
       enableAutofill,
@@ -107,6 +109,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       showOtherOption,
       value: values = [],
       width,
+      popperContainer,
       ...rest
     } = props
 
@@ -211,6 +214,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         renderOption={renderOption}
         enableReset={false}
         getKey={getKey}
+        popperContainer={popperContainer}
       />
     )
   }
