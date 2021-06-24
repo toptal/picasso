@@ -109,6 +109,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       showOtherOption,
       value: values = [],
       width,
+      popperContainer,
       ...rest
     } = props
 
@@ -213,6 +214,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         renderOption={renderOption}
         enableReset={false}
         getKey={getKey}
+        popperContainer={popperContainer}
       />
     )
   }
