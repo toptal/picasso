@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso@9.2.4...@toptal/picasso@9.3.0) (2021-06-24)
+
+
+### Bug Fixes
+
+* **TagSelector:** add definition of popperContainer prop ([#2105](https://github.com/toptal/picasso/issues/2105)) ([9caabbb](https://github.com/toptal/picasso/commit/9caabbb9db4522f36b56e9e5314b9f370183b3bd))
+
+
+### Features
+
+* **tooltip:** show tooltip on both label and control ([#2102](https://github.com/toptal/picasso/issues/2102)) ([87553c1](https://github.com/toptal/picasso/commit/87553c17fd349bb83cd810c59a90b31b3f88f4b4))
+
+
+
+
+
 ## [9.2.4](https://github.com/toptal/picasso/compare/@toptal/picasso@9.2.3...@toptal/picasso@9.2.4) (2021-06-18)
 
 
