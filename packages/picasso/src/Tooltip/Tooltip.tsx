@@ -10,7 +10,8 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip, { TooltipProps } from '@material-ui/core/Tooltip'
 import cx from 'classnames'
-import { usePicassoRoot, BaseProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
+import { usePicassoRoot } from '@toptal/picasso-provider'
 
 import { isPointerDevice } from '../utils'
 import styles from './styles'

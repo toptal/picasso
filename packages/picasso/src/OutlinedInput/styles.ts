@@ -1,5 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider, darken, outline } from '@toptal/picasso-shared'
+import { darken, outline } from '@toptal/picasso-shared'
+import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(
   ({ palette, sizes: { input, borderRadius } }: Theme) => ({

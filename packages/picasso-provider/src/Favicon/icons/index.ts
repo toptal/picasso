@@ -1,4 +1,4 @@
-import { EnvironmentType } from '../../Picasso'
+import { EnvironmentType } from '../../types'
 
 const getIcons = (environment: EnvironmentType<'temploy'>) => {
   if (environment === 'temploy') {

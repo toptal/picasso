@@ -1,6 +1,6 @@
 import React, { useState, FC, ReactNode, forwardRef } from 'react'
+import Picasso from '@toptal/picasso-provider'
 import { render, act, fireEvent } from '@toptal/picasso/test-utils'
-import Picasso from '@toptal/picasso-shared'
 
 import Popper from './Popper'
 

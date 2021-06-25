@@ -46,6 +46,7 @@ COPY --chown=node:node packages/picasso-forms/package.json ./packages/picasso-fo
 COPY --chown=node:node packages/shared/package.json ./packages/shared/package.json
 COPY --chown=node:node packages/picasso-codemod/package.json ./packages/picasso-codemod/package.json
 COPY --chown=node:node packages/topkit-analytics-charts/package.json ./packages/topkit-analytics-charts/package.json
+COPY --chown=node:node packages/picasso-provider/package.json ./packages/picasso-provider/package.json
 
 # Install node_modules
 RUN yarn install --frozen-lockfile

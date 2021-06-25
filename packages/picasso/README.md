@@ -15,7 +15,8 @@ yarn add @toptal/picasso
 ## Start using the library
 
 ```jsx
-import Picasso, { Button } from '@toptal/picasso'
+import Picasso from '@toptal/picasso-provider'
+import { Button } from '@toptal/picasso'
 ...
 
 render () {

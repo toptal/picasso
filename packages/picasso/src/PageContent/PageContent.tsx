@@ -1,7 +1,8 @@
 import React, { useContext, forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, useSidebar } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
+import { useSidebar } from '@toptal/picasso-provider'
 
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
@@ -19,7 +20,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const PageContent = forwardRef<HTMLDivElement, Props>(
-  function PageContent(props, ref) {
+  function PageContent (props, ref) {
     const { children, className, style, flex, ...rest } = props
 
     const classes = useStyles()

@@ -1,11 +1,8 @@
 import React, { forwardRef, useState } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  useAppConfig,
-  EnvironmentType,
-  BaseProps
-} from '@toptal/picasso-shared'
+import { EnvironmentType, BaseProps } from '@toptal/picasso-shared'
+import { useAppConfig } from '@toptal/picasso-provider'
 
 import styles from './styles'
 
@@ -23,7 +20,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
-  function EnvironmentBanner(props, ref) {
+  function EnvironmentBanner (props, ref) {
     const { environment: configEnvironment } = useAppConfig()
     const { environment, productName } = props
     const classes = useStyles()

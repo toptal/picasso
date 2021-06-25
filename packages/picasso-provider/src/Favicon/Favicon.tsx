@@ -6,7 +6,8 @@ import useSafeState from '@toptal/picasso/utils/use-safe-state'
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 
 import { getIcons } from './icons'
-import { useAppConfig, EnvironmentType } from '../Picasso'
+import { EnvironmentType } from '../types'
+import { useAppConfig } from '../Picasso/RootContext'
 
 export interface Props {
   /** Choose an icon color based on this variable */

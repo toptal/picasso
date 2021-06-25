@@ -11,9 +11,9 @@ import {
   BaseProps,
   StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef,
-  useSidebar
+  CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
+import { useSidebar } from '@toptal/picasso-provider'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -85,7 +85,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
+export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar (
   props,
   ref
 ) {
@@ -96,7 +96,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   useLayoutEffect(() => {
     setHasSidebar(true)
 
-    return function cleanup() {
+    return function cleanup () {
       setHasSidebar(false)
     }
   }, [setHasSidebar])

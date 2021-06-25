@@ -1,5 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core'
-import { PicassoProvider, alpha } from '@toptal/picasso-shared'
+import { alpha } from '@toptal/picasso-shared'
+import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(({ palette }) => ({
   MuiInputAdornment: {

@@ -26,7 +26,9 @@ module.exports = {
     '^@toptal/picasso-lab/(.*)$': '<rootDir>packages/picasso-lab/src/$1',
     '^@toptal/picasso-shared$': '<rootDir>packages/shared/src/index.ts',
     '^@toptal/picasso$': '<rootDir>packages/picasso/src/index.ts',
-    '^@toptal/picasso-lab$': '<rootDir>packages/picasso-lab/src/index.ts'
+    '^@toptal/picasso-lab$': '<rootDir>packages/picasso-lab/src/index.ts',
+    '^@toptal/picasso-provider$':
+      '<rootDir>packages/picasso-provider/src/index.ts'
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx']
 }

@@ -1,5 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider, rem } from '@toptal/picasso-shared'
+import { rem } from '@toptal/picasso-shared'
+import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(({ shadows }: Theme) => ({
   MuiMenu: {

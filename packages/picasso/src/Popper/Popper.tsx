@@ -3,7 +3,8 @@ import cx from 'classnames'
 import MUIPopper from '@material-ui/core/Popper'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import PopperJs, { ReferenceObject, PopperOptions } from 'popper.js'
-import { BaseProps, usePicassoRoot } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
+import { usePicassoRoot } from '@toptal/picasso-provider'
 
 import { useBreakpoint, useWidthOf } from '../utils'
 import styles from './styles'
@@ -94,7 +95,7 @@ const useWidthStyle = ({
   return {}
 }
 
-export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
+export const Popper = forwardRef<PopperJs, Props>(function Popper (props, ref) {
   const {
     children,
     open,

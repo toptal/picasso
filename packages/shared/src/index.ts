@@ -1,4 +1,3 @@
-export * from './Picasso'
+export * from './hooks'
 export * from './styles'
-
-export { default } from './Picasso'
+export * from './types'

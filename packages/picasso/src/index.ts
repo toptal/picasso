@@ -1,4 +1,4 @@
-export { default, BaseProps } from '@toptal/picasso-shared'
+export { BaseProps } from '@toptal/picasso-shared'
 export type { ColorType, SpacingType, SizeType } from '@toptal/picasso-shared'
 export { default as Accordion } from './Accordion'
 export type { AccordionProps } from './Accordion'
@@ -137,3 +137,17 @@ export { default as Breadcrumbs } from './Breadcrumbs'
 export type { BreadcrumbsProps } from './Breadcrumbs'
 
 export * from './Icon'
+
+// TODO: Remove in @toptal/picasso@11.x.x version
+const PicassoFallback = () => {
+  throw new Error(`
+Picasso root component has been moved to @toptal/picasso-provider package.
+
+Please use:
+  import Picasso from '@toptal/picasso-provider'
+
+instead.
+  `)
+}
+
+export default PicassoFallback

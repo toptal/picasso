@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { SnackbarProvider } from 'notistack'
 import React, { FunctionComponent } from 'react'
 
-import { useDrawer, usePageTopBar } from '../Picasso'
+import { useDrawer, usePageTopBar } from '../RootContext'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
