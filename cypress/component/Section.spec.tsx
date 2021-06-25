@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import { Table, Button } from '@toptal/picasso'
+import { Table, Button, Container } from '@toptal/picasso'
 import { Section, SectionProps } from '@toptal/picasso-lab'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
@@ -76,19 +76,24 @@ const TestSection = ({
   ),
   actions,
   collapsible,
-  defaultCollapsed
+  defaultCollapsed,
+  ...rest
 }: Partial<SectionProps>) => {
   return (
     <TestingPicasso>
-      <Section
-        title={title}
-        subtitle={subtitle}
-        actions={actions}
-        collapsible={collapsible}
-        defaultCollapsed={defaultCollapsed}
-      >
-        {children}
-      </Section>
+      {/* The Container wrapper makes it easy to see the borders on the screenshot */}
+      <Container padded={rest.variant === 'bordered' ? 'large' : undefined}>
+        <Section
+          title={title}
+          subtitle={subtitle}
+          actions={actions}
+          collapsible={collapsible}
+          defaultCollapsed={defaultCollapsed}
+          {...rest}
+        >
+          {children}
+        </Section>
+      </Container>
     </TestingPicasso>
   )
 }
@@ -110,6 +115,12 @@ describe('Section', () => {
         }
       />
     )
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders with bordered variant', () => {
+    mount(<TestSection variant='bordered' />)
 
     cy.get('body').happoScreenshot()
   })

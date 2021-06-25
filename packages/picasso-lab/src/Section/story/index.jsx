@@ -6,9 +6,20 @@ const page = PicassoBook.section('Picasso Lab').createPage(
   'Use sections to organize content on the page'
 )
 
-page
-  .createTabChapter('Props')
-  .addComponentDocs({ component: Section, name: 'Section' })
+page.createTabChapter('Props').addComponentDocs({
+  component: Section,
+  name: 'Section',
+  additionalDocs: {
+    variant: {
+      name: 'variant',
+      description: 'The variant to use',
+      type: {
+        name: 'enum',
+        enums: ['bordered', 'default']
+      }
+    }
+  }
+})
 
 page.createChapter().addExample('Section/story/Default.example.tsx', 'Default') // picasso-skip-visuals
 page
@@ -17,3 +28,4 @@ page
 page
   .createChapter()
   .addExample('Section/story/Collapsible.example.tsx', 'Collapsible') // picasso-skip-visuals
+page.createChapter().addExample('Section/story/Variant.example.tsx', 'Variant') // picasso-skip-visuals
