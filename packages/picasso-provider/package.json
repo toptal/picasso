@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@material-ui/core": "4.11.0",
+    "notistack": "1.0.5",
+    "react-helmet": "6.1.0"
+  }
 }
