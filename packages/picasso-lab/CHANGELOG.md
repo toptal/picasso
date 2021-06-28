@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.0.0...@toptal/picasso-lab@7.1.0) (2021-06-28)
+
+
+### Features
+
+* **Section:** add block variant ([#2106](https://github.com/toptal/picasso/issues/2106)) ([e30ca10](https://github.com/toptal/picasso/commit/e30ca10c7c7692dd6300a1b992571599690eba88))
+
+
+
+
+
 # [7.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@6.2.0...@toptal/picasso-lab@7.0.0) (2021-06-25)
 
 
