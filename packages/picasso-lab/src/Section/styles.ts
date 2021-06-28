@@ -1,6 +1,6 @@
-import { createStyles } from '@material-ui/core'
+import { createStyles, Theme } from '@material-ui/core'
 
-export default () =>
+export default ({ sizes, palette }: Theme) =>
   createStyles({
     root: {
       paddingTop: '2rem'
@@ -19,5 +19,10 @@ export default () =>
     actions: {
       display: 'flex',
       marginLeft: 'auto'
+    },
+    borderedVariant: {
+      borderRadius: sizes.borderRadius.medium,
+      border: `solid ${sizes.borderWidth} ${palette.grey.light}`,
+      padding: '2rem'
     }
   })

@@ -13,6 +13,8 @@ import { Rotate180 } from '@toptal/picasso/utils/Transitions'
 
 import styles from './styles'
 
+type VariantType = 'bordered' | 'default'
+
 export interface Props extends BaseProps {
   /** Title of the Section */
   title?: ReactNode
@@ -33,6 +35,7 @@ export interface Props extends BaseProps {
     actions?: string
     collapse?: string
   }
+  variant?: VariantType
 }
 
 const useStyles = makeStyles(styles, {
@@ -53,6 +56,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
     testIds,
     collapsible = false,
     defaultCollapsed = true,
+    variant,
     ...rest
   } = props
   const classes = useStyles()
@@ -114,7 +118,13 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
   return (
     <Container
       ref={ref}
-      className={cx(classes.root, className)}
+      className={cx(
+        {
+          [classes.borderedVariant]: variant === 'bordered'
+        },
+        classes.root,
+        className
+      )}
       style={style}
       {...rest}
     >
