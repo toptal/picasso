@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>55467C58-1B39-4DEB-B313-9F454AFBDD15@1x</title>
+    <defs>
+        <path d="M8,0 C11.3137085,0 14,2.6862915 14,6 C14,8.209139 12,11.5424723 8,16 C4,11.5424723 2,8.209139 2,6 C2,2.6862915 4.6862915,0 8,0 Z M8,4 C6.8954305,4 6,4.8954305 6,6 C6,7.1045695 6.8954305,8 8,8 C9.1045695,8 10,7.1045695 10,6 C10,4.8954305 9.1045695,4 8,4 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Location-/-16-/-Pin-Solid">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Group" mask="url(#mask-2)" fill="#455065">
+                <g id="Colors-/-307-Gray-Dark">
+                    <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
