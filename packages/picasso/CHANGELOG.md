@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.0.0...@toptal/picasso@10.1.0) (2021-06-29)
+
+
+### Features
+
+* **Icon:** add pin solid icon ([#2107](https://github.com/toptal/picasso/issues/2107)) ([9a0c192](https://github.com/toptal/picasso/commit/9a0c192be6d659cf8bc097e64ea07151da038a8a))
+
+
+
+
+
 # [10.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@9.3.0...@toptal/picasso@10.0.0) (2021-06-25)
 
 
