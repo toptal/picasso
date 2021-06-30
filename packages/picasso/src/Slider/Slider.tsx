@@ -3,15 +3,20 @@ import React, {
   ChangeEvent,
   ComponentProps,
   useRef,
-  useState,
   useMemo
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUISlider, { ValueLabelProps } from '@material-ui/core/Slider'
+import MUISlider, {
+  ValueLabelProps as MUIValueLabelProps
+} from '@material-ui/core/Slider'
 import cx from 'classnames'
 
+import SliderValueLabel, {
+  SliderValueLabelProps,
+  ValueLabelProps
+} from '../SliderValueLabel'
+import { SliderContextProvider } from './SliderContext'
 import useCombinedRefs from '../utils/use-combined-refs'
-import Tooltip from '../Tooltip'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles)
@@ -57,64 +62,27 @@ export interface Props extends ComponentProps<typeof MUISlider> {
   disableTrackHighlight?: boolean
 }
 
-// This type is needed because ValueLabelProps does not describe all exposed props
-type ValueLabelComponentProps = ValueLabelProps & {
-  valueLabelDisplay: ValueLabelDisplay
-  index: number
-}
-
-type DefaultTooltipProps = {
-  isTooltipAlwaysVisible: boolean
-  disablePortal?: boolean
-  compact?: boolean
-  isTooltipReversed?: boolean
-  isRange?: boolean
-}
-
-const DefaultTooltip = ({
+const useValueLabelComponent = ({
   isTooltipAlwaysVisible,
   disablePortal,
   compact,
-  isTooltipReversed,
   isRange
-}: DefaultTooltipProps): React.FunctionComponent<ValueLabelComponentProps> => ({
-  children,
-  open,
-  value,
-  valueLabelDisplay,
-  index
-}) => {
-  if (valueLabelDisplay === 'off') {
-    return children
-  }
-
-  const placement = () => {
-    if (!isRange) {
-      return 'right'
-    }
-
-    if (isTooltipReversed) {
-      return index === 0 ? 'top-end' : 'top-start'
-    }
-
-    return 'top'
-  }
-
-  return (
-    <Tooltip
-      content={value}
-      open={open || valueLabelDisplay === 'on'}
-      placement={placement()}
-      preventOverflow={isTooltipAlwaysVisible}
-      disablePortal={disablePortal}
-      compact={compact}
-    >
-      {children}
-    </Tooltip>
+}: Omit<SliderValueLabelProps, keyof ValueLabelProps>) => {
+  return useMemo(
+    () => (props: ValueLabelProps) => (
+      <SliderValueLabel
+        {...props}
+        isTooltipAlwaysVisible={isTooltipAlwaysVisible}
+        disablePortal={disablePortal}
+        compact={compact}
+        isRange={isRange}
+      />
+    ),
+    [isTooltipAlwaysVisible, disablePortal, compact, isRange]
   )
 }
 
-export const Slider = forwardRef<HTMLElement, Props>(function Slider(
+export const Slider = forwardRef<HTMLElement, Props>(function Slider (
   props,
   ref
 ) {
@@ -145,100 +113,58 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     ...classes
   } = useStyles()
   const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
-  const [isTooltipReversed, setIsTooltipReversed] = useState(false)
 
   const isTooltipAlwaysVisible = tooltip === 'on'
   const isRange = Array.isArray(value) && value.length === 2
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
-  const ValueLabelComponent = useMemo(
-    () =>
-      (UserDefinedTooltip ||
-        DefaultTooltip({
-          isTooltipAlwaysVisible,
-          disablePortal,
-          compact,
-          isTooltipReversed,
-          isRange
-        })) as typeof UserDefinedTooltip,
-    [
-      UserDefinedTooltip,
-      compact,
-      disablePortal,
-      isTooltipAlwaysVisible,
-      isTooltipReversed,
-      isRange
-    ]
-  )
-
-  const watchTooltipsPlacement = () => {
-    if (sliderRef.current) {
-      const tooltips: NodeListOf<HTMLElement> = sliderRef.current.querySelectorAll(
-        '[role="tooltip"]'
-      )
-      const sliders: NodeListOf<HTMLElement> = sliderRef.current.querySelectorAll(
-        '[role="slider"]'
-      )
-
-      if (sliders.length === 2 && tooltips.length === 2) {
-        const minDistance =
-          Array.from(tooltips).reduce((acc, cur) => {
-            return acc + cur.offsetWidth
-          }, 0) / 2
-
-        const distance = sliders[1].offsetLeft - sliders[0].offsetLeft
-
-        if (distance > minDistance || distance === 0) {
-          setIsTooltipReversed(false)
-        } else {
-          setIsTooltipReversed(true)
-        }
-      }
-    }
-  }
+  const DefaultValueLabelComponent = useValueLabelComponent({
+    isTooltipAlwaysVisible,
+    disablePortal,
+    compact,
+    isRange
+  })
+  // From Workaround for https://github.com/mui-org/material-ui/issues/21889
+  const ValueLabelComponent = ((DefaultValueLabelComponent ||
+    UserDefinedTooltip) as unknown) as React.ElementType<MUIValueLabelProps>
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: Value) => {
     onChange?.(event, newValue)
-
-    if (isRange && disablePortal) {
-      watchTooltipsPlacement()
-    }
   }
 
   return (
-    <div className={wrapper}>
-      <MUISlider
-        {...rest}
-        ref={sliderRef}
-        defaultValue={defaultValue}
-        value={value}
-        min={min}
-        max={max}
-        step={step}
-        marks={marks}
-        disabled={disabled}
-        classes={{
-          ...classes,
-          track: cx(classes.track, {
-            [markTrack]: marks,
-            [unmarkTrack]: disableTrackHighlight
-          }),
-          thumb: cx(classes.thumb, {
-            [hideThumb]: isThumbHidden
-          }),
-          markActive: cx(classes.markActive, {
-            [markInactive]: isThumbHidden || disableTrackHighlight
-          })
-        }}
-        ValueLabelComponent={
-          // From Workaround for https://github.com/mui-org/material-ui/issues/21889
-          (ValueLabelComponent as unknown) as React.ElementType<ValueLabelProps>
-        }
-        valueLabelFormat={tooltipFormat}
-        valueLabelDisplay={tooltip}
-        onChange={handleChange}
-      />
-    </div>
+    <SliderContextProvider>
+      <div className={wrapper}>
+        <MUISlider
+          {...rest}
+          ref={sliderRef}
+          defaultValue={defaultValue}
+          value={value}
+          min={min}
+          max={max}
+          step={step}
+          marks={marks}
+          disabled={disabled}
+          classes={{
+            ...classes,
+            track: cx(classes.track, {
+              [markTrack]: marks,
+              [unmarkTrack]: disableTrackHighlight
+            }),
+            thumb: cx(classes.thumb, {
+              [hideThumb]: isThumbHidden
+            }),
+            markActive: cx(classes.markActive, {
+              [markInactive]: isThumbHidden || disableTrackHighlight
+            })
+          }}
+          ValueLabelComponent={ValueLabelComponent}
+          valueLabelFormat={tooltipFormat}
+          valueLabelDisplay={tooltip}
+          onChange={handleChange}
+        />
+      </div>
+    </SliderContextProvider>
   )
 })
 
