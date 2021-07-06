@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.1.0...@toptal/picasso-lab@7.1.1) (2021-07-06)
+
+
+### Bug Fixes
+
+* **TypographyOverflow:** improve performance ([#2110](https://github.com/toptal/picasso/issues/2110)) ([e9bc3a5](https://github.com/toptal/picasso/commit/e9bc3a5fc6e3fffc061bea2abc03d92c14271ce8))
+
+
+
+
+
 # [7.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.0.0...@toptal/picasso-lab@7.1.0) (2021-06-28)
 
 
