@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import React, { ReactNode, useCallback, useMemo, useState } from 'react'
+import React, { ReactNode, useCallback, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Tooltip, Typography, TypographyProps } from '@toptal/picasso'
 import { isOverflown } from '@toptal/picasso/utils'
@@ -54,10 +54,9 @@ export const TypographyOverflow = (props: Props) => {
   // It was causing a major UI freezes and unnecessary style recalculations,
   // that's why we decided to go with inline styles:
   // https://github.com/toptal/picasso/pull/2110
-  const extendedStyle = useMemo(
-    () => (isMultiline ? { ...style, WebkitLineClamp: lines } : style),
-    [style, isMultiline, lines]
-  )
+  const extendedStyle = isMultiline
+    ? { ...style, WebkitLineClamp: lines }
+    : style
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
