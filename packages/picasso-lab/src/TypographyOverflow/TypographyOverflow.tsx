@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import React, { ReactNode, useCallback, useState } from 'react'
+import React, { ReactNode, useCallback, useMemo, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Tooltip, Typography, TypographyProps } from '@toptal/picasso'
 import { isOverflown } from '@toptal/picasso/utils'
@@ -38,6 +38,7 @@ export const TypographyOverflow = (props: Props) => {
     className,
     onClick,
     onMouseEnter,
+    style,
     ...rest
   } = props
 
@@ -47,6 +48,16 @@ export const TypographyOverflow = (props: Props) => {
   const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
   const isTooltipRendered = isTooltipActive || isTooltipAnimating
   const isMultiline = lines > 1
+
+  // We are paying a very high price when using dynamic JSS rules
+  // for a component that is used on a very large scale.
+  // It was causing a major UI freezes and unnecessary style recalculations,
+  // that's why we decided to go with inline styles:
+  // https://github.com/toptal/picasso/pull/2110
+  const extendedStyle = useMemo(
+    () => (isMultiline ? { ...style, WebkitLineClamp: lines } : style),
+    [style, isMultiline, lines]
+  )
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
@@ -96,6 +107,7 @@ export const TypographyOverflow = (props: Props) => {
   const typography = (
     <Typography
       {...rest}
+      style={extendedStyle}
       className={cx(
         classes.wrapper,
         isMultiline ? classes.multiLine : classes.singleLine,

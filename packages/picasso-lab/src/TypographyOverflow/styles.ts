@@ -11,8 +11,7 @@ export default () =>
       whiteSpace: 'initial',
       wordBreak: 'break-word'
     },
-    wrapper: ({ lines = 1 }: { lines?: number }) => ({
-      '-webkit-line-clamp': lines,
+    wrapper: {
       '-webkit-box-orient': 'vertical',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
@@ -26,5 +25,5 @@ export default () =>
        * we have to to add some super-minor space at the end.
        */
       paddingRight: '0.9px'
-    })
+    }
   })
