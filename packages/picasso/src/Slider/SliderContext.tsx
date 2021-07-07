@@ -25,7 +25,7 @@ interface ProviderProps {
   children: ReactNode
 }
 
-type ValueLabel = { tooltip: HTMLDivElement; thumb: HTMLElement }
+type ValueLabel = { tooltipWidth: number; thumb: HTMLElement }
 
 const SliderContextProvider = ({ children }: ProviderProps) => {
   const [valueLabels, setValueLabels] = useState<(ValueLabel | null)[]>([
@@ -34,17 +34,15 @@ const SliderContextProvider = ({ children }: ProviderProps) => {
   ])
   const [hasTooltipOverlow, setHasTooltipOverflow] = useState(false)
 
-  const checkTooltipsOverflow = useCallback(() => {
+  const checkTooltipsOverlap = useCallback(() => {
     if (valueLabels[0] && valueLabels[1]) {
       const minDistance =
-        (valueLabels[0].tooltip.offsetWidth +
-          valueLabels[1].tooltip.offsetWidth) /
-        2
+        (valueLabels[0].tooltipWidth + valueLabels[1].tooltipWidth) / 2
 
       const distance =
         valueLabels[1].thumb.offsetLeft - valueLabels[0].thumb.offsetLeft
 
-      setHasTooltipOverflow(distance < minDistance)
+      setHasTooltipOverflow(distance < minDistance && distance !== 0)
     }
   }, [valueLabels])
 
@@ -53,14 +51,14 @@ const SliderContextProvider = ({ children }: ProviderProps) => {
       if (!valueLabels[index]) {
         const newTooltips = [...valueLabels]
 
-        newTooltips[index] = { tooltip, thumb }
+        newTooltips[index] = { thumb, tooltipWidth: tooltip.offsetWidth }
 
         setValueLabels(newTooltips)
       } else {
-        checkTooltipsOverflow()
+        checkTooltipsOverlap()
       }
     },
-    [valueLabels, checkTooltipsOverflow]
+    [valueLabels, checkTooltipsOverlap]
   )
 
   const contextValue = useMemo(

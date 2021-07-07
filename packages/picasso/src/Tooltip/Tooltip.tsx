@@ -10,7 +10,7 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip, { TooltipProps } from '@material-ui/core/Tooltip'
 import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, JssProps } from '@toptal/picasso-shared'
 import { usePicassoRoot } from '@toptal/picasso-provider'
 
 import { isPointerDevice } from '../utils'
@@ -136,7 +136,10 @@ const useTooltipHandlers = ({
   }
 }
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+export interface Props
+  extends BaseProps,
+    Partial<JssProps>,
+    HTMLAttributes<HTMLDivElement> {
   /** Trigger element for tooltip */
   children: ReactNode
   /** Content to be rendered inside tooltip */
@@ -179,6 +182,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     children: originalChildren,
     placement,
     interactive,
+    classes: externalClasses,
     className,
     style,
     open,
@@ -249,8 +253,10 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
         ...(onTransitionExited && { onExiting: onTransitionExited })
       }}
       classes={{
-        popper:
-          variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper,
+        popper: cx(
+          externalClasses?.popper,
+          variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper
+        ),
         tooltip: cx(classes.tooltip, {
           [classes.light]: variant === 'light',
           [classes.compact]: compact,

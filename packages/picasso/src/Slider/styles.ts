@@ -4,14 +4,6 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({
   MuiSlider: {
-    root: {
-      '& [x-placement*="top-start"]': {
-        left: '-10px !important'
-      },
-      '& [x-placement*="top-end"]': {
-        left: '10px !important'
-      }
-    },
     thumb: {
       '&:hover, &$active, &$focusVisible': {
         boxShadow: 'none'
@@ -38,7 +30,7 @@ export default ({ palette }: Theme) =>
       opacity: 0.24
     },
     track: {
-      backgroundColor: palette.grey.main,
+      backgroundColor: palette.blue.main,
       borderRadius: 'unset',
       height: rem('1px')
     },
