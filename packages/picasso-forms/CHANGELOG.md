@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.3.0...@toptal/picasso-forms@4.4.0) (2021-07-07)
+
+
+### Features
+
+* **NumberInput:** add Int validation for Form.NumberInput ([#2112](https://github.com/toptal/picasso/issues/2112)) ([1c88efe](https://github.com/toptal/picasso/commit/1c88efeb947aac649aa5a5faf94c16286005c9e3))
+
+
+
+
+
 # [4.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.2.1...@toptal/picasso-forms@4.3.0) (2021-07-06)
 
 
