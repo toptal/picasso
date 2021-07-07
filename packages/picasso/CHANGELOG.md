@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.0...@toptal/picasso@10.1.1) (2021-07-07)
+
+
+### Bug Fixes
+
+* **OutlinedInput:** do not trigger onBlur event after clicking adornment ([#2111](https://github.com/toptal/picasso/issues/2111)) ([3c51eeb](https://github.com/toptal/picasso/commit/3c51eebf9c3d21334893f3e1baa3407a2b8dfbf5))
+
+
+
+
+
 # [10.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.0.0...@toptal/picasso@10.1.0) (2021-06-29)
 
 
