@@ -98,6 +98,9 @@ const ResetButton = ({
       variant='flat'
       role='reset'
       onClick={onClick}
+      onMouseDown={(
+        event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
+      ) => event.preventDefault()}
       onFocus={(
         event: React.FocusEvent<HTMLButtonElement | HTMLAnchorElement>
       ) => event.stopPropagation()}
@@ -105,7 +108,7 @@ const ResetButton = ({
   </InputAdornment>
 )
 
-const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
+const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput (
   props,
   ref
 ) {
