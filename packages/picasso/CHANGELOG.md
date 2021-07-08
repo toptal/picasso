@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.2](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.1...@toptal/picasso@10.1.2) (2021-07-08)
+
+
+### Bug Fixes
+
+* **Select:** close Popper after disabling Select ([#2113](https://github.com/toptal/picasso/issues/2113)) ([8fc94c5](https://github.com/toptal/picasso/commit/8fc94c5d887ce438ca7e6cd15cdd997dbb5d7b57))
+
+
+
+
+
 ## [10.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.0...@toptal/picasso@10.1.1) (2021-07-07)
 
 
