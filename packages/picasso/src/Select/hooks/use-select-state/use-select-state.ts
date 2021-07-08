@@ -1,6 +1,11 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
 
-import { Option, OptionGroups, ValueType, UseSelectStateOutput } from '../../types'
+import {
+  Option,
+  OptionGroups,
+  ValueType,
+  UseSelectStateOutput
+} from '../../types'
 import {
   getSelection,
   removeDuplicatedOptions,
@@ -32,10 +37,9 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     searchThreshold = DEFAULT_SEARCH_THRESHOLD
   } = props
 
-  const flatOptions: Option[] = useMemo(
-    () => flattenOptions(options),
-    [options]
-  )
+  const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
+    options
+  ])
 
   const [selectedOptions, setSelectedOptions] = useState(
     getSelectedOptions(options, value)
@@ -97,6 +101,13 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   const open = useCallback(() => {
     setOpen(true)
   }, [])
+
+  useEffect(() => {
+    // we have to close menu if select has became disabled
+    if (disabled && isOpen) {
+      close()
+    }
+  }, [disabled, isOpen, close])
 
   return {
     ...props,

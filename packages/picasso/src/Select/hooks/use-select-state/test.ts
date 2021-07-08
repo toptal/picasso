@@ -128,4 +128,20 @@ describe('useSelectState', () => {
     expect(result.current.selectedIndexes).toEqual([0])
     expect(result.current.displayValue).toEqual(DEFAULT_OPTIONS[0].text)
   })
+
+  describe('when select is opened but has became disabled', () => {
+    it('switches to closed state to false', () => {
+      const { result, rerender } = renderUseSelectState()
+
+      expect(result.current.isOpen).toBe(false)
+
+      result.current.open()
+
+      expect(result.current.isOpen).toBe(true)
+
+      rerender({ disabled: true })
+
+      expect(result.current.isOpen).toBe(false)
+    })
+  })
 })
