@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.3](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.2...@toptal/picasso@10.1.3) (2021-07-09)
+
+
+### Bug Fixes
+
+* **TagSelector:** compare by value ([#2115](https://github.com/toptal/picasso/issues/2115)) ([4c1f385](https://github.com/toptal/picasso/commit/4c1f3855326be1f72ac0d9f1c50c96b02549767e))
+
+
+
+
+
 ## [10.1.2](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.1...@toptal/picasso@10.1.2) (2021-07-08)
 
 
