@@ -126,7 +126,7 @@ describe('TagSelector', () => {
   })
 })
 
-describe('#isIncluded', () => {
+describe('isIncluded', () => {
   it('compares object by reference', () => {
     const actual = isIncluded(testOptions, testOptions[0])
 
