@@ -30,7 +30,7 @@ export default ({ palette }: Theme) =>
       opacity: 0.24
     },
     track: {
-      backgroundColor: palette.blue.main,
+      backgroundColor: palette.primary.main,
       borderRadius: 'unset',
       height: rem('1px')
     },
