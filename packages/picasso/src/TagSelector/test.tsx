@@ -134,9 +134,9 @@ describe('isIncluded', () => {
   })
 
   it.each`
-    value   | text               | result
-    ${'AF'} | ${'Afghanistan'}   | ${true}
-    ${'AF'} | ${'Aland Islands'} | ${false}
+    value   | text              | result
+    ${'AF'} | ${'Afghanistan'}  | ${true}
+    ${'NO'} | ${'Non existing'} | ${false}
   `('compares object by value', ({ value, text, result }) => {
     const actual = isIncluded(testOptions, { text, value })
 

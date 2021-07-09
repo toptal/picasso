@@ -23,10 +23,7 @@ export interface Item extends AutocompleteItem {
 const EMPTY_INPUT_VALUE = ''
 
 export const isIncluded = (items: Item[], currentItem: Item) =>
-  items.some(
-    ({ text, value }) =>
-      text === currentItem.text && value === currentItem.value
-  )
+  items.some(({ value }) => value === currentItem.value)
 
 const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
