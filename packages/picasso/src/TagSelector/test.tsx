@@ -7,7 +7,7 @@ import {
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import TagSelector, { Props } from './TagSelector'
+import TagSelector, { Props, isIncluded } from './TagSelector'
 
 const testOptions = [
   { value: 'AF', text: 'Afghanistan' },
@@ -123,5 +123,23 @@ describe('TagSelector', () => {
     await selectOption(renderResult, input, testOptions[0].text)
 
     expect(onChange).toHaveBeenCalledWith([testOptions[0]])
+  })
+})
+
+describe('isIncluded', () => {
+  it('compares object by reference', () => {
+    const actual = isIncluded(testOptions, testOptions[0])
+
+    expect(actual).toEqual(true)
+  })
+
+  it.each`
+    value   | text              | result
+    ${'AF'} | ${'Afghanistan'}  | ${true}
+    ${'NO'} | ${'Non existing'} | ${false}
+  `('compares object by value', ({ value, text, result }) => {
+    const actual = isIncluded(testOptions, { text, value })
+
+    expect(actual).toEqual(result)
   })
 })
