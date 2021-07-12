@@ -42,6 +42,8 @@ export interface Props
   onChange?: (value: string, options: ChangedOptions) => void
   /** The value of the selected option, required for a controlled component. */
   value: string
+  /** Whether a component is disabled */
+  disabled?: boolean
   /**  Callback invoked when selection changes */
   onSelect?: (item: Item, event: MouseEvent | KeyboardEvent) => void
   /**  Callback invoked when other option selected */
@@ -117,7 +119,7 @@ const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
-  function Autocomplete(props, ref) {
+  function Autocomplete (props, ref) {
     const {
       autoComplete,
       className,
@@ -151,6 +153,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       testIds,
       value,
       width = 'auto',
+      disabled = false,
       ...rest
     } = props
     const classes = useStyles()
@@ -180,6 +183,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       getInputProps
     } = useAutocomplete({
       value,
+      disabled,
       options,
       getDisplayValue,
       onSelect,
@@ -266,6 +270,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             {...getInputProps()}
             error={error}
             icon={icon}
+            disabled={disabled}
             defaultValue={undefined}
             value={value}
             ref={ref}
@@ -312,7 +317,8 @@ Autocomplete.defaultProps = {
   showOtherOption: false,
   width: 'auto',
   enableReset: true,
-  poweredByGoogle: false
+  poweredByGoogle: false,
+  disabled: false
 }
 
 Autocomplete.displayName = 'Autocomplete'

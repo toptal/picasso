@@ -45,6 +45,7 @@ if needed.
     `
   )
   .addExample('Autocomplete/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+  .addExample('Autocomplete/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
   .addExample('Autocomplete/story/OtherOption.example.tsx', {
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
