@@ -14,7 +14,7 @@ export default ({ palette }: Theme) =>
 
     flat: {
       color: palette.grey.dark,
-      backgroundColor: palette.common.white,
+      backgroundColor: 'initial',
 
       '&:hover, &$hovered': {
         backgroundColor: palette.grey.lighter2
@@ -27,7 +27,7 @@ export default ({ palette }: Theme) =>
       '&$disabled': {
         opacity: 0.48,
         color: palette.grey.dark,
-        backgroundColor: palette.common.white
+        backgroundColor: 'initial'
       },
 
       border: 'none'
