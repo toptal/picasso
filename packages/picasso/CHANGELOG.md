@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.4](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.3...@toptal/picasso@10.1.4) (2021-07-12)
+
+
+### Bug Fixes
+
+* **Button:** replace background of flat button ([#2116](https://github.com/toptal/picasso/issues/2116)) ([a4c0d91](https://github.com/toptal/picasso/commit/a4c0d91b786c07a611e32b6ed223f56520315dad))
+
+
+
+
+
 ## [10.1.3](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.2...@toptal/picasso@10.1.3) (2021-07-09)
 
 
