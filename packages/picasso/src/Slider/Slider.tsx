@@ -128,10 +128,6 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider (
   const ValueLabelComponent = ((DefaultValueLabelComponent ||
     UserDefinedTooltip) as unknown) as React.ElementType<MUIValueLabelProps>
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: Value) => {
-    onChange?.(event, newValue)
-  }
-
   return (
     <SliderContextProvider>
       <div className={wrapper}>
@@ -161,7 +157,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider (
           ValueLabelComponent={ValueLabelComponent}
           valueLabelFormat={tooltipFormat}
           valueLabelDisplay={tooltip}
-          onChange={handleChange}
+          onChange={onChange}
         />
       </div>
     </SliderContextProvider>

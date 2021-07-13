@@ -4,10 +4,10 @@ export default () =>
   createStyles({
     popper: {
       '&[x-placement*="top-start"]': {
-        left: '-10px !important'
+        left: '-8px !important'
       },
       '&[x-placement*="top-end"]': {
-        left: '10px !important'
+        left: '8px !important'
       }
     }
   })
