@@ -89,6 +89,7 @@ export interface Props {
   getDisplayValue: (item: Item | null) => string
   enableReset?: boolean
   showOtherOption?: boolean
+  disabled?: boolean
 }
 
 export const useAutocomplete = ({
@@ -102,7 +103,8 @@ export const useAutocomplete = ({
   onOtherOptionSelect = () => {},
   getDisplayValue,
   enableReset,
-  showOtherOption
+  showOtherOption,
+  disabled = false
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number>(
@@ -183,7 +185,7 @@ export const useAutocomplete = ({
   })
 
   const handleClick = () => {
-    if (isOpen) {
+    if (isOpen || disabled) {
       return
     }
 

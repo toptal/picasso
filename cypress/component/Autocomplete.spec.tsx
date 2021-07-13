@@ -167,6 +167,18 @@ describe('Autocomplete', () => {
 
     cy.get('body').happoScreenshot()
   })
+
+  it('renders disabled autocomplete', () => {
+    mount(
+      <TestingPicasso>
+        <TestAutocomplete disabled />
+        <TestAutocomplete value='Croatia' disabled />
+      </TestingPicasso>
+    )
+
+    cy.get('body').happoScreenshot()
+  })
+
   it('renders a reset button', () => {
     mount(
       <TestingPicasso>
@@ -228,15 +240,13 @@ describe('Autocomplete', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders loading, error and disabled states', () => {
+  it('renders loading and error states', () => {
     mount(
       <TestingPicasso>
         <TestAutocomplete error />
         <TestAutocomplete loading />
-        <TestAutocomplete disabled />
         <TestAutocomplete value='Croatia' error />
         <TestAutocomplete value='Croatia' loading />
-        <TestAutocomplete value='Croatia' disabled />
       </TestingPicasso>
     )
 
