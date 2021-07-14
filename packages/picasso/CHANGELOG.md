@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.6](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.5...@toptal/picasso@10.1.6) (2021-07-14)
+
+
+### Bug Fixes
+
+* **Popper:** fix popper shaking on each render ([#2119](https://github.com/toptal/picasso/issues/2119)) ([66a17a3](https://github.com/toptal/picasso/commit/66a17a31aa31154dc8e522b897eaa98523339e5c))
+
+
+
+
+
 ## [10.1.5](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.4...@toptal/picasso@10.1.5) (2021-07-14)
 
 **Note:** Version bump only for package @toptal/picasso
