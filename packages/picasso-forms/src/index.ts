@@ -6,6 +6,7 @@ export type { FieldMetaState, FieldRenderProps, FormRenderProps, FieldProps, For
 export { default as arrayMutators } from 'final-form-arrays'
 export { useFieldArray, FieldArray } from 'react-final-form-arrays'
 export type { FieldArrayProps, FieldArrayRenderProps } from 'react-final-form-arrays'
+export { OnChange, OnFocus, ExternallyChanged, OnBlur } from 'react-final-form-listeners'
 
 // Picasso Forms exports
 export { default as Form } from './Form'
