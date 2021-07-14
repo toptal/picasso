@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import { Slider, SliderProps, Typography } from '@toptal/picasso'
+import { Slider, SliderProps, Typography, Container } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const TestSlider = ({
@@ -9,16 +9,19 @@ const TestSlider = ({
   tooltipFormat
 }: Partial<SliderProps> = {}) => (
   <TestingPicasso>
-    <Slider
-      data-testid='slider'
-      value={value}
-      min={0}
-      max={23}
-      onChange={onChange}
-      tooltipFormat={tooltipFormat}
-      tooltip='on'
-      compact
-    />
+    <Container style={{ width: '600px' }} padded='medium'>
+      <Slider
+        data-testid='slider'
+        value={value}
+        min={0}
+        max={23}
+        onChange={onChange}
+        tooltipFormat={tooltipFormat}
+        tooltip='on'
+        disablePortal
+        compact
+      />
+    </Container>
   </TestingPicasso>
 )
 
