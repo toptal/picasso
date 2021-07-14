@@ -58,7 +58,7 @@ const getAnchorEl = (
   anchorEl: null | ReferenceObject | (() => ReferenceObject)
 ) => (typeof anchorEl === 'function' ? anchorEl() : anchorEl)
 
-const getPopperOptions = (popperOptions: PopperOptions) => ({
+export const getPopperOptions = (popperOptions: PopperOptions) => ({
   ...popperOptions,
 
   modifiers: {
@@ -131,6 +131,11 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper (props, ref) {
     }
   }, [isCompactLayout, open])
 
+  const memoizedPopperOptions = React.useMemo(
+    () => getPopperOptions(popperOptions),
+    [popperOptions]
+  )
+
   return (
     <MUIPopper
       open={open}
@@ -138,7 +143,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper (props, ref) {
       anchorEl={anchorEl}
       className={cx(classes.root, className)}
       popperRef={ref}
-      popperOptions={getPopperOptions(popperOptions)}
+      popperOptions={memoizedPopperOptions}
       disablePortal={disablePortal}
       style={{
         ...style,
