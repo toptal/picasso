@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.4.0...@toptal/picasso-forms@4.5.0) (2021-07-14)
+
+
+### Features
+
+* **forms:** expose react final forms listeners ([#2118](https://github.com/toptal/picasso/issues/2118)) ([a4e0460](https://github.com/toptal/picasso/commit/a4e04601231a2e2c16d915b747fc5e78aea5600a))
+
+
+
+
+
 # [4.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.3.0...@toptal/picasso-forms@4.4.0) (2021-07-07)
 
 
