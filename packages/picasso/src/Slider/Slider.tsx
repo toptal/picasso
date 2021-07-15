@@ -11,10 +11,7 @@ import MUISlider, {
 } from '@material-ui/core/Slider'
 import cx from 'classnames'
 
-import SliderValueLabel, {
-  SliderValueLabelProps,
-  ValueLabelProps
-} from '../SliderValueLabel'
+import SliderValueLabel, { ValueLabelProps } from '../SliderValueLabel'
 import { SliderContextProvider } from './SliderContext'
 import useCombinedRefs from '../utils/use-combined-refs'
 import styles from './styles'
@@ -62,24 +59,21 @@ export interface Props extends ComponentProps<typeof MUISlider> {
   disableTrackHighlight?: boolean
 }
 
-const useValueLabelComponent = ({
-  isTooltipAlwaysVisible,
-  disablePortal,
-  compact,
-  isRange
-}: Omit<SliderValueLabelProps, keyof ValueLabelProps>) => {
-  return useMemo(
-    () => (props: ValueLabelProps) => (
-      <SliderValueLabel
-        {...props}
-        isTooltipAlwaysVisible={isTooltipAlwaysVisible}
-        disablePortal={disablePortal}
-        compact={compact}
-        isRange={isRange}
-      />
-    ),
-    [isTooltipAlwaysVisible, disablePortal, compact, isRange]
+const createDefaultValueLabelComponent = (
+  tooltip?: ValueLabelDisplay,
+  disablePortal?: boolean,
+  compact?: boolean
+) => {
+  const ValueLableComponent = (props: ValueLabelProps) => (
+    <SliderValueLabel
+      {...props}
+      tooltip={tooltip}
+      disablePortal={disablePortal}
+      compact={compact}
+    />
   )
+
+  return ValueLableComponent
 }
 
 export const Slider = forwardRef<HTMLElement, Props>(function Slider (
@@ -114,16 +108,14 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider (
   } = useStyles()
   const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
 
-  const isTooltipAlwaysVisible = tooltip === 'on'
-  const isRange = Array.isArray(value) && value.length === 2
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
-  const DefaultValueLabelComponent = useValueLabelComponent({
-    isTooltipAlwaysVisible,
-    disablePortal,
-    compact,
-    isRange
-  })
+
+  const DefaultValueLabelComponent = useMemo(
+    () => createDefaultValueLabelComponent(tooltip, disablePortal, compact),
+    [tooltip, disablePortal, compact]
+  )
+
   // From Workaround for https://github.com/mui-org/material-ui/issues/21889
   const ValueLabelComponent = ((DefaultValueLabelComponent ||
     UserDefinedTooltip) as unknown) as React.ElementType<MUIValueLabelProps>

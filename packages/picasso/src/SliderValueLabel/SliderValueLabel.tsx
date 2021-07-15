@@ -13,19 +13,17 @@ export type ValueLabelProps = MUIValueLabelProps & {
 }
 
 export interface Props extends ValueLabelProps {
-  isTooltipAlwaysVisible: boolean
+  tooltip?: ValueLabelDisplay
   disablePortal?: boolean
   compact?: boolean
-  isRange?: boolean
   valueLabelDisplay: ValueLabelDisplay
   index: number
 }
 
 const SliderValueLabel = ({
-  isTooltipAlwaysVisible,
+  tooltip,
   disablePortal,
   compact,
-  isRange,
   children,
   open,
   value,
@@ -34,16 +32,13 @@ const SliderValueLabel = ({
 }: Props) => {
   const thumbRef = useRef<HTMLDivElement>(null)
   const { registerValueLabel, hasTooltipOverlow } = useSliderContext()
+  const isTooltipAlwaysVisible = tooltip === 'on'
 
   if (valueLabelDisplay === 'off') {
     return children
   }
 
   const placement = () => {
-    if (!isRange) {
-      return 'right'
-    }
-
     if (hasTooltipOverlow) {
       return index === 0 ? 'top-end' : 'top-start'
     }
@@ -51,9 +46,9 @@ const SliderValueLabel = ({
     return 'top'
   }
 
-  const handleTooltipRef = (tooltip: HTMLDivElement) => {
-    if (tooltip && thumbRef.current) {
-      registerValueLabel(index, tooltip, thumbRef.current)
+  const handleTooltipRef = (tooltipElement: HTMLDivElement) => {
+    if (tooltipElement && thumbRef.current) {
+      registerValueLabel(index, tooltipElement, thumbRef.current)
     }
   }
 
