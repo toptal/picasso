@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.7](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.6...@toptal/picasso@10.1.7) (2021-07-16)
+
+
+### Bug Fixes
+
+* **Slider:** overlapping labels on range slider ([#2108](https://github.com/toptal/picasso/issues/2108)) ([806ebb1](https://github.com/toptal/picasso/commit/806ebb17b5c3cb3144590dcdfb0d054ee3a7d94e))
+
+
+
+
+
 ## [10.1.6](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.5...@toptal/picasso@10.1.6) (2021-07-14)
 
 
