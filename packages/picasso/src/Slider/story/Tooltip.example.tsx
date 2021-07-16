@@ -30,7 +30,7 @@ const Example = () => {
         <Typography variant='heading' size='small'>
           Custom rendered label
         </Typography>
-        <Container top='large'>
+        <Container top='xlarge'>
           <Slider
             min={0}
             max={23}
