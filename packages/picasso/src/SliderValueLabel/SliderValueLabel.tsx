@@ -47,8 +47,11 @@ const SliderValueLabel = ({
   }
 
   const handleTooltipRef = (tooltipElement: HTMLDivElement) => {
-    if (tooltipElement && thumbRef.current) {
-      registerValueLabel(index, tooltipElement, thumbRef.current)
+    // At this moment, both thumb and tooltip refs are set so we can register them in the context
+    const thumbElement = thumbRef.current
+
+    if (tooltipElement && thumbElement) {
+      registerValueLabel(index, tooltipElement, thumbElement)
     }
   }
 
