@@ -38,7 +38,7 @@ const SliderValueLabel = ({
     return children
   }
 
-  const placement = () => {
+  const getPlacement = () => {
     if (hasTooltipOverlow) {
       return index === 0 ? 'top-end' : 'top-start'
     }
@@ -58,7 +58,7 @@ const SliderValueLabel = ({
       tooltipRef={handleTooltipRef}
       content={value}
       open={open || valueLabelDisplay === 'on'}
-      placement={placement()}
+      placement={getPlacement()}
       preventOverflow={isTooltipAlwaysVisible}
       disablePortal={disablePortal}
       compact={compact}
