@@ -1,6 +1,6 @@
 import React, {
   useState,
-  FunctionComponent,
+  forwardRef,
   ReactNode,
   ReactElement,
   ChangeEvent,
@@ -167,11 +167,13 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   maxWidth?: MaxWidthType
   onTransitionExiting?: () => void
   onTransitionExited?: () => void
+  /** Tooltip div ref */
+  tooltipRef?: React.Ref<HTMLDivElement>
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTooltip' })
 
-export const Tooltip: FunctionComponent<Props> = props => {
+export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
   const {
     content,
     children: originalChildren,
@@ -191,6 +193,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
     delay = 'short',
     compact,
     maxWidth,
+    tooltipRef,
     ...rest
   } = props
 
@@ -219,7 +222,9 @@ export const Tooltip: FunctionComponent<Props> = props => {
   return (
     <MUITooltip
       {...rest}
+      ref={ref}
       PopperProps={{
+        ref: tooltipRef,
         container,
         disablePortal,
         popperOptions: {
@@ -269,7 +274,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
       {children as ReactElement}
     </MUITooltip>
   )
-}
+})
 
 Tooltip.defaultProps = {
   preventOverflow: true,

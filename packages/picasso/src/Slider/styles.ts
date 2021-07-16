@@ -30,16 +30,16 @@ export default ({ palette }: Theme) =>
       opacity: 0.24
     },
     track: {
-      backgroundColor: palette.grey.main,
+      backgroundColor: palette.primary.main,
       borderRadius: 'unset',
       height: rem('1px')
     },
     thumb: {
       backgroundColor: palette.primary.main,
       border: `${rem('2px')} solid ${palette.common.white}`,
-      height: rem('13px'),
-      width: rem('13px'),
-      marginTop: rem('-6px')
+      height: rem('15px'),
+      width: rem('15px'),
+      marginTop: rem('-7px')
     },
     mark: {
       backgroundColor: palette.grey.main,
