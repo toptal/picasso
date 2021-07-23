@@ -49,7 +49,7 @@ export type Props = BaseProps &
     label: string
     /** The color variant  */
     variant?: Variant
-    /** TODO: ... */
+    /** Sets darker color for vertical separator */
     hasDarkerVerticalSeparator?: boolean
     /** Component used for the root node. Either a string to use a DOM element or a component. */
     as?: ElementType
