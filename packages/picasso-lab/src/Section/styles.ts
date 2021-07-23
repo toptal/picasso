@@ -24,7 +24,7 @@ export default ({ sizes, palette }: Theme) =>
       borderRadius: sizes.borderRadius.medium,
       border: `solid ${sizes.borderWidth} ${palette.grey.light}`,
       padding: '2rem',
-      '& :last-child': {
+      '& > :last-child': {
         paddingBottom: '0'
       }
     }
