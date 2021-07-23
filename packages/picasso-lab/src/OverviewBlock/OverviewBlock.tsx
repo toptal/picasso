@@ -49,6 +49,8 @@ export type Props = BaseProps &
     label: string
     /** The color variant  */
     variant?: Variant
+    /** TODO: ... */
+    hasDarkerVerticalSeparator?: boolean
     /** Component used for the root node. Either a string to use a DOM element or a component. */
     as?: ElementType
     /** Callback invoked when component is clicked */
@@ -66,7 +68,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const OverviewBlock: OverridableComponent<Props> & StaticProps =
   // eslint-disable-next-line react/display-name
-  forwardRef<HTMLButtonElement, Props>(function OverviewBlock(props, ref) {
+  forwardRef<HTMLButtonElement, Props>(function OverviewBlock (props, ref) {
     const {
       value,
       label,
@@ -74,6 +76,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       as,
       className,
       onClick,
+      hasDarkerVerticalSeparator,
       titleCase: propsTitleCase,
       ...rest
     } = props
@@ -107,6 +110,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
         className={cx(
           { [classes.clickable]: isClickable },
           { [classes.disableOutline]: !isClickable },
+          { [classes.hasDarkerVerticalSeparator]: hasDarkerVerticalSeparator },
           classes[`${align}Align`],
           classes[`${blockWidth}Width`],
           classes.root,

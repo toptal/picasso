@@ -15,6 +15,11 @@ export default ({ palette, sizes }: Theme) =>
         borderLeft: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
       }
     },
+    hasDarkerVerticalSeparator: {
+      '&:not(:first-child)': {
+        borderLeftColor: palette.grey.main2
+      }
+    },
     clickable: {
       cursor: 'pointer',
       outline: 'none',
