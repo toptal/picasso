@@ -17,7 +17,7 @@ export default ({ palette, sizes }: Theme) =>
     },
     hasDarkerVerticalSeparator: {
       '&:not(:first-child)': {
-        borderLeftColor: palette.grey.main2
+        borderLeftColor: palette.grey.light2
       }
     },
     clickable: {
