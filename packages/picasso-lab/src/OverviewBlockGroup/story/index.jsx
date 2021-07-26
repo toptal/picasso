@@ -17,6 +17,10 @@ const chapter = PicassoBook.connectToPage(page =>
       'OverviewBlockGroup/story/BlockWidth.example.tsx',
       'Block Width'
     )
+    .addExample(
+      'OverviewBlockGroup/story/VerticalSeparator.example.tsx',
+      'Vertical Separator'
+    )
 )
 
 export default {

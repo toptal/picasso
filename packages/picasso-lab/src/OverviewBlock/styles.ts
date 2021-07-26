@@ -12,12 +12,7 @@ export default ({ palette, sizes }: Theme) =>
       border: 'none',
       textDecoration: 'none',
       '&:not(:first-child)': {
-        borderLeft: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
-      }
-    },
-    hasDarkerVerticalSeparator: {
-      '&:not(:first-child)': {
-        borderLeftColor: palette.grey.light2
+        borderLeft: `${sizes.borderWidth} solid`
       }
     },
     clickable: {
@@ -47,5 +42,15 @@ export default ({ palette, sizes }: Theme) =>
     },
     wideWidth: {
       padding: '0.75rem 2rem'
+    },
+    defaultSeparatorVariant: {
+      '&:not(:first-child)': {
+        borderLeftColor: palette.grey.lighter2
+      }
+    },
+    darkSeparatorVariant: {
+      '&:not(:first-child)': {
+        borderLeftColor: palette.grey.light2
+      }
     }
   })

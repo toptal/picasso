@@ -96,9 +96,5 @@ page
   .addExample('OverviewBlock/story/Number.example.tsx', 'Number')
   .addExample('OverviewBlock/story/Multiline.example.tsx', 'Multi-line')
   .addExample('OverviewBlock/story/Routing.example.tsx', 'Routing')
-  .addExample(
-    'OverviewBlock/story/DarkerVerticalSeparator.example.tsx',
-    'Darker vertical separator'
-  )
 
 page.connect(overviewBlockGroupStory.chapter)

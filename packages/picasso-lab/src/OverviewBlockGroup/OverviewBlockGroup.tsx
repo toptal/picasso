@@ -5,7 +5,7 @@ import React, {
   ReactComponentElement
 } from 'react'
 
-import { Alignment, BlockWidth } from './settings'
+import { Alignment, BlockWidth, SeparatorVariant } from './settings'
 import { OverviewBlockGroupContext } from './OverviewBlockGroupContext'
 import OverviewBlockRow from '../OverviewBlockRow'
 
@@ -14,6 +14,8 @@ type Props = HTMLAttributes<HTMLDivElement> & {
   align?: Alignment
   /** The block width variant */
   blockWidth?: BlockWidth
+  /** The vertical separator variant */
+  separatorVariant?: SeparatorVariant
 }
 
 // We need to inject a single row if there is none provided.
@@ -31,11 +33,19 @@ const shouldInjectRow = (children?: ReactNode) => {
 }
 
 const OverviewBlockGroup: FunctionComponent<Props> = props => {
-  const { children, align = 'default', blockWidth = 'regular', ...rest } = props
+  const {
+    children,
+    align = 'default',
+    blockWidth = 'regular',
+    separatorVariant = 'default',
+    ...rest
+  } = props
 
   return (
     <section {...rest}>
-      <OverviewBlockGroupContext.Provider value={{ align, blockWidth }}>
+      <OverviewBlockGroupContext.Provider
+        value={{ align, blockWidth, separatorVariant }}
+      >
         {shouldInjectRow(children) ? (
           <OverviewBlockRow>{children}</OverviewBlockRow>
         ) : (
@@ -50,7 +60,8 @@ OverviewBlockGroup.displayName = 'OverviewBlockGroup'
 
 OverviewBlockGroup.defaultProps = {
   align: 'default',
-  blockWidth: 'regular'
+  blockWidth: 'regular',
+  separatorVariant: 'default'
 }
 
 export default OverviewBlockGroup
