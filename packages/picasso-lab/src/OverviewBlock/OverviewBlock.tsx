@@ -66,7 +66,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const OverviewBlock: OverridableComponent<Props> & StaticProps =
   // eslint-disable-next-line react/display-name
-  forwardRef<HTMLButtonElement, Props>(function OverviewBlock (props, ref) {
+  forwardRef<HTMLButtonElement, Props>(function OverviewBlock(props, ref) {
     const {
       value,
       label,
