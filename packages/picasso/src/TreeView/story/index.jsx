@@ -38,3 +38,6 @@ page
   .addExample('TreeView/story/AvatarSize.example.tsx', {
     title: 'Avatar Size'
   }) // picasso-skip-visuals
+  .addExample('TreeView/story/Horizontal.example.tsx', {
+    title: 'Horizontal Layout'
+  }) // picasso-skip-visuals

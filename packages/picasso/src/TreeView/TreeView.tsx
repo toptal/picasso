@@ -34,6 +34,8 @@ export interface Props {
   showZoom?: boolean
   /** Scales the current zoom transform by coefficient */
   scaleCoefficient?: number
+  /** Changes the layout of the tree from top-to-bottom to left-to-right */
+  isHorizontal?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTreeView' })
@@ -46,11 +48,12 @@ export const TreeView = (props: Props) => {
     scaleExtent = DEFAULT_SCALE_EXTENT,
     initialScale = 1,
     scaleCoefficient = 0.5,
-    showZoom
+    showZoom,
+    isHorizontal
   } = props
   const classes = useStyles()
   const rootRef = createRef<SVGSVGElement>()
-  const { nodes, links, selectedNode } = useTree({ data })
+  const { nodes, links, selectedNode } = useTree({ data, isHorizontal })
 
   const center = useMemo<{ x: number; y: number } | undefined>(() => {
     if (!selectedNode) {
@@ -97,6 +100,7 @@ export const TreeView = (props: Props) => {
             <PointLink
               link={link}
               key={`link-${link.target.data.id}-${link.source.data.id}`}
+              isHorizontal={isHorizontal}
             />
           ))}
           {nodes.map(node => (

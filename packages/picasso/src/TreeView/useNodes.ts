@@ -2,7 +2,7 @@ import { createRef, useMemo, useRef, useLayoutEffect, useState } from 'react'
 import { HierarchyPointNode } from 'd3-hierarchy'
 
 import { DynamicPointNode, TreeNodeInterface } from './types'
-import { VERTICAL_MARGIN } from './variables'
+import { VERTICAL_MARGIN, HORIZONTAL_MARGIN } from './variables'
 
 const getDynamicNodes = (
   nodes: HierarchyPointNode<TreeNodeInterface>[]
@@ -18,8 +18,9 @@ const getDynamicNodes = (
   })
 }
 
-const updateNodesYPosition = (
-  nodes: DynamicPointNode[]
+const updateNodesXorYPosition = (
+  nodes: DynamicPointNode[],
+  isHorizontal?: boolean
 ): DynamicPointNode[] => {
   return nodes
     .sort((left, right) => left.depth - right.depth)
@@ -39,14 +40,23 @@ const updateNodesYPosition = (
         return node
       }
 
-      node.y = 0
+      if (isHorizontal) {
+        node.x = 0
+      } else {
+        node.y = 0
+      }
+
       node.rect = {
         width,
         height
       }
 
       if (node.parent) {
-        node.y = node.parent.y + node.parent.rect.height + VERTICAL_MARGIN
+        if (isHorizontal) {
+          node.x = node.parent.x + node.parent.rect.width + HORIZONTAL_MARGIN
+        } else {
+          node.y = node.parent.y + node.parent.rect.height + VERTICAL_MARGIN
+        }
       }
 
       return node
@@ -60,7 +70,8 @@ const updateNodesYPosition = (
  * Also, the data of the `rootNode` can be changed — that hook handles it as well.
  */
 export const useNodes = (
-  rootNode: HierarchyPointNode<TreeNodeInterface>
+  rootNode: HierarchyPointNode<TreeNodeInterface>,
+  isHorizontal?: boolean
 ): DynamicPointNode[] => {
   const [initialized, setInitializedState] = useState<boolean>(false)
   const initialNodes = useRef<DynamicPointNode[] | undefined>()
@@ -94,10 +105,10 @@ export const useNodes = (
   }, [rootNode, initialNodes])
 
   const nodes = useMemo<DynamicPointNode[]>(() => {
-    return updateNodesYPosition(dynamicNodes)
+    return updateNodesXorYPosition(dynamicNodes, isHorizontal)
     // we have to render nodes twice: first for the initial showing data, and the second one — with the correct positions.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dynamicNodes, initialized])
+  }, [dynamicNodes, initialized, isHorizontal])
 
   useLayoutEffect(() => {
     if (!dynamicNodes[0].ref.current || initialized) {
