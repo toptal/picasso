@@ -66,7 +66,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const OverviewBlock: OverridableComponent<Props> & StaticProps =
   // eslint-disable-next-line react/display-name
-  forwardRef<HTMLButtonElement, Props>(function OverviewBlock(props, ref) {
+  forwardRef<HTMLButtonElement, Props>(function OverviewBlock (props, ref) {
     const {
       value,
       label,
@@ -78,11 +78,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       ...rest
     } = props
     const classes = useStyles()
-    const {
-      align,
-      blockWidth,
-      separatorVariant
-    } = useOverviewBlockGroupContext()
+    const { align, blockWidth } = useOverviewBlockGroupContext()
 
     const color: ColorSettings = {
       value: 'black',
@@ -113,7 +109,6 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
           { [classes.disableOutline]: !isClickable },
           classes[`${align}Align`],
           classes[`${blockWidth}Width`],
-          classes[`${separatorVariant}SeparatorVariant`],
           classes.root,
           className
         )}
