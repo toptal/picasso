@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.1.2...@toptal/picasso-lab@7.1.3) (2021-07-28)
+
+
+### Bug Fixes
+
+* [SPC-1154] removing additional padding on bottom of bordered sections ([#2120](https://github.com/toptal/picasso/issues/2120)) ([0e2794f](https://github.com/toptal/picasso/commit/0e2794fbf7f8ad4e860ea87b51460f25d0ff27e6))
+
+
+
+
+
 ## [7.1.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.1.1...@toptal/picasso-lab@7.1.2) (2021-07-27)
 
 **Note:** Version bump only for package @toptal/picasso-lab
