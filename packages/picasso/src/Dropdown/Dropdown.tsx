@@ -28,6 +28,8 @@ import Paper from '../Paper'
 import styles from './styles'
 import noop from '../utils/noop'
 
+type ContentOverflowType = 'scroll' | 'visible'
+
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Anchor element that opens content on click */
   children: ReactNode
@@ -52,6 +54,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   onOpen?: () => void
   /** Callback invoked when component is closed */
   onClose?: () => void
+  /** Sets the desired behavior for an element's overflow */
+  contentOverflow?: ContentOverflowType
   popperContainer?: HTMLElement
 }
 
@@ -104,6 +108,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
     // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
+    contentOverflow = 'scroll',
     ...rest
   } = props
   const classes = useStyles(props)
@@ -246,7 +251,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
             <div onClick={close}>
               <Grow in={isOpen} appear>
                 <Paper
-                  className={classes.content}
+                  className={cx(classes.content, {
+                    [classes.contentVisible]: contentOverflow === 'visible'
+                  })}
                   onKeyDown={handleContentKeyDown}
                   elevation={2}
                 >

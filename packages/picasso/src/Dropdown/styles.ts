@@ -15,6 +15,7 @@ export default ({ screens, shadows, palette }: Theme) =>
     content: {
       fontSize: 'inherit',
       background: palette.common.white,
+
       maxHeight: '14.75rem', // 6.5 lines of menu to show
       overflowY: 'auto',
       boxShadow: shadows[0],
@@ -34,5 +35,20 @@ export default ({ screens, shadows, palette }: Theme) =>
     },
     popper: {
       boxShadow: shadows[2]
+    },
+    contentVisible: {
+      // Basically a whole content of a dropdown will be shown without a vertical scrollbar inside the dropdown
+      maxHeight: 'none',
+
+      // Will show a whole content on the `small` and `medium` screen with a vertical scrollbar if needed
+      // For non desktop devices better if we have a scrollbar when a dropdown content is pretty long
+      [screens('small', 'medium')]: {
+        overflowY: 'scroll',
+        maxHeight: '100vh'
+      },
+      '@media screen and (max-height: 585px)': {
+        overflowY: 'scroll',
+        maxHeight: '100vh'
+      }
     }
   })
