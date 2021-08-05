@@ -7,6 +7,7 @@ import {
   BaseProps,
   Button,
   Container,
+  SizeType,
   Typography
 } from '@toptal/picasso'
 import { Rotate180 } from '@toptal/picasso/utils/Transitions'
@@ -36,6 +37,10 @@ export interface Props extends BaseProps {
     collapse?: string
   }
   variant?: VariantType
+  /** Title size of the inner text */
+  titleSize?: SizeType<'small' | 'medium' | 'large' | 'xlarge'> | 'inherit'
+  /** Subtitle size of the inner text */
+  subtitleSize?: SizeType<'small' | 'medium' | 'large' | 'xlarge'> | 'inherit'
 }
 
 const useStyles = makeStyles(styles, {
@@ -57,6 +62,8 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
     collapsible = false,
     defaultCollapsed = true,
     variant,
+    titleSize = 'medium',
+    subtitleSize = 'medium',
     ...rest
   } = props
   const classes = useStyles()
@@ -72,7 +79,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
         className={classes.title}
         data-testid={testIds?.title}
         variant='heading'
-        size='medium'
+        size={titleSize}
       >
         {title}
       </Typography>
@@ -83,7 +90,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
       <Typography
         className={classes.subtitle}
         data-testid={testIds?.subtitle}
-        size='medium'
+        size={subtitleSize}
         color='dark-grey'
       >
         {subtitle}
@@ -143,6 +150,11 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
 })
 
 Section.displayName = 'Section'
-Section.defaultProps = { collapsible: false, defaultCollapsed: true }
+Section.defaultProps = {
+  collapsible: false,
+  defaultCollapsed: true,
+  titleSize: 'medium',
+  subtitleSize: 'medium'
+}
 
 export default Section
