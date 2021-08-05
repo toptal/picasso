@@ -136,6 +136,7 @@ export type { BadgeProps } from './Badge'
 export { default as Breadcrumbs } from './Breadcrumbs'
 export type { BreadcrumbsProps } from './Breadcrumbs'
 
+// insert point for hypen
 export * from './Icon'
 
 // TODO: Remove in @toptal/picasso@11.x.x version

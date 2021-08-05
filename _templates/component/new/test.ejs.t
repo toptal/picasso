@@ -1,13 +1,13 @@
 ---
-to: src/components/<%= h.changeCase.pascalCase(name) %>/test.tsx
+to: packages/picasso/src/<%= h.changeCase.pascalCase(name) %>/test.tsx
 ---
 <%
   Name = h.changeCase.pascalCase(name)
 -%>
 import React, { ReactNode } from 'react'
 import { render } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { OmitInternalProps } from '../Picasso'
 import <%= Name %>, { Props } from './<%= Name %>'
 
 const render<%= Name %> = (

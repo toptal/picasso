@@ -1,9 +1,10 @@
 ---
 inject: true
-to: src/components/index.ts
-before: export { default } from './Picasso'
+to: packages/picasso/src/index.ts
+before: // insert point for hypen
 ---
 <%
   Name = h.changeCase.pascalCase(name)
 -%>
 export { default as <%= Name %> } from './<%= Name %>'
+export type { <%= Name %>Props } from './<%= Name %>'
