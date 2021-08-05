@@ -3,19 +3,23 @@ import * as d3 from 'd3' // eslint-disable-line import/no-duplicates
 import { HierarchyPointNode } from 'd3' // eslint-disable-line import/no-duplicates
 
 import { useNodes } from './useNodes'
+import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from './variables'
 import {
-  DEFAULT_HEIGHT,
-  DEFAULT_WIDTH,
-  HORIZONTAL_MARGIN,
-  VERTICAL_MARGIN
-} from './variables'
-import { DynamicPointLink, DynamicPointNode, TreeNodeInterface } from './types'
+  DirectionsType,
+  DynamicPointLink,
+  DynamicPointNode,
+  TreeNodeInterface,
+  TreeViewVariant
+} from './types'
 
 export interface UseTreeArguments {
   data: TreeNodeInterface
   nodeWidth?: number
   nodeHeight?: number
-  isHorizontal?: boolean
+  direction: DirectionsType
+  verticalMargin: number
+  horizontalMargin: number
+  variant: TreeViewVariant
 }
 
 export interface UseTreeResponse {
@@ -24,39 +28,72 @@ export interface UseTreeResponse {
   selectedNode: DynamicPointNode | undefined
 }
 
+type NodeAggregationType = 'siblings' | 'leaves'
+
 const calculateNodeXorYPosition = (isX: boolean) => {
   const resultFn = (
     node: HierarchyPointNode<TreeNodeInterface>,
     {
       leaves,
-      nodeSizeAttr
-    }: { leaves: HierarchyPointNode<TreeNodeInterface>[]; nodeSizeAttr: number }
+      nodeSizeAttr,
+      aggregationType = 'leaves'
+    }: {
+      leaves: HierarchyPointNode<TreeNodeInterface>[]
+      nodeSizeAttr: number
+      aggregationType: NodeAggregationType
+    }
   ) => {
-    if (!node.children || !node.children.length) {
-      const index = leaves.findIndex(leaf => leaf === node)
-      const position = Math.floor(index - leaves.length / 2) * nodeSizeAttr
+    let index = 0
+    let position = 0
+    const xOrY = isX ? 'x' : 'y'
 
-      if (isX) {
-        node.x = position
+    if (!node.children || !node.children.length) {
+      if (aggregationType === 'leaves') {
+        index = leaves.findIndex(leaf => leaf === node)
+        position = Math.floor(index - leaves.length / 2) * nodeSizeAttr
       } else {
-        node.y = position
+        const siblings = node?.parent?.children
+
+        if (siblings) {
+          index = siblings.findIndex(leaf => leaf === node)
+          position =
+            siblings.length % 2
+              ? Math.floor(index - siblings.length / 2) * nodeSizeAttr
+              : Math.floor(index - siblings.length / 2) * nodeSizeAttr -
+                nodeSizeAttr / 2
+        }
       }
     } else {
-      const reducedValue =
-        node.children.reduce((acc, child) => {
-          resultFn(child, { leaves, nodeSizeAttr })
+      if (aggregationType === 'leaves') {
+        position =
+          node.children.reduce((acc, child) => {
+            resultFn(child, { leaves, nodeSizeAttr, aggregationType })
 
-          acc += isX ? child.x : child.y
+            acc += isX ? child.x : child.y
+
+            return acc
+          }, 0) / node.children.length
+      } else {
+        node.children.reduce((acc, child) => {
+          resultFn(child, { leaves, nodeSizeAttr, aggregationType })
 
           return acc
-        }, 0) / node.children.length
+        }, 0)
 
-      if (isX) {
-        node.x = reducedValue
-      } else {
-        node.y = reducedValue
+        const halfLength = node.children.length / 2
+
+        if (node.children.length % 2) {
+          position = node.children[Math.floor(halfLength)][xOrY]
+        } else {
+          position =
+            (node.children[halfLength][xOrY] +
+              node.children[halfLength - 1][xOrY]) /
+            2
+        }
       }
     }
+
+    node[xOrY] = position
 
     return node
   }
@@ -71,10 +108,13 @@ export const useTree = ({
   data,
   nodeWidth = DEFAULT_WIDTH,
   nodeHeight = DEFAULT_HEIGHT,
-  isHorizontal = false
+  direction,
+  verticalMargin,
+  horizontalMargin,
+  variant
 }: UseTreeArguments): UseTreeResponse => {
-  const fullNodeWidth = nodeWidth + 2 * HORIZONTAL_MARGIN
-  const fullNodeHeight = nodeHeight + 2 * VERTICAL_MARGIN
+  const fullNodeWidth = nodeWidth + 2 * horizontalMargin
+  const fullNodeHeight = nodeHeight + 2 * verticalMargin
 
   const rootNode = useMemo(() => {
     const root = d3.hierarchy(data)
@@ -84,20 +124,22 @@ export const useTree = ({
       .nodeSize([fullNodeWidth, DEFAULT_HEIGHT])(root)
     const leaves = rootNode.leaves()
 
-    if (!isHorizontal) {
+    if (direction === 'vertical') {
       return calculateNodeXPosition(rootNode, {
         leaves,
-        nodeSizeAttr: fullNodeWidth
+        nodeSizeAttr: fullNodeWidth,
+        aggregationType: variant === 'normal' ? 'leaves' : 'siblings'
       })
     }
 
     return calculateNodeYPosition(rootNode, {
       leaves,
-      nodeSizeAttr: fullNodeHeight
+      nodeSizeAttr: fullNodeHeight,
+      aggregationType: variant === 'normal' ? 'leaves' : 'siblings'
     })
-  }, [data, fullNodeWidth, fullNodeHeight, isHorizontal])
+  }, [data, fullNodeWidth, fullNodeHeight, direction, variant])
 
-  const nodes = useNodes(rootNode, isHorizontal)
+  const nodes = useNodes(rootNode, direction, verticalMargin, horizontalMargin)
 
   const links = useMemo(
     () =>

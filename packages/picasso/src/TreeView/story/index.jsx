@@ -41,3 +41,8 @@ page
   .addExample('TreeView/story/Horizontal.example.tsx', {
     title: 'Horizontal Layout'
   }) // picasso-skip-visuals
+  .addExample('TreeView/story/Compacted.example.tsx', {
+    title: 'Compacted tree',
+    description:
+      'Example of a compacted tree, this works only for trees in which only one node on each depth has children'
+  }) // picasso-skip-visuals

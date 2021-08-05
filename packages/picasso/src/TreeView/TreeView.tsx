@@ -17,7 +17,8 @@ import PointNode from './PointNode'
 import styles from './styles'
 import { useZoom } from './useZoom'
 import { DEFAULT_SCALE_EXTENT, DEFAULT_WIDTH } from './variables'
-import { TreeNodeInterface } from './types'
+import { DirectionsType, TreeNodeInterface, TreeViewVariant } from './types'
+import { getDefaultMargins } from './utils'
 
 export interface Props {
   /** Root node of the Tree */
@@ -34,8 +35,14 @@ export interface Props {
   showZoom?: boolean
   /** Scales the current zoom transform by coefficient */
   scaleCoefficient?: number
-  /** Changes the layout of the tree from top-to-bottom to left-to-right */
-  isHorizontal?: boolean
+  /** Determines the direction of the TreeView: vertical - top-to-bottom (default) or */
+  direction?: DirectionsType
+  /** Overrides default vertical margin - minimum vertical distance between nodes */
+  verticalMargin?: number
+  /** Overrides default horizontal margin - minimum horizontal distance between nodes */
+  horizontalMargin?: number
+  /** Variants of the tree: currently supports normal (default) and compact - special compact variant of the tree that works only for trees with one node with children per depth level */
+  variant?: TreeViewVariant
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTreeView' })
@@ -49,11 +56,26 @@ export const TreeView = (props: Props) => {
     initialScale = 1,
     scaleCoefficient = 0.5,
     showZoom,
-    isHorizontal
+    direction = 'vertical',
+    verticalMargin,
+    horizontalMargin,
+    variant = 'normal'
   } = props
   const classes = useStyles()
   const rootRef = createRef<SVGSVGElement>()
-  const { nodes, links, selectedNode } = useTree({ data, isHorizontal })
+
+  const [finalVerticalMargin, finalHorizontalMargin] = useMemo(
+    () => getDefaultMargins(direction, verticalMargin, horizontalMargin),
+    [direction, verticalMargin, horizontalMargin]
+  )
+
+  const { nodes, links, selectedNode } = useTree({
+    data,
+    direction,
+    verticalMargin: finalVerticalMargin,
+    horizontalMargin: finalHorizontalMargin,
+    variant
+  })
 
   const center = useMemo<{ x: number; y: number } | undefined>(() => {
     if (!selectedNode) {
@@ -100,7 +122,9 @@ export const TreeView = (props: Props) => {
             <PointLink
               link={link}
               key={`link-${link.target.data.id}-${link.source.data.id}`}
-              isHorizontal={isHorizontal}
+              direction={direction}
+              verticalMargin={finalVerticalMargin}
+              horizontalMargin={finalHorizontalMargin}
             />
           ))}
           {nodes.map(node => (
