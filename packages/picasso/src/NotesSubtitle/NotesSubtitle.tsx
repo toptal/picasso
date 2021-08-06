@@ -1,26 +1,26 @@
-import React, { forwardRef } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import React, { forwardRef, ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import styles from './styles'
+import Container from '../Container'
+import Typography from '../Typography'
 
 export interface Props extends BaseProps {
+  children: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles)
+export const NotesSubtitle = forwardRef<HTMLDivElement, Props>(
+  function NotesSubtitle ({ children, ...rest }, ref) {
+    return (
+      <Container ref={ref} flex direction='row' bottom='small' {...rest}>
+        <Typography color='dark-grey' size='small'>
+          {children}
+        </Typography>
+      </Container>
+    )
+  }
+)
 
-export const NotesSubtitle = forwardRef<HTMLElement, Props>(function NotesSubtitle(props, ref) {
-  const classes = useStyles()
-
-  return (
-    <div>
-      {props.children}
-    </div>
-  )
-})
-
-NotesSubtitle.defaultProps = {
-}
+NotesSubtitle.defaultProps = {}
 
 NotesSubtitle.displayName = 'NotesSubtitle'
 
