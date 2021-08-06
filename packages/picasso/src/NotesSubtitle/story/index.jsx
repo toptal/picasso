@@ -1,17 +1,12 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { NotesSubtitle } from '../NotesSubtitle'
 
-const page = PicassoBook
-  .section('Components')
-  .createPage(
-    'NotesSubtitle',
-    `<-- description -->`
-  )
+const componentDocs = PicassoBook.createComponentDocs(
+  NotesSubtitle,
+  'Notes.Subtitle',
+  'Notes subtitle'
+)
 
-page
-  .createTabChapter('Props')
-  .addComponentDocs({ component: NotesSubtitle, name: 'NotesSubtitle' })
-
-page
-  .createChapter()
+export default {
+  componentDocs
+}
