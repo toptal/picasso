@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotesTitle default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="makeStyles-root"
+    >
+      <h4
+        class="MuiTypography-root PicassoTypography-headingSmall MuiTypography-h4"
+      >
+        title
+      </h4>
+    </div>
+  </div>
+</div>
+`;
