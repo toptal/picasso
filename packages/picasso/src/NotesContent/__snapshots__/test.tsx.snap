@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotesContent default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <p
+      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black MuiTypography-body1"
+    >
+      content
+    </p>
+  </div>
+</div>
+`;
