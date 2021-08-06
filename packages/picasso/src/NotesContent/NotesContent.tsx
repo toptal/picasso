@@ -1,21 +1,18 @@
-import React, { forwardRef } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import React, { forwardRef, ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import styles from './styles'
+import Typography from '../Typography'
 
-export interface Props extends BaseProps {}
+export interface Props extends BaseProps {
+  children: ReactNode
+}
 
-const useStyles = makeStyles<Theme>(styles)
-
-export const NotesContent = forwardRef<HTMLElement, Props>(
-  function NotesContent(props, ref) {
-    const classes = useStyles()
-
+export const NotesContent = forwardRef<HTMLDivElement, Props>(
+  function NotesContent ({ children, ...rest }, ref) {
     return (
-      <div>
-        {props.children}
-      </div>
+      <Typography ref={ref} as='p' size='medium' color='black' {...rest}>
+        {children}
+      </Typography>
     )
   }
 )
