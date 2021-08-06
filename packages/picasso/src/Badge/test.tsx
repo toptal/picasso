@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, PicassoConfig } from '@toptal/picasso/test-utils'
+import { render, PicassoConfig, screen } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
@@ -14,7 +14,12 @@ const renderBadge = (
   const { content, variant, titleCase } = props
 
   return render(
-    <Badge content={content} variant={variant} titleCase={titleCase} />,
+    <Badge
+      content={content}
+      variant={variant}
+      titleCase={titleCase}
+      data-testid={props['data-testid']}
+    />,
     undefined,
     picassoConfig
   )
@@ -49,5 +54,11 @@ describe('Badge', () => {
     renderBadge({ content: 'test pe2', titleCase: false }, { titleCase: true })
 
     expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
+  })
+
+  it('should render data-testid', () => {
+    renderBadge({ content: 'test pe2', 'data-testid': 'badge-root' })
+
+    expect(screen.getByTestId('badge-root')).toBeInTheDocument()
   })
 })

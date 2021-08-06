@@ -36,7 +36,8 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
     variant = 'white',
     size = 'medium',
     content,
-    titleCase: propsTitleCase
+    titleCase: propsTitleCase,
+    'data-testid': dataTestId
   } = props
   const classes = useStyles()
 
@@ -51,6 +52,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
         root: cx(classes.root, classes[variant], classes[size]),
         label: cx(classes[`${size}Label`])
       }}
+      data-testid={dataTestId}
     />
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement>
