@@ -4,13 +4,7 @@ import { Section } from '@toptal/picasso-lab'
 
 const Example = () => {
   return (
-    <Section
-      variant='bordered'
-      title='Quotes'
-      titleSize='small'
-      subtitle='2 quotes'
-      subtitleSize='small'
-    >
+    <Section variant='bordered' title='Quotes' titleSize='small'>
       <List variant='unordered'>
         <List.Item>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.

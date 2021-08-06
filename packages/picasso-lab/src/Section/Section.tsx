@@ -38,9 +38,7 @@ export interface Props extends BaseProps {
   }
   variant?: VariantType
   /** Title size of the inner text */
-  titleSize?: SizeType<'small' | 'medium' | 'large' | 'xlarge'> | 'inherit'
-  /** Subtitle size of the inner text */
-  subtitleSize?: SizeType<'small' | 'medium' | 'large' | 'xlarge'> | 'inherit'
+  titleSize?: SizeType<'small' | 'medium'>
 }
 
 const useStyles = makeStyles(styles, {
@@ -63,7 +61,6 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
     defaultCollapsed = true,
     variant,
     titleSize = 'medium',
-    subtitleSize = 'medium',
     ...rest
   } = props
   const classes = useStyles()
@@ -90,7 +87,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
       <Typography
         className={classes.subtitle}
         data-testid={testIds?.subtitle}
-        size={subtitleSize}
+        size='medium'
         color='dark-grey'
       >
         {subtitle}
@@ -153,8 +150,7 @@ Section.displayName = 'Section'
 Section.defaultProps = {
   collapsible: false,
   defaultCollapsed: true,
-  titleSize: 'medium',
-  subtitleSize: 'medium'
+  titleSize: 'medium'
 }
 
 export default Section
