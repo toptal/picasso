@@ -1,21 +1,26 @@
-import React, { ReactNode } from 'react'
-import { render } from '@toptal/picasso/test-utils'
+import React from 'react'
+import { render, RenderResult } from '@toptal/picasso/test-utils'
 
-import { OmitInternalProps } from '@toptal/picasso-shared'
-import Notes, { Props } from './Notes'
+import Notes from './Notes'
 
-const renderNotes = (
-  children: ReactNode,
-  props: OmitInternalProps<Props>
-) => {
-  const { /* add props you need */ } = props
-
-  return render(<Notes>{children}</Notes>)
+const renderNotes = () => {
+  return render(
+    <Notes>
+      <Notes.Title>Title</Notes.Title>
+      <Notes.Subtitle>Subtitle</Notes.Subtitle>
+      <Notes.Content>Content</Notes.Content>
+    </Notes>
+  )
 }
 
 describe('Notes', () => {
-  test('default render', () => {
-    const { container } = renderNotes(null, {})
+  let api: RenderResult
+
+  beforeEach(() => {
+    api = renderNotes()
+  })
+  it('default render', () => {
+    const { container } = api
 
     expect(container).toMatchSnapshot()
   })
