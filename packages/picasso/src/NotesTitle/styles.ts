@@ -1,6 +1,8 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider } from '@toptal/picasso-provider'
+import { createStyles } from '@material-ui/core/styles'
 
-PicassoProvider.override(({ palette }: Theme) => ({}))
-
-export default ({ palette }: Theme) => createStyles({})
+export default () =>
+  createStyles({
+    root: {
+      marginBottom: '0.25rem'
+    }
+  })
