@@ -29,3 +29,6 @@ page
   .createChapter()
   .addExample('Section/story/Collapsible.example.tsx', 'Collapsible') // picasso-skip-visuals
 page.createChapter().addExample('Section/story/Variant.example.tsx', 'Variant') // picasso-skip-visuals
+page
+  .createChapter()
+  .addExample('Section/story/TitleSize.example.tsx', 'Title Size') // picasso-skip-visuals
