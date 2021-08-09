@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.1.3...@toptal/picasso-lab@7.2.0) (2021-08-09)
+
+
+### Features
+
+* add title size for section component ([#2125](https://github.com/toptal/picasso/issues/2125)) ([beba047](https://github.com/toptal/picasso/commit/beba04777dcd40508872d1c6ea7ee4c55562a7e1))
+
+
+
+
+
 ## [7.1.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.1.2...@toptal/picasso-lab@7.1.3) (2021-07-28)
 
 
