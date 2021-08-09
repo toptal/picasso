@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.9](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.8...@toptal/picasso@10.1.9) (2021-08-09)
+
+
+### Bug Fixes
+
+* adds data-testid for badge component ([#2126](https://github.com/toptal/picasso/issues/2126)) ([90cb384](https://github.com/toptal/picasso/commit/90cb384d405626ef1b7a0049d12de1777245ecc5))
+
+
+
+
+
 ## [10.1.8](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.7...@toptal/picasso@10.1.8) (2021-08-09)
 
 
