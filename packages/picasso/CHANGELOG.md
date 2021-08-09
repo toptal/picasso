@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.8](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.7...@toptal/picasso@10.1.8) (2021-08-09)
+
+
+### Bug Fixes
+
+* [SPT-1814] change green color tags to darker shade ([#2123](https://github.com/toptal/picasso/issues/2123)) ([9467729](https://github.com/toptal/picasso/commit/9467729ebbf09bdc9460399c72fbc042bf28eade))
+
+
+
+
+
 ## [10.1.7](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.6...@toptal/picasso@10.1.7) (2021-07-16)
 
 
