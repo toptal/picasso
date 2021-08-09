@@ -235,6 +235,12 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
           anchorEl={anchorEl}
           popperOptions={{
             onCreate: focus,
+            /*
+            Fixes https://github.com/toptal/picasso/pull/2124#issuecomment-894341054
+            When the anchor goes above the viewport, popper goes to infinite flipping.
+            flipped: true -> flipped: false -> flipped: true -> ...
+            */
+            modifiers: { flip: { enabled: contentOverflow !== 'visible' } },
             ...popperOptions
           }}
           placement={placement}
