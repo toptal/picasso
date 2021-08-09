@@ -165,6 +165,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   compact?: boolean
   /** Max width of a tooltip */
   maxWidth?: MaxWidthType
+  /** Force low zIndex to avoid overlaping on top of other popup components  **/
+  lowZIndex?: boolean
   onTransitionExiting?: () => void
   onTransitionExited?: () => void
   /** Tooltip div ref */
@@ -193,6 +195,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     delay = 'short',
     compact,
     maxWidth,
+    lowZIndex = false,
     tooltipRef,
     ...rest
   } = props
@@ -227,6 +230,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
         ref: tooltipRef,
         container,
         disablePortal,
+        style,
         popperOptions: {
           modifiers: {
             arrow: {
@@ -249,8 +253,10 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
         ...(onTransitionExited && { onExiting: onTransitionExited })
       }}
       classes={{
-        popper:
+        popper: cx(
           variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper,
+          { [classes.popperLowZIndex]: lowZIndex }
+        ),
         tooltip: cx(classes.tooltip, {
           [classes.light]: variant === 'light',
           [classes.compact]: compact,

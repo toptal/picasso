@@ -87,6 +87,7 @@ export default ({ palette, shadows, sizes: { borderRadius } }: Theme) =>
       borderRadius: borderRadius.small,
       position: 'relative'
     },
+    popperLowZIndex: { zIndex: 1 },
     arrowPopperLight: arrowGenerator(palette.common.white),
     arrow: {
       position: 'absolute',

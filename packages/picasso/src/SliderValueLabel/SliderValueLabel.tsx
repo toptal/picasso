@@ -65,6 +65,7 @@ const SliderValueLabel = ({
       preventOverflow={isTooltipAlwaysVisible}
       disablePortal={disablePortal}
       compact={compact}
+      lowZIndex
     >
       {children}
     </Tooltip>
