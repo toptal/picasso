@@ -1,6 +1,6 @@
 ---
 inject: true
-to: packages/picasso/src/index.ts
+to: packages/<%= package %>/src/index.ts
 before: // insert point for hypen
 ---
 <%

@@ -1,5 +1,5 @@
 ---
-to: packages/picasso/src/<%= h.changeCase.pascalCase(name) %>/index.ts
+to: packages/<%= package %>/src/<%= h.changeCase.pascalCase(name) %>/index.ts
 ---
 <%
   Name = h.changeCase.pascalCase(name)
