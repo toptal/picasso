@@ -19,23 +19,26 @@ export const PointLink: FC<Props> = props => {
   const classes = useStyles()
   const path = useMemo(() => {
     const { source, target } = link
-    const sourceY =
-      source.y +
-      (direction === 'horizontal'
-        ? source.rect?.height / 2
-        : source.rect?.height || 0)
+    const sourceYDeltas = {
+      horizontal: source.rect?.height / 2,
+      vertical: source.rect?.height
+    }
+    const sourceY = source.y + (sourceYDeltas[direction] || 0)
     const sourceX = source.x + (source.rect?.width / 2 || 0)
 
-    return direction === 'horizontal'
-      ? `M${sourceX}, ${sourceY}
-            H${sourceX + horizontalMargin / 2}
-            V${target.y + DEFAULT_HEIGHT / 2}
-            H${target.x - DEFAULT_WIDTH / 2}`
-      : `M${source.x}, ${sourceY}
-               V${sourceY + verticalMargin / 2}
-               H${target.x}
-               V${target.y}`
-  }, [link, direction, verticalMargin])
+    const svgPaths = {
+      horizontal: `M${sourceX}, ${sourceY}
+        H${sourceX + horizontalMargin / 2}
+        V${target.y + DEFAULT_HEIGHT / 2}
+        H${target.x - DEFAULT_WIDTH / 2}`,
+      vertical: `M${source.x}, ${sourceY}
+        V${sourceY + verticalMargin / 2}
+        H${target.x}
+        V${target.y}`
+    }
+
+    return svgPaths[direction]
+  }, [link, direction, verticalMargin, horizontalMargin])
 
   return <path d={path} className={classes.pointLink} />
 }

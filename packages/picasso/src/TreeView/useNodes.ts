@@ -53,10 +53,15 @@ const updateNodesXorYPosition = (
       }
 
       if (node.parent) {
+        const positionDeltas = {
+          horizontal: node.parent.x + node.parent.rect.width + horizontalMargin,
+          vertical: node.parent.y + node.parent.rect.height + verticalMargin
+        }
+
         if (direction === 'horizontal') {
-          node.x = node.parent.x + node.parent.rect.width + horizontalMargin
+          node.x = positionDeltas[direction]
         } else {
-          node.y = node.parent.y + node.parent.rect.height + verticalMargin
+          node.y = positionDeltas[direction]
         }
       }
 

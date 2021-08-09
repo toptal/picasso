@@ -133,7 +133,15 @@ const createTree = (): TreeNodeInterface => {
             info: {
               name: 'NODE+4.9'
             },
-            children: []
+            children: [
+              createTreeNode({
+                id: '4.9.9',
+                info: {
+                  name: 'NODE+4.9.9'
+                },
+                children: []
+              })
+            ]
           })
         ]
       }),
@@ -148,6 +156,20 @@ const createTree = (): TreeNodeInterface => {
         id: '6',
         info: {
           name: 'NODE+6'
+        },
+        children: []
+      }),
+      createTreeNode({
+        id: '7',
+        info: {
+          name: 'NODE+7'
+        },
+        children: []
+      }),
+      createTreeNode({
+        id: '8',
+        info: {
+          name: 'NODE+8'
         },
         children: []
       })

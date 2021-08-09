@@ -1,3 +1,6 @@
+/* eslint-disable max-depth */
+/* eslint-disable max-statements */
+/* eslint-disable complexity */
 import { useMemo } from 'react'
 import * as d3 from 'd3' // eslint-disable-line import/no-duplicates
 import { HierarchyPointNode } from 'd3' // eslint-disable-line import/no-duplicates
@@ -56,11 +59,19 @@ const calculateNodeXorYPosition = (isX: boolean) => {
 
         if (siblings) {
           index = siblings.findIndex(leaf => leaf === node)
-          position =
-            siblings.length % 2
-              ? Math.floor(index - siblings.length / 2) * nodeSizeAttr
-              : Math.floor(index - siblings.length / 2) * nodeSizeAttr -
-                nodeSizeAttr / 2
+          const indexWithChildren = siblings.findIndex(leaf => leaf.children)
+
+          if (indexWithChildren !== -1) {
+            position =
+              siblings[indexWithChildren][xOrY] +
+              (index - indexWithChildren) * nodeSizeAttr
+          } else {
+            position =
+              siblings.length % 2
+                ? Math.floor(index - siblings.length / 2) * nodeSizeAttr
+                : Math.floor(index - siblings.length / 2) * nodeSizeAttr -
+                  nodeSizeAttr / 2
+          }
         }
       }
     } else {
@@ -74,8 +85,22 @@ const calculateNodeXorYPosition = (isX: boolean) => {
             return acc
           }, 0) / node.children.length
       } else {
+        const childWithChildrenIndex = node.children.findIndex(
+          child => child.children
+        )
+
+        if (childWithChildrenIndex !== -1) {
+          resultFn(node.children[childWithChildrenIndex], {
+            leaves,
+            nodeSizeAttr,
+            aggregationType
+          })
+        }
+
         node.children.reduce((acc, child) => {
-          resultFn(child, { leaves, nodeSizeAttr, aggregationType })
+          if (!child.children) {
+            resultFn(child, { leaves, nodeSizeAttr, aggregationType })
+          }
 
           return acc
         }, 0)
