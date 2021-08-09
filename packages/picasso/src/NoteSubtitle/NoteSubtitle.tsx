@@ -8,10 +8,10 @@ export interface Props extends BaseProps {
   children: ReactNode
 }
 
-export const NotesSubtitle = forwardRef<HTMLDivElement, Props>(
-  function NotesSubtitle ({ children, ...rest }, ref) {
+export const NoteSubtitle = forwardRef<HTMLDivElement, Props>(
+  function NoteSubtitle ({ children, ...rest }, ref) {
     return (
-      <Container ref={ref} flex direction='row' bottom='small' {...rest}>
+      <Container ref={ref} bottom='small' {...rest}>
         <Typography color='dark-grey' size='small'>
           {children}
         </Typography>
@@ -20,8 +20,8 @@ export const NotesSubtitle = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-NotesSubtitle.defaultProps = {}
+NoteSubtitle.defaultProps = {}
 
-NotesSubtitle.displayName = 'NotesSubtitle'
+NoteSubtitle.displayName = 'NoteSubtitle'
 
-export default NotesSubtitle
+export default NoteSubtitle

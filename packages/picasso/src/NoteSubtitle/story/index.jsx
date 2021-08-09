@@ -1,10 +1,10 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
-import { NotesSubtitle } from '../NotesSubtitle'
+import { NoteSubtitle } from '../NoteSubtitle'
 
 const componentDocs = PicassoBook.createComponentDocs(
-  NotesSubtitle,
-  'Notes.Subtitle',
-  'Notes subtitle'
+  NoteSubtitle,
+  'Note.Subtitle',
+  'Note subtitle'
 )
 
 export default {

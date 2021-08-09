@@ -7,8 +7,8 @@ export interface Props extends BaseProps {
   children: ReactNode
 }
 
-export const NotesContent = forwardRef<HTMLDivElement, Props>(
-  function NotesContent ({ children, ...rest }, ref) {
+export const NoteContent = forwardRef<HTMLDivElement, Props>(
+  function NoteContent ({ children, ...rest }, ref) {
     return (
       <Typography ref={ref} as='p' size='medium' color='black' {...rest}>
         {children}
@@ -17,8 +17,8 @@ export const NotesContent = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-NotesContent.defaultProps = {}
+NoteContent.defaultProps = {}
 
-NotesContent.displayName = 'NotesContent'
+NoteContent.displayName = 'NoteContent'
 
-export default NotesContent
+export default NoteContent

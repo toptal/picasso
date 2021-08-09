@@ -1,10 +1,10 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
-import { NotesContent } from '../NotesContent'
+import { NoteContent } from '../NoteContent'
 
 const componentDocs = PicassoBook.createComponentDocs(
-  NotesContent,
-  'Notes.Content',
-  'Notes content'
+  NoteContent,
+  'Note.Content',
+  'Note content'
 )
 
 export default {

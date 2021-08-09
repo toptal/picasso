@@ -1,26 +1,26 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import { Container, Notes } from '@toptal/picasso'
+import { Container, Note } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const NotesTest = () => (
-  <Notes>
-    <Notes.Title>Awesome title</Notes.Title>
-    <Notes.Subtitle>added on November 14, 2019 at 3:46</Notes.Subtitle>
-    <Notes.Content>
+const NoteExample = () => (
+  <Note>
+    <Note.Title>Awesome title</Note.Title>
+    <Note.Subtitle>added on November 14, 2019 at 3:46</Note.Subtitle>
+    <Note.Content>
       This is a dummy content comment used for example purpouses
-    </Notes.Content>
-  </Notes>
+    </Note.Content>
+  </Note>
 )
 
 describe('ButtonAction', () => {
   it('renders', () => {
     mount(
       <TestingPicasso>
-        <NotesTest />
+        <NoteExample />
 
         <Container variant='blue'>
-          <NotesTest />
+          <NoteExample />
         </Container>
       </TestingPicasso>
     )

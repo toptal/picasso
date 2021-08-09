@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import NotesContent from './NotesContent'
+import NotesContent from './NoteContent'
 
 const renderNotesContent = (children: ReactNode) => {
   return render(<NotesContent>{children}</NotesContent>)

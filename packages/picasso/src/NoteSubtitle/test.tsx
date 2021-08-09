@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import NotesSubtitle from './NotesSubtitle'
+import NotesSubtitle from './NoteSubtitle'
 
 const renderNotesSubtitle = (children: ReactNode) => {
   return render(<NotesSubtitle>{children}</NotesSubtitle>)
