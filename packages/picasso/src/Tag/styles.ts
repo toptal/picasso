@@ -18,8 +18,8 @@ export default ({ palette }: Theme) =>
       borderColor: palette.blue.main
     },
     green: {
-      color: palette.green.main,
-      borderColor: palette.green.main
+      color: palette.green.dark,
+      borderColor: palette.green.dark
     },
     yellow: {
       color: palette.yellow.main,
