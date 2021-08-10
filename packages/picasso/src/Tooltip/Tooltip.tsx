@@ -171,7 +171,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   onTransitionExited?: () => void
   /** Tooltip div ref */
   tooltipRef?: React.Ref<HTMLDivElement>
-  /** A node, component instance, or function that returns either. The container will have the portal children appended to it. */
+  /** A node, or a function that returns node. The container will have the portal children appended to it. */
   container?: ContainerValue
 }
 

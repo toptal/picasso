@@ -41,7 +41,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   onClose?: () => void
   /** Callback executed when modal is being opened */
   onOpen?: () => void
-  /** A node, component instance, or function that returns either. The container will have the portal children appended to it. */
+  /** A node, or a function that returns node. The container will have the portal children appended to it. */
   container?: ContainerValue
   /** If `true`, the backdrop is not rendered */
   hideBackdrop?: boolean
