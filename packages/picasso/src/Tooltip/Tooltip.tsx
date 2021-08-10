@@ -43,6 +43,8 @@ type ChildrenProps = {
   onMouseLeave?: () => void
 }
 
+type ContainerValue = HTMLElement | (() => HTMLElement)
+
 interface UseTooltipStateOptions {
   externalOpen?: boolean
 }
@@ -169,6 +171,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   onTransitionExited?: () => void
   /** Tooltip div ref */
   tooltipRef?: React.Ref<HTMLDivElement>
+  /** A node, component instance, or function that returns either. The container will have the portal children appended to it. */
+  container?: ContainerValue
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTooltip' })
@@ -194,12 +198,13 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     compact,
     maxWidth,
     tooltipRef,
+    container,
     ...rest
   } = props
 
   const classes = useStyles()
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
-  const container = usePicassoRoot()
+  const picassoRootContainer = usePicassoRoot()
 
   const delayDuration = getDelayDuration(delay)
 
@@ -225,7 +230,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
       ref={ref}
       PopperProps={{
         ref: tooltipRef,
-        container,
+        container: container || picassoRootContainer,
         disablePortal,
         popperOptions: {
           modifiers: {
