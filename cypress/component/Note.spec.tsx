@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import { Container, Note } from '@toptal/picasso'
+import { Container } from '@toptal/picasso'
+import { Note } from '@toptal/picasso-lab'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const NoteExample = () => (
@@ -13,7 +14,7 @@ const NoteExample = () => (
   </Note>
 )
 
-describe('ButtonAction', () => {
+describe('Note', () => {
   it('renders', () => {
     mount(
       <TestingPicasso>

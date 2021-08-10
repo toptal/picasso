@@ -14,7 +14,7 @@ const renderNote = () => {
 }
 
 describe('Note', () => {
-  it('default render', () => {
+  it('renders', () => {
     const { container } = renderNote()
 
     expect(container).toMatchSnapshot()

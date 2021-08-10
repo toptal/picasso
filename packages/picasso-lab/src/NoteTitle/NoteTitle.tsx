@@ -2,9 +2,9 @@ import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import { Typography } from '@toptal/picasso'
 
 import styles from './styles'
-import Typography from '../Typography'
 
 export interface Props extends BaseProps {
   children: React.ReactNode

@@ -1,7 +1,6 @@
 import React, { forwardRef, ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
-
-import Typography from '../Typography'
+import { Typography } from '@toptal/picasso'
 
 export interface Props extends BaseProps {
   children: ReactNode

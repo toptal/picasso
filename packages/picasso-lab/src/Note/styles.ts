@@ -1,13 +1,18 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
+const barWidth = 4
+
+export default ({ palette, sizes, spacing }: Theme) =>
   createStyles({
     root: {
-      borderRadius: '0.4rem',
-      border: `1px solid ${palette.grey.lighter}`,
-      padding: '1.75rem',
+      borderRadius: sizes.borderRadius.medium,
+      border: `1px solid ${palette.grey.lighter2}`,
+      padding: `${spacing(3)}px ${spacing(3)}px ${spacing(3)}px ${
+        spacing(3) + barWidth
+      }px`,
       position: 'relative',
       overflow: 'hidden',
+      backgroundColor: palette.common.white,
       '&:before': {
         background: palette.yellow.main,
         display: 'block',
@@ -16,7 +21,7 @@ export default ({ palette }: Theme) =>
         position: 'absolute',
         content: '""',
         top: 0,
-        width: '0.2rem'
+        width: barWidth
       }
     }
   })

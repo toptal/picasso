@@ -135,8 +135,6 @@ export { default as Badge } from './Badge'
 export type { BadgeProps } from './Badge'
 export { default as Breadcrumbs } from './Breadcrumbs'
 export type { BreadcrumbsProps } from './Breadcrumbs'
-export { default as Note } from './Note'
-export type { NoteProps } from './Note'
 
 export * from './Icon'
 
