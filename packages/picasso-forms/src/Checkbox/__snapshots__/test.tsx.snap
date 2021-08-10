@@ -168,7 +168,7 @@ exports[`Form.Checkbox default render for single checkbox 1`] = `
               <span
                 class="PicassoFormLabel-text"
               >
-                checkbox-label
+                The checkbox label
               </span>
             </span>
           </label>
@@ -231,7 +231,7 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
               <span
                 class="PicassoFormLabel-text"
               >
-                checkbox-label
+                The checkbox label
               </span>
             </span>
           </label>

@@ -197,3 +197,7 @@ however, you may need custom validators for more complex types of fields.
     title: 'File input on a Form',
     description: 'Showcase how to upload files on the form submission'
   }) // picasso-skip-visuals
+  .addExample('Form/story/TitleCase.example.tsx', {
+    title: 'Title case',
+    description: "Display the field's label in title case."
+  }) // picasso-skip-visuals

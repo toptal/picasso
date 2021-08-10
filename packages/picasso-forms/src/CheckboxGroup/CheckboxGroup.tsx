@@ -12,11 +12,11 @@ import CheckboxGroupContext from './CheckboxGroupContext'
 export type Props = CheckboxGroupProps & FieldProps<CheckboxProps['value']>
 
 export const CheckboxGroup = (props: Props) => {
-  const { children, ...rest } = props
+  const { children, titleCase, ...rest } = props
 
   return (
     <CheckboxGroupContext.Provider value={props.name}>
-      <FieldWrapper {...rest} type='checkbox'>
+      <FieldWrapper titleCase={titleCase} {...rest} type='checkbox'>
         {() => (
           <PicassoCheckbox.Group {...rest}>{children}</PicassoCheckbox.Group>
         )}
