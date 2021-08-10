@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.9...@toptal/picasso@10.2.0) (2021-08-10)
+
+
+### Features
+
+* **Dropdown:** add contentOverflow option ([#2124](https://github.com/toptal/picasso/issues/2124)) ([55fe14b](https://github.com/toptal/picasso/commit/55fe14b434dae611806683589f99bdbfa735f62f))
+
+
+
+
+
 ## [10.1.9](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.8...@toptal/picasso@10.1.9) (2021-08-09)
 
 
