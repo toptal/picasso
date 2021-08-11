@@ -9,6 +9,7 @@ import { Form as PicassoForm, RequiredDecoration } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { FileUpload } from '@toptal/picasso/FileInput'
 import { DateOrDateRangeType } from '@toptal/picasso-lab'
+import { TextLabelProps } from '@toptal/picasso-shared'
 
 import { useFormContext } from '../Form/FormContext'
 import { useFormConfig, FormConfigProps, RequiredVariant } from '../FormConfig'
@@ -32,13 +33,15 @@ export type FieldProps<TInputValue> = FinalFieldProps<
   TInputValue,
   FieldRenderProps<TInputValue, HTMLInputElement>,
   HTMLInputElement
->
+> &
+  TextLabelProps
 
 export type Props<
   TInputValue,
   TWrappedComponentProps
 > = TWrappedComponentProps &
-  FieldProps<TInputValue> & {
+  FieldProps<TInputValue> &
+  TextLabelProps & {
     name: string
     type?: string
     hideFieldLabel?: boolean
@@ -167,6 +170,7 @@ const FieldWrapper = <
     validate,
     validateFields,
     value,
+    titleCase,
     //
     ...rest
   } = props
@@ -266,6 +270,7 @@ const FieldWrapper = <
           requiredDecoration={requiredDecoration}
           htmlFor={id}
           disabled={rest.disabled}
+          titleCase={titleCase}
         >
           {label}
         </PicassoForm.Label>

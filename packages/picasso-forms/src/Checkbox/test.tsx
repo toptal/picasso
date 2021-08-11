@@ -7,7 +7,7 @@ import CheckboxGroup from '../CheckboxGroup'
 import Checkbox, { Props } from './Checkbox'
 
 const renderCheckbox = (
-  { required }: Props,
+  { required, titleCase }: Props,
   formConfig: FormConfigProps = {}
 ) =>
   render(
@@ -15,10 +15,11 @@ const renderCheckbox = (
       <Form onSubmit={() => {}}>
         <Checkbox
           name='single-checkbox'
-          label='checkbox-label'
+          label='The checkbox label'
           value='checkbox-value'
           data-testid='single-checkbox'
           required={required}
+          titleCase={titleCase}
         />
       </Form>
     </Form.ConfigProvider>
@@ -74,5 +75,17 @@ describe('Form.Checkbox', () => {
     const { getByTestId } = renderCheckbox({})
 
     expect(getByTestId('single-checkbox')).not.toHaveTextContent('(optional)')
+  })
+
+  it('shows the label in default case', () => {
+    const { getByLabelText } = renderCheckbox({})
+
+    expect(getByLabelText('The checkbox label')).toBeInTheDocument()
+  })
+
+  it('shows the label in title case', () => {
+    const { getByLabelText } = renderCheckbox({ titleCase: true })
+
+    expect(getByLabelText('The Checkbox Label')).toBeInTheDocument()
   })
 })

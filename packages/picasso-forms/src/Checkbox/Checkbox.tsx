@@ -58,7 +58,11 @@ export const Checkbox = ({
       name={name!}
     >
       {(input: CheckboxProps) => (
-        <PicassoCheckbox {...input} requiredDecoration={requiredDecoration} />
+        <PicassoCheckbox
+          {...input}
+          titleCase={restProps.titleCase}
+          requiredDecoration={requiredDecoration}
+        />
       )}
     </FieldWrapper>
   )
