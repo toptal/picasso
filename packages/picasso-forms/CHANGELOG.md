@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.5.0...@toptal/picasso-forms@4.6.0) (2021-08-11)
+
+
+### Features
+
+* add title case for radio or checkbox groups ([#2131](https://github.com/toptal/picasso/issues/2131)) ([9229edf](https://github.com/toptal/picasso/commit/9229edf70c852696ca78728d797c9a5f7a1f0621))
+
+
+
+
+
 # [4.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.4.0...@toptal/picasso-forms@4.5.0) (2021-07-14)
 
 
