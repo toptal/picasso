@@ -1,6 +1,5 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import { Container } from '@toptal/picasso'
 import { Note } from '@toptal/picasso-lab'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
@@ -19,10 +18,6 @@ describe('Note', () => {
     mount(
       <TestingPicasso>
         <NoteExample />
-
-        <Container variant='blue'>
-          <NoteExample />
-        </Container>
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
