@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso@10.2.0...@toptal/picasso@10.2.1) (2021-08-11)
+
+
+### Bug Fixes
+
+* **Tooltip:** add container prop ([#2130](https://github.com/toptal/picasso/issues/2130)) ([b1b4b8d](https://github.com/toptal/picasso/commit/b1b4b8ddc84becb7b30cd002702a0e5e3dbe5430))
+
+
+
+
+
 # [10.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.1.9...@toptal/picasso@10.2.0) (2021-08-10)
 
 
