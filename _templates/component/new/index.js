@@ -4,8 +4,7 @@ const AVAILABLE_PACKAGES = [
   'picasso',
   'picasso-lab',
   'picasso-forms',
-  'picasso-charts',
-  'picasso-provider'
+  'picasso-charts'
 ]
 
 /**

@@ -2,8 +2,7 @@ const AVAILABLE_PACKAGES = [
   'picasso',
   'picasso-lab',
   'picasso-forms',
-  'picasso-charts',
-  'picasso-provider'
+  'picasso-charts'
 ]
 
 const DEFAULT_EXAMPLE_COMMAND = 'example'

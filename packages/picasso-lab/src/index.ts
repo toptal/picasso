@@ -13,3 +13,4 @@ export { default as Section } from './Section'
 export type { SectionProps } from './Section'
 export { default as Note } from './Note'
 export type { NoteProps } from './Note'
+// placeholder for hygen generator. Genereates export before this comment.
