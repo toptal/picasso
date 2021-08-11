@@ -1,19 +1,46 @@
+const AVAILABLE_PACKAGES = [
+  'picasso',
+  'picasso-lab',
+  'picasso-forms',
+  'picasso-charts',
+  'picasso-provider'
+]
+
 const DEFAULT_EXAMPLE_COMMAND = 'example'
 
+/**
+ * @example yarn generate:example ComponentName ExampleName Package
+ * @example yarn generate:example --component=ComponentName --example=ExampleName --package=Package
+ * @example yarn generate:example
+ */
 module.exports = {
   prompt: ({ prompter, args }) => {
-    const argvComponent = process.argv[process.argv.length - 2]
-    const argvExampleName = process.argv[process.argv.length - 1]
+    const argvComponent = process.argv[process.argv.length - 3]
+    const argvExampleName = process.argv[process.argv.length - 2]
+    const argvPackage = process.argv[process.argv.length - 1]
 
-    if (argvExampleName !== DEFAULT_EXAMPLE_COMMAND) {
+    const inputAsParams =
+      AVAILABLE_PACKAGES.includes(argvPackage) &&
+      argvExampleName !== DEFAULT_EXAMPLE_COMMAND
+
+    const inputsAsArgs =
+      args.component &&
+      args.example &&
+      args.package &&
+      AVAILABLE_PACKAGES.includes(args.package)
+
+    if (inputAsParams) {
       return Promise.resolve({
         component: argvComponent,
-        example: argvExampleName
+        example: argvExampleName,
+        package: argvPackage
       })
-    } else if (args.component && args.example) {
+    }
+    if (inputsAsArgs) {
       return Promise.resolve({
         component: args.component,
-        example: args.example
+        example: args.example,
+        package: args.package
       })
     }
 
@@ -27,6 +54,12 @@ module.exports = {
         type: 'input',
         name: 'example',
         message: "What's the example name?"
+      },
+      {
+        type: 'select',
+        name: 'package',
+        message: `To what package would you like to add component?`,
+        choices: AVAILABLE_PACKAGES
       }
     ])
   }

@@ -1,7 +1,7 @@
 ---
 inject: true
 to: packages/<%= package %>/src/index.ts
-before: // insert point for hypen
+before: export \* from './Icon'
 ---
 <%
   Name = h.changeCase.pascalCase(name)

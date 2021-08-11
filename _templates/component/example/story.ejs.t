@@ -1,6 +1,6 @@
 ---
 inject: true
-to: src/components/<%= h.changeCase.pascalCase(component) %>/story/index.jsx
+to: packages/<%= package %>/src/<%= h.changeCase.pascalCase(component) %>/story/index.jsx
 append: true
 ---
 <%

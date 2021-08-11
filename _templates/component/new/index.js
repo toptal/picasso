@@ -1,13 +1,36 @@
 const DEFAULT_NEWCOMPONENT_COMMAND = 'new'
 
+const AVAILABLE_PACKAGES = [
+  'picasso',
+  'picasso-lab',
+  'picasso-forms',
+  'picasso-charts',
+  'picasso-provider'
+]
+
+/**
+ * @example yarn generate:component ComponentName picasso
+ * @example yarn generate:component --name=ComponentName --package=picasso
+ * @example yarn generate:component
+ */
 module.exports = {
   prompt: ({ prompter, args }) => {
-    const argvName = process.argv[process.argv.length - 1]
+    const argvPackage = process.argv[process.argv.length - 1]
+    const argvName = process.argv[process.argv.length - 2]
 
-    if (argvName !== DEFAULT_NEWCOMPONENT_COMMAND) {
-      return Promise.resolve({ name: argvName })
-    } else if (args.name) {
-      return Promise.resolve({ name: args.name })
+    const inputsAsParams =
+      AVAILABLE_PACKAGES.includes(argvPackage) &&
+      argvName !== DEFAULT_NEWCOMPONENT_COMMAND
+
+    const inputsAsArgs =
+      args.name && args.package && AVAILABLE_PACKAGES.includes(args.package)
+
+    if (inputsAsParams) {
+      return Promise.resolve({ name: argvName, package: argvPackage })
+    }
+
+    if (inputsAsArgs) {
+      return Promise.resolve({ name: args.name, package: args.package })
     }
 
     return prompter.prompt([
@@ -20,13 +43,7 @@ module.exports = {
         type: 'select',
         name: 'package',
         message: `To what package would you like to add component?`,
-        choices: [
-          'picasso',
-          'picasso-lab',
-          'picasso-forms',
-          'picasso-charts',
-          'picasso-provider'
-        ]
+        choices: AVAILABLE_PACKAGES
       }
     ])
   }
