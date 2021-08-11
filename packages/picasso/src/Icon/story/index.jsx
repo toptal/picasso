@@ -43,7 +43,7 @@ page
   ])
   .addTextSection(
     `
-  Didn't find a required Icon? Feel free to add it yourself - [how to add icon](https://github.com/toptal/picasso#add-icon)
+  Didn't find a required Icon? Feel free to add it yourself - [how to add icon](https://github.com/toptal/picasso#add-an-icon)
   `
   )
   .addExample('Icon/story/List.example.tsx', {
