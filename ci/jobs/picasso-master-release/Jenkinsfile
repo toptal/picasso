@@ -134,7 +134,7 @@ pipeline {
         script {
           downStreamBuilds[1] = buildWithParameters(
             jobName: releaseDocsJobName,
-            propagate: false,
+            propagate: true,
             wait: true,
             parameters: [
               COMMIT_ID: imageCommitId
