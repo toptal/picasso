@@ -117,8 +117,10 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider (
   )
 
   // From Workaround for https://github.com/mui-org/material-ui/issues/21889
-  const ValueLabelComponent = ((DefaultValueLabelComponent ||
-    UserDefinedTooltip) as unknown) as React.ElementType<MUIValueLabelProps>
+  const ValueLabelComponent = ((UserDefinedTooltip ||
+    DefaultValueLabelComponent) as unknown) as React.ElementType<
+    MUIValueLabelProps
+  >
 
   return (
     <SliderContextProvider>

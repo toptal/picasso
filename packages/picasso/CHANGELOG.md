@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso@10.3.0...@toptal/picasso@10.3.1) (2021-08-12)
+
+
+### Bug Fixes
+
+* allow default tooltip to be overwriten on slider ([#2133](https://github.com/toptal/picasso/issues/2133)) ([4ebdc7b](https://github.com/toptal/picasso/commit/4ebdc7b3afacb9f459ea627e681251caaea4a147))
+
+
+
+
+
+# [10.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.2.1...@toptal/picasso@10.3.0) (2021-08-12)
+
+
+### Features
+
+* **Icon:** add 24px version of the Player icon ([#2132](https://github.com/toptal/picasso/issues/2132)) ([200864d](https://github.com/toptal/picasso/commit/200864d127863cf378cddd76a825cdf4949a05bc))
+
+
+
+
+
 ## [10.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso@10.2.0...@toptal/picasso@10.2.1) (2021-08-11)
 
 
