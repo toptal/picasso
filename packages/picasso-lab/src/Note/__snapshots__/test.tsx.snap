@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Note renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="makeStyles-root"
+    >
+      <div
+        class="makeStyles-root"
+      >
+        <h4
+          class="MuiTypography-root PicassoTypography-headingSmall MuiTypography-h4"
+        >
+          Title
+        </h4>
+      </div>
+      <div
+        class="PicassoContainer-bottomsmallMargin"
+      >
+        <p
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
+        >
+          Subtitle
+        </p>
+      </div>
+      <p
+        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black MuiTypography-body1"
+      >
+        Content
+      </p>
+    </div>
+  </div>
+</div>
+`;
