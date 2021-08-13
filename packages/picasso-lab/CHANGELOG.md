@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.2.0...@toptal/picasso-lab@7.3.0) (2021-08-13)
+
+
+### Features
+
+* **Note:** add Note component ([#2128](https://github.com/toptal/picasso/issues/2128)) ([0376992](https://github.com/toptal/picasso/commit/0376992c3448a0fb98f40206bf1212ceb14d68e6))
+
+
+
+
+
 # [7.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.1.3...@toptal/picasso-lab@7.2.0) (2021-08-09)
 
 
