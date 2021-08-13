@@ -12,4 +12,4 @@ export { OnChange, OnFocus, ExternallyChanged, OnBlur } from 'react-final-form-l
 export { default as Form } from './Form'
 export { default as FieldWrapper } from './FieldWrapper'
 export type { FormConfigProps, RequiredVariant } from './FormConfig'
-// placeholder for hygen generator. Genereates export before this comment.
+// hygen code generator inserts export statements above this comment.

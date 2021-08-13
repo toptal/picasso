@@ -1,7 +1,7 @@
 ---
 inject: true
 to: packages/<%= package %>/src/index.ts
-before: // placeholder for hygen generator. Genereates export before this comment.
+before: // hygen code generator inserts export statements above this comment.
 ---
 <%
   Name = h.changeCase.pascalCase(name)
