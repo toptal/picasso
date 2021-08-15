@@ -136,6 +136,7 @@ export type { BadgeProps } from './Badge'
 export { default as Breadcrumbs } from './Breadcrumbs'
 export type { BreadcrumbsProps } from './Breadcrumbs'
 
+// hygen code generator inserts export statements above this comment.
 export * from './Icon'
 
 // TODO: Remove in @toptal/picasso@11.x.x version

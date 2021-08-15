@@ -1,5 +1,5 @@
 ---
-to: src/components/<%= h.changeCase.pascalCase(component) %>/story/<%= h.changeCase.pascalCase(example) %>.example.jsx
+to: packages/<%= package %>/src/<%= h.changeCase.pascalCase(component) %>/story/<%= h.changeCase.pascalCase(example) %>.example.jsx
 ---
 <%
   Component = h.changeCase.pascalCase(component)
