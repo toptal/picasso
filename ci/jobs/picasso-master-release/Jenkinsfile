@@ -64,7 +64,7 @@ pipeline {
           imageCommitId = gitCommit()
           downStreamBuilds[0] = buildWithParameters(
             jobName: buildImageJobName,
-            propagate: false,
+            propagate: true,
             wait: true,
             parameters: [
               BRANCH: gitBranch(),
@@ -134,7 +134,7 @@ pipeline {
         script {
           downStreamBuilds[1] = buildWithParameters(
             jobName: releaseDocsJobName,
-            propagate: false,
+            propagate: true,
             wait: true,
             parameters: [
               COMMIT_ID: imageCommitId
