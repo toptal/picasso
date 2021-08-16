@@ -1,9 +1,12 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
+const BANNER_HEIGHT = '0.25rem'
+
 export default ({ palette, zIndex }: Theme) =>
   createStyles({
     root: {
-      fontSize: '0.7rem',
+      fontSize: '0.75rem',
+      fontWeight: 600,
       lineHeight: '1em',
       position: 'fixed',
       textAlign: 'center',
@@ -13,13 +16,13 @@ export default ({ palette, zIndex }: Theme) =>
       pointerEvents: 'none'
     },
     rootDevelopment: {
-      borderTop: `0.4rem solid ${palette.green.main}`
+      borderTop: `${BANNER_HEIGHT} solid ${palette.green.dark}`
     },
     rootStaging: {
-      borderTop: `0.4rem solid ${palette.red.main}`
+      borderTop: `${BANNER_HEIGHT} solid ${palette.red.main}`
     },
     rootTemploy: {
-      borderTop: `0.4rem solid ${palette.yellow.main}`
+      borderTop: `${BANNER_HEIGHT} solid ${palette.yellow.main}`
     },
     label: {
       borderRadius: '0 0 0.3rem 0.3rem',
@@ -27,13 +30,13 @@ export default ({ palette, zIndex }: Theme) =>
       cursor: 'pointer',
       display: 'inline-block',
       letterSpacing: '.01em',
-      padding: '0.25rem 0.7rem 0.5rem',
+      padding: '0.25rem 0.5rem 0.5rem',
       textTransform: 'uppercase',
       userSelect: 'none',
       pointerEvents: 'initial'
     },
     labelDevelopment: {
-      backgroundColor: palette.green.main
+      backgroundColor: palette.green.dark
     },
     labelStaging: {
       backgroundColor: palette.red.main
