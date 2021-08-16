@@ -42,7 +42,7 @@ const Example = () => (
   </div>
 )
 
-describe('Note', () => {
+describe('EnvironmentBanner', () => {
   it('renders', () => {
     mount(
       <TestingPicasso>
