@@ -1,56 +1,29 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import { EnvironmentBanner, Typography, Container } from '@toptal/picasso'
-import styled from 'styled-components'
+import { EnvironmentBanner } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const Wrapper = styled(Container)`
-  height: 2rem;
-  position: relative;
-`
-
-const Example = () => (
-  <div>
-    <Wrapper>
-      <Typography variant='heading' size='small'>
-        Development
-      </Typography>
-    </Wrapper>
-    <Wrapper>
-      <EnvironmentBanner environment='development' productName='Picasso' />
-    </Wrapper>
-    <Wrapper>
-      <Typography variant='heading' size='small'>
-        Temploy
-      </Typography>
-    </Wrapper>
-    <Wrapper>
-      <EnvironmentBanner environment='temploy' productName='Picasso' />
-    </Wrapper>
-    <Wrapper>
-      <Typography variant='heading' size='small'>
-        Staging
-      </Typography>
-    </Wrapper>
-    <Wrapper>
-      <EnvironmentBanner environment='staging' productName='Picasso' />
-    </Wrapper>
-    <Wrapper>
-      <Typography variant='heading' size='small'>
-        Production (should be empty)
-      </Typography>
-    </Wrapper>
-    <Wrapper>
-      <EnvironmentBanner environment='production' productName='Picasso' />
-    </Wrapper>
-  </div>
-)
-
 describe('EnvironmentBanner', () => {
-  it('renders', () => {
+  it('renders in development enviroment', () => {
     mount(
       <TestingPicasso>
-        <Example />
+        <EnvironmentBanner environment='development' productName='Picasso' />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+  it('renders in staging enviroment', () => {
+    mount(
+      <TestingPicasso>
+        <EnvironmentBanner environment='staging' productName='Picasso' />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+  it('renders in temploy enviroment', () => {
+    mount(
+      <TestingPicasso>
+        <EnvironmentBanner environment='temploy' productName='Picasso' />
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
