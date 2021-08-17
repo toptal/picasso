@@ -52,7 +52,7 @@
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-typescript": "^7.13.0",
     "@babel/standalone": "^7.13.9",
-    "@cypress/react": "^4.16.4",
+    "@cypress/react": "^5.9.4",
     "@changesets/cli": "^2.17.0",
     "@changesets/changelog-github": "^0.4.1",
     "@cypress/webpack-preprocessor": "^5.4.8",
