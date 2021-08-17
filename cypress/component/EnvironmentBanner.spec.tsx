@@ -1,44 +1,48 @@
 import React from 'react'
 import { mount } from '@cypress/react'
 import { EnvironmentBanner, Typography, Container } from '@toptal/picasso'
+import styled from 'styled-components'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const CONTAINER_HEIGHT = '2rem'
+const Wrapper = styled(Container)`
+  height: 2rem;
+  position: relative;
+`
 
 const Example = () => (
   <div>
-    <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
+    <Wrapper>
       <Typography variant='heading' size='small'>
         Development
       </Typography>
-    </Container>
-    <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
+    </Wrapper>
+    <Wrapper>
       <EnvironmentBanner environment='development' productName='Picasso' />
-    </Container>
-    <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
+    </Wrapper>
+    <Wrapper>
       <Typography variant='heading' size='small'>
         Temploy
       </Typography>
-    </Container>
-    <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
+    </Wrapper>
+    <Wrapper>
       <EnvironmentBanner environment='temploy' productName='Picasso' />
-    </Container>
-    <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
+    </Wrapper>
+    <Wrapper>
       <Typography variant='heading' size='small'>
         Staging
       </Typography>
-    </Container>
-    <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
+    </Wrapper>
+    <Wrapper>
       <EnvironmentBanner environment='staging' productName='Picasso' />
-    </Container>
-    <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
+    </Wrapper>
+    <Wrapper>
       <Typography variant='heading' size='small'>
         Production (should be empty)
       </Typography>
-    </Container>
-    <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
+    </Wrapper>
+    <Wrapper>
       <EnvironmentBanner environment='production' productName='Picasso' />
-    </Container>
+    </Wrapper>
   </div>
 )
 

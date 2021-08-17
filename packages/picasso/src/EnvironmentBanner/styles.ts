@@ -2,17 +2,15 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 const BANNER_HEIGHT = '0.25rem'
 
-export default ({ palette, zIndex }: Theme) =>
+export default ({ palette, zIndex, typography }: Theme) =>
   createStyles({
     root: {
-      fontSize: '0.75rem',
-      fontWeight: 600,
-      lineHeight: '1em',
       position: 'fixed',
       textAlign: 'center',
       top: 0,
       width: '100%',
       zIndex: zIndex.snackbar,
+      fontSize: '0.75rem',
       pointerEvents: 'none'
     },
     rootDevelopment: {
@@ -26,11 +24,14 @@ export default ({ palette, zIndex }: Theme) =>
     },
     label: {
       borderRadius: '0 0 0.3rem 0.3rem',
+
+      fontWeight: typography.fontWeights.semibold,
+      lineHeight: 1.5,
       color: palette.common.white,
       cursor: 'pointer',
       display: 'inline-block',
       letterSpacing: '.01em',
-      padding: '0.25rem 0.5rem 0.5rem',
+      padding: '0.25em 0.5rem',
       textTransform: 'uppercase',
       userSelect: 'none',
       pointerEvents: 'initial'
