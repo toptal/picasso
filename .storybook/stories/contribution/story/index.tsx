@@ -15,6 +15,8 @@ import JSS_ONBOARDING from '../../../../docs/contribution/jss-onboarding.md'
 import CREATING_EXAMPLES from '../../../../docs/contribution/creating-examples.md'
 // @ts-ignore
 import VISUAL_SNAPSHOTS from '../../../../docs/contribution/visual-testing.md'
+// @ts-ignore
+import COMPONENT_API from '../../../../docs/contribution/component-api.md'
 
 const section = PicassoBook.section('Contribution')
 section.createDocPage('GitHub workflow', doc(GITHUB_WORKFLOW))
@@ -23,3 +25,4 @@ section.createDocPage('JSS onboarding', doc(JSS_ONBOARDING))
 section.createDocPage('New components', doc(NEW_COMPONENT))
 section.createDocPage('Creating examples', doc(CREATING_EXAMPLES))
 section.createDocPage('Visual snapshots', doc(VISUAL_SNAPSHOTS))
+section.createDocPage('Design component API', doc(COMPONENT_API))

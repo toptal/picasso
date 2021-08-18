@@ -27,7 +27,7 @@ The following is a set of guidelines for contributing to Picasso and its package
 - [New components](docs/contribution/new-component-creation.md)
 - [Creating examples](docs/contribution/creating-examples.md)
 - [Visual snapshots](docs/contribution/visual-testing.md)
-- [API Principles](docs/api-principles.md)
+- [How to design component API](docs/contribution/component-api.md)
 - [Bug Fixes in LTS](docs/bug-fixes-in-lts.md)
 
 ## Tutorials
