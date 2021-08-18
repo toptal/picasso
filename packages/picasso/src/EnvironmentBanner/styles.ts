@@ -26,7 +26,7 @@ export default ({ palette, zIndex, typography }: Theme) =>
       borderRadius: '0 0 0.3rem 0.3rem',
 
       fontWeight: typography.fontWeights.semibold,
-      lineHeight: 1.5,
+      lineHeight: '1.5em',
       color: palette.common.white,
       cursor: 'pointer',
       display: 'inline-block',
