@@ -49,6 +49,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disableAutoClose?: boolean
   /** Disable the portal behavior. The children stay within it's parent DOM hierarchy. */
   disablePortal?: boolean
+  /** Disable the popper behavior. The dropdown will remain fixed below the button. */
+  disablePopper?: boolean
   popperOptions?: PopperOptions
   /** Callback invoked when component is opened */
   onOpen?: () => void
@@ -101,6 +103,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
     disableAutoClose,
     disableAutoFocus,
     disablePortal,
+    disablePopper,
     popperOptions,
     onOpen = noop,
     popperContainer,
@@ -240,7 +243,14 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
             When the anchor goes above the viewport, popper goes to infinite flipping.
             flipped: true -> flipped: false -> flipped: true -> ...
             */
-            modifiers: { flip: { enabled: contentOverflow !== 'visible' } },
+            modifiers: {
+              flip: {
+                enabled: !disablePopper && contentOverflow !== 'visible'
+              },
+              preventOverflow: {
+                enabled: !disablePopper
+              }
+            },
             ...popperOptions
           }}
           placement={placement}
@@ -280,6 +290,7 @@ Dropdown.defaultProps = {
   disableAutoClose: false,
   disableAutoFocus: true,
   disablePortal: false,
+  disablePopper: false,
   onClose: noop,
   onOpen: noop,
   placement: 'bottom-end',

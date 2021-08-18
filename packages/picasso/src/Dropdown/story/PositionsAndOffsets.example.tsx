@@ -53,6 +53,22 @@ const Example = () => (
           <Dropdown.Arrow />
         </Dropdown>
       </Container>
+
+      <Container right='large'>
+        <Dropdown
+          content={
+            <Menu>
+              <Menu.Item>First item</Menu.Item>
+              <Menu.Item>Second item</Menu.Item>
+              <Menu.Item>Third item</Menu.Item>
+            </Menu>
+          }
+          disablePopper
+        >
+          Default Dropdown (with disabled popper)
+          <Dropdown.Arrow />
+        </Dropdown>
+      </Container>
     </Container>
 
     <Container bottom='xsmall'>
