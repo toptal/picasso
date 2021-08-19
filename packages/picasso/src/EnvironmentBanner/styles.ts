@@ -1,4 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { rem } from '@toptal/picasso-shared'
 
 const BANNER_HEIGHT = '0.25rem'
 
@@ -31,7 +32,7 @@ export default ({ palette, zIndex, typography }: Theme) =>
       cursor: 'pointer',
       display: 'inline-block',
       letterSpacing: '.01em',
-      padding: '0.25em 0.5rem',
+      padding: `${rem('3px')} 0.5rem`,
       textTransform: 'uppercase',
       userSelect: 'none',
       pointerEvents: 'initial'
