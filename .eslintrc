@@ -2,7 +2,10 @@
   "extends": "./node_modules/@toptal/davinci-syntax/src/configs/.eslintrc",
   "overrides": [
     {
-      "files": ["*.example.jsx", "*.example.tsx"],
+      "files": [
+        "*.example.jsx",
+        "*.example.tsx"
+      ],
       "rules": {
         "react/no-multi-comp": "off",
         "react/require-optimization": "off",
@@ -13,7 +16,12 @@
     },
     // tests
     {
-      "files": ["test.ts", "test.tsx", "*.spec.ts", "*.spec.tsx"],
+      "files": [
+        "test.ts",
+        "test.tsx",
+        "*.spec.ts",
+        "*.spec.tsx"
+      ],
       "rules": {
         "@typescript-eslint/no-explicit-any": "off",
         "no-inline-styles/no-inline-styles": "off",
@@ -22,69 +30,128 @@
     },
     // codemod fixtures
     {
-      "files": ["packages/picasso-codemod/src/**"],
+      "files": [
+        "packages/picasso-codemod/src/**"
+      ],
       "rules": {
         "id-length": [
           "error",
           {
-            "exceptions": ["e", "_", "j"]
+            "exceptions": [
+              "e",
+              "_",
+              "j"
+            ]
           }
         ]
       }
     },
     // Generated files
     {
-      "files": ["packages/picasso/src/Icon/index.ts"],
+      "files": [
+        "packages/picasso/src/Icon/index.ts"
+      ],
       "rules": {
         "max-lines": "off"
       }
     },
     // don't allow picasso external imports inside picasso
     {
-      "files": ["packages/picasso/src/**"],
-      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "files": [
+        "packages/picasso/src/**"
+      ],
+      "excludedFiles": [
+        "*.example.jsx",
+        "*.example.tsx"
+      ],
       "rules": {
-        "no-restricted-imports": ["error", "@toptal/picasso"]
+        "no-restricted-imports": [
+          "error",
+          "@toptal/picasso",
+          "@toptal/picasso-lab",
+          "@toptal/picasso-forms",
+          "@toptal/picasso-charts"
+        ]
       }
     },
     // don't allow picasso-lab external imports inside picasso-lab
     {
-      "files": ["packages/picasso-lab/src/**"],
-      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "files": [
+        "packages/picasso-lab/src/**"
+      ],
+      "excludedFiles": [
+        "*.example.jsx",
+        "*.example.tsx"
+      ],
       "rules": {
-        "no-restricted-imports": ["error", "@toptal/picasso-lab"]
+        "no-restricted-imports": [
+          "error",
+          "@toptal/picasso-lab"
+        ]
       }
     },
     // don't allow picasso-forms external imports inside picasso-forms
     {
-      "files": ["packages/picasso-forms/src/**"],
-      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "files": [
+        "packages/picasso-forms/src/**"
+      ],
+      "excludedFiles": [
+        "*.example.jsx",
+        "*.example.tsx"
+      ],
       "rules": {
-        "no-restricted-imports": ["error", "@toptal/picasso-forms"]
+        "no-restricted-imports": [
+          "error",
+          "@toptal/picasso-forms"
+        ]
       }
     },
     // don't allow picasso-charts external imports inside picasso-charts
     {
-      "files": ["packages/picasso-charts/src/**"],
-      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "files": [
+        "packages/picasso-charts/src/**"
+      ],
+      "excludedFiles": [
+        "*.example.jsx",
+        "*.example.tsx"
+      ],
       "rules": {
-        "no-restricted-imports": ["error", "@toptal/picasso-charts"]
+        "no-restricted-imports": [
+          "error",
+          "@toptal/picasso-charts"
+        ]
       }
     },
     // don't allow picasso-provider external imports inside picasso-provider
     {
-      "files": ["packages/picasso-provider/src/**"],
-      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "files": [
+        "packages/picasso-provider/src/**"
+      ],
+      "excludedFiles": [
+        "*.example.jsx",
+        "*.example.tsx"
+      ],
       "rules": {
-        "no-restricted-imports": ["error", "@toptal/picasso-provider"]
+        "no-restricted-imports": [
+          "error",
+          "@toptal/picasso-provider"
+        ]
       }
     },
     // don't allow picasso-shared external imports inside picasso-provider
     {
-      "files": ["packages/picasso-provider/src/**"],
-      "excludedFiles": ["*.example.jsx", "*.example.tsx"],
+      "files": [
+        "packages/picasso-provider/src/**"
+      ],
+      "excludedFiles": [
+        "*.example.jsx",
+        "*.example.tsx"
+      ],
       "rules": {
-        "no-restricted-imports": ["error", "@toptal/picasso-shared"]
+        "no-restricted-imports": [
+          "error",
+          "@toptal/picasso-shared"
+        ]
       }
     }
   ]
