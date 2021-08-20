@@ -1,4 +1,4 @@
-const picassoCrossDependenciesRestrictionsMap = {
+const forbiddenImports = {
   picasso: ['picasso', 'picasso-lab', 'picasso-forms', 'picasso-charts'],
   'picasso-lab': ['picasso-lab'],
   'picasso-charts': ['picasso-charts'],
@@ -7,7 +7,7 @@ const picassoCrossDependenciesRestrictionsMap = {
 }
 
 const generateConfig = () =>
-  Object.entries(picassoCrossDependenciesRestrictionsMap).map(
+  Object.entries(forbiddenImports).map(
     ([srcPackageName, forbiddenPackageNames]) => {
       return {
         files: [`packages/${srcPackageName}/src/**`],
