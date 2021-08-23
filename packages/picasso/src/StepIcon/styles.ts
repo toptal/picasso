@@ -28,6 +28,7 @@ export default ({ palette, sizes }: Theme) =>
     },
     completed: {
       border: 'none',
-      backgroundColor: palette.green.main
+      backgroundColor: palette.common.white,
+      color: palette.green.dark
     }
   })
