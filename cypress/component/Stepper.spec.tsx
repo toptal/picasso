@@ -1,5 +1,7 @@
-import { Stepper } from '@toptal/picasso'
-import { TestingPicasso, Container } from '@toptal/picasso/test-utils'
+import React from 'react'
+import { mount } from '@cypress/react'
+import { Stepper, Container } from '@toptal/picasso'
+import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const Example = props => (
   <TestingPicasso>
