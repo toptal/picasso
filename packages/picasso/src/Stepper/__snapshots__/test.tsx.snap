@@ -21,12 +21,12 @@ exports[`Stepper render with all steps completed 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -68,12 +68,12 @@ exports[`Stepper render with all steps completed 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -115,12 +115,12 @@ exports[`Stepper render with all steps completed 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -162,12 +162,12 @@ exports[`Stepper render with all steps completed 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -213,12 +213,12 @@ exports[`Stepper render with full-width 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -260,12 +260,12 @@ exports[`Stepper render with full-width 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -307,12 +307,12 @@ exports[`Stepper render with full-width 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -354,12 +354,12 @@ exports[`Stepper render with full-width 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -405,12 +405,12 @@ exports[`Stepper render with hidden labels 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -452,12 +452,12 @@ exports[`Stepper render with hidden labels 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -499,12 +499,12 @@ exports[`Stepper render with hidden labels 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -546,12 +546,12 @@ exports[`Stepper render with hidden labels 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -597,12 +597,12 @@ exports[`Stepper renders 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
@@ -644,12 +644,12 @@ exports[`Stepper renders 1`] = `
               class="PicassoStepIcon-root PicassoStepIcon-completed"
             >
               <svg
-                class="PicassoSvgCheckMinor24-root"
+                class="PicassoSvgCheckSolid24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                 />
               </svg>
             </div>
