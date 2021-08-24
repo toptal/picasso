@@ -16,10 +16,25 @@ import PointLink from './PointLink'
 import PointNode from './PointNode'
 import styles from './styles'
 import { useZoom } from './useZoom'
-import { DEFAULT_SCALE_EXTENT, DEFAULT_WIDTH } from './variables'
+import {
+  DEFAULT_VERTICAL_MARGIN_V,
+  DEFAULT_HORIZONTAL_MARGIN_V,
+  DEFAULT_WIDTH,
+  DEFAULT_SCALE_EXTENT
+} from './variables'
 import { DirectionsType, TreeNodeInterface, TreeViewVariant } from './types'
-import { getDefaultMargins } from './utils'
+import { getFinalMargins } from './utils'
 
+type DirectionOptions = {
+  /** Determines the direction of the TreeView: vertical - top-to-bottom (default) or */
+  direction?: DirectionsType
+  /** Overrides default vertical margin - minimum vertical distance between nodes */
+  verticalMargin?: number
+  /** Overrides default horizontal margin - minimum horizontal distance between nodes */
+  horizontalMargin?: number
+  /** Variants of the tree: currently supports normal (default) and compact - special compact variant of the tree that works only for trees with one node with children per depth level */
+  variant?: TreeViewVariant
+}
 export interface Props {
   /** Root node of the Tree */
   data: TreeNodeInterface
@@ -35,14 +50,8 @@ export interface Props {
   showZoom?: boolean
   /** Scales the current zoom transform by coefficient */
   scaleCoefficient?: number
-  /** Determines the direction of the TreeView: vertical - top-to-bottom (default) or */
-  direction?: DirectionsType
-  /** Overrides default vertical margin - minimum vertical distance between nodes */
-  verticalMargin?: number
-  /** Overrides default horizontal margin - minimum horizontal distance between nodes */
-  horizontalMargin?: number
-  /** Variants of the tree: currently supports normal (default) and compact - special compact variant of the tree that works only for trees with one node with children per depth level */
-  variant?: TreeViewVariant
+  /** Options related to tree direction */
+  directionOptions?: DirectionOptions
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTreeView' })
@@ -56,16 +65,21 @@ export const TreeView = (props: Props) => {
     initialScale = 1,
     scaleCoefficient = 0.5,
     showZoom,
-    direction = 'vertical',
-    verticalMargin,
-    horizontalMargin,
-    variant = 'normal'
+    directionOptions
   } = props
+
+  const {
+    direction = 'vertical',
+    verticalMargin = DEFAULT_VERTICAL_MARGIN_V,
+    horizontalMargin = DEFAULT_HORIZONTAL_MARGIN_V,
+    variant = 'normal'
+  } = directionOptions || {}
+
   const classes = useStyles()
   const rootRef = createRef<SVGSVGElement>()
 
   const [finalVerticalMargin, finalHorizontalMargin] = useMemo(
-    () => getDefaultMargins(direction, verticalMargin, horizontalMargin),
+    () => getFinalMargins(direction, verticalMargin, horizontalMargin),
     [direction, verticalMargin, horizontalMargin]
   )
 

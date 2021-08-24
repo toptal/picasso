@@ -198,10 +198,12 @@ const Example = () => (
       data={rootNode}
       renderNode={renderNode}
       initialScale={0.8}
-      verticalMargin={20}
-      horizontalMargin={200}
-      direction='horizontal'
-      variant='compact'
+      directionOptions={{
+        verticalMargin: 20,
+        horizontalMargin: 200,
+        direction: 'horizontal',
+        variant: 'compact'
+      }}
     />
   </Container>
 )

@@ -1,6 +1,3 @@
-/* eslint-disable max-depth */
-/* eslint-disable max-statements */
-/* eslint-disable complexity */
 import { useMemo } from 'react'
 import * as d3 from 'd3' // eslint-disable-line import/no-duplicates
 import { HierarchyPointNode } from 'd3' // eslint-disable-line import/no-duplicates
@@ -32,102 +29,158 @@ export interface UseTreeResponse {
 }
 
 type NodeAggregationType = 'siblings' | 'leaves'
+type CoordinateType = 'x' | 'y'
 
-const calculateNodeXorYPosition = (isX: boolean) => {
-  const resultFn = (
-    node: HierarchyPointNode<TreeNodeInterface>,
-    {
-      leaves,
-      nodeSizeAttr,
-      aggregationType = 'leaves'
-    }: {
-      leaves: HierarchyPointNode<TreeNodeInterface>[]
-      nodeSizeAttr: number
-      aggregationType: NodeAggregationType
+type CalculateNodePositionOptions = {
+  node: HierarchyPointNode<TreeNodeInterface>
+  leaves: HierarchyPointNode<TreeNodeInterface>[]
+  nodeSizeAttr: number
+  aggregationType: NodeAggregationType
+}
+
+const getPositionLeavesAndNoChildren = (
+  options: CalculateNodePositionOptions
+) => {
+  const { leaves, node, nodeSizeAttr } = options
+  const index = leaves.findIndex(leaf => leaf === node)
+  const position = Math.floor(index - leaves.length / 2) * nodeSizeAttr
+
+  return position
+}
+
+const getPositionNoLeavesAndNoChildren = (
+  coordinateType: CoordinateType,
+  options: CalculateNodePositionOptions
+) => {
+  const { node, nodeSizeAttr } = options
+  const siblings = node?.parent?.children
+  let position = 0
+
+  if (siblings) {
+    const index: number = siblings.findIndex(leaf => leaf === node)
+    const indexWithChildren: number = siblings.findIndex(leaf => leaf.children)
+
+    if (indexWithChildren !== -1) {
+      position =
+        siblings[indexWithChildren][coordinateType] +
+        (index - indexWithChildren) * nodeSizeAttr
+    } else {
+      position =
+        siblings.length % 2
+          ? Math.floor(index - siblings.length / 2) * nodeSizeAttr
+          : Math.floor(index - siblings.length / 2) * nodeSizeAttr -
+            nodeSizeAttr / 2
     }
-  ) => {
-    let index = 0
+  }
+
+  return position
+}
+
+const getPositionLeavesAndChildren = (
+  calculateNodePosition: (
+    options: CalculateNodePositionOptions
+  ) => d3.HierarchyPointNode<TreeNodeInterface>,
+  coordinateType: CoordinateType,
+  options: CalculateNodePositionOptions
+) => {
+  const { node } = options
+
+  node.children = node.children || []
+  const position: number =
+    node.children.reduce((acc, child) => {
+      calculateNodePosition({ ...options, node: child })
+
+      acc += child[coordinateType]
+
+      return acc
+    }, 0) / node.children.length
+
+  return position
+}
+
+const getPositionNoLeavesButChildren = (
+  calculateNodePosition: (
+    options: CalculateNodePositionOptions
+  ) => d3.HierarchyPointNode<TreeNodeInterface>,
+  coordinateType: CoordinateType,
+  options: CalculateNodePositionOptions
+) => {
+  let position = 0
+
+  const { node } = options
+
+  node.children = node.children || []
+
+  const childWithChildrenIndex = node.children.findIndex(
+    child => child.children
+  )
+
+  if (childWithChildrenIndex !== -1) {
+    calculateNodePosition({
+      ...options,
+      node: node.children[childWithChildrenIndex]
+    })
+  }
+
+  node.children.reduce((acc, child) => {
+    if (!child.children) {
+      calculateNodePosition({ ...options, node: child })
+    }
+
+    return acc
+  }, 0)
+
+  const halfLength = node.children.length / 2
+
+  if (node.children.length % 2) {
+    position = node.children[Math.floor(halfLength)][coordinateType]
+  } else {
+    position =
+      (node.children[halfLength][coordinateType] +
+        node.children[halfLength - 1][coordinateType]) /
+      2
+  }
+
+  return position
+}
+
+const getCalculateNodePositionFn = (coordinateType: CoordinateType) => {
+  const calculateNodePosition = (options: CalculateNodePositionOptions) => {
+    const { node, aggregationType = 'leaves' } = options
     let position = 0
-    const xOrY = isX ? 'x' : 'y'
 
     if (!node.children || !node.children.length) {
       if (aggregationType === 'leaves') {
-        index = leaves.findIndex(leaf => leaf === node)
-        position = Math.floor(index - leaves.length / 2) * nodeSizeAttr
+        position = getPositionLeavesAndNoChildren(options)
       } else {
-        const siblings = node?.parent?.children
-
-        if (siblings) {
-          index = siblings.findIndex(leaf => leaf === node)
-          const indexWithChildren = siblings.findIndex(leaf => leaf.children)
-
-          if (indexWithChildren !== -1) {
-            position =
-              siblings[indexWithChildren][xOrY] +
-              (index - indexWithChildren) * nodeSizeAttr
-          } else {
-            position =
-              siblings.length % 2
-                ? Math.floor(index - siblings.length / 2) * nodeSizeAttr
-                : Math.floor(index - siblings.length / 2) * nodeSizeAttr -
-                  nodeSizeAttr / 2
-          }
-        }
+        position = getPositionNoLeavesAndNoChildren(coordinateType, options)
       }
     } else {
       if (aggregationType === 'leaves') {
-        position =
-          node.children.reduce((acc, child) => {
-            resultFn(child, { leaves, nodeSizeAttr, aggregationType })
-
-            acc += isX ? child.x : child.y
-
-            return acc
-          }, 0) / node.children.length
-      } else {
-        const childWithChildrenIndex = node.children.findIndex(
-          child => child.children
+        position = getPositionLeavesAndChildren(
+          calculateNodePosition,
+          coordinateType,
+          options
         )
-
-        if (childWithChildrenIndex !== -1) {
-          resultFn(node.children[childWithChildrenIndex], {
-            leaves,
-            nodeSizeAttr,
-            aggregationType
-          })
-        }
-
-        node.children.reduce((acc, child) => {
-          if (!child.children) {
-            resultFn(child, { leaves, nodeSizeAttr, aggregationType })
-          }
-
-          return acc
-        }, 0)
-
-        const halfLength = node.children.length / 2
-
-        if (node.children.length % 2) {
-          position = node.children[Math.floor(halfLength)][xOrY]
-        } else {
-          position =
-            (node.children[halfLength][xOrY] +
-              node.children[halfLength - 1][xOrY]) /
-            2
-        }
+      } else {
+        position = getPositionNoLeavesButChildren(
+          calculateNodePosition,
+          coordinateType,
+          options
+        )
       }
     }
 
-    node[xOrY] = position
+    node[coordinateType] = position
 
     return node
   }
 
-  return resultFn
+  return calculateNodePosition
 }
 
-const calculateNodeXPosition = calculateNodeXorYPosition(true)
-const calculateNodeYPosition = calculateNodeXorYPosition(false)
+const calculateNodeXPosition = getCalculateNodePositionFn('x')
+const calculateNodeYPosition = getCalculateNodePositionFn('y')
 
 export const useTree = ({
   data,
@@ -150,14 +203,16 @@ export const useTree = ({
     const leaves = rootNode.leaves()
 
     if (direction === 'vertical') {
-      return calculateNodeXPosition(rootNode, {
+      return calculateNodeXPosition({
+        node: rootNode,
         leaves,
         nodeSizeAttr: fullNodeWidth,
         aggregationType: variant === 'normal' ? 'leaves' : 'siblings'
       })
     }
 
-    return calculateNodeYPosition(rootNode, {
+    return calculateNodeYPosition({
+      node: rootNode,
       leaves,
       nodeSizeAttr: fullNodeHeight,
       aggregationType: variant === 'normal' ? 'leaves' : 'siblings'

@@ -11,22 +11,12 @@ const defaultMargins = {
   vertical: [DEFAULT_VERTICAL_MARGIN_V, DEFAULT_HORIZONTAL_MARGIN_V]
 }
 
-export const getDefaultMargins = (
+export const getFinalMargins = (
   direction: DirectionsType,
   verticalMargin?: number,
   horizontalMargin?: number
 ): [number, number] => {
-  let finalVMargin, finalHMargin: number
+  const [finalVMargin, finalHMargin] = defaultMargins[direction]
 
-  ;[finalVMargin, finalHMargin] = defaultMargins[direction]
-
-  if (verticalMargin) {
-    finalVMargin = verticalMargin
-  }
-
-  if (horizontalMargin) {
-    finalHMargin = horizontalMargin
-  }
-
-  return [finalVMargin, finalHMargin]
+  return [verticalMargin || finalVMargin, horizontalMargin || finalHMargin]
 }

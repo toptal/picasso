@@ -20,8 +20,8 @@ export const PointLink: FC<Props> = props => {
   const path = useMemo(() => {
     const { source, target } = link
     const sourceYDeltas = {
-      horizontal: source.rect?.height / 2,
-      vertical: source.rect?.height
+      horizontal: source.rect?.height / 2 || 0,
+      vertical: source.rect?.height || 0
     }
     const sourceY = source.y + (sourceYDeltas[direction] || 0)
     const sourceX = source.x + (source.rect?.width / 2 || 0)

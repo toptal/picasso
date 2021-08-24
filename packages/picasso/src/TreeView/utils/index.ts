@@ -1,1 +1,1 @@
-export { getDefaultMargins } from './getDefaultMargins'
+export { getFinalMargins } from './getFinalMargins'
