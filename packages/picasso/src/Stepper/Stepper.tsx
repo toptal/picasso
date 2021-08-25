@@ -16,8 +16,6 @@ export interface Props
     HTMLAttributes<HTMLDivElement> {
   /** The index of the active step */
   active?: number
-  /** The component will take up the full width of its container */
-  fullWidth?: boolean
   /** Hide labels of non active steps */
   hideLabels?: boolean
   /** Array of the step labels */
@@ -26,14 +24,13 @@ export interface Props
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
 
-export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
+export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper (
   props,
   ref
 ) {
   const {
     active = 0,
     steps = [],
-    fullWidth = false,
     hideLabels = false,
     className,
     style,
@@ -48,13 +45,7 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
       ref={ref}
       activeStep={active}
       connector={<StepConnector />}
-      className={cx(
-        {
-          [classes.fullWidth]: fullWidth
-        },
-        classes.root,
-        className
-      )}
+      className={cx(classes.root, className)}
       style={style}
     >
       {steps.map((label, stepIndex) => (
@@ -74,7 +65,6 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
 
 Stepper.defaultProps = {
   active: 0,
-  fullWidth: false,
   hideLabels: false,
   steps: []
 }

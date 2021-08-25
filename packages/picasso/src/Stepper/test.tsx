@@ -11,12 +11,11 @@ const renderStepper = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { active, fullWidth, hideLabels, steps, titleCase } = props
+  const { active, hideLabels, steps, titleCase } = props
 
   return render(
     <Stepper
       active={active}
-      fullWidth={fullWidth}
       hideLabels={hideLabels}
       steps={steps}
       titleCase={titleCase}
@@ -59,18 +58,6 @@ describe('Stepper', () => {
       steps,
       active: activeStep,
       hideLabels: true
-    })
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('render with full-width', () => {
-    const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
-    const activeStep = 4
-    const { container } = renderStepper({
-      steps,
-      active: activeStep,
-      fullWidth: true
     })
 
     expect(container).toMatchSnapshot()

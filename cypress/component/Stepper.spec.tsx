@@ -38,18 +38,6 @@ describe('Stepper', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders full width', () => {
-    mount(
-      <TestingPicasso>
-        <div style={{ width: '40rem' }}>
-          <Stepper fullWidth steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']} />
-        </div>
-      </TestingPicasso>
-    )
-
-    cy.get('body').happoScreenshot()
-  })
-
   it('renders without label', () => {
     mount(
       <TestingPicasso>

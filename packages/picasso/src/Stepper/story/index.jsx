@@ -20,4 +20,3 @@ page
   .createChapter()
   .addExample('Stepper/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('Stepper/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
-  .addExample('Stepper/story/FullWidth.example.tsx', 'Full width') // picasso-skip-visuals
