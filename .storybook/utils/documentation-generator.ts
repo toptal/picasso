@@ -34,7 +34,8 @@ const OBJECT_REGEX = /\{.*\}/
 
 const DEPRECATED_KEYWORD = '@deprecated'
 
-const escapeType = (typeName: string) => typeName.replace('| undefined', '')
+const escapeType = (typeName: string) =>
+  typeName && typeName.replace('| undefined', '')
 
 const merge = <T extends { [key: string]: unknown }>(
   o1: T,
