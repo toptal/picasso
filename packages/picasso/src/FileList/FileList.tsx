@@ -34,15 +34,21 @@ export const FileList = forwardRef<HTMLDivElement, Props>(function FileList (
       direction='column'
       className={cx(classes.root)}
     >
-      {files.map((fileUpload, index) => (
-        <FileListItem
-          file={fileUpload}
-          index={index}
-          onRemove={onItemRemove}
-          disabled={disabled}
-          key={`${fileUpload.file.name}-${index}`}
-        />
-      ))}
+      {files.map((fileUpload, index) => {
+        const {
+          file: { name, size, lastModified }
+        } = fileUpload
+
+        return (
+          <FileListItem
+            file={fileUpload}
+            index={index}
+            onRemove={onItemRemove}
+            disabled={disabled}
+            key={`${name}-${size}-${lastModified}-${String(index)}`}
+          />
+        )
+      })}
     </Container>
   )
 })

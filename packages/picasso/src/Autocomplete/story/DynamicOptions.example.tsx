@@ -51,11 +51,11 @@ const Example = () => {
 
   const handleChange = (
     inputValue: string,
-    options: { isSelected: boolean }
+    handleOptions: { isSelected: boolean }
   ) => {
     setValue(inputValue)
 
-    if (options.isSelected) {
+    if (handleOptions.isSelected) {
       return
     }
 

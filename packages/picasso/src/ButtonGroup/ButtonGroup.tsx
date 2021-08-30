@@ -40,7 +40,7 @@ const getChildrenClassesConfig = (
 ]
 
 export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
-  function ButtonGroup (props, ref) {
+  function ButtonGroup(props, ref) {
     const { children, className, style, ...rest } = props
     const classes = useStyles()
     const childrenWithClasses = useMemo(

@@ -42,7 +42,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAlertInline'
 })
 
-export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert (
+export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {

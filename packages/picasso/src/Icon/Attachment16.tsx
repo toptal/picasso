@@ -14,7 +14,7 @@ export interface Props extends StandardProps {
   base?: number
 }
 const useStyles = makeStyles(styles, { name: 'PicassoSvgAttachment16' })
-const SvgAttachment16 = forwardRef(function SvgAttachment16 (
+const SvgAttachment16 = forwardRef(function SvgAttachment16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {

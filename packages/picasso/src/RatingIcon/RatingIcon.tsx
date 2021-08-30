@@ -13,7 +13,7 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoRatingIcon'
 })
 
-const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon (
+const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
   props,
   ref
 ) {

@@ -20,7 +20,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
-  function EnvironmentBanner (props, ref) {
+  function EnvironmentBanner(props, ref) {
     const { environment: configEnvironment } = useAppConfig()
     const { environment, productName } = props
     const classes = useStyles()

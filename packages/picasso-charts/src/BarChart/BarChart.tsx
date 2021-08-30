@@ -160,7 +160,12 @@ const BarChart = <K extends string>({
               {data.map((entry, index) => {
                 const fill = getBarColor?.({ dataKey, entry, index })
 
-                return <Cell key={index} fill={fill} />
+                return (
+                  <Cell
+                    key={`${entry.value}-${entry.name}-${String(index)}`}
+                    fill={fill}
+                  />
+                )
               })}
             </Bar>
           ))}

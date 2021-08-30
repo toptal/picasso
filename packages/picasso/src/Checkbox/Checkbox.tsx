@@ -47,7 +47,7 @@ export interface Props
 }
 
 export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
-  function Checkbox (props, ref) {
+  function Checkbox(props, ref) {
     const {
       label,
       id,

@@ -64,7 +64,7 @@ const Actions: FunctionComponent = ({ children }) => (
   </Container>
 )
 
-export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead (
+export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
   props,
   ref
 ) {

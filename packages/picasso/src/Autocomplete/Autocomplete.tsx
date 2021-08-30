@@ -119,7 +119,7 @@ const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
-  function Autocomplete (props, ref) {
+  function Autocomplete(props, ref) {
     const {
       autoComplete,
       className,

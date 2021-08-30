@@ -33,8 +33,10 @@ const menuItems = [
 
 const menu = (
   <Menu>
-    {menuItems.map((itemName, index) => (
-      <Menu.Item onClick={() => {}} key={`menu-item-${index}`}>{itemName}</Menu.Item>
+    {menuItems.map(itemName => (
+      <Menu.Item onClick={() => {}} key={itemName}>
+        {itemName}
+      </Menu.Item>
     ))}
   </Menu>
 )
@@ -43,12 +45,16 @@ const DropdownExample = () => (
   <Grid direction='row'>
     <Grid.Item>
       <Dropdown content={menu}>
-        <Button data-testid='content-overflow-scroll'>Display the menu with a scrollbar</Button>
+        <Button data-testid='content-overflow-scroll'>
+          Display the menu with a scrollbar
+        </Button>
       </Dropdown>
     </Grid.Item>
     <Grid.Item>
       <Dropdown contentOverflow='visible' content={menu}>
-        <Button data-testid='content-overflow-visible'>Display the menu without a scrollbar</Button>
+        <Button data-testid='content-overflow-visible'>
+          Display the menu without a scrollbar
+        </Button>
       </Dropdown>
     </Grid.Item>
   </Grid>

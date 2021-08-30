@@ -37,7 +37,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const AccountSelect = forwardRef<HTMLUListElement, Props>(
-  function AccountSelect (props, ref) {
+  function AccountSelect(props, ref) {
     const { className, accounts, onSelect, style, ...rest } = props
     const classes = useStyles()
 

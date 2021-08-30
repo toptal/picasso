@@ -7,7 +7,7 @@ export interface Props extends BaseProps {
 }
 
 export const NoteContent = forwardRef<HTMLDivElement, Props>(
-  function NoteContent ({ children, ...rest }, ref) {
+  function NoteContent({ children, ...rest }, ref) {
     return (
       <Typography ref={ref} as='p' size='medium' color='black' {...rest}>
         {children}

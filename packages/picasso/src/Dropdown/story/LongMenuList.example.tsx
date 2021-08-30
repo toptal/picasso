@@ -34,7 +34,7 @@ const menuItems = [
 const menu = (
   <Menu>
     {menuItems.map((itemName, index) => (
-      <Menu.Item onClick={handleClick} key={`menu-item-${index}`}>
+      <Menu.Item onClick={handleClick} key={`${itemName}${String(index)}`}>
         {itemName}
       </Menu.Item>
     ))}
