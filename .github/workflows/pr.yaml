@@ -7,12 +7,11 @@ on:
       - master
       - 'feature/**'
 
-    types: [
-        synchronize, # PR was updated
-        opened, # PR was open
-        reopened, # PR was closed and is now open again
-        ready_for_review # PR was converted from draft to open
-      ]
+    types:
+      - synchronize # PR was updated
+      - opened # PR was open
+      - reopened # PR was closed and is now open again
+      - ready_for_review # PR was converted from draft to open
 
 jobs:
   tests:
@@ -33,7 +32,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-      - name: Checkout-out-out
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Increase max_user_watches
