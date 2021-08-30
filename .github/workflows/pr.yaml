@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-      - master
-      - 'feature/**'
+      - master # triggers the flow for every PR to master
+      - 'feature/**' # triggers the flow for a PR to a branch like feature/v9
 
     types:
       - synchronize # PR was updated
