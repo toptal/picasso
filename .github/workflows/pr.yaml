@@ -33,7 +33,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-      - name: Checkout
+      - name: Checkout-out-out
         uses: actions/checkout@v2
 
       - name: Increase max_user_watches
