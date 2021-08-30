@@ -2,7 +2,10 @@ name: Consulting the Oracle
 
 on:
   pull_request:
-    branches: [ master ]
+    branches:
+      - master,
+      - 'feature/**'
+
     types: [
         synchronize, # PR was updated
         opened, # PR was open
