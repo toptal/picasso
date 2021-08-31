@@ -1,14 +1,17 @@
 name: Consulting the Oracle
 
 on:
+  workflow_dispatch:
   pull_request:
-    branches: [ master ]
-    types: [
-        synchronize, # PR was updated
-        opened, # PR was open
-        reopened, # PR was closed and is now open again
-        ready_for_review # PR was converted from draft to open
-      ]
+    branches:
+      - master # triggers the flow for every PR to master
+      - 'feature/**' # triggers the flow for a PR to a branch like feature/v9
+
+    types:
+      - synchronize # PR was updated
+      - opened # PR was open
+      - reopened # PR was closed and is now open again
+      - ready_for_review # PR was converted from draft to open
 
 jobs:
   tests:
