@@ -20,12 +20,18 @@ export default ({ sizes, palette }: Theme) =>
       display: 'flex',
       marginLeft: 'auto'
     },
-    borderedVariant: {
+    bordered: {
       borderRadius: sizes.borderRadius.medium,
       border: `solid ${sizes.borderWidth} ${palette.grey.light}`,
       padding: '2rem',
       '& > :last-child': {
         paddingBottom: '0'
       }
+    },
+    collapsedHeader: {
+      paddingBottom: '0'
+    },
+    collapsed: {
+      paddingBottom: '2rem'
     }
   })
