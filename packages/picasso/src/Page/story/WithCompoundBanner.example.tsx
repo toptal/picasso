@@ -9,14 +9,14 @@ const Example = () => (
       <Banner>
         You need to sign STA agreement in order to be able to hire talent.
         <Banner.Actions>
-          <Link>Sign STA Agreement</Link>
+          <Link variant='action'>Sign STA Agreement</Link>
         </Banner.Actions>
       </Banner>
       <Banner>
         It looks like your credit card or ACH payment method is not working.
         Please update your payment information.
         <Banner.Actions>
-          <Link>Update Billing Details</Link>
+          <Link variant='action'>Update Billing Details</Link>
         </Banner.Actions>
       </Banner>
       <Page.Content>

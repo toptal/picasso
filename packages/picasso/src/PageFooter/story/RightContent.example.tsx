@@ -20,23 +20,23 @@ const Example = () => (
 
 const Links = () => (
   <>
-    <StyledLink href='#' underline='none' color='white'>
+    <StyledLink href='#' color='white'>
       +1.888.604.3188
     </StyledLink>
 
-    <StyledLink href='#' underline='none' color='white'>
+    <StyledLink href='#' color='white'>
       Contact Us
     </StyledLink>
 
-    <StyledLink href='#' underline='none' color='white'>
+    <StyledLink href='#' color='white'>
       Privacy Policy
     </StyledLink>
 
-    <StyledLink href='#' underline='none' color='white'>
+    <StyledLink href='#' color='white'>
       Portal Agreement
     </StyledLink>
 
-    <StyledLink href='#' underline='none' color='white'>
+    <StyledLink href='#' color='white'>
       Toptal Training
     </StyledLink>
   </>

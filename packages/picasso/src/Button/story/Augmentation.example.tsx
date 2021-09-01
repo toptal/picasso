@@ -1,26 +1,30 @@
 import React from 'react'
-import { Button, Link } from '@toptal/picasso'
+import { Button, Link, LinkProps } from '@toptal/picasso'
 import { Settings16 } from '@toptal/picasso/Icon'
+
+const ActionLink = (props: LinkProps): React.ReactNode => (
+  <Link {...props} variant='action' />
+)
 
 const ButtonAugmentationExample = () => (
   <div>
-    <Button as={Link} href='/#home'>
+    <Button as={ActionLink} href='/#home'>
       Link
     </Button>
 
-    <Button as={Link} href='/#home' icon={<Settings16 />}>
+    <Button as={ActionLink} href='/#home' icon={<Settings16 />}>
       Link
     </Button>
 
-    <Button as={Link} href='/#home' variant='secondary'>
+    <Button as={ActionLink} href='/#home' variant='secondary'>
       Link
     </Button>
 
-    <Button as={Link} href='/#home' disabled>
+    <Button as={ActionLink} href='/#home' disabled>
       Link
     </Button>
 
-    <Button as={Link} href='/#home' loading>
+    <Button as={ActionLink} href='/#home' loading>
       Link
     </Button>
   </div>
