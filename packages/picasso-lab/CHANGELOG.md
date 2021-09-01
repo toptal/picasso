@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.3.1...@toptal/picasso-lab@7.3.2) (2021-09-01)
+
+
+### Bug Fixes
+
+* **Section:** removes header padding when collapsed ([#2147](https://github.com/toptal/picasso/issues/2147)) ([a78de93](https://github.com/toptal/picasso/commit/a78de93dee9ff1e7c119ba81c9a5b6baca99136d))
+
+
+
+
+
 ## [7.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.3.0...@toptal/picasso-lab@7.3.1) (2021-08-15)
 
 

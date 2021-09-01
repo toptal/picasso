@@ -6,10 +6,10 @@ exports[`Section renders collapsible initially collapsed 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-root"
+      class="PicassoSection-collapsed PicassoSection-root"
     >
       <div
-        class="PicassoSection-header"
+        class="PicassoSection-header PicassoSection-collapsedHeader"
         data-testid="header"
       >
         <div

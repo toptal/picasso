@@ -124,7 +124,8 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
       ref={ref}
       className={cx(
         {
-          [classes.borderedVariant]: variant === 'bordered'
+          [classes.bordered]: variant === 'bordered',
+          [classes.collapsed]: variant !== 'bordered' && collapsed
         },
         classes.root,
         className
@@ -133,7 +134,12 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section (
       {...rest}
     >
       {hasHeader && (
-        <Container data-testid={testIds?.header} className={classes.header}>
+        <Container
+          data-testid={testIds?.header}
+          className={cx(classes.header, {
+            [classes.collapsedHeader]: collapsed
+          })}
+        >
           {renderTitle()}
           {renderSubtitle()}
           {renderActions()}
