@@ -10,17 +10,31 @@ import '../StepIcon'
 import StepConnector from '../StepConnector'
 import styles from './styles'
 
-export interface Props
+interface PropsBase
   extends BaseProps,
     TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
   /** The index of the active step */
   active?: number
-  /** Hide labels of non active steps */
-  hideLabels?: boolean
   /** Array of the step labels */
   steps: string[]
 }
+
+interface PropsVertical extends PropsBase {
+  /** Hide labels of non active steps */
+  hideLabels?: false
+  /** Controls orientation of stepper */
+  orientation: 'vertical'
+}
+
+interface PropsHorizontal extends PropsBase {
+  /** Hide labels of non active steps */
+  hideLabels?: boolean
+  /** Controls orientation of stepper */
+  orientation?: 'horizontal'
+}
+
+export type Props = PropsVertical | PropsHorizontal
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
 
@@ -35,6 +49,7 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper (
     className,
     style,
     titleCase,
+    orientation,
     ...rest
   } = props
   const classes = useStyles()
@@ -44,9 +59,10 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper (
       {...rest}
       ref={ref}
       activeStep={active}
-      connector={<StepConnector />}
+      connector={<StepConnector orientation={orientation} />}
       className={cx(classes.root, className)}
       style={style}
+      orientation={orientation}
     >
       {steps.map((label, stepIndex) => (
         <Step key={label}>
@@ -66,6 +82,7 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper (
 Stepper.defaultProps = {
   active: 0,
   hideLabels: false,
+  orientation: 'horizontal',
   steps: []
 }
 
