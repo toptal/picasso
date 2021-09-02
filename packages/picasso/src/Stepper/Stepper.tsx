@@ -20,14 +20,14 @@ interface PropsBase
   steps: string[]
 }
 
-interface PropsVertical extends PropsBase {
+export interface PropsVertical extends PropsBase {
   /** Hide labels of non active steps */
   hideLabels?: false
   /** Controls orientation of stepper */
   orientation: 'vertical'
 }
 
-interface PropsHorizontal extends PropsBase {
+export interface PropsHorizontal extends PropsBase {
   /** Hide labels of non active steps */
   hideLabels?: boolean
   /** Controls orientation of stepper */
