@@ -11,7 +11,7 @@ const renderStepper = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { active, hideLabels, steps, titleCase } = props
+  const { active, hideLabels, steps, titleCase, orientation } = props
 
   return render(
     <Stepper
@@ -19,6 +19,7 @@ const renderStepper = (
       hideLabels={hideLabels}
       steps={steps}
       titleCase={titleCase}
+      orientation={orientation}
     />,
     undefined,
     picassoConfig
@@ -58,6 +59,18 @@ describe('Stepper', () => {
       steps,
       active: activeStep,
       hideLabels: true
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('render vertical', () => {
+    const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
+    const activeStep = 4
+    const { container } = renderStepper({
+      steps,
+      active: activeStep,
+      orientation: 'vertical'
     })
 
     expect(container).toMatchSnapshot()

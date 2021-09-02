@@ -1,9 +1,13 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import { Stepper, Container } from '@toptal/picasso'
+import { Stepper, Container, StepperProps } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const Example: React.FC<{ hideLabels?: boolean }> = props => (
+const Example: React.FC<Pick<
+  StepperProps,
+  'hideLabels',
+  'orientation'
+>> = props => (
   <TestingPicasso>
     <Container padded='medium'>
       <Stepper steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']} {...props} />
@@ -42,6 +46,15 @@ describe('Stepper', () => {
     mount(
       <TestingPicasso>
         <Example hideLabels />
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders vertically', () => {
+    mount(
+      <TestingPicasso>
+        <Example orientation='vertical' />
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
