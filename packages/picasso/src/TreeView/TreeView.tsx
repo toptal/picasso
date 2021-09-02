@@ -17,9 +17,8 @@ import PointNode from './PointNode'
 import styles from './styles'
 import { useZoom } from './useZoom'
 import {
-  DEFAULT_VERTICAL_MARGIN_V,
-  DEFAULT_HORIZONTAL_MARGIN_V,
   DEFAULT_WIDTH,
+  DEFAULT_HEIGHT,
   DEFAULT_SCALE_EXTENT
 } from './variables'
 import { DirectionsType, TreeNodeInterface, TreeViewVariant } from './types'
@@ -42,6 +41,8 @@ export interface Props {
   renderNode?: (pointNode: HierarchyPointNode<TreeNodeInterface>) => ReactNode
   /** exact node width in pixels. Default value is 236 */
   nodeWidth?: number
+  /** exact node height in pixels. Default value is 59 */
+  nodeHeight?: number
   /** Set the scale extent to the specified array of numbers [k0, k1] where k0 is the minimum allowed scale factor and k1 is the maximum allowed scale factor */
   scaleExtent?: [number, number]
   /** Initial SVG scale */
@@ -61,6 +62,7 @@ export const TreeView = (props: Props) => {
     data,
     renderNode,
     nodeWidth = DEFAULT_WIDTH,
+    nodeHeight = DEFAULT_HEIGHT,
     scaleExtent = DEFAULT_SCALE_EXTENT,
     initialScale = 1,
     scaleCoefficient = 0.5,
@@ -70,8 +72,8 @@ export const TreeView = (props: Props) => {
 
   const {
     direction = 'vertical',
-    verticalMargin = DEFAULT_VERTICAL_MARGIN_V,
-    horizontalMargin = DEFAULT_HORIZONTAL_MARGIN_V,
+    verticalMargin = 0,
+    horizontalMargin = 0,
     variant = 'normal'
   } = directionOptions || {}
 
@@ -88,7 +90,9 @@ export const TreeView = (props: Props) => {
     direction,
     verticalMargin: finalVerticalMargin,
     horizontalMargin: finalHorizontalMargin,
-    variant
+    variant,
+    nodeWidth,
+    nodeHeight
   })
 
   const center = useMemo<{ x: number; y: number } | undefined>(() => {

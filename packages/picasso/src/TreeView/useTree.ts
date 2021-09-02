@@ -199,7 +199,7 @@ export const useTree = ({
 
     const rootNode = d3
       .tree<TreeNodeInterface>()
-      .nodeSize([fullNodeWidth, DEFAULT_HEIGHT])(root)
+      .nodeSize([nodeWidth, nodeHeight])(root)
     const leaves = rootNode.leaves()
 
     if (direction === 'vertical') {
