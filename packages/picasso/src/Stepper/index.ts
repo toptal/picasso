@@ -1,8 +1,9 @@
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props, PropsVertical, PropsHorizontal } from './Stepper'
+import { OrientationType, Props } from './Stepper'
 
 export { default } from './Stepper'
-export type StepperProps = OmitInternalProps<Props>
-export type StepperPropsVertical = OmitInternalProps<PropsVertical>
-export type StepperPropsHorizontal = OmitInternalProps<PropsHorizontal>
+export type StepperProps<T extends OrientationType> = OmitInternalProps<
+  Props<T>
+>
+export type { OrientationType } from './Stepper'
