@@ -217,7 +217,7 @@ export const useTree = ({
       nodeSizeAttr: fullNodeHeight,
       aggregationType: variant === 'normal' ? 'leaves' : 'siblings'
     })
-  }, [data, fullNodeWidth, fullNodeHeight, direction, variant])
+  }, [data, fullNodeWidth, fullNodeHeight, direction, variant, nodeHeight, nodeWidth])
 
   const nodes = useNodes(rootNode, direction, verticalMargin, horizontalMargin)
 
