@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import { StepperProps } from '../Stepper'
+import { OrientationType } from '../Stepper'
 import { ChevronRight16 as ChevronRightIcon } from '../Icon'
 import styles from './styles'
 
-export type Props = Pick<StepperProps, 'orientation'>
+export type Props = { orientation: OrientationType }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoStepConnector'

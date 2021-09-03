@@ -10,7 +10,9 @@ import '../StepIcon'
 import StepConnector from '../StepConnector'
 import styles from './styles'
 
-interface PropsBase
+export type OrientationType = 'vertical' | 'horizontal'
+
+export interface Props<T extends OrientationType = 'horizontal'>
   extends BaseProps,
     TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
@@ -18,29 +20,17 @@ interface PropsBase
   active?: number
   /** Array of the step labels */
   steps: string[]
-}
-
-export interface PropsVertical extends PropsBase {
   /** Hide labels of non active steps */
-  hideLabels?: false
+  hideLabels?: T extends 'horizontal' ? boolean : false
   /** Controls orientation of stepper */
-  orientation: 'vertical'
+  orientation?: T
 }
-
-export interface PropsHorizontal extends PropsBase {
-  /** Hide labels of non active steps */
-  hideLabels?: boolean
-  /** Controls orientation of stepper */
-  orientation?: 'horizontal'
-}
-
-export type Props = PropsVertical | PropsHorizontal
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
 
-export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper (
-  props,
-  ref
+export const Stepper = forwardRef(function Stepper<T extends OrientationType> (
+  props: Props<T>,
+  ref: React.ForwardedRef<HTMLDivElement>
 ) {
   const {
     active = 0,
@@ -49,7 +39,7 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper (
     className,
     style,
     titleCase,
-    orientation,
+    orientation = 'horizontal',
     ...rest
   } = props
   const classes = useStyles()
