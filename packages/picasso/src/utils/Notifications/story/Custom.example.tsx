@@ -11,7 +11,9 @@ const Example = () => {
       life. <br />
       Friedrich Nietzsche
       <Notification.Actions>
-        <Link href='#'>Do art</Link>
+        <Link variant='action' href='#'>
+          Do art
+        </Link>
       </Notification.Actions>
     </Notification>
   )

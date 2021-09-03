@@ -12,9 +12,10 @@ import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-type UnderlineType = 'none' | 'hover' | 'always'
 type VariantType = 'action' | 'anchor'
 type ColorType = 'white' | 'blue' | 'black'
+type FontSizeType = 'initial' | 'inherit'
+type TextDecorationType = 'none' | 'underline'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLink' })
 
@@ -38,8 +39,6 @@ export type Props = BaseProps &
     children?: ReactNode
     /** Destination the link points to */
     href?: string
-    /** Controls when the link should have an underline */
-    underline?: UnderlineType
     /** Callback invoked when component is clicked */
     onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void
     /**
@@ -53,15 +52,26 @@ export type Props = BaseProps &
     color?: ColorType
     /** Indicates the order of receiving focus. If not set will not receive focus. */
     tabIndex?: number
+    /** Indicates that the user cannot interact with the Link or its children */
+    disabled?: boolean
+    /**
+     * Controls fontSize of component
+     * @default initial
+     */
+    fontSize?: FontSizeType
+    /**
+     * Controls textDecoration of component
+     * @default underline
+     */
+    textDecoration?: TextDecorationType
   }
 
 export const Link: OverridableComponent<Props> = forwardRef<
   HTMLAnchorElement,
   Props
->(function Link(props, ref) {
+>(function Link (props, ref) {
   const {
     href,
-    underline,
     onClick,
     children,
     className,
@@ -72,6 +82,9 @@ export const Link: OverridableComponent<Props> = forwardRef<
     tabIndex,
     target,
     rel,
+    disabled,
+    fontSize,
+    textDecoration,
     ...rest
   } = props
   const nativeHTMLAttributes = rest
@@ -82,19 +95,24 @@ export const Link: OverridableComponent<Props> = forwardRef<
     <MUILink
       {...nativeHTMLAttributes}
       ref={ref}
-      href={href}
-      target={target}
+      href={disabled ? undefined : href}
+      target={disabled ? undefined : target}
       rel={sanitizedRel}
-      underline={underline}
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
       className={cx(classes.root, className, {
         [classes.action]: variant === 'action',
         [classes.white]: color === 'white',
-        [classes.black]: color === 'black'
+        [classes.black]: color === 'black',
+        [classes.disabled]: disabled,
+        [classes.fontSizeInitial]: fontSize === 'initial',
+        [classes.fontSizeInherit]: fontSize === 'inherit',
+        [classes.textDecorationNone]: textDecoration === 'none',
+        [classes.textDecorationUnderline]: textDecoration === 'underline'
       })}
       style={style}
       component={as}
       tabIndex={tabIndex}
+      aria-disabled={disabled}
     >
       {children}
     </MUILink>
@@ -104,7 +122,9 @@ export const Link: OverridableComponent<Props> = forwardRef<
 Link.defaultProps = {
   as: 'a',
   color: 'blue',
-  variant: 'anchor'
+  variant: 'anchor',
+  fontSize: 'initial',
+  textDecoration: 'underline'
 }
 
 Link.displayName = 'Link'

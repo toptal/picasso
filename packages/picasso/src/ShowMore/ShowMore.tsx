@@ -28,7 +28,7 @@ export interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoShowMore' })
 
-export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
+export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore (
   props,
   ref
 ) {
@@ -66,11 +66,9 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
             onToggle()
           }}
           className={classes.toggleText}
-          underline='none'
+          variant='action'
         >
-          <Typography size='medium' color='blue'>
-            {shownMore ? lessText : moreText}
-          </Typography>
+          {shownMore ? lessText : moreText}
           <div className={classes.iconWrapper}>
             <ChevronRightIcon16
               className={cx(classes.icon, {

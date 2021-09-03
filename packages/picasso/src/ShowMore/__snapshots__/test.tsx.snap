@@ -23,13 +23,9 @@ exports[`ShowMore renders 1`] = `
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <p
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
-      >
-        Show more
-      </p>
+      Show more
       <div
         class="PicassoShowMore-iconWrapper"
       >
@@ -71,13 +67,9 @@ exports[`ShowMore when custom lessText text is specified should render with cust
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <p
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
-      >
-        Show more
-      </p>
+      Show more
       <div
         class="PicassoShowMore-iconWrapper"
       >
@@ -119,13 +111,9 @@ exports[`ShowMore when custom showMore text is specified should render with cust
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <p
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
-      >
-        Display everything
-      </p>
+      Display everything
       <div
         class="PicassoShowMore-iconWrapper"
       >
@@ -193,13 +181,9 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <p
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
-      >
-        Show less
-      </p>
+      Show less
       <div
         class="PicassoShowMore-iconWrapper"
       >
@@ -241,13 +225,9 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <p
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
-      >
-        Show more
-      </p>
+      Show more
       <div
         class="PicassoShowMore-iconWrapper"
       >
@@ -289,13 +269,9 @@ exports[`ShowMore when show more link is clicked should render expanded version 
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <p
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
-      >
-        Show less
-      </p>
+      Show less
       <div
         class="PicassoShowMore-iconWrapper"
       >

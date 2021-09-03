@@ -23,7 +23,9 @@ const items = [
   { text: 'Toptal', to: '/usa/software/toptal' }
 ]
 
-const ExampleLink: typeof Link = props => <Link as={RouterLink} {...props} />
+const ExampleLink: typeof Link = props => (
+  <Link as={RouterLink} variant='action' {...props} />
+)
 
 const Nav = () => {
   const location = useLocation()
