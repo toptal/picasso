@@ -15,6 +15,7 @@ export interface Props extends BaseProps {
   selectedIndex?: number | null
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
   fixedHeader?: ReactNode
+  fixedFooter?: ReactNode
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -51,7 +52,15 @@ export const scrollToSelection = (
 }
 
 const ScrollMenu: FunctionComponent<Props> = props => {
-  const { selectedIndex, onBlur, children, style, fixedHeader, ...rest } = props
+  const {
+    selectedIndex,
+    onBlur,
+    children,
+    style,
+    fixedHeader,
+    fixedFooter,
+    ...rest
+  } = props
   const classes = useStyles()
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -70,6 +79,7 @@ const ScrollMenu: FunctionComponent<Props> = props => {
       <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
         {children}
       </div>
+      {fixedFooter}
     </Menu>
   )
 }

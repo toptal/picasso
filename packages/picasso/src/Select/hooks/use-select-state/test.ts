@@ -91,6 +91,21 @@ describe('useSelectState', () => {
     expect(result.current.emptySelectValue).toEqual([])
   })
 
+  it('show search when there is more items than threshold allows', () => {
+    const { result } = renderUseSelectState({ searchThreshold: 2 })
+
+    expect(result.current.showSearch).toEqual(true)
+  })
+
+  it('forces search when threshold is higher than max number of elements to show', () => {
+    const { result } = renderUseSelectState({
+      searchThreshold: 3,
+      maxSearchItems: 2
+    })
+
+    expect(result.current.showSearch).toEqual(true)
+  })
+
   it('toggles isOpen state', () => {
     const { result } = renderUseSelectState()
 
@@ -135,7 +150,9 @@ describe('useSelectState', () => {
 
       expect(result.current.isOpen).toBe(false)
 
-      result.current.open()
+      act(() => {
+        result.current.open()
+      })
 
       expect(result.current.isOpen).toBe(true)
 

@@ -58,6 +58,7 @@ export const NativeSelect = documentable(
         autoComplete,
         searchPlaceholder,
         searchThreshold,
+        maxSearchItems,
         native,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...rest

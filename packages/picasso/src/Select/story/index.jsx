@@ -48,7 +48,8 @@ page
   .addExample('Select/story/SearchBehavior.example.tsx', {
     title: 'Search behavior',
     description:
-      'Search is enabled when the number of options is greater or equal to `searchThreshold`.'
+      'Search is enabled when the number of options is greater or equal to `searchThreshold`.' +
+      'Additionally you can control how many items should be displayed in the search result setting `maxSearchItems`'
   }) // picasso-skip-visuals
   .addExample('Select/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
   .addExample('Select/story/Error.example.tsx', 'Error') // picasso-skip-visuals

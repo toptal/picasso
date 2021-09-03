@@ -13,7 +13,8 @@ import {
   ItemProps,
   Option,
   OptionGroups,
-  SelectProps
+  SelectProps,
+  DEFAULT_MAX_SEARCH_ITEMS
 } from '../Select'
 import Typography from '../Typography'
 import styles from './styles'
@@ -54,7 +55,12 @@ const MenuGroup = (props: MenuGroupProps) => {
 
 export type Props = Pick<
   SelectProps,
-  'value' | 'multiple' | 'size' | 'noOptionsText' | 'renderOption'
+  | 'value'
+  | 'multiple'
+  | 'size'
+  | 'noOptionsText'
+  | 'renderOption'
+  | 'maxSearchItems'
 > & {
   options: Option[] | OptionGroups
   highlightedIndex: number | null
@@ -74,7 +80,8 @@ const NonNativeSelectOptions = ({
   size,
   filterOptionsValue,
   noOptionsText,
-  fixedHeader
+  fixedHeader,
+  maxSearchItems = DEFAULT_MAX_SEARCH_ITEMS
 }: Props) => {
   const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
     options
@@ -90,57 +97,78 @@ const NonNativeSelectOptions = ({
     )
   }
 
-  const flatOptionComponents = (optionsList: Option[], offset = 0) =>
-    optionsList.map((option, currentIndex) => {
-      const { onMouseDown, onMouseEnter, onClick } = getItemProps(
-        option,
-        currentIndex + offset
-      )
-      const selection = getSelection(flatOptions, value)
+  const flatOptionComponents = (
+    optionsList: Option[],
+    limit?: number,
+    offset = 0
+  ) =>
+    (limit ? optionsList.slice(0, limit) : optionsList).map(
+      (option, currentIndex) => {
+        const { onMouseDown, onMouseEnter, onClick } = getItemProps(
+          option,
+          currentIndex + offset
+        )
+        const selection = getSelection(flatOptions, value)
 
-      return (
-        <NonNativeSelectOption
-          key={option.key || option.value}
-          option={option}
-          size={size}
-          onMouseDown={onMouseDown}
-          onMouseEnter={onMouseEnter}
-          selected={selection.isOptionSelected(option)}
-          highlighted={highlightedIndex === currentIndex + offset}
-          onClick={onClick}
-          description={option.description}
-        >
-          {renderOption(option)}
-        </NonNativeSelectOption>
-      )
-    })
+        return (
+          <NonNativeSelectOption
+            key={option.key || option.value}
+            option={option}
+            size={size}
+            onMouseDown={onMouseDown}
+            onMouseEnter={onMouseEnter}
+            selected={selection.isOptionSelected(option)}
+            highlighted={highlightedIndex === currentIndex + offset}
+            onClick={onClick}
+            description={option.description}
+          >
+            {renderOption(option)}
+          </NonNativeSelectOption>
+        )
+      }
+    )
 
-  const groupedOptionComponents = (optionGroups: OptionGroups) => {
+  const groupedOptionComponents = (
+    optionGroups: OptionGroups,
+    limit: number
+  ) => {
     let cursor = 0
 
-    return Object.keys(optionGroups).map(group => {
+    return Object.keys(optionGroups).reduce((rendered, group) => {
       cursor += 1 // for the group item itself
       const offset = cursor
+      const limitLeft = limit - cursor
 
-      cursor += optionGroups[group].length
+      if (limitLeft > 0) {
+        rendered.push(
+          <MenuGroup key={group} group={group}>
+            {flatOptionComponents(optionGroups[group], limitLeft, offset)}
+          </MenuGroup>
+        )
+        cursor += optionGroups[group].length
+      }
 
-      return (
-        <MenuGroup key={group} group={group}>
-          {flatOptionComponents(optionGroups[group], offset)}
-        </MenuGroup>
-      )
-    })
+      return rendered
+    }, [] as JSX.Element[])
   }
 
   const optionComponents = isOptionsType(options)
-    ? flatOptionComponents(options)
-    : groupedOptionComponents(options)
+    ? flatOptionComponents(options, maxSearchItems)
+    : groupedOptionComponents(options, maxSearchItems)
+
+  const fixedFooter =
+    maxSearchItems && flatOptions.length > maxSearchItems ? (
+      <MenuItem titleCase={false} disabled>
+        Showing only first {maxSearchItems} of {flatOptions.length} items
+      </MenuItem>
+    ) : null
 
   return (
     <ScrollMenu
       fixedHeader={fixedHeader}
       onBlur={onBlur}
       selectedIndex={highlightedIndex}
+      fixedFooter={fixedFooter}
     >
       {optionComponents}
     </ScrollMenu>
