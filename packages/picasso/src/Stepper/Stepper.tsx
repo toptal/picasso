@@ -10,9 +10,9 @@ import '../StepIcon'
 import StepConnector from '../StepConnector'
 import styles from './styles'
 
-export type OrientationType = 'vertical' | 'horizontal'
+export type DirectionType = 'vertical' | 'horizontal'
 
-export interface Props<T extends OrientationType = 'horizontal'>
+export interface Props<T extends DirectionType = 'horizontal'>
   extends BaseProps,
     TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
@@ -21,14 +21,14 @@ export interface Props<T extends OrientationType = 'horizontal'>
   /** Array of the step labels */
   steps: string[]
   /** Hide labels of non active steps */
-  hideLabels?: T extends 'horizontal' ? boolean : false
-  /** Controls orientation of stepper */
-  orientation?: T
+  hideLabels?: T extends 'horizontal' ? boolean : undefined
+  /** Controls direction of stepper */
+  direction?: T
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
 
-export const Stepper = forwardRef(function Stepper<T extends OrientationType> (
+export const Stepper = forwardRef(function Stepper<T extends DirectionType> (
   props: Props<T>,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
@@ -39,7 +39,7 @@ export const Stepper = forwardRef(function Stepper<T extends OrientationType> (
     className,
     style,
     titleCase,
-    orientation = 'horizontal',
+    direction = 'horizontal',
     ...rest
   } = props
   const classes = useStyles()
@@ -49,10 +49,10 @@ export const Stepper = forwardRef(function Stepper<T extends OrientationType> (
       {...rest}
       ref={ref}
       activeStep={active}
-      connector={<StepConnector orientation={orientation} />}
+      connector={<StepConnector direction={direction} />}
       className={cx(classes.root, className)}
       style={style}
-      orientation={orientation}
+      orientation={direction}
     >
       {steps.map((label, stepIndex) => (
         <Step key={label}>
@@ -72,7 +72,7 @@ export const Stepper = forwardRef(function Stepper<T extends OrientationType> (
 Stepper.defaultProps = {
   active: 0,
   hideLabels: false,
-  orientation: 'horizontal',
+  direction: 'horizontal',
   steps: []
 }
 

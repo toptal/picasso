@@ -4,12 +4,12 @@ import {
   Stepper,
   Container,
   StepperProps,
-  OrientationType
+  DirectionType
 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const Example = <T extends OrientationType = 'horizontal'>(
-  props: Pick<StepperProps<T>, 'hideLabels' | 'orientation'>
+const Example = <T extends DirectionType = 'horizontal'>(
+  props: Pick<StepperProps<T>, 'hideLabels' | 'direction'>
 ) => (
   <TestingPicasso>
     <Container padded='medium'>
@@ -57,7 +57,7 @@ describe('Stepper', () => {
   it('renders vertically', () => {
     mount(
       <TestingPicasso>
-        <Example orientation='vertical' />
+        <Example direction='vertical' />
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()

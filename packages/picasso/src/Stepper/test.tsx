@@ -2,15 +2,16 @@ import React from 'react'
 import { render, PicassoConfig } from '@toptal/picasso/test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Stepper, { PropsVertical, PropsHorizonatal } from './Stepper'
+import Stepper from './Stepper'
+import { DirectionType, StepperProps } from '.'
 
 jest.mock('ap-style-title-case')
 
-const renderStepper = (
-  props: PropsVertical | PropsHorizonatal,
+const renderStepper = <T extends DirectionType = 'horizontal'>(
+  props: StepperProps<T>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { active, hideLabels, steps, titleCase, orientation } = props
+  const { active, hideLabels, steps, titleCase, direction } = props
 
   return render(
     <Stepper
@@ -18,7 +19,7 @@ const renderStepper = (
       hideLabels={hideLabels}
       steps={steps}
       titleCase={titleCase}
-      orientation={orientation}
+      direction={direction}
     />,
     undefined,
     picassoConfig
@@ -69,8 +70,7 @@ describe('Stepper', () => {
     const { container } = renderStepper({
       steps,
       active: activeStep,
-      hideLabels: false,
-      orientation: 'vertical'
+      direction: 'vertical'
     })
 
     expect(container).toMatchSnapshot()
