@@ -24,23 +24,28 @@ export interface Props
 
   /** The value of the currently selected Tab. If you don't want any selected Tab, you can set this property to false. */
   value: TabsProps['value']
+
+  /** The tabs orientation (layout flow direction)
+   *
+   * @default horizontal */
+  orientation?: TabsProps['orientation']
 }
 
 export interface StaticProps {
   Tab: typeof Tab
 }
 
-const useStyles = makeStyles<Theme>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'Tabs'
 })
 
 // eslint-disable-next-line react/display-name
-export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
+export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs (
   props,
   ref
 ) {
-  const { children, onChange, value, ...rest } = props
-  const classes = useStyles()
+  const { children, onChange, value, orientation, ...rest } = props
+  const classes = useStyles(props)
   const action = useTabAction()
 
   return (
@@ -53,7 +58,10 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
       variant='scrollable'
       action={action}
       scrollButtons='auto'
-      ScrollButtonComponent={TabScrollButton}
+      ScrollButtonComponent={
+        orientation === 'horizontal' ? TabScrollButton : undefined
+      }
+      orientation={orientation}
     >
       {children}
     </MUITabs>

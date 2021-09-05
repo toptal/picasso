@@ -19,9 +19,7 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
 
       color: palette.grey.dark,
 
-      '&:not(:last-child)': {
-        marginRight: '2em'
-      },
+      marginRight: '2em',
 
       [breakpoints.up('md')]: {
         minWidth: 'auto',
