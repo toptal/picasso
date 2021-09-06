@@ -40,13 +40,15 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs (
+export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
   props,
   ref
 ) {
   const { children, onChange, value, orientation, ...rest } = props
   const classes = useStyles(props)
   const action = useTabAction()
+  const scrollButtonComponent =
+    orientation === 'horizontal' ? TabScrollButton : undefined
 
   return (
     <MUITabs
@@ -58,9 +60,7 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs (
       variant='scrollable'
       action={action}
       scrollButtons='auto'
-      ScrollButtonComponent={
-        orientation === 'horizontal' ? TabScrollButton : undefined
-      }
+      ScrollButtonComponent={scrollButtonComponent}
       orientation={orientation}
     >
       {children}
@@ -68,7 +68,9 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs (
   )
 }) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
 
-Tabs.defaultProps = {}
+Tabs.defaultProps = {
+  orientation: 'horizontal'
+}
 
 Tabs.displayName = 'Tabs'
 
