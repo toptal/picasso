@@ -21,7 +21,7 @@ import {
   DEFAULT_HEIGHT,
   DEFAULT_SCALE_EXTENT
 } from './variables'
-import { DirectionsType, TreeNodeInterface, TreeViewVariant } from './types'
+import { DirectionsType, TreeNodeInterface, TreeViewVariant, Vector2 } from './types'
 import { getFinalMargins } from './utils'
 
 type DirectionOptions = {
@@ -37,7 +37,7 @@ type DirectionOptions = {
 export interface Props {
   /** Root node of the Tree */
   data: TreeNodeInterface
-  /** Custom function for rendering Node. It expect the `node: HierarchyPointNode<TreeNodeInterface>` as an argument */
+  /** Custom function for rendering Node. It expects the `node: HierarchyPointNode<TreeNodeInterface>` as an argument */
   renderNode?: (pointNode: HierarchyPointNode<TreeNodeInterface>) => ReactNode
   /** exact node width in pixels. Default value is 236 */
   nodeWidth?: number
@@ -53,6 +53,8 @@ export interface Props {
   scaleCoefficient?: number
   /** Options related to tree direction */
   directionOptions?: DirectionOptions
+  /** Custom center translation vector (happens after zoom center translation on selected node is applied) */
+  centerTranslation?: Vector2
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTreeView' })
@@ -67,7 +69,10 @@ export const TreeView = (props: Props) => {
     initialScale = 1,
     scaleCoefficient = 0.5,
     showZoom,
-    directionOptions
+    directionOptions,
+    centerTranslation = {
+      x: 0, y: 0
+    }
   } = props
 
   const {
@@ -95,9 +100,9 @@ export const TreeView = (props: Props) => {
     nodeHeight
   })
 
-  const center = useMemo<{ x: number; y: number } | undefined>(() => {
+  const center = useMemo<Vector2>(() => {
     if (!selectedNode) {
-      return undefined
+      return { x: 0, y: 0 }
     }
 
     const { x: xPosition, y: yPosition, data: nodeData } = selectedNode
@@ -111,7 +116,7 @@ export const TreeView = (props: Props) => {
   const { handleZoom, zoom } = useZoom<SVGSVGElement>({
     rootRef,
     scaleExtent,
-    center,
+    center: { x: center.x + centerTranslation.x, y: center.y + centerTranslation.y },
     initialScale
   })
   const [initialized, setInitialized] = useState(false)
