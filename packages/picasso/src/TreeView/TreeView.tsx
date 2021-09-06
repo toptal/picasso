@@ -21,7 +21,12 @@ import {
   DEFAULT_HEIGHT,
   DEFAULT_SCALE_EXTENT
 } from './variables'
-import { DirectionsType, TreeNodeInterface, TreeViewVariant, Vector2 } from './types'
+import {
+  DirectionsType,
+  TreeNodeInterface,
+  TreeViewVariant,
+  Vector2
+} from './types'
 import { getFinalMargins } from './utils'
 
 type DirectionOptions = {
@@ -34,6 +39,7 @@ type DirectionOptions = {
   /** Variants of the tree: currently supports normal (default) and compact - special compact variant of the tree that works only for trees with one node with children per depth level */
   variant?: TreeViewVariant
 }
+
 export interface Props {
   /** Root node of the Tree */
   data: TreeNodeInterface
@@ -55,6 +61,8 @@ export interface Props {
   directionOptions?: DirectionOptions
   /** Custom center translation vector (happens after zoom center translation on selected node is applied) */
   centerTranslation?: Vector2
+  /** Transition duration for centering animation in ms */
+  transitionDuration?: number
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTreeView' })
@@ -68,11 +76,13 @@ export const TreeView = (props: Props) => {
     scaleExtent = DEFAULT_SCALE_EXTENT,
     initialScale = 1,
     scaleCoefficient = 0.5,
-    showZoom,
+    showZoom = true,
     directionOptions,
     centerTranslation = {
-      x: 0, y: 0
-    }
+      x: 0,
+      y: 0
+    },
+    transitionDuration = 750
   } = props
 
   const {
@@ -116,8 +126,12 @@ export const TreeView = (props: Props) => {
   const { handleZoom, zoom } = useZoom<SVGSVGElement>({
     rootRef,
     scaleExtent,
-    center: { x: center.x + centerTranslation.x, y: center.y + centerTranslation.y },
-    initialScale
+    center: {
+      x: center.x + centerTranslation.x,
+      y: center.y + centerTranslation.y
+    },
+    initialScale,
+    transitionDuration
   })
   const [initialized, setInitialized] = useState(false)
   const { updateState } = useContext(TreeViewContext)
@@ -163,14 +177,6 @@ export const TreeView = (props: Props) => {
       </svg>
     </div>
   )
-}
-
-TreeView.defaultProps = {
-  nodeWidth: DEFAULT_WIDTH,
-  scaleExtent: DEFAULT_SCALE_EXTENT,
-  initialScale: 1,
-  scaleCoefficient: 0.5,
-  showZoom: true
 }
 
 TreeView.displayName = 'TreeView'
