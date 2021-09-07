@@ -32,7 +32,7 @@ export default (theme: Theme) => {
       border: `solid ${sizes.borderWidth} ${palette.grey.light2}`,
       fontSize: '1rem',
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
-      transitionProperty: 'border, color, background',
+      transitionProperty: 'border, color, background, z-index',
       boxShadow: 'none',
       flexShrink: 0,
 
