@@ -1,7 +1,10 @@
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { DirectionType, Props } from './Stepper'
+import { Props, DirectionType } from './Stepper'
 
 export { default } from './Stepper'
-export type StepperProps<T extends DirectionType> = OmitInternalProps<Props<T>>
+export type StepperBaseProps<T extends DirectionType> = Props<T>
+export type StepperProps = OmitInternalProps<
+  Omit<Props<'horizontal'>, 'direction'>
+>
 export type { DirectionType } from './Stepper'

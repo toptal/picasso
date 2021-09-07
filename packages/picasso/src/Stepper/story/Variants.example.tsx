@@ -16,8 +16,7 @@ const Example = () => (
     <Container top='small'>
       <Typography>Vertical:</Typography>
       <Container padded='medium'>
-        <Stepper
-          direction='vertical'
+        <Stepper.Vertical
           active={1}
           steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']}
         />

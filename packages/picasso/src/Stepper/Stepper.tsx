@@ -9,6 +9,7 @@ import StepLabel from '../StepLabel'
 import '../StepIcon'
 import StepConnector from '../StepConnector'
 import styles from './styles'
+import StepperVertical from '../StepperVertical'
 
 export type DirectionType = 'vertical' | 'horizontal'
 
@@ -21,53 +22,54 @@ export interface Props<T extends DirectionType = 'horizontal'>
   /** Array of the step labels */
   steps: string[]
   /** Hide labels of non active steps */
-  hideLabels?: T extends 'horizontal' ? boolean : undefined
-  /** Controls direction of stepper */
+  hideLabels?: T extends 'horizontal' ? boolean : never
   direction?: T
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
 
-export const Stepper = forwardRef(function Stepper<T extends DirectionType> (
-  props: Props<T>,
-  ref: React.ForwardedRef<HTMLDivElement>
-) {
-  const {
-    active = 0,
-    steps = [],
-    hideLabels = false,
-    className,
-    style,
-    titleCase,
-    direction = 'horizontal',
-    ...rest
-  } = props
-  const classes = useStyles()
+const Stepper = forwardRef(
+  <T extends DirectionType>(
+    props: Props<T>,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    const {
+      active = 0,
+      steps = [],
+      hideLabels = false,
+      className,
+      style,
+      titleCase,
+      direction = 'horizontal',
+      ...rest
+    } = props
+    const classes = useStyles()
 
-  return (
-    <MUIStepper
-      {...rest}
-      ref={ref}
-      activeStep={active}
-      connector={<StepConnector direction={direction} />}
-      className={cx(classes.root, className)}
-      style={style}
-      orientation={direction}
-    >
-      {steps.map((label, stepIndex) => (
-        <Step key={label}>
-          <StepLabel
-            active={stepIndex === active}
-            hideLabel={hideLabels}
-            titleCase={titleCase}
-          >
-            {label}
-          </StepLabel>
-        </Step>
-      ))}
-    </MUIStepper>
-  )
-})
+    return (
+      <MUIStepper
+        {...rest}
+        ref={ref}
+        activeStep={active}
+        connector={<StepConnector direction={direction} />}
+        className={cx(classes.root, className)}
+        style={style}
+        orientation={direction}
+      >
+        {steps.map((label, stepIndex) => (
+          <Step key={label}>
+            <StepLabel
+              active={stepIndex === active}
+              hideLabel={hideLabels}
+              titleCase={titleCase}
+            >
+              {label}
+            </StepLabel>
+          </Step>
+        ))}
+      </MUIStepper>
+    )
+  }
+)
 
 Stepper.defaultProps = {
   active: 0,
@@ -78,4 +80,4 @@ Stepper.defaultProps = {
 
 Stepper.displayName = 'Stepper'
 
-export default Stepper
+export default Object.assign(Stepper, { Vertical: StepperVertical })

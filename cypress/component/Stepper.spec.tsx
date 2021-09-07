@@ -1,54 +1,48 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import {
-  Stepper,
-  Container,
-  StepperProps,
-  DirectionType
-} from '@toptal/picasso'
+import { Stepper, Container } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const Example = <T extends DirectionType = 'horizontal'>(
-  props: Pick<StepperProps<T>, 'hideLabels' | 'direction'>
-) => (
-  <TestingPicasso>
-    <Container padded='medium'>
-      <Stepper steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']} {...props} />
-    </Container>
-    <Container top='small' padded='medium'>
-      <Stepper
-        active={1}
-        steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']}
-        {...props}
-      />
-    </Container>
-    <Container top='small' padded='medium'>
-      <Stepper
-        active={3}
-        steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']}
-        {...props}
-      />
-    </Container>
-    <Container top='small' padded='medium'>
-      <Stepper
-        active={4}
-        steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']}
-        {...props}
-      />
-    </Container>
-  </TestingPicasso>
-)
+const STEPS = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
 
 describe('Stepper', () => {
   it('renders with label', () => {
-    mount(<Example />)
+    mount(
+      <TestingPicasso>
+        <Container padded='medium'>
+          <Stepper steps={STEPS} />
+        </Container>
+        <Container top='small' padded='medium'>
+          <Stepper active={1} steps={STEPS} />
+        </Container>
+        <Container top='small' padded='medium'>
+          <Stepper active={3} steps={STEPS} />
+        </Container>
+        <Container top='small' padded='medium'>
+          <Stepper active={4} steps={STEPS} />
+        </Container>
+      </TestingPicasso>
+    )
     cy.get('body').happoScreenshot()
   })
 
   it('renders without label', () => {
     mount(
       <TestingPicasso>
-        <Example hideLabels />
+        <TestingPicasso>
+          <Container padded='medium'>
+            <Stepper steps={STEPS} hideLabels />
+          </Container>
+          <Container top='small' padded='medium'>
+            <Stepper active={1} steps={STEPS} hideLabels />
+          </Container>
+          <Container top='small' padded='medium'>
+            <Stepper active={3} steps={STEPS} hideLabels />
+          </Container>
+          <Container top='small' padded='medium'>
+            <Stepper active={4} steps={STEPS} hideLabels />
+          </Container>
+        </TestingPicasso>
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
@@ -57,7 +51,20 @@ describe('Stepper', () => {
   it('renders vertically', () => {
     mount(
       <TestingPicasso>
-        <Example direction='vertical' />
+        <TestingPicasso>
+          <Container padded='medium'>
+            <Stepper.Vertical steps={STEPS} />
+          </Container>
+          <Container top='small' padded='medium'>
+            <Stepper.Vertical active={1} steps={STEPS} />
+          </Container>
+          <Container top='small' padded='medium'>
+            <Stepper.Vertical active={3} steps={STEPS} />
+          </Container>
+          <Container top='small' padded='medium'>
+            <Stepper.Vertical active={4} steps={STEPS} />
+          </Container>
+        </TestingPicasso>
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
