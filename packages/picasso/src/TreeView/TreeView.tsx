@@ -19,7 +19,8 @@ import { useZoom } from './useZoom'
 import {
   DEFAULT_WIDTH,
   DEFAULT_HEIGHT,
-  DEFAULT_SCALE_EXTENT
+  DEFAULT_SCALE_EXTENT,
+  ZERO_VECTOR2
 } from './variables'
 import {
   DirectionsType,
@@ -29,7 +30,7 @@ import {
 } from './types'
 import { getFinalMargins } from './utils'
 
-type DirectionOptions = {
+type DirectionProps = {
   /** Determines the direction of the TreeView: vertical - top-to-bottom (default) or */
   direction?: DirectionsType
   /** Overrides default vertical margin - minimum vertical distance between nodes */
@@ -57,8 +58,8 @@ export interface Props {
   showZoom?: boolean
   /** Scales the current zoom transform by coefficient */
   scaleCoefficient?: number
-  /** Options related to tree direction */
-  directionOptions?: DirectionOptions
+  /** Props related to tree direction */
+  directionProps?: DirectionProps
   /** Custom center translation vector (happens after zoom center translation on selected node is applied) */
   centerTranslation?: Vector2
   /** Transition duration for centering animation in ms */
@@ -77,12 +78,14 @@ export const TreeView = (props: Props) => {
     initialScale = 1,
     scaleCoefficient = 0.5,
     showZoom = true,
-    directionOptions,
-    centerTranslation = {
-      x: 0,
-      y: 0
-    },
-    transitionDuration = 750
+    centerTranslation = ZERO_VECTOR2,
+    transitionDuration = 750,
+    directionProps = {
+      direction: 'vertical',
+      verticalMargin: 0,
+      horizontalMargin: 0,
+      variant: 'normal'
+    }
   } = props
 
   const {
@@ -90,7 +93,7 @@ export const TreeView = (props: Props) => {
     verticalMargin = 0,
     horizontalMargin = 0,
     variant = 'normal'
-  } = directionOptions || {}
+  } = directionProps
 
   const classes = useStyles()
   const rootRef = createRef<SVGSVGElement>()
@@ -112,7 +115,7 @@ export const TreeView = (props: Props) => {
 
   const center = useMemo<Vector2>(() => {
     if (!selectedNode) {
-      return { x: 0, y: 0 }
+      return ZERO_VECTOR2
     }
 
     const { x: xPosition, y: yPosition, data: nodeData } = selectedNode
@@ -177,6 +180,21 @@ export const TreeView = (props: Props) => {
       </svg>
     </div>
   )
+}
+
+TreeView.defaultProps = {
+  nodeWidth: DEFAULT_WIDTH,
+  nodeHeight: DEFAULT_HEIGHT,
+  scaleExtent: DEFAULT_SCALE_EXTENT,
+  initialScale: 1,
+  scaleCoefficient: 0.5,
+  showZoom: true,
+  centerTranslation: ZERO_VECTOR2,
+  transitionDuration: 750,
+  directionProps: {
+    direction: 'vertical',
+    variant: 'normal'
+  }
 }
 
 TreeView.displayName = 'TreeView'

@@ -61,15 +61,19 @@ const getPositionNoLeavesAndNoChildren = (
     const indexWithChildren: number = siblings.findIndex(leaf => leaf.children)
 
     if (indexWithChildren !== -1) {
+      const siblingWithChildren: d3.HierarchyPointNode<TreeNodeInterface> =
+        siblings[indexWithChildren]
+
       position =
-        siblings[indexWithChildren][coordinateType] +
+        siblingWithChildren[coordinateType] +
         (index - indexWithChildren) * nodeSizeAttr
     } else {
+      const closeSiblingIndex = Math.floor(index - siblings.length / 2)
+
       position =
         siblings.length % 2
-          ? Math.floor(index - siblings.length / 2) * nodeSizeAttr
-          : Math.floor(index - siblings.length / 2) * nodeSizeAttr -
-            nodeSizeAttr / 2
+          ? closeSiblingIndex * nodeSizeAttr
+          : closeSiblingIndex * nodeSizeAttr - nodeSizeAttr / 2
     }
   }
 
@@ -122,23 +126,24 @@ const getPositionNoLeavesButChildren = (
     })
   }
 
-  node.children.reduce((acc, child) => {
+  node.children.forEach(child => {
     if (!child.children) {
       calculateNodePosition({ ...options, node: child })
     }
-
-    return acc
-  }, 0)
+  })
 
   const halfLength = node.children.length / 2
 
   if (node.children.length % 2) {
     position = node.children[Math.floor(halfLength)][coordinateType]
   } else {
+    const middleChild: d3.HierarchyPointNode<TreeNodeInterface> =
+      node.children[halfLength]
+    const previousToMiddleChild: d3.HierarchyPointNode<TreeNodeInterface> =
+      node.children[halfLength - 1]
+
     position =
-      (node.children[halfLength][coordinateType] +
-        node.children[halfLength - 1][coordinateType]) /
-      2
+      (middleChild[coordinateType] + previousToMiddleChild[coordinateType]) / 2
   }
 
   return position
@@ -217,7 +222,15 @@ export const useTree = ({
       nodeSizeAttr: fullNodeHeight,
       aggregationType: variant === 'normal' ? 'leaves' : 'siblings'
     })
-  }, [data, fullNodeWidth, fullNodeHeight, direction, variant, nodeHeight, nodeWidth])
+  }, [
+    data,
+    fullNodeWidth,
+    fullNodeHeight,
+    direction,
+    variant,
+    nodeHeight,
+    nodeWidth
+  ])
 
   const nodes = useNodes(rootNode, direction, verticalMargin, horizontalMargin)
 

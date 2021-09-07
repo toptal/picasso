@@ -198,7 +198,7 @@ const Example = () => (
       data={rootNode}
       renderNode={renderNode}
       initialScale={0.8}
-      directionOptions={{
+      directionProps={{
         verticalMargin: 20,
         horizontalMargin: 200,
         direction: 'horizontal',
