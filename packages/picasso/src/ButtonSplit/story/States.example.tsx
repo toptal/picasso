@@ -17,7 +17,8 @@ const Example = () => {
       <Typography variant='heading' size='small'>
         Primary (Default)
       </Typography>
-      <Container flex gap='1em' top='small'>
+
+      <Container flex gap='1em' top='small' bottom='small'>
         <Button.Split text='Normal' menu={menu} />
 
         <Button.Split

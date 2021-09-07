@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Menu } from '@toptal/picasso'
+import { Button, Menu, Container } from '@toptal/picasso'
 
 const Example = () => {
   const handleClick = () => console.info('Item is clicked')
@@ -13,11 +13,11 @@ const Example = () => {
   )
 
   return (
-    <div style={{ display: 'flex', gap: '1rem' }}>
+    <Container flex gap='1rem'>
       <Button.Split text='Button' size='small' menu={menu} />
       <Button.Split text='Button' size='medium' menu={menu} />
       <Button.Split text='Button' size='large' menu={menu} />
-    </div>
+    </Container>
   )
 }
 
