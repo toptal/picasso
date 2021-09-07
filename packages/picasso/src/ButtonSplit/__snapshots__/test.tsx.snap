@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonSplit closes menu on click to the item 1`] = `
+<svg
+  class="PicassoSvgArrowDownMinor24-root-132"
+  style="min-width: 24px; min-height: 24px;"
+  viewBox="0 0 24 24"
+>
+  <path
+    d="M18.007 8.3l.707.707-6 6-.707.707-.707-.707-6-6 .707-.707 6 6 6-6z"
+  />
+</svg>
+`;
+
+exports[`ButtonSplit default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      class="PicassoButtonSplit-root"
+    >
+      <button
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root PicassoButtonSplit-button PicassoButtonSplit-primaryVariant PicassoButtonSplit-actionButton"
+        data-component-type="button"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+        >
+          Action
+        </span>
+      </button>
+      <div
+        class="PicassoDropdown-root PicassoButtonSplit-dropdown"
+      >
+        <div
+          class="PicassoDropdown-anchor"
+        >
+          <button
+            class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root PicassoButtonSplit-button PicassoButtonSplit-primaryVariant PicassoButtonSplit-menuButton PicassoButtonSplit-mediumSize"
+            data-component-type="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            >
+              <svg
+                class="PicassoSvgArrowDownMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`ButtonSplit renders arrow down icon for a closed menu 1`] = `
+<svg
+  class="PicassoSvgArrowDownMinor16-root-132"
+  style="min-width: 16px; min-height: 16px;"
+  viewBox="0 0 16 16"
+>
+  <path
+    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+  />
+</svg>
+`;
+
+exports[`ButtonSplit renders arrow up icon for an opened menu 1`] = `
+<svg
+  class="PicassoSvgArrowUpMinor16-root-101"
+  style="min-width: 16px; min-height: 16px;"
+  viewBox="0 0 16 16"
+>
+  <path
+    d="M7.997 5.29l4.707 4.707-.707.707-4-4-4 4-.707-.707 4-4 .707-.707z"
+  />
+</svg>
+`;
