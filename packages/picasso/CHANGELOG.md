@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.5](https://github.com/toptal/picasso/compare/@toptal/picasso@10.3.4...@toptal/picasso@10.3.5) (2021-09-07)
+
+
+### Bug Fixes
+
+* update modal scrollable shades to fix resize inheritance ([#2154](https://github.com/toptal/picasso/issues/2154)) ([0cdd7fc](https://github.com/toptal/picasso/commit/0cdd7fc5084a08eaf652f1a45bf2fb5798f7e332))
+
+
+
+
+
 ## [10.3.4](https://github.com/toptal/picasso/compare/@toptal/picasso@10.3.3...@toptal/picasso@10.3.4) (2021-08-25)
 
 **Note:** Version bump only for package @toptal/picasso

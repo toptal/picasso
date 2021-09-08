@@ -60,7 +60,11 @@ export const TypographyOverflow = (props: Props) => {
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      if (!isTooltipOpened && isOverflown(event.currentTarget)) {
+      if (
+        !isTooltipOpened &&
+        !disableTooltip &&
+        isOverflown(event.currentTarget)
+      ) {
         setIsTooltipOpened(true)
         setIsTooltipActive(true)
       }
@@ -69,7 +73,7 @@ export const TypographyOverflow = (props: Props) => {
         onClick(event)
       }
     },
-    [isTooltipOpened, onClick]
+    [isTooltipOpened, disableTooltip, onClick]
   )
 
   const handleMouseEnter = useCallback(
