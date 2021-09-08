@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "10.4.0",
+  "version": "10.4.1",
   "description": "Toptal UI components library",
   "publishConfig": {
     "access": "public"
@@ -30,8 +30,8 @@
     "react-helmet": "6.1.0"
   },
   "dependencies": {
-    "@toptal/picasso-provider": "^0.1.0",
-    "@toptal/picasso-shared": "5.0.0",
+    "@toptal/picasso-provider": "^0.1.1",
+    "@toptal/picasso-shared": "^5.0.1",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.3.1",
     "d3": "^6.6.2",
