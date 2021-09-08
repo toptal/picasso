@@ -31,45 +31,43 @@ export interface Props extends StepperBaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
 
-const Stepper = forwardRef(
-  (props: Props, ref: React.ForwardedRef<HTMLDivElement>) => {
-    const {
-      active = 0,
-      steps = [],
-      hideLabels = false,
-      className,
-      style,
-      titleCase,
-      direction = 'horizontal',
-      ...rest
-    } = props
-    const classes = useStyles()
+const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const {
+    active = 0,
+    steps = [],
+    hideLabels = false,
+    className,
+    style,
+    titleCase,
+    direction = 'horizontal',
+    ...rest
+  } = props
+  const classes = useStyles()
 
-    return (
-      <MUIStepper
-        {...rest}
-        ref={ref}
-        activeStep={active}
-        connector={<StepConnector direction={direction} />}
-        className={cx(classes.root, className)}
-        style={style}
-        orientation={direction}
-      >
-        {steps.map((label, stepIndex) => (
-          <Step key={label}>
-            <StepLabel
-              active={stepIndex === active}
-              hideLabel={hideLabels}
-              titleCase={titleCase}
-            >
-              {label}
-            </StepLabel>
-          </Step>
-        ))}
-      </MUIStepper>
-    )
-  }
-)
+  return (
+    <MUIStepper
+      {...rest}
+      ref={ref}
+      activeStep={active}
+      connector={<StepConnector direction={direction} />}
+      className={cx(classes.root, className)}
+      style={style}
+      orientation={direction}
+    >
+      {steps.map((label, stepIndex) => (
+        <Step key={label}>
+          <StepLabel
+            active={stepIndex === active}
+            hideLabel={hideLabels}
+            titleCase={titleCase}
+          >
+            {label}
+          </StepLabel>
+        </Step>
+      ))}
+    </MUIStepper>
+  )
+})
 
 Stepper.defaultProps = {
   active: 0,
