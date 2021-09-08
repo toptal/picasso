@@ -30,7 +30,7 @@ export interface Props extends BaseProps {
 const useStyles = makeStyles<Theme>(styles, { name: 'FileInputContent' })
 
 export const FileInput = forwardRef<HTMLInputElement, Props>(
-  function FileInput (props, ref) {
+  function FileInput(props, ref) {
     const {
       accept,
       disabled,

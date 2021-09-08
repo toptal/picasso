@@ -14,7 +14,7 @@ const Example = () => {
     <div style={{ width: '13rem' }}>
       <Tabs value={value} onChange={handleChange}>
         {Array.from({ length: TAB_COUNT }).map((_, index) => (
-          <Tabs.Tab key={index} label='Label' />
+          <Tabs.Tab key={String(index)} label='Label' />
         ))}
       </Tabs>
       <Container top='small'>Content of tab #{value}</Container>

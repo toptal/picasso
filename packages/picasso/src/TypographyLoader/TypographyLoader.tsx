@@ -35,7 +35,7 @@ const Paragraph = ({ className, style = {} }: BaseProps) => (
 export const TypographyLoader = ({ className, rows = 1, style }: Props) => (
   <>
     {Array.from({ length: rows }).map((_, index) => (
-      <Paragraph className={className} key={index} style={style} />
+      <Paragraph className={className} key={String(index)} style={style} />
     ))}
   </>
 )

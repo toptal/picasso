@@ -20,7 +20,7 @@ export interface StaticProps {
   Content: typeof NoteContent
 }
 
-export const Note = forwardRef<HTMLDivElement, Props>(function Note (
+export const Note = forwardRef<HTMLDivElement, Props>(function Note(
   { children, className, ...rest },
   ref
 ) {

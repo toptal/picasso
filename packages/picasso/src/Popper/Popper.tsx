@@ -95,7 +95,7 @@ const useWidthStyle = ({
   return {}
 }
 
-export const Popper = forwardRef<PopperJs, Props>(function Popper (props, ref) {
+export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   const {
     children,
     open,

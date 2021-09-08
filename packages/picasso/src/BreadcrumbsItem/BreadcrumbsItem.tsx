@@ -38,7 +38,7 @@ const Active: FunctionComponent = props => {
 export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
->(function BreadcrumbsItem (props, ref) {
+>(function BreadcrumbsItem(props, ref) {
   const {
     as,
     active,

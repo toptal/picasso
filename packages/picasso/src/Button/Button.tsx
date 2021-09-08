@@ -113,7 +113,7 @@ const getIcon = (
   })
 }
 
-export const Button = forwardRef<HTMLButtonElement, Props>(function Button (
+export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   props,
   ref
 ) {

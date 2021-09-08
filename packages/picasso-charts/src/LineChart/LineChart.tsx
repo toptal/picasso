@@ -97,12 +97,9 @@ const generateHighlightedAreas = (
     highlights
   )
 
-  return highlightAreas.map((highlightArea, index) =>
-    highlightArea.map((props, highlightIndex: number) => (
-      <ReferenceArea
-        key={`highlight-area-${index}-${highlightIndex}`}
-        {...props}
-      />
+  return highlightAreas.map(highlightArea =>
+    highlightArea.map(props => (
+      <ReferenceArea key={Object.values(props).join('-')} {...props} />
     ))
   )
 }
@@ -127,13 +124,13 @@ const generateLineGraphs = (
   lines: LineConfig,
   orderedData: OrderedChartDataPoint[]
 ) =>
-  Object.keys(lines).map((name, index) => {
+  Object.keys(lines).map(name => {
     const line = lines[name]
     const isReferenceLine = line.variant === 'reference'
 
     return (
       <Line
-        key={`line-${index}`}
+        key={`${line.color}-${name}`}
         data={orderedData}
         dataKey={name}
         stroke={line.color}

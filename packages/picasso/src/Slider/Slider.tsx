@@ -76,7 +76,7 @@ const createDefaultValueLabelComponent = (
   return ValueLableComponent
 }
 
-export const Slider = forwardRef<HTMLElement, Props>(function Slider (
+export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   props,
   ref
 ) {

@@ -29,7 +29,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
-  function ApplicationUpdateNotification (props, ref) {
+  function ApplicationUpdateNotification(props, ref) {
     const {
       title,
       description,

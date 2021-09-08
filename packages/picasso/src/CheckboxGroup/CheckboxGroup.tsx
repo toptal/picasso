@@ -58,7 +58,7 @@ const CheckboxGroup: FunctionComponent<Props> = props => {
       >
         {children.map((child, index) => (
           <Grid.Item
-            key={index}
+            key={String(index)}
             className={gridItemClass}
             small={small}
             medium={medium}

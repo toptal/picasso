@@ -87,7 +87,7 @@ export interface StaticProps {
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
-  function TagSelector (props, ref) {
+  function TagSelector(props, ref) {
     const {
       disabled,
       enableAutofill,

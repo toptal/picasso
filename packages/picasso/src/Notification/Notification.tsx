@@ -119,7 +119,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const Notification = forwardRef<HTMLElement, PrivateProps>(
-  function Notification (props, ref) {
+  function Notification(props, ref) {
     const { className, variant, elevated, ...rest } = props
 
     const classes = useStyles()

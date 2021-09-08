@@ -35,7 +35,7 @@ export const TreeViewContainer: FC = ({ children }) => {
 
     d3.select(state.ref)
       .transition()
-      .call(state.zoom.scaleTo, function (
+      .call(state.zoom.scaleTo, function(
         this: SVGSVGElement,
         datum: unknown,
         index: number,

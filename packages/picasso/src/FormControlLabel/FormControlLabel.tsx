@@ -37,7 +37,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 })
 
 const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
-  function FormControlLabel (props, ref) {
+  function FormControlLabel(props, ref) {
     const {
       control,
       label,

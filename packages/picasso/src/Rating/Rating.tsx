@@ -26,7 +26,7 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoRating'
 })
 
-const Rating = forwardRef<HTMLDivElement, Props>(function Rating (props, ref) {
+const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
   const {
     name,
     value,
