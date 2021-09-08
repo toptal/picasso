@@ -2,10 +2,7 @@ import React, { forwardRef } from 'react'
 
 import Stepper, { StepperBaseProps } from '../Stepper'
 
-export type Props = Omit<
-  StepperBaseProps<'vertical'>,
-  'hideLabels' | 'direction'
->
+export type Props = StepperBaseProps
 
 export const StepperVertical = forwardRef(function StepperVertical (
   props: Props,

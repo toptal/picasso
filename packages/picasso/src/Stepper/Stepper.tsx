@@ -13,7 +13,7 @@ import StepperVertical from '../StepperVertical'
 
 export type DirectionType = 'vertical' | 'horizontal'
 
-export interface Props<T extends DirectionType = 'horizontal'>
+export interface StepperBaseProps
   extends BaseProps,
     TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
@@ -21,18 +21,18 @@ export interface Props<T extends DirectionType = 'horizontal'>
   active?: number
   /** Array of the step labels */
   steps: string[]
+}
+
+export interface Props extends StepperBaseProps {
   /** Hide labels of non active steps */
-  hideLabels?: T extends 'horizontal' ? boolean : never
-  direction?: T
+  hideLabels?: boolean
+  direction?: DirectionType
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
 
 const Stepper = forwardRef(
-  <T extends DirectionType>(
-    props: Props<T>,
-    ref: React.ForwardedRef<HTMLDivElement>
-  ) => {
+  (props: Props, ref: React.ForwardedRef<HTMLDivElement>) => {
     const {
       active = 0,
       steps = [],
