@@ -9,6 +9,7 @@ export interface UseZoomArguments<
   scaleExtent: [number, number]
   center?: { x: number; y: number }
   initialScale?: number
+  transitionDuration?: number
 }
 
 export interface UseZoomResponse<ZoomRefElement extends ZoomedElementBaseType> {
@@ -20,7 +21,8 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
   rootRef,
   scaleExtent,
   center,
-  initialScale = 1
+  initialScale = 1,
+  transitionDuration = 750
 }: UseZoomArguments<ZoomRefElement>): UseZoomResponse<ZoomRefElement> => {
   const [initialized, setInitialized] = useState(false)
   const zoom = useMemo(
@@ -60,10 +62,10 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
     } else if (center) {
       d3.select(rootRef.current)
         .transition()
-        .duration(750)
+        .duration(transitionDuration)
         .call(zoom.translateTo, center.x, center.y)
     }
-  }, [zoom, initialized, center, rootRef, initialScale])
+  }, [zoom, initialized, center, rootRef, initialScale, transitionDuration])
 
   return {
     zoom,

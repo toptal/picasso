@@ -38,3 +38,11 @@ page
   .addExample('TreeView/story/AvatarSize.example.tsx', {
     title: 'Avatar Size'
   }) // picasso-skip-visuals
+  .addExample('TreeView/story/Horizontal.example.tsx', {
+    title: 'Horizontal Direction'
+  }) // picasso-skip-visuals
+  .addExample('TreeView/story/Compact.example.tsx', {
+    title: 'Compact tree',
+    description:
+      'Example of a compact tree, this works only for trees in which only one node on each depth has children'
+  }) // picasso-skip-visuals

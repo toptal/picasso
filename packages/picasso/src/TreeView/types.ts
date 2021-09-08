@@ -32,3 +32,12 @@ export type DynamicPointLink = {
   source: DynamicPointNode
   target: DynamicPointNode
 }
+
+export type DirectionsType = 'vertical' | 'horizontal'
+
+export type TreeViewVariant = 'normal' | 'compact'
+
+export type Vector2 = {
+  x: number,
+  y: number
+}
