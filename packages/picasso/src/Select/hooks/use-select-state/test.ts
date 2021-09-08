@@ -100,7 +100,7 @@ describe('useSelectState', () => {
   it('forces search when threshold is higher than max number of elements to show', () => {
     const { result } = renderUseSelectState({
       searchThreshold: 3,
-      maxSearchItems: 2
+      limit: 2
     })
 
     expect(result.current.showSearch).toEqual(true)

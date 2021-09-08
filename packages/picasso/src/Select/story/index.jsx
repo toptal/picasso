@@ -48,8 +48,12 @@ page
   .addExample('Select/story/SearchBehavior.example.tsx', {
     title: 'Search behavior',
     description:
-      'Search is enabled when the number of options is greater or equal to `searchThreshold`.' +
-      'Additionally you can control how many items should be displayed in the search result setting `maxSearchItems`'
+      'Search is enabled when the number of options is greater or equal to `searchThreshold`.'
+  }) // picasso-skip-visuals
+  .addExample('Select/story/Limit.example.tsx', {
+    title: 'Limit',
+    description:
+      'Maximum number of options on the list can be controlled through `limit` property'
   }) // picasso-skip-visuals
   .addExample('Select/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
   .addExample('Select/story/Error.example.tsx', 'Error') // picasso-skip-visuals

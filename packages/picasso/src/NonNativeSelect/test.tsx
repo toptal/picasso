@@ -647,7 +647,7 @@ describe('NonNativeSelect (multiple)', () => {
       options: Array.from({ length: 100 }, optionsGenerator),
       placeholder,
       searchPlaceholder,
-      maxSearchItems: 5,
+      limit: 5,
       searchThreshold: -1
     })
 

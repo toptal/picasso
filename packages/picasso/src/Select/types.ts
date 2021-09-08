@@ -82,10 +82,10 @@ export interface SelectProps<
    * @default 10
    */
   searchThreshold?: number
-  /** Maximum number of elements to display in the search non native list
+  /** Limits number of options to display on the list
    * @default 200
    */
-  maxSearchItems?: number
+  limit?: number
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
   ref?: React.Ref<HTMLInputElement>
@@ -128,7 +128,7 @@ export interface UseSelectStateProps {
   multiple?: boolean
   value?: ValueType | ValueType[]
   searchThreshold?: number
-  maxSearchItems?: number
+  limit?: number
 }
 
 export type UseSelectStateOutput = {

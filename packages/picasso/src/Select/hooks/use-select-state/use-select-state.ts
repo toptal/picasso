@@ -11,7 +11,7 @@ import {
   removeDuplicatedOptions,
   getSelectedOptions,
   DEFAULT_SEARCH_THRESHOLD,
-  DEFAULT_MAX_SEARCH_ITEMS,
+  DEFAULT_LIMIT,
   filterOptions,
   flattenOptions
 } from '../../utils'
@@ -26,7 +26,7 @@ export interface Props {
   multiple?: boolean
   value?: ValueType | ValueType[]
   searchThreshold?: number
-  maxSearchItems?: number
+  limit?: number
 }
 
 const useSelectState = (props: Props): UseSelectStateOutput => {
@@ -37,7 +37,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     multiple,
     value,
     searchThreshold = DEFAULT_SEARCH_THRESHOLD,
-    maxSearchItems = DEFAULT_MAX_SEARCH_ITEMS
+    limit = DEFAULT_LIMIT
   } = props
 
   const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
@@ -78,10 +78,9 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     () => (multiple ? [] : ''),
     [multiple]
   )
-  // Search should be shown when maxSearchItems < searchThreshold
+  // Search should be shown when limit < searchThreshold
   // otherwise user might not be able to search through long list
-  const showSearch =
-    flatOptions.length >= Math.min(searchThreshold, maxSearchItems)
+  const showSearch = flatOptions.length >= Math.min(searchThreshold, limit)
   const [isOpen, setOpen] = useState<boolean>(false)
   const canOpen = !isOpen && !disabled
   const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex({

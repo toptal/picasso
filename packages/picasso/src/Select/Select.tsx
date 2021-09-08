@@ -9,7 +9,7 @@ import noop from '../utils/noop'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import { SelectProps, ValueType } from './types'
 import {
-  DEFAULT_MAX_SEARCH_ITEMS,
+  DEFAULT_LIMIT,
   DEFAULT_SEARCH_THRESHOLD,
   getOptionText,
   renderOption
@@ -65,7 +65,7 @@ Select.defaultProps = {
   size: 'medium',
   width: 'full',
   searchThreshold: DEFAULT_SEARCH_THRESHOLD,
-  maxSearchItems: DEFAULT_MAX_SEARCH_ITEMS,
+  limit: DEFAULT_LIMIT,
   enableAutofill: false,
   searchPlaceholder: 'Search',
   native: false

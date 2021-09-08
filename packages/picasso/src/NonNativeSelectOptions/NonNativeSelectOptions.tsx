@@ -14,7 +14,7 @@ import {
   Option,
   OptionGroups,
   SelectProps,
-  DEFAULT_MAX_SEARCH_ITEMS
+  DEFAULT_LIMIT
 } from '../Select'
 import Typography from '../Typography'
 import styles from './styles'
@@ -55,12 +55,7 @@ const MenuGroup = (props: MenuGroupProps) => {
 
 export type Props = Pick<
   SelectProps,
-  | 'value'
-  | 'multiple'
-  | 'size'
-  | 'noOptionsText'
-  | 'renderOption'
-  | 'maxSearchItems'
+  'value' | 'multiple' | 'size' | 'noOptionsText' | 'renderOption' | 'limit'
 > & {
   options: Option[] | OptionGroups
   highlightedIndex: number | null
@@ -81,8 +76,9 @@ const NonNativeSelectOptions = ({
   filterOptionsValue,
   noOptionsText,
   fixedHeader,
-  maxSearchItems = DEFAULT_MAX_SEARCH_ITEMS
+  limit = DEFAULT_LIMIT
 }: Props) => {
+  const classes = useStyles()
   const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
     options
   ])
@@ -101,32 +97,33 @@ const NonNativeSelectOptions = ({
     optionsList: Option[],
     limit?: number,
     offset = 0
-  ) =>
-    (limit ? optionsList.slice(0, limit) : optionsList).map(
-      (option, currentIndex) => {
-        const { onMouseDown, onMouseEnter, onClick } = getItemProps(
-          option,
-          currentIndex + offset
-        )
-        const selection = getSelection(flatOptions, value)
+  ) => {
+    const limitedOptions = limit ? optionsList.slice(0, limit) : optionsList
 
-        return (
-          <NonNativeSelectOption
-            key={option.key || option.value}
-            option={option}
-            size={size}
-            onMouseDown={onMouseDown}
-            onMouseEnter={onMouseEnter}
-            selected={selection.isOptionSelected(option)}
-            highlighted={highlightedIndex === currentIndex + offset}
-            onClick={onClick}
-            description={option.description}
-          >
-            {renderOption(option)}
-          </NonNativeSelectOption>
-        )
-      }
-    )
+    return limitedOptions.map((option, currentIndex) => {
+      const { onMouseDown, onMouseEnter, onClick } = getItemProps(
+        option,
+        currentIndex + offset
+      )
+      const selection = getSelection(flatOptions, value)
+
+      return (
+        <NonNativeSelectOption
+          key={option.key || option.value}
+          option={option}
+          size={size}
+          onMouseDown={onMouseDown}
+          onMouseEnter={onMouseEnter}
+          selected={selection.isOptionSelected(option)}
+          highlighted={highlightedIndex === currentIndex + offset}
+          onClick={onClick}
+          description={option.description}
+        >
+          {renderOption(option)}
+        </NonNativeSelectOption>
+      )
+    })
+  }
 
   const groupedOptionComponents = (
     optionGroups: OptionGroups,
@@ -135,14 +132,15 @@ const NonNativeSelectOptions = ({
     let cursor = 0
 
     return Object.keys(optionGroups).reduce((rendered, group) => {
+      const remainingLimit = limit - cursor
+
       cursor += 1 // for the group item itself
       const offset = cursor
-      const limitLeft = limit - cursor
 
-      if (limitLeft > 0) {
+      if (remainingLimit > 0) {
         rendered.push(
           <MenuGroup key={group} group={group}>
-            {flatOptionComponents(optionGroups[group], limitLeft, offset)}
+            {flatOptionComponents(optionGroups[group], remainingLimit, offset)}
           </MenuGroup>
         )
         cursor += optionGroups[group].length
@@ -153,13 +151,13 @@ const NonNativeSelectOptions = ({
   }
 
   const optionComponents = isOptionsType(options)
-    ? flatOptionComponents(options, maxSearchItems)
-    : groupedOptionComponents(options, maxSearchItems)
+    ? flatOptionComponents(options, limit)
+    : groupedOptionComponents(options, limit)
 
   const fixedFooter =
-    maxSearchItems && flatOptions.length > maxSearchItems ? (
-      <MenuItem titleCase={false} disabled>
-        Showing only first {maxSearchItems} of {flatOptions.length} items
+    limit && flatOptions.length > limit ? (
+      <MenuItem titleCase={false} className={classes.fixedFooter} disabled>
+        Showing only first {limit} of {flatOptions.length} items
       </MenuItem>
     ) : null
 
