@@ -70,7 +70,7 @@ const DropdownIcon = ({
   return icon
 }
 
-const StopPropagation: FC = ({ children }) => {
+const EventStopPropagation: FC = ({ children }) => {
   const handleClick = (
     event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>
   ) => {
@@ -103,8 +103,14 @@ export const ButtonSplit = forwardRef<HTMLSpanElement, Props>(
       [classes.disabled]: disabled
     })
 
-    const renderMenuButton = ({ isOpen }: { isOpen: boolean }) => {
-      return (
+    const renderMenuButton = ({
+      isOpen,
+      disabled
+    }: {
+      isOpen: boolean
+      disabled?: boolean
+    }) => {
+      const menuButton = (
         <Button
           {...menuButtonProps}
           variant={variant}
@@ -117,6 +123,12 @@ export const ButtonSplit = forwardRef<HTMLSpanElement, Props>(
         >
           <DropdownIcon isOpen={isOpen} size={size} />
         </Button>
+      )
+
+      return disabled ? (
+        <EventStopPropagation>{menuButton}</EventStopPropagation>
+      ) : (
+        menuButton
       )
     }
 
@@ -144,11 +156,7 @@ export const ButtonSplit = forwardRef<HTMLSpanElement, Props>(
           })}
         >
           {({ isOpen }: { isOpen: boolean }) =>
-            disabled ? (
-              <StopPropagation>{renderMenuButton({ isOpen })}</StopPropagation>
-            ) : (
-              renderMenuButton({ isOpen })
-            )
+            renderMenuButton({ isOpen, disabled })
           }
         </Dropdown>
       </span>
