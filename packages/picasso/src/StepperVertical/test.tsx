@@ -2,21 +2,19 @@ import React from 'react'
 import { render, PicassoConfig } from '@toptal/picasso/test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Stepper from './Stepper'
-import { StepperProps } from '.'
+import StepperVertical from './StepperVertical'
+import { StepperVerticalProps } from '.'
 
 jest.mock('ap-style-title-case')
 
-const renderStepper = (props: StepperProps, picassoConfig?: PicassoConfig) => {
-  const { active, hideLabels, steps, titleCase } = props
+const renderStepper = (
+  props: StepperVerticalProps,
+  picassoConfig?: PicassoConfig
+) => {
+  const { active, steps, titleCase } = props
 
   return render(
-    <Stepper
-      active={active}
-      hideLabels={hideLabels}
-      steps={steps}
-      titleCase={titleCase}
-    />,
+    <StepperVertical active={active} steps={steps} titleCase={titleCase} />,
     undefined,
     picassoConfig
   )
@@ -24,7 +22,7 @@ const renderStepper = (props: StepperProps, picassoConfig?: PicassoConfig) => {
 
 let spiedOnTitleCase: jest.SpyInstance
 
-describe('Stepper', () => {
+describe('StepperVertical', () => {
   beforeEach(() => {
     spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
   })
@@ -44,18 +42,6 @@ describe('Stepper', () => {
     const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
     const activeStep = 4
     const { container } = renderStepper({ steps, active: activeStep })
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('render with hidden labels', () => {
-    const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
-    const activeStep = 4
-    const { container } = renderStepper({
-      steps,
-      active: activeStep,
-      hideLabels: true
-    })
 
     expect(container).toMatchSnapshot()
   })

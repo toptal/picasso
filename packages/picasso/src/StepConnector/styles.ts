@@ -6,5 +6,8 @@ export default ({ palette }: Theme) =>
       color: palette.grey.light2,
       fontSize: '0.5em',
       margin: '0 0.5em'
+    },
+    divider: {
+      height: '1rem'
     }
   })

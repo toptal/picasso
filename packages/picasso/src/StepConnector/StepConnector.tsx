@@ -1,17 +1,22 @@
 import React, { FunctionComponent } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
+import { DirectionType } from '../Stepper'
 import { ChevronRight16 as ChevronRightIcon } from '../Icon'
 import styles from './styles'
 
-export interface Props {}
+export type Props = { direction: DirectionType }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoStepConnector'
 })
 
-export const StepConnector: FunctionComponent<Props> = () => {
+export const StepConnector: FunctionComponent<Props> = ({ direction }) => {
   const classes = useStyles()
+
+  if (direction === 'vertical') {
+    return <div className={classes.divider} />
+  }
 
   return <ChevronRightIcon className={classes.connectorIcon} />
 }
