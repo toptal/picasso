@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.3.5...@toptal/picasso@10.4.0) (2021-09-08)
+
+
+### Features
+
+* **TreeView:** [FX-2016] Horizontal layout, margin props & compact variant for TreeView ([#2122](https://github.com/toptal/picasso/issues/2122)) ([6b9d41f](https://github.com/toptal/picasso/commit/6b9d41f4206d8b5bca098eec0dd5e63bf907bcab))
+
+
+
+
+
 ## [10.3.5](https://github.com/toptal/picasso/compare/@toptal/picasso@10.3.4...@toptal/picasso@10.3.5) (2021-09-07)
 
 
