@@ -82,7 +82,6 @@ const StopPropagation: FC = ({ children }) => {
 
 export const ButtonSplit = forwardRef<HTMLSpanElement, Props>(
   function ButtonSplit (props, ref) {
-    // TODO: for consistency. check in clean code, how to name variables (isOpen vs opened, typescript understand the type)
     const {
       size = 'medium',
       menu,
