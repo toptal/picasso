@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, PicassoConfig } from '@toptal/picasso/test-utils'
+import { render, PicassoConfig, screen } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Badge, { Props } from './Badge'
@@ -60,5 +60,14 @@ describe('Badge', () => {
     const { getByText } = renderBadge({ content: 99, size: 'medium' })
 
     expect(getByText('99')).toBeVisible()
+  })
+
+  it('should render data-testid', () => {
+    renderBadge({
+      content: 5,
+      'data-testid': 'badge-root'
+    })
+
+    expect(screen.getByTestId('badge-root')).toBeInTheDocument()
   })
 })
