@@ -11,7 +11,7 @@ import {
 } from '@toptal/picasso-shared'
 
 import styles, { AlignItemsType, JustifyContentType } from './styles'
-import { kebabToCamelCase } from '../utils'
+import kebabToCamelCase from '../utils/kebab-to-camel-case'
 
 type ContainerType = 'div' | 'span'
 
