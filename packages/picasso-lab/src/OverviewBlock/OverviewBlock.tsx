@@ -14,7 +14,7 @@ import {
   TextLabelProps,
   useTitleCase
 } from '@toptal/picasso-shared'
-import { Typography } from '@toptal/picasso'
+import { Container, Typography } from '@toptal/picasso'
 import { toTitleCase } from '@toptal/picasso/utils'
 
 import styles from './styles'
@@ -107,7 +107,7 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
       )}
       onClick={onClick}
     >
-      <Typography as='div' align='left'>
+      <Container align='left'>
         <Typography
           size='small'
           weight='semibold'
@@ -119,7 +119,7 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
         <Typography size='large' weight='semibold' color={color.value}>
           {value}
         </Typography>
-      </Typography>
+      </Container>
     </Component>
   )
 })
