@@ -49,25 +49,23 @@ const DropdownIcon = ({
   size: SizeType<'small' | 'medium' | 'large'>
   isOpen: boolean
 }) => {
-  let icon = <ArrowUpMinor16 /> // to make tsc happy
-
   if (size === 'large' && isOpen) {
-    icon = <ArrowUpMinor24 />
+    return <ArrowUpMinor24 />
   }
 
   if (size === 'large' && !isOpen) {
-    icon = <ArrowDownMinor24 />
+    return <ArrowDownMinor24 />
   }
 
   if (size !== 'large' && isOpen) {
-    icon = <ArrowUpMinor16 />
+    return <ArrowUpMinor16 />
   }
 
   if (size !== 'large' && !isOpen) {
-    icon = <ArrowDownMinor16 />
+    return <ArrowDownMinor16 />
   }
 
-  return icon
+  return null
 }
 
 const EventStopPropagation: FC = ({ children }) => {
