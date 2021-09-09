@@ -2,6 +2,7 @@
 
 import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
+import { PropTypes } from '@material-ui/core'
 import cx from 'classnames'
 import {
   StandardProps,
@@ -55,12 +56,14 @@ export interface Props
   variant?: VariantType
   /** Component used for the root node */
   as?: ContainerType
+  /** Text align of the inner text */
+  align?: PropTypes.Alignment
 }
 
 /**
  * Container component used for spacing 2 elements
  */
-export const Container = forwardRef<HTMLDivElement, Props>(function Container(
+export const Container = forwardRef<HTMLDivElement, Props>(function Container (
   props,
   ref
 ) {
@@ -81,6 +84,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
     bordered = false,
     rounded = false,
     variant,
+    align,
     as: Component = inline ? 'span' : 'div',
     // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -110,6 +114,8 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
           [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
           [classes[`left${left}Margin`]]: typeof left === 'string',
           [classes[`right${right}Margin`]]: typeof right === 'string',
+
+          [classes[`${align}TextAlign`]]: typeof align === 'string',
 
           [classes[
             `${kebabToCamelCase(alignItems || '')}AlignItems`

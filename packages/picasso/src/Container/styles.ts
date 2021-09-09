@@ -6,6 +6,14 @@ import { SpacingType, spacingToRem } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 
+const textAlignVariants = [
+  'inherit',
+  'left',
+  'center',
+  'right',
+  'justify'
+] as const
+
 const alignItemsVariants = [
   'flex-start',
   'flex-end',
@@ -90,6 +98,14 @@ alignItemsVariants.forEach(variant => {
   }
 })
 
+const textAlignItems: MapOfClasses = {}
+
+textAlignVariants.forEach(variant => {
+  textAlignItems[`${variant}TextAlign`] = {
+    textAlign: variant
+  }
+})
+
 const justifyContent: MapOfClasses = {}
 
 justifyContentVariants.forEach(variant => {
@@ -141,5 +157,6 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
     ...paddings,
     ...margins,
     ...alignItems,
-    ...justifyContent
+    ...justifyContent,
+    ...textAlignItems
   })
