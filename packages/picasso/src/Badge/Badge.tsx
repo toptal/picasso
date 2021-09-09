@@ -1,18 +1,17 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { Chip } from '@material-ui/core'
-import { toTitleCase } from '@toptal/picasso/utils'
 
 import styles from './styles'
 
 type VariantType = 'white' | 'red'
-type SizeType = 'medium' | 'small'
+type SizeType = 'medium' | 'small' | 'large'
 
 export interface Props extends BaseProps, TextLabelProps {
   /** The `Badge` content */
-  content: string
+  content: number
   /** Variant of the `Badge` */
   variant?: VariantType
   /** Size of the `Badge` */
@@ -20,6 +19,25 @@ export interface Props extends BaseProps, TextLabelProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoBadge' })
+
+const threshold = {
+  small: 10,
+  medium: 100,
+  large: 100
+}
+
+const getTransformedContent = (
+  content: Props['content'],
+  size: SizeType
+): string => {
+  const sizeThreshold = threshold[size]
+
+  if (content >= sizeThreshold) {
+    return `${sizeThreshold - 1}+`
+  }
+
+  return String(content)
+}
 
 // eslint-disable-next-line react/display-name
 export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
@@ -29,20 +47,21 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
   const {
     style,
     variant = 'white',
-    size = 'medium',
+    size = 'large',
     content,
-    titleCase: propsTitleCase,
     'data-testid': dataTestId
   } = props
   const classes = useStyles()
 
-  const titleCase = useTitleCase(propsTitleCase)
+  if (!content) {
+    return null
+  }
 
   return (
     <Chip
       ref={ref}
       style={style}
-      label={titleCase ? toTitleCase(content) : content}
+      label={getTransformedContent(content, size)}
       classes={{
         root: cx(classes.root, classes[variant], classes[size]),
         label: cx(classes[`${size}Label`])
@@ -54,7 +73,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
 
 Badge.defaultProps = {
   variant: 'white',
-  size: 'medium'
+  size: 'large'
 }
 
 Badge.displayName = 'Badge'

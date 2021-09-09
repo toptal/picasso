@@ -6,14 +6,40 @@ exports[`Badge renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoBadge-root PicassoBadge-white PicassoBadge-medium"
+      class="MuiChip-root PicassoBadge-root PicassoBadge-white PicassoBadge-large"
     >
       <span
-        class="MuiChip-label"
+        class="MuiChip-label PicassoBadge-largeLabel"
       >
-        Badge content
+        5
       </span>
     </div>
   </div>
+</div>
+`;
+
+exports[`Badge renders in red variant 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiChip-root PicassoBadge-root PicassoBadge-red PicassoBadge-large"
+    >
+      <span
+        class="MuiChip-label PicassoBadge-largeLabel"
+      >
+        5
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Badge should not render when content is 0 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  />
 </div>
 `;

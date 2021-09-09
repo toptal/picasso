@@ -1,7 +1,6 @@
 import React from 'react'
-import { render, PicassoConfig, screen } from '@toptal/picasso/test-utils'
+import { render, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import * as titleCaseModule from 'ap-style-title-case'
 
 import Badge, { Props } from './Badge'
 
@@ -11,13 +10,13 @@ const renderBadge = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { content, variant, titleCase } = props
+  const { content, variant, size } = props
 
   return render(
     <Badge
       content={content}
       variant={variant}
-      titleCase={titleCase}
+      size={size}
       data-testid={props['data-testid']}
     />,
     undefined,
@@ -25,40 +24,41 @@ const renderBadge = (
   )
 }
 
-let spiedOnTitleCase: jest.SpyInstance
-
 describe('Badge', () => {
-  beforeEach(() => {
-    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
-  })
-
-  afterEach(() => {
-    spiedOnTitleCase.mockReset()
-  })
-
   it('renders', () => {
-    const { container } = renderBadge({ content: 'Badge content' })
+    const { container } = renderBadge({ content: 5 })
 
     expect(container).toMatchSnapshot()
   })
 
-  it('should transform text to title case when Picasso titleCase property is true', () => {
-    const TEXT_CONTENT = 'Test ao4'
+  it('renders in red variant', () => {
+    const { container } = renderBadge({ content: 5, variant: 'red' })
 
-    renderBadge({ content: TEXT_CONTENT }, { titleCase: true })
-
-    expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
+    expect(container).toMatchSnapshot()
   })
+  it('should not render when content is 0', () => {
+    const { container } = renderBadge({ content: 0, 'data-testid': 'badge' })
 
-  it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
-    renderBadge({ content: 'test pe2', titleCase: false }, { titleCase: true })
-
-    expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
+    expect(container).toMatchSnapshot()
   })
+  it('should transform content when value is more than 10 for small size', () => {
+    const { getByText } = renderBadge({ content: 10, size: 'small' })
 
-  it('should render data-testid', () => {
-    renderBadge({ content: 'test pe2', 'data-testid': 'badge-root' })
+    expect(getByText('9+')).toBeVisible()
+  })
+  it('should not transform content when value is les than 10 for small size', () => {
+    const { getByText } = renderBadge({ content: 9, size: 'small' })
 
-    expect(screen.getByTestId('badge-root')).toBeInTheDocument()
+    expect(getByText('9')).toBeVisible()
+  })
+  it('should transform content when value is more than 100 for medium size', () => {
+    const { getByText } = renderBadge({ content: 100, size: 'medium' })
+
+    expect(getByText('99+')).toBeVisible()
+  })
+  it('should not transform content when value is more than 100 for medium size', () => {
+    const { getByText } = renderBadge({ content: 99, size: 'medium' })
+
+    expect(getByText('99')).toBeVisible()
   })
 })

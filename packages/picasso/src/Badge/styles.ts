@@ -6,7 +6,8 @@ export default ({ palette }: Theme) =>
       fontSize: '0.57rem',
       borderWidth: '1px',
       borderStyle: 'solid',
-      lineHeight: 'initial'
+      lineHeight: 'initial',
+      fontWeight: 600
     },
     // variants
     white: {
@@ -20,21 +21,28 @@ export default ({ palette }: Theme) =>
       backgroundColor: palette.red.main
     },
     // sizes
-    medium: {
-      fontSize: '0.57rem',
+    large: {
+      borderRadius: '1.25rem',
       height: '1.25rem',
-      minWidth: '1.25rem',
-      borderRadius: '0.625rem',
-      fontWeight: 600
+      minWidth: '1.25rem'
     },
     small: {
-      fontSize: '0.57rem',
-      height: '0.75rem',
-      minWidth: '0.75rem',
       borderRadius: '0.75rem',
-      fontWeight: 600
+      height: '0.75rem',
+      minWidth: '0.75rem'
+    },
+    medium: {
+      borderRadius: '1rem',
+      height: '1rem',
+      minWidth: '1rem'
     },
     smallLabel: {
-      padding: '0'
+      padding: '0 2px'
+    },
+    mediumLabel: {
+      padding: '0 1px'
+    },
+    largeLabel: {
+      padding: '0 3px'
     }
   })

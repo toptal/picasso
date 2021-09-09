@@ -8,8 +8,10 @@ const Example = () => (
         Small:
       </Typography>
     </Container>
-    <Container top='small' bottom='medium'>
-      <Badge content='2' variant='red' size='small' />
+    <Container top='small' bottom='medium' flex style={{ gap: '1rem' }}>
+      <Badge content={1} variant='red' size='small' />
+      <Badge content={7} variant='red' size='small' />
+      <Badge content={25} variant='red' size='small' />
     </Container>
 
     <Container>
@@ -17,8 +19,25 @@ const Example = () => (
         Medium:
       </Typography>
     </Container>
-    <Container top='small'>
-      <Badge content='200' variant='red' size='medium' />
+    <Container top='small' bottom='medium' flex style={{ gap: '1rem' }}>
+      <Badge content={1} variant='red' size='medium' />
+      <Badge content={7} variant='red' size='medium' />
+      <Badge content={25} variant='red' size='medium' />
+      <Badge content={99} variant='red' size='medium' />
+      <Badge content={200} variant='red' size='medium' />
+    </Container>
+
+    <Container>
+      <Typography variant='heading' size='small'>
+        Large:
+      </Typography>
+    </Container>
+    <Container top='small' flex style={{ gap: '1rem' }}>
+      <Badge content={1} variant='red' size='large' />
+      <Badge content={7} variant='red' size='large' />
+      <Badge content={25} variant='red' size='large' />
+      <Badge content={99} variant='red' size='large' />
+      <Badge content={200} variant='red' size='large' />
     </Container>
   </>
 )
