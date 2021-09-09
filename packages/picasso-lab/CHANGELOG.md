@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.5](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.3.4...@toptal/picasso-lab@7.3.5) (2021-09-09)
+
+
+### Bug Fixes
+
+* **picasso:** add explicit dependency on debounce ([#2161](https://github.com/toptal/picasso/issues/2161)) ([7471191](https://github.com/toptal/picasso/commit/7471191f2e7f6e3953e3066d627fc25209dda9c4))
+
+
+
+
+
 ## [7.3.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@7.3.3...@toptal/picasso-lab@7.3.4) (2021-09-08)
 
 **Note:** Version bump only for package @toptal/picasso-lab
