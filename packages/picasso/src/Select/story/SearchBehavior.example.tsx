@@ -3,7 +3,7 @@ import { Select, Form, Container, NumberInput } from '@toptal/picasso'
 
 const SelectSearchBehaviourExample = () => {
   const [value, setValue] = useState<string>('')
-  const [threshold, setTreshold] = useState(4)
+  const [threshold, setThreshold] = useState(4)
 
   const handleChange = (
     event: ChangeEvent<{
@@ -14,8 +14,10 @@ const SelectSearchBehaviourExample = () => {
     setValue(event.target.value)
   }
 
-  const handleTresholdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTreshold(parseInt(event.target.value, 10))
+  const handleThresholdChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setThreshold(parseInt(event.target.value, 10))
   }
 
   return (
@@ -39,7 +41,7 @@ const SelectSearchBehaviourExample = () => {
           <Form.Label>Search threshold</Form.Label>
           <NumberInput
             value={threshold}
-            onChange={handleTresholdChange}
+            onChange={handleThresholdChange}
             data-testid='input-threshold'
           />
         </Form.Field>
