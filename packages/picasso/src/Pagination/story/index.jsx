@@ -18,7 +18,7 @@ page.createTabChapter('Props').addComponentDocs({
     onPageChange: {
       type: {
         name: 'function',
-        description: '(pageNumber: number) => void'
+        description: '(page: number) => void'
       }
     }
   },
@@ -27,6 +27,7 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Pagination/story/Default.example.tsx', 'Default')
-  .addExample('Pagination/story/Variants.example.tsx', 'Variants')
-  .addExample('Pagination/story/Disabled.example.tsx', 'Disabled')
+  .addExample('Pagination/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+  .addExample('Pagination/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
+  .addExample('Pagination/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
+  .addExample('Pagination/story/Ellipsis.example.tsx', 'Ellipsis') // picasso-skip-visuals
