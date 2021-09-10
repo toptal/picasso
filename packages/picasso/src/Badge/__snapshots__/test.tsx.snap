@@ -35,11 +35,3 @@ exports[`Badge renders in red variant 1`] = `
   </div>
 </div>
 `;
-
-exports[`Badge should not render when content is 0 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  />
-</div>
-`;

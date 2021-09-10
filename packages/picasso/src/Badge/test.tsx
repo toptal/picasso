@@ -36,11 +36,7 @@ describe('Badge', () => {
 
     expect(container).toMatchSnapshot()
   })
-  it('should not render when content is 0', () => {
-    const { container } = renderBadge({ content: 0, 'data-testid': 'badge' })
 
-    expect(container).toMatchSnapshot()
-  })
   it('should transform content when value is more than 10 for small size', () => {
     const { getByText } = renderBadge({ content: 10, size: 'small' })
 

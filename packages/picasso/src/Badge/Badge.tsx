@@ -50,10 +50,6 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
   } = props
   const classes = useStyles()
 
-  if (content === 0) {
-    return null
-  }
-
   return (
     <Chip
       ref={ref}
