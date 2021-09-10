@@ -3,12 +3,15 @@ import { Badge, Container } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
+/* eslint-disable max-lines-per-function */
 describe('Badge', () => {
   it('renders with defaults', () => {
     mount(
       <TestingPicasso>
         <Container padded='small' style={{ background: 'blue' }}>
-          <Badge content={5} />
+          <Container padded='small'>
+            <Badge content={5} />
+          </Container>
         </Container>
       </TestingPicasso>
     )
@@ -18,15 +21,19 @@ describe('Badge', () => {
     it('renders small', () => {
       mount(
         <TestingPicasso>
-          <Container
-            flex
-            style={{ gap: '1rem', background: 'blue' }}
-            padded='small'
-          >
-            <Badge variant='white' size='small' content={1} />
-            <Badge variant='white' size='small' content={5} />
-            <Badge variant='white' size='small' content={9} />
-            <Badge variant='white' size='small' content={10} />
+          <Container flex style={{ background: 'blue' }} padded='small'>
+            <Container padded='small'>
+              <Badge variant='white' size='small' content={1} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='small' content={5} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='small' content={9} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='small' content={10} />
+            </Container>
           </Container>
         </TestingPicasso>
       )
@@ -35,16 +42,22 @@ describe('Badge', () => {
     it('renders medium', () => {
       mount(
         <TestingPicasso>
-          <Container
-            flex
-            style={{ gap: '1rem', background: 'blue' }}
-            padded='small'
-          >
-            <Badge variant='white' size='medium' content={1} />
-            <Badge variant='white' size='medium' content={5} />
-            <Badge variant='white' size='medium' content={10} />
-            <Badge variant='white' size='medium' content={99} />
-            <Badge variant='white' size='medium' content={200} />
+          <Container flex style={{ background: 'blue' }} padded='small'>
+            <Container padded='small'>
+              <Badge variant='white' size='medium' content={1} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='medium' content={5} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='medium' content={10} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='medium' content={99} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='medium' content={200} />
+            </Container>
           </Container>
         </TestingPicasso>
       )
@@ -53,16 +66,22 @@ describe('Badge', () => {
     it('renders large', () => {
       mount(
         <TestingPicasso>
-          <Container
-            flex
-            style={{ gap: '1rem', background: 'blue' }}
-            padded='small'
-          >
-            <Badge variant='white' size='large' content={1} />
-            <Badge variant='white' size='large' content={5} />
-            <Badge variant='white' size='large' content={10} />
-            <Badge variant='white' size='large' content={99} />
-            <Badge variant='white' size='large' content={200} />
+          <Container flex style={{ background: 'blue' }} padded='small'>
+            <Container padded='small'>
+              <Badge variant='white' size='large' content={1} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='large' content={5} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='large' content={10} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='large' content={99} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='large' content={200} />
+            </Container>
           </Container>
         </TestingPicasso>
       )
@@ -73,13 +92,19 @@ describe('Badge', () => {
         <TestingPicasso>
           <Container
             flex
-            style={{ gap: '1rem', background: 'blue' }}
+            style={{ background: 'blue' }}
             padded='small'
             alignItems='center'
           >
-            <Badge variant='white' size='small' content={9999} max={999} />
-            <Badge variant='white' size='medium' content={9999} max={999} />
-            <Badge variant='white' size='large' content={9999} max={999} />
+            <Container padded='small'>
+              <Badge variant='white' size='small' content={9999} max={999} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='medium' content={9999} max={999} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='white' size='large' content={9999} max={999} />
+            </Container>
           </Container>
         </TestingPicasso>
       )
@@ -90,11 +115,19 @@ describe('Badge', () => {
     it('renders small', () => {
       mount(
         <TestingPicasso>
-          <Container flex style={{ gap: '1rem' }} padded='small'>
-            <Badge variant='red' size='small' content={1} />
-            <Badge variant='red' size='small' content={5} />
-            <Badge variant='red' size='small' content={9} />
-            <Badge variant='red' size='small' content={10} />
+          <Container flex padded='small'>
+            <Container padded='small'>
+              <Badge variant='red' size='small' content={1} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='small' content={5} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='small' content={9} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='small' content={10} />
+            </Container>
           </Container>
         </TestingPicasso>
       )
@@ -104,11 +137,21 @@ describe('Badge', () => {
       mount(
         <TestingPicasso>
           <Container flex style={{ gap: '1rem' }} padded='small'>
-            <Badge variant='red' size='medium' content={1} />
-            <Badge variant='red' size='medium' content={5} />
-            <Badge variant='red' size='medium' content={10} />
-            <Badge variant='red' size='medium' content={99} />
-            <Badge variant='red' size='medium' content={200} />
+            <Container padded='small'>
+              <Badge variant='red' size='medium' content={1} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='medium' content={5} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='medium' content={10} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='medium' content={99} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='medium' content={200} />
+            </Container>
           </Container>
         </TestingPicasso>
       )
@@ -118,11 +161,21 @@ describe('Badge', () => {
       mount(
         <TestingPicasso>
           <Container flex style={{ gap: '1rem' }} padded='small'>
-            <Badge variant='red' size='large' content={1} />
-            <Badge variant='red' size='large' content={5} />
-            <Badge variant='red' size='large' content={10} />
-            <Badge variant='red' size='large' content={99} />
-            <Badge variant='red' size='large' content={200} />
+            <Container padded='small'>
+              <Badge variant='red' size='large' content={1} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='large' content={5} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='large' content={10} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='large' content={99} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='large' content={200} />
+            </Container>
           </Container>
         </TestingPicasso>
       )
@@ -133,13 +186,19 @@ describe('Badge', () => {
         <TestingPicasso>
           <Container
             flex
-            style={{ gap: '1rem', background: 'blue' }}
+            style={{ background: 'blue' }}
             padded='small'
             alignItems='center'
           >
-            <Badge variant='red' size='small' content={9999} max={999} />
-            <Badge variant='red' size='medium' content={9999} max={999} />
-            <Badge variant='red' size='large' content={9999} max={999} />
+            <Container padded='small'>
+              <Badge variant='red' size='small' content={9999} max={999} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='medium' content={9999} max={999} />
+            </Container>
+            <Container padded='small'>
+              <Badge variant='red' size='large' content={9999} max={999} />
+            </Container>
           </Container>
         </TestingPicasso>
       )

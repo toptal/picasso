@@ -10,17 +10,29 @@ const Example = () => (
     </Container>
     <Grid>
       <Grid.Item small={3}>
-        <Container top='small' bottom='medium' flex style={{ gap: '1rem' }}>
-          <Badge content={1} variant='white' size='small' />
-          <Badge content={7} variant='white' size='small' />
-          <Badge content={25} variant='white' size='small' />
+        <Container top='small' bottom='medium' flex>
+          <Container padded='small'>
+            <Badge content={1} variant='white' size='small' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={7} variant='white' size='small' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={25} variant='white' size='small' />
+          </Container>
         </Container>
       </Grid.Item>
       <Grid.Item small={3}>
-        <Container top='small' bottom='medium' flex style={{ gap: '1rem' }}>
-          <Badge content={1} variant='red' size='small' />
-          <Badge content={7} variant='red' size='small' />
-          <Badge content={25} variant='red' size='small' />
+        <Container top='small' bottom='medium' flex>
+          <Container padded='small'>
+            <Badge content={1} variant='red' size='small' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={7} variant='red' size='small' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={25} variant='red' size='small' />
+          </Container>
         </Container>
       </Grid.Item>
     </Grid>
@@ -32,21 +44,41 @@ const Example = () => (
     </Container>
     <Grid>
       <Grid.Item small={3}>
-        <Container top='small' bottom='medium' flex style={{ gap: '1rem' }}>
-          <Badge content={1} variant='white' size='medium' />
-          <Badge content={7} variant='white' size='medium' />
-          <Badge content={25} variant='white' size='medium' />
-          <Badge content={99} variant='white' size='medium' />
-          <Badge content={200} variant='white' size='medium' />
+        <Container top='small' bottom='medium' flex>
+          <Container padded='small'>
+            <Badge content={1} variant='white' size='medium' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={7} variant='white' size='medium' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={25} variant='white' size='medium' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={99} variant='white' size='medium' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={200} variant='white' size='medium' />
+          </Container>
         </Container>
       </Grid.Item>
       <Grid.Item small={3}>
-        <Container top='small' bottom='medium' flex style={{ gap: '1rem' }}>
-          <Badge content={1} variant='red' size='medium' />
-          <Badge content={7} variant='red' size='medium' />
-          <Badge content={25} variant='red' size='medium' />
-          <Badge content={99} variant='red' size='medium' />
-          <Badge content={200} variant='red' size='medium' />
+        <Container top='small' bottom='medium' flex>
+          <Container padded='small'>
+            <Badge content={1} variant='red' size='medium' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={7} variant='red' size='medium' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={25} variant='red' size='medium' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={99} variant='red' size='medium' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={200} variant='red' size='medium' />
+          </Container>
         </Container>
       </Grid.Item>
     </Grid>
@@ -58,21 +90,41 @@ const Example = () => (
     </Container>
     <Grid>
       <Grid.Item small={3}>
-        <Container top='small' bottom='medium' flex style={{ gap: '1rem' }}>
-          <Badge content={1} variant='white' size='large' />
-          <Badge content={7} variant='white' size='large' />
-          <Badge content={25} variant='white' size='large' />
-          <Badge content={99} variant='white' size='large' />
-          <Badge content={200} variant='white' size='large' />
+        <Container top='small' bottom='medium' flex>
+          <Container padded='small'>
+            <Badge content={1} variant='white' size='large' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={7} variant='white' size='large' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={25} variant='white' size='large' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={99} variant='white' size='large' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={200} variant='white' size='large' />
+          </Container>
         </Container>
       </Grid.Item>
       <Grid.Item small={3}>
-        <Container top='small' bottom='medium' flex style={{ gap: '1rem' }}>
-          <Badge content={1} variant='red' size='large' />
-          <Badge content={7} variant='red' size='large' />
-          <Badge content={25} variant='red' size='large' />
-          <Badge content={99} variant='red' size='large' />
-          <Badge content={200} variant='red' size='large' />
+        <Container top='small' bottom='medium' flex>
+          <Container padded='small'>
+            <Badge content={1} variant='red' size='large' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={7} variant='red' size='large' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={25} variant='red' size='large' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={99} variant='red' size='large' />
+          </Container>
+          <Container padded='small'>
+            <Badge content={200} variant='red' size='large' />
+          </Container>
         </Container>
       </Grid.Item>
     </Grid>
@@ -83,17 +135,29 @@ const Example = () => (
     </Container>
     <Grid>
       <Grid.Item small={3}>
-        <Container top='small' flex style={{ gap: '1rem' }} alignItems='center'>
-          <Badge content={9999} variant='white' size='small' max={50} />
-          <Badge content={9999} variant='white' size='medium' max={999} />
-          <Badge content={9999} variant='white' size='large' max={999} />
+        <Container top='small' flex alignItems='center'>
+          <Container padded='small'>
+            <Badge content={9999} variant='white' size='small' max={50} />
+          </Container>
+          <Container padded='small'>
+            <Badge content={9999} variant='white' size='medium' max={999} />
+          </Container>
+          <Container padded='small'>
+            <Badge content={9999} variant='white' size='large' max={999} />
+          </Container>
         </Container>
       </Grid.Item>
       <Grid.Item small={3}>
-        <Container top='small' flex style={{ gap: '1rem' }} alignItems='center'>
-          <Badge content={9999} variant='red' size='small' max={50} />
-          <Badge content={9999} variant='red' size='medium' max={999} />
-          <Badge content={9999} variant='red' size='large' max={999} />
+        <Container top='small' flex alignItems='center'>
+          <Container padded='small'>
+            <Badge content={9999} variant='red' size='small' max={50} />
+          </Container>
+          <Container padded='small'>
+            <Badge content={9999} variant='red' size='medium' max={999} />
+          </Container>
+          <Container padded='small'>
+            <Badge content={9999} variant='red' size='large' max={999} />
+          </Container>
         </Container>
       </Grid.Item>
     </Grid>

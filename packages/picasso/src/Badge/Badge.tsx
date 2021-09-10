@@ -30,11 +30,7 @@ const thresholds = {
   large: 99
 }
 
-const getTrimmedContent = (
-  content: number,
-  size: SizeType,
-  max?: number
-): string => {
+const format = (content: number, size: SizeType, max?: number): string => {
   const trimThreshold = max || thresholds[size]
 
   if (content > trimThreshold) {
@@ -63,7 +59,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
     <Chip
       ref={ref}
       style={style}
-      label={getTrimmedContent(content, size, max)}
+      label={format(content, size, max)}
       classes={{
         root: cx(classes.root, classes[variant], classes[size]),
         label: cx(classes[`${size}Label`])
