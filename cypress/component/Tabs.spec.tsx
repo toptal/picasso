@@ -1,9 +1,27 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import { Tabs } from '@toptal/picasso'
+import { Tabs, Tooltip, Exclamation16 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const ScrollButtonsExample = () => {
+interface TestTabsProps {
+  width?: number | string
+  disabledIndex?: number
+  withIconIndicies?: number[]
+}
+
+const TestIcon = () => (
+  <Tooltip content='Some content...' placement='top'>
+    <span>
+      <Exclamation16 color='red' />
+    </span>
+  </Tooltip>
+)
+
+const TestTabs = ({
+  width,
+  disabledIndex,
+  withIconIndicies = []
+}: TestTabsProps) => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
@@ -12,13 +30,17 @@ const ScrollButtonsExample = () => {
 
   return (
     <TestingPicasso>
-      <div style={{ width: '13rem' }}>
+      <div style={{ width }}>
         <Tabs value={value} onChange={handleChange} data-testid='tabs'>
-          <Tabs.Tab label='Label' data-testid='tab-0' />
-          <Tabs.Tab label='Label' data-testid='tab-1' />
-          <Tabs.Tab label='Label' data-testid='tab-2' />
-          <Tabs.Tab label='Label' data-testid='tab-3' />
-          <Tabs.Tab label='Label' data-testid='tab-4' />
+          {Array.from({ length: 5 }).map((_, index) => (
+            <Tabs.Tab
+              disabled={disabledIndex === index}
+              key={index}
+              label='Label'
+              data-testid={`tab-${index}`}
+              icon={withIconIndicies.includes(index) ? <TestIcon /> : undefined}
+            />
+          ))}
         </Tabs>
       </div>
     </TestingPicasso>
@@ -26,8 +48,26 @@ const ScrollButtonsExample = () => {
 }
 
 describe('Tabs', () => {
+  it('renders', () => {
+    mount(<TestTabs />)
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders disabled', () => {
+    mount(<TestTabs disabledIndex={1} />)
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders with icon', () => {
+    mount(<TestTabs withIconIndicies={[1, 3]} />)
+
+    cy.get('body').happoScreenshot()
+  })
+
   it('navigates with scroll buttons', () => {
-    mount(<ScrollButtonsExample />)
+    mount(<TestTabs width='13rem' />)
 
     cy.get('[data-testid="tab-0"]').should('be.visible')
     cy.get('[data-testid="tab-4"]').should('not.be.visible')

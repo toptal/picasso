@@ -14,6 +14,6 @@ page
 
 page
   .createChapter()
-  .addExample('Tabs/story/Default.example.tsx', 'Default')
+  .addExample('Tabs/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('Tabs/story/ScrollButtons.example.tsx', 'Scroll buttons') // picasso-skip-visuals
 page.connect(tabStory.chapter)
