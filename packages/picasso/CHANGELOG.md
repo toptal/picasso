@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.4.2...@toptal/picasso@10.5.0) (2021-09-10)
+
+
+### Features
+
+* add limit property for Form.Select ([#2153](https://github.com/toptal/picasso/issues/2153)) ([1a036ad](https://github.com/toptal/picasso/commit/1a036ad071a08dc24d20b2fc1c731303b90dc86d))
+
+
+
+
+
 ## [10.4.2](https://github.com/toptal/picasso/compare/@toptal/picasso@10.4.1...@toptal/picasso@10.4.2) (2021-09-09)
 
 
