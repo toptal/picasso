@@ -10,7 +10,7 @@ const renderBadge = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { content, variant, size } = props
+  const { content, variant, size, max } = props
 
   return render(
     <Badge
@@ -18,6 +18,7 @@ const renderBadge = (
       variant={variant}
       size={size}
       data-testid={props['data-testid']}
+      max={max}
     />,
     undefined,
     picassoConfig
@@ -65,5 +66,11 @@ describe('Badge', () => {
     })
 
     expect(screen.getByTestId('badge-root')).toBeInTheDocument()
+  })
+
+  it('should trim number with custom max value', () => {
+    const { getByText } = renderBadge({ content: 9999, max: 55, size: 'large' })
+
+    expect(getByText('55+')).toBeVisible()
   })
 })

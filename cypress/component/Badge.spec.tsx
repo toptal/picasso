@@ -68,6 +68,23 @@ describe('Badge', () => {
       )
       cy.get('body').happoScreenshot()
     })
+    it('renders custom max count', () => {
+      mount(
+        <TestingPicasso>
+          <Container
+            flex
+            style={{ gap: '1rem', background: 'blue' }}
+            padded='small'
+            alignItems='center'
+          >
+            <Badge variant='white' size='small' content={9999} max={999} />
+            <Badge variant='white' size='medium' content={9999} max={999} />
+            <Badge variant='white' size='large' content={9999} max={999} />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
   })
   describe('red variant', () => {
     it('renders small', () => {
@@ -106,6 +123,23 @@ describe('Badge', () => {
             <Badge variant='red' size='large' content={10} />
             <Badge variant='red' size='large' content={99} />
             <Badge variant='red' size='large' content={200} />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+    it('renders custom max count', () => {
+      mount(
+        <TestingPicasso>
+          <Container
+            flex
+            style={{ gap: '1rem', background: 'blue' }}
+            padded='small'
+            alignItems='center'
+          >
+            <Badge variant='red' size='small' content={9999} max={999} />
+            <Badge variant='red' size='medium' content={9999} max={999} />
+            <Badge variant='red' size='large' content={9999} max={999} />
           </Container>
         </TestingPicasso>
       )

@@ -16,21 +16,29 @@ export interface Props extends BaseProps, TextLabelProps {
   variant?: VariantType
   /** Size of the `Badge` */
   size?: SizeType
+  /**
+   * Max count to show. By default 9 for small size, 99 for other sizes
+   */
+  max?: number
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoBadge' })
 
-const threshold = {
-  small: 10,
-  medium: 100,
-  large: 100
+const thresholds = {
+  small: 9,
+  medium: 99,
+  large: 99
 }
 
-const getTransformedContent = (content: number, size: SizeType): string => {
-  const sizeThreshold = threshold[size]
+const getTrimmedContent = (
+  content: number,
+  size: SizeType,
+  max?: number
+): string => {
+  const trimThreshold = max || thresholds[size]
 
-  if (content >= sizeThreshold) {
-    return `${sizeThreshold - 1}+`
+  if (content > trimThreshold) {
+    return `${trimThreshold}+`
   }
 
   return String(content)
@@ -46,7 +54,8 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
     variant = 'white',
     size = 'large',
     content,
-    'data-testid': dataTestId
+    'data-testid': dataTestId,
+    max
   } = props
   const classes = useStyles()
 
@@ -54,7 +63,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
     <Chip
       ref={ref}
       style={style}
-      label={getTransformedContent(content, size)}
+      label={getTrimmedContent(content, size, max)}
       classes={{
         root: cx(classes.root, classes[variant], classes[size]),
         label: cx(classes[`${size}Label`])
@@ -69,6 +78,6 @@ Badge.defaultProps = {
   size: 'large'
 }
 
-Badge.displayName = 'Badge'
+Badge.displayName = 'PicassoBadge'
 
 export default Badge
