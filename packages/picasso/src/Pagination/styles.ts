@@ -2,12 +2,13 @@ import { createStyles } from '@material-ui/core/styles'
 
 export default () =>
   createStyles({
-    rangeButton: {
-      minWidth: '1.5em',
-      padding: '0 0.3em'
+    button: {
+      '&+&': {
+        marginLeft: '0.5em'
+      }
     },
     ellipsis: {
-      padding: '0 1em',
+      padding: '0 0.5em',
       cursor: 'default'
     }
   })
