@@ -26,10 +26,7 @@ const threshold = {
   large: 100
 }
 
-const getTransformedContent = (
-  content: Props['content'],
-  size: SizeType
-): string => {
+const getTransformedContent = (content: number, size: SizeType): string => {
   const sizeThreshold = threshold[size]
 
   if (content >= sizeThreshold) {
@@ -53,7 +50,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
   } = props
   const classes = useStyles()
 
-  if (!content) {
+  if (content === 0) {
     return null
   }
 
