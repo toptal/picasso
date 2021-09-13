@@ -107,15 +107,12 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
   const classes = useStyles(props)
 
   const contentRef = useRef<HTMLElement>()
-  const isAnchorClickEvent = useRef(false)
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>()
   const [isOpen, setIsOpen] = useState(false)
 
   const handleAnchorClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    isAnchorClickEvent.current = true
-
     if (isOpen) {
       close()
     } else {
@@ -204,12 +201,6 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
 
   const handleClickAway = (event: React.MouseEvent<Document>) => {
     const target = event.target
-
-    if (isAnchorClickEvent.current) {
-      isAnchorClickEvent.current = false
-
-      return
-    }
 
     const isAnchorTapEvent =
       anchorEl && target instanceof Node && anchorEl.contains(target)

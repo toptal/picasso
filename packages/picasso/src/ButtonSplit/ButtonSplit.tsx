@@ -1,19 +1,22 @@
-import React, { forwardRef, ReactNode, MouseEvent, FC } from 'react'
+import React, {
+  forwardRef,
+  ReactNode,
+  MouseEvent,
+  FC,
+  HTMLAttributes
+} from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { SizeType } from '@toptal/picasso-shared'
+import { SizeType, BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
-import {
-  ArrowDownMinor24,
-  ArrowDownMinor16,
-  ArrowUpMinor24,
-  ArrowUpMinor16
-} from '../Icon'
+import { ArrowDownMinor24, ArrowDownMinor16 } from '../Icon'
 import Button, { ButtonProps } from '../Button'
 import Dropdown from '../Dropdown'
 import styles from './styles'
 
-export interface Props extends Omit<ButtonProps, 'children'> {
+export interface Props
+  extends BaseProps,
+    Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
   /** Content of Button component */
   text: ReactNode
   /** Content element that opens when anchor is clicked */
@@ -24,7 +27,8 @@ export interface Props extends Omit<ButtonProps, 'children'> {
   size?: ButtonProps['size']
   /** The variant to use */
   variant?: 'primary' | 'secondary'
-
+  /** Is component disaled or not */
+  disabled?: boolean
   // Internal props
   menuButtonProps?: Omit<ButtonProps, 'children'>
   actionButtonProps?: Omit<ButtonProps, 'children'>
@@ -33,7 +37,6 @@ export interface Props extends Omit<ButtonProps, 'children'> {
     menuButton?: string
   }
 }
-
 // Using { index: -1 } to inject CSS link to the bottom of the head
 // in order to prevent Button's styles to override ButtonSplit's ones
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
@@ -44,28 +47,16 @@ const useStyles = makeStyles<Theme>(styles, {
 
 const DropdownIcon = ({
   size,
-  isOpen
+  className
 }: {
   size: SizeType<'small' | 'medium' | 'large'>
-  isOpen: boolean
+  className?: string
 }) => {
-  if (size === 'large' && isOpen) {
-    return <ArrowUpMinor24 />
+  if (size === 'large') {
+    return <ArrowDownMinor24 className={className} />
   }
 
-  if (size === 'large' && !isOpen) {
-    return <ArrowDownMinor24 />
-  }
-
-  if (size !== 'large' && isOpen) {
-    return <ArrowUpMinor16 />
-  }
-
-  if (size !== 'large' && !isOpen) {
-    return <ArrowDownMinor16 />
-  }
-
-  return null
+  return <ArrowDownMinor16 className={className} />
 }
 
 const EventStopPropagation: FC = ({ children }) => {
@@ -78,7 +69,7 @@ const EventStopPropagation: FC = ({ children }) => {
   return <span onClick={handleClick}>{children}</span>
 }
 
-export const ButtonSplit = forwardRef<HTMLSpanElement, Props>(
+export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
   function ButtonSplit (props, ref) {
     const {
       size = 'medium',
@@ -88,6 +79,7 @@ export const ButtonSplit = forwardRef<HTMLSpanElement, Props>(
       disabled,
       style,
       className,
+      onClick,
       menuButtonProps,
       actionButtonProps,
       testIds = {},
@@ -97,7 +89,6 @@ export const ButtonSplit = forwardRef<HTMLSpanElement, Props>(
 
     const commonClasses = cx(classes.button, {
       [classes.primaryVariant]: variant === 'primary',
-      [classes.secondaryVariant]: variant === 'secondary',
       [classes.disabled]: disabled
     })
 
@@ -119,7 +110,12 @@ export const ButtonSplit = forwardRef<HTMLSpanElement, Props>(
           disabled={disabled}
           data-testid={testIds.menuButton}
         >
-          <DropdownIcon isOpen={isOpen} size={size} />
+          <DropdownIcon
+            className={cx({
+              [classes.rotated]: isOpen
+            })}
+            size={size}
+          />
         </Button>
       )
 
@@ -131,18 +127,14 @@ export const ButtonSplit = forwardRef<HTMLSpanElement, Props>(
     }
 
     return (
-      <span
-        {...rest}
-        className={cx(classes.root, className)}
-        style={style}
-        ref={ref}
-      >
+      <Button.Group {...rest} ref={ref} style={style} className={className}>
         <Button
           {...actionButtonProps}
           className={`${commonClasses} ${classes.actionButton}`}
           size={size}
           variant={variant}
           disabled={disabled}
+          onClick={onClick}
           data-testid={testIds.actionButton}
         >
           {text}
@@ -157,7 +149,7 @@ export const ButtonSplit = forwardRef<HTMLSpanElement, Props>(
             renderMenuButton({ isOpen, disabled })
           }
         </Dropdown>
-      </span>
+      </Button.Group>
     )
   }
 )
