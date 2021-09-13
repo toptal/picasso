@@ -86,11 +86,8 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container (
     bordered = false,
     rounded = false,
     variant,
-<<<<<<< HEAD
     align,
-=======
     gap,
->>>>>>> 62e037a1 (chore: add gap property to Container)
     as: Component = inline ? 'span' : 'div',
     // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
