@@ -2,20 +2,28 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
+import { TabProps } from '../Tab'
 import Tabs, { Props } from './Tabs'
 
-const renderTabs = (
-  tabs: { label: string; value?: string; disabled?: boolean }[],
-  { value, onChange }: OmitInternalProps<Props, 'children'>
-) => {
-  const content = tabs.map((tab, index) =>
-    index + 1 === value || tab.value === value ? (
-      <div key={tab.label} data-testid={`tab-${index + 1}-content`}>
+const renderTabContent = (tab: TabProps, index: number, value: any) => {
+  const isTabActive = index + 1 === value || tab.value === value
+  const testId = `tab-${index + 1}-content`
+
+  if (isTabActive) {
+    return (
+      <div key={testId} data-testid={testId}>
         Tab #{index + 1} content
       </div>
-    ) : null
-  )
+    )
+  }
 
+  return null
+}
+
+const renderTabs = (
+  tabs: TabProps[],
+  { value, onChange }: OmitInternalProps<Props, 'children'>
+) => {
   return render(
     <>
       <Tabs onChange={onChange} value={value}>
@@ -30,7 +38,7 @@ const renderTabs = (
         ))}
       </Tabs>
 
-      {content}
+      {tabs.map((tab, index) => renderTabContent(tab, index, value))}
     </>
   )
 }

@@ -32,29 +32,36 @@ interface RenderTabsArgs {
 }
 
 const getTabTestId = (index: number) => `tab-${index}`
+const getTabSelector = (index: number) =>
+  `[data-testid="${getTabTestId(index)}"]`
 const getScrollButtonSelector = (direction: string) =>
   `[data-testid="tab-scroll-button-${direction}"]`
 
 const renderTabs = ({
   width,
-  disabledIndicies,
-  withIconIndicies
+  disabledIndicies = [],
+  withIconIndicies = []
 }: RenderTabsArgs = {}) => {
   return (
     <TestingPicasso>
       <div style={{ width }}>
         <TestTabs data-testid='tabs'>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <Tabs.Tab
-              disabled={disabledIndicies?.includes(index)}
-              key={index}
-              label='Label'
-              data-testid={getTabTestId(index)}
-              icon={
-                withIconIndicies?.includes(index) ? <TestIcon /> : undefined
-              }
-            />
-          ))}
+          {Array.from({ length: 5 }).map((_, index) => {
+            const testId = getTabTestId(index)
+            const icon = withIconIndicies.includes(index) ? (
+              <TestIcon />
+            ) : undefined
+
+            return (
+              <Tabs.Tab
+                key={testId}
+                data-testid={testId}
+                disabled={disabledIndicies.includes(index)}
+                label='Label'
+                icon={icon}
+              />
+            )
+          })}
         </TestTabs>
       </div>
     </TestingPicasso>
@@ -83,21 +90,21 @@ describe('Tabs', () => {
   it('navigates with scroll buttons', () => {
     mount(renderTabs({ width: '13rem' }))
 
-    cy.get(getTabTestId(0)).should('be.visible')
-    cy.get(getTabTestId(4)).should('not.be.visible')
+    cy.get(getTabSelector(0)).should('be.visible')
+    cy.get(getTabSelector(4)).should('not.be.visible')
     cy.get(getScrollButtonSelector('left')).should('not.exist')
     cy.get(getScrollButtonSelector('right')).should('be.visible')
     cy.get('body').happoScreenshot()
 
     cy.get(getScrollButtonSelector('right')).click()
-    cy.get(getTabTestId(0)).should('not.be.visible')
-    cy.get(getTabTestId(4)).should('be.visible')
+    cy.get(getTabSelector(0)).should('not.be.visible')
+    cy.get(getTabSelector(4)).should('be.visible')
     cy.get(getScrollButtonSelector('left')).should('be.visible')
     cy.get(getScrollButtonSelector('right')).should('not.exist')
 
     cy.get(getScrollButtonSelector('left')).click()
-    cy.get(getTabTestId(0)).should('be.visible')
-    cy.get(getTabTestId(4)).should('not.be.visible')
+    cy.get(getTabSelector(0)).should('be.visible')
+    cy.get(getTabSelector(4)).should('not.be.visible')
     cy.get(getScrollButtonSelector('left')).should('not.exist')
     cy.get(getScrollButtonSelector('right')).should('be.visible')
   })
