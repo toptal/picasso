@@ -1,9 +1,17 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import { Tabs } from '@toptal/picasso'
+import { Tabs, Tooltip, Exclamation16, TabsProps } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const ScrollButtonsExample = () => {
+const TestIcon = () => (
+  <Tooltip content='Some content...' placement='top'>
+    <span>
+      <Exclamation16 color='red' />
+    </span>
+  </Tooltip>
+)
+
+const TestTabs = ({ children, ...props }: Partial<TabsProps>) => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
@@ -11,40 +19,93 @@ const ScrollButtonsExample = () => {
   }
 
   return (
+    <Tabs value={value} onChange={handleChange} {...props}>
+      {children}
+    </Tabs>
+  )
+}
+
+interface RenderTabsArgs {
+  width?: number | string
+  disabledIndicies?: number[]
+  withIconIndicies?: number[]
+}
+
+const getTabTestId = (index: number) => `tab-${index}`
+const getTabSelector = (index: number) =>
+  `[data-testid="${getTabTestId(index)}"]`
+const getScrollButtonSelector = (direction: string) =>
+  `[data-testid="tab-scroll-button-${direction}"]`
+
+const renderTabs = ({
+  width,
+  disabledIndicies = [],
+  withIconIndicies = []
+}: RenderTabsArgs = {}) => {
+  return (
     <TestingPicasso>
-      <div style={{ width: '13rem' }}>
-        <Tabs value={value} onChange={handleChange} data-testid='tabs'>
-          <Tabs.Tab label='Label' data-testid='tab-0' />
-          <Tabs.Tab label='Label' data-testid='tab-1' />
-          <Tabs.Tab label='Label' data-testid='tab-2' />
-          <Tabs.Tab label='Label' data-testid='tab-3' />
-          <Tabs.Tab label='Label' data-testid='tab-4' />
-        </Tabs>
+      <div style={{ width }}>
+        <TestTabs data-testid='tabs'>
+          {Array.from({ length: 5 }).map((_, index) => {
+            const testId = getTabTestId(index)
+            const icon = withIconIndicies.includes(index) ? (
+              <TestIcon />
+            ) : undefined
+
+            return (
+              <Tabs.Tab
+                key={testId}
+                data-testid={testId}
+                disabled={disabledIndicies.includes(index)}
+                label='Label'
+                icon={icon}
+              />
+            )
+          })}
+        </TestTabs>
       </div>
     </TestingPicasso>
   )
 }
 
 describe('Tabs', () => {
-  it('navigates with scroll buttons', () => {
-    mount(<ScrollButtonsExample />)
+  it('renders', () => {
+    mount(renderTabs())
 
-    cy.get('[data-testid="tab-0"]').should('be.visible')
-    cy.get('[data-testid="tab-4"]').should('not.be.visible')
-    cy.get('[data-testid="tab-scroll-button-left"]').should('not.exist')
-    cy.get('[data-testid="tab-scroll-button-right"]').should('be.visible')
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders disabled', () => {
+    mount(renderTabs({ disabledIndicies: [1] }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders with icon', () => {
+    mount(renderTabs({ withIconIndicies: [1, 3] }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('navigates with scroll buttons', () => {
+    mount(renderTabs({ width: '13rem' }))
+
+    cy.get(getTabSelector(0)).should('be.visible')
+    cy.get(getTabSelector(4)).should('not.be.visible')
+    cy.get(getScrollButtonSelector('left')).should('not.exist')
+    cy.get(getScrollButtonSelector('right')).should('be.visible')
     cy.get('body').happoScreenshot()
 
-    cy.get('[data-testid="tab-scroll-button-right"]').click()
-    cy.get('[data-testid="tab-0"]').should('not.be.visible')
-    cy.get('[data-testid="tab-4"]').should('be.visible')
-    cy.get('[data-testid="tab-scroll-button-left"]').should('be.visible')
-    cy.get('[data-testid="tab-scroll-button-right"]').should('not.exist')
+    cy.get(getScrollButtonSelector('right')).click()
+    cy.get(getTabSelector(0)).should('not.be.visible')
+    cy.get(getTabSelector(4)).should('be.visible')
+    cy.get(getScrollButtonSelector('left')).should('be.visible')
+    cy.get(getScrollButtonSelector('right')).should('not.exist')
 
-    cy.get('[data-testid="tab-scroll-button-left"]').click()
-    cy.get('[data-testid="tab-0"]').should('be.visible')
-    cy.get('[data-testid="tab-4"]').should('not.be.visible')
-    cy.get('[data-testid="tab-scroll-button-left"]').should('not.exist')
-    cy.get('[data-testid="tab-scroll-button-right"]').should('be.visible')
+    cy.get(getScrollButtonSelector('left')).click()
+    cy.get(getTabSelector(0)).should('be.visible')
+    cy.get(getTabSelector(4)).should('not.be.visible')
+    cy.get(getScrollButtonSelector('left')).should('not.exist')
+    cy.get(getScrollButtonSelector('right')).should('be.visible')
   })
 })

@@ -45,7 +45,7 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
     },
     textColorInherit: {
       '&$disabled': {
-        opacity: 0.4
+        color: palette.grey.main
       }
     },
     disabled: {},
