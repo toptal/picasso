@@ -2,7 +2,6 @@ import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import { Chip } from '@material-ui/core'
 
 import styles from './styles'
 
@@ -56,16 +55,16 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
   const classes = useStyles()
 
   return (
-    <Chip
-      ref={ref}
-      style={style}
-      label={format(content, size, max)}
-      classes={{
-        root: cx(classes.root, classes[variant], classes[size]),
-        label: cx(classes[`${size}Label`])
-      }}
-      data-testid={dataTestId}
-    />
+    <>
+      <span
+        ref={ref}
+        data-testid={dataTestId}
+        className={cx(classes.root, classes[variant], classes[size])}
+        style={style}
+      >
+        {format(content, size, max)}
+      </span>
+    </>
   )
 })
 

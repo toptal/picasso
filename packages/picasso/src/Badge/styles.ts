@@ -1,48 +1,45 @@
+import { rem } from '@toptal/picasso-shared'
 import { Theme, createStyles } from '@material-ui/core/styles'
+
+const getSizeProps = (unitInRem: string) => ({
+  height: unitInRem,
+  borderRadius: unitInRem,
+  minWidth: unitInRem
+})
 
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      fontSize: '0.57rem',
-      borderWidth: '1px',
       borderStyle: 'solid',
-      lineHeight: 'initial',
-      fontWeight: 600
+      borderWidth: '1px',
+      display: 'inline-flex',
+      fontSize: rem('9px'),
+      fontWeight: 600,
+      alignItems: 'center',
+      justifyContent: 'center'
     },
     // variants
     white: {
       background: palette.common.white,
-      color: palette.grey.dark,
-      borderColor: palette.grey.light
+      borderColor: palette.grey.light,
+      color: palette.grey.dark
     },
     red: {
-      color: palette.common.white,
+      backgroundColor: palette.red.main,
       borderColor: palette.red.main,
-      backgroundColor: palette.red.main
+      color: palette.common.white
     },
     // sizes
     large: {
-      borderRadius: '1.25rem',
-      height: '1.25rem',
-      minWidth: '1.25rem'
+      padding: '0 3px',
+      ...getSizeProps('1.25rem')
     },
     small: {
-      borderRadius: '0.75rem',
-      height: '0.75rem',
-      minWidth: '0.75rem'
+      padding: '0 2px',
+      ...getSizeProps('0.75rem')
     },
     medium: {
-      borderRadius: '1rem',
-      height: '1rem',
-      minWidth: '1rem'
-    },
-    smallLabel: {
-      padding: '0 2px'
-    },
-    mediumLabel: {
-      padding: '0 1px'
-    },
-    largeLabel: {
-      padding: '0 3px'
+      padding: '0 1px',
+      ...getSizeProps('1rem')
     }
   })

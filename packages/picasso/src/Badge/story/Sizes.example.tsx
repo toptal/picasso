@@ -9,7 +9,7 @@ const Example = () => (
       </Typography>
     </Container>
     <Grid>
-      <Grid.Item small={3}>
+      <Grid.Item small={6}>
         <Container top='small' bottom='medium' flex>
           <Container padded='small'>
             <Badge content={1} variant='white' size='small' />
@@ -22,7 +22,7 @@ const Example = () => (
           </Container>
         </Container>
       </Grid.Item>
-      <Grid.Item small={3}>
+      <Grid.Item small={6}>
         <Container top='small' bottom='medium' flex>
           <Container padded='small'>
             <Badge content={1} variant='red' size='small' />
@@ -43,7 +43,7 @@ const Example = () => (
       </Typography>
     </Container>
     <Grid>
-      <Grid.Item small={3}>
+      <Grid.Item small={6}>
         <Container top='small' bottom='medium' flex>
           <Container padded='small'>
             <Badge content={1} variant='white' size='medium' />
@@ -62,7 +62,7 @@ const Example = () => (
           </Container>
         </Container>
       </Grid.Item>
-      <Grid.Item small={3}>
+      <Grid.Item small={6}>
         <Container top='small' bottom='medium' flex>
           <Container padded='small'>
             <Badge content={1} variant='red' size='medium' />
@@ -89,7 +89,7 @@ const Example = () => (
       </Typography>
     </Container>
     <Grid>
-      <Grid.Item small={3}>
+      <Grid.Item small={6}>
         <Container top='small' bottom='medium' flex>
           <Container padded='small'>
             <Badge content={1} variant='white' size='large' />
@@ -108,7 +108,7 @@ const Example = () => (
           </Container>
         </Container>
       </Grid.Item>
-      <Grid.Item small={3}>
+      <Grid.Item small={6}>
         <Container top='small' bottom='medium' flex>
           <Container padded='small'>
             <Badge content={1} variant='red' size='large' />
@@ -134,7 +134,7 @@ const Example = () => (
       </Typography>
     </Container>
     <Grid>
-      <Grid.Item small={3}>
+      <Grid.Item small={6}>
         <Container top='small' flex alignItems='center'>
           <Container padded='small'>
             <Badge content={9999} variant='white' size='small' max={50} />
@@ -147,7 +147,7 @@ const Example = () => (
           </Container>
         </Container>
       </Grid.Item>
-      <Grid.Item small={3}>
+      <Grid.Item small={6}>
         <Container top='small' flex alignItems='center'>
           <Container padded='small'>
             <Badge content={9999} variant='red' size='small' max={50} />
