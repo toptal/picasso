@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ComponentProps } from 'react'
 import { mount } from '@cypress/react'
 import { Button, Container, Menu } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
@@ -13,12 +13,82 @@ const menu = (
   </Menu>
 )
 
+type ButtonSplitProps = ComponentProps<typeof Button.Split>
+interface Props extends Omit<ButtonSplitProps, 'menu' | 'text'> {
+  menu?: ButtonSplitProps['menu']
+  text?: ButtonSplitProps['text']
+}
+
+const testIds = {
+  menuButton: 'menuButton',
+  actionButton: 'actionButton'
+}
+
+const renderButtonSplit = (props?: Props) => {
+  mount(
+    <TestingPicasso>
+      <Container flex gap='1rem' padded='small'>
+        <Button.Split testIds={testIds} text='Button' menu={menu} {...props} />
+      </Container>
+    </TestingPicasso>
+  )
+}
+
 describe('Button.Split', () => {
-  it('renders primary variant states', () => {
+  describe('Primary variant', () => {
+    it('renders normal state', () => {
+      renderButtonSplit()
+
+      cy.get('body').happoScreenshot()
+    })
+
+    it('renders action hovered', () => {
+      renderButtonSplit({ text: 'Normal' })
+
+      cy.get(`[data-testid=${testIds.actionButton}]`).realHover()
+
+      cy.get('body').happoScreenshot()
+    })
+
+    it('renders menu hovered', () => {
+      renderButtonSplit({ text: 'Normal' })
+
+      cy.get(`[data-testid=${testIds.menuButton}]`).realHover()
+
+      cy.get('body').happoScreenshot()
+    })
+
+    it('renders action focused', () => {
+      renderButtonSplit({ text: 'Action Focused' })
+
+      cy.get(`[data-testid=${testIds.actionButton}]`).focus()
+
+      cy.get('body').happoScreenshot()
+    })
+
+    it('renders menu focused', () => {
+      renderButtonSplit({ text: 'Menu Focused' })
+
+      cy.get(`[data-testid=${testIds.menuButton}]`).focus()
+
+      cy.get('body').happoScreenshot()
+    })
+
+    it('renders action active', () => {})
+    it('renders menu active', () => {})
+
+    it('renders disabled', () => {})
+  })
+
+  // describe('Secondary variant', () => {
+
+  // })
+
+  it.skip('renders primary variant states', () => {
     mount(
       <TestingPicasso>
         <Container flex gap='1rem' padded='small'>
-          <Button.Split text='Normal' menu={menu} />
+          {/* <Button.Split text='Normal' menu={menu} />
 
           <Button.Split
             text='Action Hovered'
@@ -29,7 +99,7 @@ describe('Button.Split', () => {
             text='Menu Hovered'
             menu={menu}
             menuButtonProps={{ hovered: true }}
-          />
+          /> */}
 
           <Button.Split
             text='Action Focused'
@@ -61,7 +131,7 @@ describe('Button.Split', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders secondary variant states', () => {
+  it.skip('renders secondary variant states', () => {
     mount(
       <TestingPicasso>
         <Container flex gap='1rem' padded='small'>
