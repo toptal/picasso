@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@material-ui/core": "4.11.0",
-    "@material-ui/styles": "4.10.0",
     "@material-ui/utils": "4.10.2",
     "classnames": "^2.3.1",
     "notistack": "1.0.5",
