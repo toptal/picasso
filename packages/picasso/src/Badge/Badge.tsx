@@ -1,12 +1,7 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  BaseProps,
-  TextLabelProps,
-  CompoundedComponentWithRef,
-  useTitleCase
-} from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 import { Chip } from '@material-ui/core'
 import { toTitleCase } from '@toptal/picasso/utils'
 
@@ -55,7 +50,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
       data-testid={dataTestId}
     />
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement>
+})
 
 Badge.defaultProps = {
   variant: 'white',

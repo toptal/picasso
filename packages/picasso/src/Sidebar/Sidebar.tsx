@@ -7,12 +7,7 @@ import React, {
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  BaseProps,
-  StandardProps,
-  PicassoComponentWithRef,
-  CompoundedComponentWithRef
-} from '@toptal/picasso-shared'
+import { BaseProps, StandardProps } from '@toptal/picasso-shared'
 import { useSidebar } from '@toptal/picasso-provider'
 
 import Button from '../Button'
@@ -67,12 +62,8 @@ const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProp
 export interface Props extends BaseProps {
   /** Style variant of Sidebar and subcomponents */
   variant?: VariantType
-}
-
-export interface StaticProps {
-  Menu: typeof SidebarMenu
-  Item: typeof SidebarItem
-  Logo: typeof SidebarLogo
+  /** Content */
+  children?: ReactNode
 }
 
 export const SidebarContext = React.createContext<SidebarContextProps>({
@@ -132,7 +123,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar (
   ) : (
     sidebar
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
+})
 
 Sidebar.defaultProps = {
   variant: 'light'
@@ -140,12 +131,8 @@ Sidebar.defaultProps = {
 
 Sidebar.displayName = 'Sidebar'
 
-Sidebar.Menu = SidebarMenu
-Sidebar.Item = SidebarItem
-Sidebar.Logo = SidebarLogo
-
-export default Sidebar as PicassoComponentWithRef<
-  Props,
-  HTMLDivElement,
-  StaticProps
->
+export default Object.assign(Sidebar, {
+  Menu: SidebarMenu,
+  Item: SidebarItem,
+  Logo: SidebarLogo
+})

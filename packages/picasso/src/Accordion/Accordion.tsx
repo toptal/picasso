@@ -9,10 +9,7 @@ import React, {
 import cx from 'classnames'
 import MUIAccordion from '@material-ui/core/Accordion'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import {
-  CompoundedComponentWithRef,
-  StandardProps
-} from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import { ArrowDownMinor16 } from '../Icon'
 import AccordionSummary from '../AccordionSummary'
@@ -95,7 +92,7 @@ const decorateWithExpandIconClasses = (
   })
 
 /* eslint-disable complexity */
-export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
+export const Accordion = forwardRef<HTMLElement, Props>(function Accordion (
   props,
   ref
 ) {
@@ -184,7 +181,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
       </AccordionDetails>
     </MUIAccordion>
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
+})
 
 Accordion.defaultProps = {
   borders: 'all',
@@ -196,7 +193,7 @@ Accordion.defaultProps = {
 
 Accordion.displayName = 'Accordion'
 
-Accordion.Summary = Summary
-Accordion.Details = Details
-
-export default Accordion
+export default Object.assign(Accordion, {
+  Summary,
+  Details
+})

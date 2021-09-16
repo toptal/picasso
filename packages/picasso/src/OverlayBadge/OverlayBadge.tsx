@@ -1,12 +1,7 @@
 import React, { forwardRef, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  BaseProps,
-  TextLabelProps,
-  CompoundedComponentWithRef,
-  useTitleCase
-} from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 import { Badge as MuiBadge } from '@material-ui/core'
 import { toTitleCase } from '@toptal/picasso/utils'
 
@@ -62,7 +57,7 @@ export const OverlayBadge = forwardRef<HTMLDivElement, Props>(
       </MuiBadge>
     )
   }
-) as CompoundedComponentWithRef<Props, HTMLDivElement>
+)
 
 OverlayBadge.defaultProps = {
   variant: 'white',
