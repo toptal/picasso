@@ -129,7 +129,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "davinci syntax lint code",
-      "prettier-standard"
+      "prettier --write"
     ]
   },
   "config": {

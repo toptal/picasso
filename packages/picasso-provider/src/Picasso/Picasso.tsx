@@ -1,5 +1,6 @@
 /* eslint-disable complexity */
 import {
+  makeStyles,
   MuiThemeProvider,
   Theme,
   ThemeOptions,
@@ -15,7 +16,6 @@ import React, {
   ForwardRefExoticComponent,
   RefAttributes
 } from 'react'
-import { makeStyles } from '@material-ui/styles'
 import { Helmet } from 'react-helmet'
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 
