@@ -1,10 +1,7 @@
 import {
   CSSProperties,
-  FunctionComponent,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
-  RefAttributes,
-  ForwardRefExoticComponent,
   ElementType,
   ComponentPropsWithRef
 } from 'react'
@@ -40,17 +37,6 @@ export type OmitInternalProps<T, K = ''> = Pick<
   T,
   Exclude<keyof T, keyof JssProps | K>
 >
-
-export type PicassoComponentWithRef<P, R, S = {}> = FunctionComponent<
-  P & RefAttributes<R>
-> &
-  S
-
-export type CompoundedComponentWithRef<
-  P,
-  R,
-  S = {}
-> = ForwardRefExoticComponent<P & RefAttributes<R>> & S
 
 type PropsWithOverridableAs<T extends ElementType, P> = Omit<P, 'as'> & {
   as?: T

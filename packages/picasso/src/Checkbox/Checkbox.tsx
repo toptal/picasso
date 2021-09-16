@@ -2,7 +2,6 @@ import MUICheckbox from '@material-ui/core/Checkbox'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   ButtonOrAnchorProps,
-  CompoundedComponentWithRef,
   BaseProps,
   TextLabelProps
 } from '@toptal/picasso-shared'
@@ -14,10 +13,6 @@ import CheckboxGroup from '../CheckboxGroup'
 import Container from '../Container'
 import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
-
-export interface StaticProps {
-  Group: typeof CheckboxGroup
-}
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCheckbox' })
 
@@ -123,11 +118,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       />
     )
   }
-) as CompoundedComponentWithRef<
-  Props,
-  HTMLButtonElement | HTMLLabelElement,
-  StaticProps
->
+)
 
 Checkbox.defaultProps = {
   disabled: false,
@@ -137,6 +128,6 @@ Checkbox.defaultProps = {
 
 Checkbox.displayName = 'Checkbox'
 
-Checkbox.Group = CheckboxGroup
-
-export default Checkbox
+export default Object.assign(Checkbox, {
+  Group: CheckboxGroup
+})

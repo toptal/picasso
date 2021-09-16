@@ -2,7 +2,7 @@ import React, { HTMLAttributes, forwardRef } from 'react'
 import cx from 'classnames'
 import MUIMenuList from '@material-ui/core/MenuList'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import { BackMinor16 } from '../Icon'
 import MenuItem from '../MenuItem'
@@ -17,10 +17,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
   variant?: MenuVariant
   // Whether or not to handle nested navigation
   allowNestedNavigation?: boolean
-}
-
-export interface StaticProps {
-  Item: typeof MenuItem
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -66,7 +62,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
       )}
     </MenuContext.Provider>
   )
-}) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
+})
 
 Menu.defaultProps = {
   variant: 'slide',
@@ -75,6 +71,4 @@ Menu.defaultProps = {
 
 Menu.displayName = 'Menu'
 
-Menu.Item = MenuItem
-
-export default Menu
+export default Object.assign(Menu, { Item: MenuItem })

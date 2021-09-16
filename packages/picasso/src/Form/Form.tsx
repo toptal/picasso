@@ -4,7 +4,7 @@ import React, {
   ReactNode,
   FormHTMLAttributes
 } from 'react'
-import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import FormField from '../FormField'
 import FormHint from '../FormHint'
@@ -18,15 +18,8 @@ export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   onSubmit?: FormEventHandler<HTMLFormElement>
 }
 
-export interface StaticProps {
-  Field: typeof FormField
-  Hint: typeof FormHint
-  Label: typeof FormLabel
-  Error: typeof FormError
-}
-
 // eslint-disable-next-line react/display-name
-export const Form = forwardRef<HTMLFormElement, Props>(function Form(
+export const Form = forwardRef<HTMLFormElement, Props>(function Form (
   { onSubmit, className, style, children, ...rest },
   ref
 ) {
@@ -41,13 +34,13 @@ export const Form = forwardRef<HTMLFormElement, Props>(function Form(
       {children}
     </form>
   )
-}) as CompoundedComponentWithRef<Props, HTMLFormElement, StaticProps>
-
-Form.Field = FormField
-Form.Hint = FormHint
-Form.Label = FormLabel
-Form.Error = FormError
+})
 
 Form.displayName = 'Form'
 
-export default Form
+export default Object.assign(Form, {
+  Field: FormField,
+  Hint: FormHint,
+  Label: FormLabel,
+  Error: FormError
+})

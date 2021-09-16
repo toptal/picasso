@@ -7,11 +7,7 @@ import MUIGrid, {
   GridJustification,
   GridWrap
 } from '@material-ui/core/Grid'
-import {
-  BaseProps,
-  PicassoComponentWithRef,
-  CompoundedComponentWithRef
-} from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import GridItem from '../GridItem'
 import styles from './styles'
@@ -31,10 +27,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   wrap?: GridWrap
 }
 
-export interface StaticProps {
-  Item: typeof GridItem
-}
-
 const humanToMUISpacing = (spacing: number) => {
   /** Material Design margins and columns follow an 8px square baseline grid */
   return (spacing / 8) as GridSpacing
@@ -45,7 +37,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
+export const Grid = forwardRef<HTMLDivElement, Props>(function Grid (
   props,
   ref
 ) {
@@ -79,7 +71,7 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
       {children}
     </MUIGrid>
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
+})
 
 Grid.defaultProps = {
   alignItems: 'flex-start',
@@ -89,10 +81,6 @@ Grid.defaultProps = {
   wrap: 'wrap'
 }
 
-Grid.Item = GridItem
+Grid.displayName = 'Grid'
 
-export default Grid as PicassoComponentWithRef<
-  Props,
-  HTMLDivElement,
-  StaticProps
->
+export default Object.assign(Grid, { Item: GridItem })

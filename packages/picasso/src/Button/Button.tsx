@@ -11,7 +11,6 @@ import {
   StandardProps,
   SizeType,
   ButtonOrAnchorProps,
-  CompoundedComponentWithRef,
   OverridableComponent,
   useTitleCase,
   TextLabelProps,
@@ -79,12 +78,6 @@ export interface Props
   type?: 'button' | 'reset' | 'submit'
 }
 
-export interface StaticProps {
-  Group: typeof Group
-  Circular: typeof Circular
-  Action: typeof Action
-}
-
 const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
   loading ? noop : handler
 
@@ -113,10 +106,10 @@ const getIcon = (
   })
 }
 
-export const Button = forwardRef<HTMLButtonElement, Props>(function Button (
-  props,
-  ref
-) {
+export const Button: OverridableComponent<Props> = forwardRef<
+  HTMLButtonElement,
+  Props
+>(function Button (props, ref) {
   const {
     icon,
     iconPosition,
@@ -212,7 +205,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button (
       )}
     </ButtonBase>
   )
-}) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
+})
 
 Button.defaultProps = {
   active: false,
@@ -232,8 +225,8 @@ Button.defaultProps = {
 
 Button.displayName = 'Button'
 
-Button.Group = Group
-Button.Circular = Circular
-Button.Action = Action
-
-export default Button as OverridableComponent<Props> & StaticProps
+export default Object.assign(Button, {
+  Group,
+  Circular,
+  Action
+})
