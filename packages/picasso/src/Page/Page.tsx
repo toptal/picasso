@@ -1,11 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  BaseProps,
-  PicassoComponentWithRef,
-  CompoundedComponentWithRef
-} from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import PageHelmet from '../PageHelmet'
 import PageTopBar from '../PageTopBar'
@@ -28,18 +24,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   centered?: boolean
   /** Children components (`Page.TopBar`, `Page.Content`, `Page.Footer`) */
   children: ReactNode
-}
-
-export interface StaticProps {
-  Helmet: typeof PageHelmet
-  TopBar: typeof PageTopBar
-  TopBarMenu: typeof PageTopBarMenu
-  Content: typeof PageContent
-  Footer: typeof PageFooter
-  Sidebar: typeof PageSidebar
-  Banner: typeof PageBanner
-  Autocomplete: typeof PageAutocomplete
-  Article: typeof PageArticle
 }
 
 export const PageContext = React.createContext<PageContextProps>({})
@@ -68,26 +52,18 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
       </PageContext.Provider>
     </div>
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
+})
 
 Page.displayName = 'Page'
 
-Page.TopBar = PageTopBar
-
-Page.TopBarMenu = PageTopBarMenu
-
-Page.Content = PageContent
-
-Page.Footer = PageFooter
-
-Page.Sidebar = PageSidebar
-
-Page.Banner = PageBanner
-
-Page.Helmet = PageHelmet
-
-Page.Autocomplete = PageAutocomplete
-
-Page.Article = PageArticle
-
-export default Page as PicassoComponentWithRef<Props, HTMLElement, StaticProps>
+export default Object.assign(Page, {
+  TopBar: PageTopBar,
+  TopBarMenu: PageTopBarMenu,
+  Content: PageContent,
+  Footer: PageFooter,
+  Sidebar: PageSidebar,
+  Banner: PageBanner,
+  Helmet: PageHelmet,
+  Autocomplete: PageAutocomplete,
+  Article: PageArticle
+})

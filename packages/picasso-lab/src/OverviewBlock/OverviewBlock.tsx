@@ -1,16 +1,13 @@
 import React, {
   forwardRef,
   ElementType,
-  FunctionComponent,
   HTMLAttributes,
   MouseEvent,
-  ReactNode,
-  ComponentPropsWithoutRef
+  ReactNode
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  CompoundedComponentWithRef,
   OverridableComponent,
   ColorType,
   BaseProps,
@@ -55,16 +52,11 @@ export type Props = BaseProps &
     onClick?: (event: MouseEvent) => void
   }
 
-export interface StaticProps {
-  Group: FunctionComponent<ComponentPropsWithoutRef<typeof OverviewBlockGroup>>
-  Row: FunctionComponent<ComponentPropsWithoutRef<typeof OverviewBlockRow>>
-}
-
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoOverviewBlock'
 })
 
-export const OverviewBlock: OverridableComponent<Props> & StaticProps =
+export const OverviewBlock: OverridableComponent<Props> =
   // eslint-disable-next-line react/display-name
   forwardRef<HTMLButtonElement, Props>(function OverviewBlock(props, ref) {
     const {
@@ -127,14 +119,15 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
         </Typography>
       </Component>
     )
-  }) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
+  })
 
 OverviewBlock.defaultProps = {
   as: 'button'
 }
 
-OverviewBlock.Group = OverviewBlockGroup
-OverviewBlock.Row = OverviewBlockRow
 OverviewBlock.displayName = 'OverviewBlock'
 
-export default OverviewBlock
+export default Object.assign(OverviewBlock, {
+  Group: OverviewBlockGroup,
+  Row: OverviewBlockRow
+})

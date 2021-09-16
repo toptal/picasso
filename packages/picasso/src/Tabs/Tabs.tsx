@@ -1,12 +1,7 @@
 import React, { forwardRef, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITabs, { TabsProps } from '@material-ui/core/Tabs'
-import {
-  ButtonOrAnchorProps,
-  BaseProps,
-  PicassoComponentWithRef,
-  CompoundedComponentWithRef
-} from '@toptal/picasso-shared'
+import { ButtonOrAnchorProps, BaseProps } from '@toptal/picasso-shared'
 
 import Tab from '../Tab'
 import TabScrollButton from '../TabScrollButton'
@@ -24,10 +19,6 @@ export interface Props
 
   /** The value of the currently selected Tab. If you don't want any selected Tab, you can set this property to false. */
   value: TabsProps['value']
-}
-
-export interface StaticProps {
-  Tab: typeof Tab
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -58,16 +49,10 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
       {children}
     </MUITabs>
   )
-}) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
-
-Tabs.defaultProps = {}
+})
 
 Tabs.displayName = 'Tabs'
 
-Tabs.Tab = Tab
-
-export default Tabs as PicassoComponentWithRef<
-  Props,
-  HTMLButtonElement,
-  StaticProps
->
+export default Object.assign(Tabs, {
+  Tab
+})

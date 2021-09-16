@@ -1,5 +1,5 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Notification from '../Notification'
 import NotificationActions from '../NotificationActions'
@@ -7,10 +7,6 @@ import NotificationActions from '../NotificationActions'
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Children components */
   children: ReactNode
-}
-
-export interface StaticProps {
-  Actions: typeof NotificationActions
 }
 
 export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
@@ -24,12 +20,10 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
       {children}
     </Notification>
   )
-}) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
-
-PageBanner.defaultProps = {}
+})
 
 PageBanner.displayName = 'PageBanner'
 
-PageBanner.Actions = NotificationActions
-
-export default PageBanner
+export default Object.assign(PageBanner, {
+  Actions: NotificationActions
+})

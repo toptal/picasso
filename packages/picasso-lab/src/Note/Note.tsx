@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import NoteTitle from '../NoteTitle'
@@ -14,12 +14,6 @@ export interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles)
 
-export interface StaticProps {
-  Title: typeof NoteTitle
-  Subtitle: typeof NoteSubtitle
-  Content: typeof NoteContent
-}
-
 export const Note = forwardRef<HTMLDivElement, Props>(function Note(
   { children, className, ...rest },
   ref
@@ -31,13 +25,12 @@ export const Note = forwardRef<HTMLDivElement, Props>(function Note(
       {children}
     </div>
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
-
-Note.defaultProps = {}
+})
 
 Note.displayName = 'Note'
-Note.Title = NoteTitle
-Note.Subtitle = NoteSubtitle
-Note.Content = NoteContent
 
-export default Note
+export default Object.assign(Note, {
+  Title: NoteTitle,
+  Subtitle: NoteSubtitle,
+  Content: NoteContent
+})

@@ -15,8 +15,6 @@ import RootRef from '@material-ui/core/RootRef'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  CompoundedComponentWithRef,
-  PicassoComponentWithRef,
   spacingToRem,
   SpacingType,
   StandardProps
@@ -57,11 +55,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Sets the desired behavior for an element's overflow */
   contentOverflow?: ContentOverflowType
   popperContainer?: HTMLElement
-}
-
-export interface StaticProps {
-  Arrow: typeof DropdownArrow
-  useContext: () => ContextProps
 }
 
 interface ContextProps {
@@ -195,10 +188,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   const paperMargins = useMemo(() => {
     if (offset) {
       return {
-        ...(offset?.top && { marginTop: spacingToRem(offset.top) }),
-        ...(offset?.bottom && { marginBottom: spacingToRem(offset.bottom) }),
-        ...(offset?.left && { marginLeft: spacingToRem(offset.left) }),
-        ...(offset?.right && { marginRight: spacingToRem(offset.right) })
+        ...(offset.top && { marginTop: spacingToRem(offset.top) }),
+        ...(offset.bottom && { marginBottom: spacingToRem(offset.bottom) }),
+        ...(offset.left && { marginLeft: spacingToRem(offset.left) }),
+        ...(offset.right && { marginRight: spacingToRem(offset.right) })
       }
     }
   }, [offset])
@@ -274,7 +267,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
       )}
     </div>
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
+})
 
 Dropdown.defaultProps = {
   disableAutoClose: false,
@@ -288,11 +281,7 @@ Dropdown.defaultProps = {
 
 Dropdown.displayName = 'Dropdown'
 
-Dropdown.Arrow = DropdownArrow
-Dropdown.useContext = useDropdownContext
-
-export default Dropdown as PicassoComponentWithRef<
-  Props,
-  HTMLDivElement,
-  StaticProps
->
+export default Object.assign(Dropdown, {
+  Arrow: DropdownArrow,
+  useContext: useDropdownContext
+})

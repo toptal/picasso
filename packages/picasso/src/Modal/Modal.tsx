@@ -9,11 +9,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import { PaperProps } from '@material-ui/core/Paper'
 import cx from 'classnames'
-import {
-  StandardProps,
-  CompoundedComponentWithRef,
-  SizeType
-} from '@toptal/picasso-shared'
+import { StandardProps, SizeType } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 
 import { CloseMinor16 } from '../Icon'
@@ -52,12 +48,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   testIds?: {
     closeButton?: string
   }
-}
-
-export interface StaticProps {
-  Content: typeof ModalContent
-  Actions: typeof ModalActions
-  Title: typeof ModalTitle
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -114,10 +104,7 @@ const generateKey = (() => {
 })()
 
 // eslint-disable-next-line react/display-name
-export const Modal = forwardRef<HTMLElement, Props>(function Modal(
-  props,
-  ref
-) {
+export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   const {
     children,
     open,
@@ -240,7 +227,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(
       )}
     </Dialog>
   )
-}) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
+})
 
 Modal.defaultProps = {
   hideBackdrop: false,
@@ -251,8 +238,8 @@ Modal.defaultProps = {
 
 Modal.displayName = 'Modal'
 
-Modal.Content = ModalContent
-Modal.Actions = ModalActions
-Modal.Title = ModalTitle
-
-export default Modal
+export default Object.assign(Modal, {
+  Content: ModalContent,
+  Actions: ModalActions,
+  Title: ModalTitle
+})

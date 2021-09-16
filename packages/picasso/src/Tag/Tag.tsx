@@ -9,12 +9,7 @@ import React, {
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  BaseProps,
-  TextLabelProps,
-  CompoundedComponentWithRef,
-  useTitleCase
-} from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
@@ -44,11 +39,6 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   onDelete?: () => void
   /** Variant of the `Tag` */
   variant?: VariantType
-}
-
-export interface StaticProps {
-  Group: typeof TagGroup
-  Rectangular: typeof TagRectangular
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
@@ -114,7 +104,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       onDelete={onDelete ? handleDelete : undefined}
     />
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
+})
 
 Tag.defaultProps = {
   as: 'div',
@@ -124,7 +114,7 @@ Tag.defaultProps = {
 
 Tag.displayName = 'Tag'
 
-Tag.Group = TagGroup
-Tag.Rectangular = TagRectangular
-
-export default Tag
+export default Object.assign(Tag, {
+  Group: TagGroup,
+  Rectangular: TagRectangular
+})
