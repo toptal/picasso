@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.5.1](https://github.com/toptal/picasso/compare/@toptal/picasso@10.5.0...@toptal/picasso@10.5.1) (2021-09-16)
+
+
+### Bug Fixes
+
+* remove material-ui/styles from dependencies ([#2165](https://github.com/toptal/picasso/issues/2165)) ([d403a67](https://github.com/toptal/picasso/commit/d403a67d11338bb2fcb1af09dc9766b235e27236))
+
+
+
+
+
 # [10.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.4.2...@toptal/picasso@10.5.0) (2021-09-10)
 
 
