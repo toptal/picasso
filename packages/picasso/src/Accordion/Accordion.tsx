@@ -57,11 +57,6 @@ export const Details = (props: DetailsProps) => {
   )
 }
 
-export interface StaticProps {
-  Summary: typeof Summary
-  Details: typeof Details
-}
-
 export interface Props
   extends StandardProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
