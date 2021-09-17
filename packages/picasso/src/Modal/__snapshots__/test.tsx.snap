@@ -36,11 +36,11 @@ exports[`Modal renders 1`] = `
         <div
           class="PicassoModalTitle-root"
         >
-          <h3
-            class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
+          <h2
+            class="MuiTypography-root PicassoTypography-headingLarge MuiTypography-h2"
           >
             Title
-          </h3>
+          </h2>
         </div>
         <div
           class="PicassoModalContent-wrapper"
