@@ -2,8 +2,9 @@ import { rem } from '@toptal/picasso-shared'
 import { Theme, createStyles } from '@material-ui/core/styles'
 
 const getSizeProps = (unitInRem: string) => ({
-  height: unitInRem,
   borderRadius: unitInRem,
+  height: unitInRem,
+  lineHeight: unitInRem,
   minWidth: unitInRem
 })
 
