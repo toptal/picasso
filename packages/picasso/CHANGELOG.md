@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.5.2](https://github.com/toptal/picasso/compare/@toptal/picasso@10.5.1...@toptal/picasso@10.5.2) (2021-09-17)
+
+
+### Bug Fixes
+
+* **Autocomplete:** do not render noOptions item when no options available ([#2167](https://github.com/toptal/picasso/issues/2167)) ([02ce33b](https://github.com/toptal/picasso/commit/02ce33baf532178d88f29c0a11bbf6d92aec860a))
+
+
+
+
+
 ## [10.5.1](https://github.com/toptal/picasso/compare/@toptal/picasso@10.5.0...@toptal/picasso@10.5.1) (2021-09-16)
 
 
