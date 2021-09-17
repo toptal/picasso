@@ -42,18 +42,20 @@ describe('Button.Split', () => {
       cy.get('body').happoScreenshot()
     })
 
-    it('renders action hovered', () => {
-      renderButtonSplit({ text: 'Normal' })
+    it.only('renders action hovered', () => {
+      renderButtonSplit({ text: 'Action Hovered' })
 
       cy.get(`[data-testid=${testIds.actionButton}]`).realHover()
+      cy.get(`[data-testid=${testIds.actionButton}]`).trigger('mousemove')
+      cy.get(`[data-testid=${testIds.actionButton}]`).trigger('mouseover')
 
       cy.get('body').happoScreenshot()
     })
 
     it('renders menu hovered', () => {
-      renderButtonSplit({ text: 'Normal' })
+      renderButtonSplit({ text: 'Menu Hovered' })
 
-      cy.get(`[data-testid=${testIds.menuButton}]`).realHover()
+      cy.get(`[data-testid=${testIds.menuButton}]`).trigger('mousemove')
 
       cy.get('body').happoScreenshot()
     })
@@ -74,10 +76,29 @@ describe('Button.Split', () => {
       cy.get('body').happoScreenshot()
     })
 
-    it('renders action active', () => {})
-    it('renders menu active', () => {})
+    it('renders action active', () => {
+      renderButtonSplit({ text: 'Action Active' })
 
-    it('renders disabled', () => {})
+      cy.get(`[data-testid=${testIds.actionButton}]`).click()
+
+      cy.get('body').happoScreenshot()
+    })
+
+    it('renders menu active', () => {
+      renderButtonSplit({ text: 'Menu Active' })
+
+      cy.get(`[data-testid=${testIds.menuButton}]`).trigger('mousemove')
+
+      cy.get('body').happoScreenshot()
+    })
+
+    it('renders disabled', () => {
+      renderButtonSplit({ text: 'Disabled', disabled: true })
+
+      cy.get(`[data-testid=${testIds.menuButton}]`).click({ force: true })
+
+      cy.get('body').happoScreenshot()
+    })
   })
 
   // describe('Secondary variant', () => {
@@ -124,64 +145,6 @@ describe('Button.Split', () => {
           />
 
           <Button.Split text='Disabled' menu={menu} disabled />
-        </Container>
-      </TestingPicasso>
-    )
-
-    cy.get('body').happoScreenshot()
-  })
-
-  it.skip('renders secondary variant states', () => {
-    mount(
-      <TestingPicasso>
-        <Container flex gap='1rem' padded='small'>
-          <Button.Split text='Normal' variant='secondary' menu={menu} />
-
-          <Button.Split
-            text='Action Hovered'
-            variant='secondary'
-            menu={menu}
-            actionButtonProps={{ hovered: true }}
-          />
-          <Button.Split
-            text='Menu Hovered'
-            variant='secondary'
-            menu={menu}
-            menuButtonProps={{ hovered: true }}
-          />
-
-          <Button.Split
-            text='Action Focused'
-            variant='secondary'
-            menu={menu}
-            actionButtonProps={{ focused: true }}
-          />
-          <Button.Split
-            text='Menu Focused'
-            variant='secondary'
-            menu={menu}
-            menuButtonProps={{ focused: true }}
-          />
-
-          <Button.Split
-            text='Action Active'
-            variant='secondary'
-            menu={menu}
-            actionButtonProps={{ active: true }}
-          />
-          <Button.Split
-            text='Menu Active'
-            variant='secondary'
-            menu={menu}
-            menuButtonProps={{ active: true }}
-          />
-
-          <Button.Split
-            text='Disabled'
-            variant='secondary'
-            menu={menu}
-            disabled
-          />
         </Container>
       </TestingPicasso>
     )
