@@ -146,36 +146,43 @@ const TestModalOverflown = (props: Partial<Omit<ModalProps, 'open'>>) => (
 describe('Modal', () => {
   it('renders', () => {
     mount(<TestModalForm />)
+
     cy.get('body').happoScreenshot()
   })
 
   it('renders aligned to top', () => {
     mount(<TestModalForm align='top' />)
+
     cy.get('body').happoScreenshot()
   })
 
   it('renders without backdrop', () => {
     mount(<TestModalForm hideBackdrop />)
+
     cy.get('body').happoScreenshot()
   })
 
   it('renders small', () => {
     mount(<TestModalForm size='small' />)
+
     cy.get('body').happoScreenshot()
   })
 
   it('renders large', () => {
     mount(<TestModalForm size='large' />)
+
     cy.get('body').happoScreenshot()
   })
 
   it('renders full-screen', () => {
     mount(<TestModalForm size='full-screen' />)
+
     cy.get('body').happoScreenshot()
   })
 
   it('renders overflown', () => {
     mount(<TestModalOverflown />)
+
     cy.get('body').happoScreenshot()
   })
 })
