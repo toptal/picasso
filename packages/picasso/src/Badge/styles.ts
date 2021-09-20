@@ -14,7 +14,7 @@ export default ({ palette }: Theme) =>
       borderStyle: 'solid',
       borderWidth: '1px',
       display: 'inline-flex',
-      fontSize: rem('9px'),
+      fontSize: rem('10px'),
       fontWeight: 600,
       alignItems: 'center',
       justifyContent: 'center'

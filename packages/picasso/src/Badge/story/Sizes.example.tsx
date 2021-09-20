@@ -137,7 +137,7 @@ const Example = () => (
       <Grid.Item small={6}>
         <Container top='small' flex alignItems='center'>
           <Container padded='small'>
-            <Badge content={9999} variant='white' size='small' max={50} />
+            <Badge content={9999} variant='white' size='small' max={999} />
           </Container>
           <Container padded='small'>
             <Badge content={9999} variant='white' size='medium' max={999} />
@@ -150,7 +150,7 @@ const Example = () => (
       <Grid.Item small={6}>
         <Container top='small' flex alignItems='center'>
           <Container padded='small'>
-            <Badge content={9999} variant='red' size='small' max={50} />
+            <Badge content={9999} variant='red' size='small' max={999} />
           </Container>
           <Container padded='small'>
             <Badge content={9999} variant='red' size='medium' max={999} />
