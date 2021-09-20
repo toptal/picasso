@@ -1,25 +1,43 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
-import { Chip } from '@material-ui/core'
-import { toTitleCase } from '@toptal/picasso/utils'
+import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 type VariantType = 'white' | 'red'
-type SizeType = 'medium' | 'small'
+type SizeType = 'medium' | 'small' | 'large'
 
 export interface Props extends BaseProps, TextLabelProps {
   /** The `Badge` content */
-  content: string
+  content: number
   /** Variant of the `Badge` */
   variant?: VariantType
   /** Size of the `Badge` */
   size?: SizeType
+  /**
+   * Max count to show. By default 9 for small size, 99 for other sizes
+   */
+  max?: number
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoBadge' })
+
+const thresholds = {
+  small: 9,
+  medium: 99,
+  large: 99
+}
+
+const format = (content: number, size: SizeType, max?: number): string => {
+  const trimThreshold = max || thresholds[size]
+
+  if (content > trimThreshold) {
+    return `${trimThreshold}+`
+  }
+
+  return String(content)
+}
 
 // eslint-disable-next-line react/display-name
 export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
@@ -29,34 +47,32 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge (
   const {
     style,
     variant = 'white',
-    size = 'medium',
+    size = 'large',
     content,
-    titleCase: propsTitleCase,
-    'data-testid': dataTestId
+    'data-testid': dataTestId,
+    max
   } = props
   const classes = useStyles()
 
-  const titleCase = useTitleCase(propsTitleCase)
-
   return (
-    <Chip
-      ref={ref}
-      style={style}
-      label={titleCase ? toTitleCase(content) : content}
-      classes={{
-        root: cx(classes.root, classes[variant], classes[size]),
-        label: cx(classes[`${size}Label`])
-      }}
-      data-testid={dataTestId}
-    />
+    <>
+      <span
+        ref={ref}
+        data-testid={dataTestId}
+        className={cx(classes.root, classes[variant], classes[size])}
+        style={style}
+      >
+        {format(content, size, max)}
+      </span>
+    </>
   )
 })
 
 Badge.defaultProps = {
   variant: 'white',
-  size: 'medium'
+  size: 'large'
 }
 
-Badge.displayName = 'Badge'
+Badge.displayName = 'PicassoBadge'
 
 export default Badge
