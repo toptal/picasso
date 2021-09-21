@@ -38,7 +38,7 @@ describe('Radio', () => {
     mount(<RadioTooltipExample />)
 
     // hover the radio button itself (not the label)
-    cy.get('[data-testid="trigger"').realHover()
+    cy.get('[data-testid="trigger"]').realHover()
     cy.get('[data-testid="tooltip-content"]').should('be.visible')
   })
 
@@ -46,7 +46,7 @@ describe('Radio', () => {
     mount(<DisabledRadioTooltipExample />)
 
     // hover the radio button itself (not the label)
-    cy.get('[data-testid="trigger"').realHover()
+    cy.get('[data-testid="trigger"]').realHover()
     cy.get('[data-testid="tooltip-content"]').should('be.visible')
   })
 })
