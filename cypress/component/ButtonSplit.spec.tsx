@@ -14,9 +14,8 @@ const menu = (
 )
 
 type ButtonSplitProps = ComponentProps<typeof Button.Split>
-interface Props extends Omit<ButtonSplitProps, 'menu' | 'text'> {
+interface Props extends Omit<ButtonSplitProps, 'menu'> {
   menu?: ButtonSplitProps['menu']
-  text?: ButtonSplitProps['text']
 }
 
 const testIds = {
