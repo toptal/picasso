@@ -14,6 +14,7 @@ interface RenderInputArgs {
   ) => void
   id?: string
   checked?: boolean
+  disabled?: boolean
   value?: string
 }
 
@@ -59,6 +60,7 @@ const ButtonInput = ({
   id,
   renderInput,
   value,
+  disabled,
   ...props
 }: Props) => {
   const classes = useStyles()
@@ -78,9 +80,10 @@ const ButtonInput = ({
       size={size}
       as='label'
       htmlFor={id}
+      disabled={disabled}
       {...props}
     >
-      {renderInput({ id, checked, value, onChange })}
+      {renderInput({ id, checked, value, onChange, disabled })}
       <Container className={classes.content} left={containerLeftOffset}>
         {children}
       </Container>

@@ -10,7 +10,7 @@ const RadioTooltipExample = () => {
     <TestingPicasso>
       <Container style={{ marginTop: '200px', marginLeft: '200px' }}>
         <Tooltip content={tooltipContent}>
-          <Radio label='Radio 1' value='radio1' />
+          <Radio label='Radio 1' value='radio1' data-testid='trigger' />
         </Tooltip>
       </Container>
     </TestingPicasso>
