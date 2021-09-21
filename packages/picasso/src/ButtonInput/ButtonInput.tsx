@@ -33,7 +33,7 @@ export interface Props extends BaseProps {
   size?: SizeType<'small' | 'medium' | 'large'>
   /** HTML Value of Button component */
   value?: string
-  /** Callback invoked when `Checkbox` changed its value */
+  /** Callback invoked when value is changed */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean
