@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import {
   Button,
   Calendar16,
@@ -13,7 +12,8 @@ import {
   Tabs,
   Tag,
   Typography,
-  UserBadge
+  UserBadge,
+  ArrowUpMinor16
 } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
@@ -124,15 +124,11 @@ const SelectableExample = (props: Omit<TableProps, 'children'> = {}) => {
   const [selected, setSelected] = useState<number[]>([2, 3])
 
   const handleClick = (_: React.ChangeEvent<{}>, id: number) => {
-    let newSelected = []
-
-    if (selected.includes(id)) {
-      newSelected = selected.filter(item => item !== id)
-    } else {
-      newSelected = [...selected, id]
-    }
-
-    setSelected(newSelected)
+    setSelected(
+      selected.includes(id)
+        ? selected.filter(item => item !== id)
+        : [...selected, id]
+    )
   }
 
   return (
@@ -182,17 +178,6 @@ const SelectableExample = (props: Omit<TableProps, 'children'> = {}) => {
     </TestingPicasso>
   )
 }
-
-type StyledArrowDownMinor16Props = {
-  expanded: boolean
-}
-const StyledArrowDownMinor16 = styled(ArrowDownMinor16)`
-  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transform: rotate(
-    ${(props: StyledArrowDownMinor16Props) =>
-      props.expanded ? '180deg' : '0deg'}
-  );
-`
 
 const ExpandableContent = () => (
   <Container padded='small'>
@@ -282,7 +267,11 @@ const TableExpandableRowsExample = ({ localData }: { localData: Data[] }) => {
                   <Button.Circular
                     variant='flat'
                     icon={
-                      <StyledArrowDownMinor16 expanded={expandedData[id]} />
+                      expandedData[id] ? (
+                        <ArrowUpMinor16 />
+                      ) : (
+                        <ArrowDownMinor16 />
+                      )
                     }
                     data-testid={`expand-button-${id}`}
                     onClick={() => handleExpandClick(id)}

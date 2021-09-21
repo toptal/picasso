@@ -50,7 +50,7 @@ describe('TableCell', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('align cells', () => {
+  it('aligns cells', () => {
     mount(
       <TestingPicasso>
         <AlignExample />
@@ -60,30 +60,45 @@ describe('TableCell', () => {
   })
 })
 
-let id = 0
-
-const createData = (
-  name: string,
-  talentType: string,
-  company: string,
-  role: string,
-  country: string
-) => {
-  id += 1
-
-  return { id, name, talentType, company, role, country }
-}
-
 const data = [
-  createData('Delia Floyd', 'Designer', 'Airbnb', 'UX lead', 'United States'),
-  createData('Linnie Sims', 'Designer', 'Facebook', 'Art director', 'Spain'),
-  createData(
-    'Charles Watson',
-    'Developer',
-    'Amazon',
-    'Ruby developer',
-    'Germany'
-  ),
-  createData('Leila Pena', 'Developer', 'Invision', 'Web developer', 'Poland'),
-  createData('Logan Burton', 'Developer', 'Microsoft', 'CTO', 'United States')
+  {
+    id: 0,
+    name: 'Delia Floyd',
+    talentType: 'Designer',
+    company: 'Airbnb',
+    role: 'UX lead',
+    country: 'United States'
+  },
+  {
+    id: 1,
+    name: 'Linnie Sims',
+    talentType: 'Designer',
+    company: 'Facebook',
+    role: 'Art director',
+    country: 'Spain'
+  },
+  {
+    id: 2,
+    name: 'Charles Watson',
+    talentType: 'Developer',
+    company: 'Amazon',
+    role: 'Ruby developer',
+    country: 'Germany'
+  },
+  {
+    id: 3,
+    name: 'Leila Pena',
+    talentType: 'Developer',
+    company: 'Invision',
+    role: 'Web developer',
+    country: 'Poland'
+  },
+  {
+    id: 4,
+    name: 'Logan Burton',
+    talentType: 'Developer',
+    company: 'Microsoft',
+    role: 'CTO',
+    country: 'United States'
+  }
 ]
