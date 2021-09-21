@@ -25,7 +25,12 @@ const DisabledRadioTooltipExample = () => {
       <Container style={{ marginTop: '200px', marginLeft: '200px' }}>
         <Tooltip content={tooltipContent}>
           <Container as='span'>
-            <Radio disabled label='Radio 1' value='radio1' />
+            <Radio
+              disabled
+              label='Radio 1'
+              value='radio1'
+              data-testid='trigger'
+            />
           </Container>
         </Tooltip>
       </Container>
