@@ -42,38 +42,23 @@ page
 
 page
   .createChapter()
-  .addExample('Table/story/Default.example.tsx', 'Plain table')
+  .addExample('Table/story/Default.example.tsx', 'Plain table') // picasso-skip-visuals
   .addExample('Table/story/Variants.example.tsx', 'Appearance variants') // picasso-skip-visuals
   .addExample('Table/story/Spacings.example.tsx', 'Inner spacing') // picasso-skip-visuals
   .addExample('Table/story/Alignments.example.tsx', 'Cell alignments') // picasso-skip-visuals
-  .addExample('Table/story/Select.example.tsx', 'Selectable table')
+  .addExample('Table/story/Select.example.tsx', 'Selectable table') // picasso-skip-visuals
   .addExample(
     'Table/story/SectionHeader.example.tsx',
     'Table with section header'
-  )
+  ) // picasso-skip-visuals
   .addExample(
     'Table/story/MultipleSectionHeader.example.tsx',
     'Table with multiple sections'
-  )
-  .addExample('Table/story/ExpandableRows.example.tsx', {
-    title: 'Expandable rows',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[data-testid="expand-button-1"]')
-
-      await makeScreenshot()
-    },
-    waitUntilImagesLoaded: true
-  })
-  .addExample('Table/story/ExpandableRowsDefaultExpanded.example.tsx', {
-    title: 'Expandable rows, expanded by default',
-    description:
-      "Use `defaultExpanded` prop if you don't want row to have expand animation on the very first expanding.",
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[data-testid="expand-table"]')
-
-      await makeScreenshot()
-    },
-    waitUntilImagesLoaded: true
-  })
+  ) // picasso-skip-visuals
+  .addExample('Table/story/ExpandableRows.example.tsx', 'Expandable rows') // picasso-skip-visuals
+  .addExample(
+    'Table/story/ExpandableRowsDefaultExpanded.example.tsx',
+    'Expandable rows, expanded by default'
+  ) // picasso-skip-visuals
 
 page.connect(tableCellStory.chapter)

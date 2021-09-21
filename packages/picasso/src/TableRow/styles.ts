@@ -1,5 +1,4 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { alpha } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({}))
@@ -10,7 +9,10 @@ export default ({ palette, sizes, transitions }: Theme) =>
       height: 'auto',
 
       '&$selected': {
-        backgroundColor: alpha(palette.common.black, 0.04)
+        backgroundColor: palette.blue.lighter,
+        '&:hover': {
+          backgroundColor: palette.blue.lighter
+        }
       },
 
       '&$hover:hover': {
