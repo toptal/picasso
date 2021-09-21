@@ -2,6 +2,8 @@ import buttonGroupStory from '../../ButtonGroup/story'
 import buttonCircularStory from '../../ButtonCircular/story'
 import buttonActionStory from '../../ButtonAction/story'
 import buttonSplitStory from '../../ButtonSplit/story'
+import buttonCheckboxStory from '../../ButtonCheckbox/story'
+import buttonRadioStory from '../../ButtonRadio/story'
 import { Button } from '../Button'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -180,6 +182,8 @@ page
   .addComponentDocs(buttonActionStory.componentDocs)
   .addComponentDocs(buttonGroupStory.componentDocs)
   .addComponentDocs(buttonSplitStory.componentDocs)
+  .addComponentDocs(buttonCheckboxStory.componentDocs)
+  .addComponentDocs(buttonRadioStory.componentDocs)
 
 page
   .createChapter()
@@ -207,3 +211,5 @@ page.connect(buttonCircularStory.chapter)
 page.connect(buttonActionStory.chapter)
 page.connect(buttonGroupStory.chapter)
 page.connect(buttonSplitStory.chapter)
+page.connect(buttonCheckboxStory.chapter)
+page.connect(buttonRadioStory.chapter)
