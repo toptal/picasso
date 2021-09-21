@@ -234,7 +234,7 @@ const ExpandableContent = () => (
   </Container>
 )
 
-const TableExpandableRowsExample = ({ localData }) => {
+const TableExpandableRowsExample = ({ localData }: { localData: Data[] }) => {
   const [expandedData, setExpandedData] = useState<{
     [id: number]: boolean
   }>({ 0: true })
