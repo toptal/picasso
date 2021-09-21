@@ -30,28 +30,29 @@ const getActionButton = () => cy.get(`[data-testid=${testIds.actionButton}]`)
 const testStates = ({
   variant = 'primary'
 }: { variant?: Props['variant'] } = {}) => {
-  const TestingButtonSplit = (props?: Props) => (
+  const TestingButtonSplit = (props: Props) => (
     <TestingPicasso>
       <Container flex gap='1rem' padded='small'>
         <Button.Split
           testIds={testIds}
-          text='Button'
           menu={menu}
           variant={variant}
           {...props}
-        />
+        >
+          {props.children}
+        </Button.Split>
       </Container>
     </TestingPicasso>
   )
 
   it('renders normal state', () => {
-    mount(<TestingButtonSplit text='Normal' />)
+    mount(<TestingButtonSplit>Normal</TestingButtonSplit>)
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders action hovered', () => {
-    mount(<TestingButtonSplit text='Action Hovered' />)
+    mount(<TestingButtonSplit>Action Hovered</TestingButtonSplit>)
 
     getActionButton().realHover()
 
@@ -59,7 +60,7 @@ const testStates = ({
   })
 
   it('renders menu hovered', () => {
-    mount(<TestingButtonSplit text='Menu Hovered' />)
+    mount(<TestingButtonSplit>Menu Hovered</TestingButtonSplit>)
 
     getMenuButton().realHover()
 
@@ -67,7 +68,7 @@ const testStates = ({
   })
 
   it('renders action focused', () => {
-    mount(<TestingButtonSplit text='Action Focused' />)
+    mount(<TestingButtonSplit>Action Focused</TestingButtonSplit>)
 
     getActionButton().focus()
 
@@ -75,7 +76,7 @@ const testStates = ({
   })
 
   it('renders menu focused', () => {
-    mount(<TestingButtonSplit text='Menu Focused' />)
+    mount(<TestingButtonSplit>Menu Focused</TestingButtonSplit>)
 
     getMenuButton().focus()
 
@@ -83,7 +84,7 @@ const testStates = ({
   })
 
   it('renders action active', () => {
-    mount(<TestingButtonSplit text='Action Active' />)
+    mount(<TestingButtonSplit>Action Active</TestingButtonSplit>)
 
     getActionButton().realMouseDown()
 
@@ -91,7 +92,7 @@ const testStates = ({
   })
 
   it('renders menu active', () => {
-    mount(<TestingButtonSplit text='Menu Active' />)
+    mount(<TestingButtonSplit>Menu Active</TestingButtonSplit>)
 
     getMenuButton().realMouseDown()
 
@@ -99,7 +100,7 @@ const testStates = ({
   })
 
   it('renders disabled', () => {
-    mount(<TestingButtonSplit text='Disabled' disabled />)
+    mount(<TestingButtonSplit disabled>Disabled</TestingButtonSplit>)
 
     getMenuButton().click({ force: true })
 
@@ -120,11 +121,9 @@ describe('Button.Split', () => {
     mount(
       <TestingPicasso>
         <Container padded='small'>
-          <Button.Split
-            testIds={{ menuButton: 'menuButton' }}
-            text='Button'
-            menu={menu}
-          />
+          <Button.Split testIds={{ menuButton: 'menuButton' }} menu={menu}>
+            Button
+          </Button.Split>
         </Container>
       </TestingPicasso>
     )
