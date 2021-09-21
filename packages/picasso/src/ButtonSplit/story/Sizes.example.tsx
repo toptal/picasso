@@ -14,9 +14,15 @@ const Example = () => {
 
   return (
     <Container flex gap='1rem'>
-      <Button.Split text='Button' size='small' menu={menu} />
-      <Button.Split text='Button' size='medium' menu={menu} />
-      <Button.Split text='Button' size='large' menu={menu} />
+      <Button.Split size='small' menu={menu}>
+        Button
+      </Button.Split>
+      <Button.Split size='medium' menu={menu}>
+        Button
+      </Button.Split>
+      <Button.Split size='large' menu={menu}>
+        Button
+      </Button.Split>
     </Container>
   )
 }

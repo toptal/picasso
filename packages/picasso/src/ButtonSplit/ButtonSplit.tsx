@@ -18,7 +18,7 @@ export interface Props
   extends BaseProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
   /** Content of Button component */
-  text: ReactNode
+  children: ReactNode
   /** Content element that opens when anchor is clicked */
   menu: ReactNode
   /** Callback invoked when component is clicked */
@@ -74,7 +74,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
     const {
       size = 'medium',
       menu,
-      text,
+      children,
       variant = 'primary',
       disabled,
       style,
@@ -137,7 +137,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
           onClick={onClick}
           data-testid={testIds.actionButton}
         >
-          {text}
+          {children}
         </Button>
         <Dropdown
           content={menu}

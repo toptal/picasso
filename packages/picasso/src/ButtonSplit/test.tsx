@@ -21,7 +21,9 @@ const largeIconViewBox = '0 0 24 24'
 
 describe('ButtonSplit', () => {
   it('default render', () => {
-    const { container } = render(<ButtonSplit text='Action' menu={<Menu />} />)
+    const { container } = render(
+      <ButtonSplit menu={<Menu />}>Action</ButtonSplit>
+    )
 
     expect(container).toMatchSnapshot()
   })
@@ -31,11 +33,12 @@ describe('ButtonSplit', () => {
 
     render(
       <ButtonSplit
-        text='Action'
         onClick={onClick}
         testIds={{ actionButton: 'action' }}
         menu={<Menu />}
-      />
+      >
+        Action
+      </ButtonSplit>
     )
 
     const button = screen.getByTestId('action')
@@ -47,11 +50,9 @@ describe('ButtonSplit', () => {
 
   it('renders arrow up icon for an opened menu', () => {
     render(
-      <ButtonSplit
-        text='Action'
-        testIds={{ menuButton: 'menu' }}
-        menu={<Menu />}
-      />
+      <ButtonSplit testIds={{ menuButton: 'menu' }} menu={<Menu />}>
+        Action
+      </ButtonSplit>
     )
 
     const button = screen.getByTestId('menu')
@@ -64,11 +65,9 @@ describe('ButtonSplit', () => {
 
   it('renders arrow down icon for a closed menu', () => {
     render(
-      <ButtonSplit
-        text='Action'
-        testIds={{ menuButton: 'menu' }}
-        menu={<Menu />}
-      />
+      <ButtonSplit testIds={{ menuButton: 'menu' }} menu={<Menu />}>
+        Action
+      </ButtonSplit>
     )
 
     const button = screen.getByTestId('menu')
@@ -85,11 +84,12 @@ describe('ButtonSplit', () => {
   it('renders small arrow for small button', () => {
     render(
       <ButtonSplit
-        text='Action'
         testIds={{ menuButton: 'menu' }}
         size='small'
         menu={<Menu />}
-      />
+      >
+        Action
+      </ButtonSplit>
     )
 
     expect(screen.getByTestId('menu').querySelector('svg')).toHaveAttribute(
@@ -101,11 +101,12 @@ describe('ButtonSplit', () => {
   it('renders small arrow for medium button', () => {
     render(
       <ButtonSplit
-        text='Action'
         testIds={{ menuButton: 'menu' }}
         size='medium'
         menu={<Menu />}
-      />
+      >
+        Action
+      </ButtonSplit>
     )
 
     expect(screen.getByTestId('menu').querySelector('svg')).toHaveAttribute(
@@ -117,11 +118,12 @@ describe('ButtonSplit', () => {
   it('renders small arrow for large button', () => {
     render(
       <ButtonSplit
-        text='Action'
         testIds={{ menuButton: 'menu' }}
         size='large'
         menu={<Menu />}
-      />
+      >
+        Action
+      </ButtonSplit>
     )
 
     expect(screen.getByTestId('menu').querySelector('svg')).toHaveAttribute(
@@ -133,11 +135,12 @@ describe('ButtonSplit', () => {
   it('closes menu on click to the item', async () => {
     render(
       <ButtonSplit
-        text='Action'
         testIds={{ menuButton: 'menuButton', actionButton: 'action' }}
         size='large'
         menu={<Menu />}
-      />
+      >
+        Action
+      </ButtonSplit>
     )
 
     const menuButton = screen.getByTestId('menuButton')
@@ -170,11 +173,12 @@ describe('ButtonSplit', () => {
 
     render(
       <ButtonSplit
-        text='Action'
         testIds={{ menuButton: 'menuButton', actionButton: 'action' }}
         size='large'
         menu={menu}
-      />
+      >
+        Action
+      </ButtonSplit>
     )
 
     const menuButton = screen.getByTestId('menuButton')

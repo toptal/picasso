@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { ComponentProps } from 'react'
 import { Button, Menu, Container, Typography } from '@toptal/picasso'
+
+type ButtonSplitProps = ComponentProps<typeof Button.Split>
 
 const Example = () => {
   const handleClick = () => console.info('Item is clicked')
@@ -12,6 +14,67 @@ const Example = () => {
     </Menu>
   )
 
+  const renderStates = ({
+    variant = 'primary'
+  }: { variant?: ButtonSplitProps['variant'] } = {}) => {
+    return (
+      <>
+        <Button.Split variant={variant} menu={menu}>
+          Normal
+        </Button.Split>
+
+        <Button.Split
+          variant={variant}
+          menu={menu}
+          actionButtonProps={{ hovered: true }}
+        >
+          Action Hovered
+        </Button.Split>
+        <Button.Split
+          variant={variant}
+          menu={menu}
+          menuButtonProps={{ hovered: true }}
+        >
+          Menu Hovered
+        </Button.Split>
+
+        <Button.Split
+          variant={variant}
+          menu={menu}
+          actionButtonProps={{ focused: true }}
+        >
+          Action Focused
+        </Button.Split>
+        <Button.Split
+          variant={variant}
+          menu={menu}
+          menuButtonProps={{ focused: true }}
+        >
+          Menu Focused
+        </Button.Split>
+
+        <Button.Split
+          variant={variant}
+          menu={menu}
+          actionButtonProps={{ active: true }}
+        >
+          Action Active
+        </Button.Split>
+        <Button.Split
+          variant={variant}
+          menu={menu}
+          menuButtonProps={{ active: true }}
+        >
+          Menu Active
+        </Button.Split>
+
+        <Button.Split variant={variant} menu={menu} disabled>
+          Disabled
+        </Button.Split>
+      </>
+    )
+  }
+
   return (
     <>
       <Typography variant='heading' size='small'>
@@ -19,94 +82,13 @@ const Example = () => {
       </Typography>
 
       <Container flex gap='1em' top='small' bottom='small'>
-        <Button.Split text='Normal' menu={menu} />
-
-        <Button.Split
-          text='Action Hovered'
-          menu={menu}
-          actionButtonProps={{ hovered: true }}
-        />
-        <Button.Split
-          text='Menu Hovered'
-          menu={menu}
-          menuButtonProps={{ hovered: true }}
-        />
-
-        <Button.Split
-          text='Action Focused'
-          menu={menu}
-          actionButtonProps={{ focused: true }}
-        />
-        <Button.Split
-          text='Menu Focused'
-          menu={menu}
-          menuButtonProps={{ focused: true }}
-        />
-
-        <Button.Split
-          text='Action Active'
-          menu={menu}
-          actionButtonProps={{ active: true }}
-        />
-        <Button.Split
-          text='Menu Active'
-          menu={menu}
-          menuButtonProps={{ active: true }}
-        />
-
-        <Button.Split text='Disabled' menu={menu} disabled />
+        {renderStates()}
       </Container>
       <Typography variant='heading' size='small'>
         Secondary
       </Typography>
       <Container flex gap='1em' top='small'>
-        <Button.Split text='Normal' variant='secondary' menu={menu} />
-
-        <Button.Split
-          text='Action Hovered'
-          variant='secondary'
-          menu={menu}
-          actionButtonProps={{ hovered: true }}
-        />
-        <Button.Split
-          text='Menu Hovered'
-          variant='secondary'
-          menu={menu}
-          menuButtonProps={{ hovered: true }}
-        />
-
-        <Button.Split
-          text='Action Focused'
-          variant='secondary'
-          menu={menu}
-          actionButtonProps={{ focused: true }}
-        />
-        <Button.Split
-          text='Menu Focused'
-          variant='secondary'
-          menu={menu}
-          menuButtonProps={{ focused: true }}
-        />
-
-        <Button.Split
-          text='Action Active'
-          variant='secondary'
-          menu={menu}
-          actionButtonProps={{ active: true }}
-        />
-        <Button.Split
-          text='Menu Active'
-          variant='secondary'
-          menu={menu}
-          menuButtonProps={{ active: true }}
-        />
-
-        <Button.Split
-          text='Disabled'
-          variant='secondary'
-          menu={menu}
-          disabled
-        />
+        {renderStates({ variant: 'secondary' })}
       </Container>
     </>
   )
