@@ -179,6 +179,7 @@ page
   .addComponentDocs(buttonCircularStory.componentDocs)
   .addComponentDocs(buttonActionStory.componentDocs)
   .addComponentDocs(buttonGroupStory.componentDocs)
+  .addComponentDocs(buttonSplitStory.componentDocs)
 
 page
   .createChapter()
