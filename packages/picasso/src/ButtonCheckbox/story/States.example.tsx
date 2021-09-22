@@ -6,11 +6,16 @@ const handleClick = (_: ChangeEvent<HTMLInputElement>, value: boolean) =>
 
 const Example = () => (
   <Container>
-    <Button.Checkbox size='small' onChange={handleClick}>
+    <Button.Checkbox hovered onChange={handleClick}>
       Button
     </Button.Checkbox>
-    <Button.Checkbox onChange={handleClick}>Button</Button.Checkbox>
-    <Button.Checkbox size='large' onChange={handleClick}>
+    <Button.Checkbox focused onChange={handleClick}>
+      Button
+    </Button.Checkbox>
+    <Button.Checkbox active onChange={handleClick}>
+      Button
+    </Button.Checkbox>
+    <Button.Checkbox disabled onChange={handleClick}>
       Button
     </Button.Checkbox>
   </Container>

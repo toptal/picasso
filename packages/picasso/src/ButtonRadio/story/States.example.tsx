@@ -6,11 +6,16 @@ const handleClick = (_: ChangeEvent<HTMLInputElement>, value: boolean) =>
 
 const Example = () => (
   <Container>
-    <Button.Radio size='small' onChange={handleClick}>
+    <Button.Radio hovered onChange={handleClick}>
       Button
     </Button.Radio>
-    <Button.Radio onChange={handleClick}>Button</Button.Radio>
-    <Button.Radio size='large' onChange={handleClick}>
+    <Button.Radio focused onChange={handleClick}>
+      Button
+    </Button.Radio>
+    <Button.Radio active onChange={handleClick}>
+      Button
+    </Button.Radio>
+    <Button.Radio disabled onChange={handleClick}>
       Button
     </Button.Radio>
   </Container>

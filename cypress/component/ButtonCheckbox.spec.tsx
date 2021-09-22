@@ -18,6 +18,7 @@ describe('Button.Checkbox', () => {
         </Container>
       </TestingPicasso>
     )
+
     cy.get('body').happoScreenshot()
   })
 })
