@@ -1,12 +1,15 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { mount } from '@cypress/react'
 import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
+const RESPONSE_TIME = 1000
+const ANIMATION_TIME = 300
+
 // the emulation of the api call
 const responseWithDelay = async (response: any) =>
-  new Promise(resolve => setTimeout(() => resolve(response), 2000))
+  new Promise(resolve => setTimeout(() => resolve(response), RESPONSE_TIME))
 
 const api = {
   successSubmit: (values: any) => {
@@ -30,14 +33,16 @@ const api = {
 }
 
 const FormExample = () => {
+  const [state, setState] = useState(false)
   const handleSuccessSubmit = useCallback(
     (values: any) => api.successSubmit(values),
     []
   )
-  const handleSubmitWithInlineError = useCallback(
-    (values: any) => api.submitWithInlineError(values),
-    []
-  )
+  const handleSubmitWithInlineError = useCallback((values: any) => {
+    setState(true)
+
+    return api.submitWithInlineError(values)
+  }, [])
   const handleSubmitWithCustomNotificationError = useCallback(
     (values: any) => api.submitWithCustomNotificationError(values),
     []
@@ -81,35 +86,6 @@ const FormExample = () => {
           </Container>
         </Form>
 
-        <Form
-          onSubmit={handleSubmitWithInlineError}
-          failedSubmitMessage='Login failed! Please try another combination of first and last names.'
-        >
-          <Form.Input
-            required
-            name='inlineErrorName'
-            label='First name'
-            placeholder='e.g. Bruce'
-            width='full'
-          />
-          <Form.Input
-            required
-            name='inlineErrorSurname'
-            label='Last name'
-            placeholder='e.g. Wayne'
-            width='full'
-          />
-
-          <Container top='small'>
-            <Form.SubmitButton
-              variant='negative'
-              data-testid='submit-with-inline-error-button'
-            >
-              Login with Inline Error
-            </Form.SubmitButton>
-          </Container>
-        </Form>
-
         <Form onSubmit={handleSubmitWithCustomNotificationError}>
           <Form.Input
             required
@@ -132,6 +108,49 @@ const FormExample = () => {
               data-testid='submit-with-custom-notification-button'
             >
               Login with Custom Notification Error
+            </Form.SubmitButton>
+          </Container>
+        </Form>
+      </Container>
+
+      <Container top='large' bottom='large'>
+        <Form
+          onSubmit={handleSubmitWithInlineError}
+          failedSubmitMessage='Login failed! Please try another combination of first and last names.'
+        >
+          <Container>State: {state.toString()}</Container>
+          <Form.Input
+            data-testid='submit-with-inline-error-first-name'
+            required
+            name='inlineErrorName'
+            label='First name'
+            placeholder='e.g. Bruce'
+            width='full'
+          />
+
+          {Array.from({ length: 10 }).map((_, index) => (
+            <Container top='large' bottom='large' key={String(index)}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime,
+              assumenda suscipit amet ad libero, explicabo eaque fugiat sapiente
+              beatae, earum consequatur enim. Esse aut unde possimus quam illum
+              laudantium debitis.
+            </Container>
+          ))}
+
+          <Form.Input
+            required
+            name='inlineErrorSurname'
+            label='Last name'
+            placeholder='e.g. Wayne'
+            width='full'
+          />
+
+          <Container top='small'>
+            <Form.SubmitButton
+              variant='negative'
+              data-testid='submit-with-inline-error-button'
+            >
+              Login with Inline Error
             </Form.SubmitButton>
           </Container>
         </Form>
@@ -162,7 +181,15 @@ describe('Form', () => {
 
     cy.get('[data-testid=submit-with-inline-error-button]').click()
 
-    cy.contains('Unknown first name').should('be.visible')
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(RESPONSE_TIME + ANIMATION_TIME)
+
+    cy.get('[data-testid=submit-with-inline-error-first-name]')
+      .contains('Unknown first name')
+      .should('be.visible')
+      // @ts-expect-error until we move to TS in support & plugins directories
+      .isWithinViewport()
+
     cy.get('[role=alert]')
       .should('be.visible')
       .and(
