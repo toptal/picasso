@@ -54,6 +54,8 @@ export interface Props
   rounded?: boolean
   /** Style variant of Notification */
   variant?: VariantType
+  /** Gap between elements for a flex container */
+  gap?: string
   /** Component used for the root node */
   as?: ContainerType
   /** Text align of the inner text */
@@ -85,6 +87,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container (
     rounded = false,
     variant,
     align,
+    gap,
     as: Component = inline ? 'span' : 'div',
     // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -136,6 +139,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container (
       style={{
         ...margins,
         ...(typeof padded === 'number' && { padding: spacingToRem(padded) }),
+        ...(typeof gap !== 'undefined' && { gap }),
         ...style
       }}
     >

@@ -24,6 +24,7 @@ import Container from '../Container'
 import Group from '../ButtonGroup'
 import Circular from '../ButtonCircular'
 import Action from '../ButtonAction'
+import Split from '../ButtonSplit'
 import noop from '../utils/noop'
 import toTitleCase from '../utils/to-title-case'
 
@@ -42,8 +43,8 @@ export type IconPositionType = 'left' | 'right'
 
 export interface Props
   extends StandardProps,
-    TextLabelProps,
-    ButtonOrAnchorProps {
+  TextLabelProps,
+  ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */
@@ -109,7 +110,7 @@ const getIcon = (
 export const Button: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
   Props
->(function Button (props, ref) {
+>(function Button(props, ref) {
   const {
     icon,
     iconPosition,
@@ -228,5 +229,6 @@ Button.displayName = 'Button'
 export default Object.assign(Button, {
   Group,
   Circular,
-  Action
+  Action,
+  Split
 })

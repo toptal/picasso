@@ -107,20 +107,12 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
   const classes = useStyles(props)
 
   const contentRef = useRef<HTMLElement>()
+  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>()
+  const [isOpen, setIsOpen] = useState(false)
 
-  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>(
-    undefined
-  )
-
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-
-  const open = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setAnchorEl(event.currentTarget)
-    setIsOpen(true)
-    onOpen()
-  }
-
-  const toggleOpen = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleAnchorClick = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     if (isOpen) {
       close()
     } else {
@@ -145,6 +137,12 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
     if (event.key === ' ') {
       close()
     }
+  }
+
+  const open = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setAnchorEl(event.currentTarget)
+    setIsOpen(true)
+    onOpen()
   }
 
   const close = () => {
@@ -204,7 +202,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
   const handleClickAway = (event: React.MouseEvent<Document>) => {
     const target = event.target
 
-    if (anchorEl && target instanceof Node && anchorEl.contains(target)) {
+    const isAnchorTapEvent =
+      anchorEl && target instanceof Node && anchorEl.contains(target)
+
+    if (isAnchorTapEvent) {
       return
     }
 
@@ -218,8 +219,8 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown (
       className={cx(classes.root, className)}
       style={style}
     >
-      <div className={classes.anchor} onClick={toggleOpen}>
-        {children}
+      <div className={classes.anchor} onClick={handleAnchorClick}>
+        {typeof children === 'function' ? children({ isOpen }) : children}
       </div>
 
       {anchorEl && isOpen && (
