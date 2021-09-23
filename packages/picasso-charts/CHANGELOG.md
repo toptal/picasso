@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.3](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.2.2...@toptal/picasso-charts@2.2.3) (2021-09-09)
+
+
+### Bug Fixes
+
+* **picasso:** add explicit dependency on debounce ([#2161](https://github.com/toptal/picasso/issues/2161)) ([7471191](https://github.com/toptal/picasso/commit/7471191f2e7f6e3953e3066d627fc25209dda9c4))
+
+
+
+
+
+## [2.2.2](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.2.1...@toptal/picasso-charts@2.2.2) (2021-09-08)
+
+**Note:** Version bump only for package @toptal/picasso-charts
+
+
+
+
+
 ## [2.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.2.0...@toptal/picasso-charts@2.2.1) (2021-08-15)
 
 

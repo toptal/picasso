@@ -10,7 +10,7 @@ export interface Props extends BaseProps {
   children?: ReactNode
 }
 
-export const Quote = forwardRef<HTMLDivElement, Props>(function Quote (
+export const Quote = forwardRef<HTMLDivElement, Props>(function Quote(
   props,
   ref
 ) {

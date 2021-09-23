@@ -1,8 +1,7 @@
 import { createRef, useMemo, useRef, useLayoutEffect, useState } from 'react'
 import { HierarchyPointNode } from 'd3-hierarchy'
 
-import { DynamicPointNode, TreeNodeInterface } from './types'
-import { VERTICAL_MARGIN } from './variables'
+import { DirectionsType, DynamicPointNode, TreeNodeInterface } from './types'
 
 const getDynamicNodes = (
   nodes: HierarchyPointNode<TreeNodeInterface>[]
@@ -18,8 +17,11 @@ const getDynamicNodes = (
   })
 }
 
-const updateNodesYPosition = (
-  nodes: DynamicPointNode[]
+const updateNodesXorYPosition = (
+  nodes: DynamicPointNode[],
+  direction: DirectionsType,
+  verticalMargin: number,
+  horizontalMargin: number
 ): DynamicPointNode[] => {
   return nodes
     .sort((left, right) => left.depth - right.depth)
@@ -39,14 +41,28 @@ const updateNodesYPosition = (
         return node
       }
 
-      node.y = 0
+      if (direction === 'horizontal') {
+        node.x = 0
+      } else {
+        node.y = 0
+      }
+
       node.rect = {
         width,
         height
       }
 
       if (node.parent) {
-        node.y = node.parent.y + node.parent.rect.height + VERTICAL_MARGIN
+        const positionDeltas = {
+          horizontal: node.parent.x + node.parent.rect.width + horizontalMargin,
+          vertical: node.parent.y + node.parent.rect.height + verticalMargin
+        }
+
+        if (direction === 'horizontal') {
+          node.x = positionDeltas[direction]
+        } else {
+          node.y = positionDeltas[direction]
+        }
       }
 
       return node
@@ -60,7 +76,10 @@ const updateNodesYPosition = (
  * Also, the data of the `rootNode` can be changed — that hook handles it as well.
  */
 export const useNodes = (
-  rootNode: HierarchyPointNode<TreeNodeInterface>
+  rootNode: HierarchyPointNode<TreeNodeInterface>,
+  direction: DirectionsType,
+  verticalMargin: number,
+  horizontalMargin: number
 ): DynamicPointNode[] => {
   const [initialized, setInitializedState] = useState<boolean>(false)
   const initialNodes = useRef<DynamicPointNode[] | undefined>()
@@ -94,10 +113,15 @@ export const useNodes = (
   }, [rootNode, initialNodes])
 
   const nodes = useMemo<DynamicPointNode[]>(() => {
-    return updateNodesYPosition(dynamicNodes)
+    return updateNodesXorYPosition(
+      dynamicNodes,
+      direction,
+      verticalMargin,
+      horizontalMargin
+    )
     // we have to render nodes twice: first for the initial showing data, and the second one — with the correct positions.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dynamicNodes, initialized])
+  }, [dynamicNodes, initialized, direction, verticalMargin, horizontalMargin])
 
   useLayoutEffect(() => {
     if (!dynamicNodes[0].ref.current || initialized) {

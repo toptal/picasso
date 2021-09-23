@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-charts",
-  "version": "2.2.1",
+  "version": "2.2.3",
   "description": "Charts components of Picasso",
   "author": "Toptal",
   "license": "MIT",
@@ -22,15 +22,20 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-charts#readme",
   "peerDependencies": {
+    "@material-ui/core": "4.11.0",
     "@toptal/picasso": "^6",
-    "@toptal/picasso-shared": "^3"
+    "@toptal/picasso-shared": "5.0.2",
+    "react": "^16.12.0"
   },
   "devDependencies": {
-    "@types/d3-array": "2.8.0"
+    "@types/d3": "^6.3.0",
+    "@types/d3-array": "2.8.0",
+    "storybook-readme": "^5.0.9"
   },
   "dependencies": {
-    "d3-array": "2.12.0",
-    "debounce": "^1.2.0",
+    "classnames": "^2.3.1",
+    "d3-array": "^2.12.1",
+    "debounce": "^1.2.1",
     "recharts": "^2.0.7"
   }
 }

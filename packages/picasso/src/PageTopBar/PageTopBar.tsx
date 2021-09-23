@@ -41,7 +41,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTopBar'
 })
 
-export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar (
+export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   props,
   ref
 ) {
@@ -64,7 +64,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar (
   useLayoutEffect(() => {
     setHasTopBar(true)
 
-    return function cleanup () {
+    return function cleanup() {
       setHasTopBar(false)
     }
   }, [setHasTopBar])

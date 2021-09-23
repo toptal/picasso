@@ -50,6 +50,11 @@ page
     description:
       'Search is enabled when the number of options is greater or equal to `searchThreshold`.'
   }) // picasso-skip-visuals
+  .addExample('Select/story/Limit.example.tsx', {
+    title: 'Limit',
+    description:
+      'Maximum number of options on the list can be controlled through `limit` property'
+  }) // picasso-skip-visuals
   .addExample('Select/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
   .addExample('Select/story/Error.example.tsx', 'Error') // picasso-skip-visuals
   .addExample('Select/story/WithIcon.example.tsx', 'With icon') // picasso-skip-visuals

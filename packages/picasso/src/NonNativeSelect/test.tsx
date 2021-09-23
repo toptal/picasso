@@ -172,7 +172,7 @@ describe('NonNativeSelect', () => {
     const placeholder = 'Choose an option...'
     const searchPlaceholder = 'Search for an option'
 
-    const { getByPlaceholderText, getAllByRole } = renderSelect({
+    const { getByPlaceholderText, getByRole, getAllByRole } = renderSelect({
       options: OPTIONS,
       placeholder,
       searchPlaceholder,
@@ -190,13 +190,17 @@ describe('NonNativeSelect', () => {
     fireEvent.change(searchInput, { target: { value: '3' } })
 
     expect(getAllByRole('option')).toHaveLength(1)
+
+    const menu = getByRole('menu')
+
+    expect(menu).not.toHaveTextContent('Showing only first')
   })
 
   it('shows all options when input value is wiped', () => {
     const placeholder = 'Choose an option...'
     const searchPlaceholder = 'Search for an option'
 
-    const { getByPlaceholderText, getAllByRole } = renderSelect({
+    const { getByPlaceholderText, getAllByRole, getByRole } = renderSelect({
       options: OPTIONS,
       placeholder,
       searchPlaceholder,
@@ -215,6 +219,10 @@ describe('NonNativeSelect', () => {
 
     fireEvent.change(searchInput, { target: { value: '' } })
     expect(getAllByRole('option')).toHaveLength(OPTIONS.length)
+
+    const menu = getByRole('menu')
+
+    expect(menu).not.toHaveTextContent('Showing only first')
   })
 
   it('focuses search input when tab is pressed', () => {
@@ -325,6 +333,8 @@ describe('NonNativeSelect', () => {
     const menu = getByRole('menu')
 
     expect(menu).toHaveTextContent(noOptionsText)
+
+    expect(menu).not.toHaveTextContent('Showing only first')
   })
 
   it('renders description', () => {
@@ -622,5 +632,39 @@ describe('NonNativeSelect (multiple)', () => {
     )
 
     expect(selectInput.value).toBe(selectedOption.text)
+  })
+
+  it('renders reduced list of options if there are too many items to display', () => {
+    const placeholder = 'Choose an option...'
+    const searchPlaceholder = 'Search for an option'
+
+    const optionsGenerator = (value: number, key: number) => ({
+      value: `${key + 1}`,
+      text: `Option ${key + 1}`
+    })
+
+    const { getByPlaceholderText, getByRole, getAllByRole } = renderSelect({
+      options: Array.from({ length: 100 }, optionsGenerator),
+      placeholder,
+      searchPlaceholder,
+      limit: 5,
+      searchThreshold: -1
+    })
+
+    const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
+
+    fireEvent.focus(selectInput)
+    fireEvent.keyDown(selectInput, { key: 'Enter', code: 'Enter' })
+
+    const searchInput = getByPlaceholderText(searchPlaceholder)
+
+    fireEvent.focus(searchInput)
+    fireEvent.change(searchInput, { target: { value: 'Option' } })
+
+    expect(getAllByRole('option')).toHaveLength(5)
+
+    const menu = getByRole('menu')
+
+    expect(menu).toHaveTextContent('Showing only first 5 of 100 items')
   })
 })

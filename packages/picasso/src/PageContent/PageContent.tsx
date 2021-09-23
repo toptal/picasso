@@ -20,7 +20,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const PageContent = forwardRef<HTMLDivElement, Props>(
-  function PageContent (props, ref) {
+  function PageContent(props, ref) {
     const { children, className, style, flex, ...rest } = props
 
     const classes = useStyles()

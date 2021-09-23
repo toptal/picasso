@@ -7,7 +7,7 @@ export interface Props extends BaseProps {
 }
 
 export const NoteSubtitle = forwardRef<HTMLDivElement, Props>(
-  function NoteSubtitle ({ children, ...rest }, ref) {
+  function NoteSubtitle({ children, ...rest }, ref) {
     return (
       <Container ref={ref} bottom='small' {...rest}>
         <Typography color='dark-grey' size='small'>

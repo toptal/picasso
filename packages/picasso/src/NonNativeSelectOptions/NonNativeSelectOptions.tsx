@@ -13,7 +13,8 @@ import {
   ItemProps,
   Option,
   OptionGroups,
-  SelectProps
+  SelectProps,
+  DEFAULT_LIMIT
 } from '../Select'
 import Typography from '../Typography'
 import styles from './styles'
@@ -54,7 +55,7 @@ const MenuGroup = (props: MenuGroupProps) => {
 
 export type Props = Pick<
   SelectProps,
-  'value' | 'multiple' | 'size' | 'noOptionsText' | 'renderOption'
+  'value' | 'multiple' | 'size' | 'noOptionsText' | 'renderOption' | 'limit'
 > & {
   options: Option[] | OptionGroups
   highlightedIndex: number | null
@@ -74,8 +75,10 @@ const NonNativeSelectOptions = ({
   size,
   filterOptionsValue,
   noOptionsText,
-  fixedHeader
+  fixedHeader,
+  limit = DEFAULT_LIMIT
 }: Props) => {
+  const classes = useStyles()
   const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
     options
   ])
@@ -90,8 +93,14 @@ const NonNativeSelectOptions = ({
     )
   }
 
-  const flatOptionComponents = (optionsList: Option[], offset = 0) =>
-    optionsList.map((option, currentIndex) => {
+  const flatOptionComponents = (
+    optionsList: Option[],
+    limit?: number,
+    offset = 0
+  ) => {
+    const limitedOptions = limit ? optionsList.slice(0, limit) : optionsList
+
+    return limitedOptions.map((option, currentIndex) => {
       const { onMouseDown, onMouseEnter, onClick } = getItemProps(
         option,
         currentIndex + offset
@@ -114,33 +123,50 @@ const NonNativeSelectOptions = ({
         </NonNativeSelectOption>
       )
     })
+  }
 
-  const groupedOptionComponents = (optionGroups: OptionGroups) => {
+  const groupedOptionComponents = (
+    optionGroups: OptionGroups,
+    limit: number
+  ) => {
     let cursor = 0
 
-    return Object.keys(optionGroups).map(group => {
+    return Object.keys(optionGroups).reduce((rendered, group) => {
+      const remainingLimit = limit - cursor
+
       cursor += 1 // for the group item itself
       const offset = cursor
 
-      cursor += optionGroups[group].length
+      if (remainingLimit > 0) {
+        rendered.push(
+          <MenuGroup key={group} group={group}>
+            {flatOptionComponents(optionGroups[group], remainingLimit, offset)}
+          </MenuGroup>
+        )
+        cursor += optionGroups[group].length
+      }
 
-      return (
-        <MenuGroup key={group} group={group}>
-          {flatOptionComponents(optionGroups[group], offset)}
-        </MenuGroup>
-      )
-    })
+      return rendered
+    }, [] as JSX.Element[])
   }
 
   const optionComponents = isOptionsType(options)
-    ? flatOptionComponents(options)
-    : groupedOptionComponents(options)
+    ? flatOptionComponents(options, limit)
+    : groupedOptionComponents(options, limit)
+
+  const fixedFooter =
+    limit && flatOptions.length > limit ? (
+      <MenuItem titleCase={false} className={classes.fixedFooter} disabled>
+        Showing only first {limit} of {flatOptions.length} items
+      </MenuItem>
+    ) : null
 
   return (
     <ScrollMenu
       fixedHeader={fixedHeader}
       onBlur={onBlur}
       selectedIndex={highlightedIndex}
+      fixedFooter={fixedFooter}
     >
       {optionComponents}
     </ScrollMenu>

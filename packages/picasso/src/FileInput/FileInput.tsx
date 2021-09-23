@@ -29,63 +29,60 @@ export interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'FileInputContent' })
 
-export const FileInput = forwardRef<HTMLInputElement, Props>(
-  function FileInput (props, ref) {
-    const {
-      accept,
-      disabled,
-      value,
-      hint,
-      maxFiles = 1,
-      onChange,
-      onRemove
-    } = props
+export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
+  props,
+  ref
+) {
+  const {
+    accept,
+    disabled,
+    value,
+    hint,
+    maxFiles = 1,
+    onChange,
+    onRemove
+  } = props
 
-    const classes = useStyles()
-    const isUnlimitedFiles = maxFiles === null
-    const preventAddingNewFiles =
-      !isUnlimitedFiles && value && value.length === maxFiles
+  const classes = useStyles()
+  const isUnlimitedFiles = maxFiles === null
+  const preventAddingNewFiles =
+    !isUnlimitedFiles && value && value.length === maxFiles
 
-    // if `ref` is null then we need a ref to control the input
-    // so we create another ref manually if needed and merge both of them
-    const inputRef = useCombinedRefs<HTMLInputElement>(
-      ref,
-      useRef<HTMLInputElement>(null)
-    )
+  // if `ref` is null then we need a ref to control the input
+  // so we create another ref manually if needed and merge both of them
+  const inputRef = useCombinedRefs<HTMLInputElement>(
+    ref,
+    useRef<HTMLInputElement>(null)
+  )
 
-    return (
-      <Container className={classes.root}>
-        <Button
-          size='small'
-          variant='secondary'
-          disabled={disabled || preventAddingNewFiles}
-          onClick={() => inputRef.current && inputRef.current.click()}
-        >
-          Choose File
-        </Button>
+  return (
+    <Container className={classes.root}>
+      <Button
+        size='small'
+        variant='secondary'
+        disabled={disabled || preventAddingNewFiles}
+        onClick={() => inputRef.current && inputRef.current.click()}
+      >
+        Choose File
+      </Button>
 
-        <input
-          type='file'
-          className={classes.nativeInput}
-          ref={inputRef}
-          accept={accept}
-          onChange={onChange}
-          multiple={isUnlimitedFiles}
-        />
-        {hint && <FormHint className={classes.hint}>{hint}</FormHint>}
-        {value && value.length > 0 && (
-          <Container top='xsmall'>
-            <FileList
-              files={value}
-              disabled={disabled}
-              onItemRemove={onRemove}
-            />
-          </Container>
-        )}
-      </Container>
-    )
-  }
-)
+      <input
+        type='file'
+        className={classes.nativeInput}
+        ref={inputRef}
+        accept={accept}
+        onChange={onChange}
+        multiple={isUnlimitedFiles}
+      />
+      {hint && <FormHint className={classes.hint}>{hint}</FormHint>}
+      {value && value.length > 0 && (
+        <Container top='xsmall'>
+          <FileList files={value} disabled={disabled} onItemRemove={onRemove} />
+        </Container>
+      )}
+    </Container>
+  )
+})
 
 FileInput.defaultProps = {
   maxFiles: 1

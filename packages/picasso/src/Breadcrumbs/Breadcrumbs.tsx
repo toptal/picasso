@@ -11,7 +11,7 @@ export interface Props extends BaseProps {
   children: ReactNode
 }
 
-export const Breadcrumbs = forwardRef<HTMLElement, Props>(function Breadcrumbs (
+export const Breadcrumbs = forwardRef<HTMLElement, Props>(function Breadcrumbs(
   props,
   ref
 ) {

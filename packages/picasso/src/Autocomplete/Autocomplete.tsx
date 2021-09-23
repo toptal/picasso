@@ -66,7 +66,7 @@ export interface Props
   /** Allow to show the other option in the list of options */
   showOtherOption?: boolean
   /** Label to show when no options were found */
-  noOptionsText?: string
+  noOptionsText?: string | null
   /** List of options */
   options?: Item[] | null
   /** A function that takes a display value from the option item */
@@ -119,7 +119,7 @@ const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
-  function Autocomplete (props, ref) {
+  function Autocomplete(props, ref) {
     const {
       autoComplete,
       className,
@@ -227,7 +227,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             {...getOtherItemProps(optionsLength, value)}
           />
         )}
-        {!optionsLength && !shouldShowOtherOption && (
+        {!optionsLength && !shouldShowOtherOption && noOptionsText && (
           <NoOptionsMenuItem data-testid={testIds?.noOptions}>
             {noOptionsText}
           </NoOptionsMenuItem>

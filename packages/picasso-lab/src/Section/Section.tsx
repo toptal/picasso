@@ -45,7 +45,7 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoSection'
 })
 
-export const Section = forwardRef<HTMLDivElement, Props>(function Section (
+export const Section = forwardRef<HTMLDivElement, Props>(function Section(
   props,
   ref
 ) {

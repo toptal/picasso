@@ -24,6 +24,9 @@ const generateConfig = () =>
 
 module.exports = {
   extends: './node_modules/@toptal/davinci-syntax/src/configs/.eslintrc',
+  rules: {
+    '@toptal/davinci/no-private-package-imports': 'off'
+  },
   overrides: [
     {
       files: ['*.example.jsx', '*.example.tsx'],
@@ -32,7 +35,8 @@ module.exports = {
         'react/require-optimization': 'off',
         'import/no-named-default': 'off',
         'no-console': 'off',
-        'no-inline-styles/no-inline-styles': 'off'
+        'no-inline-styles/no-inline-styles': 'off',
+        '@toptal/davinci/no-private-package-imports': 'error'
       }
     },
     // tests

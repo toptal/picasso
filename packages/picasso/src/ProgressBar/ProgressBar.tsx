@@ -25,7 +25,7 @@ const normalizeValue = (value: number) =>
   Math.min(Math.max(value, MIN_VALUE), MAX_VALUE)
 
 export const ProgressBar = forwardRef<HTMLDivElement, Props>(
-  function ProgressBar (props, ref) {
+  function ProgressBar(props, ref) {
     const { value, showPercentage, ...restProps } = props
     const classes = useStyles(props)
 

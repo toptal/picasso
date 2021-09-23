@@ -26,15 +26,17 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
-  function SidebarMenu (props, ref) {
+  function SidebarMenu(props, ref) {
     const { bottom, style, className, children, ...rest } = props
     const { parentSidebarItemIndex } = useContext(SidebarItem.SubMenuContext)
 
     const classes = useStyles()
 
-    const { variant, expandedItemKey, setExpandedItemKey } = useContext<
-      SidebarContextProps
-    >(SidebarContext)
+    const {
+      variant,
+      expandedItemKey,
+      setExpandedItemKey
+    } = useContext<SidebarContextProps>(SidebarContext)
 
     const expandSidebarItem = useCallback(index => setExpandedItemKey(index), [
       setExpandedItemKey

@@ -35,23 +35,26 @@ export const TreeViewContainer: FC = ({ children }) => {
 
     d3.select(state.ref)
       .transition()
-      .call(state.zoom.scaleTo, function (
-        this: SVGSVGElement,
-        datum: unknown,
-        index: number,
-        groups: any
-      ) {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const defaultExtent = state.zoom!.extent()
-        const k0 = zoomTransform(this).k
-        // @ts-ignore
-        const extent = defaultExtent.apply(this, [datum, index, groups])
-        const width = extent[1][0]
-        // support backward compatibility for the `step` argument
-        const k1 = step > 1 ? step - 1 : -step
+      .call(
+        state.zoom.scaleTo,
+        function (
+          this: SVGSVGElement,
+          datum: unknown,
+          index: number,
+          groups: any
+        ) {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          const defaultExtent = state.zoom!.extent()
+          const k0 = zoomTransform(this).k
+          // @ts-ignore
+          const extent = defaultExtent.apply(this, [datum, index, groups])
+          const width = extent[1][0]
+          // support backward compatibility for the `step` argument
+          const k1 = step > 1 ? step - 1 : -step
 
-        return (width * k0 + width * k1) / width
-      })
+          return (width * k0 + width * k1) / width
+        }
+      )
   }
 
   return (

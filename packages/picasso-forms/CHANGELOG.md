@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.3](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.6.2...@toptal/picasso-forms@4.6.3) (2021-09-09)
+
+
+### Bug Fixes
+
+* **picasso:** add explicit dependency on debounce ([#2161](https://github.com/toptal/picasso/issues/2161)) ([7471191](https://github.com/toptal/picasso/commit/7471191f2e7f6e3953e3066d627fc25209dda9c4))
+
+
+
+
+
+## [4.6.2](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.6.1...@toptal/picasso-forms@4.6.2) (2021-09-08)
+
+**Note:** Version bump only for package @toptal/picasso-forms
+
+
+
+
+
 ## [4.6.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.6.0...@toptal/picasso-forms@4.6.1) (2021-08-15)
 
 

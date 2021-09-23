@@ -21,8 +21,7 @@ export interface SelectProps<
   T extends ValueType = ValueType,
   M extends boolean = boolean,
   V = M extends true ? T[] : T
->
-  extends BaseProps,
+> extends BaseProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'onChange' | 'size' | 'color' | 'value'
@@ -78,8 +77,14 @@ export interface SelectProps<
   /** Whether to render reset icon which clears selected value */
   enableReset?: boolean
   popperContainer?: HTMLElement
-  /** Defines the minimum options number to show the search */
+  /** Defines the minimum options number to show the search
+   * @default 10
+   */
   searchThreshold?: number
+  /** Limits number of options to display on the list
+   * @default 200
+   */
+  limit?: number
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
   ref?: React.Ref<HTMLInputElement>
@@ -122,6 +127,7 @@ export interface UseSelectStateProps {
   multiple?: boolean
   value?: ValueType | ValueType[]
   searchThreshold?: number
+  limit?: number
 }
 
 export type UseSelectStateOutput = {

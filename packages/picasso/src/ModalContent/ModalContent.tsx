@@ -17,7 +17,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const ModalContent = forwardRef<HTMLDivElement, Props>(
-  function ModalContent (props, ref) {
+  function ModalContent(props, ref) {
     const { children, className, style, ...rest } = props
 
     /**

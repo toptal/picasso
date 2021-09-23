@@ -21,7 +21,7 @@ const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
   </Container>
 )
 
-export const Alert = forwardRef<HTMLDivElement, Props>(function Alert (
+export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {

@@ -14,7 +14,7 @@ export interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles)
 
-export const Note = forwardRef<HTMLDivElement, Props>(function Note (
+export const Note = forwardRef<HTMLDivElement, Props>(function Note(
   { children, className, ...rest },
   ref
 ) {

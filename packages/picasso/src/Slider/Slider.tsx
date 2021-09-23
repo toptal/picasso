@@ -76,7 +76,7 @@ const createDefaultValueLabelComponent = (
   return ValueLableComponent
 }
 
-export const Slider = forwardRef<HTMLElement, Props>(function Slider (
+export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   props,
   ref
 ) {
@@ -118,9 +118,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider (
 
   // From Workaround for https://github.com/mui-org/material-ui/issues/21889
   const ValueLabelComponent = ((UserDefinedTooltip ||
-    DefaultValueLabelComponent) as unknown) as React.ElementType<
-    MUIValueLabelProps
-  >
+    DefaultValueLabelComponent) as unknown) as React.ElementType<MUIValueLabelProps>
 
   return (
     <SliderContextProvider>

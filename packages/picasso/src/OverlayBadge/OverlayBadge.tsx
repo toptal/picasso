@@ -27,7 +27,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 // eslint-disable-next-line react/display-name
 export const OverlayBadge = forwardRef<HTMLDivElement, Props>(
-  function OverlayBadge (props, ref) {
+  function OverlayBadge(props, ref) {
     const {
       children,
       style,

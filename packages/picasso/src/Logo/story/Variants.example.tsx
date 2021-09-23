@@ -1,6 +1,5 @@
 import React from 'react'
-import { Logo, Container } from '@toptal/picasso'
-import { SpacingType } from '@toptal/picasso-shared'
+import { Logo, Container, ContainerProps } from '@toptal/picasso'
 
 const Example = () => (
   <div>
@@ -42,12 +41,10 @@ const Example = () => (
   </div>
 )
 
-type LogoContainerProps = {
-  children: React.ReactNode
-  bgcolor: string
-  inline?: boolean
-  right?: SpacingType
-}
+type LogoContainerProps = Pick<
+  ContainerProps,
+  'right' | 'children' | 'inline'
+> & { bgcolor: string }
 
 const LogoContainer = ({
   children,

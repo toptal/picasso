@@ -14,7 +14,7 @@ export interface Props extends StandardProps {
   base?: number
 }
 const useStyles = makeStyles(styles, { name: 'PicassoSvgTimeConvert24' })
-const SvgTimeConvert24 = forwardRef(function SvgTimeConvert24 (
+const SvgTimeConvert24 = forwardRef(function SvgTimeConvert24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {

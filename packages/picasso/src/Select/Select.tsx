@@ -8,7 +8,12 @@ import disableUnsupportedProps, {
 import noop from '../utils/noop'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import { SelectProps, ValueType } from './types'
-import { DEFAULT_SEARCH_THRESHOLD, getOptionText, renderOption } from './utils'
+import {
+  DEFAULT_LIMIT,
+  DEFAULT_SEARCH_THRESHOLD,
+  getOptionText,
+  renderOption
+} from './utils'
 
 const purifyProps = (
   props: SelectProps<any, any>
@@ -60,6 +65,7 @@ Select.defaultProps = {
   size: 'medium',
   width: 'full',
   searchThreshold: DEFAULT_SEARCH_THRESHOLD,
+  limit: DEFAULT_LIMIT,
   enableAutofill: false,
   searchPlaceholder: 'Search',
   native: false

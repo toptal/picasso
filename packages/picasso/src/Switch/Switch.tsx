@@ -27,7 +27,7 @@ export interface Props
   value?: string
 }
 
-export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch (
+export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
   props,
   ref
 ) {

@@ -27,7 +27,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
-  function PageTopBarMenu (props, ref) {
+  function PageTopBarMenu(props, ref) {
     const { name, meta, avatar, className, style, children, ...rest } = props
     const classes = useStyles()
 

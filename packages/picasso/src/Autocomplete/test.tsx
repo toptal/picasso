@@ -167,6 +167,21 @@ describe('Autocomplete', () => {
       expect(getByTestId(testIds.noOptions)).not.toBeNull()
     })
 
+    it('hides no options text when disabled and no options are avialble', () => {
+      const { getByTestId, queryByTestId, queryByText } = renderAutocomplete({
+        noOptionsText: null,
+        value: 'Picasso'
+      })
+
+      const input = getByTestId('autocomplete')
+
+      fireEvent.focus(input)
+      fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
+
+      expect(queryByText('No options')).toBeNull()
+      expect(queryByTestId(testIds.noOptions)).toBeNull()
+    })
+
     it('renders custom options with custom keys', async () => {
       const getDisplayValue = jest.fn()
       const renderOption = jest.fn(item => (

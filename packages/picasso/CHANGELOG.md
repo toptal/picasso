@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.5.2](https://github.com/toptal/picasso/compare/@toptal/picasso@10.5.1...@toptal/picasso@10.5.2) (2021-09-17)
+
+
+### Bug Fixes
+
+* **Autocomplete:** do not render noOptions item when no options available ([#2167](https://github.com/toptal/picasso/issues/2167)) ([02ce33b](https://github.com/toptal/picasso/commit/02ce33baf532178d88f29c0a11bbf6d92aec860a))
+
+
+
+
+
+## [10.5.1](https://github.com/toptal/picasso/compare/@toptal/picasso@10.5.0...@toptal/picasso@10.5.1) (2021-09-16)
+
+
+### Bug Fixes
+
+* remove material-ui/styles from dependencies ([#2165](https://github.com/toptal/picasso/issues/2165)) ([d403a67](https://github.com/toptal/picasso/commit/d403a67d11338bb2fcb1af09dc9766b235e27236))
+
+
+
+
+
+# [10.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.4.2...@toptal/picasso@10.5.0) (2021-09-10)
+
+
+### Features
+
+* add limit property for Form.Select ([#2153](https://github.com/toptal/picasso/issues/2153)) ([1a036ad](https://github.com/toptal/picasso/commit/1a036ad071a08dc24d20b2fc1c731303b90dc86d))
+
+
+
+
+
+## [10.4.2](https://github.com/toptal/picasso/compare/@toptal/picasso@10.4.1...@toptal/picasso@10.4.2) (2021-09-09)
+
+
+### Bug Fixes
+
+* **picasso:** add explicit dependency on debounce ([#2161](https://github.com/toptal/picasso/issues/2161)) ([7471191](https://github.com/toptal/picasso/commit/7471191f2e7f6e3953e3066d627fc25209dda9c4))
+
+
+
+
+
+## [10.4.1](https://github.com/toptal/picasso/compare/@toptal/picasso@10.4.0...@toptal/picasso@10.4.1) (2021-09-08)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+# [10.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.3.5...@toptal/picasso@10.4.0) (2021-09-08)
+
+
+### Features
+
+* **TreeView:** [FX-2016] Horizontal layout, margin props & compact variant for TreeView ([#2122](https://github.com/toptal/picasso/issues/2122)) ([6b9d41f](https://github.com/toptal/picasso/commit/6b9d41f4206d8b5bca098eec0dd5e63bf907bcab))
+
+
+
+
+
 ## [10.3.5](https://github.com/toptal/picasso/compare/@toptal/picasso@10.3.4...@toptal/picasso@10.3.5) (2021-09-07)
 
 

@@ -23,7 +23,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoMenu'
 })
 
-export const Menu = forwardRef<HTMLUListElement, Props>(function Menu (
+export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   props,
   ref
 ) {

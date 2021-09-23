@@ -19,6 +19,7 @@ import {
   ValueType,
   SelectProps,
   getOptionText,
+  DEFAULT_LIMIT,
   DEFAULT_SEARCH_THRESHOLD
 } from '../Select'
 import NonNativeSelectOptions from '../NonNativeSelectOptions'
@@ -59,6 +60,7 @@ export const NonNativeSelect = documentable(
         autoComplete,
         searchPlaceholder,
         searchThreshold = DEFAULT_SEARCH_THRESHOLD,
+        limit = DEFAULT_LIMIT,
         getDisplayValue = getOptionText,
         options,
         onChange,
@@ -194,6 +196,7 @@ export const NonNativeSelect = documentable(
                   multiple={multiple}
                   noOptionsText={noOptionsText}
                   fixedHeader={searchInput}
+                  limit={limit}
                 />
               )}
             </Popper>
@@ -234,6 +237,7 @@ NonNativeSelect.defaultProps = {
   size: 'medium',
   width: 'full',
   searchThreshold: DEFAULT_SEARCH_THRESHOLD,
+  limit: DEFAULT_LIMIT,
   enableAutofill: false,
   searchPlaceholder: 'Search'
 }
