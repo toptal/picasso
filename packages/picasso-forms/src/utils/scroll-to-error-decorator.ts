@@ -33,9 +33,10 @@ const scrollTo = (field: HTMLElement) => {
     ?.focus({ preventScroll: true })
 }
 
+let state: { errors?: object; submitErrors?: object } = {}
+
 export default () => <T>(form: FormApi<T>) => {
   const originalSubmit = form.submit
-  let state: { errors?: object; submitErrors?: object } = {}
 
   const unsubscribe = form.subscribe(
     nextState => {
@@ -70,6 +71,7 @@ export default () => <T>(form: FormApi<T>) => {
   }
 
   return () => {
+    state = {}
     unsubscribe()
     form.submit = originalSubmit
   }
