@@ -43,6 +43,7 @@ module.exports = {
     {
       files: ['test.ts', 'test.tsx', '*.spec.ts', '*.spec.tsx'],
       rules: {
+        'react/no-array-index-key': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         'no-inline-styles/no-inline-styles': 'off',
         'max-lines': 'off'
