@@ -1,16 +1,6 @@
-import { createStyles, Theme } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 
-import { createOutlineCommons, activeGroupStyles } from '../Button/styles'
-
-const baseButtonProps = {
-  transitionProperty: 'color, background',
-
-  '&:active, &$active, &:hover, &$hovered, &:focus, &$focused': {
-    // border overlap to keep proper border width, but on state change
-    // we need to move up overlapped border
-    zIndex: 1
-  }
-}
+const baseButtonProps = {}
 
 const firstButtonProps = {
   borderTopRightRadius: 0,
@@ -31,7 +21,7 @@ const lastButtonProps = {
   marginLeft: '-1px'
 }
 
-export default (theme: Theme) =>
+export default () =>
   createStyles({
     root: {
       display: 'flex',
@@ -40,16 +30,13 @@ export default (theme: Theme) =>
       // default case
       '& [data-component-type="button"]': {
         ...baseButtonProps,
-        ...createOutlineCommons(theme),
 
         // first item
         '&:first-child:not(:last-child)': firstButtonProps,
         // middle item
         '&:not(:first-child):not(:last-child)': middleButtonProps,
         // last item
-        '&:last-child:not(:first-child)': lastButtonProps,
-        // active item
-        '&:active, &$active': activeGroupStyles(theme)
+        '&:last-child:not(:first-child)': lastButtonProps
       },
 
       // nested case when button is nested in first item in ButtonGroup
@@ -69,8 +56,5 @@ export default (theme: Theme) =>
         ...baseButtonProps,
         ...lastButtonProps
       }
-    },
-    active: {},
-    focused: {},
-    hovered: {}
+    }
   })
