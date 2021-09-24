@@ -1,4 +1,6 @@
-import { createStyles } from '@material-ui/core/styles'
+import { createStyles, Theme } from '@material-ui/core/styles'
+
+import { createOutlineCommons, activeGroupStyles } from '../Button/styles'
 
 const baseButtonProps = {
   transitionProperty: 'color, background',
@@ -29,7 +31,7 @@ const lastButtonProps = {
   marginLeft: '-1px'
 }
 
-export default () =>
+export default (theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -38,13 +40,16 @@ export default () =>
       // default case
       '& [data-component-type="button"]': {
         ...baseButtonProps,
+        ...createOutlineCommons(theme),
 
         // first item
         '&:first-child:not(:last-child)': firstButtonProps,
         // middle item
         '&:not(:first-child):not(:last-child)': middleButtonProps,
         // last item
-        '&:last-child:not(:first-child)': lastButtonProps
+        '&:last-child:not(:first-child)': lastButtonProps,
+        // active item
+        '&:active, &$active': activeGroupStyles(theme)
       },
 
       // nested case when button is nested in first item in ButtonGroup
