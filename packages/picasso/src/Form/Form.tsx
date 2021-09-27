@@ -19,7 +19,7 @@ export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
 }
 
 // eslint-disable-next-line react/display-name
-export const Form = forwardRef<HTMLFormElement, Props>(function Form (
+export const Form = forwardRef<HTMLFormElement, Props>(function Form(
   { onSubmit, className, style, children, ...rest },
   ref
 ) {

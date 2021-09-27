@@ -26,7 +26,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs (
+export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
   props,
   ref
 ) {

@@ -1,20 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>DF363F2B-D7B1-4F91-80B9-7AA0E98D8F97@1x</title>
-    <defs>
-        <path d="M1,12 L1,13.9998932 L14,13.9998932 L14,12 L15,12 L15,15 L0,15 L0,12 L1,12 Z M7.5,0.792893219 L11.2071068,4.5 L10.5,5.20710678 L7.999,2.70689322 L8.00001356,12.0000136 L7.00001356,12.0000136 L6.999,2.70689322 L4.5,5.20710678 L3.79289322,4.5 L6.79289322,1.5 L7.5,0.792893219 Z" id="path-1"></path>
-    </defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Icons-/-Interface-Essential-/-16-/-Upload">
-            <mask id="mask-2" fill="white">
-                <use xlink:href="#path-1"></use>
-            </mask>
-            <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
-            <g id="Group" mask="url(#mask-2)" fill="#455065">
-                <g id="Colors-/-307-Gray-Dark">
-                    <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
-                </g>
-            </g>
-        </g>
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <path d="M1 12v2h13v-2h1v3H0v-3h1ZM7.5.793 11.207 4.5l-.707.707-2.501-2.5L8 12H7l-.001-9.293-2.499 2.5-.707-.707 3-3L7.5.793Z" id="a"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <mask id="b" fill="#fff">
+      <use xlink:href="#a"/>
+    </mask>
+    <use fill="#000" fill-rule="nonzero" xlink:href="#a"/>
+    <g mask="url(#b)" fill="#455065">
+      <path d="M0 0h16v16H0z"/>
     </g>
+  </g>
 </svg>

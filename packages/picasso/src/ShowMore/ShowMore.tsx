@@ -28,7 +28,7 @@ export interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoShowMore' })
 
-export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore (
+export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
   props,
   ref
 ) {

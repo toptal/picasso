@@ -59,7 +59,7 @@ const useStyles = makeStyles<Theme>(styles, {
 export const OverviewBlock: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
   Props
->(function OverviewBlock (props, ref) {
+>(function OverviewBlock(props, ref) {
   const {
     value,
     label,

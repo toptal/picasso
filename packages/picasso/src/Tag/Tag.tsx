@@ -44,7 +44,7 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
 
 // eslint-disable-next-line react/display-name
-export const Tag = forwardRef<HTMLDivElement, Props>(function Tag (props, ref) {
+export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   const {
     children,
     style,
