@@ -1,9 +1,9 @@
 import React from 'react'
 
 import Checkbox from '../Checkbox'
-import ButtonInput, { ButtonInputProps } from '../ButtonInput'
+import ButtonControl, { ButtonControlProps } from '../ButtonControl'
 
-export interface Props extends Omit<ButtonInputProps, 'renderInput'> {
+export interface Props extends Omit<ButtonControlProps, 'renderInput'> {
   testIds?: {
     checkbox?: string
   }
@@ -11,9 +11,9 @@ export interface Props extends Omit<ButtonInputProps, 'renderInput'> {
 
 const ButtonCheckbox = ({ testIds, ...props }: Props) => {
   return (
-    <ButtonInput
+    <ButtonControl
       {...props}
-      renderInput={({ id, onChange, checked, value, disabled }) => (
+      renderControl={({ id, onChange, checked, value, disabled }) => (
         <Checkbox
           data-testid={testIds?.checkbox}
           id={id}

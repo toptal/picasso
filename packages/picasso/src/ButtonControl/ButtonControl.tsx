@@ -7,7 +7,7 @@ import Container from '../Container'
 import Button from '../Button'
 import styles from './styles'
 
-interface RenderInputArgs {
+interface RenderControlArgs {
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean
@@ -42,23 +42,23 @@ export interface Props extends BaseProps {
   children: ReactNode
   /** The id of the input element */
   id?: string
-  /** Input render function */
-  renderInput: (args: RenderInputArgs) => ReactNode
+  /** Control render function */
+  renderControl: (args: RenderControlArgs) => ReactNode
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonInput',
+  name: 'PicassoButtonControl',
   index: -1
 })
 
-const ButtonInput = ({
+const ButtonControl = ({
   children,
   size = 'medium',
   className,
   checked,
   onChange,
   id,
-  renderInput,
+  renderControl,
   value,
   disabled,
   ...props
@@ -77,7 +77,7 @@ const ButtonInput = ({
       htmlFor={id}
       disabled={disabled}
     >
-      {renderInput({ id, checked, value, onChange, disabled })}
+      {renderControl({ id, checked, value, onChange, disabled })}
       <Container className={classes.content} left={contentLeftSpacing}>
         {children}
       </Container>
@@ -85,8 +85,8 @@ const ButtonInput = ({
   )
 }
 
-ButtonInput.defaultProps = {
+ButtonControl.defaultProps = {
   size: 'medium'
 }
 
-export default ButtonInput
+export default ButtonControl
