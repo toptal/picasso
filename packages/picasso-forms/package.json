@@ -24,7 +24,7 @@
   "peerDependencies": {
     "@toptal/picasso": "^6",
     "@toptal/picasso-lab": "^4",
-    "@toptal/picasso-shared": "5.0.1",
+    "@toptal/picasso-shared": "5.0.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
