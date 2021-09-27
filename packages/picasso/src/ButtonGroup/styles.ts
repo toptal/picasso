@@ -64,5 +64,8 @@ export default () =>
         ...baseButtonProps,
         ...lastButtonProps
       }
-    }
+    },
+    active: {},
+    focused: {},
+    hovered: {}
   })
