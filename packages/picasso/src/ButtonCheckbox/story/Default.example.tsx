@@ -9,7 +9,9 @@ const Example = () => (
     <Button.Checkbox size='small' onChange={handleClick}>
       Button
     </Button.Checkbox>
-    <Button.Checkbox onChange={handleClick}>Button</Button.Checkbox>
+    <Button.Checkbox size='medium' onChange={handleClick}>
+      Button
+    </Button.Checkbox>
     <Button.Checkbox size='large' onChange={handleClick}>
       Button
     </Button.Checkbox>

@@ -9,7 +9,9 @@ const Example = () => (
     <Button.Radio size='small' onChange={handleClick}>
       Button
     </Button.Radio>
-    <Button.Radio onChange={handleClick}>Button</Button.Radio>
+    <Button.Radio size='medium' onChange={handleClick}>
+      Button
+    </Button.Radio>
     <Button.Radio size='large' onChange={handleClick}>
       Button
     </Button.Radio>
