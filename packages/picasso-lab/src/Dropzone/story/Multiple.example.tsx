@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Dropzone } from '@toptal/picasso-lab'
+import { Dropzone, DropzoneProps } from '@toptal/picasso-lab'
 import { FileUpload } from '@toptal/picasso-lab/Dropzone'
-import { DropzoneOptions } from 'react-dropzone'
 
 const initFiles = [
   {
@@ -19,7 +18,7 @@ const initFiles = [
 const useFiles = (initialFiles?: FileUpload[]) => {
   const [files, setFiles] = useState<FileUpload[]>(initialFiles ?? [])
 
-  const addFiles: DropzoneOptions['onDrop'] = acceptedFiles => {
+  const addFiles: DropzoneProps['onDrop'] = acceptedFiles => {
     setFiles([...files, ...Array.from(acceptedFiles).map(file => ({ file }))])
   }
 

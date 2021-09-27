@@ -23,8 +23,6 @@ export interface Props extends BaseProps, Omit<DropzoneOptions, 'children'> {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'FileInputContent' })
 
-const filterByUploading = (file: FileUpload): boolean => Boolean(file.uploading)
-
 export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
   props,
   ref
@@ -45,9 +43,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
   )
 
   const isCompleted =
-    Array.isArray(value) &&
-    value.length &&
-    value.filter(filterByUploading).length === 0
+    Array.isArray(value) && value.length && value.some(file => file.uploading)
 
   const classes = useStyles()
 

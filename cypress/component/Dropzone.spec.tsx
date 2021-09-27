@@ -101,10 +101,6 @@ describe('Dropzone', () => {
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
-
-    cy.get('[class*=completed]').should('exist')
-    cy.get('button').as('removeButton').realClick()
-    cy.get('[class*=completed]').should('not.exist')
   })
 
   it('renders completed with multiple files', () => {

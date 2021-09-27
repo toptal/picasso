@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Dropzone, DropzoneProps } from '@toptal/picasso-lab'
 import { FileUpload } from '@toptal/picasso-lab/Dropzone'
-import { DropzoneOptions } from 'react-dropzone'
 
 const MAX_SIZE = 600 * 1000
 const customSizeValidator: DropzoneProps['validator'] = file => {
@@ -19,11 +18,8 @@ const useFiles = () => {
   const [files, setFiles] = useState<FileUpload[]>([])
   const [errorMessages, setError] = useState<string[]>([])
 
-  const addFiles: DropzoneOptions['onDrop'] = (
-    acceptedFiles,
-    rejectedFiles
-  ) => {
-    if (acceptedFiles.length) {
+  const addFiles: DropzoneProps['onDrop'] = (acceptedFiles, rejectedFiles) => {
+    if (acceptedFiles.length > 0) {
       const previousFiles = files
       const newFiles = Array.from(acceptedFiles).map(file => ({
         file,

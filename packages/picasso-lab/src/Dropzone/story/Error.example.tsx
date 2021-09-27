@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Dropzone } from '@toptal/picasso-lab'
+import { Dropzone, DropzoneProps } from '@toptal/picasso-lab'
 import { FileUpload } from '@toptal/picasso-lab/Dropzone'
-import { DropzoneOptions } from 'react-dropzone'
 
 const initErrors = ['resume.pdf: File is too large']
 
@@ -9,10 +8,7 @@ const useFiles = (initialFiles?: FileUpload[], initialErrors?: string[]) => {
   const [files, setFiles] = useState<FileUpload[]>(initialFiles ?? [])
   const [errorMessages, setError] = useState<string[]>(initialErrors ?? [])
 
-  const addFiles: DropzoneOptions['onDrop'] = (
-    acceptedFiles,
-    rejectedFiles
-  ) => {
+  const addFiles: DropzoneProps['onDrop'] = (acceptedFiles, rejectedFiles) => {
     if (acceptedFiles.length) {
       setFiles([...files, ...Array.from(acceptedFiles).map(file => ({ file }))])
     }
