@@ -18,7 +18,7 @@ export const createOutlineCommons = ({ palette }: Theme) => ({
   }
 })
 
-export const activeGroupStyles = ({ palette }: Theme) => ({
+export const activeGroup = ({ palette }: Theme) => ({
   backgroundColor: palette.grey.dark,
   borderColor: palette.grey.dark,
   color: palette.common.white

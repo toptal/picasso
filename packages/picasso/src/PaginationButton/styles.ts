@@ -1,6 +1,6 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 
-import { createOutlineCommons, activeGroupStyles } from '../Button/styles'
+import { createOutlineCommons, activeGroup } from '../Button/styles'
 
 export default (theme: Theme) =>
   createStyles({
@@ -9,7 +9,7 @@ export default (theme: Theme) =>
       padding: '0 0.3em',
 
       ...createOutlineCommons(theme),
-      '&:active, &$active': activeGroupStyles(theme)
+      '&:active, &$active': activeGroup(theme)
     },
     active: {}
   })

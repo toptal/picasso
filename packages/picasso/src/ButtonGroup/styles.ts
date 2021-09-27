@@ -1,6 +1,14 @@
 import { createStyles } from '@material-ui/core/styles'
 
-const baseButtonProps = {}
+const baseButtonProps = {
+  transitionProperty: 'color, background',
+
+  '&:active, &$active, &:hover, &$hovered, &:focus, &$focused': {
+    // border overlap to keep proper border width, but on state change
+    // we need to move up overlapped border
+    zIndex: 1
+  }
+}
 
 const firstButtonProps = {
   borderTopRightRadius: 0,

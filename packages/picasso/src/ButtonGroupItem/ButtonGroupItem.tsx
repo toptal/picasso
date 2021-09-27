@@ -11,13 +11,13 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export interface Props extends ButtonProps {}
 
-const PaginationButton = (props: Props) => {
+const ButtonGroupItem = (props: Props) => {
   const classes = useStyles()
 
   return (
     <Button
       {...props}
-      className={cx(props.className, classes.root, '__group', {
+      className={cx(props.className, classes.root, classes.group, {
         [classes.active]: props.active
       })}
       variant='secondary'
@@ -25,4 +25,4 @@ const PaginationButton = (props: Props) => {
   )
 }
 
-export default PaginationButton
+export default ButtonGroupItem
