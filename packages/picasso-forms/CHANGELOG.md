@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.7.0...@toptal/picasso-forms@4.7.1) (2021-09-24)
+
+
+### Bug Fixes
+
+* **Form:** scroll to error while Form is rerendered ([#2171](https://github.com/toptal/picasso/issues/2171)) ([500a58a](https://github.com/toptal/picasso/commit/500a58aaffc959066606899c6a30024a1630c0dd))
+
+
+
+
+
+# [4.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.6.3...@toptal/picasso-forms@4.7.0) (2021-09-23)
+
+
+### Features
+
+* add possibility to pass data-testid for picasso-forms Form ([#2172](https://github.com/toptal/picasso/issues/2172)) ([55ec90d](https://github.com/toptal/picasso/commit/55ec90dc0cbac65f4a9866871e1736e9662f3701))
+
+
+
+
+
 ## [4.6.3](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.6.2...@toptal/picasso-forms@4.6.3) (2021-09-09)
 
 

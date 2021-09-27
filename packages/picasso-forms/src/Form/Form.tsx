@@ -36,6 +36,7 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   successSubmitMessage?: ReactNode
   failedSubmitMessage?: ReactNode
   scrollOffsetTop?: number
+  'data-testid'?: string
 }
 
 const getValidationErrors = (
@@ -71,6 +72,7 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
     successSubmitMessage,
     failedSubmitMessage,
     decorators = [],
+    'data-testid': dataTestId,
     ...rest
   } = props
   const { showSuccess, showError } = useNotifications()
@@ -134,7 +136,11 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
       <FinalForm
         render={({ handleSubmit }) => (
           <Container>
-            <PicassoForm autoComplete={autoComplete} onSubmit={handleSubmit}>
+            <PicassoForm
+              autoComplete={autoComplete}
+              onSubmit={handleSubmit}
+              data-testid={dataTestId}
+            >
               {children}
             </PicassoForm>
           </Container>
