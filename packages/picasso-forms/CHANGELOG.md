@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.8.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.7.1...@toptal/picasso-forms@4.8.0) (2021-09-27)
+
+
+### Features
+
+* **Icon:** [SPB-2461] add transfer icon ([#2177](https://github.com/toptal/picasso/issues/2177)) ([caee460](https://github.com/toptal/picasso/commit/caee460457267392067879b29746535fcc118543))
+
+
+
+
+
 ## [4.7.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.7.0...@toptal/picasso-forms@4.7.1) (2021-09-24)
 
 
