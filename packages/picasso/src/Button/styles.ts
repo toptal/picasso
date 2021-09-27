@@ -3,6 +3,27 @@ import { alpha, outline, mix } from '@toptal/picasso-shared'
 
 const ICON_SPACING = '0.5em'
 
+export const createOutlineCommons = ({ palette }: Theme) => ({
+  color: palette.common.black,
+  backgroundColor: palette.common.white,
+
+  '&:hover, &$hovered': {
+    borderColor: palette.common.black
+  },
+
+  '&$disabled': {
+    color: palette.grey.main,
+    borderColor: palette.grey.main,
+    backgroundColor: palette.common.white
+  }
+})
+
+export const activeGroup = ({ palette }: Theme) => ({
+  backgroundColor: palette.grey.dark,
+  borderColor: palette.grey.dark,
+  color: palette.common.white
+})
+
 export const createVariant = (mainColor: string, { palette }: Theme) => ({
   border: 'none',
   color: palette.common.white,
@@ -118,22 +139,10 @@ export default (theme: Theme) => {
     positive: createVariant(palette.green.main, theme),
 
     secondary: {
-      color: palette.common.black,
-      backgroundColor: palette.common.white,
-
-      '&:hover, &$hovered': {
-        borderColor: palette.common.black
-      },
-
+      ...createOutlineCommons(theme),
       '&:active, &$active': {
         backgroundColor: palette.grey.lighter2,
         borderColor: palette.common.black
-      },
-
-      '&$disabled': {
-        color: palette.grey.main,
-        borderColor: palette.grey.main,
-        backgroundColor: palette.common.white
       }
     },
 
