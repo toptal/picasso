@@ -25,7 +25,10 @@ export interface Props
   /** Defines if `Radio` is checked by default */
   checked?: boolean
   /** Callback invoked when `Radio` changes its state */
-  onChange?: (event: object, checked: boolean) => void
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => void
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -68,7 +71,6 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         })}
         style={style}
         focusVisibleClassName={classes.focused}
-        data-testid='trigger'
       />
     )
 

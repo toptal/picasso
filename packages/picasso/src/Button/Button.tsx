@@ -25,6 +25,8 @@ import Group from '../ButtonGroup'
 import Circular from '../ButtonCircular'
 import Action from '../ButtonAction'
 import Split from '../ButtonSplit'
+import Checkbox from '../ButtonCheckbox'
+import Radio from '../ButtonRadio'
 import noop from '../utils/noop'
 import toTitleCase from '../utils/to-title-case'
 
@@ -230,5 +232,7 @@ export default Object.assign(Button, {
   Group,
   Circular,
   Action,
-  Split
+  Split,
+  Checkbox,
+  Radio
 })

@@ -21,7 +21,6 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
             <span
               aria-disabled="false"
               class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-              data-testid="trigger"
             >
               <span
                 class="MuiIconButton-label"
@@ -57,7 +56,6 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
             <span
               aria-disabled="false"
               class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-              data-testid="trigger"
             >
               <span
                 class="MuiIconButton-label"
@@ -93,7 +91,6 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
             <span
               aria-disabled="false"
               class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-              data-testid="trigger"
             >
               <span
                 class="MuiIconButton-label"
@@ -129,7 +126,6 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
             <span
               aria-disabled="false"
               class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-              data-testid="trigger"
             >
               <span
                 class="MuiIconButton-label"
@@ -165,7 +161,6 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
             <span
               aria-disabled="false"
               class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-              data-testid="trigger"
             >
               <span
                 class="MuiIconButton-label"
@@ -201,7 +196,6 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
             <span
               aria-disabled="false"
               class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-              data-testid="trigger"
             >
               <span
                 class="MuiIconButton-label"
@@ -255,7 +249,6 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
             <span
               aria-disabled="false"
               class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-              data-testid="trigger"
             >
               <span
                 class="MuiIconButton-label"
@@ -291,7 +284,6 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
             <span
               aria-disabled="false"
               class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-              data-testid="trigger"
             >
               <span
                 class="MuiIconButton-label"
@@ -332,7 +324,6 @@ exports[`Radio disabled radio button renders disabled version 1`] = `
     <span
       aria-disabled="true"
       class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root PrivateSwitchBase-disabled Mui-disabled Radio-disabled Mui-disabled Mui-disabled"
-      data-testid="trigger"
       tabindex="-1"
     >
       <span
@@ -361,7 +352,6 @@ exports[`Radio radio button renders default radio button 1`] = `
     <span
       aria-disabled="false"
       class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
-      data-testid="trigger"
     >
       <span
         class="MuiIconButton-label"

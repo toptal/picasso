@@ -29,7 +29,7 @@ const renderTabs = (
       <Tabs onChange={onChange} value={value}>
         {tabs.map((tab, index) => (
           <Tabs.Tab
-            key={index}
+            key={String(index)}
             data-testid={`tab-${index + 1}`}
             value={tab.value}
             label={tab.label}
