@@ -15,7 +15,8 @@ export default ({ palette, sizes }: Theme) =>
       transition: 'border .24s ease-in-out',
       gap: '0.5rem',
       '&:hover, &$dragActive, &.__hover': {
-        borderColor: palette.blue.main
+        borderColor: palette.blue.main,
+        cursor: 'pointer'
       },
       '&$completed': {
         backgroundColor: palette.grey.lighter

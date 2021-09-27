@@ -25,7 +25,7 @@ const useStyles = makeStyles<Theme>(styles, { name: 'FileInputContent' })
 
 const filterByUploading = (file: FileUpload): boolean => Boolean(file.uploading)
 
-export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone (
+export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
   props,
   ref
 ) {
@@ -52,7 +52,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone (
   const classes = useStyles()
 
   return (
-    <Container style={style}>
+    <Container style={style} ref={ref}>
       <Container
         flex
         direction='column'
@@ -65,7 +65,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone (
           })
         })}
       >
-        <input {...getInputProps({ className: classes.nativeInput, ref })} />
+        <input {...getInputProps({ className: classes.nativeInput })} />
         <Upload24 color='darkGrey' />
         <Typography
           className={classes.text}
