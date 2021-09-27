@@ -26,10 +26,12 @@ describe('ButtonRadio', () => {
       'data-testid': 'button'
     })
 
-    fireEvent.click(getByTestId('button'))
-
     const anyChangeEvent = expect.anything()
 
+    fireEvent.click(getByTestId('button'))
+    expect(onChange).toHaveBeenCalledWith(anyChangeEvent, true)
+
+    fireEvent.click(getByTestId('button'))
     expect(onChange).toHaveBeenCalledWith(anyChangeEvent, true)
   })
 

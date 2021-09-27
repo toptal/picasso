@@ -1,9 +1,11 @@
 import React from 'react'
 
 import Radio from '../Radio'
-import ButtonControl, { ButtonControlProps } from '../ButtonControl'
+import ButtonControlLabel, {
+  ButtonControlLabelProps
+} from '../ButtonControlLabel'
 
-export interface Props extends Omit<ButtonControlProps, 'renderControl'> {
+export interface Props extends Omit<ButtonControlLabelProps, 'control'> {
   testIds?: {
     radio?: string
   }
@@ -11,18 +13,9 @@ export interface Props extends Omit<ButtonControlProps, 'renderControl'> {
 
 const ButtonRadio = ({ testIds, ...rest }: Props) => {
   return (
-    <ButtonControl
+    <ButtonControlLabel
       {...rest}
-      renderControl={({ id, onChange, checked, value, disabled }) => (
-        <Radio
-          id={id}
-          data-testid={testIds?.radio}
-          disabled={disabled}
-          onChange={onChange}
-          checked={checked}
-          value={value}
-        />
-      )}
+      control={<Radio data-testid={testIds?.radio} />}
     />
   )
 }

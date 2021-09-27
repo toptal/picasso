@@ -1,9 +1,11 @@
 import React from 'react'
 
 import Checkbox from '../Checkbox'
-import ButtonControl, { ButtonControlProps } from '../ButtonControl'
+import ButtonControlLabel, {
+  ButtonControlLabelProps
+} from '../ButtonControlLabel'
 
-export interface Props extends Omit<ButtonControlProps, 'renderControl'> {
+export interface Props extends Omit<ButtonControlLabelProps, 'control'> {
   testIds?: {
     checkbox?: string
   }
@@ -11,18 +13,9 @@ export interface Props extends Omit<ButtonControlProps, 'renderControl'> {
 
 const ButtonCheckbox = ({ testIds, ...props }: Props) => {
   return (
-    <ButtonControl
+    <ButtonControlLabel
       {...props}
-      renderControl={({ id, onChange, checked, value, disabled }) => (
-        <Checkbox
-          data-testid={testIds?.checkbox}
-          id={id}
-          onChange={onChange}
-          checked={checked}
-          value={value}
-          disabled={disabled}
-        />
-      )}
+      control={<Checkbox data-testid={testIds?.checkbox} />}
     />
   )
 }

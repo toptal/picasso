@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core'
 import cx from 'classnames'
@@ -7,19 +7,8 @@ import Container from '../Container'
 import Button from '../Button'
 import styles from './styles'
 
-interface RenderControlArgs {
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => void
-  id?: string
-  checked?: boolean
-  disabled?: boolean
-  value?: string
-}
-
 export interface Props extends BaseProps {
-  /** Show checkbox initially as checked */
+  /** Show the control initially as checked */
   checked?: boolean
   /** Show button in the active state (left mouse button down) */
   active?: boolean
@@ -42,23 +31,26 @@ export interface Props extends BaseProps {
   children: ReactNode
   /** The id of the input element */
   id?: string
-  /** Control render function */
-  renderControl: (args: RenderControlArgs) => ReactNode
+  /** A control element. For instance, it can be be a Radio or a Checkbox */
+  control: ReactElement
 }
 
+// Using { index: -1 } to inject CSS link to the bottom of the head
+// in order to prevent Button's styles to override ButtonAction's ones
+// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonControl',
+  name: 'PicassoButtonControlLabel',
   index: -1
 })
 
-const ButtonControl = ({
+const ButtonControlLabel = ({
   children,
   size = 'medium',
   className,
   checked,
   onChange,
   id,
-  renderControl,
+  control,
   value,
   disabled,
   ...props
@@ -77,7 +69,7 @@ const ButtonControl = ({
       htmlFor={id}
       disabled={disabled}
     >
-      {renderControl({ id, checked, value, onChange, disabled })}
+      {React.cloneElement(control, { id, checked, value, onChange, disabled })}
       <Container className={classes.content} left={contentLeftSpacing}>
         {children}
       </Container>
@@ -85,8 +77,8 @@ const ButtonControl = ({
   )
 }
 
-ButtonControl.defaultProps = {
+ButtonControlLabel.defaultProps = {
   size: 'medium'
 }
 
-export default ButtonControl
+export default ButtonControlLabel
