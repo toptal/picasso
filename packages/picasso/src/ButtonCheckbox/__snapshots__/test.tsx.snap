@@ -7,7 +7,7 @@ exports[`ButtonCheckbox renders 1`] = `
   >
     <label
       aria-disabled="false"
-      class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root PicassoButtonInput-root PicassoButtonInput-medium"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root PicassoButtonControl-root PicassoButtonControl-medium"
       data-component-type="button"
       role="button"
       tabindex="0"
@@ -38,7 +38,7 @@ exports[`ButtonCheckbox renders 1`] = `
           </span>
         </span>
         <div
-          class="PicassoButtonInput-content"
+          class="PicassoButtonControl-content"
           style="margin-left: 0.5rem;"
         >
           Click me!
