@@ -1,4 +1,4 @@
-import React, { useMemo, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core'
 import cx from 'classnames'
@@ -65,26 +65,20 @@ const ButtonInput = ({
 }: Props) => {
   const classes = useStyles()
 
-  const containerLeftOffset = useMemo(() => {
-    if (size === 'large') {
-      return 1
-    }
-
-    return 0.5
-  }, [size])
+  const contentLeftSpacing = size === 'large' ? 1 : 0.5
 
   return (
     <Button
+      {...props}
       className={cx(className, classes.root, classes[size])}
       variant='secondary'
       size={size}
       as='label'
       htmlFor={id}
       disabled={disabled}
-      {...props}
     >
       {renderInput({ id, checked, value, onChange, disabled })}
-      <Container className={classes.content} left={containerLeftOffset}>
+      <Container className={classes.content} left={contentLeftSpacing}>
         {children}
       </Container>
     </Button>

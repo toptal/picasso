@@ -28,7 +28,9 @@ describe('ButtonCheckbox', () => {
 
     fireEvent.click(getByTestId('button'))
 
-    expect(onChange).toHaveBeenCalledWith(expect.anything(), true)
+    const anyChangeEvent = expect.anything()
+
+    expect(onChange).toHaveBeenCalledWith(anyChangeEvent, true)
   })
 
   it('changes value of checkbox when clicking on checkbox', () => {
@@ -41,7 +43,9 @@ describe('ButtonCheckbox', () => {
 
     fireEvent.click(getByTestId('checkbox'))
 
-    expect(onChange).toHaveBeenCalledWith(expect.anything(), true)
+    const anyChangeEvent = expect.anything()
+
+    expect(onChange).toHaveBeenCalledWith(anyChangeEvent, true)
   })
 
   it('ignores clicks when disabled', () => {

@@ -28,7 +28,9 @@ describe('ButtonRadio', () => {
 
     fireEvent.click(getByTestId('button'))
 
-    expect(onChange).toHaveBeenCalledWith(expect.anything(), true)
+    const anyChangeEvent = expect.anything()
+
+    expect(onChange).toHaveBeenCalledWith(anyChangeEvent, true)
   })
 
   it('changes value of radio when clicking on radio', () => {
@@ -41,7 +43,9 @@ describe('ButtonRadio', () => {
 
     fireEvent.click(getByTestId('radio'))
 
-    expect(onChange).toHaveBeenCalledWith(expect.anything(), true)
+    const anyChangeEvent = expect.anything()
+
+    expect(onChange).toHaveBeenCalledWith(anyChangeEvent, true)
   })
 
   it('ignores clicks when disabled', () => {
