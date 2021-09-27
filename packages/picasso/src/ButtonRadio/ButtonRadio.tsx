@@ -3,7 +3,7 @@ import React from 'react'
 import Radio from '../Radio'
 import ButtonControl, { ButtonControlProps } from '../ButtonControl'
 
-export interface Props extends Omit<ButtonControlProps, 'renderInput'> {
+export interface Props extends Omit<ButtonControlProps, 'renderControl'> {
   testIds?: {
     radio?: string
   }

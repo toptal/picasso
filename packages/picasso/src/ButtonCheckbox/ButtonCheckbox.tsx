@@ -3,7 +3,7 @@ import React from 'react'
 import Checkbox from '../Checkbox'
 import ButtonControl, { ButtonControlProps } from '../ButtonControl'
 
-export interface Props extends Omit<ButtonControlProps, 'renderInput'> {
+export interface Props extends Omit<ButtonControlProps, 'renderControl'> {
   testIds?: {
     checkbox?: string
   }
