@@ -23,19 +23,19 @@ export interface Props extends BaseProps {
   /** Enable/disable the dropzone */
   disabled?: boolean
   /** Maximum file size (in bytes) */
-  maxSize: number
+  maxSize?: number
   /** Minimum file size (in bytes) */
-  minSize: number
+  minSize?: number
   /** Allow drag 'n' drop (or selection from the file dialog) of multiple files */
-  multiple: boolean
+  multiple?: boolean
   /** The text of the hint */
   hint?: string
   /** Callback invoked when a file item is removed */
   onRemove?: (fileName: string, index: number) => void
-  onDropAccepted: DropzoneOptions['onDropAccepted']
-  onDropRejected: DropzoneOptions['onDropRejected']
-  onDrop: DropzoneOptions['onDrop']
-  validator: DropzoneOptions['validator']
+  onDropAccepted?: DropzoneOptions['onDropAccepted']
+  onDropRejected?: DropzoneOptions['onDropRejected']
+  onDrop?: DropzoneOptions['onDrop']
+  validator?: DropzoneOptions['validator']
   /** Value uses the File interface. */
   value?: FileUpload[]
   /** Reasons why files couldn't be droped into dropzone */
