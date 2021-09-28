@@ -4,15 +4,15 @@ import { Dropzone, DropzoneProps } from '@toptal/picasso-lab'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { mount } from '@cypress/react'
 
-const renderDropzone = (props: DropzoneProps) => (
+const renderDropzone = (props?: DropzoneProps) => (
   <Container padded='small'>
-    <Dropzone style={{ width: 300 }} {...props} />
+    <Dropzone style={{ width: '300px' }} {...props} />
   </Container>
 )
 
 describe('Dropzone', () => {
   it('renders without props', () => {
-    mount(<TestingPicasso>{renderDropzone({})}</TestingPicasso>)
+    mount(<TestingPicasso>{renderDropzone()}</TestingPicasso>)
     cy.get('body').happoScreenshot()
   })
 
@@ -25,15 +25,6 @@ describe('Dropzone', () => {
       </TestingPicasso>
     )
     cy.contains('Max file size').should('be.visible')
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders with hovered', () => {
-    mount(
-      <TestingPicasso>
-        {renderDropzone({ className: '__hover', hint: 'Max file size: 25MB' })}
-      </TestingPicasso>
-    )
     cy.get('body').happoScreenshot()
   })
 
@@ -59,6 +50,17 @@ describe('Dropzone', () => {
         })}
       </TestingPicasso>
     )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders hovered', () => {
+    mount(<TestingPicasso>{renderDropzone({ hovered: true })}</TestingPicasso>)
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders focused', () => {
+    mount(<TestingPicasso>{renderDropzone({ focused: true })}</TestingPicasso>)
+
     cy.get('body').happoScreenshot()
   })
 

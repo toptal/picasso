@@ -1,29 +1,31 @@
 import { rem } from '@toptal/picasso-shared'
 import { createStyles, Theme } from '@material-ui/core/styles'
 
-export default ({ palette, sizes }: Theme) =>
+export default ({ palette, sizes, transitions }: Theme) =>
   createStyles({
     root: {
       padding: '20px',
-      borderWidth: 1,
+      borderWidth: sizes.borderWidth,
       borderRadius: sizes.borderRadius.medium,
       borderColor: palette.grey.light2,
       borderStyle: 'dashed',
       backgroundColor: palette.common.white,
       color: palette.grey.dark,
       outline: 'none',
-      transition: 'border .24s ease-in-out',
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
+      transitionProperty: 'border, background-color',
       gap: '0.5rem',
-      '&:hover, &$dragActive, &.__hover': {
+      '&:hover, &$hovered, &:focus, &$focused, &$dragActive': {
         borderColor: palette.blue.main,
         cursor: 'pointer'
       },
-      '&$completed': {
-        backgroundColor: palette.grey.lighter
+      '&$disabled': {
+        backgroundColor: palette.grey.lighter,
+        '&:hover': {
+          cursor: 'no-drop',
+          borderColor: palette.grey.light2
+        }
       }
-    },
-    text: {
-      lineHeight: rem('22px')
     },
     hint: {
       margin: 0,
@@ -36,5 +38,8 @@ export default ({ palette, sizes }: Theme) =>
     },
     completed: {},
     error: {},
-    dragActive: {}
+    dragActive: {},
+    hovered: {},
+    disabled: {},
+    focused: {}
   })

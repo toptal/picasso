@@ -1,7 +1,7 @@
 import { Dropzone } from '../Dropzone'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Forms').createPage(
+const page = PicassoBook.section('Picasso Lab').createPage(
   'Dropzone',
   `
   ${PicassoBook.createBaseDocsLink(
@@ -20,87 +20,6 @@ page.createTabChapter('Props').addComponentDocs({
       description:
         'Set accepted file types. See https://github.com/okonet/attr-accept for more information. Keep in mind that mime type determination is not reliable across platforms. CSV files, for example, are reported as text/plain under macOS but as application/vnd.ms-excel under Windows. In some cases there might not be a mime type set at all. See: https://github.com/react-dropzone/react-dropzone/issues/276'
     },
-    disabled: {
-      name: 'disabled',
-      type: 'boolean',
-      description: 'Enable/disable the dropzone',
-      defaultValue: 'false'
-    },
-    getFilesFromEvent: {
-      name: 'getFilesFromEvent',
-      type: 'function',
-      description: 'Use this to provide a custom file aggregator'
-    },
-    maxFiles: {
-      name: 'maxFiles',
-      type: 'number',
-      description:
-        'Maximum accepted number of files The default value is 0 which means there is no limitation to how many files are accepted.',
-      defaultValue: 0
-    },
-    maxSize: {
-      name: 'maxSize',
-      type: 'number',
-      description: 'Maximum file size (in bytes)',
-      defaultValue: 'Infinity'
-    },
-    minSize: {
-      name: 'minSize',
-      type: 'number',
-      description: 'Minimum file size (in bytes)',
-      defaultValue: 0
-    },
-    multiple: {
-      name: 'multiple',
-      type: 'boolean',
-      description:
-        "Allow drag 'n' drop (or selection from the file dialog) of multiple files",
-      defaultValue: 'true'
-    },
-    noClick: {
-      name: 'noClick',
-      type: 'boolean',
-      description:
-        'If true, disables click to open the native file selection dialog',
-      defaultValue: 'false'
-    },
-    noDrag: {
-      name: 'noDrag',
-      type: 'boolean',
-      description: "If true, disables drag 'n' drop",
-      defaultValue: 'false'
-    },
-    noDragEventsBubbling: {
-      name: 'noDragEventsBubbling',
-      type: 'boolean',
-      description: 'If true, stops drag event propagation to parents',
-      defaultValue: 'false'
-    },
-    noKeyboard: {
-      name: 'noKeyboard',
-      type: 'boolean',
-      description:
-        'If true, disables SPACE/ENTER to open the native file selection dialog. Note that it also stops tracking the focus state.',
-      defaultValue: 'false'
-    },
-    onDragEnter: {
-      name: 'onDragEnter',
-      type: '(event:DragEvent) => void',
-      description: 'Cb for when the dragenter event occurs.'
-    },
-    onDragLeave: {
-      name: 'onDragLeave',
-      type: '(event:DragEvent) => void',
-      description: 'Cb for when the dragleave event occurs'
-    },
-    onDragOver: {
-      name: 'onDragOver',
-      type: {
-        name: 'function',
-        description: '(event:DragEvent) => void'
-      },
-      description: 'Cb for when the dragover event occurs'
-    },
     onDropAccepted: {
       name: 'onDropAccepted',
       type: {
@@ -118,18 +37,6 @@ page.createTabChapter('Props').addComponentDocs({
       },
       description:
         'Cb for when the drop event occurs. Note that if no files are rejected, this callback is not invoked.'
-    },
-    onFileDialogCancel: {
-      name: 'onFileDialogCancel',
-      type: 'function',
-      description: 'Cb for when closing the file dialog with no selection'
-    },
-    preventDropOnDocument: {
-      name: 'preventDropOnDocument',
-      type: 'boolean',
-      description:
-        'If false, allow dropped items to take over the current browser window',
-      defaultvalue: 'true'
     },
     validator: {
       name: 'validator',
@@ -170,9 +77,9 @@ onDrop will provide you with an array of File objects which you can then process
 
 page
   .createChapter()
-  .addExample('Dropzone/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('Dropzone/story/Hover.example.tsx', 'Hover') // picasso-skip-visuals
+  .addExample('Dropzone/story/Default.example.tsx', 'Default with mocked logic') // picasso-skip-visuals
+  .addExample('Dropzone/story/Hover.example.tsx', 'Hovered') // picasso-skip-visuals
   .addExample('Dropzone/story/Uploading.example.tsx', 'Uploading') // picasso-skip-visuals
-  .addExample('Dropzone/story/Completed.example.tsx', 'Completed') // picasso-skip-visuals
+  .addExample('Dropzone/story/Disabled.example.tsx', 'Completed') // picasso-skip-visuals
   .addExample('Dropzone/story/Multiple.example.tsx', 'Completed Multiple files') // picasso-skip-visuals
   .addExample('Dropzone/story/Error.example.tsx', 'Upload Failed') // picasso-skip-visuals

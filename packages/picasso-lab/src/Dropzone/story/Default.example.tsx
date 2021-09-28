@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dropzone, DropzoneProps } from '@toptal/picasso-lab'
 import { FileUpload } from '@toptal/picasso-lab/Dropzone'
 
@@ -14,11 +14,23 @@ const customSizeValidator: DropzoneProps['validator'] = file => {
   return null
 }
 
-const useFiles = () => {
+const useFiles = ({ maxFiles }: { maxFiles: number }) => {
   const [files, setFiles] = useState<FileUpload[]>([])
   const [errorMessages, setError] = useState<string[]>([])
+  const [disabled, setDisabled] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (files.length >= maxFiles) {
+      setDisabled(true)
+    } else {
+      setDisabled(false)
+    }
+  }, [maxFiles, files.length])
 
   const addFiles: DropzoneProps['onDrop'] = (acceptedFiles, rejectedFiles) => {
+    if (files.length + acceptedFiles.length + rejectedFiles.length > maxFiles) {
+      return setError(['Too many files'])
+    }
     if (acceptedFiles.length > 0) {
       const previousFiles = files
       const newFiles = Array.from(acceptedFiles).map(file => ({
@@ -67,23 +79,25 @@ const useFiles = () => {
     files,
     addFiles,
     removeFile,
-    errorMessages
+    errorMessages,
+    disabled
   }
 }
 const Example = () => {
-  const { files, addFiles, removeFile, errorMessages } = useFiles()
+  const { files, addFiles, removeFile, errorMessages, disabled } = useFiles({
+    maxFiles: 2
+  })
 
   return (
     <Dropzone
       value={files}
       onDrop={addFiles}
       onRemove={removeFile}
-      hint={`Files allowed: 2. Max file size: ${MAX_SIZE / 1000}KB`}
+      hint={`Files allowed 2. Max file size: ${MAX_SIZE / 1000}KB`}
       accept='image/*'
-      multiple={false}
-      maxFiles={2}
       validator={customSizeValidator}
       errorMessages={errorMessages}
+      disabled={disabled}
     />
   )
 }

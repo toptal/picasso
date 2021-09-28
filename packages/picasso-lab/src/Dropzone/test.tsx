@@ -24,37 +24,6 @@ describe('Dropzone', () => {
     expect(queryByText('error example')).toBeVisible()
   })
 
-  it('shows completed', () => {
-    const { getByTestId } = renderDropzone({
-      value: [
-        {
-          uploading: false,
-          progress: 0,
-          file: new File(['resume.pdf'], 'resume.pdf')
-        }
-      ],
-      'data-testid': 'foobar'
-    })
-
-    expect(
-      Array.from(getByTestId('foobar').classList).map(
-        classname => classname.split('-')[1]
-      )
-    ).toContain('completed')
-  })
-
-  it('shows not completed', () => {
-    const { getByTestId } = renderDropzone({
-      'data-testid': 'foobar'
-    })
-
-    expect(
-      Array.from(getByTestId('foobar').classList).map(
-        classname => classname.split('-')[1]
-      )
-    ).not.toContain('completed')
-  })
-
   it('renders hint', () => {
     const { queryByText } = renderDropzone({ hint: 'hint example' })
 
