@@ -4,7 +4,7 @@ import { rem } from '@toptal/picasso-shared'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      borderBottom: `1px solid ${palette.grey.light2}`,
+      borderBottom: `1px solid ${palette.grey.lighter2}`,
       paddingTop: rem('5px'),
       paddingBottom: rem('5px')
     },

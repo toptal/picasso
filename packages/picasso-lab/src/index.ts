@@ -4,8 +4,14 @@ export { default as DatePicker } from './DatePicker'
 export type { DatePickerProps } from './DatePicker'
 export { default as Drawer } from './Drawer'
 export type { DrawerProps } from './Drawer'
-export { default as Dropzone } from './Dropzone'
-export type { DropzoneProps } from './Dropzone'
+export { default as Dropzone, ErrorCode as DropzoneErrorCode } from './Dropzone'
+export type {
+  DropzoneProps,
+  FileUpload as DropzoneFileUpload,
+  FileError as DropzoneFileError,
+  FileRejection as DropzoneFileRejection,
+  DropEvent as DropzoneDropEvent
+} from './Dropzone'
 export { default as OverviewBlock } from './OverviewBlock'
 export type { OverviewBlockProps } from './OverviewBlock'
 export { default as TypographyOverflow } from './TypographyOverflow'

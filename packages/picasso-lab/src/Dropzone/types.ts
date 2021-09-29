@@ -36,16 +36,18 @@ export type DropEvent =
   | DragEvent
   | Event
 
-export enum ErrorCode {
-  FileInvalidType = 'file-invalid-type',
-  FileTooLarge = 'file-too-large',
-  FileTooSmall = 'file-too-small',
-  TooManyFiles = 'too-many-files'
-}
+export const ErrorCode = {
+  FileInvalidType: 'file-invalid-type',
+  FileTooLarge: 'file-too-large',
+  FileTooSmall: 'file-too-small',
+  TooManyFiles: 'too-many-files'
+} as const
+
+type ErrorCodeType = typeof ErrorCode[keyof typeof ErrorCode]
 
 export interface FileError {
   message: string
-  code: ErrorCode | string
+  code: ErrorCodeType | string
 }
 
 export interface FileRejection {

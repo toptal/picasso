@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { Dropzone, DropzoneProps } from '@toptal/picasso-lab'
-import { FileUpload } from '@toptal/picasso-lab/Dropzone'
+import {
+  Dropzone,
+  DropzoneErrorCode,
+  DropzoneFileUpload,
+  DropzoneFileError,
+  DropzoneFileRejection,
+  DropzoneDropEvent
+} from '@toptal/picasso-lab'
+
+type ValidatorType = (
+  file: File
+) => DropzoneFileError | DropzoneFileError[] | null
+type OnDropType = (
+  acceptedFiles: File[],
+  fileRejections: DropzoneFileRejection[],
+  event: DropzoneDropEvent
+) => void
 
 const MAX_SIZE = 600 * 1000
-const customSizeValidator: DropzoneProps['validator'] = file => {
+
+const customSizeValidator: ValidatorType = file => {
   if (file.size > MAX_SIZE) {
     return {
-      code: 'size-too-large',
+      code: DropzoneErrorCode.FileTooLarge,
       message: `File size exceeds the ${MAX_SIZE / 1000 / 1000}MB.`
     }
   }
@@ -15,7 +31,7 @@ const customSizeValidator: DropzoneProps['validator'] = file => {
 }
 
 const useFiles = ({ maxFiles }: { maxFiles: number }) => {
-  const [files, setFiles] = useState<FileUpload[]>([])
+  const [files, setFiles] = useState<DropzoneFileUpload[]>([])
   const [errorMessages, setError] = useState<string[]>([])
   const [disabled, setDisabled] = useState<boolean>(false)
 
@@ -27,7 +43,7 @@ const useFiles = ({ maxFiles }: { maxFiles: number }) => {
     }
   }, [maxFiles, files.length])
 
-  const addFiles: DropzoneProps['onDrop'] = (acceptedFiles, rejectedFiles) => {
+  const addFiles: OnDropType = (acceptedFiles, rejectedFiles) => {
     if (files.length + acceptedFiles.length + rejectedFiles.length > maxFiles) {
       return setError(['Too many files'])
     }
