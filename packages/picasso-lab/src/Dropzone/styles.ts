@@ -31,13 +31,12 @@ export default ({ palette, sizes, transitions }: Theme) =>
       margin: 0,
       '& > *': {
         lineHeight: rem('16px')
-      },
-      '&$error > *': {
-        color: palette.red.main
       }
     },
     completed: {},
-    error: {},
+    error: {
+      margin: 0
+    },
     dragActive: {},
     hovered: {},
     disabled: {},

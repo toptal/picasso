@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container } from '@toptal/picasso'
 import { Dropzone, DropzoneProps } from '@toptal/picasso-lab'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
@@ -81,25 +81,20 @@ describe('Dropzone', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders completed', () => {
-    const DropzoneWithState = () => {
-      const [value, setValue] = useState<DropzoneProps['value']>([
-        {
-          uploading: false,
-          file: new File(['resume.pdf'], 'resume.pdf')
-        }
-      ])
-
-      return renderDropzone({
-        value,
-        onRemove: () => setValue([]),
-        'data-testid': 'foobar'
-      })
-    }
-
+  it('renders disabled', () => {
     mount(
       <TestingPicasso>
-        <DropzoneWithState />
+        {renderDropzone({
+          value: [
+            {
+              uploading: false,
+              progress: 100,
+              file: new File(['resume.pdf'], 'resume.pdf')
+            }
+          ],
+          disabled: true,
+          onRemove: () => {}
+        })}
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
@@ -121,6 +116,7 @@ describe('Dropzone', () => {
               file: new File(['portfolio.pdf'], 'portfolio.pdf')
             }
           ],
+          disabled: true,
           onRemove: () => {}
         })}
       </TestingPicasso>

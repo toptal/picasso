@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { useDropzone, DropzoneOptions } from 'react-dropzone'
+import { useDropzone } from 'react-dropzone'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -12,7 +12,7 @@ import {
   FormHint
 } from '@toptal/picasso'
 
-import { FileUpload } from './types'
+import { FileUpload, DropzoneOptions } from './types'
 import styles from './styles'
 
 export interface Props extends BaseProps {
@@ -32,9 +32,13 @@ export interface Props extends BaseProps {
   hint?: string
   /** Callback invoked when a file item is removed */
   onRemove?: (fileName: string, index: number) => void
+  /** Callback for when the drop event occurs */
   onDropAccepted?: DropzoneOptions['onDropAccepted']
+  /** callback for when the drop event occurs */
   onDropRejected?: DropzoneOptions['onDropRejected']
+  /** callback for when the drop event occurs */
   onDrop?: DropzoneOptions['onDrop']
+  /** Custom validation function */
   validator?: DropzoneOptions['validator']
   /** Value uses the File interface. */
   value?: FileUpload[]
@@ -60,12 +64,30 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
     'data-testid': dataTestId,
     focused,
     hovered,
-    ...dropzoneOptions
+
+    // dropzoneOptions
+    accept,
+    minSize,
+    maxSize,
+    multiple,
+    disabled,
+    onDrop,
+    onDropAccepted,
+    onDropRejected,
+    validator
   } = props
 
-  const { getRootProps, isDragActive, getInputProps } = useDropzone(
-    dropzoneOptions
-  )
+  const { getRootProps, isDragActive, getInputProps } = useDropzone({
+    accept,
+    minSize,
+    maxSize,
+    multiple,
+    disabled,
+    onDrop,
+    onDropAccepted,
+    onDropRejected,
+    validator
+  })
 
   const classes = useStyles()
 
@@ -80,7 +102,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
           className: cx(classes.root, {
             [classes.dragActive]: isDragActive,
             [classes.hovered]: hovered,
-            [classes.disabled]: dropzoneOptions.disabled,
+            [classes.disabled]: disabled,
             [classes.focused]: focused
           })
         })}
@@ -95,7 +117,12 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
         )}
         {errorMessages.length > 0 &&
           errorMessages.map((error, index) => (
-            <FormError key={`${error}-${String(index)}`}>{error}</FormError>
+            <FormError
+              className={classes.error}
+              key={`${error}-${String(index)}`}
+            >
+              {error}
+            </FormError>
           ))}
       </Container>
       {value && value.length > 0 && (
