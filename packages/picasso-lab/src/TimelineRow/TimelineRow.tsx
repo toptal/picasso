@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/shared'
+import { BaseProps } from '@toptal/picasso-shared'
 import { Container, Typography } from '@toptal/picasso'
 import cx from 'classnames'
 

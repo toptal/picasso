@@ -1,4 +1,4 @@
-import { OmitInternalProps } from '@toptal/shared'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { Props } from './TimelineDotIcon'
 
