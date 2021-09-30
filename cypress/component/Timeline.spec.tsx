@@ -1,0 +1,106 @@
+import React from 'react'
+import { Typography, Link } from '@toptal/picasso'
+import { Timeline, Note } from '@toptal/picasso-lab'
+import { Tasks16, Pencil16, Email16 } from '@toptal/picasso/Icon'
+import { mount } from '@cypress/react'
+
+interface RenderTimelineArgs {
+  hasIcons?: boolean
+  hasDates?: boolean
+  trimLastConnector?: boolean
+}
+
+const renderTimeline = ({
+  hasIcons,
+  hasDates,
+  trimLastConnector
+}: RenderTimelineArgs = {}) => (
+  <div style={{ maxWidth: 500 }}>
+    <Timeline>
+      <Timeline.Row
+        icon={hasIcons ? <Tasks16 /> : undefined}
+        date={hasDates ? 'Jun 24, 2020' : undefined}
+      >
+        <Typography>
+          System marked job{' '}
+          <Link fontSize='inherit'>
+            Principal Solutions Product Manager (203875) → Cleo O'Connell
+          </Link>{' '}
+          as inactive
+        </Typography>
+      </Timeline.Row>
+      <Timeline.Row
+        icon={hasIcons ? <Pencil16 /> : undefined}
+        date={hasDates ? 'Jun 23, 2020' : undefined}
+      >
+        <Typography inline>
+          <Link fontSize='inherit'>Bettina Barreto</Link>
+        </Typography>{' '}
+        added a note
+        <Note>
+          <Note.Title>New TOP</Note.Title>
+          <Note.Content>
+            This part was obfuscated, some content was here.
+          </Note.Content>
+        </Note>
+      </Timeline.Row>
+      <Timeline.Row
+        icon={hasIcons ? <Tasks16 /> : undefined}
+        date={hasDates ? 'Jun 23, 2020' : undefined}
+      >
+        <Typography>
+          <Link fontSize='inherit'>Carolina Della Corte</Link> changed
+          commitment of{' '}
+          <Link fontSize='inherit'>
+            Principal Solutions Product Manager (203875) → Cleo O'Connell
+          </Link>{' '}
+          from part-time to hourly
+        </Typography>
+      </Timeline.Row>
+      <Timeline.Row
+        icon={hasIcons ? <Email16 /> : undefined}
+        date={hasDates ? 'Jun 22, 2020' : undefined}
+        hasConnector={!trimLastConnector}
+      >
+        <Note>
+          <Note.Title>Review of your Toptal coding exercize</Note.Title>
+          <Note.Content>
+            This part was obfuscated, some content was here.
+          </Note.Content>
+        </Note>
+      </Timeline.Row>
+    </Timeline>
+  </div>
+)
+
+describe('Tag', () => {
+  it('renders', () => {
+    mount(renderTimeline())
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders with dates', () => {
+    mount(renderTimeline({ hasDates: true }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders with icons', () => {
+    mount(renderTimeline({ hasIcons: true }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders with dates and icons', () => {
+    mount(renderTimeline({ hasDates: true, hasIcons: true }))
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders without last connector', () => {
+    mount(renderTimeline({ trimLastConnector: true }))
+
+    cy.get('body').happoScreenshot()
+  })
+})
