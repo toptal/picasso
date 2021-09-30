@@ -27,7 +27,7 @@ page.createTabChapter('Props').addComponentDocs({
         description: '(files: File[], event) => void'
       },
       description:
-        'Cb for when the drop event occurs. Note that if no files are accepted, this callback is not invoked.'
+        'Callback for when the drop event occurs. Note that if no files are accepted, this callback is not invoked.'
     },
     onDropRejected: {
       name: 'onDropRejected',
@@ -36,7 +36,7 @@ page.createTabChapter('Props').addComponentDocs({
         description: '(fileRejections: FileRejection[], event) => void'
       },
       description:
-        'Cb for when the drop event occurs. Note that if no files are rejected, this callback is not invoked.'
+        'Callback for when the drop event occurs. Note that if no files are rejected, this callback is not invoked.'
     },
     validator: {
       name: 'validator',
@@ -55,7 +55,7 @@ page.createTabChapter('Props').addComponentDocs({
           '(acceptedFiles: File[], fileRejections: FileRejection[], event:DragEvent | Event) => void'
       },
       description: `
-Cb for when the drop event occurs. Note that this callback is invoked after the getFilesFromEvent callback is done.
+Callback for when the drop event occurs. Note that this callback is invoked after the getFilesFromEvent callback is done.
 
 Files are accepted or rejected based on the accept, multiple, minSize and maxSize props. accept must be a valid MIME type according to input element specification or a valid file extension. If multiple is set to false and additional files are dropped, all files besides the first will be rejected. Any file which does not have a size in the minSize, maxSize range, will be rejected as well.
 
