@@ -77,9 +77,8 @@ onDrop will provide you with an array of File objects which you can then process
 
 page
   .createChapter()
-  .addExample('Dropzone/story/Default.example.tsx', 'Default with mocked logic') // picasso-skip-visuals
+  .addExample('Dropzone/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('Dropzone/story/Uploader.example.tsx', 'With upload') // picasso-skip-visuals
-  .addExample('Dropzone/story/Hover.example.tsx', 'Hovered') // picasso-skip-visuals
   .addExample('Dropzone/story/Uploading.example.tsx', 'Uploading') // picasso-skip-visuals
   .addExample('Dropzone/story/Disabled.example.tsx', 'Completed') // picasso-skip-visuals
   .addExample('Dropzone/story/Multiple.example.tsx', 'Completed Multiple files') // picasso-skip-visuals
