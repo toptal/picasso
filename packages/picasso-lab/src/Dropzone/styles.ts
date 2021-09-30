@@ -1,4 +1,3 @@
-import { rem } from '@toptal/picasso-shared'
 import { createStyles, Theme } from '@material-ui/core/styles'
 
 export default ({ palette, sizes, transitions }: Theme) =>
@@ -30,7 +29,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
     hint: {
       margin: 0,
       '& > *': {
-        lineHeight: rem('16px')
+        lineHeight: '1rem'
       }
     },
     completed: {},

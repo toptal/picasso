@@ -9,9 +9,10 @@ const renderDropzone = (props: OmitInternalProps<Props>) =>
 
 describe('Dropzone', () => {
   it('renders', () => {
-    const { queryByText } = renderDropzone({})
+    const { queryByText, container } = renderDropzone({})
 
     expect(queryByText('Click or drag file to upload')).toBeVisible()
+    expect(container).toMatchSnapshot()
   })
 
   it('shows error', () => {

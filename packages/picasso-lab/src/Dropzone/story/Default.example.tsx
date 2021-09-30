@@ -4,27 +4,19 @@ import {
   DropzoneErrorCode,
   DropzoneFileUpload,
   DropzoneFileError,
-  DropzoneFileRejection,
-  DropzoneDropEvent
+  DropzoneFileRejection
 } from '@toptal/picasso-lab'
-
-type ValidatorType = (
-  file: File
-) => DropzoneFileError | DropzoneFileError[] | null
-type OnDropType = (
-  acceptedFiles: File[],
-  fileRejections: DropzoneFileRejection[],
-  event: DropzoneDropEvent
-) => void
 
 const MAX_SIZE = 600 * 1000
 
-const customSizeValidator: ValidatorType = file => {
+const customSizeValidator = (file: File): DropzoneFileError[] | null => {
   if (file.size > MAX_SIZE) {
-    return {
-      code: DropzoneErrorCode.FileTooLarge,
-      message: `File size exceeds the ${MAX_SIZE / 1000 / 1000}MB.`
-    }
+    return [
+      {
+        code: DropzoneErrorCode.FileTooLarge,
+        message: `File size exceeds the ${MAX_SIZE / 1000 / 1000}MB.`
+      }
+    ]
   }
 
   return null
@@ -43,13 +35,16 @@ const useFiles = ({ maxFiles }: { maxFiles: number }) => {
     }
   }, [maxFiles, files.length])
 
-  const addFiles: OnDropType = (acceptedFiles, rejectedFiles) => {
+  const addFiles = (
+    acceptedFiles: File[],
+    rejectedFiles: DropzoneFileRejection[]
+  ): void => {
     if (files.length + acceptedFiles.length + rejectedFiles.length > maxFiles) {
       return setError(['Too many files'])
     }
     if (acceptedFiles.length > 0) {
       const previousFiles = files
-      const newFiles = Array.from(acceptedFiles).map(file => ({
+      const newFiles = acceptedFiles.map(file => ({
         file,
         uploading: true
       }))
