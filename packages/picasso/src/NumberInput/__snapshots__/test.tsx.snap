@@ -16,7 +16,7 @@ exports[`NumberInput renders 1`] = `
       value="10"
     />
     <div
-      class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
+      class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputAdornment-rootMedium MuiInputAdornment-positionEnd"
     >
       <div
         class="PicassoContainer-flex PicassoContainer-inline PicassoContainer-column"

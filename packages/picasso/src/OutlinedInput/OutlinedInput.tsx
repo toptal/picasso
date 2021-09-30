@@ -1,6 +1,6 @@
 import React, {
   ChangeEventHandler,
-  ReactType,
+  ElementType,
   ReactNode,
   InputHTMLAttributes,
   MouseEvent,
@@ -38,7 +38,7 @@ export interface Props
     > {
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
-  inputComponent?: ReactType<InputBaseComponentProps>
+  inputComponent?: ElementType<InputBaseComponentProps>
   inputProps?: BaseInputProps
   defaultValue?: ValueType
   value?: ValueType
@@ -61,7 +61,7 @@ export interface Props
    * Size of component
    * @default medium
    */
-  size?: SizeType<'small' | 'medium'>
+  size?: SizeType<'small' | 'medium' | 'large'>
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
   /** Callback invoked when reset button was clicked */

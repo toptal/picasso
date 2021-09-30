@@ -74,7 +74,7 @@ export interface Props
    * Size of component
    * @default medium
    */
-  size?: SizeType<'small' | 'medium'>
+  size?: SizeType<'small' | 'medium' | 'large'>
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
   /** Callback invoked when reset button was clicked */
@@ -85,20 +85,29 @@ export interface Props
   outlineRef?: React.Ref<HTMLElement>
 }
 
-type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit'> & {
+type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit' | 'size'> & {
   counter: NonNullable<Props['counter']>
   charsLength: number
 }
 
-type IconAdornmentProps = Pick<Props, 'disabled' | 'icon'> & {
+type IconAdornmentProps = Pick<Props, 'disabled' | 'icon' | 'size'> & {
   position: Props['iconPosition']
 }
 
-type StartAdornmentProps = Pick<Props, 'icon' | 'iconPosition' | 'disabled'>
+type StartAdornmentProps = Pick<
+  Props,
+  'icon' | 'iconPosition' | 'disabled' | 'size'
+>
 
 type EndAdornmentProps = Pick<
   Props,
-  'icon' | 'iconPosition' | 'disabled' | 'multiline' | 'limit' | 'counter'
+  | 'icon'
+  | 'iconPosition'
+  | 'disabled'
+  | 'multiline'
+  | 'limit'
+  | 'counter'
+  | 'size'
 > & { charsLength?: number }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoInput' })
@@ -144,7 +153,7 @@ const getMultilineLabel = ({
 
 const LimitAdornment = (props: LimitAdornmentProps) => {
   const classes = useStyles()
-  const { multiline, charsLength, counter, limit } = props
+  const { multiline, charsLength, counter, limit, size } = props
 
   const charsTillLimit = getCharsTillLimit({
     counter,
@@ -162,9 +171,8 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
     <InputAdornment
       data-testid='limit-adornment-multiline-label'
       position='end'
-      className={cx({
-        [classes.limiterMultiline]: multiline
-      })}
+      className={cx({ [classes.limiterMultiline]: multiline })}
+      size={size}
       disablePointerEvents
     >
       <span
@@ -179,10 +187,10 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
 }
 
 const IconAdornment = (props: IconAdornmentProps) => {
-  const { position, disabled, icon } = props
+  const { position, disabled, icon, size } = props
   const classes = useStyles()
   const styledIcon = React.cloneElement(icon as ReactElement, {
-    className: classes.icon,
+    className: cx(classes.icon),
     role: 'presentation'
   })
 
@@ -191,6 +199,7 @@ const IconAdornment = (props: IconAdornmentProps) => {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       position={position!}
       disabled={disabled}
+      size={size}
       disablePointerEvents
     >
       {styledIcon}
@@ -198,16 +207,21 @@ const IconAdornment = (props: IconAdornmentProps) => {
   )
 }
 
-const StartAdornment = ({
-  icon,
-  iconPosition,
-  disabled
-}: StartAdornmentProps) => {
+const StartAdornment = (props: StartAdornmentProps) => {
+  const { icon, iconPosition, disabled, size } = props
+
   if (!icon || iconPosition !== 'start') {
     return null
   }
 
-  return <IconAdornment disabled={disabled} position='start' icon={icon} />
+  return (
+    <IconAdornment
+      disabled={disabled}
+      position='start'
+      icon={icon}
+      size={size}
+    />
+  )
 }
 
 const EndAdornment = (props: EndAdornmentProps) => {
@@ -218,11 +232,19 @@ const EndAdornment = (props: EndAdornmentProps) => {
     limit,
     multiline,
     charsLength,
-    counter
+    counter,
+    size
   } = props
 
   if (icon && iconPosition === 'end') {
-    return <IconAdornment disabled={disabled} position='end' icon={icon} />
+    return (
+      <IconAdornment
+        disabled={disabled}
+        position='end'
+        icon={icon}
+        size={size}
+      />
+    )
   }
 
   if (charsLength && hasCounter({ counter, limit })) {
@@ -233,6 +255,7 @@ const EndAdornment = (props: EndAdornmentProps) => {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         counter={counter!}
         limit={limit}
+        size={size}
       />
     )
   }
@@ -341,6 +364,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             icon={icon}
             iconPosition={iconPosition}
             disabled={disabled}
+            size={size}
           />
         )
       }
@@ -354,6 +378,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             charsLength={charsLength}
             multiline={multiline}
             counter={counter}
+            size={size}
           />
         )
       }

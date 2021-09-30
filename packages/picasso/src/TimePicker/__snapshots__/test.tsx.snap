@@ -16,7 +16,7 @@ exports[`TimePicker renders 1`] = `
         value="21:00"
       />
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputAdornment-rootMedium MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
       >
         <svg
           class="PicassoSvgTime16-root PicassoTimePicker-icon PicassoInput-icon"
