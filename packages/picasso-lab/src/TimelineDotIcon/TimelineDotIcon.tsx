@@ -17,4 +17,6 @@ const TimelineDotIcon = ({ className }: Props) => {
   return <div className={cx(classes.root, className)} />
 }
 
+TimelineDotIcon.displayName = 'TimelineDotIcon'
+
 export default TimelineDotIcon

@@ -17,4 +17,6 @@ const TimelineConnector = ({ className }: Props) => {
   return <div className={cx(classes.root, className)} />
 }
 
+TimelineConnector.displayName = 'TimelineConnector'
+
 export default TimelineConnector

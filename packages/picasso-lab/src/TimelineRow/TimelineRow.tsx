@@ -8,10 +8,14 @@ import TimelineConnector from '../TimelineConnector'
 import TimelineDotIcon from '../TimelineDotIcon'
 import styles from './styles'
 
-export type Props = BaseProps & {
+export interface Props extends BaseProps {
+  /** Timeline row content */
   children: ReactNode
+  /** Icon for the row between lines */
   icon?: ReactElement
+  /** Timeline row date */
   date?: string
+  /** Whether to render a connector line after the row */
   hasConnector?: boolean
 }
 
@@ -32,10 +36,7 @@ const TimelineRow = ({
     <Container className={cx(classes.root, className)} flex>
       <Container flex direction='column' alignItems='center' right='medium'>
         {icon ? (
-          React.cloneElement(icon, {
-            className: classes.icon,
-            color: 'darkGrey'
-          })
+          React.cloneElement(icon, { color: 'darkGrey' })
         ) : (
           <TimelineDotIcon />
         )}
@@ -60,5 +61,7 @@ const TimelineRow = ({
 TimelineRow.defaultProps = {
   hasConnector: true
 }
+
+TimelineRow.displayName = 'TimelineRow'
 
 export default TimelineRow

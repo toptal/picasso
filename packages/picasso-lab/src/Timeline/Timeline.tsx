@@ -5,6 +5,7 @@ import { Container } from '@toptal/picasso'
 import TimelineRow, { TimelineRowProps } from '../TimelineRow'
 
 export type Props = BaseProps & {
+  /** Timeline rows */
   children: ReactElement<TimelineRowProps> | ReactElement<TimelineRowProps>[]
 }
 
@@ -18,5 +19,7 @@ export const Timeline = forwardRef<HTMLDivElement, Props>(function Timeline(
     </Container>
   )
 })
+
+Timeline.displayName = 'Timeline'
 
 export default Object.assign(Timeline, { Row: TimelineRow })

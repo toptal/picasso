@@ -9,13 +9,11 @@ export default () =>
       }
     },
     content: {},
-    icon: {
-      margin: '4px 0'
-    },
     date: {
       flex: '0 0 auto'
     },
     connector: {
-      flex: 1
+      flex: 1,
+      margin: '4px 0'
     }
   })

@@ -3,8 +3,8 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
+      // Outer width should match the icon's one
       width: '16px',
-      height: '16px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -12,8 +12,8 @@ export default ({ palette }: Theme) =>
 
       '&:after': {
         content: '""',
-        width: '10px',
-        height: '10px',
+        width: '9px',
+        height: '9px',
         background: palette.grey.main2,
         borderRadius: '50%'
       }

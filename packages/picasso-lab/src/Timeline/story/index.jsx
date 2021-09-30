@@ -1,4 +1,5 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
+import timelineRowStory from '../../TimelineRow/story'
 import Timeline from '../Timeline'
 
 const page = PicassoBook.section('Picasso Lab').createPage(
@@ -13,6 +14,7 @@ const page = PicassoBook.section('Picasso Lab').createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Timeline, name: 'Timeline' })
+  .addComponentDocs(timelineRowStory.componentDocs)
 
 page
   .createChapter()

@@ -19,9 +19,7 @@ export const lighten = (inputColor: string, amount: number) => {
 }
 
 export const alpha = (inputColor: string, amount: number) => {
-  return color(inputColor)
-    .alpha(amount)
-    .toString()
+  return color(inputColor).alpha(amount).toString()
 }
 
 // Approximate blending https://github.com/Qix-/color/issues/154
@@ -43,6 +41,13 @@ export const outline = (baseColor: string, width = 3) => ({
 })
 
 export const remToNumber = (value: string) => Number.parseFloat(value)
+
+export const dashedBackground = (
+  dashSize: number,
+  offset: number,
+  dashColor: string
+) =>
+  `repeating-linear-gradient(0deg, ${dashColor}, ${dashColor} ${offset}px, transparent ${offset}px, transparent ${dashSize}px, ${dashColor} ${dashSize}px)`
 
 export { default as addClassesToChildren } from './add-classes-to-children'
 

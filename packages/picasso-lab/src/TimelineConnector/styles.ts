@@ -1,11 +1,12 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
+import { dashedBackground } from '@toptal/picasso-shared'
 
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      width: '2px',
-      backgroundImage: `repeating-linear-gradient(0deg, ${palette.grey.main}, ${palette.grey.main} 3px, transparent 3px, transparent 5px, ${palette.grey.main} 5px)`,
-      backgroundPosition: '0 0',
+      width: '1px',
+      backgroundImage: dashedBackground(6, 4, palette.grey.main!),
+      backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat'
     }
   })
