@@ -36,6 +36,19 @@ const Example = () => {
           />
         </Container>
       </Container>
+      <Container padded='small'>
+        <Typography variant='heading' size='small'>
+          Large
+        </Typography>
+        <Container top='small' bottom='small'>
+          <Input
+            size='large'
+            value={value}
+            placeholder='Large'
+            onChange={handleChange}
+          />
+        </Container>
+      </Container>
     </Container>
   )
 }

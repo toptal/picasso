@@ -27,7 +27,7 @@ exports[`PageAutocomplete renders 1`] = `
             variant="dark"
           />
           <div
-            class="MuiInputAdornment-root PicassoInputAdornment-root PicassoOutlinedInput-resetButton MuiInputAdornment-positionEnd"
+            class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputAdornment-rootMedium PicassoOutlinedInput-resetButton MuiInputAdornment-positionEnd"
             data-testid="reset-adornment"
           >
             <button

@@ -95,4 +95,10 @@ describe('Input', () => {
     fireEvent.click(inputWrapper!)
     expect(handleClick).toHaveBeenCalledTimes(2)
   })
+
+  it('renders large input', () => {
+    const { container } = render(<Input size='large' />)
+
+    expect(container).toMatchSnapshot()
+  })
 })
