@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import '../Chip/styles'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, spacing, transitions }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
@@ -13,19 +13,19 @@ export default ({ palette }: Theme) =>
       color: palette.grey.main,
       pointerEvents: 'none'
     },
-    blue: {
+    primary: {
       color: palette.blue.main,
       borderColor: palette.blue.main
     },
-    green: {
+    positive: {
       color: palette.green.dark,
       borderColor: palette.green.dark
     },
-    yellow: {
+    warning: {
       color: palette.yellow.main,
       borderColor: palette.yellow.main
     },
-    red: {
+    negative: {
       color: palette.red.main,
       borderColor: palette.red.main
     },
@@ -37,5 +37,28 @@ export default ({ palette }: Theme) =>
     deleteIcon: {
       width: 'auto',
       height: 'auto'
-    }
+    },
+    connection: {
+      marginLeft: spacing(1),
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '5px'
+    },
+    clickable: {
+      '&:hover, &$hovered': {
+        borderColor: palette.grey.dark,
+        backgroundColor: palette.common.white,
+        transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`
+      },
+      '&:focus': {
+        backgroundColor: palette.common.white
+      },
+      '&$positive': {
+        '&:hover, &$hovered': {
+          borderColor: palette.red.main,
+          color: palette.red.main
+        }
+      }
+    },
+    hovered: {}
   })

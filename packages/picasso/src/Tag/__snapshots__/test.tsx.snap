@@ -39,13 +39,13 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
 </div>
 `;
 
-exports[`Tag renders \`blue\` variant 1`] = `
+exports[`Tag renders \`primary\` variant 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoLabel-root PicassoLabel-blue"
+      class="MuiChip-root PicassoLabel-root PicassoLabel-primary"
     >
       <span
         class="MuiChip-label"
@@ -61,7 +61,7 @@ exports[`Tag renders \`blue\` variant 1`] = `
 </div>
 `;
 
-exports[`Tag renders \`grey\` variant 1`] = `
+exports[`Tag renders \`secondary\` variant 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -76,6 +76,87 @@ exports[`Tag renders \`grey\` variant 1`] = `
           class="PicassoLabel-innerLabel"
         >
           Tag
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Tag renders with connection 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiChip-root PicassoLabel-root"
+    >
+      <span
+        class="MuiChip-label"
+      >
+        <span
+          class="PicassoLabel-innerLabel"
+        >
+          foobar
+        </span>
+        <span
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-grey PicassoLabel-connection MuiTypography-body1"
+        >
+          <svg
+            class="PicassoSvgLink16-root PicassoSvgLink16-grey"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 10a3 3 0 01-3-3V6a3 3 0 013-3h5a3 3 0 013 3h2a3 3 0 013 3v1a3 3 0 01-3 3H8a3 3 0 01-3-3H3zm10-3h-2a3 3 0 01-3 3H6a2 2 0 002 2h5a2 2 0 002-2V9a2 2 0 00-2-2zM8 4H3a2 2 0 00-2 2v1a2 2 0 002 2h2a3 3 0 013-3h2a2 2 0 00-2-2zm2 3H8a2 2 0 00-2 2h2a2 2 0 002-2z"
+            />
+          </svg>
+          5
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Tag renders with connection and icon 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiChip-root PicassoLabel-root"
+    >
+      <svg
+        class="PicassoSvgSettings16-root MuiChip-icon PicassoSvgSettings16-darkGrey"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M6 2.341V0h4v2.341a5.994 5.994 0 011.9 1.098l2.028-1.171 2 3.464L13.9 6.903a6.034 6.034 0 010 2.194l2.028 1.17-2 3.465-2.029-1.171A5.994 5.994 0 0110 13.659V16H6v-2.341a5.994 5.994 0 01-1.9-1.098l-2.028 1.171-2-3.464L2.1 9.097a6.034 6.034 0 010-2.194L.072 5.733l2-3.465L4.1 3.439A5.994 5.994 0 016 2.341zM7 1v2.049l-.667.235a4.993 4.993 0 00-1.582.915l-.537.46-1.776-1.025-1 1.732L3.212 6.39l-.129.695a5.034 5.034 0 000 1.83l.129.695-1.774 1.024 1 1.732 1.776-1.025.537.46c.467.4 1.003.71 1.582.915L7 12.95V15h2v-2.049l.667-.235a4.993 4.993 0 001.582-.915l.537-.46 1.776 1.025 1-1.732-1.774-1.024.129-.695a5.034 5.034 0 000-1.83l-.129-.695 1.774-1.024-1-1.732-1.776 1.025-.537-.46a4.993 4.993 0 00-1.582-.915L9 3.05V1H7zm1 10a3 3 0 110-6 3 3 0 010 6zm0-1a2 2 0 100-4 2 2 0 000 4z"
+        />
+      </svg>
+      <span
+        class="MuiChip-label"
+      >
+        <span
+          class="PicassoLabel-innerLabel"
+        >
+          foobar
+        </span>
+        <span
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-grey PicassoLabel-connection MuiTypography-body1"
+        >
+          <svg
+            class="PicassoSvgLink16-root PicassoSvgLink16-grey"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 10a3 3 0 01-3-3V6a3 3 0 013-3h5a3 3 0 013 3h2a3 3 0 013 3v1a3 3 0 01-3 3H8a3 3 0 01-3-3H3zm10-3h-2a3 3 0 01-3 3H6a2 2 0 002 2h5a2 2 0 002-2V9a2 2 0 00-2-2zM8 4H3a2 2 0 00-2 2v1a2 2 0 002 2h2a3 3 0 013-3h2a2 2 0 00-2-2zm2 3H8a2 2 0 00-2 2h2a2 2 0 002-2z"
+            />
+          </svg>
+          5
         </span>
       </span>
     </div>

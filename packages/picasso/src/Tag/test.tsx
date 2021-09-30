@@ -4,6 +4,7 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import Tag, { Props } from './Tag'
+import { Settings16 } from '..'
 
 jest.mock('ap-style-title-case')
 
@@ -12,7 +13,7 @@ const renderLabel = (
   props: OmitInternalProps<Props, 'children'>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { onDelete, disabled, variant, titleCase } = props
+  const { onDelete, disabled, variant, titleCase, connection, icon } = props
 
   return render(
     <Tag
@@ -20,6 +21,8 @@ const renderLabel = (
       disabled={disabled}
       variant={variant}
       titleCase={titleCase}
+      connection={connection}
+      icon={icon}
     >
       {children}
     </Tag>,
@@ -39,14 +42,14 @@ describe('Tag', () => {
     spiedOnTitleCase.mockReset()
   })
 
-  it('renders `grey` variant', () => {
+  it('renders `secondary` variant', () => {
     const { container } = renderLabel('Tag', {})
 
     expect(container).toMatchSnapshot()
   })
 
-  it('renders `blue` variant', () => {
-    const { container } = renderLabel('Tag', { variant: 'blue' })
+  it('renders `primary` variant', () => {
+    const { container } = renderLabel('Tag', { variant: 'primary' })
 
     expect(container).toMatchSnapshot()
   })
@@ -84,5 +87,19 @@ describe('Tag', () => {
       fireEvent.click(deleteIcon)
       expect(onDelete).toHaveBeenCalled()
     })
+  })
+
+  it('renders with connection', () => {
+    const { container } = renderLabel('foobar', { connection: 5 })
+
+    expect(container).toMatchSnapshot()
+  })
+  it('renders with connection and icon', () => {
+    const { container } = renderLabel('foobar', {
+      connection: 5,
+      icon: <Settings16 color='darkGrey' />
+    })
+
+    expect(container).toMatchSnapshot()
   })
 })

@@ -18,7 +18,7 @@ exports[`TagSelector disabled render 1`] = `
           class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
           <div
-            class="MuiChip-root PicassoLabel-root PicassoLabel-disabled PicassoTagSelectorLabel-label MuiChip-deletable"
+            class="MuiChip-root PicassoLabel-root PicassoTagSelectorLabel-label PicassoLabel-disabled MuiChip-deletable"
             role="button"
             tabindex="0"
           >

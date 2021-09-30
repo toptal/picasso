@@ -35,10 +35,9 @@ page
 
 page
   .createChapter()
-  .addExample('Tag/story/Variants.example.tsx', 'Variants')
-  .addExample('Tag/story/Dismissable.example.tsx', 'Dismissable')
-  .addExample('Tag/story/WithIcon.example.tsx', 'With icon')
-  .addExample('Tag/story/Disabled.example.tsx', 'Disabled')
+  .addExample('Tag/story/Default.example.tsx', 'Secondary') // picasso-skip-visuals
+  .addExample('Tag/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
+  .addExample('Tag/story/Interactive.example.tsx', 'Interactive') // picasso-skip-visuals
 
 page.connect(tagGroupStory.chapter)
 page.connect(tagRectangularStory.chapter)
