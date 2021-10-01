@@ -42,13 +42,6 @@ export const outline = (baseColor: string, width = 3) => ({
 
 export const remToNumber = (value: string) => Number.parseFloat(value)
 
-export const dashedBackground = (
-  dashSize: number,
-  offset: number,
-  dashColor: string
-) =>
-  `repeating-linear-gradient(0deg, ${dashColor}, ${dashColor} ${offset}px, transparent ${offset}px, transparent ${dashSize}px, ${dashColor} ${dashSize}px)`
-
 export { default as addClassesToChildren } from './add-classes-to-children'
 
 export * from './types'

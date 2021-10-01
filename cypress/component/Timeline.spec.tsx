@@ -76,7 +76,7 @@ const renderTimeline = ({
   </TestingPicasso>
 )
 
-describe('Tag', () => {
+describe('Timeline', () => {
   it('renders', () => {
     mount(renderTimeline())
 

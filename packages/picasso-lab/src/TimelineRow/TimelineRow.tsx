@@ -4,8 +4,6 @@ import { BaseProps } from '@toptal/picasso-shared'
 import { Container, Typography } from '@toptal/picasso'
 import cx from 'classnames'
 
-import TimelineConnector from '../TimelineConnector'
-import TimelineDotIcon from '../TimelineDotIcon'
 import styles from './styles'
 
 export interface Props extends BaseProps {
@@ -17,6 +15,10 @@ export interface Props extends BaseProps {
   date?: string
   /** Whether to render a connector line after the row */
   hasConnector?: boolean
+  testIds?: {
+    dot?: string
+    connector?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -28,19 +30,38 @@ const TimelineRow = ({
   children,
   icon,
   date,
-  hasConnector
+  hasConnector,
+  'data-testid': dataTestId,
+  testIds = {}
 }: Props) => {
   const classes = useStyles()
 
+  const hasIcon = typeof icon !== 'undefined'
+
   return (
-    <Container className={cx(classes.root, className)} flex>
-      <Container flex direction='column' alignItems='center' right='medium'>
-        {icon ? (
-          React.cloneElement(icon, { color: 'darkGrey' })
+    <Container
+      data-testid={dataTestId}
+      className={cx(classes.root, className)}
+      flex
+    >
+      <Container
+        className={cx(classes.separator, { [classes.hasIcon]: hasIcon })}
+        flex
+        direction='column'
+        alignItems='center'
+        right='medium'
+      >
+        {hasIcon ? (
+          React.cloneElement(icon, {
+            className: cx(icon.props.className, classes.icon),
+            color: 'darkGrey'
+          })
         ) : (
-          <TimelineDotIcon />
+          <div className={classes.dot} data-testid={testIds.dot} />
         )}
-        {hasConnector && <TimelineConnector className={classes.connector} />}
+        {hasConnector && (
+          <div className={classes.connector} data-testid={testIds.connector} />
+        )}
       </Container>
 
       {date && (
