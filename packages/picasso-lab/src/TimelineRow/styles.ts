@@ -10,7 +10,8 @@ export default ({ palette }: Theme) =>
     },
     content: {},
     icon: {
-      margin: '4px 0'
+      margin: '4px 0',
+      color: palette.grey.main2
     },
     dot: {
       // Outer dot icon dimensions should match picasso 16px icons
@@ -34,14 +35,11 @@ export default ({ palette }: Theme) =>
       flex: '0 0 auto',
 
       // Move down date to align to the center of the dot/icon
-      transform: 'translateY(4px)',
-      '$hasIcon + &': {
-        transform: 'translateY(2px)'
-      }
+      marginTop: '2px'
     },
     separator: {
       // Move down dot separator to align to the line height of the content
-      transform: 'translateY(7.5px)',
+      transform: 'translateY(5px)',
       '&$hasIcon': {
         transform: 'unset'
       }
@@ -50,6 +48,6 @@ export default ({ palette }: Theme) =>
     connector: {
       flex: 1,
       width: '0',
-      borderLeft: `1px dashed ${palette.grey.main!}`
+      borderLeft: `1px dashed ${palette.grey.main2}`
     }
   })

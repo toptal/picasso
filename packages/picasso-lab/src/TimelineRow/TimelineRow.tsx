@@ -53,8 +53,7 @@ const TimelineRow = ({
       >
         {typeof icon !== 'undefined' ? (
           React.cloneElement(icon, {
-            className: cx(icon.props.className, classes.icon),
-            color: 'darkGrey'
+            className: cx(icon.props.className, classes.icon)
           })
         ) : (
           <div className={classes.dot} data-testid={testIds.dot} />

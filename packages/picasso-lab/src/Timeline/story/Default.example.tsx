@@ -1,21 +1,29 @@
 import React from 'react'
 import { Timeline } from '@toptal/picasso-lab'
-import { Typography } from '@toptal/picasso'
+import { Typography, Container } from '@toptal/picasso'
 
 const Example = () => (
   <Timeline>
     <Timeline.Row>
-      <Typography variant='heading'>Founder</Typography>
-      <Typography>Brutalism 2019 - PRESENT</Typography>
-      <Typography>
+      <Typography size='medium' variant='heading'>
+        Founder
+      </Typography>
+      <Container bottom='small'>
+        <Typography size='small'>Brutalism 2019 - PRESENT</Typography>
+      </Container>
+      <Typography size='medium'>
         Founded a private practice focusing on computational design and art.
       </Typography>
     </Timeline.Row>
 
     <Timeline.Row>
-      <Typography variant='heading'>Computational Geometry Engineer</Typography>
-      <Typography>Arkio 2018 - 2019</Typography>
-      <Typography>
+      <Typography size='medium' variant='heading'>
+        Computational Geometry Engineer
+      </Typography>
+      <Container bottom='small'>
+        <Typography size='small'>Arkio 2018 - 2019</Typography>
+      </Container>
+      <Typography size='medium'>
         Worked on the core engine supporting Arkio's computational geometry
         operations in VR.
       </Typography>
