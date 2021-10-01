@@ -197,7 +197,6 @@ exports[`Timeline renders with icons 1`] = `
           >
             <span
               class="PicassoTimelineRow-icon"
-              color="darkGrey"
               data-testid="icon-1"
             />
             <div
@@ -218,7 +217,6 @@ exports[`Timeline renders with icons 1`] = `
           >
             <span
               class="PicassoTimelineRow-icon"
-              color="darkGrey"
               data-testid="icon-2"
             />
             <div
@@ -239,7 +237,6 @@ exports[`Timeline renders with icons 1`] = `
           >
             <span
               class="PicassoTimelineRow-icon"
-              color="darkGrey"
               data-testid="icon-3"
             />
             <div
