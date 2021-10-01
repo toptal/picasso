@@ -36,8 +36,6 @@ const TimelineRow = ({
 }: Props) => {
   const classes = useStyles()
 
-  const hasIcon = typeof icon !== 'undefined'
-
   return (
     <Container
       data-testid={dataTestId}
@@ -45,13 +43,15 @@ const TimelineRow = ({
       flex
     >
       <Container
-        className={cx(classes.separator, { [classes.hasIcon]: hasIcon })}
+        className={cx(classes.separator, {
+          [classes.hasIcon]: typeof icon !== 'undefined'
+        })}
         flex
         direction='column'
         alignItems='center'
         right='medium'
       >
-        {hasIcon ? (
+        {typeof icon !== 'undefined' ? (
           React.cloneElement(icon, {
             className: cx(icon.props.className, classes.icon),
             color: 'darkGrey'
