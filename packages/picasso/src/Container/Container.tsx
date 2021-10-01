@@ -65,7 +65,7 @@ export interface Props
 /**
  * Container component used for spacing 2 elements
  */
-export const Container = forwardRef<HTMLDivElement, Props>(function Container (
+export const Container = forwardRef<HTMLDivElement, Props>(function Container(
   props,
   ref
 ) {

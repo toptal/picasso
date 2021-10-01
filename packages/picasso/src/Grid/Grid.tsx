@@ -37,7 +37,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Grid = forwardRef<HTMLDivElement, Props>(function Grid (
+export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   props,
   ref
 ) {

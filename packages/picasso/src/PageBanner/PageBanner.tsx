@@ -9,17 +9,18 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-export const PageBanner = forwardRef<HTMLDivElement, Props>(
-  function PageBanner (props, ref) {
-    const { children, className, ...rest } = props
+export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
+  props,
+  ref
+) {
+  const { children, className, ...rest } = props
 
-    return (
-      <Notification {...rest} ref={ref} className={className}>
-        {children}
-      </Notification>
-    )
-  }
-)
+  return (
+    <Notification {...rest} ref={ref} className={className}>
+      {children}
+    </Notification>
+  )
+})
 
 PageBanner.displayName = 'PageBanner'
 

@@ -4,7 +4,7 @@ import Stepper, { StepperBaseProps } from '../Stepper'
 
 export type Props = StepperBaseProps
 
-export const StepperVertical = forwardRef(function StepperVertical (
+export const StepperVertical = forwardRef(function StepperVertical(
   props: Props,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {

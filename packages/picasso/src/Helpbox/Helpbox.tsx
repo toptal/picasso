@@ -26,7 +26,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 // eslint-disable-next-line react/display-name
-export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox (
+export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
   props,
   ref
 ) {

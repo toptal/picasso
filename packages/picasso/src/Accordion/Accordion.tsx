@@ -87,7 +87,7 @@ const decorateWithExpandIconClasses = (
   })
 
 /* eslint-disable complexity */
-export const Accordion = forwardRef<HTMLElement, Props>(function Accordion (
+export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   props,
   ref
 ) {

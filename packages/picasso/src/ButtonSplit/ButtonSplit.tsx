@@ -70,7 +70,7 @@ const EventStopPropagation: FC = ({ children }) => {
 }
 
 export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
-  function ButtonSplit (props, ref) {
+  function ButtonSplit(props, ref) {
     const {
       size = 'medium',
       menu,
