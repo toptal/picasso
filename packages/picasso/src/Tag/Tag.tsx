@@ -97,7 +97,11 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
         [classes.disabled]: disabled
       })}
       style={style}
-      icon={icon}
+      icon={
+        icon
+          ? React.cloneElement(icon, { color: disabled ? 'grey' : 'darkGrey' })
+          : undefined
+      }
       label={
         <>
           <span className={classes.innerLabel}>

@@ -10,7 +10,7 @@ const Example = () => {
         <Typography>Regular</Typography>
         <div>
           <Tag
-            icon={<Settings16 color='darkGrey' />}
+            icon={<Settings16 />}
             variant={selected ? 'positive' : 'secondary'}
             onClick={() => {
               setSelected(!selected)
@@ -23,11 +23,7 @@ const Example = () => {
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Hover</Typography>
         <div>
-          <Tag
-            icon={<Settings16 color='darkGrey' />}
-            hovered
-            onClick={() => {}}
-          >
+          <Tag icon={<Settings16 />} hovered onClick={() => {}}>
             Label
           </Tag>
         </div>
@@ -35,11 +31,7 @@ const Example = () => {
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Selected</Typography>
         <div>
-          <Tag
-            icon={<Settings16 color='darkGrey' />}
-            variant='positive'
-            onClick={() => {}}
-          >
+          <Tag icon={<Settings16 />} variant='positive' onClick={() => {}}>
             Label
           </Tag>
         </div>
@@ -48,7 +40,7 @@ const Example = () => {
         <Typography>Hover on Selected</Typography>
         <div>
           <Tag
-            icon={<Settings16 color='darkGrey' />}
+            icon={<Settings16 />}
             hovered
             variant='positive'
             onClick={() => {}}
