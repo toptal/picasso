@@ -96,7 +96,7 @@ describe('Timeline', () => {
   })
 
   it('renders without last connector', () => {
-    mount(renderTimeline({ trimLastConnector: true }))
+    mount(renderTimeline({ hasDates: true, trimLastConnector: true }))
 
     cy.get('body').happoScreenshot()
   })
