@@ -46,17 +46,25 @@ const renderInteractiveExample = ({
 )
 
 const renderRectangularExample = ({
-  variant,
-  indicator
+  variant = 'light'
 }: {
   variant?: TagRectangularProps['variant']
+}) => (
+  <TestingPicasso>
+    <Container padded='small'>
+      <Tag.Rectangular variant={variant}>{variant}</Tag.Rectangular>
+    </Container>
+  </TestingPicasso>
+)
+
+const renderIndicatorExample = ({
+  indicator
+}: {
   indicator?: TagRectangularProps['indicator']
 }) => (
   <TestingPicasso>
     <Container padded='small'>
-      <Tag.Rectangular variant={variant} indicator={indicator}>
-        {variant || indicator}
-      </Tag.Rectangular>
+      <Tag.Rectangular indicator={indicator}>{indicator}</Tag.Rectangular>
     </Container>
   </TestingPicasso>
 )
@@ -66,7 +74,7 @@ describe('Tag', () => {
     mount(
       <TestingPicasso>
         <Container style={{ width: '500px' }}>
-          <Tag variant='grey'>
+          <Tag variant='secondary'>
             <TypographyOverflow inline weight='semibold'>
               Loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong
             </TypographyOverflow>
@@ -261,19 +269,19 @@ describe('Tag', () => {
     })
     describe('Indicators', () => {
       it('renders negative indicator', () => {
-        mount(renderRectangularExample({ indicator: 'negative' }))
+        mount(renderIndicatorExample({ indicator: 'negative' }))
         cy.get('body').happoScreenshot()
       })
       it('renders warning indicator', () => {
-        mount(renderRectangularExample({ indicator: 'warning' }))
+        mount(renderIndicatorExample({ indicator: 'warning' }))
         cy.get('body').happoScreenshot()
       })
       it('renders positive indicator', () => {
-        mount(renderRectangularExample({ indicator: 'positive' }))
+        mount(renderIndicatorExample({ indicator: 'positive' }))
         cy.get('body').happoScreenshot()
       })
       it('renders primary indicator', () => {
-        mount(renderRectangularExample({ indicator: 'primary' }))
+        mount(renderIndicatorExample({ indicator: 'primary' }))
         cy.get('body').happoScreenshot()
       })
     })
