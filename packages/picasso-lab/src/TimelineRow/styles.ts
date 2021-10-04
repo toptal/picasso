@@ -39,8 +39,6 @@ export default ({ palette }: Theme) =>
     dateText: {
       lineHeight: rem('24px')
     },
-    separator: {},
-    hasIcon: {},
     connector: {
       flex: 1,
       width: '0',

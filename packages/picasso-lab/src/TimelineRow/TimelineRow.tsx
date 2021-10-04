@@ -42,13 +42,7 @@ const TimelineRow = ({
       className={cx(classes.root, className)}
       flex
     >
-      <Container
-        className={classes.separator}
-        flex
-        direction='column'
-        alignItems='center'
-        right='medium'
-      >
+      <Container flex direction='column' alignItems='center' right='medium'>
         {typeof icon !== 'undefined' ? (
           React.cloneElement(icon, {
             className: cx(icon.props.className, classes.icon)
