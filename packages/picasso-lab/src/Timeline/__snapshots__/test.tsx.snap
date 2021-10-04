@@ -15,7 +15,7 @@ exports[`Timeline renders 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -35,7 +35,7 @@ exports[`Timeline renders 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -55,7 +55,7 @@ exports[`Timeline renders 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -92,7 +92,7 @@ exports[`Timeline renders with dates 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -120,7 +120,7 @@ exports[`Timeline renders with dates 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -148,7 +148,7 @@ exports[`Timeline renders with dates 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -193,7 +193,7 @@ exports[`Timeline renders with icons 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <span
               class="PicassoTimelineRow-icon"
@@ -213,7 +213,7 @@ exports[`Timeline renders with icons 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <span
               class="PicassoTimelineRow-icon"
@@ -233,7 +233,7 @@ exports[`Timeline renders with icons 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <span
               class="PicassoTimelineRow-icon"
@@ -270,7 +270,7 @@ exports[`Timeline renders without a connector 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -291,7 +291,7 @@ exports[`Timeline renders without a connector 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -312,7 +312,7 @@ exports[`Timeline renders without a connector 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
