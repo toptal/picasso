@@ -41,7 +41,7 @@ export default ({ palette }: Theme) =>
     },
     connector: {
       flex: 1,
-      width: '0',
+      width: 0,
       borderLeft: `1px dashed ${palette.grey.main2}`
     }
   })
