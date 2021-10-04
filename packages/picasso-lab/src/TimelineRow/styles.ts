@@ -1,4 +1,5 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
+import { rem } from '@toptal/picasso-shared'
 
 export default ({ palette }: Theme) =>
   createStyles({
@@ -21,6 +22,7 @@ export default ({ palette }: Theme) =>
       alignItems: 'center',
       justifyContent: 'center',
       background: 'white',
+      margin: '4px 0',
 
       '&:after': {
         content: '""',
@@ -32,18 +34,12 @@ export default ({ palette }: Theme) =>
       }
     },
     date: {
-      flex: '0 0 auto',
-
-      // Move down date to align to the center of the dot/icon
-      marginTop: '2px'
+      flex: '0 0 auto'
     },
-    separator: {
-      // Move down dot separator to align to the line height of the content
-      transform: 'translateY(5px)',
-      '&$hasIcon': {
-        transform: 'unset'
-      }
+    dateText: {
+      lineHeight: rem('24px')
     },
+    separator: {},
     hasIcon: {},
     connector: {
       flex: 1,

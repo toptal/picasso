@@ -105,7 +105,7 @@ exports[`Timeline renders with dates 1`] = `
             class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
           >
             <p
-              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold MuiTypography-body1"
+              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
             >
               25.06.2021
             </p>
@@ -133,7 +133,7 @@ exports[`Timeline renders with dates 1`] = `
             class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
           >
             <p
-              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold MuiTypography-body1"
+              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
             >
               25.06.2022
             </p>
@@ -161,7 +161,7 @@ exports[`Timeline renders with dates 1`] = `
             class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
           >
             <p
-              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold MuiTypography-body1"
+              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
             >
               25.06.2023
             </p>
@@ -193,7 +193,7 @@ exports[`Timeline renders with icons 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator PicassoTimelineRow-hasIcon"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
           >
             <span
               class="PicassoTimelineRow-icon"
@@ -213,7 +213,7 @@ exports[`Timeline renders with icons 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator PicassoTimelineRow-hasIcon"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
           >
             <span
               class="PicassoTimelineRow-icon"
@@ -233,7 +233,7 @@ exports[`Timeline renders with icons 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator PicassoTimelineRow-hasIcon"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-separator"
           >
             <span
               class="PicassoTimelineRow-icon"

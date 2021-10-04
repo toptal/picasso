@@ -19,7 +19,6 @@ page
 page
   .createChapter()
   .addExample('Timeline/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('Timeline/story/Icons.example.tsx', 'Icons') // picasso-skip-visuals
   .addExample('Timeline/story/Dates.example.tsx', 'Dates') // picasso-skip-visuals
   .addExample('Timeline/story/TrimLastConnector.example.tsx', {
     title: 'Trim last connector',

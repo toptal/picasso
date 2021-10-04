@@ -43,9 +43,7 @@ const TimelineRow = ({
       flex
     >
       <Container
-        className={cx(classes.separator, {
-          [classes.hasIcon]: typeof icon !== 'undefined'
-        })}
+        className={classes.separator}
         flex
         direction='column'
         alignItems='center'
@@ -65,7 +63,11 @@ const TimelineRow = ({
 
       {date && (
         <Container className={classes.date} right='large'>
-          <Typography weight='semibold' size='medium'>
+          <Typography
+            className={classes.dateText}
+            weight='semibold'
+            size='medium'
+          >
             {date}
           </Typography>
         </Container>

@@ -89,12 +89,6 @@ describe('Timeline', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders with icons', () => {
-    mount(renderTimeline({ hasIcons: true }))
-
-    cy.get('body').happoScreenshot()
-  })
-
   it('renders with dates and icons', () => {
     mount(renderTimeline({ hasDates: true, hasIcons: true }))
 
