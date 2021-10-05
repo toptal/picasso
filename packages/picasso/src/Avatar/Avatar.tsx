@@ -45,13 +45,12 @@ const isBrowserSupportsObjectFit = 'objectFit' in document.documentElement.style
 const renderLogo = ({
   classes,
   src,
-  size,
-  name
-}: Pick<Props, 'src' | 'size' | 'name'> & JssProps) => {
-  const isEmpty = !src || !size || !name
-  const isTooSmall = ['small', 'xsmall', 'xxsmall'].includes(size)
+  size
+}: Pick<Props, 'src' | 'size'> & JssProps) => {
+  const hasNoImage = !src
+  const isTooSmall = size && ['small', 'xsmall', 'xxsmall'].includes(size)
 
-  if (isEmpty || isTooSmall) {
+  if (hasNoImage || isTooSmall) {
     return null
   }
 
@@ -163,7 +162,7 @@ export const Avatar: FunctionComponent<Props> = props => {
       )}
       {renderInitials({ classes, src, name })}
       {renderIcon({ classes, src, name, size })}
-      {renderLogo({ classes, src, size, name })}
+      {renderLogo({ classes, src, size })}
     </div>
   )
 }
