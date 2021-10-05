@@ -36,4 +36,4 @@ page
   .addExample('Avatar/story/LongName.example.tsx', {
     title: 'Long Name',
     waitUntilImagesLoaded: true
-  })
+  }) // picasso-skip-visuals
