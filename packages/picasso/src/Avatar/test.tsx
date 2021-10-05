@@ -12,32 +12,36 @@ const renderAvatar = (props: OmitInternalProps<Props>) => {
 
 describe('Avatar', () => {
   it('renders with initials', () => {
-    const { container } = renderAvatar({ name: 'Jacqueline Roque' })
+    const { getByText, container } = renderAvatar({ name: 'Jacqueline Roque' })
 
+    expect(getByText('JR')).toBeVisible()
     expect(container).toMatchSnapshot()
   })
 
-  it('renders with long name', () => {
-    const { container } = renderAvatar({
+  it('renders with a long name', () => {
+    const { container, getByText } = renderAvatar({
       name: 'Jacqueline Roque Bailey Armstrong'
     })
 
+    expect(getByText('JRB')).toBeVisible()
     expect(container).toMatchSnapshot()
   })
 
-  it('renders with image', () => {
-    const { container } = renderAvatar({
+  it('renders with an image', () => {
+    const { container, getByAltText } = renderAvatar({
       alt: 'Photo alt text',
       src: 'http://example.png',
       name: 'Jacqueline Roque'
     })
 
+    expect(getByAltText('Photo alt text')).toBeVisible()
     expect(container).toMatchSnapshot()
   })
 
-  it('renders with placeholder icon', () => {
+  it('renders with a placeholder icon', () => {
     const { container } = renderAvatar({})
 
+    expect(container.querySelector('svg')).toBeVisible()
     expect(container).toMatchSnapshot()
   })
 })

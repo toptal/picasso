@@ -40,7 +40,7 @@ export default ({ palette }: Theme) =>
       fontSize: '3rem'
     },
     large: {
-      fontSize: '4rem'
+      fontSize: '4.5rem'
     },
     clippedCorner: {
       clipPath: getClipPathCornerMask(`${CLIPPED_CORNER_SIZE_EM}em`),
@@ -55,7 +55,7 @@ export default ({ palette }: Theme) =>
       fontSize: '1em',
       textTransform: 'uppercase'
     },
-    absoluteCenter: {
+    centeredContent: {
       position: 'absolute',
       top: '50%',
       left: '50%',
@@ -73,7 +73,6 @@ export default ({ palette }: Theme) =>
     logo: {
       fontSize: `${LOGO_SIZE_EM}em`
     },
-
     xxsmalLIcon: { fontSize: '1rem' },
     xsmallIcon: { fontSize: '1rem' },
     smallIcon: { fontSize: rem('24px') },

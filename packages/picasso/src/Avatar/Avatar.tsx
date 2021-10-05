@@ -48,7 +48,10 @@ const renderLogo = ({
   size,
   name
 }: Pick<Props, 'src' | 'size' | 'name'> & JssProps) => {
-  if (!src || !size || !name || ['small', 'xsmall', 'xxsmall'].includes(size)) {
+  const isEmpty = !src || !size || !name
+  const isTooSmall = ['small', 'xsmall', 'xxsmall'].includes(size)
+
+  if (isEmpty || isTooSmall) {
     return null
   }
 
@@ -72,7 +75,7 @@ const renderInitials = ({
 
   return (
     <Typography
-      className={cx(classes.text, classes.absoluteCenter, {
+      className={cx(classes.text, classes.centeredContent, {
         [classes.textCapLimit]: initials.length >= AVATAR_INITIALS_LIMIT
       })}
       invert
@@ -94,7 +97,7 @@ const renderIcon = ({
 
   return (
     <Profile16
-      className={cx(classes.absoluteCenter, classes[`${size}Icon`])}
+      className={cx(classes.centeredContent, classes[`${size}Icon`])}
       color='white'
     />
   )
