@@ -63,6 +63,24 @@ const Example = () => (
         <Avatar size='large' name='Jacqueline Roque' />
       </Container>
     </Container>
+
+    <Container top='small'>
+      <Container inline>
+        <Avatar size='xxsmall' />
+      </Container>
+      <Container inline left='small'>
+        <Avatar size='xsmall' />
+      </Container>
+      <Container inline left='small'>
+        <Avatar size='small' />
+      </Container>
+      <Container inline left='small'>
+        <Avatar size='medium' />
+      </Container>
+      <Container inline left='small'>
+        <Avatar size='large' />
+      </Container>
+    </Container>
   </div>
 )
 

@@ -6,7 +6,7 @@ import Button, { ButtonProps } from '../Button'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPaginationButton'
+  name: 'PicassoButtonGroupItem'
 })
 
 export interface Props extends ButtonProps {}

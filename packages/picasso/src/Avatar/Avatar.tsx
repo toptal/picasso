@@ -15,6 +15,7 @@ import Typography from '../Typography'
 import getNameInitials from '../utils/get-name-initials'
 import styles from './styles'
 import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
+import { Profile16 } from '..'
 
 type VariantType = 'square' | 'portrait' | 'landscape'
 
@@ -22,7 +23,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Alt text */
   alt?: string
   /** User full name to display initials on the avatar */
-  name: string
+  name?: string
   /**
    * Size
    * @default xsmall
@@ -44,9 +45,10 @@ const isBrowserSupportsObjectFit = 'objectFit' in document.documentElement.style
 const renderLogo = ({
   classes,
   src,
-  size
-}: Pick<Props, 'src' | 'size'> & JssProps) => {
-  if (!src || !size || ['small', 'xsmall', 'xxsmall'].includes(size)) {
+  size,
+  name
+}: Pick<Props, 'src' | 'size' | 'name'> & JssProps) => {
+  if (!src || !size || !name || ['small', 'xsmall', 'xxsmall'].includes(size)) {
     return null
   }
 
@@ -70,13 +72,31 @@ const renderInitials = ({
 
   return (
     <Typography
-      className={cx(classes.text, {
+      className={cx(classes.text, classes.absoluteCenter, {
         [classes.textCapLimit]: initials.length >= AVATAR_INITIALS_LIMIT
       })}
       invert
     >
       {initials}
     </Typography>
+  )
+}
+
+const renderIcon = ({
+  classes,
+  name,
+  size = 'xsmall',
+  src
+}: Pick<Props, 'src' | 'name' | 'size'> & JssProps) => {
+  if (src || name) {
+    return null
+  }
+
+  return (
+    <Profile16
+      className={cx(classes.absoluteCenter, classes[`${size}Icon`])}
+      color='white'
+    />
   )
 }
 
@@ -114,9 +134,9 @@ export const Avatar: FunctionComponent<Props> = props => {
 
   return (
     <div {...rest} className={cx(classes.root, sizeClassName)}>
-      {src ? (
+      {src && (alt || name) ? (
         <InputComponent
-          alt={alt || name}
+          alt={alt || String(name)}
           className={cx(
             classes.image,
             variantClassName,
@@ -139,7 +159,8 @@ export const Avatar: FunctionComponent<Props> = props => {
         />
       )}
       {renderInitials({ classes, src, name })}
-      {renderLogo({ classes, src, size })}
+      {renderIcon({ classes, src, name, size })}
+      {renderLogo({ classes, src, size, name })}
     </div>
   )
 }

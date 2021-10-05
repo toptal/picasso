@@ -1,27 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Avatar Avatar with long text names 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="PicassoAvatar-root PicassoAvatar-xsmall"
-    >
-      <div
-        class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
-      />
-      <p
-        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-textCapLimit MuiTypography-body1"
-      >
-        JRB
-      </p>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Avatar avatar with photo render 1`] = `
+exports[`Avatar renders with image 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -39,7 +18,7 @@ exports[`Avatar avatar with photo render 1`] = `
 </div>
 `;
 
-exports[`Avatar avatar with text render 1`] = `
+exports[`Avatar renders with initials 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -51,10 +30,56 @@ exports[`Avatar avatar with text render 1`] = `
         class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
       />
       <p
-        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-absoluteCenter MuiTypography-body1"
       >
         JR
       </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Avatar renders with long name 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoAvatar-root PicassoAvatar-xsmall"
+    >
+      <div
+        class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
+      />
+      <p
+        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-absoluteCenter PicassoAvatar-textCapLimit MuiTypography-body1"
+      >
+        JRB
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Avatar renders with placeholder icon 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoAvatar-root PicassoAvatar-xsmall"
+    >
+      <div
+        class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
+      />
+      <svg
+        class="PicassoSvgProfile16-root PicassoAvatar-absoluteCenter PicassoAvatar-xsmallIcon PicassoSvgProfile16-white"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M5.639 9.408a5 5 0 114.723 0A7.003 7.003 0 0115 16h-1a6 6 0 10-12 0H1a7.003 7.003 0 014.639-6.592zM8 9a4 4 0 100-8 4 4 0 000 8z"
+        />
+      </svg>
     </div>
   </div>
 </div>
