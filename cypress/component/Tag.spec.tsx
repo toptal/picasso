@@ -8,12 +8,12 @@ import {
   TagRectangularProps
 } from '@toptal/picasso'
 import { TypographyOverflow } from '@toptal/picasso-lab'
-import { noop } from '@toptal/picaso-shared'
+import { noop } from '@toptal/picasso/utils'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 interface RegularExampleArgs {
-  variant: TagProps['variant']
+  variant?: TagProps['variant']
   hovered?: boolean
 }
 
@@ -37,10 +37,7 @@ const renderVariantExample = ({ variant }: RegularExampleArgs) => (
   </TestingPicasso>
 )
 
-const renderInteractiveExample = ({
-  variant,
-  hovered
-}: RegularTagExampleArgs) => (
+const renderInteractiveExample = ({ variant, hovered }: RegularExampleArgs) => (
   <TestingPicasso>
     <Container padded='small'>
       <Tag onClick={noop} variant={variant} hovered={hovered}>
@@ -50,15 +47,20 @@ const renderInteractiveExample = ({
   </TestingPicasso>
 )
 
+const renderIndicatorExample = ({ indicator }: RectangularExampleArgs) => (
+  <TestingPicasso>
+    <Container padded='small'>
+      <Tag.Rectangular indicator={indicator}>{indicator}</Tag.Rectangular>
+    </Container>
+  </TestingPicasso>
+)
+
 const renderRectangularExample = ({
-  variant = 'light',
-  indicator
+  variant = 'light'
 }: RectangularExampleArgs) => (
   <TestingPicasso>
     <Container padded='small'>
-      <Tag.Rectangular indicator={indicator} variant={variant}>
-        {variant}
-      </Tag.Rectangular>
+      <Tag.Rectangular variant={variant}>{variant}</Tag.Rectangular>
     </Container>
   </TestingPicasso>
 )
@@ -249,19 +251,19 @@ describe('Tag', () => {
     })
     describe('Indicators', () => {
       it('renders negative indicator', () => {
-        mount(renderRectangularExample({ indicator: 'negative' }))
+        mount(renderIndicatorExample({ indicator: 'negative' }))
         cy.get('body').happoScreenshot()
       })
       it('renders warning indicator', () => {
-        mount(renderRectangularExample({ indicator: 'warning' }))
+        mount(renderIndicatorExample({ indicator: 'warning' }))
         cy.get('body').happoScreenshot()
       })
       it('renders positive indicator', () => {
-        mount(renderRectangularExample({ indicator: 'positive' }))
+        mount(renderIndicatorExample({ indicator: 'positive' }))
         cy.get('body').happoScreenshot()
       })
       it('renders primary indicator', () => {
-        mount(renderRectangularExample({ indicator: 'primary' }))
+        mount(renderIndicatorExample({ indicator: 'primary' }))
         cy.get('body').happoScreenshot()
       })
     })

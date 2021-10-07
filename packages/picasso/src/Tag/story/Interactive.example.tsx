@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Tag, Container, Typography, Settings16 } from '@toptal/picasso'
-
-const noop = () => {}
+import { noop } from '@toptal/picasso/utils'
 
 const Example = () => {
   const [selected, setSelected] = useState<boolean>(false)
