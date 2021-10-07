@@ -64,6 +64,7 @@ export const NonNativeSelect = documentable(
         getDisplayValue = getOptionText,
         options,
         onChange,
+        disablePortal,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         native,
         ...rest
@@ -177,6 +178,7 @@ export const NonNativeSelect = documentable(
               width={menuWidth}
               placement='bottom-start'
               open
+              disablePortal={disablePortal}
               anchorEl={inputWrapperRef.current}
               container={popperContainer}
             >

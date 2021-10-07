@@ -21,8 +21,7 @@ export interface SelectProps<
   T extends ValueType = ValueType,
   M extends boolean = boolean,
   V = M extends true ? T[] : T
->
-  extends BaseProps,
+> extends BaseProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'onChange' | 'size' | 'color' | 'value'
@@ -89,6 +88,7 @@ export interface SelectProps<
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
   ref?: React.Ref<HTMLInputElement>
+  disablePortal?: boolean
 }
 
 export type ValueType = string | number
