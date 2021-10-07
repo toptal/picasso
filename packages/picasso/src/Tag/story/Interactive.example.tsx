@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Tag, Container, Typography, Settings16 } from '@toptal/picasso'
 
+const noop = () => {}
+
 const Example = () => {
   const [selected, setSelected] = useState<boolean>(false)
 
@@ -23,7 +25,7 @@ const Example = () => {
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Hover</Typography>
         <div>
-          <Tag icon={<Settings16 />} hovered onClick={() => {}}>
+          <Tag icon={<Settings16 />} hovered onClick={noop}>
             Label
           </Tag>
         </div>
@@ -31,7 +33,7 @@ const Example = () => {
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Selected</Typography>
         <div>
-          <Tag icon={<Settings16 />} variant='positive' onClick={() => {}}>
+          <Tag icon={<Settings16 />} variant='positive' onClick={noop}>
             Label
           </Tag>
         </div>
@@ -39,12 +41,7 @@ const Example = () => {
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Hover on Selected</Typography>
         <div>
-          <Tag
-            icon={<Settings16 />}
-            hovered
-            variant='positive'
-            onClick={() => {}}
-          >
+          <Tag icon={<Settings16 />} hovered variant='positive' onClick={noop}>
             Label
           </Tag>
         </div>

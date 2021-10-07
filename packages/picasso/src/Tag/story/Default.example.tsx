@@ -1,6 +1,10 @@
 import React from 'react'
 import { Tag, Settings16, Container, Typography } from '@toptal/picasso'
 
+const handleDelete = () => {
+  window.alert('You clicked the delete icon.')
+}
+
 const Example = () => (
   <Container flex gap='1rem'>
     <Container flex direction='column' gap='0.5rem'>
@@ -47,9 +51,5 @@ const Example = () => (
     </Container>
   </Container>
 )
-
-const handleDelete = () => {
-  window.alert('You clicked the delete icon.')
-}
 
 export default Example
