@@ -1,23 +1,17 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import {
-  StandardProps,
-  SizeType,
-  OmitInternalProps,
-  JssProps
-} from '@toptal/picasso-shared'
+import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
-import Image from '../Image'
-import { Props as ImageProps } from '../Image/Image'
-import Logo from '../Logo'
-import Typography from '../Typography'
-import getNameInitials from '../utils/get-name-initials'
 import styles from './styles'
-import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
-import { Profile16 } from '..'
+import WithImage from './WithImage'
+import WithInitials from './WithInitials'
+import WithIcon from './WithIcon'
 
-type VariantType = 'square' | 'portrait' | 'landscape'
+export type VariantType = 'square' | 'portrait' | 'landscape'
+export type AvatarSizeType = SizeType<
+  'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'
+>
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Alt text */
@@ -28,7 +22,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
    * Size
    * @default xsmall
    */
-  size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+  size?: AvatarSizeType
   /** Photo url */
   src?: string
   /**
@@ -39,81 +33,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoAvatar' })
-
-const isBrowserSupportsObjectFit = 'objectFit' in document.documentElement.style
-
-const renderLogo = ({
-  classes,
-  src,
-  size
-}: Pick<Props, 'src' | 'size'> & JssProps) => {
-  const hasNoImage = !src
-  const isTooSmall = size && ['small', 'xsmall', 'xxsmall'].includes(size)
-
-  if (hasNoImage || isTooSmall) {
-    return null
-  }
-
-  return (
-    <div className={classes.logoContainer}>
-      <Logo emblem variant='white' className={classes.logo} />
-    </div>
-  )
-}
-
-const renderInitials = ({
-  classes,
-  src,
-  name
-}: Pick<Props, 'src' | 'name'> & JssProps) => {
-  if (src || !name) {
-    return null
-  }
-
-  const initials = getNameInitials(name)
-
-  return (
-    <Typography
-      className={cx(classes.text, classes.centeredContent, {
-        [classes.textCapLimit]: initials.length >= AVATAR_INITIALS_LIMIT
-      })}
-      invert
-    >
-      {initials}
-    </Typography>
-  )
-}
-
-const renderIcon = ({
-  classes,
-  name,
-  size = 'xsmall',
-  src
-}: Pick<Props, 'src' | 'name' | 'size'> & JssProps) => {
-  if (src || name) {
-    return null
-  }
-
-  return (
-    <Profile16
-      className={cx(classes.centeredContent, classes[`${size}Icon`])}
-      color='white'
-    />
-  )
-}
-
-// You will be surprised, but it's a IE11 fix for `object-fit: cover` for images
-const IE11Image = ({ style, src, ...rest }: OmitInternalProps<ImageProps>) => (
-  <div
-    style={{
-      backgroundImage: `url(${src})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center center',
-      ...style
-    }}
-    {...rest}
-  />
-)
 
 export const Avatar: FunctionComponent<Props> = props => {
   const {
@@ -129,40 +48,47 @@ export const Avatar: FunctionComponent<Props> = props => {
 
   const classes = useStyles(props)
 
-  const sizeClassName = classes[size]
-  const variantClassName = classes[variant]
-
-  const InputComponent = isBrowserSupportsObjectFit ? Image : IE11Image
-
-  return (
-    <div {...rest} className={cx(classes.root, sizeClassName)}>
-      {src && (alt || name) ? (
-        <InputComponent
-          alt={alt || String(name)}
-          className={cx(
-            classes.image,
-            variantClassName,
-            sizeClassName,
-            classes.clippedCorner,
-            className
-          )}
+  const renderAvatar = () => {
+    if (src) {
+      return (
+        <WithImage
+          alt={alt}
+          classes={classes}
+          className={className}
+          name={name}
+          size={size}
           src={src}
           style={style}
+          variant={variant}
         />
-      ) : (
-        <div
-          className={cx(
-            classes.textContainer,
-            variantClassName,
-            sizeClassName,
-            classes.clippedCorner,
-            className
-          )}
+      )
+    }
+
+    if (!src && name) {
+      return (
+        <WithInitials
+          classes={classes}
+          className={className}
+          name={name}
+          size={size}
+          variant={variant}
         />
-      )}
-      {renderInitials({ classes, src, name })}
-      {renderIcon({ classes, src, name, size })}
-      {renderLogo({ classes, src, size })}
+      )
+    }
+
+    return (
+      <WithIcon
+        classes={classes}
+        className={className}
+        size={size}
+        variant={variant}
+      />
+    )
+  }
+
+  return (
+    <div {...rest} className={cx(classes.root, classes[size])}>
+      {renderAvatar()}
     </div>
   )
 }
