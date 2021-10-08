@@ -1,42 +1,57 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
-PicassoProvider.override(() => ({
+import { toMuiVariant } from './utils'
+
+PicassoProvider.override(({ typography }) => ({
   MuiTypography: {
-    h1: {
-      lineHeight: '1.5em'
+    [toMuiVariant('heading', 'xlarge')]: {
+      fontWeight: typography.fontWeights.semibold,
+      fontSize: '28px',
+      lineHeight: '42px'
     },
-    h2: {
-      lineHeight: '1.5em'
+    [toMuiVariant('heading', 'large')]: {
+      fontWeight: typography.fontWeights.semibold,
+      fontSize: '20px',
+      lineHeight: '30px'
     },
-    h3: {
-      lineHeight: '1.5em'
+    [toMuiVariant('heading', 'medium')]: {
+      fontWeight: typography.fontWeights.semibold,
+      fontSize: '16px',
+      lineHeight: '24px'
     },
-    h4: {
-      lineHeight: '1.5em'
+    [toMuiVariant('heading', 'small')]: {
+      fontWeight: typography.fontWeights.semibold,
+      fontSize: '14px',
+      lineHeight: '22px'
     },
-    body1: {
-      lineHeight: '1.5em'
+    [toMuiVariant('body', 'small')]: {
+      fontWeight: typography.fontWeights.regular,
+      fontSize: '12px',
+      lineHeight: '18px'
+    },
+    [toMuiVariant('body', 'medium')]: {
+      fontWeight: typography.fontWeights.regular,
+      fontSize: '14px',
+      lineHeight: '22px'
+    },
+    [toMuiVariant('body', 'large')]: {
+      fontWeight: typography.fontWeights.regular,
+      fontSize: '16px',
+      lineHeight: '24px'
     }
   }
 }))
 
 export default ({ palette, typography }: Theme) =>
   createStyles({
-    // variants
     bodySmall: {
-      fontSize: '12px',
-      fontWeight: typography.fontWeights.regular,
       color: palette.text.primary
     },
     bodyMedium: {
-      fontSize: '14px',
-      fontWeight: typography.fontWeights.regular,
       color: palette.text.primary
     },
     bodyLarge: {
-      fontSize: '16px',
-      fontWeight: typography.fontWeights.regular,
       color: palette.common.black
     },
     bodyInherit: {
@@ -45,27 +60,18 @@ export default ({ palette, typography }: Theme) =>
       color: palette.text.primary
     },
     headingSmall: {
-      fontSize: '14px',
-      fontWeight: typography.fontWeights.semibold,
       color: palette.common.black
     },
     headingMedium: {
-      fontSize: '16px',
-      fontWeight: typography.fontWeights.semibold,
       color: palette.common.black
     },
     headingLarge: {
-      fontSize: '20px',
-      fontWeight: typography.fontWeights.semibold,
       color: palette.common.black
     },
     headingXlarge: {
-      fontSize: '28px',
-      fontWeight: typography.fontWeights.semibold,
       color: palette.common.black
     },
 
-    // weight
     thin: {
       fontWeight: typography.fontWeights.thin
     },
@@ -82,7 +88,6 @@ export default ({ palette, typography }: Theme) =>
       fontWeight: 'inherit'
     },
 
-    // colors
     green: {
       color: palette.green.darker
     },
@@ -114,7 +119,6 @@ export default ({ palette, typography }: Theme) =>
       color: 'inherit'
     },
 
-    // Text decorations
     solid: {
       textDecoration: 'underline',
       textDecorationStyle: 'solid'

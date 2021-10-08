@@ -1,12 +1,10 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Variant as MUIVariant } from '@material-ui/core/styles/createTypography'
 import { PropTypes } from '@material-ui/core'
 import MUITypography from '@material-ui/core/Typography'
 import cx from 'classnames'
 import {
   StandardProps,
-  SizeType,
   ColorType,
   TextLabelProps
 } from '@toptal/picasso-shared'
@@ -14,12 +12,8 @@ import {
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
-
-type VariantType = 'heading' | 'body'
-
-type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'inherit'
-
-type UnderlineType = 'solid' | 'dashed'
+import { VariantType, WeightType, UnderlineType, SizeType } from './types'
+import { toMuiVariant } from './utils'
 
 export interface Props
   extends StandardProps,
@@ -34,7 +28,7 @@ export interface Props
   /** Text align of the inner text */
   align?: PropTypes.Alignment
   /** Size of the inner text */
-  size?: SizeType<'small' | 'medium' | 'large' | 'xlarge'> | 'inherit'
+  size?: SizeType
   /** Font weight of the inner text */
   weight?: WeightType
   /** Invert color */
@@ -49,28 +43,6 @@ export interface Props
   underline?: UnderlineType
   /** Controls when the Typography should have line through */
   lineThrough?: boolean
-}
-
-type VariantsType = {
-  [k in VariantType]: {
-    [l in
-      | SizeType<'small' | 'medium' | 'large' | 'xlarge'>
-      | 'inherit']?: MUIVariant
-  }
-}
-const VARIANTS: VariantsType = {
-  heading: {
-    small: 'h4',
-    medium: 'h3',
-    large: 'h2',
-    xlarge: 'h1'
-  },
-  body: {
-    small: 'body1',
-    medium: 'body1',
-    large: 'body1',
-    inherit: 'body1'
-  }
 }
 
 const getWeightClass = (
@@ -112,7 +84,6 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
   } = props
   const classes = useStyles(props)
 
-  const resolvedVariant = VARIANTS[variant][size]
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
   const colorClassName = kebabToCamelCase(`${color}`)
 
@@ -140,7 +111,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
         root: rootClass
       }}
       style={style}
-      variant={resolvedVariant}
+      variant={toMuiVariant(variant, size)}
       display={inline ? 'inline' : 'initial'}
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       component={as!}
