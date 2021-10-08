@@ -60,6 +60,7 @@ export default ({ palette, typography }: Theme) =>
     // body inherit does not have an appropriate MUI variant, overriding styles here
     bodyInherit: {
       fontSize: '1em',
+      lineHeight: '1em',
       fontWeight: typography.fontWeights.regular,
       color: palette.text.primary
     },
