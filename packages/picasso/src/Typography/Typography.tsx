@@ -45,17 +45,6 @@ export interface Props
   lineThrough?: boolean
 }
 
-const getWeightClass = (
-  classes: Record<string, string>,
-  weight?: WeightType
-) => {
-  if (weight === 'inherit') {
-    return classes.inheritWeight
-  }
-
-  return weight && classes[weight]
-}
-
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoTypography'
 })
@@ -87,16 +76,19 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
   const colorClassName = kebabToCamelCase(`${color}`)
 
+  const weightVariantClass = weight ? classes[weight] : undefined
+  const weightClass =
+    weight === 'inherit' ? classes.inheritWeight : weightVariantClass
+
+  const underlineClass = underline ? classes[underline] : undefined
+
   const rootClass = cx(
-    {
-      [classes.invert]: invert
-    },
     classes[variantClassName],
-    getWeightClass(classes, weight),
     classes[colorClassName],
+    weightClass,
+    underlineClass,
     {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      [classes[underline!]]: underline,
+      [classes.invert]: invert,
       [classes.lineThrough]: lineThrough
     }
   )
