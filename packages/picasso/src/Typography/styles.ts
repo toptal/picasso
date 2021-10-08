@@ -3,73 +3,70 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 
 import { toMuiVariant } from './utils'
 
-PicassoProvider.override(({ typography }) => ({
+const getBaseBodyStyles = ({
+  palette,
+  typography
+}: Pick<Theme, 'palette' | 'typography'>) => ({
+  color: palette.text.primary,
+  fontWeight: typography.fontWeights.regular,
+  fontSize: '14px',
+  lineHeight: '22px'
+})
+
+PicassoProvider.override(({ palette, typography }) => ({
+  // If typography variant has a unique mui variant mapping, you should override styles here
   MuiTypography: {
     [toMuiVariant('heading', 'xlarge')]: {
+      color: palette.common.black,
       fontWeight: typography.fontWeights.semibold,
       fontSize: '28px',
       lineHeight: '42px'
     },
     [toMuiVariant('heading', 'large')]: {
+      color: palette.common.black,
       fontWeight: typography.fontWeights.semibold,
       fontSize: '20px',
       lineHeight: '30px'
     },
     [toMuiVariant('heading', 'medium')]: {
+      color: palette.common.black,
       fontWeight: typography.fontWeights.semibold,
       fontSize: '16px',
       lineHeight: '24px'
     },
     [toMuiVariant('heading', 'small')]: {
+      color: palette.common.black,
       fontWeight: typography.fontWeights.semibold,
       fontSize: '14px',
       lineHeight: '22px'
     },
-    [toMuiVariant('body', 'small')]: {
-      fontWeight: typography.fontWeights.regular,
-      fontSize: '12px',
-      lineHeight: '18px'
-    },
-    [toMuiVariant('body', 'medium')]: {
-      fontWeight: typography.fontWeights.regular,
-      fontSize: '14px',
-      lineHeight: '22px'
-    },
-    [toMuiVariant('body', 'large')]: {
-      fontWeight: typography.fontWeights.regular,
-      fontSize: '16px',
-      lineHeight: '24px'
-    }
+    // base body1 styles across the Picasso library
+    [toMuiVariant('body', 'medium')]: getBaseBodyStyles({ palette, typography })
   }
 }))
 
 export default ({ palette, typography }: Theme) =>
+  // If there is no unique MUI variant for typography, you should override styles here
   createStyles({
+    // bodySmall & bodyMedium & bodyLarge -> body1
     bodySmall: {
-      color: palette.text.primary
+      color: palette.text.primary,
+      fontWeight: typography.fontWeights.regular,
+      fontSize: '12px',
+      lineHeight: '18px'
     },
-    bodyMedium: {
-      color: palette.text.primary
-    },
+    // bodyMedium has base body1 styles, no need to override
     bodyLarge: {
-      color: palette.common.black
+      color: palette.common.black,
+      fontWeight: typography.fontWeights.regular,
+      fontSize: '16px',
+      lineHeight: '24px'
     },
+    // body inherit does not have an appropriate MUI variant, overriding styles here
     bodyInherit: {
       fontSize: '1em',
       fontWeight: typography.fontWeights.regular,
       color: palette.text.primary
-    },
-    headingSmall: {
-      color: palette.common.black
-    },
-    headingMedium: {
-      color: palette.common.black
-    },
-    headingLarge: {
-      color: palette.common.black
-    },
-    headingXlarge: {
-      color: palette.common.black
     },
 
     thin: {
