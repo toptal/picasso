@@ -31,6 +31,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
     },
     innerLabel: {
       fontSize: '0.75rem',
+      lineHeight: '0.75rem',
       fontWeight: 600,
       minWidth: 0
     },
