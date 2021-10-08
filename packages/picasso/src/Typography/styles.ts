@@ -51,6 +51,7 @@ export default ({ palette, typography }: Theme) =>
       lineHeight: '18px'
     },
     // bodyMedium has base body1 styles, no need to override
+    bodyMedium: {},
     bodyLarge: {
       color: palette.common.black,
       fontWeight: typography.fontWeights.regular,

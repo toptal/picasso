@@ -12,7 +12,7 @@ exports[`Note renders 1`] = `
         class="makeStyles-root"
       >
         <h4
-          class="MuiTypography-root PicassoTypography-headingSmall MuiTypography-h4"
+          class="MuiTypography-root MuiTypography-h4"
         >
           Title
         </h4>
