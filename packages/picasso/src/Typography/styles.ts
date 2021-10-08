@@ -65,12 +65,6 @@ export default ({ palette, typography }: Theme) =>
       color: palette.text.primary
     },
 
-    thin: {
-      fontWeight: typography.fontWeights.thin
-    },
-    light: {
-      fontWeight: typography.fontWeights.light
-    },
     regular: {
       fontWeight: typography.fontWeights.regular
     },
@@ -82,7 +76,7 @@ export default ({ palette, typography }: Theme) =>
     },
 
     green: {
-      color: palette.green.darker
+      color: palette.green.dark
     },
     red: {
       color: palette.red.main

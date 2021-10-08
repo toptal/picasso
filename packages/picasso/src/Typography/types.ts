@@ -2,7 +2,7 @@ import type { SizeType as PicassoSizeType } from '@toptal/picasso-shared'
 
 export type VariantType = 'heading' | 'body'
 
-export type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'inherit'
+export type WeightType = 'regular' | 'semibold' | 'inherit'
 
 export type UnderlineType = 'solid' | 'dashed'
 
