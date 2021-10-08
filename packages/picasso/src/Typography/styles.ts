@@ -3,16 +3,6 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 
 import { toMuiVariant } from './utils'
 
-const getBaseBodyStyles = ({
-  palette,
-  typography
-}: Pick<Theme, 'palette' | 'typography'>) => ({
-  color: palette.text.primary,
-  fontWeight: typography.fontWeights.regular,
-  fontSize: '14px',
-  lineHeight: '22px'
-})
-
 PicassoProvider.override(({ palette, typography }) => ({
   // If typography variant has a unique mui variant mapping, you should override styles here
   MuiTypography: {
@@ -41,7 +31,12 @@ PicassoProvider.override(({ palette, typography }) => ({
       lineHeight: '22px'
     },
     // base body1 styles across the Picasso library
-    [toMuiVariant('body', 'medium')]: getBaseBodyStyles({ palette, typography })
+    [toMuiVariant('body', 'medium')]: {
+      color: palette.text.primary,
+      fontWeight: typography.fontWeights.regular,
+      fontSize: '14px',
+      lineHeight: '22px'
+    }
   }
 }))
 
