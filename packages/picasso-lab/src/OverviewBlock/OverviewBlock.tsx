@@ -28,11 +28,9 @@ import OverviewBlockRow from '../OverviewBlockRow'
 type Variant =
   | 'value-red'
   | 'value-green'
-  | 'value-blue'
   | 'value-yellow'
   | 'label-red'
   | 'label-green'
-  | 'label-blue'
   | 'label-yellow'
 
 type ColorSettings = {

@@ -58,7 +58,6 @@ describe('Typography', () => {
     mount(
       <TestingPicasso>
         {([
-          'blue',
           'green',
           'red',
           'yellow',
