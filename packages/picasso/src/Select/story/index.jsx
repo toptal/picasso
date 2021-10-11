@@ -17,7 +17,8 @@ page.createTabChapter('Props').addComponentDocs({
         description: `
     [\n
       { text: string, value: string },\n
-      { text: string, value: string }\n
+      { text: string, value: string,
+         disabled: true }\n
     }\n
 or\n
     {\n
@@ -26,7 +27,8 @@ or\n
         { text: string, value: string }\n
       ],\n
       string: [\n
-        { text: string, value: string },\n
+        { text: string, value: string,
+           disabled: true },\n
         { text: string, value: string }\n
       ]\n
     }
@@ -93,3 +95,7 @@ page
   }) // picasso-skip-visuals
   .addExample('Select/story/ResetButton.example.tsx', 'With reset button') // picasso-skip-visuals
   .addExample('Select/story/Autofill.example.tsx', 'Disable autofilling') // picasso-skip-visuals
+  .addExample('Select/story/DisabledOption.example.tsx', {
+    title: 'Disabled options',
+    description: 'Select component allows to define disabled options'
+  }) // picasso-skip-visuals

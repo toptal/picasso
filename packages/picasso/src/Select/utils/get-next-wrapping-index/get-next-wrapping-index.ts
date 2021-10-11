@@ -11,29 +11,34 @@
 const getNextWrappingIndex = (
   moveAmount: number,
   initialIndex: number | null,
-  itemCount: number
+  itemIndexes: number[]
 ) => {
-  const itemsLastIndex = itemCount - 1
-
-  if (
-    typeof initialIndex !== 'number' ||
-    initialIndex < 0 ||
-    initialIndex >= itemCount
-  ) {
-    initialIndex = moveAmount > 0 ? -1 : itemsLastIndex + 1
+  if (initialIndex === null) {
+    return itemIndexes[0]
   }
 
-  const newIndex = initialIndex + moveAmount
+  const itemsLastIndex = itemIndexes.length - 1
+  let itemIndex = itemIndexes.indexOf(initialIndex)
+
+  if (
+    typeof itemIndex !== 'number' ||
+    itemIndex < 0 ||
+    itemIndex >= itemIndexes.length
+  ) {
+    itemIndex = moveAmount > 0 ? -1 : 1
+  }
+
+  const newIndex = itemIndex + moveAmount
 
   if (newIndex < 0) {
-    return itemsLastIndex
+    return itemIndexes[itemsLastIndex]
   }
 
   if (newIndex > itemsLastIndex) {
-    return 0
+    return itemIndexes[0]
   }
 
-  return newIndex
+  return itemIndexes[newIndex]
 }
 
 export default getNextWrappingIndex

@@ -6,7 +6,8 @@ import noop from '../utils/noop'
 
 const CHILDREN = 'Test'
 const DESCRIPTION = 'Test description'
-const OPTION = { text: '', value: '' }
+const OPTION = { text: 'Option #1', value: 'option1' }
+const DISABLED_OPTION = { ...OPTION, disabled: true }
 
 const renderNonNativeSelectOption = ({
   children = CHILDREN,
@@ -35,46 +36,73 @@ const renderNonNativeSelectOption = ({
   )
 
 describe('NonNativeSelectOption', () => {
-  it('renders', () => {
-    const { container } = renderNonNativeSelectOption()
+  describe('when option is enabled', () => {
+    it('renders', () => {
+      const { container } = renderNonNativeSelectOption()
 
-    expect(container).toMatchSnapshot()
-  })
-
-  it('sets attributes correctly', () => {
-    const { container, getByRole } = renderNonNativeSelectOption({
-      selected: true,
-      highlighted: true,
-      option: { text: 'Option #1', value: 'option1' }
+      expect(container).toMatchSnapshot()
     })
 
-    const option = getByRole('option')
+    it('sets attributes correctly', () => {
+      const { container, getByRole } = renderNonNativeSelectOption({
+        selected: true,
+        highlighted: true
+      })
 
-    expect(option.getAttribute('aria-selected')).toEqual('true')
-    expect(option.getAttribute('value')).toEqual('option1')
+      const option = getByRole('option')
 
-    expect(container).toMatchSnapshot()
-  })
+      expect(option.getAttribute('aria-selected')).toEqual('true')
+      expect(option.getAttribute('value')).toEqual('option1')
 
-  it('fires events correctly', () => {
-    const onMouseDown = jest.fn()
-    const onMouseEnter = jest.fn()
-    const onClick = jest.fn()
-    const { getByRole } = renderNonNativeSelectOption({
-      onMouseDown,
-      onMouseEnter,
-      onClick
+      expect(container).toMatchSnapshot()
     })
 
-    const option = getByRole('option')
+    it('fires events correctly', () => {
+      const onMouseDown = jest.fn()
+      const onMouseEnter = jest.fn()
+      const onClick = jest.fn()
+      const { getByRole } = renderNonNativeSelectOption({
+        onMouseDown,
+        onMouseEnter,
+        onClick
+      })
 
-    fireEvent.mouseDown(option)
-    expect(onMouseDown).toHaveBeenCalledTimes(1)
+      const option = getByRole('option')
 
-    fireEvent.mouseEnter(option)
-    expect(onMouseEnter).toHaveBeenCalledTimes(1)
+      fireEvent.mouseDown(option)
+      expect(onMouseDown).toHaveBeenCalledTimes(1)
 
-    fireEvent.click(option)
-    expect(onClick).toHaveBeenCalledTimes(1)
+      fireEvent.mouseEnter(option)
+      expect(onMouseEnter).toHaveBeenCalledTimes(1)
+
+      fireEvent.click(option)
+      expect(onClick).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('when option is disabled', () => {
+    it('renders', () => {
+      const { container } = renderNonNativeSelectOption({
+        option: DISABLED_OPTION
+      })
+
+      expect(container).toMatchSnapshot()
+    })
+
+    it('sets attributes correctly', () => {
+      const { container, getByRole } = renderNonNativeSelectOption({
+        selected: true,
+        highlighted: true,
+        option: DISABLED_OPTION
+      })
+
+      const option = getByRole('option')
+
+      expect(option.getAttribute('aria-selected')).toEqual('true')
+      expect(option.getAttribute('aria-disabled')).toEqual('true')
+      expect(option.getAttribute('value')).toEqual('option1')
+
+      expect(container).toMatchSnapshot()
+    })
   })
 })

@@ -21,8 +21,7 @@ export interface SelectProps<
   T extends ValueType = ValueType,
   M extends boolean = boolean,
   V = M extends true ? T[] : T
->
-  extends BaseProps,
+> extends BaseProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'onChange' | 'size' | 'color' | 'value'
@@ -97,8 +96,9 @@ export type Option<T extends string | number = string | number> = {
   key?: number
   text: string
   description?: string
+  disabled?: boolean
   value: T
-  [prop: string]: string | number | undefined
+  [prop: string]: string | number | boolean | undefined
 }
 
 export type OptionGroups<T extends string | number = string | number> = {
@@ -137,7 +137,7 @@ export type UseSelectStateOutput = {
   canOpen: boolean
   open: () => void
   close: () => void
-  highlightedIndex: number
+  highlightedIndex: number | null
   closeOnEnter: boolean
   setHighlightedIndex: (index: number) => void
   setFilterOptionsValue: (value: string) => void

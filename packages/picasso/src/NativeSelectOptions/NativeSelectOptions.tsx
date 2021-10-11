@@ -20,6 +20,7 @@ const NativeSelectOptions = <T extends ValueType>({
         <option
           key={(option?.key ?? option.value).toString()}
           value={option.value.toString()}
+          disabled={option.disabled}
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...getItemProps(option, index)}
         >
@@ -35,7 +36,7 @@ const NativeSelectOptions = <T extends ValueType>({
 
   return (
     <>
-      {Object.keys(options).map((group) => (
+      {Object.keys(options).map(group => (
         <optgroup key={group} label={group}>
           {renderOptions(options[group])}
         </optgroup>

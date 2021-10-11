@@ -30,6 +30,10 @@ const useEnterOrSpaceKeyDownHandler = <
         return
       }
 
+      if (highlightedIndex === null) {
+        return
+      }
+
       const item = flattenOptions(filteredOptions)[highlightedIndex]
 
       if (!item) {

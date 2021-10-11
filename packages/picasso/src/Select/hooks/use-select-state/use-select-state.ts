@@ -40,9 +40,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     limit = DEFAULT_LIMIT
   } = props
 
-  const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
-    options
-  ])
+  const flatOptions = useMemo(() => flattenOptions(options), [options])
 
   const [selectedOptions, setSelectedOptions] = useState(
     getSelectedOptions(options, value)
@@ -74,6 +72,15 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
       ),
     [flatOptions, selection]
   )
+  const enabledIndexes = useMemo(
+    () =>
+      flatOptions.reduce(
+        (enabled: number[], option: Option, index: number) =>
+          !option.disabled ? [...enabled, index] : enabled,
+        []
+      ),
+    [flatOptions]
+  )
   const emptySelectValue: string | string[] = useMemo(
     () => (multiple ? [] : ''),
     [multiple]
@@ -84,7 +91,10 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const canOpen = !isOpen && !disabled
   const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex({
-    selectedIndexes,
+    selectedIndexes: selectedIndexes.filter(index =>
+      enabledIndexes.includes(index)
+    ),
+    indexes: enabledIndexes,
     isOpen
   })
 

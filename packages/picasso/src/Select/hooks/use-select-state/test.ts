@@ -161,4 +161,89 @@ describe('useSelectState', () => {
       expect(result.current.isOpen).toBe(false)
     })
   })
+
+  describe('when all the options are disabled', () => {
+    it('should not highlight options when options are selected', () => {
+      const OPTIONS = DEFAULT_OPTIONS.map(option => ({
+        ...option,
+        disabled: true
+      }))
+      const { result } = renderUseSelectState({
+        options: OPTIONS,
+        value: OPTIONS.map(({ value }) => value)
+      })
+
+      expect(result.current.selectedOptions).toEqual(OPTIONS)
+      expect(result.current.highlightedIndex).toBeNull()
+      expect(result.current.selectedIndexes).toEqual(OPTIONS.map((_, index) => index))
+      expect(result.current.displayValue).toEqual(OPTIONS.map(({ text }) => text).join(', '))
+    })
+  })
+
+  describe('when part of the options are disabled', () => {
+    describe('when first option is disabled', () => {
+      it('should highlight the first enabled option', () => {
+        const OPTIONS = [
+          { text: 'One', value: '1', disabled: true },
+          { text: 'Two', value: '2', disabled: true },
+          { text: 'Three', value: '3' }
+        ]
+        const DISABLED_OPTIONS = OPTIONS.slice(0, -1)
+        const { result } = renderUseSelectState({
+          options: OPTIONS,
+          value: DISABLED_OPTIONS.map(({ value }) => value)
+        })
+
+        expect(result.current.selectedOptions).toEqual(DISABLED_OPTIONS)
+        expect(result.current.highlightedIndex).toEqual(2)
+        expect(result.current.selectedIndexes).toEqual(DISABLED_OPTIONS.map((_, index) => index))
+        expect(result.current.displayValue).toEqual(DISABLED_OPTIONS.map(({ text }) => text).join(', '))
+      })
+    })
+  })
+
+  describe('when all the group options are disabled', () => {
+    it('should not highlight options when options are selected', () => {
+      const OPTIONS = {
+        'Group 1': [
+          { value: '1', text: 'Option 1', disabled: true },
+          { value: '2', text: 'Option 2', disabled: true }
+        ],
+        'Group 2': [
+          { value: '3', text: 'Option 3', disabled: true },
+          { value: '4', text: 'Option 4', disabled: true }
+        ]
+      }
+      const { result } = renderUseSelectState({
+        options: OPTIONS,
+        value: ['1', '2', '3', '4']
+      })
+
+      expect(result.current.selectedOptions).toEqual([...OPTIONS['Group 1'], ...OPTIONS['Group 2']])
+      expect(result.current.highlightedIndex).toBeNull()
+      expect(result.current.selectedIndexes).toEqual([1, 2, 4, 5])
+    })
+  })
+
+  describe('when part of the group options are disabled', () => {
+    it('should not highlight options when options are selected', () => {
+      const OPTIONS = {
+        'Group 1': [
+          { value: '1', text: 'Option 1', disabled: true },
+          { value: '2', text: 'Option 2', disabled: true }
+        ],
+        'Group 2': [
+          { value: '3', text: 'Option 3', disabled: true },
+          { value: '4', text: 'Option 4' }
+        ]
+      }
+      const { result } = renderUseSelectState({
+        options: OPTIONS,
+        value: ['1', '2', '3']
+      })
+
+      expect(result.current.selectedOptions).toEqual([...OPTIONS['Group 1'], OPTIONS['Group 2'][0]])
+      expect(result.current.highlightedIndex).toEqual(3)
+    })
+  })
 })

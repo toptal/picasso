@@ -1,8 +1,11 @@
 import React, { ReactNode } from 'react'
 import { SizeType } from '@toptal/picasso-shared'
+import cx from 'classnames'
+import { Theme, makeStyles } from '@material-ui/core/styles'
 
 import MenuItem from '../MenuItem'
 import { Option, ValueType } from '../Select'
+import styles from './styles'
 
 export interface Props<T extends ValueType> {
   children?: ReactNode
@@ -16,6 +19,10 @@ export interface Props<T extends ValueType> {
   option: Option<T>
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoNonNativeSelectOption'
+})
+
 const NonNativeSelectOption = React.memo(
   <T extends ValueType>({
     option,
@@ -28,6 +35,8 @@ const NonNativeSelectOption = React.memo(
     description,
     children
   }: Props<T>) => {
+    const classes = useStyles()
+
     return (
       <MenuItem
         role='option'
@@ -41,6 +50,10 @@ const NonNativeSelectOption = React.memo(
         onClick={onClick}
         titleCase={false}
         description={description}
+        disabled={option.disabled}
+        className={cx({
+          [classes.disabled]: option.disabled
+        })}
       >
         {children}
       </MenuItem>
