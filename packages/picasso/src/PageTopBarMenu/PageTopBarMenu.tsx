@@ -35,7 +35,12 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
 
     const metaContent =
       typeof meta === 'string' ? (
-        <Typography className={classes.truncateText} invert size='small'>
+        <Typography
+          className={classes.truncateText}
+          invert
+          size='small'
+          data-testid='top-bar-menu-meta-content'
+        >
           {meta}
         </Typography>
       ) : (

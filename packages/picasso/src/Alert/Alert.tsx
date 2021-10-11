@@ -12,6 +12,7 @@ export interface StaticProps {
 export interface Props extends AlertInlineProps {
   /** Callback invoked when close is clicked */
   onClose?: (event: MouseEvent<HTMLButtonElement>) => void
+  dataTestid?: string
 }
 
 const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
@@ -29,7 +30,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {
-  const { children, variant, onClose, className } = props
+  const { children, variant, onClose, className, dataTestid } = props
 
   return (
     <Container
@@ -41,6 +42,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       ref={ref}
       variant={variant}
       className={className}
+      data-testid={dataTestid}
     >
       <AlertInline variant={variant} iconPadding='small'>
         {children}
