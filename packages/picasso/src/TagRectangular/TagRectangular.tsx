@@ -7,8 +7,14 @@ import Indicator, { IndicatorProps } from '../Indicator'
 import Chip from '../Chip'
 import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
+import { dashToCamelCase } from '../utils'
 
-export type VariantType = 'negative' | 'warning' | 'positive' | 'dark' | 'light'
+export type VariantType =
+  | 'dark-grey'
+  | 'green'
+  | 'light-grey'
+  | 'red'
+  | 'yellow'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
@@ -43,7 +49,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
       style,
       className,
       titleCase: propsTitleCase,
-      variant = 'light',
+      variant = 'light-grey',
       indicator,
       ...rest
     } = props
@@ -56,7 +62,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         {...rest}
         ref={ref}
         classes={{
-          root: cx(classes.root, classes[variant]),
+          root: cx(classes.root, classes[dashToCamelCase(variant)]),
           label: classes.label,
           icon: classes.icon
         }}
@@ -66,7 +72,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         label={
           <span
             className={cx(classes.innerLabel, {
-              [classes.innerLabelDarkText]: variant === 'light'
+              [classes.innerLabelDarkText]: variant === 'light-grey'
             })}
           >
             {titleCase ? toTitleCase(children) : children}
@@ -78,7 +84,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
 )
 
 TagRectangular.defaultProps = {
-  variant: 'light'
+  variant: 'light-grey'
 }
 
 TagRectangular.displayName = 'TagRectangular'

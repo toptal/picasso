@@ -3,46 +3,46 @@ import { Tag, Container, Typography, Settings16 } from '@toptal/picasso'
 import { noop } from '@toptal/picasso/utils'
 
 const Example = () => {
-  const [selected, setSelected] = useState<boolean>(false)
+  const [checked, setChecked] = useState<boolean>(false)
 
   return (
     <Container flex gap='1rem'>
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Regular</Typography>
         <div>
-          <Tag
+          <Tag.Checkable
             icon={<Settings16 />}
-            variant={selected ? 'green' : 'grey'}
-            onClick={() => {
-              setSelected(!selected)
+            checked={checked}
+            onChange={() => {
+              setChecked(!checked)
             }}
           >
             Label
-          </Tag>
+          </Tag.Checkable>
         </div>
       </Container>
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Hover</Typography>
         <div>
-          <Tag icon={<Settings16 />} hovered onSelect={noop}>
+          <Tag.Checkable icon={<Settings16 />} hovered onChange={noop}>
             Label
-          </Tag>
+          </Tag.Checkable>
         </div>
       </Container>
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Selected</Typography>
         <div>
-          <Tag icon={<Settings16 />} variant='green' onSelect={noop}>
+          <Tag.Checkable icon={<Settings16 />} checked onChange={noop}>
             Label
-          </Tag>
+          </Tag.Checkable>
         </div>
       </Container>
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Hover on Selected</Typography>
         <div>
-          <Tag icon={<Settings16 />} hovered variant='green' onSelect={noop}>
+          <Tag.Checkable icon={<Settings16 />} hovered checked onChange={noop}>
             Label
-          </Tag>
+          </Tag.Checkable>
         </div>
       </Container>
     </Container>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { TagSelector, AutocompleteItem, Link } from '@toptal/picasso'
+import React, { useState, AnchorHTMLAttributes } from 'react'
+import { TagSelector, AutocompleteItem, Link, TagProps } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
 interface Country extends AutocompleteItem {
@@ -53,6 +53,10 @@ const filterOptions = (value: string) =>
     ? allOptions.filter(option => isSubstring(value, getDisplayValue(option)))
     : allOptions
 
+const CustomLabel = (
+  props: TagProps & AnchorHTMLAttributes<HTMLAnchorElement>
+) => <TagSelector.Label as={Link} {...props} />
+
 const TagSelectorCustomOptionRendererExample = () => {
   const [options, setOptions] = useState(allOptions)
   const [value, setValue] = useState<Country[]>([])
@@ -71,14 +75,13 @@ const TagSelectorCustomOptionRendererExample = () => {
           const { href, required } = item as Country
 
           return (
-            <TagSelector.Label
+            <CustomLabel
               disabled={disabled}
               onDelete={required ? undefined : onDelete}
               href={href}
-              as={Link}
             >
               {displayValue}
-            </TagSelector.Label>
+            </CustomLabel>
           )
         }}
         onChange={(selectedValues: AutocompleteItem[]) => {

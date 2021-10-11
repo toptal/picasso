@@ -47,7 +47,7 @@ export default ({ palette, transitions }: Theme) =>
       '&:focus': {
         backgroundColor: palette.common.white
       },
-      '&$positive': {
+      '&$green': {
         '&:hover, &$hovered': {
           borderColor: palette.red.main,
           color: palette.red.main

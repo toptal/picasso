@@ -2,6 +2,8 @@ import tagGroupStory from '../../TagGroup/story'
 import tagRectangularStory from '../../TagRectangular/story'
 import { Tag } from '../Tag'
 import PicassoBook from '~/.storybook/components/PicassoBook'
+import TagConnection from '../TagConnection'
+import TagCheckable from '../TagCheckable'
 
 const page = PicassoBook.section('Components').createPage(
   'Tag',
@@ -26,18 +28,30 @@ page
         type: {
           description: '(() => void) | undefined'
         }
+      },
+      variant: {
+        type: {
+          enums: ['grey', 'blue', 'green', 'yellow', 'red'],
+          name: 'enum'
+        }
       }
     },
     name: 'Tag'
   })
   .addComponentDocs(tagGroupStory.componentDocs)
   .addComponentDocs(tagRectangularStory.componentDocs)
+  .addComponentDocs({
+    component: TagConnection,
+    name: 'Tag.Connection',
+    description: 'Used inside endAdornment to showcase number of connections'
+  })
+  .addComponentDocs({ component: TagCheckable, name: 'Tag.Checkable' })
 
 page
   .createChapter()
   .addExample('Tag/story/Default.example.tsx', 'Secondary') // picasso-skip-visuals
   .addExample('Tag/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
-  .addExample('Tag/story/Interactive.example.tsx', 'Interactive') // picasso-skip-visuals
+  .addExample('Tag/story/Checkable.example.tsx', 'Checkable') // picasso-skip-visuals
 
 page.connect(tagGroupStory.chapter)
 page.connect(tagRectangularStory.chapter)

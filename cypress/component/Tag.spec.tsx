@@ -1,4 +1,5 @@
 /* eslint-disable max-nested-callbacks */
+/* eslint-disable max-lines-per-function */
 import React from 'react'
 import {
   Container,
@@ -14,6 +15,10 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 interface RegularExampleArgs {
   variant?: TagProps['variant']
+}
+
+interface CheckableExampleArgs {
+  checked?: boolean
   hovered?: boolean
 }
 
@@ -37,12 +42,12 @@ const renderVariantExample = ({ variant }: RegularExampleArgs) => (
   </TestingPicasso>
 )
 
-const renderInteractiveExample = ({ variant, hovered }: RegularExampleArgs) => (
+const renderCheckableExample = ({ checked, hovered }: CheckableExampleArgs) => (
   <TestingPicasso>
     <Container padded='small'>
-      <Tag onClick={noop} variant={variant} hovered={hovered}>
+      <Tag.Checkable onChange={noop} checked={checked} hovered={hovered}>
         Label
-      </Tag>
+      </Tag.Checkable>
     </Container>
   </TestingPicasso>
 )
@@ -55,9 +60,7 @@ const renderIndicatorExample = ({ indicator }: RectangularExampleArgs) => (
   </TestingPicasso>
 )
 
-const renderRectangularExample = ({
-  variant = 'light'
-}: RectangularExampleArgs) => (
+const renderRectangularExample = ({ variant }: RectangularExampleArgs) => (
   <TestingPicasso>
     <Container padded='small'>
       <Tag.Rectangular variant={variant}>{variant}</Tag.Rectangular>
@@ -70,7 +73,7 @@ describe('Tag', () => {
     mount(
       <TestingPicasso>
         <Container style={{ width: '500px' }}>
-          <Tag variant='secondary'>
+          <Tag variant='grey'>
             <TypographyOverflow inline weight='semibold'>
               Loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong
             </TypographyOverflow>
@@ -96,47 +99,47 @@ describe('Tag', () => {
   })
   describe('Regular', () => {
     describe('Variants', () => {
-      it('renders as primary', () => {
-        mount(renderVariantExample({ variant: 'primary' }))
+      it('renders as blue', () => {
+        mount(renderVariantExample({ variant: 'blue' }))
 
         cy.get('body').happoScreenshot()
       })
-      it('renders as secondary', () => {
-        mount(renderVariantExample({ variant: 'secondary' }))
+      it('renders as grey', () => {
+        mount(renderVariantExample({ variant: 'grey' }))
 
         cy.get('body').happoScreenshot()
       })
-      it('renders as positive', () => {
-        mount(renderVariantExample({ variant: 'positive' }))
+      it('renders as green', () => {
+        mount(renderVariantExample({ variant: 'green' }))
 
         cy.get('body').happoScreenshot()
       })
-      it('renders as warning', () => {
-        mount(renderVariantExample({ variant: 'warning' }))
+      it('renders as yellow', () => {
+        mount(renderVariantExample({ variant: 'yellow' }))
 
         cy.get('body').happoScreenshot()
       })
-      it('renders as negative', () => {
-        mount(renderVariantExample({ variant: 'negative' }))
+      it('renders as red', () => {
+        mount(renderVariantExample({ variant: 'red' }))
 
         cy.get('body').happoScreenshot()
       })
     })
     describe('Interactive', () => {
       it('renders', () => {
-        mount(renderInteractiveExample({}))
+        mount(renderCheckableExample({}))
         cy.get('body').happoScreenshot()
       })
       it('renders hovered', () => {
-        mount(renderInteractiveExample({ hovered: true }))
+        mount(renderCheckableExample({ hovered: true }))
         cy.get('body').happoScreenshot()
       })
       it('renders selected', () => {
-        mount(renderInteractiveExample({ variant: 'positive' }))
+        mount(renderCheckableExample({ checked: true }))
         cy.get('body').happoScreenshot()
       })
       it('renders selected hovered', () => {
-        mount(renderInteractiveExample({ variant: 'positive', hovered: true }))
+        mount(renderCheckableExample({ checked: true, hovered: true }))
         cy.get('body').happoScreenshot()
       })
     })
@@ -244,42 +247,42 @@ describe('Tag', () => {
 
   describe('Rectangular', () => {
     describe('Variants', () => {
-      it('renders negative', () => {
-        mount(renderRectangularExample({ variant: 'negative' }))
+      it('renders red', () => {
+        mount(renderRectangularExample({ variant: 'red' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders warning', () => {
-        mount(renderRectangularExample({ variant: 'warning' }))
+      it('renders yellow', () => {
+        mount(renderRectangularExample({ variant: 'yellow' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders positive', () => {
-        mount(renderRectangularExample({ variant: 'positive' }))
+      it('renders green', () => {
+        mount(renderRectangularExample({ variant: 'green' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders dark', () => {
-        mount(renderRectangularExample({ variant: 'dark' }))
+      it('renders dark-grey', () => {
+        mount(renderRectangularExample({ variant: 'dark-grey' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders light', () => {
-        mount(renderRectangularExample({ variant: 'light' }))
+      it('renders light-grey', () => {
+        mount(renderRectangularExample({ variant: 'light-grey' }))
         cy.get('body').happoScreenshot()
       })
     })
     describe('Indicators', () => {
-      it('renders negative indicator', () => {
-        mount(renderIndicatorExample({ indicator: 'negative' }))
+      it('renders red indicator', () => {
+        mount(renderIndicatorExample({ indicator: 'red' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders warning indicator', () => {
-        mount(renderIndicatorExample({ indicator: 'warning' }))
+      it('renders yellow indicator', () => {
+        mount(renderIndicatorExample({ indicator: 'yellow' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders positive indicator', () => {
-        mount(renderIndicatorExample({ indicator: 'positive' }))
+      it('renders green indicator', () => {
+        mount(renderIndicatorExample({ indicator: 'green' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders primary indicator', () => {
-        mount(renderIndicatorExample({ indicator: 'primary' }))
+      it('renders blue indicator', () => {
+        mount(renderIndicatorExample({ indicator: 'blue' }))
         cy.get('body').happoScreenshot()
       })
     })

@@ -3,7 +3,6 @@ import React, {
   ReactNode,
   ReactElement,
   HTMLAttributes,
-  AnchorHTMLAttributes,
   ElementType,
   MouseEvent
 } from 'react'
@@ -18,11 +17,11 @@ import TagRectangular from '../TagRectangular'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 import TagConnection from './TagConnection'
+import TagCheckable from './TagCheckable'
 
 type VariantType = 'grey' | 'blue' | 'green' | 'yellow' | 'red'
 
-export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
-  HTMLAttributes<HTMLDivElement>
+export type DivOrAnchorProps = HTMLAttributes<HTMLDivElement>
 
 export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
@@ -136,5 +135,6 @@ Tag.displayName = 'Tag'
 export default Object.assign(Tag, {
   Group: TagGroup,
   Rectangular: TagRectangular,
-  Connection: TagConnection
+  Connection: TagConnection,
+  Checkable: TagCheckable
 })
