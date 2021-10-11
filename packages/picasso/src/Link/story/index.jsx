@@ -103,13 +103,17 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Link/story/Default.example.tsx', 'Default')
-  .addExample('Link/story/Action.example.tsx', 'Action')
-  .addExample('Link/story/Underline.example.tsx', 'Underline')
-  .addExample('Link/story/FontSize.example.tsx', 'Font Size')
-  .addExample('Link/story/Color.example.tsx', 'Color')
+  .addExample('Link/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+  .addExample('Link/story/Action.example.tsx', 'Action') // picasso-skip-visuals
+  .addExample('Link/story/Underline.example.tsx', 'Underline') // picasso-skip-visuals
+  .addExample('Link/story/FontSize.example.tsx', {
+    title: 'Font size',
+    description:
+      "You can modify Link's font size by wrapping it in `Typography`"
+  }) // picasso-skip-visuals
+  .addExample('Link/story/Color.example.tsx', 'Color') // picasso-skip-visuals
   .addExample('Link/story/Routing.example.tsx', {
     title: 'Routing',
     description:
-      'An example how to use picasso Link with ReactRouter Link component'
+      'An example how to use `@toptal/picasso` Link with `react-router-dom` Link'
   }) // picasso-skip-visuals
