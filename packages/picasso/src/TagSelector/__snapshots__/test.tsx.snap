@@ -18,12 +18,13 @@ exports[`TagSelector disabled render 1`] = `
           class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
           <div
+            aria-disabled="true"
             class="MuiChip-root PicassoLabel-root PicassoTagSelectorLabel-label PicassoLabel-disabled MuiChip-deletable"
             role="button"
             tabindex="0"
           >
             <span
-              class="MuiChip-label"
+              class="MuiChip-label PicassoLabel-label"
             >
               <span
                 class="PicassoLabel-innerLabel"
@@ -103,7 +104,7 @@ exports[`TagSelector preselected value 1`] = `
               tabindex="0"
             >
               <span
-                class="MuiChip-label"
+                class="MuiChip-label PicassoLabel-label"
               >
                 <span
                   class="PicassoLabel-innerLabel"

@@ -12,14 +12,14 @@ import cx from 'classnames'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
-import { CloseMinor16, Link16 } from '../Icon'
+import { CloseMinor16 } from '../Icon'
 import TagGroup from '../TagGroup'
 import TagRectangular from '../TagRectangular'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
-import { Typography } from '..'
+import TagConnection from './TagConnection'
 
-type VariantType = 'secondary' | 'primary' | 'positive' | 'warning' | 'negative'
+type VariantType = 'grey' | 'blue' | 'green' | 'yellow' | 'red'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
@@ -38,14 +38,10 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
    * Please note that specifying this callback automatically adds remove `Icon` as children of the `Tag`
    */
   onDelete?: () => void
-  /** Callback invoked when component is clicked */
-  onClick?: (
-    event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>
-  ) => void
   /** Variant of the `Tag` */
   variant?: VariantType
-  /** Shows connection icon with number of connections */
-  connection?: number
+  /** ReactNode rendered after label */
+  endAdornment?: ReactNode
   hovered?: boolean
 }
 
@@ -54,17 +50,17 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
 // eslint-disable-next-line react/display-name
 export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   const {
-    children,
-    style,
-    className,
-    icon,
-    disabled,
-    onDelete,
-    variant = 'secondary',
     as = 'div',
-    connection,
-    titleCase: propsTitleCase,
+    className,
+    disabled,
+    endAdornment,
     hovered,
+    children,
+    icon,
+    onDelete,
+    style,
+    titleCase: propsTitleCase,
+    variant = 'grey',
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -90,6 +86,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       ref={ref}
       classes={{
         root: classes.root,
+        label: classes.label,
         clickable: classes.clickable
       }}
       className={cx(className, classes[variant], {
@@ -99,7 +96,9 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       style={style}
       icon={
         icon
-          ? React.cloneElement(icon, { color: disabled ? 'grey' : 'darkGrey' })
+          ? React.cloneElement(icon, {
+              color: disabled ? 'grey' : 'darkGrey'
+            })
           : undefined
       }
       label={
@@ -107,17 +106,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
           <span className={classes.innerLabel}>
             {titleCase ? toTitleCase(children) : children}
           </span>
-          {typeof connection === 'number' ? (
-            <Typography
-              color='grey'
-              as='span'
-              size='small'
-              className={classes.connection}
-            >
-              <Link16 color='grey' />
-              {connection}
-            </Typography>
-          ) : null}
+          {endAdornment}
         </>
       }
       deleteIcon={
@@ -131,6 +120,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       }
       component={as}
       onDelete={onDelete ? handleDelete : undefined}
+      aria-disabled={disabled}
     />
   )
 })
@@ -138,12 +128,13 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
 Tag.defaultProps = {
   as: 'div',
   children: '',
-  variant: 'secondary'
+  variant: 'grey'
 }
 
 Tag.displayName = 'Tag'
 
 export default Object.assign(Tag, {
   Group: TagGroup,
-  Rectangular: TagRectangular
+  Rectangular: TagRectangular,
+  Connection: TagConnection
 })

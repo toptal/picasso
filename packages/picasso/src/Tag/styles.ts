@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import '../Chip/styles'
 
-export default ({ palette, spacing, transitions }: Theme) =>
+export default ({ palette, transitions }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
@@ -13,37 +13,30 @@ export default ({ palette, spacing, transitions }: Theme) =>
       color: palette.grey.main,
       pointerEvents: 'none'
     },
-    primary: {
+    blue: {
       color: palette.blue.main,
       borderColor: palette.blue.main
     },
-    positive: {
+    green: {
       color: palette.green.dark,
       borderColor: palette.green.dark
     },
-    warning: {
+    yellow: {
       color: palette.yellow.main,
       borderColor: palette.yellow.main
     },
-    negative: {
+    red: {
       color: palette.red.main,
       borderColor: palette.red.main
     },
     innerLabel: {
       fontSize: '0.75rem',
-      lineHeight: '0.75rem',
       fontWeight: 600,
       minWidth: 0
     },
     deleteIcon: {
       width: 'auto',
       height: 'auto'
-    },
-    connection: {
-      marginLeft: spacing(1),
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '5px'
     },
     clickable: {
       '&:hover, &$hovered': {
@@ -61,5 +54,19 @@ export default ({ palette, spacing, transitions }: Theme) =>
         }
       }
     },
-    hovered: {}
+    label: {
+      gap: '0.5rem'
+    },
+    hovered: {},
+
+    // TagConnection styles
+    connection: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '5px',
+      color: palette.grey.main2,
+      '[aria-disabled="true"] &': {
+        color: 'inherit'
+      }
+    }
   })

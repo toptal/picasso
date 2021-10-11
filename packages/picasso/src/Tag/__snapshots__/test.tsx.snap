@@ -11,7 +11,7 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
       tabindex="0"
     >
       <span
-        class="MuiChip-label"
+        class="MuiChip-label PicassoLabel-label"
       >
         <span
           class="PicassoLabel-innerLabel"
@@ -39,16 +39,16 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
 </div>
 `;
 
-exports[`Tag renders \`primary\` variant 1`] = `
+exports[`Tag renders \`blue\` variant 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoLabel-root PicassoLabel-primary"
+      class="MuiChip-root PicassoLabel-root PicassoLabel-blue"
     >
       <span
-        class="MuiChip-label"
+        class="MuiChip-label PicassoLabel-label"
       >
         <span
           class="PicassoLabel-innerLabel"
@@ -61,7 +61,7 @@ exports[`Tag renders \`primary\` variant 1`] = `
 </div>
 `;
 
-exports[`Tag renders \`secondary\` variant 1`] = `
+exports[`Tag renders \`light\` variant 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -70,7 +70,7 @@ exports[`Tag renders \`secondary\` variant 1`] = `
       class="MuiChip-root PicassoLabel-root"
     >
       <span
-        class="MuiChip-label"
+        class="MuiChip-label PicassoLabel-label"
       >
         <span
           class="PicassoLabel-innerLabel"
@@ -83,7 +83,7 @@ exports[`Tag renders \`secondary\` variant 1`] = `
 </div>
 `;
 
-exports[`Tag renders with connection 1`] = `
+exports[`Tag renders with adornment 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -92,7 +92,7 @@ exports[`Tag renders with connection 1`] = `
       class="MuiChip-root PicassoLabel-root"
     >
       <span
-        class="MuiChip-label"
+        class="MuiChip-label PicassoLabel-label"
       >
         <span
           class="PicassoLabel-innerLabel"
@@ -100,10 +100,10 @@ exports[`Tag renders with connection 1`] = `
           foobar
         </span>
         <span
-          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-grey PicassoLabel-connection MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoLabel-connection MuiTypography-body1"
         >
           <svg
-            class="PicassoSvgLink16-root PicassoSvgLink16-grey"
+            class="PicassoSvgLink16-root"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -111,7 +111,7 @@ exports[`Tag renders with connection 1`] = `
               d="M3 10a3 3 0 01-3-3V6a3 3 0 013-3h5a3 3 0 013 3h2a3 3 0 013 3v1a3 3 0 01-3 3H8a3 3 0 01-3-3H3zm10-3h-2a3 3 0 01-3 3H6a2 2 0 002 2h5a2 2 0 002-2V9a2 2 0 00-2-2zM8 4H3a2 2 0 00-2 2v1a2 2 0 002 2h2a3 3 0 013-3h2a2 2 0 00-2-2zm2 3H8a2 2 0 00-2 2h2a2 2 0 002-2z"
             />
           </svg>
-          5
+          0
         </span>
       </span>
     </div>
@@ -137,7 +137,7 @@ exports[`Tag renders with connection and icon 1`] = `
         />
       </svg>
       <span
-        class="MuiChip-label"
+        class="MuiChip-label PicassoLabel-label"
       >
         <span
           class="PicassoLabel-innerLabel"
@@ -145,10 +145,10 @@ exports[`Tag renders with connection and icon 1`] = `
           foobar
         </span>
         <span
-          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-grey PicassoLabel-connection MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoLabel-connection MuiTypography-body1"
         >
           <svg
-            class="PicassoSvgLink16-root PicassoSvgLink16-grey"
+            class="PicassoSvgLink16-root"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -156,7 +156,7 @@ exports[`Tag renders with connection and icon 1`] = `
               d="M3 10a3 3 0 01-3-3V6a3 3 0 013-3h5a3 3 0 013 3h2a3 3 0 013 3v1a3 3 0 01-3 3H8a3 3 0 01-3-3H3zm10-3h-2a3 3 0 01-3 3H6a2 2 0 002 2h5a2 2 0 002-2V9a2 2 0 00-2-2zM8 4H3a2 2 0 00-2 2v1a2 2 0 002 2h2a3 3 0 013-3h2a2 2 0 00-2-2zm2 3H8a2 2 0 00-2 2h2a2 2 0 002-2z"
             />
           </svg>
-          5
+          0
         </span>
       </span>
     </div>

@@ -12,7 +12,7 @@ const Example = () => {
         <div>
           <Tag
             icon={<Settings16 />}
-            variant={selected ? 'positive' : 'secondary'}
+            variant={selected ? 'green' : 'grey'}
             onClick={() => {
               setSelected(!selected)
             }}
@@ -24,7 +24,7 @@ const Example = () => {
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Hover</Typography>
         <div>
-          <Tag icon={<Settings16 />} hovered onClick={noop}>
+          <Tag icon={<Settings16 />} hovered onSelect={noop}>
             Label
           </Tag>
         </div>
@@ -32,7 +32,7 @@ const Example = () => {
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Selected</Typography>
         <div>
-          <Tag icon={<Settings16 />} variant='positive' onClick={noop}>
+          <Tag icon={<Settings16 />} variant='green' onSelect={noop}>
             Label
           </Tag>
         </div>
@@ -40,7 +40,7 @@ const Example = () => {
       <Container flex direction='column' gap='0.5rem'>
         <Typography>Hover on Selected</Typography>
         <div>
-          <Tag icon={<Settings16 />} hovered variant='positive' onClick={noop}>
+          <Tag icon={<Settings16 />} hovered variant='green' onSelect={noop}>
             Label
           </Tag>
         </div>

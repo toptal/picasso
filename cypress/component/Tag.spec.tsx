@@ -190,12 +190,21 @@ describe('Tag', () => {
             </Tag>
           </Container>
           <Container padded='small'>
-            <Tag icon={<Settings16 />} disabled connection={0}>
+            <Tag
+              icon={<Settings16 />}
+              disabled
+              endAdornment={<Tag.Connection>0</Tag.Connection>}
+            >
               Label
             </Tag>
           </Container>
           <Container padded='small'>
-            <Tag icon={<Settings16 />} onDelete={noop} disabled connection={0}>
+            <Tag
+              icon={<Settings16 />}
+              onDelete={noop}
+              disabled
+              endAdornment={<Tag.Connection>0</Tag.Connection>}
+            >
               Label
             </Tag>
           </Container>
@@ -208,15 +217,22 @@ describe('Tag', () => {
       mount(
         <TestingPicasso>
           <Container padded='small'>
-            <Tag connection={0}>Label</Tag>
+            <Tag endAdornment={<Tag.Connection>0</Tag.Connection>}>Label</Tag>
           </Container>
           <Container padded='small'>
-            <Tag icon={<Settings16 />} connection={0}>
+            <Tag
+              icon={<Settings16 />}
+              endAdornment={<Tag.Connection>0</Tag.Connection>}
+            >
               Label
             </Tag>
           </Container>
           <Container padded='small'>
-            <Tag icon={<Settings16 />} onDelete={noop} connection={0}>
+            <Tag
+              icon={<Settings16 />}
+              onDelete={noop}
+              endAdornment={<Tag.Connection>0</Tag.Connection>}
+            >
               Label
             </Tag>
           </Container>

@@ -36,7 +36,11 @@ const Example = () => (
         </Tag>
       </div>
       <div>
-        <Tag disabled icon={<Settings16 />} connection={0}>
+        <Tag
+          disabled
+          icon={<Settings16 />}
+          endAdornment={<Tag.Connection>0</Tag.Connection>}
+        >
           Label
         </Tag>
       </div>
@@ -44,7 +48,10 @@ const Example = () => (
     <Container flex direction='column' gap='0.5rem'>
       <Typography>With Connection</Typography>
       <div>
-        <Tag icon={<Settings16 />} connection={0}>
+        <Tag
+          icon={<Settings16 />}
+          endAdornment={<Tag.Connection>0</Tag.Connection>}
+        >
           Label
         </Tag>
       </div>

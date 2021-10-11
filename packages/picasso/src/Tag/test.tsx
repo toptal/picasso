@@ -13,7 +13,7 @@ const renderLabel = (
   props: OmitInternalProps<Props, 'children'>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { onDelete, disabled, variant, titleCase, connection, icon } = props
+  const { onDelete, disabled, variant, titleCase, endAdornment, icon } = props
 
   return render(
     <Tag
@@ -21,7 +21,7 @@ const renderLabel = (
       disabled={disabled}
       variant={variant}
       titleCase={titleCase}
-      connection={connection}
+      endAdornment={endAdornment}
       icon={icon}
     >
       {children}
@@ -42,14 +42,14 @@ describe('Tag', () => {
     spiedOnTitleCase.mockReset()
   })
 
-  it('renders `secondary` variant', () => {
+  it('renders `light` variant', () => {
     const { container } = renderLabel('Tag', {})
 
     expect(container).toMatchSnapshot()
   })
 
-  it('renders `primary` variant', () => {
-    const { container } = renderLabel('Tag', { variant: 'primary' })
+  it('renders `blue` variant', () => {
+    const { container } = renderLabel('Tag', { variant: 'blue' })
 
     expect(container).toMatchSnapshot()
   })
@@ -89,15 +89,17 @@ describe('Tag', () => {
     })
   })
 
-  it('renders with connection', () => {
-    const { container } = renderLabel('foobar', { connection: 5 })
+  it('renders with adornment', () => {
+    const { container } = renderLabel('foobar', {
+      endAdornment: <Tag.Connection>0</Tag.Connection>
+    })
 
     expect(container).toMatchSnapshot()
   })
   it('renders with connection and icon', () => {
     const { container } = renderLabel('foobar', {
-      connection: 5,
-      icon: <Settings16 color='darkGrey' />
+      endAdornment: <Tag.Connection>0</Tag.Connection>,
+      icon: <Settings16 />
     })
 
     expect(container).toMatchSnapshot()
