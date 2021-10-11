@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.6.0...@toptal/picasso@10.7.0) (2021-10-11)
+
+
+### Features
+
+* **Link:** remove focus borders ([#2182](https://github.com/toptal/picasso/issues/2182)) ([e57b8c3](https://github.com/toptal/picasso/commit/e57b8c3f181a2a7aaa20896579d5faf7ef5b8cb6))
+
+
+
+
+
 # [10.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso@10.5.2...@toptal/picasso@10.6.0) (2021-09-27)
 
 
