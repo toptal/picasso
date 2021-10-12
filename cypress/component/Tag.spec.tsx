@@ -18,8 +18,9 @@ interface RegularTagArgs {
 }
 
 interface CheckableTagArgs {
-  checked?: boolean
+  disabled?: boolean
   hovered?: boolean
+  checked?: boolean
 }
 
 interface RectangularTagArgs {
@@ -42,10 +43,19 @@ const renderRegularTag = ({ variant }: RegularTagArgs) => (
   </TestingPicasso>
 )
 
-const renderCheckableTag = ({ checked, hovered }: CheckableTagArgs) => (
+const renderCheckableTag = ({
+  checked,
+  hovered,
+  disabled
+}: CheckableTagArgs) => (
   <TestingPicasso>
     <Container padded='small'>
-      <Tag.Checkable onChange={noop} checked={checked} hovered={hovered}>
+      <Tag.Checkable
+        onChange={noop}
+        checked={checked}
+        hovered={hovered}
+        disabled={disabled}
+      >
         Label
       </Tag.Checkable>
     </Container>
@@ -140,6 +150,12 @@ describe('Tag', () => {
       })
       it('renders selected hovered', () => {
         mount(renderCheckableTag({ checked: true, hovered: true }))
+        cy.get('body').happoScreenshot()
+      })
+      it('renders disabled', () => {
+        mount(
+          renderCheckableTag({ checked: true, hovered: true, disabled: true })
+        )
         cy.get('body').happoScreenshot()
       })
     })

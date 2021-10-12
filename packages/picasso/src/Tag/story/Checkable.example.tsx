@@ -22,7 +22,7 @@ const Example = () => {
         </div>
       </Container>
       <Container flex direction='column' gap='0.5rem'>
-        <Typography>Hover</Typography>
+        <Typography>Hovered</Typography>
         <div>
           <Tag.Checkable icon={<Settings16 />} hovered onChange={noop}>
             Label
@@ -30,7 +30,7 @@ const Example = () => {
         </div>
       </Container>
       <Container flex direction='column' gap='0.5rem'>
-        <Typography>Selected</Typography>
+        <Typography>Checked</Typography>
         <div>
           <Tag.Checkable icon={<Settings16 />} checked onChange={noop}>
             Label
@@ -38,9 +38,23 @@ const Example = () => {
         </div>
       </Container>
       <Container flex direction='column' gap='0.5rem'>
-        <Typography>Hover on Selected</Typography>
+        <Typography>Hovered on Selected</Typography>
         <div>
           <Tag.Checkable icon={<Settings16 />} hovered checked onChange={noop}>
+            Label
+          </Tag.Checkable>
+        </div>
+      </Container>
+      <Container flex direction='column' gap='0.5rem'>
+        <Typography>disabled</Typography>
+        <div>
+          <Tag.Checkable
+            icon={<Settings16 />}
+            hovered
+            checked
+            disabled
+            onChange={noop}
+          >
             Label
           </Tag.Checkable>
         </div>

@@ -47,7 +47,7 @@ page
 
 page
   .createChapter()
-  .addExample('Tag/story/Default.example.tsx', 'Secondary') // picasso-skip-visuals
+  .addExample('Tag/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('Tag/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
   .addExample('Tag/story/Checkable.example.tsx', 'Checkable') // picasso-skip-visuals
 

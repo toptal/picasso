@@ -8,11 +8,6 @@ export default ({ palette, transitions }: Theme) =>
       fontSize: '1rem',
       maxWidth: '100%'
     },
-    disabled: {
-      borderColor: palette.grey.lighter2,
-      color: palette.grey.main,
-      pointerEvents: 'none'
-    },
     primary: {
       color: palette.blue.main,
       borderColor: palette.blue.main
@@ -29,6 +24,11 @@ export default ({ palette, transitions }: Theme) =>
       color: palette.red.main,
       borderColor: palette.red.main
     },
+    disabled: {
+      borderColor: palette.grey.lighter2,
+      color: palette.grey.main,
+      pointerEvents: 'none'
+    },
     innerLabel: {
       fontSize: '0.75rem',
       fontWeight: 600,
@@ -39,18 +39,20 @@ export default ({ palette, transitions }: Theme) =>
       height: 'auto'
     },
     clickable: {
-      '&:hover, &$hovered': {
-        borderColor: palette.grey.dark,
-        backgroundColor: palette.common.white,
-        transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`
-      },
-      '&:focus': {
-        backgroundColor: palette.common.white
-      },
-      '&$positive': {
+      '&:not($disabled)': {
         '&:hover, &$hovered': {
-          borderColor: palette.red.main,
-          color: palette.red.main
+          borderColor: palette.grey.dark,
+          backgroundColor: palette.common.white,
+          transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`
+        },
+        '&:focus': {
+          backgroundColor: palette.common.white
+        },
+        '&$positive': {
+          '&:hover, &$hovered': {
+            borderColor: palette.red.main,
+            color: palette.red.main
+          }
         }
       }
     },
