@@ -28,12 +28,6 @@ page
         type: {
           description: '(() => void) | undefined'
         }
-      },
-      variant: {
-        type: {
-          enums: ['grey', 'blue', 'green', 'yellow', 'red'],
-          name: 'enum'
-        }
       }
     },
     name: 'Tag'
@@ -45,7 +39,11 @@ page
     name: 'Tag.Connection',
     description: 'Used inside endAdornment to showcase number of connections'
   })
-  .addComponentDocs({ component: TagCheckable, name: 'Tag.Checkable' })
+  .addComponentDocs({
+    component: TagCheckable,
+    name: 'Tag.Checkable',
+    description: 'Used when you need toggable Tag'
+  })
 
 page
   .createChapter()

@@ -19,11 +19,10 @@ import toTitleCase from '../utils/to-title-case'
 import TagConnection from './TagConnection'
 import TagCheckable from './TagCheckable'
 
-type VariantType = 'grey' | 'blue' | 'green' | 'yellow' | 'red'
-
-export type DivOrAnchorProps = HTMLAttributes<HTMLDivElement>
-
-export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
+export interface Props
+  extends BaseProps,
+    TextLabelProps,
+    HTMLAttributes<HTMLDivElement> {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
   /** Text content of the `Tag` component */
@@ -38,7 +37,7 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
    */
   onDelete?: () => void
   /** Variant of the `Tag` */
-  variant?: VariantType
+  variant?: 'grey' | 'blue' | 'green' | 'yellow' | 'red'
   /** ReactNode rendered after label */
   endAdornment?: ReactNode
   hovered?: boolean
