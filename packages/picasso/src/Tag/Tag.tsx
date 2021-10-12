@@ -3,7 +3,6 @@ import React, {
   ReactNode,
   ReactElement,
   HTMLAttributes,
-  AnchorHTMLAttributes,
   ElementType,
   MouseEvent
 } from 'react'
@@ -17,13 +16,13 @@ import TagGroup from '../TagGroup'
 import TagRectangular from '../TagRectangular'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
+import TagConnection from '../TagConnection'
+import TagCheckable from '../TagCheckable'
 
-type VariantType = 'grey' | 'blue' | 'green' | 'yellow' | 'red'
-
-export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
-  HTMLAttributes<HTMLDivElement>
-
-export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
+export interface Props
+  extends BaseProps,
+    TextLabelProps,
+    HTMLAttributes<HTMLDivElement> {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
   /** Text content of the `Tag` component */
@@ -38,7 +37,10 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
    */
   onDelete?: () => void
   /** Variant of the `Tag` */
-  variant?: VariantType
+  variant?: 'light' | 'primary' | 'positive' | 'warning' | 'negative'
+  /** ReactNode rendered after label */
+  endAdornment?: ReactNode
+  hovered?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
@@ -46,15 +48,17 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
 // eslint-disable-next-line react/display-name
 export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   const {
-    children,
-    style,
-    className,
-    icon,
-    disabled,
-    onDelete,
-    variant = 'grey',
     as = 'div',
+    className,
+    disabled,
+    endAdornment,
+    hovered,
+    children,
+    icon,
+    onDelete,
+    style,
     titleCase: propsTitleCase,
+    variant = 'light',
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -62,6 +66,15 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   const classes = useStyles()
 
   const titleCase = useTitleCase(propsTitleCase)
+
+  const label = (
+    <>
+      <span className={classes.innerLabel}>
+        {titleCase ? toTitleCase(children) : children}
+      </span>
+      {endAdornment}
+    </>
+  )
 
   const handleDelete = (event: MouseEvent) => {
     if (disabled) {
@@ -79,18 +92,23 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       {...htmlAttributes}
       ref={ref}
       classes={{
-        root: cx(classes.root, classes[variant], {
-          [classes.disabled]: disabled
-        })
+        root: classes.root,
+        label: classes.label,
+        clickable: classes.clickable
       }}
-      className={className}
+      className={cx(className, classes[variant], {
+        [classes.hovered]: hovered,
+        [classes.disabled]: disabled
+      })}
       style={style}
-      icon={icon}
-      label={
-        <span className={classes.innerLabel}>
-          {titleCase ? toTitleCase(children) : children}
-        </span>
+      icon={
+        icon
+          ? React.cloneElement(icon, {
+              color: disabled ? 'grey' : 'darkGrey'
+            })
+          : undefined
       }
+      label={label}
       deleteIcon={
         <span
           aria-label='delete icon'
@@ -102,6 +120,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       }
       component={as}
       onDelete={onDelete ? handleDelete : undefined}
+      aria-disabled={disabled}
     />
   )
 })
@@ -109,12 +128,14 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
 Tag.defaultProps = {
   as: 'div',
   children: '',
-  variant: 'grey'
+  variant: 'light'
 }
 
 Tag.displayName = 'Tag'
 
 export default Object.assign(Tag, {
   Group: TagGroup,
-  Rectangular: TagRectangular
+  Rectangular: TagRectangular,
+  Connection: TagConnection,
+  Checkable: TagCheckable
 })

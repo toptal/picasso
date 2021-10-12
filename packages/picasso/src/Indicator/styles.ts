@@ -7,19 +7,19 @@ export default ({ palette }: Theme) =>
       height: '0.5rem',
       borderRadius: '50%'
     },
-    red: {
+    negative: {
       background: palette.red.main
     },
-    yellow: {
+    warning: {
       background: palette.yellow.main
     },
-    blue: {
+    primary: {
       background: palette.blue.main
     },
-    green: {
+    positive: {
       background: palette.green.dark
     },
-    'light-grey': {
+    light: {
       background: palette.grey.light2
     }
   })
