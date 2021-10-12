@@ -2,8 +2,8 @@ import tagGroupStory from '../../TagGroup/story'
 import tagRectangularStory from '../../TagRectangular/story'
 import { Tag } from '../Tag'
 import PicassoBook from '~/.storybook/components/PicassoBook'
-import TagConnection from '../TagConnection'
-import TagCheckable from '../TagCheckable'
+import TagConnection from '../../TagConnection'
+import TagCheckable from '../../TagCheckable'
 
 const page = PicassoBook.section('Components').createPage(
   'Tag',
