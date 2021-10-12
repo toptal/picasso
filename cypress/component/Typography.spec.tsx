@@ -8,7 +8,7 @@ describe('Typography', () => {
     mount(
       <TestingPicasso>
         {(['small', 'medium', 'large'] as const).map(size => (
-          <Typography key={size} variant='heading' size={size}>
+          <Typography key={size} variant='body' size={size}>
             Body ({size})
           </Typography>
         ))}
