@@ -1,18 +1,16 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import {
   Link,
-  LinkProps,
   Container,
   Typography,
   Menu,
   UserBadge,
   ChevronRight16
 } from '@toptal/picasso'
+import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
-import { palette } from '@toptal/picasso/utils'
 
-const ContainerExample = () => {
+const TestUserBadgeLink = () => {
   return (
     <TestingPicasso>
       <Menu>
@@ -37,75 +35,61 @@ const ContainerExample = () => {
   )
 }
 
-const TestLink: React.FC<LinkProps> = props => (
-  <TestingPicasso>
-    <Link href='/' {...props}>
-      Foo bar
-    </Link>
-  </TestingPicasso>
-)
-
 describe('Link', () => {
-  it('renders default', () => {
-    mount(<TestLink />)
-    cy.get('body').happoScreenshot()
-  })
-  it('renders action variant', () => {
-    mount(<TestLink variant='action' />)
-    cy.get('body').happoScreenshot()
-  })
-  it('renders in colors', () => {
+  it('renders', () => {
     mount(
       <TestingPicasso>
-        <div>
-          <Container inline right='large'>
-            <TestLink />
-          </Container>
-          <Container inline right='large'>
-            <TestLink color='blue' />
-          </Container>
-          <Container inline right='large'>
-            <TestLink color='black' />
-          </Container>
-          <Container
-            inline
-            padded='medium'
-            style={{ backgroundColor: palette.grey.darker }}
-          >
-            <TestLink color='white' />
-          </Container>
-          <Container
-            inline
-            padded='medium'
-            style={{ backgroundColor: palette.grey.darker }}
-          >
-            <TestLink color='white' variant='action' />
-          </Container>
-        </div>
+        <Link>Link</Link>
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
   })
-  it('renders disabled', () => {
-    mount(<TestLink disabled />)
+
+  it('renders action variant', () => {
+    mount(
+      <TestingPicasso>
+        <Link variant='action'>Action link</Link>
+      </TestingPicasso>
+    )
     cy.get('body').happoScreenshot()
   })
-  it('renders inside heading', () => {
+
+  it('renders colored', () => {
+    mount(
+      <TestingPicasso>
+        <Container style={{ background: 'black' }} padded='small'>
+          <Link color='white'>Action link</Link>
+        </Container>
+        <Container padded='small'>
+          <Link color='black'>Action link</Link>
+        </Container>
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders big link', () => {
     mount(
       <TestingPicasso>
         <Typography variant='heading' size='large'>
-          Please{' '}
-          <Link href='/' fontSize='inherit'>
-            Foo bar
-          </Link>{' '}
-          your email
+          Big <Link>link</Link>
         </Typography>
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
   })
-  it('renders container variant', () => {
-    mount(<ContainerExample />)
+
+  it('renders without underline', () => {
+    mount(
+      <TestingPicasso>
+        <Link textDecoration='none'>Link</Link>
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders user badge link', () => {
+    mount(<TestUserBadgeLink />)
     cy.get('body').happoScreenshot()
   })
 })

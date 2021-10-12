@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.2.3...@toptal/picasso-charts@2.3.0) (2021-09-27)
+
+
+### Features
+
+* **Icon:** [SPB-2461] add transfer icon ([#2177](https://github.com/toptal/picasso/issues/2177)) ([caee460](https://github.com/toptal/picasso/commit/caee460457267392067879b29746535fcc118543))
+
+
+
+
+
 ## [2.2.3](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.2.2...@toptal/picasso-charts@2.2.3) (2021-09-09)
 
 

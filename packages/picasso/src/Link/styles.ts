@@ -13,7 +13,7 @@ export default ({ typography, palette }: Theme) =>
   createStyles({
     root: {
       '&:focus': {
-        outline: `1px dotted ${palette.blue.main}`
+        outline: 'none'
       },
       '&[role="button"]': {
         fontSize: '1rem'
