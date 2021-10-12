@@ -13,19 +13,19 @@ export default ({ palette, transitions }: Theme) =>
       color: palette.grey.main,
       pointerEvents: 'none'
     },
-    blue: {
+    primary: {
       color: palette.blue.main,
       borderColor: palette.blue.main
     },
-    green: {
+    positive: {
       color: palette.green.dark,
       borderColor: palette.green.dark
     },
-    yellow: {
+    warning: {
       color: palette.yellow.main,
       borderColor: palette.yellow.main
     },
-    red: {
+    negative: {
       color: palette.red.main,
       borderColor: palette.red.main
     },
@@ -47,7 +47,7 @@ export default ({ palette, transitions }: Theme) =>
       '&:focus': {
         backgroundColor: palette.common.white
       },
-      '&$green': {
+      '&$positive': {
         '&:hover, &$hovered': {
           borderColor: palette.red.main,
           color: palette.red.main

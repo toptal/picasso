@@ -32,7 +32,7 @@ const TagCheckable = ({
     onClick?.(e)
   }
 
-  const variant = checked ? 'green' : 'grey'
+  const variant = checked ? 'positive' : 'light'
 
   return (
     <Tag

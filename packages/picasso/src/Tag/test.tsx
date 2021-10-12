@@ -48,8 +48,8 @@ describe('Tag', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('renders `blue` variant', () => {
-    const { container } = renderTag('Tag', { variant: 'blue' })
+  it('renders `primary` variant', () => {
+    const { container } = renderTag('Tag', { variant: 'primary' })
 
     expect(container).toMatchSnapshot()
   })

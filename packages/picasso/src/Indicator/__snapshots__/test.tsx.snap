@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Indicator renders in red color 1`] = `
+exports[`Indicator renders in negative color 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="PicassoIndicator-root PicassoIndicator-red"
+      class="PicassoIndicator-root PicassoIndicator-negative"
       role="img"
     />
   </div>

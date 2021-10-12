@@ -6,7 +6,7 @@ const Example = () => (
     <Container bottom='medium'>
       <Container bottom='medium'>
         <Container inline right='small'>
-          <Indicator color='light-grey' />
+          <Indicator color='light' />
         </Container>
         <Typography inline size='medium'>
           Pending item
@@ -14,7 +14,7 @@ const Example = () => (
       </Container>
 
       <Container inline right='small'>
-        <Indicator color='green' />
+        <Indicator color='positive' />
       </Container>
       <Typography inline size='medium'>
         Completed item
@@ -23,7 +23,7 @@ const Example = () => (
 
     <Container bottom='medium'>
       <Container inline right='small'>
-        <Indicator color='red' />
+        <Indicator color='negative' />
       </Container>
       <Typography inline size='medium'>
         High priority
@@ -32,7 +32,7 @@ const Example = () => (
 
     <Container bottom='medium'>
       <Container inline right='small'>
-        <Indicator color='yellow' />
+        <Indicator color='warning' />
       </Container>
       <Typography inline size='medium'>
         Medium priority
@@ -40,7 +40,7 @@ const Example = () => (
     </Container>
 
     <Container inline right='small'>
-      <Indicator color='blue' />
+      <Indicator color='primary' />
     </Container>
     <Typography inline size='medium'>
       Low priority

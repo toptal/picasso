@@ -149,7 +149,7 @@ const CustomTooltip = ({ active, payload }: any) => {
           <Typography size='medium'>Date: {x}</Typography>
           <Container>
             <Container inline right='small'>
-              <Indicator color='yellow' />
+              <Indicator color='warning' />
             </Container>
             <Typography inline size='medium'>
               Infected: {infected}
@@ -158,7 +158,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 
           <Container>
             <Container inline right='small'>
-              <Indicator color='red' />
+              <Indicator color='negative' />
             </Container>
             <Typography inline size='medium'>
               Died: {died}
@@ -167,7 +167,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 
           <Container>
             <Container inline right='small'>
-              <Indicator color='blue' />
+              <Indicator color='primary' />
             </Container>
             <Typography inline size='medium'>
               Recovered: {recovered}

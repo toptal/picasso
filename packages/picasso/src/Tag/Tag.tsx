@@ -37,7 +37,7 @@ export interface Props
    */
   onDelete?: () => void
   /** Variant of the `Tag` */
-  variant?: 'grey' | 'blue' | 'green' | 'yellow' | 'red'
+  variant?: 'light' | 'primary' | 'positive' | 'warning' | 'negative'
   /** ReactNode rendered after label */
   endAdornment?: ReactNode
   hovered?: boolean
@@ -58,7 +58,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     onDelete,
     style,
     titleCase: propsTitleCase,
-    variant = 'grey',
+    variant = 'light',
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -128,7 +128,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
 Tag.defaultProps = {
   as: 'div',
   children: '',
-  variant: 'grey'
+  variant: 'light'
 }
 
 Tag.displayName = 'Tag'

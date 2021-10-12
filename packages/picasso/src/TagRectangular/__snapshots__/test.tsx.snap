@@ -6,7 +6,7 @@ exports[`TagRectangular renders rectangular Tag 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoTagRectangular-root PicassoTagRectangular-lightGrey"
+      class="MuiChip-root PicassoTagRectangular-root PicassoTagRectangular-light"
     >
       <span
         class="MuiChip-label PicassoTagRectangular-label"

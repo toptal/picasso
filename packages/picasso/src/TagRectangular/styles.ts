@@ -8,19 +8,19 @@ export default ({ palette }: Theme) =>
       height: '1rem',
       border: '0'
     },
-    red: {
+    negative: {
       backgroundColor: palette.red.main
     },
-    yellow: {
+    warning: {
       backgroundColor: palette.yellow.main
     },
-    darkGrey: {
+    dark: {
       backgroundColor: palette.grey.darker
     },
-    lightGrey: {
+    light: {
       backgroundColor: palette.grey.lighter2
     },
-    green: {
+    positive: {
       backgroundColor: palette.green.dark
     },
     label: {

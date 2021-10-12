@@ -5,7 +5,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-type ColorType = 'red' | 'yellow' | 'blue' | 'green' | 'light-grey'
+type ColorType = 'negative' | 'warning' | 'primary' | 'positive' | 'light'
 
 export interface Props extends BaseProps {
   /** Indicator color */
