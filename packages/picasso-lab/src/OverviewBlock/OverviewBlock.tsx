@@ -25,13 +25,9 @@ import { useOverviewBlockGroupContext } from '../OverviewBlockGroup/OverviewBloc
 import OverviewBlockGroup from '../OverviewBlockGroup'
 import OverviewBlockRow from '../OverviewBlockRow'
 
-type Variant =
-  | 'value-red'
-  | 'value-green'
-  | 'value-yellow'
-  | 'label-red'
-  | 'label-green'
-  | 'label-yellow'
+type VariantColorType = Extract<ColorType, 'red' | 'green' | 'yellow'>
+
+type Variant = `value-${VariantColorType}` | `label-${VariantColorType}`
 
 type ColorSettings = {
   value: ColorType
