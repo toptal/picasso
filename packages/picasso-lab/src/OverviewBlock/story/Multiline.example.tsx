@@ -32,11 +32,7 @@ const MultilineExample = () => (
           label='Written off'
           variant='label-red'
         />
-        <OverviewBlock
-          value='$5,758,716.46'
-          label='Pending receipt'
-          variant='label-green'
-        />
+        <OverviewBlock value='$5,758,716.46' label='Pending receipt' />
         <OverviewBlock
           value='$44,244,163.83'
           label='Credited'

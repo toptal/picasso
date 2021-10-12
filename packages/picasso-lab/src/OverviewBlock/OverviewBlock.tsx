@@ -29,7 +29,7 @@ type VariantColorType = Extract<ColorType, 'red' | 'green' | 'yellow'>
 
 type Variant = `value-${VariantColorType}` | `label-${VariantColorType}`
 
-type ColorSettings = {
+type ColorSchema = {
   value: ColorType
   label: ColorType
 }
@@ -74,14 +74,14 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
     const classes = useStyles()
     const { align, blockWidth } = useOverviewBlockGroupContext()
 
-    const color: ColorSettings = {
+    const color: ColorSchema = {
       value: 'black',
       label: 'dark-grey'
     }
 
     if (variant) {
       const [partName, colorName] = variant.split('-') as [
-        keyof ColorSettings,
+        keyof ColorSchema,
         ColorType
       ]
 
