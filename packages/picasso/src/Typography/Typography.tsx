@@ -6,13 +6,13 @@ import cx from 'classnames'
 import {
   StandardProps,
   ColorType,
-  TextLabelProps
+  TextLabelProps,
+  SizeType
 } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
-import { VariantType, WeightType, UnderlineType, SizeType } from './types'
 import { toMuiVariant } from './utils'
 
 export interface Props
@@ -20,7 +20,7 @@ export interface Props
     TextLabelProps,
     HTMLAttributes<HTMLElement> {
   /** Font variant for inner text */
-  variant?: VariantType
+  variant?: 'heading' | 'body'
   /** Text content */
   children?: ReactNode
   /** Controls whether the Typography is inline or not */
@@ -28,9 +28,9 @@ export interface Props
   /** Text align of the inner text */
   align?: PropTypes.Alignment
   /** Size of the inner text */
-  size?: SizeType
+  size?: SizeType<'small' | 'medium' | 'large' | 'xlarge'> | 'inherit'
   /** Font weight of the inner text */
-  weight?: WeightType
+  weight?: 'regular' | 'semibold' | 'inherit'
   /** Invert color */
   invert?: boolean
   /** Text color */
@@ -40,7 +40,7 @@ export interface Props
   /** Rendered HTML markup */
   as?: React.ElementType<React.HTMLAttributes<HTMLElement>>
   /** Controls when the Typography should have an underline */
-  underline?: UnderlineType
+  underline?: 'solid' | 'dashed'
   /** Controls when the Typography should have line through */
   lineThrough?: boolean
 }

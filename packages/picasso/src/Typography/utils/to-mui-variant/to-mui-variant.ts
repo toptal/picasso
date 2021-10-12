@@ -1,4 +1,4 @@
-import { VariantType, SizeType } from '../../types'
+import { SizeType } from '@toptal/picasso-shared'
 
 const variantsMapping = {
   heading: {
@@ -17,7 +17,10 @@ const variantsMapping = {
   }
 }
 
-const toMuiVariant = <V extends VariantType, S extends SizeType>(
+const toMuiVariant = <
+  V extends 'heading' | 'body',
+  S extends SizeType<'small' | 'medium' | 'large' | 'xlarge'> | 'inherit'
+>(
   variant: V,
   size: S
 ): typeof variantsMapping[V][S] => variantsMapping[variant][size]

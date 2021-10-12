@@ -3,8 +3,10 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 
 import { toMuiVariant } from './utils'
 
+// TODO: https://toptal-core.atlassian.net/browse/FX-2166
 PicassoProvider.override(({ palette, typography }) => ({
-  // If typography variant has a unique mui variant mapping, you should override styles here
+  // Fundamental Typography styles across the MUI complex components
+  // Ex. DatePicker has a MUITypography inside, the styles will be overriden to match BASE
   MuiTypography: {
     [toMuiVariant('heading', 'xlarge')]: {
       color: palette.common.black,
@@ -30,7 +32,6 @@ PicassoProvider.override(({ palette, typography }) => ({
       fontSize: '14px',
       lineHeight: '22px'
     },
-    // base body1 styles across the Picasso library
     [toMuiVariant('body', 'medium')]: {
       color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
@@ -41,24 +42,26 @@ PicassoProvider.override(({ palette, typography }) => ({
 }))
 
 export default ({ palette, typography }: Theme) =>
-  // If there is no unique MUI variant for typography, you should override styles here
+  // All the body variants are mapped to the same MUI variant (body1) -> declaring styles via custom class names
   createStyles({
-    // bodySmall & bodyMedium & bodyLarge -> body1
     bodySmall: {
       color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
       fontSize: '12px',
       lineHeight: '18px'
     },
-    // bodyMedium has base body1 styles, no need to override
-    bodyMedium: {},
+    bodyMedium: {
+      color: palette.text.primary,
+      fontWeight: typography.fontWeights.regular,
+      fontSize: '14px',
+      lineHeight: '22px'
+    },
     bodyLarge: {
       color: palette.common.black,
       fontWeight: typography.fontWeights.regular,
       fontSize: '16px',
       lineHeight: '24px'
     },
-    // body inherit does not have an appropriate MUI variant, overriding styles here
     bodyInherit: {
       fontSize: '1em',
       lineHeight: '1.5em',
