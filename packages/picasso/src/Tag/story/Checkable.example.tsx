@@ -46,7 +46,7 @@ const Example = () => {
         </div>
       </Container>
       <Container flex direction='column' gap='0.5rem'>
-        <Typography>disabled</Typography>
+        <Typography>Disabled</Typography>
         <div>
           <Tag.Checkable
             icon={<Settings16 />}
