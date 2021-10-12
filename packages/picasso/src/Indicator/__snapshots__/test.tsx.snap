@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Indicator renders with red color 1`] = `
+exports[`Indicator renders in red color 1`] = `
 <div>
   <div
     class="Picasso-root"

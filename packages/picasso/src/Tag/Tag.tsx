@@ -16,8 +16,8 @@ import TagGroup from '../TagGroup'
 import TagRectangular from '../TagRectangular'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
-import TagConnection from './TagConnection'
-import TagCheckable from './TagCheckable'
+import TagConnection from '../TagConnection'
+import TagCheckable from '../TagCheckable'
 
 export interface Props
   extends BaseProps,
@@ -67,6 +67,15 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
 
   const titleCase = useTitleCase(propsTitleCase)
 
+  const label = (
+    <>
+      <span className={classes.innerLabel}>
+        {titleCase ? toTitleCase(children) : children}
+      </span>
+      {endAdornment}
+    </>
+  )
+
   const handleDelete = (event: MouseEvent) => {
     if (disabled) {
       return
@@ -99,14 +108,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
             })
           : undefined
       }
-      label={
-        <>
-          <span className={classes.innerLabel}>
-            {titleCase ? toTitleCase(children) : children}
-          </span>
-          {endAdornment}
-        </>
-      }
+      label={label}
       deleteIcon={
         <span
           aria-label='delete icon'

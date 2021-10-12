@@ -1,11 +1,11 @@
 import React, { ReactElement, MouseEventHandler } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import Tag from './Tag'
+import Tag from '../Tag'
 
 type ClickType = MouseEventHandler<HTMLDivElement>
 
-export interface TagCheckableProps extends BaseProps {
+export interface Props extends BaseProps {
   hovered?: boolean
   /** Represents visual state of component */
   checked?: boolean
@@ -26,7 +26,7 @@ const TagCheckable = ({
   onClick,
   onChange,
   ...rest
-}: TagCheckableProps) => {
+}: Props) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     onChange?.(!checked)
     onClick?.(e)

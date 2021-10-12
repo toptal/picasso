@@ -53,7 +53,7 @@ const filterOptions = (value: string) =>
     ? allOptions.filter(option => isSubstring(value, getDisplayValue(option)))
     : allOptions
 
-const TagLink = (props: TagProps & AnchorHTMLAttributes<HTMLAnchorElement>) => (
+const LinkTag = (props: TagProps & AnchorHTMLAttributes<HTMLAnchorElement>) => (
   <TagSelector.Label as={Link} {...props} />
 )
 
@@ -75,13 +75,13 @@ const TagSelectorCustomOptionRendererExample = () => {
           const { href, required } = item as Country
 
           return (
-            <TagLink
+            <LinkTag
               disabled={disabled}
               onDelete={required ? undefined : onDelete}
               href={href}
             >
               {displayValue}
-            </TagLink>
+            </LinkTag>
           )
         }}
         onChange={(selectedValues: AutocompleteItem[]) => {

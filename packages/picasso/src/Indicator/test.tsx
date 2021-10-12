@@ -14,7 +14,7 @@ const renderIndicator = (
 }
 
 describe('Indicator', () => {
-  it('renders with red color', () => {
+  it('renders in red color', () => {
     const { container } = renderIndicator(null, { color: 'red' })
 
     expect(container).toMatchSnapshot()

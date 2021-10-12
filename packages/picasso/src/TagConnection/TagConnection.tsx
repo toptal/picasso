@@ -2,9 +2,9 @@ import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { Link16, Typography } from '..'
-import styles from './styles'
+import styles from '../Tag/styles'
 
-type TagConnectionProps = {
+export type Props = {
   /**
    * renders number of connections
    */
@@ -13,7 +13,7 @@ type TagConnectionProps = {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
 
-const TagConnection = ({ children }: TagConnectionProps) => {
+const TagConnection = ({ children }: Props) => {
   const classes = useStyles()
 
   return (
