@@ -1,77 +1,74 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
-PicassoProvider.override(() => ({
+import { toMuiVariant } from './utils'
+
+// TODO: https://toptal-core.atlassian.net/browse/FX-2166
+PicassoProvider.override(({ palette, typography }) => ({
+  // Fundamental Typography styles across the MUI complex components
+  // Ex. DatePicker has a MUITypography inside, the styles will be overriden to match BASE
   MuiTypography: {
-    h1: {
-      lineHeight: '1.5em'
+    [toMuiVariant('heading', 'xlarge')]: {
+      color: palette.common.black,
+      fontWeight: typography.fontWeights.semibold,
+      fontSize: '28px',
+      lineHeight: '42px'
     },
-    h2: {
-      lineHeight: '1.5em'
+    [toMuiVariant('heading', 'large')]: {
+      color: palette.common.black,
+      fontWeight: typography.fontWeights.semibold,
+      fontSize: '20px',
+      lineHeight: '30px'
     },
-    h3: {
-      lineHeight: '1.5em'
+    [toMuiVariant('heading', 'medium')]: {
+      color: palette.common.black,
+      fontWeight: typography.fontWeights.semibold,
+      fontSize: '16px',
+      lineHeight: '24px'
     },
-    h4: {
-      lineHeight: '1.5em'
+    [toMuiVariant('heading', 'small')]: {
+      color: palette.common.black,
+      fontWeight: typography.fontWeights.semibold,
+      fontSize: '14px',
+      lineHeight: '22px'
     },
-    body1: {
-      lineHeight: '1.5em'
+    [toMuiVariant('body', 'medium')]: {
+      color: palette.text.primary,
+      fontWeight: typography.fontWeights.regular,
+      fontSize: '14px',
+      lineHeight: '22px'
     }
   }
 }))
 
 export default ({ palette, typography }: Theme) =>
+  // All the body variants are mapped to the same MUI variant (body1) -> declaring styles via custom class names
   createStyles({
-    // variants
     bodySmall: {
-      fontSize: '12px',
+      color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
-      color: palette.text.primary
+      fontSize: '12px',
+      lineHeight: '18px'
     },
     bodyMedium: {
-      fontSize: '14px',
+      color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
-      color: palette.text.primary
+      fontSize: '14px',
+      lineHeight: '22px'
     },
     bodyLarge: {
-      fontSize: '16px',
+      color: palette.common.black,
       fontWeight: typography.fontWeights.regular,
-      color: palette.common.black
+      fontSize: '16px',
+      lineHeight: '24px'
     },
     bodyInherit: {
       fontSize: '1em',
+      lineHeight: '1.5em',
       fontWeight: typography.fontWeights.regular,
       color: palette.text.primary
     },
-    headingSmall: {
-      fontSize: '14px',
-      fontWeight: typography.fontWeights.semibold,
-      color: palette.common.black
-    },
-    headingMedium: {
-      fontSize: '16px',
-      fontWeight: typography.fontWeights.semibold,
-      color: palette.common.black
-    },
-    headingLarge: {
-      fontSize: '20px',
-      fontWeight: typography.fontWeights.semibold,
-      color: palette.common.black
-    },
-    headingXlarge: {
-      fontSize: '28px',
-      fontWeight: typography.fontWeights.semibold,
-      color: palette.common.black
-    },
 
-    // weight
-    thin: {
-      fontWeight: typography.fontWeights.thin
-    },
-    light: {
-      fontWeight: typography.fontWeights.light
-    },
     regular: {
       fontWeight: typography.fontWeights.regular
     },
@@ -82,15 +79,11 @@ export default ({ palette, typography }: Theme) =>
       fontWeight: 'inherit'
     },
 
-    // colors
     green: {
-      color: palette.green.darker
+      color: palette.green.dark
     },
     red: {
       color: palette.red.main
-    },
-    blue: {
-      color: palette.primary.main
     },
     yellow: {
       color: palette.yellow.main
@@ -114,7 +107,6 @@ export default ({ palette, typography }: Theme) =>
       color: 'inherit'
     },
 
-    // Text decorations
     solid: {
       textDecoration: 'underline',
       textDecorationStyle: 'solid'

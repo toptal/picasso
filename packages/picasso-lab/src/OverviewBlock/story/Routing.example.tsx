@@ -21,7 +21,7 @@ const RoutingExample = () => (
         <OverviewBlock
           value='15'
           label='Users'
-          variant='label-blue'
+          variant='label-green'
           as={Link}
           to='/users'
         />
