@@ -72,7 +72,7 @@ describe('Link', () => {
     mount(
       <TestingPicasso>
         <Typography variant='heading' size='large'>
-          Big <Link>link</Link>
+          Big <Link fontSize='inherit'>link</Link>
         </Typography>
       </TestingPicasso>
     )
