@@ -86,9 +86,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
         className={cx(classes.divider, { [classes.dividerBlue]: !isDark })}
       />
       <Container left='small'>
-        <Typography invert={isDark} weight='light'>
-          {title}
-        </Typography>
+        <Typography invert={isDark}>{title}</Typography>
       </Container>
     </Container>
   )

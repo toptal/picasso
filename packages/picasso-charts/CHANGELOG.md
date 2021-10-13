@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.3.0...@toptal/picasso-charts@3.0.0) (2021-10-13)
+
+
+### Features
+
+* **Typography:** update line heights and colors to match BASE 2.0 ([#2184](https://github.com/toptal/picasso/issues/2184)) ([aacd827](https://github.com/toptal/picasso/commit/aacd8271dd6c6ef5093fef78d4a419c48b046db5))
+
+
+### BREAKING CHANGES
+
+* **Typography:** - Changed line-height of small heading and body
+- Removed blue color from Typography
+- Removed blue color from OverviewBlock
+
+
+
+
+
 # [2.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@2.2.3...@toptal/picasso-charts@2.3.0) (2021-09-27)
 
 

@@ -5,8 +5,7 @@ export default ({ palette }: Theme) =>
     toggleText: {
       display: 'flex',
       alignItems: 'center',
-      marginTop: '0.5rem',
-      fontSize: '1rem'
+      marginTop: '0.5rem'
     },
     iconWrapper: {
       transform: 'rotate(90deg)',

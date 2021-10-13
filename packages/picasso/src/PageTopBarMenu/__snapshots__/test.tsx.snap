@@ -30,7 +30,7 @@ exports[`PageTopBarMenu renders 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <h4
-                class="MuiTypography-root PicassoTypography-invert PicassoTypography-headingSmall PicassoUserBadge-name PicassoTopBarMenu-name PicassoTopBarMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
+                class="MuiTypography-root PicassoTypography-invert PicassoUserBadge-name PicassoTopBarMenu-name PicassoTopBarMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
               >
                 Jacqueline Roque
               </h4>

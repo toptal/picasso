@@ -12,7 +12,7 @@ exports[`Avatar Avatar with long text names 1`] = `
         class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
       />
       <p
-        class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text PicassoAvatar-textCapLimit MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-textCapLimit MuiTypography-body1"
       >
         JRB
       </p>
@@ -51,7 +51,7 @@ exports[`Avatar avatar with text render 1`] = `
         class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
       />
       <p
-        class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text MuiTypography-body1"
       >
         JR
       </p>
