@@ -23,7 +23,7 @@ exports[`ApplicationUpdateNotification renders 1`] = `
           />
         </svg>
         <h3
-          class="MuiTypography-root PicassoTypography-headingMedium PicassoTypography-inherit ApplicationUpdateNotification-positionRelative MuiTypography-h3"
+          class="MuiTypography-root PicassoTypography-inherit ApplicationUpdateNotification-positionRelative MuiTypography-h3"
         >
           A newer version of this application is available.
           <br />

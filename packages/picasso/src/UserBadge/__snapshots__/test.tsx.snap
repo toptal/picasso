@@ -15,7 +15,7 @@ exports[`UserBadge auto center alignment 1`] = `
           class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -27,7 +27,7 @@ exports[`UserBadge auto center alignment 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+            class="MuiTypography-root PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>
@@ -53,7 +53,7 @@ exports[`UserBadge custom name 1`] = `
           class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -94,7 +94,7 @@ exports[`UserBadge custom title 1`] = `
           class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -106,7 +106,7 @@ exports[`UserBadge custom title 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+            class="MuiTypography-root PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>
@@ -140,7 +140,7 @@ exports[`UserBadge invert render 1`] = `
           class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -152,7 +152,7 @@ exports[`UserBadge invert render 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="MuiTypography-root PicassoTypography-invert PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+            class="MuiTypography-root PicassoTypography-invert PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>
@@ -183,7 +183,7 @@ exports[`UserBadge manual center alignment 1`] = `
           class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -195,7 +195,7 @@ exports[`UserBadge manual center alignment 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+            class="MuiTypography-root PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>
@@ -226,7 +226,7 @@ exports[`UserBadge override auto center alignment 1`] = `
           class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -238,7 +238,7 @@ exports[`UserBadge override auto center alignment 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+            class="MuiTypography-root PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>
@@ -264,7 +264,7 @@ exports[`UserBadge renders 1`] = `
           class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -276,7 +276,7 @@ exports[`UserBadge renders 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+            class="MuiTypography-root PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>
@@ -307,7 +307,7 @@ exports[`UserBadge small size 1`] = `
           class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-small PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -319,7 +319,7 @@ exports[`UserBadge small size 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+            class="MuiTypography-root PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>

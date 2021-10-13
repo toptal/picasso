@@ -39,7 +39,7 @@ exports[`PromptModal renders 1`] = `
           class="PicassoModalTitle-root"
         >
           <h2
-            class="MuiTypography-root PicassoTypography-headingLarge MuiTypography-h2"
+            class="MuiTypography-root MuiTypography-h2"
           >
             Test title
           </h2>
@@ -170,7 +170,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
               class="PicassoModalTitle-root"
             >
               <h2
-                class="MuiTypography-root PicassoTypography-headingLarge MuiTypography-h2"
+                class="MuiTypography-root MuiTypography-h2"
               >
                 Test title
               </h2>
@@ -278,7 +278,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
               class="PicassoModalTitle-root"
             >
               <h2
-                class="MuiTypography-root PicassoTypography-headingLarge MuiTypography-h2"
+                class="MuiTypography-root MuiTypography-h2"
               >
                 Test title
               </h2>
@@ -386,7 +386,7 @@ exports[`PromptModal showPrompt with input returns result on Submit action 1`] =
               class="PicassoModalTitle-root"
             >
               <h2
-                class="MuiTypography-root PicassoTypography-headingLarge MuiTypography-h2"
+                class="MuiTypography-root MuiTypography-h2"
               >
                 Test title
               </h2>

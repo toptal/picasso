@@ -22,17 +22,11 @@ import { useOverviewBlockGroupContext } from '../OverviewBlockGroup/OverviewBloc
 import OverviewBlockGroup from '../OverviewBlockGroup'
 import OverviewBlockRow from '../OverviewBlockRow'
 
-type Variant =
-  | 'value-red'
-  | 'value-green'
-  | 'value-blue'
-  | 'value-yellow'
-  | 'label-red'
-  | 'label-green'
-  | 'label-blue'
-  | 'label-yellow'
+type VariantColorType = Extract<ColorType, 'red' | 'green' | 'yellow'>
 
-type ColorSettings = {
+type Variant = `value-${VariantColorType}` | `label-${VariantColorType}`
+
+type ColorSchema = {
   value: ColorType
   label: ColorType
 }
@@ -73,14 +67,14 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
   const classes = useStyles()
   const { align, blockWidth } = useOverviewBlockGroupContext()
 
-  const color: ColorSettings = {
+  const color: ColorSchema = {
     value: 'black',
     label: 'dark-grey'
   }
 
   if (variant) {
     const [partName, colorName] = variant.split('-') as [
-      keyof ColorSettings,
+      keyof ColorSchema,
       ColorType
     ]
 

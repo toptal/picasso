@@ -50,7 +50,7 @@ exports[`Page.TopBar render with link 1`] = `
                 class="PicassoContainer-leftsmallMargin"
               >
                 <p
-                  class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoTypography-light MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"
                 >
                   Something
                 </p>
@@ -112,7 +112,7 @@ exports[`Page.TopBar renders 1`] = `
                 class="PicassoContainer-leftsmallMargin"
               >
                 <p
-                  class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoTypography-light MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"
                 >
                   Default
                 </p>
