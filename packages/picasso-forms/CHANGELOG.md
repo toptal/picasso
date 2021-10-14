@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@5.0.0...@toptal/picasso-forms@6.0.0) (2021-10-14)
+
+
+### Features
+
+* v12 ([b0a00a0](https://github.com/toptal/picasso/commit/b0a00a0a8d3d92fcd7930a4a0bf0fdc09103ac6c))
+
+
+### BREAKING CHANGES
+
+* - Stepper
+	- remove fullWidth property
+- Link
+	- fontSize changed to 14px, if you are using `Link` inside 
+headings or perex, you need to use `size="inherit"`
+	- underline prop was replaced by textDecoration: `'none' | 'underline'`. `'none'` by default.
+- Badge
+	- new medium size
+	- previous medium size is now large,
+	- the default value is changed to large
+	- new type of content `content: number`
+	- content higher than or equal to 100 is transformed to 99+
+	- for small size, the threshold is 10
+- ButtonGroup
+	- since button group can have only one style of Button, 
+       we have Button.Group.Item that should be used
+       instead of `<Button variant='secondary' />`
+- Tag
+	- users of Tag and Indicator will need to check names of variant
+
+
+
+
+
 # [5.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@4.8.0...@toptal/picasso-forms@5.0.0) (2021-10-13)
 
 
