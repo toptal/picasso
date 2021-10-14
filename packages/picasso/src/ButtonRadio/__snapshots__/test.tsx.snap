@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonRadio renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <label
+      aria-disabled="false"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root PicassoButtonControlLabel-root PicassoButtonControlLabel-medium"
+      data-component-type="button"
+      role="button"
+      tabindex="0"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+      >
+        <span
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <input
+              class="PrivateSwitchBase-input"
+              type="radio"
+              value=""
+            />
+            <div
+              class="Radio-uncheckedIcon"
+            />
+          </span>
+        </span>
+        <div
+          class="PicassoButtonControlLabel-content"
+          style="margin-left: 0.5rem;"
+        >
+          Click me!
+        </div>
+      </span>
+    </label>
+  </div>
+</div>
+`;

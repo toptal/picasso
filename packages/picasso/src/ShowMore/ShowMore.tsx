@@ -60,25 +60,23 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         <Truncate lines={!shownMore && rows}>{children}</Truncate>
       </Typography>
       {!disableToggle && (
-        <Typography size='medium'>
-          <Link
-            onClick={() => {
-              setShownMore(!shownMore)
-              onToggle()
-            }}
-            className={classes.toggleText}
-            underline='none'
-          >
-            {shownMore ? lessText : moreText}
-            <div className={classes.iconWrapper}>
-              <ChevronRightIcon16
-                className={cx(classes.icon, {
-                  [classes.expandedIcon]: shownMore
-                })}
-              />
-            </div>
-          </Link>
-        </Typography>
+        <Link
+          onClick={() => {
+            setShownMore(!shownMore)
+            onToggle()
+          }}
+          className={classes.toggleText}
+          variant='action'
+        >
+          {shownMore ? lessText : moreText}
+          <div className={classes.iconWrapper}>
+            <ChevronRightIcon16
+              className={cx(classes.icon, {
+                [classes.expandedIcon]: shownMore
+              })}
+            />
+          </div>
+        </Link>
       )}
     </>
   )

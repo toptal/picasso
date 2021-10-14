@@ -28,7 +28,7 @@ export const ModalTitle = forwardRef<HTMLDivElement, Props>(function ModalTitle(
       className={cx(classes.root, className)}
       style={style}
     >
-      <Typography variant='heading' size='medium'>
+      <Typography variant='heading' size='large'>
         {children}
       </Typography>
     </div>

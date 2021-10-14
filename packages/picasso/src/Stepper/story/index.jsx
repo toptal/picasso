@@ -1,5 +1,6 @@
-import { Stepper } from '../Stepper'
+import Stepper from '../Stepper'
 import PicassoBook from '~/.storybook/components/PicassoBook'
+import verticalStory from '../../StepperVertical/story'
 
 const page = PicassoBook.section('Components').createPage(
   'Stepper',
@@ -15,9 +16,9 @@ const page = PicassoBook.section('Components').createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Stepper, name: 'Stepper' })
+  .addComponentDocs(verticalStory.componentDocs)
 
 page
   .createChapter()
   .addExample('Stepper/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('Stepper/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
-  .addExample('Stepper/story/FullWidth.example.tsx', 'Full width') // picasso-skip-visuals

@@ -7,7 +7,7 @@ import React, {
   FocusEventHandler,
   Fragment
 } from 'react'
-import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
 import TagSelectorInput from '../TagSelectorInput'
@@ -80,10 +80,6 @@ export interface Props
   }) => ReactNode
   /** DOM element that wraps the Popper */
   popperContainer?: HTMLElement
-}
-
-export interface StaticProps {
-  Label: typeof TagSelectorLabel
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
@@ -218,7 +214,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       />
     )
   }
-) as CompoundedComponentWithRef<Props, HTMLInputElement, StaticProps>
+)
 
 TagSelector.defaultProps = {
   enableAutofill: false,
@@ -236,6 +232,6 @@ TagSelector.defaultProps = {
 
 TagSelector.displayName = 'TagSelector'
 
-TagSelector.Label = TagSelectorLabel
-
-export default TagSelector
+export default Object.assign(TagSelector, {
+  Label: TagSelectorLabel
+})

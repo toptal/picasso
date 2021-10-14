@@ -58,7 +58,7 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
               className={accountLinkClass}
               href={account.href}
               onClick={() => onSelect(account)}
-              underline='none'
+              textDecoration='none'
             >
               <Container
                 padded='medium'

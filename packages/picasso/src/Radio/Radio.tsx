@@ -2,8 +2,6 @@ import React, { ComponentProps, forwardRef, ReactNode } from 'react'
 import MUIRadio from '@material-ui/core/Radio'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
-  PicassoComponentWithRef,
-  CompoundedComponentWithRef,
   StandardProps,
   ButtonOrAnchorProps,
   TextLabelProps
@@ -27,12 +25,10 @@ export interface Props
   /** Defines if `Radio` is checked by default */
   checked?: boolean
   /** Callback invoked when `Radio` changes its state */
-  onChange?: (event: object, checked: boolean) => void
-}
-
-// should be moved to some global interfaces place
-export interface StaticProps {
-  Group: typeof RadioGroup
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => void
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -75,7 +71,6 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         })}
         style={style}
         focusVisibleClassName={classes.focused}
-        data-testid='trigger'
       />
     )
 
@@ -105,11 +100,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       />
     )
   }
-) as CompoundedComponentWithRef<
-  Props,
-  HTMLButtonElement | HTMLLabelElement,
-  StaticProps
->
+)
 
 Radio.defaultProps = {
   disabled: false
@@ -117,10 +108,6 @@ Radio.defaultProps = {
 
 Radio.displayName = 'Radio'
 
-Radio.Group = RadioGroup
-
-export default Radio as PicassoComponentWithRef<
-  Props,
-  HTMLButtonElement | HTMLLabelElement,
-  StaticProps
->
+export default Object.assign(Radio, {
+  Group: RadioGroup
+})

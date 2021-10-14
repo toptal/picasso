@@ -3,24 +3,47 @@ import { alpha, outline, mix } from '@toptal/picasso-shared'
 
 const ICON_SPACING = '0.5em'
 
-export default ({ palette, sizes, transitions, typography }: Theme) => {
-  const createPrimaryVariant = (mainColor: string) => ({
-    border: 'none',
-    color: palette.common.white,
-    backgroundColor: mainColor,
+export const createOutlineCommons = ({ palette }: Theme) => ({
+  color: palette.common.black,
+  backgroundColor: palette.common.white,
 
-    '&:hover, &$hovered': {
-      backgroundColor: mix(mainColor, palette.common.white, 0.152)
-    },
+  '&:hover, &$hovered': {
+    borderColor: palette.common.black
+  },
 
-    '&:active, &$active': {
-      backgroundColor: mix(mainColor, palette.common.black, 0.172)
-    },
+  '&$disabled': {
+    color: palette.grey.main,
+    borderColor: palette.grey.main,
+    backgroundColor: palette.common.white
+  }
+})
 
-    '&$disabled': {
-      backgroundColor: palette.grey.light2
-    }
-  })
+export const activeGroup = ({ palette }: Theme) => ({
+  backgroundColor: palette.grey.dark,
+  borderColor: palette.grey.dark,
+  color: palette.common.white
+})
+
+export const createVariant = (mainColor: string, { palette }: Theme) => ({
+  border: 'none',
+  color: palette.common.white,
+  backgroundColor: mainColor,
+
+  '&:hover, &$hovered': {
+    backgroundColor: mix(mainColor, palette.common.white, 0.152)
+  },
+
+  '&:active, &$active': {
+    backgroundColor: mix(mainColor, palette.common.black, 0.172)
+  },
+
+  '&$disabled': {
+    backgroundColor: palette.grey.light2
+  }
+})
+
+export default (theme: Theme) => {
+  const { palette, sizes, transitions, typography } = theme
 
   return createStyles({
     root: {
@@ -111,27 +134,15 @@ export default ({ palette, sizes, transitions, typography }: Theme) => {
     },
 
     // variants
-    primary: createPrimaryVariant(palette.primary.main),
-    negative: createPrimaryVariant(palette.red.main),
-    positive: createPrimaryVariant(palette.green.main),
+    primary: createVariant(palette.primary.main, theme),
+    negative: createVariant(palette.red.main, theme),
+    positive: createVariant(palette.green.main, theme),
 
     secondary: {
-      color: palette.common.black,
-      backgroundColor: palette.common.white,
-
-      '&:hover, &$hovered': {
-        borderColor: palette.common.black
-      },
-
+      ...createOutlineCommons(theme),
       '&:active, &$active': {
         backgroundColor: palette.grey.lighter2,
         borderColor: palette.common.black
-      },
-
-      '&$disabled': {
-        color: palette.grey.main,
-        borderColor: palette.grey.main,
-        backgroundColor: palette.common.white
       }
     },
 

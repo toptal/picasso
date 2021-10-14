@@ -1,11 +1,7 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  BaseProps,
-  PicassoComponentWithRef,
-  CompoundedComponentWithRef
-} from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Container, { VariantType as ContainerVariantType } from '../Container'
 import HelpboxTitle from '../HelpboxTitle'
@@ -23,12 +19,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   variant?: ContainerVariantType
   /** Callback invoked when close is clicked */
   onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
-}
-
-export interface StaticProps {
-  Title: typeof HelpboxTitle
-  Content: typeof HelpboxContent
-  Actions: typeof HelpboxActions
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -66,20 +56,12 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
       )}
     </Container>
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
-
-Helpbox.defaultProps = {}
+})
 
 Helpbox.displayName = 'Helpbox'
 
-Helpbox.Title = HelpboxTitle
-
-Helpbox.Content = HelpboxContent
-
-Helpbox.Actions = HelpboxActions
-
-export default Helpbox as PicassoComponentWithRef<
-  Props,
-  HTMLDivElement,
-  StaticProps
->
+export default Object.assign(Helpbox, {
+  Title: HelpboxTitle,
+  Content: HelpboxContent,
+  Actions: HelpboxActions
+})

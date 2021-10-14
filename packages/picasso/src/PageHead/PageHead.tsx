@@ -1,11 +1,7 @@
 import React, { forwardRef, FunctionComponent, ReactNode } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  CompoundedComponentWithRef,
-  TextLabelProps,
-  BaseProps
-} from '@toptal/picasso-shared'
+import { TextLabelProps, BaseProps } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import Typography from '../Typography'
@@ -16,13 +12,6 @@ export interface Props extends BaseProps {
   children?: ReactNode
   /** Whether it should have right padding */
   rightPadding?: boolean
-}
-
-export interface StaticProps {
-  Title: FunctionComponent
-  Tabs: FunctionComponent
-  Main: FunctionComponent
-  Actions: FunctionComponent
 }
 
 const useStyles = makeStyles(styles, {
@@ -81,17 +70,17 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
       {children}
     </Container>
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
+})
 
 PageHead.defaultProps = {
   rightPadding: false
 }
 
-PageHead.Title = Title
-PageHead.Tabs = Tabs
-PageHead.Main = Main
-PageHead.Actions = Actions
-
 PageHead.displayName = 'PageHead'
 
-export default PageHead
+export default Object.assign(PageHead, {
+  Title,
+  Tabs,
+  Main,
+  Actions
+})

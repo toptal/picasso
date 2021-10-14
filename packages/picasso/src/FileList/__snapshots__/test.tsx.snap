@@ -21,7 +21,7 @@ exports[`FileList renders 1`] = `
               class="PicassoContainer-rightxsmallMargin"
             >
               <svg
-                class="PicassoSvgAttachment16-root"
+                class="PicassoSvgAttachment16-root PicassoSvgAttachment16-darkGrey"
                 fill="none"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"

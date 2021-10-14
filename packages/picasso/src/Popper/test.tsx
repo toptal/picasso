@@ -9,14 +9,15 @@ import styles from './styles'
 
 jest.mock('@material-ui/core/Popper', () => jest.fn(() => null))
 jest.mock('@toptal/picasso-provider', () => ({
+  useBreakpoint: () => true,
   usePicassoRoot: jest.fn()
 }))
 jest.mock('@material-ui/core/styles', () => ({
   makeStyles: jest.fn(() => () => ({ root: 'TEST_CLASS_NAME+1' }))
 }))
-jest.mock('../utils', () => ({
-  useBreakpoint: () => true,
-  useWidthOf: () => '300px'
+jest.mock('../utils/use-width-of', () => ({
+  __esModule: true,
+  default: () => '300px'
 }))
 
 const mockedUsePicassoRoot = usePicassoRoot as jest.Mock<

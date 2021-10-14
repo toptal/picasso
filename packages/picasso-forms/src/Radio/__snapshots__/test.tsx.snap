@@ -42,7 +42,6 @@ exports[`FormRadio renders 1`] = `
                   <span
                     aria-disabled="false"
                     class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-                    data-testid="trigger"
                   >
                     <span
                       class="MuiIconButton-label"
@@ -78,7 +77,6 @@ exports[`FormRadio renders 1`] = `
                   <span
                     aria-disabled="false"
                     class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel PrivateSwitchBase-checked Mui-checked"
-                    data-testid="trigger"
                   >
                     <span
                       class="MuiIconButton-label"
@@ -161,7 +159,6 @@ exports[`FormRadio required with asterisk 1`] = `
                   <span
                     aria-disabled="false"
                     class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
-                    data-testid="trigger"
                   >
                     <span
                       class="MuiIconButton-label"
@@ -197,7 +194,6 @@ exports[`FormRadio required with asterisk 1`] = `
                   <span
                     aria-disabled="false"
                     class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel PrivateSwitchBase-checked Mui-checked"
-                    data-testid="trigger"
                   >
                     <span
                       class="MuiIconButton-label"

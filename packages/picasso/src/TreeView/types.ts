@@ -38,6 +38,6 @@ export type DirectionsType = 'vertical' | 'horizontal'
 export type TreeViewVariant = 'normal' | 'compact'
 
 export type Vector2 = {
-  x: number,
+  x: number
   y: number
 }

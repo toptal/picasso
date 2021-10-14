@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Pagination, { Props } from './Pagination'
@@ -43,7 +43,6 @@ describe('Pagination', () => {
     const { container } = renderPagination({
       activePage: 1,
       totalPages: 1,
-      disabled: true,
       onPageChange: () => {}
     })
 
@@ -54,10 +53,35 @@ describe('Pagination', () => {
     const { container } = renderPagination({
       activePage: 1,
       totalPages: 0,
-      disabled: true,
       onPageChange: () => {}
     })
 
     expect(container).toMatchSnapshot()
+  })
+
+  it('ignores prev click when on first page', () => {
+    const onPageChange = jest.fn()
+    const { getByText } = renderPagination({
+      activePage: 1,
+      totalPages: 5,
+      onPageChange
+    })
+
+    fireEvent.click(getByText('Prev'))
+
+    expect(onPageChange).not.toHaveBeenCalled()
+  })
+
+  it('ignores next click when on last page', () => {
+    const onPageChange = jest.fn()
+    const { getByText } = renderPagination({
+      activePage: 5,
+      totalPages: 5,
+      onPageChange
+    })
+
+    fireEvent.click(getByText('Next'))
+
+    expect(onPageChange).not.toHaveBeenCalled()
   })
 })

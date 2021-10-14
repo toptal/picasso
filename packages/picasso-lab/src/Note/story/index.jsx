@@ -4,7 +4,7 @@ import noteSubtitleStory from '../../NoteSubtitle/story'
 import noteContentStory from '../../NoteContent/story'
 import { Note } from '../Note'
 
-const page = PicassoBook.section('Components').createPage(
+const page = PicassoBook.section('Picasso Lab').createPage(
   'Note',
   `
   ${PicassoBook.createBaseDocsLink(

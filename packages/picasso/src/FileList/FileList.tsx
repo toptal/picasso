@@ -18,7 +18,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'FileList'
 })
 
-export const FileList = forwardRef<HTMLDivElement, Props>(function FileList (
+export const FileList = forwardRef<HTMLDivElement, Props>(function FileList(
   props,
   ref
 ) {

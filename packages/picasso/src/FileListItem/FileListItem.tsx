@@ -64,7 +64,7 @@ const FileListItem = ({ file, index, disabled, onRemove }: Props) => {
         <Container flex direction='row'>
           {!error && (
             <Container right='xsmall'>
-              <Attachment16 />
+              <Attachment16 color='darkGrey' />
             </Container>
           )}
           <Typography

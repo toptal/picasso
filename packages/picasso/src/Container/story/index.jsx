@@ -20,7 +20,7 @@ page
     title: 'Spacing',
     description: 'Creating inner and outer space for component',
     extra: `
-Spacing is based on size enum that gets transformed into **rem** unit in following manner: 
+Spacing is based on size enum that gets transformed into **rem** unit in following manner:
 - xsmall = 0.5rem,
 - small = 1rem,
 - medium = 1.5rem,
@@ -30,3 +30,4 @@ Spacing is based on size enum that gets transformed into **rem** unit in followi
 For other custom  cases use **number** in rem units or **className** to define spacings.
 `
   })
+  .addExample('Container/story/TextAlign.example.tsx', 'TextAlign')

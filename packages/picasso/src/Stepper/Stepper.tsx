@@ -9,35 +9,37 @@ import StepLabel from '../StepLabel'
 import '../StepIcon'
 import StepConnector from '../StepConnector'
 import styles from './styles'
+import StepperVertical from '../StepperVertical'
 
-export interface Props
+export type DirectionType = 'vertical' | 'horizontal'
+
+export interface StepperBaseProps
   extends BaseProps,
     TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
   /** The index of the active step */
   active?: number
-  /** The component will take up the full width of its container */
-  fullWidth?: boolean
-  /** Hide labels of non active steps */
-  hideLabels?: boolean
   /** Array of the step labels */
   steps: string[]
 }
 
+export interface Props extends StepperBaseProps {
+  /** Hide labels of non active steps */
+  hideLabels?: boolean
+  direction?: DirectionType
+}
+
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
 
-export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
-  props,
-  ref
-) {
+const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
     active = 0,
     steps = [],
-    fullWidth = false,
     hideLabels = false,
     className,
     style,
     titleCase,
+    direction = 'horizontal',
     ...rest
   } = props
   const classes = useStyles()
@@ -47,15 +49,10 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
       {...rest}
       ref={ref}
       activeStep={active}
-      connector={<StepConnector />}
-      className={cx(
-        {
-          [classes.fullWidth]: fullWidth
-        },
-        classes.root,
-        className
-      )}
+      connector={<StepConnector direction={direction} />}
+      className={cx(classes.root, className)}
       style={style}
+      orientation={direction}
     >
       {steps.map((label, stepIndex) => (
         <Step key={label}>
@@ -74,11 +71,11 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
 
 Stepper.defaultProps = {
   active: 0,
-  fullWidth: false,
   hideLabels: false,
+  direction: 'horizontal',
   steps: []
 }
 
 Stepper.displayName = 'Stepper'
 
-export default Stepper
+export default Object.assign(Stepper, { Vertical: StepperVertical })

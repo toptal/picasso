@@ -1,58 +1,17 @@
-import React, {
-  FunctionComponent,
-  forwardRef,
-  useMemo,
-  HTMLAttributes
-} from 'react'
+import React, { forwardRef, useMemo, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { JssProps, BaseProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import Container from '../Container'
 import Typography from '../Typography'
-import { getRange, ELLIPSIS, FIRST_PAGE, ONE_PAGE } from './range-utils'
+import { getRange, ELLIPSIS } from './utils'
 import styles from './styles'
-
-type NavigationType = 'first' | 'last' | 'previous' | 'next' | number
-
-const SIBLING_COUNT = 1
-
-const PaginationEllipsis: FunctionComponent<JssProps> = ({ classes }) => {
-  return (
-    <Container className={classes.ellipsis}>
-      <Typography size='small' weight='semibold' color='black'>
-        {ELLIPSIS}
-      </Typography>
-    </Container>
-  )
-}
-
-export interface PaginationPageProps extends JssProps {
-  activePage: number
-  disabled?: boolean
-  page: number
-  onClick: (page: NavigationType) => void
-}
+import PaginationButton from '../PaginationButton'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoPagination'
 })
-
-const PaginationPage: FunctionComponent<PaginationPageProps> = props => {
-  const { page, activePage, disabled, onClick, classes } = props
-
-  return (
-    <Button
-      className={classes?.rangeButton}
-      disabled={disabled}
-      onClick={() => onClick(page)}
-      variant={activePage === page ? 'primary' : 'secondary'}
-      size='small'
-    >
-      {page}
-    </Button>
-  )
-}
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Value of the current highlighted page */
@@ -63,85 +22,83 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   onPageChange: (page: number) => void
   /** Value of total pages of the data set used for calculation of page buttons */
   totalPages: number
+  /** Number of the active page siblings  */
+  siblingCount?: number
+  /** Variant of the pagination representation  */
+  variant?: 'default' | 'compact'
 }
 
 export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   props,
   ref
 ) {
-  const { activePage, disabled, totalPages, onPageChange, ...rest } = props
+  const {
+    activePage,
+    disabled,
+    totalPages,
+    onPageChange,
+    siblingCount = 2,
+    variant,
+    ...rest
+  } = props
   const classes = useStyles()
 
-  const pages = useMemo(() => getRange(activePage, totalPages, SIBLING_COUNT), [
-    activePage,
-    totalPages
-  ])
+  const pages = useMemo(
+    () => getRange({ activePage, totalPages, siblingCount }),
+    [activePage, totalPages, siblingCount]
+  )
+
+  if (pages.length <= 1) {
+    return null
+  }
 
   const isFirstActive = activePage === 1
   const isLastActive = activePage === totalPages
 
-  if (totalPages <= ONE_PAGE || activePage > totalPages) {
-    return null
-  }
+  const handlePrevClick = () => onPageChange(activePage - 1)
+  const handleNextClick = () => onPageChange(activePage + 1)
 
-  const handleChange = (navigation: NavigationType) => {
-    if (navigation === 'first') {
-      return onPageChange(FIRST_PAGE)
+  const pageButtons = pages.map((page, index) => {
+    if (typeof page === 'string') {
+      return (
+        <Container key={String(index)} className={classes.ellipsis}>
+          <Typography size='small' weight='semibold' color='black'>
+            {ELLIPSIS}
+          </Typography>
+        </Container>
+      )
     }
 
-    if (navigation === 'previous') {
-      return onPageChange(activePage - ONE_PAGE)
-    }
-
-    if (navigation === 'next') {
-      return onPageChange(activePage + ONE_PAGE)
-    }
-
-    if (navigation === 'last') {
-      return onPageChange(totalPages)
-    }
-
-    return onPageChange(navigation)
-  }
+    return (
+      <PaginationButton
+        key={String(page)}
+        className={classes.button}
+        page={page}
+        activePage={activePage}
+        disabled={disabled}
+        onClick={onPageChange}
+      />
+    )
+  })
 
   return (
     <Container {...rest} ref={ref} flex inline alignItems='center'>
       <Button
+        className={classes.button}
         disabled={isFirstActive || disabled}
-        onClick={() => handleChange('previous')}
+        onClick={handlePrevClick}
         variant='secondary'
         size='small'
       >
         Prev
       </Button>
 
-      {pages.map((page, index) => {
-        if (page === ELLIPSIS) {
-          return (
-            <PaginationEllipsis
-              // eslint-disable-next-line react/no-array-index-key
-              key={'pagination-ellipsis' + index}
-              classes={classes}
-            />
-          )
-        }
-
-        return (
-          <PaginationPage
-            classes={classes}
-            page={page as number}
-            activePage={activePage}
-            disabled={disabled}
-            // eslint-disable-next-line react/no-array-index-key
-            key={(page as string) + index}
-            onClick={handleChange}
-          />
-        )
-      })}
+      {variant === 'compact' ? null : pageButtons}
 
       <Button
+        className={classes.button}
         disabled={isLastActive || disabled}
-        onClick={() => handleChange('next')}
+        onClick={handleNextClick}
         variant='secondary'
         size='small'
       >
@@ -152,7 +109,9 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
 })
 
 Pagination.defaultProps = {
-  disabled: false
+  disabled: false,
+  siblingCount: 2,
+  variant: 'default'
 }
 
 Pagination.displayName = 'Pagination'

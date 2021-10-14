@@ -2,8 +2,8 @@ import React, {
   ReactNode,
   HTMLAttributes,
   forwardRef,
-  ElementType,
-  useMemo
+  useMemo,
+  ElementType
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -14,6 +14,7 @@ import {
 } from '@toptal/picasso-shared'
 
 import Button from '../Button'
+import ButtonGroupItem from '../ButtonGroupItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -70,4 +71,4 @@ ButtonGroup.defaultProps = {}
 
 ButtonGroup.displayName = 'ButtonGroup'
 
-export default ButtonGroup
+export default Object.assign(ButtonGroup, { Item: ButtonGroupItem })

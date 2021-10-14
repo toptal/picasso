@@ -4,7 +4,7 @@ import { Tabs, Button, Link, PageHead, Breadcrumbs } from '@toptal/picasso'
 const DefaultExample = () => {
   const [value, setValue] = React.useState(0)
 
-  const handleChange = (_: any, newValue: number) => {
+  const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue)
   }
 
@@ -13,17 +13,19 @@ const DefaultExample = () => {
       <Breadcrumbs>
         <Breadcrumbs.Item
           as={Link}
+          variant='action'
           href='https://en.wikipedia.org/wiki/United_States'
         >
           USA
         </Breadcrumbs.Item>
         <Breadcrumbs.Item
           as={Link}
+          variant='action'
           href='https://en.wikipedia.org/wiki/Software'
         >
           Software
         </Breadcrumbs.Item>
-        <Breadcrumbs.Item as={Link} href='https://toptal.com'>
+        <Breadcrumbs.Item as={Link} variant='action' href='https://toptal.com'>
           Toptal
         </Breadcrumbs.Item>
       </Breadcrumbs>

@@ -11,7 +11,6 @@ import {
   StandardProps,
   SizeType,
   ButtonOrAnchorProps,
-  CompoundedComponentWithRef,
   OverridableComponent,
   useTitleCase,
   TextLabelProps,
@@ -25,6 +24,9 @@ import Container from '../Container'
 import Group from '../ButtonGroup'
 import Circular from '../ButtonCircular'
 import Action from '../ButtonAction'
+import Split from '../ButtonSplit'
+import Checkbox from '../ButtonCheckbox'
+import Radio from '../ButtonRadio'
 import noop from '../utils/noop'
 import toTitleCase from '../utils/to-title-case'
 
@@ -43,8 +45,8 @@ export type IconPositionType = 'left' | 'right'
 
 export interface Props
   extends StandardProps,
-    TextLabelProps,
-    ButtonOrAnchorProps {
+  TextLabelProps,
+  ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */
@@ -79,12 +81,6 @@ export interface Props
   type?: 'button' | 'reset' | 'submit'
 }
 
-export interface StaticProps {
-  Group: typeof Group
-  Circular: typeof Circular
-  Action: typeof Action
-}
-
 const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
   loading ? noop : handler
 
@@ -113,10 +109,10 @@ const getIcon = (
   })
 }
 
-export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
-  props,
-  ref
-) {
+export const Button: OverridableComponent<Props> = forwardRef<
+  HTMLButtonElement,
+  Props
+>(function Button(props, ref) {
   const {
     icon,
     iconPosition,
@@ -212,7 +208,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       )}
     </ButtonBase>
   )
-}) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
+})
 
 Button.defaultProps = {
   active: false,
@@ -232,8 +228,11 @@ Button.defaultProps = {
 
 Button.displayName = 'Button'
 
-Button.Group = Group
-Button.Circular = Circular
-Button.Action = Action
-
-export default Button as OverridableComponent<Props> & StaticProps
+export default Object.assign(Button, {
+  Group,
+  Circular,
+  Action,
+  Split,
+  Checkbox,
+  Radio
+})

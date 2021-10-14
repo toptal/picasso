@@ -6,14 +6,19 @@ const TitleAndBreadcrumbsExample = () => (
     <Breadcrumbs>
       <Breadcrumbs.Item
         as={Link}
+        variant='action'
         href='https://en.wikipedia.org/wiki/United_States'
       >
         USA
       </Breadcrumbs.Item>
-      <Breadcrumbs.Item as={Link} href='https://en.wikipedia.org/wiki/Software'>
+      <Breadcrumbs.Item
+        as={Link}
+        variant='action'
+        href='https://en.wikipedia.org/wiki/Software'
+      >
         Software
       </Breadcrumbs.Item>
-      <Breadcrumbs.Item as={Link} href='https://toptal.com'>
+      <Breadcrumbs.Item as={Link} variant='action' href='https://toptal.com'>
         Toptal
       </Breadcrumbs.Item>
     </Breadcrumbs>

@@ -1,7 +1,39 @@
 import React from 'react'
-import { Link, Container, Typography } from '@toptal/picasso'
+import {
+  Link,
+  Container,
+  Typography,
+  Menu,
+  UserBadge,
+  ChevronRight16
+} from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
+
+const TestUserBadgeLink = () => {
+  return (
+    <TestingPicasso>
+      <Menu>
+        <Menu.Item disableGutters>
+          <Link href='/' textDecoration='none' style={{ width: '100%' }}>
+            <Container
+              padded='medium'
+              flex
+              direction='row'
+              alignItems='center'
+              justifyContent='space-between'
+            >
+              <UserBadge name='Foo Bar'>
+                <Typography size='small'>Foo bar position</Typography>
+              </UserBadge>
+              <ChevronRight16 color='dark-grey' />
+            </Container>
+          </Link>
+        </Menu.Item>
+      </Menu>
+    </TestingPicasso>
+  )
+}
 
 describe('Link', () => {
   it('renders', () => {
@@ -40,7 +72,7 @@ describe('Link', () => {
     mount(
       <TestingPicasso>
         <Typography variant='heading' size='large'>
-          Big <Link>link</Link>
+          Big <Link fontSize='inherit'>link</Link>
         </Typography>
       </TestingPicasso>
     )
@@ -50,18 +82,14 @@ describe('Link', () => {
   it('renders without underline', () => {
     mount(
       <TestingPicasso>
-        <Link underline='none'>Link</Link>
+        <Link textDecoration='none'>Link</Link>
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
   })
 
-  it('renders with constant underline', () => {
-    mount(
-      <TestingPicasso>
-        <Link underline='always'>Link</Link>
-      </TestingPicasso>
-    )
+  it('renders user badge link', () => {
+    mount(<TestUserBadgeLink />)
     cy.get('body').happoScreenshot()
   })
 })

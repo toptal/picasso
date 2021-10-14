@@ -6,11 +6,7 @@ import React, {
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITable from '@material-ui/core/Table'
-import {
-  BaseProps,
-  PicassoComponentWithRef,
-  CompoundedComponentWithRef
-} from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import TableCell from '../TableCell'
 import TableBody from '../TableBody'
@@ -34,16 +30,6 @@ export interface Props
   spacing?: TableSpacing
   /** Appearance variant */
   variant?: TableVariant
-}
-
-export interface StaticProps {
-  Head: typeof TableHead
-  SectionHead: typeof TableSectionHead
-  Body: typeof TableBody
-  Row: typeof TableRow
-  Cell: typeof TableCell
-  Footer: typeof TableFooter
-  ExpandableRow: typeof TableExpandableRow
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -80,33 +66,21 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table(
       </MUITable>
     </TableContext.Provider>
   )
-}) as CompoundedComponentWithRef<Props, HTMLTableElement, StaticProps>
+})
 
 Table.defaultProps = {
   spacing: 'regular',
   variant: 'bordered'
 }
 
-Table.displayName = 'Table'
+Table.displayName = 'PicassoTable'
 
-Table.Body = TableBody
-
-Table.Cell = TableCell
-
-Table.Body = TableBody
-
-Table.Head = TableHead
-
-Table.SectionHead = TableSectionHead
-
-Table.Row = TableRow
-
-Table.ExpandableRow = TableExpandableRow
-
-Table.Footer = TableFooter
-
-export default Table as PicassoComponentWithRef<
-  Props,
-  HTMLTableElement,
-  StaticProps
->
+export default Object.assign(Table, {
+  Cell: TableCell,
+  Body: TableBody,
+  Head: TableHead,
+  SectionHead: TableSectionHead,
+  Row: TableRow,
+  ExpandableRow: TableExpandableRow,
+  Footer: TableFooter
+})

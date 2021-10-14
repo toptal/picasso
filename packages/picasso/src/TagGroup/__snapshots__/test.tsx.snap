@@ -12,7 +12,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
         class="MuiChip-root PicassoLabel-root"
       >
         <span
-          class="MuiChip-label"
+          class="MuiChip-label PicassoLabel-label"
         >
           <span
             class="PicassoLabel-innerLabel"
@@ -25,7 +25,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
         class="MuiChip-root PicassoLabel-root"
       >
         <span
-          class="MuiChip-label"
+          class="MuiChip-label PicassoLabel-label"
         >
           <span
             class="PicassoLabel-innerLabel"
@@ -38,7 +38,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
         class="MuiChip-root PicassoLabel-root"
       >
         <span
-          class="MuiChip-label"
+          class="MuiChip-label PicassoLabel-label"
         >
           <span
             class="PicassoLabel-innerLabel"
@@ -51,7 +51,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
         class="MuiChip-root PicassoLabel-root"
       >
         <span
-          class="MuiChip-label"
+          class="MuiChip-label PicassoLabel-label"
         >
           <span
             class="PicassoLabel-innerLabel"

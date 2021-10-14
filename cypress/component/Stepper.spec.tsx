@@ -3,59 +3,138 @@ import { mount } from '@cypress/react'
 import { Stepper, Container } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const Example: React.FC<{ hideLabels?: boolean }> = props => (
-  <TestingPicasso>
-    <Container padded='medium'>
-      <Stepper steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']} {...props} />
-    </Container>
-    <Container top='small' padded='medium'>
-      <Stepper
-        active={1}
-        steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']}
-        {...props}
-      />
-    </Container>
-    <Container top='small' padded='medium'>
-      <Stepper
-        active={3}
-        steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']}
-        {...props}
-      />
-    </Container>
-    <Container top='small' padded='medium'>
-      <Stepper
-        active={4}
-        steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']}
-        {...props}
-      />
-    </Container>
-  </TestingPicasso>
-)
+const STEPS = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
 
 describe('Stepper', () => {
-  it('renders with label', () => {
-    mount(<Example />)
-    cy.get('body').happoScreenshot()
+  describe('with label', () => {
+    it('renders without active', () => {
+      mount(
+        <TestingPicasso>
+          <Container padded='medium'>
+            <Stepper steps={STEPS} />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+
+    it('renders first step active', () => {
+      mount(
+        <TestingPicasso>
+          <Container top='small' padded='medium'>
+            <Stepper active={1} steps={STEPS} />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+    it('renders third step active', () => {
+      mount(
+        <TestingPicasso>
+          <Container top='small' padded='medium'>
+            <Stepper active={3} steps={STEPS} />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+    it('renders all steps active', () => {
+      mount(
+        <TestingPicasso>
+          <Container top='small' padded='medium'>
+            <Stepper active={4} steps={STEPS} />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
   })
 
-  it('renders full width', () => {
-    mount(
-      <TestingPicasso>
-        <div style={{ width: '40rem' }}>
-          <Stepper fullWidth steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']} />
-        </div>
-      </TestingPicasso>
-    )
+  describe('without label', () => {
+    it('renders without active', () => {
+      mount(
+        <TestingPicasso>
+          <Container padded='medium'>
+            <Stepper steps={STEPS} hideLabels />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
 
-    cy.get('body').happoScreenshot()
+    it('renders first step active', () => {
+      mount(
+        <TestingPicasso>
+          <Container top='small' padded='medium'>
+            <Stepper active={1} steps={STEPS} hideLabels />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+    it('renders third step active', () => {
+      mount(
+        <TestingPicasso>
+          <Container top='small' padded='medium'>
+            <Stepper active={3} steps={STEPS} hideLabels />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+    it('renders all steps active', () => {
+      mount(
+        <TestingPicasso>
+          <Container top='small' padded='medium'>
+            <Stepper active={4} steps={STEPS} hideLabels />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
   })
 
-  it('renders without label', () => {
-    mount(
-      <TestingPicasso>
-        <Example hideLabels />
-      </TestingPicasso>
-    )
-    cy.get('body').happoScreenshot()
+  describe('vertical', () => {
+    it('renders without active', () => {
+      mount(
+        <TestingPicasso>
+          <Container padded='medium'>
+            <Stepper.Vertical steps={STEPS} />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+
+    it('renders first step active', () => {
+      mount(
+        <TestingPicasso>
+          <Container top='small' padded='medium'>
+            <Stepper.Vertical active={1} steps={STEPS} />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+    it('renders third step active', () => {
+      mount(
+        <TestingPicasso>
+          <Container top='small' padded='medium'>
+            <Stepper.Vertical active={3} steps={STEPS} />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+    it('renders all steps active', () => {
+      mount(
+        <TestingPicasso>
+          <Container top='small' padded='medium'>
+            <Stepper.Vertical active={4} steps={STEPS} />
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
   })
 })

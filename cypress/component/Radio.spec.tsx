@@ -10,7 +10,7 @@ const RadioTooltipExample = () => {
     <TestingPicasso>
       <Container style={{ marginTop: '200px', marginLeft: '200px' }}>
         <Tooltip content={tooltipContent}>
-          <Radio label='Radio 1' value='radio1' />
+          <Radio label='Radio 1' value='radio1' data-testid='trigger' />
         </Tooltip>
       </Container>
     </TestingPicasso>
@@ -25,7 +25,12 @@ const DisabledRadioTooltipExample = () => {
       <Container style={{ marginTop: '200px', marginLeft: '200px' }}>
         <Tooltip content={tooltipContent}>
           <Container as='span'>
-            <Radio disabled label='Radio 1' value='radio1' />
+            <Radio
+              disabled
+              label='Radio 1'
+              value='radio1'
+              data-testid='trigger'
+            />
           </Container>
         </Tooltip>
       </Container>
@@ -38,7 +43,7 @@ describe('Radio', () => {
     mount(<RadioTooltipExample />)
 
     // hover the radio button itself (not the label)
-    cy.get('[data-testid="trigger"').realHover()
+    cy.get('[data-testid="trigger"]').realHover()
     cy.get('[data-testid="tooltip-content"]').should('be.visible')
   })
 
@@ -46,7 +51,7 @@ describe('Radio', () => {
     mount(<DisabledRadioTooltipExample />)
 
     // hover the radio button itself (not the label)
-    cy.get('[data-testid="trigger"').realHover()
+    cy.get('[data-testid="trigger"]').realHover()
     cy.get('[data-testid="tooltip-content"]').should('be.visible')
   })
 })

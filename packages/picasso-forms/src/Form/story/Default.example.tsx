@@ -83,6 +83,10 @@ const Example = () => {
         <Form.Radio label='Male' value='male' />
         <Form.Radio label='Female' value='female' />
       </Form.RadioGroup>
+      <Form.RadioGroup name='gender' label='Gender' horizontal spacing={8}>
+        <Form.ButtonRadio value='male'>Male</Form.ButtonRadio>
+        <Form.ButtonRadio value='female'>Female</Form.ButtonRadio>
+      </Form.RadioGroup>
       <Form.DatePicker name='dateOfBirth' label='Date of birth' />
       <Form.TimePicker name='timeOfBirth' label='Time of birth' />
       <Form.TagSelector
@@ -96,6 +100,13 @@ const Example = () => {
         <Form.Checkbox label='Skiing' value='skiing' />
         <Form.Checkbox label='Free diving' value='freeDiving' />
         <Form.Checkbox label='Dancing' value='dancing' />
+      </Form.CheckboxGroup>
+      <Form.CheckboxGroup name='hobbies' label='Hobbies' horizontal spacing={8}>
+        <Form.ButtonCheckbox value='skiing'>Skiing</Form.ButtonCheckbox>
+        <Form.ButtonCheckbox value='freeDiving'>
+          Free diving
+        </Form.ButtonCheckbox>
+        <Form.ButtonCheckbox value='dancing'>Dancing</Form.ButtonCheckbox>
       </Form.CheckboxGroup>
       <Form.Select
         enableReset

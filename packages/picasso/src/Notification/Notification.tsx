@@ -10,11 +10,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import SnackbarContent from '@material-ui/core/SnackbarContent'
 import cx from 'classnames'
 import capitalize from '@material-ui/core/utils/capitalize'
-import {
-  StandardProps,
-  PicassoComponentWithRef,
-  CompoundedComponentWithRef
-} from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import {
   CloseMinor16,
@@ -48,10 +44,6 @@ export interface PrivateProps
 
 /** `elevated` and `icon` props are omitted from the public declaration, since they're only for internal use */
 export type PublicProps = Omit<PrivateProps, 'elevated' | 'icon'>
-
-export interface StaticProps {
-  Actions: typeof NotificationActions
-}
 
 const renderNotificationCloseButton = ({ onClose, classes }: PrivateProps) => (
   <Button.Circular
@@ -144,7 +136,7 @@ export const Notification = forwardRef<HTMLElement, PrivateProps>(
       />
     )
   }
-) as CompoundedComponentWithRef<PrivateProps, HTMLElement, StaticProps>
+)
 
 Notification.defaultProps = {
   elevated: false,
@@ -153,10 +145,4 @@ Notification.defaultProps = {
 
 Notification.displayName = 'Notification'
 
-Notification.Actions = NotificationActions
-
-export default Notification as PicassoComponentWithRef<
-  PublicProps,
-  HTMLElement,
-  StaticProps
->
+export default Object.assign(Notification, { Actions: NotificationActions })

@@ -22,28 +22,24 @@ exports[`ShowMore renders 1`] = `
         </span>
       </span>
     </p>
-    <p
-      class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+    <a
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <a
-        class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      Show more
+      <div
+        class="PicassoShowMore-iconWrapper"
       >
-        Show more
-        <div
-          class="PicassoShowMore-iconWrapper"
+        <svg
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            />
-          </svg>
-        </div>
-      </a>
-    </p>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+          />
+        </svg>
+      </div>
+    </a>
   </div>
 </div>
 `;
@@ -70,28 +66,24 @@ exports[`ShowMore when custom lessText text is specified should render with cust
         </span>
       </span>
     </p>
-    <p
-      class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+    <a
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <a
-        class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      Show more
+      <div
+        class="PicassoShowMore-iconWrapper"
       >
-        Show more
-        <div
-          class="PicassoShowMore-iconWrapper"
+        <svg
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            />
-          </svg>
-        </div>
-      </a>
-    </p>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+          />
+        </svg>
+      </div>
+    </a>
   </div>
 </div>
 `;
@@ -118,28 +110,24 @@ exports[`ShowMore when custom showMore text is specified should render with cust
         </span>
       </span>
     </p>
-    <p
-      class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+    <a
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <a
-        class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      Display everything
+      <div
+        class="PicassoShowMore-iconWrapper"
       >
-        Display everything
-        <div
-          class="PicassoShowMore-iconWrapper"
+        <svg
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            />
-          </svg>
-        </div>
-      </a>
-    </p>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+          />
+        </svg>
+      </div>
+    </a>
   </div>
 </div>
 `;
@@ -192,28 +180,24 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
         </span>
       </span>
     </p>
-    <p
-      class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+    <a
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <a
-        class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      Show less
+      <div
+        class="PicassoShowMore-iconWrapper"
       >
-        Show less
-        <div
-          class="PicassoShowMore-iconWrapper"
+        <svg
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            />
-          </svg>
-        </div>
-      </a>
-    </p>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+          />
+        </svg>
+      </div>
+    </a>
   </div>
 </div>
 `;
@@ -240,28 +224,24 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
         </span>
       </span>
     </p>
-    <p
-      class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+    <a
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <a
-        class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      Show more
+      <div
+        class="PicassoShowMore-iconWrapper"
       >
-        Show more
-        <div
-          class="PicassoShowMore-iconWrapper"
+        <svg
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            />
-          </svg>
-        </div>
-      </a>
-    </p>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+          />
+        </svg>
+      </div>
+    </a>
   </div>
 </div>
 `;
@@ -288,28 +268,24 @@ exports[`ShowMore when show more link is clicked should render expanded version 
         </span>
       </span>
     </p>
-    <p
-      class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+    <a
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
     >
-      <a
-        class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoLink-root PicassoShowMore-toggleText MuiTypography-colorPrimary"
+      Show less
+      <div
+        class="PicassoShowMore-iconWrapper"
       >
-        Show less
-        <div
-          class="PicassoShowMore-iconWrapper"
+        <svg
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            />
-          </svg>
-        </div>
-      </a>
-    </p>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+          />
+        </svg>
+      </div>
+    </a>
   </div>
 </div>
 `;

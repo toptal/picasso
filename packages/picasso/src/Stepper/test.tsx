@@ -1,22 +1,18 @@
 import React from 'react'
 import { render, PicassoConfig } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Stepper, { Props } from './Stepper'
+import Stepper from './Stepper'
+import { StepperProps } from '.'
 
 jest.mock('ap-style-title-case')
 
-const renderStepper = (
-  props: OmitInternalProps<Props>,
-  picassoConfig?: PicassoConfig
-) => {
-  const { active, fullWidth, hideLabels, steps, titleCase } = props
+const renderStepper = (props: StepperProps, picassoConfig?: PicassoConfig) => {
+  const { active, hideLabels, steps, titleCase } = props
 
   return render(
     <Stepper
       active={active}
-      fullWidth={fullWidth}
       hideLabels={hideLabels}
       steps={steps}
       titleCase={titleCase}
@@ -59,18 +55,6 @@ describe('Stepper', () => {
       steps,
       active: activeStep,
       hideLabels: true
-    })
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('render with full-width', () => {
-    const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
-    const activeStep = 4
-    const { container } = renderStepper({
-      steps,
-      active: activeStep,
-      fullWidth: true
     })
 
     expect(container).toMatchSnapshot()

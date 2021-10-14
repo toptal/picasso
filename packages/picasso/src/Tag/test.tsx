@@ -4,15 +4,16 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import Tag, { Props } from './Tag'
+import { Settings16 } from '..'
 
 jest.mock('ap-style-title-case')
 
-const renderLabel = (
+const renderTag = (
   children: string,
   props: OmitInternalProps<Props, 'children'>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { onDelete, disabled, variant, titleCase } = props
+  const { onDelete, disabled, variant, titleCase, endAdornment, icon } = props
 
   return render(
     <Tag
@@ -20,6 +21,8 @@ const renderLabel = (
       disabled={disabled}
       variant={variant}
       titleCase={titleCase}
+      endAdornment={endAdornment}
+      icon={icon}
     >
       {children}
     </Tag>,
@@ -39,14 +42,14 @@ describe('Tag', () => {
     spiedOnTitleCase.mockReset()
   })
 
-  it('renders `grey` variant', () => {
-    const { container } = renderLabel('Tag', {})
+  it('renders `light` variant', () => {
+    const { container } = renderTag('Tag', {})
 
     expect(container).toMatchSnapshot()
   })
 
-  it('renders `blue` variant', () => {
-    const { container } = renderLabel('Tag', { variant: 'blue' })
+  it('renders `primary` variant', () => {
+    const { container } = renderTag('Tag', { variant: 'primary' })
 
     expect(container).toMatchSnapshot()
   })
@@ -54,13 +57,13 @@ describe('Tag', () => {
   it('should transform text to title case when Picasso titleCase property is true', () => {
     const TEXT_CONTENT = 'Test bk9'
 
-    renderLabel(TEXT_CONTENT, {}, { titleCase: true })
+    renderTag(TEXT_CONTENT, {}, { titleCase: true })
 
     expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
   })
 
   it('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
-    renderLabel('test cl4', { titleCase: false }, { titleCase: true })
+    renderTag('test cl4', { titleCase: false }, { titleCase: true })
 
     expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
   })
@@ -72,17 +75,33 @@ describe('Tag', () => {
       onDelete = jest.fn()
     })
     it('should render dismissable label', () => {
-      const { container } = renderLabel('Tag', { onDelete })
+      const { container } = renderTag('Tag', { onDelete })
 
       expect(container).toMatchSnapshot()
     })
 
     it('should fire onDelete event on dismiss action', () => {
-      const { getByLabelText } = renderLabel('Tag', { onDelete })
+      const { getByLabelText } = renderTag('Tag', { onDelete })
       const deleteIcon = getByLabelText('delete icon')
 
       fireEvent.click(deleteIcon)
       expect(onDelete).toHaveBeenCalled()
     })
+  })
+
+  it('renders with adornment', () => {
+    const { container } = renderTag('foobar', {
+      endAdornment: <Tag.Connection>0</Tag.Connection>
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+  it('renders with connection and icon', () => {
+    const { container } = renderTag('foobar', {
+      endAdornment: <Tag.Connection>0</Tag.Connection>,
+      icon: <Settings16 />
+    })
+
+    expect(container).toMatchSnapshot()
   })
 })

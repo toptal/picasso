@@ -20,6 +20,7 @@ exports[`Tabs renders 1`] = `
         <button
           aria-selected="false"
           class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+          data-testid="tab-1"
           role="tab"
           tabindex="0"
           type="button"
@@ -36,6 +37,7 @@ exports[`Tabs renders 1`] = `
         <button
           aria-selected="false"
           class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+          data-testid="tab-2"
           role="tab"
           tabindex="0"
           type="button"
@@ -59,7 +61,7 @@ exports[`Tabs renders 1`] = `
 </div>
 `;
 
-exports[`Tabs with preselected option 1`] = `
+exports[`Tabs renders with a pre-selected option 1`] = `
 <div>
   <div
     class="MuiTabs-root"
@@ -79,6 +81,7 @@ exports[`Tabs with preselected option 1`] = `
         <button
           aria-selected="false"
           class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+          data-testid="tab-1"
           role="tab"
           tabindex="0"
           type="button"
@@ -95,6 +98,7 @@ exports[`Tabs with preselected option 1`] = `
         <button
           aria-selected="true"
           class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-selected"
+          data-testid="tab-2"
           role="tab"
           tabindex="0"
           type="button"
@@ -115,10 +119,17 @@ exports[`Tabs with preselected option 1`] = `
       />
     </div>
   </div>
+  <div
+    data-testid="tab-1-content"
+  >
+    Tab #
+    1
+     content
+  </div>
 </div>
 `;
 
-exports[`Tabs with preselected option using custom value 1`] = `
+exports[`Tabs renders with a pre-selected option using custom value 1`] = `
 <div>
   <div
     class="MuiTabs-root"
@@ -138,6 +149,7 @@ exports[`Tabs with preselected option using custom value 1`] = `
         <button
           aria-selected="true"
           class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-selected"
+          data-testid="tab-1"
           role="tab"
           tabindex="0"
           type="button"
@@ -154,6 +166,7 @@ exports[`Tabs with preselected option using custom value 1`] = `
         <button
           aria-selected="false"
           class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+          data-testid="tab-2"
           role="tab"
           tabindex="0"
           type="button"
@@ -173,6 +186,13 @@ exports[`Tabs with preselected option using custom value 1`] = `
         style="left: 0px; width: 0px;"
       />
     </div>
+  </div>
+  <div
+    data-testid="tab-1-content"
+  >
+    Tab #
+    1
+     content
   </div>
 </div>
 `;

@@ -3,7 +3,13 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'Link',
-  'The Link component allows you to easily customize anchor elements with your theme colors and typography styles.'
+  `
+    The Link component allows you to easily customize anchor elements with your theme colors and typography styles.
+
+    ${PicassoBook.createBaseDocsLink(
+      'https://app.abstract.com/projects/1b06c884-06af-482a-bf12-a82f521a19a1/branches/master/commits/c1f02ee345bc43e9617f5339aaa3eff1b2501d85/files/e67e971a-851c-4375-9821-686c7d4c57e6/layers/BA5476AB-47D9-414D-9FCA-59021BC47C92?mode=design&present=true&sha=c1f02ee345bc43e9617f5339aaa3eff1b2501d85'
+    )}
+  `
 )
 
 page.createTabChapter('Props').addComponentDocs({
@@ -21,14 +27,6 @@ page.createTabChapter('Props').addComponentDocs({
       name: 'href',
       type: 'string',
       description: 'Destination the link points to'
-    },
-    underline: {
-      name: 'underline',
-      type: {
-        name: 'enum',
-        enums: ['"none"', '"always"', '"hover"']
-      },
-      description: 'Controls when the link should have an underline'
     },
     onClick: {
       name: 'onClick',
@@ -77,7 +75,7 @@ page.createTabChapter('Props').addComponentDocs({
         enums: ['"default"', '"action"']
       },
       defaultValue: 'default',
-      description: "Either it's a regular link or an _action_"
+      description: "Either it's a regular link or an _action_."
     },
     color: {
       name: 'color',
@@ -97,6 +95,16 @@ page.createTabChapter('Props').addComponentDocs({
       name: 'style',
       type: 'CSSProperties',
       description: 'Style applied to root element'
+    },
+    size: {
+      name: 'size',
+      type: {
+        name: 'enum',
+        enums: ['"default"', '"inherit"']
+      },
+      defaultValue: 'default',
+      description:
+        'Controls font size of Link, whenever you are using Link inside another text with a different font size you should inherit parents font size.'
     }
   }
 })
@@ -105,13 +113,14 @@ page
   .createChapter()
   .addExample('Link/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('Link/story/Action.example.tsx', 'Action') // picasso-skip-visuals
-  .addExample('Link/story/Underline.example.tsx', 'Underline') // picasso-skip-visuals
   .addExample('Link/story/FontSize.example.tsx', {
     title: 'Font size',
     description:
       "You can modify Link's font size by wrapping it in `Typography`"
   }) // picasso-skip-visuals
   .addExample('Link/story/Color.example.tsx', 'Color') // picasso-skip-visuals
+  .addExample('Link/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
+  .addExample('Link/story/TextDecoration.example.tsx', 'Text decoration') // picasso-skip-visuals
   .addExample('Link/story/Routing.example.tsx', {
     title: 'Routing',
     description:

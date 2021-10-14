@@ -1,23 +1,20 @@
 import React, {
   forwardRef,
   ElementType,
-  FunctionComponent,
   HTMLAttributes,
   MouseEvent,
-  ReactNode,
-  ComponentPropsWithoutRef
+  ReactNode
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  CompoundedComponentWithRef,
   OverridableComponent,
   ColorType,
   BaseProps,
   TextLabelProps,
   useTitleCase
 } from '@toptal/picasso-shared'
-import { Typography } from '@toptal/picasso'
+import { Container, Typography } from '@toptal/picasso'
 import { toTitleCase } from '@toptal/picasso/utils'
 
 import styles from './styles'
@@ -49,65 +46,62 @@ export type Props = BaseProps &
     onClick?: (event: MouseEvent) => void
   }
 
-export interface StaticProps {
-  Group: FunctionComponent<ComponentPropsWithoutRef<typeof OverviewBlockGroup>>
-  Row: FunctionComponent<ComponentPropsWithoutRef<typeof OverviewBlockRow>>
-}
-
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoOverviewBlock'
 })
 
-export const OverviewBlock: OverridableComponent<Props> & StaticProps =
-  // eslint-disable-next-line react/display-name
-  forwardRef<HTMLButtonElement, Props>(function OverviewBlock(props, ref) {
-    const {
-      value,
-      label,
-      variant,
-      as,
-      className,
-      onClick,
-      titleCase: propsTitleCase,
-      ...rest
-    } = props
-    const classes = useStyles()
-    const { align, blockWidth } = useOverviewBlockGroupContext()
+export const OverviewBlock: OverridableComponent<Props> = forwardRef<
+  HTMLButtonElement,
+  Props
+>(function OverviewBlock(props, ref) {
+  const {
+    value,
+    label,
+    variant,
+    as,
+    className,
+    onClick,
+    titleCase: propsTitleCase,
+    ...rest
+  } = props
+  const classes = useStyles()
+  const { align, blockWidth } = useOverviewBlockGroupContext()
 
-    const color: ColorSchema = {
-      value: 'black',
-      label: 'dark-grey'
-    }
+  const color: ColorSchema = {
+    value: 'black',
+    label: 'dark-grey'
+  }
 
-    if (variant) {
-      const [partName, colorName] = variant.split('-') as [
-        keyof ColorSchema,
-        ColorType
-      ]
+  if (variant) {
+    const [partName, colorName] = variant.split('-') as [
+      keyof ColorSchema,
+      ColorType
+    ]
 
-      color[partName] = colorName
-    }
+    color[partName] = colorName
+  }
 
-    const isClickable = Boolean(onClick) || typeof as !== 'string'
+  const isClickable = Boolean(onClick) || typeof as !== 'string'
 
-    const Component = isClickable && as ? as : 'div'
+  const Component = isClickable && as ? as : 'div'
 
-    const titleCase = useTitleCase(propsTitleCase)
+  const titleCase = useTitleCase(propsTitleCase)
 
-    return (
-      <Component
-        {...rest}
-        ref={ref}
-        className={cx(
-          { [classes.clickable]: isClickable },
-          { [classes.disableOutline]: !isClickable },
-          classes[`${align}Align`],
-          classes[`${blockWidth}Width`],
-          classes.root,
-          className
-        )}
-        onClick={onClick}
-      >
+  return (
+    <Component
+      {...rest}
+      ref={ref}
+      className={cx(
+        { [classes.clickable]: isClickable },
+        { [classes.disableOutline]: !isClickable },
+        classes[`${align}Align`],
+        classes[`${blockWidth}Width`],
+        classes.root,
+        className
+      )}
+      onClick={onClick}
+    >
+      <Container align='left'>
         <Typography
           size='small'
           weight='semibold'
@@ -119,16 +113,18 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
         <Typography size='large' weight='semibold' color={color.value}>
           {value}
         </Typography>
-      </Component>
-    )
-  }) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
+      </Container>
+    </Component>
+  )
+})
 
 OverviewBlock.defaultProps = {
   as: 'button'
 }
 
-OverviewBlock.Group = OverviewBlockGroup
-OverviewBlock.Row = OverviewBlockRow
 OverviewBlock.displayName = 'OverviewBlock'
 
-export default OverviewBlock
+export default Object.assign(OverviewBlock, {
+  Group: OverviewBlockGroup,
+  Row: OverviewBlockRow
+})

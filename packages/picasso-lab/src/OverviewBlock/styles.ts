@@ -26,7 +26,8 @@ export default ({ palette, sizes }: Theme) =>
       outline: 'none'
     },
     title: {
-      fontSize: rem('11px')
+      fontSize: rem('11px'),
+      lineHeight: '1rem'
     },
     defaultAlign: {
       alignItems: 'flex-start'
