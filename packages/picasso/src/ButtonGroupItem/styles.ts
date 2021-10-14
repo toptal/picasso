@@ -18,5 +18,6 @@ export default (theme: Theme) =>
     active: {},
     hovered: {},
     focused: {},
+    disabled: {},
     group: {}
   })

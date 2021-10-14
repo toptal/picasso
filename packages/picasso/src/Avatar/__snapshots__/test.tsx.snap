@@ -12,7 +12,7 @@ exports[`Avatar renders with a long name 1`] = `
         class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
       />
       <p
-        class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text PicassoAvatar-centeredContent PicassoAvatar-textCapLimit MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent PicassoAvatar-textCapLimit MuiTypography-body1"
       >
         JRB
       </p>
@@ -76,7 +76,7 @@ exports[`Avatar renders with initials 1`] = `
         class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
       />
       <p
-        class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
       >
         JR
       </p>

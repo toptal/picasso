@@ -38,7 +38,7 @@ exports[`AccountSelect renders 1`] = `
                       class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
                     />
                     <p
-                      class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+                      class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
                     >
                       PL
                     </p>
@@ -105,7 +105,7 @@ exports[`AccountSelect renders 1`] = `
                       class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
                     />
                     <p
-                      class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+                      class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
                     >
                       PL
                     </p>

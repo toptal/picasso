@@ -11,5 +11,7 @@ export default (theme: Theme) =>
       ...createOutlineCommons(theme),
       '&:active, &$active': activeGroup(theme)
     },
-    active: {}
+    active: {},
+    hovered: {},
+    disabled: {}
   })
