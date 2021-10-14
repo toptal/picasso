@@ -63,7 +63,7 @@ module.exports = {
       },
       {
         removeAttrs: {
-          attrs: '(stroke|width|height)'
+          attrs: '(stroke|width|height|xmlns.*)'
         }
       },
       {
