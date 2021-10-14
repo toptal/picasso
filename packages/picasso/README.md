@@ -1,5 +1,7 @@
 # @toptal/picasso
 
+foo
+
 [![Picasso NPM package](https://img.shields.io/npm/v/@toptal/picasso?color=green&logo=toptal)](https://www.npmjs.com/package/@toptal/picasso)
 
 ![Picasso](https://user-images.githubusercontent.com/437214/54037817-b4da1800-41c7-11e9-81f5-59ed43e38500.png)
