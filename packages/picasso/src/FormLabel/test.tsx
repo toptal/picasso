@@ -14,7 +14,8 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   disabled,
   titleCase,
   htmlFor,
-  inline
+  inline,
+  size
 }) => (
   <Form>
     <Form.Field>
@@ -24,6 +25,7 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
         titleCase={titleCase}
         htmlFor={htmlFor}
         inline={inline}
+        size={size}
       >
         {children}
       </FormLabel>
@@ -89,5 +91,13 @@ describe('FormLabel', () => {
     )
 
     expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
+  })
+
+  it('should render large label', () => {
+    const { container } = render(
+      <TestFormLabel size='large'>I am a large label</TestFormLabel>
+    )
+
+    expect(container).toMatchSnapshot()
   })
 })

@@ -4,7 +4,6 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 
 const CONTROL_WIDTH = '1em'
 const LABEL_LEFT_MARGIN = '0.5em'
-const LABEL_TOP_MARGIN = '0.25em'
 
 const THUMB_SIZE = 22
 const TRACK_HEIGHT = THUMB_SIZE + 2
@@ -75,10 +74,9 @@ PicassoProvider.override(({ palette, transitions }) => ({
 
 export default () =>
   createStyles({
-    root: { alignItems: 'flex-start', fontSize: '1rem' },
+    root: { alignItems: 'center', fontSize: '1rem' },
     label: {
       marginLeft: LABEL_LEFT_MARGIN,
-      marginTop: LABEL_TOP_MARGIN,
       // 1px is needed for safari
       maxWidth: `calc(100% - ${CONTROL_WIDTH} - ${LABEL_LEFT_MARGIN} + 1px)`
     }

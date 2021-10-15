@@ -95,7 +95,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
-      alignItems: 'flex-start',
+      alignItems: 'center',
 
       '&:hover $uncheckedIcon:before': iconBeforeStyles({
         borderWidth: sizes.borderWidth,
@@ -143,8 +143,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
     }),
     label: {
       // 1px is needed for safari
-      maxWidth: `calc(100% - ${CONTROL_WIDTH} - ${CONTROL_MARGIN_RIGHT} + 1px)`,
-      marginTop: RADIO_VERTICAL_MARGIN
+      maxWidth: `calc(100% - ${CONTROL_WIDTH} - ${CONTROL_MARGIN_RIGHT} + 1px)`
     },
     labelWithRightSpacing: {}
   })

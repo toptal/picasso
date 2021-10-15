@@ -102,7 +102,15 @@ exports[`Input renders large input 1`] = `
     >
       <input
         autocomplete="none"
+<<<<<<< HEAD
+<<<<<<< HEAD
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputLarge MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+=======
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+>>>>>>> eabc28e3 (test(Input): add test and snapshot of large variant)
+=======
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputLarge MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+>>>>>>> a42145eb (test: update unit test for Input variant)
         type="text"
         value=""
       />
