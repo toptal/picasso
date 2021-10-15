@@ -91,6 +91,24 @@ const MANY_OPTIONS = [
   { value: '10', text: 'Option 10' }
 ]
 const OPTIONS = MANY_OPTIONS.slice(0, 5)
+const OPTION_GROUPS = {
+  'Group 1': [
+    { value: '1', text: 'Option 1' },
+    { value: '2', text: 'Option 2' },
+    { value: '3', text: 'Option 3' }
+  ],
+  'Group 2': [
+    { value: '4', text: 'Option 4' },
+    { value: '5', text: 'Option 5' },
+    { value: '6', text: 'Option 6' },
+    { value: '7', text: 'Option 7' }
+  ],
+  'Group 3': [
+    { value: '8', text: 'Option 8' },
+    { value: '9', text: 'Option 9' },
+    { value: '10', text: 'Option 10' }
+  ]
+}
 
 const getOptionQuerySelector = (value: string | number) =>
   `[role="option"][value="${value}"]`
@@ -100,6 +118,10 @@ const getOption = (value: string | number) =>
 
 const openSelect = () => {
   cy.get('[data-testid="select"]').click()
+}
+
+const pressArrowDown = () => {
+  cy.get('[data-testid="select"]').trigger('keydown', { keyCode: 40 })
 }
 
 const getNativeSelect = () => cy.get('select')
@@ -326,5 +348,19 @@ describe('Select', () => {
     )
 
     cy.get('body').happoScreenshot()
+  })
+
+  it('highlights grouped options correctly', () => {
+    mount(
+      <TestingPicasso>
+        <TestSelect options={OPTION_GROUPS} />
+      </TestingPicasso>
+    )
+
+    openSelect()
+
+    Array.from({ length: 6 }).forEach(pressArrowDown)
+
+    return cy.get('body').happoScreenshot()
   })
 })

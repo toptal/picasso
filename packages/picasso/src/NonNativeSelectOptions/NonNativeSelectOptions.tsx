@@ -65,6 +65,108 @@ export type Props = Pick<
   fixedHeader?: ReactNode
 }
 
+const renderOptions = ({
+  options,
+  getItemProps,
+  value,
+  size,
+  highlightedIndex,
+  limit,
+  offset = 0,
+  renderOption
+}: Pick<
+  Props,
+  | 'getItemProps'
+  | 'value'
+  | 'size'
+  | 'highlightedIndex'
+  | 'limit'
+  | 'renderOption'
+> & { options: Option[]; offset?: number }) => {
+  const limitedOptions = limit ? options.slice(0, limit) : options
+
+  return limitedOptions.map((option, index) => {
+    const { onMouseDown, onMouseEnter, onClick } = getItemProps(
+      option,
+      index + offset
+    )
+    const selection = getSelection(options, value)
+
+    return (
+      <NonNativeSelectOption
+        key={option.key || option.value}
+        option={option}
+        size={size}
+        onMouseDown={onMouseDown}
+        onMouseEnter={onMouseEnter}
+        selected={selection.isOptionSelected(option)}
+        highlighted={highlightedIndex === index + offset}
+        onClick={onClick}
+        description={option.description}
+      >
+        {renderOption?.(option)}
+      </NonNativeSelectOption>
+    )
+  })
+}
+
+const renderGroups = ({
+  groups,
+  getItemProps,
+  value,
+  size,
+  highlightedIndex,
+  limit,
+  renderOption
+}: Pick<
+  Props,
+  'getItemProps' | 'value' | 'size' | 'highlightedIndex' | 'renderOption'
+> & { groups: OptionGroups; limit: number }) => {
+  let optionsCount = 0
+
+  return Object.keys(groups).map(group => {
+    const menuGroups = (
+      <MenuGroup key={group} group={group}>
+        {renderOptions({
+          options: groups[group],
+          getItemProps,
+          value,
+          size,
+          highlightedIndex,
+          limit: limit - optionsCount,
+          offset: optionsCount,
+          renderOption
+        })}
+      </MenuGroup>
+    )
+
+    optionsCount += groups[group].length
+
+    return menuGroups
+  })
+}
+
+const addOffsetToHighlightedIndex = (
+  groups: OptionGroups,
+  highlightedIndex: number | null
+) => {
+  if (!highlightedIndex) {
+    return highlightedIndex
+  }
+
+  let optionsCount = 0
+
+  const offset =
+    Object.values(groups).findIndex(group => {
+      optionsCount += group.length
+      const isHighlightedOptionInGroup = highlightedIndex < optionsCount
+
+      return isHighlightedOptionInGroup
+    }) + 1
+
+  return highlightedIndex + offset
+}
+
 const NonNativeSelectOptions = ({
   options,
   renderOption = () => null,
@@ -93,67 +195,6 @@ const NonNativeSelectOptions = ({
     )
   }
 
-  const flatOptionComponents = (
-    optionsList: Option[],
-    limit?: number,
-    offset = 0
-  ) => {
-    const limitedOptions = limit ? optionsList.slice(0, limit) : optionsList
-
-    return limitedOptions.map((option, currentIndex) => {
-      const { onMouseDown, onMouseEnter, onClick } = getItemProps(
-        option,
-        currentIndex + offset
-      )
-      const selection = getSelection(flatOptions, value)
-
-      return (
-        <NonNativeSelectOption
-          key={option.key || option.value}
-          option={option}
-          size={size}
-          onMouseDown={onMouseDown}
-          onMouseEnter={onMouseEnter}
-          selected={selection.isOptionSelected(option)}
-          highlighted={highlightedIndex === currentIndex + offset}
-          onClick={onClick}
-          description={option.description}
-        >
-          {renderOption(option)}
-        </NonNativeSelectOption>
-      )
-    })
-  }
-
-  const groupedOptionComponents = (
-    optionGroups: OptionGroups,
-    limit: number
-  ) => {
-    let cursor = 0
-
-    return Object.keys(optionGroups).reduce((rendered, group) => {
-      const remainingLimit = limit - cursor
-
-      cursor += 1 // for the group item itself
-      const offset = cursor
-
-      if (remainingLimit > 0) {
-        rendered.push(
-          <MenuGroup key={group} group={group}>
-            {flatOptionComponents(optionGroups[group], remainingLimit, offset)}
-          </MenuGroup>
-        )
-        cursor += optionGroups[group].length
-      }
-
-      return rendered
-    }, [] as JSX.Element[])
-  }
-
-  const optionComponents = isOptionsType(options)
-    ? flatOptionComponents(options, limit)
-    : groupedOptionComponents(options, limit)
-
   const fixedFooter =
     limit && flatOptions.length > limit ? (
       <MenuItem titleCase={false} className={classes.fixedFooter} disabled>
@@ -165,10 +206,32 @@ const NonNativeSelectOptions = ({
     <ScrollMenu
       fixedHeader={fixedHeader}
       onBlur={onBlur}
-      selectedIndex={highlightedIndex}
+      selectedIndex={
+        isOptionsType(options)
+          ? highlightedIndex
+          : addOffsetToHighlightedIndex(options, highlightedIndex)
+      }
       fixedFooter={fixedFooter}
     >
-      {optionComponents}
+      {isOptionsType(options)
+        ? renderOptions({
+            options,
+            getItemProps,
+            value,
+            size,
+            highlightedIndex,
+            limit,
+            renderOption
+          })
+        : renderGroups({
+            groups: options,
+            getItemProps,
+            value,
+            size,
+            highlightedIndex,
+            limit,
+            renderOption
+          })}
     </ScrollMenu>
   )
 }
