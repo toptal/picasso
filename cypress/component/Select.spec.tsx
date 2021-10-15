@@ -124,6 +124,10 @@ const pressArrowDown = () => {
   cy.get('[data-testid="select"]').trigger('keydown', { keyCode: 40 })
 }
 
+const pressSpace = () => {
+  cy.get('[data-testid="select"]').trigger('keydown', { keyCode: 32 })
+}
+
 const getNativeSelect = () => cy.get('select')
 
 describe('Select', () => {
@@ -350,7 +354,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('highlights grouped options correctly', () => {
+  it('highlights grouped options via keys correctly', () => {
     mount(
       <TestingPicasso>
         <TestSelect options={OPTION_GROUPS} />
@@ -362,5 +366,20 @@ describe('Select', () => {
     Array.from({ length: 6 }).forEach(pressArrowDown)
 
     return cy.get('body').happoScreenshot()
+  })
+
+  it('picks an option from group via keys correctly', () => {
+    mount(
+      <TestingPicasso>
+        <TestSelect options={OPTION_GROUPS} multiple />
+      </TestingPicasso>
+    )
+
+    openSelect()
+
+    Array.from({ length: 2 }).forEach(pressArrowDown)
+    pressSpace()
+
+    getOption(3).should('have.attr', 'aria-selected').and('match', /true/)
   })
 })
