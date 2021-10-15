@@ -11,7 +11,7 @@ exports[`FormError renders 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="PicassoFormLabel-root PicassoFormLabel-textMedium"
         >
           <span
             class="PicassoFormLabel-text"

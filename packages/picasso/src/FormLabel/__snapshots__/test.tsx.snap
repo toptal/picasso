@@ -11,7 +11,7 @@ exports[`FormLabel disabled 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root PicassoFormLabel-disabled"
+          class="PicassoFormLabel-root PicassoFormLabel-disabled PicassoFormLabel-textMedium"
         >
           <span
             class="PicassoFormLabel-text"
@@ -36,7 +36,7 @@ exports[`FormLabel renders 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="PicassoFormLabel-root PicassoFormLabel-textMedium"
         >
           <span
             class="PicassoFormLabel-text"
@@ -61,7 +61,7 @@ exports[`FormLabel required with (optional) 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="PicassoFormLabel-root PicassoFormLabel-textMedium"
         >
           <span
             class="PicassoFormLabel-text"
@@ -87,7 +87,7 @@ exports[`FormLabel required with asterisk 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="PicassoFormLabel-root PicassoFormLabel-textMedium"
         >
           <span
             class="PicassoFormLabel-asterisk"
@@ -98,6 +98,31 @@ exports[`FormLabel required with asterisk 1`] = `
             class="PicassoFormLabel-text"
           >
             Label
+          </span>
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`FormLabel should render large label 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="PicassoFormField-root"
+        data-field-has-error="false"
+      >
+        <label
+          class="PicassoFormLabel-root PicassoFormLabel-textLarge"
+        >
+          <span
+            class="PicassoFormLabel-text"
+          >
+            I am a large label
           </span>
         </label>
       </div>

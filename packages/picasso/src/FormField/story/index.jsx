@@ -10,6 +10,7 @@ const chapter = PicassoBook.connectToPage(page =>
     the form structure`
     )
     .addExample('FormField/story/Default.example.tsx', 'Default')
+    .addExample('FormField/story/Sizes.example.tsx', 'Sizes')
     .addExample('FormField/story/Required.example.tsx', 'Required')
     .addExample('FormField/story/Error.example.tsx', 'Error')
     .addExample('FormField/story/Hint.example.tsx', 'Hint')

@@ -30,7 +30,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
     />
   </span>
   <span
-    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoSwitch-label"
+    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoSwitch-label PicassoFormLabel-textMedium"
   >
     <span
       class="PicassoFormLabel-text"
@@ -107,7 +107,7 @@ exports[`Switch renders disabled state 1`] = `
     />
   </span>
   <span
-    class="PicassoFormLabel-root PicassoFormLabel-disabled PicassoFormLabel-inline PicassoFormControlLabel-label PicassoSwitch-label"
+    class="PicassoFormLabel-root PicassoFormLabel-disabled PicassoFormLabel-inline PicassoFormControlLabel-label PicassoSwitch-label PicassoFormLabel-textMedium"
   >
     <span
       class="PicassoFormLabel-text"

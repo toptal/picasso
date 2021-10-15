@@ -131,7 +131,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
     },
     labelWithRightSpacing: {},
     checkboxWrapper: {
-      alignSelf: 'flex-start',
+      alignSelf: 'flex-center',
       verticalAlign: 'middle'
     }
   })

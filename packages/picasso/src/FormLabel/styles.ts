@@ -14,8 +14,12 @@ export default ({ palette }: Theme) =>
       color: alpha(palette.grey[400], 0.48)
     },
 
-    text: {
-      fontSize: '0.875em'
+    textMedium: {
+      fontSize: '0.875rem'
+    },
+
+    textLarge: {
+      fontSize: '1rem'
     },
 
     asterisk: {
@@ -29,7 +33,6 @@ export default ({ palette }: Theme) =>
       marginBottom: 0,
 
       '& $text': {
-        fontSize: '0.8125rem',
         verticalAlign: 'top'
       },
 

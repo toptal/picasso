@@ -14,7 +14,7 @@ exports[`FormRadio renders 1`] = `
           data-field-has-error="false"
         >
           <label
-            class="PicassoFormLabel-root"
+            class="PicassoFormLabel-root PicassoFormLabel-textMedium"
             for="color"
           >
             <span
@@ -58,7 +58,7 @@ exports[`FormRadio renders 1`] = `
                     </span>
                   </span>
                   <span
-                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label PicassoFormLabel-textMedium"
                   >
                     <span
                       class="PicassoFormLabel-text"
@@ -94,7 +94,7 @@ exports[`FormRadio renders 1`] = `
                     </span>
                   </span>
                   <span
-                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label PicassoFormLabel-textMedium"
                   >
                     <span
                       class="PicassoFormLabel-text"
@@ -127,7 +127,7 @@ exports[`FormRadio required with asterisk 1`] = `
           data-field-has-error="false"
         >
           <label
-            class="PicassoFormLabel-root"
+            class="PicassoFormLabel-root PicassoFormLabel-textMedium"
             for="color"
           >
             <span
@@ -175,7 +175,7 @@ exports[`FormRadio required with asterisk 1`] = `
                     </span>
                   </span>
                   <span
-                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label PicassoFormLabel-textMedium"
                   >
                     <span
                       class="PicassoFormLabel-text"
@@ -211,7 +211,7 @@ exports[`FormRadio required with asterisk 1`] = `
                     </span>
                   </span>
                   <span
-                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label PicassoFormLabel-textMedium"
                   >
                     <span
                       class="PicassoFormLabel-text"
