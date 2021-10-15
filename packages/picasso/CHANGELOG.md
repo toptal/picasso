@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@12.1.0...@toptal/picasso@12.2.0) (2021-10-15)
+
+
+### Features
+
+* **icon:** add bell off icon ([#2188](https://github.com/toptal/picasso/issues/2188)) ([d8585fe](https://github.com/toptal/picasso/commit/d8585fea44b56c58f3a9fd269f10008e044a462c))
+
+
+
+
+
 # [12.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@12.0.3...@toptal/picasso@12.1.0) (2021-10-15)
 
 
