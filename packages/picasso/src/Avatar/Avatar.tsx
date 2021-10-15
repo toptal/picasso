@@ -4,9 +4,9 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import WithImage from './WithImage'
-import WithInitials from './WithInitials'
-import WithIcon from './WithIcon'
+import ImageAvatar from './ImageAvatar'
+import InitialsAvatar from './InitialsAvatar'
+import IconAvatar from './IconAvatar'
 
 export type VariantType = 'square' | 'portrait' | 'landscape'
 export type AvatarSizeType = SizeType<
@@ -51,7 +51,7 @@ export const Avatar: FunctionComponent<Props> = props => {
   const renderAvatar = () => {
     if (src) {
       return (
-        <WithImage
+        <ImageAvatar
           alt={alt}
           classes={classes}
           className={className}
@@ -66,7 +66,7 @@ export const Avatar: FunctionComponent<Props> = props => {
 
     if (!src && name) {
       return (
-        <WithInitials
+        <InitialsAvatar
           classes={classes}
           className={className}
           name={name}
@@ -77,7 +77,7 @@ export const Avatar: FunctionComponent<Props> = props => {
     }
 
     return (
-      <WithIcon
+      <IconAvatar
         classes={classes}
         className={className}
         size={size}
