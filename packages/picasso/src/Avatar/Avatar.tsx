@@ -64,7 +64,7 @@ export const Avatar: FunctionComponent<Props> = props => {
       )
     }
 
-    if (!src && name) {
+    if (name) {
       return (
         <InitialsAvatar
           classes={classes}
