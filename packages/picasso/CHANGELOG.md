@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@12.0.3...@toptal/picasso@12.1.0) (2021-10-15)
+
+
+### Features
+
+* **Avatar:** add default state variant with icon placeholder ([#2181](https://github.com/toptal/picasso/issues/2181)) ([c43b031](https://github.com/toptal/picasso/commit/c43b0310a38a6e738b74327c20aa60bb2f0c97e5))
+
+
+
+
+
 ## [12.0.3](https://github.com/toptal/picasso/compare/@toptal/picasso@12.0.2...@toptal/picasso@12.0.3) (2021-10-14)
 
 **Note:** Version bump only for package @toptal/picasso
