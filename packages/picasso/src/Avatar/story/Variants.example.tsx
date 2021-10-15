@@ -15,6 +15,9 @@ const Example = () => (
       <Avatar size='medium' name='Jacqueline Roque' />
     </Container>
     <Container inline left='small'>
+      <Avatar size='medium' />
+    </Container>
+    <Container inline left='small'>
       <Avatar
         variant='portrait'
         size='medium'

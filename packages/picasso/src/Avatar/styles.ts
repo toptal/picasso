@@ -1,4 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { rem } from '@toptal/picasso-shared'
 
 const getClipPathCornerMask = (cornerWidth: string) =>
   `polygon(0 0, 100% 0, 100% 100%, ${cornerWidth} 100%, 0 calc(100% - ${cornerWidth}))`
@@ -39,7 +40,7 @@ export default ({ palette }: Theme) =>
       fontSize: '3rem'
     },
     large: {
-      fontSize: '4rem'
+      fontSize: '4.5rem'
     },
     clippedCorner: {
       clipPath: getClipPathCornerMask(`${CLIPPED_CORNER_SIZE_EM}em`),
@@ -52,11 +53,13 @@ export default ({ palette }: Theme) =>
     },
     text: {
       fontSize: '1em',
+      textTransform: 'uppercase'
+    },
+    centeredContent: {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      transform: 'translate(-50%, -50%)',
-      textTransform: 'uppercase'
+      transform: 'translate(-50%, -50%)'
     },
     textCapLimit: {
       fontSize: '0.85em'
@@ -69,5 +72,10 @@ export default ({ palette }: Theme) =>
     },
     logo: {
       fontSize: `${LOGO_SIZE_EM}em`
-    }
+    },
+    xxsmalLIcon: { fontSize: '1rem' },
+    xsmallIcon: { fontSize: '1rem' },
+    smallIcon: { fontSize: rem('24px') },
+    mediumIcon: { fontSize: rem('30px') },
+    largeIcon: { fontSize: rem('48px') }
   })

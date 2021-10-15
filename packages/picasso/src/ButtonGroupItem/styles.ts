@@ -16,7 +16,8 @@ export default (theme: Theme) =>
       }
     },
     active: {},
-    hover: {},
+    hovered: {},
     focused: {},
+    disabled: {},
     group: {}
   })
