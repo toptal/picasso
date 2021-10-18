@@ -20,13 +20,29 @@ const useArrowsKeyDownHandler = <
       event.preventDefault()
 
       if (isOpen) {
-        setHighlightedIndex(
-          getNextWrappingIndex(
-            key === 'ArrowDown' ? 1 : -1,
+        const flatOptions = flattenOptions(filteredOptions)
+
+        let nextIndex = -1
+        let attempt = 0
+
+        // Find next non-disabled option to highlight
+        while (
+          (nextIndex < 0 || flatOptions[nextIndex].disabled) &&
+          // Breaks if all the options are disabled
+          attempt < flatOptions.length
+        ) {
+          const moveAmount = key === 'ArrowDown' ? 1 + attempt : -(1 + attempt)
+
+          nextIndex = getNextWrappingIndex(
+            moveAmount,
             highlightedIndex,
-            flattenOptions(filteredOptions).length
+            flatOptions.length
           )
-        )
+
+          attempt++
+        }
+
+        setHighlightedIndex(nextIndex)
       } else {
         open()
       }

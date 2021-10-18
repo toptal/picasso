@@ -34,6 +34,7 @@ const NonNativeSelectOption = React.memo(
         role='option'
         aria-selected={selected}
         data-highlighted={highlighted}
+        disabled={option.disabled}
         {...itemProps}
       >
         {children}

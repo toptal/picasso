@@ -97,7 +97,8 @@ export type Option<T extends string | number = string | number> = {
   text: string
   description?: string
   value: T
-  [prop: string]: string | number | undefined
+  disabled?: boolean
+  [prop: string]: string | number | undefined | boolean
 }
 
 export type OptionGroups<T extends string | number = string | number> = {

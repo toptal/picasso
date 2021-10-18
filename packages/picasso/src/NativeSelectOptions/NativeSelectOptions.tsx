@@ -27,6 +27,7 @@ const renderOptions = ({
           key={(option?.key ?? option.value).toString()}
           value={option.value.toString()}
           aria-selected={selection.isOptionSelected(option)}
+          disabled={option.disabled}
           {...getItemProps(option, index)}
         >
           {renderOption(option, index)}
