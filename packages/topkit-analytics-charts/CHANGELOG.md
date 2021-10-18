@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@1.1.2...@topkit/analytics-charts@1.1.3) (2021-10-18)
+
+**Note:** Version bump only for package @topkit/analytics-charts
+
+
+
+
+
 ## [1.1.2](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@1.1.1...@topkit/analytics-charts@1.1.2) (2021-10-14)
 
 **Note:** Version bump only for package @topkit/analytics-charts
