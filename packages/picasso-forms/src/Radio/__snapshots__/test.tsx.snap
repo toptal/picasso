@@ -14,11 +14,11 @@ exports[`FormRadio renders 1`] = `
           data-field-has-error="false"
         >
           <label
-            class="PicassoFormLabel-root PicassoFormLabel-textMedium"
+            class="PicassoFormLabel-root"
             for="color"
           >
             <span
-              class="PicassoFormLabel-text"
+              class="PicassoFormLabel-textMedium"
             >
               What's your favorite color?
                (optional)
@@ -58,10 +58,10 @@ exports[`FormRadio renders 1`] = `
                     </span>
                   </span>
                   <span
-                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label PicassoFormLabel-textMedium"
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
                   >
                     <span
-                      class="PicassoFormLabel-text"
+                      class="PicassoFormLabel-textMedium"
                     >
                       Crimson
                     </span>
@@ -94,10 +94,10 @@ exports[`FormRadio renders 1`] = `
                     </span>
                   </span>
                   <span
-                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label PicassoFormLabel-textMedium"
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
                   >
                     <span
-                      class="PicassoFormLabel-text"
+                      class="PicassoFormLabel-textMedium"
                     >
                       Moccasin
                     </span>
@@ -127,7 +127,7 @@ exports[`FormRadio required with asterisk 1`] = `
           data-field-has-error="false"
         >
           <label
-            class="PicassoFormLabel-root PicassoFormLabel-textMedium"
+            class="PicassoFormLabel-root"
             for="color"
           >
             <span
@@ -136,7 +136,7 @@ exports[`FormRadio required with asterisk 1`] = `
               *
             </span>
             <span
-              class="PicassoFormLabel-text"
+              class="PicassoFormLabel-textMedium"
             >
               What's your favorite color?
             </span>
@@ -175,10 +175,10 @@ exports[`FormRadio required with asterisk 1`] = `
                     </span>
                   </span>
                   <span
-                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label PicassoFormLabel-textMedium"
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
                   >
                     <span
-                      class="PicassoFormLabel-text"
+                      class="PicassoFormLabel-textMedium"
                     >
                       Crimson
                     </span>
@@ -211,10 +211,10 @@ exports[`FormRadio required with asterisk 1`] = `
                     </span>
                   </span>
                   <span
-                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label PicassoFormLabel-textMedium"
+                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
                   >
                     <span
-                      class="PicassoFormLabel-text"
+                      class="PicassoFormLabel-textMedium"
                     >
                       Moccasin
                     </span>

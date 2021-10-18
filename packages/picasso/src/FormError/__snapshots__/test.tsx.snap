@@ -11,10 +11,10 @@ exports[`FormError renders 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root PicassoFormLabel-textMedium"
+          class="PicassoFormLabel-root"
         >
           <span
-            class="PicassoFormLabel-text"
+            class="PicassoFormLabel-textMedium"
           >
             Label:
           </span>

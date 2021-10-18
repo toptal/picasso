@@ -12,7 +12,7 @@ exports[`DatePicker renders 1`] = `
         class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
       >
         <div
-          class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputAdornment-rootMedium MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
+          class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputAdornment-iconMedium MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
         >
           <svg
             class="PicassoSvgCalendar16-root"

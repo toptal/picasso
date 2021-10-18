@@ -11,10 +11,10 @@ exports[`FormLabel disabled 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root PicassoFormLabel-disabled PicassoFormLabel-textMedium"
+          class="PicassoFormLabel-root PicassoFormLabel-disabled"
         >
           <span
-            class="PicassoFormLabel-text"
+            class="PicassoFormLabel-textMedium"
           >
             Label
           </span>
@@ -36,10 +36,10 @@ exports[`FormLabel renders 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root PicassoFormLabel-textMedium"
+          class="PicassoFormLabel-root"
         >
           <span
-            class="PicassoFormLabel-text"
+            class="PicassoFormLabel-textMedium"
           >
             Label
           </span>
@@ -61,10 +61,10 @@ exports[`FormLabel required with (optional) 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root PicassoFormLabel-textMedium"
+          class="PicassoFormLabel-root"
         >
           <span
-            class="PicassoFormLabel-text"
+            class="PicassoFormLabel-textMedium"
           >
             Label
              (optional)
@@ -87,7 +87,7 @@ exports[`FormLabel required with asterisk 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root PicassoFormLabel-textMedium"
+          class="PicassoFormLabel-root"
         >
           <span
             class="PicassoFormLabel-asterisk"
@@ -95,7 +95,7 @@ exports[`FormLabel required with asterisk 1`] = `
             *
           </span>
           <span
-            class="PicassoFormLabel-text"
+            class="PicassoFormLabel-textMedium"
           >
             Label
           </span>
@@ -117,10 +117,10 @@ exports[`FormLabel should render large label 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root PicassoFormLabel-textLarge"
+          class="PicassoFormLabel-root"
         >
           <span
-            class="PicassoFormLabel-text"
+            class="PicassoFormLabel-textLarge"
           >
             I am a large label
           </span>

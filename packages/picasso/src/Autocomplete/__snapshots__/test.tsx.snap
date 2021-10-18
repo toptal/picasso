@@ -219,7 +219,7 @@ exports[`Autocomplete static behavior renders 1`] = `
             value=""
           />
           <div
-            class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputAdornment-rootMedium PicassoOutlinedInput-resetButton MuiInputAdornment-positionEnd"
+            class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputAdornment-iconMedium PicassoOutlinedInput-resetButton MuiInputAdornment-positionEnd"
             data-testid="reset-adornment"
           >
             <button
@@ -270,7 +270,7 @@ exports[`Autocomplete static behavior renders 1`] = `
 
 exports[`Autocomplete static behavior renders a loading indicator 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputAdornment-rootMedium MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputAdornment-iconMedium MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="loading-adornment"
 >
   <div
