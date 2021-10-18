@@ -23,6 +23,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   disablePointerEvents?: boolean
   stopPropagation?: boolean
   size?: SizeType<'small' | 'medium' | 'large'>
+  adornmentType?: 'icon' | 'limit'
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -39,6 +40,7 @@ const InputAdornment: FunctionComponent<Props> = props => {
     disablePointerEvents,
     stopPropagation,
     size = 'medium',
+    adornmentType = 'icon',
     onClick = noop,
     ...rest
   } = props
@@ -62,7 +64,7 @@ const InputAdornment: FunctionComponent<Props> = props => {
         root: cx(
           classes.root,
           { [classes.rootDisabled]: disabled },
-          classes[`root${capitalize(size)}`]
+          classes[`${adornmentType}${capitalize(size)}`]
         )
       }}
       className={className}

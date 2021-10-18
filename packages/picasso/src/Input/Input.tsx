@@ -173,6 +173,7 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
       position='end'
       className={cx({ [classes.limiterMultiline]: multiline })}
       size={size}
+      adornmentType='limit'
       disablePointerEvents
     >
       <span

@@ -18,13 +18,17 @@ PicassoProvider.override(({ palette }) => ({
 export default ({ palette }: Theme) =>
   createStyles({
     root: {},
-    rootMedium: {
-      fontSize: '0.625rem',
+    limitMedium: {
+      fontSize: '0.625rem'
+    },
+    limitLarge: {
+      fontSize: '0.75rem'
+    },
+    iconMedium: {
       width: '1rem',
       height: '1rem'
     },
-    rootLarge: {
-      fontSize: '0.75rem',
+    iconLarge: {
       width: '1.5rem',
       height: '1.5rem'
     },
