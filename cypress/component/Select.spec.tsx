@@ -401,7 +401,10 @@ describe('Select', () => {
     openSelect()
     ;[...Array(6)].forEach(pressArrowDown)
     pressEnter()
-
     getOption(7).should('have.attr', 'aria-selected').and('match', /true/)
+
+    pressArrowDown()
+    pressEnter()
+    getOption(8).should('have.attr', 'aria-selected').and('match', /true/)
   })
 })
