@@ -152,10 +152,6 @@ const pressEnter = () => {
   })
 }
 
-const pressSpace = () => {
-  cy.get('[data-testid="select"]').trigger('keydown', { keyCode: 32 })
-}
-
 const getNativeSelect = () => cy.get('select')
 
 describe('Select', () => {
@@ -410,20 +406,5 @@ describe('Select', () => {
     pressArrowDown()
     pressEnter()
     getOption(8).should('have.attr', 'aria-selected').and('match', /true/)
-  })
-
-  it('picks an option from group via keys correctly', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect options={OPTION_GROUPS} multiple />
-      </TestingPicasso>
-    )
-
-    openSelect()
-
-    Array.from({ length: 2 }).forEach(pressArrowDown)
-    pressSpace()
-
-    getOption(3).should('have.attr', 'aria-selected').and('match', /true/)
   })
 })
