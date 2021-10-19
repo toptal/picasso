@@ -86,10 +86,6 @@ const renderOptions = ({
   const limitedOptions = limit ? options.slice(0, limit) : options
 
   return limitedOptions.map((option, index) => {
-    const { onMouseDown, onMouseEnter, onClick } = getItemProps(
-      option,
-      index + offset
-    )
     const selection = getSelection(options, value)
 
     return (
@@ -97,12 +93,10 @@ const renderOptions = ({
         key={option.key || option.value}
         option={option}
         size={size}
-        onMouseDown={onMouseDown}
-        onMouseEnter={onMouseEnter}
         selected={selection.isOptionSelected(option)}
         highlighted={highlightedIndex === index + offset}
-        onClick={onClick}
         description={option.description}
+        {...getItemProps(option, index + offset)}
       >
         {renderOption?.(option)}
       </NonNativeSelectOption>

@@ -9,6 +9,7 @@ import {
 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop, palette } from '@toptal/picasso/utils'
+import { ValueType } from '@toptal/picasso/Select'
 
 const TestSelect = ({
   onChange = noop,
@@ -46,6 +47,20 @@ const TestSelect = ({
     searchThreshold={searchThreshold}
   />
 )
+
+const TestUncontrolledSelect = (
+  props: Omit<Partial<SelectProps>, 'value' | 'onChange'> = {}
+) => {
+  const [value, setValue] = useState<ValueType | ValueType[]>()
+
+  const handleChange = (
+    event: ChangeEvent<{ name?: string; value: ValueType | ValueType[] }>
+  ) => {
+    setValue(event.target.value)
+  }
+
+  return <TestSelect onChange={handleChange} value={value} {...props} />
+}
 
 const SelectNativeExample = () => {
   const [value, setValue] = useState<string>('')
@@ -116,16 +131,25 @@ const getOptionQuerySelector = (value: string | number) =>
 const getOption = (value: string | number) =>
   cy.get(getOptionQuerySelector(value))
 
+const getNativeOption = (value: string | number) =>
+  cy.get(`option[value="${value}"]`)
+
 const openSelect = () => {
   cy.get('[data-testid="select"]').click()
 }
 
 const pressArrowDown = () => {
-  cy.get('[data-testid="select"]').trigger('keydown', { keyCode: 40 })
+  cy.get('[data-testid="select"]').trigger('keydown', {
+    key: 'ArrowDown',
+    keyCode: 40
+  })
 }
 
-const pressSpace = () => {
-  cy.get('[data-testid="select"]').trigger('keydown', { keyCode: 32 })
+const pressEnter = () => {
+  cy.get('[data-testid="select"]').trigger('keydown', {
+    key: 'Enter',
+    keyCode: 13
+  })
 }
 
 const getNativeSelect = () => cy.get('select')
@@ -336,7 +360,7 @@ describe('Select', () => {
 
     getNativeSelect().should('be.visible')
     getNativeSelect().select('1')
-    getOption(1).should('have.attr', 'aria-selected').and('match', /true/)
+    getNativeOption(1).should('have.attr', 'aria-selected').and('match', /true/)
   })
 
   it('sets background correctly to various select states', () => {
@@ -362,24 +386,22 @@ describe('Select', () => {
     )
 
     openSelect()
+    ;[...Array(6)].forEach(pressArrowDown)
 
-    Array.from({ length: 6 }).forEach(pressArrowDown)
-
-    return cy.get('body').happoScreenshot()
+    getOption(7).should('have.attr', 'data-highlighted').and('match', /true/)
   })
 
   it('picks an option from group via keys correctly', () => {
     mount(
       <TestingPicasso>
-        <TestSelect options={OPTION_GROUPS} multiple />
+        <TestUncontrolledSelect options={OPTION_GROUPS} multiple />
       </TestingPicasso>
     )
 
     openSelect()
+    ;[...Array(6)].forEach(pressArrowDown)
+    pressEnter()
 
-    Array.from({ length: 2 }).forEach(pressArrowDown)
-    pressSpace()
-
-    getOption(3).should('have.attr', 'aria-selected').and('match', /true/)
+    getOption(7).should('have.attr', 'aria-selected').and('match', /true/)
   })
 })

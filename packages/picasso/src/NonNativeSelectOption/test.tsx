@@ -44,7 +44,6 @@ describe('NonNativeSelectOption', () => {
   it('sets attributes correctly', () => {
     const { container, getByRole } = renderNonNativeSelectOption({
       selected: true,
-      highlighted: true,
       option: { text: 'Option #1', value: 'option1' }
     })
 

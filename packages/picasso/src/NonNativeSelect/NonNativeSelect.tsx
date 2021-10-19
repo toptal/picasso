@@ -118,6 +118,7 @@ export const NonNativeSelect = documentable(
             placeholder={searchPlaceholder}
             size={size}
             value={filterOptionsValue}
+            aria-autocomplete='list'
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getSearchInputProps()}
           />

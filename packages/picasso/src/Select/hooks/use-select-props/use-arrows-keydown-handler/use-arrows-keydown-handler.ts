@@ -1,9 +1,6 @@
-import {
-  flattenOptions,
-  getNextWrappingIndex
-} from '@toptal/picasso/Select/utils'
 import { KeyboardEvent, useCallback } from 'react'
 
+import { flattenOptions, getNextWrappingIndex } from '../../../utils'
 import { ValueType, UseSelectProps } from '../../../types'
 
 const useArrowsKeyDownHandler = <

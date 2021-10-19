@@ -85,10 +85,8 @@ const OPTIONS_WITH_DESCRIPTIONS = [
 const getOptions = (element: Element) =>
   Array.from(element.querySelectorAll('[role="option"]')) as Element[]
 
-const getHighlightedOptions = (element: Element) =>
-  Array.from(
-    element.querySelectorAll('[role="option"][aria-selected="true"]')
-  ) as Element[]
+const getHighlightedOption = (element: Element) =>
+  element.querySelector('[role="option"][data-highlighted="true"]')
 
 // eslint-disable-next-line max-lines-per-function
 describe('NonNativeSelect', () => {
@@ -442,11 +440,10 @@ describe('NonNativeSelect', () => {
 
     fireEvent.click(selectInput)
 
-    const highlightedOptions = getHighlightedOptions(container)
+    const highlightedOption = getHighlightedOption(container)
 
-    expect(highlightedOptions).toHaveLength(1)
-    expect(highlightedOptions[0].textContent).toEqual(OPTIONS[2].text)
-    expect(highlightedOptions[0].getAttribute('aria-selected')).toBe('true')
+    expect(highlightedOption).not.toBeNull()
+    expect(highlightedOption?.textContent).toEqual(OPTIONS[2].text)
   })
 })
 
@@ -523,11 +520,10 @@ describe('NonNativeSelect (multiple)', () => {
 
     fireEvent.click(selectInput)
 
-    const highlightedOptions = getHighlightedOptions(container)
+    const highlightedOption = getHighlightedOption(container)
 
-    expect(highlightedOptions).toHaveLength(1)
-    expect(highlightedOptions[0].textContent).toEqual(OPTIONS[0].text)
-    expect(highlightedOptions[0].getAttribute('aria-selected')).toBe('true')
+    expect(highlightedOption).not.toBeNull()
+    expect(highlightedOption?.textContent).toEqual(OPTIONS[0].text)
   })
 
   it('highlights selected option when only one option is selected', () => {
@@ -543,11 +539,10 @@ describe('NonNativeSelect (multiple)', () => {
 
     fireEvent.click(selectInput)
 
-    const highlightedOptions = getHighlightedOptions(container)
+    const highlightedOption = getHighlightedOption(container)
 
-    expect(highlightedOptions).toHaveLength(1)
-    expect(highlightedOptions[0].textContent).toEqual(OPTIONS[2].text)
-    expect(highlightedOptions[0].getAttribute('aria-selected')).toBe('true')
+    expect(highlightedOption).not.toBeNull()
+    expect(highlightedOption?.textContent).toEqual(OPTIONS[2].text)
   })
 
   it('highlights first option when multiple options are selected', () => {
@@ -563,11 +558,10 @@ describe('NonNativeSelect (multiple)', () => {
 
     fireEvent.click(selectInput)
 
-    const highlightedOptions = getHighlightedOptions(container)
+    const highlightedOption = getHighlightedOption(container)
 
-    expect(highlightedOptions).toHaveLength(1)
-    expect(highlightedOptions[0].textContent).toEqual(OPTIONS[0].text)
-    expect(highlightedOptions[0].getAttribute('aria-selected')).toBe('true')
+    expect(highlightedOption).not.toBeNull()
+    expect(highlightedOption?.textContent).toEqual(OPTIONS[0].text)
   })
 
   it('does not close when an option is selected', () => {

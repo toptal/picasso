@@ -105,8 +105,6 @@ export type OptionGroups<T extends string | number = string | number> = {
 }
 
 export type ItemProps = {
-  role: string
-  'aria-selected': boolean
   onMouseEnter: () => void
   onMouseDown: (event: React.MouseEvent) => void
   onClick: (event: React.MouseEvent) => void

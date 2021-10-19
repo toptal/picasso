@@ -22,22 +22,16 @@ exports[`NativeSelect renders native select 1`] = `
             Choose an option...
           </option>
           <option
-            aria-selected="true"
-            role="option"
             value="val1"
           >
             text1
           </option>
           <option
-            aria-selected="false"
-            role="option"
             value="val2"
           >
             text2
           </option>
           <option
-            aria-selected="false"
-            role="option"
             value="val3"
           >
             text3
@@ -93,22 +87,16 @@ exports[`NativeSelect renders native select with the empty option enabled when e
             Choose an option...
           </option>
           <option
-            aria-selected="true"
-            role="option"
             value="val1"
           >
             text1
           </option>
           <option
-            aria-selected="false"
-            role="option"
             value="val2"
           >
             text2
           </option>
           <option
-            aria-selected="false"
-            role="option"
             value="val3"
           >
             text3

@@ -1,26 +1,32 @@
 import React, { ReactNode } from 'react'
 
-import { isOptionsType } from '../Select'
+import { getSelection, isOptionsType } from '../Select'
 import { Option, OptionGroups, ItemProps, ValueType } from '../Select/types'
 
-export interface Props<T extends ValueType> {
-  options: Option<T>[] | OptionGroups<T>
-  renderOption: (option: Option<T>, index: number) => ReactNode
-  getItemProps: (option: Option<T>, index: number) => ItemProps
+export interface Props {
+  options: Option[] | OptionGroups
+  value?: ValueType | ValueType[]
+  renderOption: (option: Option, index: number) => ReactNode
+  getItemProps: (option: Option, index: number) => ItemProps
 }
 
-const NativeSelectOptions = <T extends ValueType>({
+const renderOptions = ({
   options,
+  getItemProps,
   renderOption,
-  getItemProps
-}: Props<T>) => {
-  const renderOptions = (optionsList: Option<T>[]) => (
+  value
+}: Pick<Props, 'getItemProps' | 'renderOption' | 'value'> & {
+  options: Option[]
+}) => {
+  const selection = getSelection(options, value)
+
+  return (
     <>
-      {optionsList.map((option, index) => (
+      {options.map((option, index) => (
         <option
           key={(option?.key ?? option.value).toString()}
           value={option.value.toString()}
-          // eslint-disable-next-line react/jsx-props-no-spreading
+          aria-selected={selection.isOptionSelected(option)}
           {...getItemProps(option, index)}
         >
           {renderOption(option, index)}
@@ -28,16 +34,28 @@ const NativeSelectOptions = <T extends ValueType>({
       ))}
     </>
   )
+}
 
+const NativeSelectOptions = ({
+  options,
+  renderOption,
+  getItemProps,
+  value
+}: Props) => {
   if (isOptionsType(options)) {
-    return renderOptions(options)
+    return renderOptions({ options, getItemProps, renderOption, value })
   }
 
   return (
     <>
-      {Object.keys(options).map((group) => (
+      {Object.keys(options).map(group => (
         <optgroup key={group} label={group}>
-          {renderOptions(options[group])}
+          {renderOptions({
+            options: options[group],
+            getItemProps,
+            renderOption,
+            value
+          })}
         </optgroup>
       ))}
     </>

@@ -57,8 +57,6 @@ const useSelectProps = <T extends ValueType, M extends boolean = false>(
   })
 
   const getItemProps = (item: Option, index: number): ItemProps => ({
-    role: 'option',
-    'aria-selected': props.selectState.highlightedIndex === index,
     onMouseEnter: () => handleItemOnMouseEnter(index),
     onMouseDown: handleItemOnMouseDown,
     onClick: (event: React.MouseEvent) => handleItemOnClick(event, item)
@@ -76,7 +74,6 @@ const useSelectProps = <T extends ValueType, M extends boolean = false>(
   })
 
   const getSearchInputProps = () => ({
-    'aria-autocomplete': 'list' as React.AriaAttributes['aria-autocomplete'],
     onChange: handleSearchChange,
     onKeyDown: handleSearchKeyDown,
     onBlur: handleSearchBlur

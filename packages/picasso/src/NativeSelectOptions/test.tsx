@@ -11,20 +11,20 @@ const OPTIONS = [
 ]
 
 const defaultGetItemProps = () => ({
-  role: 'option',
-  'aria-selected': false,
   onMouseDown: noop,
   onMouseEnter: noop,
   onClick: noop
 })
 
 const renderNativeSelectOptions = ({
+  value,
   options = OPTIONS,
   renderOption = option => option.text,
   getItemProps = defaultGetItemProps
-}: Partial<Props<string>> = {}) =>
+}: Partial<Props> = {}) =>
   render(
     <NativeSelectOptions
+      value={value}
       options={options}
       renderOption={renderOption}
       getItemProps={getItemProps}
