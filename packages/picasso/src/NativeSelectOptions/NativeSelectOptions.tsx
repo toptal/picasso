@@ -26,7 +26,10 @@ const renderOptions = ({
         <option
           key={(option?.key ?? option.value).toString()}
           value={option.value.toString()}
-          aria-selected={selection.isOptionSelected(option)}
+          aria-selected={
+            // aria-selected should be undefined for non-selectable options
+            option.disabled ? undefined : selection.isOptionSelected(option)
+          }
           disabled={option.disabled}
           {...getItemProps(option, index)}
         >
