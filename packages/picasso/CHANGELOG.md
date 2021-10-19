@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso@12.2.0...@toptal/picasso@12.2.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* **Autocomplete:** add inputProps type to the definition of Autocomplete props ([#2114](https://github.com/toptal/picasso/issues/2114)) ([704c2e1](https://github.com/toptal/picasso/commit/704c2e11a896dfb6ecc00da3b921f55369811fdf))
+
+
+
+
+
 # [12.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@12.1.0...@toptal/picasso@12.2.0) (2021-10-15)
 
 
