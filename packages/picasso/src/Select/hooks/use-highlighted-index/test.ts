@@ -62,7 +62,7 @@ describe('useHighlightedIndex', () => {
       }
     )
 
-    expect(getHighlightIndex(result)).toBe(0)
+    expect(getHighlightIndex(result)).toBe(2)
     act(() => {
       setHighlightedIndex(result, 4)
     })
@@ -127,12 +127,12 @@ describe('useHighlightedIndex', () => {
       }
     )
 
-    expect(getHighlightIndex(result)).toBe(0)
+    expect(getHighlightIndex(result)).toBe(1)
 
     act(() => {
       setHighlightedIndex(result, 2)
     })
-    expect(getHighlightIndex(result)).toBe(0)
+    expect(getHighlightIndex(result)).toBe(1)
 
     act(() => {
       setHighlightedIndex(result, 4)

@@ -116,7 +116,8 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           selected: classes.selected
         }}
         className={cx(classes.root, classes[variant], className, {
-          [classes.nonSelectable]: nonSelectable
+          [classes.nonSelectable]: nonSelectable,
+          [classes.disabled]: disabled
         })}
         disabled={disabled}
         disableGutters={disableGutters}

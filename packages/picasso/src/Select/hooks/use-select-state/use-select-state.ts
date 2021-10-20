@@ -75,7 +75,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const canOpen = !isOpen && !disabled
   const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex({
-    options,
+    options: filteredOptions,
     selection,
     isOpen
   })

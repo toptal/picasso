@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 import { flattenOptions } from '../../utils'
 import { Option, OptionGroups, Selection } from '../../types'
@@ -16,28 +16,39 @@ const useHighlightedIndex = ({ options, isOpen, selection }: Props) => {
   const handleChange = (nextIndex: number) =>
     !flatOptions[nextIndex].disabled && setHighlightedIndex(nextIndex)
 
+  const calculateHighlightedIndex = useCallback(() => {
+    const selectedIndicies = flatOptions.reduce(
+      (acc, option, index) =>
+        selection.isOptionSelected(option) ? [...acc, index] : acc,
+      [] as number[]
+    )
+
+    const nonDisabledIndicies = flatOptions.reduce(
+      (acc, option, index) => (!option.disabled ? [...acc, index] : acc),
+      [] as number[]
+    )
+
+    const nextHighlightedIndex =
+      selectedIndicies.length === 1
+        ? selectedIndicies[0]
+        : nonDisabledIndicies[0]
+
+    setHighlightedIndex(nextHighlightedIndex)
+  }, [selection, flatOptions])
+
+  // Reset index on close
   useEffect(() => {
     if (!isOpen) {
-      const selectedIndicies = flatOptions.reduce(
-        (acc, option, index) =>
-          selection.isOptionSelected(option) ? [...acc, index] : acc,
-        [] as number[]
-      )
-
-      const nonDisabledIndicies = flatOptions.reduce(
-        (acc, option, index) => (!option.disabled ? [...acc, index] : acc),
-        [] as number[]
-      )
-
-      const nextHighlightedIndex =
-        selectedIndicies.length === 1
-          ? selectedIndicies[0]
-          : nonDisabledIndicies[0]
-
-      setHighlightedIndex(nextHighlightedIndex)
+      calculateHighlightedIndex()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen])
+
+  // Recalculate index on filtering
+  useEffect(() => {
+    calculateHighlightedIndex()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flatOptions.length])
 
   return [highlightedIndex, handleChange] as const
 }

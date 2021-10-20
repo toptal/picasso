@@ -124,5 +124,8 @@ export default ({ typography, palette, shadows }: Theme) =>
       maxHeight: '14.75rem', // 6.5 lines to show
       overflowY: 'auto',
       boxShadow: shadows[2]
+    },
+    disabled: {
+      color: palette.grey.main2
     }
   })
