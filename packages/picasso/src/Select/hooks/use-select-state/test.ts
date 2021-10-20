@@ -40,7 +40,6 @@ describe('useSelectState', () => {
     const { result } = renderUseSelectState()
 
     expect(result.current.selectedOptions).toEqual([])
-    expect(result.current.selectedIndexes).toEqual([])
     expect(result.current.isOpen).toEqual(false)
     expect(result.current.canOpen).toEqual(true)
     expect(result.current.highlightedIndex).toEqual(0)
@@ -57,7 +56,6 @@ describe('useSelectState', () => {
     })
 
     expect(result.current.selectedOptions).toEqual([DEFAULT_OPTIONS[0]])
-    expect(result.current.selectedIndexes).toEqual([0])
     expect(result.current.isOpen).toEqual(false)
     expect(result.current.canOpen).toEqual(true)
     expect(result.current.highlightedIndex).toEqual(0)
@@ -78,7 +76,6 @@ describe('useSelectState', () => {
       DEFAULT_OPTIONS[0],
       DEFAULT_OPTIONS[1]
     ])
-    expect(result.current.selectedIndexes).toEqual([0, 1])
     expect(result.current.isOpen).toEqual(false)
     expect(result.current.canOpen).toEqual(true)
     expect(result.current.highlightedIndex).toEqual(0)
@@ -134,13 +131,11 @@ describe('useSelectState', () => {
     const { result, rerender } = renderUseSelectState()
 
     expect(result.current.selectedOptions).toEqual([])
-    expect(result.current.selectedIndexes).toEqual([])
     expect(result.current.displayValue).toEqual('')
 
     rerender({ value: DEFAULT_OPTIONS[0].value })
 
     expect(result.current.selectedOptions).toEqual([DEFAULT_OPTIONS[0]])
-    expect(result.current.selectedIndexes).toEqual([0])
     expect(result.current.displayValue).toEqual(DEFAULT_OPTIONS[0].text)
   })
 

@@ -130,7 +130,6 @@ export interface UseSelectStateProps {
 }
 
 export type UseSelectStateOutput = {
-  selectedIndexes: number[]
   isOpen: boolean
   canOpen: boolean
   open: () => void

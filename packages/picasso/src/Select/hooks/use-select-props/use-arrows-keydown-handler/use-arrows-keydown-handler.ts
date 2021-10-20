@@ -1,6 +1,6 @@
 import { KeyboardEvent, useCallback } from 'react'
 
-import { flattenOptions, getNextWrappingIndex } from '../../../utils'
+import { flattenOptions } from '../../../utils'
 import { ValueType, UseSelectProps } from '../../../types'
 
 const useArrowsKeyDownHandler = <
@@ -33,11 +33,7 @@ const useArrowsKeyDownHandler = <
         ) {
           const moveAmount = key === 'ArrowDown' ? 1 + attempt : -(1 + attempt)
 
-          nextIndex = getNextWrappingIndex(
-            moveAmount,
-            highlightedIndex,
-            flatOptions.length
-          )
+          nextIndex = (highlightedIndex + moveAmount) % flatOptions.length
 
           attempt++
         }

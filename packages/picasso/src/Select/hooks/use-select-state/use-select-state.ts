@@ -65,15 +65,6 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     () => filterOptions({ options, filterOptionsValue, getDisplayValue }),
     [options, filterOptionsValue, getDisplayValue]
   )
-  const selectedIndexes = useMemo(
-    () =>
-      flatOptions.reduce(
-        (selected: number[], option: Option, index: number) =>
-          selection.isOptionSelected(option) ? [...selected, index] : selected,
-        []
-      ),
-    [flatOptions, selection]
-  )
   const emptySelectValue: string | string[] = useMemo(
     () => (multiple ? [] : ''),
     [multiple]
@@ -84,7 +75,8 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const canOpen = !isOpen && !disabled
   const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex({
-    selectedIndexes,
+    options,
+    selection,
     isOpen
   })
 
@@ -119,7 +111,6 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     setSelectedOptions,
     selectedOptions,
     filteredOptions,
-    selectedIndexes,
     isOpen,
     canOpen,
     open,

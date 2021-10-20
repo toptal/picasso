@@ -32,7 +32,6 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
       enableReset: false
     },
     selectState: {
-      selectedIndexes: [],
       isOpen: false,
       canOpen: true,
       open: jest.fn(),

@@ -1,36 +1,145 @@
-import { renderHook, act } from '@testing-library/react-hooks'
+import { renderHook, act, RenderResult } from '@testing-library/react-hooks'
 
+import { Option } from '../../types'
 import useHighlightedIndex from './use-highlighted-index'
+
+const OPTIONS = [
+  { text: 'Belarus', value: 'BY' },
+  { text: 'Croatia', value: 'HR' },
+  { text: 'Lithuania', value: 'LU' },
+  { text: 'Slovakia', value: 'SK' },
+  { text: 'Ukraine', value: 'UA' }
+]
+
+const getHighlightIndex = (
+  result: RenderResult<ReturnType<typeof useHighlightedIndex>>
+) => result.current[0]
+
+const setHighlightedIndex = (
+  result: RenderResult<ReturnType<typeof useHighlightedIndex>>,
+  index: number
+) => result.current[1](index)
 
 describe('useHighlightedIndex', () => {
   it('sets a highlighted index', () => {
     const { result } = renderHook(() =>
-      useHighlightedIndex({ selectedIndexes: [1, 2, 3], isOpen: true })
+      useHighlightedIndex({
+        options: OPTIONS,
+        isOpen: true,
+        selection: {
+          isSelected: jest.fn().mockReturnValue(false),
+          isOptionSelected: jest.fn().mockReturnValue(false),
+          display: jest.fn()
+        }
+      })
     )
 
-    expect(result.current[0]).toBe(0)
+    expect(getHighlightIndex(result)).toBe(0)
     act(() => {
-      result.current[1](2)
+      setHighlightedIndex(result, 2)
     })
-    expect(result.current[0]).toBe(2)
+    expect(getHighlightIndex(result)).toBe(2)
   })
 
-  it('resets highlighted index when closed', () => {
+  it('sets highlighted index when closed', () => {
     const { result, rerender } = renderHook(
       (isOpen: boolean) =>
-        useHighlightedIndex({ selectedIndexes: [1, 2, 3], isOpen }),
+        useHighlightedIndex({
+          options: OPTIONS,
+          isOpen: isOpen,
+          selection: {
+            isSelected: jest.fn().mockReturnValue(true),
+            isOptionSelected: jest
+              .fn()
+              .mockImplementation(
+                (option: Option) => option.value === OPTIONS[2].value
+              ),
+            display: jest.fn()
+          }
+        }),
       {
         initialProps: true
       }
     )
 
-    expect(result.current[0]).toBe(0)
+    expect(getHighlightIndex(result)).toBe(0)
     act(() => {
-      result.current[1](2)
+      setHighlightedIndex(result, 4)
     })
-    expect(result.current[0]).toBe(2)
+    expect(getHighlightIndex(result)).toBe(4)
 
     rerender(false)
-    expect(result.current[0]).toBe(0)
+    expect(getHighlightIndex(result)).toBe(2)
+  })
+
+  it('resets highlighted index when closed and multiple values', () => {
+    const { result, rerender } = renderHook(
+      (isOpen: boolean) =>
+        useHighlightedIndex({
+          options: OPTIONS,
+          isOpen: isOpen,
+          selection: {
+            isSelected: jest.fn().mockReturnValue(true),
+            isOptionSelected: jest
+              .fn()
+              .mockImplementation(
+                (option: Option) =>
+                  option.value === OPTIONS[2].value ||
+                  option.value === OPTIONS[3].value
+              ),
+            display: jest.fn()
+          }
+        }),
+      {
+        initialProps: true
+      }
+    )
+
+    expect(getHighlightIndex(result)).toBe(0)
+    act(() => {
+      setHighlightedIndex(result, 4)
+    })
+    expect(getHighlightIndex(result)).toBe(4)
+
+    rerender(false)
+    expect(getHighlightIndex(result)).toBe(0)
+  })
+
+  it("doesn't set highlighted index for a disabled option", () => {
+    const { result, rerender } = renderHook(
+      (isOpen: boolean) =>
+        useHighlightedIndex({
+          options: OPTIONS.map(option =>
+            option.value === OPTIONS[0].value ||
+            option.value === OPTIONS[2].value
+              ? { ...option, disabled: true }
+              : option
+          ),
+          isOpen: isOpen,
+          selection: {
+            isSelected: jest.fn().mockReturnValue(false),
+            isOptionSelected: jest.fn().mockReturnValue(false),
+            display: jest.fn()
+          }
+        }),
+      {
+        initialProps: true
+      }
+    )
+
+    expect(getHighlightIndex(result)).toBe(0)
+
+    act(() => {
+      setHighlightedIndex(result, 2)
+    })
+    expect(getHighlightIndex(result)).toBe(0)
+
+    act(() => {
+      setHighlightedIndex(result, 4)
+    })
+    expect(getHighlightIndex(result)).toBe(4)
+
+    rerender(false)
+    expect(getHighlightIndex(result)).toBe(1)
   })
 })

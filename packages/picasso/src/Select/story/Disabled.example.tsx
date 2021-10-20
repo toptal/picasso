@@ -30,7 +30,7 @@ const Example = () => {
             onChange={handleChange}
             options={OPTIONS.map((option, index) => ({
               ...option,
-              disabled: index % 2 !== 0
+              disabled: index % 2 === 0
             }))}
             value={value}
             placeholder='Choose an option...'
