@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.2](https://github.com/toptal/picasso/compare/@toptal/picasso@12.2.1...@toptal/picasso@12.2.2) (2021-10-21)
+
+
+### Bug Fixes
+
+* **Select:** fix invalid highlighting for groups ([#2192](https://github.com/toptal/picasso/issues/2192)) ([2719b5f](https://github.com/toptal/picasso/commit/2719b5f18453372628bfc771eff5913646fb6b82))
+
+
+
+
+
 ## [12.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso@12.2.0...@toptal/picasso@12.2.1) (2021-10-19)
 
 
