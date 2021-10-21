@@ -16,6 +16,7 @@ export interface Props extends BaseProps {
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
   fixedHeader?: ReactNode
   fixedFooter?: ReactNode
+  role?: 'listbox' | 'menu'
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -59,6 +60,7 @@ const ScrollMenu: FunctionComponent<Props> = props => {
     style,
     fixedHeader,
     fixedFooter,
+    role = 'menu',
     ...rest
   } = props
   const classes = useStyles()
@@ -72,6 +74,7 @@ const ScrollMenu: FunctionComponent<Props> = props => {
     <Menu
       className={classes.menu}
       style={style}
+      role={role}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >

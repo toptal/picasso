@@ -85,10 +85,8 @@ const OPTIONS_WITH_DESCRIPTIONS = [
 const getOptions = (element: Element) =>
   Array.from(element.querySelectorAll('[role="option"]')) as Element[]
 
-const getHighlightedOptions = (element: Element) =>
-  Array.from(
-    element.querySelectorAll('[role="option"][aria-selected="true"]')
-  ) as Element[]
+const getHighlightedOption = (element: Element) =>
+  element.querySelector('[role="option"][data-highlighted="true"]')
 
 // eslint-disable-next-line max-lines-per-function
 describe('NonNativeSelect', () => {
@@ -113,7 +111,7 @@ describe('NonNativeSelect', () => {
 
     fireEvent.click(selectInput)
 
-    expect(getByRole('menu')).toBeInTheDocument()
+    expect(getByRole('listbox')).toBeInTheDocument()
   })
 
   it('does not open menu on select focus', () => {
@@ -128,7 +126,7 @@ describe('NonNativeSelect', () => {
 
     fireEvent.focus(selectInput)
 
-    expect(queryByRole('menu')).not.toBeInTheDocument()
+    expect(queryByRole('listbox')).not.toBeInTheDocument()
   })
 
   it('opens menu when select is focused and arrow down is pressed', () => {
@@ -144,7 +142,7 @@ describe('NonNativeSelect', () => {
     fireEvent.focus(selectInput)
     fireEvent.keyDown(selectInput, { key: 'ArrowDown', code: 'ArrowDown' })
 
-    expect(queryByRole('menu')).toBeInTheDocument()
+    expect(queryByRole('listbox')).toBeInTheDocument()
   })
 
   it('shows loader instead of options when opened in loading state', () => {
@@ -191,7 +189,7 @@ describe('NonNativeSelect', () => {
 
     expect(getAllByRole('option')).toHaveLength(1)
 
-    const menu = getByRole('menu')
+    const menu = getByRole('listbox')
 
     expect(menu).not.toHaveTextContent('Showing only first')
   })
@@ -220,7 +218,7 @@ describe('NonNativeSelect', () => {
     fireEvent.change(searchInput, { target: { value: '' } })
     expect(getAllByRole('option')).toHaveLength(OPTIONS.length)
 
-    const menu = getByRole('menu')
+    const menu = getByRole('listbox')
 
     expect(menu).not.toHaveTextContent('Showing only first')
   })
@@ -287,10 +285,10 @@ describe('NonNativeSelect', () => {
     const selectInput = getByPlaceholderText(placeholder)
 
     fireEvent.click(selectInput)
-    expect(queryByRole('menu')).toBeInTheDocument()
+    expect(queryByRole('listbox')).toBeInTheDocument()
 
     fireEvent.click(getByText(OPTIONS[0].text))
-    expect(queryByRole('menu')).not.toBeInTheDocument()
+    expect(queryByRole('listbox')).not.toBeInTheDocument()
   })
 
   it('closes opened menu after a click on select', () => {
@@ -303,9 +301,9 @@ describe('NonNativeSelect', () => {
     const selectInput = getByPlaceholderText(placeholder)
 
     fireEvent.click(selectInput)
-    expect(queryByRole('menu')).toBeInTheDocument()
+    expect(queryByRole('listbox')).toBeInTheDocument()
     fireEvent.click(selectInput)
-    expect(queryByRole('menu')).not.toBeInTheDocument()
+    expect(queryByRole('listbox')).not.toBeInTheDocument()
   })
 
   it('renders noOptionText if there are no matching options', () => {
@@ -330,7 +328,7 @@ describe('NonNativeSelect', () => {
     fireEvent.focus(searchInput)
     fireEvent.change(searchInput, { target: { value: 'non-existent value' } })
 
-    const menu = getByRole('menu')
+    const menu = getByRole('listbox')
 
     expect(menu).toHaveTextContent(noOptionsText)
 
@@ -348,7 +346,7 @@ describe('NonNativeSelect', () => {
 
     fireEvent.click(selectInput)
 
-    const menu = getByRole('menu')
+    const menu = getByRole('listbox')
 
     const options = getOptions(menu)
 
@@ -375,7 +373,7 @@ describe('NonNativeSelect', () => {
 
     fireEvent.click(selectInput)
 
-    const menu = getByRole('menu')
+    const menu = getByRole('listbox')
 
     OPTIONS.forEach(option =>
       expect(getByTestId(`custom-option-${option.key}`)).toBeInTheDocument()
@@ -442,11 +440,10 @@ describe('NonNativeSelect', () => {
 
     fireEvent.click(selectInput)
 
-    const highlightedOptions = getHighlightedOptions(container)
+    const highlightedOption = getHighlightedOption(container)
 
-    expect(highlightedOptions).toHaveLength(1)
-    expect(highlightedOptions[0].textContent).toEqual(OPTIONS[2].text)
-    expect(highlightedOptions[0].getAttribute('aria-selected')).toBe('true')
+    expect(highlightedOption).not.toBeNull()
+    expect(highlightedOption?.textContent).toEqual(OPTIONS[2].text)
   })
 })
 
@@ -523,11 +520,10 @@ describe('NonNativeSelect (multiple)', () => {
 
     fireEvent.click(selectInput)
 
-    const highlightedOptions = getHighlightedOptions(container)
+    const highlightedOption = getHighlightedOption(container)
 
-    expect(highlightedOptions).toHaveLength(1)
-    expect(highlightedOptions[0].textContent).toEqual(OPTIONS[0].text)
-    expect(highlightedOptions[0].getAttribute('aria-selected')).toBe('true')
+    expect(highlightedOption).not.toBeNull()
+    expect(highlightedOption?.textContent).toEqual(OPTIONS[0].text)
   })
 
   it('highlights selected option when only one option is selected', () => {
@@ -543,11 +539,10 @@ describe('NonNativeSelect (multiple)', () => {
 
     fireEvent.click(selectInput)
 
-    const highlightedOptions = getHighlightedOptions(container)
+    const highlightedOption = getHighlightedOption(container)
 
-    expect(highlightedOptions).toHaveLength(1)
-    expect(highlightedOptions[0].textContent).toEqual(OPTIONS[2].text)
-    expect(highlightedOptions[0].getAttribute('aria-selected')).toBe('true')
+    expect(highlightedOption).not.toBeNull()
+    expect(highlightedOption?.textContent).toEqual(OPTIONS[2].text)
   })
 
   it('highlights first option when multiple options are selected', () => {
@@ -563,11 +558,10 @@ describe('NonNativeSelect (multiple)', () => {
 
     fireEvent.click(selectInput)
 
-    const highlightedOptions = getHighlightedOptions(container)
+    const highlightedOption = getHighlightedOption(container)
 
-    expect(highlightedOptions).toHaveLength(1)
-    expect(highlightedOptions[0].textContent).toEqual(OPTIONS[0].text)
-    expect(highlightedOptions[0].getAttribute('aria-selected')).toBe('true')
+    expect(highlightedOption).not.toBeNull()
+    expect(highlightedOption?.textContent).toEqual(OPTIONS[0].text)
   })
 
   it('does not close when an option is selected', () => {
@@ -582,11 +576,11 @@ describe('NonNativeSelect (multiple)', () => {
 
     fireEvent.click(selectInput)
 
-    expect(queryByRole('menu')).toBeInTheDocument()
+    expect(queryByRole('listbox')).toBeInTheDocument()
 
     fireEvent.click(getByText(OPTIONS[0].text))
 
-    expect(queryByRole('menu')).toBeInTheDocument()
+    expect(queryByRole('listbox')).toBeInTheDocument()
   })
 
   it('does not transform options text to title case when Picasso titleCase property is true', () => {
@@ -663,7 +657,7 @@ describe('NonNativeSelect (multiple)', () => {
 
     expect(getAllByRole('option')).toHaveLength(5)
 
-    const menu = getByRole('menu')
+    const menu = getByRole('listbox')
 
     expect(menu).toHaveTextContent('Showing only first 5 of 100 items')
   })

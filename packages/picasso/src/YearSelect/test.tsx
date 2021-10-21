@@ -37,7 +37,7 @@ describe('YearSelect', () => {
 
     fireEvent.click(getByPlaceholderText(placeholder))
 
-    expect(getByRole('menu')).toMatchSnapshot()
+    expect(getByRole('listbox')).toMatchSnapshot()
   })
 
   it('wrong range', () => {

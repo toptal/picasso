@@ -143,7 +143,8 @@ export const NativeSelect = documentable(
           </NativeSelectPlaceholder>
           <NativeSelectOptions
             options={options}
-            renderOption={renderOption}
+            value={value}
+            renderOption={renderOption as any}
             getItemProps={getItemProps}
           />
         </MuiNativeSelect>

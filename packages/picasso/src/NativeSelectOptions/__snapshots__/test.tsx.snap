@@ -7,21 +7,18 @@ exports[`NativeSelectOptions renders 1`] = `
   >
     <option
       aria-selected="false"
-      role="option"
       value="1"
     >
       One
     </option>
     <option
       aria-selected="false"
-      role="option"
       value="2"
     >
       Two
     </option>
     <option
       aria-selected="false"
-      role="option"
       value="3"
     >
       Three

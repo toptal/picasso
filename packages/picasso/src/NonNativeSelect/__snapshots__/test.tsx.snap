@@ -57,7 +57,7 @@ exports[`NonNativeSelect renders 1`] = `
 exports[`NonNativeSelect renders custom options 1`] = `
 <ul
   class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
-  role="menu"
+  role="listbox"
   tabindex="-1"
 >
   <div
@@ -66,8 +66,9 @@ exports[`NonNativeSelect renders custom options 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="true"
+      aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      data-highlighted="true"
       role="option"
       tabindex="-1"
       value="val1"
@@ -93,6 +94,7 @@ exports[`NonNativeSelect renders custom options 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-highlighted="false"
       role="option"
       tabindex="-1"
       value="val2"
@@ -118,6 +120,7 @@ exports[`NonNativeSelect renders custom options 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-highlighted="false"
       role="option"
       tabindex="-1"
       value="val3"
@@ -146,7 +149,7 @@ exports[`NonNativeSelect renders custom options 1`] = `
 exports[`NonNativeSelect renders description 1`] = `
 <ul
   class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
-  role="menu"
+  role="listbox"
   tabindex="-1"
 >
   <div
@@ -155,8 +158,9 @@ exports[`NonNativeSelect renders description 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="true"
+      aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      data-highlighted="true"
       role="option"
       tabindex="-1"
       value="val1"
@@ -188,6 +192,7 @@ exports[`NonNativeSelect renders description 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-highlighted="false"
       role="option"
       tabindex="-1"
       value="val2"
@@ -219,6 +224,7 @@ exports[`NonNativeSelect renders description 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-highlighted="false"
       role="option"
       tabindex="-1"
       value="val3"

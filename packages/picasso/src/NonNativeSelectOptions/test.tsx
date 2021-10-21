@@ -23,8 +23,6 @@ const OPTION_GROUPS = {
 }
 
 const defaultGetItemProps = () => ({
-  role: 'option',
-  'aria-selected': false,
   onMouseDown: noop,
   onMouseEnter: noop,
   onClick: noop
