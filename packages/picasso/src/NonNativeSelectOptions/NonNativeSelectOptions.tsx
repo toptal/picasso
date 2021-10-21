@@ -181,7 +181,11 @@ const NonNativeSelectOptions = ({
 
   if (!flatOptions.length && filterOptionsValue) {
     return (
-      <ScrollMenu data-testid='no-options' fixedHeader={fixedHeader}>
+      <ScrollMenu
+        data-testid='no-options'
+        role='listbox'
+        fixedHeader={fixedHeader}
+      >
         <MenuItem titleCase={false} disabled>
           {noOptionsText}
         </MenuItem>
@@ -206,6 +210,7 @@ const NonNativeSelectOptions = ({
           : addOffsetToHighlightedIndex(options, highlightedIndex)
       }
       fixedFooter={fixedFooter}
+      role='listbox'
     >
       {isOptionsType(options)
         ? renderOptions({
