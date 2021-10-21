@@ -25,10 +25,7 @@ export default ({ palette, sizes }: Theme) =>
     disableOutline: {
       outline: 'none'
     },
-    title: {
-      fontSize: rem('11px'),
-      lineHeight: '1rem'
-    },
+
     defaultAlign: {
       alignItems: 'flex-start'
     },

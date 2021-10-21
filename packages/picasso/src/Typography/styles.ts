@@ -44,6 +44,12 @@ PicassoProvider.override(({ palette, typography }) => ({
 export default ({ palette, typography }: Theme) =>
   // All the body variants are mapped to the same MUI variant (body1) -> declaring styles via custom class names
   createStyles({
+    bodyXsmall: {
+      color: palette.text.primary,
+      fontWeight: typography.fontWeights.regular,
+      fontSize: '11px',
+      lineHeight: '16px'
+    },
     bodySmall: {
       color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
