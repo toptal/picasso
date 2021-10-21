@@ -100,7 +100,7 @@ exports[`NonNativeSelectOptions renders no option 1`] = `
       >
         <li
           aria-disabled="true"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoMenuItem-disabled MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
           role="menuitem"
           tabindex="-1"
         >
