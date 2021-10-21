@@ -3,12 +3,10 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 export default ({ palette, sizes }: Theme) =>
   createStyles({
     menuGroup: {
-      padding: '16px 16px 10px'
+      padding: '1rem 1rem 0.5rem'
     },
     fixedFooter: {
-      color: palette.grey.dark,
       padding: '0.75rem 1rem',
-      borderTop: `${sizes.borderWidth} solid ${palette.grey.light}`,
-      fontSize: '0.6875rem'
+      borderTop: `${sizes.borderWidth} solid ${palette.grey.light}`
     }
   })

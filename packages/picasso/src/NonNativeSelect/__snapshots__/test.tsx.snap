@@ -181,10 +181,14 @@ exports[`NonNativeSelect renders description 1`] = `
           </span>
         </div>
         <div
-          class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+          class="PicassoContainer-leftmediumMargin"
           style="margin-top: 0.25rem;"
         >
-          description1
+          <p
+            class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
+          >
+            description1
+          </p>
         </div>
       </div>
     </li>
@@ -213,10 +217,14 @@ exports[`NonNativeSelect renders description 1`] = `
           </span>
         </div>
         <div
-          class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+          class="PicassoContainer-leftmediumMargin"
           style="margin-top: 0.25rem;"
         >
-          description2
+          <p
+            class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
+          >
+            description2
+          </p>
         </div>
       </div>
     </li>
@@ -245,10 +253,14 @@ exports[`NonNativeSelect renders description 1`] = `
           </span>
         </div>
         <div
-          class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+          class="PicassoContainer-leftmediumMargin"
           style="margin-top: 0.25rem;"
         >
-          description3
+          <p
+            class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
+          >
+            description3
+          </p>
         </div>
       </div>
     </li>

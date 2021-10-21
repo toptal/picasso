@@ -78,6 +78,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         ref={ref}
         style={style}
         className={cx(classes.root, { [classes.bottom]: bottom }, className)}
+        noPadding
       >
         {items}
       </Menu>

@@ -47,7 +47,7 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
     } = classes
 
     return (
-      <Menu {...rest} ref={ref} className={className} style={style}>
+      <Menu {...rest} ref={ref} className={className} style={style} noPadding>
         {accounts.map(account => (
           <Menu.Item
             disableGutters

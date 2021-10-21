@@ -30,10 +30,14 @@ exports[`NonNativeSelectOption renders 1`] = `
           </span>
         </div>
         <div
-          class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+          class="PicassoContainer-leftmediumMargin"
           style="margin-top: 0.25rem;"
         >
-          Test description
+          <p
+            class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
+          >
+            Test description
+          </p>
         </div>
       </div>
     </li>
@@ -81,10 +85,14 @@ exports[`NonNativeSelectOption sets attributes correctly 1`] = `
           </span>
         </div>
         <div
-          class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+          class="PicassoContainer-leftmediumMargin"
           style="margin-top: 0.25rem;"
         >
-          Test description
+          <p
+            class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
+          >
+            Test description
+          </p>
         </div>
       </div>
     </li>

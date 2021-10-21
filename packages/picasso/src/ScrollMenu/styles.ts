@@ -1,9 +1,15 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { rem } from '@toptal/picasso-shared'
+
+import { MENU_CSS_VARS } from '../Menu/styles'
 
 export default ({ palette, screens }: Theme) =>
   createStyles({
     menu: {
-      backgroundColor: palette.common.white
+      backgroundColor: palette.common.white,
+      '&$small': {
+        [MENU_CSS_VARS.verticalPadding]: rem('5px')
+      }
     },
     scrollView: {
       maxHeight: '14.75rem', // 6.5 lines of menu to show
@@ -22,5 +28,6 @@ export default ({ palette, screens }: Theme) =>
           maxHeight: 'calc(50vh - 4.3125rem)' // half of viewport minus header and anchor
         }
       }
-    }
+    },
+    small: {}
   })

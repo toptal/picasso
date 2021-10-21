@@ -17,6 +17,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
   variant?: MenuVariant
   // Whether or not to handle nested navigation
   allowNestedNavigation?: boolean
+  noPadding?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -33,6 +34,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     style,
     variant,
     allowNestedNavigation,
+    noPadding,
     ...rest
   } = props
   const classes = useStyles()
@@ -45,7 +47,9 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
         <MUIMenuList
           {...rest}
           ref={ref}
-          className={cx(classes.root, className)}
+          className={cx(classes.root, className, {
+            [classes.noPadding]: noPadding
+          })}
           style={style}
           onMouseLeave={onMenuMouseLeave}
         >

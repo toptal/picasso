@@ -27,6 +27,7 @@ import Popper from '../Popper'
 import { ClickAwayListener, toTitleCase } from '../utils'
 import { useMenuItem } from './hooks'
 import styles from './styles'
+import Typography from '../Typography'
 
 export type VariantType = 'light' | 'dark'
 
@@ -164,11 +165,10 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           </Container>
           {description && (
             <Container
-              className={classes.description}
               left={checkmarked === undefined ? undefined : 'medium'}
               top={0.25}
             >
-              {description}
+              <Typography size='xsmall'>{description}</Typography>
             </Container>
           )}
         </Container>

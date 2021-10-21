@@ -1,3 +1,4 @@
+import { rem } from '@toptal/picasso-shared'
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
@@ -5,7 +6,7 @@ PicassoProvider.override(() => ({
   MuiMenuItem: {
     root: {
       boxSizing: 'border-box',
-      lineHeight: '1rem',
+      lineHeight: rem('20px'),
       padding: 0,
       // to override MUI paddingTop and paddingBottom default values
       paddingTop: 0,
@@ -15,10 +16,10 @@ PicassoProvider.override(() => ({
       whiteSpace: 'normal'
     },
     gutters: {
-      padding: '0.625rem',
+      padding: rem('6px'),
       // to override MUI paddingLeft and paddingRight default values
-      paddingLeft: '0.625rem',
-      paddingRight: '0.625rem'
+      paddingLeft: '1rem',
+      paddingRight: '1rem'
     }
   }
 }))
@@ -89,21 +90,21 @@ export default ({ typography, palette, shadows }: Theme) =>
     nonSelectable: {},
     stringContent: {
       flex: 1,
-      fontSize: '0.8125em'
+      fontSize: rem('14px')
     },
     stringContentSmall: {
       fontSize: '0.75rem',
       lineHeight: '1.125rem'
     },
     stringContentMedium: {
-      fontSize: '0.8125rem',
+      fontSize: rem('14px'),
       lineHeight: '1.25rem'
     },
     stringContentSemibold: {
       fontWeight: typography.fontWeights.semibold
     },
     guttersSmall: {
-      padding: '0.1875rem 0.5rem'
+      padding: '0.375rem 0.5rem'
     },
     guttersMedium: {
       padding: '0.375rem 0.5rem'
@@ -114,10 +115,6 @@ export default ({ typography, palette, shadows }: Theme) =>
     content: {
       flex: 1,
       minWidth: '0px'
-    },
-    description: {
-      fontSize: '0.6875em',
-      color: palette.text.primary
     },
     paper: {
       background: palette.common.white,

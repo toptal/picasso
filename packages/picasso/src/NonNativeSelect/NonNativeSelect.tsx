@@ -8,7 +8,6 @@ import capitalize from '@material-ui/core/utils/capitalize'
 import { Search16 } from '../Icon'
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
-import MenuItem from '../MenuItem'
 import SelectCaret from '../SelectCaret'
 import NonNativeSelectLoader from '../NonNativeSelectLoader'
 import {
@@ -110,19 +109,17 @@ export const NonNativeSelect = documentable(
       })
 
       const searchInput = showSearch ? (
-        <MenuItem as='div' size={size} nonSelectable>
-          <OutlinedInput
-            inputRef={searchInputRef}
-            className={classes.searchOutlinedInput}
-            startAdornment={<Search16 className={classes.searchInputIcon} />}
-            placeholder={searchPlaceholder}
-            size={size}
-            value={filterOptionsValue}
-            aria-autocomplete='list'
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...getSearchInputProps()}
-          />
-        </MenuItem>
+        <OutlinedInput
+          inputRef={searchInputRef}
+          className={classes.searchOutlinedInput}
+          startAdornment={<Search16 className={classes.searchInputIcon} />}
+          placeholder={searchPlaceholder}
+          size={size}
+          value={filterOptionsValue}
+          aria-autocomplete='list'
+          /* eslint-disable-next-line react/jsx-props-no-spreading */
+          {...getSearchInputProps()}
+        />
       ) : null
 
       const rootProps = getRootProps()

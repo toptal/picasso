@@ -2,7 +2,8 @@ import { render } from '@toptal/picasso/test-utils'
 import React from 'react'
 
 import Menu from '../Menu'
-import ScrollMenu, { scrollToSelection } from './ScrollMenu'
+import ScrollMenu from './ScrollMenu'
+import scrollToSelection from './utils/scrollToSelection'
 
 const createRect = (opts: Partial<DOMRect>) => {
   return {

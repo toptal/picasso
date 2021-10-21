@@ -178,13 +178,17 @@ const NonNativeSelectOptions = ({
   const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
     options
   ])
+  const header = fixedHeader ? (
+    <ScrollMenu.Header>{fixedHeader}</ScrollMenu.Header>
+  ) : null
 
   if (!flatOptions.length && filterOptionsValue) {
     return (
       <ScrollMenu
         data-testid='no-options'
+        fixedHeader={header}
         role='listbox'
-        fixedHeader={fixedHeader}
+        size={size}
       >
         <MenuItem titleCase={false} disabled>
           {noOptionsText}
@@ -195,14 +199,16 @@ const NonNativeSelectOptions = ({
 
   const fixedFooter =
     limit && flatOptions.length > limit ? (
-      <MenuItem titleCase={false} className={classes.fixedFooter} disabled>
-        Showing only first {limit} of {flatOptions.length} items
-      </MenuItem>
+      <ScrollMenu.Footer className={classes.fixedFooter}>
+        <Typography size='xsmall'>
+          Showing only first {limit} of {flatOptions.length} items
+        </Typography>
+      </ScrollMenu.Footer>
     ) : null
 
   return (
     <ScrollMenu
-      fixedHeader={fixedHeader}
+      fixedHeader={header}
       onBlur={onBlur}
       selectedIndex={
         isOptionsType(options)
@@ -211,6 +217,7 @@ const NonNativeSelectOptions = ({
       }
       fixedFooter={fixedFooter}
       role='listbox'
+      size={size}
     >
       {isOptionsType(options)
         ? renderOptions({

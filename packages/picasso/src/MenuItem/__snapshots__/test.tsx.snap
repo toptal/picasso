@@ -199,10 +199,14 @@ exports[`MenuItem renders with description 1`] = `
           </span>
         </div>
         <div
-          class="PicassoMenuItem-description"
+          class=""
           style="margin-top: 0.25rem;"
         >
-          details
+          <p
+            class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
+          >
+            details
+          </p>
         </div>
       </div>
     </li>
