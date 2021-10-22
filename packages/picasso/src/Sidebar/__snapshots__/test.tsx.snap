@@ -28,7 +28,7 @@ exports[`Sidebar with menu 1`] = `
         class="Sidebar-spacer"
       />
       <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoMenu-noPadding"
         role="menu"
         tabindex="-1"
       />
@@ -49,12 +49,12 @@ exports[`Sidebar with one normal and one bottom menu 1`] = `
         class="Sidebar-spacer"
       />
       <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoMenu-noPadding"
         role="menu"
         tabindex="-1"
       />
       <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
+        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom PicassoMenu-noPadding"
         role="menu"
         tabindex="-1"
       />

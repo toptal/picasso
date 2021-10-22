@@ -6,7 +6,7 @@ exports[`AccountSelect renders 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root PicassoMenu-root"
+      class="MuiList-root PicassoMenu-root PicassoMenu-noPadding"
       role="menu"
       tabindex="-1"
     >

@@ -12,7 +12,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
         class="Sidebar-spacer"
       />
       <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoMenu-noPadding"
         role="menu"
         tabindex="-1"
       >
@@ -85,7 +85,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details PicassoSidebarItem-nestedMenu"
                   >
                     <ul
-                      class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+                      class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoMenu-noPadding"
                       role="menu"
                       tabindex="-1"
                     >
@@ -142,7 +142,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
         class="Sidebar-spacer"
       />
       <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoMenu-noPadding"
         role="menu"
         tabindex="-1"
       >
@@ -215,7 +215,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details PicassoSidebarItem-nestedMenu"
                   >
                     <ul
-                      class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+                      class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoMenu-noPadding"
                       role="menu"
                       tabindex="-1"
                     >
@@ -306,7 +306,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
       class="PicassoSidebarItem-nestedMenuWithIcon"
     >
       <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoMenu-noPadding"
         role="menu"
         tabindex="-1"
       >
@@ -510,7 +510,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details PicassoSidebarItem-nestedMenuWithIcon"
               >
                 <ul
-                  class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+                  class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoMenu-noPadding"
                   role="menu"
                   tabindex="-1"
                 >
