@@ -28,7 +28,9 @@ export interface Props
   /** Text align of the inner text */
   align?: PropTypes.Alignment
   /** Size of the inner text */
-  size?: SizeType<'small' | 'medium' | 'large' | 'xlarge'> | 'inherit'
+  size?:
+    | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
+    | 'inherit'
   /** Font weight of the inner text */
   weight?: 'regular' | 'semibold' | 'inherit'
   /** Invert color */

@@ -7,7 +7,7 @@ describe('Typography', () => {
   it('renders body', () => {
     mount(
       <TestingPicasso>
-        {(['small', 'medium', 'large'] as const).map(size => (
+        {(['xsmall', 'small', 'medium', 'large'] as const).map(size => (
           <Typography key={size} variant='body' size={size}>
             Body ({size})
           </Typography>
