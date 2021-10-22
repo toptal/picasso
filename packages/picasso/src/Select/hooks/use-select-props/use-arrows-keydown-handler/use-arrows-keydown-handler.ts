@@ -1,6 +1,6 @@
 import { KeyboardEvent, useCallback } from 'react'
 
-import { flattenOptions } from '../../../utils'
+import { flattenOptions, getNextWrappingIndex } from '../../../utils'
 import { ValueType, UseSelectProps } from '../../../types'
 
 const useArrowsKeyDownHandler = <
@@ -22,23 +22,25 @@ const useArrowsKeyDownHandler = <
       if (isOpen) {
         const flatOptions = flattenOptions(filteredOptions)
 
-        let nextIndex = -1
-        let attempt = 0
+        let attempts = 0
+        let nextIndex = highlightedIndex
 
-        // Find next non-disabled option to highlight
-        while (
-          (nextIndex < 0 || flatOptions[nextIndex].disabled) &&
-          // Breaks if all the options are disabled
-          attempt < flatOptions.length
-        ) {
-          const moveAmount = key === 'ArrowDown' ? 1 + attempt : -(1 + attempt)
+        while (attempts < flatOptions.length) {
+          const moveAmount = key === 'ArrowDown' ? 1 : -1
 
-          nextIndex = (highlightedIndex + moveAmount) % flatOptions.length
+          nextIndex = getNextWrappingIndex(
+            moveAmount,
+            nextIndex,
+            flatOptions.length
+          )
 
-          attempt++
+          if (!flatOptions[nextIndex].disabled) {
+            setHighlightedIndex(nextIndex)
+            break
+          }
+
+          attempts += 1
         }
-
-        setHighlightedIndex(nextIndex)
       } else {
         open()
       }
