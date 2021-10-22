@@ -38,7 +38,7 @@ describe('useArrowsKeydownHandler', () => {
     const props = getUseSelectPropsMock()
 
     props.selectState.isOpen = true
-    props.selectState.highlightedIndex = 2
+    props.selectState.highlightedIndex = 1
     props.selectState.filteredOptions = [
       {
         text: 'One',

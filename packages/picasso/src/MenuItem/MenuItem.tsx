@@ -70,7 +70,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const MenuItem: OverridableComponent<Props> = forwardRef<
-  HTMLLIElement,
+  HTMLElement,
   Props
   // eslint-disable-next-line complexity
 >(function MenuItem(props, ref) {

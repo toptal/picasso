@@ -73,6 +73,13 @@ describe('useHighlightedIndex', () => {
   })
 
   it('resets highlighted index when closed and multiple values', () => {
+    const isOptionSelected = jest
+      .fn()
+      .mockImplementation(
+        (option: Option) =>
+          option.value === OPTIONS[2].value || option.value === OPTIONS[3].value
+      )
+
     const { result, rerender } = renderHook(
       (isOpen: boolean) =>
         useHighlightedIndex({
@@ -80,13 +87,7 @@ describe('useHighlightedIndex', () => {
           isOpen: isOpen,
           selection: {
             isSelected: jest.fn().mockReturnValue(true),
-            isOptionSelected: jest
-              .fn()
-              .mockImplementation(
-                (option: Option) =>
-                  option.value === OPTIONS[2].value ||
-                  option.value === OPTIONS[3].value
-              ),
+            isOptionSelected,
             display: jest.fn()
           }
         }),
@@ -106,15 +107,15 @@ describe('useHighlightedIndex', () => {
   })
 
   it("doesn't set highlighted index for a disabled option", () => {
+    const options = OPTIONS.map(option =>
+      option.value === OPTIONS[0].value || option.value === OPTIONS[2].value
+        ? { ...option, disabled: true }
+        : option
+    )
     const { result, rerender } = renderHook(
       (isOpen: boolean) =>
         useHighlightedIndex({
-          options: OPTIONS.map(option =>
-            option.value === OPTIONS[0].value ||
-            option.value === OPTIONS[2].value
-              ? { ...option, disabled: true }
-              : option
-          ),
+          options,
           isOpen: isOpen,
           selection: {
             isSelected: jest.fn().mockReturnValue(false),

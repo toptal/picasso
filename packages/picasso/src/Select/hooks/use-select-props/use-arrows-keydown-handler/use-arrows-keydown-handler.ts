@@ -20,27 +20,26 @@ const useArrowsKeyDownHandler = <
       event.preventDefault()
 
       if (isOpen) {
-        const flatOptions = flattenOptions(filteredOptions)
+        // Use only non-disabled options
+        const nonDisabledOptions = flattenOptions(filteredOptions)
+          .map((option, actualIndex) => [option, actualIndex] as const)
+          .filter(([option]) => !option.disabled)
+        // Find the non-disabled index for highlightedIndex
+        const initialIndex = nonDisabledOptions.findIndex(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          ([_, actualIndex]) => actualIndex === highlightedIndex
+        )
+        const moveAmount = key === 'ArrowDown' ? 1 : -1
+        // Find the next wrapping non-disabled index
+        const nextNonDisabledIndex = getNextWrappingIndex(
+          moveAmount,
+          initialIndex,
+          nonDisabledOptions.length
+        )
+        // Convert non-disabled index to the actual one
+        const actualIndex = nonDisabledOptions[nextNonDisabledIndex][1]
 
-        let attempts = 0
-        let nextIndex = highlightedIndex
-
-        while (attempts < flatOptions.length) {
-          const moveAmount = key === 'ArrowDown' ? 1 : -1
-
-          nextIndex = getNextWrappingIndex(
-            moveAmount,
-            nextIndex,
-            flatOptions.length
-          )
-
-          if (!flatOptions[nextIndex].disabled) {
-            setHighlightedIndex(nextIndex)
-            break
-          }
-
-          attempts += 1
-        }
+        setHighlightedIndex(actualIndex)
       } else {
         open()
       }
