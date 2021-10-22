@@ -83,7 +83,11 @@ const renderNotificationContent = (props: PrivateProps) => {
   const { classes, children, onClose } = props
 
   return (
-    <Container flex className={classes?.contentWrapper}>
+    <Container
+      flex
+      className={classes?.contentWrapper}
+      data-testid='notification'
+    >
       <Container flex alignItems='center' className={classes?.iconWrapper}>
         {renderNotificationIcon(props)}
       </Container>

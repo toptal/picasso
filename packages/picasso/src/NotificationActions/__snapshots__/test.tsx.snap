@@ -14,6 +14,7 @@ exports[`NotificationActions renders 1`] = `
       >
         <div
           class="PicassoContainer-flex"
+          data-testid="notification"
         >
           <div
             class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
