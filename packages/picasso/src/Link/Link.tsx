@@ -59,6 +59,7 @@ export type Props = BaseProps &
      */
     fontSize?: FontSizeType
     /**
+     *
      * Controls textDecoration of component
      * @default underline
      */
