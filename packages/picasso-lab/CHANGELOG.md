@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@9.0.3...@toptal/picasso-lab@9.1.0) (2021-10-22)
+
+
+### Features
+
+* **Typography:** add new size of Typography ([#2196](https://github.com/toptal/picasso/issues/2196)) ([905088b](https://github.com/toptal/picasso/commit/905088bf84f6efd1904fd6c9211bfb090d576481))
+
+
+
+
+
 ## [9.0.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@9.0.2...@toptal/picasso-lab@9.0.3) (2021-10-18)
 
 **Note:** Version bump only for package @toptal/picasso-lab
