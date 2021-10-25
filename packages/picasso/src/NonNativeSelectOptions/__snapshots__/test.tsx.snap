@@ -17,7 +17,7 @@ exports[`NonNativeSelectOptions renders 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
           tabindex="-1"
@@ -38,7 +38,7 @@ exports[`NonNativeSelectOptions renders 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
           tabindex="-1"
@@ -59,7 +59,7 @@ exports[`NonNativeSelectOptions renders 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
           tabindex="-1"
@@ -100,7 +100,7 @@ exports[`NonNativeSelectOptions renders no option 1`] = `
       >
         <li
           aria-disabled="true"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoMenuItem-disabled MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light undefined MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
           role="menuitem"
           tabindex="-1"
         >
@@ -155,7 +155,7 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
           tabindex="-1"
@@ -176,7 +176,7 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
           tabindex="-1"
@@ -197,7 +197,7 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
           tabindex="-1"
@@ -238,7 +238,7 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
           tabindex="-1"
@@ -259,7 +259,7 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         <li
           aria-disabled="false"
           aria-selected="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
           tabindex="-1"
