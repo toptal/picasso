@@ -8,7 +8,7 @@ exports[`NonNativeSelectOption renders 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       data-highlighted="false"
       role="option"
       tabindex="-1"
@@ -49,7 +49,7 @@ exports[`NonNativeSelectOption sets attributes correctly 1`] = `
     <li
       aria-disabled="false"
       aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       data-highlighted="false"
       role="option"
       tabindex="-1"

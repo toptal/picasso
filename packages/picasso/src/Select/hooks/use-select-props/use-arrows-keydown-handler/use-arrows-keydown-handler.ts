@@ -24,6 +24,7 @@ const useArrowsKeyDownHandler = <
         const nonDisabledOptions = flattenOptions(filteredOptions)
           .map((option, actualIndex) => ({ ...option, actualIndex }))
           .filter(option => !option.disabled)
+
         // Find the non-disabled index for highlightedIndex
         const initialIndex = nonDisabledOptions.findIndex(
           option => option.actualIndex === highlightedIndex

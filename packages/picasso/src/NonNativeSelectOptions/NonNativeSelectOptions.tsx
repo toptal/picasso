@@ -13,8 +13,7 @@ import {
   ItemProps,
   Option,
   OptionGroups,
-  SelectProps,
-  DEFAULT_LIMIT
+  SelectProps
 } from '../Select'
 import Typography from '../Typography'
 import styles from './styles'
@@ -55,7 +54,7 @@ const MenuGroup = (props: MenuGroupProps) => {
 
 export type Props = Pick<
   SelectProps,
-  'value' | 'multiple' | 'size' | 'noOptionsText' | 'renderOption' | 'limit'
+  'value' | 'multiple' | 'size' | 'noOptionsText' | 'renderOption'
 > & {
   options: Option[] | OptionGroups
   highlightedIndex: number | null
@@ -63,6 +62,7 @@ export type Props = Pick<
   getItemProps: (option: Option, index: number) => ItemProps
   onBlur?: FocusEventType
   fixedHeader?: ReactNode
+  optionsAvailableCount: number
 }
 
 const renderOptions = ({
@@ -71,21 +71,13 @@ const renderOptions = ({
   value,
   size,
   highlightedIndex,
-  limit,
   offset = 0,
   renderOption
 }: Pick<
   Props,
-  | 'getItemProps'
-  | 'value'
-  | 'size'
-  | 'highlightedIndex'
-  | 'limit'
-  | 'renderOption'
+  'getItemProps' | 'value' | 'size' | 'highlightedIndex' | 'renderOption'
 > & { options: Option[]; offset?: number }) => {
-  const limitedOptions = limit ? options.slice(0, limit) : options
-
-  return limitedOptions.map((option, index) => {
+  return options.map((option, index) => {
     const selection = getSelection(options, value)
 
     return (
@@ -110,12 +102,11 @@ const renderGroups = ({
   value,
   size,
   highlightedIndex,
-  limit,
   renderOption
 }: Pick<
   Props,
   'getItemProps' | 'value' | 'size' | 'highlightedIndex' | 'renderOption'
-> & { groups: OptionGroups; limit: number }) => {
+> & { groups: OptionGroups }) => {
   let optionsCount = 0
 
   return Object.keys(groups).map(group => {
@@ -127,7 +118,6 @@ const renderGroups = ({
           value,
           size,
           highlightedIndex,
-          limit: limit - optionsCount,
           offset: optionsCount,
           renderOption
         })}
@@ -172,7 +162,7 @@ const NonNativeSelectOptions = ({
   filterOptionsValue,
   noOptionsText,
   fixedHeader,
-  limit = DEFAULT_LIMIT
+  optionsAvailableCount
 }: Props) => {
   const classes = useStyles()
   const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
@@ -194,9 +184,14 @@ const NonNativeSelectOptions = ({
   }
 
   const fixedFooter =
-    limit && flatOptions.length > limit ? (
-      <MenuItem titleCase={false} className={classes.fixedFooter} disabled>
-        Showing only first {limit} of {flatOptions.length} items
+    optionsAvailableCount - flatOptions.length > 0 ? (
+      <MenuItem
+        data-testid='options-cut-text'
+        titleCase={false}
+        className={classes.fixedFooter}
+        disabled
+      >
+        Showing only first {flatOptions.length} of {optionsAvailableCount} items
       </MenuItem>
     ) : null
 
@@ -219,7 +214,6 @@ const NonNativeSelectOptions = ({
             value,
             size,
             highlightedIndex,
-            limit,
             renderOption
           })
         : renderGroups({
@@ -228,7 +222,6 @@ const NonNativeSelectOptions = ({
             value,
             size,
             highlightedIndex,
-            limit,
             renderOption
           })}
     </ScrollMenu>

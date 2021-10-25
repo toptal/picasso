@@ -141,12 +141,12 @@ export type UseSelectStateOutput = {
   showSearch: boolean
   filterOptionsValue: string
   displayValue: string
-  setDisplayValue: (value: string) => void
   selection: Selection
   filteredOptions: Option[] | OptionGroups
   emptySelectValue: string | string[]
   selectedOptions: Option[]
-  setSelectedOptions: (options: Option[]) => void
+  setValue: (value: ValueType | ValueType[]) => void
+  optionsAvailableCount: number
 }
 
 export interface UseSelectProps<

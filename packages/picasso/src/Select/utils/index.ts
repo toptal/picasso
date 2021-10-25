@@ -1,4 +1,5 @@
 export { default as filterOptions } from './filter-options'
+export { default as limitOptions } from './limit-options'
 export { default as fireOnChangeEvent } from './fire-on-change-event'
 export { default as flattenOptions } from './flatten-options'
 export { default as focusRef } from './focus-ref'

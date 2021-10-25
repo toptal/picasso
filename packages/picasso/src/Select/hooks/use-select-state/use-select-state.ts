@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import { useState, useCallback, useEffect, useMemo } from 'react'
 
 import {
@@ -13,7 +14,9 @@ import {
   DEFAULT_SEARCH_THRESHOLD,
   DEFAULT_LIMIT,
   filterOptions,
-  flattenOptions
+  flattenOptions,
+  limitOptions,
+  isOptionsType
 } from '../../utils'
 import useHighlightedIndex from '../use-highlighted-index'
 
@@ -35,7 +38,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     options = [],
     disabled = false,
     multiple,
-    value,
+    value: valueProp,
     searchThreshold = DEFAULT_SEARCH_THRESHOLD,
     limit = DEFAULT_LIMIT
   } = props
@@ -43,28 +46,51 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
     options
   ])
+  const [value, setValue] = useState(valueProp)
+  const selectedOptions = useMemo(
+    () => getSelectedOptions(flatOptions, value),
+    [flatOptions, value]
+  )
+  const nonSelectedOptions = useMemo(
+    () => removeDuplicatedOptions([...flatOptions, ...selectedOptions]),
+    [flatOptions, selectedOptions]
+  )
 
-  const [selectedOptions, setSelectedOptions] = useState(
-    getSelectedOptions(options, value)
-  )
-  const selection = useMemo(
-    () =>
-      getSelection(
-        removeDuplicatedOptions([...flatOptions, ...selectedOptions]),
-        value
-      ),
-    [flatOptions, selectedOptions, value]
-  )
-  const [displayValue, setDisplayValue] = useState(
-    selection.display(getDisplayValue)
-  )
+  const selection = useMemo(() => getSelection(nonSelectedOptions, value), [
+    nonSelectedOptions,
+    value
+  ])
+  const displayValue = useMemo(() => selection.display(getDisplayValue), [
+    selection,
+    getDisplayValue
+  ])
   const [filterOptionsValue, setFilterOptionsValue] = useState(
     EMPTY_INPUT_VALUE
   )
   const filteredOptions = useMemo(
-    () => filterOptions({ options, filterOptionsValue, getDisplayValue }),
+    () =>
+      filterOptions({
+        options,
+        filterOptionsValue,
+        getDisplayValue
+      }),
     [options, filterOptionsValue, getDisplayValue]
   )
+  const optionsAvailableCount = useMemo(
+    () =>
+      isOptionsType(filteredOptions)
+        ? filteredOptions.length
+        : Object.values(filteredOptions).reduce(
+            (acc, groupOptions) => acc + groupOptions.length,
+            0
+          ),
+    [filteredOptions]
+  )
+  const limitedOptions = useMemo(
+    () => limitOptions({ options: filteredOptions, limit }),
+    [filteredOptions, limit]
+  )
+
   const emptySelectValue: string | string[] = useMemo(
     () => (multiple ? [] : ''),
     [multiple]
@@ -81,16 +107,8 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   })
 
   useEffect(() => {
-    const newSelect = getSelection(
-      removeDuplicatedOptions([...flatOptions, ...selectedOptions]),
-      value
-    )
-
-    setDisplayValue(newSelect.display(getDisplayValue))
-    setSelectedOptions(getSelectedOptions(options, value))
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, options, flatOptions])
+    setValue(valueProp)
+  }, [valueProp])
 
   const close = useCallback(() => {
     setOpen(false)
@@ -108,9 +126,10 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
 
   return {
     ...props,
-    setSelectedOptions,
+    setValue,
     selectedOptions,
-    filteredOptions,
+    // TODO: keep consistent naming
+    filteredOptions: limitedOptions,
     isOpen,
     canOpen,
     open,
@@ -124,7 +143,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     selection,
     emptySelectValue,
     setFilterOptionsValue,
-    setDisplayValue
+    optionsAvailableCount
   }
 }
 

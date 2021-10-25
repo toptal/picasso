@@ -85,7 +85,8 @@ export const NonNativeSelect = documentable(
         disabled,
         multiple,
         value,
-        searchThreshold
+        searchThreshold,
+        limit
       })
       const {
         highlightedIndex,
@@ -94,7 +95,8 @@ export const NonNativeSelect = documentable(
         filterOptionsValue,
         displayValue,
         selection,
-        filteredOptions
+        filteredOptions,
+        optionsAvailableCount
       } = selectState
       const {
         getItemProps,
@@ -197,7 +199,7 @@ export const NonNativeSelect = documentable(
                   multiple={multiple}
                   noOptionsText={noOptionsText}
                   fixedHeader={searchInput}
-                  limit={limit}
+                  optionsAvailableCount={optionsAvailableCount}
                 />
               )}
             </Popper>

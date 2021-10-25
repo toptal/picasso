@@ -1,12 +1,17 @@
 import { Option } from '../../types'
 
-const removeDuplicatedOptions = (options: Option[]) =>
-  options.filter((option, index) => {
-    const innerIndex = options.findIndex(
-      innerOption => innerOption.value === option.value
-    )
+const removeDuplicatedOptions = (options: Option[]) => {
+  const values = new Set()
 
-    return innerIndex === index
+  return options.filter(option => {
+    if (!values.has(option.value)) {
+      values.add(option.value)
+
+      return true
+    }
+
+    return false
   })
+}
 
 export default removeDuplicatedOptions

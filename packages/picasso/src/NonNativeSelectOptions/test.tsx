@@ -39,7 +39,8 @@ const renderNonNativeSelectOptions = ({
   filterOptionsValue = '',
   getItemProps = defaultGetItemProps,
   onBlur,
-  fixedHeader
+  fixedHeader,
+  optionsAvailableCount = OPTIONS.length
 }: Partial<Props> = {}) =>
   render(
     <NonNativeSelectOptions
@@ -54,6 +55,7 @@ const renderNonNativeSelectOptions = ({
       getItemProps={getItemProps}
       onBlur={onBlur}
       fixedHeader={fixedHeader}
+      optionsAvailableCount={optionsAvailableCount}
     />
   )
 

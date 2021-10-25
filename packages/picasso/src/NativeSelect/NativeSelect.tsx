@@ -77,7 +77,8 @@ export const NativeSelect = documentable(
         options,
         disabled,
         multiple,
-        value
+        value,
+        limit
       })
       const { selection, emptySelectValue } = selectState
       const { getItemProps, getInputProps } = useSelectProps({

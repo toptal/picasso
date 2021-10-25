@@ -36,19 +36,12 @@ const useHighlightedIndex = ({ options, isOpen, selection }: Props) => {
     setHighlightedIndex(nextHighlightedIndex)
   }, [selection, flatOptions])
 
-  // Reset index on close
-  useEffect(() => {
-    if (!isOpen) {
-      calculateHighlightedIndex()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen])
-
-  // Recalculate index on filtering
+  // Reset index on close and filtering
   useEffect(() => {
     calculateHighlightedIndex()
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [flatOptions.length])
+  }, [isOpen, flatOptions.length])
 
   return [highlightedIndex, handleChange] as const
 }
