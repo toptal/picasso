@@ -11,6 +11,14 @@ const OPTIONS = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
+const DISABLED_OPTIONS = [
+  { text: 'Belarus', value: 'BY', disabled: true },
+  { text: 'Croatia', value: 'HR' },
+  { text: 'Lithuania', value: 'LU', disabled: true },
+  { text: 'Slovakia', value: 'SK' },
+  { text: 'Ukraine', value: 'UA' }
+]
+
 const getHighlightIndex = (
   result: RenderResult<ReturnType<typeof useHighlightedIndex>>
 ) => result.current[0]
@@ -107,15 +115,10 @@ describe('useHighlightedIndex', () => {
   })
 
   it("doesn't set highlighted index for a disabled option", () => {
-    const options = OPTIONS.map(option =>
-      option.value === OPTIONS[0].value || option.value === OPTIONS[2].value
-        ? { ...option, disabled: true }
-        : option
-    )
     const { result, rerender } = renderHook(
       (isOpen: boolean) =>
         useHighlightedIndex({
-          options,
+          options: DISABLED_OPTIONS,
           isOpen: isOpen,
           selection: {
             isSelected: jest.fn().mockReturnValue(false),
