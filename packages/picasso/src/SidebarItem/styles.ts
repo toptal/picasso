@@ -42,10 +42,6 @@ export default ({ palette, sizes }: Theme) =>
           color: palette.blue.main,
           backgroundColor: palette.grey.light
         }
-      },
-
-      '&$disabled': {
-        color: palette.grey.main
       }
     },
     dark: {
@@ -67,14 +63,9 @@ export default ({ palette, sizes }: Theme) =>
           color: palette.common.white,
           backgroundColor: palette.grey.dark
         }
-      },
-
-      '&$disabled': {
-        color: palette.grey.dark
       }
     },
     selected: {},
-    disabled: {},
     label: {},
     withIcon: {
       marginLeft: '0.875em'
