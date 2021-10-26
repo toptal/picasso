@@ -6,19 +6,16 @@ exports[`NativeSelectOptions renders 1`] = `
     class="Picasso-root"
   >
     <option
-      aria-selected="false"
       value="1"
     >
       One
     </option>
     <option
-      aria-selected="false"
       value="2"
     >
       Two
     </option>
     <option
-      aria-selected="false"
       value="3"
     >
       Three

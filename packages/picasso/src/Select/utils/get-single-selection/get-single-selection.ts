@@ -1,18 +1,11 @@
-import { ValueType, Option, Selection } from '../../types'
-import isEmpty from '../is-empty'
+import { Option, Selection } from '../../types'
 
-const getSingleSelection = (
-  options: Option[],
-  value?: ValueType
-): Selection => {
-  const getSelectedOption = () =>
-    options.find(option => option.value === value) || null
-
+const getSingleSelection = (selectedOption: Option | null): Selection => {
   return {
     display: (getDisplayValue: (option: Option | null) => string) =>
-      getDisplayValue(getSelectedOption()),
-    isSelected: () => !isEmpty(value),
-    isOptionSelected: option => option.value === value
+      getDisplayValue(selectedOption),
+    isSelected: () => selectedOption !== null,
+    isOptionSelected: option => option.value === selectedOption?.value
   }
 }
 

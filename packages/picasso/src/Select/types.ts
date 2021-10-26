@@ -88,6 +88,11 @@ export interface SelectProps<
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
   ref?: React.Ref<HTMLInputElement>
+  testIds?: {
+    noOptions?: string
+    loader?: string
+    limitFooter?: string
+  }
 }
 
 export type ValueType = string | number
@@ -146,7 +151,6 @@ export type UseSelectStateOutput = {
   emptySelectValue: string | string[]
   selectedOptions: Option[]
   setValue: (value: ValueType | ValueType[]) => void
-  optionsAvailableCount: number
 }
 
 export interface UseSelectProps<

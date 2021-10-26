@@ -51,8 +51,7 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
       filteredOptions: [],
       emptySelectValue: '',
       selectedOptions: [],
-      setValue: jest.fn(),
-      optionsAvailableCount: 0
+      setValue: jest.fn()
     }
   }
 }

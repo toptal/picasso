@@ -32,7 +32,7 @@ describe('useHighlightedIndex', () => {
   it('sets a highlighted index', () => {
     const { result } = renderHook(() =>
       useHighlightedIndex({
-        options: OPTIONS,
+        flatOptions: OPTIONS,
         isOpen: true,
         selection: {
           isSelected: jest.fn().mockReturnValue(false),
@@ -53,7 +53,7 @@ describe('useHighlightedIndex', () => {
     const { result, rerender } = renderHook(
       (isOpen: boolean) =>
         useHighlightedIndex({
-          options: OPTIONS,
+          flatOptions: OPTIONS,
           isOpen: isOpen,
           selection: {
             isSelected: jest.fn().mockReturnValue(true),
@@ -91,7 +91,7 @@ describe('useHighlightedIndex', () => {
     const { result, rerender } = renderHook(
       (isOpen: boolean) =>
         useHighlightedIndex({
-          options: OPTIONS,
+          flatOptions: OPTIONS,
           isOpen: isOpen,
           selection: {
             isSelected: jest.fn().mockReturnValue(true),
@@ -118,7 +118,7 @@ describe('useHighlightedIndex', () => {
     const { result, rerender } = renderHook(
       (isOpen: boolean) =>
         useHighlightedIndex({
-          options: DISABLED_OPTIONS,
+          flatOptions: DISABLED_OPTIONS,
           isOpen: isOpen,
           selection: {
             isSelected: jest.fn().mockReturnValue(false),

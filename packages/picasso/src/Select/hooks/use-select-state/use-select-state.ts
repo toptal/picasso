@@ -8,15 +8,14 @@ import {
   UseSelectStateOutput
 } from '../../types'
 import {
-  getSelection,
-  removeDuplicatedOptions,
+  getMultipleSelection,
+  getSingleSelection,
   getSelectedOptions,
   DEFAULT_SEARCH_THRESHOLD,
   DEFAULT_LIMIT,
   filterOptions,
   flattenOptions,
-  limitOptions,
-  isOptionsType
+  limitOptions
 } from '../../utils'
 import useHighlightedIndex from '../use-highlighted-index'
 
@@ -53,11 +52,10 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   )
   const selection = useMemo(
     () =>
-      getSelection(
-        removeDuplicatedOptions([...flatOptions, ...selectedOptions]),
-        value
-      ),
-    [flatOptions, selectedOptions, value]
+      multiple
+        ? getMultipleSelection(selectedOptions)
+        : getSingleSelection(selectedOptions[0]),
+    [selectedOptions, multiple]
   )
   const displayValue = useMemo(() => selection.display(getDisplayValue), [
     selection,
@@ -75,19 +73,13 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
       }),
     [options, filterOptionsValue, getDisplayValue]
   )
-  const optionsAvailableCount = useMemo(
-    () =>
-      isOptionsType(filteredOptions)
-        ? filteredOptions.length
-        : Object.values(filteredOptions).reduce(
-            (acc, groupOptions) => acc + groupOptions.length,
-            0
-          ),
-    [filteredOptions]
-  )
-  const limitedOptions = useMemo(
+  const filteredLimitedOptions = useMemo(
     () => limitOptions({ options: filteredOptions, limit }),
     [filteredOptions, limit]
+  )
+  const filteredLimitedFlatOptions = useMemo(
+    () => flattenOptions(filteredLimitedOptions),
+    [filteredLimitedOptions]
   )
 
   const emptySelectValue: string | string[] = useMemo(
@@ -100,7 +92,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const canOpen = !isOpen && !disabled
   const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex({
-    options: limitedOptions,
+    flatOptions: filteredLimitedFlatOptions,
     selection,
     isOpen
   })
@@ -128,7 +120,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     setValue,
     selectedOptions,
     // TODO: keep consistent naming
-    filteredOptions: limitedOptions,
+    filteredOptions: filteredLimitedOptions,
     isOpen,
     canOpen,
     open,
@@ -141,8 +133,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     displayValue,
     selection,
     emptySelectValue,
-    setFilterOptionsValue,
-    optionsAvailableCount
+    setFilterOptionsValue
   }
 }
 

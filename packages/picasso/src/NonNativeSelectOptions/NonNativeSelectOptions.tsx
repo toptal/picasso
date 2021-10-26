@@ -7,13 +7,13 @@ import NonNativeSelectOption from '../NonNativeSelectOption'
 import ScrollMenu from '../ScrollMenu'
 import {
   flattenOptions,
-  getSelection,
   isOptionsType,
   FocusEventType,
   ItemProps,
   Option,
   OptionGroups,
-  SelectProps
+  SelectProps,
+  Selection
 } from '../Select'
 import Typography from '../Typography'
 import styles from './styles'
@@ -54,7 +54,7 @@ const MenuGroup = (props: MenuGroupProps) => {
 
 export type Props = Pick<
   SelectProps,
-  'value' | 'multiple' | 'size' | 'noOptionsText' | 'renderOption'
+  'multiple' | 'size' | 'noOptionsText' | 'renderOption'
 > & {
   options: Option[] | OptionGroups
   highlightedIndex: number | null
@@ -62,24 +62,26 @@ export type Props = Pick<
   getItemProps: (option: Option, index: number) => ItemProps
   onBlur?: FocusEventType
   fixedHeader?: ReactNode
-  optionsAvailableCount: number
+  fixedFooter?: ReactNode
+  selection: Selection
+  testIds?: {
+    noOptions?: string
+  }
 }
 
 const renderOptions = ({
   options,
   getItemProps,
-  value,
+  selection,
   size,
   highlightedIndex,
   offset = 0,
   renderOption
 }: Pick<
   Props,
-  'getItemProps' | 'value' | 'size' | 'highlightedIndex' | 'renderOption'
+  'getItemProps' | 'selection' | 'size' | 'highlightedIndex' | 'renderOption'
 > & { options: Option[]; offset?: number }) => {
   return options.map((option, index) => {
-    const selection = getSelection(options, value)
-
     return (
       <NonNativeSelectOption
         key={option.key || option.value}
@@ -99,13 +101,13 @@ const renderOptions = ({
 const renderGroups = ({
   groups,
   getItemProps,
-  value,
+  selection,
   size,
   highlightedIndex,
   renderOption
 }: Pick<
   Props,
-  'getItemProps' | 'value' | 'size' | 'highlightedIndex' | 'renderOption'
+  'getItemProps' | 'selection' | 'size' | 'highlightedIndex' | 'renderOption'
 > & { groups: OptionGroups }) => {
   let optionsCount = 0
 
@@ -115,7 +117,7 @@ const renderGroups = ({
         {renderOptions({
           options: groups[group],
           getItemProps,
-          value,
+          selection,
           size,
           highlightedIndex,
           offset: optionsCount,
@@ -157,14 +159,14 @@ const NonNativeSelectOptions = ({
   highlightedIndex,
   getItemProps,
   onBlur,
-  value,
+  selection,
   size,
   filterOptionsValue,
   noOptionsText,
   fixedHeader,
-  optionsAvailableCount
+  fixedFooter,
+  testIds
 }: Props) => {
-  const classes = useStyles()
   const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
     options
   ])
@@ -172,7 +174,7 @@ const NonNativeSelectOptions = ({
   if (!flatOptions.length && filterOptionsValue) {
     return (
       <ScrollMenu
-        data-testid='no-options'
+        data-testid={testIds?.noOptions}
         role='listbox'
         fixedHeader={fixedHeader}
       >
@@ -182,18 +184,6 @@ const NonNativeSelectOptions = ({
       </ScrollMenu>
     )
   }
-
-  const fixedFooter =
-    optionsAvailableCount - flatOptions.length > 0 ? (
-      <MenuItem
-        data-testid='options-cut-text'
-        titleCase={false}
-        className={classes.fixedFooter}
-        disabled
-      >
-        Showing only first {flatOptions.length} of {optionsAvailableCount} items
-      </MenuItem>
-    ) : null
 
   return (
     <ScrollMenu
@@ -211,7 +201,7 @@ const NonNativeSelectOptions = ({
         ? renderOptions({
             options,
             getItemProps,
-            value,
+            selection,
             size,
             highlightedIndex,
             renderOption
@@ -219,7 +209,7 @@ const NonNativeSelectOptions = ({
         : renderGroups({
             groups: options,
             getItemProps,
-            value,
+            selection,
             size,
             highlightedIndex,
             renderOption

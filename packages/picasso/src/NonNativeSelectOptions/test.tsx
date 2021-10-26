@@ -30,7 +30,11 @@ const defaultGetItemProps = () => ({
 
 const renderNonNativeSelectOptions = ({
   options = OPTIONS,
-  value,
+  selection = {
+    isSelected: jest.fn(),
+    isOptionSelected: jest.fn(),
+    display: jest.fn()
+  },
   multiple,
   size,
   noOptionsText,
@@ -40,12 +44,13 @@ const renderNonNativeSelectOptions = ({
   getItemProps = defaultGetItemProps,
   onBlur,
   fixedHeader,
-  optionsAvailableCount = OPTIONS.length
+  fixedFooter,
+  testIds
 }: Partial<Props> = {}) =>
   render(
     <NonNativeSelectOptions
       options={options}
-      value={value}
+      selection={selection}
       multiple={multiple}
       size={size}
       noOptionsText={noOptionsText}
@@ -55,7 +60,8 @@ const renderNonNativeSelectOptions = ({
       getItemProps={getItemProps}
       onBlur={onBlur}
       fixedHeader={fixedHeader}
-      optionsAvailableCount={optionsAvailableCount}
+      fixedFooter={fixedFooter}
+      testIds={testIds}
     />
   )
 
@@ -77,7 +83,8 @@ describe('NonNativeSelectOptions', () => {
   it('renders no option', () => {
     const { container, getByTestId } = renderNonNativeSelectOptions({
       options: [],
-      filterOptionsValue: 'search query'
+      filterOptionsValue: 'search query',
+      testIds: { noOptions: 'no-options' }
     })
 
     expect(getByTestId('no-options')).toBeInTheDocument()

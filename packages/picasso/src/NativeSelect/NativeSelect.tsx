@@ -144,7 +144,7 @@ export const NativeSelect = documentable(
           </NativeSelectPlaceholder>
           <NativeSelectOptions
             options={options}
-            value={value}
+            selection={selection}
             renderOption={renderOption as any}
             getItemProps={getItemProps}
           />

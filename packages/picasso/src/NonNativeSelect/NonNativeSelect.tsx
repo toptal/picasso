@@ -20,11 +20,13 @@ import {
   SelectProps,
   getOptionText,
   DEFAULT_LIMIT,
-  DEFAULT_SEARCH_THRESHOLD
+  DEFAULT_SEARCH_THRESHOLD,
+  countOptions
 } from '../Select'
 import NonNativeSelectOptions from '../NonNativeSelectOptions'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
+import NonNativeSelectLimitFooter from '../NonNativeSelectLimitFooter'
 
 const useStyles = makeStyles<Theme>(styles)
 
@@ -66,6 +68,7 @@ export const NonNativeSelect = documentable(
         onChange,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         native,
+        testIds,
         ...rest
       } = props
 
@@ -95,8 +98,7 @@ export const NonNativeSelect = documentable(
         filterOptionsValue,
         displayValue,
         selection,
-        filteredOptions,
-        optionsAvailableCount
+        filteredOptions
       } = selectState
       const {
         getItemProps,
@@ -184,7 +186,7 @@ export const NonNativeSelect = documentable(
               container={popperContainer}
             >
               {loading ? (
-                <NonNativeSelectLoader />
+                <NonNativeSelectLoader data-testid={testIds?.loader} />
               ) : (
                 <NonNativeSelectOptions
                   options={filteredOptions}
@@ -193,13 +195,22 @@ export const NonNativeSelect = documentable(
                   getItemProps={getItemProps}
                   // eslint-disable-next-line react/jsx-handler-names
                   onBlur={rootProps.onBlur}
-                  value={value}
+                  selection={selection}
                   filterOptionsValue={filterOptionsValue}
                   size={size}
                   multiple={multiple}
                   noOptionsText={noOptionsText}
                   fixedHeader={searchInput}
-                  optionsAvailableCount={optionsAvailableCount}
+                  fixedFooter={
+                    <NonNativeSelectLimitFooter
+                      totalCount={countOptions(options)}
+                      limit={limit}
+                      data-testid={testIds?.limitFooter}
+                    />
+                  }
+                  testIds={{
+                    noOptions: testIds?.noOptions
+                  }}
                 />
               )}
             </Popper>

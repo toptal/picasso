@@ -16,7 +16,6 @@ exports[`NonNativeSelectOptions renders 1`] = `
       >
         <li
           aria-disabled="false"
-          aria-selected="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
@@ -28,16 +27,11 @@ exports[`NonNativeSelectOptions renders 1`] = `
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            >
-              <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-              />
-            </div>
+            />
           </div>
         </li>
         <li
           aria-disabled="false"
-          aria-selected="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
@@ -49,16 +43,11 @@ exports[`NonNativeSelectOptions renders 1`] = `
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            >
-              <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-              />
-            </div>
+            />
           </div>
         </li>
         <li
           aria-disabled="false"
-          aria-selected="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
@@ -70,11 +59,7 @@ exports[`NonNativeSelectOptions renders 1`] = `
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            >
-              <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-              />
-            </div>
+            />
           </div>
         </li>
       </div>
@@ -154,7 +139,6 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         </li>
         <li
           aria-disabled="false"
-          aria-selected="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
@@ -166,16 +150,11 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            >
-              <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-              />
-            </div>
+            />
           </div>
         </li>
         <li
           aria-disabled="false"
-          aria-selected="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
@@ -187,16 +166,11 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            >
-              <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-              />
-            </div>
+            />
           </div>
         </li>
         <li
           aria-disabled="false"
-          aria-selected="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
@@ -208,11 +182,7 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            >
-              <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-              />
-            </div>
+            />
           </div>
         </li>
         <li
@@ -237,7 +207,6 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
         </li>
         <li
           aria-disabled="false"
-          aria-selected="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
@@ -249,16 +218,11 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            >
-              <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-              />
-            </div>
+            />
           </div>
         </li>
         <li
           aria-disabled="false"
-          aria-selected="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           data-highlighted="false"
           role="option"
@@ -270,11 +234,7 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
           >
             <div
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            >
-              <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-              />
-            </div>
+            />
           </div>
         </li>
       </div>

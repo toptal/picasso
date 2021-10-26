@@ -1,14 +1,12 @@
-import { Option, OptionGroups, ValueType } from '../../types'
-import { flattenOptions } from '../../utils'
+import { Option, ValueType } from '../../types'
 
 const getSelectedOptions = (
-  options: Option[] | OptionGroups,
+  flatOptions: Option[],
   value?: ValueType | ValueType[]
-) =>
-  flattenOptions(options).filter(option =>
-    Array.isArray(value)
-      ? value.includes(String(option.value))
-      : value === String(option.value)
-  )
+) => {
+  const valuesSet = new Set(Array.isArray(value) ? value : [value])
+
+  return flatOptions.filter(option => valuesSet.has(String(option.value)))
+}
 
 export default getSelectedOptions
