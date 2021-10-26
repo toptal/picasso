@@ -51,15 +51,14 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     () => getSelectedOptions(flatOptions, value),
     [flatOptions, value]
   )
-  const nonSelectedOptions = useMemo(
-    () => removeDuplicatedOptions([...flatOptions, ...selectedOptions]),
-    [flatOptions, selectedOptions]
+  const selection = useMemo(
+    () =>
+      getSelection(
+        removeDuplicatedOptions([...flatOptions, ...selectedOptions]),
+        value
+      ),
+    [flatOptions, selectedOptions, value]
   )
-
-  const selection = useMemo(() => getSelection(nonSelectedOptions, value), [
-    nonSelectedOptions,
-    value
-  ])
   const displayValue = useMemo(() => selection.display(getDisplayValue), [
     selection,
     getDisplayValue
@@ -101,7 +100,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const canOpen = !isOpen && !disabled
   const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex({
-    options: filteredOptions,
+    options: limitedOptions,
     selection,
     isOpen
   })
