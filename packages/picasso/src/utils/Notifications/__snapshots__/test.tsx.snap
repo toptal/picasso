@@ -90,7 +90,6 @@ exports[`useNotifications error notification render 1`] = `
                       class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-primary PicassoButtonCircular-root Notification-close"
                       data-component-type="button"
                       tabindex="0"
-                      title="Close Notification"
                       type="button"
                     >
                       <span
@@ -209,7 +208,6 @@ exports[`useNotifications info notification render 1`] = `
                       class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-primary PicassoButtonCircular-root Notification-close"
                       data-component-type="button"
                       tabindex="0"
-                      title="Close Notification"
                       type="button"
                     >
                       <span
@@ -328,7 +326,6 @@ exports[`useNotifications success notification render 1`] = `
                       class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-primary PicassoButtonCircular-root Notification-close"
                       data-component-type="button"
                       tabindex="0"
-                      title="Close Notification"
                       type="button"
                     >
                       <span

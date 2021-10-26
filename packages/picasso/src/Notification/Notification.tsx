@@ -49,7 +49,6 @@ const renderNotificationCloseButton = ({ onClose, classes }: PrivateProps) => (
   <Button.Circular
     onClick={onClose}
     className={classes?.close}
-    title='Close Notification'
     icon={<CloseMinor16 className={classes?.closeIcon} />}
   />
 )
