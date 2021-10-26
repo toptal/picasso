@@ -36,7 +36,7 @@ const useHighlightedIndex = ({ flatOptions, isOpen, selection }: Props) => {
     [flatOptions]
   )
 
-  // Reset index on close
+  // Reset index on close/options change
   useEffect(() => {
     const nextHighlightedIndex =
       selectedIndicies.length === 1
