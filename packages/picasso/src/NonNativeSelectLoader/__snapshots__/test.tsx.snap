@@ -7,7 +7,6 @@ exports[`NonNativeSelectLoader renders 1`] = `
   >
     <ul
       class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
-      data-testid="loader"
       role="menu"
       tabindex="-1"
     >

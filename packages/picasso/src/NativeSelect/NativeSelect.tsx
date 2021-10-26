@@ -77,7 +77,8 @@ export const NativeSelect = documentable(
         options,
         disabled,
         multiple,
-        value
+        value,
+        limit
       })
       const { selection, emptySelectValue } = selectState
       const { getItemProps, getInputProps } = useSelectProps({
@@ -143,7 +144,7 @@ export const NativeSelect = documentable(
           </NativeSelectPlaceholder>
           <NativeSelectOptions
             options={options}
-            value={value}
+            selection={selection}
             renderOption={renderOption as any}
             getItemProps={getItemProps}
           />

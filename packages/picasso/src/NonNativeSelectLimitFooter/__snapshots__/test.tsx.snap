@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NonNativeSelectLimitFooter renders footer when overflow 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      aria-disabled="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root PicassoMenuItem-disabled MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          Showing only first 
+          50
+           of 
+          100
+           items
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;
+
+exports[`NonNativeSelectLimitFooter renders null when no overflow 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  />
+</div>
+`;

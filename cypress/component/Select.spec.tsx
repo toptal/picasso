@@ -26,7 +26,8 @@ const TestSelect = ({
   searchThreshold,
   iconPosition,
   icon,
-  menuWidth
+  menuWidth,
+  limit
 }: Partial<SelectProps> = {}) => (
   <Select
     data-testid='select'
@@ -45,6 +46,7 @@ const TestSelect = ({
     icon={icon}
     iconPosition={iconPosition}
     searchThreshold={searchThreshold}
+    limit={limit}
   />
 )
 
@@ -154,6 +156,7 @@ const pressEnter = () => {
 
 const getNativeSelect = () => cy.get('select')
 
+// eslint-disable-next-line max-lines-per-function
 describe('Select', () => {
   it('renders', () => {
     mount(
@@ -406,5 +409,18 @@ describe('Select', () => {
     pressArrowDown()
     pressEnter()
     getOption(8).should('have.attr', 'aria-selected').and('match', /true/)
+  })
+
+  it('highlights limited options correctly', () => {
+    mount(
+      <TestingPicasso>
+        <TestSelect options={OPTION_GROUPS} limit={1} />
+      </TestingPicasso>
+    )
+
+    openSelect()
+    pressArrowDown()
+
+    getOption(4).should('have.attr', 'data-highlighted').and('match', /true/)
   })
 })

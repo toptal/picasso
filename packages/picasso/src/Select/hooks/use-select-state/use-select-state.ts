@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import { useState, useCallback, useEffect, useMemo } from 'react'
 
 import {
@@ -7,13 +8,14 @@ import {
   UseSelectStateOutput
 } from '../../types'
 import {
-  getSelection,
-  removeDuplicatedOptions,
+  getMultipleSelection,
+  getSingleSelection,
   getSelectedOptions,
   DEFAULT_SEARCH_THRESHOLD,
   DEFAULT_LIMIT,
   filterOptions,
-  flattenOptions
+  flattenOptions,
+  limitOptions
 } from '../../utils'
 import useHighlightedIndex from '../use-highlighted-index'
 
@@ -35,7 +37,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     options = [],
     disabled = false,
     multiple,
-    value,
+    value: valueProp,
     searchThreshold = DEFAULT_SEARCH_THRESHOLD,
     limit = DEFAULT_LIMIT
   } = props
@@ -43,37 +45,43 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
     options
   ])
-
-  const [selectedOptions, setSelectedOptions] = useState(
-    getSelectedOptions(options, value)
+  const [value, setValue] = useState(valueProp)
+  const selectedOptions = useMemo(
+    () => getSelectedOptions(flatOptions, value),
+    [flatOptions, value]
   )
   const selection = useMemo(
     () =>
-      getSelection(
-        removeDuplicatedOptions([...flatOptions, ...selectedOptions]),
-        value
-      ),
-    [flatOptions, selectedOptions, value]
+      multiple
+        ? getMultipleSelection(selectedOptions)
+        : getSingleSelection(selectedOptions[0]),
+    [selectedOptions, multiple]
   )
-  const [displayValue, setDisplayValue] = useState(
-    selection.display(getDisplayValue)
-  )
+  const displayValue = useMemo(() => selection.display(getDisplayValue), [
+    selection,
+    getDisplayValue
+  ])
   const [filterOptionsValue, setFilterOptionsValue] = useState(
     EMPTY_INPUT_VALUE
   )
   const filteredOptions = useMemo(
-    () => filterOptions({ options, filterOptionsValue, getDisplayValue }),
+    () =>
+      filterOptions({
+        options,
+        filterOptionsValue,
+        getDisplayValue
+      }),
     [options, filterOptionsValue, getDisplayValue]
   )
-  const selectedIndexes = useMemo(
-    () =>
-      flatOptions.reduce(
-        (selected: number[], option: Option, index: number) =>
-          selection.isOptionSelected(option) ? [...selected, index] : selected,
-        []
-      ),
-    [flatOptions, selection]
+  const filteredLimitedOptions = useMemo(
+    () => limitOptions({ options: filteredOptions, limit }),
+    [filteredOptions, limit]
   )
+  const filteredLimitedFlatOptions = useMemo(
+    () => flattenOptions(filteredLimitedOptions),
+    [filteredLimitedOptions]
+  )
+
   const emptySelectValue: string | string[] = useMemo(
     () => (multiple ? [] : ''),
     [multiple]
@@ -84,21 +92,14 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const canOpen = !isOpen && !disabled
   const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex({
-    selectedIndexes,
+    flatOptions: filteredLimitedFlatOptions,
+    selection,
     isOpen
   })
 
   useEffect(() => {
-    const newSelect = getSelection(
-      removeDuplicatedOptions([...flatOptions, ...selectedOptions]),
-      value
-    )
-
-    setDisplayValue(newSelect.display(getDisplayValue))
-    setSelectedOptions(getSelectedOptions(options, value))
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, options, flatOptions])
+    setValue(valueProp)
+  }, [valueProp])
 
   const close = useCallback(() => {
     setOpen(false)
@@ -116,10 +117,10 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
 
   return {
     ...props,
-    setSelectedOptions,
+    setValue,
     selectedOptions,
-    filteredOptions,
-    selectedIndexes,
+    // TODO: keep consistent naming
+    filteredOptions: filteredLimitedOptions,
     isOpen,
     canOpen,
     open,
@@ -132,8 +133,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     displayValue,
     selection,
     emptySelectValue,
-    setFilterOptionsValue,
-    setDisplayValue
+    setFilterOptionsValue
   }
 }
 

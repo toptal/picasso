@@ -6,13 +6,12 @@ import {
   EMPTY_INPUT_VALUE,
   toggleMultipleSelectValue,
   focusRef,
-  fireOnChangeEvent,
-  getSelectedOptions
+  fireOnChangeEvent
 } from '../../../utils'
 
 const useSelectHandler = <T extends ValueType, M extends boolean = false>({
-  selectState: { emptySelectValue, setSelectedOptions, setFilterOptionsValue },
-  selectProps: { multiple, value, options, name, onChange },
+  selectState: { emptySelectValue, setValue, setFilterOptionsValue },
+  selectProps: { multiple, value, name, onChange },
   selectRef
 }: UseSelectProps<T, M>) =>
   useCallback(
@@ -30,7 +29,7 @@ const useSelectHandler = <T extends ValueType, M extends boolean = false>({
         newValue = option.value
       }
 
-      setSelectedOptions(getSelectedOptions(options, newValue))
+      setValue(newValue)
 
       fireOnChangeEvent({ event, value: newValue, name, onChange })
       setFilterOptionsValue(EMPTY_INPUT_VALUE)
@@ -40,13 +39,12 @@ const useSelectHandler = <T extends ValueType, M extends boolean = false>({
     [
       name,
       onChange,
-      options,
       emptySelectValue,
       setFilterOptionsValue,
       multiple,
       value,
       selectRef,
-      setSelectedOptions
+      setValue
     ]
   )
 

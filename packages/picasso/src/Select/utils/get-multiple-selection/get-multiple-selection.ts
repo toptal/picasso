@@ -1,21 +1,14 @@
-import { ValueType, Option, Selection } from '../../types'
-import isOptionInSelectedValues from '../is-option-in-selected-values'
-import isEmpty from '../is-empty'
+import { Option, Selection } from '../../types'
 
-const getMultipleSelection = (
-  options: Option[],
-  value: ValueType[]
-): Selection => {
-  const getSelectedOptions = () =>
-    options.filter(option => isOptionInSelectedValues(option, value))
-
+const getMultipleSelection = (selectedOptions: Option[]): Selection => {
   return {
     display: (getDisplayValue: (option: Option | null) => string) =>
-      getSelectedOptions()
-        .map(getDisplayValue)
-        .join(', '),
-    isSelected: () => !isEmpty(value),
-    isOptionSelected: option => isOptionInSelectedValues(option, value)
+      selectedOptions.map(getDisplayValue).join(', '),
+    isSelected: () => selectedOptions.length > 0,
+    isOptionSelected: option =>
+      selectedOptions.some(
+        selectedOption => option.value === String(selectedOption.value)
+      )
   }
 }
 

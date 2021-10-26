@@ -88,6 +88,11 @@ export interface SelectProps<
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
   ref?: React.Ref<HTMLInputElement>
+  testIds?: {
+    noOptions?: string
+    loader?: string
+    limitFooter?: string
+  }
 }
 
 export type ValueType = string | number
@@ -97,7 +102,8 @@ export type Option<T extends string | number = string | number> = {
   text: string
   description?: string
   value: T
-  [prop: string]: string | number | undefined
+  disabled?: boolean
+  [prop: string]: string | number | undefined | boolean
 }
 
 export type OptionGroups<T extends string | number = string | number> = {
@@ -129,7 +135,6 @@ export interface UseSelectStateProps {
 }
 
 export type UseSelectStateOutput = {
-  selectedIndexes: number[]
   isOpen: boolean
   canOpen: boolean
   open: () => void
@@ -141,12 +146,11 @@ export type UseSelectStateOutput = {
   showSearch: boolean
   filterOptionsValue: string
   displayValue: string
-  setDisplayValue: (value: string) => void
   selection: Selection
   filteredOptions: Option[] | OptionGroups
   emptySelectValue: string | string[]
   selectedOptions: Option[]
-  setSelectedOptions: (options: Option[]) => void
+  setValue: (value: ValueType | ValueType[]) => void
 }
 
 export interface UseSelectProps<

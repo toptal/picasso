@@ -17,14 +17,18 @@ const defaultGetItemProps = () => ({
 })
 
 const renderNativeSelectOptions = ({
-  value,
+  selection = {
+    isSelected: jest.fn(),
+    isOptionSelected: jest.fn(),
+    display: jest.fn()
+  },
   options = OPTIONS,
   renderOption = option => option.text,
   getItemProps = defaultGetItemProps
 }: Partial<Props> = {}) =>
   render(
     <NativeSelectOptions
-      value={value}
+      selection={selection}
       options={options}
       renderOption={renderOption}
       getItemProps={getItemProps}

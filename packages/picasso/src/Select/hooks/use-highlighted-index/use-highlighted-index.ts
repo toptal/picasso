@@ -1,27 +1,54 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
+
+import { Option, Selection } from '../../types'
 
 interface Props {
-  selectedIndexes: number[]
+  flatOptions: Option[]
+  selection: Selection
   isOpen: boolean
 }
 
-const useHighlightedIndex = ({ selectedIndexes, isOpen }: Props) => {
-  const [highlightedIndex, setHighlightedIndex] = useState<number>(0)
+const useHighlightedIndex = ({ flatOptions, isOpen, selection }: Props) => {
+  const [highlightedIndex, setHighlightedIndex] = useState(0)
 
+  const selectedIndicies = useMemo(
+    () =>
+      flatOptions.reduce(
+        (acc, option, index) =>
+          selection.isOptionSelected(option) ? [...acc, index] : acc,
+        [] as number[]
+      ),
+    [selection, flatOptions]
+  )
+
+  const nonDisabledIndicies = useMemo(
+    () =>
+      flatOptions.reduce(
+        (acc, option, index) => (!option.disabled ? [...acc, index] : acc),
+        [] as number[]
+      ),
+    [flatOptions]
+  )
+
+  const handleChange = useCallback(
+    (nextIndex: number) =>
+      !flatOptions[nextIndex].disabled && setHighlightedIndex(nextIndex),
+    [flatOptions]
+  )
+
+  // Reset index on close/options change
   useEffect(() => {
-    if (!isOpen) {
-      const nextHighlightedIndex =
-        selectedIndexes.length === 1 ? selectedIndexes[0] : 0
+    const nextHighlightedIndex =
+      selectedIndicies.length === 1
+        ? selectedIndicies[0]
+        : nonDisabledIndicies[0]
 
-      setHighlightedIndex(nextHighlightedIndex)
-    }
+    setHighlightedIndex(nextHighlightedIndex)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, selectedIndexes.length, selectedIndexes[0]])
+  }, [isOpen, flatOptions])
 
-  return [highlightedIndex, setHighlightedIndex] as [
-    number,
-    (value: number) => void
-  ]
+  return [highlightedIndex, handleChange] as const
 }
 
 export default useHighlightedIndex

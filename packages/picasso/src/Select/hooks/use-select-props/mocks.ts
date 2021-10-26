@@ -32,7 +32,6 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
       enableReset: false
     },
     selectState: {
-      selectedIndexes: [],
       isOpen: false,
       canOpen: true,
       open: jest.fn(),
@@ -44,7 +43,6 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
       showSearch: false,
       filterOptionsValue: '',
       displayValue: '',
-      setDisplayValue: jest.fn(),
       selection: {
         isSelected: jest.fn(),
         isOptionSelected: jest.fn(),
@@ -53,7 +51,7 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
       filteredOptions: [],
       emptySelectValue: '',
       selectedOptions: [],
-      setSelectedOptions: jest.fn()
+      setValue: jest.fn()
     }
   }
 }

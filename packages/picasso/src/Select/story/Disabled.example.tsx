@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Select } from '@toptal/picasso'
+import { Select, Container, Form } from '@toptal/picasso'
 
 const Example = () => {
   const [value, setValue] = useState<string>('')
@@ -9,14 +9,52 @@ const Example = () => {
   }
 
   return (
-    <Select
-      disabled
-      onChange={handleChange}
-      options={OPTIONS}
-      value={value}
-      placeholder='Choose an option...'
-      width='auto'
-    />
+    <Container flex gap='1rem'>
+      <Container>
+        <Form.Field>
+          <Form.Label>Select is disabled</Form.Label>
+          <Select
+            disabled
+            onChange={handleChange}
+            options={OPTIONS}
+            value={value}
+            placeholder='Choose an option...'
+            width='auto'
+          />
+        </Form.Field>
+      </Container>
+      <Container>
+        <Form.Field>
+          <Form.Label>Options are disabled</Form.Label>
+          <Select
+            onChange={handleChange}
+            options={OPTIONS.map((option, index) => ({
+              ...option,
+              disabled: index % 2 === 0
+            }))}
+            value={value}
+            placeholder='Choose an option...'
+            width='auto'
+          />
+        </Form.Field>
+      </Container>
+      <Container>
+        <Form.Field>
+          <Form.Label>Native options are disabled</Form.Label>
+          <Select
+            onChange={handleChange}
+            options={OPTIONS.map((option, index) => ({
+              ...option,
+              disabled: index % 2 !== 0
+            }))}
+            value={value}
+            placeholder='Choose an option...'
+            width='auto'
+            native
+          />
+        </Form.Field>
+      </Container>
+    </Container>
   )
 }
 

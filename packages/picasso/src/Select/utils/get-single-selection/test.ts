@@ -11,7 +11,7 @@ const OPTIONS = [
 
 describe('getSingleSelection', () => {
   it('gets empty', () => {
-    const selection = getSingleSelection(OPTIONS, '')
+    const selection = getSingleSelection(null)
 
     expect(selection.display(getDisplayValue)).toEqual('')
     expect(selection.isOptionSelected(OPTIONS[0])).toBeFalsy()
@@ -21,7 +21,7 @@ describe('getSingleSelection', () => {
   })
 
   it('gets non-empty', () => {
-    const selection = getSingleSelection(OPTIONS, '1')
+    const selection = getSingleSelection(OPTIONS[0])
 
     expect(selection.display(getDisplayValue)).toEqual('One')
     expect(selection.isOptionSelected(OPTIONS[0])).toBeTruthy()

@@ -28,6 +28,12 @@ export default ({ typography, palette, shadows }: Theme) =>
     root: {
       '&$nonSelectable:hover, &$nonSelectable:focus': {
         backgroundColor: 'unset'
+      },
+
+      '&$disabled': {
+        color: palette.grey.main2,
+        pointerEvents: 'none',
+        opacity: 1
       }
     },
     light: {
@@ -124,5 +130,6 @@ export default ({ typography, palette, shadows }: Theme) =>
       maxHeight: '14.75rem', // 6.5 lines to show
       overflowY: 'auto',
       boxShadow: shadows[2]
-    }
+    },
+    disabled: {}
   })

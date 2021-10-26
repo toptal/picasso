@@ -155,7 +155,10 @@ describe('NonNativeSelect', () => {
     } = renderSelect({
       options: OPTIONS,
       placeholder,
-      loading: true
+      loading: true,
+      testIds: {
+        loader: 'loader'
+      }
     })
 
     const selectInput = getByPlaceholderText(placeholder)
