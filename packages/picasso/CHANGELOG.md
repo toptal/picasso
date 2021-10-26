@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@12.3.1...@toptal/picasso@12.4.0) (2021-10-26)
+
+
+### Features
+
+* **Select:** add disabled option ([#2195](https://github.com/toptal/picasso/issues/2195)) ([9df4459](https://github.com/toptal/picasso/commit/9df4459cf6bed91315f104ab7bdd2c7e8b4263aa))
+
+
+
+
+
 ## [12.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso@12.3.0...@toptal/picasso@12.3.1) (2021-10-26)
 
 
