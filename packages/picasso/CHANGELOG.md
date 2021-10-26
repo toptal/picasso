@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso@12.3.0...@toptal/picasso@12.3.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* ensure Notification has allways alert role ([#2199](https://github.com/toptal/picasso/issues/2199)) ([cfc9330](https://github.com/toptal/picasso/commit/cfc93307b286ee148fc30f21742202468dcfb9cd))
+
+
+
+
+
 # [12.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso@12.2.2...@toptal/picasso@12.3.0) (2021-10-22)
 
 
