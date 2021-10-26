@@ -1,46 +1,37 @@
-import React, { ReactNode } from 'react'
-import { render, RenderResult, fireEvent } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import React from 'react'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
 
-import Notification, { PublicProps } from './Notification'
-
-const renderNotification = (
-  children: ReactNode,
-  props: OmitInternalProps<PublicProps, 'children'>
-) => {
-  const { onClose } = props
-
-  return render(<Notification onClose={onClose}>{children}</Notification>)
-}
+import Notification from './Notification'
 
 describe('Notification', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderNotification('test example string', {})
-  })
-
   it('renders', () => {
-    const { container } = api
+    const { container } = render(
+      <Notification>test example string</Notification>
+    )
 
     expect(container).toMatchSnapshot()
   })
 
-  describe('with `prop.onClose` is passed', () => {
-    let onClose: () => void
+  it.each(['green', 'red', 'white', 'yellow'] as const)(
+    'has role "alert"',
+    variant => {
+      const api = render(<Notification variant={variant}>Error</Notification>)
 
-    beforeEach(() => {
-      onClose = jest.fn()
-      api = renderNotification('test example string', { onClose })
+      expect(api.getByRole('alert')).toBeDefined()
+    }
+  )
 
-      const { getByTitle } = api
-      const closeButton = getByTitle('Close Notification')
+  it('calls onClose', () => {
+    const onClose = jest.fn()
+    const { container } = render(
+      <Notification onClose={onClose}>test example string</Notification>
+    )
+    const closeButton = container.querySelector('button')
 
+    if (closeButton) {
       fireEvent.click(closeButton)
-    })
+    }
 
-    it('calls `prop.onClose`', () => {
-      expect(onClose).toHaveBeenCalledTimes(1)
-    })
+    expect(onClose).toHaveBeenCalledTimes(1)
   })
 })
