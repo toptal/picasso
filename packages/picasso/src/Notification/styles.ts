@@ -1,5 +1,6 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
+import { rem } from '@toptal/picasso-shared/styles'
 
 PicassoProvider.override(({ layout }: Theme) => ({
   MuiSnackbarContent: {
@@ -54,7 +55,11 @@ export default ({
     content: {
       color: common.black,
       overflowWrap: 'break-word',
-      minWidth: 0
+      minWidth: 0,
+      fontSize: rem('14px')
+    },
+    contentYellow: {
+      fontSize: rem('13px')
     },
     contentCloseButton: {
       paddingRight: '1.5em'
@@ -70,11 +75,13 @@ export default ({
 
     close: {
       position: 'absolute',
-      right: '1.4em',
-      top: '1.4em',
+      right: rem('12px'),
+      top: rem('12px'),
       background: 'transparent',
       border: 0,
       padding: 0,
+      width: '1rem',
+      height: '1rem',
 
       '&:hover': {
         background: 'transparent'

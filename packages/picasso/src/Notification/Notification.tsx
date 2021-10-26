@@ -79,7 +79,7 @@ const renderNotificationIcon = ({ icon, variant, classes }: PrivateProps) => {
 }
 
 const renderNotificationContent = (props: PrivateProps) => {
-  const { classes, children, onClose } = props
+  const { classes, children, onClose, variant } = props
 
   return (
     <Container flex className={classes?.contentWrapper}>
@@ -90,6 +90,7 @@ const renderNotificationContent = (props: PrivateProps) => {
         size='medium'
         className={cx(
           classes?.content,
+          classes?.[`content${capitalize(variant as string)}`],
           classes?.contentCloseButton
             ? {
                 [classes.contentCloseButton]: onClose
