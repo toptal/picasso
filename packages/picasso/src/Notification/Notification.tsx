@@ -83,7 +83,14 @@ const renderNotificationContent = (props: PrivateProps) => {
 
   return (
     <Container flex className={classes?.contentWrapper}>
-      <Container flex alignItems='center' className={classes?.iconWrapper}>
+      <Container
+        flex
+        alignItems='center'
+        className={cx(
+          classes?.iconWrapper,
+          classes?.[`iconWrapper${capitalize(variant as string)}`]
+        )}
+      >
         {renderNotificationIcon(props)}
       </Container>
       <Typography

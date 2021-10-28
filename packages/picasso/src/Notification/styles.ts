@@ -27,7 +27,9 @@ export default ({
       borderRadius: 0,
       flexWrap: 'nowrap',
       maxWidth: 'initial',
-      padding: `1.5em calc(1.5em - ${layout.contentPaddingHorizontal})`,
+      padding: `${rem('25px')} calc(1.5em - ${
+        layout.contentPaddingHorizontal
+      }) 1.5em`,
       position: 'relative',
       width: '100%',
       boxShadow: 'none'
@@ -48,7 +50,10 @@ export default ({
       background: common.white
     },
     notificationYellow: {
-      background: yellow.lighter
+      background: yellow.lighter,
+      padding: `${rem('24px')} calc(1.5em - ${
+        layout.contentPaddingHorizontal
+      }) 1.5em`
     },
 
     // Content
@@ -70,7 +75,12 @@ export default ({
       flexBasis: '1.5em',
       marginRight: '1em',
       minWidth: '1.5em',
-      height: '1.3125em'
+      height: '1.3125em',
+      paddingBottom: rem('1px')
+    },
+    iconWrapperYellow: {
+      paddingBottom: 0,
+      paddingTop: rem('1px')
     },
 
     close: {
