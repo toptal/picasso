@@ -74,11 +74,11 @@ export default ({
       marginRight: '1em',
       minWidth: '1.5em',
       height: '1.3125em',
-      paddingBottom: rem('1px')
+      paddingBottom: '1px'
     },
     iconWrapperYellow: {
       paddingBottom: 0,
-      paddingTop: rem('1px')
+      paddingTop: '1px'
     },
 
     close: {
