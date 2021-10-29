@@ -51,9 +51,7 @@ export default ({
     },
     notificationYellow: {
       background: yellow.lighter,
-      padding: `${rem('24px')} calc(1.5em - ${
-        layout.contentPaddingHorizontal
-      }) 1.5em`
+      padding: `1.5rem calc(1.5em - ${layout.contentPaddingHorizontal}) 1.5em`
     },
 
     // Content
