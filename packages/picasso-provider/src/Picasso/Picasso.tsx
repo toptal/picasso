@@ -18,6 +18,7 @@ import React, {
 } from 'react'
 import { Helmet } from 'react-helmet'
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
+import { isSSR } from '@toptal/picasso/utils'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
@@ -114,11 +115,13 @@ const Viewport = () => {
   const [warned, setWarned] = useState(false)
 
   const content = 'width=device-width, user-scalable=no'
-  const nonPicassoViewportTags = document.querySelectorAll(
-    'meta[name="viewport"]:not([data-picasso="true"])'
-  )
+  const nonPicassoViewportTags =
+    !isSSR() &&
+    document.querySelectorAll(
+      'meta[name="viewport"]:not([data-picasso="true"])'
+    )
 
-  if (nonPicassoViewportTags.length > 0) {
+  if (nonPicassoViewportTags && nonPicassoViewportTags.length > 0) {
     if (!warned) {
       unsafeErrorLog(
         `PICASSO:

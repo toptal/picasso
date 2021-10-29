@@ -10,8 +10,10 @@ import type {
   VariantType,
   Props as AvatarProps
 } from './Avatar'
+import { isSSR } from '../utils'
 
-const isBrowserSupportsObjectFit = 'objectFit' in document.documentElement.style
+const isBrowserSupportsObjectFit =
+  !isSSR() && 'objectFit' in document.documentElement.style
 
 type LogoProps = {
   size: AvatarSizeType

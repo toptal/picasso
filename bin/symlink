@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable max-statements */
 
 const path = require('path')
 const { readdirSync } = require('fs')
@@ -9,13 +10,13 @@ const { log } = require('./utils')
 
 const PACKAGES_DIR = path.join(__dirname, '../packages/')
 
-const link = function (name) {
+const link = function(name) {
   exec(`yarn link ${name}`, {
     stdio: 'inherit'
   })
 }
 
-const unlink = function (name) {
+const unlink = function(name) {
   try {
     exec(`yarn unlink ${name}`, {
       stdio: 'ignore',
@@ -26,7 +27,7 @@ const unlink = function (name) {
   }
 }
 
-const createLink = function (name, cwd) {
+const createLink = function(name, cwd) {
   log(`Linking ${name}...`)
   exec('yarn link', {
     cwd,
@@ -34,7 +35,7 @@ const createLink = function (name, cwd) {
   })
 }
 
-const removeLink = function (name, cwd) {
+const removeLink = function(name, cwd) {
   try {
     log(`Unlinking ${name}...`)
     exec('yarn unlink', {
@@ -63,7 +64,7 @@ const getPackagePackageJson = packageName => {
   return require(packageJsonPath)
 }
 
-const setup = function () {
+const setup = function() {
   const packages = getPicassoPackages()
 
   const linkPackages = packages.map(package => {
@@ -88,9 +89,11 @@ const setup = function () {
 
     linkPackages.forEach(({ name, outputDir }) => removeLink(name, outputDir))
     removeLink('react', './node_modules/react')
+    removeLink('@material-ui', './node_modules/@material-ui')
 
     linkPackages.forEach(({ name, outputDir }) => createLink(name, outputDir))
     createLink('react', './node_modules/react')
+    createLink('@material-ui', './node_modules/@material-ui')
     // because we are using yarn workspaces
     // we have default symlinks set up to /src folders of packages
     // so we need to override them and reffer to /build folders
@@ -105,6 +108,7 @@ const setup = function () {
     linkPackages.forEach(({ name }) => unlink(name))
     linkPackages.forEach(({ name, outputDir }) => removeLink(name, outputDir))
     removeLink('react', './node_modules/react')
+    removeLink('@material-ui', './node_modules/@material-ui')
 
     log('Re-running "yarn install" to restore links for workspaces...')
     exec('yarn install --force')

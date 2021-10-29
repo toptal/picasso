@@ -2,8 +2,7 @@ import React, {
   forwardRef,
   useState,
   ReactNode,
-  FunctionComponent,
-  useLayoutEffect
+  FunctionComponent
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -14,7 +13,7 @@ import Button from '../Button'
 import Container from '../Container'
 import Dropdown from '../Dropdown'
 import { Overview16, Close16 } from '../Icon'
-import { useBreakpoint } from '../utils'
+import { useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
@@ -84,7 +83,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setHasSidebar(true)
 
     return function cleanup() {

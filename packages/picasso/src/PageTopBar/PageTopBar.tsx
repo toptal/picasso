@@ -1,7 +1,6 @@
 /* eslint-disable complexity */
 import React, {
   useContext,
-  useLayoutEffect,
   forwardRef,
   ReactNode,
   ReactElement,
@@ -17,7 +16,7 @@ import Container from '../Container'
 import Typography from '../Typography'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
-import { useBreakpoint } from '../utils'
+import { useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light'
@@ -61,7 +60,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
 
   const { setHasTopBar } = usePageTopBar()
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setHasTopBar(true)
 
     return function cleanup() {

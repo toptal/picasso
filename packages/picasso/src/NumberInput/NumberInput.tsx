@@ -6,7 +6,7 @@ import ButtonBase from '@material-ui/core/ButtonBase'
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import Container from '../Container'
-import { useCombinedRefs } from '../utils'
+import { isSSR, useCombinedRefs } from '../utils'
 import { ArrowDownMinor16, ArrowUpMinor16 } from '../Icon'
 import styles from './styles'
 
@@ -47,10 +47,12 @@ type NumberAdornmentProps = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const nativeInputValueSetter = (Object.getOwnPropertyDescriptor(
-  window.HTMLInputElement.prototype,
-  'value'
-) as PropertyDescriptor).set!
+const nativeInputValueSetter = !isSSR()
+  ? (Object.getOwnPropertyDescriptor(
+      window.HTMLInputElement.prototype,
+      'value'
+    ) as PropertyDescriptor).set!
+  : () => {}
 
 const NumberAdornment = (props: NumberAdornmentProps) => {
   const { step, min, max, value, inputRef, classes, disabled } = props
