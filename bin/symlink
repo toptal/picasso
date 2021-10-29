@@ -89,11 +89,11 @@ const setup = function() {
 
     linkPackages.forEach(({ name, outputDir }) => removeLink(name, outputDir))
     removeLink('react', './node_modules/react')
-    removeLink('@material-ui', './node_modules/@material-ui')
+    removeLink('@material-ui/core', './node_modules/@material-ui/core')
 
     linkPackages.forEach(({ name, outputDir }) => createLink(name, outputDir))
     createLink('react', './node_modules/react')
-    createLink('@material-ui', './node_modules/@material-ui')
+    createLink('@material-ui/core', './node_modules/@material-ui/core')
     // because we are using yarn workspaces
     // we have default symlinks set up to /src folders of packages
     // so we need to override them and reffer to /build folders
@@ -108,7 +108,7 @@ const setup = function() {
     linkPackages.forEach(({ name }) => unlink(name))
     linkPackages.forEach(({ name, outputDir }) => removeLink(name, outputDir))
     removeLink('react', './node_modules/react')
-    removeLink('@material-ui', './node_modules/@material-ui')
+    removeLink('@material-ui/core', './node_modules/@material-ui/core')
 
     log('Re-running "yarn install" to restore links for workspaces...')
     exec('yarn install --force')
