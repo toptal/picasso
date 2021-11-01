@@ -1,46 +1,47 @@
-import React from 'react'
-import { JssProps } from '@toptal/picasso-shared'
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import React, { ReactNode } from 'react'
 import cx from 'classnames'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { SizeType } from '@toptal/picasso-shared'
 
-import { Typography } from '..'
-import ImagePlaceholder from './ImagePlaceholder'
-import getNameInitials from '../utils/get-name-initials'
-import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
-import type { VariantType, AvatarSizeType } from './Avatar'
+import { Typography } from '../..'
+import ImagePlaceholder from '../ImagePlaceholder/ImagePlaceholder'
+import styles from './styles'
+import type { AvatarSizeType, VariantType } from '../Avatar'
 
-type WithInitialsProps = {
-  name: string
-  variant: VariantType
-  size: AvatarSizeType
+type Props = {
   className?: string
-} & JssProps
-const WithInitials = ({
-  classes,
-  name,
-  variant,
+  fontSize?: SizeType<'small' | 'large'>
+  children: ReactNode
+  size: AvatarSizeType
+  variant: VariantType
+}
+
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoTextAvatar'
+})
+
+const TextAvatar = ({
+  children,
+  className,
+  fontSize,
   size,
-  className
-}: WithInitialsProps) => {
-  const initials = getNameInitials(name)
+  variant
+}: Props) => {
+  const classes = useStyles()
 
   return (
     <>
-      <ImagePlaceholder
-        variant={variant}
-        size={size}
-        className={className}
-        classes={classes}
-      />
-      <Typography
-        className={cx(classes.text, classes.centeredContent, {
-          [classes.textCapLimit]: initials.length >= AVATAR_INITIALS_LIMIT
-        })}
-        invert
-      >
-        {initials}
+      <ImagePlaceholder className={className} size={size} variant={variant} />
+      <Typography className={cx(classes.root, classes[fontSize!])} invert>
+        {children}
       </Typography>
     </>
   )
 }
 
-export default WithInitials
+TextAvatar.defaultProps = {
+  size: 'large'
+}
+
+export default TextAvatar

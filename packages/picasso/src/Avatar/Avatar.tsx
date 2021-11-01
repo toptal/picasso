@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { FunctionComponent, HTMLAttributes } from 'react'
-import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
-import styles from './styles'
-import ImageAvatar from './ImageAvatar'
-import InitialsAvatar from './InitialsAvatar'
-import IconAvatar from './IconAvatar'
+import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
+import getNameInitials from '../utils/get-name-initials'
+import ImageAvatar from './ImageAvatar/ImageAvatar'
+import TextAvatar from './TextAvatar/TextAvatar'
+import IconAvatar from './IconAvatar/IconAvatar'
+import AvatarWrapper from './AvatarWrapper/AvatarWrapper'
 
 export type VariantType = 'square' | 'portrait' | 'landscape'
 export type AvatarSizeType = SizeType<
@@ -18,78 +19,62 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   alt?: string
   /** User full name to display initials on the avatar */
   name?: string
-  /**
-   * Size
-   * @default xsmall
-   */
+  /** Size */
   size?: AvatarSizeType
   /** Photo url */
   src?: string
-  /**
-   * Variant of the avatar shape
-   * @default square
-   */
+  /** Variant of the avatar shape */
   variant?: VariantType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoAvatar' })
-
-export const Avatar: FunctionComponent<Props> = props => {
-  const {
-    alt,
-    src,
-    className,
-    name,
-    size = 'xsmall',
-    style,
-    variant = 'square',
-    ...rest
-  } = props
-
-  const classes = useStyles(props)
-
+export const Avatar: FunctionComponent<Props> = ({
+  alt,
+  src,
+  className,
+  name,
+  size,
+  style,
+  variant,
+  ...rest
+}) => {
   const renderAvatar = () => {
     if (src) {
       return (
         <ImageAvatar
           alt={alt}
-          classes={classes}
           className={className}
           name={name}
-          size={size}
+          size={size!}
           src={src}
           style={style}
-          variant={variant}
+          variant={variant!}
         />
       )
     }
 
     if (name) {
+      const initials = getNameInitials(name)
+      const isLongText = initials.length >= AVATAR_INITIALS_LIMIT
+
       return (
-        <InitialsAvatar
-          classes={classes}
+        <TextAvatar
           className={className}
-          name={name}
-          size={size}
-          variant={variant}
-        />
+          fontSize={isLongText ? 'small' : 'large'}
+          size={size!}
+          variant={variant!}
+        >
+          {initials}
+        </TextAvatar>
       )
     }
 
-    return (
-      <IconAvatar
-        classes={classes}
-        className={className}
-        size={size}
-        variant={variant}
-      />
-    )
+    return <IconAvatar className={className} size={size!} variant={variant!} />
   }
 
   return (
-    <div {...rest} className={cx(classes.root, classes[size])}>
+    <AvatarWrapper size={size!} {...rest}>
       {renderAvatar()}
-    </div>
+    </AvatarWrapper>
   )
 }
 

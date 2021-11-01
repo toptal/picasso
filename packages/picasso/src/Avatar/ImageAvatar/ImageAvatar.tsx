@@ -1,21 +1,31 @@
 import React from 'react'
 import cx from 'classnames'
-import { JssProps, OmitInternalProps } from '@toptal/picasso-shared'
+import { JssProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import Image from '../Image'
-import Logo from '../Logo'
-import { Props as ImageProps } from '../Image/Image'
+import Image from '../../Image'
+import Logo from '../../Logo'
 import type {
   AvatarSizeType,
-  VariantType,
-  Props as AvatarProps
-} from './Avatar'
+  Props as AvatarProps,
+  VariantType
+} from '../Avatar'
+import styles from './styles'
 
-const isBrowserSupportsObjectFit = 'objectFit' in document.documentElement.style
+export type Props = {
+  size: AvatarSizeType
+  src: string
+  variant: VariantType
+} & Pick<AvatarProps, 'alt' | 'name' | 'style' | 'className'>
 
 type LogoProps = {
   size: AvatarSizeType
 } & JssProps
+
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoImageAvatar'
+})
+
 const renderLogo = ({ size, classes }: LogoProps) => {
   const isTooSmall = ['small', 'xsmall', 'xxsmall'].includes(size)
 
@@ -30,36 +40,9 @@ const renderLogo = ({ size, classes }: LogoProps) => {
   )
 }
 
-// You will be surprised, but it's a IE11 fix for `object-fit: cover` for images
-const IE11Image = ({ style, src, ...rest }: OmitInternalProps<ImageProps>) => (
-  <div
-    style={{
-      backgroundImage: `url(${src})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center center',
-      ...style
-    }}
-    {...rest}
-  />
-)
-
-type WithImageProps = {
-  variant: VariantType
-  size: AvatarSizeType
-  src: string
-} & Pick<AvatarProps, 'alt' | 'name' | 'style' | 'className'> &
-  JssProps
-const WithImage = ({
-  alt,
-  classes,
-  className,
-  name,
-  size,
-  src,
-  style,
-  variant
-}: WithImageProps) => {
-  const ImageComponent = isBrowserSupportsObjectFit ? Image : IE11Image
+const ImageAvatar = (props: Props) => {
+  const { alt, className, name, size, src, style } = props
+  const classes = useStyles(props)
 
   if (!src) {
     return null
@@ -67,15 +50,9 @@ const WithImage = ({
 
   return (
     <>
-      <ImageComponent
+      <Image
         alt={alt || String(name)}
-        className={cx(
-          classes.image,
-          classes[variant],
-          classes[size],
-          classes.clippedCorner,
-          className
-        )}
+        className={cx(classes.image, className)}
         src={src}
         style={style}
       />
@@ -84,4 +61,4 @@ const WithImage = ({
   )
 }
 
-export default WithImage
+export default ImageAvatar
