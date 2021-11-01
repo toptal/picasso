@@ -6,6 +6,7 @@ import getNameInitials from '../utils/get-name-initials'
 import ImageAvatar from './ImageAvatar/ImageAvatar'
 import TextAvatar from './TextAvatar/TextAvatar'
 import IconAvatar from './IconAvatar/IconAvatar'
+import AvatarGroup from './AvatarGroup/AvatarGroup'
 import AvatarWrapper from './AvatarWrapper/AvatarWrapper'
 
 export type VariantType = 'square' | 'portrait' | 'landscape'
@@ -117,4 +118,6 @@ Avatar.defaultProps = {
 
 Avatar.displayName = 'Avatar'
 
-export default Avatar
+export default Object.assign(Avatar, {
+  Group: AvatarGroup
+})
