@@ -9,7 +9,7 @@ const Example = () => {
   }
 
   return (
-    <Container flex gap='1rem'>
+    <Container flex gap='small'>
       <Container>
         <Form.Field>
           <Form.Label>Select is disabled</Form.Label>

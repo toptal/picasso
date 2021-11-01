@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Tag } from '@toptal/picasso'
 
 const Example = () => (
-  <Container flex gap='1rem'>
+  <Container flex gap='small'>
     <Tag.Rectangular variant='negative'>Negative</Tag.Rectangular>
     <Tag.Rectangular variant='warning'>Warning</Tag.Rectangular>
     <Tag.Rectangular variant='positive'>Positive</Tag.Rectangular>

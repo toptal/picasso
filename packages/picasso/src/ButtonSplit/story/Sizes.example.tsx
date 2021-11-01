@@ -13,7 +13,7 @@ const Example = () => {
   )
 
   return (
-    <Container flex gap='1rem'>
+    <Container flex gap='small'>
       <Button.Split size='small' menu={menu}>
         Button
       </Button.Split>

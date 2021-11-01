@@ -55,7 +55,7 @@ export interface Props
   /** Style variant of Notification */
   variant?: VariantType
   /** Gap between elements for a flex container */
-  gap?: string
+  gap?: SpacingType
   /** Component used for the root node */
   as?: ContainerType
   /** Text align of the inner text */
@@ -112,6 +112,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
         classes[`${variant}Variant`],
         {
           [classes[`${padded}Padding`]]: typeof padded === 'string',
+          [classes[`${gap}Gap`]]: typeof gap === 'string',
 
           [classes[`top${top}Margin`]]: typeof top === 'string',
           [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
@@ -139,7 +140,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
       style={{
         ...margins,
         ...(typeof padded === 'number' && { padding: spacingToRem(padded) }),
-        ...(typeof gap !== 'undefined' && { gap }),
+        ...(typeof gap === 'number' && { gap: spacingToRem(gap) }),
         ...style
       }}
     >

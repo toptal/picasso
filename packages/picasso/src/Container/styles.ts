@@ -55,6 +55,14 @@ const paddings = spacingVariants.reduce((acc, variant) => {
   return acc
 }, Object.create(null))
 
+const gaps = spacingVariants.reduce((acc, variant) => {
+  acc[`${variant}Gap`] = {
+    gap: spacingToRem(variant as SpacingType)
+  }
+
+  return acc
+}, Object.create(null))
+
 const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   if (!colorOptions) {
     return {}
@@ -158,5 +166,6 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
     ...margins,
     ...alignItems,
     ...justifyContent,
-    ...textAlignItems
+    ...textAlignItems,
+    ...gaps
   })

@@ -136,7 +136,7 @@ describe('Badge', () => {
     it('renders medium', () => {
       mount(
         <TestingPicasso>
-          <Container flex style={{ gap: '1rem' }} padded='small'>
+          <Container flex padded='small'>
             <Container padded='small'>
               <Badge variant='red' size='medium' content={1} />
             </Container>
@@ -160,7 +160,7 @@ describe('Badge', () => {
     it('renders large', () => {
       mount(
         <TestingPicasso>
-          <Container flex style={{ gap: '1rem' }} padded='small'>
+          <Container flex padded='small'>
             <Container padded='small'>
               <Badge variant='red' size='large' content={1} />
             </Container>

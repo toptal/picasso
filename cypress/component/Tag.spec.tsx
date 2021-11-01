@@ -30,7 +30,13 @@ interface RectangularTagArgs {
 
 const renderRegularTag = ({ variant }: RegularTagArgs) => (
   <TestingPicasso>
-    <Container flex direction='column' gap='1rem' right='small' padded='medium'>
+    <Container
+      flex
+      direction='column'
+      gap='small'
+      right='small'
+      padded='medium'
+    >
       <div>
         <Tag variant={variant}>{variant}</Tag>
       </div>
