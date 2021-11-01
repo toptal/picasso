@@ -7,7 +7,7 @@ PicassoProvider.override(({ layout }: Theme) => ({
     message: {
       display: 'flex',
       maxWidth: layout.contentWidth,
-      padding: `0 ${layout.contentPaddingHorizontal}`,
+      padding: 0,
       width: '100%',
       minWidth: 0,
       margin: '0 auto'
@@ -27,12 +27,10 @@ export default ({
       borderRadius: 0,
       flexWrap: 'nowrap',
       maxWidth: 'initial',
-      padding: `${rem('25px')} calc(1.5em - ${
-        layout.contentPaddingHorizontal
-      }) 1.5em`,
       position: 'relative',
       width: '100%',
-      boxShadow: 'none'
+      boxShadow: 'none',
+      padding: `1.5625em ${rem('40px')} 1.5625em 1.5em`
     },
     notificationShadow: {
       boxShadow: shadows[3]
@@ -47,11 +45,12 @@ export default ({
       background: green.lighter
     },
     notificationWhite: {
-      background: common.white
+      background: common.white,
+      padding: '1.5625em 1.5em 1.5em'
     },
     notificationYellow: {
       background: yellow.lighter,
-      padding: `1.5rem calc(1.5em - ${layout.contentPaddingHorizontal}) 1.5em`
+      padding: `1.5em ${layout.contentPaddingHorizontal}`
     },
 
     // Content
@@ -59,13 +58,12 @@ export default ({
       color: common.black,
       overflowWrap: 'break-word',
       minWidth: 0,
+      lineHeight: rem('22px'),
       fontSize: rem('14px')
     },
     contentYellow: {
+      lineHeight: rem('20px'),
       fontSize: rem('13px')
-    },
-    contentCloseButton: {
-      paddingRight: '1.5em'
     },
 
     // Content Icon
@@ -83,13 +81,12 @@ export default ({
 
     close: {
       position: 'absolute',
-      right: rem('12px'),
-      top: rem('12px'),
+      right: '0.5em',
+      top: '0.75em',
       background: 'transparent',
       border: 0,
       padding: 0,
-      width: '1rem',
-      height: '1rem',
+      height: '1em',
 
       '&:hover': {
         background: 'transparent'

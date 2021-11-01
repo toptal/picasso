@@ -99,12 +99,7 @@ const renderNotificationContent = (props: PrivateProps) => {
         size='medium'
         className={cx(
           classes?.content,
-          classes?.[`content${capitalizedVariant}`],
-          classes?.contentCloseButton
-            ? {
-                [classes.contentCloseButton]: onClose
-              }
-            : undefined
+          classes?.[`content${capitalizedVariant}`]
         )}
         as='div'
       >
