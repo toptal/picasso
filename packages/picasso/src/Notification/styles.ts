@@ -30,7 +30,7 @@ export default ({
       position: 'relative',
       width: '100%',
       boxShadow: 'none',
-      padding: `1.5625em ${rem('40px')} 1.5625em 1.5em`
+      padding: '1.5625em 2.5em 1.5625em 1.5em'
     },
     notificationShadow: {
       boxShadow: shadows[3]
