@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { ReactNode } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -33,6 +32,7 @@ const TextAvatar = ({
   return (
     <>
       <ImagePlaceholder className={className} size={size} variant={variant} />
+      {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
       <Typography className={cx(classes.root, classes[fontSize!])} invert>
         {children}
       </Typography>

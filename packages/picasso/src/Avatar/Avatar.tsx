@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
@@ -44,9 +43,11 @@ export const Avatar: FunctionComponent<Props> = ({
           alt={alt}
           className={className}
           name={name}
+          /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
           size={size!}
           src={src}
           style={style}
+          /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
           variant={variant!}
         />
       )
@@ -60,7 +61,9 @@ export const Avatar: FunctionComponent<Props> = ({
         <TextAvatar
           className={className}
           fontSize={isLongText ? 'small' : 'large'}
+          /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
           size={size!}
+          /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
           variant={variant!}
         >
           {initials}
@@ -68,10 +71,12 @@ export const Avatar: FunctionComponent<Props> = ({
       )
     }
 
+    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
     return <IconAvatar className={className} size={size!} variant={variant!} />
   }
 
   return (
+    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
     <AvatarWrapper size={size!} {...rest}>
       {renderAvatar()}
     </AvatarWrapper>
