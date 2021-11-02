@@ -1,7 +1,9 @@
-import React from 'react'
-import { render, fireEvent, act } from '@toptal/picasso/test-utils'
+/* eslint-disable max-lines-per-function */
 import { Tooltip } from '@toptal/picasso'
+import { act, fireEvent, render } from '@toptal/picasso/test-utils'
+import React, { useState } from 'react'
 
+import { DateOrDateRangeType } from '../Calendar'
 import DatePicker, { Props } from './DatePicker'
 
 // eslint-disable-next-line max-lines-per-function
@@ -241,6 +243,90 @@ describe('DatePicker', () => {
       // check max edge
       fireEvent.change(input, { target: { value: '07-25-2020' } })
       expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 25))
+    })
+
+    describe('should work with `allowCustomValue`', () => {
+      it('emits `string` if value is not a valid date', () => {
+        const handleChange = jest.fn()
+
+        const { getByPlaceholderText } = renderDatePicker({
+          ...defaultProps,
+          allowCustomValue: true,
+          onChange: handleChange
+        })
+
+        const input = getByPlaceholderText(defaultProps.placeholder)
+
+        fireEvent.change(input, { target: { value: 'some random text' } })
+        expect(handleChange).toHaveBeenCalledWith('some random text')
+      })
+
+      it('emits `Date` if value is a valid date', () => {
+        const handleChange = jest.fn()
+
+        const { getByPlaceholderText } = renderDatePicker({
+          ...defaultProps,
+          allowCustomValue: true,
+          onChange: handleChange
+        })
+
+        const input = getByPlaceholderText(defaultProps.placeholder)
+
+        fireEvent.change(input, { target: { value: '07-25-2020' } })
+        expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 25))
+      })
+
+      it('opens `Calendar` on `Input` focus with invalid date', () => {
+        const handleChange = jest.fn()
+
+        const { getByPlaceholderText, getByTestId } = renderDatePicker({
+          ...defaultProps,
+          allowCustomValue: true,
+          value: 'some random text',
+          onChange: handleChange
+        })
+
+        const input = getByPlaceholderText(defaultProps.placeholder)
+
+        fireEvent.focus(input)
+
+        expect(getByTestId('calendar')).toBeInTheDocument()
+      })
+
+      it("doesn't clear `Input` after `blur` with invalid date", () => {
+        const placeholder = 'Pick a date'
+        const TestComponent = () => {
+          const [value, setValue] = useState<
+            string | DateOrDateRangeType | null
+          >(new Date(2020, 6, 25))
+
+          return (
+            <DatePicker
+              placeholder={placeholder}
+              allowCustomValue
+              value={value}
+              onChange={setValue}
+            />
+          )
+        }
+
+        const renderTestComponentPicker = () => render(<TestComponent />)
+
+        const { getByPlaceholderText } = renderTestComponentPicker()
+
+        const input = getByPlaceholderText(placeholder)
+
+        fireEvent.focus(input)
+
+        fireEvent.change(input, { target: { value: 'some random text' } })
+
+        fireEvent.blur(input)
+
+        expect(getByPlaceholderText(placeholder)).toHaveAttribute(
+          'value',
+          `some random text`
+        )
+      })
     })
   })
 

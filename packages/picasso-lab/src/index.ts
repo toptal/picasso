@@ -1,7 +1,7 @@
 export { default as Calendar } from './Calendar'
 export type { DateOrDateRangeType } from './Calendar'
 export { default as DatePicker } from './DatePicker'
-export type { DatePickerProps } from './DatePicker'
+export type { DatePickerProps, DatePickerValue } from './DatePicker'
 export { default as Drawer } from './Drawer'
 export type { DrawerProps } from './Drawer'
 export { default as Dropzone, ErrorCode as DropzoneErrorCode } from './Dropzone'

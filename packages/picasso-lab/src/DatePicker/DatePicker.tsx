@@ -1,22 +1,28 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 
-import React, {
-  useState,
-  useRef,
-  KeyboardEvent,
-  ReactNode,
-  useLayoutEffect,
-  useCallback
-} from 'react'
-import PopperJs from 'popper.js'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import {
+  BaseProps,
+  Container,
+  Input,
+  InputAdornment,
+  InputProps
+} from '@toptal/picasso'
+import { Calendar16 } from '@toptal/picasso/Icon'
+import Popper from '@toptal/picasso/Popper'
+import { noop } from '@toptal/picasso/utils'
 import formatDate from 'date-fns/format'
 import parse from 'date-fns/parse'
-import { Theme, makeStyles } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
-import { Container, Input, InputAdornment, InputProps } from '@toptal/picasso'
-import Popper from '@toptal/picasso/Popper'
-import { Calendar16 } from '@toptal/picasso/Icon'
-import { noop } from '@toptal/picasso/utils'
+import PopperJs from 'popper.js'
+import React, {
+  KeyboardEvent,
+  ReactNode,
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  useState
+} from 'react'
 
 import Calendar, {
   DateOrDateRangeType,
@@ -26,11 +32,19 @@ import Calendar, {
 import styles from './styles'
 import {
   formatDateRange,
-  timezoneConvert,
   isDateValid,
-  timezoneFormat,
-  isDateWithinInterval
+  isDateWithinInterval,
+  timezoneConvert,
+  timezoneFormat
 } from './utils'
+
+const EMPTY_INPUT_VALUE = ''
+
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoDatePicker'
+})
+
+export type DatePickerValue = DateOrDateRangeType | string | null
 
 export interface Props
   extends BaseProps,
@@ -44,11 +58,11 @@ export interface Props
       | 'defaultValue'
       | 'onChange'
     > {
-  /** Date that will be selected in Datepicker */
-  value?: DateOrDateRangeType | null
+  /** Date that will be selected in `DatePicker` */
+  value?: DatePickerValue
   /** Method that will be invoked with selected values */
-  onChange: (value: DateOrDateRangeType | null) => void
-  /** Invoked when user goes away from Datepicker input */
+  onChange: (value: DatePickerValue) => void
+  /** Invoked when user goes away from `DatePicker` input */
   onBlur?: () => void
   /** Whether calendar supports single date selection or range */
   range?: boolean
@@ -64,7 +78,7 @@ export interface Props
   disabledIntervals?: { start: Date; end: Date }[]
   /** Date format that user will see during manual input */
   editDateFormat?: string
-  /** Specify icon which should be rendered inside DatePicker */
+  /** Specify icon which should be rendered inside `DatePicker` */
   icon?: ReactNode
   /** Specify a value if want to enable browser autofill */
   autoComplete?: string
@@ -77,13 +91,9 @@ export interface Props
   weekStartsOn?: number
   /** IANA timezone to display and edit date(s) */
   timezone?: string
+  /** Whether custom values should be allowed or not. It doesn't support `range` mode */
+  allowCustomValue?: boolean
 }
-
-const EMPTY_INPUT_VALUE = ''
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoDatePicker'
-})
 
 export const DatePicker = (props: Props) => {
   const {
@@ -104,6 +114,7 @@ export const DatePicker = (props: Props) => {
     weekStartsOn,
     timezone,
     size,
+    allowCustomValue,
     ...rest
   } = props
   const classes = useStyles()
@@ -126,9 +137,19 @@ export const DatePicker = (props: Props) => {
   const calendarRef = useRef<HTMLDivElement>(null)
   const inputWrapperRef = useRef<HTMLDivElement>(null)
 
+  const isValidDateValue = (
+    dateValue: DateOrDateRangeType | string
+  ): dateValue is DateOrDateRangeType => {
+    return typeof dateValue !== 'string'
+  }
+
   // Format the input based on its 'focus' state
   const formatInputValue = useCallback(
-    (valueToFormat: DateOrDateRangeType) => {
+    (valueToFormat: DateOrDateRangeType | string) => {
+      if (!isValidDateValue(valueToFormat)) {
+        return valueToFormat
+      }
+
       return Array.isArray(valueToFormat)
         ? formatDateRange(valueToFormat as DateRangeType, displayDateFormat)
         : formatDate(
@@ -145,15 +166,18 @@ export const DatePicker = (props: Props) => {
       if (!value) {
         return EMPTY_INPUT_VALUE
       }
+      const convertedValue = isValidDateValue(value)
+        ? timezoneConvert(value, timezone)
+        : value
 
-      return formatInputValue(timezoneConvert(value, timezone))
+      return formatInputValue(convertedValue)
     })
   }, [value, timezone, formatInputValue])
 
   // Keep the calendar in sync with the input value
   useLayoutEffect(() => {
     setCalendarValue(() => {
-      if (!value) {
+      if (!value || !isValidDateValue(value)) {
         return null
       }
 
@@ -197,7 +221,6 @@ export const DatePicker = (props: Props) => {
 
     // TODO: add char filtering (only number , `-` or ` ` allowed)
     setInputValue(nextValue)
-
     if (!nextValue) {
       onChange(null)
     } else if (isDateValid(nextValue, editDateFormat)) {
@@ -209,6 +232,8 @@ export const DatePicker = (props: Props) => {
       }
 
       onChange(nextTimezoneValue)
+    } else if (allowCustomValue) {
+      onChange(nextValue)
     }
   }
 
@@ -262,9 +287,9 @@ export const DatePicker = (props: Props) => {
         event.currentTarget.blur()
       } else {
         // TODO: Manage this whole logic inside simple-react-calendar
-        const firstButton = calendarRef.current?.querySelector<
-          HTMLButtonElement
-        >('button:not([tabindex="-1"])')
+        const firstButton = calendarRef.current?.querySelector<HTMLButtonElement>(
+          'button:not([tabindex="-1"])'
+        )
 
         if (firstButton) {
           firstButton.focus()
