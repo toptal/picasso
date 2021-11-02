@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Container, Typography } from '@toptal/picasso'
+import { Avatar, Container } from '@toptal/picasso'
 
 const person = {
   alt: 'Jacqueline Roque. Pablo Picasso, 1954',
@@ -15,21 +15,15 @@ const generatePeople = (
 const Example = () => (
   <Container flex direction='column' gap='large'>
     <div>
-      <Typography variant='heading' size='medium'>
-        Over the Limit
-      </Typography>
+      Over the Limit
       <Avatar.Group items={generatePeople(6)} />
     </div>
     <div>
-      <Typography variant='heading' size='medium'>
-        On the Limit
-      </Typography>
+      On the Limit
       <Avatar.Group items={generatePeople(5)} />
     </div>
     <div>
-      <Typography variant='heading' size='medium'>
-        Less than Limit
-      </Typography>
+      Less than Limit
       <Avatar.Group items={generatePeople(3)} />
     </div>
   </Container>

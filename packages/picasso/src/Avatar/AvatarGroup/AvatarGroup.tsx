@@ -4,16 +4,16 @@ import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { Container } from '../..'
-import Avatar, { Props as AvatarProps } from '../Avatar'
+import Avatar, { AvatarSizeType, VariantType } from '../Avatar'
 import AvatarWrapper from '../AvatarWrapper/AvatarWrapper'
 import TextAvatar from '../TextAvatar/TextAvatar'
 import styles from './styles'
 
 type ItemType = {
-  alt?: AvatarProps['alt']
+  alt?: string
   'data-testid'?: string
-  name?: AvatarProps['name']
-  src?: AvatarProps['src']
+  name?: string
+  src?: string
 }
 
 export interface Props extends BaseProps {
@@ -22,16 +22,10 @@ export interface Props extends BaseProps {
   /** Limit how many avatars can be rendered */
   limit?: number
   /** Size */
-  size?: AvatarProps['size']
+  size?: AvatarSizeType
   /** Variant of the avatar shape */
-  variant?: AvatarProps['variant']
+  variant?: VariantType
 }
-
-const DEFAULTS = {
-  limit: 5,
-  size: 'xsmall',
-  variant: 'square'
-} as const
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAvatarGroup'
@@ -95,6 +89,10 @@ const AvatarGroup = ({
   )
 }
 
-AvatarGroup.defaultProps = DEFAULTS
+AvatarGroup.defaultProps = {
+  limit: 5,
+  size: 'xsmall',
+  variant: 'square'
+}
 
 export default AvatarGroup

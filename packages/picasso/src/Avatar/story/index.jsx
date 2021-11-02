@@ -1,5 +1,6 @@
 import { Avatar } from '../Avatar'
 import PicassoBook from '~/.storybook/components/PicassoBook'
+import AvatarGroupStory from '../AvatarGroup/story'
 
 const page = PicassoBook.section('Components').createPage(
   'Avatar',
@@ -18,6 +19,7 @@ const page = PicassoBook.section('Components').createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Avatar, name: 'Avatar' })
+  .addComponentDocs(AvatarGroupStory.componentDocs)
 
 page
   .createChapter()
@@ -37,3 +39,5 @@ page
     title: 'Long Name',
     waitUntilImagesLoaded: true
   }) // picasso-skip-visuals
+
+page.connect(AvatarGroupStory.chapter)

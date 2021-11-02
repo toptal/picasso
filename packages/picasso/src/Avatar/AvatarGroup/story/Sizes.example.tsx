@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Container, Typography } from '@toptal/picasso'
+import { Avatar, Container } from '@toptal/picasso'
 
 const person = {
   alt: 'Jacqueline Roque. Pablo Picasso, 1954',
@@ -26,18 +26,28 @@ const people = [
   person
 ]
 
-const SIZES = ['xxsmall', 'xsmall', 'small', 'medium', 'large'] as const
-
 const Example = () => (
   <Container flex direction='column' gap='large'>
-    {SIZES.map(size => (
-      <div key={size}>
-        <Typography variant='heading' size='medium'>
-          {size}
-        </Typography>
-        <Avatar.Group items={people} size={size} />
-      </div>
-    ))}
+    <div>
+      xxsmall
+      <Avatar.Group items={people} size='xxsmall' />
+    </div>
+    <div>
+      xsmall
+      <Avatar.Group items={people} size='xsmall' />
+    </div>
+    <div>
+      small
+      <Avatar.Group items={people} size='small' />
+    </div>
+    <div>
+      medium
+      <Avatar.Group items={people} size='medium' />
+    </div>
+    <div>
+      large
+      <Avatar.Group items={people} size='large' />
+    </div>
   </Container>
 )
 
