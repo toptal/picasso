@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@12.4.0...@toptal/picasso@13.0.0) (2021-11-02)
+
+
+### Code Refactoring
+
+* **Container:** make gap to fuction as other size props ([#2201](https://github.com/toptal/picasso/issues/2201)) ([281de61](https://github.com/toptal/picasso/commit/281de61a52a1f3b500766930e84a7bad2c240b69))
+
+
+### BREAKING CHANGES
+
+* **Container:** `gap` property accepts different values
+
+
+
+
+
 # [12.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@12.3.1...@toptal/picasso@12.4.0) (2021-10-26)
 
 
