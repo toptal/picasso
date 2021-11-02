@@ -6,8 +6,8 @@ const Example = () => {
   const [checked, setChecked] = useState<boolean>(false)
 
   return (
-    <Container flex gap='1rem'>
-      <Container flex direction='column' gap='0.5rem'>
+    <Container flex gap='small'>
+      <Container flex direction='column' gap='xsmall'>
         <Typography>Regular</Typography>
         <div>
           <Tag.Checkable
@@ -21,7 +21,7 @@ const Example = () => {
           </Tag.Checkable>
         </div>
       </Container>
-      <Container flex direction='column' gap='0.5rem'>
+      <Container flex direction='column' gap='xsmall'>
         <Typography>Hovered</Typography>
         <div>
           <Tag.Checkable icon={<Settings16 />} hovered onChange={noop}>
@@ -29,7 +29,7 @@ const Example = () => {
           </Tag.Checkable>
         </div>
       </Container>
-      <Container flex direction='column' gap='0.5rem'>
+      <Container flex direction='column' gap='xsmall'>
         <Typography>Checked</Typography>
         <div>
           <Tag.Checkable icon={<Settings16 />} checked onChange={noop}>
@@ -37,7 +37,7 @@ const Example = () => {
           </Tag.Checkable>
         </div>
       </Container>
-      <Container flex direction='column' gap='0.5rem'>
+      <Container flex direction='column' gap='xsmall'>
         <Typography>Hovered on Selected</Typography>
         <div>
           <Tag.Checkable icon={<Settings16 />} hovered checked onChange={noop}>
@@ -45,7 +45,7 @@ const Example = () => {
           </Tag.Checkable>
         </div>
       </Container>
-      <Container flex direction='column' gap='0.5rem'>
+      <Container flex direction='column' gap='xsmall'>
         <Typography>Disabled</Typography>
         <div>
           <Tag.Checkable

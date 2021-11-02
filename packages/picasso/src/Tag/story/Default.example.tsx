@@ -6,26 +6,26 @@ const handleDelete = () => {
 }
 
 const Example = () => (
-  <Container flex gap='1rem'>
-    <Container flex direction='column' gap='0.5rem'>
+  <Container flex gap='small'>
+    <Container flex direction='column' gap='xsmall'>
       <Typography>Regular</Typography>
       <div>
         <Tag>Label</Tag>
       </div>
     </Container>
-    <Container flex direction='column' gap='0.5rem'>
+    <Container flex direction='column' gap='xsmall'>
       <Typography>With Icon</Typography>
       <div>
         <Tag icon={<Settings16 />}>Label</Tag>
       </div>
     </Container>
-    <Container flex direction='column' gap='0.5rem'>
+    <Container flex direction='column' gap='xsmall'>
       <Typography>With Remove</Typography>
       <div>
         <Tag onDelete={handleDelete}>Label</Tag>
       </div>
     </Container>
-    <Container flex direction='column' gap='0.5rem'>
+    <Container flex direction='column' gap='xsmall'>
       <Typography>Disabled</Typography>
       <div>
         <Tag disabled>Label</Tag>
@@ -45,7 +45,7 @@ const Example = () => (
         </Tag>
       </div>
     </Container>
-    <Container flex direction='column' gap='0.5rem'>
+    <Container flex direction='column' gap='xsmall'>
       <Typography>With Connection</Typography>
       <div>
         <Tag
