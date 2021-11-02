@@ -8,7 +8,7 @@ const yargs = require('yargs').argv
 const { log, copyPackageJson, copyReadme, safeExec } = require('./utils')
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 
-const compile = function(tsConfig, packageJson, packageRootDir) {
+const compile = function (tsConfig, packageJson, packageRootDir) {
   const args = []
 
   log(`Building ${packageJson.name}:${packageJson.version}`)
@@ -22,7 +22,7 @@ const compile = function(tsConfig, packageJson, packageRootDir) {
 
   function clean() {
     log(`Removing: ${tsConfig.compilerOptions.outDir}`, 'green')
-    fs.rmdirSync(tsConfig.compilerOptions.outDir, {
+    fs.rmSync(tsConfig.compilerOptions.outDir, {
       recursive: true,
       force: true
     })
