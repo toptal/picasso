@@ -6,13 +6,13 @@ exports[`Avatar renders with a long name 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoAvatar-root PicassoAvatar-xsmall"
+      class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
     >
       <div
-        class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
+        class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root"
       />
       <p
-        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent PicassoAvatar-textCapLimit MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-small MuiTypography-body1"
       >
         JRB
       </p>
@@ -27,13 +27,13 @@ exports[`Avatar renders with a placeholder icon 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoAvatar-root PicassoAvatar-xsmall"
+      class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
     >
       <div
-        class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
+        class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root"
       />
       <svg
-        class="PicassoSvgProfile16-root PicassoAvatar-centeredContent PicassoAvatar-xsmallIcon PicassoSvgProfile16-white"
+        class="PicassoSvgProfile16-root PicassoIconAvatar-root PicassoIconAvatar-xsmallIcon PicassoSvgProfile16-white"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -52,11 +52,11 @@ exports[`Avatar renders with an image 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoAvatar-root PicassoAvatar-xsmall"
+      class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
     >
       <img
         alt="Photo alt text"
-        class="PicassoImage-root PicassoAvatar-image PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
+        class="PicassoImage-root PicassoImageAvatar-image PicassoImageAvatar-image"
         src="http://example.png"
       />
     </div>
@@ -70,13 +70,13 @@ exports[`Avatar renders with initials 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoAvatar-root PicassoAvatar-xsmall"
+      class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
     >
       <div
-        class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner"
+        class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root"
       />
       <p
-        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
       >
         JR
       </p>

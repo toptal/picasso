@@ -9,13 +9,13 @@ exports[`UserBadge auto center alignment 1`] = `
       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatar-root PicassoAvatar-xsmall"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
       >
         <div
-          class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+          class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
         >
           JD
         </p>
@@ -47,13 +47,13 @@ exports[`UserBadge custom name 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatar-root PicassoAvatar-xsmall"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
       >
         <div
-          class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+          class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
         >
           JD
         </p>
@@ -88,13 +88,13 @@ exports[`UserBadge custom title 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatar-root PicassoAvatar-xsmall"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
       >
         <div
-          class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+          class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
         >
           JD
         </p>
@@ -134,13 +134,13 @@ exports[`UserBadge invert render 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatar-root PicassoAvatar-xsmall"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
       >
         <div
-          class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+          class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
         >
           JD
         </p>
@@ -177,13 +177,13 @@ exports[`UserBadge manual center alignment 1`] = `
       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatar-root PicassoAvatar-xsmall"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
       >
         <div
-          class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+          class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
         >
           JD
         </p>
@@ -220,13 +220,13 @@ exports[`UserBadge override auto center alignment 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatar-root PicassoAvatar-xsmall"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
       >
         <div
-          class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+          class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
         >
           JD
         </p>
@@ -258,13 +258,13 @@ exports[`UserBadge renders 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatar-root PicassoAvatar-xsmall"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
       >
         <div
-          class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+          class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
         >
           JD
         </p>
@@ -301,13 +301,13 @@ exports[`UserBadge small size 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatar-root PicassoAvatar-small"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-small"
       >
         <div
-          class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-small PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+          class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
         />
         <p
-          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
         >
           JD
         </p>

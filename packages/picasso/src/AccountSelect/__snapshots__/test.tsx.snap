@@ -32,13 +32,13 @@ exports[`AccountSelect renders 1`] = `
                   class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
                 >
                   <div
-                    class="PicassoAvatar-root PicassoAvatar-xsmall"
+                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
                   >
                     <div
-                      class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+                      class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
                     />
                     <p
-                      class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+                      class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
                     >
                       PL
                     </p>
@@ -99,13 +99,13 @@ exports[`AccountSelect renders 1`] = `
                   class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
                 >
                   <div
-                    class="PicassoAvatar-root PicassoAvatar-xsmall"
+                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
                   >
                     <div
-                      class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+                      class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
                     />
                     <p
-                      class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoAvatar-text PicassoAvatar-centeredContent MuiTypography-body1"
+                      class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
                     >
                       PL
                     </p>
@@ -166,11 +166,11 @@ exports[`AccountSelect renders 1`] = `
                   class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
                 >
                   <div
-                    class="PicassoAvatar-root PicassoAvatar-xsmall"
+                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
                   >
                     <img
                       alt="Phil Leif 3"
-                      class="PicassoImage-root PicassoAvatar-image PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
+                      class="PicassoImage-root PicassoImageAvatar-image PicassoImageAvatar-image PicassoUserBadge-avatar"
                       src="./jacqueline-with-flowers-1954-square.jpg"
                     />
                   </div>
