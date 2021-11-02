@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { BaseProps } from '@toptal/picasso-shared'
 import React from 'react'
 import cx from 'classnames'
@@ -53,8 +52,11 @@ const AvatarGroup = ({
     return null
   }
 
+  /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
   const isOverLimit = items.length > limit!
+  /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
   const itemsOverLimit = items.length - limit! + 1
+  /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
   const avatarsToRender = isOverLimit ? items.slice(0, limit! - 1) : items
 
   return (
@@ -71,15 +73,19 @@ const AvatarGroup = ({
             alt={alt}
             key={`${name}-${alt}-${String(index)}`}
             name={name}
+            /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
             size={size!}
             src={src}
+            /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
             variant={variant!}
             data-testid={avatarTestId}
           />
         )
       )}
       {isOverLimit ? (
+        /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
         <AvatarWrapper size={size!}>
+          {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
           <TextAvatar variant={variant!} size={size!}>
             +{itemsOverLimit}
           </TextAvatar>
