@@ -9,8 +9,7 @@ const person = {
 
 const generatePeople = (
   count: number
-): { alt: string; src: string; name: string }[] =>
-  [...Array(count)].map(() => person)
+): { alt: string; src: string; name: string }[] => Array(count).fill(person)
 
 const Example = () => (
   <Container flex direction='column' gap='large'>

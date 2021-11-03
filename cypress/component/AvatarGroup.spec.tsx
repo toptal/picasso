@@ -13,8 +13,7 @@ const person = {
 
 const generatePeople = (
   count: number
-): { alt: string; src: string; name: string }[] =>
-  [...Array(count)].map(() => person)
+): { alt: string; src: string; name: string }[] => Array(count).fill(person)
 
 const SIZES = ['xxsmall', 'xsmall', 'small', 'medium', 'large'] as const
 const VARIANTS = ['square', 'portrait', 'landscape'] as const
