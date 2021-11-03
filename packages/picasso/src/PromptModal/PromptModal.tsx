@@ -42,6 +42,12 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   /** Callback on Cancel onClick event */
   onCancel?: () => void
   onClose?: () => void
+  testIds?: {
+    title?: string
+    message?: string
+    closeButton?: string
+    submitButton?: string
+  }
 }
 
 export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
@@ -59,6 +65,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
     onAfterSubmit = noop,
     onCancel = noop,
     onClose,
+    testIds,
     ...rest
   } = props
   const classes = useStyles()
@@ -106,9 +113,11 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
       classes={classes}
       {...rest}
     >
-      {title && <Modal.Title>{title}</Modal.Title>}
+      {title && <Modal.Title data-testid={testIds?.title}>{title}</Modal.Title>}
       <Modal.Content>
-        <Typography size='medium'>{message}</Typography>
+        <Typography size='medium' data-testid={testIds?.message}>
+          {message}
+        </Typography>
         {children && (
           <Container top='xsmall'>
             {children({
@@ -123,13 +132,19 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
         )}
       </Modal.Content>
       <Modal.Actions>
-        <Button disabled={loading} variant='secondary' onClick={handleCancel}>
+        <Button
+          disabled={loading}
+          variant='secondary'
+          onClick={handleCancel}
+          data-testid={testIds?.closeButton}
+        >
           {cancelText}
         </Button>
         <Button
           loading={loading}
           onClick={handleSubmit}
           variant={`${variant}` as ButtonVariantType}
+          data-testid={testIds?.submitButton}
         >
           {submitText}
         </Button>
