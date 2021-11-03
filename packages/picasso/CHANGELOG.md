@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@13.0.0...@toptal/picasso@13.1.0) (2021-11-03)
+
+
+### Features
+
+* **prompt modal:** [FX-2217] add data-testid into PromptModal ([#2205](https://github.com/toptal/picasso/issues/2205)) ([72fcf5d](https://github.com/toptal/picasso/commit/72fcf5db09727fd3bd25f31440d437e060dcb667))
+
+
+
+
+
 # [13.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso@12.4.0...@toptal/picasso@13.0.0) (2021-11-02)
 
 
