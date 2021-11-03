@@ -1,29 +1,31 @@
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import styles from './styles'
-import { AvatarSizeType } from '../Avatar'
+import { AvatarSizeType, VariantType } from '../Avatar'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps {
   children: ReactNode
   size: AvatarSizeType
+  variant: VariantType
 }
 
-const useStyles = makeStyles<Theme>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoAvatarWrapper'
 })
 
-const AvatarWrapper: FunctionComponent<Props> = ({
-  children,
-  size,
-  ...rest
-}: Props) => {
-  const classes = useStyles()
+const AvatarWrapper: FunctionComponent<Props> = props => {
+  const { children, className, style, 'data-testid': dataTestId } = props
+  const classes = useStyles(props)
 
   return (
-    <div {...rest} className={cx(classes.root, classes[size])}>
+    <div
+      style={style}
+      data-testid={dataTestId}
+      className={cx(className, classes.root, classes.size, classes.corner)}
+    >
       {children}
     </div>
   )

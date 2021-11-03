@@ -32,16 +32,17 @@ exports[`AccountSelect renders 1`] = `
                   class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
                 >
                   <div
-                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
+                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
                   >
                     <div
-                      class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
-                    />
-                    <p
-                      class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
+                      class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
                     >
-                      PL
-                    </p>
+                      <p
+                        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-largeFont MuiTypography-body1"
+                      >
+                        PL
+                      </p>
+                    </div>
                   </div>
                   <div
                     class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
@@ -99,16 +100,17 @@ exports[`AccountSelect renders 1`] = `
                   class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
                 >
                   <div
-                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
+                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
                   >
                     <div
-                      class="PicassoImagePlaceholder-root PicassoImagePlaceholder-root PicassoUserBadge-avatar"
-                    />
-                    <p
-                      class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-root PicassoTextAvatar-large MuiTypography-body1"
+                      class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
                     >
-                      PL
-                    </p>
+                      <p
+                        class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-largeFont MuiTypography-body1"
+                      >
+                        PL
+                      </p>
+                    </div>
                   </div>
                   <div
                     class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
@@ -166,11 +168,11 @@ exports[`AccountSelect renders 1`] = `
                   class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
                 >
                   <div
-                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xsmall"
+                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
                   >
                     <img
                       alt="Phil Leif 3"
-                      class="PicassoImage-root PicassoImageAvatar-image PicassoImageAvatar-image PicassoUserBadge-avatar"
+                      class="PicassoImage-root PicassoImageAvatar-image PicassoUserBadge-avatar"
                       src="./jacqueline-with-flowers-1954-square.jpg"
                     />
                   </div>

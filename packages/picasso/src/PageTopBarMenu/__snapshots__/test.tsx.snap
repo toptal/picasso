@@ -15,11 +15,11 @@ exports[`PageTopBarMenu renders 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
         >
           <div
-            class="PicassoAvatarWrapper-root PicassoAvatarWrapper-xxsmall"
+            class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
           >
             <img
               alt="Jacqueline Roque"
-              class="PicassoImage-root PicassoImageAvatar-image PicassoImageAvatar-image PicassoUserBadge-avatar"
+              class="PicassoImage-root PicassoImageAvatar-image PicassoUserBadge-avatar"
               src="./jacqueline-with-flowers-1954-square.jpg"
             />
           </div>

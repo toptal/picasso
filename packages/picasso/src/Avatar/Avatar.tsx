@@ -47,8 +47,6 @@ export const Avatar: FunctionComponent<Props> = ({
           size={size!}
           src={src}
           style={style}
-          /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-          variant={variant!}
         />
       )
     }
@@ -63,8 +61,6 @@ export const Avatar: FunctionComponent<Props> = ({
           fontSize={isLongText ? 'small' : 'large'}
           /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
           size={size!}
-          /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-          variant={variant!}
         >
           {initials}
         </TextAvatar>
@@ -72,12 +68,12 @@ export const Avatar: FunctionComponent<Props> = ({
     }
 
     /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-    return <IconAvatar className={className} size={size!} variant={variant!} />
+    return <IconAvatar className={className} size={size!} />
   }
 
   return (
     /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-    <AvatarWrapper size={size!} {...rest}>
+    <AvatarWrapper variant={variant!} size={size!} {...rest}>
       {renderAvatar()}
     </AvatarWrapper>
   )

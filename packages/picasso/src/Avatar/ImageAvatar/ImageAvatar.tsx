@@ -1,22 +1,19 @@
 import React from 'react'
 import cx from 'classnames'
-import { JssProps } from '@toptal/picasso-shared'
+import { JssProps, BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Image from '../../Image'
 import Logo from '../../Logo'
-import type {
-  AvatarSizeType,
-  Props as AvatarProps,
-  VariantType
-} from '../Avatar'
+import type { AvatarSizeType } from '../Avatar'
 import styles from './styles'
 
-export type Props = {
+export interface Props extends BaseProps {
   size: AvatarSizeType
   src: string
-  variant: VariantType
-} & Pick<AvatarProps, 'alt' | 'name' | 'style' | 'className'>
+  alt?: string
+  name?: string
+}
 
 type LogoProps = {
   size: AvatarSizeType
@@ -26,7 +23,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoImageAvatar'
 })
 
-const renderLogo = ({ size, classes }: LogoProps) => {
+const AvatarLogo = ({ size, classes }: LogoProps) => {
   const isTooSmall = ['small', 'xsmall', 'xxsmall'].includes(size)
 
   if (isTooSmall) {
@@ -34,29 +31,38 @@ const renderLogo = ({ size, classes }: LogoProps) => {
   }
 
   return (
-    <div className={classes.logoContainer}>
+    <div
+      className={classes.logoContainer}
+      role='img'
+      aria-label='photo placeholder'
+    >
       <Logo emblem variant='white' className={classes.logo} />
     </div>
   )
 }
 
 const ImageAvatar = (props: Props) => {
-  const { alt, className, name, size, src, style } = props
+  const {
+    alt,
+    className,
+    name,
+    size,
+    src,
+    style,
+    'data-testid': dataTestId
+  } = props
   const classes = useStyles(props)
-
-  if (!src) {
-    return null
-  }
 
   return (
     <>
       <Image
-        alt={alt || String(name)}
+        alt={alt || name || ''}
         className={cx(classes.image, className)}
         src={src}
         style={style}
+        data-testid={dataTestId}
       />
-      {renderLogo({ classes, size })}
+      <AvatarLogo classes={classes} size={size} />
     </>
   )
 }

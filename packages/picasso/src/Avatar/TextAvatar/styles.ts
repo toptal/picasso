@@ -9,10 +9,17 @@ export default () =>
       left: '50%',
       transform: 'translate(-50%, -50%)'
     },
-    small: {
-      fontSize: '0.85em'
+
+    xxsmall: { fontSize: '1em' },
+    xsmall: { fontSize: '1em' },
+    small: { fontSize: '2em' },
+    medium: { fontSize: '3em' },
+    large: { fontSize: '5em' },
+
+    smallFont: {
+      fontSize: '0.666666667em'
     },
-    large: {
+    largeFont: {
       fontSize: '1em'
     }
   })

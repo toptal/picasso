@@ -1,33 +1,35 @@
 import React from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
+import { BaseProps } from '@toptal/picasso-shared'
 
-import type { AvatarSizeType, VariantType } from '../Avatar'
-import ImagePlaceholder from '../ImagePlaceholder/ImagePlaceholder'
+import type { AvatarSizeType } from '../Avatar'
 import { Profile16 } from '../..'
 import styles from './styles'
 
-type Props = {
-  className?: string
+interface Props extends BaseProps {
   size: AvatarSizeType
-  variant: VariantType
 }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoIconAvatar'
 })
 
-const IconAvatar = ({ size, className, variant }: Props) => {
+const IconAvatar = ({
+  size,
+  'data-testid': dataTestId,
+  className,
+  style
+}: Props) => {
   const classes = useStyles()
 
   return (
-    <>
-      <ImagePlaceholder className={className} size={size} variant={variant} />
-      <Profile16
-        className={cx(classes.root, classes[`${size}Icon`])}
-        color='white'
-      />
-    </>
+    <Profile16
+      className={cx(className, classes.root, classes[`${size}Icon`])}
+      color='white'
+      data-testid={dataTestId || 'photo-placeholder'}
+      style={style}
+    />
   )
 }
 
