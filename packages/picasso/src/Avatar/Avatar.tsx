@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react'
+import React, { FunctionComponent, HTMLAttributes, useCallback } from 'react'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
@@ -43,7 +43,7 @@ export const Avatar: FunctionComponent<Props> = ({
   testIds,
   ...rest
 }) => {
-  const renderAvatar = () => {
+  const renderAvatar = useCallback(() => {
     if (src) {
       return (
         <ImageAvatar
@@ -76,20 +76,31 @@ export const Avatar: FunctionComponent<Props> = ({
       )
     }
 
-    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
     return (
       <IconAvatar
         data-testid={testIds?.icon}
         className={className}
+        /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
         size={size!}
       />
     )
-  }
+  }, [
+    size,
+    alt,
+    className,
+    src,
+    testIds?.icon,
+    testIds?.image,
+    testIds?.text,
+    name,
+    style
+  ])
 
   return (
-    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
     <AvatarWrapper
+      /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
       variant={variant!}
+      /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
       size={size!}
       data-testid={testIds?.wrapper}
       {...rest}
