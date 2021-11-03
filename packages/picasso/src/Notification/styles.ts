@@ -71,13 +71,13 @@ export default ({
       flexBasis: '1.5em',
       marginRight: '1em',
       minWidth: '1.5em',
-      height: '1.375em',
-      paddingBottom: '1px'
+      height: '1.5em',
+      marginBottom: '1px'
     },
     iconWrapperYellow: {
-      paddingBottom: 0,
-      paddingTop: '1px',
-      height: '1.25em'
+      height: '1em',
+      marginBottom: 0,
+      marginTop: '2px'
     },
 
     close: {
