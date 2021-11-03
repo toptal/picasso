@@ -16,7 +16,7 @@ type ItemType = {
   src?: string
 }
 
-export interface Props extends BaseProps {
+export interface Props extends Omit<BaseProps, 'data-testid'> {
   /** Array of people to render */
   items: ItemType[]
   /** Limit how many avatars can be rendered */
@@ -25,6 +25,11 @@ export interface Props extends BaseProps {
   size?: AvatarSizeType
   /** Variant of the avatar shape */
   variant?: VariantType
+  /** data-testid to all parts of component */
+  testIds?: {
+    container?: string
+    overLimit?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -34,7 +39,7 @@ const useStyles = makeStyles<Theme>(styles, {
 const AvatarGroup = ({
   className,
   style,
-  'data-testid': dataTestId,
+  testIds,
   items,
   limit,
   size,
@@ -48,6 +53,7 @@ const AvatarGroup = ({
 
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
   const isOverLimit = items.length > limit!
+  // we need to add +1 for the last item that is going to be transformed to numbered Avatar
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
   const itemsOverLimit = items.length - limit! + 1
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
@@ -56,7 +62,7 @@ const AvatarGroup = ({
   return (
     <Container
       className={cx(classes.root, className)}
-      data-testid={dataTestId}
+      data-testid={testIds?.container}
       flex
       gap='xsmall'
       style={style}
@@ -80,7 +86,11 @@ const AvatarGroup = ({
         /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
         <AvatarWrapper size={size!}>
           {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
-          <TextAvatar variant={variant!} size={size!}>
+          <TextAvatar
+            data-testid={testIds?.overLimit}
+            variant={variant!}
+            size={size!}
+          >
             +{itemsOverLimit}
           </TextAvatar>
         </AvatarWrapper>
