@@ -24,6 +24,12 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   src?: string
   /** Variant of the avatar shape */
   variant?: VariantType
+  testIds?: {
+    wrapper?: string
+    icon?: string
+    image?: string
+    text?: string
+  }
 }
 
 export const Avatar: FunctionComponent<Props> = ({
@@ -34,6 +40,7 @@ export const Avatar: FunctionComponent<Props> = ({
   size,
   style,
   variant,
+  testIds,
   ...rest
 }) => {
   const renderAvatar = () => {
@@ -47,6 +54,7 @@ export const Avatar: FunctionComponent<Props> = ({
           size={size!}
           src={src}
           style={style}
+          data-testid={testIds?.image}
         />
       )
     }
@@ -61,6 +69,7 @@ export const Avatar: FunctionComponent<Props> = ({
           fontSize={isLongText ? 'small' : 'large'}
           /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
           size={size!}
+          data-testid={testIds?.text}
         >
           {initials}
         </TextAvatar>
@@ -68,12 +77,23 @@ export const Avatar: FunctionComponent<Props> = ({
     }
 
     /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-    return <IconAvatar className={className} size={size!} />
+    return (
+      <IconAvatar
+        data-testid={testIds?.icon}
+        className={className}
+        size={size!}
+      />
+    )
   }
 
   return (
     /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-    <AvatarWrapper variant={variant!} size={size!} {...rest}>
+    <AvatarWrapper
+      variant={variant!}
+      size={size!}
+      data-testid={testIds?.wrapper}
+      {...rest}
+    >
       {renderAvatar()}
     </AvatarWrapper>
   )
