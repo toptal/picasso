@@ -1,7 +1,8 @@
 import { BaseProps } from '@toptal/picasso-shared'
-import React from 'react'
+import React, { useMemo, useRef } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
+import isDeepEqual from 'fast-deep-equal'
 
 import { Container } from '../..'
 import Avatar, { AvatarSizeType, VariantType } from '../Avatar'
@@ -46,9 +47,10 @@ const AvatarGroup = ({
   variant
 }: Props) => {
   const classes = useStyles()
+  const itemsRef = useRef(items)
 
-  if (items.length === 0) {
-    return null
+  if (!isDeepEqual(itemsRef.current, items)) {
+    itemsRef.current = items
   }
 
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
@@ -56,8 +58,15 @@ const AvatarGroup = ({
   // we need to add +1 for the last item that is going to be transformed to numbered Avatar
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
   const itemsOverLimit = items.length - limit! + 1
-  /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-  const avatarsToRender = isOverLimit ? items.slice(0, limit! - 1) : items
+  const avatarsToRender = useMemo(() => {
+    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
+    return isOverLimit ? items.slice(0, limit! - 1) : items
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  }, [isOverLimit, itemsRef.current, limit])
+
+  if (items.length === 0) {
+    return null
+  }
 
   return (
     <Container
@@ -84,13 +93,9 @@ const AvatarGroup = ({
       )}
       {isOverLimit ? (
         /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-        <AvatarWrapper size={size!}>
+        <AvatarWrapper size={size!} variant={variant!}>
           {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
-          <TextAvatar
-            data-testid={testIds?.overLimit}
-            variant={variant!}
-            size={size!}
-          >
+          <TextAvatar data-testid={testIds?.overLimit} size={size!}>
             +{itemsOverLimit}
           </TextAvatar>
         </AvatarWrapper>
