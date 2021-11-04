@@ -59,11 +59,13 @@ export default ({
       overflowWrap: 'break-word',
       minWidth: 0,
       lineHeight: rem('22px'),
-      fontSize: rem('14px')
+      fontSize: rem('14px'),
+      marginTop: '1px'
     },
     contentYellow: {
       lineHeight: rem('20px'),
-      fontSize: rem('13px')
+      fontSize: rem('13px'),
+      marginTop: 0
     },
 
     // Content Icon
@@ -71,12 +73,10 @@ export default ({
       flexBasis: '1.5em',
       marginRight: '1em',
       minWidth: '1.5em',
-      height: '1.5em',
-      marginBottom: '1px'
+      height: '1.5em'
     },
     iconWrapperYellow: {
       height: '1em',
-      marginBottom: 0,
       marginTop: '2px'
     },
 
