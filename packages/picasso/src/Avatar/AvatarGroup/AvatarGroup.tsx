@@ -1,11 +1,10 @@
 import { BaseProps } from '@toptal/picasso-shared'
-import React, { useMemo, useRef } from 'react'
+import React, { useMemo } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import isDeepEqual from 'fast-deep-equal'
 
 import { Container } from '../..'
-import Avatar, { AvatarSizeType, VariantType } from '../Avatar'
+import Avatar, { AvatarSizeType } from '../Avatar'
 import AvatarWrapper from '../AvatarWrapper/AvatarWrapper'
 import TextAvatar from '../TextAvatar/TextAvatar'
 import styles from './styles'
@@ -24,8 +23,6 @@ export interface Props extends Omit<BaseProps, 'data-testid'> {
   limit?: number
   /** Size */
   size?: AvatarSizeType
-  /** Variant of the avatar shape */
-  variant?: VariantType
   /** data-testid to all parts of component */
   testIds?: {
     container?: string
@@ -43,26 +40,21 @@ const AvatarGroup = ({
   testIds,
   items,
   limit,
-  size,
-  variant
+  size
 }: Props) => {
   const classes = useStyles()
-  const itemsRef = useRef(items)
-
-  if (!isDeepEqual(itemsRef.current, items)) {
-    itemsRef.current = items
-  }
 
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
   const isOverLimit = items.length > limit!
   // we need to add +1 for the last item that is going to be transformed to numbered Avatar
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
   const itemsOverLimit = items.length - limit! + 1
-  const avatarsToRender = useMemo(() => {
-    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-    return isOverLimit ? items.slice(0, limit! - 1) : items
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [isOverLimit, itemsRef.current, limit])
+  const avatarsToRender = useMemo(
+    () =>
+      /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
+      isOverLimit ? items.slice(0, limit! - 1) : items,
+    [isOverLimit, items, limit]
+  )
 
   if (items.length === 0) {
     return null
@@ -85,15 +77,13 @@ const AvatarGroup = ({
             /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
             size={size!}
             src={src}
-            /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-            variant={variant!}
             data-testid={avatarTestId}
           />
         )
       )}
       {isOverLimit ? (
         /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-        <AvatarWrapper size={size!} variant={variant!}>
+        <AvatarWrapper size={size!} variant='square'>
           {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
           <TextAvatar data-testid={testIds?.overLimit} size={size!}>
             +{itemsOverLimit}
@@ -106,8 +96,7 @@ const AvatarGroup = ({
 
 AvatarGroup.defaultProps = {
   limit: 5,
-  size: 'xsmall',
-  variant: 'square'
+  size: 'xsmall'
 }
 
 export default AvatarGroup

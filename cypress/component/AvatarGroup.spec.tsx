@@ -16,30 +16,27 @@ const generatePeople = (
 ): { alt: string; src: string; name: string }[] => Array(count).fill(person)
 
 const SIZES = ['xxsmall', 'xsmall', 'small', 'medium', 'large'] as const
-const VARIANTS = ['square', 'portrait', 'landscape'] as const
 
-const renderExample = ({ size, variant }: Props) => (
+const ppl5 = generatePeople(5)
+const ppl6 = generatePeople(6)
+const ppl3 = generatePeople(3)
+
+const renderExample = ({ size }: Props) => (
   <TestingPicasso>
     <Container flex direction='column' gap='large'>
-      <Avatar.Group size={size} variant={variant} items={generatePeople(5)} />
-      <Avatar.Group size={size} variant={variant} items={generatePeople(6)} />
-      <Avatar.Group size={size} variant={variant} items={generatePeople(3)} />
+      <Avatar.Group size={size} items={ppl5} />
+      <Avatar.Group size={size} items={ppl6} />
+      <Avatar.Group size={size} items={ppl3} />
     </Container>
   </TestingPicasso>
 )
 
-const createSizeTests = (variant: Props['variant']) => {
-  describe(`${variant} variant`, () => {
-    SIZES.forEach(size =>
-      it(`renders in ${size} size`, () => {
-        mount(renderExample({ size, variant }))
-
-        cy.get('body').happoScreenshot()
-      })
-    )
-  })
-}
-
 describe('Avatar', () => {
-  VARIANTS.forEach(variant => createSizeTests(variant))
+  SIZES.forEach(size =>
+    it(`renders in ${size} size`, () => {
+      mount(renderExample({ size }))
+
+      cy.get('body').happoScreenshot()
+    })
+  )
 })

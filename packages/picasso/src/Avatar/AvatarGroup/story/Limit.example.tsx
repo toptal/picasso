@@ -11,19 +11,18 @@ const generatePeople = (
   count: number
 ): { alt: string; src: string; name: string }[] => Array(count).fill(person)
 
+const people6 = generatePeople(6)
+const people3 = generatePeople(3)
+
 const Example = () => (
   <Container flex direction='column' gap='large'>
     <div>
       Over the Limit
-      <Avatar.Group items={generatePeople(6)} />
-    </div>
-    <div>
-      On the Limit
-      <Avatar.Group items={generatePeople(5)} />
+      <Avatar.Group items={people6} />
     </div>
     <div>
       Less than Limit
-      <Avatar.Group items={generatePeople(3)} />
+      <Avatar.Group items={people3} />
     </div>
   </Container>
 )
