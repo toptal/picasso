@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@13.1.1...@toptal/picasso@13.2.0) (2021-11-04)
+
+
+### Features
+
+* **AvatarGroup:** create new component Avatar.Group ([#2194](https://github.com/toptal/picasso/issues/2194)) ([ffd0ef0](https://github.com/toptal/picasso/commit/ffd0ef0610853b78ef902c41654ebb9d3a2164d5))
+
+
+
+
+
 ## [13.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso@13.1.0...@toptal/picasso@13.1.1) (2021-11-04)
 
 **Note:** Version bump only for package @toptal/picasso
