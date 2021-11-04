@@ -98,10 +98,7 @@ export const useNotifications = () => {
         <StyledNotification content={content} icon={icon} variant={variant} />
       )
       const showNotificaiton = getNotification()
-      const notificationId = showNotificaiton(notificationComponent, {
-        ...options,
-        persist: true
-      })
+      const notificationId = showNotificaiton(notificationComponent, options)
 
       return notificationId
     },
