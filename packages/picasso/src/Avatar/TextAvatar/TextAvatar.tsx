@@ -33,9 +33,9 @@ const TextAvatar = ({
       className={cx(classes.root, className, classes[size!])}
       style={style}
     >
-      {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
       <Typography
         data-testid={dataTestID}
+        /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
         className={classes[`${fontSize!}Font`]}
         invert
       >
