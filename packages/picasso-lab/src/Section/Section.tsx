@@ -14,7 +14,7 @@ import { Rotate180 } from '@toptal/picasso/utils/Transitions'
 
 import styles from './styles'
 
-type VariantType = 'bordered' | 'default'
+type VariantType = 'bordered' | 'default' | 'withHeaderBar'
 
 export interface Props extends BaseProps {
   /** Title of the Section */
@@ -59,7 +59,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
     testIds,
     collapsible = false,
     defaultCollapsed = true,
-    variant,
+    variant = 'default',
     titleSize = 'medium',
     ...rest
   } = props
@@ -124,8 +124,9 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       ref={ref}
       className={cx(
         {
+          [classes.withHeaderBar]: variant === 'withHeaderBar',
           [classes.bordered]: variant === 'bordered',
-          [classes.collapsed]: variant !== 'bordered' && collapsed
+          [classes.collapsed]: variant === 'default' && collapsed
         },
         classes.root,
         className
@@ -136,8 +137,12 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       {hasHeader && (
         <Container
           data-testid={testIds?.header}
-          className={cx(classes.header, {
-            [classes.collapsedHeader]: collapsed
+          className={cx({
+            [classes.header]: variant !== 'withHeaderBar',
+            [classes.headerBar]: variant === 'withHeaderBar',
+            [classes.collapsedHeader]: variant !== 'withHeaderBar' && collapsed,
+            [classes.collapsedHeaderBar]:
+              variant === 'withHeaderBar' && collapsed
           })}
         >
           {renderTitle()}
