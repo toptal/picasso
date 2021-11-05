@@ -11,5 +11,6 @@ describe('#getInputName', () => {
   it('returns all other names', () => {
     expect(getInputName('name')).toBe('name')
     expect(getInputName('email')).toBe('email')
+    expect(getInputName(undefined)).toBeUndefined()
   })
 })

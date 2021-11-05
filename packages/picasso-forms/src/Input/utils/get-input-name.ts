@@ -1,5 +1,7 @@
+const NAMES_NEED_POSTFIX = ['field', 'input', 'title']
+
 const getInputName = (name?: string) => {
-  if (name && /^(field|input|title)$/.test(name)) {
+  if (name && NAMES_NEED_POSTFIX.includes(name)) {
     return `${name}-picasso`
   }
 
