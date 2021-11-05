@@ -10,7 +10,11 @@ PicassoProvider.override(({ layout }: Theme) => ({
       padding: 0,
       width: '100%',
       minWidth: 0,
-      margin: '0 auto'
+      margin: '0 auto',
+
+      '& > *': {
+        width: '100%'
+      }
     }
   }
 }))
@@ -18,8 +22,7 @@ PicassoProvider.override(({ layout }: Theme) => ({
 export default ({
   palette: { red, green, yellow, common, text },
   shadows,
-  sizes: { borderRadius },
-  layout
+  sizes: { borderRadius }
 }: Theme) =>
   createStyles({
     notification: {
@@ -30,7 +33,7 @@ export default ({
       position: 'relative',
       width: '100%',
       boxShadow: 'none',
-      padding: '1.5625em 2.5em 1.5625em 1.5em'
+      padding: '1.5em 2.5em 1.5625em 1.5em'
     },
     notificationShadow: {
       boxShadow: shadows[3]
@@ -50,7 +53,7 @@ export default ({
     },
     notificationYellow: {
       background: yellow.lighter,
-      padding: `1.5em ${layout.contentPaddingHorizontal}`
+      padding: `1.5em ${rem('130px')}`
     },
 
     // Content
@@ -76,6 +79,7 @@ export default ({
       height: '1.5em'
     },
     iconWrapperYellow: {
+      flexBasis: 'unset',
       height: '1em',
       marginTop: '2px',
       minWidth: 0
