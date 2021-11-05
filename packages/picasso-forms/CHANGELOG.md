@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.4](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@6.0.3...@toptal/picasso-forms@6.0.4) (2021-11-05)
+
+
+### Bug Fixes
+
+* bring back autocomplete to input ([#2207](https://github.com/toptal/picasso/issues/2207)) ([8695405](https://github.com/toptal/picasso/commit/86954059806a0d637802e39dafa65f4bb4cb6ceb))
+
+
+
+
+
 ## [6.0.3](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@6.0.2...@toptal/picasso-forms@6.0.3) (2021-10-18)
 
 **Note:** Version bump only for package @toptal/picasso-forms
