@@ -1,6 +1,11 @@
 import { mount } from '@cypress/react'
 import { Container } from '@toptal/picasso'
-import DatePicker, { DatePickerProps } from '@toptal/picasso-lab/DatePicker'
+import {
+  DatePicker,
+  DatePickerProps,
+  DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
+  datePickerParseDateString
+} from '@toptal/picasso-lab'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop } from '@toptal/picasso/utils'
 import React from 'react'
@@ -35,8 +40,21 @@ describe('DatePicker', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders allow custom value', () => {
-    mount(<TestDatePicker allowCustomValue value='some random text' />)
+  it('renders custom value', () => {
+    const parseInputValue = (value: string) => {
+      const result = datePickerParseDateString(value, {
+        dateFormat: DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
+      })
+
+      return result ?? value
+    }
+
+    mount(
+      <TestDatePicker
+        parseInputValue={parseInputValue}
+        value='some random text'
+      />
+    )
 
     cy.get('body').happoScreenshot()
   })

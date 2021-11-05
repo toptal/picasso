@@ -5,6 +5,10 @@ import React, { useState } from 'react'
 
 import { DateOrDateRangeType } from '../Calendar'
 import DatePicker, { Props } from './DatePicker'
+import {
+  datePickerParseDateString,
+  DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
+} from './'
 
 // eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
@@ -245,13 +249,21 @@ describe('DatePicker', () => {
       expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 25))
     })
 
-    describe('should work with `allowCustomValue`', () => {
+    describe('should work with overwritten `parseInputValue`', () => {
+      const parseInputValue = (value: string) => {
+        const result = datePickerParseDateString(value, {
+          dateFormat: DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
+        })
+
+        return result ?? value
+      }
+
       it('emits `string` if value is not a valid date', () => {
         const handleChange = jest.fn()
 
         const { getByPlaceholderText } = renderDatePicker({
           ...defaultProps,
-          allowCustomValue: true,
+          parseInputValue,
           onChange: handleChange
         })
 
@@ -266,7 +278,7 @@ describe('DatePicker', () => {
 
         const { getByPlaceholderText } = renderDatePicker({
           ...defaultProps,
-          allowCustomValue: true,
+          parseInputValue,
           onChange: handleChange
         })
 
@@ -281,7 +293,7 @@ describe('DatePicker', () => {
 
         const { getByPlaceholderText, getByTestId } = renderDatePicker({
           ...defaultProps,
-          allowCustomValue: true,
+          parseInputValue,
           value: 'some random text',
           onChange: handleChange
         })
@@ -303,7 +315,7 @@ describe('DatePicker', () => {
           return (
             <DatePicker
               placeholder={placeholder}
-              allowCustomValue
+              parseInputValue={parseInputValue}
               value={value}
               onChange={setValue}
             />

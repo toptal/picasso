@@ -1,6 +1,5 @@
-/* eslint-disable max-lines-per-function */
+/* eslint-disable max-lines-per-function, max-lines */
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
-
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   BaseProps,
@@ -13,7 +12,6 @@ import { Calendar16 } from '@toptal/picasso/Icon'
 import Popper from '@toptal/picasso/Popper'
 import { noop } from '@toptal/picasso/utils'
 import formatDate from 'date-fns/format'
-import parse from 'date-fns/parse'
 import PopperJs from 'popper.js'
 import React, {
   KeyboardEvent,
@@ -29,13 +27,18 @@ import Calendar, {
   DateRangeType,
   DayProps
 } from '../Calendar'
+import {
+  DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
+  DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
+} from './constants'
 import styles from './styles'
+import { DatePickerValue, DatePickerStringParser } from './types'
 import {
   formatDateRange,
-  isDateValid,
-  isDateWithinInterval,
+  datePickerParseDateString,
   timezoneConvert,
-  timezoneFormat
+  timezoneFormat,
+  isValidDateValue
 } from './utils'
 
 const EMPTY_INPUT_VALUE = ''
@@ -43,8 +46,6 @@ const EMPTY_INPUT_VALUE = ''
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoDatePicker'
 })
-
-export type DatePickerValue = DateOrDateRangeType | string | null
 
 export interface Props
   extends BaseProps,
@@ -91,16 +92,15 @@ export interface Props
   weekStartsOn?: number
   /** IANA timezone to display and edit date(s) */
   timezone?: string
-  /** Whether custom values should be allowed or not. It doesn't support `range` mode */
-  allowCustomValue?: boolean
+  /* Invoked when input value has been changed. If method failed to parse a value, it must return undefined. Used to process input value before passing it to the `onChange` */
+  parseInputValue?: DatePickerStringParser
 }
-
 export const DatePicker = (props: Props) => {
   const {
     range,
     hideOnSelect,
-    displayDateFormat = 'MMM d, yyyy',
-    editDateFormat = 'MM-dd-yyyy',
+    displayDateFormat = DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
+    editDateFormat = DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
     onBlur = noop,
     onChange,
     value,
@@ -114,7 +114,7 @@ export const DatePicker = (props: Props) => {
     weekStartsOn,
     timezone,
     size,
-    allowCustomValue,
+    parseInputValue = datePickerParseDateString,
     ...rest
   } = props
   const classes = useStyles()
@@ -136,12 +136,6 @@ export const DatePicker = (props: Props) => {
   const popperRef = useRef<PopperJs>(null)
   const calendarRef = useRef<HTMLDivElement>(null)
   const inputWrapperRef = useRef<HTMLDivElement>(null)
-
-  const isValidDateValue = (
-    dateValue: DateOrDateRangeType | string
-  ): dateValue is DateOrDateRangeType => {
-    return typeof dateValue !== 'string'
-  }
 
   // Format the input based on its 'focus' state
   const formatInputValue = useCallback(
@@ -166,11 +160,12 @@ export const DatePicker = (props: Props) => {
       if (!value) {
         return EMPTY_INPUT_VALUE
       }
-      const convertedValue = isValidDateValue(value)
-        ? timezoneConvert(value, timezone)
-        : value
 
-      return formatInputValue(convertedValue)
+      if (!isValidDateValue(value)) {
+        return value
+      }
+
+      return formatInputValue(timezoneConvert(value, timezone))
     })
   }, [value, timezone, formatInputValue])
 
@@ -223,17 +218,17 @@ export const DatePicker = (props: Props) => {
     setInputValue(nextValue)
     if (!nextValue) {
       onChange(null)
-    } else if (isDateValid(nextValue, editDateFormat)) {
-      const parsedNextValue = parse(nextValue, editDateFormat, new Date())
-      const nextTimezoneValue = timezoneFormat(parsedNextValue, timezone)
+    } else {
+      const parsedInputValue = parseInputValue(nextValue, {
+        dateFormat: editDateFormat,
+        timezone,
+        minDate,
+        maxDate
+      })
 
-      if (!isDateWithinInterval(nextTimezoneValue, minDate, maxDate)) {
-        return
+      if (parsedInputValue) {
+        onChange(parsedInputValue)
       }
-
-      onChange(nextTimezoneValue)
-    } else if (allowCustomValue) {
-      onChange(nextValue)
     }
   }
 
