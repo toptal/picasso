@@ -20,7 +20,10 @@ export default ({ typography, palette }: Theme) =>
       }
     },
     textDecorationNone: {
-      textDecoration: 'none'
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'none'
+      }
     },
     textDecorationUnderline: {
       textDecoration: 'underline',
