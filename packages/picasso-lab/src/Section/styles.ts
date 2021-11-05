@@ -38,7 +38,7 @@ export default ({ sizes, palette }: Theme) =>
     },
     headerBar: {
       display: 'flex',
-      padding: '0.75rem 1.063rem',
+      padding: '0.75rem 1rem',
       borderRadius: `${sizes.borderRadius.medium} ${sizes.borderRadius.medium} 0 0`,
       borderBottom: `solid ${sizes.borderWidth} ${palette.grey.light2}`,
       backgroundColor: palette.grey.lighter
