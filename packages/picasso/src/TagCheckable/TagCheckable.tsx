@@ -3,7 +3,7 @@ import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import Tag from '../Tag'
 
-type ClickType = MouseEventHandler<HTMLDivElement>
+type ClickType = MouseEventHandler<HTMLElement>
 
 export interface Props extends BaseProps, TextLabelProps {
   hovered?: boolean
@@ -29,7 +29,7 @@ const TagCheckable = ({
   onChange,
   ...rest
 }: Props) => {
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     onChange?.(!checked)
     onClick?.(e)
   }

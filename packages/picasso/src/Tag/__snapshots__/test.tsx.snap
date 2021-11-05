@@ -7,6 +7,7 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
   >
     <div
       class="MuiChip-root PicassoLabel-root MuiChip-deletable"
+      data-testid="tag"
       role="button"
       tabindex="0"
     >
@@ -46,6 +47,7 @@ exports[`Tag renders \`light\` variant 1`] = `
   >
     <div
       class="MuiChip-root PicassoLabel-root"
+      data-testid="tag"
     >
       <span
         class="MuiChip-label PicassoLabel-label"
@@ -68,6 +70,7 @@ exports[`Tag renders \`primary\` variant 1`] = `
   >
     <div
       class="MuiChip-root PicassoLabel-root PicassoLabel-primary"
+      data-testid="tag"
     >
       <span
         class="MuiChip-label PicassoLabel-label"
@@ -90,6 +93,7 @@ exports[`Tag renders with adornment 1`] = `
   >
     <div
       class="MuiChip-root PicassoLabel-root"
+      data-testid="tag"
     >
       <span
         class="MuiChip-label PicassoLabel-label"
@@ -126,6 +130,7 @@ exports[`Tag renders with connection and icon 1`] = `
   >
     <div
       class="MuiChip-root PicassoLabel-root"
+      data-testid="tag"
     >
       <svg
         class="PicassoSvgSettings16-root MuiChip-icon PicassoSvgSettings16-darkGrey"
