@@ -80,9 +80,9 @@ export default ({
     },
     iconWrapperYellow: {
       flexBasis: 'unset',
+      minWidth: '1em',
       height: '1em',
-      marginTop: '2px',
-      minWidth: 0
+      marginTop: '2px'
     },
 
     close: {
