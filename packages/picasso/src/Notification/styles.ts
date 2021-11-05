@@ -12,7 +12,7 @@ PicassoProvider.override(({ layout }: Theme) => ({
       minWidth: 0,
       margin: '0 auto',
 
-      '& > *': {
+      '& > div': {
         width: '100%'
       }
     }
