@@ -1,15 +1,20 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
+import { rem } from '@toptal/picasso-shared'
 
 PicassoProvider.override(({ layout }: Theme) => ({
   MuiSnackbarContent: {
     message: {
       display: 'flex',
       maxWidth: layout.contentWidth,
-      padding: `0 ${layout.contentPaddingHorizontal}`,
+      padding: 0,
       width: '100%',
       minWidth: 0,
-      margin: '0 auto'
+      margin: '0 auto',
+
+      '& > div': {
+        width: '100%'
+      }
     }
   }
 }))
@@ -17,8 +22,7 @@ PicassoProvider.override(({ layout }: Theme) => ({
 export default ({
   palette: { red, green, yellow, common, text },
   shadows,
-  sizes: { borderRadius },
-  layout
+  sizes: { borderRadius }
 }: Theme) =>
   createStyles({
     notification: {
@@ -26,10 +30,10 @@ export default ({
       borderRadius: 0,
       flexWrap: 'nowrap',
       maxWidth: 'initial',
-      padding: `1.5em calc(1.5em - ${layout.contentPaddingHorizontal})`,
       position: 'relative',
       width: '100%',
-      boxShadow: 'none'
+      boxShadow: 'none',
+      padding: '1.5em 2.5em 1.5625em 1.5em'
     },
     notificationShadow: {
       boxShadow: shadows[3]
@@ -44,20 +48,27 @@ export default ({
       background: green.lighter
     },
     notificationWhite: {
-      background: common.white
+      background: common.white,
+      padding: '1.5625em 1.5em 1.5em'
     },
     notificationYellow: {
-      background: yellow.lighter
+      background: yellow.lighter,
+      padding: `1.5em ${rem('130px')}`
     },
 
     // Content
     content: {
       color: common.black,
       overflowWrap: 'break-word',
-      minWidth: 0
+      minWidth: 0,
+      lineHeight: rem('22px'),
+      fontSize: rem('14px'),
+      marginTop: '1px'
     },
-    contentCloseButton: {
-      paddingRight: '1.5em'
+    contentYellow: {
+      lineHeight: rem('20px'),
+      fontSize: rem('13px'),
+      marginTop: 0
     },
 
     // Content Icon
@@ -65,16 +76,23 @@ export default ({
       flexBasis: '1.5em',
       marginRight: '1em',
       minWidth: '1.5em',
-      height: '1.3125em'
+      height: '1.5em'
+    },
+    iconWrapperYellow: {
+      flexBasis: 'unset',
+      minWidth: '1em',
+      height: '1em',
+      marginTop: '2px'
     },
 
     close: {
       position: 'absolute',
-      right: '1.4em',
-      top: '1.4em',
+      right: '0.5em',
+      top: '0.75em',
       background: 'transparent',
       border: 0,
       padding: 0,
+      height: '1em',
 
       '&:hover': {
         background: 'transparent'

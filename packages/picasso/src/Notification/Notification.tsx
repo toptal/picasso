@@ -79,22 +79,27 @@ const renderNotificationIcon = ({ icon, variant, classes }: PrivateProps) => {
 }
 
 const renderNotificationContent = (props: PrivateProps) => {
-  const { classes, children, onClose } = props
+  const { classes, children, onClose, variant } = props
+
+  const capitalizedVariant = capitalize(variant as string)
 
   return (
     <Container flex className={classes?.contentWrapper}>
-      <Container flex alignItems='center' className={classes?.iconWrapper}>
+      <Container
+        flex
+        alignItems='center'
+        className={cx(
+          classes?.iconWrapper,
+          classes?.[`iconWrapper${capitalizedVariant}`]
+        )}
+      >
         {renderNotificationIcon(props)}
       </Container>
       <Typography
         size='medium'
         className={cx(
           classes?.content,
-          classes?.contentCloseButton
-            ? {
-                [classes.contentCloseButton]: onClose
-              }
-            : undefined
+          classes?.[`content${capitalizedVariant}`]
         )}
         as='div'
       >

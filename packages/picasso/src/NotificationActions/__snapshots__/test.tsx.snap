@@ -16,7 +16,7 @@ exports[`NotificationActions renders 1`] = `
           class="PicassoContainer-flex"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper Notification-iconWrapperYellow"
           >
             <svg
               class="PicassoSvgExclamationSolid16-root PicassoSvgExclamationSolid16-yellow"
@@ -29,7 +29,7 @@ exports[`NotificationActions renders 1`] = `
             </svg>
           </div>
           <div
-            class="MuiTypography-root PicassoTypography-bodyMedium Notification-content MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium Notification-content Notification-contentYellow MuiTypography-body1"
           >
             The time zone in your profile is set to (UTC -08:00) America - Los
             <div
