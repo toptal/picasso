@@ -77,7 +77,8 @@ export default ({
     },
     iconWrapperYellow: {
       height: '1em',
-      marginTop: '2px'
+      marginTop: '2px',
+      minWidth: 0
     },
 
     close: {
