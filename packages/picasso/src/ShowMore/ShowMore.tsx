@@ -68,7 +68,9 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
           className={classes.toggleText}
           iconPosition='right'
         >
-          {shownMore ? lessText : moreText}
+          <div className={classes.textWrapper}>
+            {shownMore ? lessText : moreText}
+          </div>
           <div className={classes.iconWrapper}>
             <ChevronRightIcon16
               className={cx(classes.icon, {
