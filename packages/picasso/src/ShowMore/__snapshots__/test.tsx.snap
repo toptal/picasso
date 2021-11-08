@@ -31,7 +31,11 @@ exports[`ShowMore renders 1`] = `
       <span
         class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        Show more
+        <div
+          class="PicassoShowMore-textWrapper"
+        >
+          Show more
+        </div>
         <div
           class="PicassoShowMore-iconWrapper"
         >
@@ -82,7 +86,11 @@ exports[`ShowMore when custom lessText text is specified should render with cust
       <span
         class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        Show more
+        <div
+          class="PicassoShowMore-textWrapper"
+        >
+          Show more
+        </div>
         <div
           class="PicassoShowMore-iconWrapper"
         >
@@ -133,7 +141,11 @@ exports[`ShowMore when custom showMore text is specified should render with cust
       <span
         class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        Display everything
+        <div
+          class="PicassoShowMore-textWrapper"
+        >
+          Display everything
+        </div>
         <div
           class="PicassoShowMore-iconWrapper"
         >
@@ -210,7 +222,11 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
       <span
         class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        Show less
+        <div
+          class="PicassoShowMore-textWrapper"
+        >
+          Show less
+        </div>
         <div
           class="PicassoShowMore-iconWrapper"
         >
@@ -261,7 +277,11 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
       <span
         class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        Show more
+        <div
+          class="PicassoShowMore-textWrapper"
+        >
+          Show more
+        </div>
         <div
           class="PicassoShowMore-iconWrapper"
         >
@@ -312,7 +332,11 @@ exports[`ShowMore when show more link is clicked should render expanded version 
       <span
         class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        Show less
+        <div
+          class="PicassoShowMore-textWrapper"
+        >
+          Show less
+        </div>
         <div
           class="PicassoShowMore-iconWrapper"
         >
