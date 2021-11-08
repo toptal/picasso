@@ -6,7 +6,8 @@ export default ({ palette }: Theme) =>
     toggleText: {
       display: 'flex',
       alignItems: 'center',
-      marginTop: '0.5rem'
+      marginTop: '0.5rem',
+      transition: 'none'
     },
     textWrapper: {
       marginRight: rem('8px'),
