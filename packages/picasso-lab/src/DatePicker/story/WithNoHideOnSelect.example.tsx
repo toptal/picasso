@@ -1,18 +1,15 @@
 import React, { useState } from 'react'
-import { DatePicker, DateOrDateRangeType } from '@toptal/picasso-lab'
+import { DatePicker, DatePickerValue } from '@toptal/picasso-lab'
 
 const WithNoHideOnSelect = () => {
-  const [
-    datepickerValue,
-    setDatepickerValue
-  ] = useState<DateOrDateRangeType | null>()
+  const [datepickerValue, setDatepickerValue] = useState<DatePickerValue>()
 
   return (
     <div style={{ height: '50vh' }}>
       <DatePicker
         value={datepickerValue}
         hideOnSelect={false}
-        onChange={(date: DateOrDateRangeType | null) => {
+        onChange={(date: DatePickerValue) => {
           setDatepickerValue(date)
         }}
       />

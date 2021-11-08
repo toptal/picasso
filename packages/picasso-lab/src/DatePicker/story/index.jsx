@@ -44,3 +44,7 @@ page
     'With Custom Day rendering'
   ) // picasso-skip-visuals
   .addExample('DatePicker/story/WithTimezone.example.tsx', 'With Timezone') // picasso-skip-visuals
+  .addExample(
+    'DatePicker/story/AllowCustomValue.example.tsx',
+    'With custom value'
+  ) // picasso-skip-visuals
