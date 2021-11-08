@@ -22,24 +22,31 @@ exports[`ShowMore renders 1`] = `
         </span>
       </span>
     </p>
-    <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
+    <button
+      class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-iconless PicassoButtonAction-root PicassoShowMore-toggleText"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
     >
-      Show more
-      <div
-        class="PicassoShowMore-iconWrapper"
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        <svg
-          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
+        Show more
+        <div
+          class="PicassoShowMore-iconWrapper"
         >
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-          />
-        </svg>
-      </div>
-    </a>
+          <svg
+            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            />
+          </svg>
+        </div>
+      </span>
+    </button>
   </div>
 </div>
 `;
@@ -66,24 +73,31 @@ exports[`ShowMore when custom lessText text is specified should render with cust
         </span>
       </span>
     </p>
-    <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
+    <button
+      class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-iconless PicassoButtonAction-root PicassoShowMore-toggleText"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
     >
-      Show more
-      <div
-        class="PicassoShowMore-iconWrapper"
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        <svg
-          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
+        Show more
+        <div
+          class="PicassoShowMore-iconWrapper"
         >
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-          />
-        </svg>
-      </div>
-    </a>
+          <svg
+            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            />
+          </svg>
+        </div>
+      </span>
+    </button>
   </div>
 </div>
 `;
@@ -110,24 +124,31 @@ exports[`ShowMore when custom showMore text is specified should render with cust
         </span>
       </span>
     </p>
-    <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
+    <button
+      class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-iconless PicassoButtonAction-root PicassoShowMore-toggleText"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
     >
-      Display everything
-      <div
-        class="PicassoShowMore-iconWrapper"
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        <svg
-          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
+        Display everything
+        <div
+          class="PicassoShowMore-iconWrapper"
         >
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-          />
-        </svg>
-      </div>
-    </a>
+          <svg
+            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            />
+          </svg>
+        </div>
+      </span>
+    </button>
   </div>
 </div>
 `;
@@ -180,24 +201,31 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
         </span>
       </span>
     </p>
-    <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
+    <button
+      class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-iconless PicassoButtonAction-root PicassoShowMore-toggleText"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
     >
-      Show less
-      <div
-        class="PicassoShowMore-iconWrapper"
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        <svg
-          class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
+        Show less
+        <div
+          class="PicassoShowMore-iconWrapper"
         >
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-          />
-        </svg>
-      </div>
-    </a>
+          <svg
+            class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            />
+          </svg>
+        </div>
+      </span>
+    </button>
   </div>
 </div>
 `;
@@ -224,24 +252,31 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
         </span>
       </span>
     </p>
-    <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
+    <button
+      class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-iconless PicassoButtonAction-root PicassoShowMore-toggleText"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
     >
-      Show more
-      <div
-        class="PicassoShowMore-iconWrapper"
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        <svg
-          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
+        Show more
+        <div
+          class="PicassoShowMore-iconWrapper"
         >
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-          />
-        </svg>
-      </div>
-    </a>
+          <svg
+            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            />
+          </svg>
+        </div>
+      </span>
+    </button>
   </div>
 </div>
 `;
@@ -268,24 +303,31 @@ exports[`ShowMore when show more link is clicked should render expanded version 
         </span>
       </span>
     </p>
-    <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoShowMore-toggleText PicassoLink-action PicassoLink-fontSizeInitial PicassoLink-textDecorationUnderline MuiTypography-colorPrimary"
+    <button
+      class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-iconless PicassoButtonAction-root PicassoShowMore-toggleText"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
     >
-      Show less
-      <div
-        class="PicassoShowMore-iconWrapper"
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
       >
-        <svg
-          class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
+        Show less
+        <div
+          class="PicassoShowMore-iconWrapper"
         >
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-          />
-        </svg>
-      </div>
-    </a>
+          <svg
+            class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            />
+          </svg>
+        </div>
+      </span>
+    </button>
   </div>
 </div>
 `;
