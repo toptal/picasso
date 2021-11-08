@@ -6,8 +6,8 @@ import { BaseProps } from '@toptal/picasso-shared'
 
 import ChevronRightIcon16 from '../Icon/ChevronRight16'
 import Typography from '../Typography'
-import Link from '../Link'
 import styles from './styles'
+import ButtonAction from '../ButtonAction'
 
 export interface Props extends BaseProps {
   /** Content of the component */
@@ -60,13 +60,13 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         <Truncate lines={!shownMore && rows}>{children}</Truncate>
       </Typography>
       {!disableToggle && (
-        <Link
+        <ButtonAction
           onClick={() => {
             setShownMore(!shownMore)
             onToggle()
           }}
           className={classes.toggleText}
-          variant='action'
+          iconPosition='right'
         >
           {shownMore ? lessText : moreText}
           <div className={classes.iconWrapper}>
@@ -76,7 +76,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
               })}
             />
           </div>
-        </Link>
+        </ButtonAction>
       )}
     </>
   )
