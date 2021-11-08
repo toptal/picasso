@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import React, { forwardRef, ReactNode, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Collapse } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { capitalize, Collapse } from '@material-ui/core'
 import {
   ArrowDownMinor16,
   BaseProps,
@@ -41,7 +41,7 @@ export interface Props extends BaseProps {
   titleSize?: SizeType<'small' | 'medium'>
 }
 
-const useStyles = makeStyles(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSection'
 })
 
@@ -124,8 +124,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       ref={ref}
       className={cx(
         {
-          [classes.withHeaderBar]: variant === 'withHeaderBar',
-          [classes.bordered]: variant === 'bordered',
+          [classes[variant]]: true,
           [classes.collapsed]: variant === 'default' && collapsed
         },
         classes.root,
@@ -138,11 +137,8 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
         <Container
           data-testid={testIds?.header}
           className={cx({
-            [classes.header]: variant !== 'withHeaderBar',
-            [classes.headerBar]: variant === 'withHeaderBar',
-            [classes.collapsedHeader]: variant !== 'withHeaderBar' && collapsed,
-            [classes.collapsedHeaderBar]:
-              variant === 'withHeaderBar' && collapsed
+            [classes[`header${capitalize(variant)}`]]: true,
+            [classes[`collapsedHeader${capitalize(variant)}`]]: collapsed
           })}
         >
           {renderTitle()}
