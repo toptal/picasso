@@ -4,7 +4,8 @@ import React, {
   ReactElement,
   HTMLAttributes,
   ElementType,
-  MouseEvent
+  MouseEvent,
+  AnchorHTMLAttributes
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -19,10 +20,9 @@ import toTitleCase from '../utils/to-title-case'
 import TagConnection from '../TagConnection'
 import TagCheckable from '../TagCheckable'
 
-export interface Props
-  extends BaseProps,
-    TextLabelProps,
-    HTMLAttributes<HTMLDivElement> {
+export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
+  HTMLAttributes<HTMLDivElement>
+export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
   /** Text content of the `Tag` component */
