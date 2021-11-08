@@ -33,3 +33,8 @@ page
     description:
       'The rating can be used in non-interactive mode. This mode prohibits changing its value.'
   })
+  .addExample('Rating/story/Large.example.tsx', {
+    title: 'Large variant',
+    description:
+      'The rating also has a large variant. It can be set via size parameter.'
+  })
