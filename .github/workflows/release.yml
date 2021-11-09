@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - fx-2161-changesetsx
+      - fx-2161-changesets
 
 env:
   SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
