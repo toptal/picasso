@@ -187,8 +187,6 @@ describe('Form', () => {
     cy.get('[data-testid=submit-with-inline-error-first-name]')
       .contains('Unknown first name')
       .should('be.visible')
-      // @ts-expect-error until we move to TS in support & plugins directories
-      .isWithinViewport()
 
     cy.get('[role=alert]')
       .should('be.visible')

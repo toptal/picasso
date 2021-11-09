@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 /* eslint-disable max-lines */
 import React from 'react'
 import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
@@ -81,6 +82,25 @@ const OPTIONS_WITH_DESCRIPTIONS = [
     description: 'description3'
   }
 ]
+
+const OPTION_GROUPS = {
+  'Group 1': [
+    { value: '1', text: 'Option 1' },
+    { value: '2', text: 'Option 2' },
+    { value: '3', text: 'Option 3' }
+  ],
+  'Group 2': [
+    { value: '4', text: 'Option 4' },
+    { value: '5', text: 'Option 5' },
+    { value: '6', text: 'Option 6' },
+    { value: '7', text: 'Option 7' }
+  ],
+  'Group 3': [
+    { value: '8', text: 'Option 8' },
+    { value: '9', text: 'Option 9' },
+    { value: '10', text: 'Option 10' }
+  ]
+}
 
 const getOptions = (element: Element) =>
   Array.from(element.querySelectorAll('[role="option"]')) as Element[]
@@ -447,6 +467,66 @@ describe('NonNativeSelect', () => {
 
     expect(highlightedOption).not.toBeNull()
     expect(highlightedOption?.textContent).toEqual(OPTIONS[2].text)
+  })
+
+  it('highlights grouped options via keys correctly', () => {
+    const placeholder = 'Choose an option...'
+
+    const { getByPlaceholderText, container } = renderSelect({
+      options: OPTION_GROUPS,
+      placeholder
+    })
+
+    const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
+
+    fireEvent.click(selectInput)
+    ;[...Array(6)].forEach(() =>
+      fireEvent.keyDown(selectInput, { key: 'ArrowDown', code: 'ArrowDown' })
+    )
+    const highlightedOption = getHighlightedOption(container)
+
+    expect(highlightedOption?.textContent).toBe('Option 7')
+  })
+
+  it('picks an option from group via keys correctly', () => {
+    const placeholder = 'Choose an option...'
+    const onChange = jest.fn()
+
+    const { getByPlaceholderText } = renderSelect({
+      options: OPTION_GROUPS,
+      placeholder,
+      onChange
+    })
+
+    const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
+
+    fireEvent.click(selectInput)
+    ;[...Array(6)].forEach(() =>
+      fireEvent.keyDown(selectInput, { key: 'ArrowDown', code: 'ArrowDown' })
+    )
+    fireEvent.keyDown(selectInput, { key: 'Enter', code: 'Enter' })
+
+    expect(onChange).toHaveBeenCalledWith(
+      expect.objectContaining({ target: { value: '7' } })
+    )
+  })
+
+  it('highlights limited options correctly', () => {
+    const placeholder = 'Choose an option...'
+
+    const { getByPlaceholderText, container } = renderSelect({
+      options: OPTION_GROUPS,
+      placeholder,
+      limit: 1
+    })
+
+    const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
+
+    fireEvent.click(selectInput)
+    fireEvent.keyDown(selectInput, { key: 'ArrowDown', code: 'ArrowDown' })
+    const highlightedOption = getHighlightedOption(container)
+
+    expect(highlightedOption?.textContent).toBe('Option 4')
   })
 })
 

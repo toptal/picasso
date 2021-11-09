@@ -88,7 +88,7 @@ describe('Tabs', () => {
   })
 
   it('navigates with scroll buttons', () => {
-    mount(renderTabs({ width: '13rem' }))
+    mount(renderTabs())
 
     cy.get(getTabSelector(0)).should('be.visible')
     cy.get(getTabSelector(4)).should('not.be.visible')
