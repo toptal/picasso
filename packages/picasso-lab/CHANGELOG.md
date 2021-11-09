@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@9.2.1...@toptal/picasso-lab@9.3.0) (2021-11-09)
+
+
+### Features
+
+* **section:** add with header bar variant ([#2208](https://github.com/toptal/picasso/issues/2208)) ([49f8d41](https://github.com/toptal/picasso/commit/49f8d415adc3e523069531da290f2986f76bf4b1))
+
+
+
+
+
 ## [9.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@9.2.0...@toptal/picasso-lab@9.2.1) (2021-11-09)
 
 **Note:** Version bump only for package @toptal/picasso-lab
