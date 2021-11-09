@@ -9,7 +9,7 @@ exports[`Section renders collapsible initially collapsed 1`] = `
       class="PicassoSection-default PicassoSection-collapsed PicassoSection-root"
     >
       <div
-        class="PicassoSection-headerDefault PicassoSection-collapsedHeaderDefault"
+        class="PicassoSection-defaultHeader PicassoSection-defaultCollapsedHeader"
         data-testid="header"
       >
         <div
@@ -53,7 +53,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
       class="PicassoSection-default PicassoSection-root"
     >
       <div
-        class="PicassoSection-headerDefault"
+        class="PicassoSection-defaultHeader"
         data-testid="header"
       >
         <div
@@ -113,7 +113,7 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
       class="PicassoSection-default PicassoSection-root"
     >
       <div
-        class="PicassoSection-headerDefault"
+        class="PicassoSection-defaultHeader"
         data-testid="header"
       >
         <h3
