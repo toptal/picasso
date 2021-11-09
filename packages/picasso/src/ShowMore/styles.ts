@@ -5,15 +5,17 @@ export default ({ palette }: Theme) =>
     toggleText: {
       display: 'flex',
       alignItems: 'center',
-      marginTop: '0.5rem'
+      marginTop: '0.5rem',
+      transition: 'none',
+      fontWeight: 'normal'
     },
     iconWrapper: {
-      transform: 'rotate(90deg)',
-      fontSize: '0.6em',
-      marginLeft: '1em'
+      fontSize: '1rem !important',
+      lineHeight: 0,
+      transform: 'rotate(90deg)'
     },
     icon: {
-      color: palette.primary.main
+      color: palette.grey.dark
     },
     expandedIcon: {
       transform: 'rotate(180deg)'
