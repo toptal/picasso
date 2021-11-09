@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@13.3.4...@toptal/picasso@13.4.0) (2021-11-09)
+
+
+### Features
+
+* **icon:** add dialpad16 icon ([#2211](https://github.com/toptal/picasso/issues/2211)) ([3a7d65b](https://github.com/toptal/picasso/commit/3a7d65b6a931e8b8cb53520edb6bbd472dd6958a))
+
+
+
+
+
 ## [13.3.4](https://github.com/toptal/picasso/compare/@toptal/picasso@13.3.3...@toptal/picasso@13.3.4) (2021-11-09)
 
 
