@@ -77,9 +77,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
           }
           iconPosition='right'
         >
-          <div className={classes.textWrapper}>
-            {shownMore ? lessText : moreText}
-          </div>
+          {shownMore ? lessText : moreText}
         </Button.Action>
       )}
     </>

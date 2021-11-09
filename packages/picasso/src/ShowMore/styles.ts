@@ -6,9 +6,7 @@ export default ({ palette }: Theme) =>
       display: 'flex',
       alignItems: 'center',
       marginTop: '0.5rem',
-      transition: 'none'
-    },
-    textWrapper: {
+      transition: 'none',
       fontWeight: 'normal'
     },
     iconWrapper: {
