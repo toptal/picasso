@@ -4,7 +4,7 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import Tag, { Props } from './Tag'
-import { Settings16 } from '..'
+import { Link, Settings16 } from '..'
 
 jest.mock('ap-style-title-case')
 
@@ -13,16 +13,28 @@ const renderTag = (
   props: OmitInternalProps<Props, 'children'>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { onDelete, disabled, variant, titleCase, endAdornment, icon } = props
+  const {
+    onDelete,
+    disabled,
+    variant,
+    titleCase,
+    endAdornment,
+    icon,
+    as,
+    href
+  } = props
 
   return render(
     <Tag
+      data-testid='tag'
       onDelete={onDelete}
       disabled={disabled}
       variant={variant}
       titleCase={titleCase}
       endAdornment={endAdornment}
       icon={icon}
+      as={as}
+      href={href}
     >
       {children}
     </Tag>,
@@ -96,6 +108,7 @@ describe('Tag', () => {
 
     expect(container).toMatchSnapshot()
   })
+
   it('renders with connection and icon', () => {
     const { container } = renderTag('foobar', {
       endAdornment: <Tag.Connection>0</Tag.Connection>,
@@ -103,5 +116,15 @@ describe('Tag', () => {
     })
 
     expect(container).toMatchSnapshot()
+  })
+
+  it('renders with Link', () => {
+    const href = 'test-href'
+    const { getByTestId } = renderTag('foobar', {
+      as: Link,
+      href
+    })
+
+    expect(getByTestId('tag')).toHaveAttribute('href', href)
   })
 })

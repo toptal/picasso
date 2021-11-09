@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@9.1.0...@toptal/picasso-lab@9.2.0) (2021-11-08)
+
+
+### Features
+
+* **datepicker:** add support for custom value ([#2203](https://github.com/toptal/picasso/issues/2203)) ([15e0823](https://github.com/toptal/picasso/commit/15e0823eaf548ab5e3955f6dc30bb75167d0f3be))
+
+
+
+
+
 # [9.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@9.0.3...@toptal/picasso-lab@9.1.0) (2021-10-22)
 
 

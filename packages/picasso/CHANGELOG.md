@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso@13.2.1...@toptal/picasso@13.3.0) (2021-11-08)
+
+
+### Features
+
+* **tag:** [FX-2232] update Tag props type ([#2210](https://github.com/toptal/picasso/issues/2210)) ([199a4cb](https://github.com/toptal/picasso/commit/199a4cb2abd2bd462baf9d68e1cdb447263952f7))
+
+
+
+
+
 ## [13.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso@13.2.0...@toptal/picasso@13.2.1) (2021-11-05)
 
 **Note:** Version bump only for package @toptal/picasso
