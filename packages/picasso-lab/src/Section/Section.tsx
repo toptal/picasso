@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import React, { forwardRef, ReactNode, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { capitalize, Collapse } from '@material-ui/core'
+import { Collapse } from '@material-ui/core'
 import {
   ArrowDownMinor16,
   BaseProps,
@@ -137,8 +137,8 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
         <Container
           data-testid={testIds?.header}
           className={cx({
-            [classes[`header${capitalize(variant)}`]]: true,
-            [classes[`collapsedHeader${capitalize(variant)}`]]: collapsed
+            [classes[`${variant}Header`]]: true,
+            [classes[`${variant}CollapsedHeader`]]: collapsed
           })}
         >
           {renderTitle()}
