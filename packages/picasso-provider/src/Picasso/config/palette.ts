@@ -1,4 +1,5 @@
 interface ColorSample {
+  lightest?: string
   lighter?: string
   lighter2?: string
   light?: string
@@ -26,6 +27,7 @@ declare module '@material-ui/core' {
 
 export const colors = {
   grey: {
+    lightest: '#fcfcfc',
     lighter: '#f3f4f6',
     lighter2: '#ebeced',
     light: '#e5e7ea',

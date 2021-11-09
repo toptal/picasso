@@ -14,7 +14,7 @@ const shadeStyles = {
 
 export default ({ palette }: Theme) => {
   const BACKGROUND_STARTING_COLOR = palette.background.default
-  const BACKGROUND_FINISHING_COLOR = 'transparent'
+  const BACKGROUND_FINISHING_COLOR = 'rgba(255, 255, 255, 0)'
 
   return createStyles({
     modalContent: {

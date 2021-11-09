@@ -120,7 +120,6 @@ page
   }) // picasso-skip-visuals
   .addExample('Link/story/Color.example.tsx', 'Color') // picasso-skip-visuals
   .addExample('Link/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
-  .addExample('Link/story/TextDecoration.example.tsx', 'Text decoration') // picasso-skip-visuals
   .addExample('Link/story/Routing.example.tsx', {
     title: 'Routing',
     description:

@@ -92,4 +92,54 @@ describe('Link', () => {
     mount(<TestUserBadgeLink />)
     cy.get('body').happoScreenshot()
   })
+
+  describe('when hover over the link', () => {
+    it('renders link without underline', () => {
+      mount(
+        <TestingPicasso>
+          <Link data-testid='link'>Link</Link>
+        </TestingPicasso>
+      )
+
+      cy.get('[data-testid="link"')
+        .realHover()
+        .should('have.css', 'text-decoration', 'none solid rgb(32, 78, 207)')
+    })
+  })
+
+  describe('when hover over a disabled link', () => {
+    it('renders link with underline', () => {
+      mount(
+        <TestingPicasso>
+          <Link data-testid='link' disabled>
+            Link
+          </Link>
+        </TestingPicasso>
+      )
+
+      cy.get('[data-testid="link"')
+        .realHover()
+        .should(
+          'have.css',
+          'text-decoration',
+          'underline solid rgb(132, 136, 142)'
+        )
+    })
+  })
+
+  describe('when hover over a none decoracted link', () => {
+    it('renders link without underline', () => {
+      mount(
+        <TestingPicasso>
+          <Link data-testid='link' textDecoration='none'>
+            Link
+          </Link>
+        </TestingPicasso>
+      )
+
+      cy.get('[data-testid="link"')
+        .realHover()
+        .should('have.css', 'text-decoration', 'none solid rgb(32, 78, 207)')
+    })
+  })
 })

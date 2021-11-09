@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.3.4](https://github.com/toptal/picasso/compare/@toptal/picasso@13.3.3...@toptal/picasso@13.3.4) (2021-11-09)
+
+
+### Bug Fixes
+
+* **Modal:** [FX-2237] shadows are broken in desktop Safari & iOs ([#2213](https://github.com/toptal/picasso/issues/2213)) ([6ca10bc](https://github.com/toptal/picasso/commit/6ca10bca4658fc3c1f0c5e2d1b65b94894199f21))
+
+
+
+
+
+## [13.3.3](https://github.com/toptal/picasso/compare/@toptal/picasso@13.3.2...@toptal/picasso@13.3.3) (2021-11-09)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+## [13.3.2](https://github.com/toptal/picasso/compare/@toptal/picasso@13.3.1...@toptal/picasso@13.3.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* **Link:** [FX-2231] fix on hover style ([#2209](https://github.com/toptal/picasso/issues/2209)) ([3b8cf3a](https://github.com/toptal/picasso/commit/3b8cf3aa299597fee95f511e0ce1f84eb5c449f4))
+
+
+
+
+
+## [13.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso@13.3.0...@toptal/picasso@13.3.1) (2021-11-09)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
 # [13.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso@13.2.1...@toptal/picasso@13.3.0) (2021-11-08)
 
 
