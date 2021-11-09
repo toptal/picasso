@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.3.3](https://github.com/toptal/picasso/compare/@toptal/picasso@13.3.2...@toptal/picasso@13.3.3) (2021-11-09)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
 ## [13.3.2](https://github.com/toptal/picasso/compare/@toptal/picasso@13.3.1...@toptal/picasso@13.3.2) (2021-11-09)
 
 
