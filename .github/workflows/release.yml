@@ -49,7 +49,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
 
       - name: Adds labels to PRs
-        run: gh pr edit --add-label "label name" "$PR_URL"
+        run: gh pr edit --add-label "no-jira" "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} # Not sure if this one is required
