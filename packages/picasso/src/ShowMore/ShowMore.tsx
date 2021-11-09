@@ -66,17 +66,19 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
             onToggle()
           }}
           className={classes.toggleText}
+          icon={
+            <div className={classes.iconWrapper}>
+              <ChevronRightIcon16
+                className={cx(classes.icon, {
+                  [classes.expandedIcon]: shownMore
+                })}
+              />
+            </div>
+          }
           iconPosition='right'
         >
           <div className={classes.textWrapper}>
             {shownMore ? lessText : moreText}
-          </div>
-          <div className={classes.iconWrapper}>
-            <ChevronRightIcon16
-              className={cx(classes.icon, {
-                [classes.expandedIcon]: shownMore
-              })}
-            />
           </div>
         </Button.Action>
       )}

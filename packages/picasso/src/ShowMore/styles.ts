@@ -1,5 +1,4 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { rem } from '@toptal/picasso-shared'
 
 export default ({ palette }: Theme) =>
   createStyles({
@@ -10,10 +9,10 @@ export default ({ palette }: Theme) =>
       transition: 'none'
     },
     textWrapper: {
-      marginRight: rem('8px'),
       fontWeight: 'normal'
     },
     iconWrapper: {
+      fontSize: '1rem !important',
       lineHeight: 0,
       transform: 'rotate(90deg)'
     },
