@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - fx-2161-changesetsx
 
 env:
   SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -30,26 +30,14 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
       - name: Check yarn cache
-        uses: actions/cache@v2.1.5
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+        uses: c-hive/gha-yarn-cache@v2
 
-      - name: Install Dependencies (from network)
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile --ignore-optional
-
-      - name: Install Dependencies (from cache)
-        if: steps.yarn-cache.outputs.cache-hit == 'true'
-        run: yarn install --frozen-lockfile --ignore-optional --offline
+      - name: Install Dependencies
+        shell: bash
+        run: |
+          yarn policies set-version
+          yarn install --frozen-lockfile --ignore-optional
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
@@ -60,32 +48,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOPTAL_BUILD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
 
-      - name: Add no-jira label to "Version Package" PR
-        if: ${{ steps.changesets.outputs.published != 'true' }}
-        uses: actions/github-script@v5
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            // Get list of all open PRs with
-            // head branch "changeset-release/master"
-            // (there should be max 1 PR with such condition)
-            const { data } = await github.rest.pulls.list({
-              owner: 'toptal',
-              repo: 'picasso',
-              state: 'open',
-              head: 'toptal:changeset-release/master'
-            })
-            // add to all of them label "no-jira"
-            for await (let pr of data) {
-              github.rest.issues.addLabels({
-                owner: 'toptal',
-                repo: 'picasso',
-                issue_number: pr.number,
-                labels: [
-                  'no-jira'
-                ]
-              })
-            }
+      - name: Adds labels to PRs
+        run: gh pr edit --add-label "label name" "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} # Not sure if this one is required
+
+
       - name: Add peerDependencies warning to "Version Package" PR
         if: ${{ steps.changesets.outputs.published != 'true' }}
         uses: actions/github-script@v5
@@ -99,7 +68,7 @@ jobs:
               owner: 'toptal',
               repo: 'picasso',
               state: 'open',
-              head: 'toptal:changeset-release/master'
+              head: 'toptal:changeset-release/fx-2161-changesets'
             })
             // append PR body with peerDependencies warning
             for await (let pr of data) {
