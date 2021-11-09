@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import React, { forwardRef, ReactNode, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Collapse } from '@material-ui/core'
 import {
   ArrowDownMinor16,
@@ -14,7 +14,7 @@ import { Rotate180 } from '@toptal/picasso/utils/Transitions'
 
 import styles from './styles'
 
-type VariantType = 'bordered' | 'default'
+type VariantType = 'bordered' | 'default' | 'withHeaderBar'
 
 export interface Props extends BaseProps {
   /** Title of the Section */
@@ -41,7 +41,7 @@ export interface Props extends BaseProps {
   titleSize?: SizeType<'small' | 'medium'>
 }
 
-const useStyles = makeStyles(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSection'
 })
 
@@ -59,7 +59,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
     testIds,
     collapsible = false,
     defaultCollapsed = true,
-    variant,
+    variant = 'default',
     titleSize = 'medium',
     ...rest
   } = props
@@ -124,8 +124,8 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       ref={ref}
       className={cx(
         {
-          [classes.bordered]: variant === 'bordered',
-          [classes.collapsed]: variant !== 'bordered' && collapsed
+          [classes[variant]]: true,
+          [classes.collapsed]: variant === 'default' && collapsed
         },
         classes.root,
         className
@@ -136,8 +136,9 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       {hasHeader && (
         <Container
           data-testid={testIds?.header}
-          className={cx(classes.header, {
-            [classes.collapsedHeader]: collapsed
+          className={cx({
+            [classes[`${variant}Header`]]: true,
+            [classes[`${variant}CollapsedHeader`]]: collapsed
           })}
         >
           {renderTitle()}

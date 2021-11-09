@@ -6,10 +6,10 @@ exports[`Section renders collapsible initially collapsed 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-collapsed PicassoSection-root"
+      class="PicassoSection-default PicassoSection-collapsed PicassoSection-root"
     >
       <div
-        class="PicassoSection-header PicassoSection-collapsedHeader"
+        class="PicassoSection-defaultHeader PicassoSection-defaultCollapsedHeader"
         data-testid="header"
       >
         <div
@@ -50,10 +50,10 @@ exports[`Section renders collapsible initially expanded 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-root"
+      class="PicassoSection-default PicassoSection-root"
     >
       <div
-        class="PicassoSection-header"
+        class="PicassoSection-defaultHeader"
         data-testid="header"
       >
         <div
@@ -110,10 +110,10 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-root"
+      class="PicassoSection-default PicassoSection-root"
     >
       <div
-        class="PicassoSection-header"
+        class="PicassoSection-defaultHeader"
         data-testid="header"
       >
         <h3
@@ -162,7 +162,7 @@ exports[`Section renders without header 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-root"
+      class="PicassoSection-default PicassoSection-root"
     >
       <div
         class="MuiCollapse-container MuiCollapse-entered"

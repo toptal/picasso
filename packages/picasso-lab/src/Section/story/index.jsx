@@ -15,8 +15,9 @@ page.createTabChapter('Props').addComponentDocs({
       description: 'The variant to use',
       type: {
         name: 'enum',
-        enums: ['bordered', 'default']
-      }
+        enums: ['bordered', 'default', 'withHeaderBar']
+      },
+      defaultValue: 'default'
     }
   }
 })
