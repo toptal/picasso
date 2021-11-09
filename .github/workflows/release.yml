@@ -49,6 +49,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
 
       - name: Adds labels to PRs
+        if: ${{ steps.changesets.outputs.published != 'true' }}
         run: gh pr edit --add-label "no-jira" "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
@@ -57,33 +58,11 @@ jobs:
 
       - name: Add peerDependencies warning to "Version Package" PR
         if: ${{ steps.changesets.outputs.published != 'true' }}
-        uses: actions/github-script@v5
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            // Get list of all open PRs with
-            // head branch "changeset-release/master"
-            // (there should be max 1 PR with such condition)
-            const { data } = await github.rest.pulls.list({
-              owner: 'toptal',
-              repo: 'picasso',
-              state: 'open',
-              head: 'toptal:changeset-release/fx-2161-changesets'
-            })
-            // append PR body with peerDependencies warning
-            for await (let pr of data) {
-              const hr = "\n_____"
-              const warningTodo = "\n- [ ] ⚠️ "
-              const message = "If major release, don't forget to check if peerDependencies needs to be also updated"
-              const appendedMessage = hr + warningTodo + message
-              const body = pr.body.includes('message') ? pr.body : pr.body + appendedMessage
-              github.rest.pulls.update({
-                owner: 'toptal',
-                repo: 'picasso',
-                pull_number: pr.number,
-                body: body,
-              })
-            }
+        run: gh pr edit --body "$PR_BODY" "$PR_URL"
+        env:
+          PR_BODY: ${{github.event.pull_request.body}} + "\n_____\n- [ ] ⚠️ If major release, don't forget to check if peerDependencies needs to be also updated"
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Trigger deployment job
         if: ${{ steps.changesets.outputs.published == 'true' }}
