@@ -50,7 +50,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
           onMouseLeave={onMenuMouseLeave}
         >
           {hasBackButton && allowNestedNavigation && (
-            <MenuItem key='back' data-testid='menu-back' onClick={onBackClick}>
+            <MenuItem key='back' onClick={onBackClick}>
               <Typography size='small' color='dark-grey' variant='body'>
                 <BackMinor16 className={classes.backButtonIcon} />
                 Back

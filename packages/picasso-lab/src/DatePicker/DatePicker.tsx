@@ -339,7 +339,6 @@ export const DatePicker = (props: Props) => {
           ref={popperRef}
         >
           <Calendar
-            data-testid='calendar'
             ref={calendarRef}
             range={range}
             value={calendarValue ?? undefined}

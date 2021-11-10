@@ -239,11 +239,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
     const InputComponent = inputComponent || Input
     const loadingComponent = (
-      <InputAdornment
-        data-testid='loading-adornment'
-        position='end'
-        disablePointerEvents
-      >
+      <InputAdornment position='end' disablePointerEvents>
         <Loader size='small' />
       </InputAdornment>
     )

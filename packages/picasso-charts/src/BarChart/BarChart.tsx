@@ -95,7 +95,6 @@ const BarChart = <K extends string>({
     () =>
       tooltip ? (
         <Tooltip
-          data-testid='tooltip'
           allowEscapeViewBox={
             allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
           }

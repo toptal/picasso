@@ -23,9 +23,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAccordion'
 })
 
-export const EmptyAccordionSummary = () => (
-  <div data-testid='picasso-empty-accordion-summary' />
-)
+export const EmptyAccordionSummary = () => <div />
 
 interface SummaryProps extends Partial<StandardProps> {
   children: ReactNode

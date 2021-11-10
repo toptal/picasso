@@ -86,7 +86,6 @@ const ResetButton = ({
   onClick: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
 }) => (
   <InputAdornment
-    data-testid='reset-adornment'
     position='end'
     className={cx(classes.resetButton, {
       [classes.resetButtonDirty]: hasValue

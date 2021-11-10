@@ -160,7 +160,6 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
 
   return (
     <InputAdornment
-      data-testid='limit-adornment-multiline-label'
       position='end'
       className={cx({
         [classes.limiterMultiline]: multiline

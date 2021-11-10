@@ -33,7 +33,7 @@ const CategoriesChartTooltip: FC<Props> = ({
     })
 
     return (
-      <Paper data-testid='tooltip-content'>
+      <Paper>
         <Container padded='xsmall'>
           {teamTexts.map(({ key, label, value, color }) => (
             <Typography size='medium' style={{ color }} key={key}>

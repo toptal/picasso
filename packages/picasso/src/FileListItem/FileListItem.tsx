@@ -48,10 +48,7 @@ const FileListItem = ({ file, index, disabled, onRemove }: Props) => {
         Uploading...
       </Typography>
       {progress !== undefined ? (
-        <ProgressBar
-          value={progress}
-          data-testid='file-list-item-progressbar'
-        />
+        <ProgressBar value={progress} />
       ) : (
         <Loader className={classes.loader} size='small' />
       )}
