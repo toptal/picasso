@@ -246,7 +246,7 @@ const DropdownTooltipExample = () => {
   const dropdownContent = (
     <Menu>
       <Menu.Item>Option 1</Menu.Item>
-      <Tooltip open content={tooltipContent} placement='bottom'>
+      <Tooltip open content={tooltipContent}>
         <Menu.Item>Option 2</Menu.Item>
       </Tooltip>
       <Menu.Item>Option 3</Menu.Item>
@@ -407,10 +407,16 @@ describe('Tooltip', () => {
   })
 
   it('renders inside a dropdown', () => {
+    const TIME_TO_POSITION = 300
+
     mount(<DropdownTooltipExample />)
 
     cy.get('[data-testid="dropdown-trigger"]').click()
     cy.get(CONTENT_QUERY_SELECTOR).should('be.visible')
+
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(TIME_TO_POSITION)
+
     cy.get('body').happoScreenshot()
   })
 })
