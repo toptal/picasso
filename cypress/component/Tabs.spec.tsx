@@ -88,6 +88,8 @@ describe('Tabs', () => {
   })
 
   it('navigates with scroll buttons', () => {
+    cy.viewport(700, 500)
+
     mount(renderTabs())
 
     cy.get(getTabSelector(0)).should('be.visible')
