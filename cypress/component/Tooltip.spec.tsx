@@ -215,7 +215,9 @@ const AutocompleteTooltipExample = () => {
   const [value, setValue] = useState('')
 
   const tooltipContent = (
-    <Typography data-testid={CONTENT_TEST_ID}>Content</Typography>
+    <Typography data-testid={CONTENT_TEST_ID} color='inherit'>
+      Content
+    </Typography>
   )
 
   return (
@@ -240,7 +242,9 @@ const AutocompleteTooltipExample = () => {
 
 const DropdownTooltipExample = () => {
   const tooltipContent = (
-    <Typography data-testid={CONTENT_TEST_ID}>Content</Typography>
+    <Typography data-testid={CONTENT_TEST_ID} color='inherit'>
+      Content
+    </Typography>
   )
 
   const dropdownContent = (
@@ -407,16 +411,10 @@ describe('Tooltip', () => {
   })
 
   it('renders inside a dropdown', () => {
-    const TIME_TO_POSITION = 300
-
     mount(<DropdownTooltipExample />)
 
     cy.get('[data-testid="dropdown-trigger"]').click()
     cy.get(CONTENT_QUERY_SELECTOR).should('be.visible')
-
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(TIME_TO_POSITION)
-
     cy.get('body').happoScreenshot()
   })
 })
