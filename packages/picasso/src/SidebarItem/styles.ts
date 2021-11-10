@@ -6,7 +6,7 @@ export default ({ palette, sizes }: Theme) =>
       height: '2.75em',
       padding: '0 1rem',
       margin: '0 1rem',
-
+      fontSize: '1rem',
       '$nestedMenu &': {
         padding: '0 0 0 2rem',
         marginRight: '1rem'
