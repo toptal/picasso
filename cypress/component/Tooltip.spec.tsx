@@ -246,7 +246,7 @@ const DropdownTooltipExample = () => {
   const dropdownContent = (
     <Menu>
       <Menu.Item>Option 1</Menu.Item>
-      <Tooltip open content={tooltipContent}>
+      <Tooltip open content={tooltipContent} placement='bottom'>
         <Menu.Item>Option 2</Menu.Item>
       </Tooltip>
       <Menu.Item>Option 3</Menu.Item>
