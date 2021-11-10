@@ -134,7 +134,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
   )
 })
 
-Dropzone.displayName = 'PicassoDropzone'
+Dropzone.displayName = 'Dropzone'
 
 Dropzone.defaultProps = {
   disabled: false,

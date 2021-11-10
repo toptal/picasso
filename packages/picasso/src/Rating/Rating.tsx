@@ -112,6 +112,6 @@ Rating.defaultProps = {
   max: 5
 }
 
-Rating.displayName = 'PicassoRating'
+Rating.displayName = 'Rating'
 
 export default Rating

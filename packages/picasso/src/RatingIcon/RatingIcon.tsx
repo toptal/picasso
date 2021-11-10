@@ -38,6 +38,6 @@ RatingIcon.defaultProps = {
   interactive: true
 }
 
-RatingIcon.displayName = 'PicassoRatingIcon'
+RatingIcon.displayName = 'RatingIcon'
 
 export default RatingIcon
