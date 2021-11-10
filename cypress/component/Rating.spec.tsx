@@ -4,7 +4,9 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 import React from 'react'
 
 const defaultProps: RatingProps = {
-  name: 'rating'
+  name: 'rating',
+  value: 1,
+  size: 'small'
 }
 
 const renderRating = (props = defaultProps) => (
@@ -14,8 +16,20 @@ const renderRating = (props = defaultProps) => (
 )
 
 describe('Rating', () => {
-  it('renders', () => {
+  it('renders default rating', () => {
     mount(renderRating())
+
+    cy.get('body').happoScreenshot()
+  })
+  it('renders large rating', () => {
+    mount(renderRating({ ...defaultProps, size: 'large' }))
+
+    cy.get('body').happoScreenshot()
+  })
+  it('renders hover rating', () => {
+    mount(renderRating())
+
+    cy.get('[data-testid="rating-1"]').invoke('attr', 'class', 'hovered')
 
     cy.get('body').happoScreenshot()
   })
