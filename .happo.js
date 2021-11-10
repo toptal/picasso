@@ -5,16 +5,22 @@ module.exports = {
   project: 'Picasso',
   apiKey: process.env.HAPPO_API_KEY,
   apiSecret: process.env.HAPPO_API_SECRET,
-  prerender: false,
   targets: {
     'chrome-desktop': new RemoteBrowserTarget('chrome', {
-      viewport: '1280x1024',
-      useFullPageFallbackForTallScreenshots: false
+      viewport: '1280x1024'
     })
   },
   plugins: [
     happoStorybookPlugin({
       outputDir: '.happo'
     })
-  ]
+  ],
+  customizeWebpackConfig: config => {
+    config.module.rules.push({
+      test: /\.css$/,
+      use: [{ loader: require.resolve('css-loader') }]
+    })
+
+    return config
+  }
 }

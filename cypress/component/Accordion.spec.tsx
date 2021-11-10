@@ -103,7 +103,6 @@ describe('Accordion', () => {
     mount(
       <TestingPicasso>
         <TestAccordion disabled />
-        <TestAccordion expandIcon={<Check16 />} />
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
@@ -123,9 +122,6 @@ describe('Accordion', () => {
       <TestingPicasso>
         <TestAccordion defaultExpanded />
         <TestAccordion expanded />
-        <TestAccordion expanded={false} />
-        <TestAccordion disabled />
-        <TestAccordion expandIcon={<Check16 />} />
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
@@ -133,6 +129,7 @@ describe('Accordion', () => {
   it('renders collapsed initially', () => {
     mount(
       <TestingPicasso>
+        <TestAccordion defaultExpanded={false} />
         <TestAccordion expanded={false} />
       </TestingPicasso>
     )
@@ -142,14 +139,14 @@ describe('Accordion', () => {
   it('renders custom expand icon', () => {
     mount(
       <TestingPicasso>
-        <TestAccordion disabled />
         <TestAccordion expandIcon={<Check16 />} />
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
   })
 })
-describe('Accordion with custom summary', () => {
+
+describe('when custom summary', () => {
   it('closes and opens', () => {
     mount(<AccordionCustomSummary />)
     toggleAccordion()
