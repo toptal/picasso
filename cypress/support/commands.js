@@ -16,3 +16,20 @@ Cypress.Commands.add('isWithinViewport', { prevSubject: true }, subject => {
 
   return subject
 })
+
+Cypress.Commands.add(
+  'pseudo',
+  {
+    prevSubject: 'element'
+  },
+  (subject, name, property) => {
+    const window = subject[0].ownerDocument.defaultView
+    const before = window.getComputedStyle(subject[0], name)
+
+    if (!before) {
+      throw new Error(`${subject} doesn't have :${name} pseudo element.`)
+    }
+
+    return before.getPropertyValue(property).replace(/(^")|("$)/g, '')
+  }
+)
