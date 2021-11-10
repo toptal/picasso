@@ -70,7 +70,8 @@ PicassoProvider.override(
         padding: 0
       },
       error: {
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        color: palette.common.black
       }
     }
   })
