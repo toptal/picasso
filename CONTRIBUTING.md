@@ -16,6 +16,7 @@ The following is a set of guidelines for contributing to Picasso and its package
 - [Reporting Bugs](#reporting-bugs)
 - [Creating new components](#creating-new-components)
 - [Your first contribution](#your-first-contribution)
+- [Release](#release)
 
 [Why my first PR is taking too long to merge ?](#why-my-first-pr-is-taking-too-long-to-merge-)
 
@@ -74,6 +75,20 @@ In case that you found something which doesn't work as advertised feel free to r
 ### Creating new components
 
 Picasso should cover all repetitive and reusable components used at Toptal. As we can't fully track every line created by you, you are welcomed to propose any new component which should be part of Picasso and you see that it might be a helpful addition used also by the other people. Don't be afraid to raise any question and propose new ideas to us.
+
+### Release
+
+We use [changesets](https://github.com/atlassian/changesets) to manage releases for Picasso packages.
+
+As a contributor, we expect you to create a "changeset" file for the changes you've made. You can do it, by running:
+
+```
+yarn changeset
+```
+
+"changeset" file should be committed together with the modified code to the PR branch. You can also check [how to add changeset](https://github.com/atlassian/changesets/blob/main/docs/adding-a-changeset.md) for more details.
+
+When the PR is merged, additional "Version Packages [skip ci]" PR is created with the version bump and changelogs generated. FX team member should merge this PR to make a release.
 
 #### Why my first PR is taking too long to merge?
 
