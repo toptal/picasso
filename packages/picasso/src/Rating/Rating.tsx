@@ -115,7 +115,8 @@ const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
 
 Rating.defaultProps = {
   interactive: true,
-  max: 5
+  max: 5,
+  size: 'small'
 }
 
 Rating.displayName = 'Rating'

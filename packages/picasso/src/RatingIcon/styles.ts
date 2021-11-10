@@ -4,8 +4,9 @@ export default ({ transitions }: Theme) =>
   createStyles({
     clickableIcon: {
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
-      '&:hover': {
+      '&:hover, &$hovered': {
         transform: 'scale(1.5)'
       }
-    }
+    },
+    hovered: {}
   })

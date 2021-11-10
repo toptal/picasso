@@ -20,7 +20,16 @@ describe('RatingIcon', () => {
   })
 
   it('renders inactive', () => {
-    const { container } = renderRatingIcon()
+    const { container } = renderRatingIcon({
+      ...defaultProps,
+      interactive: false
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders large', () => {
+    const { container } = renderRatingIcon({ ...defaultProps, size: 'large' })
 
     expect(container).toMatchSnapshot()
   })
