@@ -235,7 +235,7 @@ const DropdownTooltipExample = () => {
 
   return (
     <TestingPicasso>
-      <Dropdown content={dropdownContent} placement='bottom-start'>
+      <Dropdown content={dropdownContent}>
         Open Dropdown
         <Dropdown.Arrow data-testid='dropdown-trigger' />
       </Dropdown>
