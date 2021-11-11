@@ -152,8 +152,6 @@ describe('when custom summary', () => {
     toggleAccordion()
     getAccordionContent().should('not.be.visible')
 
-    cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
-
     toggleAccordion()
     getAccordionContent().should('be.visible')
 
