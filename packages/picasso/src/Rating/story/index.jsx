@@ -33,8 +33,8 @@ page
     description:
       'The rating can be used in non-interactive mode. This mode prohibits changing its value.'
   }) // picasso-skip-visuals
-  .addExample('Rating/story/Large.example.tsx', {
-    title: 'Large variant',
+  .addExample('Rating/story/Sizes.example.tsx', {
+    title: 'Sizes example',
     description:
-      'The rating also has a large variant. It can be set via size parameter.'
+      'The rating component has two sizes - small (default) and large. It can be set via size parameter.'
   }) // picasso-skip-visuals

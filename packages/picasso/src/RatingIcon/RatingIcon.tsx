@@ -17,7 +17,7 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoRatingIcon'
 })
 
-const ratingSizeToStarIcons = {
+const iconsBySize = {
   small: [Star16, StarSolid16],
   large: [Star24, StarSolid24]
 }
@@ -34,8 +34,7 @@ const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
     [classes.clickableIcon]: interactive,
     [classes.hovered]: hovered
   })
-  const [Icon, IconSolid] =
-    ratingSizeToStarIcons[size] || ratingSizeToStarIcons.small
+  const [Icon, IconSolid] = iconsBySize[size] || iconsBySize.small
 
   return (
     <span {...rest} ref={ref}>

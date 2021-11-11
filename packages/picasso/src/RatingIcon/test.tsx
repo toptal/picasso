@@ -13,23 +13,8 @@ const renderRatingIcon = (props = defaultProps) =>
   render(<RatingIcon {...props} />)
 
 describe('RatingIcon', () => {
-  it('renders active', () => {
+  it('renders', () => {
     const { container } = renderRatingIcon()
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('renders inactive', () => {
-    const { container } = renderRatingIcon({
-      ...defaultProps,
-      interactive: false
-    })
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('renders large', () => {
-    const { container } = renderRatingIcon({ ...defaultProps, size: 'large' })
 
     expect(container).toMatchSnapshot()
   })
