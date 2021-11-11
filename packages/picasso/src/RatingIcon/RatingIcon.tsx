@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { Star16, StarSolid16, Star24, StarSolid24 } from '../Icon'
-import { RatingSize } from '../Rating/Rating'
 import styles from './styles'
+import type { RatingSize } from '../Rating/Rating'
 
 export interface Props {
   active: boolean
