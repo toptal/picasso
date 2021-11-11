@@ -187,6 +187,7 @@ describe('Form', () => {
     cy.get('[data-testid=submit-with-inline-error-first-name]')
       .contains('Unknown first name')
       .should('be.visible')
+      .isWithinViewport()
 
     cy.get('[role=alert]')
       .should('be.visible')
