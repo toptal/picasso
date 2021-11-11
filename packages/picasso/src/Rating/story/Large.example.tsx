@@ -9,14 +9,12 @@ const Example = () => {
   }
 
   return (
-    <div style={{ height: 26 }}>
-      <Rating
-        size='large'
-        onChange={onChange}
-        name='large-rating'
-        value={value}
-      />
-    </div>
+    <Rating
+      size='large'
+      onChange={onChange}
+      name='large-rating'
+      value={value}
+    />
   )
 }
 
