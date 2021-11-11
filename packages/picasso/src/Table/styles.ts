@@ -3,4 +3,9 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({}))
 
-export default () => createStyles({})
+export default () =>
+  createStyles({
+    root: {
+      borderCollapse: 'separate'
+    }
+  })

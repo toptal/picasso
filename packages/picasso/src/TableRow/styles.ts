@@ -20,7 +20,11 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
     bordered: {
-      borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
+      borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter2}`,
+      borderCollapse: 'inherit'
+    },
+    clear: {
+      borderBottom: 'none'
     },
     stripeEven: {
       background: palette.grey.lighter

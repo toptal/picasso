@@ -33,11 +33,14 @@ const narrowCellStyles = {
   paddingRight: '0.5rem'
 }
 
-export default ({ palette, typography }: Theme) =>
+export default ({ sizes, palette, typography }: Theme) =>
   createStyles({
     root: regularCellStyles,
     compact: compactCellStyles,
     narrow: narrowCellStyles,
+    bordered: {
+      borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
+    },
     header: {
       fontWeight: typography.fontWeights.semibold,
       color: palette.text.primary,

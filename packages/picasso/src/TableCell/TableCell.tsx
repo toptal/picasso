@@ -42,12 +42,14 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
       footer: footerClass,
       header: headerClass,
       narrow: narrowClass,
+      bordered: borderedClass,
       ...muiClasses
     } = useStyles()
-    const { spacing } = useContext(TableContext)
+    const { spacing, variant } = useContext(TableContext)
     const tableSection = useContext(TableSectionContext)
     const isHead = tableSection === TableSection.HEAD
     const isFooter = tableSection === TableSection.FOOTER
+    const isBordered = variant === 'bordered' || variant === 'striped'
     const titleCase = useTitleCase(propsTitleCase)
 
     const renderChildren = () =>
@@ -63,7 +65,8 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
           [compactClass]: spacing === 'compact',
           [narrowClass]: spacing === 'narrow',
           [footerClass]: isFooter,
-          [headerClass]: isHead
+          [headerClass]: isHead,
+          [borderedClass]: isBordered
         })}
         style={style}
         colSpan={colSpan}
