@@ -1,21 +1,20 @@
+import { JssProps } from '@toptal/picasso-shared'
 import React, { ReactNode } from 'react'
 
 import Menu from '../Menu'
 import Typography from '../Typography'
-import { useStyles } from './Autocomplete'
 
 const OtherOptionMenuItem = ({
   value,
   otherOptionText,
   renderOtherOption,
+  classes,
   ...rest
 }: {
   value: string
   otherOptionText: string
   renderOtherOption?: (value: string) => ReactNode
-}) => {
-  const classes = useStyles()
-
+} & JssProps) => {
   return (
     <Menu.Item
       size='medium'

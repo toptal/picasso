@@ -73,6 +73,6 @@ Badge.defaultProps = {
   size: 'large'
 }
 
-Badge.displayName = 'PicassoBadge'
+Badge.displayName = 'Badge'
 
 export default Badge

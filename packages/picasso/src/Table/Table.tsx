@@ -73,7 +73,7 @@ Table.defaultProps = {
   variant: 'bordered'
 }
 
-Table.displayName = 'PicassoTable'
+Table.displayName = 'Table'
 
 export default Object.assign(Table, {
   Cell: TableCell,

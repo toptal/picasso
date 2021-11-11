@@ -13,9 +13,9 @@ import styles from './styles'
 import { MenuVariant } from './types'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
-  // Switches between slide and drilldown variants
+  /** Switches between slide and drilldown variants */
   variant?: MenuVariant
-  // Whether or not to handle nested navigation
+  /** Whether or not to handle nested navigation */
   allowNestedNavigation?: boolean
 }
 

@@ -159,6 +159,6 @@ ButtonSplit.defaultProps = {
   variant: 'primary'
 }
 
-ButtonSplit.displayName = 'PicassoButtonSplit'
+ButtonSplit.displayName = 'ButtonSplit'
 
 export default ButtonSplit

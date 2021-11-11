@@ -27,11 +27,11 @@ export const EmptyAccordionSummary = () => (
   <div data-testid='picasso-empty-accordion-summary' />
 )
 
-export interface SummaryProps extends Partial<StandardProps> {
+interface SummaryProps extends Partial<StandardProps> {
   children: ReactNode
 }
 
-export const Summary = (props: SummaryProps) => {
+const Summary = (props: SummaryProps) => {
   const { children, className, ...rest } = props
   const classes = useStyles(props)
 
@@ -42,11 +42,11 @@ export const Summary = (props: SummaryProps) => {
   )
 }
 
-export interface DetailsProps extends Partial<StandardProps> {
+interface DetailsProps extends Partial<StandardProps> {
   children: ReactNode
 }
 
-export const Details = (props: DetailsProps) => {
+const Details = (props: DetailsProps) => {
   const { children, className, ...rest } = props
   const classes = useStyles(props)
 

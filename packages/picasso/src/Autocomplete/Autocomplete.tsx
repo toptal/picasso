@@ -38,15 +38,15 @@ export interface Props
       InputHTMLAttributes<HTMLInputElement>,
       'defaultValue' | 'value' | 'onChange' | 'onSelect' | 'onKeyDown' | 'size'
     > {
-  /**  Callback invoked when `input` element value is changed */
+  /** Callback invoked when `input` element value is changed */
   onChange?: (value: string, options: ChangedOptions) => void
   /** The value of the selected option, required for a controlled component. */
   value: string
   /** Whether a component is disabled */
   disabled?: boolean
-  /**  Callback invoked when selection changes */
+  /** Callback invoked when selection changes */
   onSelect?: (item: Item, event: MouseEvent | KeyboardEvent) => void
-  /**  Callback invoked when other option selected */
+  /** Callback invoked when other option selected */
   onOtherOptionSelect?: (
     value: string,
     event: MouseEvent | KeyboardEvent
@@ -111,7 +111,7 @@ export interface Props
   }
 }
 
-export const useStyles = makeStyles<Theme>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAutocomplete'
 })
 
@@ -222,6 +222,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           <OtherOptionMenuItem
             data-testid={testIds?.otherOption}
             value={value}
+            classes={classes}
             renderOtherOption={renderOtherOption}
             otherOptionText={otherOptionText}
             {...getOtherItemProps(optionsLength, value)}
