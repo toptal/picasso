@@ -146,11 +146,13 @@ describe('Accordion', () => {
   })
 })
 
-describe('when custom summary', () => {
+describe('Accordion with custom summary', () => {
   it('closes and opens', () => {
     mount(<AccordionCustomSummary />)
     toggleAccordion()
     getAccordionContent().should('not.be.visible')
+
+    cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
 
     toggleAccordion()
     getAccordionContent().should('be.visible')
