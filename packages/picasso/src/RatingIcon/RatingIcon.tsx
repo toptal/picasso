@@ -8,6 +8,7 @@ import styles from './styles'
 
 export interface Props {
   active: boolean
+  hovered?: boolean
   interactive: boolean
   size: RatingSize
 }
@@ -25,11 +26,14 @@ const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
   props,
   ref
 ) {
-  const { active, interactive, size, ...rest } = props
+  const { active, hovered, interactive, size, ...rest } = props
   const classes = useStyles()
 
   const iconColor = 'yellow'
-  const iconClasses = cx({ [classes.clickableIcon]: interactive })
+  const iconClasses = cx({
+    [classes.clickableIcon]: interactive,
+    [classes.hovered]: hovered
+  })
   const [Icon, IconSolid] =
     ratingSizeToStarIcons[size] || ratingSizeToStarIcons.small
 
