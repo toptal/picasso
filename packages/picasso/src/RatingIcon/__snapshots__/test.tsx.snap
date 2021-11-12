@@ -1,26 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RatingIcon renders active 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <span>
-      <svg
-        class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M8 11.5l-4.114 2.163.785-4.581-3.328-3.245 4.6-.669L8 1l2.057 4.168 4.6.669-3.328 3.245.785 4.581z"
-        />
-      </svg>
-    </span>
-  </div>
-</div>
-`;
-
-exports[`RatingIcon renders inactive 1`] = `
+exports[`RatingIcon renders 1`] = `
 <div>
   <div
     class="Picasso-root"

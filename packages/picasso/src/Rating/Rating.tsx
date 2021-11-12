@@ -1,11 +1,13 @@
 import React, { forwardRef, ReactNode, ChangeEvent, useCallback } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import Container from '../Container'
 import RatingIcon from '../RatingIcon'
 import styles from './styles'
+
+export type RatingSize = SizeType<'small' | 'large'>
 
 export interface Props extends BaseProps {
   /** Value of the name attribute of the rating input */
@@ -20,6 +22,8 @@ export interface Props extends BaseProps {
   max?: number
   /** Flag to allow or disable interactions with the component */
   interactive?: boolean
+  /** Size variant */
+  size?: RatingSize
 }
 
 const useStyles = makeStyles(styles, {
@@ -34,6 +38,7 @@ const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
     renderItem = (_, icon) => icon,
     max,
     interactive = true,
+    size = 'small',
     ...rest
   } = props
 
@@ -64,6 +69,7 @@ const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
           <RatingIcon
             active={!!value && itemValue <= value}
             interactive={interactive}
+            size={size}
           />
         )
 
@@ -109,7 +115,8 @@ const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
 
 Rating.defaultProps = {
   interactive: true,
-  max: 5
+  max: 5,
+  size: 'small'
 }
 
 Rating.displayName = 'Rating'

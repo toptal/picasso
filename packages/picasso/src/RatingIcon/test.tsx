@@ -5,20 +5,15 @@ import RatingIcon, { Props } from './RatingIcon'
 
 const defaultProps: Props = {
   active: true,
-  interactive: true
+  interactive: true,
+  size: 'small'
 }
 
 const renderRatingIcon = (props = defaultProps) =>
   render(<RatingIcon {...props} />)
 
 describe('RatingIcon', () => {
-  it('renders active', () => {
-    const { container } = renderRatingIcon()
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('renders inactive', () => {
+  it('renders', () => {
     const { container } = renderRatingIcon()
 
     expect(container).toMatchSnapshot()
