@@ -1,5 +1,11 @@
 # Change Log
 
+## 13.4.2
+
+### Patch Changes
+
+- [#2218](https://github.com/toptal/picasso/pull/2218) [`6a7073f0`](https://github.com/toptal/picasso/commit/6a7073f012bdc60b1ef95f30d0731204802731e4) Thanks [@TomasSlama](https://github.com/TomasSlama)! - Update storybook to latest version and make some small adjusments in components to work properly in the new Storybook.
+
 ## 13.4.1
 
 ### Patch Changes
