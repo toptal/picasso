@@ -85,7 +85,6 @@ export interface Props
   outlineRef?: React.Ref<HTMLElement>
   testIds?: {
     limit?: string
-    outlined?: string
   }
 }
 

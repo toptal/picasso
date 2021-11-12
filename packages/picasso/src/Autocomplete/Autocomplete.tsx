@@ -108,6 +108,7 @@ export interface Props
     scrollMenu?: string
     otherOption?: string
     noOptions?: string
+    loadingAdornment?: string
   }
 }
 
@@ -239,7 +240,11 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
     const InputComponent = inputComponent || Input
     const loadingComponent = (
-      <InputAdornment position='end' disablePointerEvents>
+      <InputAdornment
+        testId={testIds?.loadingAdornment}
+        position='end'
+        disablePointerEvents
+      >
         <Loader size='small' />
       </InputAdornment>
     )

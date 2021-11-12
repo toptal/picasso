@@ -81,7 +81,7 @@ const ResetButton = ({
   classes,
   hasValue,
   onClick,
-  testId
+  testId = 'reset-adornment'
 }: {
   classes: Classes
   hasValue: boolean

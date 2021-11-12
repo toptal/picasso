@@ -19,6 +19,10 @@ const TestSummary = () => (
   </Accordion.Summary>
 )
 
+const testIds = {
+  emptyAccordionSummary: 'picasso-empty-accordion-summary'
+}
+
 const renderAccordion = (props?: Partial<OmitInternalProps<Props>>) =>
   render(
     <Accordion content={<TestDetails />} {...props}>
@@ -48,10 +52,10 @@ describe('Accordion', () => {
 
   it('renders empty summary when one is not provided', () => {
     const { getByTestId, queryByTestId } = render(
-      <Accordion content={<TestDetails />} />
+      <Accordion content={<TestDetails />} testIds={testIds} />
     )
 
-    expect(getByTestId('picasso-empty-accordion-summary')).toBeVisible()
+    expect(getByTestId(testIds.emptyAccordionSummary)).toBeVisible()
     expect(queryByTestId('accordion-summary')).toBeNull()
     expect(getByTestId('accordion-details')).not.toBeVisible()
   })

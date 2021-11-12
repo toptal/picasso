@@ -15,6 +15,7 @@ export interface Props extends BaseProps {
   value: number
   /** Whether to show percentage value */
   showPercentage?: boolean
+  testId?: string
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -26,7 +27,7 @@ const normalizeValue = (value: number) =>
 
 export const ProgressBar = forwardRef<HTMLDivElement, Props>(
   function ProgressBar(props, ref) {
-    const { value, showPercentage, ...restProps } = props
+    const { value, showPercentage, testId, ...restProps } = props
     const classes = useStyles(props)
 
     const percentage = normalizeValue(value)
@@ -36,6 +37,7 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
         flex
         direction='row'
         alignItems='center'
+        data-testid={testId}
         {...restProps}
         ref={ref}
       >

@@ -22,7 +22,8 @@ const testIds = {
   menuItem: 'menu-item',
   scrollMenu: 'scroll-menu',
   otherOption: 'other-option',
-  noOptions: 'no-options'
+  noOptions: 'no-options',
+  loadingAdornment: 'loading-adornment'
 }
 
 const renderAutocomplete = (
@@ -74,7 +75,7 @@ describe('Autocomplete', () => {
         loading: true
       })
 
-      const loader = getByTestId('loading-adornment')
+      const loader = getByTestId(testIds.loadingAdornment)
 
       expect(loader).not.toBeNull()
       expect(loader).toMatchSnapshot()

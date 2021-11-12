@@ -6,12 +6,11 @@ import Input, { Props } from './Input'
 import Search16 from '../Icon/Search16'
 
 const testIds = {
-  limit: 'limit-adornment-multiline-label',
-  outlined: 'reset-adornment'
+  limit: 'limit-adornment-multiline-label'
 }
 
 const renderInput = (props: OmitInternalProps<Props>) => {
-  return render(<Input testIds={testIds} {...props} />)
+  return render(<Input data-testid='input' testIds={testIds} {...props} />)
 }
 
 describe('Input', () => {
@@ -107,7 +106,7 @@ describe('Input', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it.skip('handles clicks', () => {
+  it('handles clicks', () => {
     const handleClick = jest.fn()
     const { getByTestId } = renderInput({
       onClick: handleClick
