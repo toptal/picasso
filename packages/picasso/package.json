@@ -4,7 +4,7 @@
   "description": "Toptal UI components library",
   "publishConfig": {
     "access": "public",
-    "directory": "./dist-package"
+    "directory": "dist-package"
   },
   "main": "index.js",
   "module": "index.js",
