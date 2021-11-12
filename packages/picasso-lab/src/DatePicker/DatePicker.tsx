@@ -60,6 +60,7 @@ export interface Props
       | 'rows'
       | 'defaultValue'
       | 'onChange'
+      | 'testIds'
     > {
   /** Date that will be selected in `DatePicker` */
   value?: DatePickerValue
@@ -96,6 +97,9 @@ export interface Props
   timezone?: string
   /* Invoked when input value has been changed. If method failed to parse a value, it must return undefined. Used to process input value before passing it to the `onChange` */
   parseInputValue?: DatePickerStringParser
+  testIds?: {
+    calendar?: string
+  }
 }
 export const DatePicker = (props: Props) => {
   const {
@@ -117,6 +121,7 @@ export const DatePicker = (props: Props) => {
     timezone,
     size,
     parseInputValue = datePickerParseDateString,
+    testIds,
     ...rest
   } = props
   const classes = useStyles()
@@ -339,6 +344,7 @@ export const DatePicker = (props: Props) => {
           ref={popperRef}
         >
           <Calendar
+            data-testid={testIds?.calendar}
             ref={calendarRef}
             range={range}
             value={calendarValue ?? undefined}
