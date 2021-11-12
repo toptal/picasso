@@ -24,6 +24,7 @@ exports[`Input renders icon in the beginning 1`] = `
       <input
         autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        data-testid="input"
         type="text"
         value=""
       />
@@ -70,6 +71,7 @@ exports[`Input renders icon in the end 1`] = `
       <input
         autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        data-testid="input"
         type="text"
         value=""
       />
@@ -103,6 +105,7 @@ exports[`Input should show manual resize handler 1`] = `
       <textarea
         autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoInput-inputMultilineResizable PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        data-testid="input"
         rows="4"
       >
         Some value
@@ -137,6 +140,7 @@ exports[`Input should show reset button 1`] = `
       <input
         autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        data-testid="input"
         type="text"
         value="Some value"
       />
@@ -196,6 +200,7 @@ exports[`Input shows counter for multiline input 1`] = `
       <textarea
         autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        data-testid="input"
         rows="4"
       />
       <fieldset
@@ -228,6 +233,7 @@ exports[`Input shows counter for regular input 1`] = `
       <input
         autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        data-testid="input"
         type="text"
         value=""
       />
