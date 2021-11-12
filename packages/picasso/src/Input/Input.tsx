@@ -373,7 +373,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       onChange={onChange}
       enableReset={enableReset}
       onResetClick={onResetClick}
-      testId={testIds?.outlined}
     >
       {children}
     </OutlinedInput>
