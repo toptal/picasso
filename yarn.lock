@@ -12586,10 +12586,10 @@ handlebars@^4.7.4, handlebars@^4.7.6:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-happo-cypress@^1.24.2:
-  version "1.24.2"
-  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-1.24.2.tgz#eb3fdd10a4553f81456b939c2102e52705664f23"
-  integrity sha512-4ZRNIMdhtTivb/yTjrkichJIsts2dLuyS3Rq4bWyVOQ5dbuFxLoaHx10mhRYuDbRSTvL2TThAWbMn8SnkaRqqg==
+happo-cypress@1.17.0:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-1.17.0.tgz#72fd4e7e4119c4c1ca212c8cf975c3a5b47d67ab"
+  integrity sha512-ct8wQJvScC11MnJ288mK2e3eUSSVeyd4RhSy2ToWV+34BLuoHo6CX4UrH9tatfcSCQFCbT5NQwv/gaGbWoGM+A==
   dependencies:
     archiver "^3.1.1"
     base64-stream "^1.0.0"
@@ -12609,10 +12609,10 @@ happo-plugin-storybook@^2.7.0:
     archiver "^3.0.0"
     rimraf "^2.6.3"
 
-happo.io@^6.8.0:
-  version "6.8.0"
-  resolved "https://registry.yarnpkg.com/happo.io/-/happo.io-6.8.0.tgz#304b332ec99a812497b4b694a58329a26065f229"
-  integrity sha512-VdEwxWf29d/BSSgBZT4mgGUXNM2SvyKjm3Kugt4QJH3yucdAp04bnAICULpeXP1cEO0PwB3ofuyMAwJg+7nnhA==
+happo.io@6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/happo.io/-/happo.io-6.4.0.tgz#32e81af3c8e8ccc9905e0aef10db268928a2d90f"
+  integrity sha512-ki2bZu7rSASR5Dpg3HkrOf37MXDZoBImVKOY8+XEWFLQvaM3uioVFKD+txD/lOUeZJGD6dJZ1R62sWwXljosow==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     "@babel/preset-react" "^7.12.1"
@@ -12624,6 +12624,7 @@ happo.io@^6.8.0:
     jsdom "^16.4.0"
     jsonwebtoken "^8.2.1"
     lcs-image-diff "^2.0.0"
+    mkdirp "^0.5.1"
     parse-srcset "^1.0.2"
     pngjs "^3.4.0"
     request "^2.85.0"
