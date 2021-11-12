@@ -83,9 +83,13 @@ export interface Props
   ) => void
   /** Ref of the input outline */
   outlineRef?: React.Ref<HTMLElement>
+  testIds?: {
+    limit?: string
+    outlined?: string
+  }
 }
 
-type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit'> & {
+type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit' | 'testIds'> & {
   counter: NonNullable<Props['counter']>
   charsLength: number
 }
@@ -98,7 +102,13 @@ type StartAdornmentProps = Pick<Props, 'icon' | 'iconPosition' | 'disabled'>
 
 type EndAdornmentProps = Pick<
   Props,
-  'icon' | 'iconPosition' | 'disabled' | 'multiline' | 'limit' | 'counter'
+  | 'icon'
+  | 'iconPosition'
+  | 'disabled'
+  | 'multiline'
+  | 'limit'
+  | 'counter'
+  | 'testIds'
 > & { charsLength?: number }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoInput' })
@@ -144,7 +154,7 @@ const getMultilineLabel = ({
 
 const LimitAdornment = (props: LimitAdornmentProps) => {
   const classes = useStyles()
-  const { multiline, charsLength, counter, limit } = props
+  const { multiline, charsLength, counter, limit, testIds } = props
 
   const charsTillLimit = getCharsTillLimit({
     counter,
@@ -160,6 +170,7 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
 
   return (
     <InputAdornment
+      testId={testIds?.limit}
       position='end'
       className={cx({
         [classes.limiterMultiline]: multiline
@@ -217,6 +228,7 @@ const EndAdornment = (props: EndAdornmentProps) => {
     limit,
     multiline,
     charsLength,
+    testIds,
     counter
   } = props
 
@@ -232,6 +244,7 @@ const EndAdornment = (props: EndAdornmentProps) => {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         counter={counter!}
         limit={limit}
+        testIds={testIds}
       />
     )
   }
@@ -291,6 +304,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     enableReset,
     onResetClick,
     outlineRef,
+    testIds,
     ...rest
   } = purifyProps(props)
 
@@ -353,12 +367,14 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             charsLength={charsLength}
             multiline={multiline}
             counter={counter}
+            testIds={testIds}
           />
         )
       }
       onChange={onChange}
       enableReset={enableReset}
       onResetClick={onResetClick}
+      testId={testIds?.outlined}
     >
       {children}
     </OutlinedInput>

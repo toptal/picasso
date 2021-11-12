@@ -70,6 +70,7 @@ export interface Props
   ) => void
   /** Ref of the input element */
   inputRef?: React.Ref<HTMLInputElement>
+  testId?: string
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -79,13 +80,16 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 const ResetButton = ({
   classes,
   hasValue,
-  onClick
+  onClick,
+  testId
 }: {
   classes: Classes
   hasValue: boolean
   onClick: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
+  testId?: string
 }) => (
   <InputAdornment
+    testId={testId}
     position='end'
     className={cx(classes.resetButton, {
       [classes.resetButtonDirty]: hasValue
@@ -133,6 +137,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     disabled,
     onResetClick = noop,
     inputRef,
+    testId,
     ...rest
   } = props
 
@@ -145,6 +150,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
         classes={classes}
         hasValue={Boolean(value)}
         onClick={onResetClick}
+        testId={testId}
       />
       {userDefinedEndAdornment}
     </>
