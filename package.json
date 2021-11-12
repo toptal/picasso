@@ -16,7 +16,7 @@
     "happo": "cross-env TEST_ENV=visual happo run",
     "happo:ci": "cross-env TEST_ENV=visual happo-ci-github-actions",
     "lint": "davinci syntax lint code .",
-    "release": "changeset publish",
+    "release": "yarn build:package && changeset publish",
     "start": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "syncpack": "yarn syncpack:list & yarn syncpack:fix",
     "syncpack:list": "syncpack list-mismatches",
