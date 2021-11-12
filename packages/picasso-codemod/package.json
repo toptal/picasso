@@ -9,7 +9,7 @@
   "module": "index.js",
   "publishConfig": {
     "access": "public",
-    "directory": "./dist-package"
+    "directory": "dist-package"
   },
   "repository": {
     "type": "git",

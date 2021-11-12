@@ -12,7 +12,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "directory": "./dist-package"
+    "directory": "dist-package"
   },
   "scripts": {
     "build:package": "cross-env NODE_ENV=production node ./bin/build.js",
