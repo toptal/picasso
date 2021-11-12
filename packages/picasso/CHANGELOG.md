@@ -1,5 +1,15 @@
 # Change Log
 
+## 13.5.0
+
+### Minor Changes
+
+- [#2219](https://github.com/toptal/picasso/pull/2219) [`07e80d4e`](https://github.com/toptal/picasso/commit/07e80d4ee4275a8717c422c82d062519e232d6dc) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - Introduced size attribute to Picasso Rating component. Default is "small" and newly added is a "large" variant.
+
+### Patch Changes
+
+- [#2217](https://github.com/toptal/picasso/pull/2217) [`d8cb590b`](https://github.com/toptal/picasso/commit/d8cb590b7e181acf0e5534913f13af0655caac62) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - Updated generate-icons script to use our .prettierrc.js config
+
 ## 13.4.2
 
 ### Patch Changes
