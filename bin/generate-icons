@@ -19,5 +19,4 @@ mv $ICON_FULL_PATH/index.tsx $ICON_FULL_PATH/index.ts
 
 # format all generated code with prettier and eslint
 davinci syntax lint code $ICON_FULL_PATH
-yarn prettier-standard $ICON_FULL_PATH/**/*.tsx
-yarn prettier-standard $ICON_FULL_PATH/index.ts
+yarn prettier --write $ICON_FULL_PATH/*.tsx $ICON_FULL_PATH/**/*.tsx $ICON_FULL_PATH/index.ts

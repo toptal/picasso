@@ -9,9 +9,9 @@ const BASE_SIZE = 16
 
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
-  scale?: ScaleType;
-  color?: string;
-  base?: number;
+  scale?: ScaleType
+  color?: string
+  base?: number
 }
 const useStyles = makeStyles(styles, { name: 'PicassoSvgDialpad16' })
 const SvgDialpad16 = forwardRef(function SvgDialpad16(
