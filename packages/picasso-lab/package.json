@@ -8,7 +8,8 @@
   "main": "index.js",
   "module": "index.js",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "./dist-package"
   },
   "repository": {
     "type": "git",
