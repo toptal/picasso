@@ -67,7 +67,7 @@ const InputAdornment: FunctionComponent<Props> = props => {
       position={position}
       disablePointerEvents={disablePointerEvents}
       onClick={handleClick}
-      data-testId={testId}
+      data-testid={testId}
     >
       {children}
     </MUIInputAdornment>
