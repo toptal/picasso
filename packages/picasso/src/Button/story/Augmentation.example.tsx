@@ -3,7 +3,7 @@ import { Button, Link, LinkProps } from '@toptal/picasso'
 import { Settings16 } from '@toptal/picasso/Icon'
 
 const ActionLink = (props: LinkProps): React.ReactNode => (
-  <Link {...props} variant='action' />
+  <Link {...props} variant='action' noUnderline />
 )
 
 const ButtonAugmentationExample = () => (

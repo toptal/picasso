@@ -15,7 +15,7 @@ const TestUserBadgeLink = () => {
     <TestingPicasso>
       <Menu>
         <Menu.Item disableGutters>
-          <Link href='/' textDecoration='none' style={{ width: '100%' }}>
+          <Link href='/' style={{ width: '100%' }} noUnderline>
             <Container
               padded='medium'
               flex
@@ -54,14 +54,24 @@ describe('Link', () => {
     cy.get('body').happoScreenshot()
   })
 
+  describe('when action variant and disabled', () => {
+    it('renders action variant without underline', () => {
+      mount(
+        <TestingPicasso>
+          <Link variant='action' disabled>
+            Action link
+          </Link>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+  })
+
   it('renders colored', () => {
     mount(
       <TestingPicasso>
         <Container style={{ background: 'black' }} padded='small'>
           <Link color='white'>Action link</Link>
-        </Container>
-        <Container padded='small'>
-          <Link color='black'>Action link</Link>
         </Container>
       </TestingPicasso>
     )
@@ -82,7 +92,7 @@ describe('Link', () => {
   it('renders without underline', () => {
     mount(
       <TestingPicasso>
-        <Link textDecoration='none'>Link</Link>
+        <Link noUnderline>Link</Link>
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
@@ -103,7 +113,11 @@ describe('Link', () => {
 
       cy.get('[data-testid="link"')
         .realHover()
-        .should('have.css', 'text-decoration', 'none solid rgb(32, 78, 207)')
+        .should(
+          'have.css',
+          'text-decoration',
+          'underline solid rgb(32, 78, 207)'
+        )
     })
   })
 
@@ -131,7 +145,23 @@ describe('Link', () => {
     it('renders link without underline', () => {
       mount(
         <TestingPicasso>
-          <Link data-testid='link' textDecoration='none'>
+          <Link data-testid='link' noUnderline>
+            Link
+          </Link>
+        </TestingPicasso>
+      )
+
+      cy.get('[data-testid="link"')
+        .realHover()
+        .should('have.css', 'text-decoration', 'none solid rgb(32, 78, 207)')
+    })
+  })
+
+  describe('when hover over a disabled action link', () => {
+    it('renders link without underline', () => {
+      mount(
+        <TestingPicasso>
+          <Link data-testid='link' variant='action' disabled>
             Link
           </Link>
         </TestingPicasso>
