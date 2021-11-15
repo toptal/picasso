@@ -1,5 +1,11 @@
 # Change Log
 
+## 13.6.0
+
+### Minor Changes
+
+- [#2237](https://github.com/toptal/picasso/pull/2237) [`e00c54e7`](https://github.com/toptal/picasso/commit/e00c54e7c56d660c986ae5e096dc6da67ccd48e9) Thanks [@teimurjan](https://github.com/teimurjan)! - Fix option in Select cannot be selected when using number values.
+
 ## 13.5.0
 
 ### Minor Changes
