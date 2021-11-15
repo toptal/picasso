@@ -25,6 +25,11 @@ pipeline {
   stages {
     // Perform this only for PRs
     stage('Git checkout PR') {
+      when {
+        not {
+          branch 'disable-github-actions-for-changesets'
+        }
+      }
       steps {
         info "== Checking out Git revision ${ghprbActualCommit}"
         gitCheckout(
@@ -47,6 +52,11 @@ pipeline {
     }//stage
 
     stage('Build image') {
+      when {
+        not {
+          branch 'disable-github-actions-for-changesets'
+        }
+      }
       steps {
         script {
           buildWithParameters(
@@ -67,6 +77,9 @@ pipeline {
       when {
         expression {
           ghprbMatchesComment(/deploy:documentation|all/)
+        }
+        not {
+          branch 'disable-github-actions-for-changesets'
         }
       }
       steps {
@@ -89,6 +102,9 @@ pipeline {
       when {
         expression {
           ghprbMatchesComment(/test:visual|visual|all/)
+        }
+        not {
+          branch 'disable-github-actions-for-changesets'
         }
       }
 
