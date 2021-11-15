@@ -15,7 +15,7 @@ on:
 
 jobs:
   tests:
-    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    if: ${{ github.event.pull_request.head.ref != 'disable-github-actions-for-changesets' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
