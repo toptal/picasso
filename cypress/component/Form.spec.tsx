@@ -6,6 +6,7 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const RESPONSE_TIME = 1000
 const ANIMATION_TIME = 300
+const SCROLL_TO_ELEMENT_TIME = 100
 
 // the emulation of the api call
 const responseWithDelay = async (response: any) =>
@@ -182,12 +183,12 @@ describe('Form', () => {
     cy.get('[data-testid=submit-with-inline-error-button]').click()
 
     // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(RESPONSE_TIME + ANIMATION_TIME)
+    cy.wait(RESPONSE_TIME + ANIMATION_TIME + SCROLL_TO_ELEMENT_TIME)
 
     cy.get('[data-testid=submit-with-inline-error-first-name]')
+      .isWithinViewport()
       .contains('Unknown first name')
       .should('be.visible')
-      .isWithinViewport()
 
     cy.get('[role=alert]')
       .should('be.visible')
