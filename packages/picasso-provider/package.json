@@ -15,8 +15,7 @@
     "directory": "dist-package"
   },
   "scripts": {
-    "build:package": "cross-env NODE_ENV=production node ./bin/build.js",
-    "prepublishOnly": "../../../bin/prepublish.js"
+    "build:package": "cross-env NODE_ENV=production node ./bin/build.js"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
