@@ -1,5 +1,11 @@
 # Change Log
 
+## 13.6.1
+
+### Patch Changes
+
+- [#2233](https://github.com/toptal/picasso/pull/2233) [`499d0996`](https://github.com/toptal/picasso/commit/499d099644d3873eb644a448941f12c24c2f2e5a) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)! - Fixed closing overlay when scrolling in TagSelector and Autocomplete
+
 ## 13.6.0
 
 ### Minor Changes
