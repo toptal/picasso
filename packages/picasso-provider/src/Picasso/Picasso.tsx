@@ -17,6 +17,7 @@ import React, {
   RefAttributes
 } from 'react'
 import { Helmet } from 'react-helmet'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 
 import CssBaseline from '../CssBaseline'
@@ -162,6 +163,8 @@ interface PicassoProps extends TextLabelProps {
   theme?: ThemeOptions
   /** Disables transitions for components like Loader, to make testing easier */
   disableTransitions?: boolean
+  /** Disables unique class name prefix, to prevent hydration issues after SSR */
+  disableClassNamePrefix?: boolean
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
@@ -176,7 +179,8 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   RootComponent = PicassoRootNode,
   titleCase,
   theme,
-  disableTransitions
+  disableTransitions,
+  disableClassNamePrefix
 }) => {
   if (theme) {
     PicassoProvider.extendTheme(theme)
@@ -190,7 +194,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   const generateClassName = createGenerateClassName({
     // if there are multiples instances of Picasso
     // on the page we want each set of styles to be unique
-    seed: generateRandomStringOrGetEmptyInTest()
+    seed: disableClassNamePrefix ? '' : generateRandomStringOrGetEmptyInTest()
   })
 
   return (

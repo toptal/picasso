@@ -26,3 +26,7 @@ page
     'Picasso/story/DisableResponsiveUI.example.tsx',
     'Responsive Disabled'
   ) // picasso-skip-visuals
+  .addExample(
+    'Picasso/story/DisableClassnamePrefix.example.tsx',
+    'Classname Prefix Disabled'
+  )
