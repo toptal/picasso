@@ -4,8 +4,12 @@ import { Container, Menu, MenuProps } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const MenuExample = (props: MenuProps) => {
+  const testIds = {
+    menuItem: 'menu-back'
+  }
+
   const menuForItemB1 = (
-    <Menu data-testid='menu-b1'>
+    <Menu data-testid='menu-b1' testIds={testIds}>
       <Menu.Item data-testid='item-b1-1'>Item B1-1</Menu.Item>
       <Menu.Item data-testid='item-b1-2'>Item B1-2</Menu.Item>
     </Menu>
@@ -19,7 +23,7 @@ const MenuExample = (props: MenuProps) => {
   )
 
   const menuForItemB = (
-    <Menu data-testid='menu-b'>
+    <Menu data-testid='menu-b' testIds={testIds}>
       <Menu.Item menu={menuForItemB1} data-testid='item-b1'>
         Item B1
       </Menu.Item>
