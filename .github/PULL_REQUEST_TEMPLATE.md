@@ -37,3 +37,36 @@ List of available commands:
 - `@toptal-bot run package:alpha-release` - Release alpha version
 
 </details>
+
+<details>
+<summary>PR Review Guidelines</summary>
+<br />
+
+#### When to approve? ✅
+
+**You are OK** with merging this PR and
+1. You have no extra requests.
+2. You have optional requests.
+   1. Add `nit: ` to your comment. (ex. `nit: I'd rename this variable from makeCircle to getCircle`)
+
+#### When to request changes? ❌
+
+**You are not OK** with merging this PR because
+1. Something is broken after the changes.
+2. Acceptance criteria is not reached.
+3. Code is dirty.
+
+#### When to comment (neither ✅ nor ❌)
+
+**You want your comments to be addressed** before merging this PR in cases like:
+1. There are leftovers like unnecessary logs, comments, etc.
+2. You have an opinionated comment regarding the code that requires a discussion.
+3. You have questions.
+
+#### How to handle the comments?
+
+1. An owner of a comment is the only one who can resolve it.
+2. An owner of a comment must resolve it when it's addressed.
+3. A PR owner must reply with ✅ when a comment is addressed.
+
+</details>
