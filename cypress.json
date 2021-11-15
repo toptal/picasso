@@ -3,8 +3,6 @@
   "video": false,
   "component": {
     "testFiles": ["**/*.spec.ts", "**/*.spec.tsx"],
-    "componentFolder": "cypress/component",
-    "viewportWidth": 1280,
-    "viewportHeight": 1024
+    "componentFolder": "cypress/component"
   }
 }
