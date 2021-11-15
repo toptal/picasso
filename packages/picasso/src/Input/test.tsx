@@ -10,7 +10,7 @@ const testIds = {
 }
 
 const renderInput = (props: OmitInternalProps<Props>) => {
-  return render(<Input data-testid='input' testIds={testIds} {...props} />)
+  return render(<Input {...props} />)
 }
 
 describe('Input', () => {
@@ -45,7 +45,8 @@ describe('Input', () => {
     const { getByTestId } = renderInput({
       multiline: true,
       limit: 1,
-      value: 'A'
+      value: 'A',
+      testIds: { limit: testIds.limit }
     })
 
     expect(getByTestId(testIds.limit)).toMatchSnapshot()
@@ -55,7 +56,8 @@ describe('Input', () => {
     const { getByTestId } = renderInput({
       multiline: true,
       limit: 1,
-      value: 'AB'
+      value: 'AB',
+      testIds: { limit: testIds.limit }
     })
 
     expect(getByTestId(testIds.limit)).toMatchSnapshot()
@@ -66,7 +68,8 @@ describe('Input', () => {
       multiline: true,
       counter: 'entered',
       limit: 1,
-      value: 'AB'
+      value: 'AB',
+      testIds: { limit: testIds.limit }
     })
 
     const inputText = getByTestId(testIds.limit).textContent
@@ -109,7 +112,8 @@ describe('Input', () => {
   it('handles clicks', () => {
     const handleClick = jest.fn()
     const { getByTestId } = renderInput({
-      onClick: handleClick
+      onClick: handleClick,
+      'data-testid': 'input'
     })
 
     const input = getByTestId('input')
