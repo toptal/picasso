@@ -6,7 +6,7 @@ const getSelectedOptions = (
 ) => {
   const valuesSet = new Set(Array.isArray(value) ? value : [value])
 
-  return flatOptions.filter(option => valuesSet.has(String(option.value)))
+  return flatOptions.filter(option => valuesSet.has(option.value))
 }
 
 export default getSelectedOptions
