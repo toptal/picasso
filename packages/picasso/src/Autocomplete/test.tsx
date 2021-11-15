@@ -290,7 +290,7 @@ describe('Autocomplete', () => {
 
       // calls onFocus handler
       expect(onFocus).toHaveBeenCalledTimes(1)
-      expect(queryByTestId('scroll-menu')).toBeNull()
+      expect(queryByTestId(testIds.scrollMenu)).toBeNull()
 
       fireEvent.click(input)
       expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
@@ -329,6 +329,21 @@ describe('Autocomplete', () => {
       fireEvent.blur(input)
 
       expect(onBlur).toHaveBeenCalledTimes(1)
+    })
+
+    it('prevents mouseDown on ScrollMenu', () => {
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value: ''
+      })
+
+      const input = getByTestId('autocomplete')
+
+      fireEvent.click(input)
+      const scrollMenu = getByTestId(testIds.scrollMenu)
+      const isPrevented = !fireEvent.mouseDown(scrollMenu)
+
+      expect(isPrevented).toBeTruthy()
     })
 
     it('on select option', () => {

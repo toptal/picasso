@@ -77,6 +77,10 @@ const ScrollMenu: FunctionComponent<Props> = props => {
       role={role}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      onMouseDown={e => {
+        // ScrollMenu is used in dropdowns. Prevents blur --> dropdown close when scrolled.
+        e.preventDefault()
+      }}
     >
       {fixedHeader}
       <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
