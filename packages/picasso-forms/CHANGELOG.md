@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0
+
+### Minor Changes
+
+- [#2214](https://github.com/toptal/picasso/pull/2214) [`fd8ae1bb`](https://github.com/toptal/picasso/commit/fd8ae1bb101275b137e40a0eca0efe3696bf65ed) Thanks [@hweeTan](https://github.com/hweeTan)! - Add warning for when input name causes autocomplete to stop working in Chrome
+
 ## 7.0.0
 
 ### Patch Changes
