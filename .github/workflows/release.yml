@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - disable-github-actions-for-changesets
 
 env:
   SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -54,13 +54,13 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             // Get list of all open PRs with
-            // head branch "changeset-release/master"
+            // head branch "changeset-release/disable-github-actions-for-changesets"
             // (there should be max 1 PR with such condition)
             const { data } = await github.rest.pulls.list({
               owner: 'toptal',
               repo: 'picasso',
               state: 'open',
-              head: 'toptal:changeset-release/master'
+              head: 'toptal:changeset-release/disable-github-actions-for-changesets'
             })
             // add to all of them label "no-jira"
             for await (let pr of data) {
@@ -73,33 +73,36 @@ jobs:
                 ]
               })
             }
-      - name: Add peerDependencies warning to "Version Package" PR
+      - name: Edit "Version Pacakge" PR
         if: ${{ steps.changesets.outputs.published != 'true' }}
         uses: actions/github-script@v5
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             // Get list of all open PRs with
-            // head branch "changeset-release/master"
+            // head branch "changeset-release/disable-github-actions-for-changesets"
             // (there should be max 1 PR with such condition)
             const { data } = await github.rest.pulls.list({
               owner: 'toptal',
               repo: 'picasso',
               state: 'open',
-              head: 'toptal:changeset-release/master'
+              head: 'toptal:changeset-release/disable-github-actions-for-changesets'
             })
-            // append PR body with peerDependencies warning
             for await (let pr of data) {
+              // append PR body with peerDependencies warning
               const hr = "\n_____"
               const warningTodo = "\n- [ ] ⚠️ "
               const message = "If major release, don't forget to check if peerDependencies needs to be also updated"
               const appendedMessage = hr + warningTodo + message
               const body = pr.body.includes(message) ? pr.body : pr.body + appendedMessage
+
+              // append title with [skip ci]
               github.rest.pulls.update({
                 owner: 'toptal',
                 repo: 'picasso',
                 pull_number: pr.number,
                 body: body,
+                title: `${pr.title} [skip ci]`,
               })
             }
 
@@ -124,7 +127,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.14.0
         with:
           channel-id: '-frontend-exp-team-notifications'
-          slack-message: ":x: <!here> Current master version of Picasso is broken."
+          slack-message: ":x: <!here> Current disable-github-actions-for-changesets version of Picasso is broken."
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
       - name: Send a Slack notification on success release
@@ -132,7 +135,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.14.0
         with:
           channel-id: '-frontend-exp-team-notifications'
-          slack-message: "Current master version of Picasso successfully released :green_heart:"
+          slack-message: "Current disable-github-actions-for-changesets version of Picasso successfully released :green_heart:"
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
       - name: Send a Slack notification on success PR merge
