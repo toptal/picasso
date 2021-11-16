@@ -163,8 +163,8 @@ interface PicassoProps extends TextLabelProps {
   theme?: ThemeOptions
   /** Disables transitions for components like Loader, to make testing easier */
   disableTransitions?: boolean
-  /** Applies adjustments needed to work properly during SSR and hydration */
-  isSsrMode?: boolean
+  /** Disables unique prefix for styles class names */
+  disableClassNamePrefix?: boolean
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
@@ -180,7 +180,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   titleCase,
   theme,
   disableTransitions,
-  isSsrMode
+  disableClassNamePrefix
 }) => {
   if (theme) {
     PicassoProvider.extendTheme(theme)
@@ -194,7 +194,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   const generateClassName = createGenerateClassName({
     // if there are multiples instances of Picasso
     // on the page we want each set of styles to be unique
-    seed: isSsrMode ? '' : generateRandomStringOrGetEmptyInTest()
+    seed: disableClassNamePrefix ? '' : generateRandomStringOrGetEmptyInTest()
   })
 
   return (

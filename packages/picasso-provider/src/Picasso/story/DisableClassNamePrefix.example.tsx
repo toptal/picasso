@@ -7,7 +7,7 @@ import { default as Picasso } from '@toptal/picasso-provider'
 import { Page, Container } from '@toptal/picasso'
 
 const App = () => (
-  <Picasso isSsrMode>
+  <Picasso disableClassNamePrefix>
     <Page>
       <Page.TopBar title='App Page' />
       <Page.Content>
