@@ -81,7 +81,7 @@
     "copy-to-clipboard": "^3.3.1",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.3",
-    "cypress": "^6.6.0",
+    "cypress": "^9.0.0",
     "cypress-plugin-tab": "^1.0.5",
     "cypress-real-events": "^1.4.0",
     "cz-conventional-changelog": "3.2.0",
@@ -146,6 +146,7 @@
     "**/npx/npm": "^5.7.1",
     "prettierx": "^0.17.0",
     "@storybook/react": "^6.3.12",
-    "merge-deep": "^3.0.3"
+    "merge-deep": "^3.0.3",
+    "cypress": "^9.0.0"
   }
 }
