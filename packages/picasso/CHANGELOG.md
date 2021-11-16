@@ -1,5 +1,11 @@
 # Change Log
 
+## 13.7.1
+
+### Patch Changes
+
+- [#2241](https://github.com/toptal/picasso/pull/2241) [`373ba2e6`](https://github.com/toptal/picasso/commit/373ba2e63ba602f313c21e0918a53aac06195da2) Thanks [@TomasSlama](https://github.com/TomasSlama)! - test
+
 ## 13.7.0
 
 ### Minor Changes

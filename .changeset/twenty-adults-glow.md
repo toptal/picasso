@@ -1,5 +1,0 @@
----
-'@toptal/picasso': patch
----
-
-test
