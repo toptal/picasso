@@ -23,7 +23,8 @@ const testIds = {
   scrollMenu: 'scroll-menu',
   otherOption: 'other-option',
   noOptions: 'no-options',
-  loadingAdornment: 'loading-adornment'
+  loadingAdornment: 'loading-adornment',
+  resetButton: 'reset-adornment'
 }
 
 const renderAutocomplete = (

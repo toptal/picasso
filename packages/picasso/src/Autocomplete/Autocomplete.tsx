@@ -103,7 +103,7 @@ export interface Props
   inputProps?: BaseInputProps
   /** Show the "Powered By Google" label */
   poweredByGoogle?: boolean
-  testIds?: {
+  testIds?: InputProps['testIds'] & {
     menuItem?: string
     scrollMenu?: string
     otherOption?: string
@@ -241,7 +241,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const InputComponent = inputComponent || Input
     const loadingComponent = (
       <InputAdornment
-        testId={testIds?.loadingAdornment}
+        data-testid={testIds?.loadingAdornment}
         position='end'
         disablePointerEvents
       >
@@ -282,6 +282,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             width={width}
             name={enableAutofill ? name : undefined}
             autoComplete={enableAutofill ? autoComplete : autoComplete || 'off'}
+            testIds={testIds}
           />
         </Container>
         <div role='listbox'>

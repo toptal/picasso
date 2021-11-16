@@ -12,6 +12,10 @@ const testOptions = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
+const testIds = {
+  resetButton: 'reset-adornment'
+}
+
 const renderAutocomplete = (props: OmitInternalProps<Props>) =>
   render(<PageAutocomplete data-testid='autocomplete' {...props} />)
 
@@ -19,7 +23,8 @@ describe('PageAutocomplete', () => {
   it('renders', () => {
     const { container } = renderAutocomplete({
       options: testOptions,
-      value: ''
+      value: '',
+      testIds: { resetButton: testIds.resetButton }
     })
 
     expect(container).toMatchSnapshot()
