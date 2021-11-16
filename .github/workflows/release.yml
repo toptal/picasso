@@ -109,7 +109,7 @@ jobs:
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs
         with:
-          jenkins_url: https://jenkins-build.toptal.net/
+          jenkins_url: https://jenkins-deployment.toptal.net/
           jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
           jenkins_token: ${{ env.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
           proxy: ${{ env.HTTP_PROXY }}
