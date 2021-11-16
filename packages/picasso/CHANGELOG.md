@@ -1,5 +1,19 @@
 # Change Log
 
+## 13.7.0
+
+### Minor Changes
+
+- [#2236](https://github.com/toptal/picasso/pull/2236) [`b2332734`](https://github.com/toptal/picasso/commit/b2332734ba730e9c001638bee47d6ce1f3b87a22) Thanks [@michal-bednarz](https://github.com/michal-bednarz)! - Add 'New' icon
+
+* [#2235](https://github.com/toptal/picasso/pull/2235) [`dedc9057`](https://github.com/toptal/picasso/commit/dedc905704f93a3a2f3f024c850f5db55599fdcb) Thanks [@michal-bednarz](https://github.com/michal-bednarz)! - Add Support icon
+
+### Patch Changes
+
+- Updated dependencies [[`34e990a3`](https://github.com/toptal/picasso/commit/34e990a3fe6d66bb204d1d468c505ebe0b8fd127)]:
+  - @toptal/picasso-provider@0.4.0
+  - @toptal/picasso-shared@7.0.2
+
 ## 13.6.1
 
 ### Patch Changes
