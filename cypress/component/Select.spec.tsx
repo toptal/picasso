@@ -381,7 +381,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('highlights grouped options via keys correctly', () => {
+  it.skip('highlights grouped options via keys correctly', () => {
     mount(
       <TestingPicasso>
         <TestSelect options={OPTION_GROUPS} />
