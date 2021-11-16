@@ -1,4 +1,9 @@
 /// <reference types="cypress" />
+import { configure } from 'happo-cypress'
+
+configure({
+  localSnapshots: true
+})
 
 Cypress.Commands.add('isWithinViewport', { prevSubject: true }, subject => {
   const windowInnerWidth = Cypress.config(`viewportWidth`)
