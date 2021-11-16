@@ -103,6 +103,25 @@ jobs:
               })
             }
 
+      - name: Trigger build image job
+        if: ${{ steps.changesets.outputs.published == 'true' }}
+        uses: toptal/jenkins-job-trigger-action@0.0.3-with-proxy
+        env:
+          JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
+        with:
+          jenkins_url: https://jenkins-build.toptal.net/
+          jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
+          jenkins_token: ${{ env.TOPTAL_JENKINS_BUILD_TOKEN }}
+          proxy: ${{ env.HTTP_PROXY }}
+          job_name: ${{ env.JENKINS_JOB_NAME }}
+          job_params: |
+            {
+              BRANCH: "master",
+              VERSION: "${{ github.sha }}",
+              IMAGE_NAME: "${{ env.REPOSITORY_NAME }}"
+            }
+          job_timeout: '3600'
+
       - name: Trigger deployment job
         if: ${{ steps.changesets.outputs.published == 'true' }}
         uses: toptal/jenkins-job-trigger-action@0.0.3-with-proxy
