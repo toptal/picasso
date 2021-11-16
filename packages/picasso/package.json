@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "13.5.0",
+  "version": "13.6.1",
   "description": "Toptal UI components library",
   "publishConfig": {
     "access": "public",
@@ -9,8 +9,7 @@
   "main": "index.js",
   "module": "index.js",
   "scripts": {
-    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json",
-    "prepublishOnly": "../../../bin/prepublish.js"
+    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-forms",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "Picasso form components",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
@@ -16,15 +16,14 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json",
-    "prepublishOnly": "../../../bin/prepublish.js"
+    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso": "^13.5.0",
-    "@toptal/picasso-lab": "^10.0.0",
+    "@toptal/picasso": "^13.6.0",
+    "@toptal/picasso-lab": "^11.0.0",
     "@toptal/picasso-shared": "^7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
