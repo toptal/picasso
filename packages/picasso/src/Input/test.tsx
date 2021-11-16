@@ -6,7 +6,8 @@ import Input, { Props } from './Input'
 import Search16 from '../Icon/Search16'
 
 const testIds = {
-  limit: 'limit-adornment-multiline-label'
+  inputAdornment: 'limit-adornment-multiline-label',
+  resetButton: 'reset-adornment'
 }
 
 const renderInput = (props: OmitInternalProps<Props>) => {
@@ -46,10 +47,10 @@ describe('Input', () => {
       multiline: true,
       limit: 1,
       value: 'A',
-      testIds: { limit: testIds.limit }
+      testIds: { inputAdornment: testIds.inputAdornment }
     })
 
-    expect(getByTestId(testIds.limit)).toMatchSnapshot()
+    expect(getByTestId(testIds.inputAdornment)).toMatchSnapshot()
   })
 
   it('shows excess chars for multiline input with exceeded limit', () => {
@@ -57,10 +58,10 @@ describe('Input', () => {
       multiline: true,
       limit: 1,
       value: 'AB',
-      testIds: { limit: testIds.limit }
+      testIds: { inputAdornment: testIds.inputAdornment }
     })
 
-    expect(getByTestId(testIds.limit)).toMatchSnapshot()
+    expect(getByTestId(testIds.inputAdornment)).toMatchSnapshot()
   })
 
   it('shows entered characters for multiline input with `counter: entered`, ignoring the limit', () => {
@@ -69,10 +70,10 @@ describe('Input', () => {
       counter: 'entered',
       limit: 1,
       value: 'AB',
-      testIds: { limit: testIds.limit }
+      testIds: { inputAdornment: testIds.inputAdornment }
     })
 
-    const inputText = getByTestId(testIds.limit).textContent
+    const inputText = getByTestId(testIds.inputAdornment).textContent
 
     expect(inputText).toContain('2 characters entered')
     expect(inputText).not.toContain('limit')
@@ -92,7 +93,8 @@ describe('Input', () => {
   it('should show reset button', () => {
     const { container } = renderInput({
       enableReset: true,
-      value: 'Some value'
+      value: 'Some value',
+      testIds: { resetButton: testIds.resetButton }
     })
 
     expect(container).toMatchSnapshot()

@@ -84,7 +84,8 @@ export interface Props
   /** Ref of the input outline */
   outlineRef?: React.Ref<HTMLElement>
   testIds?: {
-    limit?: string
+    inputAdornment?: string
+    resetButton?: string
   }
 }
 
@@ -169,7 +170,7 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
 
   return (
     <InputAdornment
-      testId={testIds?.limit}
+      data-testid={testIds?.inputAdornment}
       position='end'
       className={cx({
         [classes.limiterMultiline]: multiline
@@ -373,6 +374,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       onChange={onChange}
       enableReset={enableReset}
       onResetClick={onResetClick}
+      testIds={testIds}
     >
       {children}
     </OutlinedInput>
