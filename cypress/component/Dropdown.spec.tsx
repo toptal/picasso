@@ -61,7 +61,7 @@ const DropdownExample = () => (
 )
 
 describe('Dropdown', () => {
-  it('renders', () => {
+  it.skip('renders', () => {
     mount(
       <TestingPicasso>
         <DropdownExample />

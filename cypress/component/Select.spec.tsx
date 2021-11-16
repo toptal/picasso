@@ -394,7 +394,7 @@ describe('Select', () => {
     getOption(7).should('have.attr', 'data-highlighted').and('match', /true/)
   })
 
-  it('picks an option from group via keys correctly', () => {
+  it.skip('picks an option from group via keys correctly', () => {
     mount(
       <TestingPicasso>
         <TestUncontrolledSelect options={OPTION_GROUPS} multiple />
@@ -411,7 +411,7 @@ describe('Select', () => {
     getOption(8).should('have.attr', 'aria-selected').and('match', /true/)
   })
 
-  it('highlights limited options correctly', () => {
+  it.skip('highlights limited options correctly', () => {
     mount(
       <TestingPicasso>
         <TestSelect options={OPTION_GROUPS} limit={1} />
