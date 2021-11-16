@@ -1,5 +1,14 @@
 # Change Log
 
+## 9.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`b2332734`](https://github.com/toptal/picasso/commit/b2332734ba730e9c001638bee47d6ce1f3b87a22), [`dedc9057`](https://github.com/toptal/picasso/commit/dedc905704f93a3a2f3f024c850f5db55599fdcb)]:
+  - @toptal/picasso@13.7.0
+  - @toptal/picasso-lab@12.0.0
+  - @toptal/picasso-shared@7.0.2
+
 ## 8.0.0
 
 ### Patch Changes
