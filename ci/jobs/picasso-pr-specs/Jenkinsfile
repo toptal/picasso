@@ -47,6 +47,11 @@ pipeline {
     }//stage
 
     stage('Build image') {
+      when {
+        not {
+          branch 'disable-github-actions-for-changesets'
+        }
+      }
       steps {
         script {
           buildWithParameters(
@@ -65,6 +70,9 @@ pipeline {
 
     stage('Deploy documentation') {
       when {
+        not {
+          branch 'disable-github-actions-for-changesets'
+        }
         expression {
           ghprbMatchesComment(/deploy:documentation|all/)
         }
@@ -87,6 +95,9 @@ pipeline {
 
     stage('Run visual tests') {
       when {
+        not {
+          branch 'disable-github-actions-for-changesets'
+        }
         expression {
           ghprbMatchesComment(/test:visual|visual|all/)
         }
