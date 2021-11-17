@@ -3,11 +3,11 @@ import { mount } from '@cypress/react'
 import { Container, Menu, MenuProps } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const MenuExample = (props: MenuProps) => {
-  const testIds = {
-    menuItem: 'menu-back'
-  }
+const testIds = {
+  menuItem: 'menu-back'
+}
 
+const MenuExample = (props: MenuProps) => {
   const menuForItemB1 = (
     <Menu data-testid='menu-b1' testIds={testIds}>
       <Menu.Item data-testid='item-b1-1'>Item B1-1</Menu.Item>
@@ -51,7 +51,7 @@ describe('Menu', () => {
   it('navigates slide menu', () => {
     mount(<MenuExample />)
     cy.get('[data-testid="menu-b"]').should('not.exist')
-    cy.get('[data-testid="menu-back"]').should('not.exist')
+    cy.get(`[data-testid="${testIds.menuItem}"]`).should('not.exist')
     cy.get('body').happoScreenshot()
 
     cy.get('[data-testid="item-b"').click()
@@ -64,14 +64,14 @@ describe('Menu', () => {
     cy.get('[data-testid="menu-b2"]').should('not.exist')
     cy.get('body').happoScreenshot()
 
-    cy.get('[data-testid="menu-back"').last().click()
+    cy.get(`[data-testid="${testIds.menuItem}"`).last().click()
     cy.get('[data-testid="menu-b"]').should('be.visible')
     cy.get('[data-testid="menu-b1"]').should('not.exist')
     cy.get('body').happoScreenshot()
 
-    cy.get('[data-testid="menu-back"').click()
+    cy.get(`[data-testid="${testIds.menuItem}"`).click()
     cy.get('[data-testid="menu-b"]').should('not.exist')
-    cy.get('[data-testid="menu-back"]').should('not.exist')
+    cy.get(`[data-testid="${testIds.menuItem}"]`).should('not.exist')
     cy.get('body').happoScreenshot()
   })
 
