@@ -1,30 +1,30 @@
 const path = require('path')
 const webpackPreprocessor = require('@cypress/webpack-preprocessor')
-// const { startDevServer } = require('@cypress/webpack-dev-server')
+const { startDevServer } = require('@cypress/webpack-dev-server')
 const happoTask = require('happo-cypress/task')
 
 module.exports = (on, config) => {
-  const opts = {
-    ...webpackPreprocessor.defaultOptions
-  }
-  // const webpackConfig = webpackPreprocessor.defaultOptions.webpackOptions
+  // const opts = {
+  //   ...webpackPreprocessor.defaultOptions
+  // }
+  const webpackConfig = webpackPreprocessor.defaultOptions.webpackOptions
 
-  const rule = opts.webpackOptions.module.rules[0]
-  // const rule = webpackConfig.module.rules[0]
+  // const rule = opts.webpackOptions.module.rules[0]
+  const rule = webpackConfig.module.rules[0]
 
   // add .tsx files to the rule
   rule.test = /\.jsx|\.tsx?$/
 
-  const babelLoader = opts.webpackOptions.module.rules[0].use[0]
-  // const babelLoader = webpackConfig.module.rules[0].use[0]
+  // const babelLoader = opts.webpackOptions.module.rules[0].use[0]
+  const babelLoader = webpackConfig.module.rules[0].use[0]
 
   // add typescript preset to compile TS files
   babelLoader.options.presets.push(require.resolve('@babel/preset-typescript'))
   // add React preset to be able to transpile JSX
   babelLoader.options.presets.push(require.resolve('@babel/preset-react'))
 
-  opts.webpackOptions.resolve = {
-    // webpackConfig.resolve = {
+  // opts.webpackOptions.resolve = {
+  webpackConfig.resolve = {
     alias: {
       '@toptal/picasso': path.resolve(
         __dirname,
@@ -53,17 +53,17 @@ module.exports = (on, config) => {
     }
   }
 
-  opts.webpackOptions.module.rules.push({
-    // webpackConfig.module.rules.push({
+  // opts.webpackOptions.module.rules.push({
+  webpackConfig.module.rules.push({
     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
     loader: require.resolve('url-loader')
   })
 
-  on('file:preprocessor', webpackPreprocessor(opts))
+  // on('file:preprocessor', webpackPreprocessor(opts))
   on('task', happoTask)
-  // on('dev-server:start', options =>
-  //   startDevServer({ options, webpackConfig: webpackConfig })
-  // )
+  on('dev-server:start', options =>
+    startDevServer({ options, webpackConfig: webpackConfig })
+  )
 
   return config
 }

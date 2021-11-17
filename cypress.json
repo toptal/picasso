@@ -1,6 +1,5 @@
 {
   "video": false,
   "testFiles": ["**/*.spec.ts", "**/*.spec.tsx"],
-  "experimentalComponentTesting": true,
   "componentFolder": "cypress/component"
 }
