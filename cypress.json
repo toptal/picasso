@@ -1,5 +1,4 @@
 {
-  "fixturesFolder": false,
   "video": false,
   "component": {
     "testFiles": ["**/*.spec.ts", "**/*.spec.tsx"],
