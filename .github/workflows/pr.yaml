@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-      - master # triggers the flow for every PR to master
+      - disable-github-actions-for-changesets # triggers the flow for every PR to disable-github-actions-for-changesets
       - 'feature/**' # triggers the flow for a PR to a branch like feature/v9
 
     types:
@@ -15,9 +15,9 @@ on:
 
 jobs:
   tests:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/disable-github-actions-for-changesets' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
-
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

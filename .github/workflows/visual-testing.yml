@@ -2,10 +2,11 @@ name: Visual Testing
 
 on:
   push:
-    branches: [master]
+    branches: [disable-github-actions-for-changesets]
 
 jobs:
   tests:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/disable-github-actions-for-changesets' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
