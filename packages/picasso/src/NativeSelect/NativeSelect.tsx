@@ -60,6 +60,7 @@ export const NativeSelect = documentable(
         searchThreshold,
         limit,
         native,
+        testIds,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...rest
       } = props
@@ -117,6 +118,7 @@ export const NativeSelect = documentable(
               inputProps={{ multiple }}
               size={size}
               className={classes.nativeInput}
+              testIds={testIds}
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...getInputProps()}
             />

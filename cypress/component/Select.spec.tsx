@@ -11,6 +11,10 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop, palette } from '@toptal/picasso/utils'
 import { ValueType } from '@toptal/picasso/Select'
 
+const testIds = {
+  resetButton: 'reset-adornment'
+}
+
 const TestSelect = ({
   onChange = noop,
   value = undefined,
@@ -27,7 +31,8 @@ const TestSelect = ({
   iconPosition,
   icon,
   menuWidth,
-  limit
+  limit,
+  testIds
 }: Partial<SelectProps> = {}) => (
   <Select
     data-testid='select'
@@ -47,6 +52,7 @@ const TestSelect = ({
     iconPosition={iconPosition}
     searchThreshold={searchThreshold}
     limit={limit}
+    testIds={testIds}
   />
 )
 
@@ -291,14 +297,14 @@ describe('Select', () => {
   it('renders reset button', () => {
     mount(
       <TestingPicasso>
-        <TestSelect enableReset value={OPTIONS[0].value} />
+        <TestSelect enableReset value={OPTIONS[0].value} testIds={testIds} />
       </TestingPicasso>
     )
 
     // Cypress does not go well with :hover CSS selectors
     // It can fire mouse events via JS, but can't simulate browser cursor behaviour
     // To fix this issue we're using a force method to show the button so the screenshot is correct
-    cy.get('[data-testid="reset-adornment"]').invoke(
+    cy.get(`[data-testid="${testIds.resetButton}"]`).invoke(
       'attr',
       'style',
       'visibility: visible'

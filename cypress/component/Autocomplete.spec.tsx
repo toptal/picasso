@@ -116,6 +116,10 @@ const openAutocompleteWithTab = () => {
   cy.get('body').tab()
 }
 
+const testIds = {
+  resetButton: 'reset-adornment'
+}
+
 const TestAutocomplete = (props: Partial<AutocompleteProps>) => (
   <Autocomplete
     data-testid='autocomplete'
@@ -184,14 +188,14 @@ describe('Autocomplete', () => {
   it('renders a reset button', () => {
     mount(
       <TestingPicasso>
-        <TestAutocomplete enableReset value='Croatia' />
+        <TestAutocomplete enableReset value='Croatia' testIds={testIds} />
       </TestingPicasso>
     )
 
     // Cypress does not go well with :hover CSS selectors
     // It can fire mouse events via JS, but can't simulate browser cursor behaviour
     // To fix this issue we're using a force method to show the button so the screenshot is correct
-    cy.get('[data-testid="reset-adornment"]').invoke(
+    cy.get(`[data-testid="${testIds.resetButton}"]`).invoke(
       'attr',
       'style',
       'visibility: visible'
