@@ -116,9 +116,9 @@ jobs:
           job_name: ${{ env.JENKINS_JOB_NAME }}
           job_params: |
             {
-              BRANCH: "master",
-              VERSION: "${{ github.sha }}",
-              IMAGE_NAME: "${{ env.REPOSITORY_NAME }}"
+              "BRANCH": "master",
+              "VERSION": "${{ github.sha }}",
+              "IMAGE_NAME": "${{ env.REPOSITORY_NAME }}"
             }
           job_timeout: '3600'
 
