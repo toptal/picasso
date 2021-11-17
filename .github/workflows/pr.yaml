@@ -15,9 +15,9 @@ on:
 
 jobs:
   tests:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
-
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -30,13 +30,28 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Check yarn cache
-        uses: c-hive/gha-yarn-cache@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Install Dependencies
+      - name: Check yarn cache
+        uses: actions/cache@v2.1.5
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install Dependencies (from network)
+        if: ${{ steps.yarn-cache.outputs.cache-hit != 'true' }}
         run: |
           yarn policies set-version
           yarn install --frozen-lockfile --ignore-optional
+      - name: Install Dependencies (from cache)
+        if: ${{ steps.yarn-cache.outputs.cache-hit == 'true' }}
+        run: |
+          yarn policies set-version
+          yarn install --frozen-lockfile --ignore-optional --offline
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
@@ -73,7 +88,7 @@ jobs:
                 ]
               })
             }
-      - name: Add peerDependencies warning to "Version Package" PR
+      - name: Edit "Version Package" PR
         if: ${{ steps.changesets.outputs.published != 'true' }}
         uses: actions/github-script@v5
         with:
@@ -88,18 +103,21 @@ jobs:
               state: 'open',
               head: 'toptal:changeset-release/master'
             })
-            // append PR body with peerDependencies warning
             for await (let pr of data) {
+              // append PR body with peerDependencies warning
               const hr = "\n_____"
               const warningTodo = "\n- [ ] ⚠️ "
               const message = "If major release, don't forget to check if peerDependencies needs to be also updated"
               const appendedMessage = hr + warningTodo + message
               const body = pr.body.includes(message) ? pr.body : pr.body + appendedMessage
+
+              // append title with [skip ci]
               github.rest.pulls.update({
                 owner: 'toptal',
                 repo: 'picasso',
                 pull_number: pr.number,
                 body: body,
+                title: pr.title.includes('[skip ci]') ? pr.title : `${pr.title} [skip ci]`,
               })
             }
 
