@@ -1,5 +1,15 @@
 # Change Log
 
+## 14.0.0
+
+### Major Changes
+
+- [#2234](https://github.com/toptal/picasso/pull/2234) [`95b61597`](https://github.com/toptal/picasso/commit/95b6159716cef8deeae5bfd816c540ea6d7352a3) Thanks [@vshyrokov](https://github.com/vshyrokov)! - Updated link appearence according to the designs
+  - Removed ColorType `Black`
+  - Link with ColorType `White`, has underline always
+  - Link with ColorType `Blue`, has underline on hover only
+  - `textDecoration` property, has a single variant, which is `none`
+
 ## 13.7.0
 
 ### Minor Changes
