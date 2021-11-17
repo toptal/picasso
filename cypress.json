@@ -1,7 +1,5 @@
 {
   "video": false,
-  "component": {
-    "testFiles": ["**/*.spec.ts", "**/*.spec.tsx"],
-    "componentFolder": "cypress/component"
-  }
+  "testFiles": ["**/*.spec.ts", "**/*.spec.tsx"],
+  "componentFolder": "cypress/component"
 }
