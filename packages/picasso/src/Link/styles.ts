@@ -17,34 +17,35 @@ export default ({ typography, palette }: Theme) =>
       },
       '&[role="button"]': {
         fontSize: '1rem'
+      },
+      textDecoration: 'none',
+      '&:hover, &$disabled': {
+        textDecoration: 'underline'
       }
     },
-    textDecorationNone: {
-      textDecoration: 'none',
+    noUnderline: {
       '&:hover': {
         textDecoration: 'none'
-      }
-    },
-    textDecorationUnderline: {
-      textDecoration: 'underline',
-      '&:hover': {
-        '&:not($disabled)': {
-          textDecoration: 'none'
-        }
+      },
+      '&$disabled': {
+        textDecoration: 'underline'
       }
     },
     action: {
       fontWeight: typography.fontWeights.semibold,
       textDecoration: 'none',
-      '&:hover': {
-        textDecoration: 'none'
+      '&$disabled': {
+        textDecoration: 'none',
+        opacity: '48%',
+        color: palette.blue.main
       }
     },
-    black: {
-      color: palette.common.black
-    },
     white: {
-      color: palette.common.white
+      color: palette.common.white,
+      textDecoration: 'underline',
+      '&$noUnderline': {
+        textDecoration: 'none'
+      }
     },
     disabled: {
       cursor: 'not-allowed',

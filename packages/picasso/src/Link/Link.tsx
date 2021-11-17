@@ -12,9 +12,8 @@ import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
 import styles from './styles'
 
 type VariantType = 'action' | 'anchor'
-type ColorType = 'white' | 'blue' | 'black'
+type ColorType = 'white' | 'blue'
 type FontSizeType = 'initial' | 'inherit'
-type TextDecorationType = 'none' | 'underline'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLink' })
 
@@ -59,10 +58,9 @@ export type Props = BaseProps &
      */
     fontSize?: FontSizeType
     /**
-     * Controls textDecoration of component
-     * @default underline
+     * If true, underline decoration never applies
      */
-    textDecoration?: TextDecorationType
+    noUnderline?: boolean
   }
 
 export const Link: OverridableComponent<Props> = forwardRef<
@@ -83,7 +81,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
     rel,
     disabled,
     fontSize,
-    textDecoration,
+    noUnderline,
     ...rest
   } = props
   const nativeHTMLAttributes = rest
@@ -101,12 +99,10 @@ export const Link: OverridableComponent<Props> = forwardRef<
       className={cx(classes.root, className, {
         [classes.action]: variant === 'action',
         [classes.white]: color === 'white',
-        [classes.black]: color === 'black',
         [classes.disabled]: disabled,
         [classes.fontSizeInitial]: fontSize === 'initial',
         [classes.fontSizeInherit]: fontSize === 'inherit',
-        [classes.textDecorationNone]: textDecoration === 'none',
-        [classes.textDecorationUnderline]: textDecoration === 'underline'
+        [classes.noUnderline]: noUnderline
       })}
       style={style}
       component={as}
@@ -123,7 +119,7 @@ Link.defaultProps = {
   color: 'blue',
   variant: 'anchor',
   fontSize: 'initial',
-  textDecoration: 'underline'
+  noUnderline: false
 }
 
 Link.displayName = 'Link'

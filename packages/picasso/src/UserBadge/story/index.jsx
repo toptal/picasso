@@ -36,7 +36,3 @@ page
     title: 'With Title',
     waitUntilImagesLoaded: true
   })
-  .addExample('UserBadge/story/CustomName.example.tsx', {
-    title: 'Custom Name Rendering',
-    waitUntilImagesLoaded: true
-  })

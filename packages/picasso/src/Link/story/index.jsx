@@ -81,7 +81,7 @@ page.createTabChapter('Props').addComponentDocs({
       name: 'color',
       type: {
         name: 'enum',
-        enums: ['"blue"', '"white"', '"black"']
+        enums: ['"blue"', '"white"']
       },
       defaultValue: 'blue',
       description: 'Controls color of the link'
