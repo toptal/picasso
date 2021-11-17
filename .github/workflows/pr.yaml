@@ -23,7 +23,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     container:
-      image: cypress/included:7.7.0
+      image: cypress/included:6.8.0
       options: --privileged # thanks to this we can increase number of file watchers below
 
     steps:
