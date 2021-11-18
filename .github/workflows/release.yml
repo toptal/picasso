@@ -126,9 +126,10 @@ jobs:
         uses: toptal/jenkins-job-trigger-action@0.0.3-with-proxy
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
+          JENKINS_USER: toptal-jenkins
         with:
           jenkins_url: https://jenkins-build.toptal.net/
-          jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
+          jenkins_user: ${{ env.JENKINS_USER }}
           jenkins_token: ${{ env.TOPTAL_JENKINS_BUILD_TOKEN }}
           proxy: ${{ env.HTTP_PROXY }}
           job_name: ${{ env.JENKINS_JOB_NAME }}
