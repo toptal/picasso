@@ -5,7 +5,7 @@ import isWithinInterval from 'date-fns/isWithinInterval'
 import isEqual from 'date-fns/isEqual'
 import isBefore from 'date-fns/isBefore'
 import isAfter from 'date-fns/isAfter'
-import { utcToZonedTime, format as tzFormat } from 'date-fns-tz'
+import { utcToZonedTime, format as tzFormat, toDate } from 'date-fns-tz'
 
 import { DatePickerStringParser } from './types'
 import { DateOrDateRangeType, DateRangeType } from '../Calendar'
@@ -121,3 +121,16 @@ export const datePickerParseDateString: DatePickerStringParser = (
 export const isValidDateValue = (
   dateValue: DateOrDateRangeType | string
 ): dateValue is DateOrDateRangeType => typeof dateValue !== 'string'
+
+export const getStartOfTheDayDate = (date?: Date): Date | undefined => {
+  if (!date) {
+    return date
+  }
+
+  // to prevent mutation of the original date
+  const clonedDate = toDate(date)
+
+  clonedDate.setHours(0, 0, 0, 0)
+
+  return clonedDate
+}
