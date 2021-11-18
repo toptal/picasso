@@ -32,7 +32,8 @@ const renderExample = ({ size, variant }: Props) => (
 )
 
 const createSizeTests = (variant: Props['variant']) => {
-  describe(`${variant} variant`, () => {
+  // TODO: https://toptal-core.atlassian.net/browse/FX-2274
+  describe.skip(`${variant} variant`, () => {
     SIZES.forEach(size =>
       it(`renders in ${size} size`, () => {
         mount(renderExample({ size, variant }))
