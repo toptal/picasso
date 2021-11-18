@@ -31,7 +31,7 @@ const renderExample = ({ size }: Props) => (
   </TestingPicasso>
 )
 
-describe('Avatar', () => {
+describe('AvatarGroup', () => {
   SIZES.forEach(size =>
     it(`renders in ${size} size`, () => {
       mount(renderExample({ size }))
