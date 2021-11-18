@@ -1,5 +1,11 @@
 # Change Log
 
+## 14.0.1
+
+### Patch Changes
+
+- [#2257](https://github.com/toptal/picasso/pull/2257) [`ad250b5b`](https://github.com/toptal/picasso/commit/ad250b5bbbf23168b810f9f67f1ee9cb8cc9818c) Thanks [@vshyrokov](https://github.com/vshyrokov)! - Fixed warnings in the Pagination, caused by incorrect key name for the ellipsis component
+
 ## 14.0.0
 
 ### Major Changes
