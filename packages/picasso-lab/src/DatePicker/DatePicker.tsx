@@ -97,8 +97,9 @@ export interface Props
   timezone?: string
   /* Invoked when input value has been changed. If method failed to parse a value, it must return undefined. Used to process input value before passing it to the `onChange` */
   parseInputValue?: DatePickerStringParser
-  testIds?: {
+  testIds?: InputProps['testIds'] & {
     calendar?: string
+    input?: string
   }
 }
 export const DatePicker = (props: Props) => {
@@ -331,6 +332,8 @@ export const DatePicker = (props: Props) => {
           size={size}
           startAdornment={startAdornment}
           width={width}
+          testIds={testIds}
+          data-testid={testIds?.input}
         />
       </Container>
       {inputWrapperRef.current && (
