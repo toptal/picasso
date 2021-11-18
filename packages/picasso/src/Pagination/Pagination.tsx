@@ -59,7 +59,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   const handleNextClick = () => onPageChange(activePage + 1)
 
   const pageButtons = pages.map((page, index) => {
-    if (typeof page === 'string') {
+    if (page === ELLIPSIS) {
       return (
         <Container key={String(index)} className={classes.ellipsis}>
           <Typography size='small' weight='semibold' color='black'>
@@ -71,9 +71,9 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
 
     return (
       <PaginationButton
-        key={String(page)}
+        key={String(index)}
         className={classes.button}
-        page={page}
+        page={Number(page)}
         activePage={activePage}
         disabled={disabled}
         onClick={onPageChange}
