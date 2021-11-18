@@ -71,7 +71,6 @@ describe('Dropdown', () => {
     cy.get('body').happoScreenshot()
 
     cy.get('[data-testid="content-overflow-visible"]').click()
-
     cy.get('body').happoScreenshot()
   })
 })
