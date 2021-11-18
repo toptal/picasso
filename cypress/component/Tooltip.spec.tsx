@@ -291,12 +291,14 @@ describe('Tooltip', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders with different placements', () => {
+  // TODO: https://toptal-core.atlassian.net/browse/FX-2277
+  it.skip('renders with different placements', () => {
     mount(<PlacementTooltipExample />)
     cy.get('body').happoScreenshot()
   })
 
-  it('renders inside and outside of a modal', () => {
+  // https://toptal-core.atlassian.net/browse/FX-2277
+  it.skip('renders inside and outside of a modal', () => {
     mount(<ModalTooltipExample />)
     cy.get('body').happoScreenshot()
   })
@@ -391,6 +393,7 @@ describe('Tooltip', () => {
 
     cy.get('[data-testid="dropdown-trigger"]').click()
     cy.get('[data-testid="tooltip-content"]').should('be.visible')
-    cy.get('body').happoScreenshot()
+    // TODO: https://toptal-core.atlassian.net/browse/FX-2277
+    // cy.get('body').happoScreenshot()
   })
 })

@@ -136,7 +136,8 @@ describe('Autocomplete', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders a list of options when clicked', () => {
+  // TODO: https://toptal-core.atlassian.net/browse/FX-2273
+  it.skip('renders a list of options when clicked', () => {
     mount(
       <TestingPicasso>
         <TestAutocomplete />
@@ -148,6 +149,7 @@ describe('Autocomplete', () => {
     cy.get('body').happoScreenshot()
   })
 
+  // TODO: https://toptal-core.atlassian.net/browse/FX-2273
   it('renders a list of options with descriptions when clicked', () => {
     mount(
       <TestingPicasso>
@@ -268,6 +270,7 @@ describe('Autocomplete', () => {
     cy.get('body').happoScreenshot()
   })
 
+  // TODO: https://toptal-core.atlassian.net/browse/FX-2273
   it('renders in different menu widths', () => {
     mount(
       <TestingPicasso>
@@ -280,7 +283,8 @@ describe('Autocomplete', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders other option', () => {
+  // TODO: https://toptal-core.atlassian.net/browse/FX-2273
+  it.skip('renders other option', () => {
     mount(
       <TestingPicasso>
         <TestAutocomplete showOtherOption options={[]} value='picasso' />

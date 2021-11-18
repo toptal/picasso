@@ -139,7 +139,8 @@ describe('Accordion', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders custom expand icon', () => {
+  // TODO: https://toptal-core.atlassian.net/browse/FX-2272
+  it.skip('renders custom expand icon', () => {
     mount(
       <TestingPicasso>
         <TestAccordion disabled />
@@ -168,7 +169,8 @@ describe('Accordion with custom summary', () => {
 
     clickStartInterviewOnboarding()
 
-    cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
+    // TODO: https://toptal-core.atlassian.net/browse/FX-2272
+    // cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
 
     cy.on('window:alert', text => {
       expect(text).equal('Onboarding started')

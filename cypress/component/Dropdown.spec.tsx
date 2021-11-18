@@ -71,6 +71,7 @@ describe('Dropdown', () => {
     cy.get('body').happoScreenshot()
 
     cy.get('[data-testid="content-overflow-visible"]').click()
-    cy.get('body').happoScreenshot()
+    // TODO: https://toptal-core.atlassian.net/browse/FX-2275
+    // cy.get('body').happoScreenshot()
   })
 })

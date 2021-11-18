@@ -43,6 +43,7 @@ const createSizeTests = (variant: Props['variant']) => {
   })
 }
 
-describe('Avatar', () => {
+// TODO: https://toptal-core.atlassian.net/browse/FX-2274
+describe.skip('Avatar', () => {
   VARIANTS.forEach(variant => createSizeTests(variant))
 })
