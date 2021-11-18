@@ -42,6 +42,9 @@ export interface Props<K extends string | number | symbol>
     index?: number
   }) => string
   getBarLabelColor?: (params: { dataKey: string; index?: number }) => string
+  testIds?: {
+    tooltip?: string
+  }
 }
 
 const StyleOverrides = () => (
@@ -85,6 +88,7 @@ const BarChart = <K extends string>({
   getBarColor = defaultGetBarColor,
   labelKey,
   getBarLabelColor = defaultGetBarLabelColor,
+  testIds,
   ...rest
 }: Props<K>) => {
   const dataKeys = Object.keys(data[0].value) as K[]
@@ -95,6 +99,7 @@ const BarChart = <K extends string>({
     () =>
       tooltip ? (
         <Tooltip
+          data-testid={testIds?.tooltip}
           allowEscapeViewBox={
             allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
           }
