@@ -1,5 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Button disabled button as link renders disabled version 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <a
+      aria-disabled="true"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root MuiButtonBase-root PicassoButton-disabled PicassoButton-medium PicassoButton-primary PicassoButton-root Mui-disabled PicassoLink-fontSizeInitial MuiTypography-colorPrimary"
+      data-component-type="button"
+      role="button"
+      tabindex="-1"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+      >
+        Click me!
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
 exports[`Button disabled button renders disabled version 1`] = `
 <div>
   <div

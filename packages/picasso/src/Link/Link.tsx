@@ -61,6 +61,7 @@ export type Props = BaseProps &
      * If true, underline decoration never applies
      */
     noUnderline?: boolean
+    'aria-disabled'?: boolean
   }
 
 export const Link: OverridableComponent<Props> = forwardRef<
@@ -82,6 +83,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
     disabled,
     fontSize,
     noUnderline,
+    'aria-disabled': ariaDisabled,
     ...rest
   } = props
   const nativeHTMLAttributes = rest
@@ -107,7 +109,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
       style={style}
       component={as}
       tabIndex={tabIndex}
-      aria-disabled={disabled}
+      aria-disabled={disabled || ariaDisabled}
     >
       {children}
     </MUILink>
