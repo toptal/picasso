@@ -23,9 +23,11 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAccordion'
 })
 
-export const EmptyAccordionSummary = ({ testId }: { testId?: string }) => (
-  <div data-testid={testId} />
-)
+export const EmptyAccordionSummary = ({
+  'data-testid': dataTestId
+}: {
+  'data-testid'?: string
+}) => <div data-testid={dataTestId} />
 
 interface SummaryProps extends Partial<StandardProps> {
   children: ReactNode
@@ -78,6 +80,7 @@ export interface Props
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
   testIds?: {
     emptyAccordionSummary?: string
+    accordionSummary?: string
   }
 }
 
@@ -156,6 +159,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
           }}
           expandIcon={null}
           onClick={handleSummaryClick}
+          data-testid={testIds?.accordionSummary}
         >
           {children}
           {expandIcon ? (
@@ -169,7 +173,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
           )}
         </AccordionSummary>
       ) : (
-        <EmptyAccordionSummary testId={testIds?.emptyAccordionSummary} />
+        <EmptyAccordionSummary data-testid={testIds?.emptyAccordionSummary} />
       )}
       <AccordionDetails
         classes={{
