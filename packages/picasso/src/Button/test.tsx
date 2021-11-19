@@ -9,6 +9,7 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import Button, { Props } from './Button'
+import Link from '../Link'
 
 jest.mock('ap-style-title-case')
 
@@ -16,7 +17,7 @@ const renderButton = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { children, disabled, loading, onClick, titleCase } = props
+  const { children, disabled, loading, onClick, titleCase, as } = props
 
   return render(
     <Button
@@ -24,6 +25,7 @@ const renderButton = (
       loading={loading}
       onClick={onClick}
       titleCase={titleCase}
+      as={as}
     >
       {children}
     </Button>,
@@ -111,6 +113,18 @@ describe('Button', () => {
       fireEvent.click(getByText('Click me!'))
 
       expect(onClick).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('disabled button as link', () => {
+    it('renders disabled version', () => {
+      const { container } = renderButton({
+        children: 'Click me!',
+        disabled: true,
+        as: Link
+      })
+
+      expect(container).toMatchSnapshot()
     })
   })
 })
