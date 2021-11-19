@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from 'react'
+import React, { ReactNode } from 'react'
 
-const Container: FunctionComponent<{}> = ({ children }) => (
+const Container = ({ children }: { children: ReactNode }) => (
   <div style={{ flex: 1 }}>{children}</div>
 )
 

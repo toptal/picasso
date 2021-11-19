@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 import { Paper, Container, Typography } from '@toptal/picasso'
 import { useBreakpoint } from '@toptal/picasso-provider'
@@ -16,12 +16,12 @@ interface Props {
   hideOnCompactLayout?: boolean
 }
 
-const TabsSection: FunctionComponent<Props> = props => {
+const TabsSection = (props: Props) => {
   const { tabs, hideOnCompactLayout } = props
 
   const [selectedTab, setSelectedTab] = React.useState(0)
 
-  function handleChange (event: any, value: number) {
+  function handleChange(event: any, value: number) {
     setSelectedTab(value)
   }
 

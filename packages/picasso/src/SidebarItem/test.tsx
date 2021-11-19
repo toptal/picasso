@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
@@ -9,24 +9,26 @@ import { Props } from './SidebarItem'
 
 jest.mock('ap-style-title-case')
 
-const TestSidebarItem: FunctionComponent<OmitInternalProps<Props>> = ({
+const TestSidebarItem = ({
   children,
   icon,
   selected,
   collapsible,
   titleCase,
   menu
-}) => (
-  <Sidebar.Item
-    icon={icon}
-    selected={selected}
-    collapsible={collapsible}
-    titleCase={titleCase}
-    menu={menu}
-  >
-    {children}
-  </Sidebar.Item>
-)
+}: OmitInternalProps<Props>) => {
+  return (
+    <Sidebar.Item
+      icon={icon}
+      selected={selected}
+      collapsible={collapsible}
+      titleCase={titleCase}
+      menu={menu}
+    >
+      {children}
+    </Sidebar.Item>
+  )
+}
 
 let spiedOnTitleCase: jest.SpyInstance
 

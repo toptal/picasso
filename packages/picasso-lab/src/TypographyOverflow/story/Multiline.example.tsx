@@ -16,35 +16,20 @@ const Example = () => {
   return (
     <>
       <DynamicWidthContainer style={{ marginTop: 150 }}>
-        <TypographyOverflow
-          lines={2}
-          as='p'
-          tooltipVariant='light'
-          data-testid='ellipsed-text-lines2'
-        >
+        <TypographyOverflow lines={2} as='p' tooltipVariant='light'>
           Two lines typography with a very long text and{' '}
           <a href='#'>two words link</a> and dynamic width. Try to resize.
         </TypographyOverflow>
       </DynamicWidthContainer>
       <DynamicWidthContainer>
-        <TypographyOverflow
-          lines={3}
-          as='p'
-          tooltipVariant='light'
-          data-testid='ellipsed-text-lines3'
-        >
+        <TypographyOverflow lines={3} as='p' tooltipVariant='light'>
           Three lines typography with a very long text and a very long text and{' '}
           a very long text and <a href='#'>two words link</a> and dynamic width.
           Try to resize.
         </TypographyOverflow>
       </DynamicWidthContainer>
       <DynamicWidthContainer>
-        <TypographyOverflow
-          lines={4}
-          as='p'
-          tooltipVariant='light'
-          data-testid='ellipsed-text-lines4'
-        >
+        <TypographyOverflow lines={4} as='p' tooltipVariant='light'>
           &lt;https://longlong.longlong.html/very/long/html/link/very/long/html/link/&gt;
           Four lines typography with a very long text and a very long text and a
           very long text and a very long text and a very long text and a very

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import getNameInitials from '@toptal/picasso/utils/get-name-initials'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
@@ -45,7 +45,7 @@ const sizeValues = {
   large: '160'
 }
 
-export const TreeNodeAvatar: FC<Props> = props => {
+export const TreeNodeAvatar = (props: Props) => {
   const classes = useStyles()
   const { name, src, size = 'xxsmall' } = props
   const sizeValue = sizeValues[size]

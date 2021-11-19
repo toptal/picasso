@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { Paper, Container, Typography } from '@toptal/picasso'
 
 import { DataItem, TooltipMap } from '../CategoriesChart/types'
@@ -11,12 +11,12 @@ export type Props = {
   originalData: DataItem[]
 }
 
-const CategoriesChartTooltip: FC<Props> = ({
+const CategoriesChartTooltip = ({
   active,
   payload,
   tooltips,
   originalData
-}) => {
+}: Props) => {
   if (active && payload && payload.length > 0) {
     const currentData = originalData.find(
       ({ id: dataId }) => dataId === payload[0].payload.name

@@ -5,7 +5,7 @@ import { Button, Container } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
 import { CloseMinor16 } from '@toptal/picasso/Icon'
-import React, { FunctionComponent, ReactNode, useLayoutEffect } from 'react'
+import React, { ReactNode, useLayoutEffect } from 'react'
 
 import styles from './styles'
 import DrawerTitle from '../DrawerTitle'
@@ -33,7 +33,7 @@ export interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoDrawer' })
 
-export const Drawer: FunctionComponent<Props> = props => {
+export const Drawer = (props: Props) => {
   const {
     children,
     disablePortal,

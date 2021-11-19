@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  ReactNode,
-  MouseEvent,
-  FC,
-  HTMLAttributes
-} from 'react'
+import React, { forwardRef, ReactNode, MouseEvent, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { SizeType, BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -59,7 +53,7 @@ const DropdownIcon = ({
   return <ArrowDownMinor16 className={className} />
 }
 
-const EventStopPropagation: FC = ({ children }) => {
+const EventStopPropagation = ({ children }: { children: ReactNode }) => {
   const handleClick = (
     event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>
   ) => {

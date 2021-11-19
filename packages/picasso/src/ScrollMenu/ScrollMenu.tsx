@@ -1,10 +1,4 @@
-import React, {
-  FunctionComponent,
-  ReactNode,
-  RefObject,
-  useLayoutEffect,
-  useRef
-} from 'react'
+import React, { ReactNode, RefObject, useLayoutEffect, useRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 
@@ -52,7 +46,7 @@ export const scrollToSelection = (
   }
 }
 
-const ScrollMenu: FunctionComponent<Props> = props => {
+const ScrollMenu = (props: Props) => {
   const {
     selectedIndex,
     onBlur,

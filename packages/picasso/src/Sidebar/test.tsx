@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 /* eslint-disable-next-line */
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
@@ -6,9 +6,9 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import { Props } from './Sidebar'
 import Sidebar from './'
 
-const TestSidebar: FunctionComponent<OmitInternalProps<Props>> = ({
-  children
-}) => <Sidebar>{children}</Sidebar>
+const TestSidebar = ({ children }: OmitInternalProps<Props>) => {
+  return <Sidebar>{children}</Sidebar>
+}
 
 describe('Sidebar', () => {
   it('renders', () => {

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { ReactNode } from 'react'
 import { act, renderHook } from '@testing-library/react-hooks'
 
 import useSlideMenu from './use-slide-menu'
@@ -48,9 +48,11 @@ describe('useSlideMenu', () => {
       onItemClick: jest.fn(),
       onBackClick: jest.fn()
     }
-    const wrapper: FC = ({ children }) => (
-      <MenuContext.Provider value={context}>{children}</MenuContext.Provider>
-    )
+    const wrapper = ({ children }: { children: ReactNode }) => {
+      return (
+        <MenuContext.Provider value={context}>{children}</MenuContext.Provider>
+      )
+    }
     const { result } = renderHook(() => useSlideMenu(), { wrapper })
 
     act(() => result.current.context.onItemClick?.('1', menu))

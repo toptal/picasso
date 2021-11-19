@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
@@ -18,7 +18,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoPropTypeTableCell'
 })
 
-const PropTypeTableCell: FunctionComponent<Props> = props => {
+const PropTypeTableCell = (props: Props) => {
   const classes = useStyles()
 
   const { type, className } = props

@@ -1,4 +1,4 @@
-import { ReactNode, FunctionComponent } from 'react'
+import { ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIAccordionSummary from '@material-ui/core/AccordionSummary'
 import { StandardProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'

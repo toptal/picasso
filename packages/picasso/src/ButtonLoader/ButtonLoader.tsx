@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
 
@@ -24,12 +24,12 @@ const BUTTON_HORIZONTAL_PADDINGS = {
   large: 58
 }
 
-export const ButtonLoader: FC<Props> = ({
+export const ButtonLoader = ({
   style,
   className,
   size = 'medium',
   circular = false
-}) => {
+}: Props) => {
   const borderRadius = circular ? '50%' : BORDER_RADIUS
   const height = BUTTON_SIZES[size]
   const width = circular ? height : height + BUTTON_HORIZONTAL_PADDINGS[size]

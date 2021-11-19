@@ -1,12 +1,11 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import FileInput, { Props } from './FileInput'
+import FileInput from './FileInput'
 
-const TestFileInput: FunctionComponent<OmitInternalProps<Props>> = () => (
-  <FileInput />
-)
+const TestFileInput = () => {
+  return <FileInput />
+}
 
 describe('FileInput', () => {
   it('renders', () => {

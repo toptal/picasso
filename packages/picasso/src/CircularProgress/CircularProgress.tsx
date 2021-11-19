@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react'
+import React, { HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUICircularProgress from '@material-ui/core/CircularProgress'
 import { StandardProps } from '@toptal/picasso-shared'
@@ -22,7 +22,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoCircularProgress'
 })
 
-const CircularProgress: FunctionComponent<Props> = props => {
+const CircularProgress = (props: Props) => {
   const { className, style, size, value, variant, ...rest } = props
   const classes = useStyles(props)
 

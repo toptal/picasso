@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react'
+import React, { HTMLAttributes } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -10,7 +10,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoOverviewBlockRow'
 })
 
-const OverviewBlockRow: FunctionComponent<Props> = props => {
+const OverviewBlockRow = (props: Props) => {
   const { className, ...rest } = props
   const classes = useStyles()
 

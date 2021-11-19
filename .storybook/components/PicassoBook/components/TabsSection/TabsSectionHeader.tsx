@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent } from 'react'
+import React, { Fragment } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { Typography, Tabs } from '@toptal/picasso'
@@ -17,7 +17,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTabsSectionHeader'
 })
 
-const TabsSectionHeader: FunctionComponent<Props> = props => {
+const TabsSectionHeader = (props: Props) => {
   const classes = useStyles()
 
   const { tabs, selectedTab, onChange } = props

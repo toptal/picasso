@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  useState,
-  ReactNode,
-  FunctionComponent,
-  useLayoutEffect
-} from 'react'
+import React, { forwardRef, useState, ReactNode, useLayoutEffect } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, StandardProps } from '@toptal/picasso-shared'
@@ -25,10 +19,10 @@ export interface SmallScreenSidebarWrapperProps extends StandardProps {
   children?: ReactNode
 }
 
-const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProps> = ({
+const SmallScreenSidebarWrapper = ({
   classes,
   children
-}) => {
+}: SmallScreenSidebarWrapperProps) => {
   const [showSidebar, setShowSidebar] = useState<boolean>(false)
 
   const handleShowSidebar = () => setShowSidebar(true)

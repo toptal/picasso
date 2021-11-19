@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { ReactNode } from 'react'
 import { renderHook } from '@testing-library/react-hooks'
 
 import useMenuVariant, { Props } from './use-menu-variant'
@@ -16,9 +16,11 @@ describe('useMenuVariant', () => {
   it('uses variant from context if it is provided', () => {
     const props: Props = { variant: 'slide' }
     const context: MenuContextProps = { variant: 'drilldown' }
-    const wrapper: FC = ({ children }) => (
-      <MenuContext.Provider value={context}>{children}</MenuContext.Provider>
-    )
+    const wrapper = ({ children }: { children: ReactNode }) => {
+      return (
+        <MenuContext.Provider value={context}>{children}</MenuContext.Provider>
+      )
+    }
 
     const { result } = renderHook(() => useMenuVariant(props), { wrapper })
 

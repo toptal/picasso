@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import {
   TreeView,
   TreeNodeInterface,
@@ -181,10 +181,13 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
   )
 }
 
-const ModalTreeDialog: FC<{
+const ModalTreeDialog = ({
+  open,
+  onClose
+}: {
   open: boolean
   onClose: () => void
-}> = ({ open, onClose }) => {
+}) => {
   return (
     <Modal onClose={onClose} open={open} size='full-screen'>
       <Modal.Title>Modal Tree View</Modal.Title>

@@ -2,7 +2,6 @@ declare var TEST_ENV: string // defined by ENV
 
 import React, {
   ReactNode,
-  FunctionComponent,
   useState,
   useEffect,
   useLayoutEffect,
@@ -60,7 +59,7 @@ const imports: Record<string, object> = {
 
 const resolver = (path: string) => imports[path]
 
-const Purifier: FunctionComponent = ({ children }) => {
+const Purifier = ({ children }: { children: ReactNode }) => {
   const sourceRendererRef = React.createRef<HTMLDivElement>()
 
   const screenSize = useScreenSize()
@@ -81,7 +80,7 @@ const Purifier: FunctionComponent = ({ children }) => {
 // for SSR rendering.
 // This fix is suggested here
 // https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85#option-2-lazily-show-component-with-uselayouteffect
-const PicassoSSR: FunctionComponent = ({ children }) => {
+const PicassoSSR = ({ children }: { children: ReactNode }) => {
   const [showPicasso, setShowPicasso] = useState(false)
 
   // Wait until after client-side hydration to show

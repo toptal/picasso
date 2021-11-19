@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent } from 'react'
+import React, { Fragment } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Table, Typography, Tooltip } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -86,7 +86,7 @@ function useRows(props: Props): JSX.Element {
   )
 }
 
-const PropsTable: FunctionComponent<Props> = props => {
+const PropsTable = (props: Props) => {
   const classes = useStyles()
 
   const rows = useRows(props)

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import AceEditor from 'react-ace'
 import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -18,7 +18,7 @@ interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoEditor' })
 
-const Editor: FunctionComponent<Props> = props => {
+const Editor = (props: Props) => {
   const { id, mode, value, ...rest } = props
 
   const classes = useStyles()

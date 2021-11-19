@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 
 import { DirectionsType, DynamicPointLink } from '../types'
@@ -14,7 +14,7 @@ export interface Props {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoPointLink' })
 
-export const PointLink: FC<Props> = props => {
+export const PointLink = (props: Props) => {
   const { link, direction, verticalMargin, horizontalMargin } = props
   const classes = useStyles()
   const path = useMemo(() => {

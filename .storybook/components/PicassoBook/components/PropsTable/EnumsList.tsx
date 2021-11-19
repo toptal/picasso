@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 
@@ -16,7 +16,7 @@ const trim = (value: string) => String(value).replace(/\'|\"/gi, '')
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoEnumsList' })
 
-const EnumsList: FunctionComponent<Props> = props => {
+const EnumsList = (props: Props) => {
   const { enums, type } = props
 
   const classes = useStyles()

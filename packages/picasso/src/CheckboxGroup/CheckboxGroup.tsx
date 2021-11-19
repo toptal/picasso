@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import FormGroup, { FormGroupProps } from '@material-ui/core/FormGroup'
 import { GridSize } from '@material-ui/core/Grid'
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
@@ -26,7 +26,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoCheckboxGroup'
 })
 
-const CheckboxGroup: FunctionComponent<Props> = props => {
+const CheckboxGroup = (props: Props) => {
   const {
     horizontal,
     spacing,

@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent, LabelHTMLAttributes } from 'react'
+import React, { ReactNode, LabelHTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIInputLabel from '@material-ui/core/InputLabel'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -18,7 +18,7 @@ export interface Props
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoInputLabel' })
 
-const InputLabel: FunctionComponent<Props> = props => {
+const InputLabel = (props: Props) => {
   const { variant, htmlFor, className, style, children, ...rest } = props
 
   const classes = useStyles()

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { SnackbarProvider } from 'notistack'
 import { usePageTopBar } from '@toptal/picasso-provider'
 
@@ -11,10 +11,7 @@ interface Props {
   container?: HTMLElement
 }
 
-const NotificationsProvider: FunctionComponent<Props> = ({
-  children,
-  container
-}) => {
+const NotificationsProvider = ({ children, container }: Props) => {
   const { hasTopBar } = usePageTopBar()
 
   return (

@@ -8,7 +8,6 @@ import {
   createGenerateClassName
 } from '@material-ui/core/styles'
 import React, {
-  FunctionComponent,
   ReactNode,
   useRef,
   useState,
@@ -167,7 +166,7 @@ interface PicassoProps extends TextLabelProps {
   disableClassNamePrefix?: boolean
 }
 
-const Picasso: FunctionComponent<PicassoProps> = ({
+const Picasso = ({
   loadFonts,
   loadFavicon,
   reset,
@@ -181,7 +180,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   theme,
   disableTransitions,
   disableClassNamePrefix
-}) => {
+}: PicassoProps) => {
   if (theme) {
     PicassoProvider.extendTheme(theme)
   }

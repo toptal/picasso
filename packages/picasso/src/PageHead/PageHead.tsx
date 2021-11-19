@@ -1,4 +1,4 @@
-import React, { forwardRef, FunctionComponent, ReactNode } from 'react'
+import React, { forwardRef, ReactNode } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { TextLabelProps, BaseProps } from '@toptal/picasso-shared'
@@ -22,17 +22,19 @@ const useMainStyles = makeStyles(styles, {
   name: 'PicassoPageHeadMain'
 })
 
-const Title: FunctionComponent<TextLabelProps> = ({ titleCase, children }) => (
-  <Typography variant='heading' size='large' titleCase={titleCase}>
-    {children}
-  </Typography>
-)
+const Title = ({ titleCase, children }: TextLabelProps) => {
+  return (
+    <Typography variant='heading' size='large' titleCase={titleCase}>
+      {children}
+    </Typography>
+  )
+}
 
-const Tabs: FunctionComponent = ({ children }) => (
-  <Container>{children}</Container>
-)
+const Tabs = ({ children }: { children: ReactNode }) => {
+  return <Container>{children}</Container>
+}
 
-const Main: FunctionComponent = props => {
+const Main = (props: { children: ReactNode }) => {
   const classes = useMainStyles(props)
 
   return (
@@ -47,11 +49,13 @@ const Main: FunctionComponent = props => {
   )
 }
 
-const Actions: FunctionComponent = ({ children }) => (
-  <Container flex alignItems='center'>
-    {children}
-  </Container>
-)
+const Actions = ({ children }: { children: ReactNode }) => {
+  return (
+    <Container flex alignItems='center'>
+      {children}
+    </Container>
+  )
+}
 
 export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
   props,

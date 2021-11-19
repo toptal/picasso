@@ -135,7 +135,7 @@ describe('ButtonSplit', () => {
   it('closes menu on click to the item', async () => {
     render(
       <ButtonSplit
-        testIds={{ menuButton: 'menuButton', actionButton: 'action' }}
+        testIds={{ menuButton: 'menu-button', actionButton: 'action' }}
         size='large'
         menu={<Menu />}
       >
@@ -143,7 +143,7 @@ describe('ButtonSplit', () => {
       </ButtonSplit>
     )
 
-    const menuButton = screen.getByTestId('menuButton')
+    const menuButton = screen.getByTestId('menu-button')
 
     // open menu
     fireEvent.click(menuButton)
@@ -156,7 +156,7 @@ describe('ButtonSplit', () => {
     )
 
     expect(
-      screen.getByTestId('menuButton').querySelector('svg')
+      screen.getByTestId('menu-button').querySelector('svg')
     ).toMatchSnapshot()
   })
 
@@ -173,7 +173,7 @@ describe('ButtonSplit', () => {
 
     render(
       <ButtonSplit
-        testIds={{ menuButton: 'menuButton', actionButton: 'action' }}
+        testIds={{ menuButton: 'menu-button', actionButton: 'action' }}
         size='large'
         menu={menu}
       >
@@ -181,7 +181,7 @@ describe('ButtonSplit', () => {
       </ButtonSplit>
     )
 
-    const menuButton = screen.getByTestId('menuButton')
+    const menuButton = screen.getByTestId('menu-button')
 
     // open menu
     fireEvent.click(menuButton)

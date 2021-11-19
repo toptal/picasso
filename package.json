@@ -63,7 +63,7 @@
     "@svgr/cli": "^5.5.0",
     "@testing-library/jest-dom": "5.14.1",
     "@toptal/browserslist-config": "^1.1.0",
-    "@toptal/davinci": "^5.0.0",
+    "@toptal/davinci": "8.4.4-alpha-fx-2225-create-an-eslint-rule-regarding-usage-fc-in-the-components.1340",
     "@types/debounce": "^1.2.0",
     "@types/esprima": "^4.0.2",
     "@types/happo-cypress": "^1.17.1",

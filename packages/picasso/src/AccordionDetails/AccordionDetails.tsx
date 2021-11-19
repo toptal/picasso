@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIAccordionDetails from '@material-ui/core/AccordionDetails'
 import { StandardProps } from '@toptal/picasso-shared'
@@ -13,7 +13,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoAccordionDetails'
 })
 
-const AccordionDetails: FunctionComponent<Props> = props => {
+const AccordionDetails = (props: Props) => {
   const {
     children,
     // Avoid passing external classes inside the rest props

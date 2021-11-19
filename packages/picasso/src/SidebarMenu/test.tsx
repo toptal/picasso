@@ -1,14 +1,13 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 /* eslint-disable-next-line */
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import SidebarMenu, { Props } from './SidebarMenu'
 
-const TestSidebarMenu: FunctionComponent<OmitInternalProps<Props>> = ({
-  children,
-  bottom
-}) => <SidebarMenu bottom={bottom}>{children}</SidebarMenu>
+const TestSidebarMenu = ({ children, bottom }: OmitInternalProps<Props>) => {
+  return <SidebarMenu bottom={bottom}>{children}</SidebarMenu>
+}
 
 describe('SidebarMenu', () => {
   it('renders', () => {
