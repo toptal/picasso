@@ -1,5 +1,11 @@
 # Change Log
 
+## 14.0.2
+
+### Patch Changes
+
+- [#2261](https://github.com/toptal/picasso/pull/2261) [`a91e6b3c`](https://github.com/toptal/picasso/commit/a91e6b3cc8b30e9c423aee13c34ed75941b64814) Thanks [@vshyrokov](https://github.com/vshyrokov)! - Added aria-disabled prop into the Link, to prevent overriding of aria-disable, by the disabled prop
+
 ## 14.0.1
 
 ### Patch Changes
