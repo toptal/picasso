@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons / Arrows / 16 / Arrow Subdirectory</title>
+    <defs>
+        <path d="M10.5,12.2071068 L9.79289322,11.5 L12.291,9 L2,9 L2,4 L3,4 L3,8 L12.292,8 L9.79289322,5.5 L10.5,4.79289322 L14.2071068,8.5 L10.5,12.2071068 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-435.000000, -170.000000)" id="Arrows">
+            <g transform="translate(100.000000, 100.000000)">
+                <g id="16" transform="translate(93.000000, 66.000000)">
+                    <g id="Group" transform="translate(240.000000, 0.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Combined-Shape" fill="#455065" fill-rule="nonzero" xlink:href="#path-1"></use>
+                        <g mask="url(#mask-2)" fill="#455065" id="Colors-/-307-Gray-Dark">
+                            <g>
+                                <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
