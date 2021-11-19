@@ -1,6 +1,10 @@
 {
+  "fixturesFolder": false,
   "video": false,
-  "testFiles": ["**/*.spec.ts", "**/*.spec.tsx"],
-  "experimentalComponentTesting": true,
-  "componentFolder": "cypress/component"
+  "component": {
+    "testFiles": ["**/*.spec.ts", "**/*.spec.tsx"],
+    "componentFolder": "cypress/component",
+    "viewportWidth": 1280,
+    "viewportHeight": 1024
+  }
 }
