@@ -59,3 +59,6 @@ export { formatAmount, DEFAULT_CURRENCY, DEFAULT_LOCALE } from './Formatters'
 // NOTE: Prevent type removal on prettier format
 // prettier-ignore
 export type { FormatAmount } from './Formatters'
+
+export { createStylesHook } from './create-styles-hook'
+export type { Theme } from '@material-ui/core'
