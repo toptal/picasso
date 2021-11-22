@@ -1,5 +1,15 @@
 # Change Log
 
+## 14.1.0
+
+### Minor Changes
+
+- [#2262](https://github.com/toptal/picasso/pull/2262) [`d225d195`](https://github.com/toptal/picasso/commit/d225d1956f3cc8ae3507a836f7e4667bf3aaa729) Thanks [@elviocb](https://github.com/elviocb)! - feat(Icons): [SPC-1436] Add new arrow subdirectory icon
+
+### Patch Changes
+
+- [#2268](https://github.com/toptal/picasso/pull/2268) [`78312c45`](https://github.com/toptal/picasso/commit/78312c45170ae975f7c30385f06fa64161cbf29b) Thanks [@vshyrokov](https://github.com/vshyrokov)! - Added data-testid into the Notification
+
 ## 14.0.2
 
 ### Patch Changes
