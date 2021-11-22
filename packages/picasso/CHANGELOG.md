@@ -1,5 +1,11 @@
 # Change Log
 
+## 14.1.1
+
+### Patch Changes
+
+- [#2271](https://github.com/toptal/picasso/pull/2271) [`e2417ca8`](https://github.com/toptal/picasso/commit/e2417ca8e4bef621ae9640591eb3fe6e08660df4) Thanks [@vshyrokov](https://github.com/vshyrokov)! - Updated Notification testIds props to be optional
+
 ## 14.1.0
 
 ### Minor Changes
