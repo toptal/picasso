@@ -41,9 +41,9 @@ export interface PrivateProps
   /** Enable elevated appearance for Notification */
   elevated?: boolean
   testIds?: {
-    closeButton: string
-    notification: string
-    content: string
+    closeButton?: string
+    notification?: string
+    content?: string
   }
 }
 
