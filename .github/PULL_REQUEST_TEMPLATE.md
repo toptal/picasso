@@ -1,3 +1,10 @@
+<!---
+Thanks for taking the time to contribute!
+
+Please make sure to follow contribution process:
+https://toptal-core.atlassian.net/wiki/spaces/FE/pages/2396094469/Handling+external+contribution
+-->
+
 [FX-NNNN]
 
 ### Description
@@ -16,7 +23,7 @@ Describe the changes and motivations for the pull request.
 
 ### Review
 
-- [ ] Read [CONTRIBUTING.md](https://github.com/toptal/picasso/blob/master/CONTRIBUTING.md) and [Component API principles](https://github.com/toptal/picasso/blob/master/docs/api-principles.md)
+- [ ] Read [CONTRIBUTING.md](https://github.com/toptal/picasso/blob/master/CONTRIBUTING.md) and [Component API principles](https://github.com/toptal/picasso/blob/master/docs/contribution/component-api.md)
 - [ ] Annotate all `props` in component with documentation
 - [ ] Create `examples` for component
 - [ ] Ensure that deployed demo has expected results and good examples
