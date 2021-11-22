@@ -40,13 +40,23 @@ export interface PrivateProps
   icon?: ReactElement
   /** Enable elevated appearance for Notification */
   elevated?: boolean
+  testIds?: {
+    closeButton: string
+    notification: string
+    content: string
+  }
 }
 
 /** `elevated` and `icon` props are omitted from the public declaration, since they're only for internal use */
 export type PublicProps = Omit<PrivateProps, 'elevated' | 'icon'>
 
-const renderNotificationCloseButton = ({ onClose, classes }: PrivateProps) => (
+const renderNotificationCloseButton = ({
+  onClose,
+  classes,
+  testIds
+}: PrivateProps) => (
   <Button.Circular
+    data-testid={testIds?.closeButton}
     onClick={onClose}
     className={classes?.close}
     icon={<CloseMinor16 className={classes?.closeIcon} />}
@@ -79,12 +89,16 @@ const renderNotificationIcon = ({ icon, variant, classes }: PrivateProps) => {
 }
 
 const renderNotificationContent = (props: PrivateProps) => {
-  const { classes, children, onClose, variant } = props
+  const { classes, children, onClose, variant, testIds } = props
 
   const capitalizedVariant = capitalize(variant as string)
 
   return (
-    <Container flex className={classes?.contentWrapper}>
+    <Container
+      flex
+      className={classes?.contentWrapper}
+      data-testid={testIds?.content}
+    >
       <Container
         flex
         alignItems='center'
@@ -116,7 +130,14 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const Notification = forwardRef<HTMLElement, PrivateProps>(
   function Notification(props, ref) {
-    const { className, variant, elevated, ...rest } = props
+    const {
+      className,
+      variant,
+      elevated,
+      testIds,
+      'data-testid': dataTestId,
+      ...rest
+    } = props
 
     const classes = useStyles()
 
@@ -132,6 +153,7 @@ export const Notification = forwardRef<HTMLElement, PrivateProps>(
           classes.notification,
           className
         )}
+        data-testid={dataTestId || testIds?.notification}
         message={renderNotificationContent({
           ...props,
           classes
