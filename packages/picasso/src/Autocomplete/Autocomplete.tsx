@@ -266,7 +266,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       >
         <Container flex ref={inputWrapperRef}>
           {!enableAutofill && name && (
-            <input type='hidden' value={value} name={name} />
+            <input
+              type='hidden'
+              value={value}
+              name={name}
+              data-testid={testIds?.input}
+            />
           )}
           <InputComponent
             {...rest}
