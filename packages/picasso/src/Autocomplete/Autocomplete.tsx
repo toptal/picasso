@@ -109,6 +109,7 @@ export interface Props
     otherOption?: string
     noOptions?: string
     loadingAdornment?: string
+    input?: string
   }
 }
 
@@ -283,6 +284,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             name={enableAutofill ? name : undefined}
             autoComplete={enableAutofill ? autoComplete : autoComplete || 'off'}
             testIds={testIds}
+            data-testid={testIds?.input}
           />
         </Container>
         <div role='listbox'>
