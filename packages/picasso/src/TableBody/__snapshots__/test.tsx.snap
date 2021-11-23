@@ -6,7 +6,7 @@ exports[`TableCell renders 1`] = `
     class="Picasso-root"
   >
     <table
-      class="MuiTable-root"
+      class="MuiTable-root Table-root"
     >
       <tbody
         class="MuiTableBody-root"
@@ -15,7 +15,7 @@ exports[`TableCell renders 1`] = `
           class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableCell-bordered"
           >
             Body test
           </td>

@@ -6,7 +6,7 @@ exports[`TableSectionHead renders 1`] = `
     class="Picasso-root"
   >
     <table
-      class="MuiTable-root"
+      class="MuiTable-root Table-root"
     >
       <tbody
         class="MuiTableBody-root"
@@ -15,7 +15,7 @@ exports[`TableSectionHead renders 1`] = `
           class="MuiTableRow-root PicassoTableRow-root PicassoTableSectionHead-sectionHeaderRow PicassoTableRow-bordered"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableSectionHead-sectionHeaderCell"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableSectionHead-sectionHeaderCell PicassoTableCell-bordered"
             colspan="100"
           >
             Test

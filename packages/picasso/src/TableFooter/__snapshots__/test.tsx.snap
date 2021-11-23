@@ -6,7 +6,7 @@ exports[`TableFooter renders 1`] = `
     class="Picasso-root"
   >
     <table
-      class="MuiTable-root"
+      class="MuiTable-root Table-root"
     >
       <tfoot
         class="MuiTableFooter-root PicassoTableFooter-root"
@@ -15,7 +15,7 @@ exports[`TableFooter renders 1`] = `
           class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered MuiTableRow-footer"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer PicassoTableCell-footer"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer PicassoTableCell-footer PicassoTableCell-bordered"
           >
             Footer test
           </td>

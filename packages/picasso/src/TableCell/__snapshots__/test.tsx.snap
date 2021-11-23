@@ -12,7 +12,7 @@ exports[`TableCell renders 1`] = `
         class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
       >
         <td
-          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"
+          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableCell-bordered"
         >
           Cell
         </td>
@@ -34,7 +34,7 @@ exports[`TableCell renders compact 1`] = `
         class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
       >
         <td
-          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableCell-compact"
+          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableCell-compact PicassoTableCell-bordered"
         >
           Cell
         </td>
@@ -56,7 +56,7 @@ exports[`TableCell renders narrow 1`] = `
         class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
       >
         <td
-          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableCell-narrow"
+          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableCell-narrow PicassoTableCell-bordered"
         >
           Cell
         </td>
