@@ -9,7 +9,8 @@
   "main": "index.js",
   "module": "index.js",
   "scripts": {
-    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json"
+    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json",
+    "prepublishOnly": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json ./dist-package/dist-package/; fi"
   },
   "repository": {
     "type": "git",
