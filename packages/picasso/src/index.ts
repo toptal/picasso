@@ -142,6 +142,8 @@ export { default as Badge } from './Badge'
 export type { BadgeProps } from './Badge'
 export { default as Breadcrumbs } from './Breadcrumbs'
 export type { BreadcrumbsProps } from './Breadcrumbs'
+export { default as TextEditor } from './TextEditor'
+export type { TextEditorProps } from './TextEditor'
 
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'

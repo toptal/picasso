@@ -47,9 +47,51 @@ export interface Props
   lineThrough?: boolean
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTypography'
 })
+
+export const getTypographyClassName = (
+  classes: Record<string, string>,
+  {
+    variant,
+    size,
+    color,
+    weight,
+    underline,
+    invert,
+    lineThrough
+  }: Pick<
+    Props,
+    | 'variant'
+    | 'size'
+    | 'color'
+    | 'weight'
+    | 'underline'
+    | 'invert'
+    | 'lineThrough'
+  >
+) => {
+  const variantClassName = kebabToCamelCase(`${variant}-${size}`)
+  const colorClassName = kebabToCamelCase(`${color}`)
+
+  const weightVariantClass = weight ? classes[weight] : undefined
+  const weightClass =
+    weight === 'inherit' ? classes.inheritWeight : weightVariantClass
+
+  const underlineClass = underline ? classes[underline] : undefined
+
+  return cx(
+    classes[variantClassName],
+    classes[colorClassName],
+    weightClass,
+    underlineClass,
+    {
+      [classes.invert]: invert,
+      [classes.lineThrough]: lineThrough
+    }
+  )
+}
 
 export const Typography = forwardRef<HTMLElement, Props>(function Typography(
   props,
@@ -73,27 +115,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     weight,
     ...rest
   } = props
-  const classes = useStyles(props)
-
-  const variantClassName = kebabToCamelCase(`${variant}-${size}`)
-  const colorClassName = kebabToCamelCase(`${color}`)
-
-  const weightVariantClass = weight ? classes[weight] : undefined
-  const weightClass =
-    weight === 'inherit' ? classes.inheritWeight : weightVariantClass
-
-  const underlineClass = underline ? classes[underline] : undefined
-
-  const rootClass = cx(
-    classes[variantClassName],
-    classes[colorClassName],
-    weightClass,
-    underlineClass,
-    {
-      [classes.invert]: invert,
-      [classes.lineThrough]: lineThrough
-    }
-  )
+  const classes = useStyles()
 
   return (
     <MUITypography
@@ -102,7 +124,15 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
       align={align}
       className={className}
       classes={{
-        root: rootClass
+        root: getTypographyClassName(classes, {
+          variant,
+          size,
+          color,
+          weight,
+          underline,
+          invert,
+          lineThrough
+        })
       }}
       style={style}
       variant={toMuiVariant(variant, size)}
