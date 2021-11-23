@@ -18,6 +18,7 @@ import React, {
   ReactNode,
   useCallback,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState
 } from 'react'
@@ -38,7 +39,8 @@ import {
   datePickerParseDateString,
   timezoneConvert,
   timezoneFormat,
-  isValidDateValue
+  isValidDateValue,
+  getStartOfTheDayDate
 } from './utils'
 
 const EMPTY_INPUT_VALUE = ''
@@ -128,6 +130,10 @@ export const DatePicker = (props: Props) => {
     calendarValue,
     setCalendarValue
   ] = useState<DateOrDateRangeType | null>(null)
+
+  const [normalizedMinDate, normalizedMaxDate] = useMemo(() => {
+    return [getStartOfTheDayDate(minDate), getStartOfTheDayDate(maxDate)]
+  }, [minDate, maxDate])
 
   const hideCalendar = () => setCalendarIsShown(false)
   const showCalendar = () => setCalendarIsShown(true)
@@ -222,8 +228,8 @@ export const DatePicker = (props: Props) => {
       const parsedInputValue = parseInputValue(nextValue, {
         dateFormat: editDateFormat,
         timezone,
-        minDate,
-        maxDate
+        minDate: normalizedMinDate,
+        maxDate: normalizedMaxDate
       })
 
       if (parsedInputValue) {
@@ -337,8 +343,8 @@ export const DatePicker = (props: Props) => {
             ref={calendarRef}
             range={range}
             value={calendarValue ?? undefined}
-            minDate={minDate}
-            maxDate={maxDate}
+            minDate={normalizedMinDate}
+            maxDate={normalizedMaxDate}
             disabledIntervals={disabledIntervals}
             renderDay={renderDay}
             onChange={handleCalendarChange}

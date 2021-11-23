@@ -202,7 +202,7 @@ describe('DatePicker', () => {
     })
 
     it('should work with minDate only', () => {
-      const MIN_DATE = new Date(2020, 6, 10)
+      const MIN_DATE = new Date(2020, 6, 10, 15, 0, 0)
 
       const handleChange = jest.fn()
 
@@ -226,7 +226,7 @@ describe('DatePicker', () => {
     })
 
     it('should work with maxDate', () => {
-      const MAX_DATE = new Date(2020, 6, 25)
+      const MAX_DATE = new Date(2020, 6, 25, 15, 0, 0)
 
       const handleChange = jest.fn()
 
