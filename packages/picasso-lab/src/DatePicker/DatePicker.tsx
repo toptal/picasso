@@ -10,6 +10,7 @@ import {
 } from '@toptal/picasso'
 import { Calendar16 } from '@toptal/picasso/Icon'
 import Popper from '@toptal/picasso/Popper'
+import Loader from '@toptal/picasso/Loader'
 import { noop } from '@toptal/picasso/utils'
 import formatDate from 'date-fns/format'
 import PopperJs from 'popper.js'
@@ -40,7 +41,9 @@ import {
   timezoneConvert,
   timezoneFormat,
   isValidDateValue,
-  getStartOfTheDayDate
+  getStartOfTheDayDate,
+  datePickerParseHumanReadableDateString,
+  isDateValid
 } from './utils'
 
 const EMPTY_INPUT_VALUE = ''
@@ -89,6 +92,8 @@ export interface Props
   error?: boolean
   /** Function to override default markup to show Date */
   renderDay?: (args: DayProps) => ReactNode
+  /** Indicate if human-readable dates should be parsed inside `DatePicker`'s input */
+  parseHumanReadableDates?: boolean
   popperContainer?: HTMLElement
   /** Index of the first day of the week (0 - Sunday). Default is 1 - Monday */
   weekStartsOn?: number
@@ -111,6 +116,7 @@ export const DatePicker = (props: Props) => {
     minDate,
     maxDate,
     disabledIntervals,
+    parseHumanReadableDates,
     popperContainer,
     renderDay,
     weekStartsOn,
@@ -124,6 +130,7 @@ export const DatePicker = (props: Props) => {
   const inputProps = rest
 
   const [calendarIsShown, setCalendarIsShown] = useState(false)
+  const [isInputLoading, setIsInputLoading] = useState(false)
   const [isInputFocused, setIsInputFocused] = useState(false)
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
   const [
@@ -206,6 +213,33 @@ export const DatePicker = (props: Props) => {
     onBlur()
 
     setIsInputFocused(false)
+  }
+
+  const handleInputBlur = async (event: React.FocusEvent<HTMLInputElement>) => {
+    event.persist()
+
+    const nextInputValue = event.currentTarget.value
+
+    const isValidDate = isDateValid(nextInputValue, editDateFormat)
+    const shouldParseHumanReadableDate =
+      parseHumanReadableDates && !range && nextInputValue && !isValidDate
+
+    if (shouldParseHumanReadableDate) {
+      setIsInputLoading(true)
+
+      const parsedHumanReadableDate = await datePickerParseHumanReadableDateString(
+        nextInputValue,
+        { timezone, minDate, maxDate }
+      )
+
+      setIsInputLoading(false)
+
+      if (parsedHumanReadableDate) {
+        onChange(parsedHumanReadableDate)
+      }
+    }
+
+    handleBlur(event)
   }
 
   const handleInputChange = (
@@ -311,6 +345,16 @@ export const DatePicker = (props: Props) => {
       </InputAdornment>
     ) : undefined
 
+  const loadingComponent = (
+    <InputAdornment
+      data-testid='loading-adornment'
+      position='end'
+      disablePointerEvents
+    >
+      <Loader size='small' />
+    </InputAdornment>
+  )
+
   return (
     <>
       <Container inline={width !== 'full'} ref={inputWrapperRef}>
@@ -320,11 +364,12 @@ export const DatePicker = (props: Props) => {
           onKeyDown={handleInputKeydown}
           onClick={handleFocusOrClick}
           onFocus={handleFocusOrClick}
-          onBlur={handleBlur}
+          onBlur={handleInputBlur}
           value={inputValue}
           onChange={handleInputChange}
           size={size}
           startAdornment={startAdornment}
+          endAdornment={isInputLoading && loadingComponent}
           width={width}
         />
       </Container>

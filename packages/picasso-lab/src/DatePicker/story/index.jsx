@@ -45,6 +45,10 @@ page
   ) // picasso-skip-visuals
   .addExample('DatePicker/story/WithTimezone.example.tsx', 'With Timezone') // picasso-skip-visuals
   .addExample(
+    'DatePicker/story/WithHumanReadableDateParsing.example.tsx',
+    "Parse human readable dates inside `DatePicker`'s input"
+  ) // picasso-skip-visuals
+  .addExample(
     'DatePicker/story/AllowCustomValue.example.tsx',
     'With custom value'
   ) // picasso-skip-visuals

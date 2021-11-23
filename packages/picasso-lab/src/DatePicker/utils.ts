@@ -118,6 +118,42 @@ export const datePickerParseDateString: DatePickerStringParser = (
   return nextTimezoneValue
 }
 
+export const datePickerParseHumanReadableDateString = async (
+  value: string,
+  {
+    timezone,
+    minDate,
+    maxDate
+  }: Pick<
+    Parameters<DatePickerStringParser>[1],
+    'timezone' | 'minDate' | 'maxDate'
+  >
+): Promise<Date | undefined> => {
+  const { parseDate } = await import('chrono-node')
+  const parsedDate = parseDate(
+    value,
+    {
+      instant: new Date(),
+      timezone
+    },
+    {
+      forwardDate: true
+    }
+  )
+
+  if (!isValid(parsedDate)) {
+    return
+  }
+
+  const nextTimezoneValue = timezoneFormat(parsedDate, timezone)
+
+  if (!isDateWithinInterval(nextTimezoneValue, minDate, maxDate)) {
+    return
+  }
+
+  return nextTimezoneValue
+}
+
 export const isValidDateValue = (
   dateValue: DateOrDateRangeType | string
 ): dateValue is DateOrDateRangeType => typeof dateValue !== 'string'
