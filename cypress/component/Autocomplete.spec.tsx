@@ -56,7 +56,7 @@ export const StaticOptionsAutocompleteExample = () => {
         value={value}
         options={options}
         placeholder='Start typing Mongolia...'
-        data-testid='autocomplete'
+        testIds={testIds}
       />
     </TestingPicasso>
   )
@@ -106,7 +106,7 @@ export const DynamicOptionsAutocompleteExample = () => {
         options={options}
         loading={loading}
         placeholder='Start typing Mongolia...'
-        data-testid='autocomplete'
+        testIds={testIds}
       />
     </TestingPicasso>
   )
@@ -117,16 +117,12 @@ const openAutocompleteWithTab = () => {
 }
 
 const testIds = {
-  resetButton: 'reset-adornment'
+  resetButton: 'reset-adornment',
+  input: 'autocomplete'
 }
 
 const TestAutocomplete = (props: Partial<AutocompleteProps>) => (
-  <Autocomplete
-    data-testid='autocomplete'
-    value=''
-    options={OPTIONS}
-    {...props}
-  />
+  <Autocomplete value='' options={OPTIONS} {...props} />
 )
 
 describe('Autocomplete', () => {
@@ -308,6 +304,7 @@ describe('Autocomplete', () => {
           showOtherOption
           options={[]}
           noOptionsText='Nothing found'
+          testIds={testIds}
         />
       </TestingPicasso>
     )

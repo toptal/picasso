@@ -19,6 +19,10 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const TOOLTIP_LONG_TEXT = 'Content '.repeat(10)
 
+const testIds = {
+  input: 'autocomplete'
+}
+
 const BasicTooltipExample = () => {
   const tooltipContent = <span data-testid='tooltip-content'>Content</span>
 
@@ -212,7 +216,7 @@ const AutocompleteTooltipExample = () => {
           </Tooltip>
         )}
         onChange={setValue}
-        data-testid='autocomplete'
+        testIds={testIds}
       />
     </TestingPicasso>
   )
