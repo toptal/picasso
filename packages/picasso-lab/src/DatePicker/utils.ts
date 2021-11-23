@@ -7,7 +7,7 @@ import isBefore from 'date-fns/isBefore'
 import isAfter from 'date-fns/isAfter'
 import { utcToZonedTime, format as tzFormat, toDate } from 'date-fns-tz'
 
-import { DatePickerStringParser } from './types'
+import { DatePickerInputValueParserParameters } from './types'
 import { DateOrDateRangeType, DateRangeType } from '../Calendar'
 
 // Convert date to given timezone. If timezone is undefined, return given date as is.
@@ -100,15 +100,30 @@ export const isDateWithinInterval = (
   return false
 }
 
-export const datePickerParseDateString: DatePickerStringParser = (
-  value,
-  { dateFormat, timezone, minDate, maxDate }
+export const datePickerParseDateString = (
+  value: string,
+  {
+    customParser,
+    dateFormat,
+    timezone,
+    minDate,
+    maxDate
+  }: DatePickerInputValueParserParameters
 ) => {
-  if (!isDateValid(value, dateFormat)) {
+  if (!value) {
     return
   }
 
-  const parsedNextValue = parse(value, dateFormat, new Date())
+  const isValidDateString = isDateValid(value, dateFormat)
+  const parsedNextValue =
+    customParser && !isValidDateString
+      ? customParser(value, { timezone })
+      : parse(value, dateFormat, new Date())
+
+  if (!parsedNextValue || !isValid(parsedNextValue)) {
+    return
+  }
+
   const nextTimezoneValue = timezoneFormat(parsedNextValue, timezone)
 
   if (!isDateWithinInterval(nextTimezoneValue, minDate, maxDate)) {
