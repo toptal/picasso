@@ -3,7 +3,7 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({}))
 
-export default ({ palette, sizes, transitions }: Theme) =>
+export default ({ palette, transitions }: Theme) =>
   createStyles({
     root: {
       height: 'auto',
@@ -20,7 +20,6 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
     bordered: {
-      borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter2}`,
       borderCollapse: 'inherit'
     },
     clear: {
