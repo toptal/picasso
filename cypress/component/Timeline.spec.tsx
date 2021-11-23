@@ -25,7 +25,7 @@ const renderTimeline = ({
         >
           <Typography>
             System marked job{' '}
-            <Link fontSize='inherit'>
+            <Link>
               Principal Solutions Product Manager (203875) → Cleo O'Connell
             </Link>{' '}
             as inactive
@@ -36,7 +36,7 @@ const renderTimeline = ({
           date={hasDates ? 'Jun 23, 2020' : undefined}
         >
           <Typography inline>
-            <Link fontSize='inherit'>Bettina Barreto</Link>
+            <Link>Bettina Barreto</Link>
           </Typography>{' '}
           added a note
           <Note>
@@ -51,9 +51,8 @@ const renderTimeline = ({
           date={hasDates ? 'Jun 23, 2020' : undefined}
         >
           <Typography>
-            <Link fontSize='inherit'>Carolina Della Corte</Link> changed
-            commitment of{' '}
-            <Link fontSize='inherit'>
+            <Link>Carolina Della Corte</Link> changed commitment of{' '}
+            <Link>
               Principal Solutions Product Manager (203875) → Cleo O'Connell
             </Link>{' '}
             from part-time to hourly

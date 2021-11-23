@@ -39,7 +39,9 @@ describe('Link', () => {
   it('renders', () => {
     mount(
       <TestingPicasso>
-        <Link>Link</Link>
+        <Typography size='medium'>
+          <Link>Link</Link>
+        </Typography>
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
@@ -48,7 +50,9 @@ describe('Link', () => {
   it('renders action variant', () => {
     mount(
       <TestingPicasso>
-        <Link variant='action'>Action link</Link>
+        <Typography size='medium'>
+          <Link variant='action'>Action link</Link>
+        </Typography>
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
@@ -58,9 +62,11 @@ describe('Link', () => {
     it('renders action variant without underline', () => {
       mount(
         <TestingPicasso>
-          <Link variant='action' disabled>
-            Action link
-          </Link>
+          <Typography size='medium'>
+            <Link variant='action' disabled>
+              Action link
+            </Link>
+          </Typography>
         </TestingPicasso>
       )
       cy.get('body').happoScreenshot()
@@ -71,7 +77,9 @@ describe('Link', () => {
     mount(
       <TestingPicasso>
         <Container style={{ background: 'black' }} padded='small'>
-          <Link color='white'>Action link</Link>
+          <Typography size='medium'>
+            <Link color='white'>Action link</Link>
+          </Typography>
         </Container>
       </TestingPicasso>
     )
@@ -82,7 +90,7 @@ describe('Link', () => {
     mount(
       <TestingPicasso>
         <Typography variant='heading' size='large'>
-          Big <Link fontSize='inherit'>link</Link>
+          Big <Link>link</Link>
         </Typography>
       </TestingPicasso>
     )
@@ -92,7 +100,9 @@ describe('Link', () => {
   it('renders without underline', () => {
     mount(
       <TestingPicasso>
-        <Link noUnderline>Link</Link>
+        <Typography size='medium'>
+          <Link noUnderline>Link</Link>
+        </Typography>
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
@@ -107,7 +117,9 @@ describe('Link', () => {
     it('renders link without underline', () => {
       mount(
         <TestingPicasso>
-          <Link data-testid='link'>Link</Link>
+          <Typography size='medium'>
+            <Link data-testid='link'>Link</Link>
+          </Typography>
         </TestingPicasso>
       )
 
@@ -125,9 +137,11 @@ describe('Link', () => {
     it('renders link with underline', () => {
       mount(
         <TestingPicasso>
-          <Link data-testid='link' disabled>
-            Link
-          </Link>
+          <Typography size='medium'>
+            <Link data-testid='link' disabled>
+              Link
+            </Link>
+          </Typography>
         </TestingPicasso>
       )
 
@@ -145,9 +159,11 @@ describe('Link', () => {
     it('renders link without underline', () => {
       mount(
         <TestingPicasso>
-          <Link data-testid='link' noUnderline>
-            Link
-          </Link>
+          <Typography size='medium'>
+            <Link data-testid='link' noUnderline>
+              Link
+            </Link>
+          </Typography>
         </TestingPicasso>
       )
 
@@ -161,9 +177,11 @@ describe('Link', () => {
     it('renders link without underline', () => {
       mount(
         <TestingPicasso>
-          <Link data-testid='link' variant='action' disabled>
-            Link
-          </Link>
+          <Typography size='medium'>
+            <Link data-testid='link' variant='action' disabled>
+              Link
+            </Link>
+          </Typography>
         </TestingPicasso>
       )
 

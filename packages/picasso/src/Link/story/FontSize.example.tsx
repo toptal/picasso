@@ -12,11 +12,7 @@ const FontSizeExample = () => {
       <Container inline right='large'>
         <Typography>
           Please{' '}
-          <Link
-            fontSize='inherit'
-            onClick={handleClick}
-            href='https://toptal.com'
-          >
+          <Link onClick={handleClick} href='https://toptal.com'>
             verify
           </Link>{' '}
           your email
@@ -25,11 +21,7 @@ const FontSizeExample = () => {
       <Container inline right='large'>
         <Typography variant='heading' size='large'>
           Please{' '}
-          <Link
-            fontSize='inherit'
-            onClick={handleClick}
-            href='https://toptal.com'
-          >
+          <Link onClick={handleClick} href='https://toptal.com'>
             verify
           </Link>{' '}
           your email

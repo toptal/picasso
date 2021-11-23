@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from '@toptal/picasso'
+import { Link, Typography } from '@toptal/picasso'
 
 const DisabledLinkExample = () => (
-  <div>
+  <Typography size='medium'>
     <Link
       onClick={() => {
         console.log('foobar')
@@ -11,7 +11,7 @@ const DisabledLinkExample = () => (
     >
       Link
     </Link>
-  </div>
+  </Typography>
 )
 
 export default DisabledLinkExample

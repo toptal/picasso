@@ -13,7 +13,6 @@ import styles from './styles'
 
 type VariantType = 'action' | 'anchor'
 type ColorType = 'white' | 'blue'
-type FontSizeType = 'initial' | 'inherit'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLink' })
 
@@ -53,11 +52,6 @@ export type Props = BaseProps &
     /** Indicates that the user cannot interact with the Link or its children */
     disabled?: boolean
     /**
-     * Controls fontSize of component
-     * @default initial
-     */
-    fontSize?: FontSizeType
-    /**
      * If true, underline decoration never applies
      */
     noUnderline?: boolean
@@ -81,7 +75,6 @@ export const Link: OverridableComponent<Props> = forwardRef<
     target,
     rel,
     disabled,
-    fontSize,
     noUnderline,
     'aria-disabled': ariaDisabled,
     ...rest
@@ -102,8 +95,6 @@ export const Link: OverridableComponent<Props> = forwardRef<
         [classes.action]: variant === 'action',
         [classes.white]: color === 'white',
         [classes.disabled]: disabled,
-        [classes.fontSizeInitial]: fontSize === 'initial',
-        [classes.fontSizeInherit]: fontSize === 'inherit',
         [classes.noUnderline]: noUnderline
       })}
       style={style}
@@ -120,7 +111,6 @@ Link.defaultProps = {
   as: 'a',
   color: 'blue',
   variant: 'anchor',
-  fontSize: 'initial',
   noUnderline: false
 }
 
