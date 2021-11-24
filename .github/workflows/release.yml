@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - 'fix-release'
 
 env:
   SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -26,104 +26,104 @@ jobs:
           # This forces changesets to use git user, provided by GITHUB_TOKEN env var
           persist-credentials: false
 
-      - name: Setup Node.js 14.x
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 14.x
+      # - name: Setup Node.js 14.x
+      #   uses: actions/setup-node@v2.1.5
+      #   with:
+      #     node-version: 14.x
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+      # - name: Get yarn cache directory path
+      #   id: yarn-cache-dir-path
+      #   run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Check yarn cache
-        uses: actions/cache@v2.1.5
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Install Dependencies (from network)
-        if: ${{ steps.yarn-cache.outputs.cache-hit != 'true' }}
-        run: |
-          yarn policies set-version
-          yarn install --frozen-lockfile --ignore-optional
-      - name: Install Dependencies (from cache)
-        if: ${{ steps.yarn-cache.outputs.cache-hit == 'true' }}
-        run: |
-          yarn policies set-version
-          yarn install --frozen-lockfile --ignore-optional --offline
+      # - name: Check yarn cache
+      #   uses: actions/cache@v2.1.5
+      #   id: yarn-cache
+      #   with:
+      #     path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-yarn-
+      # - name: Install Dependencies (from network)
+      #   if: ${{ steps.yarn-cache.outputs.cache-hit != 'true' }}
+      #   run: |
+      #     yarn policies set-version
+      #     yarn install --frozen-lockfile --ignore-optional
+      # - name: Install Dependencies (from cache)
+      #   if: ${{ steps.yarn-cache.outputs.cache-hit == 'true' }}
+      #   run: |
+      #     yarn policies set-version
+      #     yarn install --frozen-lockfile --ignore-optional --offline
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@c2918239208f2162b9d27a87f491375c51592434
-        with:
-          publish: yarn release
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOPTAL_BUILD_BOT_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
+      # - name: Create Release Pull Request or Publish to npm
+      #   id: changesets
+      #   uses: changesets/action@c2918239208f2162b9d27a87f491375c51592434
+      #   with:
+      #     publish: yarn release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.TOPTAL_BUILD_BOT_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
 
-      - name: Add no-jira label to "Version Package" PR
-        if: ${{ steps.changesets.outputs.published != 'true' }}
-        uses: actions/github-script@v5
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            // Get list of all open PRs with
-            // head branch "changeset-release/master"
-            // (there should be max 1 PR with such condition)
-            const { data } = await github.rest.pulls.list({
-              owner: 'toptal',
-              repo: 'picasso',
-              state: 'open',
-              head: 'toptal:changeset-release/master'
-            })
-            // add to all of them label "no-jira"
-            for await (let pr of data) {
-              github.rest.issues.addLabels({
-                owner: 'toptal',
-                repo: 'picasso',
-                issue_number: pr.number,
-                labels: [
-                  'no-jira'
-                ]
-              })
-            }
-      - name: Edit "Version Package" PR
-        if: ${{ steps.changesets.outputs.published != 'true' }}
-        uses: actions/github-script@v5
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            // Get list of all open PRs with
-            // head branch "changeset-release/master"
-            // (there should be max 1 PR with such condition)
-            const { data } = await github.rest.pulls.list({
-              owner: 'toptal',
-              repo: 'picasso',
-              state: 'open',
-              head: 'toptal:changeset-release/master'
-            })
-            for await (let pr of data) {
-              // append PR body with peerDependencies warning
-              const hr = "\n_____"
-              const warningTodo = "\n- [ ] ⚠️ "
-              const message = "If major release, don't forget to check if peerDependencies needs to be also updated"
-              const appendedMessage = hr + warningTodo + message
-              const body = pr.body.includes(message) ? pr.body : pr.body + appendedMessage
+      # - name: Add no-jira label to "Version Package" PR
+      #   if: ${{ steps.changesets.outputs.published != 'true' }}
+      #   uses: actions/github-script@v5
+      #   with:
+      #     github-token: ${{secrets.GITHUB_TOKEN}}
+      #     script: |
+      #       // Get list of all open PRs with
+      #       // head branch "changeset-release/master"
+      #       // (there should be max 1 PR with such condition)
+      #       const { data } = await github.rest.pulls.list({
+      #         owner: 'toptal',
+      #         repo: 'picasso',
+      #         state: 'open',
+      #         head: 'toptal:changeset-release/master'
+      #       })
+      #       // add to all of them label "no-jira"
+      #       for await (let pr of data) {
+      #         github.rest.issues.addLabels({
+      #           owner: 'toptal',
+      #           repo: 'picasso',
+      #           issue_number: pr.number,
+      #           labels: [
+      #             'no-jira'
+      #           ]
+      #         })
+      #       }
+      # - name: Edit "Version Package" PR
+      #   if: ${{ steps.changesets.outputs.published != 'true' }}
+      #   uses: actions/github-script@v5
+      #   with:
+      #     github-token: ${{secrets.GITHUB_TOKEN}}
+      #     script: |
+      #       // Get list of all open PRs with
+      #       // head branch "changeset-release/master"
+      #       // (there should be max 1 PR with such condition)
+      #       const { data } = await github.rest.pulls.list({
+      #         owner: 'toptal',
+      #         repo: 'picasso',
+      #         state: 'open',
+      #         head: 'toptal:changeset-release/master'
+      #       })
+      #       for await (let pr of data) {
+      #         // append PR body with peerDependencies warning
+      #         const hr = "\n_____"
+      #         const warningTodo = "\n- [ ] ⚠️ "
+      #         const message = "If major release, don't forget to check if peerDependencies needs to be also updated"
+      #         const appendedMessage = hr + warningTodo + message
+      #         const body = pr.body.includes(message) ? pr.body : pr.body + appendedMessage
 
-              // append title with [skip ci]
-              github.rest.pulls.update({
-                owner: 'toptal',
-                repo: 'picasso',
-                pull_number: pr.number,
-                body: body,
-                title: pr.title.includes('[skip ci]') ? pr.title : `${pr.title} [skip ci]`,
-              })
-            }
+      #         // append title with [skip ci]
+      #         github.rest.pulls.update({
+      #           owner: 'toptal',
+      #           repo: 'picasso',
+      #           pull_number: pr.number,
+      #           body: body,
+      #           title: pr.title.includes('[skip ci]') ? pr.title : `${pr.title} [skip ci]`,
+      #         })
+      #       }
 
       - name: Trigger build image job
-        if: ${{ steps.changesets.outputs.published == 'true' }}
+        # if: ${{ steps.changesets.outputs.published == 'true' }}
         uses: toptal/jenkins-job-trigger-action@1.0.0
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
@@ -142,43 +142,43 @@ jobs:
             }
           job_timeout: '3600'
 
-      - name: Trigger deployment job
-        if: ${{ steps.changesets.outputs.published == 'true' }}
-        uses: toptal/jenkins-job-trigger-action@1.0.0
-        env:
-          JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs
-        with:
-          jenkins_url: https://jenkins-deployment.toptal.net/
-          jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
-          jenkins_token: ${{ env.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
-          proxy: ${{ env.HTTP_PROXY }}
-          job_name: ${{ env.JENKINS_JOB_NAME }}
-          job_params: |
-            {
-              "COMMIT_ID": "${{ github.sha }}"
-            }
-          job_timeout: '3600'
-      - name: Send a Slack notification on failure
-        if: ${{ failure() }}
-        uses: slackapi/slack-github-action@v1.14.0
-        with:
-          channel-id: '-frontend-exp-team-notifications'
-          slack-message: ":x: <!here> Current master version of Picasso is broken."
-        env:
-          SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
-      - name: Send a Slack notification on success release
-        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
-        uses: slackapi/slack-github-action@v1.14.0
-        with:
-          channel-id: '-frontend-exp-team-notifications'
-          slack-message: "Current master version of Picasso successfully released :green_heart:"
-        env:
-          SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
-      - name: Send a Slack notification on success PR merge
-        if: ${{ success() && steps.changesets.outputs.published != 'true'}}
-        uses: slackapi/slack-github-action@v1.14.0
-        with:
-          channel-id: '-frontend-exp-team-notifications'
-          slack-message: "A new PR was merged to Picasso."
-        env:
-          SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+      # - name: Trigger deployment job
+      #   if: ${{ steps.changesets.outputs.published == 'true' }}
+      #   uses: toptal/jenkins-job-trigger-action@1.0.0
+      #   env:
+      #     JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs
+      #   with:
+      #     jenkins_url: https://jenkins-deployment.toptal.net/
+      #     jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
+      #     jenkins_token: ${{ env.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
+      #     proxy: ${{ env.HTTP_PROXY }}
+      #     job_name: ${{ env.JENKINS_JOB_NAME }}
+      #     job_params: |
+      #       {
+      #         "COMMIT_ID": "${{ github.sha }}"
+      #       }
+      #     job_timeout: '3600'
+      # - name: Send a Slack notification on failure
+      #   if: ${{ failure() }}
+      #   uses: slackapi/slack-github-action@v1.14.0
+      #   with:
+      #     channel-id: '-frontend-exp-team-notifications'
+      #     slack-message: ":x: <!here> Current master version of Picasso is broken."
+      #   env:
+      #     SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+      # - name: Send a Slack notification on success release
+      #   if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+      #   uses: slackapi/slack-github-action@v1.14.0
+      #   with:
+      #     channel-id: '-frontend-exp-team-notifications'
+      #     slack-message: "Current master version of Picasso successfully released :green_heart:"
+      #   env:
+      #     SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+      # - name: Send a Slack notification on success PR merge
+      #   if: ${{ success() && steps.changesets.outputs.published != 'true'}}
+      #   uses: slackapi/slack-github-action@v1.14.0
+      #   with:
+      #     channel-id: '-frontend-exp-team-notifications'
+      #     slack-message: "A new PR was merged to Picasso."
+      #   env:
+      #     SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
