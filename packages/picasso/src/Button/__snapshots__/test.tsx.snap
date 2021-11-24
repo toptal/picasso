@@ -7,7 +7,7 @@ exports[`Button disabled button as link renders disabled version 1`] = `
   >
     <a
       aria-disabled="true"
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root MuiButtonBase-root PicassoButton-disabled PicassoButton-medium PicassoButton-primary PicassoButton-root Mui-disabled PicassoLink-fontSizeInitial MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root MuiButtonBase-root PicassoButton-disabled PicassoButton-medium PicassoButton-primary PicassoButton-root Mui-disabled MuiTypography-colorPrimary"
       data-component-type="button"
       role="button"
       tabindex="-1"

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from '@toptal/picasso'
+import { Link, Typography } from '@toptal/picasso'
 
 const DefaultLinkExample = () => (
-  <div>
+  <Typography size='medium'>
     <Link href={window.parent.location.href + '#'}>Link</Link>
-  </div>
+  </Typography>
 )
 
 export default DefaultLinkExample

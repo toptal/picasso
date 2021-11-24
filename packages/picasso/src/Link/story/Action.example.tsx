@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from '@toptal/picasso'
+import { Link, Typography } from '@toptal/picasso'
 
 const ActionLinkExample = () => {
   const handleClick = () => {
@@ -7,11 +7,11 @@ const ActionLinkExample = () => {
   }
 
   return (
-    <div>
+    <Typography size='medium'>
       <Link variant='action' onClick={handleClick}>
         This is an action link!
       </Link>
-    </div>
+    </Typography>
   )
 }
 

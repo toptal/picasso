@@ -53,12 +53,6 @@ export default ({ typography, palette }: Theme) =>
     },
     container: {
       textDecoration: 'none',
-      dispaly: 'block'
-    },
-    fontSizeInherit: {
-      fontSize: 'inherit'
-    },
-    fontSizeInitial: {
-      fontSize: '0.875rem'
+      display: 'block'
     }
   })
