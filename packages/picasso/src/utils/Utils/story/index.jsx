@@ -1,5 +1,4 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
-
 const page = PicassoBook.section('Utils').createPage('Utils')
 
 page
@@ -22,5 +21,13 @@ page
   }) // picasso-skip-visuals
   .addExample('utils/Utils/story/Colors.example.tsx', {
     title: 'Colors',
+    showEditCode: false
+  }) // picasso-skip-visuals
+  .addExample('utils/Utils/story/Styles.example.tsx', {
+    title: 'Styles',
+    showEditCode: false
+  }) // picasso-skip-visuals
+  .addExample('utils/Utils/story/SSR.example.tsx', {
+    title: 'SSR',
     showEditCode: false
   }) // picasso-skip-visuals
