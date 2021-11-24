@@ -1,8 +1,8 @@
 ---
-'@toptal/picasso': minor
-'@toptal/picasso-charts': minor
-'@toptal/picasso-lab': minor
-'@topkit/analytics-charts': minor
+'@toptal/picasso': major
+'@toptal/picasso-charts': major
+'@toptal/picasso-lab': major
+'@topkit/analytics-charts': major
 ---
 
 Removed static `data-testid` values and replaced them with dynamic ones, which
