@@ -6,7 +6,7 @@ type Options = Parameters<MakeStyles>[1]
 
 const createStylesHook = (
   styles: StylesParam,
-  options: Options
+  options?: Options
 ): ReturnType<MakeStyles> => {
   return makeStyles(
     theme =>
