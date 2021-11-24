@@ -10,6 +10,7 @@ env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
   TOPTAL_BOT_USERNAME: ${{ secrets.TOPTAL_BOT_USERNAME }}
   TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN: ${{ secrets.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
+  TOPTAL_JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_JENKINS_BUILD_TOKEN }}
   HTTP_PROXY: http://${{ secrets.HTTP_PROXY }}
 
 jobs:
@@ -123,7 +124,7 @@ jobs:
 
       - name: Trigger build image job
         if: ${{ steps.changesets.outputs.published == 'true' }}
-        uses: toptal/jenkins-job-trigger-action@0.0.3-with-proxy
+        uses: toptal/jenkins-job-trigger-action@1.0.0
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
           JENKINS_USER: toptal-jenkins
@@ -143,7 +144,7 @@ jobs:
 
       - name: Trigger deployment job
         if: ${{ steps.changesets.outputs.published == 'true' }}
-        uses: toptal/jenkins-job-trigger-action@0.0.3-with-proxy
+        uses: toptal/jenkins-job-trigger-action@1.0.0
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs
         with:
