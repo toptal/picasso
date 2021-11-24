@@ -4,8 +4,12 @@ import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import FileListItem, { Props } from './FileListItem'
 
+const testIds = {
+  progressBar: 'file-list-item-progressbar'
+}
+
 const renderFileListItem = (props: OmitInternalProps<Props>) =>
-  render(<FileListItem {...props} />)
+  render(<FileListItem testIds={testIds} {...props} />)
 
 describe('FileListItem', () => {
   const file = {
@@ -47,7 +51,7 @@ describe('FileListItem', () => {
       })
 
       expect(queryByText('Uploading...')).toBeInTheDocument()
-      expect(queryByTestId('file-list-item-progressbar')).toBeInTheDocument()
+      expect(queryByTestId(testIds.progressBar)).toBeInTheDocument()
     })
 
     describe('when error exists', () => {

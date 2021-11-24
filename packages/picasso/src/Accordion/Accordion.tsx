@@ -23,9 +23,11 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAccordion'
 })
 
-export const EmptyAccordionSummary = () => (
-  <div data-testid='picasso-empty-accordion-summary' />
-)
+export const EmptyAccordionSummary = ({
+  'data-testid': dataTestId
+}: {
+  'data-testid'?: string
+}) => <div data-testid={dataTestId} />
 
 interface SummaryProps extends Partial<StandardProps> {
   children: ReactNode
@@ -76,6 +78,10 @@ export interface Props
   borders?: Borders
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
+  testIds?: {
+    emptyAccordionSummary?: string
+    accordionSummary?: string
+  }
 }
 
 const decorateWithExpandIconClasses = (
@@ -102,6 +108,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     className,
     style,
     onChange,
+    testIds,
     ...rest
   } = props
 
@@ -152,6 +159,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
           }}
           expandIcon={null}
           onClick={handleSummaryClick}
+          data-testid={testIds?.accordionSummary}
         >
           {children}
           {expandIcon ? (
@@ -165,7 +173,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
           )}
         </AccordionSummary>
       ) : (
-        <EmptyAccordionSummary />
+        <EmptyAccordionSummary data-testid={testIds?.emptyAccordionSummary} />
       )}
       <AccordionDetails
         classes={{

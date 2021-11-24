@@ -10,6 +10,10 @@ import {
   DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
 } from './'
 
+const testIds = {
+  calendar: 'calendar'
+}
+
 // eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
   beforeAll(() => {
@@ -302,7 +306,7 @@ describe('DatePicker', () => {
 
         fireEvent.focus(input)
 
-        expect(getByTestId('calendar')).toBeInTheDocument()
+        expect(getByTestId(testIds.calendar)).toBeInTheDocument()
       })
 
       it("doesn't clear `Input` after `blur` with invalid date", () => {
@@ -365,6 +369,6 @@ describe('DatePicker', () => {
   }
 
   const renderDatePicker = (props: Props = defaultProps) => {
-    return render(<DatePicker {...props} />)
+    return render(<DatePicker testIds={testIds} {...props} />)
   }
 })

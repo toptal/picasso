@@ -17,6 +17,9 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
   variant?: MenuVariant
   /** Whether or not to handle nested navigation */
   allowNestedNavigation?: boolean
+  testIds?: {
+    menuItem?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -33,6 +36,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     style,
     variant,
     allowNestedNavigation,
+    testIds,
     ...rest
   } = props
   const classes = useStyles()
@@ -50,7 +54,11 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
           onMouseLeave={onMenuMouseLeave}
         >
           {hasBackButton && allowNestedNavigation && (
-            <MenuItem key='back' data-testid='menu-back' onClick={onBackClick}>
+            <MenuItem
+              key='back'
+              data-testid={testIds?.menuItem}
+              onClick={onBackClick}
+            >
               <Typography size='small' color='dark-grey' variant='body'>
                 <BackMinor16 className={classes.backButtonIcon} />
                 Back

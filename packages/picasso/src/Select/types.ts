@@ -7,6 +7,8 @@ import {
 import PopperJs from 'popper.js'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
+import { OutlinedInputProps } from '../OutlinedInput'
+
 /**
  * Select props are generalized over possible values in the component and whether
  * Select should be a multiselect. If you want `onChange` to take a handler that
@@ -88,7 +90,7 @@ export interface SelectProps<
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
   ref?: React.Ref<HTMLInputElement>
-  testIds?: {
+  testIds?: OutlinedInputProps['testIds'] & {
     noOptions?: string
     loader?: string
     limitFooter?: string

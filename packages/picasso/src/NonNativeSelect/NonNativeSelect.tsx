@@ -122,6 +122,7 @@ export const NonNativeSelect = documentable(
             placeholder={searchPlaceholder}
             size={size}
             value={filterOptionsValue}
+            testIds={testIds}
             aria-autocomplete='list'
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getSearchInputProps()}
@@ -172,6 +173,7 @@ export const NonNativeSelect = documentable(
                 enableAutofill ? autoComplete : autoComplete || 'off'
               }
               name={enableAutofill ? name : undefined}
+              testIds={testIds}
             />
             <SelectCaret disabled={disabled} />
           </div>

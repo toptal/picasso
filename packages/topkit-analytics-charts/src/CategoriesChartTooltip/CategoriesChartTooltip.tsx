@@ -9,13 +9,17 @@ export type Props = {
   payload: { payload: { name: string; team: number; user: number } }[]
   tooltips: TooltipMap
   originalData: DataItem[]
+  testIds?: {
+    paper?: string
+  }
 }
 
 const CategoriesChartTooltip: FC<Props> = ({
   active,
   payload,
   tooltips,
-  originalData
+  originalData,
+  testIds
 }) => {
   if (active && payload && payload.length > 0) {
     const currentData = originalData.find(
@@ -33,7 +37,7 @@ const CategoriesChartTooltip: FC<Props> = ({
     })
 
     return (
-      <Paper data-testid='tooltip-content'>
+      <Paper data-testid={testIds?.paper}>
         <Container padded='xsmall'>
           {teamTexts.map(({ key, label, value, color }) => (
             <Typography size='medium' style={{ color }} key={key}>

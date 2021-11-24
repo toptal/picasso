@@ -9,6 +9,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Content of component */
   elevation?: number
   children: ReactNode
+  'data-testid'?: string
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoPaper' })
@@ -17,7 +18,14 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
   props,
   ref
 ) {
-  const { className, style, elevation, children, ...rest } = props
+  const {
+    className,
+    style,
+    elevation,
+    children,
+    'data-testid': dataTestId,
+    ...rest
+  } = props
   const classes = useStyles()
 
   return (
@@ -28,6 +36,7 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
       className={className}
       style={style}
       elevation={elevation}
+      data-testid={dataTestId}
       square
     >
       {children}

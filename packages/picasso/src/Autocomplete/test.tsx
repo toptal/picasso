@@ -22,7 +22,10 @@ const testIds = {
   menuItem: 'menu-item',
   scrollMenu: 'scroll-menu',
   otherOption: 'other-option',
-  noOptions: 'no-options'
+  noOptions: 'no-options',
+  loadingAdornment: 'loading-adornment',
+  resetButton: 'reset-adornment',
+  input: 'autocomplete'
 }
 
 const renderAutocomplete = (
@@ -30,7 +33,7 @@ const renderAutocomplete = (
   picassoConfig?: PicassoConfig
 ) =>
   render(
-    <Autocomplete data-testid='autocomplete' testIds={testIds} {...props} />,
+    <Autocomplete testIds={testIds} {...props} />,
     undefined,
     picassoConfig
   )
@@ -74,7 +77,7 @@ describe('Autocomplete', () => {
         loading: true
       })
 
-      const loader = getByTestId('loading-adornment')
+      const loader = getByTestId(testIds.loadingAdornment)
 
       expect(loader).not.toBeNull()
       expect(loader).toMatchSnapshot()

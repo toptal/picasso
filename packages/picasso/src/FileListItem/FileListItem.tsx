@@ -17,13 +17,16 @@ export interface Props {
   index: number
   disabled?: boolean
   onRemove?: (fileName: string, index: number) => void
+  testIds?: {
+    progressBar?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'FileListItem'
 })
 
-const FileListItem = ({ file, index, disabled, onRemove }: Props) => {
+const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
   const {
     uploading,
     progress,
@@ -48,10 +51,7 @@ const FileListItem = ({ file, index, disabled, onRemove }: Props) => {
         Uploading...
       </Typography>
       {progress !== undefined ? (
-        <ProgressBar
-          value={progress}
-          data-testid='file-list-item-progressbar'
-        />
+        <ProgressBar data-testid={testIds?.progressBar} value={progress} />
       ) : (
         <Loader className={classes.loader} size='small' />
       )}

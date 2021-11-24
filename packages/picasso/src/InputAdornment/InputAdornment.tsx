@@ -21,6 +21,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   disabled?: boolean
   disablePointerEvents?: boolean
   stopPropagation?: boolean
+  'data-testid'?: string
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -36,6 +37,7 @@ const InputAdornment: FunctionComponent<Props> = props => {
     disabled,
     disablePointerEvents,
     stopPropagation,
+    'data-testid': dataTestId,
     onClick = noop,
     ...rest
   } = props
@@ -65,6 +67,7 @@ const InputAdornment: FunctionComponent<Props> = props => {
       position={position}
       disablePointerEvents={disablePointerEvents}
       onClick={handleClick}
+      data-testid={dataTestId}
     >
       {children}
     </MUIInputAdornment>

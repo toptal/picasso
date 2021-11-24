@@ -12,8 +12,13 @@ const testOptions = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
+const testIds = {
+  resetButton: 'reset-adornment',
+  input: 'autocomplete'
+}
+
 const renderAutocomplete = (props: OmitInternalProps<Props>) =>
-  render(<PageAutocomplete data-testid='autocomplete' {...props} />)
+  render(<PageAutocomplete testIds={testIds} {...props} />)
 
 describe('PageAutocomplete', () => {
   it('renders', () => {
