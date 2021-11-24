@@ -1,5 +1,13 @@
 # Change Log
 
+## 12.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`88b091e2`](https://github.com/toptal/picasso/commit/88b091e2be71bb5aeae51a051d3653ccb10512bc), [`a6b335db`](https://github.com/toptal/picasso/commit/a6b335dbb4acabd90a75bb18f8ffb20d8d5fb265), [`6619b3d8`](https://github.com/toptal/picasso/commit/6619b3d8011b1dae26032a4144e3228d07dc9544), [`f081e380`](https://github.com/toptal/picasso/commit/f081e3800513ba85c5c5f7a077b2c472db18c867)]:
+  - @toptal/picasso@15.0.0
+  - @toptal/picasso-lab@15.0.0
+
 ## 11.0.0
 
 ### Patch Changes
