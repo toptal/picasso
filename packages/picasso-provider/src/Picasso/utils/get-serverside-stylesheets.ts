@@ -1,6 +1,8 @@
 import { createGenerateClassName, ServerStyleSheets } from '@material-ui/core'
 
-const getServersideStylesheets = (generateClassNameSeed = '') => {
+const getServersideStylesheets = (
+  generateClassNameSeed = ''
+): ServerStyleSheets => {
   const generateClassName = createGenerateClassName({
     seed: generateClassNameSeed
   })

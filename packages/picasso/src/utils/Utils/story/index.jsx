@@ -23,11 +23,3 @@ page
     title: 'Colors',
     showEditCode: false
   }) // picasso-skip-visuals
-  .addExample('utils/Utils/story/Styles.example.tsx', {
-    title: 'Styles',
-    showEditCode: false
-  }) // picasso-skip-visuals
-  .addExample('utils/Utils/story/SSR.example.tsx', {
-    title: 'SSR',
-    showEditCode: false
-  }) // picasso-skip-visuals
