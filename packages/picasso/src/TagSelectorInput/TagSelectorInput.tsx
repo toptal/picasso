@@ -37,6 +37,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       enableReset,
       inputProps,
+      testIds,
       ...rest
     } = props
 
@@ -75,6 +76,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
           ...rest,
           ...inputProps
         }}
+        testIds={testIds}
         endAdornment={usedEndAdornment}
         startAdornment={startAdornment}
         onChange={onChange}
