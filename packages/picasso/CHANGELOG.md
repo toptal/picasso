@@ -1,5 +1,11 @@
 # Change Log
 
+## 15.0.1
+
+### Patch Changes
+
+- [#2283](https://github.com/toptal/picasso/pull/2283) [`11ff9181`](https://github.com/toptal/picasso/commit/11ff9181ce0abb580fe1cf9cef711e0b29e0c934) Thanks [@vshyrokov](https://github.com/vshyrokov)! - Fixed error with passing testIds into the TagSelectorInput
+
 ## 15.0.0
 
 ### Major Changes
