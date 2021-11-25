@@ -110,6 +110,7 @@ export interface Props
     noOptions?: string
     loadingAdornment?: string
     input?: string
+    enableAutofillInput?: string
   }
 }
 
@@ -270,7 +271,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               type='hidden'
               value={value}
               name={name}
-              data-testid={testIds?.input}
+              data-testid={testIds?.enableAutofillInput}
             />
           )}
           <InputComponent
