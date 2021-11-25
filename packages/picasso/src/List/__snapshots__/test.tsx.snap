@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List renders ordered list 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ol
+      class="PicassoList-root"
+    />
+  </div>
+</div>
+`;
+
+exports[`List renders unordered list 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ul
+      class="PicassoList-root PicassoList-ul"
+    />
+  </div>
+</div>
+`;
