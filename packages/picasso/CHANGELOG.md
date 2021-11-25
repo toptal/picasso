@@ -1,5 +1,13 @@
 # Change Log
 
+## 15.0.2
+
+### Patch Changes
+
+- [#2286](https://github.com/toptal/picasso/pull/2286) [`2ba6a7ec`](https://github.com/toptal/picasso/commit/2ba6a7ecba690f2a86de2d85f0cf1fc7b15776e6) Thanks [@vshyrokov](https://github.com/vshyrokov)! - Added separate testid for Autocomplete autofill input
+
+* [#2288](https://github.com/toptal/picasso/pull/2288) [`1ed32e74`](https://github.com/toptal/picasso/commit/1ed32e745766ba1d8675fa309207d20f6791e7da) Thanks [@vshyrokov](https://github.com/vshyrokov)! - Added separate testid for Autocomplete autofill input
+
 ## 15.0.1
 
 ### Patch Changes
