@@ -26,7 +26,7 @@ const testIds = {
   loadingAdornment: 'loading-adornment',
   resetButton: 'reset-adornment',
   input: 'autocomplete',
-  enableAutofillInput: 'enableAutofillInput'
+  disableAutofillInput: 'disableAutofillInput'
 }
 
 const renderAutocomplete = (
@@ -81,7 +81,9 @@ describe('Autocomplete', () => {
         name
       })
 
-      const input = getByTestId(testIds.enableAutofillInput) as HTMLInputElement
+      const input = getByTestId(
+        testIds.disableAutofillInput
+      ) as HTMLInputElement
 
       expect(input.value).toEqual(value)
       expect(input.name).toEqual(name)
