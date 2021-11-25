@@ -1,6 +1,7 @@
 import React, { ReactNode, ReactElement } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Theme, makeStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import ListItem from '../ListItem'
 import styles from './styles'
@@ -21,7 +22,6 @@ export const List = (props: Props) => {
   const classes = useStyles()
   const { variant, children, start = 1, ...rest } = props
 
-  const listProps = { className: classes.root, ...rest }
   const listItems = React.Children.map(children, (child, index) =>
     React.cloneElement(child as ReactElement, {
       variant,
@@ -30,10 +30,18 @@ export const List = (props: Props) => {
   )
 
   if (variant === 'unordered') {
-    return <ul {...listProps}>{listItems}</ul>
+    return (
+      <ul className={cx(classes.root, classes.ul)} {...rest}>
+        {listItems}
+      </ul>
+    )
   }
 
-  return <ol {...listProps}>{listItems}</ol>
+  return (
+    <ol className={classes.root} {...rest}>
+      {listItems}
+    </ol>
+  )
 }
 
 List.defaultProps = {
