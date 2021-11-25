@@ -25,7 +25,8 @@ const testIds = {
   noOptions: 'no-options',
   loadingAdornment: 'loading-adornment',
   resetButton: 'reset-adornment',
-  input: 'autocomplete'
+  input: 'autocomplete',
+  enableAutofillInput: 'enableAutofillInput'
 }
 
 const renderAutocomplete = (
@@ -68,6 +69,22 @@ describe('Autocomplete', () => {
       const input = getByTestId('autocomplete') as HTMLInputElement
 
       expect(input.placeholder).toEqual('test')
+    })
+
+    it('renders an enableAutofill hidden input', () => {
+      const value = 'value'
+      const name = 'name'
+
+      const { getByTestId } = renderAutocomplete({
+        options: testOptions,
+        value,
+        name
+      })
+
+      const input = getByTestId(testIds.enableAutofillInput) as HTMLInputElement
+
+      expect(input.value).toEqual(value)
+      expect(input.name).toEqual(name)
     })
 
     it('renders a loading indicator', () => {
