@@ -1,11 +1,112 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Tutorials').createPage(
-  'How to use Picasso in next.js app',
+  'Server Side Rendering and Picasso',
   '⚠️ Experimental support, some components and features might not work as expected'
 )
 
-page.createChapter().addTextSection(
+const generalUsage = page.createChapter('General usage')
+
+generalUsage.addTextSection(`
+As using Picasso with SSR is still an experiment some components and features might not work out of the box. We are working on catching and fixing these errors so bear with us.
+`)
+
+generalUsage.addTextSection(
+  `
+Currently, some features from PicassoProvider cannot be used on the server-side. That is why you have to switch them off.
+
+It is required to enable \`disableClassNamePrefix\` to avoid getting a \`className\` mismatch between server and client.
+
+~~~tsx
+import Picasso from '@toptal/picasso-provider'
+
+export const Component = children => (
+  <Picasso
+    loadFavicon={false}
+    fixViewport={false}
+    loadFonts={false}
+    disableClassNamePrefix
+  >
+    {children}
+  </Picasso>
+)
+~~~
+`,
+  {
+    title: 'Check how you use PicassoProvider'
+  }
+)
+
+generalUsage.addTextSection(
+  `
+Some components are using browser-specific methods and because of that, they will fail on the server. When importing from \`@toptal/picasso\` depending on processing (compiling) that you have set up
+it might start analyzing components that you are not planning to use.
+
+~~~tsx
+import Picasso from '@toptal/picasso-provider'
+
+import { Button } from '@toptal/picasso' // this might throw an error
+import Button from '@toptal/picasso/Button'
+
+export const Component = () => (
+  <Picasso
+    loadFavicon={false}
+    fixViewport={false}
+    loadFonts={false}
+    disableClassNamePrefix
+  >
+    <Button>Hello from Picasso</Button>
+  </Picasso>
+)
+~~~
+`,
+  {
+    title: 'Check how you import components'
+  }
+)
+generalUsage.addTextSection(
+  `
+To make styling work a \`getServersideStylesheets\` function was introduced. It creates an ServerStyleSheets object instance with two methods:
+
+- \`collect(children: React.ReactNode, options?: object)\` - you can pass your React app as params and it will collect and internally store available styles
+- \`getStyleElement(props?: object)\` - this will return a React.ReactElement a style tag with collected CSS
+- \`toString()\` - this will return collected CSS
+
+~~~tsx
+import Picasso, { getServersideStylesheets } from '@toptal/picasso-provider'
+import ReactDOMServer from 'react-dom/server'
+import App from './App'
+
+function handleRender(req, res) {
+  const sheets = getServersideStylesheets();
+
+  // Render the component to a string.
+  const html = ReactDOMServer.renderToString(
+    sheets.collect(
+      <Picasso
+        loadFavicon={false}
+        fixViewport={false}
+        loadFonts={false}
+        disableClassNamePrefix>
+        <App />
+      </Picasso>,
+    ),
+  );
+
+  // Grab the CSS from the sheets.
+  const css = sheets.toString();
+
+  // Send the rendered page back to the client.
+  res.send(renderFullPage(html, css));
+}
+~~~
+`,
+  {
+    title: 'Collect styles on server'
+  }
+)
+
+page.createChapter('next.js tutorial').addTextSection(
   `
 In this tutorial you will learn how to enable Picasso usage in a project that uses \`next.js\` with Server Side Rendering and Static Site Generation.
 Picasso usage on server side is currently in experimental phase, some features\/components might not work as expected, or might not work at all.
