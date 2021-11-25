@@ -44,11 +44,8 @@ page
     'With Custom Day rendering'
   ) // picasso-skip-visuals
   .addExample('DatePicker/story/WithTimezone.example.tsx', 'With Timezone') // picasso-skip-visuals
-  .addExample(
-    'DatePicker/story/WithHumanReadableDateParsing.example.tsx',
-    "Parse human readable dates inside `DatePicker`'s input"
-  ) // picasso-skip-visuals
-  .addExample(
-    'DatePicker/story/AllowCustomValue.example.tsx',
-    'With custom value'
-  ) // picasso-skip-visuals
+  .addExample('DatePicker/story/WithInputCustomValueParser.example.tsx', {
+    title: "With DatePicker's Input custom value parser",
+    description:
+      'Type any year value like `2015` to get a random date within this year'
+  }) // picasso-skip-visuals

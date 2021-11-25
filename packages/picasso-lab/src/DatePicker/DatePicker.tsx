@@ -34,7 +34,7 @@ import {
   DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
 } from './constants'
 import styles from './styles'
-import { DatePickerValue, DatePickerStringParser } from './types'
+import { DatePickerValue, DatePickerInputCustomValueParser } from './types'
 import {
   formatDateRange,
   datePickerParseDateString,
@@ -42,8 +42,7 @@ import {
   timezoneFormat,
   isValidDateValue,
   getStartOfTheDayDate,
-  datePickerParseHumanReadableDateString,
-  isDateValid
+  datePickerParseCustomDateString
 } from './utils'
 
 const EMPTY_INPUT_VALUE = ''
@@ -92,15 +91,13 @@ export interface Props
   error?: boolean
   /** Function to override default markup to show Date */
   renderDay?: (args: DayProps) => ReactNode
-  /** Indicate if human-readable dates should be parsed inside `DatePicker`'s input */
-  parseHumanReadableDates?: boolean
   popperContainer?: HTMLElement
   /** Index of the first day of the week (0 - Sunday). Default is 1 - Monday */
   weekStartsOn?: number
   /** IANA timezone to display and edit date(s) */
   timezone?: string
-  /* Invoked when input value has been changed. If method failed to parse a value, it must return undefined. Used to process input value before passing it to the `onChange` */
-  parseInputValue?: DatePickerStringParser
+  /** Invoked on `onBlur` event of `DatePicker`'s input. If method failed to parse a value, it must return undefined. Used to process custom input value, like, human-readable dates */
+  parseInputValue?: DatePickerInputCustomValueParser
 }
 export const DatePicker = (props: Props) => {
   const {
@@ -116,13 +113,12 @@ export const DatePicker = (props: Props) => {
     minDate,
     maxDate,
     disabledIntervals,
-    parseHumanReadableDates,
     popperContainer,
     renderDay,
     weekStartsOn,
     timezone,
     size,
-    parseInputValue = datePickerParseDateString,
+    parseInputValue,
     ...rest
   } = props
   const classes = useStyles()
@@ -220,22 +216,25 @@ export const DatePicker = (props: Props) => {
 
     const nextInputValue = event.currentTarget.value
 
-    const isValidDate = isDateValid(nextInputValue, editDateFormat)
-    const shouldParseHumanReadableDate =
-      parseHumanReadableDates && !range && nextInputValue && !isValidDate
-
-    if (shouldParseHumanReadableDate) {
+    // TODO: change this if manual entering of range is needed
+    if (parseInputValue && !range) {
       setIsInputLoading(true)
 
-      const parsedHumanReadableDate = await datePickerParseHumanReadableDateString(
+      const parsedDate = await datePickerParseCustomDateString(
+        parseInputValue,
         nextInputValue,
-        { timezone, minDate, maxDate }
+        {
+          dateFormat: editDateFormat,
+          timezone,
+          minDate: normalizedMinDate,
+          maxDate: normalizedMaxDate
+        }
       )
 
       setIsInputLoading(false)
 
-      if (parsedHumanReadableDate) {
-        onChange(parsedHumanReadableDate)
+      if (parsedDate) {
+        onChange(parsedDate)
       }
     }
 
@@ -254,20 +253,20 @@ export const DatePicker = (props: Props) => {
 
     const nextValue = e.target.value
 
-    // TODO: add char filtering (only number , `-` or ` ` allowed)
+    // TODO: add char filtering (only number , `-` or ` ` allowed) in case if `parseInputValue` is not set
     setInputValue(nextValue)
     if (!nextValue) {
       onChange(null)
     } else {
-      const parsedInputValue = parseInputValue(nextValue, {
+      const parsedInputDate = datePickerParseDateString(nextValue, {
         dateFormat: editDateFormat,
         timezone,
         minDate: normalizedMinDate,
         maxDate: normalizedMaxDate
       })
 
-      if (parsedInputValue) {
-        onChange(parsedInputValue)
+      if (parsedInputDate) {
+        onChange(parsedInputDate)
       }
     }
   }

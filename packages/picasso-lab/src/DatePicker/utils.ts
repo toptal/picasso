@@ -7,7 +7,10 @@ import isBefore from 'date-fns/isBefore'
 import isAfter from 'date-fns/isAfter'
 import { utcToZonedTime, format as tzFormat, toDate } from 'date-fns-tz'
 
-import { DatePickerStringParser } from './types'
+import {
+  DatePickerInputCustomValueParser,
+  DatePickerInputValueParserParameters
+} from './types'
 import { DateOrDateRangeType, DateRangeType } from '../Calendar'
 
 // Convert date to given timezone. If timezone is undefined, return given date as is.
@@ -100,9 +103,14 @@ export const isDateWithinInterval = (
   return false
 }
 
-export const datePickerParseDateString: DatePickerStringParser = (
-  value,
-  { dateFormat, timezone, minDate, maxDate }
+export const datePickerParseDateString = (
+  value: string,
+  {
+    dateFormat,
+    timezone,
+    minDate,
+    maxDate
+  }: DatePickerInputValueParserParameters
 ) => {
   if (!isDateValid(value, dateFormat)) {
     return
@@ -118,30 +126,27 @@ export const datePickerParseDateString: DatePickerStringParser = (
   return nextTimezoneValue
 }
 
-export const datePickerParseHumanReadableDateString = async (
+export const datePickerParseCustomDateString = async (
+  parseInputValue: DatePickerInputCustomValueParser,
   value: string,
   {
+    dateFormat,
     timezone,
     minDate,
     maxDate
-  }: Pick<
-    Parameters<DatePickerStringParser>[1],
-    'timezone' | 'minDate' | 'maxDate'
-  >
-): Promise<Date | undefined> => {
-  const { parseDate } = await import('chrono-node')
-  const parsedDate = parseDate(
-    value,
-    {
-      instant: new Date(),
-      timezone
-    },
-    {
-      forwardDate: true
-    }
-  )
+  }: DatePickerInputValueParserParameters
+) => {
+  const isValidDateString = isDateValid(value, dateFormat)
 
-  if (!isValid(parsedDate)) {
+  if (!value || isValidDateString) {
+    return
+  }
+
+  const parsedDate = await parseInputValue(value, {
+    timezone
+  })
+
+  if (!parsedDate || !isValid(parsedDate)) {
     return
   }
 
@@ -151,7 +156,7 @@ export const datePickerParseHumanReadableDateString = async (
     return
   }
 
-  return nextTimezoneValue
+  return parsedDate
 }
 
 export const isValidDateValue = (

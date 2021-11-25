@@ -8,7 +8,8 @@ export {
 } from './DatePicker'
 export type {
   DatePickerValue,
-  DatePickerStringParser,
+  DatePickerInputCustomValueParser,
+  DatePickerInputCustomValueParserParameters,
   DatePickerProps
 } from './DatePicker'
 export { default as Drawer } from './Drawer'
