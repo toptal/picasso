@@ -7,10 +7,7 @@ import isBefore from 'date-fns/isBefore'
 import isAfter from 'date-fns/isAfter'
 import { utcToZonedTime, format as tzFormat, toDate } from 'date-fns-tz'
 
-import {
-  DatePickerInputCustomValueParser,
-  DatePickerInputValueParserParameters
-} from './types'
+import { DatePickerInputValueParserParameters } from './types'
 import { DateOrDateRangeType, DateRangeType } from '../Calendar'
 
 // Convert date to given timezone. If timezone is undefined, return given date as is.
@@ -106,17 +103,27 @@ export const isDateWithinInterval = (
 export const datePickerParseDateString = (
   value: string,
   {
+    customParser,
     dateFormat,
     timezone,
     minDate,
     maxDate
   }: DatePickerInputValueParserParameters
 ) => {
-  if (!isDateValid(value, dateFormat)) {
+  if (!value) {
     return
   }
 
-  const parsedNextValue = parse(value, dateFormat, new Date())
+  const isValidDateString = isDateValid(value, dateFormat)
+  const parsedNextValue =
+    customParser && !isValidDateString
+      ? customParser(value, { timezone })
+      : parse(value, dateFormat, new Date())
+
+  if (!parsedNextValue || !isValid(parsedNextValue)) {
+    return
+  }
+
   const nextTimezoneValue = timezoneFormat(parsedNextValue, timezone)
 
   if (!isDateWithinInterval(nextTimezoneValue, minDate, maxDate)) {
@@ -124,39 +131,6 @@ export const datePickerParseDateString = (
   }
 
   return nextTimezoneValue
-}
-
-export const datePickerParseCustomDateString = (
-  value: string,
-  parseInputValue: DatePickerInputCustomValueParser,
-  {
-    dateFormat,
-    timezone,
-    minDate,
-    maxDate
-  }: DatePickerInputValueParserParameters
-) => {
-  const isValidDateString = isDateValid(value, dateFormat)
-
-  if (!value || isValidDateString) {
-    return
-  }
-
-  const parsedDate = parseInputValue(value, {
-    timezone
-  })
-
-  if (!parsedDate || !isValid(parsedDate)) {
-    return
-  }
-
-  const nextTimezoneValue = timezoneFormat(parsedDate, timezone)
-
-  if (!isDateWithinInterval(nextTimezoneValue, minDate, maxDate)) {
-    return
-  }
-
-  return parsedDate
 }
 
 export const isValidDateValue = (

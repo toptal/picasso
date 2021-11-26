@@ -3,6 +3,7 @@ import { DateOrDateRangeType } from '../Calendar'
 export type DatePickerValue = DateOrDateRangeType | null
 
 export type DatePickerInputValueParserParameters = {
+  customParser?: DatePickerInputCustomValueParser
   dateFormat: string
   minDate?: Date
   maxDate?: Date

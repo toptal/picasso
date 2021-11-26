@@ -39,9 +39,7 @@ import {
   datePickerParseDateString,
   timezoneConvert,
   timezoneFormat,
-  getStartOfTheDayDate,
-  datePickerParseCustomDateString,
-  isDateValid
+  getStartOfTheDayDate
 } from './utils'
 
 const EMPTY_INPUT_VALUE = ''
@@ -232,7 +230,6 @@ export const DatePicker = (props: Props) => {
     }
 
     const nextValue = e.target.value
-    const isValidDate = isDateValid(nextValue, editDateFormat)
 
     // TODO: add char filtering (only number , `-` or ` ` allowed) in case if `parseInputValue` is not set
     setInputValue(nextValue)
@@ -241,21 +238,13 @@ export const DatePicker = (props: Props) => {
       return onChange(null)
     }
 
-    const parserOptions = {
+    const parsedInputDate = datePickerParseDateString(nextValue, {
+      customParser: parseInputValue,
       dateFormat: editDateFormat,
       timezone,
       minDate: normalizedMinDate,
       maxDate: normalizedMaxDate
-    }
-
-    const parsedInputDate =
-      parseInputValue && !isValidDate
-        ? datePickerParseCustomDateString(
-            nextValue,
-            parseInputValue,
-            parserOptions
-          )
-        : datePickerParseDateString(nextValue, parserOptions)
+    })
 
     if (parsedInputDate) {
       onChange(parsedInputDate)

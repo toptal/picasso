@@ -8,6 +8,10 @@ const getRandomDate = (start: Date, end: Date): Date => {
 }
 
 const customDateParser = (value: string): Date | null | undefined => {
+  if (value.length > 4) {
+    return
+  }
+
   const currentYear = new Date().getFullYear().toString()
   const normalizedYear = parseInt(
     currentYear.slice(0, currentYear.length - value.length).concat(value)
