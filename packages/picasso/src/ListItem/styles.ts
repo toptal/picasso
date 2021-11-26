@@ -17,6 +17,7 @@ export default () =>
       minWidth: '1rem'
     },
     orderedListIndex: {
-      width: '3ch'
+      minWidth: '1.25em',
+      marginRight: '0.75em'
     }
   })
