@@ -10,7 +10,6 @@ import {
 } from '@toptal/picasso'
 import { Calendar16 } from '@toptal/picasso/Icon'
 import Popper from '@toptal/picasso/Popper'
-import Loader from '@toptal/picasso/Loader'
 import { noop } from '@toptal/picasso/utils'
 import formatDate from 'date-fns/format'
 import PopperJs from 'popper.js'
@@ -40,9 +39,9 @@ import {
   datePickerParseDateString,
   timezoneConvert,
   timezoneFormat,
-  isValidDateValue,
   getStartOfTheDayDate,
-  datePickerParseCustomDateString
+  datePickerParseCustomDateString,
+  isDateValid
 } from './utils'
 
 const EMPTY_INPUT_VALUE = ''
@@ -99,6 +98,7 @@ export interface Props
   /** Invoked on `onBlur` event of `DatePicker`'s input. If method failed to parse a value, it must return undefined. Used to process custom input value, like, human-readable dates */
   parseInputValue?: DatePickerInputCustomValueParser
 }
+
 export const DatePicker = (props: Props) => {
   const {
     range,
@@ -126,7 +126,6 @@ export const DatePicker = (props: Props) => {
   const inputProps = rest
 
   const [calendarIsShown, setCalendarIsShown] = useState(false)
-  const [isInputLoading, setIsInputLoading] = useState(false)
   const [isInputFocused, setIsInputFocused] = useState(false)
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
   const [
@@ -148,11 +147,7 @@ export const DatePicker = (props: Props) => {
 
   // Format the input based on its 'focus' state
   const formatInputValue = useCallback(
-    (valueToFormat: DateOrDateRangeType | string) => {
-      if (!isValidDateValue(valueToFormat)) {
-        return valueToFormat
-      }
-
+    (valueToFormat: DateOrDateRangeType) => {
       return Array.isArray(valueToFormat)
         ? formatDateRange(valueToFormat as DateRangeType, displayDateFormat)
         : formatDate(
@@ -163,25 +158,40 @@ export const DatePicker = (props: Props) => {
     [isInputFocused, editDateFormat, displayDateFormat]
   )
 
-  // Keep the input format in sync with its 'focus' state
+  const updateInputValue = useCallback(
+    ({ preventUpdateOnFocus }: { preventUpdateOnFocus?: boolean }) => {
+      if (preventUpdateOnFocus && isInputFocused) {
+        return
+      }
+
+      setInputValue(() => {
+        if (!value) {
+          return EMPTY_INPUT_VALUE
+        }
+
+        return formatInputValue(timezoneConvert(value, timezone))
+      })
+    },
+    [value, isInputFocused, timezone, formatInputValue]
+  )
+
+  // Keep the input value in sync with date value update
+  // Updating on incoming date value or timezone change
+  // Should not update when input is focused to prevent overriding it's value
   useLayoutEffect(() => {
-    setInputValue(() => {
-      if (!value) {
-        return EMPTY_INPUT_VALUE
-      }
+    updateInputValue({ preventUpdateOnFocus: true })
+  }, [value, timezone])
 
-      if (!isValidDateValue(value)) {
-        return value
-      }
-
-      return formatInputValue(timezoneConvert(value, timezone))
-    })
-  }, [value, timezone, formatInputValue])
+  // Keep the input format in sync with its 'focus' state
+  // Updating on input focus state change
+  useLayoutEffect(() => {
+    updateInputValue({ preventUpdateOnFocus: false })
+  }, [isInputFocused])
 
   // Keep the calendar in sync with the input value
   useLayoutEffect(() => {
     setCalendarValue(() => {
-      if (!value || !isValidDateValue(value)) {
+      if (!value) {
         return null
       }
 
@@ -211,37 +221,7 @@ export const DatePicker = (props: Props) => {
     setIsInputFocused(false)
   }
 
-  const handleInputBlur = async (event: React.FocusEvent<HTMLInputElement>) => {
-    event.persist()
-
-    const nextInputValue = event.currentTarget.value
-
-    // TODO: change this if manual entering of range is needed
-    if (parseInputValue && !range) {
-      setIsInputLoading(true)
-
-      const parsedDate = await datePickerParseCustomDateString(
-        parseInputValue,
-        nextInputValue,
-        {
-          dateFormat: editDateFormat,
-          timezone,
-          minDate: normalizedMinDate,
-          maxDate: normalizedMaxDate
-        }
-      )
-
-      setIsInputLoading(false)
-
-      if (parsedDate) {
-        onChange(parsedDate)
-      }
-    }
-
-    handleBlur(event)
-  }
-
-  const handleInputChange = (
+  const handleInputChange = async (
     e: React.ChangeEvent<
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
@@ -252,22 +232,33 @@ export const DatePicker = (props: Props) => {
     }
 
     const nextValue = e.target.value
+    const isValidDate = isDateValid(nextValue, editDateFormat)
 
     // TODO: add char filtering (only number , `-` or ` ` allowed) in case if `parseInputValue` is not set
     setInputValue(nextValue)
-    if (!nextValue) {
-      onChange(null)
-    } else {
-      const parsedInputDate = datePickerParseDateString(nextValue, {
-        dateFormat: editDateFormat,
-        timezone,
-        minDate: normalizedMinDate,
-        maxDate: normalizedMaxDate
-      })
 
-      if (parsedInputDate) {
-        onChange(parsedInputDate)
-      }
+    if (!nextValue) {
+      return onChange(null)
+    }
+
+    const parserOptions = {
+      dateFormat: editDateFormat,
+      timezone,
+      minDate: normalizedMinDate,
+      maxDate: normalizedMaxDate
+    }
+
+    const parsedInputDate =
+      parseInputValue && !isValidDate
+        ? datePickerParseCustomDateString(
+            nextValue,
+            parseInputValue,
+            parserOptions
+          )
+        : datePickerParseDateString(nextValue, parserOptions)
+
+    if (parsedInputDate) {
+      onChange(parsedInputDate)
     }
   }
 
@@ -285,6 +276,7 @@ export const DatePicker = (props: Props) => {
       : timezoneFormat(nextValue, timezone)
 
     onChange(nextTimezoneValue)
+    setInputValue(formatInputValue(nextValue))
     setCalendarValue(nextTimezoneValue)
 
     if (hideOnSelect) {
@@ -344,16 +336,6 @@ export const DatePicker = (props: Props) => {
       </InputAdornment>
     ) : undefined
 
-  const loadingComponent = (
-    <InputAdornment
-      data-testid='loading-adornment'
-      position='end'
-      disablePointerEvents
-    >
-      <Loader size='small' />
-    </InputAdornment>
-  )
-
   return (
     <>
       <Container inline={width !== 'full'} ref={inputWrapperRef}>
@@ -363,12 +345,11 @@ export const DatePicker = (props: Props) => {
           onKeyDown={handleInputKeydown}
           onClick={handleFocusOrClick}
           onFocus={handleFocusOrClick}
-          onBlur={handleInputBlur}
+          onBlur={handleBlur}
           value={inputValue}
           onChange={handleInputChange}
           size={size}
           startAdornment={startAdornment}
-          endAdornment={isInputLoading && loadingComponent}
           width={width}
         />
       </Container>

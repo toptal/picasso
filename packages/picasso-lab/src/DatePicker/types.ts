@@ -1,6 +1,6 @@
 import { DateOrDateRangeType } from '../Calendar'
 
-export type DatePickerValue = DateOrDateRangeType | string | null
+export type DatePickerValue = DateOrDateRangeType | null
 
 export type DatePickerInputValueParserParameters = {
   dateFormat: string
@@ -16,4 +16,4 @@ export type DatePickerInputCustomValueParserParameters = {
 export type DatePickerInputCustomValueParser = (
   value: string,
   params: DatePickerInputCustomValueParserParameters
-) => Promise<Date | null | undefined> | Date | null | undefined
+) => Date | null | undefined

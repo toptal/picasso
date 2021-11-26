@@ -126,9 +126,9 @@ export const datePickerParseDateString = (
   return nextTimezoneValue
 }
 
-export const datePickerParseCustomDateString = async (
-  parseInputValue: DatePickerInputCustomValueParser,
+export const datePickerParseCustomDateString = (
   value: string,
+  parseInputValue: DatePickerInputCustomValueParser,
   {
     dateFormat,
     timezone,
@@ -142,7 +142,7 @@ export const datePickerParseCustomDateString = async (
     return
   }
 
-  const parsedDate = await parseInputValue(value, {
+  const parsedDate = parseInputValue(value, {
     timezone
   })
 
