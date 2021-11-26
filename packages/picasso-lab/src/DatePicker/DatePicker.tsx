@@ -221,7 +221,7 @@ export const DatePicker = (props: Props) => {
     setIsInputFocused(false)
   }
 
-  const handleInputChange = async (
+  const handleInputChange = (
     e: React.ChangeEvent<
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
