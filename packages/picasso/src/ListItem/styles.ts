@@ -15,5 +15,8 @@ export default () =>
   createStyles({
     iconContainer: {
       minWidth: '1rem'
+    },
+    orderedListIndex: {
+      width: '3ch'
     }
   })
