@@ -133,6 +133,8 @@ Tag.defaultProps = {
 
 Tag.displayName = 'Tag'
 
+export { useStyles }
+
 export default Object.assign(Tag, {
   Group: TagGroup,
   Rectangular: TagRectangular,

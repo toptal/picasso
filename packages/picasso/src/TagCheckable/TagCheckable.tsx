@@ -1,7 +1,9 @@
-import React, { ReactElement, MouseEventHandler } from 'react'
+import cx from 'classnames'
+import React, { ReactElement, MouseEventHandler, forwardRef } from 'react'
 import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import Tag from '../Tag'
+import { useStyles } from '../Tag/Tag'
 
 type ClickType = MouseEventHandler<HTMLElement>
 
@@ -20,15 +22,12 @@ export interface Props extends BaseProps, TextLabelProps {
   onChange?: (checked: boolean) => void
 }
 
-const TagCheckable = ({
-  hovered,
-  checked = false,
-  children,
-  icon,
-  onClick,
-  onChange,
-  ...rest
-}: Props) => {
+const TagCheckable = forwardRef<HTMLDivElement, Props>(function TagCheckable(
+  { checked = false, children, icon, onClick, onChange, className, ...rest },
+  ref
+) {
+  const classes = useStyles()
+
   const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     onChange?.(!checked)
     onClick?.(e)
@@ -38,15 +37,16 @@ const TagCheckable = ({
 
   return (
     <Tag
+      className={cx(className, classes.checkable)}
       icon={icon}
-      variant={variant}
       onClick={handleClick}
-      hovered={hovered}
+      ref={ref}
+      variant={variant}
       {...rest}
     >
       {children}
     </Tag>
   )
-}
+})
 
 export default TagCheckable
