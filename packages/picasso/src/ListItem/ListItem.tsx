@@ -18,9 +18,7 @@ export type Props = BaseProps & {
 }
 
 const Index = ({ children }: { children: ReactNode }) => (
-  <Typography size='medium' align='center'>
-    {children}.
-  </Typography>
+  <Typography size='medium'>{children}.</Typography>
 )
 
 const getBulletOrNumber = (
