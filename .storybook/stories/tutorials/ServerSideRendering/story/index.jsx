@@ -1,7 +1,7 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Tutorials').createPage(
-  'Server Side Rendering and Picasso',
+  'Server Side Rendering',
   '⚠️ Experimental support, some components and features might not work as expected'
 )
 

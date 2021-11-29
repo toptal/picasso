@@ -3,4 +3,4 @@
 '@toptal/picasso-provider': patch
 ---
 
-Abstract `@material-ui/core` methods for external usage
+Adding documentation for Server Side Rendering and related utility function `getServersideStylesheets`
