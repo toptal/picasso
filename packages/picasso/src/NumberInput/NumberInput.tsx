@@ -47,10 +47,13 @@ type NumberAdornmentProps = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const nativeInputValueSetter = (Object.getOwnPropertyDescriptor(
-  window.HTMLInputElement.prototype,
-  'value'
-) as PropertyDescriptor).set!
+const nativeInputValueSetter =
+  typeof window !== 'undefined'
+    ? (Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value'
+      ) as PropertyDescriptor).set!
+    : () => {}
 
 const NumberAdornment = (props: NumberAdornmentProps) => {
   const { step, min, max, value, inputRef, classes, disabled } = props

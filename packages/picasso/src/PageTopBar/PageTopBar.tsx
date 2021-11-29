@@ -5,7 +5,8 @@ import React, {
   forwardRef,
   ReactNode,
   ReactElement,
-  HTMLAttributes
+  HTMLAttributes,
+  useEffect
 } from 'react'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -61,7 +62,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
 
   const { setHasTopBar } = usePageTopBar()
 
-  useLayoutEffect(() => {
+  ;(typeof window !== 'undefined' ? useLayoutEffect : useEffect)(() => {
     setHasTopBar(true)
 
     return function cleanup() {

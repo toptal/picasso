@@ -50,6 +50,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   }
 }
 
+const isBrowser = typeof window !== 'undefined'
+
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoModal'
 })
@@ -70,7 +72,8 @@ const focusFirstFocusableElement = (node: Element) => {
 }
 
 const isFocusInsideModal = (modalNode: Element) => {
-  const modalContainsFocusedElement = modalNode.contains(document.activeElement)
+  const modalContainsFocusedElement =
+    isBrowser && modalNode.contains(document.activeElement)
 
   if (modalContainsFocusedElement) {
     return true
@@ -80,7 +83,9 @@ const isFocusInsideModal = (modalNode: Element) => {
 }
 
 const isFocusInsideTooltip = () => {
-  const tooltipContainers = document.querySelectorAll(tooltipContainerString)
+  const tooltipContainers = isBrowser
+    ? document.querySelectorAll(tooltipContainerString)
+    : []
 
   if (tooltipContainers.length === 0) {
     return false
@@ -148,7 +153,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       focusFirstFocusableElement(rootRef.current)
     }
 
-    if (!open) {
+    if (!open || !isBrowser) {
       return
     }
 
@@ -159,15 +164,19 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     }
   }, [open, rootRef])
 
-  const bodyOverflow = useRef<string>(document.body.style.overflow)
+  const bodyOverflow = useRef<string>(
+    isBrowser ? document.body.style.overflow : ''
+  )
 
   useEffect(() => {
     const resetBodyOverflow = () => {
-      document.body.style.overflow = bodyOverflow.current
+      if (isBrowser) {
+        document.body.style.overflow = bodyOverflow.current
+      }
     }
     const currentModal = modalId.current
 
-    if (open) {
+    if (open && isBrowser) {
       // TODO: to be improved as part of https://toptal-core.atlassian.net/browse/FX-1069
       bodyOverflow.current = document.body.style.overflow
       document.body.style.overflow = 'hidden'

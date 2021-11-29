@@ -3,7 +3,8 @@ import React, {
   useState,
   ReactNode,
   FunctionComponent,
-  useLayoutEffect
+  useLayoutEffect,
+  useEffect
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -84,7 +85,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
 
-  useLayoutEffect(() => {
+  ;(typeof window !== 'undefined' ? useLayoutEffect : useEffect)(() => {
     setHasSidebar(true)
 
     return function cleanup() {
