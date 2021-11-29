@@ -9,7 +9,7 @@ export interface UseZoomArguments<
   scaleExtent: [number, number]
   center?: { x: number; y: number }
   initialScale?: number
-  transitionDuration?: number
+  transitionDuration: number
 }
 
 export interface UseZoomResponse<ZoomRefElement extends ZoomedElementBaseType> {
@@ -22,7 +22,7 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
   scaleExtent,
   center,
   initialScale = 1,
-  transitionDuration = 750
+  transitionDuration
 }: UseZoomArguments<ZoomRefElement>): UseZoomResponse<ZoomRefElement> => {
   const [initialized, setInitialized] = useState(false)
   const zoom = useMemo(

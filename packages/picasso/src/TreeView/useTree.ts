@@ -3,7 +3,6 @@ import * as d3 from 'd3' // eslint-disable-line import/no-duplicates
 import { HierarchyPointNode } from 'd3' // eslint-disable-line import/no-duplicates
 
 import { useNodes } from './useNodes'
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from './variables'
 import {
   DirectionsType,
   DynamicPointLink,
@@ -14,8 +13,8 @@ import {
 
 export interface UseTreeArguments {
   data: TreeNodeInterface
-  nodeWidth?: number
-  nodeHeight?: number
+  nodeWidth: number
+  nodeHeight: number
   direction: DirectionsType
   verticalMargin: number
   horizontalMargin: number
@@ -94,9 +93,7 @@ const getPositionLeavesAndChildren = (
     node.children.reduce((acc, child) => {
       calculateNodePosition({ ...options, node: child })
 
-      acc += child[coordinateType]
-
-      return acc
+      return acc + child[coordinateType]
     }, 0) / node.children.length
 
   return position
@@ -151,7 +148,7 @@ const getPositionNoLeavesButChildren = (
 
 const getCalculateNodePositionFn = (coordinateType: CoordinateType) => {
   const calculateNodePosition = (options: CalculateNodePositionOptions) => {
-    const { node, aggregationType = 'leaves' } = options
+    const { node, aggregationType } = options
     let position = 0
 
     if (!node.children || !node.children.length) {
@@ -189,48 +186,34 @@ const calculateNodeYPosition = getCalculateNodePositionFn('y')
 
 export const useTree = ({
   data,
-  nodeWidth = DEFAULT_WIDTH,
-  nodeHeight = DEFAULT_HEIGHT,
+  nodeWidth,
+  nodeHeight,
   direction,
   verticalMargin,
   horizontalMargin,
   variant
 }: UseTreeArguments): UseTreeResponse => {
-  const fullNodeWidth = nodeWidth + 2 * horizontalMargin
-  const fullNodeHeight = nodeHeight + 2 * verticalMargin
-
-  const rootNode = useMemo(() => {
-    const root = d3.hierarchy(data)
-
-    const rootNode = d3
-      .tree<TreeNodeInterface>()
-      .nodeSize([nodeWidth, nodeHeight])(root)
-    const leaves = rootNode.leaves()
-
-    if (direction === 'vertical') {
-      return calculateNodeXPosition({
-        node: rootNode,
-        leaves,
-        nodeSizeAttr: fullNodeWidth,
-        aggregationType: variant === 'normal' ? 'leaves' : 'siblings'
-      })
-    }
-
-    return calculateNodeYPosition({
-      node: rootNode,
-      leaves,
-      nodeSizeAttr: fullNodeHeight,
-      aggregationType: variant === 'normal' ? 'leaves' : 'siblings'
-    })
-  }, [
-    data,
-    fullNodeWidth,
-    fullNodeHeight,
-    direction,
-    variant,
-    nodeHeight,
-    nodeWidth
-  ])
+  const rootNode = useMemo(
+    () =>
+      positionTreeNodes({
+        data,
+        direction,
+        nodeHeight,
+        nodeWidth,
+        horizontalMargin,
+        verticalMargin,
+        variant
+      }),
+    [
+      data,
+      direction,
+      nodeHeight,
+      nodeWidth,
+      verticalMargin,
+      horizontalMargin,
+      variant
+    ]
+  )
 
   const nodes = useNodes(rootNode, direction, verticalMargin, horizontalMargin)
 
@@ -261,4 +244,39 @@ export const useTree = ({
     links,
     selectedNode
   }
+}
+
+const positionTreeNodes = ({
+  data,
+  direction,
+  nodeHeight,
+  nodeWidth,
+  horizontalMargin,
+  verticalMargin,
+  variant
+}: Required<UseTreeArguments>) => {
+  const root = d3.hierarchy(data)
+  const fullNodeWidth = nodeWidth + 2 * horizontalMargin
+  const fullNodeHeight = nodeHeight + 2 * verticalMargin
+
+  const rootNode = d3
+    .tree<TreeNodeInterface>()
+    .nodeSize([nodeWidth, nodeHeight])(root)
+  const leaves = rootNode.leaves()
+
+  if (direction === 'vertical') {
+    return calculateNodeXPosition({
+      node: rootNode,
+      leaves,
+      nodeSizeAttr: fullNodeWidth,
+      aggregationType: variant === 'normal' ? 'leaves' : 'siblings'
+    })
+  }
+
+  return calculateNodeYPosition({
+    node: rootNode,
+    leaves,
+    nodeSizeAttr: fullNodeHeight,
+    aggregationType: variant === 'normal' ? 'leaves' : 'siblings'
+  })
 }
