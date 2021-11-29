@@ -1,169 +1,174 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Tutorials').createPage(
-  'Server Side Rendering',
-  '⚠️ Experimental support, some components and features might not work as expected'
+const ssrPage = PicassoBook.section('Tutorials').createPage(
+  'How to use server side rendering',
+  '⚠️ Experimental support, some components and features might not work as expected.'
 )
 
-const generalUsage = page.createChapter('General usage')
+const generalUsage = ssrPage.createChapter()
 
-generalUsage.addTextSection(`
-As using Picasso with SSR is still an experiment some components and features might not work out of the box. We are working on catching and fixing these errors so bear with us.
-`)
+generalUsage.addTextSection(
+  `The basic components of Picasso are ready to be used on the
+  server side. However, comparing to usage of Picasso on client
+  side, on server side we need to follow some rules (in the future
+  most likely they will be reworked):`
+)
 
 generalUsage.addTextSection(
   `
-Currently, some features from PicassoProvider cannot be used on the server-side. That is why you have to switch them off.
+We need to disable client side features for Picasso root:
 
-It is required to enable \`disableClassNamePrefix\` to avoid getting a \`className\` mismatch between server and client.
+1. Remove favicon, font, viewport meta tag
+2. Disable Picasso class name prefix (to avoid generating different className prefix on server and client)
+
+Example:
 
 ~~~tsx
 import Picasso from '@toptal/picasso-provider'
-
-export const Component = children => (
-  <Picasso
-    loadFavicon={false}
-    fixViewport={false}
-    loadFonts={false}
-    disableClassNamePrefix
-  >
-    {children}
-  </Picasso>
-)
+...
+<Picasso
+  loadFavicon={false}
+  fixViewport={false}
+  loadFonts={false}
+  disableClassNamePrefix
+>
+  ...
+</Picasso>
 ~~~
 `,
   {
-    title: 'Check how you use PicassoProvider'
+    title: 'Remove PicassoProvider client side features'
   }
+)
+
+generalUsage
+  .addTextSection(
+    `
+JSS implementation of Picasso styles requires to pre-render styles and classes on server side.
+To make it possible a utility function \`getServersideStylesheets\` was introduced.
+`,
+    {
+      title: 'Render styles on server side'
+    }
+  )
+  .addExample(
+    'tutorials/ServerSideRendering/story/ServerSideUtils.example.tsx',
+    {
+      id: 'server-side-utils',
+      showEditCode: false
+    }
+  ) // picasso-skip-visuals
+generalUsage.addTextSection(
+  `Example:
+
+  ~~~tsx
+  import Picasso, { getServersideStylesheets } from '@toptal/picasso-provider'
+  import ReactDOMServer from 'react-dom/server'
+  import App from './App'
+  
+  function handleRender(req, res) {
+    const sheets = getServersideStylesheets()
+  
+    // Render the component to a string
+    const html = ReactDOMServer.renderToString(
+      sheets.collect(
+        <Picasso
+          loadFavicon={false}
+          fixViewport={false}
+          loadFonts={false}
+          disableClassNamePrefix>
+          <App />
+        </Picasso>,
+      ),
+    )
+  
+    // Grab the CSS from the sheets.
+    const css = sheets.toString()
+  
+    // Send the rendered page back to the client.
+    res.send(renderFullPage(html, css))
+  }
+  ~~~`
 )
 
 generalUsage.addTextSection(
   `
-Some components are using browser-specific methods and because of that, they will fail on the server. When importing from \`@toptal/picasso\` depending on processing (compiling) that you have set up
-it might start analyzing components that you are not planning to use.
+Import components directly to avoid including components from Picasso
+which might use browser-specific methods and not work yet on the server side.
+
+When importing from \`@toptal/picasso\`, processor might include
+such components to the bundle (ex. Next.js).
 
 ~~~tsx
-import Picasso from '@toptal/picasso-provider'
-
-import { Button } from '@toptal/picasso' // this might throw an error
-import Button from '@toptal/picasso/Button'
-
-export const Component = () => (
-  <Picasso
-    loadFavicon={false}
-    fixViewport={false}
-    loadFonts={false}
-    disableClassNamePrefix
-  >
-    <Button>Hello from Picasso</Button>
-  </Picasso>
-)
+import { Button } from '@toptal/picasso' // DOESN'T WORK
+import Button from '@toptal/picasso/Button' // <--- WORKS
 ~~~
 `,
   {
-    title: 'Check how you import components'
-  }
-)
-generalUsage.addTextSection(
-  `
-To make styling work a \`getServersideStylesheets\` function was introduced. It creates an ServerStyleSheets object instance with two methods:
-
-- \`collect(children: React.ReactNode, options?: object)\` - you can pass your React app as params and it will collect and internally store available styles
-- \`getStyleElement(props?: object)\` - this will return a React.ReactElement a style tag with collected CSS
-- \`toString()\` - this will return collected CSS
-
-~~~tsx
-import Picasso, { getServersideStylesheets } from '@toptal/picasso-provider'
-import ReactDOMServer from 'react-dom/server'
-import App from './App'
-
-function handleRender(req, res) {
-  const sheets = getServersideStylesheets();
-
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
-    sheets.collect(
-      <Picasso
-        loadFavicon={false}
-        fixViewport={false}
-        loadFonts={false}
-        disableClassNamePrefix>
-        <App />
-      </Picasso>,
-    ),
-  );
-
-  // Grab the CSS from the sheets.
-  const css = sheets.toString();
-
-  // Send the rendered page back to the client.
-  res.send(renderFullPage(html, css));
-}
-~~~
-`,
-  {
-    title: 'Collect styles on server'
+    title: 'Use direct imports for Picasso components (temporary solution)'
   }
 )
 
-page.createChapter('next.js tutorial').addTextSection(
+/** Next.js tutorial */
+const nextJSChapter = ssrPage.createChapter(
+  'Next.js',
   `
-In this tutorial you will learn how to enable Picasso usage in a project that uses \`next.js\` with Server Side Rendering and Static Site Generation.
-Picasso usage on server side is currently in experimental phase, some features\/components might not work as expected, or might not work at all.
+  Step by step guide how to start using Picasso in a project with Next.js (with Server Side Rendering and Static Site Generation).
 
-**Note** This example uses next.js@12 and @toptal/picasso@14
-`
+  _In all examples was used Next.js@12._
+  `
 )
 
-const tutorial = page.createChapter()
-
-tutorial.addTextSection(
+nextJSChapter.addTextSection(
   `
     yarn create next-app --typescript
     `,
   {
-    title: '1: Create an empty next.js project'
+    title: '1: Create an empty Next.js project'
   }
 )
 
-tutorial.addTextSection(
+nextJSChapter.addTextSection(
   `
-    yarn add @toptal/picasso
+    yarn add @toptal/picasso @toptal/picasso-provider
     `,
   {
-    title: '2: Add Picasso as a dependency'
+    title: '2: Add Picasso and PicassoProvider as a dependency'
   }
 )
 
-tutorial.addTextSection(
+nextJSChapter.addTextSection(
   `
-‼️ Currently it is required to set the following props to \`false\`: \`loadFavicon\`, \`fixViewport\`, \`loadFonts\`
-
 ~~~tsx
 // pages/_app.tsx
 
-import '../styles/globals.css';
-import type { AppProps } from 'next/app';
+import '../styles/globals.css'
+import type { AppProps } from 'next/app'
 
-import Picasso from '@toptal/picasso-provider';
+import Picasso from '@toptal/picasso-provider'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Picasso loadFavicon={false} fixViewport={false} loadFonts={false} disableClassNamePrefix={true}>
+    <Picasso
+      loadFavicon={false}
+      fixViewport={false}
+      loadFonts={false}
+      disableClassNamePrefix
+    >
       <Component {...pageProps} />
     </Picasso>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
 ~~~
     `,
   {
-    title: '3: Wrap "_app.tsx" in PicassoProvider'
+    title: '3: Wrap _app.tsx in PicassoProvider'
   }
 )
 
-tutorial.addTextSection(
+nextJSChapter.addTextSection(
   `
 ~~~tsx
 // pages/_document.tsx
@@ -214,11 +219,11 @@ export default class MyDocument extends Document {
 ~~~
     `,
   {
-    title: '4: Add server side stylesheet generation to "_document.tsx"'
+    title: '4: Add server side stylesheet generation to _document.tsx'
   }
 )
 
-tutorial.addTextSection(
+nextJSChapter.addTextSection(
   `
 First add it as a devDependency
 
@@ -241,24 +246,24 @@ module.exports = withTM({
 ~~~
     `,
   {
-    title: '5: Transpile Picasso modules using "next-transpile-modules"'
+    title: '5: Transpile Picasso modules'
   }
 )
 
-tutorial.addTextSection(
+nextJSChapter.addTextSection(
   `
 ~~~typescript
 // pages/index.tsx
 
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import Container from '@toptal/picasso/Container';
-import Typography from '@toptal/picasso/Typography';
-import Alert from '@toptal/picasso/Alert';
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
+import Container from '@toptal/picasso/Container'
+import Typography from '@toptal/picasso/Typography'
+import Alert from '@toptal/picasso/Alert'
 
-import Button from '@toptal/picasso/Button';
-import { useNotifications } from '@toptal/picasso/utils';
+import Button from '@toptal/picasso/Button'
+import { useNotifications } from '@toptal/picasso/utils'
 
 const Home: NextPage = () => {
   const { showInfo } = useNotifications()
@@ -292,13 +297,13 @@ const Home: NextPage = () => {
         </Container>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
 ~~~
     `,
   {
-    title: '6: Create a demo page using some of the Picasso components'
+    title: '6: Use Picasso components'
   }
 )
