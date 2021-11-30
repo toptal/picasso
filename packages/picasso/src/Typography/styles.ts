@@ -70,7 +70,7 @@ export default ({ palette, typography }: Theme) =>
     },
     bodyInherit: {
       fontSize: '1em',
-      lineHeight: '1.5em',
+      lineHeight: 'inherit',
       fontWeight: typography.fontWeights.regular,
       color: palette.text.primary
     },

@@ -396,7 +396,7 @@ describe('Table', () => {
 
     cy.get('[data-testid="job"]').as('job').should('be.visible')
 
-    cy.get('table > tbody > tr > td:last-child > button:last-child')
+    cy.get(`[data-testid="expand-button-${localData[0].id}"]`)
       .as('collapseButton')
       .realClick()
 
@@ -438,7 +438,7 @@ describe('Table', () => {
 
     cy.get('[data-testid="job"]').as('job').should('be.visible')
 
-    cy.get('table > tbody > tr > td:last-child > button:last-child')
+    cy.get(`[data-testid="expand-button-${localData[0].id}"]`)
       .as('collapseButton')
       .realClick()
 

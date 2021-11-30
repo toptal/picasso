@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography } from '@toptal/picasso'
+import { Table, Typography } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
@@ -79,5 +79,36 @@ describe('Typography', () => {
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
+  })
+
+  describe('Typography line-height', () => {
+    it('renders Typography inside Table', () => {
+      const testIds = {
+        typography: 'typography'
+      }
+
+      mount(
+        <TestingPicasso>
+          <Table>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell>
+                  <Typography data-testid={testIds.typography}>Text</Typography>
+                </Table.Cell>
+                <Table.Cell>Text</Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+        </TestingPicasso>
+      )
+
+      cy.get('body').happoScreenshot()
+
+      cy.get(`[data-testid="${testIds.typography}"]`).should(
+        'have.css',
+        'line-height',
+        '20px'
+      )
+    })
   })
 })
