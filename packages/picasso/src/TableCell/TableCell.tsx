@@ -13,6 +13,7 @@ import cx from 'classnames'
 import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
 import { TableContext, TableSectionContext, TableSection } from '../Table'
+import Typography from '../Typography'
 
 type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
 
@@ -74,8 +75,6 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
 
     const {
       compact: compactClass,
-      footer: footerClass,
-      header: headerClass,
       narrow: narrowClass,
       ...muiClasses
     } = useStyles()
@@ -95,9 +94,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         classes={muiClasses}
         className={cx(className, {
           [compactClass]: spacing === 'compact',
-          [narrowClass]: spacing === 'narrow',
-          [footerClass]: isFooter,
-          [headerClass]: isHead
+          [narrowClass]: spacing === 'narrow'
         })}
         style={style}
         colSpan={colSpan}

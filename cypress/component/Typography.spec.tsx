@@ -7,11 +7,13 @@ describe('Typography', () => {
   it('renders body', () => {
     mount(
       <TestingPicasso>
-        {(['xsmall', 'small', 'medium', 'large'] as const).map(size => (
-          <Typography key={size} variant='body' size={size}>
-            Body ({size})
-          </Typography>
-        ))}
+        {(['xxsmall', 'xsmall', 'small', 'medium', 'large'] as const).map(
+          size => (
+            <Typography key={size} variant='body' size={size}>
+              Body ({size})
+            </Typography>
+          )
+        )}
         <div style={{ fontSize: '2rem' }}>
           <Typography variant='body' size='inherit'>
             Body (inherit)
