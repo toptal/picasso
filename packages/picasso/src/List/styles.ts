@@ -12,6 +12,6 @@ export default ({ palette }: Theme) =>
       }
     },
     ul: {
-      color: palette.grey.dark
+      color: palette.text.primary
     }
   })

@@ -16,11 +16,11 @@ export default () =>
     listContainer: {
       lineHeight: '1.375em'
     },
-    iconContainer: {
-      minWidth: '1rem'
-    },
-    orderedListIndex: {
+    ordered: {
       minWidth: '1.25em',
       marginRight: '0.75em'
+    },
+    unordered: {
+      minWidth: '1rem'
     }
   })

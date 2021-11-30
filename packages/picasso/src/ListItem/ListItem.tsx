@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Theme, makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 
 import Container from '../Container'
 import Typography from '../Typography'
@@ -52,9 +51,7 @@ export const ListItem = (props: Props) => {
           inline
           right='small'
           justifyContent='flex-end'
-          className={cx(classes.iconContainer, {
-            [classes.orderedListIndex]: variant === 'ordered'
-          })}
+          className={classes[variant]}
         >
           {itemIcon}
         </Container>
