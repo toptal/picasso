@@ -11,13 +11,10 @@ const OPTIONS = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-const DISABLED_OPTIONS = [
-  { text: 'Belarus', value: 'BY', disabled: true },
-  { text: 'Croatia', value: 'HR' },
-  { text: 'Lithuania', value: 'LU', disabled: true },
-  { text: 'Slovakia', value: 'SK' },
-  { text: 'Ukraine', value: 'UA' }
-]
+const disableOptions = (options: Option[], indicies: number[]) =>
+  options.map((option, index) =>
+    indicies.includes(index) ? { ...option, disabled: true } : option
+  )
 
 const getHighlightIndex = (
   result: RenderResult<ReturnType<typeof useHighlightedIndex>>
@@ -28,19 +25,35 @@ const setHighlightedIndex = (
   index: number
 ) => result.current[1](index)
 
+const renderUseHighlightedIndex = ({
+  options,
+  selectedOptions = []
+}: {
+  options: Option[]
+  selectedOptions?: Option[]
+}) =>
+  renderHook(
+    ({ isOpen }: { isOpen: boolean }) =>
+      useHighlightedIndex({
+        flatOptions: options,
+        isOpen: isOpen,
+        selection: {
+          isSelected: () => selectedOptions.length > 0,
+          isOptionSelected: (option: Option) =>
+            selectedOptions?.some(
+              selectedOption => selectedOption.value === option.value
+            ),
+          display: () => ''
+        }
+      }),
+    {
+      initialProps: { isOpen: true }
+    }
+  )
+
 describe('useHighlightedIndex', () => {
   it('sets a highlighted index', () => {
-    const { result } = renderHook(() =>
-      useHighlightedIndex({
-        flatOptions: OPTIONS,
-        isOpen: true,
-        selection: {
-          isSelected: jest.fn().mockReturnValue(false),
-          isOptionSelected: jest.fn().mockReturnValue(false),
-          display: jest.fn()
-        }
-      })
-    )
+    const { result } = renderUseHighlightedIndex({ options: OPTIONS })
 
     expect(getHighlightIndex(result)).toBe(0)
     act(() => {
@@ -50,139 +63,86 @@ describe('useHighlightedIndex', () => {
   })
 
   it('sets highlighted index when closed', () => {
-    const { result, rerender } = renderHook(
-      (isOpen: boolean) =>
-        useHighlightedIndex({
-          flatOptions: OPTIONS,
-          isOpen: isOpen,
-          selection: {
-            isSelected: jest.fn().mockReturnValue(true),
-            isOptionSelected: jest
-              .fn()
-              .mockImplementation(
-                (option: Option) => option.value === OPTIONS[2].value
-              ),
-            display: jest.fn()
-          }
-        }),
-      {
-        initialProps: true
-      }
-    )
+    const SELECTED_OPTION_INDEX = 2
 
-    expect(getHighlightIndex(result)).toBe(2)
+    const { result, rerender } = renderUseHighlightedIndex({
+      options: OPTIONS,
+      selectedOptions: [OPTIONS[SELECTED_OPTION_INDEX]]
+    })
+
+    expect(getHighlightIndex(result)).toBe(SELECTED_OPTION_INDEX)
+
     act(() => {
       setHighlightedIndex(result, 4)
     })
     expect(getHighlightIndex(result)).toBe(4)
 
-    rerender(false)
-    expect(getHighlightIndex(result)).toBe(2)
+    rerender({ isOpen: false })
+    expect(getHighlightIndex(result)).toBe(SELECTED_OPTION_INDEX)
   })
 
   it('resets highlighted index when closed and multiple values', () => {
-    const isOptionSelected = jest
-      .fn()
-      .mockImplementation(
-        (option: Option) =>
-          option.value === OPTIONS[2].value || option.value === OPTIONS[3].value
-      )
-
-    const { result, rerender } = renderHook(
-      (isOpen: boolean) =>
-        useHighlightedIndex({
-          flatOptions: OPTIONS,
-          isOpen: isOpen,
-          selection: {
-            isSelected: jest.fn().mockReturnValue(true),
-            isOptionSelected,
-            display: jest.fn()
-          }
-        }),
-      {
-        initialProps: true
-      }
-    )
+    const { result, rerender } = renderUseHighlightedIndex({
+      options: OPTIONS,
+      selectedOptions: [OPTIONS[2], OPTIONS[3]]
+    })
 
     expect(getHighlightIndex(result)).toBe(0)
+
     act(() => {
       setHighlightedIndex(result, 4)
     })
     expect(getHighlightIndex(result)).toBe(4)
 
-    rerender(false)
+    rerender({ isOpen: false })
     expect(getHighlightIndex(result)).toBe(0)
   })
 
   it("doesn't set highlighted index for a disabled option", () => {
-    const { result, rerender } = renderHook(
-      (isOpen: boolean) =>
-        useHighlightedIndex({
-          flatOptions: DISABLED_OPTIONS,
-          isOpen: isOpen,
-          selection: {
-            isSelected: jest.fn().mockReturnValue(false),
-            isOptionSelected: jest.fn().mockReturnValue(false),
-            display: jest.fn()
-          }
-        }),
-      {
-        initialProps: true
-      }
-    )
+    const FIRST_DISABLED_OPTION_INDEX = 0
+    const SECOND_DISABLED_OPTION_INDEX = 2
+    const FIRST_ENABLED_OPTION_INDEX = 1
 
-    expect(getHighlightIndex(result)).toBe(1)
+    const { result, rerender } = renderUseHighlightedIndex({
+      options: disableOptions(OPTIONS, [
+        FIRST_DISABLED_OPTION_INDEX,
+        SECOND_DISABLED_OPTION_INDEX
+      ])
+    })
+
+    expect(getHighlightIndex(result)).toBe(FIRST_ENABLED_OPTION_INDEX)
 
     act(() => {
-      setHighlightedIndex(result, 2)
+      setHighlightedIndex(result, SECOND_DISABLED_OPTION_INDEX)
     })
-    expect(getHighlightIndex(result)).toBe(1)
+    expect(getHighlightIndex(result)).toBe(FIRST_ENABLED_OPTION_INDEX)
 
     act(() => {
       setHighlightedIndex(result, 4)
     })
     expect(getHighlightIndex(result)).toBe(4)
 
-    rerender(false)
-    expect(getHighlightIndex(result)).toBe(1)
+    rerender({ isOpen: false })
+    expect(getHighlightIndex(result)).toBe(FIRST_ENABLED_OPTION_INDEX)
   })
 
-  it("doesn't set highlighted index for a selected disabled option", () => {
-    const isOptionSelected = jest
-      .fn()
-      .mockImplementation(
-        (option: Option) => option.value === DISABLED_OPTIONS[0].value
-      )
+  it("doesn't set highlighted index for a selected and disabled option", () => {
+    const DISABLED_OPTION_INDEX = 0
+    const FIRST_ENABLED_OPTION_INDEX = 1
+    const options = disableOptions(OPTIONS, [DISABLED_OPTION_INDEX])
+    const { result, rerender } = renderUseHighlightedIndex({
+      options,
+      selectedOptions: [options[DISABLED_OPTION_INDEX]]
+    })
 
-    const { result, rerender } = renderHook(
-      (isOpen: boolean) =>
-        useHighlightedIndex({
-          flatOptions: DISABLED_OPTIONS,
-          isOpen: isOpen,
-          selection: {
-            isSelected: jest.fn().mockReturnValue(true),
-            isOptionSelected,
-            display: jest.fn()
-          }
-        }),
-      {
-        initialProps: true
-      }
-    )
-
-    expect(getHighlightIndex(result)).toBe(1)
+    expect(getHighlightIndex(result)).toBe(FIRST_ENABLED_OPTION_INDEX)
 
     act(() => {
-      setHighlightedIndex(result, 2)
+      setHighlightedIndex(result, DISABLED_OPTION_INDEX)
     })
-    expect(getHighlightIndex(result)).toBe(1)
+    expect(getHighlightIndex(result)).toBe(FIRST_ENABLED_OPTION_INDEX)
 
-    act(() => {
-      setHighlightedIndex(result, 4)
-    })
-    expect(getHighlightIndex(result)).toBe(4)
-
-    rerender(false)
-    expect(getHighlightIndex(result)).toBe(1)
+    rerender({ isOpen: false })
+    expect(getHighlightIndex(result)).toBe(FIRST_ENABLED_OPTION_INDEX)
   })
 })
