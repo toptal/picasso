@@ -20,9 +20,9 @@ describe('List', () => {
       'data-testid': testIds.ul
     })
 
-    const list = getByTestId(testIds.ul)
+    const list = getByTestId(testIds.ul) as HTMLUListElement
 
-    expect(list).toEqual(testIds.ul)
+    expect(list.children).toHaveLength(0)
   })
 
   it('renders ordered list', () => {
@@ -32,8 +32,8 @@ describe('List', () => {
       'data-testid': testIds.ol
     })
 
-    const list = getByTestId(testIds.ol)
+    const list = getByTestId(testIds.ol) as HTMLOListElement
 
-    expect(list).toEqual(testIds.ol)
+    expect(list.children).toHaveLength(0)
   })
 })
