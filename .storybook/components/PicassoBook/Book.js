@@ -25,7 +25,7 @@ class PicassoBook extends Base {
       throw new Error(`
 Section with the name '${name}' was not found.
 You need to add this section to the list of available sections
-in '.storybook/config.js'.
+in https://github.com/toptal/picasso/blob/dcc2b12a05ebec7cbce2cd591149d4f056762a32/.storybook/load-stories.js#L17.
       `)
     }
 
