@@ -13,6 +13,9 @@ PicassoProvider.override(() => ({
 
 export default () =>
   createStyles({
+    listContainer: {
+      lineHeight: '1.375em'
+    },
     iconContainer: {
       minWidth: '1rem'
     },

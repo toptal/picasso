@@ -4,25 +4,36 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import List, { Props } from './List'
 
+const testIds = {
+  ul: 'unordered-list',
+  ol: 'ordered-list'
+}
+
 const renderList = (props: OmitInternalProps<Props>) =>
   render(<List {...props}>{props.children}</List>)
 
 describe('List', () => {
   it('renders unordered list', () => {
-    const { container } = renderList({
+    const { getByTestId } = renderList({
       children: [],
-      variant: 'unordered'
+      variant: 'unordered',
+      'data-testid': testIds.ul
     })
 
-    expect(container).toMatchSnapshot()
+    const list = getByTestId(testIds.ul)
+
+    expect(list).toEqual(testIds.ul)
   })
 
   it('renders ordered list', () => {
-    const { container } = renderList({
+    const { getByTestId } = renderList({
       children: [],
-      variant: 'ordered'
+      variant: 'ordered',
+      'data-testid': testIds.ol
     })
 
-    expect(container).toMatchSnapshot()
+    const list = getByTestId(testIds.ol)
+
+    expect(list).toEqual(testIds.ol)
   })
 })
