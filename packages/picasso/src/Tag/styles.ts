@@ -39,7 +39,13 @@ export default ({ palette, transitions }: Theme) =>
       height: 'auto'
     },
     clickable: {
-      '&:not($disabled)': {
+      cursor: 'default',
+      '&:hover, &:focus': {
+        backgroundColor: palette.common.white,
+        cursor: 'default'
+      },
+      '&$checkable:not($disabled)': {
+        cursor: 'pointer',
         '&:hover, &$hovered': {
           borderColor: palette.grey.dark,
           backgroundColor: palette.common.white,
@@ -60,7 +66,6 @@ export default ({ palette, transitions }: Theme) =>
       gap: '0.5rem'
     },
     hovered: {},
-
     // TagConnection styles
     connection: {
       display: 'inline-flex',
@@ -70,5 +75,8 @@ export default ({ palette, transitions }: Theme) =>
       '[aria-disabled="true"] &': {
         color: 'inherit'
       }
-    }
+    },
+
+    // TagCheckable
+    checkable: {}
   })

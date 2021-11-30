@@ -1,5 +1,11 @@
 import React from 'react'
-import { Tag, Settings16, Container, Typography } from '@toptal/picasso'
+import {
+  Tag,
+  Settings16,
+  Container,
+  Typography,
+  Tooltip
+} from '@toptal/picasso'
 
 const handleDelete = () => {
   window.alert('You clicked the delete icon.')
@@ -54,6 +60,14 @@ const Example = () => (
         >
           Label
         </Tag>
+      </div>
+    </Container>
+    <Container flex direction='column' gap='xsmall'>
+      <Typography>With Tooltip</Typography>
+      <div>
+        <Tooltip variant='light' interactive content='ssddssdsdsd'>
+          <Tag>Label</Tag>
+        </Tooltip>
       </div>
     </Container>
   </Container>
