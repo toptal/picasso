@@ -47,7 +47,7 @@ export const ListItem = (props: Props) => {
 
   return (
     <li {...rest}>
-      <Container flex direction='row'>
+      <Container flex direction='row' className={classes.listContainer}>
         <Container
           inline
           right='small'
