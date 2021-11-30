@@ -1,5 +1,15 @@
 # Change Log
 
+## 15.1.0
+
+### Minor Changes
+
+- [#2290](https://github.com/toptal/picasso/pull/2290) [`3d484420`](https://github.com/toptal/picasso/commit/3d48442096da95eabdbf74b3975fea9050a794bd) Thanks [@diogolessa](https://github.com/diogolessa)! - [COMM-475] Add flash24 icon
+
+### Patch Changes
+
+- [#2289](https://github.com/toptal/picasso/pull/2289) [`36fc6c72`](https://github.com/toptal/picasso/commit/36fc6c72f1edd39314f6ca1ac559a28c8ffc5b8c) Thanks [@TomasSlama](https://github.com/TomasSlama)! - Fix styling of `Tag` when wrapped by `Tooltip`
+
 ## 15.0.2
 
 ### Patch Changes
