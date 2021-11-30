@@ -5,16 +5,15 @@ import {
   DatePickerProps
 } from '@toptal/picasso-lab'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
-import { noop } from '@toptal/picasso/utils'
-import React from 'react'
+import React, { useState } from 'react'
 
 const TestDatePicker = (props: Partial<DatePickerProps>) => {
-  const value = props.value || new Date(2020, 11, 27)
+  const [value, setValue] = useState<DatePickerProps['value']>(props.value || new Date(2020, 11, 27))
 
   return (
     <TestingPicasso>
       <Container padded='medium'>
-        <DatePicker onChange={noop} value={value} {...props} />
+        <DatePicker {...props} onChange={setValue} value={value} />
       </Container>
     </TestingPicasso>
   )

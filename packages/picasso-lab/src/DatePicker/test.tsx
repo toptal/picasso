@@ -250,12 +250,10 @@ describe('DatePicker', () => {
     })
 
     describe('should work with `parseInputValue`', () => {
-      describe('if parser returns `Date`', () => {
+      describe('when parser returns parsed date', () => {
         const parseInputValue: DatePickerInputCustomValueParser = jest
           .fn()
-          .mockImplementation(() => {
-            return new Date(2021, 0, 1)
-          })
+          .mockImplementation(() => new Date(2021, 0, 1))
 
         it('calls `onChange` handler with the parsed date', async () => {
           const handleChange = jest.fn()
@@ -280,7 +278,7 @@ describe('DatePicker', () => {
         })
       })
 
-      describe('if parser returns `Date` value outside of the `min/max` dates', () => {
+      describe('when parser returns parsed date outside of the `min/max` dates range', () => {
         const parseInputValue: DatePickerInputCustomValueParser = jest
           .fn()
           .mockImplementation(() => {
@@ -311,7 +309,7 @@ describe('DatePicker', () => {
         })
       })
 
-      describe('if parser returns `undefined`', () => {
+      describe('when parser cannot parse date', () => {
         const parseInputValue: DatePickerInputCustomValueParser = () => {
           return undefined
         }
@@ -338,7 +336,7 @@ describe('DatePicker', () => {
         })
       })
 
-      describe('if `range` property is set', () => {
+      describe('when `range` property is set', () => {
         const parseInputValue = jest.fn()
 
         it('does not call `parseInputValue` function', async () => {
@@ -361,7 +359,7 @@ describe('DatePicker', () => {
         })
       })
 
-      describe('if valid string date value is typed', () => {
+      describe('when valid string date value is typed', () => {
         const parseInputValue = jest.fn()
 
         it('does not call `parseInputValue` function', async () => {
