@@ -37,7 +37,7 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
    */
   onDelete?: () => void
   /** Variant of the `Tag` */
-  variant?: 'light' | 'primary' | 'positive' | 'warning' | 'negative'
+  variant?: 'grey' | 'blue' | 'green' | 'yellow' | 'red'
   /** ReactNode rendered after label */
   endAdornment?: ReactNode
   hovered?: boolean
@@ -128,7 +128,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
 Tag.defaultProps = {
   as: 'div',
   children: '',
-  variant: 'light'
+  variant: 'grey'
 }
 
 Tag.displayName = 'Tag'

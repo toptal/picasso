@@ -8,7 +8,12 @@ import Chip from '../Chip'
 import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
 
-export type VariantType = 'dark' | 'positive' | 'light' | 'negative' | 'warning'
+export type VariantType =
+  | 'red'
+  | 'yellow'
+  | 'dark-grey'
+  | 'light-grey'
+  | 'green'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
@@ -43,7 +48,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
       style,
       className,
       titleCase: propsTitleCase,
-      variant = 'light',
+      variant = 'light-grey',
       indicator,
       ...rest
     } = props
@@ -66,7 +71,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         label={
           <span
             className={cx(classes.innerLabel, {
-              [classes.innerLabelDarkText]: variant === 'light'
+              [classes.innerLabelDarkText]: variant === 'light-grey'
             })}
           >
             {titleCase ? toTitleCase(children) : children}
@@ -78,7 +83,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
 )
 
 TagRectangular.defaultProps = {
-  variant: 'light'
+  variant: 'light-grey'
 }
 
 TagRectangular.displayName = 'TagRectangular'

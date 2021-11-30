@@ -33,7 +33,7 @@ const TagCheckable = forwardRef<HTMLDivElement, Props>(function TagCheckable(
     onClick?.(e)
   }
 
-  const variant = checked ? 'positive' : 'light'
+  const variant = checked ? 'green' : 'grey'
 
   return (
     <Tag

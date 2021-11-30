@@ -40,13 +40,13 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
 </div>
 `;
 
-exports[`Tag renders \`light\` variant 1`] = `
+exports[`Tag renders \`blue\` variant 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoLabel-root"
+      class="MuiChip-root PicassoLabel-root PicassoLabel-blue"
       data-testid="tag"
     >
       <span
@@ -63,13 +63,13 @@ exports[`Tag renders \`light\` variant 1`] = `
 </div>
 `;
 
-exports[`Tag renders \`primary\` variant 1`] = `
+exports[`Tag renders \`light-grey\` variant 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoLabel-root PicassoLabel-primary"
+      class="MuiChip-root PicassoLabel-root"
       data-testid="tag"
     >
       <span
