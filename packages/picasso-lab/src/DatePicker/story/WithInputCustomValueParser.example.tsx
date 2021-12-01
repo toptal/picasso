@@ -8,7 +8,7 @@ const getRandomDate = (start: Date, end: Date): Date => {
 }
 
 const customDateParser = (value: string): Date | null | undefined => {
-  if (value.length > 4) {
+  if (!/^[0-9]{1,4}$/.test(value)) {
     return
   }
 
