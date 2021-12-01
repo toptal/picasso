@@ -1,5 +1,11 @@
 # Change Log
 
+## 15.2.0
+
+### Minor Changes
+
+- [#2297](https://github.com/toptal/picasso/pull/2297) [`0dcd4178`](https://github.com/toptal/picasso/commit/0dcd4178c581d7b390834e2f34c9cb661771c841) Thanks [@teimurjan](https://github.com/teimurjan)! - Fixed the bug in Select when a disabled & selected option is highlighted initially.
+
 ## 15.1.1
 
 ### Patch Changes
