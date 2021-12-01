@@ -38,10 +38,13 @@ const useHighlightedIndex = ({ flatOptions, isOpen, selection }: Props) => {
 
   // Reset index on close/options change
   useEffect(() => {
-    const nextHighlightedIndex =
-      selectedIndicies.length === 1
-        ? selectedIndicies[0]
-        : nonDisabledIndicies[0]
+    const hasSelectedAndNonDisabledOption =
+      selectedIndicies.length === 1 &&
+      !flatOptions[selectedIndicies[0]].disabled
+
+    const nextHighlightedIndex = hasSelectedAndNonDisabledOption
+      ? selectedIndicies[0]
+      : nonDisabledIndicies[0]
 
     setHighlightedIndex(nextHighlightedIndex)
 

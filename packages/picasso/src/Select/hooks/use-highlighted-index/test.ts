@@ -146,4 +146,43 @@ describe('useHighlightedIndex', () => {
     rerender(false)
     expect(getHighlightIndex(result)).toBe(1)
   })
+
+  it("doesn't set highlighted index for a selected disabled option", () => {
+    const isOptionSelected = jest
+      .fn()
+      .mockImplementation(
+        (option: Option) => option.value === DISABLED_OPTIONS[0].value
+      )
+
+    const { result, rerender } = renderHook(
+      (isOpen: boolean) =>
+        useHighlightedIndex({
+          flatOptions: DISABLED_OPTIONS,
+          isOpen: isOpen,
+          selection: {
+            isSelected: jest.fn().mockReturnValue(true),
+            isOptionSelected,
+            display: jest.fn()
+          }
+        }),
+      {
+        initialProps: true
+      }
+    )
+
+    expect(getHighlightIndex(result)).toBe(1)
+
+    act(() => {
+      setHighlightedIndex(result, 2)
+    })
+    expect(getHighlightIndex(result)).toBe(1)
+
+    act(() => {
+      setHighlightedIndex(result, 4)
+    })
+    expect(getHighlightIndex(result)).toBe(4)
+
+    rerender(false)
+    expect(getHighlightIndex(result)).toBe(1)
+  })
 })
