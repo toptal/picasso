@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement } from 'react'
+import React, { ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -18,38 +18,36 @@ export type Props = BaseProps & {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoList' })
 
+const Tags = {
+  unordered: 'ul',
+  ordered: 'ol'
+} as const
+
 export const List = (props: Props) => {
   const classes = useStyles()
-  const {
-    variant,
-    children,
-    'data-testid': dataTestId,
-    start = 1,
-    ...rest
-  } = props
+  const { variant, children, start = 1, className, ...rest } = props
 
-  const listItems = React.Children.map(children, (child, index) =>
-    React.cloneElement(child as ReactElement, {
+  // TODO shouldn't we do this only when variant is ordered?
+  const listItems = React.Children.map(children, (child, index) => {
+    if (!React.isValidElement(child)) {
+      return child
+    }
+
+    return React.cloneElement(child, {
       variant,
       index: index + start - 1
     })
-  )
-
-  const Tags = {
-    unordered: 'ul',
-    ordered: 'ol'
-  }
+  })
 
   const ListTag = Tags[variant]
 
-  return React.createElement(
-    ListTag,
-    {
-      className: cx(classes.root, classes[variant]),
-      'data-testid': dataTestId,
-      ...rest
-    },
-    listItems
+  return (
+    <ListTag
+      className={cx(classes.root, classes[variant], className)}
+      {...rest}
+    >
+      {listItems}
+    </ListTag>
   )
 }
 
