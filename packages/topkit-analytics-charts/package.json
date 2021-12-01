@@ -1,6 +1,6 @@
 {
   "name": "@topkit/analytics-charts",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Charts utilities",
   "author": "Toptal",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso-charts": "^6.0.0",
+    "@toptal/picasso-charts": "^7.0.0",
     "react": "^16.12.0"
   },
   "devDependencies": {
