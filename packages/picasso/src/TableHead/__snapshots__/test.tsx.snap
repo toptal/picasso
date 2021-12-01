@@ -15,10 +15,14 @@ exports[`TableHead renders 1`] = `
           class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered MuiTableRow-head"
         >
           <th
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-head PicassoTableCell-header"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-head"
             scope="col"
           >
-            Head test
+            <div
+              class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+            >
+              Head test
+            </div>
           </th>
         </tr>
       </thead>
