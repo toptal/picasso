@@ -1,5 +1,16 @@
 # Change Log
 
+## 18.0.0
+
+### Major Changes
+
+- [#2298](https://github.com/toptal/picasso/pull/2298) [`516d173e`](https://github.com/toptal/picasso/commit/516d173ebec9922c8a6e4408d08ab4205e989cc6) Thanks [@sanex3339](https://github.com/sanex3339)! - feat(DatePicker): reworked `parseInputValue` property. Now it allows passing custom parser for `DatePicker`'s input value to process custom input value, like, human-readable dates
+
+### Patch Changes
+
+- Updated dependencies [[`4953df3d`](https://github.com/toptal/picasso/commit/4953df3d2642c704b404ff565e63c3d53b415832)]:
+  - @toptal/picasso@16.0.0
+
 ## 17.0.0
 
 ### Patch Changes

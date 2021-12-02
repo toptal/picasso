@@ -1,5 +1,30 @@
 # Change Log
 
+## 16.0.0
+
+### Major Changes
+
+- [#2300](https://github.com/toptal/picasso/pull/2300) [`4953df3d`](https://github.com/toptal/picasso/commit/4953df3d2642c704b404ff565e63c3d53b415832) Thanks [@TomasSlama](https://github.com/TomasSlama)! - Reverting naming of colors back to concrete colors for `Tag`, `Tag.Rectangular`, `Indicator`
+
+  We are not ready yet to switch to abstract color names in the whole application,
+  maybe we will come back to it when we will need to make Picasso themeable.
+
+  To revert most of the cases you can use [codemod for v16.0.0](https://github.com/toptal/picasso/tree/master/packages/picasso-codemod#v1600)
+
+  ```diff
+  -<Tag variant='positive' />
+  +<Tag variant='green' />
+
+  -<Tag.Rectangular variant='positive' />
+  +<Tag.Rectangular variant='green' />
+
+  -<Tag.Rectangular indicator='positive' />
+  +<Tag.Rectangular indicator='green' />
+
+  -<Indicator color='positive' />
+  +<Indicator color='green' />
+  ```
+
 ## 15.2.0
 
 ### Minor Changes
