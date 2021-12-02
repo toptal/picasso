@@ -18,6 +18,59 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 ## Included Scripts
 
+### v16.0.0
+
+#### `revert-colors`
+
+Transforms props with `ColorType` for the `Tag.Rectangular`, `Tag` and `Indicator`
+from `'dark' | 'positive' | 'light' | 'negative' | 'warning' | 'primary'` to `'red' | 'yellow' | 'dark-grey' | 'light-grey' | 'green' | 'blue'`.
+
+The diff should look like this:
+
+```diff
+-<Tag variant='negative'>Label</Tag>
+-<Tag variant='warning'>Label</Tag>
+-<Tag variant='primary'>Label</Tag>
+-<Tag variant='positive'>Label</Tag>
+-<Tag variant='light'>Label</Tag>
++<Tag variant='red'>Label</Tag>
++<Tag variant='yellow'>Label</Tag>
++<Tag variant='blue'>Label</Tag>
++<Tag variant='green'>Label</Tag>
++<Tag variant='light-grey'>Label</Tag>
+-<Tag.Rectangular variant='negative'>Label</Tag.Rectangular>
+-<Tag.Rectangular variant='warning'>Label</Tag.Rectangular>
+-<Tag.Rectangular variant='dark'>Label</Tag.Rectangular>
+-<Tag.Rectangular variant='positive'>Label</Tag.Rectangular>
+-<Tag.Rectangular variant='light'>Label</Tag.Rectangular>
++<Tag.Rectangular variant='red'>Label</Tag.Rectangular>
++<Tag.Rectangular variant='yellow'>Label</Tag.Rectangular>
++<Tag.Rectangular variant='dark-grey'>Label</Tag.Rectangular>
++<Tag.Rectangular variant='green'>Label</Tag.Rectangular>
++<Tag.Rectangular variant='light-grey'>Label</Tag.Rectangular>
+-<Indicator color='negative' />
+-<Indicator color='warning' />
+-<Indicator color='primary' />
+-<Indicator color='positive' />
+-<Indicator color='light' />
++<Indicator color='red' />
++<Indicator color='yellow' />
++<Indicator color='blue' />
++<Indicator color='green' />
++<Indicator color='light-grey' />
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v16.0.0/revert-colors src/**/*.tsx
+```
+
+</details>
+
+
+
 ### v5.0.0
 
 #### `prompt-modal-variants`

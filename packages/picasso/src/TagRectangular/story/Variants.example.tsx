@@ -3,11 +3,11 @@ import { Container, Tag } from '@toptal/picasso'
 
 const Example = () => (
   <Container flex gap='small'>
-    <Tag.Rectangular variant='negative'>Negative</Tag.Rectangular>
-    <Tag.Rectangular variant='warning'>Warning</Tag.Rectangular>
-    <Tag.Rectangular variant='positive'>Positive</Tag.Rectangular>
-    <Tag.Rectangular variant='dark'>Dark</Tag.Rectangular>
-    <Tag.Rectangular variant='light'>Light</Tag.Rectangular>
+    <Tag.Rectangular variant='red'>Red</Tag.Rectangular>
+    <Tag.Rectangular variant='yellow'>Yellow</Tag.Rectangular>
+    <Tag.Rectangular variant='green'>Green</Tag.Rectangular>
+    <Tag.Rectangular variant='dark-grey'>Dark grey</Tag.Rectangular>
+    <Tag.Rectangular variant='light-grey'>Light grey</Tag.Rectangular>
   </Container>
 )
 

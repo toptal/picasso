@@ -54,14 +54,14 @@ describe('Tag', () => {
     spiedOnTitleCase.mockReset()
   })
 
-  it('renders `light` variant', () => {
+  it('renders `light-grey` variant', () => {
     const { container } = renderTag('Tag', {})
 
     expect(container).toMatchSnapshot()
   })
 
-  it('renders `primary` variant', () => {
-    const { container } = renderTag('Tag', { variant: 'primary' })
+  it('renders `blue` variant', () => {
+    const { container } = renderTag('Tag', { variant: 'blue' })
 
     expect(container).toMatchSnapshot()
   })

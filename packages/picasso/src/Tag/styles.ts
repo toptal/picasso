@@ -8,19 +8,19 @@ export default ({ palette, transitions }: Theme) =>
       fontSize: '1rem',
       maxWidth: '100%'
     },
-    primary: {
+    blue: {
       color: palette.blue.main,
       borderColor: palette.blue.main
     },
-    positive: {
+    green: {
       color: palette.green.dark,
       borderColor: palette.green.dark
     },
-    warning: {
+    yellow: {
       color: palette.yellow.main,
       borderColor: palette.yellow.main
     },
-    negative: {
+    red: {
       color: palette.red.main,
       borderColor: palette.red.main
     },
@@ -54,7 +54,7 @@ export default ({ palette, transitions }: Theme) =>
         '&:focus': {
           backgroundColor: palette.common.white
         },
-        '&$positive': {
+        '&$green': {
           '&:hover, &$hovered': {
             borderColor: palette.red.main,
             color: palette.red.main

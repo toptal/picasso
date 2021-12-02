@@ -4,16 +4,16 @@ import { Container, Tag } from '@toptal/picasso'
 const Example = () => (
   <Container flex>
     <Container right='small' top={0.5}>
-      <Tag.Rectangular indicator='negative'>Negative</Tag.Rectangular>
+      <Tag.Rectangular indicator='red'>Red</Tag.Rectangular>
     </Container>
     <Container right='small' top={0.5}>
-      <Tag.Rectangular indicator='warning'>Warning</Tag.Rectangular>
+      <Tag.Rectangular indicator='yellow'>Yellow</Tag.Rectangular>
     </Container>
     <Container right='small' top={0.5}>
-      <Tag.Rectangular indicator='positive'>Positive</Tag.Rectangular>
+      <Tag.Rectangular indicator='green'>Green</Tag.Rectangular>
     </Container>
     <Container right='small' top={0.5}>
-      <Tag.Rectangular indicator='primary'>Primary</Tag.Rectangular>
+      <Tag.Rectangular indicator='blue'>Blue</Tag.Rectangular>
     </Container>
   </Container>
 )

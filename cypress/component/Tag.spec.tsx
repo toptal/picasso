@@ -89,7 +89,7 @@ describe('Tag', () => {
     mount(
       <TestingPicasso>
         <Container style={{ width: '500px' }}>
-          <Tag variant='light'>
+          <Tag variant='light-grey'>
             <TypographyOverflow inline weight='semibold'>
               Loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong
             </TypographyOverflow>
@@ -115,28 +115,28 @@ describe('Tag', () => {
   })
   describe('Regular', () => {
     describe('Variants', () => {
-      it('renders as primary', () => {
-        mount(renderRegularTag({ variant: 'primary' }))
+      it('renders as blue', () => {
+        mount(renderRegularTag({ variant: 'blue' }))
 
         cy.get('body').happoScreenshot()
       })
-      it('renders as light', () => {
-        mount(renderRegularTag({ variant: 'light' }))
+      it('renders as grey', () => {
+        mount(renderRegularTag({ variant: 'light-grey' }))
 
         cy.get('body').happoScreenshot()
       })
-      it('renders as positive', () => {
-        mount(renderRegularTag({ variant: 'positive' }))
+      it('renders as green', () => {
+        mount(renderRegularTag({ variant: 'green' }))
 
         cy.get('body').happoScreenshot()
       })
-      it('renders as warning', () => {
-        mount(renderRegularTag({ variant: 'warning' }))
+      it('renders as yellow', () => {
+        mount(renderRegularTag({ variant: 'yellow' }))
 
         cy.get('body').happoScreenshot()
       })
-      it('renders as negative', () => {
-        mount(renderRegularTag({ variant: 'negative' }))
+      it('renders as red', () => {
+        mount(renderRegularTag({ variant: 'red' }))
 
         cy.get('body').happoScreenshot()
       })
@@ -269,42 +269,42 @@ describe('Tag', () => {
 
   describe('Rectangular', () => {
     describe('Variants', () => {
-      it('renders negative', () => {
-        mount(renderRectangularTag({ variant: 'negative' }))
+      it('renders red', () => {
+        mount(renderRectangularTag({ variant: 'red' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders warning', () => {
-        mount(renderRectangularTag({ variant: 'warning' }))
+      it('renders yellow', () => {
+        mount(renderRectangularTag({ variant: 'yellow' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders positive', () => {
-        mount(renderRectangularTag({ variant: 'positive' }))
+      it('renders green', () => {
+        mount(renderRectangularTag({ variant: 'green' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders dark', () => {
-        mount(renderRectangularTag({ variant: 'dark' }))
+      it('renders dark grey', () => {
+        mount(renderRectangularTag({ variant: 'dark-grey' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders light', () => {
-        mount(renderRectangularTag({ variant: 'light' }))
+      it('renders light grey', () => {
+        mount(renderRectangularTag({ variant: 'light-grey' }))
         cy.get('body').happoScreenshot()
       })
     })
     describe('Indicators', () => {
-      it('renders negative indicator', () => {
-        mount(renderIndicatorTag({ indicator: 'negative' }))
+      it('renders red indicator', () => {
+        mount(renderIndicatorTag({ indicator: 'red' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders warning indicator', () => {
-        mount(renderIndicatorTag({ indicator: 'warning' }))
+      it('renders yellow indicator', () => {
+        mount(renderIndicatorTag({ indicator: 'yellow' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders positive indicator', () => {
-        mount(renderIndicatorTag({ indicator: 'positive' }))
+      it('renders green indicator', () => {
+        mount(renderIndicatorTag({ indicator: 'green' }))
         cy.get('body').happoScreenshot()
       })
-      it('renders primary indicator', () => {
-        mount(renderIndicatorTag({ indicator: 'primary' }))
+      it('renders blue indicator', () => {
+        mount(renderIndicatorTag({ indicator: 'blue' }))
         cy.get('body').happoScreenshot()
       })
     })
