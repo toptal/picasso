@@ -27,7 +27,6 @@ export const List = (props: Props) => {
   const classes = useStyles()
   const { variant, children, start = 1, className, ...rest } = props
 
-  // TODO shouldn't we do this only when variant is ordered?
   const listItems = React.Children.map(children, (child, index) => {
     if (!React.isValidElement(child)) {
       return child
