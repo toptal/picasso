@@ -64,9 +64,13 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
   const normalizedMax = Number(max)
 
   const fireEvent = (nextValue: number) => {
+    if (typeof nativeInputValueSetter !== 'function') {
+      return
+    }
+
     const input = inputRef.current
 
-    nativeInputValueSetter?.call(input, nextValue)
+    nativeInputValueSetter.call(input, nextValue)
 
     const event = new Event('input', {
       bubbles: true,
