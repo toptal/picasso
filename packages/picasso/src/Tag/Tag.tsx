@@ -104,7 +104,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       icon={
         icon
           ? React.cloneElement(icon, {
-              color: disabled ? 'light-grey' : 'dark-grey'
+              color: disabled ? 'grey' : 'dark-grey'
             })
           : undefined
       }
