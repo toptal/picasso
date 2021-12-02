@@ -14,7 +14,8 @@ import {
   forwardRef,
   documentable,
   disableUnsupportedProps,
-  sum
+  sum,
+  isBrowser
 } from '@toptal/picasso/utils'
 import { render, act } from '@toptal/picasso/test-utils'
 import React, { createRef, Ref, useEffect } from 'react'
@@ -281,5 +282,29 @@ describe('disableUnsupportedProps', () => {
     expect(unsafeErrorLog).toHaveBeenCalledWith(
       'TestDisableUnsupportedProps doesn\'t support: max props when used with {"type":"text"}'
     )
+  })
+})
+
+describe('isBrowser', () => {
+  let windowSpy: any
+
+  beforeEach(() => {
+    windowSpy = jest.spyOn(window, 'window', 'get')
+  })
+
+  afterEach(() => {
+    windowSpy?.mockRestore()
+  })
+
+  it('should return true if window is undefined', () => {
+    windowSpy?.mockImplementation(() => undefined)
+
+    expect(isBrowser()).toBe(false)
+  })
+
+  it('should return true for window is not undefined', () => {
+    windowSpy.mockImplementation(() => ({}))
+
+    expect(isBrowser()).toBe(true)
   })
 })

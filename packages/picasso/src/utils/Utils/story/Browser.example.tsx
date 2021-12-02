@@ -2,7 +2,8 @@ import { Table } from '@toptal/picasso'
 import React from 'react'
 
 const data = {
-  isPointerDevice: `Checks if the primary input mechanism includes an accurate pointing device`
+  isPointerDevice: `Checks if the primary input mechanism includes an accurate pointing device`,
+  isBrowser: `Checks if there is a browser or not.`
 }
 
 const Example = () => (
