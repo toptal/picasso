@@ -39,13 +39,17 @@ exports[`Tooltip renders initially opened 1`] = `
         style="opacity: 1; transform: scale(1, 1); transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 133ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
       >
         <div
-          data-testid="tooltip-content"
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit MuiTypography-body1"
         >
-          Content
+          <div
+            data-testid="tooltip-content"
+          >
+            Content
+          </div>
+          <span
+            class="PicassoTooltip-arrow"
+          />
         </div>
-        <span
-          class="PicassoTooltip-arrow"
-        />
       </div>
     </div>
   </div>
@@ -76,13 +80,17 @@ exports[`Tooltip renders with portals disabled 1`] = `
         style="opacity: 1; transform: scale(1, 1); transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 133ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
       >
         <div
-          data-testid="tooltip-content"
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit MuiTypography-body1"
         >
-          Content
+          <div
+            data-testid="tooltip-content"
+          >
+            Content
+          </div>
+          <span
+            class="PicassoTooltip-arrow"
+          />
         </div>
-        <span
-          class="PicassoTooltip-arrow"
-        />
       </div>
     </div>
   </div>

@@ -36,7 +36,7 @@ exports[`Table renders 1`] = `
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
           >
             <div
-              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
+              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
             >
               Table test
             </div>

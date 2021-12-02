@@ -15,11 +15,11 @@ exports[`TableSectionHead renders 1`] = `
           class="MuiTableRow-root PicassoTableRow-root PicassoTableSectionHead-sectionHeaderRow PicassoTableRow-bordered"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableSectionHead-sectionHeaderCell"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
             colspan="100"
           >
             <div
-              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
+              class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
             >
               Test
             </div>

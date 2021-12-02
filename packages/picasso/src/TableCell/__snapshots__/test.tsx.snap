@@ -15,7 +15,7 @@ exports[`TableCell renders 1`] = `
           class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
           >
             Cell
           </div>
@@ -41,7 +41,7 @@ exports[`TableCell renders compact 1`] = `
           class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-compact"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
           >
             Cell
           </div>
@@ -67,7 +67,7 @@ exports[`TableCell renders narrow 1`] = `
           class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-narrow"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
           >
             Cell
           </div>

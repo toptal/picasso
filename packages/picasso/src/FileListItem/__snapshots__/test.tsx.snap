@@ -35,7 +35,7 @@ exports[`FileListItem renders 1`] = `
           </p>
         </div>
         <p
-          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-red FileListItem-error MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-red FileListItem-error MuiTypography-body1"
         />
       </div>
       <button
