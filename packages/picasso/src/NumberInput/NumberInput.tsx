@@ -70,7 +70,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
 
     const input = inputRef.current
 
-    nativeInputValueSetter.call(input, nextValue)
+    nativeInputValueSetter?.call(input, nextValue)
 
     const event = new Event('input', {
       bubbles: true,
