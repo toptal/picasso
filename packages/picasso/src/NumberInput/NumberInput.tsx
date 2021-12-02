@@ -47,9 +47,9 @@ type NumberAdornmentProps = {
   disabled?: boolean
 }
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const nativeInputValueSetter = isBrowser()
-  ? (Object.getOwnPropertyDescriptor(
+  ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    (Object.getOwnPropertyDescriptor(
       window.HTMLInputElement.prototype,
       'value'
     ) as PropertyDescriptor).set!
