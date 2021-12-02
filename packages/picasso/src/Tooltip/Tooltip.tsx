@@ -70,10 +70,14 @@ const useTooltipState = ({ externalOpen }: UseTooltipStateOptions) => {
   }
 }
 
-const getDelayDuration = (delay: DelayType) => {
-  const isTouchDevice = !isPointerDevice()
+const getDelayDuration = (delay: DelayType): undefined | number => {
+  const pointerDevice = isPointerDevice()
 
-  return isTouchDevice ? 0 : delayDurations[delay]
+  if (pointerDevice !== undefined) {
+    return pointerDevice ? delayDurations[delay] : 0
+  }
+
+  return undefined
 }
 
 const useTooltipHandlers = ({
@@ -83,7 +87,7 @@ const useTooltipHandlers = ({
   disableListeners,
   children
 }: UseTooltipHandlersOptions) => {
-  const isTouchDevice = !isPointerDevice()
+  const pointerDevice = isPointerDevice()
   // After closing with click the tooltip should not be opened againg until the mouse leave event
   const [ignoreOpening, setIgnoreOpening] = useState(false)
   const { isOpen, isControlled, openTooltip, closeTooltip } = useTooltipState({
@@ -119,7 +123,7 @@ const useTooltipHandlers = ({
     if (isOpen) {
       setIgnoreOpening(true)
       handleClose(event)
-    } else if (isTouchDevice) {
+    } else if (pointerDevice === false) {
       handleOpen(event)
     }
   }
