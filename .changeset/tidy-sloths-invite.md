@@ -1,6 +1,6 @@
 ---
-'@toptal/picasso': minor
-'@toptal/picasso-lab': minor
+'@toptal/picasso': patch
+'@toptal/picasso-lab': patch
 ---
 
 - Unordered list item's bullet has primary text color, which is dark gray
