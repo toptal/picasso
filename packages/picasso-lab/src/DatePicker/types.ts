@@ -1,13 +1,20 @@
 import { DateOrDateRangeType } from '../Calendar'
 
-export type DatePickerValue = DateOrDateRangeType | string | null
+export type DatePickerValue = DateOrDateRangeType | null
 
-export type DatePickerStringParser = (
+export type DatePickerInputValueParserParameters = {
+  customParser?: DatePickerInputCustomValueParser
+  dateFormat: string
+  minDate?: Date
+  maxDate?: Date
+  timezone?: string
+}
+
+export type DatePickerInputCustomValueParserParameters = {
+  timezone?: string
+}
+
+export type DatePickerInputCustomValueParser = (
   value: string,
-  params: {
-    dateFormat: string
-    timezone?: string
-    minDate?: Date
-    maxDate?: Date
-  }
-) => DateOrDateRangeType | string | undefined
+  params: DatePickerInputCustomValueParserParameters
+) => Date | null | undefined

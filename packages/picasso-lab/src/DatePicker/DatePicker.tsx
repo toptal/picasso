@@ -33,13 +33,12 @@ import {
   DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
 } from './constants'
 import styles from './styles'
-import { DatePickerValue, DatePickerStringParser } from './types'
+import { DatePickerValue, DatePickerInputCustomValueParser } from './types'
 import {
   formatDateRange,
   datePickerParseDateString,
   timezoneConvert,
   timezoneFormat,
-  isValidDateValue,
   getStartOfTheDayDate
 } from './utils'
 
@@ -95,13 +94,14 @@ export interface Props
   weekStartsOn?: number
   /** IANA timezone to display and edit date(s) */
   timezone?: string
-  /* Invoked when input value has been changed. If method failed to parse a value, it must return undefined. Used to process input value before passing it to the `onChange` */
-  parseInputValue?: DatePickerStringParser
+  /** Custom parser for `DatePicker`'s input value to process custom input value, like, human-readable dates */
+  parseInputValue?: DatePickerInputCustomValueParser
   testIds?: InputProps['testIds'] & {
     calendar?: string
     input?: string
   }
 }
+
 export const DatePicker = (props: Props) => {
   const {
     range,
@@ -121,7 +121,7 @@ export const DatePicker = (props: Props) => {
     weekStartsOn,
     timezone,
     size,
-    parseInputValue = datePickerParseDateString,
+    parseInputValue,
     testIds,
     ...rest
   } = props
@@ -151,11 +151,7 @@ export const DatePicker = (props: Props) => {
 
   // Format the input based on its 'focus' state
   const formatInputValue = useCallback(
-    (valueToFormat: DateOrDateRangeType | string) => {
-      if (!isValidDateValue(valueToFormat)) {
-        return valueToFormat
-      }
-
+    (valueToFormat: DateOrDateRangeType) => {
       return Array.isArray(valueToFormat)
         ? formatDateRange(valueToFormat as DateRangeType, displayDateFormat)
         : formatDate(
@@ -166,25 +162,40 @@ export const DatePicker = (props: Props) => {
     [isInputFocused, editDateFormat, displayDateFormat]
   )
 
-  // Keep the input format in sync with its 'focus' state
+  const updateInputValue = useCallback(
+    ({ preventUpdateOnFocus }: { preventUpdateOnFocus?: boolean }) => {
+      if (preventUpdateOnFocus && isInputFocused) {
+        return
+      }
+
+      setInputValue(() => {
+        if (!value) {
+          return EMPTY_INPUT_VALUE
+        }
+
+        return formatInputValue(timezoneConvert(value, timezone))
+      })
+    },
+    [value, isInputFocused, timezone, formatInputValue]
+  )
+
+  // Keep the input value in sync with date value update
+  // Updating on incoming date value or timezone change
+  // Should not update when input is focused to prevent overriding it's value
   useLayoutEffect(() => {
-    setInputValue(() => {
-      if (!value) {
-        return EMPTY_INPUT_VALUE
-      }
+    updateInputValue({ preventUpdateOnFocus: true })
+  }, [value, timezone])
 
-      if (!isValidDateValue(value)) {
-        return value
-      }
-
-      return formatInputValue(timezoneConvert(value, timezone))
-    })
-  }, [value, timezone, formatInputValue])
+  // Keep the input format in sync with its 'focus' state
+  // Updating on input focus state change
+  useLayoutEffect(() => {
+    updateInputValue({ preventUpdateOnFocus: false })
+  }, [isInputFocused])
 
   // Keep the calendar in sync with the input value
   useLayoutEffect(() => {
     setCalendarValue(() => {
-      if (!value || !isValidDateValue(value)) {
+      if (!value) {
         return null
       }
 
@@ -226,21 +237,23 @@ export const DatePicker = (props: Props) => {
 
     const nextValue = e.target.value
 
-    // TODO: add char filtering (only number , `-` or ` ` allowed)
+    // TODO: add char filtering (only number , `-` or ` ` allowed) in case if `parseInputValue` is not set
     setInputValue(nextValue)
-    if (!nextValue) {
-      onChange(null)
-    } else {
-      const parsedInputValue = parseInputValue(nextValue, {
-        dateFormat: editDateFormat,
-        timezone,
-        minDate: normalizedMinDate,
-        maxDate: normalizedMaxDate
-      })
 
-      if (parsedInputValue) {
-        onChange(parsedInputValue)
-      }
+    if (!nextValue) {
+      return onChange(null)
+    }
+
+    const parsedInputDate = datePickerParseDateString(nextValue, {
+      customParser: parseInputValue,
+      dateFormat: editDateFormat,
+      timezone,
+      minDate: normalizedMinDate,
+      maxDate: normalizedMaxDate
+    })
+
+    if (parsedInputDate) {
+      onChange(parsedInputDate)
     }
   }
 
@@ -258,6 +271,7 @@ export const DatePicker = (props: Props) => {
       : timezoneFormat(nextValue, timezone)
 
     onChange(nextTimezoneValue)
+    setInputValue(formatInputValue(nextValue))
     setCalendarValue(nextTimezoneValue)
 
     if (hideOnSelect) {

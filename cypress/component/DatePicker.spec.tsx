@@ -2,21 +2,18 @@ import { mount } from '@cypress/react'
 import { Container } from '@toptal/picasso'
 import {
   DatePicker,
-  DatePickerProps,
-  DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
-  datePickerParseDateString
+  DatePickerProps
 } from '@toptal/picasso-lab'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
-import { noop } from '@toptal/picasso/utils'
-import React from 'react'
+import React, { useState } from 'react'
 
 const TestDatePicker = (props: Partial<DatePickerProps>) => {
-  const value = props.value || new Date(2020, 11, 27)
+  const [value, setValue] = useState<DatePickerProps['value']>(props.value || new Date(2020, 11, 27))
 
   return (
     <TestingPicasso>
       <Container padded='medium'>
-        <DatePicker onChange={noop} value={value} {...props} />
+        <DatePicker {...props} onChange={setValue} value={value} />
       </Container>
     </TestingPicasso>
   )
@@ -40,21 +37,22 @@ describe('DatePicker', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders custom value', () => {
+  it('renders value parsed by custom value parser', () => {
     const parseInputValue = (value: string) => {
-      const result = datePickerParseDateString(value, {
-        dateFormat: DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
-      })
-
-      return result ?? value
+      return new Date(parseInt(value), 0, 1)
     }
 
     mount(
       <TestDatePicker
         parseInputValue={parseInputValue}
-        value='some random text'
+        value={new Date(2020, 0, 1)}
+        testIds={{
+          input: 'date-picker-input'
+        }}
       />
     )
+
+    cy.get('[data-testid=date-picker-input]').clear().type('2015')
 
     cy.get('body').happoScreenshot()
   })

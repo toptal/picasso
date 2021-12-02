@@ -1,14 +1,10 @@
 /* eslint-disable max-lines-per-function */
 import { Tooltip } from '@toptal/picasso'
 import { act, fireEvent, render } from '@toptal/picasso/test-utils'
-import React, { useState } from 'react'
+import React from 'react'
 
-import { DateOrDateRangeType } from '../Calendar'
 import DatePicker, { Props } from './DatePicker'
-import {
-  datePickerParseDateString,
-  DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
-} from './'
+import { DatePickerInputCustomValueParser } from './'
 
 const testIds = {
   calendar: 'calendar'
@@ -253,95 +249,138 @@ describe('DatePicker', () => {
       expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 25))
     })
 
-    describe('should work with overwritten `parseInputValue`', () => {
-      const parseInputValue = (value: string) => {
-        const result = datePickerParseDateString(value, {
-          dateFormat: DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
+    describe('should work with `parseInputValue`', () => {
+      describe('when parser returns parsed date', () => {
+        const parseInputValue: DatePickerInputCustomValueParser = jest
+          .fn()
+          .mockImplementation(() => new Date(2021, 0, 1))
+
+        it('calls `onChange` handler with the parsed date', async () => {
+          const handleChange = jest.fn()
+
+          const { getByPlaceholderText } = renderDatePicker({
+            ...defaultProps,
+            parseInputValue,
+            onChange: handleChange
+          })
+
+          const input = getByPlaceholderText(defaultProps.placeholder)
+
+          await act(async () => {
+            await fireEvent.change(input, {
+              target: { value: 'some random text' }
+            })
+            fireEvent.blur(input)
+          })
+
+          expect(parseInputValue).toHaveBeenCalledTimes(1)
+          expect(handleChange).toHaveBeenCalledWith(new Date(2021, 0, 1))
         })
-
-        return result ?? value
-      }
-
-      it('emits `string` if value is not a valid date', () => {
-        const handleChange = jest.fn()
-
-        const { getByPlaceholderText } = renderDatePicker({
-          ...defaultProps,
-          parseInputValue,
-          onChange: handleChange
-        })
-
-        const input = getByPlaceholderText(defaultProps.placeholder)
-
-        fireEvent.change(input, { target: { value: 'some random text' } })
-        expect(handleChange).toHaveBeenCalledWith('some random text')
       })
 
-      it('emits `Date` if value is a valid date', () => {
-        const handleChange = jest.fn()
+      describe('when parser returns parsed date outside of the `min/max` dates range', () => {
+        const parseInputValue: DatePickerInputCustomValueParser = jest
+          .fn()
+          .mockImplementation(() => {
+            return new Date(2021, 0, 1)
+          })
 
-        const { getByPlaceholderText } = renderDatePicker({
-          ...defaultProps,
-          parseInputValue,
-          onChange: handleChange
+        it('does not call `onChange` handler', async () => {
+          const handleChange = jest.fn()
+
+          const { getByPlaceholderText } = renderDatePicker({
+            ...defaultProps,
+            minDate: new Date(2021, 1, 1),
+            parseInputValue,
+            onChange: handleChange
+          })
+
+          const input = getByPlaceholderText(defaultProps.placeholder)
+
+          await act(async () => {
+            await fireEvent.change(input, {
+              target: { value: 'some random text' }
+            })
+            fireEvent.blur(input)
+          })
+
+          expect(parseInputValue).toHaveBeenCalledTimes(1)
+          expect(handleChange).toHaveBeenCalledTimes(0)
         })
-
-        const input = getByPlaceholderText(defaultProps.placeholder)
-
-        fireEvent.change(input, { target: { value: '07-25-2020' } })
-        expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 25))
       })
 
-      it('opens `Calendar` on `Input` focus with invalid date', () => {
-        const handleChange = jest.fn()
-
-        const { getByPlaceholderText, getByTestId } = renderDatePicker({
-          ...defaultProps,
-          parseInputValue,
-          value: 'some random text',
-          onChange: handleChange
-        })
-
-        const input = getByPlaceholderText(defaultProps.placeholder)
-
-        fireEvent.focus(input)
-
-        expect(getByTestId(testIds.calendar)).toBeInTheDocument()
-      })
-
-      it("doesn't clear `Input` after `blur` with invalid date", () => {
-        const placeholder = 'Pick a date'
-        const TestComponent = () => {
-          const [value, setValue] = useState<
-            string | DateOrDateRangeType | null
-          >(new Date(2020, 6, 25))
-
-          return (
-            <DatePicker
-              placeholder={placeholder}
-              parseInputValue={parseInputValue}
-              value={value}
-              onChange={setValue}
-            />
-          )
+      describe('when parser cannot parse date', () => {
+        const parseInputValue: DatePickerInputCustomValueParser = () => {
+          return undefined
         }
 
-        const renderTestComponentPicker = () => render(<TestComponent />)
+        it('does not call `onChange` handler', async () => {
+          const handleChange = jest.fn()
 
-        const { getByPlaceholderText } = renderTestComponentPicker()
+          const { getByPlaceholderText } = renderDatePicker({
+            ...defaultProps,
+            parseInputValue,
+            onChange: handleChange
+          })
 
-        const input = getByPlaceholderText(placeholder)
+          const input = getByPlaceholderText(defaultProps.placeholder)
 
-        fireEvent.focus(input)
+          await act(async () => {
+            await fireEvent.change(input, {
+              target: { value: 'some random text' }
+            })
+            fireEvent.blur(input)
+          })
 
-        fireEvent.change(input, { target: { value: 'some random text' } })
+          expect(handleChange).toHaveBeenCalledTimes(0)
+        })
+      })
 
-        fireEvent.blur(input)
+      describe('when `range` property is set', () => {
+        const parseInputValue = jest.fn()
 
-        expect(getByPlaceholderText(placeholder)).toHaveAttribute(
-          'value',
-          `some random text`
-        )
+        it('does not call `parseInputValue` function', async () => {
+          const { getByPlaceholderText } = renderDatePicker({
+            ...defaultProps,
+            range: true,
+            parseInputValue
+          })
+
+          const input = getByPlaceholderText(defaultProps.placeholder)
+
+          await act(async () => {
+            await fireEvent.change(input, {
+              target: { value: 'some random text' }
+            })
+            fireEvent.blur(input)
+          })
+
+          expect(parseInputValue).toHaveBeenCalledTimes(0)
+        })
+      })
+
+      describe('when valid string date value is typed', () => {
+        const parseInputValue = jest.fn()
+
+        it('does not call `parseInputValue` function', async () => {
+          const handleChange = jest.fn()
+
+          const { getByPlaceholderText } = renderDatePicker({
+            ...defaultProps,
+            parseInputValue,
+            onChange: handleChange
+          })
+
+          const input = getByPlaceholderText(defaultProps.placeholder)
+
+          await act(async () => {
+            await fireEvent.change(input, { target: { value: '07-26-2021' } })
+            fireEvent.blur(input)
+          })
+
+          expect(parseInputValue).toHaveBeenCalledTimes(0)
+          expect(handleChange).toHaveBeenCalledWith(new Date(2021, 6, 26))
+        })
       })
     })
   })
