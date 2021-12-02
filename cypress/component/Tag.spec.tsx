@@ -89,7 +89,7 @@ describe('Tag', () => {
     mount(
       <TestingPicasso>
         <Container style={{ width: '500px' }}>
-          <Tag variant='grey'>
+          <Tag variant='light-grey'>
             <TypographyOverflow inline weight='semibold'>
               Loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong
             </TypographyOverflow>
@@ -121,7 +121,7 @@ describe('Tag', () => {
         cy.get('body').happoScreenshot()
       })
       it('renders as grey', () => {
-        mount(renderRegularTag({ variant: 'grey' }))
+        mount(renderRegularTag({ variant: 'light-grey' }))
 
         cy.get('body').happoScreenshot()
       })
