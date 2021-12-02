@@ -48,8 +48,8 @@ type NumberAdornmentProps = {
 }
 
 const nativeInputValueSetter = isBrowser()
-  ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    (Object.getOwnPropertyDescriptor(
+  /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
+  ? (Object.getOwnPropertyDescriptor(
       window.HTMLInputElement.prototype,
       'value'
     ) as PropertyDescriptor).set!
@@ -70,7 +70,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
 
     const input = inputRef.current
 
-    nativeInputValueSetter.call(input, nextValue)
+    nativeInputValueSetter?.call(input, nextValue)
 
     const event = new Event('input', {
       bubbles: true,
