@@ -61,13 +61,9 @@ export default ({
       color: common.black,
       overflowWrap: 'break-word',
       minWidth: 0,
-      lineHeight: rem('22px'),
-      fontSize: rem('14px'),
       marginTop: '1px'
     },
     contentYellow: {
-      lineHeight: rem('20px'),
-      fontSize: rem('13px'),
       marginTop: 0
     },
 
