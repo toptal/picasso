@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import React from 'react'
-import { Tag } from '@toptal/picasso'
+import { Tag, Indicator, Container, Typography } from '@toptal/picasso'
 
 const defaultProps = {
   'data-testid': 'foo',
@@ -42,5 +42,30 @@ export default () => (
       Label
     </Tag.Rectangular>
     <Tag.Rectangular {...defaultProps}>Label</Tag.Rectangular>
+    <Indicator {...defaultProps} color='negative' />
+    <Indicator {...defaultProps} color='primary' />
+    <Indicator {...defaultProps} color='positive' />
+    <Indicator {...defaultProps} color='warning' />
+    <Indicator {...defaultProps} color='light' />
+    <Indicator {...defaultProps} />
+    <Tag {...defaultProps} variant='negative'>
+      Label
+    </Tag>
+    <Tag {...defaultProps} variant='primary'>
+      Label
+    </Tag>
+    <Tag {...defaultProps} variant='positive'>
+      Label
+    </Tag>
+    <Tag {...defaultProps} variant='warning'>
+      Label
+    </Tag>
+    <Tag {...defaultProps} variant='light'>
+      Label
+    </Tag>
+    <Tag {...defaultProps}>Label</Tag>
+    <Container>
+      <Typography color='yellow'>Foobar</Typography>
+    </Container>
   </>
 )

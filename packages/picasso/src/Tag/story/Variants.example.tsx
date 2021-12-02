@@ -4,9 +4,9 @@ import { Container, Settings16, Tag } from '@toptal/picasso'
 const Example = () => (
   <Container flex>
     <Container flex direction='column' gap='small' right='small' top={0.5}>
-      <Tag variant='grey'>Grey</Tag>
-      <Tag icon={<Settings16 />} variant='grey'>
-        Grey
+      <Tag variant='light-grey'>Light grey</Tag>
+      <Tag icon={<Settings16 />} variant='light-grey'>
+        Light grey
       </Tag>
     </Container>
 

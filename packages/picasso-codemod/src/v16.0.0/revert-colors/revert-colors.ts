@@ -43,8 +43,8 @@ const transform: Transform = (file, api) => {
           const attribute = attributes[attributeIndex] as
             | JSXAttribute
             | undefined
-          const value = (attribute?.value as JSXText)?.value
-          const newValue = mapper[value] || undefined
+          const oldValue = (attribute?.value as JSXText)?.value
+          const newValue = mapper[oldValue] || undefined
 
           if (newValue) {
             attributes[attributeIndex] = j.jsxAttribute(
@@ -53,6 +53,10 @@ const transform: Transform = (file, api) => {
             )
           }
         }
+
+        const isTag = !j.JSXMemberExpression.check(name) && name.name === 'Tag'
+        const isIndicator =
+          !j.JSXMemberExpression.check(name) && name.name === 'Indicator'
 
         // find compound component
         const isTagRectangular =
@@ -63,6 +67,10 @@ const transform: Transform = (file, api) => {
         if (isTagRectangular) {
           transformAttribute('variant', colorMap)
           transformAttribute('indicator', colorMap)
+        } else if (isTag) {
+          transformAttribute('variant', colorMap)
+        } else if (isIndicator) {
+          transformAttribute('color', colorMap)
         }
       })
       .toSource({ quote: 'single' })

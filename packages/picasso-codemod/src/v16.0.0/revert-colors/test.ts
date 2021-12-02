@@ -2,13 +2,13 @@ import fs from 'fs'
 import path from 'path'
 import { defineInlineTest } from 'jscodeshift/src/testUtils'
 
-import transform from './indicator-colors'
+import transform from './revert-colors'
 
 const read = (fileName: string) => {
   return fs.readFileSync(path.join(__dirname, fileName), 'utf8').toString()
 }
 
-describe('indicator-colors', () => {
+describe('tag-rectangular-variants', () => {
   defineInlineTest(
     transform,
     {},

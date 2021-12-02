@@ -37,7 +37,7 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
    */
   onDelete?: () => void
   /** Variant of the `Tag` */
-  variant?: 'grey' | 'blue' | 'green' | 'yellow' | 'red'
+  variant?: 'light-grey' | 'blue' | 'green' | 'yellow' | 'red'
   /** ReactNode rendered after label */
   endAdornment?: ReactNode
   hovered?: boolean
@@ -58,7 +58,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     onDelete,
     style,
     titleCase: propsTitleCase,
-    variant = 'light',
+    variant = 'light-grey',
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -104,7 +104,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       icon={
         icon
           ? React.cloneElement(icon, {
-              color: disabled ? 'grey' : 'darkGrey'
+              color: disabled ? 'light-grey' : 'dark-grey'
             })
           : undefined
       }
@@ -128,7 +128,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
 Tag.defaultProps = {
   as: 'div',
   children: '',
-  variant: 'grey'
+  variant: 'light-grey'
 }
 
 Tag.displayName = 'Tag'

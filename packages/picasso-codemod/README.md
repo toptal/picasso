@@ -20,13 +20,34 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 ### v16.0.0
 
-#### `indicator-colors`
+#### `revert-colors`
 
-Updates the Indicator color prop from `'negative' | 'warning' | 'primary' | 'positive' | 'light'` to `'red' | 'yellow' | 'blue' | 'green' | 'light-grey'`.
+Transforms props with `ColorType` for the `Tag.Rectangular`, `Tag` and `Indicator`
+from `'dark' | 'positive' | 'light' | 'negative' | 'warning' | 'primary'` to `'red' | 'yellow' | 'dark-grey' | 'light-grey' | 'green' | 'blue'`.
 
 The diff should look like this:
 
 ```diff
+-<Tag variant='negative'>Label</Tag>
+-<Tag variant='warning'>Label</Tag>
+-<Tag variant='primary'>Label</Tag>
+-<Tag variant='positive'>Label</Tag>
+-<Tag variant='light'>Label</Tag>
++<Tag variant='red'>Label</Tag>
++<Tag variant='yellow'>Label</Tag>
++<Tag variant='blue'>Label</Tag>
++<Tag variant='green'>Label</Tag>
++<Tag variant='light-grey'>Label</Tag>
+-<Tag.Rectangular variant='negative'>Label</Tag.Rectangular>
+-<Tag.Rectangular variant='warning'>Label</Tag.Rectangular>
+-<Tag.Rectangular variant='dark'>Label</Tag.Rectangular>
+-<Tag.Rectangular variant='positive'>Label</Tag.Rectangular>
+-<Tag.Rectangular variant='light'>Label</Tag.Rectangular>
++<Tag.Rectangular variant='red'>Label</Tag.Rectangular>
++<Tag.Rectangular variant='yellow'>Label</Tag.Rectangular>
++<Tag.Rectangular variant='dark-grey'>Label</Tag.Rectangular>
++<Tag.Rectangular variant='green'>Label</Tag.Rectangular>
++<Tag.Rectangular variant='light-grey'>Label</Tag.Rectangular>
 -<Indicator color='negative' />
 -<Indicator color='warning' />
 -<Indicator color='primary' />
@@ -43,66 +64,12 @@ The diff should look like this:
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v16.0.0/indicator-colors src/**/*.tsx
+npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v16.0.0/revert-colors src/**/*.tsx
 ```
 
 </details>
 
-#### `tag-rectangular-variants`
 
-Updates the Tag.Rectangular variant prop from `'dark' | 'positive' | 'light' | 'negative' | 'warning'` to `'red' | 'yellow' | 'dark-grey' | 'light-grey' | 'green'`.
-
-The diff should look like this:
-
-```diff
--<Tag.Rectangular variant='negative'>Label</Tag.Rectangular>
--<Tag.Rectangular variant='warning'>Label</Tag.Rectangular>
--<Tag.Rectangular variant='dark'>Label</Tag.Rectangular>
--<Tag.Rectangular variant='positive'>Label</Tag.Rectangular>
--<Tag.Rectangular variant='light'>Label</Tag.Rectangular>
-+<Tag.Rectangular variant='red'>Label</Tag.Rectangular>
-+<Tag.Rectangular variant='yellow'>Label</Tag.Rectangular>
-+<Tag.Rectangular variant='dark-grey'>Label</Tag.Rectangular>
-+<Tag.Rectangular variant='green'>Label</Tag.Rectangular>
-+<Tag.Rectangular variant='light-grey'>Label</Tag.Rectangular>
-```
-
-<details>
-<summary>Command</summary>
-
-```sh
-npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v16.0.0/tag-rectangular-variants src/**/*.tsx
-```
-
-</details>
-
-#### `tag-variants`
-
-Updates the PromptModal variant prop from `'light' | 'primary' | 'positive' | 'warning' | 'negative'` to `'grey' | 'blue' | 'green' | 'yellow' | 'red'`.
-
-The diff should look like this:
-
-```diff
--<Tag variant='negative'>Label</Tag>
--<Tag variant='warning'>Label</Tag>
--<Tag variant='primary'>Label</Tag>
--<Tag variant='positive'>Label</Tag>
--<Tag variant='light'>Label</Tag>
-+<Tag variant='red'>Label</Tag>
-+<Tag variant='yellow'>Label</Tag>
-+<Tag variant='blue'>Label</Tag>
-+<Tag variant='green'>Label</Tag>
-+<Tag variant='light-grey'>Label</Tag>
-```
-
-<details>
-<summary>Command</summary>
-
-```sh
-npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v16.0.0/tag-variants src/**/*.tsx
-```
-
-</details>
 
 ### v5.0.0
 
