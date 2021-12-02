@@ -1,5 +1,4 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { rem } from '@toptal/picasso-shared'
 
 const shadowColor = 'rgba(0, 0, 0, 0.8)'
 const ARROW_SIZE = '1.25em'
@@ -81,8 +80,6 @@ export default ({ palette, shadows, sizes: { borderRadius } }: Theme) =>
       backgroundColor: palette.grey.darker,
       color: palette.common.white,
       boxShadow: shadows[4],
-      fontSize: rem('13px'),
-      lineHeight: '1.5em',
       padding: '1rem',
       borderRadius: borderRadius.small,
       position: 'relative'
