@@ -9,6 +9,7 @@ import Container from '../Container'
 import { useCombinedRefs } from '../utils'
 import { ArrowDownMinor16, ArrowUpMinor16 } from '../Icon'
 import styles from './styles'
+import isBrowser from '../utils/is-browser'
 
 export interface Props
   extends Omit<
@@ -47,10 +48,12 @@ type NumberAdornmentProps = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const nativeInputValueSetter = (Object.getOwnPropertyDescriptor(
-  window.HTMLInputElement.prototype,
-  'value'
-) as PropertyDescriptor).set!
+const nativeInputValueSetter = isBrowser()
+  ? (Object.getOwnPropertyDescriptor(
+      window.HTMLInputElement.prototype,
+      'value'
+    ) as PropertyDescriptor).set!
+  : undefined
 
 const NumberAdornment = (props: NumberAdornmentProps) => {
   const { step, min, max, value, inputRef, classes, disabled } = props
@@ -63,7 +66,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
   const fireEvent = (nextValue: number) => {
     const input = inputRef.current
 
-    nativeInputValueSetter.call(input, nextValue)
+    nativeInputValueSetter?.call(input, nextValue)
 
     const event = new Event('input', {
       bubbles: true,
