@@ -14,7 +14,8 @@ PicassoProvider.override(() => ({
 export default () =>
   createStyles({
     listContainer: {
-      lineHeight: '1.375em'
+      lineHeight: '1.375em',
+      marginBottom: '0.5em'
     },
     ordered: {
       minWidth: '1.25em',
@@ -22,5 +23,8 @@ export default () =>
     },
     unordered: {
       minWidth: '1rem'
+    },
+    isLastElement: {
+      marginBottom: 0
     }
   })

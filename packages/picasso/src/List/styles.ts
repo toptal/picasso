@@ -5,11 +5,7 @@ export default ({ palette }: Theme) =>
     root: {
       listStyle: 'none',
       padding: 0,
-      margin: 0,
-
-      '& > li:not(:last-child)': {
-        marginBottom: '0.5em'
-      }
+      margin: 0
     },
     ul: {
       color: palette.text.primary

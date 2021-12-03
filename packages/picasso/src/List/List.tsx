@@ -27,6 +27,8 @@ export const List = (props: Props) => {
   const classes = useStyles()
   const { variant, children, start = 1, className, ...rest } = props
 
+  const totalChildElements = React.Children.count(children)
+
   const listItems = React.Children.map(children, (child, index) => {
     if (!React.isValidElement(child)) {
       return child
@@ -34,6 +36,7 @@ export const List = (props: Props) => {
 
     return React.cloneElement(child, {
       variant,
+      isLastElement: totalChildElements === index + 1,
       index: index + start - 1
     })
   })
