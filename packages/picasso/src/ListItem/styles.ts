@@ -24,7 +24,7 @@ export default () =>
     unordered: {
       minWidth: '1rem'
     },
-    isLastElement: {
+    lastElement: {
       marginBottom: 0
     }
   })
