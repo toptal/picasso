@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { Button, Link, LinkProps } from '@toptal/picasso'
 import { Settings16 } from '@toptal/picasso/Icon'
 
-const ActionLink = (props: LinkProps): React.ReactNode => (
-  <Link {...props} variant='action' noUnderline />
+// variant & noUnderline are statically set in ActionLink
+type ActionLinkProps = Omit<LinkProps, 'variant' | 'noUnderline'>
+
+const ActionLink = forwardRef<HTMLAnchorElement, ActionLinkProps>(
+  (props: LinkProps) => <Link {...props} variant='action' noUnderline />
 )
 
 const ButtonAugmentationExample = () => (
