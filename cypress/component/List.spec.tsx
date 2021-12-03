@@ -1,14 +1,16 @@
 import React from 'react'
-import { List } from '@toptal/picasso'
+import { List, Referrals16 } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 /* eslint-disable react/no-array-index-key */
-const generateListItems = (total: number) =>
+const generateListItems = (total: number, listItemProps?: any) =>
   Array(total)
     .fill(0)
     .map((_, index) => (
-      <List.Item key={index}>{`list item N${index + 1}`}</List.Item>
+      <List.Item key={index} {...listItemProps}>
+        {`list item N${index + 1}`}
+      </List.Item>
     ))
 
 describe('List', () => {
@@ -19,6 +21,21 @@ describe('List', () => {
           <List>{generateListItems(5)}</List>
         </TestingPicasso>
       )
+
+      cy.get('body').happoScreenshot()
+    })
+
+    it('renders with custom icons', () => {
+      const listItemProps = {
+        icon: <Referrals16 />
+      }
+
+      mount(
+        <TestingPicasso>
+          <List>{generateListItems(5, listItemProps)}</List>
+        </TestingPicasso>
+      )
+
       cy.get('body').happoScreenshot()
     })
   })
@@ -30,6 +47,7 @@ describe('List', () => {
           <List variant='ordered'>{generateListItems(5)}</List>
         </TestingPicasso>
       )
+
       cy.get('body').happoScreenshot()
     })
 
