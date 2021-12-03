@@ -66,19 +66,23 @@ export const useNotifications = () => {
       notificationElement: React.ReactElement,
       options?: OptionsObject
     ) => {
-      const closeNotification = () => {
+      const closeNotification = (onClose?: () => void) => () => {
         if (!notificationId) {
           return
         }
 
         closeSnackbar(notificationId)
+
+        if (onClose) {
+          onClose()
+        }
       }
       const notificationId = enqueueSnackbar('', {
         anchorOrigin: defaultPosition,
         content: (key: string) =>
           React.cloneElement(notificationElement, {
             key,
-            onClose: closeNotification
+            onClose: closeNotification(notificationElement.props.onClose)
           }),
         ...options
       })
