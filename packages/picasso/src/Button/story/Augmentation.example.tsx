@@ -6,7 +6,7 @@ import { Settings16 } from '@toptal/picasso/Icon'
 type ActionLinkProps = Omit<LinkProps, 'variant' | 'noUnderline'>
 
 const ActionLink = forwardRef<HTMLAnchorElement, ActionLinkProps>(
-  (props: LinkProps) => <Link {...props} variant='action' noUnderline />
+  (props, ref) => <Link ref={ref} {...props} variant='action' noUnderline />
 )
 
 const ButtonAugmentationExample = () => (
