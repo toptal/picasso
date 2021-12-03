@@ -1,10 +1,9 @@
 ---
-'@toptal/picasso': patch
+'@toptal/picasso': minor
 '@toptal/picasso-lab': patch
 ---
 
-- Unordered list item's bullet has primary text color, which is dark gray
-  `#455065`.
+- Unordered list item's bullet has dark gray `#455065` color.
 - Line height of list item is `22px`.
 - Spacing between list items is increased to `8px`.
 - Ordered list item's bullet numbers cannot exceed 2 digits, thus, the maximum
