@@ -2,6 +2,12 @@
 '@toptal/picasso': minor
 ---
 
+### List
+
+Components changed:
+
+`packages/picasso/src/List` and `packages/picasso/src/ListItem`
+
 - Unordered list item's bullet has dark gray `#455065` color.
 - Line height of list item is `22px`.
 - Spacing between list items is increased to `8px`.

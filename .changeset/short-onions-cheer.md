@@ -2,4 +2,4 @@
 '@toptal/picasso-lab': patch
 ---
 
-Update image snapshots
+Bump of the @toptal/package
