@@ -72,6 +72,10 @@ export const useNotifications = () => {
         }
 
         closeSnackbar(notificationId)
+
+        if (notificationElement.props.onClose) {
+          notificationElement.props.onClose()
+        }
       }
       const notificationId = enqueueSnackbar('', {
         anchorOrigin: defaultPosition,
