@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List renders ordered list 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ol
+      class="PicassoList-root"
+      data-testid="ordered-list"
+    >
+      <li>
+        <div
+          class="PicassoContainer-flex PicassoListItem-listContainer"
+        >
+          <div
+            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-ordered"
+          >
+            <p
+              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            >
+              1
+              .
+            </p>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+          >
+            list item N1
+          </div>
+        </div>
+      </li>
+      <li>
+        <div
+          class="PicassoContainer-flex PicassoListItem-listContainer"
+        >
+          <div
+            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-ordered"
+          >
+            <p
+              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            >
+              2
+              .
+            </p>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+          >
+            list item N2
+          </div>
+        </div>
+      </li>
+      <li>
+        <div
+          class="PicassoContainer-flex PicassoListItem-listContainer"
+        >
+          <div
+            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-ordered"
+          >
+            <p
+              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            >
+              3
+              .
+            </p>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+          >
+            list item N3
+          </div>
+        </div>
+      </li>
+      <li>
+        <div
+          class="PicassoContainer-flex PicassoListItem-listContainer"
+        >
+          <div
+            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-ordered"
+          >
+            <p
+              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            >
+              4
+              .
+            </p>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+          >
+            list item N4
+          </div>
+        </div>
+      </li>
+      <li>
+        <div
+          class="PicassoContainer-flex PicassoListItem-listContainer PicassoListItem-lastElement"
+        >
+          <div
+            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-ordered"
+          >
+            <p
+              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            >
+              5
+              .
+            </p>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+          >
+            list item N5
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</div>
+`;
+
+exports[`List renders unordered list 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ul
+      class="PicassoList-root PicassoList-unordered"
+      data-testid="unordered-list"
+    >
+      <li>
+        <div
+          class="PicassoContainer-flex PicassoListItem-listContainer"
+        >
+          <div
+            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"
+          >
+            <svg
+              class="PicassoSvgBullet16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 6a2 2 0 110 4 2 2 0 010-4z"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+          >
+            list item N1
+          </div>
+        </div>
+      </li>
+      <li>
+        <div
+          class="PicassoContainer-flex PicassoListItem-listContainer"
+        >
+          <div
+            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"
+          >
+            <svg
+              class="PicassoSvgBullet16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 6a2 2 0 110 4 2 2 0 010-4z"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+          >
+            list item N2
+          </div>
+        </div>
+      </li>
+      <li>
+        <div
+          class="PicassoContainer-flex PicassoListItem-listContainer"
+        >
+          <div
+            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"
+          >
+            <svg
+              class="PicassoSvgBullet16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 6a2 2 0 110 4 2 2 0 010-4z"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+          >
+            list item N3
+          </div>
+        </div>
+      </li>
+      <li>
+        <div
+          class="PicassoContainer-flex PicassoListItem-listContainer"
+        >
+          <div
+            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"
+          >
+            <svg
+              class="PicassoSvgBullet16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 6a2 2 0 110 4 2 2 0 010-4z"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+          >
+            list item N4
+          </div>
+        </div>
+      </li>
+      <li>
+        <div
+          class="PicassoContainer-flex PicassoListItem-listContainer PicassoListItem-lastElement"
+        >
+          <div
+            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"
+          >
+            <svg
+              class="PicassoSvgBullet16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 6a2 2 0 110 4 2 2 0 010-4z"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+          >
+            list item N5
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
