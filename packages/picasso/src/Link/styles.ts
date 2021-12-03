@@ -12,9 +12,6 @@ PicassoProvider.override(() => ({
 export default ({ typography, palette }: Theme) =>
   createStyles({
     root: {
-      '&:visited': {
-        color: palette.blue.darker
-      },
       '&:focus': {
         outline: 'none'
       },
@@ -43,7 +40,15 @@ export default ({ typography, palette }: Theme) =>
         color: palette.blue.main
       }
     },
+    blue: {
+      '&:visited': {
+        color: palette.blue.darker
+      }
+    },
     white: {
+      '&:visited': {
+        color: palette.grey.main
+      },
       color: palette.common.white,
       textDecoration: 'underline',
       '&$noUnderline': {
