@@ -15,7 +15,7 @@ const renderList = (props: OmitInternalProps<Props>) =>
 
 describe('List', () => {
   it('renders unordered list', () => {
-    const { getByTestId } = renderList({
+    const { container, getByTestId } = renderList({
       children: generateListItems(5),
       variant: 'unordered',
       'data-testid': testIds.ul
@@ -25,10 +25,11 @@ describe('List', () => {
 
     expect(list.tagName).toBe('UL')
     expect(list.children).toHaveLength(5)
+    expect(container).toMatchSnapshot()
   })
 
   it('renders ordered list', () => {
-    const { getByTestId } = renderList({
+    const { container, getByTestId } = renderList({
       children: generateListItems(5),
       variant: 'ordered',
       'data-testid': testIds.ol
@@ -38,5 +39,6 @@ describe('List', () => {
 
     expect(list.tagName).toBe('OL')
     expect(list.children).toHaveLength(5)
+    expect(container).toMatchSnapshot()
   })
 })
