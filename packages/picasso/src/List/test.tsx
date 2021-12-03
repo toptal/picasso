@@ -3,6 +3,7 @@ import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import List, { Props } from './List'
+import { generateListItems } from './utils'
 
 const testIds = {
   ul: 'unordered-list',
@@ -15,25 +16,27 @@ const renderList = (props: OmitInternalProps<Props>) =>
 describe('List', () => {
   it('renders unordered list', () => {
     const { getByTestId } = renderList({
-      children: [],
+      children: generateListItems(5),
       variant: 'unordered',
       'data-testid': testIds.ul
     })
 
     const list = getByTestId(testIds.ul) as HTMLUListElement
 
-    expect(list.children).toHaveLength(0)
+    expect(list.tagName).toBe('UL')
+    expect(list.children).toHaveLength(5)
   })
 
   it('renders ordered list', () => {
     const { getByTestId } = renderList({
-      children: [],
+      children: generateListItems(5),
       variant: 'ordered',
       'data-testid': testIds.ol
     })
 
     const list = getByTestId(testIds.ol) as HTMLOListElement
 
-    expect(list.children).toHaveLength(0)
+    expect(list.tagName).toBe('OL')
+    expect(list.children).toHaveLength(5)
   })
 })
