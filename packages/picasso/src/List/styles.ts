@@ -7,7 +7,7 @@ export default ({ palette }: Theme) =>
       padding: 0,
       margin: 0
     },
-    ul: {
+    unordered: {
       color: palette.text.primary
     }
   })
