@@ -1,5 +1,11 @@
 # Change Log
 
+## 16.1.0
+
+### Minor Changes
+
+- [#2305](https://github.com/toptal/picasso/pull/2305) [`ba2ddd61`](https://github.com/toptal/picasso/commit/ba2ddd610e44ac0b6776436858ec3976343f5d65) Thanks [@denieler](https://github.com/denieler)! - - Pass `onClose` to the notifications opened by `use-notification` hooks.
+
 ## 16.0.0
 
 ### Major Changes
