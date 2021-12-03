@@ -2,8 +2,7 @@ import React from 'react'
 import { List, Referrals16 } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
-
-import { generateListItems } from '../../packages/picasso/src/List/utils'
+import { generateListItems } from '@toptal/picasso/src/List/utils'
 
 describe('List', () => {
   describe('Unordered', () => {
