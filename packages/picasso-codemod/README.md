@@ -18,6 +18,40 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 ## Included Scripts
 
+### v17.0.0
+
+#### `typography-sizes`
+
+Transforms `Typography` and `TypographyOverflow` size prop from `'small' | 'xsmall'` to `'xsmall' | 'xxsmall'`.
+
+This change only applies to variant `body` (which is default)
+
+Here's how the diff should look like:
+
+```diff
+-<Typography size='small'>Text</Typography>
++<Typography size='xsmall'>Text</Typography>
+-<Typography size='xsmall'>Text</Typography>
++<Typography size='xxsmall'>Text</Typography>
+-<Typography size={condition ? 'small' : 'xsmall'}>Text</Typography>
++<Typography size={condition ? 'xsmall' : 'xxsmall'}>Text</Typography>
+-<TypographyOverflow size='small'>Text</TypographyOverflow>
++<TypographyOverflow size='xsmall'>Text</TypographyOverflow>
+-<TypographyOverflow size='xsmall'>Text</TypographyOverflow>
++<TypographyOverflow size='xxsmall'>Text</TypographyOverflow>
+-<TypographyOverflow size={condition ? 'small' : 'xsmall'}>Text</TypographyOverflow>
++<TypographyOverflow size={condition ? 'xsmall' : 'xxsmall'}>Text</TypographyOverflow>
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/typography-sizes src/**/*.tsx
+```
+
+</details>
+
 ### v16.0.0
 
 #### `revert-colors`
