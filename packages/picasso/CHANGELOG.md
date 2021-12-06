@@ -1,5 +1,26 @@
 # Change Log
 
+## 16.2.0
+
+### Minor Changes
+
+- [#2285](https://github.com/toptal/picasso/pull/2285) [`be64ee77`](https://github.com/toptal/picasso/commit/be64ee77b10b683ec04a4ca9a702b94e6590f9a4) Thanks [@LashaJini](https://github.com/LashaJini)! - ### List
+
+  Components changed:
+
+  [Picasso List Component](https://picasso.toptal.net/?path=/story/components-list--list)
+
+  `packages/picasso/src/List` and `packages/picasso/src/ListItem` (List.Item)
+
+  - Unordered list item's bullet has dark gray `#455065` color.
+  - Line height of list item is `22px`.
+  - Spacing between list items is increased to `8px`.
+  - Ordered list item's bullet numbers cannot exceed 2 digits, thus, the maximum
+    number of characters are 3: `00.`, with maximum width of `20px`, which leaves
+    us with `12px` margin to the right.
+
+* [#2310](https://github.com/toptal/picasso/pull/2310) [`1c5807b1`](https://github.com/toptal/picasso/commit/1c5807b12b35bc85d7700cacd1519a267eb7280f) Thanks [@buithehoa](https://github.com/buithehoa)! - Update support phone number.
+
 ## 16.1.0
 
 ### Minor Changes
