@@ -6,7 +6,7 @@ exports[`Helpbox renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-mediumPadding PicassoContainer-rounded PicassoHelpbox-root"
+      class="PicassoContainer-mediumPadding PicassoContainer-bordered PicassoContainer-rounded PicassoHelpbox-root"
     >
       <div
         class="PicassoContainer-bottomsmallMargin"
