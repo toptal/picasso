@@ -2,4 +2,4 @@
 '@toptal/picasso-codemod': minor
 ---
 
-Create codemod to help migrate to @toptal/picasso@17.0.0
+Created codemod to help migrate `Typography` **size** changes in `@toptal/picasso@17.0.0`
