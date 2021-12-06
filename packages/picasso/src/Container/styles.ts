@@ -69,11 +69,7 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   }
 
   return {
-    backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter,
-
-    '&$bordered': {
-      borderColor: colorOptions.main
-    }
+    backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter
   }
 }
 
