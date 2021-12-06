@@ -129,7 +129,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
             `${kebabToCamelCase(justifyContent || '')}JustifyContent`
           ]]: justifyContent,
 
-          [classes.bordered]: bordered,
+          [classes.bordered]: bordered && variant === 'white',
           [classes.rounded]: rounded,
           [classes.flex]: flex,
           [classes.inline]: inline,
