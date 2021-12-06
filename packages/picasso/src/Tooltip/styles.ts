@@ -103,7 +103,7 @@ export default ({ palette, shadows, sizes: { borderRadius } }: Theme) =>
     },
     compact: {
       lineHeight: '1em',
-      padding: '0.25rem 0.5rem',
+      padding: '0.125rem 0.5rem',
       margin: '0.25rem'
     },
     noMaxWidth: {

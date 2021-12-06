@@ -34,7 +34,7 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableCell' })
 type TypographySettings = {
   color: ColorType
   size: SizeType<'xsmall' | 'small'>
-  weight?: 'semibold'
+  weight: 'regular' | 'semibold' | 'inherit'
 }
 const getTypographySettings = (
   tableSection: TableSection | undefined
@@ -55,7 +55,8 @@ const getTypographySettings = (
     default:
       return {
         color: 'dark-grey',
-        size: 'small'
+        size: 'small',
+        weight: 'inherit'
       }
   }
 }
