@@ -1,5 +1,14 @@
 # Change Log
 
+## 20.0.0
+
+### Patch Changes
+
+- [#2285](https://github.com/toptal/picasso/pull/2285) [`be64ee77`](https://github.com/toptal/picasso/commit/be64ee77b10b683ec04a4ca9a702b94e6590f9a4) Thanks [@LashaJini](https://github.com/LashaJini)! - Bump of the @toptal/package
+
+- Updated dependencies [[`be64ee77`](https://github.com/toptal/picasso/commit/be64ee77b10b683ec04a4ca9a702b94e6590f9a4), [`1c5807b1`](https://github.com/toptal/picasso/commit/1c5807b12b35bc85d7700cacd1519a267eb7280f)]:
+  - @toptal/picasso@16.2.0
+
 ## 19.0.0
 
 ### Patch Changes
