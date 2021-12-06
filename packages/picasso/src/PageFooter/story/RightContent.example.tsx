@@ -21,7 +21,7 @@ const Example = () => (
 const Links = () => (
   <>
     <StyledLink href='#' color='white'>
-      +1.888.604.3188
+      +1.888.867.7001
     </StyledLink>
 
     <StyledLink href='#' color='white'>
