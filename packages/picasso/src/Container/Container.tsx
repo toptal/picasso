@@ -48,7 +48,7 @@ export interface Props
   alignItems?: AlignItemsType
   /** Defines the justify-content style property */
   justifyContent?: JustifyContentType
-  /** Whether container has border or not */
+  /** Whether white container has border or not */
   bordered?: boolean
   /** Whether container has 8px border-radius applied or not */
   rounded?: boolean
