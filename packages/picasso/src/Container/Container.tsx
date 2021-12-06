@@ -62,6 +62,8 @@ export interface Props
   align?: PropTypes.Alignment
 }
 
+const variantsWithoutBorder = ['red', 'green', 'yellow', 'blue', 'grey']
+
 /**
  * Container component used for spacing 2 elements
  */
@@ -129,7 +131,8 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
             `${kebabToCamelCase(justifyContent || '')}JustifyContent`
           ]]: justifyContent,
 
-          [classes.bordered]: bordered && variant === 'white',
+          [classes.bordered]:
+            bordered && !variantsWithoutBorder.includes(variant as string),
           [classes.rounded]: rounded,
           [classes.flex]: flex,
           [classes.inline]: inline,
