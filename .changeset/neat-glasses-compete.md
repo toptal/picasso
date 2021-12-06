@@ -6,7 +6,9 @@
 
 Components changed:
 
-`packages/picasso/src/List` and `packages/picasso/src/ListItem`
+[Picasso List Component](https://picasso.toptal.net/?path=/story/components-list--list)
+
+`packages/picasso/src/List` and `packages/picasso/src/ListItem` (List.Item)
 
 - Unordered list item's bullet has dark gray `#455065` color.
 - Line height of list item is `22px`.
