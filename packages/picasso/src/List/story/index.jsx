@@ -33,10 +33,10 @@ page
 
 page
   .createChapter()
-  .addExample('List/story/Ordered.example.tsx', 'Ordered')
+  .addExample('List/story/Ordered.example.tsx', 'Ordered') // picasso-skip-visuals
   .addExample(
     'List/story/OrderedWithStart.example.tsx',
     'Ordered with custom start'
-  )
-  .addExample('List/story/Unordered.example.tsx', 'Unordered')
-  .addExample('List/story/Custom.example.tsx', 'Custom')
+  ) // picasso-skip-visuals
+  .addExample('List/story/Unordered.example.tsx', 'Unordered') // picasso-skip-visuals
+  .addExample('List/story/Custom.example.tsx', 'Custom') // picasso-skip-visuals
