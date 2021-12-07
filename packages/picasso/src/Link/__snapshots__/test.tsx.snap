@@ -6,7 +6,7 @@ exports[`Link renders 1`] = `
     class="Picasso-root"
   >
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoLink-blue MuiTypography-colorPrimary"
     >
       Please verify your email
     </a>
@@ -21,7 +21,7 @@ exports[`Link renders a Link from react-router 1`] = `
   >
     <div>
       <a
-        class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root MuiTypography-colorPrimary"
+        class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoLink-blue MuiTypography-colorPrimary"
         href="/"
       >
         Please verify your email
@@ -38,7 +38,7 @@ exports[`Link renders disabled link 1`] = `
   >
     <a
       aria-disabled="true"
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoLink-disabled MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoLink-blue PicassoLink-disabled MuiTypography-colorPrimary"
       download="filename"
       rel="noopener"
     >
@@ -54,7 +54,7 @@ exports[`Link renders native attributes 1`] = `
     class="Picasso-root"
   >
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoLink-blue MuiTypography-colorPrimary"
       download="filename"
       href="https://toptal.com/filename.txt"
       rel="noopener"
