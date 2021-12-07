@@ -7,6 +7,10 @@ export const createOutlineCommons = ({ palette }: Theme) => ({
   color: palette.common.black,
   backgroundColor: palette.common.white,
 
+  '&:visited': {
+    color: palette.common.black
+  },
+
   '&:hover, &$hovered': {
     borderColor: palette.common.black
   },
@@ -29,10 +33,6 @@ export const createVariant = (mainColor: string, { palette }: Theme) => ({
   color: palette.common.white,
   backgroundColor: mainColor,
 
-  '&:visited': {
-    color: palette.grey.main
-  },
-
   '&:hover, &$hovered': {
     backgroundColor: mix(mainColor, palette.common.white, 0.152)
   },
@@ -43,6 +43,10 @@ export const createVariant = (mainColor: string, { palette }: Theme) => ({
 
   '&$disabled': {
     backgroundColor: palette.grey.light2
+  },
+
+  '&:visited': {
+    color: palette.common.white
   }
 })
 
@@ -155,12 +159,12 @@ export default (theme: Theme) => {
       color: palette.common.white,
       border: `solid ${sizes.borderWidth} ${alpha(palette.common.white, 0.32)}`,
 
-      '&:visited': {
-        color: palette.grey.main
-      },
-
       '&$focusVisible, &$focused': {
         ...outline(palette.common.white)
+      },
+
+      '&:visited': {
+        color: palette.common.white
       },
 
       '&:hover, &$hovered': {
