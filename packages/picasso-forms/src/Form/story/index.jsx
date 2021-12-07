@@ -218,6 +218,10 @@ however, you may need custom validators for more complex types of fields.
     title: 'No scrolling case',
     description: "Showcase Form's behavior on form submission error."
   }) // picasso-skip-visuals
+  .addExample('Form/story/RichTextEditor.example.tsx', {
+    title: 'Rich text editor',
+    description: 'Showcase how to display field requirements.'
+  }) // picasso-skip-visuals
   .addExample('Form/story/FieldRequirements.example.tsx', {
     title: 'Field requirements',
     description: 'Showcase how to display field requirements.'

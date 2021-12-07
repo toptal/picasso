@@ -34,6 +34,6 @@
       "@testing-library/jest-dom"
     ]
   },
-  "include": ["packages/*/src"],
+  "include": ["packages/*/src", "packages/picasso/RichTextEditor"],
   "exclude": ["packages/*/dist-package", "**/__testfixtures__"]
 }
