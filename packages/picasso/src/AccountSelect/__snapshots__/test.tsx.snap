@@ -23,7 +23,7 @@ exports[`AccountSelect renders 1`] = `
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <a
-              class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-noUnderline MuiTypography-colorPrimary"
+              class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
             >
               <div
                 class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
@@ -90,7 +90,7 @@ exports[`AccountSelect renders 1`] = `
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <a
-              class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-noUnderline MuiTypography-colorPrimary"
+              class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
               href="#"
             >
               <div
@@ -158,7 +158,7 @@ exports[`AccountSelect renders 1`] = `
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <a
-              class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-noUnderline MuiTypography-colorPrimary"
+              class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
               href="#"
             >
               <div

@@ -98,14 +98,4 @@ describe('Link', () => {
 
     expect(getByTestId('foo')).not.toHaveAttribute('href')
   })
-
-  it('has proper color for `visited` status', async () => {
-    const { getByTestId } = render(
-      <Link visited data-testid='visited-link' href='#'>
-        Test
-      </Link>
-    )
-
-    expect(getByTestId('visited-link')).toHaveStyle('color: rgb(15 37 110);')
-  })
 })
