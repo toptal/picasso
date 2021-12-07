@@ -62,7 +62,7 @@ export interface Props
   align?: PropTypes.Alignment
 }
 
-const variantsWithoutBorder = ['red', 'green', 'yellow', 'blue', 'grey']
+const borderlessVariants = ['red', 'green', 'yellow', 'blue', 'grey']
 
 /**
  * Container component used for spacing 2 elements
@@ -132,7 +132,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
           ]]: justifyContent,
 
           [classes.bordered]:
-            bordered && !variantsWithoutBorder.includes(variant as string),
+            bordered && !borderlessVariants.includes(variant as string),
           [classes.rounded]: rounded,
           [classes.flex]: flex,
           [classes.inline]: inline,
