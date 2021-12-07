@@ -29,6 +29,10 @@ export const createVariant = (mainColor: string, { palette }: Theme) => ({
   color: palette.common.white,
   backgroundColor: mainColor,
 
+  '&:visited': {
+    color: palette.grey.main
+  },
+
   '&:hover, &$hovered': {
     backgroundColor: mix(mainColor, palette.common.white, 0.152)
   },
@@ -150,6 +154,10 @@ export default (theme: Theme) => {
     transparent: {
       color: palette.common.white,
       border: `solid ${sizes.borderWidth} ${alpha(palette.common.white, 0.32)}`,
+
+      '&:visited': {
+        color: palette.grey.main
+      },
 
       '&$focusVisible, &$focused': {
         ...outline(palette.common.white)
