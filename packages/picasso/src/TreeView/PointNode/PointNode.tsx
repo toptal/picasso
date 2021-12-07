@@ -13,21 +13,18 @@ import { NodeContent } from './NodeContent'
 export interface Props {
   node: DynamicPointNode
   renderNode?: (pointNode: DynamicPointNode) => ReactNode
-  nodeWidth: number
 }
 
-export const PointNode = forwardRef<any, Props>(
-  ({ node, renderNode, nodeWidth }, ref) => {
+export const PointNode = forwardRef<SVGGElement, Props>(
+  ({ node, renderNode }, ref) => {
     const nodeRef = useRef<SVGForeignObjectElement | null>(null)
     const [dimensions, setDimensions] = useState<{
       width?: number
       height?: number
     }>({})
     const transform = useMemo(() => {
-      const xPosition = node.x - nodeWidth / 2
-
-      return `translate(${xPosition},${node.y})`
-    }, [node.x, node.y, nodeWidth])
+      return `translate(${node.x},${node.y})`
+    }, [node.x, node.y])
 
     useLayoutEffect(() => {
       if (nodeRef.current) {

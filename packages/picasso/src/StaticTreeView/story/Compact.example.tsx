@@ -1,10 +1,10 @@
 import React from 'react'
 import {
-  TreeView,
   TreeNodeInterface,
   TreeNodeAvatar,
   Container,
-  UserBadge
+  UserBadge,
+  StaticTreeView
 } from '@toptal/picasso'
 import { HierarchyPointNode } from 'd3-hierarchy'
 import styled from 'styled-components'
@@ -118,18 +118,19 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
 }
 
 const Example = () => (
-  <Container style={{ height: '25em' }}>
-    <TreeView
-      data={rootNode}
-      renderNode={renderNode}
-      initialScale={0.8}
-      directionProps={{
-        verticalMargin: 20,
-        horizontalMargin: 200,
-        direction: 'horizontal',
-        variant: 'compact'
-      }}
-    />
+  <Container style={{ display: 'grid', placeItems: 'center' }}>
+    <Container style={{ minHeight: '25rem', width: '100%', maxWidth: 1200 }}>
+      <StaticTreeView
+        data={rootNode}
+        renderNode={renderNode}
+        directionProps={{
+          verticalMargin: 20,
+          horizontalMargin: 200,
+          direction: 'horizontal',
+          variant: 'compact'
+        }}
+      />
+    </Container>
   </Container>
 )
 

@@ -8,7 +8,7 @@ const getDynamicNodes = (
 ): DynamicPointNode[] => {
   return nodes.map(node => {
     return Object.assign(node, {
-      ref: createRef<HTMLElement>(),
+      ref: createRef<SVGGElement>(),
       rect: {
         width: 0,
         height: 0

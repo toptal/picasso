@@ -44,5 +44,5 @@ page
   .addExample('TreeView/story/Compact.example.tsx', {
     title: 'Compact tree',
     description:
-      'Example of a compact tree, this works only for trees in which only one node on each depth has children'
+      'Example of a compact tree - one with only single node on each depth that has children'
   }) // picasso-skip-visuals
