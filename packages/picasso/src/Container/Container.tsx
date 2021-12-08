@@ -21,14 +21,14 @@ type ContainerType = 'div' | 'span'
 
 type DirectionType = 'row' | 'column'
 
-type BorderableTypes = 'transparent' | 'white'
+type BorderableType = 'transparent' | 'white'
 
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoContainer'
 })
 
-type TruncateProps =
-  | { variant?: BorderableTypes; bordered?: boolean }
+export type TruncateProps =
+  | { variant?: BorderableType; bordered?: boolean }
   | { variant: VariantType; bordered?: never }
 
 interface OriginalProps
@@ -57,7 +57,7 @@ interface OriginalProps
   /** Defines the justify-content style property */
   justifyContent?: JustifyContentType
   /** Whether white container has border or not */
-  // bordered?: boolean
+  bordered?: boolean
   /** Whether container has 8px border-radius applied or not */
   rounded?: boolean
   /** Style variant of Notification */
@@ -167,4 +167,4 @@ Container.defaultProps = {
 }
 
 export default Container
-export { VariantType }
+export { VariantType, BorderableType }
