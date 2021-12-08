@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { TextChangeHandler } from 'quill'
 
-import type { EditorRefType } from '../types'
+import { EditorRefType } from '../types'
 import { Props } from '../TextEditor'
 
 const useHandleChangeEvent = (
@@ -18,7 +18,9 @@ const useHandleChangeEvent = (
 
       editorApi.on('text-change', handler)
 
-      return () => editorApi.off('text-change', handler)
+      return () => {
+        editorApi.off('text-change', handler)
+      }
     }
   }, [onChange, editorRef])
 }

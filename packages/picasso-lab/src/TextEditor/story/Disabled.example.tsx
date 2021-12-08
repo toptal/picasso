@@ -3,14 +3,16 @@ import { TextEditor } from '@toptal/picasso-lab'
 import { Container } from '@toptal/picasso'
 
 const Example = () => {
-  const [value, setValue] = useState()
+  const [value, setValue] = useState<string | undefined>()
+
+  const handleChange = (newValue?: string) => setValue(newValue)
 
   return (
     <>
       <Container style={{ height: '300px' }}>
         <TextEditor
           id='foo'
-          onChange={setValue}
+          onChange={handleChange}
           placeholder='Write some cool rich text'
           value={value}
           disabled
