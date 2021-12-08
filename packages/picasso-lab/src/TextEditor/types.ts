@@ -5,7 +5,6 @@ import { Props } from './TextEditor'
 
 export type EditorOptionsType = {
   id: Props['id']
-  onChange: Props['onChange']
   placeholder?: Props['placeholder']
 }
 

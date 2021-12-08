@@ -29,7 +29,7 @@ const formats: QuillOptionsStatic['formats'] = [
 
 const useInitEditor = (
   editorRef: EditorRefType,
-  { id, placeholder, onChange }: EditorOptionsType
+  { id, placeholder }: EditorOptionsType
 ) => {
   useEffect(() => {
     editorRef.current = new Quill(`#${id}`, {
@@ -38,7 +38,7 @@ const useInitEditor = (
       theme: 'snow',
       placeholder
     })
-  }, [id, placeholder, onChange, editorRef])
+  }, [id, placeholder, editorRef])
 }
 
 export default useInitEditor

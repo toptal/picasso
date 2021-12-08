@@ -10,10 +10,12 @@ const useHandleAutofocus = (
   const firstRender = useRef(true)
 
   useEffect(() => {
-    if (firstRender.current && editorRef.current && autofocus) {
+    const editorApi = editorRef?.current
+
+    if (firstRender?.current && editorApi && autofocus) {
       // without setTimeout is focus called on last instance🤷‍♂️
       setTimeout(() => {
-        editorRef.current.focus()
+        editorApi.focus()
         firstRender.current = false
       }, 0)
     }
