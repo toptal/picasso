@@ -51,7 +51,7 @@ export type Props = BaseProps &
     tabIndex?: number
     /** Indicates that the user cannot interact with the Link or its children */
     disabled?: boolean
-    /** Indicates that the link was opened before within this browser session */
+
     visited?: boolean
     /**
      * If true, underline decoration never applies

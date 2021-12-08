@@ -11,6 +11,7 @@ export const createOutlineCommons = ({ palette }: Theme) => ({
     borderColor: palette.common.black
   },
 
+  // when we use <Button as={Link} />
   '&&&:visited': {
     color: palette.common.black
   },
@@ -41,6 +42,7 @@ export const createVariant = (mainColor: string, { palette }: Theme) => ({
     backgroundColor: mix(mainColor, palette.common.black, 0.172)
   },
 
+  // when we use <Button as={Link} />
   '&&&:visited': {
     color: palette.common.white
   },
@@ -158,6 +160,7 @@ export default (theme: Theme) => {
       color: palette.common.white,
       border: `solid ${sizes.borderWidth} ${alpha(palette.common.white, 0.32)}`,
 
+      // when we use <Button as={Link} />
       '&&&:visited': {
         color: palette.common.white
       },
