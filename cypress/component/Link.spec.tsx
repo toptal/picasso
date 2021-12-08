@@ -10,6 +10,9 @@ import {
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
+const DARKER_BLUE = 'rgb(15, 37, 110)'
+const GREY = 'rgb(196, 198, 202)'
+
 const TestUserBadgeLink = () => {
   return (
     <TestingPicasso>
@@ -207,14 +210,10 @@ describe('Link', () => {
       cy.get('[data-testid="blue-link"').should(
         'have.css',
         'color',
-        'rgb(15, 37, 110)'
+        DARKER_BLUE
       )
 
-      cy.get('[data-testid="white-link"').should(
-        'have.css',
-        'color',
-        'rgb(196, 198, 202)'
-      )
+      cy.get('[data-testid="white-link"').should('have.css', 'color', GREY)
     })
   })
 })
