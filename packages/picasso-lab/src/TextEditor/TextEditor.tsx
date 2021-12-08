@@ -51,7 +51,7 @@ export interface Props extends BaseProps {
   /**
    * HTML content of TextEditor
    */
-  value: HTMLString
+  value?: HTMLString
 }
 
 const useStyles = makeStyles<Theme>(styles)
