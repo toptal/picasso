@@ -8,6 +8,7 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import { PaperProps } from '@material-ui/core/Paper'
+import { TransitionProps } from '@material-ui/core/transitions'
 import cx from 'classnames'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
@@ -43,6 +44,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   hideBackdrop?: boolean
   /** Position of the modal relative to the browser's viewport */
   align?: Alignment
+  /** Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) */
+  transitionProps?: TransitionProps
   transitionDuration?: number
   paperProps?: PaperProps
   testIds?: {
@@ -120,6 +123,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     paperProps,
     align = 'centered',
     testIds,
+    transitionProps,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -213,6 +217,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       maxWidth={false}
       disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
       disableBackdropClick
+      TransitionProps={transitionProps}
     >
       {children}
       {onClose && (
