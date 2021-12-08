@@ -167,3 +167,4 @@ Container.defaultProps = {
 }
 
 export default Container
+export { VariantType }
