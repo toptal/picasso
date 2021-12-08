@@ -8,6 +8,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import MUIAccordion from '@material-ui/core/Accordion'
+import { TransitionProps } from '@material-ui/core/transitions'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
 
@@ -78,6 +79,8 @@ export interface Props
   borders?: Borders
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
+  /** Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) */
+  transitionProps?: TransitionProps
   testIds?: {
     emptyAccordionSummary?: string
     accordionSummary?: string
@@ -109,6 +112,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     style,
     onChange,
     testIds,
+    transitionProps,
     ...rest
   } = props
 
@@ -150,6 +154,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
       expanded={summaryExpanded}
       disabled={disabled}
       onChange={onChange}
+      TransitionProps={transitionProps}
     >
       {children ? (
         <AccordionSummary
