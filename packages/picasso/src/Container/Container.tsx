@@ -10,20 +10,28 @@ import {
   spacingToRem
 } from '@toptal/picasso-shared'
 
-import styles, { AlignItemsType, JustifyContentType } from './styles'
+import styles, {
+  AlignItemsType,
+  JustifyContentType,
+  VariantType
+} from './styles'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 
 type ContainerType = 'div' | 'span'
 
 type DirectionType = 'row' | 'column'
 
-export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue' | 'grey'
+type BorderableTypes = 'transparent' | 'white'
 
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoContainer'
 })
 
-export interface Props
+type TruncateProps =
+  | { variant?: BorderableTypes; bordered?: boolean }
+  | { variant: VariantType; bordered?: never }
+
+interface OriginalProps
   extends StandardProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
@@ -49,7 +57,7 @@ export interface Props
   /** Defines the justify-content style property */
   justifyContent?: JustifyContentType
   /** Whether white container has border or not */
-  bordered?: boolean
+  // bordered?: boolean
   /** Whether container has 8px border-radius applied or not */
   rounded?: boolean
   /** Style variant of Notification */
@@ -62,7 +70,7 @@ export interface Props
   align?: PropTypes.Alignment
 }
 
-const borderlessVariants = ['red', 'green', 'yellow', 'blue', 'grey']
+export type Props = OriginalProps & TruncateProps
 
 /**
  * Container component used for spacing 2 elements
@@ -131,8 +139,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
             `${kebabToCamelCase(justifyContent || '')}JustifyContent`
           ]]: justifyContent,
 
-          [classes.bordered]:
-            bordered && !borderlessVariants.includes(variant as string),
+          [classes.bordered]: bordered,
           [classes.rounded]: rounded,
           [classes.flex]: flex,
           [classes.inline]: inline,
