@@ -51,6 +51,8 @@ export type Props = BaseProps &
     tabIndex?: number
     /** Indicates that the user cannot interact with the Link or its children */
     disabled?: boolean
+
+    visited?: boolean
     /**
      * If true, underline decoration never applies
      */
@@ -75,6 +77,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
     target,
     rel,
     disabled,
+    visited = false,
     noUnderline,
     'aria-disabled': ariaDisabled,
     ...rest
@@ -94,6 +97,8 @@ export const Link: OverridableComponent<Props> = forwardRef<
       className={cx(classes.root, className, {
         [classes.action]: variant === 'action',
         [classes.white]: color === 'white',
+        [classes.blue]: color === 'blue',
+        [classes.visited]: visited,
         [classes.disabled]: disabled,
         [classes.noUnderline]: noUnderline
       })}

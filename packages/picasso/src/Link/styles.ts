@@ -40,7 +40,16 @@ export default ({ typography, palette }: Theme) =>
         color: palette.blue.main
       }
     },
+    visited: {},
+    blue: {
+      '&:visited, &$visited': {
+        color: palette.blue.darker
+      }
+    },
     white: {
+      '&:visited, &$visited': {
+        color: palette.grey.main
+      },
       color: palette.common.white,
       textDecoration: 'underline',
       '&$noUnderline': {

@@ -10,6 +10,9 @@ import {
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
+const DARKER_BLUE = 'rgb(15, 37, 110)'
+const GREY = 'rgb(196, 198, 202)'
+
 const TestUserBadgeLink = () => {
   return (
     <TestingPicasso>
@@ -188,6 +191,29 @@ describe('Link', () => {
       cy.get('[data-testid="link"')
         .realHover()
         .should('have.css', 'text-decoration', 'none solid rgb(32, 78, 207)')
+    })
+  })
+
+  describe('when a Link has been visited', () => {
+    it('indicates itself by a proper color', () => {
+      mount(
+        <TestingPicasso>
+          <Link visited data-testid='blue-link' href='#'>
+            Link
+          </Link>
+          <Link visited color='white' data-testid='white-link' href='#'>
+            Link
+          </Link>
+        </TestingPicasso>
+      )
+
+      cy.get('[data-testid="blue-link"').should(
+        'have.css',
+        'color',
+        DARKER_BLUE
+      )
+
+      cy.get('[data-testid="white-link"').should('have.css', 'color', GREY)
     })
   })
 })
