@@ -1,5 +1,20 @@
 # Change Log
 
+## 16.3.0
+
+### Minor Changes
+
+- [#2301](https://github.com/toptal/picasso/pull/2301) [`7c9cc79b`](https://github.com/toptal/picasso/commit/7c9cc79b007f546c310684000cbbc6b1870516a9) Thanks [@george-aidonidis](https://github.com/george-aidonidis)! - Add visited state for Link component.
+
+* [#2292](https://github.com/toptal/picasso/pull/2292) [`bc7427db`](https://github.com/toptal/picasso/commit/bc7427dbf53fef3e1f1a60c0d9edf57c997ce019) Thanks [@ascrazy](https://github.com/ascrazy)! - ## TreeView
+
+  - Deprecate `centerTranslation` and `transitionDuration` props from component public API
+  - Minor fixes to relative positioning of the nodes and root node center detection
+
+  ## StaticTreeView
+
+  Add new TreeView-like component that renders without d3-zoom in it and auto-resizes SVG to always fit all of the content
+
 ## 16.2.0
 
 ### Minor Changes
