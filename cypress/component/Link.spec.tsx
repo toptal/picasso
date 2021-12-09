@@ -27,7 +27,7 @@ const TestUserBadgeLink = () => {
               justifyContent='space-between'
             >
               <UserBadge name='Foo Bar'>
-                <Typography size='small'>Foo bar position</Typography>
+                <Typography size='xsmall'>Foo bar position</Typography>
               </UserBadge>
               <ChevronRight16 color='dark-grey' />
             </Container>

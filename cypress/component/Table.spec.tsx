@@ -196,7 +196,7 @@ const ExpandableContent = () => (
       bottom='medium'
     >
       <UserBadge name='Jacqueline Roque'>
-        <Typography data-testid='job' size='small'>
+        <Typography data-testid='job' size='xsmall'>
           UI specialist
         </Typography>
       </UserBadge>
