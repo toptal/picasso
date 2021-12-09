@@ -57,13 +57,13 @@ const InterviewCard = () => (
       alignItems='center'
       justifyContent='center'
     >
-      <Typography weight='semibold' size='small' color='black'>
+      <Typography weight='semibold' size='xsmall' color='black'>
         Fri
       </Typography>
       <Typography variant='heading' size='large'>
         18
       </Typography>
-      <Typography weight='semibold' size='small' color='black'>
+      <Typography weight='semibold' size='xsmall' color='black'>
         Jan
       </Typography>
     </Container>
@@ -92,7 +92,7 @@ const InterviewCard = () => (
         <Container>
           <Bell16 />
           <Container left='xsmall' right='small' inline>
-            <Typography size='small' as='span'>
+            <Typography size='xsmall' as='span'>
               <Link href='#'>Add to calendar</Link>
             </Typography>
           </Container>
@@ -124,13 +124,13 @@ const InterviewCard = () => (
                 Bluejeans Conference
               </Typography>
             </Container>
-            <Typography size='small' as='span'>
+            <Typography size='xsmall' as='span'>
               <Link href='#'>Show URL</Link>
             </Typography>
           </Container>
         </Container>
 
-        <Typography size='small' align='right' style={{ width: '207px' }}>
+        <Typography size='xsmall' align='right' style={{ width: '207px' }}>
           If anything comes prior to the interview, please{' '}
           <Link href='#'>reschedule.</Link>
         </Typography>

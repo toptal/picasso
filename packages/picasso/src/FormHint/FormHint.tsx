@@ -28,7 +28,7 @@ export const FormHint = forwardRef<HTMLDivElement, Props>(function FormHint(
       className={cx(classes.root, className)}
       style={style}
     >
-      <Typography size='xsmall'>{children}</Typography>
+      <Typography size='xxsmall'>{children}</Typography>
     </div>
   )
 })

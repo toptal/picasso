@@ -7,7 +7,7 @@ const Example = () => (
       <Typography variant='heading' size='small'>
         0 or 1 pages
       </Typography>
-      <Typography size='small'>~ NULL ~</Typography>
+      <Typography size='xsmall'>~ NULL ~</Typography>
     </Container>
     <Container bottom='small'>
       <Pagination

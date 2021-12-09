@@ -21,7 +21,7 @@ const TagConnection = ({ children }: Props) => {
       className={classes.connection}
       color='inherit'
       as='span'
-      size='small'
+      size='xsmall'
     >
       <Link16 />
       {children}

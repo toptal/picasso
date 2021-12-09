@@ -15,7 +15,7 @@ const options = [
 const renderOption = ({ text }: Item) => (
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   <UserBadge name={text!}>
-    <Typography size='small'>CMS (Eng)</Typography>
+    <Typography size='xsmall'>CMS (Eng)</Typography>
   </UserBadge>
 )
 

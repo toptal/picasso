@@ -43,7 +43,7 @@ const ExpandableContent = () => (
         name='Jacqueline Roque'
         avatar='./jacqueline-with-flowers-1954-square.jpg'
       >
-        <Typography size='small'>UI specialist</Typography>
+        <Typography size='xsmall'>UI specialist</Typography>
       </UserBadge>
 
       <Container>

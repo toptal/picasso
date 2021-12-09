@@ -62,7 +62,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
     if (page === ELLIPSIS) {
       return (
         <Container key={String(index)} className={classes.ellipsis}>
-          <Typography size='small' weight='semibold' color='black'>
+          <Typography size='xsmall' weight='semibold' color='black'>
             {ELLIPSIS}
           </Typography>
         </Container>

@@ -33,12 +33,12 @@ const Benefits = () => {
     <Container>
       <List>
         <li>
-          <Typography size='small'>
+          <Typography size='xsmall'>
             Similar benefits to Toptal Payments
           </Typography>
         </li>
         <li>
-          <Typography size='small'>
+          <Typography size='xsmall'>
             Instantly transfer funds to a prepaid card{' '}
           </Typography>
         </li>
