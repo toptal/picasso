@@ -20,9 +20,12 @@ const useHandleChangeFromController = (
 
       // is value set from outside
       if (editorValue !== controllerValue) {
-        // TODO discuss with others, if we should sanitize here
-        // usecase - editing current job description
-        clipboard.dangerouslyPasteHTML(controllerValue)
+        // @types/quill has incorrect convert typing
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const delta = clipboard.convert(controllerValue)
+
+        editorRef.current.setContents(delta, 'silent')
       }
     }
   }, [controllerValue, editorRef])
