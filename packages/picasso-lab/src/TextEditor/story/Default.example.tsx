@@ -15,6 +15,7 @@ const Example = () => {
           onChange={handleChange}
           placeholder='Write some cool rich text'
           value={value}
+          autofocus
         />
       </Container>
       <Container
