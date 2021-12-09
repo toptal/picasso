@@ -13,11 +13,8 @@ const useHandleAutofocus = (
     const editorApi = editorRef?.current
 
     if (firstRender?.current && editorApi && autofocus) {
-      // without setTimeout is focus called on last instance🤷‍♂️
-      setTimeout(() => {
-        editorApi.focus()
-        firstRender.current = false
-      }, 0)
+      editorApi.focus()
+      firstRender.current = false
     }
   }, [autofocus, editorRef])
 }
