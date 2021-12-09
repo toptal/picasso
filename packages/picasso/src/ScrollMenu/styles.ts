@@ -6,7 +6,7 @@ export default ({ palette, screens }: Theme) =>
       backgroundColor: palette.common.white
     },
     scrollView: {
-      maxHeight: '26.875rem', // ~8.5 lines of menu to show 14.75
+      maxHeight: '26.875rem', // ~8.5 lines of menu to show
       overflowY: 'auto',
 
       [screens('small', 'medium')]: {
