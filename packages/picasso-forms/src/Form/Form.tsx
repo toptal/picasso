@@ -24,6 +24,7 @@ import TagSelector from '../TagSelector'
 import SubmitButton from '../SubmitButton'
 import Switch from '../Switch'
 import Rating from '../Rating'
+import Dropzone from '../Dropzone'
 import { FormConfigContext } from '../FormConfig'
 import { createScrollToErrorDecorator } from '../utils'
 import {
@@ -177,5 +178,6 @@ Form.SubmitButton = SubmitButton
 Form.ConfigProvider = FormConfigContext.Provider
 Form.Switch = Switch
 Form.Rating = Rating
+Form.Dropzone = Dropzone
 
 export default Form

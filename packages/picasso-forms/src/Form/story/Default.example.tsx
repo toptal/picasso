@@ -160,6 +160,7 @@ const Example = () => {
         label='Avatar'
         status='No file selected.'
       />
+      <Form.Dropzone label='Attachments' required name='attachments' />
       <Form.Checkbox
         required
         name='legal'
