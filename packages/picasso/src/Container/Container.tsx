@@ -27,11 +27,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoContainer'
 })
 
-export type TruncateProps =
-  | { variant?: BorderableType; bordered?: boolean }
-  | { variant: VariantType; bordered?: never }
-
-interface OriginalProps
+export interface Props<V extends VariantType = VariantType>
   extends StandardProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
@@ -56,12 +52,12 @@ interface OriginalProps
   alignItems?: AlignItemsType
   /** Defines the justify-content style property */
   justifyContent?: JustifyContentType
-  /** Whether white container has border or not */
-  bordered?: boolean
+  /** Whether (`white`, `transparent` ) container has border or not */
+  bordered?: V extends BorderableType ? boolean : never
   /** Whether container has 8px border-radius applied or not */
   rounded?: boolean
   /** Style variant of Notification */
-  variant?: VariantType
+  variant?: V
   /** Gap between elements for a flex container */
   gap?: SpacingType
   /** Component used for the root node */
@@ -69,8 +65,6 @@ interface OriginalProps
   /** Text align of the inner text */
   align?: PropTypes.Alignment
 }
-
-export type Props = OriginalProps & TruncateProps
 
 /**
  * Container component used for spacing 2 elements
