@@ -52,7 +52,7 @@ export interface Props<V extends VariantType = VariantType>
   alignItems?: AlignItemsType
   /** Defines the justify-content style property */
   justifyContent?: JustifyContentType
-  /** Whether (`white`, `transparent` ) container has border or not */
+  /** Whether (`white`, `transparent`) container has border or not */
   bordered?: V extends BorderableType ? boolean : never
   /** Whether container has 8px border-radius applied or not */
   rounded?: boolean
