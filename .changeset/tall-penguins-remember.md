@@ -21,7 +21,7 @@ This change pushed other size types down, making:
 >`xsmall` --> `xxsmall`
 
 There is a [codemod for v17.0.0](https://github.com/toptal/picasso/tree/master/packages/picasso-codemod#v1700) to help you with this transition.
-Note that affects also `TypographyOverflow` component as it is a wrapper for `Typography`
+Note that this codemod also changes props in `TypographyOverflow` and `Amount` component as they are both wrappers for `Typography`
 
 **Other consequences**
 

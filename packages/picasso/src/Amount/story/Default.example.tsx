@@ -7,7 +7,7 @@ const Example = () => (
       <Amount amount={1500} color='green' weight='semibold' size='medium' />
     </Container>
     <Container bottom={1}>
-      <Amount amount={150} color='grey' size='small' />
+      <Amount amount={150} color='grey' size='xsmall' />
     </Container>
     <Container bottom={1}>
       <Amount amount={15} inline={false} />

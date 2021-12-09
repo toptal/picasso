@@ -22,9 +22,17 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 #### `typography-sizes`
 
-Transforms `Typography` and `TypographyOverflow` size prop from `'small' | 'xsmall'` to `'xsmall' | 'xxsmall'`.
+Transforms `Typography`, `TypographyOverflow` and `Amount` size prop from `'small' | 'xsmall'` to `'xsmall' | 'xxsmall'`.
 
 This change only applies to variant `body` (which is default)
+
+> **Remember to run this codemod only once in your structure!**
+> 
+> Because in first run: `small --> xsmall`
+> 
+> but in second run: `xsmall --> xxsmall`
+> 
+> If you need to run it again, revert/checkout previous changes
 
 Here's how the diff should look like:
 
@@ -41,6 +49,12 @@ Here's how the diff should look like:
 +<TypographyOverflow size='xxsmall'>Text</TypographyOverflow>
 -<TypographyOverflow size={condition ? 'small' : 'xsmall'}>Text</TypographyOverflow>
 +<TypographyOverflow size={condition ? 'xsmall' : 'xxsmall'}>Text</TypographyOverflow>
+-<Amount size='small'>Text</Amount>
++<Amount size='xsmall'>Text</Amount>
+-<Amount size='xsmall'>Text</Amount>
++<Amount size='xxsmall'>Text</Amount>
+-<Amount size={condition ? 'small' : 'xsmall'}>Text</Amount>
++<Amount size={condition ? 'xsmall' : 'xxsmall'}>Text</Amount>
 ```
 
 <details>

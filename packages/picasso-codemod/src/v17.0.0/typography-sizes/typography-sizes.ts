@@ -11,6 +11,8 @@ const getNewSize = (oldSize: string): string => {
   }
 }
 
+const affectedComponents = ['Typography', 'TypographyOverflow', 'Amount']
+
 const transform: Transform = (file, api) => {
   const j = api.jscodeshift
 
@@ -20,11 +22,9 @@ const transform: Transform = (file, api) => {
       .filter(path => {
         const { name } = path.node.openingElement
 
-        return ['Typography', 'TypographyOverflow'].includes(
-          (name as JSXIdentifier)?.name
-        )
+        return affectedComponents.includes((name as JSXIdentifier)?.name)
       })
-      // exclude Typography with `variant` prop other than body
+      // exclude components with `variant` prop other than body
       .filter(path => {
         const { attributes } = path.node.openingElement
 
