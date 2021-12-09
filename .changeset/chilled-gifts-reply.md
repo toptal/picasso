@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso': minor
+'@toptal/picasso': major
 ---
 
 ### Container
