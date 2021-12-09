@@ -102,7 +102,7 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
       onClick={onClick}
     >
       <Container align='left'>
-        <Typography size='xsmall' weight='semibold' color={color.label}>
+        <Typography size='xxsmall' weight='semibold' color={color.label}>
           {titleCase ? toTitleCase(label) : label}
         </Typography>
         <Typography size='large' weight='semibold' color={color.value}>

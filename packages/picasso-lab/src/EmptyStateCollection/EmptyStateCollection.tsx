@@ -44,7 +44,7 @@ export const EmptyStateCollection = forwardRef<HTMLDivElement, Props>(
           {iconElement}
         </Container>
         <Container>
-          <Typography size='small'>{children}</Typography>
+          <Typography size='xsmall'>{children}</Typography>
         </Container>
       </Container>
     )
