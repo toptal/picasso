@@ -9,17 +9,17 @@ const useHandleChangeEvent = (
   { onChange }: { onChange: Props['onChange'] }
 ) => {
   useEffect(() => {
-    const { current: editorApi } = editorRef
+    const { current: editor } = editorRef
 
-    if (editorApi) {
+    if (editor) {
       const handler: TextChangeHandler = () => {
-        onChange(editorApi.root.innerHTML)
+        onChange(editor.root.innerHTML)
       }
 
-      editorApi.on('text-change', handler)
+      editor.on('text-change', handler)
 
       return () => {
-        editorApi.off('text-change', handler)
+        editor.off('text-change', handler)
       }
     }
   }, [onChange, editorRef])

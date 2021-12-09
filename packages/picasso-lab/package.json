@@ -45,6 +45,7 @@
   "devDependencies": {
     "@babel/types": "^7.15.0",
     "@types/classnames": "^2.3.1",
+    "@types/quill": "^2.0.9",
     "@types/styled-components": "^5.1.13",
     "storybook-readme": "^5.0.9",
     "styled-components": "^5.3.1"
