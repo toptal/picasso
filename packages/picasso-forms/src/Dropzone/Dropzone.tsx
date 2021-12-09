@@ -16,12 +16,10 @@ type FinalFormOnChangeType = FinalFieldInputProps<
 
 const Dropzone = ({ dropzoneHint, ...props }: Props) => {
   const handleDrop = ({
-    event,
     acceptedFiles,
     value = [],
     finalFormOnChange
   }: {
-    event: React.ChangeEvent<HTMLInputElement>
     acceptedFiles: File[]
     value?: FileUpload[]
     finalFormOnChange: FinalFormOnChangeType
@@ -36,18 +34,17 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
     }))
 
     finalFormOnChange([...value, ...newFiles])
-
-    // reset input
-    if (event?.target) {
-      event.target.value = ''
-    }
   }
 
-  const handleRemove = (
-    fileIndex: number,
-    value: FileUpload[] | undefined = [],
+  const handleRemove = ({
+    fileIndex,
+    value = [],
+    finalFormOnChange
+  }: {
+    fileIndex: number
+    value?: FileUpload[]
     finalFormOnChange: FinalFormOnChangeType
-  ) => {
+  }) => {
     const updatedFiles = value.filter((_, index) => index !== fileIndex)
 
     finalFormOnChange(updatedFiles)
@@ -62,19 +59,19 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
         <PicassoDropzone
           {...inputProps}
           hint={dropzoneHint}
-          onDropAccepted={(
-            acceptedFiles,
-            event: React.ChangeEvent<HTMLInputElement>
-          ) => {
+          onDropAccepted={acceptedFiles => {
             handleDrop({
-              event,
               acceptedFiles,
               value: inputProps.value,
               finalFormOnChange: inputProps.onChange
             })
           }}
           onRemove={(_fileName: string, index: number) => {
-            handleRemove(index, inputProps.value, inputProps.onChange)
+            handleRemove({
+              fileIndex: index,
+              value: inputProps.value,
+              finalFormOnChange: inputProps.onChange
+            })
           }}
         />
       )}
