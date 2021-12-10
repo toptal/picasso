@@ -1,5 +1,11 @@
 # Change Log
 
+## 16.3.1
+
+### Patch Changes
+
+- [#2314](https://github.com/toptal/picasso/pull/2314) [`26117318`](https://github.com/toptal/picasso/commit/26117318ef455be1d4c97acfb61deacdeb9ea3a3) Thanks [@tamatomas](https://github.com/tamatomas)! - Fix `Modal`'s close button overflow by adding the right padding to `Modal.Title`.
+
 ## 16.3.0
 
 ### Minor Changes
