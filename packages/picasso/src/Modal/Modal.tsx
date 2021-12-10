@@ -8,9 +8,12 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import { PaperProps } from '@material-ui/core/Paper'
-import { TransitionProps } from '@material-ui/core/transitions'
 import cx from 'classnames'
-import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  SizeType,
+  TransitionProps
+} from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 
 import { CloseMinor16 } from '../Icon'

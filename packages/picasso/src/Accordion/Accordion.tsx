@@ -8,9 +8,8 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import MUIAccordion from '@material-ui/core/Accordion'
-import { TransitionProps } from '@material-ui/core/transitions'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps, TransitionProps } from '@toptal/picasso-shared'
 
 import { ArrowDownMinor16 } from '../Icon'
 import AccordionSummary from '../AccordionSummary'
