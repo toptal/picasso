@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 
-import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
+import React, { ReactNode, HTMLAttributes, Ref } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { PropTypes } from '@material-ui/core'
 import cx from 'classnames'
@@ -69,10 +69,9 @@ export interface Props<V extends VariantType = VariantType>
 /**
  * Container component used for spacing 2 elements
  */
-export const Container = forwardRef<HTMLDivElement, Props>(function Container(
-  props,
-  ref
-) {
+export const Container = <V extends VariantType>(
+  props: Props<V> & { ref?: Ref<HTMLDivElement> }
+) => {
   const {
     children,
     className,
@@ -92,6 +91,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
     variant,
     align,
     gap,
+    ref,
     as: Component = inline ? 'span' : 'div',
     // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -151,7 +151,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
       {children}
     </Component>
   )
-})
+}
 
 Container.displayName = 'Container'
 
@@ -161,4 +161,4 @@ Container.defaultProps = {
 }
 
 export default Container
-export { VariantType, BorderableType }
+export { VariantType }
