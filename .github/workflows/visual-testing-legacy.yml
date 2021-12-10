@@ -1,8 +1,10 @@
 name: Visual Testing (Legacy)
 
 on:
-  push:
-    branches: [master]
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
 
 jobs:
   tests:
@@ -53,7 +55,7 @@ jobs:
           yarn policies set-version
           yarn install --frozen-lockfile --ignore-optional --offline
 
-      - name: Build packages
+      - name: Build storybook
         run: TEST_ENV=visual yarn build:storybook
         env:
           TEST_ENV: visual
