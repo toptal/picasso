@@ -91,3 +91,8 @@ export type ColorType =
   | 'dark-grey'
   | 'black'
   | 'inherit'
+
+export interface TransitionProps {
+  onExited?: (node: HTMLElement) => void
+  timeout?: number | { enter?: number; exit?: number; appear?: number }
+}
