@@ -16,6 +16,7 @@ import styles, {
   VariantType
 } from './styles'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
+import { forwardRef, documentable } from '../utils'
 
 type ContainerType = 'div' | 'span'
 
@@ -69,89 +70,97 @@ export interface Props<V extends VariantType = VariantType>
 /**
  * Container component used for spacing 2 elements
  */
-export const Container = <V extends VariantType>(
-  props: Props<V> & { ref?: Ref<HTMLDivElement> }
-) => {
-  const {
-    children,
-    className,
-    top,
-    bottom,
-    left,
-    right,
-    padded,
-    inline,
-    flex,
-    direction,
-    alignItems,
-    justifyContent,
-    style,
-    bordered = false,
-    rounded = false,
-    variant,
-    align,
-    gap,
-    ref,
-    as: Component = inline ? 'span' : 'div',
-    // Avoid passing external classes inside the rest props
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    classes: externalClasses,
-    ...rest
-  } = props
+export const Container = documentable(
+  forwardRef(
+    <V extends VariantType>(
+      props: Props<V>,
+      ref: Ref<HTMLDivElement> | null
+    ) => {
+      const {
+        children,
+        className,
+        top,
+        bottom,
+        left,
+        right,
+        padded,
+        inline,
+        flex,
+        direction,
+        alignItems,
+        justifyContent,
+        style,
+        bordered = false,
+        rounded = false,
+        variant,
+        align,
+        gap,
+        as: Component = inline ? 'span' : 'div',
+        // Avoid passing external classes inside the rest props
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        classes: externalClasses,
+        ...rest
+      } = props
 
-  const classes = useStyles(props)
+      const classes = useStyles(props)
 
-  const margins = {
-    ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),
-    ...(typeof bottom === 'number' && { marginBottom: spacingToRem(bottom) }),
-    ...(typeof left === 'number' && { marginLeft: spacingToRem(left) }),
-    ...(typeof right === 'number' && { marginRight: spacingToRem(right) })
-  }
+      const margins = {
+        ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),
+        ...(typeof bottom === 'number' && {
+          marginBottom: spacingToRem(bottom)
+        }),
+        ...(typeof left === 'number' && { marginLeft: spacingToRem(left) }),
+        ...(typeof right === 'number' && { marginRight: spacingToRem(right) })
+      }
 
-  return (
-    <Component
-      {...rest}
-      ref={ref}
-      className={cx(
-        classes[`${variant}Variant`],
-        {
-          [classes[`${padded}Padding`]]: typeof padded === 'string',
-          [classes[`${gap}Gap`]]: typeof gap === 'string',
+      return (
+        <Component
+          {...rest}
+          ref={ref}
+          className={cx(
+            classes[`${variant}Variant`],
+            {
+              [classes[`${padded}Padding`]]: typeof padded === 'string',
+              [classes[`${gap}Gap`]]: typeof gap === 'string',
 
-          [classes[`top${top}Margin`]]: typeof top === 'string',
-          [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
-          [classes[`left${left}Margin`]]: typeof left === 'string',
-          [classes[`right${right}Margin`]]: typeof right === 'string',
+              [classes[`top${top}Margin`]]: typeof top === 'string',
+              [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
+              [classes[`left${left}Margin`]]: typeof left === 'string',
+              [classes[`right${right}Margin`]]: typeof right === 'string',
 
-          [classes[`${align}TextAlign`]]: typeof align === 'string',
+              [classes[`${align}TextAlign`]]: typeof align === 'string',
 
-          [classes[
-            `${kebabToCamelCase(alignItems || '')}AlignItems`
-          ]]: alignItems,
+              [classes[
+                `${kebabToCamelCase(alignItems || '')}AlignItems`
+              ]]: alignItems,
 
-          [classes[
-            `${kebabToCamelCase(justifyContent || '')}JustifyContent`
-          ]]: justifyContent,
+              [classes[
+                `${kebabToCamelCase(justifyContent || '')}JustifyContent`
+              ]]: justifyContent,
 
-          [classes.bordered]: bordered,
-          [classes.rounded]: rounded,
-          [classes.flex]: flex,
-          [classes.inline]: inline,
-          [classes.column]: direction === 'column'
-        },
-        className
-      )}
-      style={{
-        ...margins,
-        ...(typeof padded === 'number' && { padding: spacingToRem(padded) }),
-        ...(typeof gap === 'number' && { gap: spacingToRem(gap) }),
-        ...style
-      }}
-    >
-      {children}
-    </Component>
+              [classes.bordered]: bordered,
+              [classes.rounded]: rounded,
+              [classes.flex]: flex,
+              [classes.inline]: inline,
+              [classes.column]: direction === 'column'
+            },
+            className
+          )}
+          style={{
+            ...margins,
+            ...(typeof padded === 'number' && {
+              padding: spacingToRem(padded)
+            }),
+            ...(typeof gap === 'number' && { gap: spacingToRem(gap) }),
+            ...style
+          }}
+        >
+          {children}
+        </Component>
+      )
+    }
   )
-}
+)
 
 Container.displayName = 'Container'
 
