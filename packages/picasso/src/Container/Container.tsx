@@ -16,7 +16,7 @@ import styles, {
   VariantType
 } from './styles'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
-import { forwardRef, documentable } from '../utils'
+import { forwardRef, documentable } from '../utils/forward-ref'
 
 type ContainerType = 'div' | 'span'
 
