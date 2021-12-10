@@ -9,15 +9,15 @@ on:
 jobs:
   tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    
     runs-on: ubuntu-latest
+    container:
+      image: 'node:14.18.2-alpine3.14'
+
     timeout-minutes: 45
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    container:
-      image: cypress/included:8.7.0
-      options: --privileged # thanks to this we can increase number of file watchers below
 
     steps:
       - name: Cancel Previous Runs
