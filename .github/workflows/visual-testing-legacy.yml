@@ -18,6 +18,8 @@ jobs:
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+      CHROME_BIN: /usr/bin/chromium-browser
 
     steps:
       - name: Install Chromium
@@ -59,7 +61,7 @@ jobs:
           yarn install --frozen-lockfile --ignore-optional --offline
 
       - name: Build storybook
-        run: TEST_ENV=visual yarn build:storybook
+        run: yarn build:storybook
         env:
           TEST_ENV: visual
 
