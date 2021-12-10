@@ -1,4 +1,4 @@
-name: Visual Testing
+name: Visual Testing (Legacy)
 
 on:
   push:
