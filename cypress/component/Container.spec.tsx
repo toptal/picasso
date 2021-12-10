@@ -5,6 +5,7 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { VariantType } from '@toptal/picasso/src/Container/styles'
 
 const colors: VariantType[] = [
+  'transparent',
   'red',
   'green',
   'white',
@@ -12,6 +13,8 @@ const colors: VariantType[] = [
   'blue',
   'grey'
 ]
+
+const borderableColors: VariantType[] = ['white', 'transparent']
 
 describe('Container', () => {
   it('renders', () => {
@@ -42,5 +45,46 @@ describe('Container', () => {
       )
       cy.get('body').happoScreenshot()
     })
+
+    it('renders all variants with grey background', () => {
+      mount(
+        <TestingPicasso>
+          <div style={{ backgroundColor: 'grey' }}>
+            {colors.map(color => (
+              <Container
+                padded='medium'
+                bottom='small'
+                top='small'
+                variant={color}
+                key={color}
+              >
+                {color} variant
+              </Container>
+            ))}
+          </div>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+  })
+
+  it('renders white and transparent variants with borders', () => {
+    mount(
+      <TestingPicasso>
+        {borderableColors.map(color => (
+          <Container
+            padded='medium'
+            bottom='small'
+            top='small'
+            variant={color}
+            key={color}
+            bordered
+          >
+            {color} variant
+          </Container>
+        ))}
+      </TestingPicasso>
+    )
+    cy.get('body').happoScreenshot()
   })
 })
