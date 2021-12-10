@@ -12,7 +12,7 @@ jobs:
     
     runs-on: ubuntu-latest
     container:
-      image: 'node:14.18.2-alpine3.14'
+      image: 'node:14-alpine3.14'
 
     timeout-minutes: 45
 
@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Install Chromium
-        run: apk add --no-cache  chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/main
+        run: apk add chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/community
 
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.6.0
