@@ -64,7 +64,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
   const normalizedMax = Number(max)
 
   const fireEvent = (nextValue: number) => {
-    if (typeof nativeInputValueSetter !== 'function') {
+    if (!nativeInputValueSetter) {
       return
     }
 
