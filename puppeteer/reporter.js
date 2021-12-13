@@ -69,23 +69,24 @@ class ImageReporter {
       process.exit(1)
     }
 
-    const resultsFolder = path.resolve(config.diffOutputPath, assignOutputDir)
-    if (!fs.existsSync(resultsFolder)) {
-      fs.mkdirSync(resultsFolder)
+    if (!fs.existsSync(config.diffOutputPath)) {
+      fs.mkdirSync(config.diffOutputPath)
     }
 
-    const resultsFilePath = path.resolve(resultsFolder, 'index.html')
+    const resultsFilePath = path.resolve(config.diffOutputPath, 'index.html')
 
     fs.writeFileSync(resultsFilePath, output)
   }
 
   writeResultsStats(data) {
-    const resultsFolder = path.resolve(config.diffOutputPath, assignOutputDir)
-    if (!fs.existsSync(resultsFolder)) {
-      fs.mkdirSync(resultsFolder)
+    if (!fs.existsSync(config.diffOutputPath)) {
+      fs.mkdirSync(config.diffOutputPath)
     }
 
-    const resultsStatsFilePath = path.resolve(resultsFolder, 'stats.json')
+    const resultsStatsFilePath = path.resolve(
+      config.diffOutputPath,
+      'stats.json'
+    )
 
     fs.writeFileSync(resultsStatsFilePath, JSON.stringify(data, null, 2))
   }

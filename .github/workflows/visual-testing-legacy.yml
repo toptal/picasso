@@ -72,4 +72,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: visual-diff-html
-          path: __diff_output__/${{ github.event.pull_request.head.sha }}/index.html
+          path: __diff_output__/index.html
