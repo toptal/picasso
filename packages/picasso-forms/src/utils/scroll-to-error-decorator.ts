@@ -1,5 +1,10 @@
 import { FormApi } from 'final-form'
 
+type ScrollToErrorProps = {
+  autoScrollOnErrors?: boolean
+  autoFocusOnScrollToErrors?: boolean
+}
+
 const UNHIDDEN_INPUT_SELECTOR = 'input:not([type=hidden])'
 
 const getErrorField = () =>
@@ -26,16 +31,24 @@ const getErrorFieldWithRetries = async () => {
   }
 }
 
-const scrollTo = (field: HTMLElement) => {
+const scrollTo = (
+  field: HTMLElement,
+  options?: { autoFocusOnScrollToErrors: boolean }
+) => {
   field.scrollIntoView({ block: 'center', behavior: 'smooth' })
-  field
-    .querySelector<HTMLInputElement>(UNHIDDEN_INPUT_SELECTOR)
-    ?.focus({ preventScroll: true })
+  if (options?.autoFocusOnScrollToErrors) {
+    field
+      .querySelector<HTMLInputElement>(UNHIDDEN_INPUT_SELECTOR)
+      ?.focus({ preventScroll: true })
+  }
 }
 
 let state: { errors?: object; submitErrors?: object } = {}
 
-export default () => <T>(form: FormApi<T>) => {
+export default ({
+  autoScrollOnErrors = true,
+  autoFocusOnScrollToErrors = true
+}: ScrollToErrorProps = {}) => <T>(form: FormApi<T>) => {
   const originalSubmit = form.submit
 
   const unsubscribe = form.subscribe(
@@ -52,7 +65,7 @@ export default () => <T>(form: FormApi<T>) => {
       const field = await getErrorFieldWithRetries()
 
       if (field) {
-        scrollTo(field)
+        scrollTo(field, { autoFocusOnScrollToErrors })
       }
     }
   }
@@ -61,10 +74,12 @@ export default () => <T>(form: FormApi<T>) => {
   form.submit = () => {
     const result = originalSubmit.call(form)
 
-    if (result && typeof result.then === 'function') {
-      result.then(scrollOnErrors).catch(() => {})
-    } else {
-      scrollOnErrors()
+    if (autoScrollOnErrors) {
+      if (result && typeof result.then === 'function') {
+        result.then(scrollOnErrors).catch(() => {})
+      } else {
+        scrollOnErrors()
+      }
     }
 
     return result

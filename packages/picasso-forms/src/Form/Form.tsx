@@ -35,6 +35,8 @@ import {
 } from './FormContext'
 
 export type Props<T = AnyObject> = FinalFormProps<T> & {
+  autoScrollOnErrors?: boolean
+  autoFocusOnScrollToErrors?: boolean
   autoComplete?: HTMLFormElement['autocomplete']
   successSubmitMessage?: ReactNode
   failedSubmitMessage?: ReactNode
@@ -71,6 +73,8 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
   const {
     children,
     autoComplete,
+    autoScrollOnErrors,
+    autoFocusOnScrollToErrors,
     onSubmit,
     successSubmitMessage,
     failedSubmitMessage,
@@ -80,7 +84,11 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
   } = props
   const { showSuccess, showError } = useNotifications()
   const scrollToErrorDecorator = useMemo(
-    () => createScrollToErrorDecorator(),
+    () =>
+      createScrollToErrorDecorator({
+        autoScrollOnErrors,
+        autoFocusOnScrollToErrors
+      }),
     []
   )
 
