@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
 
 import type { EditorRefType } from '../types'
-import { Props } from '../TextEditor'
 
 const useDisableEditor = (
   editorRef: EditorRefType,
-  { disabled }: { disabled: Props['disabled'] }
+  { disabled }: { disabled?: boolean }
 ) => {
   useEffect(() => {
     if (editorRef.current) {

@@ -1,7 +1,13 @@
 import { useEffect } from 'react'
 import Quill, { QuillOptionsStatic } from 'quill'
 
-import type { EditorRefType, EditorOptionsType } from '../types'
+import type { EditorRefType } from '../types'
+import { Props } from '../TextEditor'
+
+type EditorOptionsType = {
+  id: Props['id']
+  placeholder?: Props['placeholder']
+}
 
 const modules: QuillOptionsStatic['modules'] = {
   // tools we provide to format text
