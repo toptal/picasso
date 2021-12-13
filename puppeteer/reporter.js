@@ -17,6 +17,10 @@ const STATES = {
 }
 
 const toBase64 = pathToFile => {
+  if (!fs.existsSync(pathToFile)) {
+    return undefined
+  }
+
   var bitmap = fs.readFileSync(pathToFile)
   return Buffer.from(bitmap).toString('base64')
 }
@@ -45,7 +49,7 @@ class ImageReporter {
       const testResult = {
         duration,
         path: diffFilename,
-        base64: isFailed ? toBase64(pathToDiffFile) : undefined,
+        base64: toBase64(pathToDiffFile),
         title
       }
 
