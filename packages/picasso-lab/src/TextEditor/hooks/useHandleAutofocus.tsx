@@ -1,11 +1,10 @@
 import { useEffect, useRef } from 'react'
 
 import type { EditorRefType } from '../types'
-import { Props } from '../TextEditor'
 
 const useHandleAutofocus = (
   editorRef: EditorRefType,
-  { autofocus }: { autofocus: Props['autofocus'] }
+  { autofocus }: { autofocus?: boolean }
 ) => {
   const firstRender = useRef(true)
 
