@@ -52,6 +52,11 @@ module.exports = (on, config) => {
     loader: require.resolve('url-loader')
   })
 
+  webpackConfig.module.rules.push({
+    test: /\.css$/i,
+    use: ['style-loader', 'css-loader']
+  })
+
   on('task', happoTask)
   on('dev-server:start', options =>
     startDevServer({ options, webpackConfig: webpackConfig })
