@@ -1,5 +1,19 @@
 # Change Log
 
+## 16.4.0
+
+### Minor Changes
+
+- [#2318](https://github.com/toptal/picasso/pull/2318) [`9f6579ad`](https://github.com/toptal/picasso/commit/9f6579ad97304aaa39ef3a388fda6b0ac1a4c2f6) Thanks [@pudek357](https://github.com/pudek357)! - increase maxHeight for ScrollMenu
+
+* [#2315](https://github.com/toptal/picasso/pull/2315) [`ee92ee0c`](https://github.com/toptal/picasso/commit/ee92ee0cdb2aa0d4b679b25cb1b34be48d5c7a71) Thanks [@ascrazy](https://github.com/ascrazy)! - \* Add `transitionProps` prop for the `Modal`
+  - Add `transitionProps` prop for the `Accordion`
+
+### Patch Changes
+
+- Updated dependencies [[`ee92ee0c`](https://github.com/toptal/picasso/commit/ee92ee0cdb2aa0d4b679b25cb1b34be48d5c7a71)]:
+  - @toptal/picasso-shared@7.1.0
+
 ## 16.3.1
 
 ### Patch Changes

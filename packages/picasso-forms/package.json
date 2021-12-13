@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-forms",
-  "version": "18.0.0",
+  "version": "19.0.0",
   "description": "Picasso form components",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
@@ -23,9 +23,9 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso": "^16.3.0",
-    "@toptal/picasso-lab": "^21.0.0",
-    "@toptal/picasso-shared": "^7.0.2",
+    "@toptal/picasso": "^16.4.0",
+    "@toptal/picasso-lab": "^22.0.0",
+    "@toptal/picasso-shared": "^7.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },

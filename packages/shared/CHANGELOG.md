@@ -1,5 +1,12 @@
 # Change Log
 
+## 7.1.0
+
+### Minor Changes
+
+- [#2315](https://github.com/toptal/picasso/pull/2315) [`ee92ee0c`](https://github.com/toptal/picasso/commit/ee92ee0cdb2aa0d4b679b25cb1b34be48d5c7a71) Thanks [@ascrazy](https://github.com/ascrazy)! - \* Add `transitionProps` prop for the `Modal`
+  - Add `transitionProps` prop for the `Accordion`
+
 ## 7.0.2
 
 ### Patch Changes
