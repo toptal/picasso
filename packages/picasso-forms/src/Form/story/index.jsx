@@ -10,6 +10,22 @@ page
     component: Form,
     name: 'Form',
     additionalDocs: {
+      autoScrollOnErrors: {
+        name: 'autoScrollOnErrors',
+        type: {
+          name: 'boolean'
+        },
+        description: `Screen going to be scrolled to the first occur error field of the form on the page. If disabled, no scroll will occur.`,
+        defaultValue: true
+      },
+      autoFocusOnScrollToErrors: {
+        name: 'autoFocusOnScrollToErrors',
+        type: {
+          name: 'boolean'
+        },
+        description: `Error field going to be focused, if form failed to be submitted. Valid only if 'autoScrollOnErrors' is enabled. If disabled, no auto-focus will happen.`,
+        defaultValue: true
+      },
       autoComplete: {
         name: 'autoComplete',
         type: {
