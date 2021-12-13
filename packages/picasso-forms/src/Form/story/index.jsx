@@ -10,6 +10,14 @@ page
     component: Form,
     name: 'Form',
     additionalDocs: {
+      disableScrollOnError: {
+        name: 'disableScrollOnError',
+        type: {
+          name: 'boolean'
+        },
+        description: `Whether to scroll to the failed field on the form error.`,
+        defaultValue: 'false'
+      },
       autoComplete: {
         name: 'autoComplete',
         type: {
@@ -97,7 +105,7 @@ Tip: It is possible to have autocomplete 'on' for the form, and 'off' for specif
         type: 'boolean',
         description:
           'If true, validation will happen on blur. If false, validation will happen on change',
-        defaultValue: false
+        defaultValue: 'false'
       },
       successSubmitMessage: {
         name: 'successSubmitMessage',
@@ -205,4 +213,8 @@ however, you may need custom validators for more complex types of fields.
   .addExample('Form/story/TitleCase.example.tsx', {
     title: 'Title case',
     description: "Display the field's label in title case."
+  }) // picasso-skip-visuals
+  .addExample('Form/story/NoScrolling.example.tsx', {
+    title: 'No scrolling case',
+    description: "Showcase Form's behavior on form submission error."
   }) // picasso-skip-visuals

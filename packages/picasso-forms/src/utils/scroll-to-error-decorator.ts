@@ -1,6 +1,10 @@
 import { FormApi } from 'final-form'
 
-const UNHIDDEN_INPUT_SELECTOR = 'input:not([type=hidden])'
+import { scrollTo } from './scroll-to'
+
+type ScrollToErrorProps = {
+  disableScrollOnError?: boolean
+}
 
 const getErrorField = () =>
   document.querySelector<HTMLElement>('[data-field-has-error="true"]')
@@ -26,16 +30,11 @@ const getErrorFieldWithRetries = async () => {
   }
 }
 
-const scrollTo = (field: HTMLElement) => {
-  field.scrollIntoView({ block: 'center', behavior: 'smooth' })
-  field
-    .querySelector<HTMLInputElement>(UNHIDDEN_INPUT_SELECTOR)
-    ?.focus({ preventScroll: true })
-}
-
 let state: { errors?: object; submitErrors?: object } = {}
 
-export default () => <T>(form: FormApi<T>) => {
+export default ({ disableScrollOnError }: ScrollToErrorProps = {}) => <T>(
+  form: FormApi<T>
+) => {
   const originalSubmit = form.submit
 
   const unsubscribe = form.subscribe(
@@ -60,6 +59,10 @@ export default () => <T>(form: FormApi<T>) => {
   // Rewrite submit function
   form.submit = () => {
     const result = originalSubmit.call(form)
+
+    if (disableScrollOnError) {
+      return result
+    }
 
     if (result && typeof result.then === 'function') {
       result.then(scrollOnErrors).catch(() => {})
