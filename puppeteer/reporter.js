@@ -16,10 +16,13 @@ const STATES = {
   success: 'SUCCESS'
 }
 
-function toBase64(path) {
-  var bitmap = fs.readFileSync(path)
+const toBase64 = pathToFile => {
+  var bitmap = fs.readFileSync(pathToFile)
   return Buffer.from(bitmap).toString('base64')
 }
+
+const withDiffOutputPath = relativePath =>
+  path.resolve(config.diffOutputPath, relativePath)
 
 class ImageReporter {
   constructor(globalConfig, options) {
@@ -36,10 +39,11 @@ class ImageReporter {
 
     const tests = testResults.map(({ failureMessages, title, duration }) => {
       const diffFilename = `${createSnapshotName(title)}-diff.png`
+      const pathToDiffFile = withDiffOutputPath(diffFilename)
       const testResult = {
         duration,
-        path: diffFilename,
-        base64: toBase64(diffFilename),
+        path: pathToDiffFile,
+        base64: toBase64(pathToDiffFile),
         title
       }
 
@@ -79,9 +83,7 @@ class ImageReporter {
       fs.mkdirSync(config.diffOutputPath)
     }
 
-    const resultsFilePath = path.resolve(config.diffOutputPath, 'index.html')
-
-    fs.writeFileSync(resultsFilePath, output)
+    fs.writeFileSync(withDiffOutputPath('index.html'), output)
   }
 
   writeResultsStats(data) {
@@ -89,12 +91,10 @@ class ImageReporter {
       fs.mkdirSync(config.diffOutputPath)
     }
 
-    const resultsStatsFilePath = path.resolve(
-      config.diffOutputPath,
-      'stats.json'
+    fs.writeFileSync(
+      withDiffOutputPath('stats.json'),
+      JSON.stringify(data, null, 2)
     )
-
-    fs.writeFileSync(resultsStatsFilePath, JSON.stringify(data, null, 2))
   }
 }
 
