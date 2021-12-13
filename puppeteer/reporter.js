@@ -16,6 +16,11 @@ const STATES = {
   success: 'SUCCESS'
 }
 
+function toBase64(path) {
+  var bitmap = fs.readFileSync(path)
+  return Buffer.from(bitmap).toString('base64')
+}
+
 class ImageReporter {
   constructor(globalConfig, options) {
     this._globalConfig = globalConfig
@@ -34,6 +39,7 @@ class ImageReporter {
       const testResult = {
         duration,
         path: diffFilename,
+        base64: toBase64(diffFilename),
         title
       }
 
