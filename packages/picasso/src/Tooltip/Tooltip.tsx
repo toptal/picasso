@@ -13,7 +13,7 @@ import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 import { usePicassoRoot } from '@toptal/picasso-provider'
 
-import { isBrowser, isPointerDevice } from '../utils'
+import { isPointerDevice } from '../utils'
 import styles from './styles'
 
 export type VariantType = 'light' | 'dark'
@@ -70,22 +70,10 @@ const useTooltipState = ({ externalOpen }: UseTooltipStateOptions) => {
   }
 }
 
-const checkIfItIsATouchDevice = (): boolean | undefined => {
-  if (!isBrowser()) {
-    return undefined
-  }
+const getDelayDuration = (delay: DelayType) => {
+  const isTouchDevice = !isPointerDevice()
 
-  return !isPointerDevice()
-}
-
-const getDelayDuration = (delay: DelayType): number | undefined => {
-  const isTouchDevice = checkIfItIsATouchDevice()
-
-  return isTouchDevice === undefined
-    ? undefined
-    : isTouchDevice
-    ? 0
-    : delayDurations[delay]
+  return isTouchDevice ? 0 : delayDurations[delay]
 }
 
 const useTooltipHandlers = ({
@@ -95,7 +83,7 @@ const useTooltipHandlers = ({
   disableListeners,
   children
 }: UseTooltipHandlersOptions) => {
-  const isTouchDevice = checkIfItIsATouchDevice()
+  const isTouchDevice = !isPointerDevice()
   // After closing with click the tooltip should not be opened againg until the mouse leave event
   const [ignoreOpening, setIgnoreOpening] = useState(false)
   const { isOpen, isControlled, openTooltip, closeTooltip } = useTooltipState({
