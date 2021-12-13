@@ -28,3 +28,12 @@
 <Container variant='red' bordered>some text</Container>
 <Container variant='non-existing-color' bordered>some text</Container>
 ```
+
+#### CODEMOD: updating existing code
+
+Removes `bordered` prop from `Container` which do not require.
+
+```bash
+# <TARGET>: any .tsx file you want. Example: src/**/*.tsx
+npx jscodeshift --parser=tsx -t packages/picasso-codemod/src/v17.0.0/container-borders/container-borders.ts <TARGET>
+```
