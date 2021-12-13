@@ -9,9 +9,9 @@ const useHandleAutofocus = (
   const firstRender = useRef(true)
 
   useEffect(() => {
-    const editorApi = editorRef?.current
+    const editorApi = editorRef.current
 
-    if (firstRender?.current && editorApi && autofocus) {
+    if (firstRender.current && editorApi && autofocus) {
       editorApi.focus()
       firstRender.current = false
     }
