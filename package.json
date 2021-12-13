@@ -32,7 +32,7 @@
     "test:unit:ci": "yarn test:unit --maxWorkers=4 --ci",
     "test:unit:watch": "yarn test:unit --watch",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
-    "test:visual:legacy": "cross-env TEST_ENV=visual jest --runInBand --testEnvironment=./puppeteer/environment.js --config=./puppeteer/puppeteer.jest.config.js -t Helpbox",
+    "test:visual:legacy": "cross-env TEST_ENV=visual jest --runInBand --testEnvironment=./puppeteer/environment.js --config=./puppeteer/puppeteer.jest.config.js",
     "test:visual:ci": "./bin/test-visual --ci",
     "typecheck": "tsc --noEmit & tsc -p ./cypress/tsconfig.json",
     "prepublish": "if [ -f 'yarn.lock' ]; then yarn-deduplicate yarn.lock; fi"
