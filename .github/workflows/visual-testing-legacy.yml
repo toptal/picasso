@@ -68,8 +68,11 @@ jobs:
       - name: Visual Tests
         run: yarn test:visual:legacy
 
+      - name: Check Diff HTML
+        run: ls ./__diff_output__
+
       - name: Upload Diff HTML
         uses: actions/upload-artifact@v2
         with:
           name: visual-diff-html
-          path: __diff_output__/index.html
+          path: ./__diff_output__/index.html
