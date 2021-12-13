@@ -11,8 +11,6 @@ jobs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     
     runs-on: ubuntu-latest
-    container:
-      image: 'node:14-alpine3.14'
 
     timeout-minutes: 45
 
@@ -22,9 +20,6 @@ jobs:
       CHROME_BIN: /usr/bin/chromium-browser
 
     steps:
-      - name: Install Chromium
-        run: apk add chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/community
-
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.6.0
         with:
@@ -73,4 +68,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: visual-diff-html-${{ github.sha }}
-          path: __diff_output__/index.html
+          path: __diff_output__/*

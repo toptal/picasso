@@ -16,15 +16,6 @@ const STATES = {
   success: 'SUCCESS'
 }
 
-const toBase64 = pathToFile => {
-  if (!fs.existsSync(pathToFile)) {
-    return undefined
-  }
-
-  var bitmap = fs.readFileSync(pathToFile)
-  return `data:image/png;base64,${Buffer.from(bitmap).toString('base64')}`
-}
-
 const withDiffOutputPath = relativePath =>
   path.resolve(config.diffOutputPath, relativePath)
 
@@ -45,11 +36,9 @@ class ImageReporter {
       const isFailed = failureMessages.some(message => isTestFailed(message))
 
       const diffFilename = `${createSnapshotName(title)}-diff.png`
-      const pathToDiffFile = withDiffOutputPath(diffFilename)
       const testResult = {
         duration,
         path: diffFilename,
-        imageSrc: toBase64(pathToDiffFile),
         title
       }
 

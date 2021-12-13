@@ -65,7 +65,7 @@ var GENERATION_TIME = new Date().toLocaleDateString('en-us', options)
                   <td><%= test.duration %>ms</td>
                   <td>
                     <% if (failed) { %>
-                      <img src="<%= test.imageSrc %>" />
+                      <img src="<%= test.path %>" />
                     <% } else { %>
                       No problems found
                     <% } %>
