@@ -38,16 +38,16 @@ class ImageReporter {
     }
 
     const tests = testResults.map(({ failureMessages, title, duration }) => {
+      const isFailed = failureMessages.some(message => isTestFailed(message))
+
       const diffFilename = `${createSnapshotName(title)}-diff.png`
       const pathToDiffFile = withDiffOutputPath(diffFilename)
       const testResult = {
         duration,
-        path: pathToDiffFile,
-        base64: toBase64(pathToDiffFile),
+        path: diffFilename,
+        base64: isFailed ? toBase64(pathToDiffFile) : undefined,
         title
       }
-
-      const isFailed = failureMessages.some(message => isTestFailed(message))
 
       return {
         ...testResult,
