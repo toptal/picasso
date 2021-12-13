@@ -4,14 +4,10 @@ const exec = require('child_process').execSync
 
 const { assertVisuals } = require('./index')
 const config = require('./config')
-const {
-  createSnapshotName,
-  createHumanName,
-  assignOutputDir
-} = require('./utils')
+const { createSnapshotName, createHumanName } = require('./utils')
 
 const stories = global.__STORYSHOTS__
-const outputPath = assignOutputDir
+const outputPath = config.diffOutputPath
 
 exec(`rm -rf ${outputPath}/*`)
 
