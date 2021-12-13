@@ -68,13 +68,9 @@ jobs:
       - name: Visual Tests
         run: yarn test:visual:legacy
 
-      - name: Check Diff HTML
-        if: failure()
-        run: ls __diff_output__
-
       - name: Upload Diff HTML
         if: failure()
         uses: actions/upload-artifact@v2
         with:
-          name: visual-diff-html
+          name: visual-diff-html-${{ github.sha }}
           path: __diff_output__/index.html

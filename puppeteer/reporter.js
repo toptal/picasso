@@ -22,7 +22,7 @@ const toBase64 = pathToFile => {
   }
 
   var bitmap = fs.readFileSync(pathToFile)
-  return Buffer.from(bitmap).toString('base64')
+  return `data:image/png;base64,${Buffer.from(bitmap).toString('base64')}`
 }
 
 const withDiffOutputPath = relativePath =>
@@ -49,7 +49,7 @@ class ImageReporter {
       const testResult = {
         duration,
         path: diffFilename,
-        base64: toBase64(pathToDiffFile),
+        imageSrc: toBase64(pathToDiffFile),
         title
       }
 
