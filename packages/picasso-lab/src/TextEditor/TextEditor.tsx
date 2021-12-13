@@ -11,8 +11,7 @@ import useHandleChangeEvent from './hooks/useHandleChangeEvent'
 import useHandleChangeFromController from './hooks/useHandleChangeFromController'
 import useDisableEditor from './hooks/useDisableEditor'
 import useHandleAutofocus from './hooks/useHandleAutofocus'
-
-type HTMLString = string
+import { HTMLString, TextEditorChangeHandler } from './types'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -38,7 +37,7 @@ export interface Props extends BaseProps {
   /**
    * Callback on text change
    */
-  onChange: (value: HTMLString) => void
+  onChange: TextEditorChangeHandler
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
   /**

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextEditor } from '@toptal/picasso-lab'
+import { TextEditor, TextEditorChangeHandler } from '@toptal/picasso-lab'
 import { Container } from '@toptal/picasso'
 
 const Example = () => {
@@ -7,7 +7,7 @@ const Example = () => {
     '<p>Look at my test, my test is amazing!</p>'
   )
 
-  const handleChange = (newValue?: string) => setValue(newValue)
+  const handleChange: TextEditorChangeHandler = newValue => setValue(newValue)
 
   return (
     <>

@@ -32,7 +32,7 @@ export type { SectionProps } from './Section'
 export { default as Note } from './Note'
 export type { NoteProps } from './Note'
 export { default as TextEditor } from './TextEditor'
-export type { TextEditorProps } from './TextEditor'
+export type { TextEditorProps, TextEditorChangeHandler } from './TextEditor'
 export { default as Timeline } from './Timeline'
 export type { TimelineProps } from './Timeline'
 // hygen code generator inserts export statements above this comment.
