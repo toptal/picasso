@@ -73,7 +73,7 @@ const arrowGenerator = (color: string) => {
   }
 }
 
-export default ({ palette, shadows, sizes }: Theme) =>
+export default ({ palette, shadows, sizes: { borderRadius } }: Theme) =>
   createStyles({
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     arrowPopper: arrowGenerator(palette.grey.darker!),
@@ -84,7 +84,7 @@ export default ({ palette, shadows, sizes }: Theme) =>
       fontSize: rem('13px'),
       lineHeight: '1.5em',
       padding: '1rem',
-      borderRadius: sizes?.borderRadius?.small,
+      borderRadius: borderRadius.small,
       position: 'relative'
     },
     arrowPopperLight: arrowGenerator(palette.common.white),
