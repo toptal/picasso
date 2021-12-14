@@ -11,6 +11,8 @@ jobs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     
     runs-on: ubuntu-latest
+    container:
+      image: 'node:14-alpine3.14'
 
     timeout-minutes: 45
 
@@ -20,6 +22,9 @@ jobs:
       CHROME_BIN: /usr/bin/chromium-browser
 
     steps:
+      - name: Install Chromium
+        run: apk add chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/community
+
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.6.0
         with:
@@ -27,6 +32,9 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Increase max_user_watches
+        run: echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
