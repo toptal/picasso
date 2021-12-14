@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 
-import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
+import React, { ReactNode, HTMLAttributes, Ref } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { PropTypes } from '@material-ui/core'
 import cx from 'classnames'
@@ -10,20 +10,25 @@ import {
   spacingToRem
 } from '@toptal/picasso-shared'
 
-import styles, { AlignItemsType, JustifyContentType } from './styles'
+import styles, {
+  AlignItemsType,
+  JustifyContentType,
+  VariantType
+} from './styles'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
+import { forwardRef, documentable } from '../utils/forward-ref'
 
 type ContainerType = 'div' | 'span'
 
 type DirectionType = 'row' | 'column'
 
-export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue' | 'grey'
+type BorderableType = 'transparent' | 'white'
 
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoContainer'
 })
 
-export interface Props
+export interface Props<V extends VariantType = VariantType>
   extends StandardProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
@@ -48,12 +53,12 @@ export interface Props
   alignItems?: AlignItemsType
   /** Defines the justify-content style property */
   justifyContent?: JustifyContentType
-  /** Whether container has border or not */
-  bordered?: boolean
+  /** Whether (`white`, `transparent`) container has border or not */
+  bordered?: V extends BorderableType ? boolean : never
   /** Whether container has 8px border-radius applied or not */
   rounded?: boolean
   /** Style variant of Notification */
-  variant?: VariantType
+  variant?: V
   /** Gap between elements for a flex container */
   gap?: SpacingType
   /** Component used for the root node */
@@ -65,89 +70,97 @@ export interface Props
 /**
  * Container component used for spacing 2 elements
  */
-export const Container = forwardRef<HTMLDivElement, Props>(function Container(
-  props,
-  ref
-) {
-  const {
-    children,
-    className,
-    top,
-    bottom,
-    left,
-    right,
-    padded,
-    inline,
-    flex,
-    direction,
-    alignItems,
-    justifyContent,
-    style,
-    bordered = false,
-    rounded = false,
-    variant,
-    align,
-    gap,
-    as: Component = inline ? 'span' : 'div',
-    // Avoid passing external classes inside the rest props
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    classes: externalClasses,
-    ...rest
-  } = props
+export const Container = documentable(
+  forwardRef(
+    <V extends VariantType>(
+      props: Props<V>,
+      ref: Ref<HTMLDivElement> | null
+    ) => {
+      const {
+        children,
+        className,
+        top,
+        bottom,
+        left,
+        right,
+        padded,
+        inline,
+        flex,
+        direction,
+        alignItems,
+        justifyContent,
+        style,
+        bordered = false,
+        rounded = false,
+        variant,
+        align,
+        gap,
+        as: Component = inline ? 'span' : 'div',
+        // Avoid passing external classes inside the rest props
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        classes: externalClasses,
+        ...rest
+      } = props
 
-  const classes = useStyles(props)
+      const classes = useStyles(props)
 
-  const margins = {
-    ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),
-    ...(typeof bottom === 'number' && { marginBottom: spacingToRem(bottom) }),
-    ...(typeof left === 'number' && { marginLeft: spacingToRem(left) }),
-    ...(typeof right === 'number' && { marginRight: spacingToRem(right) })
-  }
+      const margins = {
+        ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),
+        ...(typeof bottom === 'number' && {
+          marginBottom: spacingToRem(bottom)
+        }),
+        ...(typeof left === 'number' && { marginLeft: spacingToRem(left) }),
+        ...(typeof right === 'number' && { marginRight: spacingToRem(right) })
+      }
 
-  return (
-    <Component
-      {...rest}
-      ref={ref}
-      className={cx(
-        classes[`${variant}Variant`],
-        {
-          [classes[`${padded}Padding`]]: typeof padded === 'string',
-          [classes[`${gap}Gap`]]: typeof gap === 'string',
+      return (
+        <Component
+          {...rest}
+          ref={ref}
+          className={cx(
+            classes[`${variant}Variant`],
+            {
+              [classes[`${padded}Padding`]]: typeof padded === 'string',
+              [classes[`${gap}Gap`]]: typeof gap === 'string',
 
-          [classes[`top${top}Margin`]]: typeof top === 'string',
-          [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
-          [classes[`left${left}Margin`]]: typeof left === 'string',
-          [classes[`right${right}Margin`]]: typeof right === 'string',
+              [classes[`top${top}Margin`]]: typeof top === 'string',
+              [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
+              [classes[`left${left}Margin`]]: typeof left === 'string',
+              [classes[`right${right}Margin`]]: typeof right === 'string',
 
-          [classes[`${align}TextAlign`]]: typeof align === 'string',
+              [classes[`${align}TextAlign`]]: typeof align === 'string',
 
-          [classes[
-            `${kebabToCamelCase(alignItems || '')}AlignItems`
-          ]]: alignItems,
+              [classes[
+                `${kebabToCamelCase(alignItems || '')}AlignItems`
+              ]]: alignItems,
 
-          [classes[
-            `${kebabToCamelCase(justifyContent || '')}JustifyContent`
-          ]]: justifyContent,
+              [classes[
+                `${kebabToCamelCase(justifyContent || '')}JustifyContent`
+              ]]: justifyContent,
 
-          [classes.bordered]: bordered,
-          [classes.rounded]: rounded,
-          [classes.flex]: flex,
-          [classes.inline]: inline,
-          [classes.column]: direction === 'column'
-        },
-        className
-      )}
-      style={{
-        ...margins,
-        ...(typeof padded === 'number' && { padding: spacingToRem(padded) }),
-        ...(typeof gap === 'number' && { gap: spacingToRem(gap) }),
-        ...style
-      }}
-    >
-      {children}
-    </Component>
+              [classes.bordered]: bordered,
+              [classes.rounded]: rounded,
+              [classes.flex]: flex,
+              [classes.inline]: inline,
+              [classes.column]: direction === 'column'
+            },
+            className
+          )}
+          style={{
+            ...margins,
+            ...(typeof padded === 'number' && {
+              padding: spacingToRem(padded)
+            }),
+            ...(typeof gap === 'number' && { gap: spacingToRem(gap) }),
+            ...style
+          }}
+        >
+          {children}
+        </Component>
+      )
+    }
   )
-})
+)
 
 Container.displayName = 'Container'
 
@@ -157,3 +170,4 @@ Container.defaultProps = {
 }
 
 export default Container
+export { VariantType }

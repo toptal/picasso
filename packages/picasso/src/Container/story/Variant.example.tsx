@@ -11,33 +11,6 @@ const Example = () => (
       <Container bordered rounded padded='medium' bottom='small' top='small'>
         White
       </Container>
-      <Container bordered rounded variant='red' padded='medium' bottom='small'>
-        Red
-      </Container>
-      <Container
-        bordered
-        rounded
-        variant='yellow'
-        padded='medium'
-        bottom='small'
-      >
-        Yellow
-      </Container>
-      <Container
-        bordered
-        rounded
-        variant='green'
-        padded='medium'
-        bottom='small'
-      >
-        Green
-      </Container>
-      <Container bordered rounded variant='blue' padded='medium' bottom='small'>
-        Blue
-      </Container>
-      <Container bordered rounded variant='grey' padded='medium'>
-        Grey
-      </Container>
     </Container>
 
     <Container>
