@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - fx-2323-changeset-update-of-internal-dependencies
 
 env:
   SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -122,63 +122,63 @@ jobs:
               })
             }
 
-      - name: Trigger build image job
-        if: ${{ steps.changesets.outputs.published == 'true' }}
-        uses: toptal/jenkins-job-trigger-action@1.0.0
-        env:
-          JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
-          JENKINS_USER: toptal-jenkins
-        with:
-          jenkins_url: https://jenkins-build.toptal.net/
-          jenkins_user: ${{ env.JENKINS_USER }}
-          jenkins_token: ${{ env.TOPTAL_JENKINS_BUILD_TOKEN }}
-          proxy: ${{ env.HTTP_PROXY }}
-          job_name: ${{ env.JENKINS_JOB_NAME }}
-          job_params: |
-            {
-              "BRANCH": "master",
-              "VERSION": "${{ github.sha }}",
-              "IMAGE_NAME": "${{ env.REPOSITORY_NAME }}"
-            }
-          job_timeout: '3600'
+      # - name: Trigger build image job
+      #   if: ${{ steps.changesets.outputs.published == 'true' }}
+      #   uses: toptal/jenkins-job-trigger-action@1.0.0
+      #   env:
+      #     JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
+      #     JENKINS_USER: toptal-jenkins
+      #   with:
+      #     jenkins_url: https://jenkins-build.toptal.net/
+      #     jenkins_user: ${{ env.JENKINS_USER }}
+      #     jenkins_token: ${{ env.TOPTAL_JENKINS_BUILD_TOKEN }}
+      #     proxy: ${{ env.HTTP_PROXY }}
+      #     job_name: ${{ env.JENKINS_JOB_NAME }}
+      #     job_params: |
+      #       {
+      #         "BRANCH": "master",
+      #         "VERSION": "${{ github.sha }}",
+      #         "IMAGE_NAME": "${{ env.REPOSITORY_NAME }}"
+      #       }
+      #     job_timeout: '3600'
 
-      - name: Trigger deployment job
-        if: ${{ steps.changesets.outputs.published == 'true' }}
-        uses: toptal/jenkins-job-trigger-action@1.0.0
-        env:
-          JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs
-        with:
-          jenkins_url: https://jenkins-deployment.toptal.net/
-          jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
-          jenkins_token: ${{ env.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
-          proxy: ${{ env.HTTP_PROXY }}
-          job_name: ${{ env.JENKINS_JOB_NAME }}
-          job_params: |
-            {
-              "COMMIT_ID": "${{ github.sha }}"
-            }
-          job_timeout: '3600'
-      - name: Send a Slack notification on failure
-        if: ${{ failure() }}
-        uses: slackapi/slack-github-action@v1.14.0
-        with:
-          channel-id: '-frontend-exp-team-notifications'
-          slack-message: ":x: <!here> Current master version of Picasso is broken."
-        env:
-          SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
-      - name: Send a Slack notification on success release
-        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
-        uses: slackapi/slack-github-action@v1.14.0
-        with:
-          channel-id: '-frontend-exp-team-notifications'
-          slack-message: "Current master version of Picasso successfully released :green_heart:"
-        env:
-          SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
-      - name: Send a Slack notification on success PR merge
-        if: ${{ success() && steps.changesets.outputs.published != 'true'}}
-        uses: slackapi/slack-github-action@v1.14.0
-        with:
-          channel-id: '-frontend-exp-team-notifications'
-          slack-message: "A new PR was merged to Picasso."
-        env:
-          SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+      # - name: Trigger deployment job
+      #   if: ${{ steps.changesets.outputs.published == 'true' }}
+      #   uses: toptal/jenkins-job-trigger-action@1.0.0
+      #   env:
+      #     JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs
+      #   with:
+      #     jenkins_url: https://jenkins-deployment.toptal.net/
+      #     jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
+      #     jenkins_token: ${{ env.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
+      #     proxy: ${{ env.HTTP_PROXY }}
+      #     job_name: ${{ env.JENKINS_JOB_NAME }}
+      #     job_params: |
+      #       {
+      #         "COMMIT_ID": "${{ github.sha }}"
+      #       }
+      #     job_timeout: '3600'
+      # - name: Send a Slack notification on failure
+      #   if: ${{ failure() }}
+      #   uses: slackapi/slack-github-action@v1.14.0
+      #   with:
+      #     channel-id: '-frontend-exp-team-notifications'
+      #     slack-message: ":x: <!here> Current master version of Picasso is broken."
+      #   env:
+      #     SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+      # - name: Send a Slack notification on success release
+      #   if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+      #   uses: slackapi/slack-github-action@v1.14.0
+      #   with:
+      #     channel-id: '-frontend-exp-team-notifications'
+      #     slack-message: "Current master version of Picasso successfully released :green_heart:"
+      #   env:
+      #     SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+      # - name: Send a Slack notification on success PR merge
+      #   if: ${{ success() && steps.changesets.outputs.published != 'true'}}
+      #   uses: slackapi/slack-github-action@v1.14.0
+      #   with:
+      #     channel-id: '-frontend-exp-team-notifications'
+      #     slack-message: "A new PR was merged to Picasso."
+      #   env:
+      #     SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
