@@ -71,13 +71,7 @@ const PayoneerPicker = () => {
 
 const Example = () => (
   <div>
-    <Container
-      bordered
-      rounded
-      padded='medium'
-      variant='blue'
-      style={{ maxWidth: 400 }}
-    >
+    <Container rounded padded='medium' variant='blue' style={{ maxWidth: 400 }}>
       <PayoneerPicker />
       <Benefits />
     </Container>

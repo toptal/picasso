@@ -41,6 +41,17 @@ const spacingVariants = [
   'xlarge'
 ] as const
 
+const containerVariants = [
+  'transparent',
+  'red',
+  'green',
+  'white',
+  'yellow',
+  'blue',
+  'grey'
+] as const
+
+export type VariantType = typeof containerVariants[number]
 export type AlignItemsType = typeof alignItemsVariants[number]
 export type JustifyContentType = typeof justifyContentVariants[number]
 type Direction = typeof directionVariants[number]
@@ -69,11 +80,7 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   }
 
   return {
-    backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter,
-
-    '&$bordered': {
-      borderColor: colorOptions.main
-    }
+    backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter
   }
 }
 

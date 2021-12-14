@@ -34,5 +34,5 @@ export const forwardRef = <P, T>(
   component: (props: P, ref: React.Ref<T>) => React.ReactElement | null
 ) =>
   (React.forwardRef(component) as unknown) as (
-    props: P
+    props: P & { ref?: React.Ref<T> }
   ) => React.ReactElement | null
