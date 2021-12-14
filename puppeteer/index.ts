@@ -77,7 +77,7 @@ const screenshotDOMElement = async ({
 const matchScreenshot = async (options: Options) => {
   const image = await screenshotDOMElement(options)
 
-  expect(image).toMatchImageSnapshot({ ...options, comparisonMethod: 'ssim' })
+  expect(image).toMatchImageSnapshot(options)
 }
 
 // TODO: Make this more universal when we add more components and their variations
