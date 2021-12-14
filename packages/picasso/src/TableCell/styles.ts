@@ -18,7 +18,7 @@ const regularCellStyles = {
 
 const compactCellStyles = {
   ...baseCellStyles,
-  padding: '0.0625rem 0.5rem',
+  padding: `${rem('1px')} 0.5rem`,
   height: '1.5rem',
 
   '&:last-child': {

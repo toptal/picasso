@@ -11,46 +11,49 @@ const getNewSize = (oldSize: string): string => {
   }
 }
 
-const affectedComponents = ['Typography', 'TypographyOverflow', 'Amount']
+let affectedComponents = ['Typography', 'TypographyOverflow', 'Amount']
 
-const transform: Transform = (file, api) => {
+const transform: Transform = (file, api, options) => {
   const j = api.jscodeshift
 
-  return (
-    j(file.source)
-      .findJSXElements()
-      .filter(path => {
-        const { name } = path.node.openingElement
+  if (Array.isArray(options.parserConfig?.includeComponents)) {
+    affectedComponents = affectedComponents.concat(
+      options.parserConfig.includeComponents
+    )
+  }
 
-        return affectedComponents.includes((name as JSXIdentifier)?.name)
-      })
+  return j(file.source)
+    .findJSXElements()
+    .filter(path => {
+      const { attributes, name } = path.node.openingElement
+
+      const isAffectedComponent = affectedComponents.includes(
+        (name as JSXIdentifier)?.name
+      )
+
       // exclude components with `variant` prop other than body
-      .filter(path => {
-        const { attributes } = path.node.openingElement
+      const shouldBeExcluded = (attributes as JSXAttribute[]).find(
+        attribute =>
+          attribute.type === 'JSXAttribute' &&
+          attribute.name.name === 'variant' &&
+          (attribute.value as JSXText)?.value !== 'body'
+      )
 
-        const shouldBeExcluded = (attributes as JSXAttribute[]).find(
-          attribute =>
-            attribute.type === 'JSXAttribute' &&
-            attribute.name.name === 'variant' &&
-            (attribute.value as JSXText)?.value !== 'body'
-        )
+      return isAffectedComponent && !shouldBeExcluded
+    })
+    .find(j.JSXAttribute, {
+      name: {
+        type: 'JSXIdentifier',
+        name: 'size'
+      }
+    })
+    .find(j.StringLiteral)
+    .replaceWith(path => {
+      const newSize = getNewSize(path.node.value)
 
-        return !shouldBeExcluded
-      })
-      .find(j.JSXAttribute, {
-        name: {
-          type: 'JSXIdentifier',
-          name: 'size'
-        }
-      })
-      .find(j.StringLiteral)
-      .replaceWith(path => {
-        const newSize = getNewSize(path.node.value)
-
-        return j.stringLiteral(newSize)
-      })
-      .toSource({ quote: 'single' })
-  )
+      return j.stringLiteral(newSize)
+    })
+    .toSource({ quote: 'single' })
 }
 
 export default transform

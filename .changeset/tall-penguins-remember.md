@@ -22,7 +22,12 @@ This change pushed other size types down, making:
 
 There is a [codemod for v17.0.0](https://github.com/toptal/picasso/tree/master/packages/picasso-codemod#v1700)
 named `typography-sizes` to help you with this transition.
-Note that this codemod also changes props in `TypographyOverflow` and `Amount` component as they are both wrappers for `Typography`
+Note that this codemod also changes props in `TypographyOverflow` and `Amount` component as they are both wrappers for `Typography`.
+
+> If you use custom wrapper components for `Typography`, 
+> you can include them in codemod via `--parser-config` param.
+> 
+> Read more inside [README](https://github.com/toptal/picasso/tree/master/packages/picasso-codemod#v1700)  
 
 **Other consequences**
 

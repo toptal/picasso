@@ -1,10 +1,11 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
+import { rem } from '@toptal/picasso-shared'
 
 export default ({ palette, sizes }: Theme) =>
   createStyles({
     iconWrapper: {
       marginRight: '0.75rem',
-      marginTop: '-0.0625rem',
+      marginTop: rem('-1px'),
       display: 'inline-block',
       verticalAlign: 'middle'
     },

@@ -397,11 +397,11 @@ describe('Table', () => {
     cy.get('[data-testid="job"]').as('job').should('be.visible')
 
     cy.get(`[data-testid="expand-button-${localData[0].id}"]`)
-      .as('collapseButton')
+      .as('expandButton')
       .realClick()
 
     cy.get('@job').should('not.exist')
-    cy.get('@collapseButton').realClick()
+    cy.get('@expandButton').realClick()
     cy.get('@job').should('exist')
   })
   it('renders expandable rows with default expanded', () => {
@@ -439,11 +439,11 @@ describe('Table', () => {
     cy.get('[data-testid="job"]').as('job').should('be.visible')
 
     cy.get(`[data-testid="expand-button-${localData[0].id}"]`)
-      .as('collapseButton')
+      .as('expandButton')
       .realClick()
 
     cy.get('@job').should('not.exist')
-    cy.get('@collapseButton').realClick()
+    cy.get('@expandButton').realClick()
     cy.get('@job').should('exist')
   })
 })

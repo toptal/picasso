@@ -59,12 +59,27 @@ Here's how the diff should look like:
 
 <details>
 <summary>Command</summary>
-
 ```sh
 npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/typography-sizes src/**/*.tsx
 ```
-
 </details>
+
+#### In case you use wrapper components for `Typography`
+
+codemod by default checks only `Typography`, `TypographyOverflow` and `Amount` components.
+
+If you want to include other components, you need to:
+
+1. create a json file and put your components in it:
+```json
+{
+  "includeComponents": ["Foo", "Bar"]
+}
+```
+2. run command with `--parser-config` param:
+```shell
+npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/typography-sizes src/**/*.tsx --parser-config=path/to/your/config.json
+```
 
 ### v16.0.0
 

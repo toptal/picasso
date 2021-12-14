@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import React from 'react'
-import { Typography } from '@toptal/picasso'
+import { Amount, Typography } from '@toptal/picasso'
 import { TypographyOverflow } from '@toptal/picasso-lab'
 
 const test = 'small'
@@ -35,5 +35,6 @@ export default () => (
     <TypographyOverflow size='xsmall' variant='body'>
       Overflowed text
     </TypographyOverflow>
+    <Amount size='small'>Amount</Amount>
   </>
 )
