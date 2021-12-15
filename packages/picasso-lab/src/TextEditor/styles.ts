@@ -55,6 +55,10 @@ const listStyles = {
   }
 }
 
+const toolbarStyles = {
+  display: 'none'
+}
+
 export default () =>
   createStyles({
     root: {
