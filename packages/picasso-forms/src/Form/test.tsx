@@ -34,8 +34,8 @@ const renderForm = (
 }
 
 /**
- * form submit is not linked to any process,
- * so where is no other way to wait when error is gonna be displayed
+ * form submit does not return Promise or accept callback,
+ * so there is no way to know when an error is displayed
  */
 const waitForFormToDisplayErrors = () =>
   new Promise(resolve => setTimeout(resolve, 100))
