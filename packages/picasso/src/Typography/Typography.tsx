@@ -2,7 +2,6 @@ import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { PropTypes } from '@material-ui/core'
 import MUITypography from '@material-ui/core/Typography'
-import cx from 'classnames'
 import {
   StandardProps,
   ColorType,
@@ -10,10 +9,9 @@ import {
   SizeType
 } from '@toptal/picasso-shared'
 
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
-import { toMuiVariant } from './utils'
+import { getTypographyClassName, toMuiVariant } from './utils'
 
 export interface Props
   extends StandardProps,
@@ -75,26 +73,6 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
   } = props
   const classes = useStyles(props)
 
-  const variantClassName = kebabToCamelCase(`${variant}-${size}`)
-  const colorClassName = kebabToCamelCase(`${color}`)
-
-  const weightVariantClass = weight ? classes[weight] : undefined
-  const weightClass =
-    weight === 'inherit' ? classes.inheritWeight : weightVariantClass
-
-  const underlineClass = underline ? classes[underline] : undefined
-
-  const rootClass = cx(
-    classes[variantClassName],
-    classes[colorClassName],
-    weightClass,
-    underlineClass,
-    {
-      [classes.invert]: invert,
-      [classes.lineThrough]: lineThrough
-    }
-  )
-
   return (
     <MUITypography
       {...rest}
@@ -102,7 +80,15 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
       align={align}
       className={className}
       classes={{
-        root: rootClass
+        root: getTypographyClassName(classes, {
+          variant,
+          size,
+          color,
+          weight,
+          underline,
+          invert,
+          lineThrough
+        })
       }}
       style={style}
       variant={toMuiVariant(variant, size)}
