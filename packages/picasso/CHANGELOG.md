@@ -1,5 +1,11 @@
 # Change Log
 
+## 17.1.0
+
+### Minor Changes
+
+- [#2329](https://github.com/toptal/picasso/pull/2329) [`ec39e1ac`](https://github.com/toptal/picasso/commit/ec39e1acef8925298f61d7ce49798a0c635a7938) Thanks [@toptal-build](https://github.com/toptal-build)! - test
+
 ## 17.0.0
 
 ### Major Changes
