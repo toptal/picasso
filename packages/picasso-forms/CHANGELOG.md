@@ -1,5 +1,11 @@
 # Change Log
 
+## 20.1.0
+
+### Minor Changes
+
+- [#2324](https://github.com/toptal/picasso/pull/2324) [`2c368d61`](https://github.com/toptal/picasso/commit/2c368d61e5e828d932697da9fe6048779b902def) Thanks [@inemiro](https://github.com/inemiro)! - Added `disableScrollOnError` prop for Form component do switch-off auto-scrolling on error if required
+
 ## 20.0.0
 
 ### Patch Changes
