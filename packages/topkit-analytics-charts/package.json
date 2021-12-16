@@ -22,7 +22,7 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso-charts": "^13.0.0",
+    "@toptal/picasso-charts": ">=13.0.0",
     "react": "^16.12.0"
   },
   "devDependencies": {
