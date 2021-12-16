@@ -79,7 +79,7 @@ describe('Form', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('does not auto-scroll form to the error field if `disableScrollOnError` is specified', async () => {
+  it('when `disableScrollOnError` is specified', async () => {
     const { findByTestId } = renderForm({
       onSubmit: () => ({ test: 'Some error' }),
       disableScrollOnError: true,
