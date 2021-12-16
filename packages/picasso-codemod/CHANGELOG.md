@@ -1,5 +1,19 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- [#2308](https://github.com/toptal/picasso/pull/2308) [`ce7be40f`](https://github.com/toptal/picasso/commit/ce7be40fbfb04536058cc94b03ccf86f7125529b) Thanks [@LashaJini](https://github.com/LashaJini)! - Codemod for `Container` component borders. Removes `bordered` prop from
+  `Container` components which do not require.
+
+  ```bash
+  # <TARGET>: any .tsx file you want. Example: src/**/*.tsx
+  npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/container-borders/container-borders.ts <TARGET>
+  ```
+
+* [#2295](https://github.com/toptal/picasso/pull/2295) [`b9859b6c`](https://github.com/toptal/picasso/commit/b9859b6c246f582d336250b7df45e6c284902299) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - Created codemod to help migrate `Typography | TypographyOverflow | Amount` **size** changes in `@toptal/picasso@17.0.0`
+
 ## 3.1.0
 
 ### Minor Changes

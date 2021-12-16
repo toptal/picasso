@@ -1,5 +1,57 @@
 # Change Log
 
+## 23.0.0
+
+### Minor Changes
+
+- [#2295](https://github.com/toptal/picasso/pull/2295) [`b9859b6c`](https://github.com/toptal/picasso/commit/b9859b6c246f582d336250b7df45e6c284902299) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - Updated sizes in Typography components to comply with new changes introduced in `@toptal/picasso@17.0.0`
+
+  Changed components:
+
+  - `EmptyStateCollection`
+
+  ```diff
+  -<Typography size='small'>{children}</Typography>
+  +<Typography size='xsmall'>{children}</Typography>
+  ```
+
+  - `EmptyStatePage`
+
+  ```diff
+  <Typography
+  - size='small'
+  + size='xsmall'
+    as={typeof children === 'string' ? 'p' : 'div'}
+  >
+    {children}
+  </Typography>
+  ```
+
+  - `NoteSubtitle`
+
+  ```diff
+  -<Typography color='dark-grey' size='small'>
+  +<Typography color='dark-grey' size='xsmall'>
+    {children}
+  </Typography>
+  ```
+
+  - `OverviewBlock`
+
+  ```diff
+  -<Typography size='xsmall' weight='semibold' color={color.label}>
+  +<Typography size='xxsmall' weight='semibold' color={color.label}>
+    {titleCase ? toTitleCase(label) : label}
+  </Typography>
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`ce7be40f`](https://github.com/toptal/picasso/commit/ce7be40fbfb04536058cc94b03ccf86f7125529b), [`b9859b6c`](https://github.com/toptal/picasso/commit/b9859b6c246f582d336250b7df45e6c284902299), [`6446e620`](https://github.com/toptal/picasso/commit/6446e620808fed2a411fc124821c4cc896add734)]:
+  - @toptal/picasso@17.0.0
+  - @toptal/picasso-provider@0.5.0
+  - @toptal/picasso-shared@7.1.1
+
 ## 22.0.0
 
 ### Patch Changes
