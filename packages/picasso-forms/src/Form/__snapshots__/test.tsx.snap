@@ -109,7 +109,7 @@ exports[`Form renders with an error 1`] = `
             class="PicassoFormError-root PicassoFormField-error"
           >
             <p
-              class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-red PicassoFormError-error MuiTypography-body1"
+              class="MuiTypography-root PicassoTypography-bodyXxsmall PicassoTypography-red PicassoFormError-error MuiTypography-body1"
             >
               Please complete this field.
             </p>
