@@ -15,7 +15,11 @@ exports[`Tab Tab disabled tab 1`] = `
       <span
         class="MuiTab-wrapper"
       >
-        Tab Label
+        <div
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+        >
+          Tab Label
+        </div>
       </span>
     </button>
   </div>
@@ -36,7 +40,11 @@ exports[`Tab Tab renders 1`] = `
       <span
         class="MuiTab-wrapper"
       >
-        Tab Label
+        <div
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+        >
+          Tab Label
+        </div>
       </span>
     </button>
   </div>
@@ -60,7 +68,11 @@ exports[`Tab Tab tab with icon 1`] = `
         <div
           id="Icon"
         />
-        Tab Label
+        <div
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+        >
+          Tab Label
+        </div>
       </span>
     </button>
   </div>

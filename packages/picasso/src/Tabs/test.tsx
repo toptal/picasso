@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
+import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 import { TabProps } from '../Tab'
 import Tabs, { Props } from './Tabs'
@@ -25,7 +26,7 @@ const renderTabs = (
   { value, onChange }: OmitInternalProps<Props, 'children'>
 ) => {
   return render(
-    <>
+    <TestingPicasso>
       <Tabs onChange={onChange} value={value}>
         {tabs.map((tab, index) => (
           <Tabs.Tab
@@ -39,7 +40,7 @@ const renderTabs = (
       </Tabs>
 
       {tabs.map((tab, index) => renderTabContent(tab, index, value))}
-    </>
+    </TestingPicasso>
   )
 }
 

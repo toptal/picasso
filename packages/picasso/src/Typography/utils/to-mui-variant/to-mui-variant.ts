@@ -2,6 +2,7 @@ import { SizeType } from '@toptal/picasso-shared'
 
 const variantsMapping = {
   heading: {
+    xxsmall: undefined,
     xsmall: undefined,
     small: 'h4' as const,
     medium: 'h3' as const,
@@ -10,6 +11,7 @@ const variantsMapping = {
     inherit: undefined
   },
   body: {
+    xxsmall: 'body1' as const,
     xsmall: 'body1' as const,
     small: 'body1' as const,
     medium: 'body1' as const,
@@ -22,7 +24,7 @@ const variantsMapping = {
 const toMuiVariant = <
   V extends 'heading' | 'body',
   S extends
-    | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
+    | SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
     | 'inherit'
 >(
   variant: V,

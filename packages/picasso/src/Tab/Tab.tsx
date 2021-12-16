@@ -8,6 +8,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
+import Typography from '../Typography'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
@@ -53,6 +54,11 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
   } = props
   const classes = useStyles()
   const titleCase = useTitleCase(propsTitleCase)
+  const labelComponent = (
+    <Typography as='div' size='small' weight='semibold' color='inherit'>
+      {titleCase ? toTitleCase(label) : label}
+    </Typography>
+  )
 
   return (
     <MUITab
@@ -60,7 +66,7 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
       ref={ref}
       tabIndex={0}
       disabled={disabled}
-      label={titleCase ? toTitleCase(label) : label}
+      label={labelComponent}
       icon={icon}
       value={value}
       selected={selected}

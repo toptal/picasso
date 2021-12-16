@@ -11,7 +11,7 @@ const Example = () => (
             avatar='./jacqueline-with-flowers-1954-square.jpg'
             invert
           >
-            <Typography invert size='small'>
+            <Typography invert size='xsmall'>
               UI specialist
             </Typography>
           </UserBadge>
@@ -25,7 +25,7 @@ const Example = () => (
             size='small'
             invert
           >
-            <Typography invert size='small'>
+            <Typography invert size='xsmall'>
               UI specialist
             </Typography>
           </UserBadge>

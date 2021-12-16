@@ -20,7 +20,7 @@ const Example = () => (
               avatar='./jacqueline-with-flowers-1954-square.jpg'
               size='small'
             >
-              <Typography size='small'>UI specialist</Typography>
+              <Typography size='xsmall'>UI specialist</Typography>
             </UserBadge>
           </Grid.Item>
         </Grid>
@@ -43,7 +43,7 @@ const Example = () => (
               size='small'
               center
             >
-              <Typography size='small'>UI specialist</Typography>
+              <Typography size='xsmall'>UI specialist</Typography>
             </UserBadge>
           </Grid.Item>
         </Grid>
@@ -66,7 +66,7 @@ const Example = () => (
               size='small'
               center={false}
             >
-              <Typography size='small'>UI specialist</Typography>
+              <Typography size='xsmall'>UI specialist</Typography>
             </UserBadge>
           </Grid.Item>
         </Grid>

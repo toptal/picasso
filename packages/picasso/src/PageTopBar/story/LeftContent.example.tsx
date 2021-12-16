@@ -20,7 +20,7 @@ const options = [
 
 const renderOption = ({ text }: AutocompleteItem) => (
   <UserBadge name={text || ''}>
-    <Typography size='small'>CMS (Eng)</Typography>
+    <Typography size='xsmall'>CMS (Eng)</Typography>
   </UserBadge>
 )
 

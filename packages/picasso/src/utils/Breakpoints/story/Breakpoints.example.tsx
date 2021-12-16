@@ -24,7 +24,7 @@ const Example = () => (
               <Typography variant='heading' size='large'>
                 {breakpointName}
               </Typography>
-              <Typography size='small'>
+              <Typography size='xsmall'>
                 {isSmallestBreakpoint && `< ${breakpointValue} px`}
                 {isLargestBreakpoint && `> ${prevBreakpointValue} px`}
                 {!isSmallestBreakpoint &&

@@ -29,7 +29,7 @@ export interface Props
   align?: PropTypes.Alignment
   /** Size of the inner text */
   size?:
-    | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
+    | SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
     | 'inherit'
   /** Font weight of the inner text */
   weight?: 'regular' | 'semibold' | 'inherit'

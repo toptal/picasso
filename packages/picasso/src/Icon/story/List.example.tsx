@@ -55,7 +55,7 @@ const Example = () => {
                       <Icon />
                     </Grid.Item>
                     <Grid.Item>
-                      <Typography size='small'>{iconName}</Typography>
+                      <Typography size='xsmall'>{iconName}</Typography>
                     </Grid.Item>
                   </Grid>
                 </Container>

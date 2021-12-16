@@ -36,7 +36,7 @@ exports[`Pagination renders 1`] = `
         class="PicassoPagination-ellipsis"
       >
         <p
-          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
         >
           ...
         </p>
@@ -105,7 +105,7 @@ exports[`Pagination renders 1`] = `
         class="PicassoPagination-ellipsis"
       >
         <p
-          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
         >
           ...
         </p>
@@ -177,7 +177,7 @@ exports[`Pagination renders disabled 1`] = `
         class="PicassoPagination-ellipsis"
       >
         <p
-          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
         >
           ...
         </p>
@@ -251,7 +251,7 @@ exports[`Pagination renders disabled 1`] = `
         class="PicassoPagination-ellipsis"
       >
         <p
-          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
         >
           ...
         </p>

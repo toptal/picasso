@@ -15,9 +15,13 @@ exports[`TableCell renders 1`] = `
           class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
           >
-            Body test
+            <div
+              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
+            >
+              Body test
+            </div>
           </td>
         </tr>
       </tbody>

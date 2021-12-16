@@ -14,13 +14,13 @@ const Example = () => (
         />
       }
     >
-      <Typography variant='body' size='small'>
+      <Typography variant='body' size='xsmall'>
         Worked as
       </Typography>
       <Container left='xsmall'>
-        <Typography size='small'>UI specialist</Typography>
-        <Typography size='small'>Painter</Typography>
-        <Typography size='small'>Student</Typography>
+        <Typography size='xsmall'>UI specialist</Typography>
+        <Typography size='xsmall'>Painter</Typography>
+        <Typography size='xsmall'>Student</Typography>
       </Container>
     </UserBadge>
   </div>

@@ -9,7 +9,7 @@ const Example = () => (
         Founder
       </Typography>
       <Container bottom='small'>
-        <Typography size='small'>Brutalism 2019 - PRESENT</Typography>
+        <Typography size='xsmall'>Brutalism 2019 - PRESENT</Typography>
       </Container>
       <Typography size='medium'>
         Founded a private practice focusing on computational design and art.
@@ -21,7 +21,7 @@ const Example = () => (
         Computational Geometry Engineer
       </Typography>
       <Container bottom='small'>
-        <Typography size='small'>Arkio 2018 - 2019</Typography>
+        <Typography size='xsmall'>Arkio 2018 - 2019</Typography>
       </Container>
       <Typography size='medium'>
         Worked on the core engine supporting Arkio's computational geometry

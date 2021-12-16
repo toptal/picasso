@@ -57,7 +57,7 @@ exports[`AccountSelect renders 1`] = `
                       </h4>
                     </div>
                     <p
-                      class="MuiTypography-root PicassoTypography-bodySmall MuiTypography-body1"
+                      class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
                     >
                       Account Owner at Stowaway Cosmetics
                     </p>
@@ -125,7 +125,7 @@ exports[`AccountSelect renders 1`] = `
                       </h4>
                     </div>
                     <p
-                      class="MuiTypography-root PicassoTypography-bodySmall MuiTypography-body1"
+                      class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
                     >
                       Company Representative at Marketing Works
                     </p>
@@ -189,7 +189,7 @@ exports[`AccountSelect renders 1`] = `
                       </h4>
                     </div>
                     <p
-                      class="MuiTypography-root PicassoTypography-bodySmall MuiTypography-body1"
+                      class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
                     >
                       Talent
                     </p>

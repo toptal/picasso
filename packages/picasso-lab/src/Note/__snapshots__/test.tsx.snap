@@ -21,7 +21,7 @@ exports[`Note renders 1`] = `
         class="PicassoContainer-bottomsmallMargin"
       >
         <p
-          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey MuiTypography-body1"
         >
           Subtitle
         </p>

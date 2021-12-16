@@ -3,59 +3,65 @@
 exports[`Tabs renders 1`] = `
 <div>
   <div
-    class="MuiTabs-root"
+    class="Picasso-root"
   >
     <div
-      class="MuiTabs-scrollable"
-      style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
-    />
-    <div
-      class="MuiTabs-scroller MuiTabs-scrollable"
-      style="margin-bottom: 0px;"
+      class="MuiTabs-root"
     >
       <div
-        class="MuiTabs-flexContainer"
-        role="tablist"
-      >
-        <button
-          aria-selected="false"
-          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
-          data-testid="tab-1"
-          role="tab"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="MuiTab-wrapper"
-          >
-            Tab 1
-          </span>
-          <span
-            class="MuiTouchRipple-root"
-          />
-        </button>
-        <button
-          aria-selected="false"
-          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
-          data-testid="tab-2"
-          role="tab"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="MuiTab-wrapper"
-          >
-            Tab 2
-          </span>
-          <span
-            class="MuiTouchRipple-root"
-          />
-        </button>
-      </div>
-      <span
-        class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
-        style="left: 0px; width: 0px;"
+        class="MuiTabs-scrollable"
+        style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
       />
+      <div
+        class="MuiTabs-scroller MuiTabs-scrollable"
+        style="margin-bottom: 0px;"
+      >
+        <div
+          class="MuiTabs-flexContainer"
+          role="tablist"
+        >
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+            data-testid="tab-1"
+            role="tab"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiTab-wrapper"
+            >
+              <div
+                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+              >
+                Tab 1
+              </div>
+            </span>
+          </button>
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+            data-testid="tab-2"
+            role="tab"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiTab-wrapper"
+            >
+              <div
+                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+              >
+                Tab 2
+              </div>
+            </span>
+          </button>
+        </div>
+        <span
+          class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
+          style="left: 0px; width: 0px;"
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -64,67 +70,73 @@ exports[`Tabs renders 1`] = `
 exports[`Tabs renders with a pre-selected option 1`] = `
 <div>
   <div
-    class="MuiTabs-root"
+    class="Picasso-root"
   >
     <div
-      class="MuiTabs-scrollable"
-      style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
-    />
-    <div
-      class="MuiTabs-scroller MuiTabs-scrollable"
-      style="margin-bottom: 0px;"
+      class="MuiTabs-root"
     >
       <div
-        class="MuiTabs-flexContainer"
-        role="tablist"
-      >
-        <button
-          aria-selected="false"
-          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
-          data-testid="tab-1"
-          role="tab"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="MuiTab-wrapper"
-          >
-            Tab 1
-          </span>
-          <span
-            class="MuiTouchRipple-root"
-          />
-        </button>
-        <button
-          aria-selected="true"
-          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-selected"
-          data-testid="tab-2"
-          role="tab"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="MuiTab-wrapper"
-          >
-            Tab 2
-          </span>
-          <span
-            class="MuiTouchRipple-root"
-          />
-        </button>
-      </div>
-      <span
-        class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
-        style="left: 0px; width: 0px;"
+        class="MuiTabs-scrollable"
+        style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
       />
+      <div
+        class="MuiTabs-scroller MuiTabs-scrollable"
+        style="margin-bottom: 0px;"
+      >
+        <div
+          class="MuiTabs-flexContainer"
+          role="tablist"
+        >
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+            data-testid="tab-1"
+            role="tab"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiTab-wrapper"
+            >
+              <div
+                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+              >
+                Tab 1
+              </div>
+            </span>
+          </button>
+          <button
+            aria-selected="true"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-selected"
+            data-testid="tab-2"
+            role="tab"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiTab-wrapper"
+            >
+              <div
+                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+              >
+                Tab 2
+              </div>
+            </span>
+          </button>
+        </div>
+        <span
+          class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
+          style="left: 0px; width: 0px;"
+        />
+      </div>
     </div>
-  </div>
-  <div
-    data-testid="tab-1-content"
-  >
-    Tab #
-    1
-     content
+    <div
+      data-testid="tab-1-content"
+    >
+      Tab #
+      1
+       content
+    </div>
   </div>
 </div>
 `;
@@ -132,67 +144,73 @@ exports[`Tabs renders with a pre-selected option 1`] = `
 exports[`Tabs renders with a pre-selected option using custom value 1`] = `
 <div>
   <div
-    class="MuiTabs-root"
+    class="Picasso-root"
   >
     <div
-      class="MuiTabs-scrollable"
-      style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
-    />
-    <div
-      class="MuiTabs-scroller MuiTabs-scrollable"
-      style="margin-bottom: 0px;"
+      class="MuiTabs-root"
     >
       <div
-        class="MuiTabs-flexContainer"
-        role="tablist"
-      >
-        <button
-          aria-selected="true"
-          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-selected"
-          data-testid="tab-1"
-          role="tab"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="MuiTab-wrapper"
-          >
-            Tab 1
-          </span>
-          <span
-            class="MuiTouchRipple-root"
-          />
-        </button>
-        <button
-          aria-selected="false"
-          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
-          data-testid="tab-2"
-          role="tab"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="MuiTab-wrapper"
-          >
-            Tab 2
-          </span>
-          <span
-            class="MuiTouchRipple-root"
-          />
-        </button>
-      </div>
-      <span
-        class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
-        style="left: 0px; width: 0px;"
+        class="MuiTabs-scrollable"
+        style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
       />
+      <div
+        class="MuiTabs-scroller MuiTabs-scrollable"
+        style="margin-bottom: 0px;"
+      >
+        <div
+          class="MuiTabs-flexContainer"
+          role="tablist"
+        >
+          <button
+            aria-selected="true"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-selected"
+            data-testid="tab-1"
+            role="tab"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiTab-wrapper"
+            >
+              <div
+                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+              >
+                Tab 1
+              </div>
+            </span>
+          </button>
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+            data-testid="tab-2"
+            role="tab"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiTab-wrapper"
+            >
+              <div
+                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+              >
+                Tab 2
+              </div>
+            </span>
+          </button>
+        </div>
+        <span
+          class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
+          style="left: 0px; width: 0px;"
+        />
+      </div>
     </div>
-  </div>
-  <div
-    data-testid="tab-1-content"
-  >
-    Tab #
-    1
-     content
+    <div
+      data-testid="tab-1-content"
+    >
+      Tab #
+      1
+       content
+    </div>
   </div>
 </div>
 `;

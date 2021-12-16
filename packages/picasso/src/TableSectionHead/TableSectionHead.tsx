@@ -7,6 +7,7 @@ import React, {
 import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
+import { TableSection, TableSectionContext } from '../Table'
 import TableCell from '../TableCell'
 import TableRow from '../TableRow'
 import TableBody from '../TableBody'
@@ -36,10 +37,12 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
   return (
     <TableBody ref={ref}>
       <TableRow className={classes.sectionHeaderRow} style={style}>
-        <TableCell className={classes.sectionHeaderCell} colSpan={colSpan}>
-          {icon && <span className={classes.iconWrapper}>{icon}</span>}
-          {children}
-        </TableCell>
+        <TableSectionContext.Provider value={TableSection.HEAD}>
+          <TableCell colSpan={colSpan}>
+            {icon && <span className={classes.iconWrapper}>{icon}</span>}
+            {children}
+          </TableCell>
+        </TableSectionContext.Provider>
       </TableRow>
     </TableBody>
   )

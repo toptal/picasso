@@ -13,6 +13,7 @@ import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 import { usePicassoRoot } from '@toptal/picasso-provider'
 
+import Typography from '../Typography'
 import { isPointerDevice } from '../utils'
 import styles from './styles'
 
@@ -218,10 +219,10 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
   })
 
   const title = (
-    <>
+    <Typography as='div' size='small' color='inherit'>
       {content}
       {!compact && <span className={classes.arrow} ref={setArrowRef} />}
-    </>
+    </Typography>
   )
 
   return (

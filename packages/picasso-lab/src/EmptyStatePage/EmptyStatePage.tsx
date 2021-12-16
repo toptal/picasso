@@ -50,7 +50,7 @@ export const EmptyStatePage = forwardRef<HTMLDivElement, Props>(
           </Container>
         )}
         <Typography
-          size='small'
+          size='xsmall'
           as={typeof children === 'string' ? 'p' : 'div'}
         >
           {children}
