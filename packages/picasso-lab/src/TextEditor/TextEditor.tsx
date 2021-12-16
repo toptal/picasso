@@ -73,7 +73,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   const editorRef = useRef<Quill>()
   const classes = useStyles()
 
-  useInitEditor(editorRef, { id, placeholder })
+  useInitEditor(editorRef, { id, placeholder, classes })
   useHandleChangeEvent(editorRef, { onChange })
   useHandleChangeFromController(editorRef, { value })
   useDisableEditor(editorRef, { disabled })

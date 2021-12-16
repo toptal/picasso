@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Quill, { QuillOptionsStatic } from 'quill'
+import { Classes } from '@toptal/picasso-shared'
 
 import { EditorRefType } from '../types'
 import { Props } from '../TextEditor'
@@ -12,6 +13,7 @@ import {
 type EditorOptionsType = {
   id: Props['id']
   placeholder?: Props['placeholder']
+  classes: Classes
 }
 
 const modules: QuillOptionsStatic['modules'] = {
@@ -21,7 +23,10 @@ const modules: QuillOptionsStatic['modules'] = {
     [{ header: [3, false] }],
     ['bold', 'italic'],
     [{ list: 'ordered' }, { list: 'bullet' }]
-  ]
+  ],
+  clipboard: {
+    matchVisual: false
+  }
 }
 
 /**
