@@ -8,11 +8,11 @@ on:
 
 jobs:
   notify-jira:
-  runs-on: ubuntu-latest
-  env:
-    JIRA_HOOK: ${{ secrets.JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}
-  steps:
-    - run: |
-        curl -X POST -H 'Content-type: application/json' \
-        --data '{"data": {"releaseVersion":"5.3.2"}}' \
-        ${{ env.JIRA_HOOK }}
+    runs-on: ubuntu-latest
+    env:
+      JIRA_HOOK: ${{ secrets.JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}
+    steps:
+      - run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"data": {"releaseVersion":"5.3.2"}}' \
+          ${{ env.JIRA_HOOK }}
