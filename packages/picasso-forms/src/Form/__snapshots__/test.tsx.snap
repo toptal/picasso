@@ -8,7 +8,9 @@ exports[`Form renders 1`] = `
     <div
       class=""
     >
-      <form>
+      <form
+        data-testid="form"
+      >
         <div
           class="PicassoFormField-root"
           data-field-has-error="false"
@@ -40,6 +42,77 @@ exports[`Form renders 1`] = `
                 </span>
               </legend>
             </fieldset>
+          </div>
+        </div>
+        <button
+          class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+          data-component-type="button"
+          tabindex="0"
+          type="submit"
+        >
+          <span
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          >
+            Submit
+          </span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Form renders with an error 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class=""
+    >
+      <form
+        data-testid="form"
+      >
+        <div
+          class="PicassoFormField-root"
+          data-field-has-error="true"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium Mui-error Mui-error MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+          >
+            <input
+              aria-invalid="true"
+              autocomplete="none"
+              class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+              id="test"
+              name="test"
+              placeholder="test input"
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="PrivateNotchedOutline-legend"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+          <div
+            class="PicassoFormError-root PicassoFormField-error"
+          >
+            <p
+              class="MuiTypography-root PicassoTypography-bodyXxsmall PicassoTypography-red PicassoFormError-error MuiTypography-body1"
+            >
+              Please complete this field.
+            </p>
           </div>
         </div>
         <button
