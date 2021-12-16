@@ -86,7 +86,7 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
       createScrollToErrorDecorator({
         disableScrollOnError
       }),
-    []
+    [disableScrollOnError]
   )
 
   const validationObject = useRef<FormContextProps>(createFormContext())
