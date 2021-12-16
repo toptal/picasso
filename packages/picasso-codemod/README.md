@@ -59,9 +59,11 @@ Here's how the diff should look like:
 
 <details>
 <summary>Command</summary>
+
 ```sh
 npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/typography-sizes src/**/*.tsx
 ```
+
 </details>
 
 #### In case you use wrapper components for `Typography`
@@ -80,6 +82,34 @@ If you want to include other components, you need to:
 ```shell
 npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/typography-sizes src/**/*.tsx --parser-config=path/to/your/config.json
 ```
+
+
+#### `container-borders`
+
+Removes `bordered` prop from `Container` components with all colored variants.
+
+Here's how the diff should look like:
+```diff
+-<Container variant='red' bordered>text</Container>
++<Container variant='red'>text</Container>
+-<Container variant='green' bordered>text</Container>
++<Container variant='green'>text</Container>
+-<Container variant='yellow' bordered>text</Container>
++<Container variant='yellow'>text</Container>
+-<Container variant='blue' bordered>text</Container>
++<Container variant='blue'>text</Container>
+-<Container variant='grey' bordered>text</Container>
++<Container variant='grey'>text</Container>
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/container-borders src/**/*.tsx
+```
+
+</details>
 
 ### v16.0.0
 
