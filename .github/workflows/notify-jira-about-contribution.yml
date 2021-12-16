@@ -15,5 +15,5 @@ jobs:
     steps:
       - run: |
           curl -X POST -H 'Content-type: application/json' \
-          --data '{"data": {"releaseVersion":"5.3.2", "author":"${{github.event.pull_request.user.login}}"}}' \
+          --data '{"data": {"author":"${{github.event.pull_request.user.login}}", "title":"${{github.event.pull_request.title}}", "number":"${{github.event.pull_request.number}}", "url":"${{github.event.pull_request.url}}"}}' \
           ${{ env.JIRA_HOOK }}
