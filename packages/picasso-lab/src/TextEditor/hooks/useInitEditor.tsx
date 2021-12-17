@@ -4,7 +4,7 @@ import Quill, { QuillOptionsStatic } from 'quill'
 import { EditorRefType } from '../types'
 import { Props } from '../TextEditor'
 import {
-  useTypographyStyles,
+  useTypographyClasses,
   makeHeaderFormat,
   makeBoldFormat
 } from '../formats'
@@ -42,7 +42,7 @@ const useInitEditor = (
   editorRef: EditorRefType,
   { id, placeholder }: EditorOptionsType
 ) => {
-  const typographyStyles = useTypographyStyles()
+  const typographyStyles = useTypographyClasses()
 
   useEffect(() => {
     Quill.register(makeHeaderFormat(typographyStyles), true)
