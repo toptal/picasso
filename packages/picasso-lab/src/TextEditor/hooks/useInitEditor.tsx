@@ -42,11 +42,11 @@ const useInitEditor = (
   editorRef: EditorRefType,
   { id, placeholder }: EditorOptionsType
 ) => {
-  const typographyStyles = useTypographyClasses()
+  const typographyClasses = useTypographyClasses()
 
   useEffect(() => {
-    Quill.register(makeHeaderFormat(typographyStyles), true)
-    Quill.register(makeBoldFormat(typographyStyles), true)
+    Quill.register(makeHeaderFormat(typographyClasses), true)
+    Quill.register(makeBoldFormat(typographyClasses), true)
 
     editorRef.current = new Quill(`#${id}`, {
       modules,
@@ -54,7 +54,7 @@ const useInitEditor = (
       theme: 'snow',
       placeholder
     })
-  }, [id, placeholder, editorRef, typographyStyles])
+  }, [id, placeholder, editorRef, typographyClasses])
 }
 
 export default useInitEditor

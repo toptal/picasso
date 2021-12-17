@@ -1,22 +1,29 @@
 import { getTypographyClassName } from '@toptal/picasso/Typography/utils'
+import { Classes } from '@toptal/picasso-shared'
 import Quill from 'quill'
 
 const QuillBold = Quill.import('formats/bold')
 
-const makeBoldFormat = (typographyClasses: Record<string, string>) =>
-  class extends QuillBold {
-    static create() {
-      const node = super.create()
+class TypographyBoldBlot extends QuillBold {
+  static typographyClasses: Classes
+  static create() {
+    const node = super.create()
 
-      node.setAttribute(
-        'class',
-        getTypographyClassName(typographyClasses, {
-          weight: 'semibold'
-        })
-      )
+    node.setAttribute(
+      'class',
+      getTypographyClassName(this.typographyClasses, {
+        weight: 'semibold'
+      })
+    )
 
-      return node
-    }
+    return node
   }
+}
+
+const makeBoldFormat = (typographyClasses: Classes) => {
+  TypographyBoldBlot.typographyClasses = typographyClasses
+
+  return TypographyBoldBlot
+}
 
 export default makeBoldFormat
