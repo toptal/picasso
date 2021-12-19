@@ -3,7 +3,7 @@ import Delta from 'quill-delta'
 
 import { EditorRefType } from '../types'
 import { Props } from '../TextEditor'
-import removeCursorSpan from '../utils/removeCursorSpan/removeCursorSpan'
+import { removeCursorSpan, removeClasses } from '../utils'
 
 /**
  * TextEditor works as controlled input, when someone changes props.value
@@ -17,11 +17,12 @@ const useHandleChangeFromController = (
     if (editorRef?.current && controllerValue) {
       const editor = editorRef.current
       const currentValue = editor.root.innerHTML
-
       const isValueChanged = currentValue !== controllerValue
 
       if (isValueChanged) {
-        const valueWithoutCursorSpan = removeCursorSpan(currentValue)
+        const [cleanValue] = [currentValue]
+          .map(removeCursorSpan)
+          .map(removeClasses)
 
         /**
          * when we format the text and want to enter new line, quill silently
@@ -31,7 +32,7 @@ const useHandleChangeFromController = (
          * purposes. In this case comparison of values would fail, so we replace cursor with <br>
          * and check again
          */
-        if (valueWithoutCursorSpan !== controllerValue) {
+        if (cleanValue !== controllerValue) {
           const delta = (editor.clipboard.convert as (html: string) => Delta)(
             controllerValue
           )
