@@ -4,7 +4,7 @@ import { Container } from '@toptal/picasso'
 
 const Example = () => {
   const [value, setValue] = useState<string | undefined>(
-    '<p>Look at my test, my test is amazing!</p>'
+    '<p>Look at my test, my test is <strong>amazing!</strong></p>'
   )
 
   const handleChange: TextEditorChangeHandler = newValue => setValue(newValue)

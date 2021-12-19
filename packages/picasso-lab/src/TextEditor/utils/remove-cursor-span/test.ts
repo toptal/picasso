@@ -1,4 +1,4 @@
-import removeCursorSpan from './removeCursorSpan'
+import removeCursorSpan from './remove-cursor-span'
 
 describe('removeCursorSpan', () => {
   it('has nothing to replace', () => {
