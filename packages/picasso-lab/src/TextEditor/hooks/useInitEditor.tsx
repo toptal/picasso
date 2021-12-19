@@ -21,7 +21,10 @@ const modules: QuillOptionsStatic['modules'] = {
     [{ header: [3, false] }],
     ['bold', 'italic'],
     [{ list: 'ordered' }, { list: 'bullet' }]
-  ]
+  ],
+  clipboard: {
+    matchVisual: false
+  }
 }
 
 /**
