@@ -1,8 +1,13 @@
 import { useEffect } from 'react'
 import Quill, { QuillOptionsStatic } from 'quill'
 
-import type { EditorRefType } from '../types'
+import { EditorRefType } from '../types'
 import { Props } from '../TextEditor'
+import {
+  useTypographyClasses,
+  makeHeaderFormat,
+  makeBoldFormat
+} from '../formats'
 
 type EditorOptionsType = {
   id: Props['id']
@@ -13,7 +18,7 @@ const modules: QuillOptionsStatic['modules'] = {
   // tools we provide to format text
   // https://quilljs.com/docs/modules/toolbar/
   toolbar: [
-    [{ header: [2, false] }], // TODO check what header we support
+    [{ header: [3, false] }],
     ['bold', 'italic'],
     [{ list: 'ordered' }, { list: 'bullet' }]
   ]
@@ -37,14 +42,19 @@ const useInitEditor = (
   editorRef: EditorRefType,
   { id, placeholder }: EditorOptionsType
 ) => {
+  const typographyClasses = useTypographyClasses()
+
   useEffect(() => {
+    Quill.register(makeHeaderFormat(typographyClasses), true)
+    Quill.register(makeBoldFormat(typographyClasses), true)
+
     editorRef.current = new Quill(`#${id}`, {
       modules,
       formats,
       theme: 'snow',
       placeholder
     })
-  }, [id, placeholder, editorRef])
+  }, [id, placeholder, editorRef, typographyClasses])
 }
 
 export default useInitEditor
