@@ -3,7 +3,8 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import Quill from 'quill'
-import 'quill/dist/quill.snow.css'
+import { Typography } from '@toptal/picasso'
+import './quill.snow.css'
 
 import styles from './styles'
 import useInitEditor from './hooks/useInitEditor'
@@ -79,7 +80,11 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   useHandleAutofocus(editorRef, { autofocus })
 
   return (
-    <div
+    <Typography
+      as='div'
+      variant='body'
+      color='dark-grey'
+      size='medium'
       className={cx(classes.root, className)}
       data-testid={dataTestId}
       id={id}

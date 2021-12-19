@@ -3,7 +3,7 @@ import { TextChangeHandler } from 'quill'
 
 import { EditorRefType } from '../types'
 import { Props } from '../TextEditor'
-import removeCursorSpan from '../utils/removeCursorSpan'
+import { removeCursorSpan, removeClasses } from '../utils'
 
 const useHandleChangeEvent = (
   editorRef: EditorRefType,
@@ -18,10 +18,11 @@ const useHandleChangeEvent = (
 
     if (editor) {
       const handler: TextChangeHandler = () => {
-        const value = editor.root.innerHTML
-        const valueWithoutCursorSpan = removeCursorSpan(value)
+        const [cleanValue] = [editor.root.innerHTML]
+          .map(removeCursorSpan)
+          .map(removeClasses)
 
-        onChange(valueWithoutCursorSpan)
+        onChange(cleanValue)
       }
 
       editor.on('text-change', handler)
