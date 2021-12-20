@@ -2,7 +2,6 @@ import React, { FC, useMemo } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 
 import { DirectionsType, DynamicPointLink } from '../types'
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../variables'
 import styles from './styles'
 
 export interface Props {
@@ -33,11 +32,11 @@ export const PointLink: FC<Props> = props => {
     const svgPaths = {
       horizontal: `M${sourceX}, ${sourceY}
         H${sourceX + horizontalMargin / 2}
-        V${target.y + DEFAULT_HEIGHT / 2}
+        V${target.y + (target.rect?.height ?? 0) / 2}
         H${target.x}`,
       vertical: `M${sourceX}, ${sourceY}
         V${sourceY + verticalMargin / 2}
-        H${target.x + DEFAULT_WIDTH / 2}
+        H${target.x + (target.rect?.width ?? 0) / 2}
         V${target.y}`
     }
 
