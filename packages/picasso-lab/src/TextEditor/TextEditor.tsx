@@ -5,6 +5,8 @@ import cx from 'classnames'
 import Quill from 'quill'
 import { Container, Typography } from '@toptal/picasso'
 import './quill.snow.css'
+// import svg from '@toptal/picasso/Icon/svg/email16.svg'
+// import { svg } from '@toptal/picasso/Icon/svg/email16.svg'
 
 import styles from './styles'
 import useInitEditor from './hooks/useInitEditor'
@@ -41,8 +43,7 @@ export interface Props extends BaseProps {
   onChange: TextEditorChangeHandler
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
-  /**
-   * This Boolean attribute indicates that the user cannot modify the
+  /** This Boolean attribute indicates that the user cannot modify the
    * value of the control. Unlike the disabled attribute, the readonly
    * attribute does not prevent the user from clicking or selecting in the control.
    */
@@ -54,6 +55,8 @@ export interface Props extends BaseProps {
   value?: HTMLString
 }
 
+// const icons = Quill.import('ui/icons')
+// icons['bold'] = '<i class="fa fa-bold" aria-hidden="true"></i>';
 const useStyles = makeStyles<Theme>(styles)
 
 export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
