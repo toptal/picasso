@@ -1,4 +1,4 @@
-import { createStyles } from '@material-ui/core/styles'
+import { createStyles, Theme } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared/styles'
 
 const margins = {
@@ -55,15 +55,60 @@ const listStyles = {
   }
 }
 
-const toolbarStyles = {
-  display: 'none'
-}
-
-export default () =>
+export default ({ palette }: Theme) =>
   createStyles({
     root: {
       height: 'calc(100% - 43px)',
+      '& .ql-formats': {
+        display: 'inline-block',
+        verticalAlign: 'middle',
+        position: 'relative',
+        paddingRight: '8px',
+        // borderRight: '1px solid grey'
 
+        '&::after': {
+          content: '""!important',
+          height: '16px',
+          width: '1px',
+          position: 'absolute',
+          right: 0,
+          top: '4px',
+          // backgroundColor: palette.grey.lighter2
+          backgroundColor: 'black'
+        }
+      },
+      '& .ql-picker-label': {
+        border: `1px solid ${palette.grey.light2}`,
+        borderRadius: '4px',
+
+        '& svg': {
+          width: '0 !important'
+        },
+
+        '&::before': {
+          color: palette.common.black,
+          fontSize: '12px',
+          fontWeight: 'normal',
+          lineHeight: '16px',
+          height: '16px'
+        },
+
+        '&::after': {
+          // backgroundImage: `url("data:image/svg+xml;utf8,${Email16}")`,
+          // backgroundImage: `url(${Email16})`,
+          // top: '50%',
+          right: 0,
+          content: '"WTF"!important',
+          position: 'absolute'
+        }
+      },
+      // '& .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg': {
+      //   position: 'absolute',
+      //   marginTop: '-9px',
+      //   right: 0,
+      //   top: '50%',
+      //   width: '18px'
+      // }
       ...listStyles,
       ...margins
     }
