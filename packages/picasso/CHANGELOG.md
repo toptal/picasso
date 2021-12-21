@@ -1,5 +1,13 @@
 # Change Log
 
+## 17.1.0
+
+### Minor Changes
+
+- [#2336](https://github.com/toptal/picasso/pull/2336) [`4370e2d8`](https://github.com/toptal/picasso/commit/4370e2d84c3768719a530c621eefae835e163e73) Thanks [@ascrazy](https://github.com/ascrazy)! - ## TreeView
+
+  - Fix PointLink positioning to avoid unexpected 0.5px shifts
+
 ## 17.0.0
 
 ### Major Changes
