@@ -24,6 +24,7 @@ import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
 import Button from '../Button'
 import styles from './styles'
+import ModalContext from './ModalContext'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
 type Alignment = 'top' | 'centered'
@@ -222,7 +223,10 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       disableBackdropClick
       TransitionProps={transitionProps}
     >
-      {children}
+      <ModalContext.Provider value={{ isModalVisible: true }}>
+        {children}
+      </ModalContext.Provider>
+
       {onClose && (
         <Button.Circular
           variant='flat'

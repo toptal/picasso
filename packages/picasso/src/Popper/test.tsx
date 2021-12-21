@@ -48,7 +48,7 @@ const defaultPopperProps = {
   style: {
     width: '300px'
   },
-  popperOptions: getPopperOptions({})
+  popperOptions: getPopperOptions({}, false)
 }
 
 const renderComponent = (props: Partial<Props> = {}) => {
