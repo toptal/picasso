@@ -25,6 +25,14 @@ const modules: QuillOptionsStatic['modules'] = {
   clipboard: {
     matchVisual: false
   }
+  // toolbar: {
+  //   container: '#toolbar'
+  // }
+  // toolbar: [
+  //   [{ header: [3, false] }],
+  //   ['bold', 'italic'],
+  //   [{ list: 'bullet' }, { list: 'ordered' }]
+  // ]
 }
 
 /**

@@ -5,6 +5,7 @@ import cx from 'classnames'
 import Quill from 'quill'
 import { Container, Typography } from '@toptal/picasso'
 import './quill.snow.css'
+import { Email16 } from '@toptal/picasso/Icon'
 // import svg from '@toptal/picasso/Icon/svg/email16.svg'
 // import { svg } from '@toptal/picasso/Icon/svg/email16.svg'
 
@@ -56,7 +57,7 @@ export interface Props extends BaseProps {
 }
 
 // const icons = Quill.import('ui/icons')
-// icons['bold'] = '<i class="fa fa-bold" aria-hidden="true"></i>';
+// icons['bold'] = '<i class="fa fa-bold" aria-hidden="true"></i>'
 const useStyles = makeStyles<Theme>(styles)
 
 export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
@@ -88,6 +89,10 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
       style={style}
       className={cx(classes.root, className)}
     >
+      <Container id='toolbar'>
+        <Email16 />
+        <button>Text</button>
+      </Container>
       <Typography
         as='div'
         variant='body'

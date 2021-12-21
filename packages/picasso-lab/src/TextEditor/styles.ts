@@ -64,9 +64,10 @@ export default ({ palette }: Theme) =>
         verticalAlign: 'middle',
         position: 'relative',
         paddingRight: '8px',
+        marginRight: '8px',
         // borderRight: '1px solid grey'
 
-        '&::after': {
+        '&:not(:last-child)::after': {
           content: '""!important',
           height: '16px',
           width: '1px',
