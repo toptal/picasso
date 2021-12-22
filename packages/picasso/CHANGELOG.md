@@ -1,5 +1,11 @@
 # Change Log
 
+## 17.1.1
+
+### Patch Changes
+
+- [#2339](https://github.com/toptal/picasso/pull/2339) [`a4fdc617`](https://github.com/toptal/picasso/commit/a4fdc617ac1278499573d17926b249ced845b7f7) Thanks [@joantalarn](https://github.com/joantalarn)! - Fix of text color of disabled form input. The new color is grey.main2 (#84888E).
+
 ## 17.1.0
 
 ### Minor Changes
