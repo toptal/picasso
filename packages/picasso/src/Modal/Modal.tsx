@@ -223,9 +223,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       disableBackdropClick
       TransitionProps={transitionProps}
     >
-      <ModalContext.Provider value={{ isModalVisible: true }}>
-        {children}
-      </ModalContext.Provider>
+      <ModalContext.Provider value>{children}</ModalContext.Provider>
 
       {onClose && (
         <Button.Circular

@@ -134,7 +134,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   } = props
 
   const picassoRootContainer = usePicassoRoot()
-  const { isModalVisible: isInsideModal } = useContext(ModalContext)
+  const isInsideModal = useContext(ModalContext)
 
   const classes = useStyles()
   const isCompactLayoutResolution = useBreakpoint(['small', 'medium'])
