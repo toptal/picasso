@@ -2,4 +2,4 @@
 '@toptal/picasso': minor
 ---
 
-fix(Popper): fixed Popper overflow when rendering inside Modal
+Fixed Popper overflow when inside Modal

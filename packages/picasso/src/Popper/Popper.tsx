@@ -64,9 +64,23 @@ const getAnchorEl = (
   anchorEl: null | ReferenceObject | (() => ReferenceObject)
 ) => (typeof anchorEl === 'function' ? anchorEl() : anchorEl)
 
+const getPreventOverflowOptions = (isInsideModal: boolean) => {
+  if (isInsideModal) {
+    return {
+      boundariesElement: 'scrollParent',
+      padding: 0
+    }
+  }
+
+  return {
+    boundariesElement: 'viewport',
+    padding: 5
+  }
+}
+
 export const getPopperOptions = (
   popperOptions: PopperOptions,
-  isInsideModal: boolean
+  isInsideModal = false
 ) => ({
   ...popperOptions,
 
@@ -78,14 +92,7 @@ export const getPopperOptions = (
     },
     preventOverflow: {
       enabled: true,
-      ...(!isInsideModal && {
-        boundariesElement: 'viewport',
-        padding: 5
-      }),
-      ...(isInsideModal && {
-        boundariesElement: 'scrollParent',
-        padding: 0
-      }),
+      ...getPreventOverflowOptions(isInsideModal),
       ...popperOptions.modifiers?.preventOverflow
     }
   }
