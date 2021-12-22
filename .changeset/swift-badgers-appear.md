@@ -2,4 +2,4 @@
 '@toptal/picasso': patch
 ---
 
-Disabled form inputs in Picasso should have text in the appropriate color: grey.main2 (#84888E)
+Fix of text color of disabled form input. The new color is grey.main2 (#84888E).
