@@ -4,7 +4,12 @@ import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import Quill from 'quill'
 import { Typography, Container, Button, Select } from '@toptal/picasso'
-import { Email16, CheckSolid16, Abstract16, Ach16 } from '@toptal/picasso/Icon'
+import {
+  Bold16,
+  Italic16,
+  ListOrdered16,
+  ListUnordered16
+} from '@toptal/picasso/Icon'
 import './quill.snow.css'
 
 import styles from './styles'
@@ -106,12 +111,12 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
           />
         </Container>
         <Container className={classes.qlFormats}>
-          <Button.Action icon={<Email16 />} className='ql-hmm' />
-          <Button.Action icon={<CheckSolid16 />} className='ql-hmm' />
+          <Button.Action icon={<Bold16 />} className='ql-hmm' />
+          <Button.Action icon={<Italic16 />} className='ql-hmm' />
         </Container>
         <Container className={classes.qlFormats}>
-          <Button.Action icon={<Abstract16 />} className='ql-hmm' />
-          <Button.Action icon={<Ach16 />} className='ql-hmm' />
+          <Button.Action icon={<ListUnordered16 />} className='ql-hmm' />
+          <Button.Action icon={<ListOrdered16 />} className='ql-hmm' />
         </Container>
       </Container>
       <Typography
