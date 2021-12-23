@@ -14,25 +14,25 @@ type EditorOptionsType = {
   placeholder?: Props['placeholder']
 }
 
-const modules: QuillOptionsStatic['modules'] = {
-  // tools we provide to format text
-  // https://quilljs.com/docs/modules/toolbar/
-  toolbar: [
-    [{ header: [3, false] }],
-    ['bold', 'italic'],
-    [{ list: 'ordered' }, { list: 'bullet' }]
-  ],
-  clipboard: {
-    matchVisual: false
+const getModules = (id: any): QuillOptionsStatic['modules'] => {
+  return {
+    // tools we provide to format text
+    // https://quilljs.com/docs/modules/toolbar/
+    toolbar: {
+      // There is issue in quill which does not allow us to have multiple
+      // editors with single toolbar on the page:
+      // https://github.com/quilljs/quill/issues/633 So, I've added unique id
+      // for each of them (using class selector does not work either, custom
+      // toolbar is still applied on the first editor)
+      container: `#${id}toolbar`,
+      handlers: {
+        hmm: console.log
+      }
+    },
+    clipboard: {
+      matchVisual: false
+    }
   }
-  // toolbar: {
-  //   container: '#toolbar'
-  // }
-  // toolbar: [
-  //   [{ header: [3, false] }],
-  //   ['bold', 'italic'],
-  //   [{ list: 'bullet' }, { list: 'ordered' }]
-  // ]
 }
 
 /**
@@ -60,7 +60,7 @@ const useInitEditor = (
     Quill.register(makeBoldFormat(typographyClasses), true)
 
     editorRef.current = new Quill(`#${id}`, {
-      modules,
+      modules: getModules(id),
       formats,
       theme: 'snow',
       placeholder
