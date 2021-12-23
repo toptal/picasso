@@ -1,5 +1,7 @@
 import { JSXAttribute, JSXIdentifier, JSXText, Transform } from 'jscodeshift'
 
+let affectedComponents = ['Typography', 'TypographyOverflow', 'Amount']
+
 const getNewSize = (oldSize: string): string => {
   switch (oldSize) {
     case 'small':
@@ -10,8 +12,13 @@ const getNewSize = (oldSize: string): string => {
       return oldSize
   }
 }
-
-let affectedComponents = ['Typography', 'TypographyOverflow', 'Amount']
+const hasVariantHeadingAttribute = (attributes: JSXAttribute[]) =>
+  attributes.some(
+    attribute =>
+      attribute.type === 'JSXAttribute' &&
+      attribute.name.name === 'variant' &&
+      (attribute.value as JSXText)?.value === 'heading'
+  )
 
 const transform: Transform = (file, api, options) => {
   const j = api.jscodeshift
@@ -23,29 +30,20 @@ const transform: Transform = (file, api, options) => {
   }
 
   return j(file.source)
-    .findJSXElements()
-    .filter(path => {
-      const { attributes, name } = path.node.openingElement
-
-      const isAffectedComponent = affectedComponents.includes(
-        (name as JSXIdentifier)?.name
-      )
-
-      // exclude components with `variant` prop other than body
-      const shouldBeExcluded = (attributes as JSXAttribute[]).find(
-        attribute =>
-          attribute.type === 'JSXAttribute' &&
-          attribute.name.name === 'variant' &&
-          (attribute.value as JSXText)?.value !== 'body'
-      )
-
-      return isAffectedComponent && !shouldBeExcluded
-    })
     .find(j.JSXAttribute, {
       name: {
         type: 'JSXIdentifier',
         name: 'size'
       }
+    })
+    .filter(path => {
+      const { value, parentPath } = path.parentPath
+
+      const isAffectedComponent = affectedComponents.includes(
+        (parentPath?.value?.name as JSXIdentifier)?.name
+      )
+
+      return isAffectedComponent && !hasVariantHeadingAttribute(value)
     })
     .find(j.StringLiteral)
     .replaceWith(path => {
