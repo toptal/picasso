@@ -81,8 +81,6 @@ export default ({ palette, shadows, sizes: { borderRadius } }: Theme) =>
       backgroundColor: palette.grey.darker,
       color: palette.common.white,
       boxShadow: shadows[4],
-      fontSize: rem('13px'),
-      lineHeight: '1.5em',
       padding: '1rem',
       borderRadius: borderRadius.small,
       position: 'relative'
@@ -106,7 +104,7 @@ export default ({ palette, shadows, sizes: { borderRadius } }: Theme) =>
     },
     compact: {
       lineHeight: '1em',
-      padding: '0.25rem 0.5rem',
+      padding: `${rem('2px')} 0.5rem`,
       margin: '0.25rem'
     },
     noMaxWidth: {

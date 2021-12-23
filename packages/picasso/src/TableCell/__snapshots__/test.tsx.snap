@@ -12,9 +12,13 @@ exports[`TableCell renders 1`] = `
         class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
       >
         <td
-          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"
+          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
         >
-          Cell
+          <div
+            class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
+          >
+            Cell
+          </div>
         </td>
       </tr>
     </tbody>
@@ -34,9 +38,13 @@ exports[`TableCell renders compact 1`] = `
         class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
       >
         <td
-          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableCell-compact"
+          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-compact"
         >
-          Cell
+          <div
+            class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
+          >
+            Cell
+          </div>
         </td>
       </tr>
     </tbody>
@@ -56,9 +64,13 @@ exports[`TableCell renders narrow 1`] = `
         class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
       >
         <td
-          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body PicassoTableCell-narrow"
+          class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-narrow"
         >
-          Cell
+          <div
+            class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
+          >
+            Cell
+          </div>
         </td>
       </tr>
     </tbody>

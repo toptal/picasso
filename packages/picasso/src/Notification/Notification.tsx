@@ -110,7 +110,7 @@ const renderNotificationContent = (props: PrivateProps) => {
         {renderNotificationIcon(props)}
       </Container>
       <Typography
-        size='medium'
+        size={variant === 'yellow' ? 'small' : 'medium'}
         className={cx(
           classes?.content,
           classes?.[`content${capitalizedVariant}`]

@@ -10,7 +10,7 @@ const Example = () => (
           avatar='./jacqueline-with-flowers-1954-square.jpg'
           size='xxsmall'
         >
-          <Typography size='small'>UI specialist</Typography>
+          <Typography size='xsmall'>UI specialist</Typography>
         </UserBadge>
       </Grid.Item>
       <Grid.Item>
@@ -18,7 +18,7 @@ const Example = () => (
           name='Jacqueline Roque'
           avatar='./jacqueline-with-flowers-1954-square.jpg'
         >
-          <Typography size='small'>UI specialist</Typography>
+          <Typography size='xsmall'>UI specialist</Typography>
         </UserBadge>
       </Grid.Item>
       <Grid.Item>
@@ -27,7 +27,7 @@ const Example = () => (
           avatar='./jacqueline-with-flowers-1954-square.jpg'
           size='small'
         >
-          <Typography size='small'>UI specialist</Typography>
+          <Typography size='xsmall'>UI specialist</Typography>
         </UserBadge>
       </Grid.Item>
     </Grid>

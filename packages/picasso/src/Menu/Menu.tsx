@@ -59,7 +59,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
               data-testid={testIds?.menuItem}
               onClick={onBackClick}
             >
-              <Typography size='small' color='dark-grey' variant='body'>
+              <Typography size='xsmall' color='dark-grey' variant='body'>
                 <BackMinor16 className={classes.backButtonIcon} />
                 Back
               </Typography>

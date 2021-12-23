@@ -54,7 +54,7 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
           <Container left='xsmall'>
             <Typography
               variant='body'
-              size='small'
+              size='xsmall'
               weight='semibold'
               className={cx(classes.percentageValue)}
             >

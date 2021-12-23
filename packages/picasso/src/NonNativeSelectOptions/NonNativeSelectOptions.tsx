@@ -43,7 +43,7 @@ const MenuGroup = (props: MenuGroupProps) => {
         className={classes.menuGroup}
         {...rest}
       >
-        <Typography size='small' weight='semibold' color='dark-grey'>
+        <Typography size='xsmall' weight='semibold' color='dark-grey'>
           {group}
         </Typography>
       </MenuItem>

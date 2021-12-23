@@ -12,7 +12,7 @@ const Example = () => (
           title='UI specialist'
           avatar='./jacqueline-with-flowers-1954-square.jpg'
         >
-          <Typography size='small'>
+          <Typography size='xsmall'>
             <Link href='#'>Send me an email</Link>
           </Typography>
         </UserBadge>
@@ -39,7 +39,7 @@ const Example = () => (
               <TypographyOverflow
                 color='red'
                 inline
-                size='small'
+                size='xsmall'
                 invert={invert}
                 style={{
                   marginLeft: '0.5em'
@@ -49,7 +49,7 @@ const Example = () => (
               </TypographyOverflow>
             )}
           >
-            <Typography size='small'>
+            <Typography size='xsmall'>
               <Link href='#'>Send me an email</Link>
             </Typography>
           </UserBadge>

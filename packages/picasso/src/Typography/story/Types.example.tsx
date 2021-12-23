@@ -17,6 +17,12 @@ const Example = () => (
     <Container bottom='small'>
       <Typography size='small'>Body Small Grey</Typography>
     </Container>
+    <Container bottom='small'>
+      <Typography size='xsmall'>Body Xsmall Grey</Typography>
+    </Container>
+    <Container bottom='small'>
+      <Typography size='xxsmall'>Body Xxsmall Grey</Typography>
+    </Container>
   </div>
 )
 

@@ -196,7 +196,7 @@ const ExpandableContent = () => (
       bottom='medium'
     >
       <UserBadge name='Jacqueline Roque'>
-        <Typography data-testid='job' size='small'>
+        <Typography data-testid='job' size='xsmall'>
           UI specialist
         </Typography>
       </UserBadge>
@@ -396,12 +396,12 @@ describe('Table', () => {
 
     cy.get('[data-testid="job"]').as('job').should('be.visible')
 
-    cy.get('table > tbody > tr > td:last-child > button:last-child')
-      .as('collapseButton')
+    cy.get(`[data-testid="expand-button-${localData[0].id}"]`)
+      .as('expandButton')
       .realClick()
 
     cy.get('@job').should('not.exist')
-    cy.get('@collapseButton').realClick()
+    cy.get('@expandButton').realClick()
     cy.get('@job').should('exist')
   })
   it('renders expandable rows with default expanded', () => {
@@ -438,12 +438,12 @@ describe('Table', () => {
 
     cy.get('[data-testid="job"]').as('job').should('be.visible')
 
-    cy.get('table > tbody > tr > td:last-child > button:last-child')
-      .as('collapseButton')
+    cy.get(`[data-testid="expand-button-${localData[0].id}"]`)
+      .as('expandButton')
       .realClick()
 
     cy.get('@job').should('not.exist')
-    cy.get('@collapseButton').realClick()
+    cy.get('@expandButton').realClick()
     cy.get('@job').should('exist')
   })
 })

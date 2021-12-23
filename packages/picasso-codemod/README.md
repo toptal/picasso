@@ -18,6 +18,99 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 ## Included Scripts
 
+### v17.0.0
+
+#### `typography-sizes`
+
+Transforms `Typography`, `TypographyOverflow` and `Amount` size prop from `'small' | 'xsmall'` to `'xsmall' | 'xxsmall'`.
+
+This change only applies to variant `body` (which is default)
+
+> **Remember to run this codemod only once in your structure!**
+> 
+> Because in first run: `small --> xsmall`
+> 
+> but in second run: `xsmall --> xxsmall`
+> 
+> If you need to run it again, revert/checkout previous changes
+
+Here's how the diff should look like:
+
+```diff
+-<Typography size='small'>Text</Typography>
++<Typography size='xsmall'>Text</Typography>
+-<Typography size='xsmall'>Text</Typography>
++<Typography size='xxsmall'>Text</Typography>
+-<Typography size={condition ? 'small' : 'xsmall'}>Text</Typography>
++<Typography size={condition ? 'xsmall' : 'xxsmall'}>Text</Typography>
+-<TypographyOverflow size='small'>Text</TypographyOverflow>
++<TypographyOverflow size='xsmall'>Text</TypographyOverflow>
+-<TypographyOverflow size='xsmall'>Text</TypographyOverflow>
++<TypographyOverflow size='xxsmall'>Text</TypographyOverflow>
+-<TypographyOverflow size={condition ? 'small' : 'xsmall'}>Text</TypographyOverflow>
++<TypographyOverflow size={condition ? 'xsmall' : 'xxsmall'}>Text</TypographyOverflow>
+-<Amount size='small'>Text</Amount>
++<Amount size='xsmall'>Text</Amount>
+-<Amount size='xsmall'>Text</Amount>
++<Amount size='xxsmall'>Text</Amount>
+-<Amount size={condition ? 'small' : 'xsmall'}>Text</Amount>
++<Amount size={condition ? 'xsmall' : 'xxsmall'}>Text</Amount>
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/typography-sizes src/**/*.tsx
+```
+
+</details>
+
+#### In case you use wrapper components for `Typography`
+
+codemod by default checks only `Typography`, `TypographyOverflow` and `Amount` components.
+
+If you want to include other components, you need to:
+
+1. create a json file and put your components in it:
+```json
+{
+  "includeComponents": ["Foo", "Bar"]
+}
+```
+2. run command with `--parser-config` param:
+```shell
+npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/typography-sizes src/**/*.tsx --parser-config=path/to/your/config.json
+```
+
+
+#### `container-borders`
+
+Removes `bordered` prop from `Container` components with all colored variants.
+
+Here's how the diff should look like:
+```diff
+-<Container variant='red' bordered>text</Container>
++<Container variant='red'>text</Container>
+-<Container variant='green' bordered>text</Container>
++<Container variant='green'>text</Container>
+-<Container variant='yellow' bordered>text</Container>
++<Container variant='yellow'>text</Container>
+-<Container variant='blue' bordered>text</Container>
++<Container variant='blue'>text</Container>
+-<Container variant='grey' bordered>text</Container>
++<Container variant='grey'>text</Container>
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/container-borders src/**/*.tsx
+```
+
+</details>
+
 ### v16.0.0
 
 #### `revert-colors`

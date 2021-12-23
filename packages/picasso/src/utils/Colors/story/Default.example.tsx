@@ -34,7 +34,7 @@ const ColorGroup = ({
       <Grid.Item key={colorName}>
         <Paper style={{ padding: '1rem' }}>
           <ColorRectangle color={color} />
-          <Typography size='small'>
+          <Typography size='xsmall'>
             {`${colorGroupName}.${colorName}`}
           </Typography>
           <Typography variant='heading' size='small'>

@@ -68,7 +68,7 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
                 justifyContent='space-between'
               >
                 <UserBadge name={account.name} avatar={account.avatar}>
-                  <Typography size='small'>{account.position}</Typography>
+                  <Typography size='xsmall'>{account.position}</Typography>
                 </UserBadge>
                 <ChevronRight16 color='dark-grey' />
               </Container>

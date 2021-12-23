@@ -1,5 +1,106 @@
 # Change Log
 
+## 17.1.1
+
+### Patch Changes
+
+- [#2339](https://github.com/toptal/picasso/pull/2339) [`a4fdc617`](https://github.com/toptal/picasso/commit/a4fdc617ac1278499573d17926b249ced845b7f7) Thanks [@joantalarn](https://github.com/joantalarn)! - Fix of text color of disabled form input. The new color is grey.main2 (#84888E).
+
+## 17.1.0
+
+### Minor Changes
+
+- [#2336](https://github.com/toptal/picasso/pull/2336) [`4370e2d8`](https://github.com/toptal/picasso/commit/4370e2d84c3768719a530c621eefae835e163e73) Thanks [@ascrazy](https://github.com/ascrazy)! - ## TreeView
+
+  - Fix PointLink positioning to avoid unexpected 0.5px shifts
+
+## 17.0.0
+
+### Major Changes
+
+- [#2308](https://github.com/toptal/picasso/pull/2308) [`ce7be40f`](https://github.com/toptal/picasso/commit/ce7be40fbfb04536058cc94b03ccf86f7125529b) Thanks [@LashaJini](https://github.com/LashaJini)! - ### Container
+
+  [Picasso Container Component](https://picasso.toptal.net/?path=/story/layout-container--container)
+
+  `packages/picasso/src/Container`
+
+  - Colored container variants - `red`, `green`, `yellow`, `blue`, `grey` -
+    **cannot** have borders.
+  - Container variants - `white`, `transparent` - **can** have borders.
+  - User will see error in IDE if `bordered` is used with anything except `white`
+    and `transparent` variants.
+
+  **Valid cases:**
+
+  ```jsx
+  <Container bordered>some text</Container>
+  <Container variant='white' bordered>some text</Container>
+  <Container variant='transparent' bordered>some text</Container>
+  ```
+
+  **Invalid cases:**
+
+  ```jsx
+  <Container variant='red' bordered>some text</Container>
+  <Container variant='non-existing-color' bordered>some text</Container>
+  ```
+
+* [#2295](https://github.com/toptal/picasso/pull/2295) [`b9859b6c`](https://github.com/toptal/picasso/commit/b9859b6c246f582d336250b7df45e6c284902299) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ### Changing sizes in `Typography` for `body` variant.
+
+  **Reason behind it:**
+
+  In multiple Picasso components (`TableCell`, `Tab`, `Notification`, `Tooltip`)
+  was used a type of `font-size: 13px; line-height: 20px` but it wasn't officially
+  part of BASE `Typography` component, so it had to be styled manually in multiple places creating duplicates.
+
+  **Solution**
+
+  Introduced new size type (**13px/20px**) named `small`.
+
+  This change pushed other size types down, making:
+
+  > `small` --> `xsmall`
+  >
+  > `xsmall` --> `xxsmall`
+
+  There is a [codemod for v17.0.0](https://github.com/toptal/picasso/tree/master/packages/picasso-codemod#v1700)
+  named `typography-sizes` to help you with this transition.
+  Note that this codemod also changes props in `TypographyOverflow` and `Amount` component as they are both wrappers for `Typography`.
+
+  > If you use custom wrapper components for `Typography`,
+  > you can include them in codemod via `--parser-config` param.
+  >
+  > Read more inside [README](https://github.com/toptal/picasso/tree/master/packages/picasso-codemod#v1700)
+
+  **Other consequences**
+
+  - This update also changed line-height in `Tooltip` from previous **19.5px** to **20px**
+    and fixed `compact` variant's height to **24px** to comply with BASE
+  - Table header height for `compact` spacing changed to **24px** (from previous 26.5px)
+  - There is also a **change in `TableCell` structure**.
+    Now its children are wrapped by `Typography` component.
+    It looks basically like this:
+
+  ```diff
+  <MUITableCell>
+  + <Typography as='div' size='small'>
+      {children}
+  + </Typography>
+  </MUITableCell>
+  ```
+
+  Please bare in mind this may cause some unexpected issues, if you rely on table-cell properties in your children.
+
+### Minor Changes
+
+- [#2304](https://github.com/toptal/picasso/pull/2304) [`6446e620`](https://github.com/toptal/picasso/commit/6446e620808fed2a411fc124821c4cc896add734) Thanks [@yusufzmly](https://github.com/yusufzmly)! - Add isBrowser utils function and Fix NumberInput and Tooltip component for SSR
+
+### Patch Changes
+
+- Updated dependencies [[`6446e620`](https://github.com/toptal/picasso/commit/6446e620808fed2a411fc124821c4cc896add734)]:
+  - @toptal/picasso-provider@0.5.0
+  - @toptal/picasso-shared@7.1.1
+
 ## 16.4.0
 
 ### Minor Changes

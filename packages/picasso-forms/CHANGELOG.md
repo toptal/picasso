@@ -1,5 +1,28 @@
 # Change Log
 
+## 21.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`4370e2d8`](https://github.com/toptal/picasso/commit/4370e2d84c3768719a530c621eefae835e163e73)]:
+  - @toptal/picasso@17.1.0
+  - @toptal/picasso-lab@24.0.0
+
+## 20.1.0
+
+### Minor Changes
+
+- [#2324](https://github.com/toptal/picasso/pull/2324) [`2c368d61`](https://github.com/toptal/picasso/commit/2c368d61e5e828d932697da9fe6048779b902def) Thanks [@inemiro](https://github.com/inemiro)! - Added `disableScrollOnError` prop for Form component do switch-off auto-scrolling on error if required
+
+## 20.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`ce7be40f`](https://github.com/toptal/picasso/commit/ce7be40fbfb04536058cc94b03ccf86f7125529b), [`b9859b6c`](https://github.com/toptal/picasso/commit/b9859b6c246f582d336250b7df45e6c284902299), [`b9859b6c`](https://github.com/toptal/picasso/commit/b9859b6c246f582d336250b7df45e6c284902299), [`6446e620`](https://github.com/toptal/picasso/commit/6446e620808fed2a411fc124821c4cc896add734)]:
+  - @toptal/picasso@17.0.0
+  - @toptal/picasso-lab@23.0.0
+  - @toptal/picasso-shared@7.1.1
+
 ## 19.0.0
 
 ### Patch Changes

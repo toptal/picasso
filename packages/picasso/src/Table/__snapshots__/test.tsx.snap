@@ -15,10 +15,14 @@ exports[`Table renders 1`] = `
           class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered MuiTableRow-head"
         >
           <th
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-head PicassoTableCell-header"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-head"
             scope="col"
           >
-            Table test
+            <div
+              class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+            >
+              Table test
+            </div>
           </th>
         </tr>
       </thead>
@@ -29,9 +33,13 @@ exports[`Table renders 1`] = `
           class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
           >
-            Table test
+            <div
+              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
+            >
+              Table test
+            </div>
           </td>
         </tr>
       </tbody>
@@ -42,9 +50,13 @@ exports[`Table renders 1`] = `
           class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered MuiTableRow-footer"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer PicassoTableCell-footer"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer"
           >
-            Table test
+            <div
+              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
+            >
+              Table test
+            </div>
           </td>
         </tr>
       </tfoot>

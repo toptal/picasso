@@ -79,7 +79,7 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
         <Typography
           className={classes.error}
           variant='body'
-          size='small'
+          size='xsmall'
           color='red'
         >
           {error}

@@ -2,15 +2,14 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
-PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
+PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
   MuiTab: {
     root: {
-      fontWeight: typography.fontWeights.semibold,
       minHeight: 0,
       minWidth: 0,
       lineHeight: 1,
       textTransform: 'none',
-      padding: `${rem('11px')} 0 ${rem('9px')}`,
+      padding: `${rem('9px')} 0 ${rem('7px')}`,
       overflow: 'initial',
 
       [breakpoints.up('md')]: {
@@ -30,7 +29,7 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
     },
     labelIcon: {
       minHeight: 0,
-      paddingTop: rem('11px'),
+      paddingTop: rem('9px'),
       '& $wrapper > *:first-child': {
         position: 'absolute',
         right: '-1.5rem',
@@ -50,8 +49,6 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
     },
     disabled: {},
     wrapper: {
-      fontSize: rem('13px'),
-      lineHeight: '1rem',
       width: 'auto'
     }
   }
