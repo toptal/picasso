@@ -40,3 +40,4 @@ page
   ) // picasso-skip-visuals
   .addExample('List/story/Unordered.example.tsx', 'Unordered') // picasso-skip-visuals
   .addExample('List/story/Custom.example.tsx', 'Custom') // picasso-skip-visuals
+  .addExample('List/story/CustomMargin.example.tsx', 'Custom margin') // picasso-skip-visuals

@@ -9,7 +9,9 @@ exports[`List renders ordered list 1`] = `
       class="PicassoList-root"
       data-testid="ordered-list"
     >
-      <li>
+      <li
+        class="PicassoListItem-root"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
@@ -30,7 +32,9 @@ exports[`List renders ordered list 1`] = `
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class="PicassoListItem-root"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
@@ -51,7 +55,9 @@ exports[`List renders ordered list 1`] = `
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class="PicassoListItem-root"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
@@ -72,7 +78,9 @@ exports[`List renders ordered list 1`] = `
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class="PicassoListItem-root"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
@@ -93,9 +101,11 @@ exports[`List renders ordered list 1`] = `
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class="PicassoListItem-root"
+      >
         <div
-          class="PicassoContainer-flex PicassoListItem-listContainer PicassoListItem-lastElement"
+          class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
             class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-ordered"
@@ -128,7 +138,9 @@ exports[`List renders unordered list 1`] = `
       class="PicassoList-root PicassoList-unordered"
       data-testid="unordered-list"
     >
-      <li>
+      <li
+        class="PicassoListItem-root"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
@@ -152,7 +164,9 @@ exports[`List renders unordered list 1`] = `
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class="PicassoListItem-root"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
@@ -176,7 +190,9 @@ exports[`List renders unordered list 1`] = `
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class="PicassoListItem-root"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
@@ -200,7 +216,9 @@ exports[`List renders unordered list 1`] = `
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class="PicassoListItem-root"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
@@ -224,9 +242,11 @@ exports[`List renders unordered list 1`] = `
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class="PicassoListItem-root"
+      >
         <div
-          class="PicassoContainer-flex PicassoListItem-listContainer PicassoListItem-lastElement"
+          class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
             class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import Container from '../Container'
@@ -15,7 +15,6 @@ export type Props = BaseProps & {
   index?: number
   /** Add a custom `<Icon />` to set a custom bullet in ordered lists */
   icon?: ReactNode
-  isLastElement?: boolean
 }
 
 const Index = ({ children }: { children: ReactNode }) => (
@@ -38,7 +37,7 @@ const getBulletOrNumber = (
   return <Index>{index + 1}</Index>
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoListItem' })
+const useStyles = makeStyles(styles, { name: 'PicassoListItem' })
 
 export const ListItem = (props: Props) => {
   const classes = useStyles()
@@ -47,21 +46,15 @@ export const ListItem = (props: Props) => {
     icon,
     variant = 'unordered',
     index = 1,
-    isLastElement,
+    className,
     ...rest
   } = props
 
   const itemIcon = getBulletOrNumber(variant, index, icon)
 
   return (
-    <li {...rest}>
-      <Container
-        flex
-        direction='row'
-        className={cx(classes.listContainer, {
-          [classes.lastElement]: isLastElement
-        })}
-      >
+    <li className={cx(className, classes.root)} {...rest}>
+      <Container flex direction='row' className={cx(classes.listContainer)}>
         <Container
           inline
           right='small'
