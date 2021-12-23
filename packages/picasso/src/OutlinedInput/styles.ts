@@ -54,10 +54,10 @@ PicassoProvider.override(
         },
 
         '&$disabled': {
-          color: palette.grey.main2,
           // On Safari the text gets a bit lighter as if it had some transparency applied to it
           // We need this webkit-specific property to achieve the exact font color
           '-webkit-text-fill-color': palette.grey.main2,
+          color: palette.grey.main2,
           '&::placeholder': {
             color: palette.grey.main2,
             opacity: 1
