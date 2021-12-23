@@ -66,37 +66,39 @@ export default ({ palette }: Theme) =>
     qlFormats: {
       display: 'inline-block',
       verticalAlign: 'middle',
-      height: '24px',
+      height: '1.5em',
       position: 'relative',
-      paddingRight: '8px',
-      marginRight: '8px',
+      paddingRight: '0.5em',
+      marginRight: '0.5em',
 
       '&:not(:last-child)::after': {
         content: '""!important',
-        height: '16px',
+        height: '1em',
         width: '1px',
         position: 'absolute',
         right: 0,
-        top: '4px',
+        top: '0.25em',
         backgroundColor: palette.grey.lighter2
       },
 
       '& button': {
-        borderRadius: '4px',
-        width: '24px'
+        borderRadius: '0.25em',
+        width: '1.5em'
       },
 
       '& button+button': {
-        marginLeft: '0.5rem !important'
+        marginLeft: '0.5em !important'
       }
     },
 
     qlHeader: {
-      height: '24px',
-      borderRadius: '4px',
+      height: '1.5em',
+      width: '7.125em',
+      borderRadius: '0.25em',
+      color: palette.common.black,
 
       '& input::placeholder': {
-        color: 'black'
+        color: palette.common.black
       }
     }
   })

@@ -131,22 +131,6 @@
   content: '';
   display: table;
 }
-/* .ql-snow.ql-toolbar button, */
-/* .ql-snow .ql-toolbar button { */
-/*   background: none; */
-/*   border: none; */
-/*   cursor: pointer; */
-/*   display: inline-block; */
-/*   float: left; */
-/*   height: 24px; */
-/*   padding: 3px 5px; */
-/*   width: 28px; */
-/* } */
-/* .ql-snow.ql-toolbar button svg, */
-/* .ql-snow .ql-toolbar button svg { */
-/*   float: left; */
-/*   height: 100%; */
-/* } */
 .ql-snow.ql-toolbar button:active:hover,
 .ql-snow .ql-toolbar button:active:hover {
   outline: none;
@@ -273,15 +257,6 @@
 .ql-snow .ql-tooltip.ql-flip {
   transform: translateY(-10px);
 }
-/* .ql-snow .ql-formats { */
-/*   display: inline-block; */
-/*   vertical-align: middle; */
-/* } */
-/* .ql-snow .ql-formats:after { */
-/*   clear: both; */
-/*   content: ''; */
-/*   display: table; */
-/* } */
 .ql-snow .ql-stroke {
   fill: none;
   stroke: #444;
@@ -349,10 +324,6 @@
   position: relative;
   width: 100%;
 }
-/* .ql-snow .ql-picker-label::before { */
-/*   display: inline-block; */
-/*   line-height: 22px; */
-/* } */
 .ql-snow .ql-picker-options {
   background-color: #fff;
   display: none;
@@ -523,9 +494,6 @@
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   padding: 8px;
 }
-/* .ql-toolbar.ql-snow .ql-formats { */
-/*   margin-right: 15px; */
-/* } */
 .ql-toolbar.ql-snow .ql-picker-label {
   border: 1px solid transparent;
 }

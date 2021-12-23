@@ -100,12 +100,14 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     <>
       <Container id={`${id}toolbar`}>
         <Container className={classes.qlFormats}>
+          {
+            // TODO: add styling to options
+          }
           <Select
             onChange={handleChange}
             options={OPTIONS}
             value={selected}
             size='small'
-            style={{ width: '114px', color: 'black' }}
             menuWidth='123px'
             className={classes.qlHeader}
           />
