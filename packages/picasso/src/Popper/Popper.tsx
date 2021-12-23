@@ -1,10 +1,16 @@
-import React, { forwardRef, ReactNode, useLayoutEffect } from 'react'
+import React, {
+  forwardRef,
+  ReactNode,
+  useContext,
+  useLayoutEffect
+} from 'react'
 import cx from 'classnames'
 import MUIPopper from '@material-ui/core/Popper'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import PopperJs, { ReferenceObject, PopperOptions } from 'popper.js'
 import { BaseProps } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
+import ModalContext from '@toptal/picasso/Modal/ModalContext'
 
 import useWidthOf from '../utils/use-width-of'
 import styles from './styles'
@@ -58,7 +64,24 @@ const getAnchorEl = (
   anchorEl: null | ReferenceObject | (() => ReferenceObject)
 ) => (typeof anchorEl === 'function' ? anchorEl() : anchorEl)
 
-export const getPopperOptions = (popperOptions: PopperOptions) => ({
+const getPreventOverflowOptions = (isInsideModal: boolean) => {
+  if (isInsideModal) {
+    return {
+      boundariesElement: 'scrollParent',
+      padding: 0
+    }
+  }
+
+  return {
+    boundariesElement: 'viewport',
+    padding: 5
+  }
+}
+
+export const getPopperOptions = (
+  popperOptions: PopperOptions,
+  isInsideModal = false
+) => ({
   ...popperOptions,
 
   modifiers: {
@@ -69,8 +92,7 @@ export const getPopperOptions = (popperOptions: PopperOptions) => ({
     },
     preventOverflow: {
       enabled: true,
-      boundariesElement: 'viewport',
-      padding: 5,
+      ...getPreventOverflowOptions(isInsideModal),
       ...popperOptions.modifiers?.preventOverflow
     }
   }
@@ -112,6 +134,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   } = props
 
   const picassoRootContainer = usePicassoRoot()
+  const isInsideModal = useContext(ModalContext)
 
   const classes = useStyles()
   const isCompactLayoutResolution = useBreakpoint(['small', 'medium'])
@@ -132,8 +155,8 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   }, [isCompactLayout, open])
 
   const memoizedPopperOptions = React.useMemo(
-    () => getPopperOptions(popperOptions),
-    [popperOptions]
+    () => getPopperOptions(popperOptions, isInsideModal),
+    [popperOptions, isInsideModal]
   )
 
   return (
