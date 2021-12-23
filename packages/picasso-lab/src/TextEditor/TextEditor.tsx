@@ -1,13 +1,11 @@
-import React, { forwardRef, useRef } from 'react'
+import React, { forwardRef, useRef, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import Quill from 'quill'
-import { Container, Typography } from '@toptal/picasso'
+import { Typography, Container, Button, Select } from '@toptal/picasso'
+import { Email16, CheckSolid16, Abstract16, Ach16 } from '@toptal/picasso/Icon'
 import './quill.snow.css'
-import { Email16 } from '@toptal/picasso/Icon'
-// import svg from '@toptal/picasso/Icon/svg/email16.svg'
-// import { svg } from '@toptal/picasso/Icon/svg/email16.svg'
 
 import styles from './styles'
 import useInitEditor from './hooks/useInitEditor'
@@ -44,7 +42,8 @@ export interface Props extends BaseProps {
   onChange: TextEditorChangeHandler
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
-  /** This Boolean attribute indicates that the user cannot modify the
+  /**
+   * This Boolean attribute indicates that the user cannot modify the
    * value of the control. Unlike the disabled attribute, the readonly
    * attribute does not prevent the user from clicking or selecting in the control.
    */
@@ -56,9 +55,12 @@ export interface Props extends BaseProps {
   value?: HTMLString
 }
 
-// const icons = Quill.import('ui/icons')
-// icons['bold'] = '<i class="fa fa-bold" aria-hidden="true"></i>'
 const useStyles = makeStyles<Theme>(styles)
+
+const OPTIONS = [
+  { value: '1', text: 'Normal Text' },
+  { value: '2', text: 'Heading' }
+]
 
 export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   {
@@ -76,6 +78,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
 ) {
   const editorRef = useRef<Quill>()
   const classes = useStyles()
+  const [selected, setSelected] = useState<string>(OPTIONS[0].value)
 
   useInitEditor(editorRef, { id, placeholder })
   useHandleChangeEvent(editorRef, { onChange })
@@ -83,25 +86,46 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   useDisableEditor(editorRef, { disabled })
   useHandleAutofocus(editorRef, { autofocus })
 
+  const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
+    console.log('Selected:', event.target.value)
+    setSelected(event.target.value)
+  }
+
   return (
-    <Container
-      data-testid={dataTestId}
-      style={style}
-      className={cx(classes.root, className)}
-    >
-      <Container id='toolbar'>
-        <Email16 />
-        <button>Text</button>
+    <>
+      <Container id={`${id}toolbar`}>
+        <Container className={classes.qlFormats}>
+          <Select
+            onChange={handleChange}
+            options={OPTIONS}
+            value={selected}
+            size='small'
+            style={{ width: '114px', color: 'black' }}
+            menuWidth='123px'
+            className={classes.qlHeader}
+          />
+        </Container>
+        <Container className={classes.qlFormats}>
+          <Button.Action icon={<Email16 />} className='ql-hmm' />
+          <Button.Action icon={<CheckSolid16 />} className='ql-hmm' />
+        </Container>
+        <Container className={classes.qlFormats}>
+          <Button.Action icon={<Abstract16 />} className='ql-hmm' />
+          <Button.Action icon={<Ach16 />} className='ql-hmm' />
+        </Container>
       </Container>
       <Typography
         as='div'
         variant='body'
         color='dark-grey'
         size='medium'
+        className={cx(classes.root, className)}
+        data-testid={dataTestId}
         id={id}
         ref={ref}
+        style={style}
       />
-    </Container>
+    </>
   )
 })
 
