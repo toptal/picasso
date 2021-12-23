@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- [#2341](https://github.com/toptal/picasso/pull/2341) [`469b4764`](https://github.com/toptal/picasso/commit/469b4764f999d2307c4bbed2a97a2ac6e9507b01) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - Fixed invalid size calculation in nested Typography components
+
 ## 3.2.0
 
 ### Minor Changes
