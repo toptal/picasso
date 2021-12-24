@@ -20,15 +20,6 @@ import useDisableEditor from './hooks/useDisableEditor'
 import useHandleAutofocus from './hooks/useHandleAutofocus'
 import { HTMLString, TextEditorChangeHandler } from './types'
 
-type ToolbarActions = {
-  bold: boolean
-  italic: boolean
-  unorderedList: boolean
-  orderedList: boolean
-}
-
-type ToolbarKey = keyof ToolbarActions
-
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
   autofocus?: boolean
@@ -93,12 +84,6 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   const editorRef = useRef<Quill>()
   const classes = useStyles()
   const [selected, setSelected] = useState<string>(OPTIONS[0].value)
-  const [isActive, setIsActive] = useState<ToolbarActions>({
-    bold: false,
-    italic: false,
-    unorderedList: false,
-    orderedList: false
-  })
 
   useInitEditor(editorRef, { id, placeholder })
   useHandleChangeEvent(editorRef, { onChange })
@@ -107,12 +92,11 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   useHandleAutofocus(editorRef, { autofocus })
 
   const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
-    console.log('Selected:', event.target.value)
     setSelected(event.target.value)
   }
 
-  const toggleActive = (key: ToolbarKey) => () =>
-    setIsActive((prev: ToolbarActions) => ({ ...prev, [key]: !prev[key] }))
+  const selection = editorRef.current?.getSelection()
+  const format = selection ? editorRef.current?.getFormat(selection) : undefined
 
   return (
     <>
@@ -134,30 +118,26 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
           <Button.Circular
             variant='flat'
             icon={<Bold16 />}
-            className={cx('ql-hmm', { [classes.active]: isActive.bold })}
-            onClick={toggleActive('bold')}
+            className={cx('ql-bold', { [classes.active]: format?.bold })}
           />
           <Button.Circular
             variant='flat'
             icon={<Italic16 />}
-            className={cx('ql-hmm', { [classes.active]: isActive.italic })}
-            onClick={toggleActive('italic')}
+            className={cx('ql-italic', { [classes.active]: format?.italic })}
           />
         </Container>
         <Container className={classes.qlFormats}>
           <Button.Circular
             variant='flat'
             icon={<ListUnordered16 />}
-            className={cx('ql-hmm', {
-              [classes.active]: isActive.unorderedList
+            className={cx('ql-list', {
+              [classes.active]: format?.list
             })}
-            onClick={toggleActive('unorderedList')}
           />
           <Button.Circular
             variant='flat'
             icon={<ListOrdered16 />}
-            className={cx('ql-hmm', { [classes.active]: isActive.orderedList })}
-            onClick={toggleActive('orderedList')}
+            className={cx('ql-bullet', { [classes.active]: format?.bullet })}
           />
         </Container>
       </Container>
