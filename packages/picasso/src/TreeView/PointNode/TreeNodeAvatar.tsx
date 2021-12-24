@@ -12,6 +12,8 @@ export interface Props extends StandardProps {
   src?: string
   /** A avatar can have different sizes */
   size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+  /** Controls how image fits in the container */
+  objectFit?: 'cover' | 'contain'
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -47,11 +49,11 @@ const sizeValues = {
 
 export const TreeNodeAvatar: FC<Props> = props => {
   const classes = useStyles()
-  const { name, src, size = 'xxsmall' } = props
+  const { name, src, size = 'xxsmall', objectFit = 'contain', ...rest } = props
   const sizeValue = sizeValues[size]
 
   return (
-    <svg width={sizeValue} height={sizeValue} viewBox='0 0 40 40'>
+    <svg width={sizeValue} height={sizeValue} viewBox='0 0 40 40' {...rest}>
       <g>
         {src && (
           <image
@@ -61,6 +63,9 @@ export const TreeNodeAvatar: FC<Props> = props => {
             height='40'
             width='40'
             mask='url(#shape)'
+            preserveAspectRatio={
+              objectFit === 'cover' ? 'xMidYMid slice' : undefined
+            }
           />
         )}
         {renderInitials({ classes, name, src })}
@@ -75,7 +80,8 @@ export const TreeNodeAvatar: FC<Props> = props => {
 }
 
 TreeNodeAvatar.defaultProps = {
-  size: 'xxsmall'
+  size: 'xxsmall',
+  objectFit: 'contain'
 }
 
 TreeNodeAvatar.displayName = 'TreeNodeAvatar'
