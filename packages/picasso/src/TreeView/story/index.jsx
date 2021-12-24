@@ -46,3 +46,8 @@ page
     description:
       'Example of a compact tree - one with only single node on each depth that has children'
   }) // picasso-skip-visuals
+  .addExample('TreeView/story/TreeNodeAvatar.example.tsx', {
+    title: 'TreeNodeAvatar',
+    description:
+      'A complementary component to render an avatar for a tree view node'
+  })
