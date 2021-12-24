@@ -3,14 +3,14 @@ name: Handle contribution
 on:
   workflow_dispatch:
   pull_request:
-    #types: [opened]
+    types: [opened]
     branches:
       - master
 
 jobs:
   handle-contribution:
     # if external contribution
-    #if: ${{!contains(fromJson('["denieler", "TomasSlama", "OleksandrNechai", "OndrejTuma", "dmaklygin1", "LashaJini", "toptal-build"]'), github.event.pull_request.user.login)}}
+    if: ${{!contains(fromJson('["denieler", "TomasSlama", "OleksandrNechai", "OndrejTuma", "dmaklygin1", "LashaJini", "toptal-build"]'), github.event.pull_request.user.login)}}
     runs-on: ubuntu-latest
     env:
       JIRA_HOOK: ${{ secrets.JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}
