@@ -100,5 +100,13 @@ export default ({ palette }: Theme) =>
       '& input::placeholder': {
         color: palette.common.black
       }
+    },
+
+    active: {
+      backgroundColor: `${palette.grey.dark} !important`,
+
+      '& svg': {
+        fill: palette.common.white
+      }
     }
   })
