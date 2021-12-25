@@ -1,10 +1,3 @@
-<!---
-Thanks for taking the time to contribute!
-
-Please make sure to follow contribution process:
-https://toptal-core.atlassian.net/wiki/spaces/FE/pages/2396094469/Handling+external+contribution
--->
-
 [FX-NNNN]
 
 ### Description
@@ -52,13 +45,15 @@ List of available commands:
 #### When to approve? ✅
 
 **You are OK** with merging this PR and
+
 1. You have no extra requests.
 2. You have optional requests.
-   1. Add `nit: ` to your comment. (ex. `nit: I'd rename this variable from makeCircle to getCircle`)
+   1. Add `nit:` to your comment. (ex. `nit: I'd rename this variable from makeCircle to getCircle`)
 
 #### When to request changes? ❌
 
 **You are not OK** with merging this PR because
+
 1. Something is broken after the changes.
 2. Acceptance criteria is not reached.
 3. Code is dirty.
@@ -66,6 +61,7 @@ List of available commands:
 #### When to comment (neither ✅ nor ❌)
 
 **You want your comments to be addressed** before merging this PR in cases like:
+
 1. There are leftovers like unnecessary logs, comments, etc.
 2. You have an opinionated comment regarding the code that requires a discussion.
 3. You have questions.
