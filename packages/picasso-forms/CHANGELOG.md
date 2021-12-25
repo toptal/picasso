@@ -1,5 +1,17 @@
 # Change Log
 
+## 22.0.0
+
+### Minor Changes
+
+- [#2346](https://github.com/toptal/picasso/pull/2346) [`de31c8f1`](https://github.com/toptal/picasso/commit/de31c8f114697fa01fbfb580482663a02407cc41) Thanks [@sanex3339](https://github.com/sanex3339)! - chore(picasso-forms): add additional reexports from final-form packages
+
+### Patch Changes
+
+- Updated dependencies [[`9fcad1bb`](https://github.com/toptal/picasso/commit/9fcad1bb62f2c23825cc7fc52ade8c098fbcd491), [`1aebe81f`](https://github.com/toptal/picasso/commit/1aebe81f2bc4a80145b20ea3c0447ae052c71fa4)]:
+  - @toptal/picasso@17.2.0
+  - @toptal/picasso-lab@25.0.0
+
 ## 21.0.0
 
 ### Patch Changes

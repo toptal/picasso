@@ -1,5 +1,15 @@
 # Change Log
 
+## 17.2.0
+
+### Minor Changes
+
+- [#2348](https://github.com/toptal/picasso/pull/2348) [`9fcad1bb`](https://github.com/toptal/picasso/commit/9fcad1bb62f2c23825cc7fc52ade8c098fbcd491) Thanks [@ascrazy](https://github.com/ascrazy)! - ## TreeNodeAvatar
+
+  - Add objectFit prop to control image fitting
+
+* [#2340](https://github.com/toptal/picasso/pull/2340) [`1aebe81f`](https://github.com/toptal/picasso/commit/1aebe81f2bc4a80145b20ea3c0447ae052c71fa4) Thanks [@sanex3339](https://github.com/sanex3339)! - Fixed Popper overflow when inside Modal
+
 ## 17.1.1
 
 ### Patch Changes
