@@ -107,7 +107,6 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   useHandleAutofocus(editorRef, { autofocus })
 
   const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
-    console.log('Selected:', event.target.value)
     setSelected(event.target.value)
   }
 
@@ -134,13 +133,13 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
           <Button.Circular
             variant='flat'
             icon={<Bold16 />}
-            className={cx('ql-hmm', { [classes.active]: isActive.bold })}
+            className={cx({ [classes.active]: isActive.bold })}
             onClick={toggleActive('bold')}
           />
           <Button.Circular
             variant='flat'
             icon={<Italic16 />}
-            className={cx('ql-hmm', { [classes.active]: isActive.italic })}
+            className={cx({ [classes.active]: isActive.italic })}
             onClick={toggleActive('italic')}
           />
         </Container>
@@ -148,15 +147,13 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
           <Button.Circular
             variant='flat'
             icon={<ListUnordered16 />}
-            className={cx('ql-hmm', {
-              [classes.active]: isActive.unorderedList
-            })}
+            className={cx({ [classes.active]: isActive.unorderedList })}
             onClick={toggleActive('unorderedList')}
           />
           <Button.Circular
             variant='flat'
             icon={<ListOrdered16 />}
-            className={cx('ql-hmm', { [classes.active]: isActive.orderedList })}
+            className={cx({ [classes.active]: isActive.orderedList })}
             onClick={toggleActive('orderedList')}
           />
         </Container>
