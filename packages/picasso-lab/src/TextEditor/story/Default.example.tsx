@@ -9,15 +9,14 @@ const Example = () => {
 
   return (
     <>
-      <Container style={{ height: '300px' }}>
-        <TextEditor
-          id='editor'
-          onChange={handleChange}
-          placeholder='Write some cool rich text'
-          value={value}
-          autofocus
-        />
-      </Container>
+      <TextEditor
+        id='editor'
+        onChange={handleChange}
+        placeholder='Write some cool rich text'
+        value={value}
+        height='300px'
+        autofocus
+      />
       <Container
         padded='small'
         top='large'
