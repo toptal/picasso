@@ -59,6 +59,8 @@ export default ({ palette }: Theme) =>
   createStyles({
     root: {
       height: 'calc(100% - 43px)',
+      overflowY: 'hidden',
+      resize: 'vertical',
       ...listStyles,
       ...margins
     },
