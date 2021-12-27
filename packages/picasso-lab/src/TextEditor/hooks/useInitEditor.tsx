@@ -24,10 +24,7 @@ const getModules = (id: any): QuillOptionsStatic['modules'] => {
       // https://github.com/quilljs/quill/issues/633 So, I've added unique id
       // for each of them (using class selector does not work either, custom
       // toolbar is still applied on the first editor)
-      container: `#${id}toolbar`,
-      handlers: {
-        hmm: console.log
-      }
+      container: `#${id}toolbar`
     },
     clipboard: {
       matchVisual: false
