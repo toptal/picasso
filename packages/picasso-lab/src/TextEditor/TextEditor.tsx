@@ -67,6 +67,8 @@ export interface Props extends BaseProps {
    * HTML content of TextEditor
    */
   value?: HTMLString
+  /** Text editor height */
+  height?: string // TODO: change to Height type?
 }
 
 const useStyles = makeStyles<Theme>(styles)
@@ -86,6 +88,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     onChange,
     placeholder,
     style,
+    height,
     value
   },
   ref
@@ -167,7 +170,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         data-testid={dataTestId}
         id={id}
         ref={ref}
-        style={style}
+        style={{ height, ...style }}
       />
     </>
   )
