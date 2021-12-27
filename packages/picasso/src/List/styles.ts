@@ -5,7 +5,8 @@ export default ({ palette }: Theme) =>
     root: {
       listStyle: 'none',
       padding: 0,
-      margin: 0
+      margin: 0,
+      fontSize: '1rem'
     },
     unordered: {
       color: palette.text.primary
