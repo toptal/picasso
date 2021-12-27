@@ -117,9 +117,6 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     <Container className={classes.editorWrapper}>
       <Container id={`${id}toolbar`} className={classes.qlToolbar}>
         <Container className={classes.qlFormats}>
-          {
-            // TODO: add styling to options
-          }
           <Select
             onChange={handleChange}
             options={OPTIONS}
