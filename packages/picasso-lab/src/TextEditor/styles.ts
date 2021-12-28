@@ -68,13 +68,13 @@ export default ({ palette }: Theme) =>
     editorWrapper: {
       borderRadius: '0.25em',
       border: `1px solid ${palette.grey.light2}`,
-      padding: '0.5625em'
+      padding: '0.5em'
     },
 
     qlToolbar: {
       display: 'flex',
       borderBottom: `1px solid ${palette.grey.light2}`,
-      paddingBottom: '0.5625em'
+      paddingBottom: '0.5em'
     },
 
     qlFormats: {
