@@ -98,14 +98,14 @@ export default ({ palette }: Theme) =>
     },
 
     button: {
-      borderRadius: '0.25em',
+      borderRadius: '0.25em !important',
 
       '&+&': {
         marginLeft: '0.5em'
       }
     },
     activeButton: {
-      backgroundColor: `${palette.grey.dark}!important`,
+      backgroundColor: `${palette.grey.dark} !important`,
 
       '& svg': {
         fill: palette.common.white
