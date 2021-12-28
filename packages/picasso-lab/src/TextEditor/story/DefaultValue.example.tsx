@@ -16,7 +16,6 @@ const Example = () => {
         onChange={handleChange}
         placeholder='Write some cool rich text'
         value={value}
-        height='300px'
       />
       <Container
         padded='small'

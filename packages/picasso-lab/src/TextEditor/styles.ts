@@ -58,7 +58,7 @@ const listStyles = {
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      height: 'calc(100% - 43px)',
+      height: rem('200px'),
       overflowY: 'hidden',
       resize: 'vertical',
       ...listStyles,

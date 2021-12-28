@@ -16,7 +16,6 @@ const Example = () => {
         value={value}
         minlength={10}
         maxlength={100}
-        height='300px'
       />
       <Container
         padded='small'
