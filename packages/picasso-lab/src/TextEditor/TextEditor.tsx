@@ -69,7 +69,13 @@ export interface Props extends BaseProps {
   value?: HTMLString
 }
 
-const useStyles = makeStyles<Theme>(styles)
+// Using { index: -1 } to inject CSS link to the bottom of the head
+// in order to prevent Button's styles to override custom TextEditor styles
+// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'TextEditor',
+  index: -1
+})
 
 const OPTIONS = [
   { value: '1', text: 'Normal Text' },
@@ -126,20 +132,24 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
             value={selected}
             size='small'
             menuWidth='123px'
-            className={classes.qlHeader}
+            className={classes.textStylesSelect}
           />
         </Container>
         <Container className={classes.qlFormats}>
           <Button.Circular
             variant='flat'
             icon={<Bold16 />}
-            className={cx({ [classes.active]: isActive.bold })}
+            className={cx(classes.button, {
+              [classes.activeButton]: isActive.bold
+            })}
             onClick={toggleActive('bold')}
           />
           <Button.Circular
             variant='flat'
             icon={<Italic16 />}
-            className={cx({ [classes.active]: isActive.italic })}
+            className={cx(classes.button, {
+              [classes.activeButton]: isActive.italic
+            })}
             onClick={toggleActive('italic')}
           />
         </Container>
@@ -147,13 +157,17 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
           <Button.Circular
             variant='flat'
             icon={<ListUnordered16 />}
-            className={cx({ [classes.active]: isActive.unorderedList })}
+            className={cx(classes.button, {
+              [classes.activeButton]: isActive.unorderedList
+            })}
             onClick={toggleActive('unorderedList')}
           />
           <Button.Circular
             variant='flat'
             icon={<ListOrdered16 />}
-            className={cx({ [classes.active]: isActive.orderedList })}
+            className={cx(classes.button, {
+              [classes.activeButton]: isActive.orderedList
+            })}
             onClick={toggleActive('orderedList')}
           />
         </Container>

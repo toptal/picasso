@@ -79,48 +79,33 @@ export default ({ palette }: Theme) =>
 
     qlFormats: {
       display: 'flex',
-      verticalAlign: 'middle',
+      alignItems: 'center',
       position: 'relative',
-      paddingRight: '0.5em',
-      marginRight: '0.5em',
 
       '&:not(:last-child)::after': {
-        content: '""!important',
+        content: '""',
         height: '1em',
         width: '1px',
-        position: 'absolute',
-        right: '-0.03125em',
-        top: '0.25em',
+        position: 'relative',
+        marginLeft: '0.5em',
+        marginRight: '0.5em',
         backgroundColor: palette.grey.lighter2
-      },
-
-      '& button': {
-        borderRadius: '0.25em',
-        width: '1.5em'
-      },
-
-      '& button+button': {
-        marginLeft: '0.5em !important'
       }
     },
 
-    qlHeader: {
-      display: 'flex',
-      width: '7.125em',
+    textStylesSelect: {
+      width: '7.125em'
+    },
+
+    button: {
       borderRadius: '0.25em',
-      color: palette.common.black,
 
-      '& div': {
-        display: 'flex'
-      },
-
-      '& input::placeholder': {
-        color: palette.common.black
+      '&+&': {
+        marginLeft: '0.5em'
       }
     },
-
-    active: {
-      backgroundColor: `${palette.grey.dark} !important`,
+    activeButton: {
+      backgroundColor: `${palette.grey.dark}`,
 
       '& svg': {
         fill: palette.common.white
