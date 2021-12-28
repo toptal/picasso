@@ -115,5 +115,8 @@ module.exports = {
     config.optimization.minimizer = []
 
     return config
+  },
+  reactOptions: {
+    fastRefresh: true
   }
 }
