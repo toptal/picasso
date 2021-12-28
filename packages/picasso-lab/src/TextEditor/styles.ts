@@ -63,6 +63,17 @@ export default ({ palette }: Theme) =>
       ...margins
     },
 
+    editorWrapper: {
+      borderRadius: '0.25em',
+      border: `1px solid ${palette.grey.light2}`,
+      padding: '0.5625em'
+    },
+
+    qlToolbar: {
+      borderBottom: `1px solid ${palette.grey.light2}`,
+      paddingBottom: '0.5625em'
+    },
+
     qlFormats: {
       display: 'inline-block',
       verticalAlign: 'middle',
