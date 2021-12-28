@@ -72,12 +72,13 @@ export default ({ palette }: Theme) =>
     },
 
     qlToolbar: {
+      display: 'flex',
       borderBottom: `1px solid ${palette.grey.light2}`,
       paddingBottom: '0.5625em'
     },
 
     qlFormats: {
-      display: 'inline-block',
+      display: 'flex',
       verticalAlign: 'middle',
       position: 'relative',
       paddingRight: '0.5em',
