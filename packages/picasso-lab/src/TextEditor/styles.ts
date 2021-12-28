@@ -79,7 +79,6 @@ export default ({ palette }: Theme) =>
     qlFormats: {
       display: 'inline-block',
       verticalAlign: 'middle',
-      height: '1.5em',
       position: 'relative',
       paddingRight: '0.5em',
       marginRight: '0.5em',
@@ -89,7 +88,7 @@ export default ({ palette }: Theme) =>
         height: '1em',
         width: '1px',
         position: 'absolute',
-        right: 0,
+        right: '-0.03125em',
         top: '0.25em',
         backgroundColor: palette.grey.lighter2
       },
@@ -105,10 +104,14 @@ export default ({ palette }: Theme) =>
     },
 
     qlHeader: {
-      height: '1.5em',
+      display: 'flex',
       width: '7.125em',
       borderRadius: '0.25em',
       color: palette.common.black,
+
+      '& div': {
+        display: 'flex'
+      },
 
       '& input::placeholder': {
         color: palette.common.black
