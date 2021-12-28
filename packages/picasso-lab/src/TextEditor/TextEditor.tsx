@@ -114,8 +114,8 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     setIsActive((prev: ToolbarActions) => ({ ...prev, [key]: !prev[key] }))
 
   return (
-    <>
-      <Container id={`${id}toolbar`}>
+    <Container className={classes.editorWrapper}>
+      <Container id={`${id}toolbar`} className={classes.qlToolbar}>
         <Container className={classes.qlFormats}>
           {
             // TODO: add styling to options
@@ -169,7 +169,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         ref={ref}
         style={style}
       />
-    </>
+    </Container>
   )
 })
 
