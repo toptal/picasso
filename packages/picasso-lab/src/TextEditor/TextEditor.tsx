@@ -69,12 +69,12 @@ export interface Props extends BaseProps {
   value?: HTMLString
 }
 
-// Using { index: -1 } to inject CSS link to the bottom of the head
+// Using { index: 1 } to inject CSS generated classes after the button's classes
 // in order to prevent Button's styles to override custom TextEditor styles
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
   name: 'TextEditor',
-  index: -1
+  index: 10
 })
 
 const OPTIONS = [

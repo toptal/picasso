@@ -98,16 +98,16 @@ export default ({ palette }: Theme) =>
     },
 
     button: {
-      borderRadius: '0.25em !important',
+      borderRadius: '0.25em',
 
       '&+&': {
         marginLeft: '0.5em'
       }
     },
     activeButton: {
-      backgroundColor: `${palette.grey.dark} !important`,
+      backgroundColor: palette.grey.dark,
 
-      '& svg': {
+      '&:not(:hover) svg': {
         fill: palette.common.white
       }
     }
