@@ -105,7 +105,7 @@ export default ({ palette }: Theme) =>
       }
     },
     activeButton: {
-      backgroundColor: `${palette.grey.dark}`,
+      backgroundColor: `${palette.grey.dark}!important`,
 
       '& svg': {
         fill: palette.common.white
