@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Referrals16 } from '@toptal/picasso'
+import { Container, List, Referrals16 } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
@@ -37,6 +37,21 @@ describe('List', () => {
       )
 
       cy.get('body').happoScreenshot()
+    })
+
+    context('when put into reduced font-size container', () => {
+      // eslint-disable-next-line max-nested-callbacks
+      it('aligns bullets correctly', () => {
+        mount(
+          <TestingPicasso>
+            <Container style={{ fontSize: '0.825rem' }}>
+              <List>{generateListItems(5)}</List>
+            </Container>
+          </TestingPicasso>
+        )
+
+        cy.get('body').happoScreenshot()
+      })
     })
   })
 
