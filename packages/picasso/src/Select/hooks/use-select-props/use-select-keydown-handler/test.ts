@@ -36,33 +36,66 @@ describe('useSelectKeydownHandle', () => {
     expect(props.selectProps.onKeyDown).toHaveBeenCalledWith(event)
   })
 
-  it('focuses input if typing text', () => {
-    const handleArrowsKeyDown = jest.fn()
-    const handleEnterOrSpaceKeyDown = jest.fn()
-    const handleEscapeKeyDown = jest.fn()
-    const props = {
-      ...getUseSelectPropsMock(),
-      handleArrowsKeyDown,
-      handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+  it.each([...'Aa0@#$%^()_+-=.,!?&*|'.split(''), 'Backspace'])(
+    'focuses input if pressing `%s` key',
+    character => {
+      const handleArrowsKeyDown = jest.fn()
+      const handleEnterOrSpaceKeyDown = jest.fn()
+      const handleEscapeKeyDown = jest.fn()
+      const props = {
+        ...getUseSelectPropsMock(),
+        handleArrowsKeyDown,
+        handleEnterOrSpaceKeyDown,
+        handleEscapeKeyDown
+      }
+
+      props.selectProps.onKeyDown = jest.fn()
+      props.selectState.showSearch = true
+
+      const { result } = renderHook(() => useSelectKeydownHandle(props))
+      const event = new KeyboardEvent('keydown', { key: character }) as any
+
+      event.preventDefault = jest.fn()
+
+      result.current(event)
+
+      expect(event.preventDefault).not.toHaveBeenCalled()
+      expect(focusRef).toHaveBeenCalledTimes(1)
+      expect(focusRef).toHaveBeenCalledWith(props.searchInputRef)
+      expect(props.selectProps.onKeyDown).toHaveBeenCalledTimes(1)
+      expect(props.selectProps.onKeyDown).toHaveBeenCalledWith(event)
     }
+  )
 
-    props.selectProps.onKeyDown = jest.fn()
-    props.selectState.showSearch = true
+  it.each(['Ctrl', 'Meta', 'Shift', 'CapsLock', 'Delete'])(
+    'does not focus input if pressing `%s` key',
+    character => {
+      const handleArrowsKeyDown = jest.fn()
+      const handleEnterOrSpaceKeyDown = jest.fn()
+      const handleEscapeKeyDown = jest.fn()
+      const props = {
+        ...getUseSelectPropsMock(),
+        handleArrowsKeyDown,
+        handleEnterOrSpaceKeyDown,
+        handleEscapeKeyDown
+      }
 
-    const { result } = renderHook(() => useSelectKeydownHandle(props))
-    const event = new KeyboardEvent('keydown', { key: 'A' }) as any
+      props.selectProps.onKeyDown = jest.fn()
+      props.selectState.showSearch = true
 
-    event.preventDefault = jest.fn()
+      const { result } = renderHook(() => useSelectKeydownHandle(props))
+      const event = new KeyboardEvent('keydown', { key: character }) as any
 
-    result.current(event)
+      event.preventDefault = jest.fn()
 
-    expect(event.preventDefault).not.toHaveBeenCalled()
-    expect(focusRef).toHaveBeenCalledTimes(1)
-    expect(focusRef).toHaveBeenCalledWith(props.searchInputRef)
-    expect(props.selectProps.onKeyDown).toHaveBeenCalledTimes(1)
-    expect(props.selectProps.onKeyDown).toHaveBeenCalledWith(event)
-  })
+      result.current(event)
+
+      expect(event.preventDefault).not.toHaveBeenCalled()
+      expect(focusRef).toHaveBeenCalledTimes(0)
+      expect(props.selectProps.onKeyDown).toHaveBeenCalledTimes(1)
+      expect(props.selectProps.onKeyDown).toHaveBeenCalledWith(event)
+    }
+  )
 
   it('focuses input on tab when open and search is shown', () => {
     const handleArrowsKeyDown = jest.fn()

@@ -33,24 +33,20 @@ const useSelectKeyDownHandler = <
         return
       }
 
-      const isValidInputValue =
-        Boolean(event.key.match(/^[A-z\d]$/)) || event.key === 'Backspace'
-
-      if (isValidInputValue) {
-        focusRef(searchInputRef)
-      }
-
       const key = normalizeArrowKey(event)
+      const isCharacterKey = key.length === 1
 
-      if (key === 'Tab' && isOpen && showSearch) {
-        event.preventDefault()
-        focusRef(searchInputRef)
-      } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+      if (key === 'ArrowUp' || key === 'ArrowDown') {
         handleArrowsKeyDown(key, event)
       } else if (key === 'Enter' || key === ' ') {
         handleEnterOrSpaceKeyDown(event)
       } else if (key === 'Escape') {
         handleEscapeKeyDown(event)
+      } else if (key === 'Tab' && isOpen && showSearch) {
+        event.preventDefault()
+        focusRef(searchInputRef)
+      } else if (isCharacterKey || key === 'Backspace') {
+        focusRef(searchInputRef)
       }
 
       onKeyDown?.(event)
