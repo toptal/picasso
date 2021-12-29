@@ -20,14 +20,14 @@ import useDisableEditor from './hooks/useDisableEditor'
 import useHandleAutofocus from './hooks/useHandleAutofocus'
 import { HTMLString, TextEditorChangeHandler } from './types'
 
-type ToolbarActions = {
+type ToolbarState = {
   bold: boolean
   italic: boolean
   unorderedList: boolean
   orderedList: boolean
 }
 
-type ToolbarKey = keyof ToolbarActions
+type ToolbarKey = keyof ToolbarState
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -77,7 +77,7 @@ const useStyles = makeStyles<Theme>(styles, {
   index: 10
 })
 
-const OPTIONS = [
+const formatingOptions = [
   { value: '1', text: 'Normal Text' },
   { value: '2', text: 'Heading' }
 ]
@@ -98,8 +98,8 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
 ) {
   const editorRef = useRef<Quill>()
   const classes = useStyles()
-  const [selected, setSelected] = useState<string>(OPTIONS[0].value)
-  const [isActive, setIsActive] = useState<ToolbarActions>({
+  const [selected, setSelected] = useState<string>(formatingOptions[0].value)
+  const [toolbarAction, setToolbarAction] = useState<ToolbarState>({
     bold: false,
     italic: false,
     unorderedList: false,
@@ -112,23 +112,22 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   useDisableEditor(editorRef, { disabled })
   useHandleAutofocus(editorRef, { autofocus })
 
-  const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
+  const handleFormattingChange = (
+    event: React.ChangeEvent<{ value: string }>
+  ) => {
     setSelected(event.target.value)
   }
 
   const toggleActive = (key: ToolbarKey) => () =>
-    setIsActive((prev: ToolbarActions) => ({ ...prev, [key]: !prev[key] }))
+    setToolbarAction((prev: ToolbarState) => ({ ...prev, [key]: !prev[key] }))
 
   return (
     <Container className={classes.editorWrapper}>
       <Container id={`${id}toolbar`} className={classes.qlToolbar}>
         <Container className={classes.qlFormats}>
-          {
-            // TODO: add styling to options
-          }
           <Select
-            onChange={handleChange}
-            options={OPTIONS}
+            onChange={handleFormattingChange}
+            options={formatingOptions}
             value={selected}
             size='small'
             menuWidth='123px'
@@ -140,7 +139,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
             variant='flat'
             icon={<Bold16 />}
             className={cx(classes.button, {
-              [classes.activeButton]: isActive.bold
+              [classes.activeButton]: toolbarAction.bold
             })}
             onClick={toggleActive('bold')}
           />
@@ -148,7 +147,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
             variant='flat'
             icon={<Italic16 />}
             className={cx(classes.button, {
-              [classes.activeButton]: isActive.italic
+              [classes.activeButton]: toolbarAction.italic
             })}
             onClick={toggleActive('italic')}
           />
@@ -158,7 +157,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
             variant='flat'
             icon={<ListUnordered16 />}
             className={cx(classes.button, {
-              [classes.activeButton]: isActive.unorderedList
+              [classes.activeButton]: toolbarAction.unorderedList
             })}
             onClick={toggleActive('unorderedList')}
           />
@@ -166,7 +165,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
             variant='flat'
             icon={<ListOrdered16 />}
             className={cx(classes.button, {
-              [classes.activeButton]: isActive.orderedList
+              [classes.activeButton]: toolbarAction.orderedList
             })}
             onClick={toggleActive('orderedList')}
           />

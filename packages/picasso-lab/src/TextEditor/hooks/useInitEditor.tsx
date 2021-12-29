@@ -14,7 +14,9 @@ type EditorOptionsType = {
   placeholder?: Props['placeholder']
 }
 
-const getModules = (id: any): QuillOptionsStatic['modules'] => {
+const getModules = (
+  id: EditorOptionsType['id']
+): QuillOptionsStatic['modules'] => {
   return {
     // tools we provide to format text
     // https://quilljs.com/docs/modules/toolbar/

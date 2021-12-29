@@ -1,4 +1,5 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
+import { sizes } from '@toptal/picasso-provider'
 import { rem } from '@toptal/picasso-shared/styles'
 
 const margins = {
@@ -66,7 +67,7 @@ export default ({ palette }: Theme) =>
     },
 
     editorWrapper: {
-      borderRadius: '0.25em',
+      borderRadius: sizes.borderRadius.small,
       border: `1px solid ${palette.grey.light2}`,
       padding: '0.5em'
     },
@@ -98,12 +99,13 @@ export default ({ palette }: Theme) =>
     },
 
     button: {
-      borderRadius: '0.25em',
+      borderRadius: sizes.borderRadius.small,
 
       '&+&': {
         marginLeft: '0.5em'
       }
     },
+
     activeButton: {
       backgroundColor: palette.grey.dark,
 
