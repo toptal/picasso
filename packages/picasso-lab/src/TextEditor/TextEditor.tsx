@@ -62,14 +62,13 @@ export interface Props extends BaseProps {
 // in order to prevent Button's styles to override custom TextEditor styles
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'TextEditor',
-  index: 10
+  name: 'TextEditor'
 })
 
-const formatingOptions = [
-  { value: '1', text: 'Normal Text' },
-  { value: '2', text: 'Heading' }
-]
+const formatOptions = {
+  normalText: { value: '1', text: 'Normal Text' },
+  heading: { value: '2', text: 'Heading' }
+}
 
 export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   {
@@ -87,8 +86,10 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
 ) {
   const editorRef = useRef<Quill>()
   const classes = useStyles()
-  const [selected, setSelected] = useState<string>(formatingOptions[0].value)
-  const [toolbarAction, setToolbarAction] = useState<ToolbarState>({
+  const [currentFormat, setCurrentFormant] = useState<string>(
+    formatOptions.normalText.value
+  )
+  const [textState, setTextState] = useState<ToolbarState>({
     bold: false,
     italic: false,
     unorderedList: false,
@@ -101,25 +102,24 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   useDisableEditor(editorRef, { disabled })
   useHandleAutofocus(editorRef, { autofocus })
 
-  const handleFormattingChange = (
-    event: React.ChangeEvent<{ value: string }>
-  ) => {
-    setSelected(event.target.value)
-  }
+  const handleFormatChange = (event: React.ChangeEvent<{ value: string }>) =>
+    setCurrentFormant(event.target.value)
 
-  const toggleActiveFormat = (key: ToolbarKey) => () =>
-    setToolbarAction((prev: ToolbarState) => ({ ...prev, [key]: !prev[key] }))
+  const toggleTextState = (textStateIndex: ToolbarKey) => () =>
+    setTextState(prevState => ({
+      ...prevState,
+      [textStateIndex]: !prevState[textStateIndex]
+    }))
 
   return (
     <Container className={classes.editorWrapper}>
       <TextEditorToolbar
         id={id}
-        toolbarAction={toolbarAction}
-        toggleActiveFormat={toggleActiveFormat}
-        selected={selected}
-        formatingOptions={formatingOptions}
-        handleFormattingChange={handleFormattingChange}
-        classes={classes}
+        textState={textState}
+        toggleTextState={toggleTextState}
+        currentFormat={currentFormat}
+        formatOptions={Object.values(formatOptions)}
+        handleFormatChange={handleFormatChange}
       />
       <Typography
         as='div'

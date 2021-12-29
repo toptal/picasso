@@ -7,7 +7,9 @@ import {
   ListOrdered16,
   ListUnordered16
 } from '@toptal/picasso/Icon'
-import { ClassNameMap } from '@material-ui/core/styles/withStyles'
+import { makeStyles, Theme } from '@material-ui/core'
+
+import styles from './styles'
 
 type OptionType = {
   // It might be better to have string as a type for value so we can later
@@ -27,32 +29,37 @@ export type ToolbarKey = keyof ToolbarState
 
 type Props = {
   id: string
-  classes: ClassNameMap<string>
-  handleFormattingChange: (event: React.ChangeEvent<{ value: string }>) => void
-  formatingOptions: OptionType[]
-  selected: OptionType['value']
-  toolbarAction: ToolbarState
-  toggleActiveFormat: (key: ToolbarKey) => () => void
+  handleFormatChange: (event: React.ChangeEvent<{ value: string }>) => void
+  formatOptions: OptionType[]
+  currentFormat: OptionType['value']
+  textState: ToolbarState
+  toggleTextState: (key: ToolbarKey) => () => void
 }
+
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'TextEditorToolbar',
+  index: 10
+})
 
 export const TextEditorToolbar = (props: Props) => {
   const {
     id,
-    toolbarAction,
-    toggleActiveFormat,
-    selected,
-    formatingOptions,
-    handleFormattingChange,
-    classes
+    textState,
+    toggleTextState,
+    currentFormat,
+    formatOptions,
+    handleFormatChange
   } = props
+
+  const classes = useStyles()
 
   return (
     <Container id={`${id}toolbar`} className={classes.qlToolbar}>
       <Container className={classes.qlFormats}>
         <Select
-          onChange={handleFormattingChange}
-          options={formatingOptions}
-          value={selected}
+          onChange={handleFormatChange}
+          options={formatOptions}
+          value={currentFormat}
           size='small'
           menuWidth='123px'
           className={classes.textStylesSelect}
@@ -63,17 +70,17 @@ export const TextEditorToolbar = (props: Props) => {
           variant='flat'
           icon={<Bold16 />}
           className={cx(classes.button, {
-            [classes.activeButton]: toolbarAction.bold
+            [classes.activeButton]: textState.bold
           })}
-          onClick={toggleActiveFormat('bold')}
+          onClick={toggleTextState('bold')}
         />
         <Button.Circular
           variant='flat'
           icon={<Italic16 />}
           className={cx(classes.button, {
-            [classes.activeButton]: toolbarAction.italic
+            [classes.activeButton]: textState.italic
           })}
-          onClick={toggleActiveFormat('italic')}
+          onClick={toggleTextState('italic')}
         />
       </Container>
       <Container className={classes.qlFormats}>
@@ -81,17 +88,17 @@ export const TextEditorToolbar = (props: Props) => {
           variant='flat'
           icon={<ListUnordered16 />}
           className={cx(classes.button, {
-            [classes.activeButton]: toolbarAction.unorderedList
+            [classes.activeButton]: textState.unorderedList
           })}
-          onClick={toggleActiveFormat('unorderedList')}
+          onClick={toggleTextState('unorderedList')}
         />
         <Button.Circular
           variant='flat'
           icon={<ListOrdered16 />}
           className={cx(classes.button, {
-            [classes.activeButton]: toolbarAction.orderedList
+            [classes.activeButton]: textState.orderedList
           })}
-          onClick={toggleActiveFormat('orderedList')}
+          onClick={toggleTextState('orderedList')}
         />
       </Container>
     </Container>
