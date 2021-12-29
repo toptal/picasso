@@ -1,4 +1,5 @@
-import { createStyles } from '@material-ui/core/styles'
+import { createStyles, Theme } from '@material-ui/core/styles'
+import { sizes } from '@toptal/picasso-provider'
 import { rem } from '@toptal/picasso-shared/styles'
 
 const margins = {
@@ -55,12 +56,61 @@ const listStyles = {
   }
 }
 
-export default () =>
+export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      height: 'calc(100% - 43px)',
-
+      height: '12.5em',
+      overflowY: 'hidden',
+      resize: 'vertical',
       ...listStyles,
       ...margins
+    },
+
+    editorWrapper: {
+      borderRadius: sizes.borderRadius.small,
+      border: `1px solid ${palette.grey.light2}`,
+      padding: '0.5em'
+    },
+
+    qlToolbar: {
+      display: 'flex',
+      borderBottom: `1px solid ${palette.grey.light2}`,
+      paddingBottom: '0.5em'
+    },
+
+    qlFormats: {
+      display: 'flex',
+      alignItems: 'center',
+      position: 'relative',
+
+      '&:not(:last-child)::after': {
+        content: '""',
+        height: '1em',
+        width: '1px',
+        position: 'relative',
+        marginLeft: '0.5em',
+        marginRight: '0.5em',
+        backgroundColor: palette.grey.lighter2
+      }
+    },
+
+    textStylesSelect: {
+      width: '7.125em'
+    },
+
+    button: {
+      borderRadius: sizes.borderRadius.small,
+
+      '&+&': {
+        marginLeft: '0.5em'
+      }
+    },
+
+    activeButton: {
+      backgroundColor: palette.grey.dark,
+
+      '&:not(:hover) svg': {
+        fill: palette.common.white
+      }
     }
   })
