@@ -3,31 +3,20 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import Quill from 'quill'
-import { Typography, Container, Button, Select } from '@toptal/picasso'
-import {
-  Bold16,
-  Italic16,
-  ListOrdered16,
-  ListUnordered16
-} from '@toptal/picasso/Icon'
+import { Typography, Container } from '@toptal/picasso'
 import './quill.snow.css'
 
 import styles from './styles'
+import TextEditorToolbar, {
+  ToolbarState,
+  ToolbarKey
+} from './TextEditorToolbar'
 import useInitEditor from './hooks/useInitEditor'
 import useHandleChangeEvent from './hooks/useHandleChangeEvent'
 import useHandleChangeFromController from './hooks/useHandleChangeFromController'
 import useDisableEditor from './hooks/useDisableEditor'
 import useHandleAutofocus from './hooks/useHandleAutofocus'
 import { HTMLString, TextEditorChangeHandler } from './types'
-
-type ToolbarState = {
-  bold: boolean
-  italic: boolean
-  unorderedList: boolean
-  orderedList: boolean
-}
-
-type ToolbarKey = keyof ToolbarState
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -118,59 +107,20 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     setSelected(event.target.value)
   }
 
-  const toggleActive = (key: ToolbarKey) => () =>
+  const toggleActiveFormat = (key: ToolbarKey) => () =>
     setToolbarAction((prev: ToolbarState) => ({ ...prev, [key]: !prev[key] }))
 
   return (
     <Container className={classes.editorWrapper}>
-      <Container id={`${id}toolbar`} className={classes.qlToolbar}>
-        <Container className={classes.qlFormats}>
-          <Select
-            onChange={handleFormattingChange}
-            options={formatingOptions}
-            value={selected}
-            size='small'
-            menuWidth='123px'
-            className={classes.textStylesSelect}
-          />
-        </Container>
-        <Container className={classes.qlFormats}>
-          <Button.Circular
-            variant='flat'
-            icon={<Bold16 />}
-            className={cx(classes.button, {
-              [classes.activeButton]: toolbarAction.bold
-            })}
-            onClick={toggleActive('bold')}
-          />
-          <Button.Circular
-            variant='flat'
-            icon={<Italic16 />}
-            className={cx(classes.button, {
-              [classes.activeButton]: toolbarAction.italic
-            })}
-            onClick={toggleActive('italic')}
-          />
-        </Container>
-        <Container className={classes.qlFormats}>
-          <Button.Circular
-            variant='flat'
-            icon={<ListUnordered16 />}
-            className={cx(classes.button, {
-              [classes.activeButton]: toolbarAction.unorderedList
-            })}
-            onClick={toggleActive('unorderedList')}
-          />
-          <Button.Circular
-            variant='flat'
-            icon={<ListOrdered16 />}
-            className={cx(classes.button, {
-              [classes.activeButton]: toolbarAction.orderedList
-            })}
-            onClick={toggleActive('orderedList')}
-          />
-        </Container>
-      </Container>
+      <TextEditorToolbar
+        id={id}
+        toolbarAction={toolbarAction}
+        toggleActiveFormat={toggleActiveFormat}
+        selected={selected}
+        formatingOptions={formatingOptions}
+        handleFormattingChange={handleFormattingChange}
+        classes={classes}
+      />
       <Typography
         as='div'
         variant='body'
