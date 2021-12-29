@@ -249,6 +249,29 @@ describe('DatePicker', () => {
       expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 25))
     })
 
+    describe('when `range` property is set', () => {
+      it('should resets value when input content removed', async () => {
+        const { getByPlaceholderText } = renderDatePicker({
+          ...defaultProps,
+          range: true,
+          value: new Date(2021, 11, 29)
+        })
+
+        const input = getByPlaceholderText(defaultProps.placeholder)
+
+        expect(input).toHaveAttribute('value', 'Dec 29, 2021')
+
+        await act(async () => {
+          await fireEvent.change(input, {
+            target: { value: '' }
+          })
+          fireEvent.blur(input)
+        })
+
+        expect(input).toHaveAttribute('value', '')
+      })
+    })
+
     describe('should work with `parseInputValue`', () => {
       describe('when parser returns parsed date', () => {
         const parseInputValue: DatePickerInputCustomValueParser = jest

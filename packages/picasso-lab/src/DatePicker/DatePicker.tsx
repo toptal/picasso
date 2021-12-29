@@ -232,12 +232,12 @@ export const DatePicker = (props: Props) => {
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
   ) => {
+    const nextValue = e.target.value
+
     // TODO: change this if manual entering of range is needed
-    if (range) {
+    if (range && nextValue) {
       return
     }
-
-    const nextValue = e.target.value
 
     // TODO: add char filtering (only number , `-` or ` ` allowed) in case if `parseInputValue` is not set
     setInputValue(nextValue)
