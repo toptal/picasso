@@ -42,6 +42,12 @@ const getNormalizedValue = (value: DateOrDateRangeType | undefined) => {
   return { start, end }
 }
 
+const getActiveMonthFromValue = (value: DateOrDateRangeType | undefined) => {
+  if (value instanceof Date) {
+    return value
+  }
+}
+
 export interface Props
   extends BaseProps,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur'> {
@@ -194,7 +200,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         renderWeek={({ children }: WeekProps) => {
           return <div className={classes.week}>{children}</div>
         }}
-        activeMonth={activeMonth || value}
+        activeMonth={activeMonth || getActiveMonthFromValue(value)}
         mode={range ? 'range' : 'single'}
         minDate={minDate}
         maxDate={maxDate}
