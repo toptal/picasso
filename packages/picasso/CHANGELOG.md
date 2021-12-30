@@ -1,5 +1,13 @@
 # Change Log
 
+## 17.2.1
+
+### Patch Changes
+
+- [#2351](https://github.com/toptal/picasso/pull/2351) [`045c1c84`](https://github.com/toptal/picasso/commit/045c1c84ceaaa6155674923faf2f41477027b85f) Thanks [@ascrazy](https://github.com/ascrazy)! - ## List
+
+  - set List's root element font-size to 1rem to fix unordered list bullets alignment
+
 ## 17.2.0
 
 ### Minor Changes
