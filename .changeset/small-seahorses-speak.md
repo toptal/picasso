@@ -1,5 +1,7 @@
 ---
-'@toptal/picasso': minor
+'@toptal/picasso': patch
 ---
 
-Typing one of the `@#$%()_+-=.,` symbols after clicking on Select component now triggers focus to its search input
+### Select
+
+- Typing special symbols after clicking on Select component now triggers focus to its search input
