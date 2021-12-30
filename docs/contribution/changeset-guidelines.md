@@ -20,7 +20,7 @@
 - Deleting a component property
 - Changing values for existing properties
 - Changing purpose of the property
-- Changing horizontal layout of a component (which can mean page layout brake where the component is used)
+- Changing horizontal layout of a component (which can mean page layout break where the component is used)
 - Picasso users need to take action to use released version with the changes
 
 ## Summary of the change (changelog message)
