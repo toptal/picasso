@@ -15,9 +15,15 @@ const page = PicassoBook.section('Components').createPage(
     `
 )
 
-page
-  .createTabChapter('Props')
-  .addComponentDocs({ component: Picasso, name: 'Picasso' })
+page.createTabChapter('Props').addComponentDocs({
+  component: Picasso,
+  name: 'Picasso',
+  additionalDocs: {
+    RootComponent: {
+      defaultValue: 'PicassoRootNode'
+    }
+  }
+})
 
 page
   .createChapter()

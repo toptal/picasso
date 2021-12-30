@@ -6,12 +6,16 @@ import { Button } from '@toptal/picasso'
 import Form, { Props } from './Form'
 import { scrollTo } from '../utils/scroll-to'
 
-jest.mock('../utils', () => ({
-  ...jest.requireActual('../utils'),
-  createScrollToErrorDecorator: jest.requireActual(
-    '../utils/scroll-to-error-decorator'
-  ).default
-}))
+jest.mock('../utils', () => {
+  const actualUtils = jest.requireActual('../utils')
+
+  return {
+    ...actualUtils,
+    createScrollToErrorDecorator: jest.requireActual(
+      '../utils/scroll-to-error-decorator'
+    ).default
+  }
+})
 jest.mock('../utils/scroll-to', () => ({
   scrollTo: jest.fn()
 }))

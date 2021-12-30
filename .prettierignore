@@ -20,3 +20,6 @@ packages/picasso/src/Select/index.ts
 packages/picasso/src/utils/Transitions/index.ts
 packages/picasso/src/YearSelect/index.ts
 packages/topkit-analytics-charts/src/AnalyticsChart/index.ts
+
+packages/picasso-codemod/src/v17.0.0/container-borders/__testfixtures__/expected.tsx
+packages/picasso-codemod/src/v17.0.0/container-borders/__testfixtures__/actual.tsx
