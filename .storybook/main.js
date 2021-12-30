@@ -118,5 +118,8 @@ module.exports = {
   },
   reactOptions: {
     fastRefresh: true
+  },
+  features: {
+    postcss: false
   }
 }
