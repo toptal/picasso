@@ -1,11 +1,27 @@
 # Changesets guidelines
 
 ## Version bump
-`patch` - a bug fix, a slight change in the existing functionality or the change, which doesn’t affect Picasso users, but good to know it exists.
+`patch`
 
-`minor` - a new prop, new functionality for the component. Picasso users will be benefited if know this change has been made.
+- Bug fix
+- Change in the existing functionality
+- Change, which does not affect Picasso users
 
-`major` - a change in values for the existing prop, the prop removal, a change of the prop purpose, removal of the component. Also, if the horizontal layout of the component is affected (which can mean a broken layout of the page for users of this component). Picasso users must know about this change because they need to take action to upgrade their existing Picasso version.
+`minor`
+
+- New property
+- New property value
+- New functionality
+- New component
+
+`major`
+
+- Deleting a component
+- Deleting a component property
+- Changing values for existing properties
+- Changing purpose of the property
+- Changing horizontal layout of a component (which can mean page layout brake where the component is used)
+- Picasso users need to take action to use released version with the changes
 
 ## Summary of the change (changelog message)
 
