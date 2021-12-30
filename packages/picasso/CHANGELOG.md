@@ -1,5 +1,13 @@
 # Change Log
 
+## 17.2.2
+
+### Patch Changes
+
+- [#2356](https://github.com/toptal/picasso/pull/2356) [`11744a28`](https://github.com/toptal/picasso/commit/11744a28c81e36d01af4111bae2a70e33427ffa2) Thanks [@sanex3339](https://github.com/sanex3339)! - ### Select
+
+  - Typing special symbols after clicking on Select component now triggers focus to its search input
+
 ## 17.2.1
 
 ### Patch Changes
