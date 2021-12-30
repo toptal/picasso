@@ -7,7 +7,8 @@ import DatePicker, { Props } from './DatePicker'
 import { DatePickerInputCustomValueParser } from './'
 
 const testIds = {
-  calendar: 'calendar'
+  calendar: 'calendar',
+  input: 'input'
 }
 
 // eslint-disable-next-line max-lines-per-function
@@ -251,13 +252,13 @@ describe('DatePicker', () => {
 
     describe('when `range` property is set', () => {
       it('should resets value when input content removed', async () => {
-        const { getByPlaceholderText } = renderDatePicker({
+        const { getByTestId } = renderDatePicker({
           ...defaultProps,
           range: true,
           value: new Date(2021, 11, 29)
         })
 
-        const input = getByPlaceholderText(defaultProps.placeholder)
+        const input = getByTestId(testIds.input)
 
         expect(input).toHaveAttribute('value', 'Dec 29, 2021')
 
