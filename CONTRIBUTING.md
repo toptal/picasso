@@ -86,7 +86,7 @@ As a contributor, we expect you to create a "changeset" file for the changes you
 yarn changeset
 ```
 
-"changeset" file should be committed together with the modified code to the PR branch. You can also check [how to add changeset](https://github.com/atlassian/changesets/blob/main/docs/adding-a-changeset.md) for more details.
+"changeset" file should be committed together with the modified code to the PR branch. "changeset" file shoud follow [changeset guidelines](./docs/contribution/changeset-guidelines.md). You can also check [how to add changeset](https://github.com/atlassian/changesets/blob/main/docs/adding-a-changeset.md) for more details.
 
 When the PR is merged, additional "Version Packages [skip ci]" PR is created with the version bump and changelogs generated. FX team member should merge this PR to make a release.
 
