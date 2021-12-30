@@ -1,5 +1,16 @@
 # Change Log
 
+## 25.0.1
+
+### Patch Changes
+
+- [#2358](https://github.com/toptal/picasso/pull/2358) [`1fbc72dd`](https://github.com/toptal/picasso/commit/1fbc72ddc07c7b4c51a45c62c69dd7e32acb2937) Thanks [@ascrazy](https://github.com/ascrazy)! - ## Timeline
+
+  Allow for falsey values in `Timeline`'s children to make conditional rendering possible
+
+- Updated dependencies [[`11744a28`](https://github.com/toptal/picasso/commit/11744a28c81e36d01af4111bae2a70e33427ffa2)]:
+  - @toptal/picasso@17.2.2
+
 ## 25.0.0
 
 ### Patch Changes
