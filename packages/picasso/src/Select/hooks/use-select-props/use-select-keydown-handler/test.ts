@@ -36,7 +36,48 @@ describe('useSelectKeydownHandle', () => {
     expect(props.selectProps.onKeyDown).toHaveBeenCalledWith(event)
   })
 
-  it('focuses input if typing text', () => {
+  it.each([...'Aa0@#$%^()_+-=.,!?&*|'.split(''), 'Backspace'])(
+    'focuses input if pressing `%s` key',
+    character => {
+      const handleArrowsKeyDown = jest.fn()
+      const handleEnterOrSpaceKeyDown = jest.fn()
+      const handleEscapeKeyDown = jest.fn()
+      const props = {
+        ...getUseSelectPropsMock(),
+        handleArrowsKeyDown,
+        handleEnterOrSpaceKeyDown,
+        handleEscapeKeyDown
+      }
+
+      props.selectProps.onKeyDown = jest.fn()
+      props.selectState.showSearch = true
+
+      const { result } = renderHook(() => useSelectKeydownHandle(props))
+      const event = new KeyboardEvent('keydown', { key: character }) as any
+
+      event.preventDefault = jest.fn()
+
+      result.current(event)
+
+      expect(event.preventDefault).not.toHaveBeenCalled()
+      expect(focusRef).toHaveBeenCalledTimes(1)
+      expect(focusRef).toHaveBeenCalledWith(props.searchInputRef)
+      expect(props.selectProps.onKeyDown).toHaveBeenCalledTimes(1)
+      expect(props.selectProps.onKeyDown).toHaveBeenCalledWith(event)
+    }
+  )
+
+  it.each([
+    'Ctrl',
+    'Meta',
+    'Shift',
+    'CapsLock',
+    'Delete',
+    'PageUp',
+    'Home',
+    'F11',
+    ' '
+  ])('does not focus input if pressing `%s` key', character => {
     const handleArrowsKeyDown = jest.fn()
     const handleEnterOrSpaceKeyDown = jest.fn()
     const handleEscapeKeyDown = jest.fn()
@@ -51,15 +92,14 @@ describe('useSelectKeydownHandle', () => {
     props.selectState.showSearch = true
 
     const { result } = renderHook(() => useSelectKeydownHandle(props))
-    const event = new KeyboardEvent('keydown', { key: 'A' }) as any
+    const event = new KeyboardEvent('keydown', { key: character }) as any
 
     event.preventDefault = jest.fn()
 
     result.current(event)
 
     expect(event.preventDefault).not.toHaveBeenCalled()
-    expect(focusRef).toHaveBeenCalledTimes(1)
-    expect(focusRef).toHaveBeenCalledWith(props.searchInputRef)
+    expect(focusRef).toHaveBeenCalledTimes(0)
     expect(props.selectProps.onKeyDown).toHaveBeenCalledTimes(1)
     expect(props.selectProps.onKeyDown).toHaveBeenCalledWith(event)
   })
