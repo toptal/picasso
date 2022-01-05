@@ -1,5 +1,14 @@
 # Change Log
 
+## 23.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`df144e2d`](https://github.com/toptal/picasso/commit/df144e2d5defed03aeabb89cb1654f3d7ace7bfa)]:
+  - @toptal/picasso@17.3.0
+  - @toptal/picasso-lab@26.0.0
+  - @toptal/picasso-shared@7.2.0
+
 ## 22.0.0
 
 ### Minor Changes
