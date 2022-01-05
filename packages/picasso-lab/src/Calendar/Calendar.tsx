@@ -26,7 +26,7 @@ type SimpleReactCalendarRangeType = {
 export type DateOrDateRangeType = Date | DateRangeType
 export type DateRangeType = [Date, Date]
 
-export { DayProps }
+export type { DayProps }
 
 const getNormalizedValue = (value: DateOrDateRangeType | undefined) => {
   if (!value) {
