@@ -1,5 +1,17 @@
 # Change Log
 
+## 26.0.0
+
+### Minor Changes
+
+- [#2362](https://github.com/toptal/picasso/pull/2362) [`df144e2d`](https://github.com/toptal/picasso/commit/df144e2d5defed03aeabb89cb1654f3d7ace7bfa) Thanks [@denieler](https://github.com/denieler)! - Deleting the fixed version of the reference to `picasso-provider` package to allow more flexible version management for `picasso-provider` package in projects.
+
+### Patch Changes
+
+- Updated dependencies [[`df144e2d`](https://github.com/toptal/picasso/commit/df144e2d5defed03aeabb89cb1654f3d7ace7bfa)]:
+  - @toptal/picasso@17.3.0
+  - @toptal/picasso-shared@7.2.0
+
 ## 25.0.1
 
 ### Patch Changes
