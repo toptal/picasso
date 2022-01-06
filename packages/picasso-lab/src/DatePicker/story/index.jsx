@@ -29,6 +29,10 @@ page
     description: 'Do not hide calendar on date select'
   }) // picasso-skip-visuals
   .addExample(
+    'DatePicker/story/WithResetButton.example.tsx',
+    'With reset button'
+  ) // picasso-skip-visuals
+  .addExample(
     'DatePicker/story/WithInitialValue.example.tsx',
     'With initial value specified'
   ) // picasso-skip-visuals
