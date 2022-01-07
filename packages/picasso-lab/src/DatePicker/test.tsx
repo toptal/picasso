@@ -415,17 +415,6 @@ describe('DatePicker', () => {
     })
 
     describe('when `enableReset` option is passed', () => {
-      it('should not open calendar on `reset` button click', async () => {
-        const { getByRole, queryByTestId } = renderDatePicker({
-          ...defaultProps,
-          enableReset: true
-        })
-
-        fireEvent.click(getByRole('reset'))
-
-        expect(queryByTestId('day-button-selected')).not.toBeInTheDocument()
-      })
-
       it('should not close calendar on `reset` button click', async () => {
         const {
           getByRole,

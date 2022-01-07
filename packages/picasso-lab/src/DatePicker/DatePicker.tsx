@@ -329,8 +329,6 @@ export const DatePicker = (props: Props) => {
   const handleResetClick = (
     event: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement>
   ) => {
-    event.stopPropagation()
-
     setInputValue(EMPTY_INPUT_VALUE)
     onResetClick?.(event)
   }
