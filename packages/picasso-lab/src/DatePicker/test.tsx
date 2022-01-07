@@ -383,6 +383,22 @@ describe('DatePicker', () => {
         })
       })
     })
+
+    describe('when `enableReset` option is passed', () => {
+      it('should reset input value on reset button click', async () => {
+        const { getByPlaceholderText, getByRole } = renderDatePicker({
+          ...defaultProps,
+          enableReset: true
+        })
+
+        const input = getByPlaceholderText(defaultProps.placeholder)
+
+        fireEvent.focus(input)
+        fireEvent.click(getByRole('reset'))
+
+        expect(input).toHaveAttribute('value', '')
+      })
+    })
   })
 
   describe('Calendar', () => {
@@ -396,6 +412,24 @@ describe('DatePicker', () => {
       fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
 
       expect(getByTestId('day-button-selected')).toHaveTextContent('25')
+    })
+
+    describe('when `enableReset` option is passed', () => {
+      it('should not close calendar on `reset` button click', async () => {
+        const {
+          getByRole,
+          queryByTestId,
+          getByPlaceholderText
+        } = renderDatePicker({
+          ...defaultProps,
+          enableReset: true
+        })
+
+        fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
+        fireEvent.click(getByRole('reset'))
+
+        expect(queryByTestId('day-button-selected')).toBeInTheDocument()
+      })
     })
   })
 
