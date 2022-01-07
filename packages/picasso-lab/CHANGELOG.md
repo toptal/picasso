@@ -1,5 +1,14 @@
 # Change Log
 
+## 26.0.1
+
+### Patch Changes
+
+- [#2367](https://github.com/toptal/picasso/pull/2367) [`19210b22`](https://github.com/toptal/picasso/commit/19210b224168449c23ac408db19ed323c1c33350) Thanks [@sanex3339](https://github.com/sanex3339)! - ## DatePicker
+
+  Fixed missing reset of `input` value when clicking on `reset` button
+  Fixed cases when `popup` can overlap `input` during the page scroll
+
 ## 26.0.0
 
 ### Minor Changes
