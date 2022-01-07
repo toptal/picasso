@@ -3,6 +3,8 @@
 # Update README.md version
 yarn build:storybook
 
+echo 'hello!'>>./build/storybook/test.txt
+
 # archive ./build/storybook folder to the shared folder with docker root
 mkdir -p $DEPLOY_DOCS_PATH
 tar -zcvf $DEPLOY_DOCS_PATH/$DEPLOY_DOCS_ARCHIVE.tar.gz -C ./build/storybook/ .
