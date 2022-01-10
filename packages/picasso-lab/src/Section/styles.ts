@@ -15,11 +15,13 @@ export default ({ sizes, palette }: Theme) =>
       paddingTop: '2rem'
     },
     title: {
-      marginRight: '1rem'
+      marginRight: '1rem',
+      minWidth: 0
     },
     subtitle: {
       alignSelf: 'center',
-      marginRight: '1rem'
+      marginRight: '1rem',
+      minWidth: 0
     },
     actions: {
       display: 'flex',

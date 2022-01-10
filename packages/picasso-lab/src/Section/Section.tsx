@@ -11,6 +11,7 @@ import {
   Typography
 } from '@toptal/picasso'
 import { Rotate180 } from '@toptal/picasso/utils/Transitions'
+import { isString } from '@toptal/picasso/utils'
 
 import styles from './styles'
 
@@ -73,6 +74,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
   const renderTitle = () =>
     title ? (
       <Typography
+        as={isString(title) ? undefined : 'div'}
         className={classes.title}
         data-testid={testIds?.title}
         variant='heading'
@@ -85,6 +87,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
   const renderSubtitle = () =>
     subtitle ? (
       <Typography
+        as={isString(title) ? undefined : 'div'}
         className={classes.subtitle}
         data-testid={testIds?.subtitle}
         size='medium'
