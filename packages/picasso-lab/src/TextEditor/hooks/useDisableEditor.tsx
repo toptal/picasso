@@ -2,15 +2,20 @@ import { useEffect } from 'react'
 
 import type { EditorRefType } from '../types'
 
-const useDisableEditor = (
-  editorRef: EditorRefType,
-  { disabled }: { disabled?: boolean }
-) => {
+const useDisableEditor = ({
+  disabled,
+  ref
+}: {
+  disabled?: boolean
+  ref: EditorRefType
+}) => {
   useEffect(() => {
-    if (editorRef.current) {
-      editorRef.current.enable(!disabled)
+    const quill = ref.current
+
+    if (quill) {
+      quill.enable(!disabled)
     }
-  }, [disabled, editorRef])
+  }, [disabled, ref])
 }
 
 export default useDisableEditor

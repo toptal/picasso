@@ -1,4 +1,4 @@
-import {
+import React, {
   HTMLAttributes,
   InputHTMLAttributes,
   ChangeEvent,
@@ -103,7 +103,7 @@ export type Option<T extends string | number = string | number> = {
   key?: number
   text: string
   description?: string
-  value: T
+  value: T | ''
   disabled?: boolean
   [prop: string]: string | number | undefined | boolean
 }

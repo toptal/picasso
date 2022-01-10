@@ -1,5 +1,4 @@
 import React from 'react'
-import cx from 'classnames'
 import { Container, Button, Select } from '@toptal/picasso'
 import {
   Bold16,
@@ -10,30 +9,12 @@ import {
 import { makeStyles, Theme } from '@material-ui/core'
 
 import styles from './styles'
-
-type OptionType = {
-  // It might be better to have string as a type for value so we can later
-  // access class names from style.ts with value
-  value: string
-  text: string
-}
-
-export type ToolbarState = {
-  bold: boolean
-  italic: boolean
-  unorderedList: boolean
-  orderedList: boolean
-}
-
-export type ToolbarKey = keyof ToolbarState
+import { ToolbarHandlers, ToolbarStateType } from './types'
 
 type Props = {
   id: string
-  handleFormatChange: (event: React.ChangeEvent<{ value: string }>) => void
-  formatOptions: OptionType[]
-  currentFormat: OptionType['value']
-  textState: ToolbarState
-  toggleTextState: (key: ToolbarKey) => () => void
+  state: ToolbarStateType
+  handlers: ToolbarHandlers
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -42,14 +23,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const TextEditorToolbar = (props: Props) => {
-  const {
-    id,
-    textState,
-    toggleTextState,
-    currentFormat,
-    formatOptions,
-    handleFormatChange
-  } = props
+  const { id, state, handlers } = props
 
   const classes = useStyles()
 
@@ -57,9 +31,12 @@ export const TextEditorToolbar = (props: Props) => {
     <Container id={`${id}toolbar`} className={classes.qlToolbar}>
       <Container className={classes.qlFormats}>
         <Select
-          onChange={handleFormatChange}
-          options={formatOptions}
-          value={currentFormat}
+          onChange={handlers.handleHeader}
+          value={state.header}
+          options={[
+            { value: 3, text: 'heading' },
+            { value: '', text: 'normal' }
+          ]}
           size='small'
           menuWidth='123px'
           className={classes.textStylesSelect}
@@ -69,36 +46,28 @@ export const TextEditorToolbar = (props: Props) => {
         <Button.Circular
           variant='flat'
           icon={<Bold16 />}
-          className={cx(classes.button, {
-            [classes.activeButton]: textState.bold
-          })}
-          onClick={toggleTextState('bold')}
+          onClick={handlers.handleBold}
+          active={state.bold}
         />
         <Button.Circular
           variant='flat'
           icon={<Italic16 />}
-          className={cx(classes.button, {
-            [classes.activeButton]: textState.italic
-          })}
-          onClick={toggleTextState('italic')}
+          onClick={handlers.handleItalic}
+          active={state.italic}
         />
       </Container>
       <Container className={classes.qlFormats}>
         <Button.Circular
           variant='flat'
           icon={<ListUnordered16 />}
-          className={cx(classes.button, {
-            [classes.activeButton]: textState.unorderedList
-          })}
-          onClick={toggleTextState('unorderedList')}
+          onClick={handlers.handleUnordered}
+          active={state.list === 'bullet'}
         />
         <Button.Circular
           variant='flat'
           icon={<ListOrdered16 />}
-          className={cx(classes.button, {
-            [classes.activeButton]: textState.orderedList
-          })}
-          onClick={toggleTextState('orderedList')}
+          onClick={handlers.handleOrdered}
+          active={state.list === 'ordered'}
         />
       </Container>
     </Container>
