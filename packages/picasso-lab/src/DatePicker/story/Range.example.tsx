@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { DatePicker } from '@toptal/picasso-lab'
+import { DatePicker, DatePickerValue } from '@toptal/picasso-lab'
 
 const RangeExample = () => {
-  const [value, setValue] = useState<[Date, Date]>()
+  const [value, setValue] = useState<DatePickerValue>()
 
   return (
     <div style={{ height: '50vh' }}>
@@ -10,9 +10,7 @@ const RangeExample = () => {
         range
         value={value}
         onChange={dates => {
-          const [start, end] = dates as [Date, Date]
-
-          setValue([start, end])
+          setValue(dates)
         }}
       />
     </div>

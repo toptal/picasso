@@ -151,6 +151,10 @@ export const DatePicker = (props: Props) => {
   const calendarRef = useRef<HTMLDivElement>(null)
   const inputWrapperRef = useRef<HTMLDivElement>(null)
 
+  // Active (visible) month of the calendar that required for manual entering of
+  // a single date
+  const activeMonth = calendarValue instanceof Date ? calendarValue : undefined
+
   // Format the input based on its 'focus' state
   const formatInputValue = useCallback(
     (valueToFormat: DateOrDateRangeType) => {
@@ -232,12 +236,12 @@ export const DatePicker = (props: Props) => {
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
   ) => {
+    const nextValue = e.target.value
+
     // TODO: change this if manual entering of range is needed
-    if (range) {
+    if (range && nextValue) {
       return
     }
-
-    const nextValue = e.target.value
 
     // TODO: add char filtering (only number , `-` or ` ` allowed) in case if `parseInputValue` is not set
     setInputValue(nextValue)
@@ -372,6 +376,7 @@ export const DatePicker = (props: Props) => {
           ref={popperRef}
         >
           <Calendar
+            activeMonth={activeMonth}
             data-testid={testIds?.calendar}
             ref={calendarRef}
             range={range}
