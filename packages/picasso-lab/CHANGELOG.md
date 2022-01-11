@@ -1,5 +1,16 @@
 # Change Log
 
+## 26.0.3
+
+### Patch Changes
+
+- [#2357](https://github.com/toptal/picasso/pull/2357) [`f209b7c2`](https://github.com/toptal/picasso/commit/f209b7c2e7e4242965147a0af9a771fd69307940) Thanks [@vvmarulin](https://github.com/vvmarulin)! - ---
+
+  ### DatePicker
+
+  - fix active month for range datepicker when value is changed
+  - fix value reset of range datepicker when the input value is deleted
+
 ## 26.0.2
 
 ### Patch Changes
