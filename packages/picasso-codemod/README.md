@@ -6,12 +6,6 @@
 
 This repository contains a collection of codemod scripts based for use with [JSCodeshift](https://github.com/facebook/jscodeshift) that help update Picasso APIs.
 
-## Setup & Usage
-
-- `yarn add -D @toptal/picasso-codemod`
-- `npx jscodeshift -t <codemod-script> --parser=tsx <path>`
-- [jscodeshift CLI usage](https://github.com/facebook/jscodeshift#usage-cli)
-
 ## Limitations
 
 Codemods do not guarantee the code format preservation. Therefore be sure to run `prettier` and `eslint` on your repo after applying a codemod. Take a look [here](https://github.com/benjamn/recast/issues/140) to learn more about the issue.
@@ -61,7 +55,7 @@ Here's how the diff should look like:
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/typography-sizes src/**/*.tsx
+npx @toptal/picasso-codemod v17.0.0/typography-sizes
 ```
 
 </details>
@@ -80,7 +74,7 @@ If you want to include other components, you need to:
 ```
 2. run command with `--parser-config` param:
 ```shell
-npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/typography-sizes src/**/*.tsx --parser-config=path/to/your/config.json
+npx @toptal/picasso-codemod v17.0.0/typography-sizes --parser-config=path/to/your/config.json
 ```
 
 
@@ -106,7 +100,7 @@ Here's how the diff should look like:
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v17.0.0/container-borders src/**/*.tsx
+npx @toptal/picasso-codemod v17.0.0/container-borders
 ```
 
 </details>
@@ -157,7 +151,7 @@ The diff should look like this:
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v16.0.0/revert-colors src/**/*.tsx
+npx @toptal/picasso-codemod v16.0.0/revert-colors
 ```
 
 </details>
@@ -185,7 +179,7 @@ The diff should look like this:
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v5.0.0/prompt-modal-variants src/**/*.tsx
+npx @toptal/picasso-codemod v5.0.0/prompt-modal-variants
 ```
 
 </details>
@@ -218,7 +212,7 @@ Renames occurrences of `Label` to `Tag`.
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/label-tag src/**/*.tsx --parser=tsx
+npx @toptal/picasso-codemod v5.0.0/label-tag
 ```
 
 </details>
@@ -244,7 +238,7 @@ The diff should look like this:
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift --parser=tsx -t node_modules/@toptal/picasso-codemod/v5.0.0/accordion-borders src/**/*.tsx
+npx @toptal/picasso-codemod v5.0.0/accordion-borders
 ```
 
 </details>
@@ -275,7 +269,7 @@ Renames occurrences of `Subheader` to `PageHead`.
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/subheader-pagehead src/**/*.tsx --parser=tsx
+npx @toptal/picasso-codemod v5.0.0/subheader-pagehead
 ```
 
 </details>
@@ -298,7 +292,7 @@ Renames occurrences of `Page.Header` to `Page.TopBar`.
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/header-topbar src/**/*.tsx --parser=tsx
+npx @toptal/picasso-codemod v5.0.0/header-topbar
 ````
 
 </details>
@@ -318,7 +312,7 @@ Renames variants of button to new values, replaced circular button with `Button.
 <summary>Command</summary>
 
 ```sh
-npx jscodeshift -t node_modules/@toptal/picasso-codemod/v5.0.0/button-variants src/**/*.tsx --parser=tsx
+npx @toptal/picasso-codemod v5.0.0/button-variants
 ```
 
 </details>

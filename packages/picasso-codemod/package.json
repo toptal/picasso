@@ -16,7 +16,7 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json",
+    "build:package": "./bin/build.sh",
     "prepublishOnly": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json; fi"
   },
   "bugs": {
@@ -26,7 +26,15 @@
     "react": "^16.12.0"
   },
   "devDependencies": {
-    "@types/jscodeshift": "0.7.2",
-    "jscodeshift": "0.11.0"
+    "@types/jscodeshift": "^0.11.3"
+  },
+  "bin": {
+    "picasso-codemod": "./bin/picasso-codemod.mjs"
+  },
+  "dependencies": {
+    "execa": "^6.0.0",
+    "globby": "^12.0.2",
+    "jscodeshift": "^0.13.1",
+    "meow": "^10.1.2"
   }
 }
