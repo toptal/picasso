@@ -1,5 +1,11 @@
 # Change Log
 
+## 17.3.1
+
+### Patch Changes
+
+- [#2370](https://github.com/toptal/picasso/pull/2370) [`574db0fc`](https://github.com/toptal/picasso/commit/574db0fc37cfa305005e65bce2abe311cde75271) Thanks [@bogdanalexe90](https://github.com/bogdanalexe90)! - fix(section): [SPC-1575] allow ellipsis in title and subtitle content
+
 ## 17.3.0
 
 ### Minor Changes

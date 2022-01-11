@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-lab",
-  "version": "26.0.1",
+  "version": "26.0.2",
   "description": "Lab components of Picasso",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
@@ -24,7 +24,7 @@
   },
   "peerDependencies": {
     "@material-ui/core": "4.11.0",
-    "@toptal/picasso": "^17.3.0",
+    "@toptal/picasso": "^17.3.1",
     "@toptal/picasso-shared": "^7.2.0",
     "popper.js": "^1.16.1",
     "react": "^16.12.0",
