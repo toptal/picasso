@@ -16,7 +16,7 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json",
+    "build:package": "rm -rf ./dist-package && cp -R ./src/. ./dist-package/ && cp ./README.md ./dist-package/README.md",
     "prepublishOnly": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json; fi"
   },
   "bugs": {
