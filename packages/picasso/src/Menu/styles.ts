@@ -18,7 +18,10 @@ PicassoProvider.override(({ shadows }: Theme) => ({
 export default () =>
   createStyles({
     root: {
-      outline: 0
+      outline: 0,
+      borderRadius: '0.25rem',
+      fontSize: '0.875em',
+      padding: '0.5rem 0'
     },
     backButtonIcon: {
       verticalAlign: 'middle',
