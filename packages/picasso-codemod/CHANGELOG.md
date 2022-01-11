@@ -1,5 +1,21 @@
 # Change Log
 
+## 3.3.0
+
+### Minor Changes
+
+- [#2371](https://github.com/toptal/picasso/pull/2371) [`09b4209`](https://github.com/toptal/picasso/commit/09b4209) Thanks [@denieler](https://github.com/denieler)! - - Add CLI to run codemods without installation the package.
+
+  Example:
+
+  ```
+  npx @toptal/picasso-codemod v17.0.0/typography-sizes
+  ```
+
+  - Monorepo support for Picasso codemods.
+
+  repo: toptal/picasso
+
 ## 3.2.1
 
 ### Patch Changes
