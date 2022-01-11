@@ -5,3 +5,4 @@ mkdir ./dist-package
 cp -R ./bin ./dist-package/bin
 cp -R ./src ./dist-package
 cp ./README.md ./dist-package/README.md
+cp ./package.json ./dist-package/package.json
