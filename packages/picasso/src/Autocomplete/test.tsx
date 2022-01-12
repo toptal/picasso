@@ -2,6 +2,7 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
 import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
+import { Item } from '@toptal/picasso/Autocomplete/types'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { generateRandomString } from '@toptal/picasso-provider'
 import * as titleCaseModule from 'ap-style-title-case'
@@ -262,6 +263,40 @@ describe('Autocomplete', () => {
 
       expect(renderOption).toHaveBeenCalledTimes(10)
       expect(getDisplayValue).not.toHaveBeenCalled()
+    })
+
+    describe('when cannot found custom option key', () => {
+      const partiallyInvalidTestOptions = [
+        { text: 'Belarus', value: 'BY' },
+        null,
+        { text: 'Croatia' },
+        { text: 'Lithuania', value: 'LU' }
+      ]
+
+      it('does not render custom option', () => {
+        const getDisplayValue = jest.fn()
+        const renderOption = jest.fn(item => (
+          <div data-testid='custom-option'>{item.value}</div>
+        ))
+        const getKey = jest.fn(option => option?.value)
+
+        const { getByTestId, getAllByTestId } = renderAutocomplete({
+          options: partiallyInvalidTestOptions as Item[],
+          value: '',
+          renderOption,
+          getDisplayValue,
+          getKey
+        })
+
+        const input = getByTestId('autocomplete')
+
+        fireEvent.click(input)
+
+        expect(renderOption).toHaveBeenCalledTimes(4)
+        expect(getAllByTestId('custom-option')).toHaveLength(2)
+        expect(getDisplayValue).not.toHaveBeenCalled()
+        expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
+      })
     })
 
     it('should not transform options text to title case when Picasso titleCase property is true', () => {

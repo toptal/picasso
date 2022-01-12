@@ -9,24 +9,27 @@ const renderOtherOption = (value: string) => (
   </Typography>
 )
 
-interface Country extends Item {
-  country: string
-  capital: string
-  code: string
-}
+type Country =
+  | (Item & {
+      country: string
+      capital: string
+      code?: string
+    })
+  | null
 
 const EMPTY_INPUT_VALUE = ''
 
 const allOptions: Country[] = [
   { country: 'Belarus', capital: 'Minsk', code: 'BE' },
-  { country: 'Croatia', capital: 'Zagreb', code: 'HR' },
+  null,
+  { country: 'Croatia', capital: 'Zagreb' },
   { country: 'Lithuania', capital: 'Vilnius', code: 'LU' },
   { country: 'Slovakia', capital: 'Bratislava', code: 'SK' },
   { country: 'Ukraine', capital: 'Kyiv', code: 'UA' }
 ]
 
 const getDisplayValue = (item: Item | null) =>
-  (item && (item as Country).country) || ''
+  (item && (item as Country)?.country) ?? ''
 
 const filterOptions = (str: string) =>
   str !== ''
@@ -43,22 +46,24 @@ const CustomOptionRenderer = () => {
         showOtherOption
         value={value}
         placeholder='Start typing country...'
-        options={options}
-        getKey={(item: Item) => (item as Country).code}
-        renderOption={(option: Partial<Country>, index) => (
-          <Container>
-            <Typography size='medium' weight='semibold'>
-              {option.country}
-            </Typography>
-            <Typography size='inherit' style={{ fontSize: '12px' }}>
-              {option.capital} ({index})
-            </Typography>
-          </Container>
-        )}
+        options={options as Item[]}
+        getKey={item => (item as Country)?.code}
+        renderOption={(option: Partial<Country>, index) =>
+          option && (
+            <Container>
+              <Typography size='medium' weight='semibold'>
+                {option.country}
+              </Typography>
+              <Typography size='inherit' style={{ fontSize: '12px' }}>
+                {option.capital} ({index})
+              </Typography>
+            </Container>
+          )
+        }
         renderOtherOption={renderOtherOption}
         onSelect={(option: Partial<Country>) => {
           window.console.log('onSelect returns item object:', option)
-          window.console.log('selected capital:', option.capital)
+          window.console.log('selected capital:', option?.capital)
 
           const itemValue = getDisplayValue(option)
 

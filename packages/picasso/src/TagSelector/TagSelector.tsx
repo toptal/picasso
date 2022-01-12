@@ -68,7 +68,7 @@ export interface Props
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
   /** Provide unique key for each option */
-  getKey?: (item: Item) => string
+  getKey?: (item: Item) => string | undefined
   /** Callback responsible for rendering the option given the option and its index in the list of options */
   renderOption?: (option: Item, index: number) => ReactNode
   /** Callback responsible for rendering the label given the option and Label props */
@@ -143,7 +143,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       onOtherOptionSelect(value)
     }
 
-    const getKey = (item: Item): string => {
+    const getKey = (item: Item): string | undefined => {
       if (customGetKey) {
         return customGetKey(item)
       }

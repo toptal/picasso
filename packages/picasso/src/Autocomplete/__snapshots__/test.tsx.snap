@@ -561,3 +561,62 @@ exports[`Autocomplete static behavior uses a custom popper container 1`] = `
   value=""
 />
 `;
+
+exports[`Autocomplete static behavior when cannot found custom option key does not renders custom option 1`] = `
+<ul
+  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
+  data-testid="scroll-menu"
+  role="menu"
+  tabindex="-1"
+>
+  <div
+    class="PicassoScrollMenu-scrollView"
+    tabindex="0"
+  >
+    <li
+      aria-disabled="false"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      data-test-id="menu-item-0"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            data-testid="custom-option"
+          >
+            BY
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-test-id="menu-item-3"
+      role="option"
+      tabindex="-1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      >
+        <div
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        >
+          <div
+            data-testid="custom-option"
+          >
+            LU
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>
+</ul>
+`;

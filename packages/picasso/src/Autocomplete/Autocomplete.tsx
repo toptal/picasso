@@ -93,7 +93,7 @@ export interface Props
   /** Callback responsible for rendering the option given the option and its index in the list of options */
   renderOption?: (option: Item, index: number) => ReactNode
   /** Provide unique key for each option */
-  getKey?: (item: Item) => string
+  getKey?: (item: Item) => string | undefined
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
   /** Whether to render reset icon when there is a value in the input */
@@ -206,21 +206,29 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         data-testid={testIds?.scrollMenu}
         selectedIndex={highlightedIndex}
       >
-        {options?.map((option, index) => (
-          <Menu.Item
-            data-test-id={`${testIds?.menuItem}-${index}`}
-            size='medium'
-            key={getKey(option)}
-            {...getItemProps(index, option)}
-            titleCase={false}
-            description={option.description}
-            className={classes.option}
-          >
-            {renderOption
-              ? renderOption(option, index)
-              : getDisplayValue(option)}
-          </Menu.Item>
-        ))}
+        {options?.map((option, index) => {
+          const key = getKey(option)
+
+          if (!key) {
+            return null
+          }
+
+          return (
+            <Menu.Item
+              data-test-id={`${testIds?.menuItem}-${index}`}
+              size='medium'
+              key={key}
+              {...getItemProps(index, option)}
+              titleCase={false}
+              description={option.description}
+              className={classes.option}
+            >
+              {renderOption
+                ? renderOption(option, index)
+                : getDisplayValue(option)}
+            </Menu.Item>
+          )
+        })}
         {shouldShowOtherOption && (
           <OtherOptionMenuItem
             data-testid={testIds?.otherOption}
