@@ -1,12 +1,13 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette, screens }: Theme) =>
+export default ({ palette, screens, shadows }: Theme) =>
   createStyles({
     menu: {
       backgroundColor: palette.common.white,
       borderRadius: '0.25rem',
       fontSize: '0.875em',
-      padding: '0.5rem 0'
+      padding: '0.5rem 0',
+      boxShadow: shadows[5]
     },
     scrollView: {
       maxHeight: '26.875rem', // ~8.5 lines of menu to show
