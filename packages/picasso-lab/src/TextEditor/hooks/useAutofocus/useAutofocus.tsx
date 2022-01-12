@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { EditorRefType } from '../types'
+import { EditorRefType } from '../../types'
 
 const useAutofocus = ({
   autofocus,

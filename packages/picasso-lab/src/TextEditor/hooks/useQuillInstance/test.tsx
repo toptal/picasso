@@ -10,7 +10,7 @@ describe('useQuillInstance', () => {
 
     // quill needs to have container for both toolbar and editor
     // to successfuly initit
-    const WrapperComponent = ({ children }) => (
+    const WrapperComponent = ({ children }: { children?: React.ReactNode }) => (
       <TestingPicasso>
         <div id={`${id}toolbar`} />
         <div id={id} />
