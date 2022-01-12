@@ -1,3 +1,5 @@
+import { useMemo } from 'react'
+
 import { Props as TextEditorProps } from '../TextEditor'
 import useAutofocus from './useAutofocus'
 import useQuillInstance from './useQuillInstance'
@@ -5,7 +7,7 @@ import useDisabledEditor from './useDisabledEditor'
 import useEditorLoseFocusFix from './useEditorLoseFocusFix'
 import useEditorLoseFocusFixHandler from './useEditorLoseFocusFixHandler'
 import useTextChange from './useTextChange'
-import useTextChangeHandler from './useTextChangeHandler'
+import getTextChangeHandler from './getTextChangeHandler'
 
 type Props = {
   autofocus: TextEditorProps['autofocus']
@@ -40,13 +42,16 @@ const useTextEditor = ({
     handler: preventDefaultHandler
   })
 
-  const { textChangeHandler } = useTextChangeHandler({
-    ref: quillInstanceRef,
-    onChange
-  })
+  const textChangeHandler = useMemo(
+    () => getTextChangeHandler({ ref: quillInstanceRef, onChange }),
+    [onChange, quillInstanceRef]
+  )
 
   // subscribe onChange callback to editors text change
-  useTextChange({ ref: quillInstanceRef, handler: textChangeHandler })
+  useTextChange({
+    ref: quillInstanceRef,
+    handler: textChangeHandler
+  })
 }
 
 export default useTextEditor

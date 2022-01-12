@@ -1,17 +1,17 @@
-import { renderHook } from '@testing-library/react-hooks'
 import Quill from 'quill'
 import Delta from 'quill-delta'
 
-import useTextChangeHandler from '.'
+import getTextChangeHandler from '.'
 
 const mockDelta = {} as Delta
 
-describe('useTextChangeHandler', () => {
+describe('getTextChangeHandler', () => {
   it('returns early without quill', () => {
     const onChange = jest.fn()
     const ref = { current: undefined }
+    const handler = getTextChangeHandler({ ref, onChange })
 
-    renderHook(() => useTextChangeHandler({ ref, onChange }))
+    handler(mockDelta, mockDelta, 'user')
 
     expect(onChange).not.toHaveBeenCalled()
   })
@@ -25,11 +25,10 @@ describe('useTextChangeHandler', () => {
         }
       } as Quill
     }
+    const handler = getTextChangeHandler({ ref, onChange })
 
-    const { result } = renderHook(() => useTextChangeHandler({ ref, onChange }))
+    handler(mockDelta, mockDelta, 'user')
 
-    result.current.textChangeHandler(mockDelta, mockDelta, 'user')
-
-    expect(onChange).toHaveBeenCalled()
+    expect(onChange).toHaveBeenCalledWith('<p>foobar</p>')
   })
 })
