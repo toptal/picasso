@@ -1,3 +1,4 @@
+import Quill from 'quill'
 import { renderHook } from '@testing-library/react-hooks'
 
 import useAutofocus from './useAutofocus'
@@ -7,9 +8,9 @@ describe('useAutofocus', () => {
     it('does not focus quill', () => {
       const autofocus = false
       const ref = {
-        current: {
+        current: ({
           focus: jest.fn()
-        }
+        } as unknown) as Quill
       }
 
       renderHook(() => useAutofocus({ ref, autofocus }))
@@ -22,9 +23,9 @@ describe('useAutofocus', () => {
     it('does focus editor', () => {
       const autofocus = true
       const ref = {
-        current: {
+        current: ({
           focus: jest.fn()
-        }
+        } as unknown) as Quill
       }
 
       const { rerender } = renderHook(() => useAutofocus({ ref, autofocus }))
