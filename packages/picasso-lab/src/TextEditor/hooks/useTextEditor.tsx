@@ -1,7 +1,10 @@
+import { useCallback } from 'react'
+
 import { Props as TextEditorProps } from '../TextEditor'
 import useAutofocus from './useAutofocus'
 import useQuillInstance from './useQuillInstance'
 import useDisabledEditor from './useDisabledEditor'
+import useEditorLooseFocusFix from './useEditorLooseFocusFix/useEditorLooseFocusFix'
 
 type Props = {
   id: TextEditorProps['id']
@@ -18,6 +21,22 @@ const useTextEditor = ({ autofocus, disabled, id, placeholder }: Props) => {
 
   useDisabledEditor({ ref: quillInstanceRef, disabled })
   useAutofocus({ ref: quillInstanceRef, autofocus })
+
+  // common issue of custom toolbar
+  // https://github.com/quilljs/quill/issues/1290
+  // when clicking anywhere quill loses focus, we need
+  // to prevent it when clicking inside toolbar
+  const preventDefaultHandler: (
+    this: Element,
+    event: Event
+  ) => void = useCallback(event => {
+    event.preventDefault()
+  }, [])
+
+  useEditorLooseFocusFix({
+    ref: quillInstanceRef,
+    handler: preventDefaultHandler
+  })
 }
 
 export default useTextEditor
