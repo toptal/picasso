@@ -4,17 +4,25 @@ import useQuillInstance from './useQuillInstance'
 import useDisabledEditor from './useDisabledEditor'
 import useEditorLoseFocusFix from './useEditorLoseFocusFix'
 import useEditorLoseFocusFixHandler from './useEditorLoseFocusFixHandler'
+import useTextChange from './useTextChange'
+import useTextChangeHandler from './useTextChangeHandler'
 
 type Props = {
-  id: TextEditorProps['id']
-  placeholder: TextEditorProps['placeholder']
-  onChange: TextEditorProps['onChange']
-  value: TextEditorProps['value']
   autofocus: TextEditorProps['autofocus']
   disabled: TextEditorProps['disabled']
+  id: TextEditorProps['id']
+  onChange: TextEditorProps['onChange']
+  placeholder: TextEditorProps['placeholder']
+  value: TextEditorProps['value']
 }
 
-const useTextEditor = ({ autofocus, disabled, id, placeholder }: Props) => {
+const useTextEditor = ({
+  autofocus,
+  disabled,
+  id,
+  onChange,
+  placeholder
+}: Props) => {
   // create new instance of Quill and save it to ref
   const quillInstanceRef = useQuillInstance({ id, placeholder })
 
@@ -31,6 +39,14 @@ const useTextEditor = ({ autofocus, disabled, id, placeholder }: Props) => {
     ref: quillInstanceRef,
     handler: preventDefaultHandler
   })
+
+  const { textChangeHandler } = useTextChangeHandler({
+    ref: quillInstanceRef,
+    onChange
+  })
+
+  // subscribe onChange callback to editors text change
+  useTextChange({ ref: quillInstanceRef, handler: textChangeHandler })
 }
 
 export default useTextEditor
