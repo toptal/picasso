@@ -4,7 +4,7 @@ import { EditorRefType } from '../../types'
 
 type Props = {
   ref: EditorRefType
-  handler: (this: Element, event: MouseEvent) => void
+  handler: (this: HTMLDivElement, event: Event) => void
 }
 
 const useEditorLooseFocusFix = ({ ref, handler }: Props) => {
@@ -15,7 +15,8 @@ const useEditorLooseFocusFix = ({ ref, handler }: Props) => {
       return
     }
 
-    const toolbarContainer: Element = quill.getModule('toolbar').container
+    const toolbarContainer: HTMLDivElement = quill.getModule('toolbar')
+      .container
 
     toolbarContainer.addEventListener('mousedown', handler)
 

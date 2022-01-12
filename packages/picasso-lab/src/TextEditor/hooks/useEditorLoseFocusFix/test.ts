@@ -1,10 +1,11 @@
 import { fireEvent, act } from '@toptal/picasso/test-utils'
 import { renderHook } from '@testing-library/react-hooks'
 
-import useEditorLooseFocusFix from './useEditorLooseFocusFix'
+import useEditorLoseFocusFix from './useEditorLoseFocusFix'
+import { EditorRefType } from '../..'
 
-describe('useEditorLooseFocusFix', () => {
-  let mockElement
+describe('useEditorLoseFocusFix', () => {
+  let mockElement: Element
 
   beforeAll(() => {
     mockElement = document.createElement('div')
@@ -13,13 +14,13 @@ describe('useEditorLooseFocusFix', () => {
   })
   it('triggers callback on mousedown', () => {
     const handler = jest.fn()
-    const ref = {
+    const ref = ({
       current: {
         getModule: () => ({ container: mockElement })
       }
-    }
+    } as unknown) as EditorRefType
 
-    renderHook(() => useEditorLooseFocusFix({ ref, handler }))
+    renderHook(() => useEditorLoseFocusFix({ ref, handler }))
 
     act(() => {
       const mouseDownEvent = new MouseEvent('mousedown')
