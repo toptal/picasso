@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-import { EditorRefType } from '../types'
+import { EditorRefType } from '../../types'
 
 const useDisabledEditor = ({
   disabled,
@@ -12,7 +12,7 @@ const useDisabledEditor = ({
   // new instance of quill is by default created enabled
   // we don't want to call quill.enable(true) when
   // not necessary on first render
-  const initialDisable = useRef<boolean>(false)
+  const initialDisable = useRef<boolean | undefined>(false)
 
   useEffect(() => {
     const quill = ref.current
