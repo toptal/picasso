@@ -2,10 +2,11 @@ import { Props as TextEditorProps } from '../TextEditor'
 import useAutofocus from './useAutofocus'
 import useQuillInstance from './useQuillInstance'
 import useDisabledEditor from './useDisabledEditor'
-import useEditorLoseFocusFix from './useEditorLoseFocusFix'
-import useEditorLoseFocusFixHandler from './useEditorLoseFocusFixHandler'
+import useEditorLoseFocusFix, {
+  preventDefaultHandler
+} from './useEditorLoseFocusFix'
 import useTextChange from './useTextChange'
-import useTextChangeHandler from './useTextChangeHandler'
+import getTextChangeHandler from './getTextChangeHandler'
 
 type Props = {
   autofocus: TextEditorProps['autofocus']
@@ -33,20 +34,17 @@ const useTextEditor = ({
   // https://github.com/quilljs/quill/issues/1290
   // when clicking anywhere quill loses focus, we need
   // to prevent it when clicking inside toolbar
-  const { preventDefaultHandler } = useEditorLoseFocusFixHandler()
 
   useEditorLoseFocusFix({
     ref: quillInstanceRef,
     handler: preventDefaultHandler
   })
 
-  const { textChangeHandler } = useTextChangeHandler({
-    ref: quillInstanceRef,
-    onChange
-  })
-
   // subscribe onChange callback to editors text change
-  useTextChange({ ref: quillInstanceRef, handler: textChangeHandler })
+  useTextChange({
+    ref: quillInstanceRef,
+    handler: getTextChangeHandler({ ref: quillInstanceRef, onChange })
+  })
 }
 
 export default useTextEditor
