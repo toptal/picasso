@@ -4,4 +4,4 @@
 '@toptal/picasso-shared': patch
 ---
 
-use latest version of `picasso-provider`
+Update `picasso-provider` to the latest version
