@@ -7,24 +7,32 @@ const transform: Transform = (file, api) => {
 
   return j(file.source)
     .findJSXElements('Container')
-    .filter(path =>
-      path.node.openingElement.attributes.some(
+    .filter(path => {
+      if (!path.node.openingElement.attributes) {
+        return false
+      }
+
+      return path.node.openingElement.attributes.some(
         attribute =>
           attribute.type === 'JSXAttribute' &&
           attribute.name.name === 'variant' &&
           attribute.value &&
           !borderableVariants.includes((attribute.value as any).value)
       )
-    )
-    .filter(path =>
-      path.node.openingElement.attributes.some(
+    })
+    .filter(path => {
+      if (!path.node.openingElement.attributes) {
+        return false
+      }
+
+      return path.node.openingElement.attributes.some(
         attribute =>
           attribute.type === 'JSXAttribute' &&
           attribute.name.name === 'bordered'
       )
-    )
+    })
     .map(path => {
-      path.node.openingElement.attributes = path.node.openingElement.attributes.filter(
+      path.node.openingElement.attributes = path.node.openingElement.attributes?.filter(
         attribute =>
           attribute.type === 'JSXAttribute' &&
           attribute.name.name !== 'bordered'
