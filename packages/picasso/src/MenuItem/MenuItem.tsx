@@ -24,6 +24,7 @@ import Container from '../Container'
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
 import Paper from '../Paper'
 import Popper from '../Popper'
+import Link from '../Link'
 import { ClickAwayListener, toTitleCase } from '../utils'
 import { useMenuItem } from './hooks'
 import styles from './styles'
@@ -109,7 +110,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
       <MUIMenuItem
         {...rest}
         ref={ref}
-        component={as}
+        component={as === Link && rest.href ? 'a' : as}
         classes={{
           root: cx({
             [classes[`gutters${size && capitalize(size)}`]]: size
