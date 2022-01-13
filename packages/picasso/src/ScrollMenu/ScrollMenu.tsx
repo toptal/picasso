@@ -53,7 +53,7 @@ export const scrollToSelection = (
   }
 }
 
-const isValidElement = (elem: ReactNode) => elem !== undefined
+const isValidElement = (elem: ReactNode) => elem !== undefined && elem !== null
 
 const ScrollMenu: FunctionComponent<Props> = props => {
   const {
