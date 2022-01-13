@@ -7,6 +7,7 @@ import useEditorLoseFocusFix, {
 } from './useEditorLoseFocusFix'
 import useTextChange from './useTextChange'
 import getTextChangeHandler from './getTextChangeHandler'
+import useToolbar from './useToolbar'
 
 type Props = {
   autofocus: TextEditorProps['autofocus']
@@ -45,6 +46,13 @@ const useTextEditor = ({
     ref: quillInstanceRef,
     handler: getTextChangeHandler({ ref: quillInstanceRef, onChange })
   })
+
+  // connect quill with custom toolbar
+  const { toolbarState, toolbarHandlers } = useToolbar({
+    ref: quillInstanceRef
+  })
+
+  return { toolbarState, toolbarHandlers }
 }
 
 export default useTextEditor
