@@ -9,6 +9,15 @@ export default ({ palette, screens, shadows }: Theme) =>
       padding: '0.5rem 0',
       boxShadow: shadows[5]
     },
+    withHeader: {
+      paddingTop: '0.125rem'
+    },
+    withFooter: {
+      paddingBottom: 0
+    },
+    notLastChild: {
+      paddingBottom: '0.5rem'
+    },
     scrollView: {
       maxHeight: '26.875rem', // ~8.5 lines of menu to show
       overflowY: 'auto',

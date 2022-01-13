@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import Menu from '../Menu'
 import styles from './styles'
@@ -52,6 +53,8 @@ export const scrollToSelection = (
   }
 }
 
+const isValidElement = (elem: ReactNode) => elem !== undefined
+
 const ScrollMenu: FunctionComponent<Props> = props => {
   const {
     selectedIndex,
@@ -72,7 +75,10 @@ const ScrollMenu: FunctionComponent<Props> = props => {
 
   return (
     <Menu
-      className={classes.menu}
+      className={cx(classes.menu, {
+        [classes.withHeader]: isValidElement(fixedHeader),
+        [classes.withFooter]: isValidElement(fixedFooter)
+      })}
       style={style}
       role={role}
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -83,7 +89,13 @@ const ScrollMenu: FunctionComponent<Props> = props => {
       }}
     >
       {fixedHeader}
-      <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
+      <div
+        ref={menuRef}
+        className={cx(classes.scrollView, {
+          [classes.notLastChild]: isValidElement(fixedFooter)
+        })}
+        onBlur={onBlur}
+      >
         {children}
       </div>
       {fixedFooter}
