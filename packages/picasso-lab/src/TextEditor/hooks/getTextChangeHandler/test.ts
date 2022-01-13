@@ -1,7 +1,7 @@
 import Quill from 'quill'
 import Delta from 'quill-delta'
 
-import getTextChangeHandler from '.'
+import getTextChangeHandler from './getTextChangeHandler'
 
 const mockDelta = {} as Delta
 
