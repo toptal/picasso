@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.0.4
+
+### Patch Changes
+
+- [#2383](https://github.com/toptal/picasso/pull/2383) [`3141521b`](https://github.com/toptal/picasso/commit/3141521ba1bd5eb6aaee9ae2749eb490959e6e7b) Thanks [@TomasSlama](https://github.com/TomasSlama)! - Update `picasso-provider` to the latest version
+
+- Updated dependencies [[`3141521b`](https://github.com/toptal/picasso/commit/3141521ba1bd5eb6aaee9ae2749eb490959e6e7b)]:
+  - @toptal/picasso@17.3.2
+  - @toptal/picasso-shared@7.2.1
+
 ## 26.0.3
 
 ### Patch Changes
