@@ -204,11 +204,13 @@ export const NonNativeSelect = documentable(
                   noOptionsText={noOptionsText}
                   fixedHeader={searchInput}
                   fixedFooter={
-                    <NonNativeSelectLimitFooter
-                      totalCount={countOptions(options)}
-                      limit={limit}
-                      data-testid={testIds?.limitFooter}
-                    />
+                    limit < countOptions(options) ? (
+                      <NonNativeSelectLimitFooter
+                        totalCount={countOptions(options)}
+                        limit={limit}
+                        data-testid={testIds?.limitFooter}
+                      />
+                    ) : null
                   }
                   testIds={{
                     noOptions: testIds?.noOptions
