@@ -36,6 +36,10 @@ const transform: Transform = (file, api) => {
           attributeName: string,
           mapper: { [key: string]: string }
         ) => {
+          if (!attributes) {
+            return
+          }
+
           const attributeIndex = attributes.findIndex(
             node =>
               node.type === 'JSXAttribute' && node.name.name === attributeName

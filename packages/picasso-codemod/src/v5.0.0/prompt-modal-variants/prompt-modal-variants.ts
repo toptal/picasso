@@ -20,6 +20,11 @@ const transform: Transform = (file, api) => {
       // eslint-disable-next-line complexity
       .forEach(path => {
         const attributes = path.node.openingElement.attributes
+
+        if (!attributes) {
+          return
+        }
+
         const attributeIndex = attributes.findIndex(
           node => node.type === 'JSXAttribute' && node.name.name === 'variant'
         )
