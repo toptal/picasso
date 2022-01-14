@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useMemo, useState } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Truncate from 'react-truncate'
@@ -8,6 +8,7 @@ import ChevronRightIcon16 from '../Icon/ChevronRight16'
 import Typography from '../Typography'
 import styles from './styles'
 import Button from '../Button'
+import { replaceLineBreaksWithTags } from './utils'
 
 export interface Props extends BaseProps {
   /** Content of the component */
@@ -22,7 +23,7 @@ export interface Props extends BaseProps {
   initialExpanded?: boolean
   /** Define whether action link should be displayed or not */
   disableToggle?: boolean
-  /** Callback tiggered when show more/less is clicked */
+  /** Callback triggered when show more/less is clicked */
   onToggle?: () => void
 }
 
@@ -46,6 +47,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
   } = props
   const classes = useStyles()
   const [shownMore, setShownMore] = useState(initialExpanded)
+  const text = useMemo(() => replaceLineBreaksWithTags(children), [children])
 
   return (
     <>
@@ -57,7 +59,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         className={className}
         style={style}
       >
-        <Truncate lines={!shownMore && rows}>{children}</Truncate>
+        <Truncate lines={!shownMore && rows}>{text}</Truncate>
       </Typography>
       {!disableToggle && (
         <Button.Action
