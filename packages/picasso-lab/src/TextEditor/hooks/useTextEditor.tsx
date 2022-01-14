@@ -1,3 +1,5 @@
+import { useMemo } from 'react'
+
 import { Props as TextEditorProps } from '../TextEditor'
 import useAutofocus from './useAutofocus'
 import useQuillInstance from './useQuillInstance'
@@ -38,13 +40,16 @@ const useTextEditor = ({
 
   useEditorLoseFocusFix({
     ref: quillInstanceRef,
-    handler: preventDefaultHandler
+    handler: useMemo(() => preventDefaultHandler, [])
   })
 
   // subscribe onChange callback to editors text change
   useTextChange({
     ref: quillInstanceRef,
-    handler: getTextChangeHandler({ ref: quillInstanceRef, onChange })
+    handler: useMemo(
+      () => getTextChangeHandler({ ref: quillInstanceRef, onChange }),
+      [quillInstanceRef, onChange]
+    )
   })
 
   // connect quill with custom toolbar

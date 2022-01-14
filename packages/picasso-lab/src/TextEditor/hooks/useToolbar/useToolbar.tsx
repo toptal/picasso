@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import { ToolbarStateType, EditorRefType } from '../../types'
 import { EMPTY_STATE } from '../../constants'
@@ -16,7 +16,10 @@ const useToolbar = ({ ref }: Props) => {
   // on quill change events update toolbar active states
   useEditorChange({
     ref,
-    handler: getUpdateToolbarState({ ref, setToolbarState })
+    handler: useMemo(() => getUpdateToolbarState({ ref, setToolbarState }), [
+      ref,
+      setToolbarState
+    ])
   })
 
   const toolbarHandlers = useToolbarHandlers({
