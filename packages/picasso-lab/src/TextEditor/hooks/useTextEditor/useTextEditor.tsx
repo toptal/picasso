@@ -17,7 +17,6 @@ type Props = {
   id: TextEditorProps['id']
   onChange: TextEditorProps['onChange']
   placeholder: TextEditorProps['placeholder']
-  value: TextEditorProps['value']
 }
 
 const useTextEditor = ({

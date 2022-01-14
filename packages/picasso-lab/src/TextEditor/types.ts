@@ -5,7 +5,7 @@ export type EditorRefType = MutableRefObject<Quill | undefined>
 
 export type HTMLString = string
 
-export type HeaderValueType = '3' | undefined
+export type HeaderValueType = '3' | ''
 
 export type SelectOnChangeHandler = (
   event: ChangeEvent<{

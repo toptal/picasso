@@ -13,7 +13,6 @@ const Example = () => {
         id='limit'
         onChange={handleChange}
         placeholder='Write some cool rich text'
-        value={value}
         minlength={10}
         maxlength={100}
       />
