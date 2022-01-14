@@ -40,7 +40,7 @@ const useTextEditor = ({
 
   useEditorLoseFocusFix({
     ref: quillInstanceRef,
-    handler: useMemo(() => preventDefaultHandler, [])
+    handler: preventDefaultHandler
   })
 
   // subscribe onChange callback to editors text change
