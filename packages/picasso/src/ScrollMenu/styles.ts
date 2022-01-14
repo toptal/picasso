@@ -10,13 +10,14 @@ export default ({ palette, screens, shadows }: Theme) =>
       boxShadow: shadows[5]
     },
     withHeader: {
-      paddingTop: '0.125rem'
+      paddingTop: '0.125rem',
+
+      '& > div:first-child': {
+        paddingBottom: '0.5rem'
+      }
     },
     withFooter: {
       paddingBottom: 0
-    },
-    notLastChild: {
-      paddingBottom: '0.5rem'
     },
     scrollView: {
       maxHeight: '26.875rem', // ~8.5 lines of menu to show

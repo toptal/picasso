@@ -53,8 +53,6 @@ export const scrollToSelection = (
   }
 }
 
-const isValidElement = (elem: ReactNode) => elem !== undefined && elem !== null
-
 const ScrollMenu: FunctionComponent<Props> = props => {
   const {
     selectedIndex,
@@ -76,8 +74,8 @@ const ScrollMenu: FunctionComponent<Props> = props => {
   return (
     <Menu
       className={cx(classes.menu, {
-        [classes.withHeader]: isValidElement(fixedHeader),
-        [classes.withFooter]: isValidElement(fixedFooter)
+        [classes.withHeader]: Boolean(fixedHeader),
+        [classes.withFooter]: Boolean(fixedFooter)
       })}
       style={style}
       role={role}
@@ -89,13 +87,7 @@ const ScrollMenu: FunctionComponent<Props> = props => {
       }}
     >
       {fixedHeader}
-      <div
-        ref={menuRef}
-        className={cx(classes.scrollView, {
-          [classes.notLastChild]: isValidElement(fixedFooter)
-        })}
-        onBlur={onBlur}
-      >
+      <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
         {children}
       </div>
       {fixedFooter}
