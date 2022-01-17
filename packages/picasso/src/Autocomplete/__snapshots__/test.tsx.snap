@@ -2,7 +2,7 @@
 
 exports[`Autocomplete dynamic behavior on focus 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
+  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
   data-testid="scroll-menu"
   role="menu"
   tabindex="-1"
@@ -303,7 +303,7 @@ exports[`Autocomplete static behavior renders a loading indicator 1`] = `
 
 exports[`Autocomplete static behavior renders custom display value 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
+  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
   data-testid="scroll-menu"
   role="menu"
   tabindex="-1"
@@ -428,7 +428,7 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
 
 exports[`Autocomplete static behavior renders custom options with custom keys 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
+  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
   data-testid="scroll-menu"
   role="menu"
   tabindex="-1"

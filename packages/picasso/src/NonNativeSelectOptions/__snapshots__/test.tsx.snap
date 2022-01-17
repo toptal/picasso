@@ -6,7 +6,7 @@ exports[`NonNativeSelectOptions renders 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
+      class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
       role="listbox"
       tabindex="-1"
     >
@@ -74,7 +74,7 @@ exports[`NonNativeSelectOptions renders no option 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
+      class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
       data-testid="no-options"
       role="listbox"
       tabindex="-1"
@@ -109,7 +109,7 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
+      class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
       role="listbox"
       tabindex="-1"
     >

@@ -2,7 +2,7 @@
 
 exports[`YearSelect render in descending order 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
+  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
   role="listbox"
   tabindex="-1"
 >
