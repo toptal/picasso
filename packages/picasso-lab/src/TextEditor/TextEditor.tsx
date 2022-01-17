@@ -44,10 +44,6 @@ export interface Props extends BaseProps {
    */
   // TODO implement
   readonly?: boolean
-  /**
-   * HTML content of TextEditor
-   */
-  // value?: HTMLString
 }
 
 // Using { index: 1 } to inject CSS generated classes after the button's classes
