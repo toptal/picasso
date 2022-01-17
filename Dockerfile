@@ -49,7 +49,7 @@ COPY --chown=node:node packages/topkit-analytics-charts/package.json ./packages/
 COPY --chown=node:node packages/picasso-provider/package.json ./packages/picasso-provider/package.json
 
 # Install node_modules
-RUN yarn install --frozen-lockfile
+RUN yarn install --immutable
 
 # COPY sources to workdir
 COPY --chown=node:node . /app

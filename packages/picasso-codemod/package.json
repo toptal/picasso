@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build:package": "./bin/build.sh",
-    "prepublishOnly": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json; fi"
+    "prepack": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json; fi"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
@@ -28,9 +28,7 @@
   "devDependencies": {
     "@types/jscodeshift": "^0.11.3"
   },
-  "bin": {
-    "picasso-codemod": "./bin/picasso-codemod.mjs"
-  },
+  "bin": "./bin/picasso-codemod.mjs",
   "dependencies": {
     "execa": "^6.0.0",
     "globby": "^12.0.2",

@@ -10,7 +10,7 @@
   "module": "index.js",
   "scripts": {
     "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json",
-    "prepublishOnly": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json; fi"
+    "prepack": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json; fi"
   },
   "repository": {
     "type": "git",
@@ -62,8 +62,6 @@
   "resolutions": {
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.12",
-    "**/marksy/marked": "^0.6.0",
-    "**/npx/npm": "^5.7.1",
     "d3-array": "^2.12.1"
   },
   "sideEffects": [

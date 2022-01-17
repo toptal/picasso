@@ -15,3 +15,11 @@ __diff_output__
 
 # Happo build output
 .happo
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

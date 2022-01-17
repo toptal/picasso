@@ -45,13 +45,13 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
           yarn policies set-version
-          yarn install --frozen-lockfile --ignore-optional
+          yarn install --immutable --ignore-optional
 
       - name: Install Dependencies (from cache)
         if: steps.yarn-cache.outputs.cache-hit == 'true'
         run: |
           yarn policies set-version
-          yarn install --frozen-lockfile --ignore-optional --offline
+          yarn install --immutable --ignore-optional --offline
 
       - name: Build packages
         run: yarn build:package
