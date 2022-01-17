@@ -1,15 +1,15 @@
 import { useMemo } from 'react'
 
-import { Props as TextEditorProps } from '../TextEditor'
-import useAutofocus from './useAutofocus'
-import useQuillInstance from './useQuillInstance'
-import useDisabledEditor from './useDisabledEditor'
+import { Props as TextEditorProps } from '../../TextEditor'
+import useAutofocus from '../useAutofocus'
+import useQuillInstance from '../useQuillInstance'
+import useDisabledEditor from '../useDisabledEditor'
 import useEditorLoseFocusFix, {
   preventDefaultHandler
-} from './useEditorLoseFocusFix'
-import useTextChange from './useTextChange'
-import getTextChangeHandler from './getTextChangeHandler'
-import useToolbar from './useToolbar'
+} from '../useEditorLoseFocusFix'
+import useTextChange from '../useTextChange'
+import getTextChangeHandler from '../getTextChangeHandler'
+import useToolbar from '../useToolbar'
 
 type Props = {
   autofocus: TextEditorProps['autofocus']
@@ -27,6 +27,7 @@ const useTextEditor = ({
   onChange,
   placeholder
 }: Props) => {
+  console.count('useTextEditor')
   // create new instance of Quill and save it to ref
   const quillInstanceRef = useQuillInstance({ id, placeholder })
 
