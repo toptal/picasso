@@ -20,7 +20,7 @@ import Input, { InputProps } from '../Input'
 import Menu from '../Menu'
 import Container from '../Container'
 import Loader from '../Loader'
-import ScrollMenu from '../ScrollMenu'
+import SelectOptions from '../SelectOptions'
 import Popper from '../Popper'
 import InputAdornment from '../InputAdornment'
 import PoweredByGoogle from './PoweredByGoogle'
@@ -202,7 +202,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const optionsLength = options ? options.length : 0
 
     const optionsMenu = options && (
-      <ScrollMenu
+      <SelectOptions
         data-testid={testIds?.scrollMenu}
         selectedIndex={highlightedIndex}
       >
@@ -237,7 +237,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           </NoOptionsMenuItem>
         )}
         {optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />}
-      </ScrollMenu>
+      </SelectOptions>
     )
 
     const InputComponent = inputComponent || Input

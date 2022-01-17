@@ -4,7 +4,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import MenuItem from '../MenuItem'
 import NonNativeSelectOption from '../NonNativeSelectOption'
-import ScrollMenu from '../ScrollMenu'
+import SelectOptions from '../SelectOptions'
 import {
   flattenOptions,
   isOptionsType,
@@ -25,7 +25,7 @@ const useStyles = makeStyles<Theme>(styles)
 // Note: In the current implementation children are siblings for the group node.
 // If in the new MenuGroup children are inside the group node, that will
 // brake the current implementation of highlightedIndex calculations in this
-// component and selectedIndex in ScrollMenu component.
+// component and selectedIndex in SelectOptions component.
 interface MenuGroupProps extends BaseProps {
   group: string
   children: ReactNode
@@ -173,7 +173,7 @@ const NonNativeSelectOptions = ({
 
   if (!flatOptions.length && filterOptionsValue) {
     return (
-      <ScrollMenu
+      <SelectOptions
         data-testid={testIds?.noOptions}
         role='listbox'
         fixedHeader={fixedHeader}
@@ -181,12 +181,12 @@ const NonNativeSelectOptions = ({
         <MenuItem titleCase={false} disabled>
           {noOptionsText}
         </MenuItem>
-      </ScrollMenu>
+      </SelectOptions>
     )
   }
 
   return (
-    <ScrollMenu
+    <SelectOptions
       fixedHeader={fixedHeader}
       onBlur={onBlur}
       selectedIndex={
@@ -214,7 +214,7 @@ const NonNativeSelectOptions = ({
             highlightedIndex,
             renderOption
           })}
-    </ScrollMenu>
+    </SelectOptions>
   )
 }
 

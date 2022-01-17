@@ -61,6 +61,7 @@ const ScrollMenu: FunctionComponent<Props> = props => {
     style,
     fixedHeader,
     fixedFooter,
+    className,
     role = 'menu',
     ...rest
   } = props
@@ -73,10 +74,7 @@ const ScrollMenu: FunctionComponent<Props> = props => {
 
   return (
     <Menu
-      className={cx(classes.menu, {
-        [classes.withHeader]: Boolean(fixedHeader),
-        [classes.withFooter]: Boolean(fixedFooter)
-      })}
+      className={cx(classes.menu, className)}
       style={style}
       role={role}
       // eslint-disable-next-line react/jsx-props-no-spreading

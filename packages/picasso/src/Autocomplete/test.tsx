@@ -353,7 +353,7 @@ describe('Autocomplete', () => {
       expect(onBlur).toHaveBeenCalledTimes(1)
     })
 
-    it('prevents mouseDown on ScrollMenu', () => {
+    it('prevents mouseDown on SelectOptions', () => {
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: ''
