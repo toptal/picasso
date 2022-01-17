@@ -56,7 +56,7 @@ exports[`NonNativeSelect renders 1`] = `
 
 exports[`NonNativeSelect renders custom options 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
+  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
   role="listbox"
   tabindex="-1"
 >
@@ -148,7 +148,7 @@ exports[`NonNativeSelect renders custom options 1`] = `
 
 exports[`NonNativeSelect renders description 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu"
+  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
   role="listbox"
   tabindex="-1"
 >

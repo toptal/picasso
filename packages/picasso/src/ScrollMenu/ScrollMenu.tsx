@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import Menu from '../Menu'
 import styles from './styles'
@@ -60,7 +61,8 @@ const ScrollMenu: FunctionComponent<Props> = props => {
     style,
     fixedHeader,
     fixedFooter,
-    role = 'menu',
+    className,
+    role,
     ...rest
   } = props
   const classes = useStyles()
@@ -72,7 +74,7 @@ const ScrollMenu: FunctionComponent<Props> = props => {
 
   return (
     <Menu
-      className={classes.menu}
+      className={cx(classes.menu, className)}
       style={style}
       role={role}
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -90,5 +92,11 @@ const ScrollMenu: FunctionComponent<Props> = props => {
     </Menu>
   )
 }
+
+ScrollMenu.defaultProps = {
+  role: 'menu'
+}
+
+ScrollMenu.displayName = 'ScrollMenu'
 
 export default ScrollMenu
