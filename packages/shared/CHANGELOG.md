@@ -1,5 +1,12 @@
 # Change Log
 
+## 7.2.2
+
+### Patch Changes
+
+- Updated dependencies [[`16574dee`](https://github.com/toptal/picasso/commit/16574dee549095cc06deccccdbcfb4c7a073a601)]:
+  - @toptal/picasso-provider@0.6.0
+
 ## 7.2.1
 
 ### Patch Changes

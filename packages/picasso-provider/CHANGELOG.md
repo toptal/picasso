@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.6.0
+
+### Minor Changes
+
+- [#2375](https://github.com/toptal/picasso/pull/2375) [`16574dee`](https://github.com/toptal/picasso/commit/16574dee549095cc06deccccdbcfb4c7a073a601) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  ### Common
+
+  - Add new `scroll menu` shadow in `packages/picasso-provider/src/Picasso/config/shadows.ts`
+
 ## 0.5.0
 
 ### Minor Changes

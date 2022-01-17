@@ -1,5 +1,27 @@
 # Change Log
 
+## 17.3.3
+
+### Patch Changes
+
+- [#2375](https://github.com/toptal/picasso/pull/2375) [`16574dee`](https://github.com/toptal/picasso/commit/16574dee549095cc06deccccdbcfb4c7a073a601) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  ### Select
+
+  - Change **options** according to the [BASE design](https://share.goabstract.com/6869aded-577c-4c63-b959-40650701ff51?mode=design&sha=4f1f6493dfac89015cc6c71ea348807e931fe3bc).
+    - Add new shadow
+    - Update paddings
+
+  ### Autocomplete
+
+  - Change **options** according to the [BASE design](https://share.goabstract.com/6869aded-577c-4c63-b959-40650701ff51?mode=design&sha=4f1f6493dfac89015cc6c71ea348807e931fe3bc).
+    - Add new shadow
+    - Update paddings
+
+- Updated dependencies [[`16574dee`](https://github.com/toptal/picasso/commit/16574dee549095cc06deccccdbcfb4c7a073a601)]:
+  - @toptal/picasso-provider@0.6.0
+  - @toptal/picasso-shared@7.2.2
+
 ## 17.3.2
 
 ### Patch Changes
