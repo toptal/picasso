@@ -2,11 +2,7 @@
 '@toptal/picasso': patch
 ---
 
-### NonNativeSelect
-
-- In `NonNativeSelect` component we were passing `NonNativeSelectLimitFooter`
-  component as a `fixedFooter` prop for `NonNativeSelectOptions` component even
-  if it was not needed. Now we have conditional check for that.
+---
 
 ### ScrollMenu
 
