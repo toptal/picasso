@@ -27,8 +27,7 @@ const useTextEditor = ({
   onChange,
   placeholder
 }: Props) => {
-  console.count('useTextEditor')
-  // create new instance of Quill and save it to ref
+  // create new instance of Quil  l and save it to ref
   const quillInstanceRef = useQuillInstance({ id, placeholder })
 
   useDisabledEditor({ ref: quillInstanceRef, disabled })
