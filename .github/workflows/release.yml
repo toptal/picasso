@@ -31,27 +31,10 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Check yarn cache
-        uses: actions/cache@v2.1.5
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Install Dependencies (from network)
-        if: ${{ steps.yarn-cache.outputs.cache-hit != 'true' }}
+      - name: Install Dependencies
         run: |
-          yarn install --immutable --ignore-optional
-      - name: Install Dependencies (from cache)
-        if: ${{ steps.yarn-cache.outputs.cache-hit == 'true' }}
-        run: |
-          yarn install --immutable --ignore-optional --offline
-
+          yarn install --immutable
+      
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@c2918239208f2162b9d27a87f491375c51592434
