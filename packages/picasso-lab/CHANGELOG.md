@@ -1,5 +1,14 @@
 # Change Log
 
+## 26.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`16574dee`](https://github.com/toptal/picasso/commit/16574dee549095cc06deccccdbcfb4c7a073a601), [`16574dee`](https://github.com/toptal/picasso/commit/16574dee549095cc06deccccdbcfb4c7a073a601)]:
+  - @toptal/picasso-provider@0.6.0
+  - @toptal/picasso@17.3.3
+  - @toptal/picasso-shared@7.2.2
+
 ## 26.0.4
 
 ### Patch Changes
