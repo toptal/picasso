@@ -25,7 +25,7 @@ const useStyles = makeStyles<Theme>(styles)
 // Note: In the current implementation children are siblings for the group node.
 // If in the new MenuGroup children are inside the group node, that will
 // brake the current implementation of highlightedIndex calculations in this
-// component and selectedIndex in SelectOptions component.
+// component and selectedIndex in ScrollMenu component.
 interface MenuGroupProps extends BaseProps {
   group: string
   children: ReactNode

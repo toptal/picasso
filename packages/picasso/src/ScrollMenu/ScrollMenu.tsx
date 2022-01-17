@@ -62,7 +62,7 @@ const ScrollMenu: FunctionComponent<Props> = props => {
     fixedHeader,
     fixedFooter,
     className,
-    role = 'menu',
+    role,
     ...rest
   } = props
   const classes = useStyles()
@@ -92,5 +92,11 @@ const ScrollMenu: FunctionComponent<Props> = props => {
     </Menu>
   )
 }
+
+ScrollMenu.defaultProps = {
+  role: 'menu'
+}
+
+ScrollMenu.displayName = 'ScrollMenu'
 
 export default ScrollMenu

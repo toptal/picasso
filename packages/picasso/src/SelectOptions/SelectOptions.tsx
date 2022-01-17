@@ -20,17 +20,21 @@ const SelectOptions: FunctionComponent<Props> = props => {
     fixedHeader,
     fixedFooter,
     className,
-    role = 'menu',
+    role,
     ...rest
   } = props
   const classes = useStyles()
 
   return (
     <ScrollMenu
-      className={cx(className, classes.menu, {
-        [classes.withHeader]: Boolean(fixedHeader),
-        [classes.withFooter]: Boolean(fixedFooter)
-      })}
+      className={cx(
+        classes.menu,
+        {
+          [classes.withHeader]: Boolean(fixedHeader),
+          [classes.withFooter]: Boolean(fixedFooter)
+        },
+        className
+      )}
       style={style}
       selectedIndex={selectedIndex}
       fixedFooter={fixedFooter}
@@ -43,5 +47,11 @@ const SelectOptions: FunctionComponent<Props> = props => {
     </ScrollMenu>
   )
 }
+
+SelectOptions.defaultProps = {
+  role: 'menu'
+}
+
+SelectOptions.displayName = 'SelectOptions'
 
 export default SelectOptions
