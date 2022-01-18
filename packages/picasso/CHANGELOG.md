@@ -1,5 +1,11 @@
 # Change Log
 
+## 17.4.0
+
+### Minor Changes
+
+- [#2388](https://github.com/toptal/picasso/pull/2388) [`2845cd0d`](https://github.com/toptal/picasso/commit/2845cd0d753fc91c836c2b793f194b3868de69e9) Thanks [@vshyrokov](https://github.com/vshyrokov)! - `ShowMore` component now displays line breaks in truncated state
+
 ## 17.3.3
 
 ### Patch Changes
