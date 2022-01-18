@@ -30,7 +30,7 @@ const TextEditorButton = (props: Props) => {
       className={cx(
         classes.button,
         {
-          [classes.activeButton]: active && active !== undefined
+          [classes.activeButton]: active
         },
         className
       )}
