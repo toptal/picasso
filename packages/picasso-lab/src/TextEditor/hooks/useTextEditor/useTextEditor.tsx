@@ -1,12 +1,15 @@
-import { Props as TextEditorProps } from '../TextEditor'
-import useAutofocus from './useAutofocus'
-import useQuillInstance from './useQuillInstance'
-import useDisabledEditor from './useDisabledEditor'
+import { useMemo } from 'react'
+
+import { Props as TextEditorProps } from '../../TextEditor'
+import useAutofocus from '../useAutofocus'
+import useQuillInstance from '../useQuillInstance'
+import useDisabledEditor from '../useDisabledEditor'
 import useEditorLoseFocusFix, {
   preventDefaultHandler
-} from './useEditorLoseFocusFix'
-import useTextChange from './useTextChange'
-import getTextChangeHandler from './getTextChangeHandler'
+} from '../useEditorLoseFocusFix'
+import useTextChange from '../useTextChange'
+import getTextChangeHandler from '../getTextChangeHandler'
+import useToolbar from '../useToolbar'
 
 type Props = {
   autofocus: TextEditorProps['autofocus']
@@ -24,7 +27,7 @@ const useTextEditor = ({
   onChange,
   placeholder
 }: Props) => {
-  // create new instance of Quill and save it to ref
+  // create new instance of Quil  l and save it to ref
   const quillInstanceRef = useQuillInstance({ id, placeholder })
 
   useDisabledEditor({ ref: quillInstanceRef, disabled })
@@ -43,8 +46,18 @@ const useTextEditor = ({
   // subscribe onChange callback to editors text change
   useTextChange({
     ref: quillInstanceRef,
-    handler: getTextChangeHandler({ ref: quillInstanceRef, onChange })
+    handler: useMemo(
+      () => getTextChangeHandler({ ref: quillInstanceRef, onChange }),
+      [quillInstanceRef, onChange]
+    )
   })
+
+  // connect quill with custom toolbar
+  const { toolbarState, toolbarHandlers } = useToolbar({
+    ref: quillInstanceRef
+  })
+
+  return { toolbarState, toolbarHandlers }
 }
 
 export default useTextEditor
