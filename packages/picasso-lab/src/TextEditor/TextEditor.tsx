@@ -3,7 +3,6 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { Typography, Container } from '@toptal/picasso'
-import './quill.snow.css'
 
 import styles from './styles'
 import TextEditorToolbar from './TextEditorToolbar'

@@ -1,6 +1,6 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 import { sizes } from '@toptal/picasso-provider'
-import { rem } from '@toptal/picasso-shared/styles'
+import { rem } from '@toptal/picasso-shared'
 
 const margins = {
   '& p': {
@@ -56,14 +56,58 @@ const listStyles = {
   }
 }
 
-export default ({ palette }: Theme) =>
-  createStyles({
+const horizontalPadding = '0.5em'
+const placeholder = ({ palette }: Theme) => ({
+  '& .ql-blank:before': {
+    color: palette.grey.main2,
+    content: 'attr(data-placeholder)',
+    pointerEvents: 'none',
+    position: 'absolute',
+    left: horizontalPadding,
+    right: horizontalPadding
+  }
+})
+
+const hidden = {
+  '& .gl-hidden': {
+    display: 'none'
+  }
+}
+
+const editor = {
+  '& .ql-editor': {
+    height: '100%',
+    outline: 'none',
+    overflowY: 'auto',
+    padding: `1em ${horizontalPadding}`,
+    tabSize: '4',
+    textAlign: 'left',
+    whiteSpace: 'pre-wrap',
+    wordWrap: 'break-word'
+  },
+  '& .ql-editor > *': {
+    cursor: 'text'
+  }
+}
+
+const quillSpecificStyles = (theme: Theme) => ({
+  ...placeholder(theme),
+  ...editor,
+  ...hidden
+})
+
+export default (theme: Theme) => {
+  const { palette } = theme
+
+  return createStyles({
     root: {
       height: '12.5em',
       overflowY: 'hidden',
       resize: 'vertical',
+      position: 'relative',
       ...listStyles,
-      ...margins
+      ...margins,
+      ...quillSpecificStyles(theme)
     },
 
     editorWrapper: {
@@ -104,13 +148,6 @@ export default ({ palette }: Theme) =>
       '&+&': {
         marginLeft: '0.5em'
       }
-    },
-
-    activeButton: {
-      backgroundColor: palette.grey.dark,
-
-      '&:not(:hover) svg': {
-        fill: palette.common.white
-      }
     }
   })
+}
