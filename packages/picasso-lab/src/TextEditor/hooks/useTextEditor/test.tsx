@@ -1,6 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { render, TestingPicasso } from '@toptal/picasso/test-utils'
-import { noop } from '@toptal/picasso/utils'
 import React from 'react'
 
 import useTextEditor from './useTextEditor'
@@ -11,7 +10,7 @@ describe('useTextEditor', () => {
   it('renders', () => {
     const options = {
       id: 'foo',
-      onChange: noop,
+      onChange: () => {},
       placeholder: 'text',
       readonly: false,
       disabled: false,

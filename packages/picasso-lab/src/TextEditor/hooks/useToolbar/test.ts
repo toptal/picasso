@@ -1,7 +1,7 @@
 import Quill from 'quill'
 import { renderHook } from '@testing-library/react-hooks'
 
-import useToolbar from '.'
+import useToolbar from './useToolbar'
 
 describe('useToolbar', () => {
   it('returns state and handlers', () => {
