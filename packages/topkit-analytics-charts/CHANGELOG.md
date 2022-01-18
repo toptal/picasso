@@ -1,5 +1,12 @@
 # Change Log
 
+## 14.0.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-charts@17.0.0
+
 ## 13.0.0
 
 ### Patch Changes
