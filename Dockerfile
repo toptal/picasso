@@ -35,24 +35,8 @@ RUN chown -R node /app
 
 USER node
 
-# Enables layer caching
-COPY --chown=node:node package.json yarn.lock .yarnrc.yml .yarnrc ./
-
-# Copy package.json to restore symlinks in a single yarn install
-COPY --chown=node:node packages/picasso/package.json ./packages/picasso/package.json
-COPY --chown=node:node packages/picasso-lab/package.json ./packages/picasso-lab/package.json
-COPY --chown=node:node packages/picasso-charts/package.json ./packages/picasso-charts/package.json
-COPY --chown=node:node packages/picasso-forms/package.json ./packages/picasso-forms/package.json
-COPY --chown=node:node packages/shared/package.json ./packages/shared/package.json
-COPY --chown=node:node packages/picasso-codemod/package.json ./packages/picasso-codemod/package.json
-COPY --chown=node:node packages/topkit-analytics-charts/package.json ./packages/topkit-analytics-charts/package.json
-COPY --chown=node:node packages/picasso-provider/package.json ./packages/picasso-provider/package.json
-
-# Install node_modules
-RUN yarn install --immutable
-
 # COPY sources to workdir
 COPY --chown=node:node . /app
 
-# Need this file for publishing packages to npm
-RUN printf '//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true\n' > .npmrc
+# Install node_modules
+RUN yarn install --immutable
