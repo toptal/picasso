@@ -22,10 +22,12 @@ export type ToolbarStateType = {
   list?: 'bullet' | 'ordered'
 }
 
+export type ButtonHandlerType = MouseEventHandler<HTMLButtonElement>
+
 export type ToolbarHandlers = {
   handleHeader: SelectOnChangeHandler
-  handleBold: MouseEventHandler<HTMLButtonElement>
-  handleItalic: MouseEventHandler<HTMLButtonElement>
-  handleOrdered: MouseEventHandler<HTMLButtonElement>
-  handleUnordered: MouseEventHandler<HTMLButtonElement>
+  handleBold: ButtonHandlerType
+  handleItalic: ButtonHandlerType
+  handleOrdered: ButtonHandlerType
+  handleUnordered: ButtonHandlerType
 }
