@@ -13,7 +13,6 @@ const Example = () => {
         id='editor'
         onChange={handleChange}
         placeholder='Write some cool rich text'
-        value={value}
         autofocus
       />
       <Container

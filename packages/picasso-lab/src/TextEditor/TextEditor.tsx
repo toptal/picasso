@@ -1,22 +1,14 @@
-import React, { forwardRef, useRef, useState } from 'react'
+import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import Quill from 'quill'
 import { Typography, Container } from '@toptal/picasso'
 import './quill.snow.css'
 
 import styles from './styles'
-import TextEditorToolbar, {
-  ToolbarState,
-  ToolbarKey
-} from './TextEditorToolbar'
-import useInitEditor from './hooks/useInitEditor'
-import useHandleChangeEvent from './hooks/useHandleChangeEvent'
-import useHandleChangeFromController from './hooks/useHandleChangeFromController'
-import useDisableEditor from './hooks/useDisableEditor'
-import useHandleAutofocus from './hooks/useHandleAutofocus'
-import { HTMLString, TextEditorChangeHandler } from './types'
+import TextEditorToolbar from './TextEditorToolbar'
+import useTextEditor from './hooks/useTextEditor'
+import { TextEditorChangeHandler } from './types'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -52,10 +44,6 @@ export interface Props extends BaseProps {
    */
   // TODO implement
   readonly?: boolean
-  /**
-   * HTML content of TextEditor
-   */
-  value?: HTMLString
 }
 
 // Using { index: 1 } to inject CSS generated classes after the button's classes
@@ -64,11 +52,6 @@ export interface Props extends BaseProps {
 const useStyles = makeStyles<Theme>(styles, {
   name: 'TextEditor'
 })
-
-const formatOptions = {
-  normalText: { value: '1', text: 'Normal Text' },
-  heading: { value: '2', text: 'Heading' }
-}
 
 export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   {
@@ -79,47 +62,25 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     id,
     onChange,
     placeholder,
-    style,
-    value
+    style
   },
   ref
 ) {
-  const editorRef = useRef<Quill>()
   const classes = useStyles()
-  const [currentFormat, setCurrentFormant] = useState<string>(
-    formatOptions.normalText.value
-  )
-  const [textState, setTextState] = useState<ToolbarState>({
-    bold: false,
-    italic: false,
-    unorderedList: false,
-    orderedList: false
+  const { toolbarState, toolbarHandlers } = useTextEditor({
+    id,
+    onChange,
+    placeholder,
+    autofocus,
+    disabled
   })
-
-  useInitEditor(editorRef, { id, placeholder })
-  useHandleChangeEvent(editorRef, { onChange })
-  useHandleChangeFromController(editorRef, { value })
-  useDisableEditor(editorRef, { disabled })
-  useHandleAutofocus(editorRef, { autofocus })
-
-  const handleFormatChange = (event: React.ChangeEvent<{ value: string }>) =>
-    setCurrentFormant(event.target.value)
-
-  const toggleTextState = (textStateIndex: ToolbarKey) => () =>
-    setTextState(prevState => ({
-      ...prevState,
-      [textStateIndex]: !prevState[textStateIndex]
-    }))
 
   return (
     <Container className={classes.editorWrapper}>
       <TextEditorToolbar
         id={id}
-        textState={textState}
-        toggleTextState={toggleTextState}
-        currentFormat={currentFormat}
-        formatOptions={Object.values(formatOptions)}
-        handleFormatChange={handleFormatChange}
+        state={toolbarState}
+        handlers={toolbarHandlers}
       />
       <Typography
         as='div'
