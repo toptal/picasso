@@ -36,7 +36,7 @@ RUN chown -R node /app
 USER node
 
 # Enables layer caching
-COPY --chown=node:node package.json yarn.lock ./
+COPY --chown=node:node package.json yarn.lock .yarnrc.yml .yarnrc ./
 
 # Copy package.json to restore symlinks in a single yarn install
 COPY --chown=node:node packages/picasso/package.json ./packages/picasso/package.json
