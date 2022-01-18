@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Button, Select } from '@toptal/picasso'
+import { Container, Select } from '@toptal/picasso'
 import {
   Bold16,
   Italic16,
@@ -10,6 +10,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 
 import styles from './styles'
 import { ToolbarHandlers, ToolbarStateType } from './types'
+import TextEditorButton from './TextEditorButton'
 
 type Props = {
   id: string
@@ -43,28 +44,24 @@ export const TextEditorToolbar = (props: Props) => {
         />
       </Container>
       <Container className={classes.qlFormats}>
-        <Button.Circular
-          variant='flat'
+        <TextEditorButton
           icon={<Bold16 />}
           onClick={handlers.handleBold}
           active={state.bold}
         />
-        <Button.Circular
-          variant='flat'
+        <TextEditorButton
           icon={<Italic16 />}
           onClick={handlers.handleItalic}
           active={state.italic}
         />
       </Container>
       <Container className={classes.qlFormats}>
-        <Button.Circular
-          variant='flat'
+        <TextEditorButton
           icon={<ListUnordered16 />}
           onClick={handlers.handleUnordered}
           active={state.list === 'bullet'}
         />
-        <Button.Circular
-          variant='flat'
+        <TextEditorButton
           icon={<ListOrdered16 />}
           onClick={handlers.handleOrdered}
           active={state.list === 'ordered'}
