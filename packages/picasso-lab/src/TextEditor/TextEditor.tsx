@@ -36,13 +36,6 @@ export interface Props extends BaseProps {
   onChange: TextEditorChangeHandler
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
-  /**
-   * This Boolean attribute indicates that the user cannot modify the
-   * value of the control. Unlike the disabled attribute, the readonly
-   * attribute does not prevent the user from clicking or selecting in the control.
-   */
-  // TODO implement
-  readonly?: boolean
 }
 
 // Using { index: 1 } to inject CSS generated classes after the button's classes
