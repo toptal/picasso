@@ -1,5 +1,15 @@
 # Change Log
 
+## 17.4.1
+
+### Patch Changes
+
+- [#2385](https://github.com/toptal/picasso/pull/2385) [`782623fc`](https://github.com/toptal/picasso/commit/782623fc0ff41ad4835dc3db32b4e1f3524929d7) Thanks [@denieler](https://github.com/denieler)! - ---
+
+  ### Menu.Item
+
+  - fixed [underline styling](https://toptal-core.slack.com/archives/CCC3GP6CC/p1642067846008000) when used as a Link by replacing passed Link as `as` prop with HTML anchor.
+
 ## 17.4.0
 
 ### Minor Changes
