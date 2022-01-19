@@ -148,6 +148,14 @@ export default (theme: Theme) => {
       '&+&': {
         marginLeft: '0.5em'
       }
+    },
+
+    activeButton: {
+      backgroundColor: palette.grey.dark,
+
+      '&:not(:hover) svg': {
+        fill: palette.common.white
+      }
     }
   })
 }
