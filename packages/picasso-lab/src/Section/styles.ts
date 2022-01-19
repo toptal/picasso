@@ -38,8 +38,7 @@ export default ({ sizes, palette }: Theme) =>
       padding: '2rem',
       '& > :last-child': {
         paddingBottom: '0'
-      },
-      backgroundColor: palette.common.white
+      }
     },
     withHeaderBar: {
       padding: 0,
@@ -47,8 +46,7 @@ export default ({ sizes, palette }: Theme) =>
         padding: '1.5rem'
       },
       borderRadius: sizes.borderRadius.medium,
-      border: `solid ${sizes.borderWidth} ${palette.grey.light2}`,
-      backgroundColor: palette.common.white
+      border: `solid ${sizes.borderWidth} ${palette.grey.light2}`
     },
     defaultHeader,
     borderedHeader: defaultHeader,
