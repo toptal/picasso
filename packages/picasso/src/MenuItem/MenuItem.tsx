@@ -24,6 +24,7 @@ import Container from '../Container'
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
 import Paper from '../Paper'
 import Popper from '../Popper'
+import Link from '../Link'
 import { ClickAwayListener, toTitleCase } from '../utils'
 import { useMenuItem } from './hooks'
 import styles from './styles'
@@ -103,13 +104,16 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     onClick,
     onMouseEnter
   })
+  const isLink = as === Link && rest.href
 
   return (
     <>
       <MUIMenuItem
         {...rest}
         ref={ref}
-        component={as}
+        // replace Picasso Link with Anchor to not applying Picasso
+        // Link component styles, this is the only difference between them now
+        component={isLink ? 'a' : as}
         classes={{
           root: cx({
             [classes[`gutters${size && capitalize(size)}`]]: size
