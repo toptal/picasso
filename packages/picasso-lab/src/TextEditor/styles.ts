@@ -156,6 +156,12 @@ export default (theme: Theme) => {
       '&:not(:hover) svg': {
         fill: palette.common.white
       }
+    },
+
+    disabled: {
+      background: palette.grey.lighter,
+      borderRadius: '0.25em',
+      border: `1px solid ${palette.grey.lighter2}`
     }
   })
 }

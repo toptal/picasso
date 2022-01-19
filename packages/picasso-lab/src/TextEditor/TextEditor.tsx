@@ -75,11 +75,14 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   })
 
   return (
-    <Container className={classes.editorWrapper}>
+    <Container
+      className={cx(classes.editorWrapper, { [classes.disabled]: disabled })}
+    >
       <TextEditorToolbar
         id={id}
         state={toolbarState}
         handlers={toolbarHandlers}
+        disabled={disabled}
       />
       <Typography
         as='div'
