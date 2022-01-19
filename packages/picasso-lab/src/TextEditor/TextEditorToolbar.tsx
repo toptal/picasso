@@ -16,6 +16,7 @@ type Props = {
   id: string
   state: ToolbarStateType
   handlers: ToolbarHandlers
+  disabled?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -24,7 +25,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const TextEditorToolbar = (props: Props) => {
-  const { id, state, handlers } = props
+  const { id, state, handlers, disabled } = props
 
   const classes = useStyles()
 
@@ -41,6 +42,7 @@ export const TextEditorToolbar = (props: Props) => {
           size='small'
           menuWidth='123px'
           className={classes.textStylesSelect}
+          disabled={disabled}
         />
       </Container>
       <Container className={classes.qlFormats}>
@@ -48,11 +50,13 @@ export const TextEditorToolbar = (props: Props) => {
           icon={<Bold16 />}
           onClick={handlers.handleBold}
           active={state.bold}
+          disabled={disabled}
         />
         <TextEditorButton
           icon={<Italic16 />}
           onClick={handlers.handleItalic}
           active={state.italic}
+          disabled={disabled}
         />
       </Container>
       <Container className={classes.qlFormats}>
@@ -60,11 +64,13 @@ export const TextEditorToolbar = (props: Props) => {
           icon={<ListUnordered16 />}
           onClick={handlers.handleUnordered}
           active={state.list === 'bullet'}
+          disabled={disabled}
         />
         <TextEditorButton
           icon={<ListOrdered16 />}
           onClick={handlers.handleOrdered}
           active={state.list === 'ordered'}
+          disabled={disabled}
         />
       </Container>
     </Container>

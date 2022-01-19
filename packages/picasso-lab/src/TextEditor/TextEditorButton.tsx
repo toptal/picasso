@@ -10,6 +10,7 @@ type Props = BaseProps & {
   icon: ReactElement
   onClick: ButtonHandlerType
   active?: boolean
+  disabled?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -18,7 +19,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 const TextEditorButton = (props: Props) => {
-  const { icon, onClick, active, className, style, ...rest } = props
+  const { icon, onClick, active, className, style, disabled, ...rest } = props
   const classes = useStyles()
 
   return (
@@ -34,6 +35,7 @@ const TextEditorButton = (props: Props) => {
         },
         className
       )}
+      disabled={disabled}
       {...rest}
     />
   )
