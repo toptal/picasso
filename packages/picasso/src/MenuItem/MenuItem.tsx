@@ -104,13 +104,16 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     onClick,
     onMouseEnter
   })
+  const isLink = as === Link && rest.href
 
   return (
     <>
       <MUIMenuItem
         {...rest}
         ref={ref}
-        component={as === Link && rest.href ? 'a' : as}
+        // replace Picasso Link with Anchor to not applying Picasso
+        // Link component styles, this is the only difference between them now
+        component={isLink ? 'a' : as}
         classes={{
           root: cx({
             [classes[`gutters${size && capitalize(size)}`]]: size
