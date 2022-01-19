@@ -18,5 +18,4 @@ page
   .createChapter()
   .addExample('TextEditor/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('TextEditor/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
-// .addExample('TextEditor/story/Readonly.example.tsx', 'Readonly') // picasso-skip-visuals
 // .addExample('TextEditor/story/Limit.example.tsx', 'Limit Length') // picasso-skip-visuals

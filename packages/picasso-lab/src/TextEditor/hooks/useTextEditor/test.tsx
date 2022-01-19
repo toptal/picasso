@@ -12,7 +12,6 @@ describe('useTextEditor', () => {
       id: 'foo',
       onChange: () => {},
       placeholder: 'text',
-      readonly: false,
       disabled: false,
       autofocus: false,
       value: ''
