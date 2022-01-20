@@ -10,7 +10,8 @@ import useToolbarHandlers from './useToolbarHandlers'
 const ref = {
   current: ({
     format: jest.fn(),
-    focus: jest.fn()
+    focus: jest.fn(),
+    hasFocus: jest.fn()
   } as unknown) as Quill
 }
 
@@ -26,8 +27,9 @@ describe('useToolbarHandlers', () => {
     jest.clearAllMocks()
   })
   it('handles header format', async () => {
+    const setToolbarStateKey = jest.fn()
     const { result } = renderHook(() =>
-      useToolbarHandlers({ ref, toolbarState: EMPTY_STATE })
+      useToolbarHandlers({ ref, toolbarState: EMPTY_STATE, setToolbarStateKey })
     )
 
     const { handleHeader } = result.current
@@ -44,8 +46,10 @@ describe('useToolbarHandlers', () => {
 
   describe('bold', () => {
     it('handles bold format with empty state', () => {
+      const setToolbarStateKey = jest.fn()
       const { result } = renderHook(
-        ({ toolbarState }) => useToolbarHandlers({ ref, toolbarState }),
+        ({ toolbarState }) =>
+          useToolbarHandlers({ ref, toolbarState, setToolbarStateKey }),
         {
           initialProps: {
             toolbarState: EMPTY_STATE
@@ -59,10 +63,13 @@ describe('useToolbarHandlers', () => {
         handleBold(mockButtonEvent)
       })
       expect(ref.current.format).toHaveBeenCalledWith('bold', true)
+      expect(setToolbarStateKey).toHaveBeenCalledWith('bold', true)
     })
     it('handles bold format with state', () => {
+      const setToolbarStateKey = jest.fn()
       const { result } = renderHook(
-        ({ toolbarState }) => useToolbarHandlers({ ref, toolbarState }),
+        ({ toolbarState }) =>
+          useToolbarHandlers({ ref, toolbarState, setToolbarStateKey }),
         {
           initialProps: {
             toolbarState: { bold: true }
@@ -76,13 +83,16 @@ describe('useToolbarHandlers', () => {
         handleBold(mockButtonEvent)
       })
       expect(ref.current.format).toHaveBeenCalledWith('bold', false)
+      expect(setToolbarStateKey).toHaveBeenCalledWith('bold', false)
     })
   })
 
   describe('italic', () => {
     it('handles italic format with empty state', () => {
+      const setToolbarStateKey = jest.fn()
       const { result } = renderHook(
-        ({ toolbarState }) => useToolbarHandlers({ ref, toolbarState }),
+        ({ toolbarState }) =>
+          useToolbarHandlers({ ref, toolbarState, setToolbarStateKey }),
         {
           initialProps: {
             toolbarState: EMPTY_STATE
@@ -96,10 +106,13 @@ describe('useToolbarHandlers', () => {
         handleItalic(mockButtonEvent)
       })
       expect(ref.current.format).toHaveBeenCalledWith('italic', true)
+      expect(setToolbarStateKey).toHaveBeenCalledWith('italic', true)
     })
     it('handles italic format with state', () => {
+      const setToolbarStateKey = jest.fn()
       const { result } = renderHook(
-        ({ toolbarState }) => useToolbarHandlers({ ref, toolbarState }),
+        ({ toolbarState }) =>
+          useToolbarHandlers({ ref, toolbarState, setToolbarStateKey }),
         {
           initialProps: {
             toolbarState: { italic: true }
@@ -113,13 +126,16 @@ describe('useToolbarHandlers', () => {
         handleItalic(mockButtonEvent)
       })
       expect(ref.current.format).toHaveBeenCalledWith('italic', false)
+      expect(setToolbarStateKey).toHaveBeenCalledWith('italic', false)
     })
   })
 
   describe('ordered list', () => {
     it('handles ordered list format with empty state', () => {
+      const setToolbarStateKey = jest.fn()
       const { result } = renderHook(
-        ({ toolbarState }) => useToolbarHandlers({ ref, toolbarState }),
+        ({ toolbarState }) =>
+          useToolbarHandlers({ ref, toolbarState, setToolbarStateKey }),
         {
           initialProps: {
             toolbarState: EMPTY_STATE
@@ -135,8 +151,10 @@ describe('useToolbarHandlers', () => {
       expect(ref.current.format).toHaveBeenCalledWith('list', 'ordered')
     })
     it('handles ordered list format with state', () => {
+      const setToolbarStateKey = jest.fn()
       const { result } = renderHook(
-        ({ toolbarState }) => useToolbarHandlers({ ref, toolbarState }),
+        ({ toolbarState }) =>
+          useToolbarHandlers({ ref, toolbarState, setToolbarStateKey }),
         {
           initialProps: {
             toolbarState: { list: 'ordered' } as const
@@ -154,8 +172,10 @@ describe('useToolbarHandlers', () => {
   })
   describe('unordered list', () => {
     it('handles unordered list format with empty state', () => {
+      const setToolbarStateKey = jest.fn()
       const { result } = renderHook(
-        ({ toolbarState }) => useToolbarHandlers({ ref, toolbarState }),
+        ({ toolbarState }) =>
+          useToolbarHandlers({ ref, toolbarState, setToolbarStateKey }),
         {
           initialProps: {
             toolbarState: EMPTY_STATE
@@ -171,8 +191,10 @@ describe('useToolbarHandlers', () => {
       expect(ref.current.format).toHaveBeenCalledWith('list', 'bullet')
     })
     it('handles ordered list format with state', () => {
+      const setToolbarStateKey = jest.fn()
       const { result } = renderHook(
-        ({ toolbarState }) => useToolbarHandlers({ ref, toolbarState }),
+        ({ toolbarState }) =>
+          useToolbarHandlers({ ref, toolbarState, setToolbarStateKey }),
         {
           initialProps: {
             toolbarState: { list: 'bullet' } as const

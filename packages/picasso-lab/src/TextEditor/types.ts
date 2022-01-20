@@ -31,3 +31,30 @@ export type ToolbarHandlers = {
   handleOrdered: ButtonHandlerType
   handleUnordered: ButtonHandlerType
 }
+
+export type SetAllAction = {
+  type: 'setAll'
+  payload: ToolbarStateType
+}
+
+export type SetAction<
+  T extends keyof ToolbarStateType = keyof ToolbarStateType
+> = {
+  type: 'set'
+  key: T
+  payload: ToolbarStateType[T]
+}
+
+export type ActionType = SetAllAction | SetAction
+
+export type SetToolbarStateType = (payload: ToolbarStateType) => void
+
+export type SetToolbarStateKeyType = <T extends keyof ToolbarStateType>(
+  key: SetAction<T>['key'],
+  payload: SetAction<T>['payload']
+) => void
+
+export type ActionsType = {
+  setToolbarState: SetToolbarStateType
+  setToolbarStateKey: SetToolbarStateKeyType
+}

@@ -3,10 +3,15 @@ import { TestingPicasso, render } from '@toptal/picasso/test-utils'
 import { renderHook } from '@testing-library/react-hooks'
 
 import useQuillInstance from './useQuillInstance'
+import { ActionsType } from '../../types'
 
 describe('useQuillInstance', () => {
   it('returns quill instance in ref', () => {
     const id = 'editor'
+    const actions: ActionsType = {
+      setToolbarState: jest.fn(),
+      setToolbarStateKey: jest.fn()
+    }
 
     // quill needs to have container for both toolbar and editor
     // to successfuly initit
@@ -19,7 +24,7 @@ describe('useQuillInstance', () => {
     )
 
     render(<WrapperComponent />)
-    const { result } = renderHook(() => useQuillInstance({ id }), {
+    const { result } = renderHook(() => useQuillInstance({ id, actions }), {
       wrapper: WrapperComponent
     })
 
