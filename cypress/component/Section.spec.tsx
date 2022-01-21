@@ -135,7 +135,11 @@ describe('Section', () => {
 
     cy.get('body').happoScreenshot()
   })
+  it('renders with withHeaderBar variant', () => {
+    mount(<TestSection variant='withHeaderBar' />)
 
+    cy.get('body').happoScreenshot()
+  })
   describe('when collapsible', () => {
     it('renders initially collapsed', () => {
       mount(<TestSection collapsible />)
