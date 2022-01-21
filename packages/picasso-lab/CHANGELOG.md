@@ -1,5 +1,13 @@
 # Change Log
 
+## 27.0.1
+
+### Patch Changes
+
+- [#2395](https://github.com/toptal/picasso/pull/2395) [`deffcf3b`](https://github.com/toptal/picasso/commit/deffcf3b618154894740e5a8fdf62e9148994df3) Thanks [@joantalarn](https://github.com/joantalarn)! - ---
+  ### Section
+  - added white background for `bordered` and `withHeaderBar` variants
+
 ## 27.0.0
 
 ### Patch Changes
