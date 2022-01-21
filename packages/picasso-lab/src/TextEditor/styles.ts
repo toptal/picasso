@@ -168,16 +168,19 @@ export default (theme: Theme) => {
     counter: {
       position: 'absolute',
       bottom: 0,
-      left: 0,
+      left: '0.8em',
       color: palette.grey.main2,
       fontSize: '0.625em',
-      width: '100%',
+      width: 'calc(100% - 2.6em)',
       display: 'grid',
-      padding: '0 0.8em',
+      zIndex: 0,
+      backgroundColor: 'white',
+      height: '1.9em',
+      lineHeight: '1.9em',
 
       '&::before': {
         content: '""',
-        width: '100%',
+        width: 'calc(100% + 0.7em)',
         height: '1px',
         display: 'inline-block',
         background: palette.grey.lighter2

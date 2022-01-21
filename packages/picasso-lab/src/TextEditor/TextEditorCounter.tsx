@@ -6,8 +6,6 @@ import styles from './styles'
 
 interface Props extends BaseProps {
   counterState?: any
-  minlength?: number
-  maxlength?: number
 }
 
 const useStyles = makeStyles<Theme>(styles, {
