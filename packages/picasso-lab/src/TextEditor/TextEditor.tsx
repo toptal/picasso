@@ -53,8 +53,8 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     id,
     onChange,
     placeholder,
-    minlength = 4,
-    maxlength = 10,
+    minlength,
+    maxlength = 250,
     style
   },
   ref
@@ -92,7 +92,11 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         style={style}
       />
       {(minlength || maxlength) && (
-        <TextEditorCounter counterState={counterState} />
+        <TextEditorCounter
+          counterState={counterState}
+          minlength={minlength}
+          maxlength={maxlength}
+        />
       )}
     </Container>
   )

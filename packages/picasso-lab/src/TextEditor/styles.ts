@@ -111,6 +111,7 @@ export default (theme: Theme) => {
     },
 
     editorWrapper: {
+      position: 'relative',
       borderRadius: sizes.borderRadius.small,
       border: `1px solid ${palette.grey.light2}`,
       padding: '0.5em'
@@ -162,6 +163,25 @@ export default (theme: Theme) => {
       background: palette.grey.lighter,
       borderRadius: '0.25em',
       border: `1px solid ${palette.grey.lighter2}`
+    },
+
+    counter: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      color: palette.grey.main2,
+      fontSize: '0.625em',
+      width: '100%',
+      display: 'grid',
+      padding: '0 0.8em',
+
+      '&::before': {
+        content: '""',
+        width: '100%',
+        height: '1px',
+        display: 'inline-block',
+        background: palette.grey.lighter2
+      }
     }
   })
 }

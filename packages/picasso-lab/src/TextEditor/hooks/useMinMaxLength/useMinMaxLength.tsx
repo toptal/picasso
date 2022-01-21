@@ -12,9 +12,22 @@ const useMinMaxLength = ({
   maxlength?: number
   minlength?: number
 }) => {
-  const [numOfCharsLeft, setNumOfCharsLeft] = useState<number | undefined>(
-    minlength || maxlength
+  const [numOfCharsLeft, setNumOfCharsLeft] = useState(
+    (minlength && minCharsLeft(minlength, 0)) ||
+      (maxlength && maxCharsLeft(maxlength, 0))
   )
+
+  /* eslint-disable func-style */
+  function minCharsLeft(minlength: number, currlength: number) {
+    return `${minlength} characters required, current count is ${
+      minlength - currlength
+    }`
+  }
+
+  /* eslint-disable func-style */
+  function maxCharsLeft(maxlength: number, currlength: number) {
+    return `${maxlength - currlength} characters left`
+  }
 
   useEffect(() => {
     const quill = ref.current
@@ -25,21 +38,21 @@ const useMinMaxLength = ({
 
         if (minlength && maxlength) {
           if (currlength < minlength) {
-            setNumOfCharsLeft(minlength - currlength)
+            setNumOfCharsLeft(minCharsLeft(minlength, currlength))
           } else if (currlength <= maxlength) {
-            setNumOfCharsLeft(maxlength - currlength)
+            setNumOfCharsLeft(maxCharsLeft(maxlength, currlength))
           } else {
             quill.setContents(oldContents)
           }
         } else if (minlength) {
           if (currlength <= minlength) {
-            setNumOfCharsLeft(minlength - currlength)
-          } else if (maxlength) {
-            if (currlength <= maxlength) {
-              setNumOfCharsLeft(maxlength - currlength)
-            } else {
-              quill.setContents(oldContents)
-            }
+            setNumOfCharsLeft(minCharsLeft(minlength, currlength))
+          }
+        } else if (maxlength) {
+          if (currlength <= maxlength) {
+            setNumOfCharsLeft(maxCharsLeft(maxlength, currlength))
+          } else {
+            quill.setContents(oldContents)
           }
         }
       }
