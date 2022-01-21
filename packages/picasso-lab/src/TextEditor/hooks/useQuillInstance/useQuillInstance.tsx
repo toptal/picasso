@@ -45,7 +45,7 @@ const getModules = (
         bold: {
           key: 'B',
           ctrlKey: true,
-          handler: function (
+          handler: function(
             this: { quill: Quill },
             _: StaticRange,
             context: { format: ToolbarStateType }
@@ -57,7 +57,7 @@ const getModules = (
         italic: {
           key: 'I',
           ctrlKey: true,
-          handler: function (
+          handler: function(
             this: { quill: Quill },
             _: StaticRange,
             context: { format: ToolbarStateType }
