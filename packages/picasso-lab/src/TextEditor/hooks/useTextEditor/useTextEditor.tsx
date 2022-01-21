@@ -8,6 +8,7 @@ import useEditorLoseFocusFix, {
   preventDefaultHandler
 } from '../useEditorLoseFocusFix'
 import useTextChange from '../useTextChange'
+import useMinMaxLength from '../useMinMaxLength'
 import getTextChangeHandler from '../getTextChangeHandler'
 import useToolbar from '../useToolbar'
 
@@ -17,6 +18,8 @@ type Props = {
   id: TextEditorProps['id']
   onChange: TextEditorProps['onChange']
   placeholder: TextEditorProps['placeholder']
+  minlength?: TextEditorProps['minlength']
+  maxlength?: TextEditorProps['maxlength']
 }
 
 const useTextEditor = ({
@@ -24,7 +27,9 @@ const useTextEditor = ({
   disabled,
   id,
   onChange,
-  placeholder
+  placeholder,
+  minlength,
+  maxlength
 }: Props) => {
   // create new instance of Quil  l and save it to ref
   const quillInstanceRef = useQuillInstance({ id, placeholder })
@@ -51,12 +56,18 @@ const useTextEditor = ({
     )
   })
 
+  const counterState = useMinMaxLength({
+    ref: quillInstanceRef,
+    minlength,
+    maxlength
+  })
+
   // connect quill with custom toolbar
   const { toolbarState, toolbarHandlers } = useToolbar({
     ref: quillInstanceRef
   })
 
-  return { toolbarState, toolbarHandlers }
+  return { toolbarState, toolbarHandlers, counterState }
 }
 
 export default useTextEditor

@@ -6,6 +6,7 @@ import { Typography, Container } from '@toptal/picasso'
 
 import styles from './styles'
 import TextEditorToolbar from './TextEditorToolbar'
+import TextEditorCounter from './TextEditorCounter'
 import useTextEditor from './hooks/useTextEditor'
 import { TextEditorChangeHandler } from './types'
 
@@ -23,12 +24,10 @@ export interface Props extends BaseProps {
    * If this value isn't specified, the user can enter an unlimited
    * number of characters.
    */
-  // TODO implement
   maxlength?: number
   /**
    * The minimum number of characters required that the user should enter.
    */
-  // TODO implement
   minlength?: number
   /**
    * Callback on text change
@@ -54,17 +53,21 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     id,
     onChange,
     placeholder,
+    minlength = 4,
+    maxlength = 10,
     style
   },
   ref
 ) {
   const classes = useStyles()
-  const { toolbarState, toolbarHandlers } = useTextEditor({
+  const { toolbarState, toolbarHandlers, counterState } = useTextEditor({
     id,
     onChange,
     placeholder,
     autofocus,
-    disabled
+    disabled,
+    minlength,
+    maxlength
   })
 
   return (
@@ -88,6 +91,9 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         ref={ref}
         style={style}
       />
+      {(minlength || maxlength) && (
+        <TextEditorCounter counterState={counterState} />
+      )}
     </Container>
   )
 })
