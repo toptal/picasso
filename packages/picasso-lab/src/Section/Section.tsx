@@ -133,6 +133,9 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
         classes.root,
         className
       )}
+      variant={
+        ['bordered', 'withHeaderBar'].includes(variant) ? 'white' : undefined
+      }
       style={style}
       {...rest}
     >

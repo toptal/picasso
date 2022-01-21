@@ -82,7 +82,18 @@ const TestSection = ({
   return (
     <TestingPicasso>
       {/* The Container wrapper makes it easy to see the borders on the screenshot */}
-      <Container padded={rest.variant === 'bordered' ? 'large' : undefined}>
+      <Container
+        variant={
+          rest.variant === 'bordered' || rest.variant === 'withHeaderBar'
+            ? 'grey'
+            : undefined
+        }
+        padded={
+          rest.variant === 'bordered' || rest.variant === 'withHeaderBar'
+            ? 'large'
+            : undefined
+        }
+      >
         <Section
           title={title}
           subtitle={subtitle}
@@ -124,7 +135,11 @@ describe('Section', () => {
 
     cy.get('body').happoScreenshot()
   })
+  it('renders with withHeaderBar variant', () => {
+    mount(<TestSection variant='withHeaderBar' />)
 
+    cy.get('body').happoScreenshot()
+  })
   describe('when collapsible', () => {
     it('renders initially collapsed', () => {
       mount(<TestSection collapsible />)
