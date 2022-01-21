@@ -4,4 +4,4 @@
 
 ---
 ### Section
-- white background for bordered and withHeaderBar variants
+- added white background for `bordered` and `withHeaderBar` variants
