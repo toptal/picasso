@@ -12,7 +12,7 @@ const useMinMaxLength = ({
   maxlength?: number
   minlength?: number
 }) => {
-  const [numOfCharsLeft, setNumOfCharsLeft] = useState(
+  const [message, setMessage] = useState(
     (minlength && minCharsLeft(minlength, 0)) ||
       (maxlength && maxCharsLeft(maxlength, 0))
   )
@@ -38,19 +38,19 @@ const useMinMaxLength = ({
 
         if (minlength && maxlength) {
           if (currlength < minlength) {
-            setNumOfCharsLeft(minCharsLeft(minlength, currlength))
+            setMessage(minCharsLeft(minlength, currlength))
           } else if (currlength <= maxlength) {
-            setNumOfCharsLeft(maxCharsLeft(maxlength, currlength))
+            setMessage(maxCharsLeft(maxlength, currlength))
           } else {
             quill.setContents(oldContents)
           }
         } else if (minlength) {
           if (currlength <= minlength) {
-            setNumOfCharsLeft(minCharsLeft(minlength, currlength))
+            setMessage(minCharsLeft(minlength, currlength))
           }
         } else if (maxlength) {
           if (currlength <= maxlength) {
-            setNumOfCharsLeft(maxCharsLeft(maxlength, currlength))
+            setMessage(maxCharsLeft(maxlength, currlength))
           } else {
             quill.setContents(oldContents)
           }
@@ -65,7 +65,7 @@ const useMinMaxLength = ({
     }
   }, [ref, maxlength, minlength])
 
-  return [numOfCharsLeft]
+  return [message]
 }
 
 export default useMinMaxLength
