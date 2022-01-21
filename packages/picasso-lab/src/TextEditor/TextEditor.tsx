@@ -54,7 +54,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     onChange,
     placeholder,
     minlength,
-    maxlength = 250,
+    maxlength,
     style
   },
   ref
