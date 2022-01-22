@@ -65,7 +65,7 @@ const useMinMaxLength = ({
     }
   }, [ref, maxlength, minlength])
 
-  return [message]
+  return { message }
 }
 
 export default useMinMaxLength

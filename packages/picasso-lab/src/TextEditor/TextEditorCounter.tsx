@@ -5,7 +5,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import styles from './styles'
 
 interface Props extends BaseProps {
-  counterState?: any
+  message?: string | 0
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -13,15 +13,13 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 const TextEditorCounter = (props: Props) => {
-  const { counterState, style } = props
-
-  const [numOfCharsLeft] = counterState
+  const { message, style } = props
 
   const classes = useStyles()
 
   return (
     <Container className={classes.counter} style={style}>
-      {numOfCharsLeft}
+      {message}
     </Container>
   )
 }
