@@ -59,7 +59,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   ref
 ) {
   const classes = useStyles()
-  const { toolbarState, toolbarHandlers } = useTextEditor({
+  const { toolbarState, toolbarHandlers, isToolbarDisabled } = useTextEditor({
     id,
     onChange,
     placeholder,
@@ -75,7 +75,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         id={id}
         state={toolbarState}
         handlers={toolbarHandlers}
-        disabled={disabled}
+        disabled={disabled || isToolbarDisabled}
       />
       <Typography
         as='div'
