@@ -17,3 +17,4 @@ page
   .addExample('ShowMore/story/Expanded.example.tsx', 'Expanded')
   .addExample('ShowMore/story/CustomLimit.example.tsx', 'Custom Limit')
   .addExample('ShowMore/story/ToggleDisabled.example.tsx', 'Disabled Toggle')
+  .addExample('ShowMore/story/ReactNode.example.tsx', 'With React children') // picasso-skip-visuals

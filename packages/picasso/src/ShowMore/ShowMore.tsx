@@ -1,7 +1,7 @@
-import React, { forwardRef, useMemo, useState } from 'react'
+import React, { forwardRef, ReactNode, useMemo, useState } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import Truncate from 'react-truncate'
+// import Truncate from 'react-truncate'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import ChevronRightIcon16 from '../Icon/ChevronRight16'
@@ -12,7 +12,7 @@ import { replaceLineBreaksWithTags } from './utils'
 
 export interface Props extends BaseProps {
   /** Content of the component */
-  children: string
+  children: string | ReactNode
   /** Number of characters displayed initially */
   rows?: number
   /** Text used by action link showing whole content */
@@ -27,7 +27,13 @@ export interface Props extends BaseProps {
   onToggle?: () => void
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoShowMore' })
+export interface StyleProps {
+  rows?: number
+}
+
+const useStyles = makeStyles<Theme, StyleProps>(styles, {
+  name: 'PicassoShowMore'
+})
 
 export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
   props,
@@ -45,9 +51,15 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
     style,
     ...rest
   } = props
-  const classes = useStyles()
+  const classes = useStyles({ rows })
   const [shownMore, setShownMore] = useState(initialExpanded)
-  const text = useMemo(() => replaceLineBreaksWithTags(children), [children])
+  const content = useMemo(
+    () =>
+      typeof children === 'string'
+        ? replaceLineBreaksWithTags(children)
+        : children,
+    [children]
+  )
 
   return (
     <>
@@ -56,10 +68,13 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         ref={ref}
         size='medium'
         color='dark-grey'
-        className={className}
+        className={cx(className, {
+          [classes.truncated]: !shownMore && rows
+        })}
         style={style}
       >
-        <Truncate lines={!shownMore && rows}>{text}</Truncate>
+        {/* <Truncate lines={!shownMore && rows}>{content}</Truncate> */}
+        {content}
       </Typography>
       {!disableToggle && (
         <Button.Action

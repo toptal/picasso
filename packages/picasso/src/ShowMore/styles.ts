@@ -1,5 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
+import { StyleProps } from './ShowMore'
+
 export default ({ palette }: Theme) =>
   createStyles({
     toggleText: {
@@ -19,5 +21,11 @@ export default ({ palette }: Theme) =>
     },
     expandedIcon: {
       transform: 'rotate(180deg)'
+    },
+    truncated: {
+      '-webkit-line-clamp': ({ rows }: StyleProps) => rows,
+      '-webkit-box-orient': 'vertical',
+      overflow: 'hidden',
+      display: '-webkit-box'
     }
   })
