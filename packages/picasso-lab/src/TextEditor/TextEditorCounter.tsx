@@ -12,9 +12,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'TextEditorCounter'
 })
 
-const TextEditorCounter = (props: Props) => {
-  const { message, style } = props
-
+const TextEditorCounter = ({ message, style }: Props) => {
   const classes = useStyles()
 
   return (
