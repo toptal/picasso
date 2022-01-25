@@ -20,6 +20,9 @@ type Props = {
   placeholder: TextEditorProps['placeholder']
   minlength?: TextEditorProps['minlength']
   maxlength?: TextEditorProps['maxlength']
+  typographyContainerRef?: React.RefObject<HTMLDivElement>
+  getTextForMinLength?: TextEditorProps['getTextForMinLength']
+  getTextForMaxLength?: TextEditorProps['getTextForMaxLength']
 }
 
 const useTextEditor = ({
@@ -29,7 +32,10 @@ const useTextEditor = ({
   onChange,
   placeholder,
   minlength,
-  maxlength
+  maxlength,
+  getTextForMinLength,
+  getTextForMaxLength,
+  typographyContainerRef
 }: Props) => {
   // create new instance of Quil  l and save it to ref
   const quillInstanceRef = useQuillInstance({ id, placeholder })
@@ -59,7 +65,10 @@ const useTextEditor = ({
   const counterState = useMinMaxLength({
     ref: quillInstanceRef,
     minlength,
-    maxlength
+    maxlength,
+    getTextForMinLength,
+    getTextForMaxLength,
+    typographyContainerRef
   })
 
   // connect quill with custom toolbar

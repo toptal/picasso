@@ -35,6 +35,8 @@ export interface Props extends BaseProps {
   onChange: TextEditorChangeHandler
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
+  getTextForMinLength?: (minlength?: number, currlength?: number) => string
+  getTextForMaxLength?: (maxlength?: number, currlength?: number) => string
 }
 
 // Using { index: 1 } to inject CSS generated classes after the button's classes
@@ -55,11 +57,14 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     placeholder,
     minlength,
     maxlength,
+    getTextForMinLength,
+    getTextForMaxLength,
     style
   },
   ref
 ) {
   const classes = useStyles()
+  const typographyContainerRef = React.useRef<HTMLDivElement>(null)
   const { toolbarState, toolbarHandlers, counterState } = useTextEditor({
     id,
     onChange,
@@ -67,33 +72,42 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     autofocus,
     disabled,
     minlength,
-    maxlength
+    maxlength,
+    getTextForMinLength,
+    getTextForMaxLength,
+    typographyContainerRef
   })
 
   return (
     <Container
       className={cx(classes.editorWrapper, { [classes.disabled]: disabled })}
     >
-      <TextEditorToolbar
-        id={id}
-        state={toolbarState}
-        handlers={toolbarHandlers}
-        disabled={disabled}
-      />
-      <Typography
-        as='div'
-        variant='body'
-        color='dark-grey'
-        size='medium'
-        className={cx(classes.root, className)}
-        data-testid={dataTestId}
-        id={id}
-        ref={ref}
-        style={style}
-      />
-      {(minlength || maxlength) && (
-        <TextEditorCounter message={counterState.message} />
-      )}
+      <Container>
+        <TextEditorToolbar
+          id={id}
+          state={toolbarState}
+          handlers={toolbarHandlers}
+          disabled={disabled}
+        />
+      </Container>
+      <Container ref={typographyContainerRef}>
+        <Typography
+          as='div'
+          variant='body'
+          color='dark-grey'
+          size='medium'
+          className={cx(classes.root, className)}
+          data-testid={dataTestId}
+          id={id}
+          ref={ref}
+          style={style}
+        />
+      </Container>
+      <Container>
+        {(minlength || maxlength) && (
+          <TextEditorCounter message={counterState.message} />
+        )}
+      </Container>
     </Container>
   )
 })
