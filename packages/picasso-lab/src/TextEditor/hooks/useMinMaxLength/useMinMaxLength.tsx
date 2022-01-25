@@ -22,7 +22,7 @@ const getMessageForMaxLength = (maxlength: number, currlength: number) => {
   return `${maxlength - currlength} characters left`
 }
 
-const minMaxHandler = (
+const getMinMaxHandler = (
   {
     ref,
     minlength,
@@ -80,7 +80,7 @@ const useMinMaxLength = (props: Props) => {
 
   useTextChange({
     ref,
-    handler: useMemo(() => minMaxHandler(props, setMessage), [
+    handler: useMemo(() => getMinMaxHandler(props, setMessage), [
       ref,
       minlength,
       maxlength,
