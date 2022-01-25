@@ -6,16 +6,22 @@ import {
   makeHeaderFormat,
   makeBoldFormat
 } from '../../formats'
-import { EditorRefType } from '../../types'
+import {
+  EditorRefType,
+  ActionCreatorsType,
+  ToolbarStateType
+} from '../../types'
 import { Props } from '../../TextEditor'
 
 type EditorOptionsType = {
   id: Props['id']
   placeholder?: Props['placeholder']
+  actions: ActionCreatorsType
 }
 
 const getModules = (
-  id: EditorOptionsType['id']
+  id: EditorOptionsType['id'],
+  actions: ActionCreatorsType
 ): QuillOptionsStatic['modules'] => {
   return {
     // tools we provide to format text
@@ -30,6 +36,34 @@ const getModules = (
     },
     clipboard: {
       matchVisual: false
+    },
+    keyboard: {
+      bindings: {
+        bold: {
+          key: 'B',
+          ctrlKey: true,
+          handler: function (
+            this: { quill: Quill },
+            _: StaticRange,
+            context: { format: ToolbarStateType }
+          ) {
+            this.quill.format('bold', !context.format.bold)
+            actions.setBold(!context.format.bold)
+          }
+        },
+        italic: {
+          key: 'I',
+          ctrlKey: true,
+          handler: function (
+            this: { quill: Quill },
+            _: StaticRange,
+            context: { format: ToolbarStateType }
+          ) {
+            this.quill.format('italic', !context.format.italic)
+            actions.setItalic(!context.format.italic)
+          }
+        }
+      }
     }
   }
 }
@@ -50,7 +84,8 @@ const formats: QuillOptionsStatic['formats'] = [
 
 const useQuillInstance = ({
   id,
-  placeholder
+  placeholder,
+  actions
 }: EditorOptionsType): EditorRefType => {
   const ref = useRef<Quill>()
   const typographyClasses = useTypographyClasses()
@@ -60,11 +95,11 @@ const useQuillInstance = ({
     Quill.register(makeBoldFormat(typographyClasses), true)
 
     ref.current = new Quill(`#${id}`, {
-      modules: getModules(id),
+      modules: getModules(id, actions),
       formats,
       placeholder
     })
-  }, [id, placeholder, ref, typographyClasses])
+  }, [id, placeholder, ref, typographyClasses, actions])
 
   return ref
 }
