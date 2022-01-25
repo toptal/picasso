@@ -1,13 +1,17 @@
 import { useMemo } from 'react'
 
-import { ToolbarStateType, EditorRefType, ActionsType } from '../../types'
+import {
+  ToolbarStateType,
+  EditorRefType,
+  ActionCreatorsType
+} from '../../types'
 import useEditorChange, { getUpdateToolbarState } from '../useEditorChange'
 import useToolbarHandlers from '../useToolbarHandlers'
 
 type Props = {
   ref: EditorRefType
   toolbarState: ToolbarStateType
-  actions: ActionsType
+  actions: ActionCreatorsType
 }
 
 const useToolbar = ({ ref, actions, toolbarState }: Props) => {
@@ -18,16 +22,16 @@ const useToolbar = ({ ref, actions, toolbarState }: Props) => {
       () =>
         getUpdateToolbarState({
           ref,
-          setToolbarState: actions.setToolbarState
+          actions
         }),
-      [ref, actions.setToolbarState]
+      [ref, actions]
     )
   })
 
   const toolbarHandlers = useToolbarHandlers({
     ref,
     toolbarState,
-    setToolbarStateKey: actions.setToolbarStateKey
+    actions
   })
 
   return { toolbarState, toolbarHandlers }

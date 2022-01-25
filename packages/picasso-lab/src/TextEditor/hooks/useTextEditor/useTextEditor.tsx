@@ -10,7 +10,7 @@ import useEditorLoseFocusFix, {
 import useTextChange from '../useTextChange'
 import getTextChangeHandler from '../getTextChangeHandler'
 import useToolbar from '../useToolbar'
-import useEditorReducer from '../useEditorReducer'
+import useToolbarState from '../useToolbarState'
 
 type Props = {
   autofocus: TextEditorProps['autofocus']
@@ -27,8 +27,8 @@ const useTextEditor = ({
   onChange,
   placeholder
 }: Props) => {
-  // create new instance of Quil  l and save it to ref
-  const { actions, toolbarState } = useEditorReducer()
+  // create new instance of Quill and save it to ref
+  const { actions, toolbarState } = useToolbarState()
   const quillInstanceRef = useQuillInstance({ id, placeholder, actions })
 
   useDisabledEditor({ ref: quillInstanceRef, disabled })
@@ -38,7 +38,6 @@ const useTextEditor = ({
   // https://github.com/quilljs/quill/issues/1290
   // when clicking anywhere quill loses focus, we need
   // to prevent it when clicking inside toolbar
-
   useEditorLoseFocusFix({
     ref: quillInstanceRef,
     handler: preventDefaultHandler

@@ -4,20 +4,19 @@ import {
   ToolbarStateType,
   EditorRefType,
   ToolbarHandlers,
-  SetToolbarStateKeyType
+  ActionCreatorsType
 } from '../../types'
 
 type Props = {
   ref: EditorRefType
   toolbarState: ToolbarStateType
-  setToolbarStateKey: SetToolbarStateKeyType
+  actions: ActionCreatorsType
 }
 
-const useToolbarHandlers = ({
-  ref,
-  toolbarState,
-  setToolbarStateKey
-}: Props) => {
+const useToolbarHandlers = ({ ref, toolbarState, actions }: Props) => {
+  const { bold, italic, list } = toolbarState
+  const { setBold, setItalic } = actions
+
   const handleHeader: ToolbarHandlers['handleHeader'] = useCallback(
     event => {
       const quill = ref.current
@@ -42,47 +41,35 @@ const useToolbarHandlers = ({
     const quill = ref.current
 
     if (quill) {
-      if (!quill.hasFocus()) {
-        quill.focus()
-      }
-      quill.format('bold', !toolbarState.bold)
-      setToolbarStateKey('bold', !toolbarState.bold)
+      quill.format('bold', !bold)
+      setBold(!bold)
     }
-  }, [toolbarState.bold, ref, setToolbarStateKey])
+  }, [bold, ref, setBold])
 
   const handleItalic: ToolbarHandlers['handleItalic'] = useCallback(() => {
     const quill = ref.current
 
     if (quill) {
-      if (!quill.hasFocus()) {
-        quill.focus()
-      }
-      quill.format('italic', !toolbarState.italic)
-      setToolbarStateKey('italic', !toolbarState.italic)
+      quill.format('italic', !italic)
+      setItalic(!italic)
     }
-  }, [toolbarState.italic, ref, setToolbarStateKey])
+  }, [italic, ref, setItalic])
 
   const handleOrdered: ToolbarHandlers['handleOrdered'] = useCallback(() => {
     const quill = ref.current
 
     if (quill) {
-      if (!quill.hasFocus()) {
-        quill.focus()
-      }
-      quill.format('list', toolbarState.list === 'ordered' ? false : 'ordered')
+      quill.format('list', list === 'ordered' ? false : 'ordered')
     }
-  }, [toolbarState.list, ref])
+  }, [list, ref])
 
   const handleUnordered: ToolbarHandlers['handleUnordered'] = useCallback(() => {
     const quill = ref.current
 
     if (quill) {
-      if (!quill.hasFocus()) {
-        quill.focus()
-      }
-      quill.format('list', toolbarState.list === 'bullet' ? false : 'bullet')
+      quill.format('list', list === 'bullet' ? false : 'bullet')
     }
-  }, [toolbarState.list, ref])
+  }, [list, ref])
 
   const toolbarHandlers = useMemo(
     () => ({

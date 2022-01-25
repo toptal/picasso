@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import useToolbar from './useToolbar'
 import { EMPTY_STATE } from './../../constants'
-import { ActionsType } from '../../types'
+import { ActionCreatorsType } from '../../types'
 
 describe('useToolbar', () => {
   it('returns state and handlers', () => {
@@ -15,9 +15,11 @@ describe('useToolbar', () => {
         format: jest.fn()
       } as unknown) as Quill
     }
-    const actions: ActionsType = {
-      setToolbarState: jest.fn(),
-      setToolbarStateKey: jest.fn()
+    const actions: ActionCreatorsType = {
+      setBold: jest.fn(),
+      setItalic: jest.fn(),
+      setHeader: jest.fn(),
+      setList: jest.fn()
     }
     const toolbarState = EMPTY_STATE
 
