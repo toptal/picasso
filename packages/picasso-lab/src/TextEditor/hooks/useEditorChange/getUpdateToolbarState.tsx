@@ -60,7 +60,7 @@ const getUpdateToolbarState = ({ ref, actions }: Props) => {
     }
 
     if (eventName === 'text-change') {
-      const format: QuillFormatType = quill.getFormat()
+      const format = quill.getFormat() as QuillFormatType
 
       updateToolbarState(getToolbarStateFromQuillFormat(format))
     }

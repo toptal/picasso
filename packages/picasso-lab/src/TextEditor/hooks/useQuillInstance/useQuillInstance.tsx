@@ -19,8 +19,6 @@ type EditorOptionsType = {
   actions: ActionCreatorsType
 }
 
-// Quill.debug(true)
-
 const getModules = (
   id: EditorOptionsType['id'],
   actions: ActionCreatorsType
