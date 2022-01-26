@@ -73,7 +73,15 @@ const getMinMaxHandler = (
             getMessageForMaxLength(maxlength, currlength)
         )
       } else {
-        quill.setContents(oldContents)
+        const selection = quill.getSelection()
+
+        quill.setContents(oldContents, 'silent')
+        if (selection) {
+          setTimeout(
+            () => quill.setSelection(selection.index, selection.length),
+            0
+          )
+        }
       }
     } else if (minlength) {
       if (currlength <= minlength) {
@@ -89,7 +97,15 @@ const getMinMaxHandler = (
             getMessageForMaxLength(maxlength, currlength)
         )
       } else {
-        quill.setContents(oldContents)
+        const selection = quill.getSelection()
+
+        quill.setContents(oldContents, 'silent')
+        if (selection) {
+          setTimeout(
+            () => quill.setSelection(selection.index, selection.length),
+            0
+          )
+        }
       }
     }
   }
