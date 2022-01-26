@@ -36,7 +36,7 @@ const getTotalChars = (children: NodeList | undefined): any => {
   }
 
   const totalChars: number = htmlElements
-    .map((elem: HTMLElement) => elem.innerText?.length || 1)
+    .map((elem: HTMLElement) => elem.innerText?.length)
     .reduce((prev: number, curr: number) => prev + curr, 0)
 
   return totalChars
