@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import Delta from 'quill-delta'
+import Quill from 'quill'
 
 import { EditorRefType } from '../../types'
 import useTextChange from '../useTextChange'
@@ -11,35 +12,50 @@ type Props = {
   maxlength?: TextEditorProps['maxlength']
   getTextForMinLength?: TextEditorProps['getTextForMinLength']
   getTextForMaxLength?: TextEditorProps['getTextForMaxLength']
-  typographyContainerRef?: React.RefObject<HTMLDivElement>
 }
 
-const getMessageForMinLength = (minlength: number, currlength: number) => {
-  return `${minlength} characters required, current count is ${
-    minlength - currlength
-  }`
+const getMessageForMinLength = (
+  minlength: number,
+  currlength: number,
+  getTextForMinLength: Props['getTextForMinLength']
+) => {
+  return (
+    (getTextForMinLength && getTextForMinLength(minlength, currlength)) ||
+    `${minlength} characters required, current count is ${
+      minlength - currlength
+    }`
+  )
 }
 
-const getMessageForMaxLength = (maxlength: number, currlength: number) => {
-  return `${maxlength - currlength} characters left`
+const getMessageForMaxLength = (
+  maxlength: number,
+  currlength: number,
+  getTextForMaxLength: Props['getTextForMaxLength']
+) => {
+  return (
+    (getTextForMaxLength && getTextForMaxLength(maxlength, currlength)) ||
+    `${maxlength - currlength} characters left`
+  )
 }
 
-const getTotalChars = (children: NodeList | undefined): any => {
-  const htmlElements: HTMLElement[] = []
+const handleMaxLengthReached = (
+  quill: Quill,
+  delta: Delta,
+  oldContents: Delta
+) => {
+  const selection = quill.getSelection()
 
-  children?.forEach(child => htmlElements.push(child as HTMLElement))
+  quill.setContents(oldContents)
 
-  // Quill sets empty editor to "\n".
-  // https://github.com/quilljs/quill/blob/cf9d8354b7c0f7e8d1cb19d95c65a6c4f62e8210/core/quill.js#L387
-  if (htmlElements.length === 1 && htmlElements[0].innerText === '\n') {
-    return 0
+  if (selection) {
+    let index = selection.index - 1
+
+    if (delta.ops[delta.ops.length - 1].insert === '\n') {
+      index = selection.index
+    }
+
+    setTimeout(() => quill.setSelection(index, 0), 0)
   }
-
-  const totalChars: number = htmlElements
-    .map((elem: HTMLElement) => elem.innerText?.length)
-    .reduce((prev: number, curr: number) => prev + curr, 0)
-
-  return totalChars
 }
 
 const getMinMaxHandler = (
@@ -48,66 +64,28 @@ const getMinMaxHandler = (
     minlength,
     maxlength,
     getTextForMinLength,
-    getTextForMaxLength,
-    typographyContainerRef
+    getTextForMaxLength
   }: Props,
   setMessage: any
-) => (_delta: any, oldContents: Delta) => {
+) => (delta: Delta, oldContents: Delta) => {
   const quill = ref.current! // useTextEditor already validates for us
 
-  const typographyContainer = typographyContainerRef?.current
+  const currlength = quill.getLength()
 
-  if (typographyContainer) {
-    const contents = typographyContainer.firstChild?.firstChild?.childNodes
-    const currlength = getTotalChars(contents)
+  if (minlength && currlength <= minlength) {
+    setMessage(
+      getMessageForMinLength(minlength, currlength, getTextForMinLength)
+    )
+  }
 
-    if (minlength && maxlength) {
-      if (currlength <= minlength) {
-        setMessage(
-          (getTextForMinLength && getTextForMinLength(minlength, currlength)) ||
-            getMessageForMinLength(minlength, currlength)
-        )
-      } else if (currlength <= maxlength) {
-        setMessage(
-          (getTextForMaxLength && getTextForMaxLength(maxlength, currlength)) ||
-            getMessageForMaxLength(maxlength, currlength)
-        )
-      } else {
-        const selection = quill.getSelection()
-
-        quill.setContents(oldContents, 'silent')
-        if (selection) {
-          setTimeout(
-            () => quill.setSelection(selection.index, selection.length),
-            0
-          )
-        }
-      }
-    } else if (minlength) {
-      if (currlength <= minlength) {
-        setMessage(
-          (getTextForMinLength && getTextForMinLength(minlength, currlength)) ||
-            getMessageForMinLength(minlength, currlength)
-        )
-      }
-    } else if (maxlength) {
-      if (currlength <= maxlength) {
-        setMessage(
-          (getTextForMaxLength && getTextForMaxLength(maxlength, currlength)) ||
-            getMessageForMaxLength(maxlength, currlength)
-        )
-      } else {
-        const selection = quill.getSelection()
-
-        quill.setContents(oldContents, 'silent')
-        if (selection) {
-          setTimeout(
-            () => quill.setSelection(selection.index, selection.length),
-            0
-          )
-        }
-      }
+  if (maxlength && currlength <= maxlength) {
+    if (!minlength || (minlength && minlength < currlength)) {
+      setMessage(
+        getMessageForMaxLength(maxlength, currlength, getTextForMaxLength)
+      )
     }
+  } else if (maxlength && currlength > maxlength) {
+    handleMaxLengthReached(quill, delta, oldContents)
   }
 }
 
@@ -117,15 +95,12 @@ const useMinMaxLength = (props: Props) => {
     maxlength,
     minlength,
     getTextForMinLength,
-    getTextForMaxLength,
-    typographyContainerRef
+    getTextForMaxLength
   } = props
 
   const [message, setMessage] = useState(
-    (getTextForMinLength && getTextForMinLength(minlength, 0)) ||
-      (minlength && getMessageForMinLength(minlength, 0)) ||
-      (getTextForMaxLength && getTextForMaxLength(maxlength, 0)) ||
-      (maxlength && getMessageForMaxLength(maxlength, 0))
+    (minlength && getMessageForMinLength(minlength, 0, getTextForMinLength)) ||
+      (maxlength && getMessageForMaxLength(maxlength, 0, getTextForMaxLength))
   )
 
   useTextChange({
@@ -135,8 +110,7 @@ const useMinMaxLength = (props: Props) => {
       minlength,
       maxlength,
       getTextForMinLength,
-      getTextForMaxLength,
-      typographyContainerRef
+      getTextForMaxLength
     ])
   })
 

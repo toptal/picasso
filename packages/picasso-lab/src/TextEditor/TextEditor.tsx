@@ -64,7 +64,6 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   ref
 ) {
   const classes = useStyles()
-  const typographyContainerRef = React.useRef<HTMLDivElement>(null)
   const { toolbarState, toolbarHandlers, counterState } = useTextEditor({
     id,
     onChange,
@@ -74,40 +73,33 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     minlength,
     maxlength,
     getTextForMinLength,
-    getTextForMaxLength,
-    typographyContainerRef
+    getTextForMaxLength
   })
 
   return (
     <Container
       className={cx(classes.editorWrapper, { [classes.disabled]: disabled })}
     >
-      <Container>
-        <TextEditorToolbar
-          id={id}
-          state={toolbarState}
-          handlers={toolbarHandlers}
-          disabled={disabled}
-        />
-      </Container>
-      <Container ref={typographyContainerRef}>
-        <Typography
-          as='div'
-          variant='body'
-          color='dark-grey'
-          size='medium'
-          className={cx(classes.root, className)}
-          data-testid={dataTestId}
-          id={id}
-          ref={ref}
-          style={style}
-        />
-      </Container>
-      <Container>
-        {(minlength || maxlength) && (
-          <TextEditorCounter message={counterState.message} />
-        )}
-      </Container>
+      <TextEditorToolbar
+        id={id}
+        state={toolbarState}
+        handlers={toolbarHandlers}
+        disabled={disabled}
+      />
+      <Typography
+        as='div'
+        variant='body'
+        color='dark-grey'
+        size='medium'
+        className={cx(classes.root, className)}
+        data-testid={dataTestId}
+        id={id}
+        ref={ref}
+        style={style}
+      />
+      {(minlength || maxlength) && (
+        <TextEditorCounter message={counterState.message} />
+      )}
     </Container>
   )
 })
