@@ -60,7 +60,7 @@ const useTextEditor = ({
     )
   })
 
-  const counterState = useMinMaxLength({
+  const counter = useMinMaxLength({
     ref: quillInstanceRef,
     minlength,
     maxlength,
@@ -73,7 +73,7 @@ const useTextEditor = ({
     ref: quillInstanceRef
   })
 
-  return { toolbarState, toolbarHandlers, counterState }
+  return { toolbarState, toolbarHandlers, counter }
 }
 
 export default useTextEditor

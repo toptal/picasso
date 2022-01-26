@@ -64,7 +64,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   ref
 ) {
   const classes = useStyles()
-  const { toolbarState, toolbarHandlers, counterState } = useTextEditor({
+  const { toolbarState, toolbarHandlers, counter } = useTextEditor({
     id,
     onChange,
     placeholder,
@@ -98,7 +98,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         style={style}
       />
       {(minlength || maxlength) && (
-        <TextEditorCounter message={counterState.message} />
+        <TextEditorCounter message={counter.message} />
       )}
     </Container>
   )
