@@ -16,26 +16,26 @@ describe('useMinMaxLength', () => {
     expect(message).toBeUndefined()
   })
 
-  it('returns minlength message', () => {
+  it('returns minLength message', () => {
     const ref = {
       current: ({ on: jest.fn(), off: jest.fn() } as unknown) as Quill
     }
-    const minlength = 4
+    const minLength = 4
 
-    const { result } = renderHook(() => useMinMaxLength({ ref, minlength }))
+    const { result } = renderHook(() => useMinMaxLength({ ref, minLength }))
 
     const { message } = result.current
 
     expect(message).toEqual('4 characters required, current count is 4')
   })
 
-  it('returns maxlength message', () => {
+  it('returns maxLength message', () => {
     const ref = {
       current: ({ on: jest.fn(), off: jest.fn() } as unknown) as Quill
     }
-    const maxlength = 4
+    const maxLength = 4
 
-    const { result } = renderHook(() => useMinMaxLength({ ref, maxlength }))
+    const { result } = renderHook(() => useMinMaxLength({ ref, maxLength }))
 
     const { message } = result.current
 

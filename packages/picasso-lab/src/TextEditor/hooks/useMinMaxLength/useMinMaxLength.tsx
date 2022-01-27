@@ -8,41 +8,37 @@ import { Props as TextEditorProps } from '../../TextEditor'
 
 type Props = {
   ref: EditorRefType
-  minlength?: TextEditorProps['minlength']
-  maxlength?: TextEditorProps['maxlength']
-  getTextForMinLength?: TextEditorProps['getTextForMinLength']
-  getTextForMaxLength?: TextEditorProps['getTextForMaxLength']
+  minLength?: TextEditorProps['minLength']
+  maxLength?: TextEditorProps['maxLength']
+  getMinLengthMessage?: TextEditorProps['getMinLengthMessage']
+  getMaxLengthMessage?: TextEditorProps['getMaxLengthMessage']
 }
 
 const getMessageForMinLength = (
-  minlength: number,
-  currlength: number,
-  getTextForMinLength: Props['getTextForMinLength']
+  minLength: number,
+  currLength: number,
+  getMinLengthMessage: Props['getMinLengthMessage']
 ) => {
   return (
-    (getTextForMinLength && getTextForMinLength(minlength, currlength)) ||
-    `${minlength} characters required, current count is ${
-      minlength - currlength
+    (getMinLengthMessage && getMinLengthMessage(minLength, currLength)) ||
+    `${minLength} characters required, current count is ${
+      minLength - currLength
     }`
   )
 }
 
 const getMessageForMaxLength = (
-  maxlength: number,
-  currlength: number,
-  getTextForMaxLength: Props['getTextForMaxLength']
+  maxLength: number,
+  currLength: number,
+  getMaxLengthMessage: Props['getMaxLengthMessage']
 ) => {
   return (
-    (getTextForMaxLength && getTextForMaxLength(maxlength, currlength)) ||
-    `${maxlength - currlength} characters left`
+    (getMaxLengthMessage && getMaxLengthMessage(maxLength, currLength)) ||
+    `${maxLength - currLength} characters left`
   )
 }
 
-const handleMaxLengthReached = (
-  quill: Quill,
-  delta: Delta,
-  oldContents: Delta
-) => {
+const maxLengthReached = (quill: Quill, delta: Delta, oldContents: Delta) => {
   const selection = quill.getSelection()
 
   quill.setContents(oldContents)
@@ -61,56 +57,58 @@ const handleMaxLengthReached = (
 const getMinMaxHandler = (
   {
     ref,
-    minlength,
-    maxlength,
-    getTextForMinLength,
-    getTextForMaxLength
+    minLength,
+    maxLength,
+    getMinLengthMessage,
+    getMaxLengthMessage
   }: Props,
-  setMessage: any
+  setMessage: React.Dispatch<React.SetStateAction<string>>
 ) => (delta: Delta, oldContents: Delta) => {
   const quill = ref.current! // useTextEditor already validates for us
 
-  const currlength = quill.getLength()
+  const currLength = quill.getLength()
 
-  if (minlength && currlength <= minlength) {
+  if (minLength && currLength <= minLength) {
     setMessage(
-      getMessageForMinLength(minlength, currlength, getTextForMinLength)
+      getMessageForMinLength(minLength, currLength, getMinLengthMessage)
     )
   }
 
-  if (maxlength && currlength <= maxlength) {
-    if (!minlength || (minlength && minlength < currlength)) {
+  if (maxLength && currLength <= maxLength) {
+    if (!minLength || (minLength && minLength < currLength)) {
       setMessage(
-        getMessageForMaxLength(maxlength, currlength, getTextForMaxLength)
+        getMessageForMaxLength(maxLength, currLength, getMaxLengthMessage)
       )
     }
-  } else if (maxlength && currlength > maxlength) {
-    handleMaxLengthReached(quill, delta, oldContents)
+  } else if (maxLength && currLength > maxLength) {
+    maxLengthReached(quill, delta, oldContents)
   }
 }
 
 const useMinMaxLength = (props: Props) => {
   const {
     ref,
-    maxlength,
-    minlength,
-    getTextForMinLength,
-    getTextForMaxLength
+    maxLength,
+    minLength,
+    getMinLengthMessage,
+    getMaxLengthMessage
   } = props
 
   const [message, setMessage] = useState(
-    (minlength && getMessageForMinLength(minlength, 0, getTextForMinLength)) ||
-      (maxlength && getMessageForMaxLength(maxlength, 0, getTextForMaxLength))
+    (minLength && getMessageForMinLength(minLength, 0, getMinLengthMessage)) ||
+      (maxLength &&
+        getMessageForMaxLength(maxLength, 0, getMaxLengthMessage)) ||
+      ''
   )
 
   useTextChange({
     ref,
     handler: useMemo(() => getMinMaxHandler(props, setMessage), [
       ref,
-      minlength,
-      maxlength,
-      getTextForMinLength,
-      getTextForMaxLength
+      minLength,
+      maxLength,
+      getMinLengthMessage,
+      getMaxLengthMessage
     ])
   })
 

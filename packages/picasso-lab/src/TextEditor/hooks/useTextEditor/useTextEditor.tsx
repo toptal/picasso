@@ -18,10 +18,10 @@ type Props = {
   id: TextEditorProps['id']
   onChange: TextEditorProps['onChange']
   placeholder: TextEditorProps['placeholder']
-  minlength?: TextEditorProps['minlength']
-  maxlength?: TextEditorProps['maxlength']
-  getTextForMinLength?: TextEditorProps['getTextForMinLength']
-  getTextForMaxLength?: TextEditorProps['getTextForMaxLength']
+  minLength?: TextEditorProps['minLength']
+  maxLength?: TextEditorProps['maxLength']
+  getMinLengthMessage?: TextEditorProps['getMinLengthMessage']
+  getMaxLengthMessage?: TextEditorProps['getMaxLengthMessage']
 }
 
 const useTextEditor = ({
@@ -30,10 +30,10 @@ const useTextEditor = ({
   id,
   onChange,
   placeholder,
-  minlength,
-  maxlength,
-  getTextForMinLength,
-  getTextForMaxLength
+  minLength,
+  maxLength,
+  getMinLengthMessage,
+  getMaxLengthMessage
 }: Props) => {
   // create new instance of Quil  l and save it to ref
   const quillInstanceRef = useQuillInstance({ id, placeholder })
@@ -62,10 +62,10 @@ const useTextEditor = ({
 
   const counter = useMinMaxLength({
     ref: quillInstanceRef,
-    minlength,
-    maxlength,
-    getTextForMinLength,
-    getTextForMaxLength
+    minLength,
+    maxLength,
+    getMinLengthMessage,
+    getMaxLengthMessage
   })
 
   // connect quill with custom toolbar

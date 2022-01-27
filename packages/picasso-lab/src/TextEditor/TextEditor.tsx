@@ -24,19 +24,25 @@ export interface Props extends BaseProps {
    * If this value isn't specified, the user can enter an unlimited
    * number of characters.
    */
-  maxlength?: number
+  maxLength?: number
   /**
    * The minimum number of characters required that the user should enter.
    */
-  minlength?: number
+  minLength?: number
   /**
    * Callback on text change
    */
   onChange: TextEditorChangeHandler
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
-  getTextForMinLength?: (minlength?: number, currlength?: number) => string
-  getTextForMaxLength?: (maxlength?: number, currlength?: number) => string
+  /**
+   * The function to set the custom counter message when `minLength` is enabled.
+   */
+  getMinLengthMessage?: (minLength?: number, currLength?: number) => string
+  /**
+   * The function to set the custom counter message when `maxLength` is enabled.
+   */
+  getMaxLengthMessage?: (maxLength?: number, currLength?: number) => string
 }
 
 // Using { index: 1 } to inject CSS generated classes after the button's classes
@@ -55,10 +61,10 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     id,
     onChange,
     placeholder,
-    minlength,
-    maxlength,
-    getTextForMinLength,
-    getTextForMaxLength,
+    minLength,
+    maxLength,
+    getMinLengthMessage,
+    getMaxLengthMessage,
     style
   },
   ref
@@ -70,10 +76,10 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     placeholder,
     autofocus,
     disabled,
-    minlength,
-    maxlength,
-    getTextForMinLength,
-    getTextForMaxLength
+    minLength,
+    maxLength,
+    getMinLengthMessage,
+    getMaxLengthMessage
   })
 
   return (
@@ -97,7 +103,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         ref={ref}
         style={style}
       />
-      {(minlength || maxlength) && (
+      {(minLength || maxLength) && (
         <TextEditorCounter message={counter.message} />
       )}
     </Container>
