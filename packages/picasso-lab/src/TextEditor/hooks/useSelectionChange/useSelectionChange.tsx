@@ -1,18 +1,14 @@
 import { useEffect } from 'react'
-import { SelectionChangeHandler } from 'quill'
-
-import { EditorRefType } from '../../types'
+import Quill, { SelectionChangeHandler } from 'quill'
 
 const useSelectionChange = ({
-  ref,
+  quill,
   handler
 }: {
-  ref: EditorRefType
+  quill: Quill | undefined
   handler: SelectionChangeHandler
 }) => {
   useEffect(() => {
-    const quill = ref.current
-
     if (quill) {
       quill.on('selection-change', handler)
 
@@ -20,7 +16,7 @@ const useSelectionChange = ({
         quill.off('selection-change', handler)
       }
     }
-  }, [ref, handler])
+  }, [quill, handler])
 }
 
 export default useSelectionChange

@@ -6,24 +6,20 @@ import useSelectionChange from './useSelectionChange'
 describe('useSelectionChange', () => {
   it('hooks the handler on selection-change event', () => {
     const handler = jest.fn()
-    const ref = {
-      current: ({
-        on: jest.fn(),
-        off: jest.fn()
-      } as unknown) as Quill
-    }
+    const quill = ({
+      on: jest.fn(),
+      off: jest.fn()
+    } as unknown) as Quill
 
-    const { unmount } = renderHook(() => useSelectionChange({ ref, handler }))
+    const { unmount } = renderHook(() => useSelectionChange({ quill, handler }))
 
-    const { on, off } = ref.current
-
-    expect(on).toHaveBeenCalledTimes(1)
-    expect(on).toHaveBeenCalledWith('selection-change', handler)
-    expect(off).not.toHaveBeenCalled()
+    expect(quill.on).toHaveBeenCalledTimes(1)
+    expect(quill.on).toHaveBeenCalledWith('selection-change', handler)
+    expect(quill.off).not.toHaveBeenCalled()
 
     unmount()
 
-    expect(off).toHaveBeenCalledTimes(1)
-    expect(off).toHaveBeenCalledWith('selection-change', handler)
+    expect(quill.off).toHaveBeenCalledTimes(1)
+    expect(quill.off).toHaveBeenCalledWith('selection-change', handler)
   })
 })

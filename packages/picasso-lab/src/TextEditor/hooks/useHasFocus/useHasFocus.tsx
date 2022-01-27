@@ -1,37 +1,41 @@
-import { SelectionChangeHandler } from 'quill'
+import Quill, { SelectionChangeHandler } from 'quill'
 import { useMemo, useState } from 'react'
 
-import { EditorRefType } from '../../types'
 import useSelectionChange from '../useSelectionChange'
 
 type Props = {
-  ref: EditorRefType
+  quill: Quill | undefined
 }
 
-export const getHandler: (
-  ref: EditorRefType,
+type GetHandlerType = (
+  quill: Quill | undefined,
   setHasFocus: (hasFocus: boolean) => void
-) => SelectionChangeHandler = (ref, setHasFocus) => (_, __, source) => {
-  const quill = ref.current
+) => SelectionChangeHandler
 
-  if (!quill || source === 'silent') {
+export const getSelectionChangeHandler: GetHandlerType = (
+  quill,
+  setHasFocus
+) => (_, __, source) => {
+  const ignoreEventWhenSilent = source === 'silent'
+
+  if (ignoreEventWhenSilent || !quill) {
     return
   }
 
-  const hasQuillFocus = quill.hasFocus()
+  const hasCurrentFocus = quill.hasFocus()
 
-  setHasFocus(hasQuillFocus)
+  setHasFocus(hasCurrentFocus)
 }
 
-const useHasFocus = ({ ref }: Props) => {
+const useHasFocus = ({ quill }: Props) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
 
-  const handler = useMemo(() => getHandler(ref, setHasFocus), [
-    ref,
-    setHasFocus
-  ])
+  const handleSelectionChange = useMemo(
+    () => getSelectionChangeHandler(quill, setHasFocus),
+    [quill]
+  )
 
-  useSelectionChange({ ref, handler })
+  useSelectionChange({ quill, handler: handleSelectionChange })
 
   return { hasFocus }
 }

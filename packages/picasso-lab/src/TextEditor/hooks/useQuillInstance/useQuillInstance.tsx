@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import Quill, { QuillOptionsStatic } from 'quill'
 
 import {
@@ -6,11 +6,7 @@ import {
   makeHeaderFormat,
   makeBoldFormat
 } from '../../formats'
-import {
-  EditorRefType,
-  ActionCreatorsType,
-  ToolbarStateType
-} from '../../types'
+import { ActionCreatorsType, ToolbarStateType } from '../../types'
 import { Props } from '../../TextEditor'
 
 type EditorOptionsType = {
@@ -86,22 +82,24 @@ const useQuillInstance = ({
   id,
   placeholder,
   actions
-}: EditorOptionsType): EditorRefType => {
-  const ref = useRef<Quill>()
+}: EditorOptionsType): Quill | undefined => {
+  const [quill, setQuill] = useState<Quill>()
   const typographyClasses = useTypographyClasses()
 
   useEffect(() => {
     Quill.register(makeHeaderFormat(typographyClasses), true)
     Quill.register(makeBoldFormat(typographyClasses), true)
 
-    ref.current = new Quill(`#${id}`, {
-      modules: getModules(id, actions),
-      formats,
-      placeholder
-    })
-  }, [id, placeholder, ref, typographyClasses, actions])
+    setQuill(
+      new Quill(`#${id}`, {
+        modules: getModules(id, actions),
+        formats,
+        placeholder
+      })
+    )
+  }, [typographyClasses, id, actions, placeholder])
 
-  return ref
+  return quill
 }
 
 export default useQuillInstance

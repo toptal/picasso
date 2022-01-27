@@ -7,14 +7,13 @@ import { ActionCreatorsType } from '../../types'
 
 describe('useToolbar', () => {
   it('returns state and handlers', () => {
-    const ref = {
-      current: ({
-        getFormat: jest.fn(),
-        on: jest.fn(),
-        off: jest.fn(),
-        format: jest.fn()
-      } as unknown) as Quill
-    }
+    const quill = ({
+      getFormat: jest.fn(),
+      on: jest.fn(),
+      off: jest.fn(),
+      format: jest.fn()
+    } as unknown) as Quill
+
     const actions: ActionCreatorsType = {
       setBold: jest.fn(),
       setItalic: jest.fn(),
@@ -24,7 +23,7 @@ describe('useToolbar', () => {
     const toolbarState = EMPTY_STATE
 
     const { result } = renderHook(() =>
-      useToolbar({ ref, actions, toolbarState })
+      useToolbar({ quill, actions, toolbarState })
     )
 
     const { toolbarHandlers } = result.current

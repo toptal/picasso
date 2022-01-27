@@ -8,8 +8,8 @@ const mockDelta = {} as Delta
 describe('getTextChangeHandler', () => {
   it('returns early without quill', () => {
     const onChange = jest.fn()
-    const ref = { current: undefined }
-    const handler = getTextChangeHandler({ ref, onChange })
+    const quill = undefined
+    const handler = getTextChangeHandler({ quill, onChange })
 
     handler(mockDelta, mockDelta, 'user')
 
@@ -18,14 +18,12 @@ describe('getTextChangeHandler', () => {
 
   it('calls onChange callback', () => {
     const onChange = jest.fn()
-    const ref = {
-      current: {
-        root: {
-          innerHTML: '<p>foobar</p>'
-        }
-      } as Quill
-    }
-    const handler = getTextChangeHandler({ ref, onChange })
+    const quill = {
+      root: {
+        innerHTML: '<p>foobar</p>'
+      }
+    } as Quill
+    const handler = getTextChangeHandler({ quill, onChange })
 
     handler(mockDelta, mockDelta, 'user')
 

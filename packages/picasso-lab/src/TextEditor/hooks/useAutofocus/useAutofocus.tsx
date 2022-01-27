@@ -1,21 +1,18 @@
+import Quill from 'quill'
 import { useEffect } from 'react'
-
-import { EditorRefType } from '../../types'
 
 const useAutofocus = ({
   autofocus,
-  ref
+  quill
 }: {
   autofocus?: boolean
-  ref: EditorRefType
+  quill: Quill | undefined
 }) => {
   useEffect(() => {
-    const quill = ref.current
-
     if (quill && autofocus) {
       quill.focus()
     }
-  }, [autofocus, ref])
+  }, [autofocus, quill])
 }
 
 export default useAutofocus

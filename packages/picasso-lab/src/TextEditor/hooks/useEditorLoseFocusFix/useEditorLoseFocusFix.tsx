@@ -1,20 +1,16 @@
+import Quill from 'quill'
 import { useEffect } from 'react'
 
-import { EditorRefType } from '../../types'
-
 type Props = {
-  ref: EditorRefType
+  quill: Quill | undefined
   handler: (this: HTMLDivElement, event: Event) => void
 }
 
-const useEditorLooseFocusFix = ({ ref, handler }: Props) => {
+const useEditorLooseFocusFix = ({ quill, handler }: Props) => {
   useEffect(() => {
-    const quill = ref.current
-
     if (!quill) {
       return
     }
-
     const toolbarContainer: HTMLDivElement = quill.getModule('toolbar')
       .container
 
@@ -23,7 +19,7 @@ const useEditorLooseFocusFix = ({ ref, handler }: Props) => {
     return () => {
       toolbarContainer.removeEventListener('mousedown', handler)
     }
-  }, [handler, ref])
+  }, [handler, quill])
 }
 
 export default useEditorLooseFocusFix

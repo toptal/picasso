@@ -7,13 +7,11 @@ import { HeaderValueType, ActionCreatorsType } from '../../types'
 import { EMPTY_STATE } from '../../constants'
 import useToolbarHandlers from './useToolbarHandlers'
 
-const ref = {
-  current: ({
-    format: jest.fn(),
-    focus: jest.fn(),
-    hasFocus: jest.fn()
-  } as unknown) as Quill
-}
+const quill = ({
+  format: jest.fn(),
+  focus: jest.fn(),
+  hasFocus: jest.fn()
+} as unknown) as Quill
 
 const actions: ActionCreatorsType = {
   setBold: jest.fn(),
@@ -35,7 +33,7 @@ describe('useToolbarHandlers', () => {
   })
   it('handles header format', async () => {
     const { result } = renderHook(() =>
-      useToolbarHandlers({ ref, toolbarState: EMPTY_STATE, actions })
+      useToolbarHandlers({ quill, toolbarState: EMPTY_STATE, actions })
     )
 
     const { handleHeader } = result.current
@@ -44,17 +42,17 @@ describe('useToolbarHandlers', () => {
     const mockEventUnselect = getMockedHeaderEventWithValue()
 
     handleHeader(mockEventSelect)
-    expect(ref.current.format).toHaveBeenCalledWith('header', 3)
+    expect(quill.format).toHaveBeenCalledWith('header', 3)
 
     handleHeader(mockEventUnselect)
-    expect(ref.current.format).toHaveBeenCalledWith('header', false)
+    expect(quill.format).toHaveBeenCalledWith('header', false)
   })
 
   describe('bold', () => {
     it('handles bold format with empty state', () => {
       const { result } = renderHook(
         ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+          useToolbarHandlers({ quill, toolbarState, actions }),
         {
           initialProps: {
             toolbarState: EMPTY_STATE
@@ -67,13 +65,13 @@ describe('useToolbarHandlers', () => {
       act(() => {
         handleBold(mockButtonEvent)
       })
-      expect(ref.current.format).toHaveBeenCalledWith('bold', true)
+      expect(quill.format).toHaveBeenCalledWith('bold', true)
       expect(actions.setBold).toHaveBeenCalledWith(true)
     })
     it('handles bold format with state', () => {
       const { result } = renderHook(
         ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+          useToolbarHandlers({ quill, toolbarState, actions }),
         {
           initialProps: {
             toolbarState: { ...EMPTY_STATE, bold: true } as const
@@ -86,7 +84,7 @@ describe('useToolbarHandlers', () => {
       act(() => {
         handleBold(mockButtonEvent)
       })
-      expect(ref.current.format).toHaveBeenCalledWith('bold', false)
+      expect(quill.format).toHaveBeenCalledWith('bold', false)
       expect(actions.setBold).toHaveBeenCalledWith(false)
     })
   })
@@ -95,7 +93,7 @@ describe('useToolbarHandlers', () => {
     it('handles italic format with empty state', () => {
       const { result } = renderHook(
         ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+          useToolbarHandlers({ quill, toolbarState, actions }),
         {
           initialProps: {
             toolbarState: EMPTY_STATE
@@ -108,13 +106,13 @@ describe('useToolbarHandlers', () => {
       act(() => {
         handleItalic(mockButtonEvent)
       })
-      expect(ref.current.format).toHaveBeenCalledWith('italic', true)
+      expect(quill.format).toHaveBeenCalledWith('italic', true)
       expect(actions.setItalic).toHaveBeenCalledWith(true)
     })
     it('handles italic format with state', () => {
       const { result } = renderHook(
         ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+          useToolbarHandlers({ quill, toolbarState, actions }),
         {
           initialProps: {
             toolbarState: { ...EMPTY_STATE, italic: true } as const
@@ -127,7 +125,7 @@ describe('useToolbarHandlers', () => {
       act(() => {
         handleItalic(mockButtonEvent)
       })
-      expect(ref.current.format).toHaveBeenCalledWith('italic', false)
+      expect(quill.format).toHaveBeenCalledWith('italic', false)
       expect(actions.setItalic).toHaveBeenCalledWith(false)
     })
   })
@@ -136,7 +134,7 @@ describe('useToolbarHandlers', () => {
     it('handles ordered list format with empty state', () => {
       const { result } = renderHook(
         ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+          useToolbarHandlers({ quill, toolbarState, actions }),
         {
           initialProps: {
             toolbarState: EMPTY_STATE
@@ -149,12 +147,12 @@ describe('useToolbarHandlers', () => {
       act(() => {
         handleOrdered(mockButtonEvent)
       })
-      expect(ref.current.format).toHaveBeenCalledWith('list', 'ordered')
+      expect(quill.format).toHaveBeenCalledWith('list', 'ordered')
     })
     it('handles ordered list format with state', () => {
       const { result } = renderHook(
         ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+          useToolbarHandlers({ quill, toolbarState, actions }),
         {
           initialProps: {
             toolbarState: {
@@ -170,14 +168,14 @@ describe('useToolbarHandlers', () => {
       act(() => {
         handleOrdered(mockButtonEvent)
       })
-      expect(ref.current.format).toHaveBeenCalledWith('list', false)
+      expect(quill.format).toHaveBeenCalledWith('list', false)
     })
   })
   describe('unordered list', () => {
     it('handles unordered list format with empty state', () => {
       const { result } = renderHook(
         ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+          useToolbarHandlers({ quill, toolbarState, actions }),
         {
           initialProps: {
             toolbarState: EMPTY_STATE
@@ -190,12 +188,12 @@ describe('useToolbarHandlers', () => {
       act(() => {
         handleUnordered(mockButtonEvent)
       })
-      expect(ref.current.format).toHaveBeenCalledWith('list', 'bullet')
+      expect(quill.format).toHaveBeenCalledWith('list', 'bullet')
     })
     it('handles ordered list format with state', () => {
       const { result } = renderHook(
         ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+          useToolbarHandlers({ quill, toolbarState, actions }),
         {
           initialProps: {
             toolbarState: {
@@ -211,7 +209,7 @@ describe('useToolbarHandlers', () => {
       act(() => {
         handleUnordered(mockButtonEvent)
       })
-      expect(ref.current.format).toHaveBeenCalledWith('list', false)
+      expect(quill.format).toHaveBeenCalledWith('list', false)
     })
   })
 })

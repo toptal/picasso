@@ -7,32 +7,28 @@ describe('useAutofocus', () => {
   describe('when autofocus is off', () => {
     it('does not focus quill', () => {
       const autofocus = false
-      const ref = {
-        current: ({
-          focus: jest.fn()
-        } as unknown) as Quill
-      }
+      const quill = ({
+        focus: jest.fn()
+      } as unknown) as Quill
 
-      renderHook(() => useAutofocus({ ref, autofocus }))
+      renderHook(() => useAutofocus({ quill, autofocus }))
 
-      expect(ref.current.focus).not.toHaveBeenCalled()
+      expect(quill.focus).not.toHaveBeenCalled()
     })
   })
 
   describe('when autofocus is on', () => {
     it('does focus editor', () => {
       const autofocus = true
-      const ref = {
-        current: ({
-          focus: jest.fn()
-        } as unknown) as Quill
-      }
+      const quill = ({
+        focus: jest.fn()
+      } as unknown) as Quill
 
-      const { rerender } = renderHook(() => useAutofocus({ ref, autofocus }))
+      const { rerender } = renderHook(() => useAutofocus({ quill, autofocus }))
 
       rerender()
 
-      expect(ref.current.focus).toHaveBeenCalledTimes(1)
+      expect(quill.focus).toHaveBeenCalledTimes(1)
     })
   })
 })

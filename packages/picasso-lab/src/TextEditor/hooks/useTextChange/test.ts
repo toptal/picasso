@@ -6,24 +6,20 @@ import useTextChange from './useTextChange'
 describe('useTextChange', () => {
   it('subscribes handler to quills event', () => {
     const handler = jest.fn()
-    const ref = {
-      current: ({
-        on: jest.fn(),
-        off: jest.fn()
-      } as unknown) as Quill
-    }
+    const quill = ({
+      on: jest.fn(),
+      off: jest.fn()
+    } as unknown) as Quill
 
-    const { unmount } = renderHook(() => useTextChange({ ref, handler }))
+    const { unmount } = renderHook(() => useTextChange({ quill, handler }))
 
-    const { on, off } = ref.current
-
-    expect(on).toHaveBeenCalledTimes(1)
-    expect(on).toHaveBeenCalledWith('text-change', handler)
-    expect(off).not.toHaveBeenCalled()
+    expect(quill.on).toHaveBeenCalledTimes(1)
+    expect(quill.on).toHaveBeenCalledWith('text-change', handler)
+    expect(quill.off).not.toHaveBeenCalled()
 
     unmount()
 
-    expect(off).toHaveBeenCalledTimes(1)
-    expect(off).toHaveBeenCalledWith('text-change', handler)
+    expect(quill.off).toHaveBeenCalledTimes(1)
+    expect(quill.off).toHaveBeenCalledWith('text-change', handler)
   })
 })

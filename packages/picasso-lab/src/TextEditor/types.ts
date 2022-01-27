@@ -1,7 +1,4 @@
-import { MutableRefObject, ChangeEvent, MouseEventHandler } from 'react'
-import Quill from 'quill'
-
-export type EditorRefType = MutableRefObject<Quill | undefined>
+import { ChangeEvent, MouseEventHandler } from 'react'
 
 export type HTMLString = string
 

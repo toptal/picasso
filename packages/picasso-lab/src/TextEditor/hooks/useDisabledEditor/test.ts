@@ -7,28 +7,24 @@ describe('useDisabledEditor', () => {
   describe('when disabled is off', () => {
     it('does not disable the editor', () => {
       const disabled = false
-      const ref = {
-        current: ({
-          enable: jest.fn()
-        } as unknown) as Quill
-      }
+      const quill = ({
+        enable: jest.fn()
+      } as unknown) as Quill
 
-      renderHook(() => useDisabledEditor({ disabled, ref }))
+      renderHook(() => useDisabledEditor({ disabled, quill }))
 
-      expect(ref.current.enable).not.toHaveBeenCalled()
+      expect(quill.enable).not.toHaveBeenCalled()
     })
   })
 
   describe('when disabled is on', () => {
     it('disables the editor', () => {
-      const ref = {
-        current: ({
-          enable: jest.fn()
-        } as unknown) as Quill
-      }
+      const quill = ({
+        enable: jest.fn()
+      } as unknown) as Quill
 
       const { rerender } = renderHook(
-        ({ disabled }) => useDisabledEditor({ disabled, ref }),
+        ({ disabled }) => useDisabledEditor({ disabled, quill }),
         {
           initialProps: {
             disabled: true
@@ -36,10 +32,10 @@ describe('useDisabledEditor', () => {
         }
       )
 
-      expect(ref.current?.enable).toHaveBeenCalledWith(false)
+      expect(quill.enable).toHaveBeenCalledWith(false)
       rerender({ disabled: false })
-      expect(ref.current?.enable).toHaveBeenCalledWith(true)
-      expect(ref.current?.enable).toHaveBeenCalledTimes(2)
+      expect(quill.enable).toHaveBeenCalledWith(true)
+      expect(quill.enable).toHaveBeenCalledTimes(2)
     })
   })
 })

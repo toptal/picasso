@@ -28,36 +28,35 @@ const useTextEditor = ({
   onChange,
   placeholder
 }: Props) => {
-  // create new instance of Quill and save it to ref
   const { actions, toolbarState } = useToolbarState()
-  const quillInstanceRef = useQuillInstance({ id, placeholder, actions })
+  const quill = useQuillInstance({ id, placeholder, actions })
 
-  const { hasFocus } = useHasFocus({ ref: quillInstanceRef })
+  const { hasFocus } = useHasFocus({ quill })
 
-  useDisabledEditor({ ref: quillInstanceRef, disabled })
-  useAutofocus({ ref: quillInstanceRef, autofocus })
+  useDisabledEditor({ quill, disabled })
+  useAutofocus({ quill, autofocus })
 
   // common issue of custom toolbar
   // https://github.com/quilljs/quill/issues/1290
   // when clicking anywhere quill loses focus, we need
   // to prevent it when clicking inside toolbar
   useEditorLoseFocusFix({
-    ref: quillInstanceRef,
+    quill,
     handler: preventDefaultHandler
   })
 
   // subscribe onChange callback to editors text change
   useTextChange({
-    ref: quillInstanceRef,
-    handler: useMemo(
-      () => getTextChangeHandler({ ref: quillInstanceRef, onChange }),
-      [quillInstanceRef, onChange]
-    )
+    quill,
+    handler: useMemo(() => getTextChangeHandler({ quill, onChange }), [
+      quill,
+      onChange
+    ])
   })
 
   // connect quill with custom toolbar
   const { toolbarHandlers } = useToolbar({
-    ref: quillInstanceRef,
+    quill,
     toolbarState,
     actions
   })

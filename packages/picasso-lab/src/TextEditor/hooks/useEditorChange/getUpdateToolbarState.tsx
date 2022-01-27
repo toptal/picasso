@@ -1,15 +1,11 @@
-import { EditorChangeHandler, RangeStatic, Sources } from 'quill'
+import Quill, { EditorChangeHandler, RangeStatic, Sources } from 'quill'
 import Delta from 'quill-delta'
 
-import {
-  EditorRefType,
-  ActionCreatorsType,
-  ToolbarStateType
-} from '../../types'
+import { ActionCreatorsType, ToolbarStateType } from '../../types'
 import { EMPTY_STATE } from '../../constants'
 
 type Props = {
-  ref: EditorRefType
+  quill: Quill | undefined
   actions: ActionCreatorsType
 }
 
@@ -35,7 +31,7 @@ const getToolbarStateFromQuillFormat: (
   }
 }
 
-const getUpdateToolbarState = ({ ref, actions }: Props) => {
+const getUpdateToolbarState = ({ quill, actions }: Props) => {
   const updateToolbarState = ({
     bold,
     italic,
@@ -52,7 +48,6 @@ const getUpdateToolbarState = ({ ref, actions }: Props) => {
     eventName: 'text-change' | 'selection-change',
     ...args: [Delta | RangeStatic, Delta | RangeStatic, Sources]
   ) => {
-    const quill = ref.current
     const source: Sources = args[2]
 
     if (!quill || source === 'silent') {

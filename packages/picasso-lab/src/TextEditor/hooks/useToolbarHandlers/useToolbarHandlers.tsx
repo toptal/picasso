@@ -1,26 +1,24 @@
+import Quill from 'quill'
 import { useCallback, useMemo } from 'react'
 
 import {
   ToolbarStateType,
-  EditorRefType,
   ToolbarHandlers,
   ActionCreatorsType
 } from '../../types'
 
 type Props = {
-  ref: EditorRefType
+  quill: Quill | undefined
   toolbarState: ToolbarStateType
   actions: ActionCreatorsType
 }
 
-const useToolbarHandlers = ({ ref, toolbarState, actions }: Props) => {
+const useToolbarHandlers = ({ quill, toolbarState, actions }: Props) => {
   const { bold, italic, list } = toolbarState
   const { setBold, setItalic } = actions
 
   const handleHeader: ToolbarHandlers['handleHeader'] = useCallback(
     event => {
-      const quill = ref.current
-
       if (!quill) {
         return
       }
@@ -34,42 +32,34 @@ const useToolbarHandlers = ({ ref, toolbarState, actions }: Props) => {
         quill.focus()
       }, 0)
     },
-    [ref]
+    [quill]
   )
 
   const handleBold: ToolbarHandlers['handleBold'] = useCallback(() => {
-    const quill = ref.current
-
     if (quill) {
       quill.format('bold', !bold)
       setBold(!bold)
     }
-  }, [bold, ref, setBold])
+  }, [bold, quill, setBold])
 
   const handleItalic: ToolbarHandlers['handleItalic'] = useCallback(() => {
-    const quill = ref.current
-
     if (quill) {
       quill.format('italic', !italic)
       setItalic(!italic)
     }
-  }, [italic, ref, setItalic])
+  }, [italic, quill, setItalic])
 
   const handleOrdered: ToolbarHandlers['handleOrdered'] = useCallback(() => {
-    const quill = ref.current
-
     if (quill) {
       quill.format('list', list === 'ordered' ? false : 'ordered')
     }
-  }, [list, ref])
+  }, [list, quill])
 
   const handleUnordered: ToolbarHandlers['handleUnordered'] = useCallback(() => {
-    const quill = ref.current
-
     if (quill) {
       quill.format('list', list === 'bullet' ? false : 'bullet')
     }
-  }, [list, ref])
+  }, [list, quill])
 
   const toolbarHandlers = useMemo(
     () => ({

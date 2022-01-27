@@ -1,26 +1,23 @@
 import { useEffect } from 'react'
-import { TextChangeHandler } from 'quill'
-
-import { EditorRefType } from '../../types'
+import Quill, { TextChangeHandler } from 'quill'
 
 const useTextChange = ({
-  ref,
+  quill,
   handler
 }: {
-  ref: EditorRefType
+  quill: Quill | undefined
   handler: TextChangeHandler
 }) => {
   useEffect(() => {
-    const quill = ref.current
-
-    if (quill) {
-      quill.on('text-change', handler)
-
-      return () => {
-        quill.off('text-change', handler)
-      }
+    if (!quill) {
+      return
     }
-  }, [ref, handler])
+    quill.on('text-change', handler)
+
+    return () => {
+      quill.off('text-change', handler)
+    }
+  }, [quill, handler])
 }
 
 export default useTextChange

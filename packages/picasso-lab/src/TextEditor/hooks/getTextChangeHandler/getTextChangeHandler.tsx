@@ -1,18 +1,16 @@
-import { TextChangeHandler } from 'quill'
+import Quill, { TextChangeHandler } from 'quill'
 
-import { EditorRefType, TextEditorProps } from '../..'
+import { TextEditorProps } from '../..'
 import { removeClasses, removeCursorSpan } from '../../utils'
 
 type Props = {
-  ref: EditorRefType
+  quill: Quill | undefined
   onChange: TextEditorProps['onChange']
 }
 
-type HandlerType = ({ ref, onChange }: Props) => TextChangeHandler
+type HandlerType = ({ quill, onChange }: Props) => TextChangeHandler
 
-const getTextChangeHandler: HandlerType = ({ ref, onChange }) => () => {
-  const quill = ref.current
-
+const getTextChangeHandler: HandlerType = ({ quill, onChange }) => () => {
   if (!quill) {
     return
   }

@@ -1,26 +1,23 @@
 import { useEffect } from 'react'
-import { EditorChangeHandler } from 'quill'
-
-import { EditorRefType } from '../../types'
+import Quill, { EditorChangeHandler } from 'quill'
 
 type Props = {
-  ref: EditorRefType
+  quill: Quill | undefined
   handler: EditorChangeHandler
 }
 
-const useEditorChange = ({ ref, handler }: Props) => {
-  // on quill change events update toolbar active states
+const useEditorChange = ({ quill, handler }: Props) => {
   useEffect(() => {
-    const quill = ref.current
-
-    if (quill) {
-      quill.on('editor-change', handler)
-
-      return () => {
-        quill.off('editor-change', handler)
-      }
+    if (!quill) {
+      return
     }
-  }, [handler, ref])
+
+    quill.on('editor-change', handler)
+
+    return () => {
+      quill.off('editor-change', handler)
+    }
+  }, [handler, quill])
 }
 
 export default useEditorChange
