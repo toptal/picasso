@@ -34,7 +34,8 @@
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
     "test:visual:ci": "./bin/test-visual --ci",
     "typecheck": "tsc --noEmit & tsc -p ./cypress/tsconfig.json",
-    "prepublish": "if [ -f 'yarn.lock' ]; then yarn-deduplicate yarn.lock; fi"
+    "prepublish": "if [ -f 'yarn.lock' ]; then yarn-deduplicate yarn.lock; fi",
+    "danger:ci": "davinci ci danger"
   },
   "repository": {
     "type": "git",

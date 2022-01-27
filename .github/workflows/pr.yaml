@@ -62,8 +62,8 @@ jobs:
           yarn policies set-version
           yarn install --frozen-lockfile --ignore-optional --offline
 
-      - name: Danger
-        run: yarn davinci ci danger
+#      - name: Danger
+#        run: yarn davinci ci danger
 
       - name: Lint
         run: yarn lint
