@@ -8,7 +8,7 @@ import { ButtonHandlerType } from './types'
 
 type Props = BaseProps & {
   icon: ReactElement
-  onClick: ButtonHandlerType
+  onClick?: ButtonHandlerType
   active?: boolean
   disabled?: boolean
 }

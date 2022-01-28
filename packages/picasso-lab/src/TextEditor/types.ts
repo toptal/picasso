@@ -1,3 +1,5 @@
+import { RangeStatic, Sources } from 'quill'
+import Delta from 'quill-delta'
 import { ChangeEvent, MouseEventHandler } from 'react'
 
 export type HTMLString = string
@@ -27,6 +29,12 @@ export type ToolbarHandlers = {
   handleItalic: ButtonHandlerType
   handleOrdered: ButtonHandlerType
   handleUnordered: ButtonHandlerType
+}
+
+export type SharedState = {
+  toolbarState: ToolbarStateType
+  toolbarHandlers: ToolbarHandlers
+  isToolbarDisabled: boolean
 }
 
 export const ActionTypes = {
@@ -77,3 +85,15 @@ export type ActionCreatorsType = {
   setHeader: SetHeaderActionCreator
   setList: SetListActionCreator
 }
+
+type EditorEventName = 'text-change' | 'selection-change'
+
+/**
+ * depends on name, we receive [delta, oldDelta, sources] or [range, oldRange, sources]
+ */
+export type EditorChangeHandler<N extends EditorEventName = EditorEventName> = (
+  eventName: N,
+  ...args: N extends 'text-change'
+    ? [Delta, Delta, Sources]
+    : [RangeStatic, RangeStatic, Sources]
+) => void

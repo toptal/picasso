@@ -1,11 +1,15 @@
-import Quill, { EditorChangeHandler, RangeStatic, Sources } from 'quill'
-import Delta from 'quill-delta'
+import Quill, { RangeStatic, Sources } from 'quill'
 
-import { ActionCreatorsType, ToolbarStateType } from '../../types'
+import {
+  ActionCreatorsType,
+  ToolbarStateType,
+  EditorChangeHandler
+} from '../../types'
 import { EMPTY_STATE } from '../../constants'
+import useOnEditorChange from '../useOnEditorChange'
 
 type Props = {
-  quill: Quill | undefined
+  quill: Quill
   actions: ActionCreatorsType
 }
 
@@ -31,7 +35,7 @@ const getToolbarStateFromQuillFormat: (
   }
 }
 
-const getUpdateToolbarState = ({ quill, actions }: Props) => {
+const useToolbarStateUpdateOnChange = ({ quill, actions }: Props) => {
   const updateToolbarState = ({
     bold,
     italic,
@@ -44,13 +48,11 @@ const getUpdateToolbarState = ({ quill, actions }: Props) => {
     actions.setList(list)
   }
 
-  const updateToolbarStateHandler: EditorChangeHandler = (
-    eventName: 'text-change' | 'selection-change',
-    ...args: [Delta | RangeStatic, Delta | RangeStatic, Sources]
-  ) => {
-    const source: Sources = args[2]
+  const handleStateUpdate: EditorChangeHandler = (eventName, ...args) => {
+    const source = args[2]
+    const isSilentEvent = source === 'silent'
 
-    if (!quill || source === 'silent') {
+    if (isSilentEvent) {
       return
     }
 
@@ -74,7 +76,7 @@ const getUpdateToolbarState = ({ quill, actions }: Props) => {
     }
   }
 
-  return updateToolbarStateHandler
+  useOnEditorChange({ quill, handler: handleStateUpdate })
 }
 
-export default getUpdateToolbarState
+export default useToolbarStateUpdateOnChange

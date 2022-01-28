@@ -1,9 +1,9 @@
 import { renderHook } from '@testing-library/react-hooks'
 import Quill from 'quill'
 
-import useSelectionChange from './useSelectionChange'
+import useOnSelectionChange from './useOnSelectionChange'
 
-describe('useSelectionChange', () => {
+describe('useOnSelectionChange', () => {
   it('hooks the handler on selection-change event', () => {
     const handler = jest.fn()
     const quill = ({
@@ -11,7 +11,9 @@ describe('useSelectionChange', () => {
       off: jest.fn()
     } as unknown) as Quill
 
-    const { unmount } = renderHook(() => useSelectionChange({ quill, handler }))
+    const { unmount } = renderHook(() =>
+      useOnSelectionChange({ quill, handler })
+    )
 
     expect(quill.on).toHaveBeenCalledTimes(1)
     expect(quill.on).toHaveBeenCalledWith('selection-change', handler)

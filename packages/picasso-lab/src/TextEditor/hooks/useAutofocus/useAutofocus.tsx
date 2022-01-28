@@ -6,10 +6,10 @@ const useAutofocus = ({
   quill
 }: {
   autofocus?: boolean
-  quill: Quill | undefined
+  quill: Quill
 }) => {
   useEffect(() => {
-    if (quill && autofocus) {
+    if (autofocus) {
       quill.focus()
     }
   }, [autofocus, quill])

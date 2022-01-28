@@ -1,9 +1,9 @@
 import { renderHook } from '@testing-library/react-hooks'
 import Quill from 'quill'
 
-import useEditorChange from './useEditorChange'
+import useOnEditorChange from './useOnEditorChange'
 
-describe('useEditorChange', () => {
+describe('useOnEditorChange', () => {
   it('subscribes handler to quills event', () => {
     const handler = jest.fn()
     const quill = ({
@@ -11,7 +11,7 @@ describe('useEditorChange', () => {
       off: jest.fn()
     } as unknown) as Quill
 
-    const { unmount } = renderHook(() => useEditorChange({ quill, handler }))
+    const { unmount } = renderHook(() => useOnEditorChange({ quill, handler }))
 
     expect(quill.on).toHaveBeenCalledWith('editor-change', handler)
     expect(quill.on).toHaveBeenCalledTimes(1)

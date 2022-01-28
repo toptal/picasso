@@ -1,17 +1,14 @@
 import { useEffect } from 'react'
 import Quill, { TextChangeHandler } from 'quill'
 
-const useTextChange = ({
+const useOnTextChange = ({
   quill,
   handler
 }: {
-  quill: Quill | undefined
+  quill: Quill
   handler: TextChangeHandler
 }) => {
   useEffect(() => {
-    if (!quill) {
-      return
-    }
     quill.on('text-change', handler)
 
     return () => {
@@ -20,4 +17,4 @@ const useTextChange = ({
   }, [quill, handler])
 }
 
-export default useTextChange
+export default useOnTextChange

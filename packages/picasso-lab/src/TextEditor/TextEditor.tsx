@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useEffect, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -6,8 +6,13 @@ import { Typography, Container } from '@toptal/picasso'
 
 import styles from './styles'
 import TextEditorToolbar from './TextEditorToolbar'
-import useTextEditor from './hooks/useTextEditor'
-import { TextEditorChangeHandler } from './types'
+import {
+  TextEditorChangeHandler,
+  ToolbarStateType,
+  ToolbarHandlers,
+  SharedState
+} from './types'
+import TextEditorLogic from './TextEditorLogic'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -45,6 +50,23 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'TextEditor'
 })
 
+type ConnectViewWithLogicType = {
+  setBla: (sharedState: SharedState) => void
+} & SharedState
+
+const ConnectViewWithLogic = ({
+  setBla,
+  toolbarState,
+  toolbarHandlers,
+  isToolbarDisabled
+}: ConnectViewWithLogicType) => {
+  useEffect(() => {
+    setBla({ toolbarState, toolbarHandlers, isToolbarDisabled })
+  }, [setBla, toolbarState, toolbarHandlers, isToolbarDisabled])
+
+  return null
+}
+
 export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   {
     'data-testid': dataTestId,
@@ -58,37 +80,58 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   },
   ref
 ) {
+  const [bla, setBla] = useState<{
+    isToolbarDisabled: boolean
+    toolbarState: ToolbarStateType
+    toolbarHandlers: ToolbarHandlers
+  }>()
   const classes = useStyles()
-  const { toolbarState, toolbarHandlers, isToolbarDisabled } = useTextEditor({
-    id,
-    onChange,
-    placeholder,
-    autofocus,
-    disabled
-  })
 
   return (
-    <Container
-      className={cx(classes.editorWrapper, { [classes.disabled]: disabled })}
-    >
-      <TextEditorToolbar
+    <>
+      <Container
+        className={cx(classes.editorWrapper, {
+          [classes.disabled]: disabled
+        })}
+      >
+        <TextEditorToolbar
+          id={id}
+          state={bla?.toolbarState}
+          handlers={bla?.toolbarHandlers}
+          disabled={disabled || bla?.isToolbarDisabled}
+        />
+        <Typography
+          as='div'
+          variant='body'
+          color='dark-grey'
+          size='medium'
+          className={cx(classes.root, className)}
+          data-testid={dataTestId}
+          id={id}
+          ref={ref}
+          style={style}
+        />
+      </Container>
+      {/* Editor root and toolbar needs to be in DOM before initializing text editor logic */}
+      <TextEditorLogic
         id={id}
-        state={toolbarState}
-        handlers={toolbarHandlers}
-        disabled={disabled || isToolbarDisabled}
-      />
-      <Typography
-        as='div'
-        variant='body'
-        color='dark-grey'
-        size='medium'
-        className={cx(classes.root, className)}
-        data-testid={dataTestId}
-        id={id}
-        ref={ref}
-        style={style}
-      />
-    </Container>
+        onChange={onChange}
+        placeholder={placeholder}
+        autofocus={autofocus}
+        disabled={disabled}
+      >
+        {({ isToolbarDisabled, toolbarHandlers, toolbarState }) => {
+          return (
+            <ConnectViewWithLogic
+              setBla={setBla}
+              isToolbarDisabled={isToolbarDisabled}
+              toolbarHandlers={toolbarHandlers}
+              toolbarState={toolbarState}
+            />
+          )
+        }}
+      </TextEditorLogic>
+    </>
   )
 })
 

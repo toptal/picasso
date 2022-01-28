@@ -8,7 +8,7 @@ import {
 } from '../../types'
 
 type Props = {
-  quill: Quill | undefined
+  quill: Quill
   toolbarState: ToolbarStateType
   actions: ActionCreatorsType
 }
@@ -19,10 +19,6 @@ const useToolbarHandlers = ({ quill, toolbarState, actions }: Props) => {
 
   const handleHeader: ToolbarHandlers['handleHeader'] = useCallback(
     event => {
-      if (!quill) {
-        return
-      }
-
       const selectValue = event.target.value
 
       // when we want to unformat we should pass false
@@ -36,29 +32,21 @@ const useToolbarHandlers = ({ quill, toolbarState, actions }: Props) => {
   )
 
   const handleBold: ToolbarHandlers['handleBold'] = useCallback(() => {
-    if (quill) {
-      quill.format('bold', !bold)
-      setBold(!bold)
-    }
+    quill.format('bold', !bold)
+    setBold(!bold)
   }, [bold, quill, setBold])
 
   const handleItalic: ToolbarHandlers['handleItalic'] = useCallback(() => {
-    if (quill) {
-      quill.format('italic', !italic)
-      setItalic(!italic)
-    }
+    quill.format('italic', !italic)
+    setItalic(!italic)
   }, [italic, quill, setItalic])
 
   const handleOrdered: ToolbarHandlers['handleOrdered'] = useCallback(() => {
-    if (quill) {
-      quill.format('list', list === 'ordered' ? false : 'ordered')
-    }
+    quill.format('list', list === 'ordered' ? false : 'ordered')
   }, [list, quill])
 
   const handleUnordered: ToolbarHandlers['handleUnordered'] = useCallback(() => {
-    if (quill) {
-      quill.format('list', list === 'bullet' ? false : 'bullet')
-    }
+    quill.format('list', list === 'bullet' ? false : 'bullet')
   }, [list, quill])
 
   const toolbarHandlers = useMemo(

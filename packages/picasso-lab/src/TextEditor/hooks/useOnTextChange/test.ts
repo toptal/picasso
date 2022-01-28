@@ -1,9 +1,9 @@
 import Quill from 'quill'
 import { renderHook } from '@testing-library/react-hooks'
 
-import useTextChange from './useTextChange'
+import useOnTextChange from './useOnTextChange'
 
-describe('useTextChange', () => {
+describe('useOnTextChange', () => {
   it('subscribes handler to quills event', () => {
     const handler = jest.fn()
     const quill = ({
@@ -11,7 +11,7 @@ describe('useTextChange', () => {
       off: jest.fn()
     } as unknown) as Quill
 
-    const { unmount } = renderHook(() => useTextChange({ quill, handler }))
+    const { unmount } = renderHook(() => useOnTextChange({ quill, handler }))
 
     expect(quill.on).toHaveBeenCalledTimes(1)
     expect(quill.on).toHaveBeenCalledWith('text-change', handler)

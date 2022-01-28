@@ -1,17 +1,15 @@
 import { useEffect } from 'react'
-import Quill, { EditorChangeHandler } from 'quill'
+import Quill from 'quill'
+
+import { EditorChangeHandler } from '../../types'
 
 type Props = {
-  quill: Quill | undefined
+  quill: Quill
   handler: EditorChangeHandler
 }
 
-const useEditorChange = ({ quill, handler }: Props) => {
+const useOnEditorChange = ({ quill, handler }: Props) => {
   useEffect(() => {
-    if (!quill) {
-      return
-    }
-
     quill.on('editor-change', handler)
 
     return () => {
@@ -20,4 +18,4 @@ const useEditorChange = ({ quill, handler }: Props) => {
   }, [handler, quill])
 }
 
-export default useEditorChange
+export default useOnEditorChange

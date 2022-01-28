@@ -1,41 +1,31 @@
 import Quill, { SelectionChangeHandler } from 'quill'
-import { useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 
-import useSelectionChange from '../useSelectionChange'
+import useOnSelectionChange from '../useOnSelectionChange'
 
 type Props = {
-  quill: Quill | undefined
-}
-
-type GetHandlerType = (
-  quill: Quill | undefined,
-  setHasFocus: (hasFocus: boolean) => void
-) => SelectionChangeHandler
-
-export const getSelectionChangeHandler: GetHandlerType = (
-  quill,
-  setHasFocus
-) => (_, __, source) => {
-  const ignoreEventWhenSilent = source === 'silent'
-
-  if (ignoreEventWhenSilent || !quill) {
-    return
-  }
-
-  const hasCurrentFocus = quill.hasFocus()
-
-  setHasFocus(hasCurrentFocus)
+  quill: Quill
 }
 
 const useHasFocus = ({ quill }: Props) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
 
-  const handleSelectionChange = useMemo(
-    () => getSelectionChangeHandler(quill, setHasFocus),
+  const handleFocusChange: SelectionChangeHandler = useCallback(
+    (_, __, source) => {
+      const isSilentEvent = source === 'silent'
+
+      if (isSilentEvent) {
+        return
+      }
+
+      const hasCurrentFocus = quill.hasFocus()
+
+      setHasFocus(hasCurrentFocus)
+    },
     [quill]
   )
 
-  useSelectionChange({ quill, handler: handleSelectionChange })
+  useOnSelectionChange({ quill, handler: handleFocusChange })
 
   return { hasFocus }
 }
