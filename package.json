@@ -125,6 +125,11 @@
     "yargs": "^13.2.4",
     "yarn-deduplicate": "^3.1.0"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && (syncpack list-mismatches || (echo \"\n\nyou can use \\033[0;32myarn syncpack:fix \\033[0mto sync versions automatically or do it manually\n\n\" && return 1))"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "davinci syntax lint code",
