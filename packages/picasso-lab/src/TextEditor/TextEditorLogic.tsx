@@ -57,6 +57,7 @@ const QuillLogic = ({
   quill,
   toolbarState
 }: QuillLogicType) => {
+
   const { hasFocus } = useHasFocus({ quill })
 
   useDisabledEditor({ quill, disabled })

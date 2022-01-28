@@ -25,7 +25,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const TextEditorToolbar = (props: Props) => {
-  const { id, state, handlers, disabled } = props
+  const { id, state, handlers, disabled, quill } = props
 
   const isNotInitialized = !state && !handlers
 
@@ -33,6 +33,7 @@ export const TextEditorToolbar = (props: Props) => {
 
   return (
     <Container id={`${id}toolbar`} className={classes.qlToolbar}>
+
       <Container className={classes.qlFormats}>
         <Select
           onChange={handlers?.handleHeader}

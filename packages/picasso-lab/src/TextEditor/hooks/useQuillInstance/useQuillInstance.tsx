@@ -15,7 +15,7 @@ type EditorOptionsType = {
   actions: ActionCreatorsType
 }
 
-const getModules = (
+export const getModules = (
   id: EditorOptionsType['id'],
   actions: ActionCreatorsType
 ): QuillOptionsStatic['modules'] => {
