@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import Drawer from '@toptal/picasso-lab/Drawer'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
-import { Button, Modal } from '@toptal/picasso'
+import { Button, Modal, Drawer } from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
 
 const TestDrawer = () => {

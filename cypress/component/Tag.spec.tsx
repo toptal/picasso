@@ -6,9 +6,9 @@ import {
   Settings16,
   Tag,
   TagProps,
-  TagRectangularProps
+  TagRectangularProps,
+  TypographyOverflow
 } from '@toptal/picasso'
-import { TypographyOverflow } from '@toptal/picasso-lab'
 import { noop } from '@toptal/picasso/utils'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
