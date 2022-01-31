@@ -6,7 +6,8 @@ import {
   SetHeaderActionType,
   SetItalicActionType,
   SetListActionType,
-  SetHandlersActionType
+  SetHandlersActionType,
+  SetDisabled
 } from './types'
 
 const setBold = (dispatch: Dispatch<SetBoldActionType>) => (
@@ -29,12 +30,17 @@ const setHandlers = (dispatch: Dispatch<SetHandlersActionType>) => (
   payload: SetHandlersActionType['payload']
 ) => dispatch({ type: actionTypes.handlers, payload })
 
+const setDisabled = (dispatch: Dispatch<SetDisabled>) => (
+  payload: boolean
+) => dispatch({ type: actionTypes.disabled, payload })
+
 const actions = {
   setBold,
   setItalic,
   setHeader,
   setList,
-  setHandlers
+  setHandlers,
+  setDisabled
 }
 
 export default actions

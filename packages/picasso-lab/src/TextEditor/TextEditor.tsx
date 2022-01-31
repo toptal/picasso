@@ -1,20 +1,19 @@
-import React, { forwardRef, useEffect, useState } from 'react'
+import React, { forwardRef, Dispatch } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import { Typography, Container } from '@toptal/picasso'
+import { Container } from '@toptal/picasso'
 
 import styles from './styles'
-import TextEditorToolbar from './TextEditorToolbar'
+import Toolbar from './TextEditorToolbar'
 import {
   TextEditorChangeHandler,
-  ToolbarStateType,
-  ToolbarHandlers,
-  SharedState
+  ActionsType,
+  StateType
 } from './types'
-import TextEditorLogic from './TextEditorLogic'
-import TextEditorWraper, { StateContext } from './InitEditor'
-import InitEditor from './InitEditor'
+import useTextEditorState from './hooks/useTextEditorState'
+import useHasFocus from './hooks/useHasFocus'
+import QuillEditor from '../QuillEditor'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -52,23 +51,6 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'TextEditor'
 })
 
-type ConnectViewWithLogicType = {
-  setBla: (sharedState: SharedState) => void
-} & SharedState
-
-const ConnectViewWithLogic = ({
-  setBla,
-  toolbarState,
-  toolbarHandlers,
-  isToolbarDisabled
-}: ConnectViewWithLogicType) => {
-  useEffect(() => {
-    setBla({ toolbarState, toolbarHandlers, isToolbarDisabled })
-  }, [setBla, toolbarState, toolbarHandlers, isToolbarDisabled])
-
-  return null
-}
-
 export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   {
     'data-testid': dataTestId,
@@ -83,38 +65,79 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   ref
 ) {
   const classes = useStyles()
+  const { dispatch, state } = useTextEditorState()
+
+  const { handleFocusChange } = useHasFocus({ state, dispatch })
 
   return (
-    <InitEditor id={id} placeholder={placeholder}>
-      {({ state: { editor, toolbar }, isInit }) => (
-        <Container
-          className={cx(classes.editorWrapper, {
-            [classes.disabled]: disabled
-          })}
-        >
-          <TextEditorToolbar
-            id={id}
-            formatState={toolbar.format}
-            handlers={toolbar.handlers}
-            disabled={isInit || disabled || toolbar.disabled}
-          />
-          <Typography
-            as='div'
-            variant='body'
-            color='dark-grey'
-            size='medium'
-            className={cx(classes.root, className)}
-            data-testid={dataTestId}
-            id={id}
-            ref={ref}
-            style={style}
-          />
-        </Container>
-      )}
-    </InitEditor>
+    <Container
+      className={cx(classes.editorWrapper, {
+        [classes.disabled]: disabled
+      })}
+    >
+      <Toolbar
+        id={id}
+        formatState={state.toolbar.format}
+        handlers={state.toolbar.handlers}
+        disabled={disabled || state.toolbar.disabled}
+      />
+      <QuillEditor
+        id={id}
+        placeholder={placeholder}
+        handleFocusChange={handleFocusChange}
+        handleFormatChange={() => {}}
+        handleTextChange={() => {}}
+      />
+    </Container>
   )
 })
 
 TextEditor.displayName = 'TextEditor'
 
 export default TextEditor
+
+
+// const QuillEditor = ({
+//   id,
+//   handleLoseFocus,
+//   handleTextChange,
+//   handleFormatChange
+// }) => {
+//   const [quill, setQuill] = useState(null)
+
+//   useEffect(() => {
+//     const quill = useQuillInstance(id)
+//     setQuill(quill)
+//   }, [])
+
+//   return (
+//     <div id={id} />
+//   )
+// }
+
+// const Editor = ({
+//   quill,
+//   quillEditor
+// }) => {
+//   useHasFocus()
+
+//   return (
+//     <>
+//       <Toolbar />
+//       {quillEditor}
+//       <Counter />
+//     </>
+//   )
+// }
+
+// const TextEditor = () => {
+//   // logic
+
+//   return (
+//     <>
+//       <Toolbar />
+//       <QuillEditor />
+//       <Counter />
+//     </>
+//   )
+// }

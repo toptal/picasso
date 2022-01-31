@@ -10,9 +10,9 @@ const page = PicassoBook.section('Picasso Lab').createPage(
   `
 )
 
-page
-  .createTabChapter('Props')
-  .addComponentDocs({ component: TextEditor, name: 'TextEditor' })
+// page
+//   .createTabChapter('Props')
+//   .addComponentDocs({ component: TextEditor, name: 'TextEditor' })
 
 page
   .createChapter()

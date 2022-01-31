@@ -1,5 +1,4 @@
 import actionTypes from './actionTypes'
-import editorActionTypes from '../editor/actionTypes'
 import { ToolbarReducerType } from './types'
 
 const reducer: ToolbarReducerType = (state, action) => {
@@ -31,7 +30,7 @@ const reducer: ToolbarReducerType = (state, action) => {
         handlers: action.payload
       }
 
-    case editorActionTypes.setIsFocused:
+    case actionTypes.disabled:
       return {
         ...state,
         disabled: action.payload

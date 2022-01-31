@@ -1,7 +1,6 @@
 import { MouseEventHandler, ChangeEvent } from 'react'
 
 import { HeaderValueType } from '../../types'
-import { EditorIsFocusedActionType } from '../editor/types'
 import actionTypes from './actionTypes'
 
 export type SelectOnChangeHandler = (
@@ -56,13 +55,18 @@ export type SetHandlersActionType = {
   payload: ToolbarHandlers
 }
 
+export type SetDisabled = {
+  type: typeof actionTypes.disabled
+  payload: boolean
+}
+
 export type ToolbarActionsType =
   | SetBoldActionType
   | SetItalicActionType
   | SetListActionType
   | SetHeaderActionType
   | SetHandlersActionType
-  | EditorIsFocusedActionType
+  | SetDisabled
 
 export type ToolbarReducerType = (
   state: ToolbarStateType,

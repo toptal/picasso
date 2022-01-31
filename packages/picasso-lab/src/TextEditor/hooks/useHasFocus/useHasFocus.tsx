@@ -3,33 +3,29 @@ import { useCallback, Dispatch } from 'react'
 
 import { StateType, ActionsType } from '../../types'
 import { actions as editorActions } from '../../store/editor'
+import { actions as toolbarActions } from '../../store/toolbar'
 import useOnSelectionChange from '../useOnSelectionChange'
 
 type Props = {
-  quill: Quill
   state: StateType
   dispatch: Dispatch<ActionsType>
 }
 
-const useHasFocus = ({ quill, state, dispatch }: Props) => {
-  const handleFocusChange: SelectionChangeHandler = useCallback(
-    (_, __, source) => {
-      const isSilentEvent = source === 'silent'
-
-      if (isSilentEvent) {
-        return
-      }
-
-      const hasCurrentFocus = quill.hasFocus()
+const useHasFocus = ({ state, dispatch }: Props) => {
+  const handleFocusChange = useCallback(
+    (isFocused: boolean) => {
+      console.log('isFocused:', isFocused)
+      const hasCurrentFocus = isFocused
 
       if (state.editor.isFocused !== hasCurrentFocus) {
+        toolbarActions.setDisabled(dispatch)(!hasCurrentFocus)
         editorActions.setIsFocused(dispatch)(hasCurrentFocus)
       }
     },
-    [quill, state, dispatch]
+    [state, dispatch]
   )
 
-  useOnSelectionChange({ quill, handler: handleFocusChange })
+  return { handleFocusChange }
 }
 
 export default useHasFocus
