@@ -78,7 +78,7 @@ For demonstration purposes, it's been added additional padding for Sidebar and t
 tutorialChapter
   .addTextSection(
     `
-To add the sidebar menu we will be using [\`Sidebar\`](..?path=/story/lab-folder--sidebar) component,
+To add the sidebar menu we will be using [\`Sidebar\`](..?path=/story/components-sidebar--sidebar) component,
 which is a part of Picasso librabry. It should fill all available height of the left column.
   `,
     {
@@ -95,7 +95,7 @@ tutorialChapter
     `
 Main content can have various layouts, but for this tutorial, we choose to have a title
 and two sections. We use [\`PageHead\`](..?path=/story/picasso-pagehead--pagehead) for
-the title and [\`Section\`](..?path=/story/picasso-lab-section--section) for content
+the title and [\`Section\`](..?path=/story/components-section--section) for content
 sections. Also, it's very important to use use
 \`Page.Article\` component, because we use a flexbox wrapper
 around the page and we need to make \`MainContent\` grow and fill all available space.

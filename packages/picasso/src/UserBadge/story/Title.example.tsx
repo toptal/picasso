@@ -1,6 +1,11 @@
 import React from 'react'
-import { UserBadge, Grid, Typography, Link } from '@toptal/picasso'
-import { TypographyOverflow } from '@toptal/picasso-lab'
+import {
+  UserBadge,
+  Grid,
+  Typography,
+  Link,
+  TypographyOverflow
+} from '@toptal/picasso'
 
 const Example = () => (
   <div>

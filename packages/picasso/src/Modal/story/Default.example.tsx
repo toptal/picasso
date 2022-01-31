@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
-import { Modal, Button, Input, Checkbox, Select, Form } from '@toptal/picasso'
+import {
+  Modal,
+  Button,
+  Input,
+  Checkbox,
+  Select,
+  Form,
+  DatePicker
+} from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
-import { DatePicker } from '@toptal/picasso-lab'
 
 const STATES = [
   {

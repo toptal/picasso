@@ -46,7 +46,6 @@ const imports: Record<string, object> = {
   debounce: require('debounce'),
   'date-fns': require('date-fns'),
   '@toptal/picasso': require('@toptal/picasso'),
-  '@toptal/picasso-lab': require('@toptal/picasso-lab'),
   '@toptal/picasso-forms': require('@toptal/picasso-forms'),
   '@toptal/picasso-forms/utils': require('@toptal/picasso-forms/utils'),
   '@toptal/picasso-charts': require('@toptal/picasso-charts'),
@@ -112,10 +111,6 @@ const getOriginalSourceCode = ({
 }: Pick<Props, 'src' | 'module'>) => {
   try {
     return requireContext(`./${module}/src/${src}`).default
-  } catch {}
-
-  try {
-    return requireContext(`./picasso-lab/src/${src}`).default
   } catch {}
 
   try {

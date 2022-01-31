@@ -5,10 +5,13 @@ import {
   FieldMetaState,
   FieldRenderProps
 } from 'react-final-form'
-import { Form as PicassoForm, RequiredDecoration } from '@toptal/picasso'
+import {
+  Form as PicassoForm,
+  RequiredDecoration,
+  DateOrDateRangeType
+} from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { FileUpload } from '@toptal/picasso/FileInput'
-import { DateOrDateRangeType } from '@toptal/picasso-lab'
 import { TextLabelProps } from '@toptal/picasso-shared'
 
 import { useFormContext } from '../Form/FormContext'

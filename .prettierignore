@@ -6,10 +6,8 @@ packages/picasso-charts/src/LineChart/index.ts
 packages/picasso-forms/src/CheckboxGroup/index.ts
 packages/picasso-forms/src/index.ts
 packages/picasso-forms/src/RadioGroup/index.ts
-packages/picasso-lab/src/DatePicker/index.ts
-packages/picasso-lab/src/index.ts
-packages/picasso-lab/src/TimePicker/index.ts
 packages/picasso/src/ApplicationUpdateNotification/index.ts
+packages/picasso/src/DatePicker/index.ts
 packages/picasso/src/FormLabel/index.ts
 packages/picasso/src/Grid/index.ts
 packages/picasso/src/index.ts
@@ -17,6 +15,7 @@ packages/picasso/src/MonthSelect/index.ts
 packages/picasso/src/NativeSelectOptions/index.tsx
 packages/picasso/src/NativeSelectPlaceholder/index.tsx
 packages/picasso/src/Select/index.ts
+packages/picasso/src/TimePicker/index.ts
 packages/picasso/src/utils/Transitions/index.ts
 packages/picasso/src/YearSelect/index.ts
 packages/topkit-analytics-charts/src/AnalyticsChart/index.ts

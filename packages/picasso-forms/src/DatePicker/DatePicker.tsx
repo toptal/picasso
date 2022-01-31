@@ -2,7 +2,7 @@ import React from 'react'
 import {
   DatePicker as PicassoDatePicker,
   DatePickerProps
-} from '@toptal/picasso-lab'
+} from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Modal, Button, Form, Tooltip } from '@toptal/picasso'
+import { Modal, Button, Form, Tooltip, DatePicker } from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
-import { DatePicker } from '@toptal/picasso-lab'
 
 const initialDate = new Date(2020, 10, 10)
 const ModalDialog = ({

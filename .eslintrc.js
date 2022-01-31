@@ -1,6 +1,5 @@
 const forbiddenImports = {
-  picasso: ['picasso', 'picasso-lab', 'picasso-forms', 'picasso-charts'],
-  'picasso-lab': ['picasso-lab'],
+  picasso: ['picasso', 'picasso-forms', 'picasso-charts'],
   'picasso-charts': ['picasso-charts'],
   'picasso-forms': ['picasso-forms'],
   'picasso-provider': ['picasso-provider', 'picasso-shared']

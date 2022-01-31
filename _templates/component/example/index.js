@@ -1,9 +1,4 @@
-const AVAILABLE_PACKAGES = [
-  'picasso',
-  'picasso-lab',
-  'picasso-forms',
-  'picasso-charts'
-]
+const AVAILABLE_PACKAGES = ['picasso', 'picasso-forms', 'picasso-charts']
 
 const DEFAULT_EXAMPLE_COMMAND = 'example'
 

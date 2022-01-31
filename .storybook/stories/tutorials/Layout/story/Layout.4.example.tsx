@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, PageHead, Sidebar } from '@toptal/picasso'
 import { Globe16, PortfolioDesigner16, Profile16 } from '@toptal/picasso/Icon'
-import { Section } from '@toptal/picasso-lab'
+import { Section } from '@toptal/picasso'
 
 const SidebarMenu = () => (
   <Sidebar>
