@@ -1,7 +1,7 @@
 import React from 'react'
 import Quill from 'quill'
 
-import useToolbarState from './hooks/useToolbarState'
+import useToolbarState from './hooks/useTextEditorState'
 import { ActionCreatorsType, ToolbarStateType, SharedState } from './types'
 import { TextEditorProps } from './index'
 import useQuillInstance from './hooks/useQuillInstance'
@@ -57,7 +57,6 @@ const QuillLogic = ({
   quill,
   toolbarState
 }: QuillLogicType) => {
-
   const { hasFocus } = useHasFocus({ quill })
 
   useDisabledEditor({ quill, disabled })

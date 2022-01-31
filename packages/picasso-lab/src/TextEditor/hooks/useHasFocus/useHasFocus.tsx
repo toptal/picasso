@@ -1,15 +1,17 @@
 import Quill, { SelectionChangeHandler } from 'quill'
-import { useCallback, useState } from 'react'
+import { useCallback, Dispatch } from 'react'
 
+import { StateType, ActionsType } from '../../types'
+import { actions as editorActions } from '../../store/editor'
 import useOnSelectionChange from '../useOnSelectionChange'
 
 type Props = {
   quill: Quill
+  state: StateType
+  dispatch: Dispatch<ActionsType>
 }
 
-const useHasFocus = ({ quill }: Props) => {
-  const [hasFocus, setHasFocus] = useState<boolean>(false)
-
+const useHasFocus = ({ quill, state, dispatch }: Props) => {
   const handleFocusChange: SelectionChangeHandler = useCallback(
     (_, __, source) => {
       const isSilentEvent = source === 'silent'
@@ -20,14 +22,14 @@ const useHasFocus = ({ quill }: Props) => {
 
       const hasCurrentFocus = quill.hasFocus()
 
-      setHasFocus(hasCurrentFocus)
+      if (state.editor.isFocused !== hasCurrentFocus) {
+        editorActions.setIsFocused(dispatch)(hasCurrentFocus)
+      }
     },
-    [quill]
+    [quill, state, dispatch]
   )
 
   useOnSelectionChange({ quill, handler: handleFocusChange })
-
-  return { hasFocus }
 }
 
 export default useHasFocus

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Dispatch, useEffect, useState } from 'react'
 import Quill, { QuillOptionsStatic } from 'quill'
 
 import {
@@ -6,18 +6,21 @@ import {
   makeHeaderFormat,
   makeBoldFormat
 } from '../../formats'
-import { ActionCreatorsType, ToolbarStateType } from '../../types'
+import { actions as toolbarActions } from '../../store/toolbar'
 import { Props } from '../../TextEditor'
+import { ToolbarActionsType, ToolbarStateType } from '../../store/toolbar/types'
+import { EditorActionsType } from '../../store/editor/types'
+import { ActionsType } from '../../types'
 
 type EditorOptionsType = {
   id: Props['id']
   placeholder?: Props['placeholder']
-  actions: ActionCreatorsType
+  dispatch: Dispatch<ActionsType>
 }
 
 export const getModules = (
   id: EditorOptionsType['id'],
-  actions: ActionCreatorsType
+  dispatch: Dispatch<ToolbarActionsType | EditorActionsType>
 ): QuillOptionsStatic['modules'] => {
   return {
     // tools we provide to format text
@@ -38,25 +41,25 @@ export const getModules = (
         bold: {
           key: 'B',
           ctrlKey: true,
-          handler: function (
+          handler: function(
             this: { quill: Quill },
             _: StaticRange,
-            context: { format: ToolbarStateType }
+            context: { format: ToolbarStateType['format'] }
           ) {
             this.quill.format('bold', !context.format.bold)
-            actions.setBold(!context.format.bold)
+            toolbarActions.setBold(dispatch)(!context.format.bold)
           }
         },
         italic: {
           key: 'I',
           ctrlKey: true,
-          handler: function (
+          handler: function(
             this: { quill: Quill },
             _: StaticRange,
-            context: { format: ToolbarStateType }
+            context: { format: ToolbarStateType['format'] }
           ) {
             this.quill.format('italic', !context.format.italic)
-            actions.setItalic(!context.format.italic)
+            toolbarActions.setItalic(dispatch)(!context.format.italic)
           }
         }
       }
@@ -81,7 +84,7 @@ const formats: QuillOptionsStatic['formats'] = [
 const useQuillInstance = ({
   id,
   placeholder,
-  actions
+  dispatch
 }: EditorOptionsType): Quill | undefined => {
   const [quill, setQuill] = useState<Quill>()
   const typographyClasses = useTypographyClasses()
@@ -92,12 +95,12 @@ const useQuillInstance = ({
 
     setQuill(
       new Quill(`#${id}`, {
-        modules: getModules(id, actions),
+        modules: getModules(id, dispatch),
         formats,
         placeholder
       })
     )
-  }, [typographyClasses, id, actions, placeholder])
+  }, [typographyClasses, id, dispatch, placeholder])
 
   return quill
 }

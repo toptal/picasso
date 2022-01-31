@@ -1,13 +1,12 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { act } from '@toptal/picasso/test-utils'
 
-import { EMPTY_STATE } from '../../constants'
-import useToolbarState from './useToolbarState'
+import useTextEditorState from './useTextEditorState'
 
-describe('useToolbarState', () => {
+describe('useTextEditorState', () => {
   describe('setBold', () => {
     it('sets bold value', () => {
-      const { result } = renderHook(() => useToolbarState())
+      const { result } = renderHook(() => useTextEditorState())
 
       act(() => {
         result.current.actions.setBold(true)
@@ -20,7 +19,7 @@ describe('useToolbarState', () => {
   })
   describe('setItalic', () => {
     it('sets italic value', () => {
-      const { result } = renderHook(() => useToolbarState())
+      const { result } = renderHook(() => useTextEditorState())
 
       act(() => {
         result.current.actions.setItalic(true)
@@ -33,7 +32,7 @@ describe('useToolbarState', () => {
   })
   describe('setList', () => {
     it('sets list value', () => {
-      const { result } = renderHook(() => useToolbarState())
+      const { result } = renderHook(() => useTextEditorState())
 
       act(() => {
         result.current.actions.setList('bullet')
@@ -46,7 +45,7 @@ describe('useToolbarState', () => {
   })
   describe('setHeader', () => {
     it('sets header value', () => {
-      const { result } = renderHook(() => useToolbarState())
+      const { result } = renderHook(() => useTextEditorState())
 
       act(() => {
         result.current.actions.setHeader('3')
