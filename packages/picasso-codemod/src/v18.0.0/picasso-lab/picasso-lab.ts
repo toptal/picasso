@@ -4,7 +4,7 @@ const transform: Transform = (file, api) => {
   const j = api.jscodeshift
 
   return j(file.source)
-    .find(j.StringLiteral)
+    .find(j.StringLiteral, ({ value }) => value.includes('picasso-lab'))
     .map(path => {
       path.value.value = path.value.value.replace('picasso-lab', 'picasso')
 
