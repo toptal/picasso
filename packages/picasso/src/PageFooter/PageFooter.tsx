@@ -8,11 +8,11 @@ import { PageContextProps } from '../Page/types'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
+  /** Content for copyright. You can override default if needed. */
+  copyrightContent?: ReactNode
   /** Content for the right side of the `Footer`  */
   rightContent?: ReactNode
 }
-
-const currentYear = new Date().getFullYear()
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoPageFooter'
@@ -22,7 +22,7 @@ export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
   props,
   ref
 ) {
-  const { className, style, rightContent, ...rest } = props
+  const { className, style, rightContent, copyrightContent, ...rest } = props
   const classes = useStyles()
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
@@ -42,9 +42,7 @@ export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
       style={style}
     >
       <div className={contentClassnames}>
-        <div className={classes.left}>
-          {`© Copyright 2010 – ${currentYear} Toptal, LLC`}
-        </div>
+        <div className={classes.left}>{copyrightContent}</div>
 
         <div className={classes.right}>{rightContent}</div>
       </div>
@@ -52,8 +50,13 @@ export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
   )
 })
 
+const CopyrightContent = () => (
+  <>© Copyright 2010 – {new Date().getFullYear()} Toptal, LLC</>
+)
+
 PageFooter.defaultProps = {
-  rightContent: null
+  rightContent: null,
+  copyrightContent: <CopyrightContent />
 }
 
 PageFooter.displayName = 'PageFooter'
