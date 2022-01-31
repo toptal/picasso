@@ -2,7 +2,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 import timelineRowStory from '../../TimelineRow/story'
 import Timeline from '../Timeline'
 
-const page = PicassoBook.section('Picasso Lab').createPage(
+const page = PicassoBook.section('Components').createPage(
   'Timeline',
   `
   ${PicassoBook.createBaseDocsLink(

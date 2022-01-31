@@ -25,7 +25,6 @@ PicassoBook.addSections([
   'Forms',
   'Picasso Forms',
   'Picasso Charts',
-  'Picasso Lab',
   'Widgets'
 ])
 

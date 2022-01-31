@@ -1,7 +1,7 @@
 import { Section } from '../Section'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Picasso Lab').createPage(
+const page = PicassoBook.section('Components').createPage(
   'Section',
   'Use sections to organize content on the page'
 )

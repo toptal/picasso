@@ -3,7 +3,7 @@ import overviewBlockRowStory from '../../OverviewBlockRow/story'
 import { OverviewBlock } from '../OverviewBlock'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Picasso Lab').createPage(
+const page = PicassoBook.section('Components').createPage(
   'OverviewBlock',
   'Allows displaying counters.'
 )
