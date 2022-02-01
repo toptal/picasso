@@ -19,7 +19,6 @@ const useKeyBindings = ({
         shortKey: true
       },
       function (range, context) {
-        console.log('bold!')
         const isBold = context.format.bold
 
         quill.format('bold', !isBold)
