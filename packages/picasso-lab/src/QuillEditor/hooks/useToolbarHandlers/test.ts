@@ -3,7 +3,7 @@ import Quill from 'quill'
 import React from 'react'
 import { act } from '@toptal/picasso/test-utils'
 
-import { HeaderValueType, ActionCreatorsType } from '../../types'
+import { HeaderValueType, ActionCreatorsType } from '../../../TextEditor/types'
 import { EMPTY_STATE } from '../../constants'
 import useToolbarHandlers from './useToolbarHandlers'
 

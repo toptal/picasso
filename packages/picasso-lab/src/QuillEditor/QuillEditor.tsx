@@ -10,7 +10,11 @@ import useSubscribeToQuillEvents from './hooks/useSubscribeToQuillEvents'
 import useDisabledEditor from './hooks/useDisabledEditor'
 import useEditorLoseFocusFix from './hooks/useEditorLoseFocusFix'
 import useKeyBindings from './hooks/useKeyBindings'
-import { ToolbarStateType } from '../TextEditor/store/toolbar/types'
+import {
+  ToolbarHandlers,
+  ToolbarStateType
+} from '../TextEditor/store/toolbar/types'
+import useToolbarHandlers from './hooks/useToolbarHandlers'
 
 export type Props = BaseProps & {
   autofocus?: boolean
@@ -20,20 +24,13 @@ export type Props = BaseProps & {
   handleTextChange: (html: string) => void
   handleTextFormat: (formatType: 'bold' | 'italic', value: boolean) => void
   handleSelectionChange: (format: ToolbarStateType['format']) => void
+  setToolbarHandlers: (handlers: ToolbarHandlers) => void
   disabled?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'QuillEditor'
 })
-
-// const handleQuillTextChange = (delta, oldDelta, source) => {
-//   if (source == 'api') {
-//     console.log("An API call triggered this change.");
-//   } else if (source == 'user') {
-//     console.log("A user action triggered this change.");
-//   }
-// }
 
 const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   {
@@ -45,7 +42,8 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     handleFocusChange,
     handleTextChange,
     handleTextFormat,
-    handleSelectionChange
+    handleSelectionChange,
+    setToolbarHandlers
   },
   ref
 ) {
@@ -69,6 +67,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   useEditorLoseFocusFix({ quill, id })
 
   useKeyBindings({ quill, handleTextFormat })
+  useToolbarHandlers({ setToolbarHandlers, quill, handleTextFormat })
 
   return (
     <Typography

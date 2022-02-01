@@ -7,11 +7,12 @@ import { Container } from '@toptal/picasso'
 import styles from './styles'
 import Toolbar from './TextEditorToolbar'
 import { TextEditorChangeHandler } from './types'
-import toolbarActionTypes from './store/toolbar/actionTypes'
+import { actions as toolbarActions } from './store/toolbar'
 import useTextEditorState from './hooks/useTextEditorState'
 import useHasFocus from './hooks/useHasFocus'
 import QuillEditor from '../QuillEditor'
 import useOnSelectionChange from './hooks/useOnSelectionChange'
+import { ToolbarHandlers } from './store/toolbar/types'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -71,10 +72,20 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
 
   const handleTextFormat = useCallback(
     (formatType: 'bold' | 'italic', value: boolean) => {
-      dispatch({
-        type: toolbarActionTypes[formatType],
-        payload: value
-      })
+      const actionMap = {
+        bold: toolbarActions.setBold,
+        italic: toolbarActions.setItalic
+      }
+      const action = actionMap[formatType]
+
+      action(dispatch)(value)
+    },
+    [dispatch]
+  )
+
+  const setToolbarHandlers = useCallback(
+    (handlers: ToolbarHandlers) => {
+      toolbarActions.setHandlers(dispatch)(handlers)
     },
     [dispatch]
   )
@@ -101,6 +112,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         handleTextFormat={handleTextFormat}
         handleSelectionChange={handleSelectionChange}
         handleTextChange={onChange}
+        setToolbarHandlers={setToolbarHandlers}
         data-testid={dataTestId}
         ref={ref}
       />

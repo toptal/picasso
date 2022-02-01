@@ -1,15 +1,9 @@
-import { MouseEventHandler, ChangeEvent } from 'react'
-
-import { HeaderValueType } from '../../types'
+import {
+  HeaderValueType,
+  ButtonHandlerType,
+  SelectOnChangeHandler
+} from '../../types'
 import actionTypes from './actionTypes'
-
-export type SelectOnChangeHandler = (
-  event: ChangeEvent<{
-    value: HeaderValueType
-  }>
-) => void
-
-export type ButtonHandlerType = MouseEventHandler<HTMLButtonElement>
 
 export type ToolbarHandlers = {
   handleHeader?: SelectOnChangeHandler
@@ -26,7 +20,7 @@ export type ToolbarStateType = {
     italic: boolean
     list: 'bullet' | 'ordered' | false
   }
-  handlers: ToolbarHandlers,
+  handlers: ToolbarHandlers
   disabled: boolean
 }
 
