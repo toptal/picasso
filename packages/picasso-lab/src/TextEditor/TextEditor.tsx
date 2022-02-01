@@ -6,11 +6,7 @@ import { Container } from '@toptal/picasso'
 
 import styles from './styles'
 import Toolbar from './TextEditorToolbar'
-import {
-  TextEditorChangeHandler,
-  ActionsType,
-  StateType
-} from './types'
+import { TextEditorChangeHandler, ActionsType, StateType } from './types'
 import useTextEditorState from './hooks/useTextEditorState'
 import useHasFocus from './hooks/useHasFocus'
 import QuillEditor from '../QuillEditor'
@@ -82,11 +78,13 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         disabled={disabled || state.toolbar.disabled}
       />
       <QuillEditor
+        autofocus={autofocus}
+        disabled={disabled}
         id={id}
         placeholder={placeholder}
         handleFocusChange={handleFocusChange}
         handleFormatChange={() => {}}
-        handleTextChange={() => {}}
+        handleTextChange={onChange}
       />
     </Container>
   )
@@ -95,49 +93,3 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
 TextEditor.displayName = 'TextEditor'
 
 export default TextEditor
-
-
-// const QuillEditor = ({
-//   id,
-//   handleLoseFocus,
-//   handleTextChange,
-//   handleFormatChange
-// }) => {
-//   const [quill, setQuill] = useState(null)
-
-//   useEffect(() => {
-//     const quill = useQuillInstance(id)
-//     setQuill(quill)
-//   }, [])
-
-//   return (
-//     <div id={id} />
-//   )
-// }
-
-// const Editor = ({
-//   quill,
-//   quillEditor
-// }) => {
-//   useHasFocus()
-
-//   return (
-//     <>
-//       <Toolbar />
-//       {quillEditor}
-//       <Counter />
-//     </>
-//   )
-// }
-
-// const TextEditor = () => {
-//   // logic
-
-//   return (
-//     <>
-//       <Toolbar />
-//       <QuillEditor />
-//       <Counter />
-//     </>
-//   )
-// }

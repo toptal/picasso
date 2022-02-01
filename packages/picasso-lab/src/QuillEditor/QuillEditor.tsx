@@ -1,41 +1,29 @@
-import React, { forwardRef, useEffect, useMemo, useCallback } from 'react'
+import React, { forwardRef } from 'react'
 import { Typography } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import Quill from 'quill'
 
 import useQuillInstance from './hooks/useQuillInstance'
 import styles from './styles'
+import useAutofocus from './hooks/useAutofocus'
+import useSubscribeToQuillEvents from './hooks/useSubscribeToQuillEvents'
+import useDisabledEditor from './hooks/useDisabledEditor'
+import useEditorLoseFocusFix from './hooks/useEditorLoseFocusFix'
 
 export type Props = BaseProps & {
+  autofocus?: boolean
   id: string
   placeholder?: string
-  handleFocusChange: (isFocused: boolean) => void
-  handleTextChange: () => void
+  handleFocusChange?: (isFocused: boolean) => void
+  handleTextChange: (html: string) => void
   handleFormatChange: () => void
+  disabled?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'QuillEditor'
 })
-
-const handleQuillSelectionChange = (quill: Quill, handleFocusChange: (isFocused: boolean) => void) =>
-  // TODO:
-  (range: any, oldRange: any, source: any) => {
-    console.log('happened')
-    if (range) {
-      handleFocusChange(true)
-      // if (range.length == 0) {
-      //   console.log('User cursor is on', range.index)
-      // } else {
-      //   var text = quill.getText(range.index, range.length)
-      //   console.log('User has highlighted', text)
-      // }
-    } else {
-      handleFocusChange(false)
-    }
-  }
 
 // const handleQuillTextChange = (delta, oldDelta, source) => {
 //   if (source == 'api') {
@@ -47,46 +35,32 @@ const handleQuillSelectionChange = (quill: Quill, handleFocusChange: (isFocused:
 
 const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   {
+    autofocus,
+    disabled,
     id,
     className,
     style,
     'data-testid': dataTestId,
     placeholder,
     handleFocusChange,
-    handleTextChange,
-    handleFormatChange
+    handleTextChange
+    // handleFormatChange
   },
   ref
 ) {
   const classes = useStyles()
   const quill = useQuillInstance({ id, placeholder })
 
-  const handleSelectionChange = useMemo(() => {
-      if (!quill) {
-        return () => {}
-      }
+  useSubscribeToQuillEvents({ quill, handleFocusChange, handleTextChange })
 
-      console.log('quill selection change')
-      return handleQuillSelectionChange(quill, handleFocusChange)
-    },
-    [quill, handleFocusChange]
-  )
+  useAutofocus({ autofocus, quill })
+  useDisabledEditor({ disabled, quill })
 
-  useEffect(() => {
-    if (!quill) {
-      return
-    }
-
-    quill.on('selection-change', handleSelectionChange)
-    // quill.on('text-change', handleTextChange)
-    // quill.on('selection-change', handleSelectionChange)
-
-    return () => {
-      quill.off('selection-change', handleSelectionChange)
-      // quill.off('text-change', handleTextChange)
-      // quill.off('selection-change', handleSelectionChange)
-    }
-  }, [quill, handleSelectionChange])
+  // common issue of custom toolbar
+  // https://github.com/quilljs/quill/issues/1290
+  // when clicking anywhere quill loses focus, we need
+  // to prevent it when clicking inside toolbar
+  useEditorLoseFocusFix({ quill, id })
 
   return (
     <Typography

@@ -6,7 +6,7 @@ const useDisabledEditor = ({
   quill
 }: {
   disabled?: boolean
-  quill: Quill
+  quill?: Quill
 }) => {
   // new instance of quill is by default created enabled
   // we don't want to call quill.enable(true) when
@@ -14,6 +14,10 @@ const useDisabledEditor = ({
   const initialDisable = useRef<boolean | undefined>(false)
 
   useEffect(() => {
+    if (!quill) {
+      return
+    }
+
     if (initialDisable.current !== Boolean(disabled)) {
       initialDisable.current = disabled
       quill.enable(!disabled)

@@ -1,10 +1,8 @@
-import Quill, { SelectionChangeHandler } from 'quill'
 import { useCallback, Dispatch } from 'react'
 
 import { StateType, ActionsType } from '../../types'
 import { actions as editorActions } from '../../store/editor'
 import { actions as toolbarActions } from '../../store/toolbar'
-import useOnSelectionChange from '../useOnSelectionChange'
 
 type Props = {
   state: StateType

@@ -14,7 +14,7 @@ const initialState: ToolbarStateType = {
     handleOrdered: undefined,
     handleUnordered: undefined
   },
-  disabled: false
+  disabled: true
 }
 
 export default initialState
