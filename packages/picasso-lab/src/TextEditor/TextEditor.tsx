@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useCallback } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -65,12 +65,15 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   const { dispatch, state } = useTextEditorState()
 
   const { handleFocusChange } = useHasFocus({ state, dispatch })
-  const handleTextFormat = (formatType: 'bold' | 'italic', value: boolean) => {
-    dispatch({
-      type: toolbarActionTypes[formatType],
-      payload: value
-    })
-  }
+  const handleTextFormat = useCallback(
+    (formatType: 'bold' | 'italic', value: boolean) => {
+      dispatch({
+        type: toolbarActionTypes[formatType],
+        payload: value
+      })
+    },
+    [dispatch]
+  )
 
   return (
     <Container

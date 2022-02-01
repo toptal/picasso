@@ -25,11 +25,13 @@ export const getModules = (): QuillOptionsStatic['modules'] => {
       bindings: {
         bold: {
           key: 'B',
+          metaKey: true,
           ctrlKey: true,
           handler: function () {}
         },
         italic: {
           key: 'I',
+          metaKey: true,
           ctrlKey: true,
           handler: function () {}
         }
