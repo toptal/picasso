@@ -51,7 +51,7 @@ export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
 })
 
 const CopyrightContent = () => (
-  <>{`© Copyright 2010 – ${new Date().getFullYear()} Toptal, LLC</>`}</>
+  <>{`© Copyright 2010 – ${new Date().getFullYear()} Toptal, LLC`}</>
 )
 
 PageFooter.defaultProps = {
