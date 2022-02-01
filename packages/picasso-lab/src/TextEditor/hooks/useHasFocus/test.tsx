@@ -1,45 +1,46 @@
-import Quill, { RangeStatic, SelectionChangeHandler } from 'quill'
 import { renderHook } from '@testing-library/react-hooks'
 
+import { StateType } from '../../types'
 import useHasFocus from './useHasFocus'
 
-const mockRange = { index: 0, length: 0 } as RangeStatic
-
 describe('useHasFocus', () => {
-  it('does nothing when event is triggered as silent', () => {
-    const eventSource = 'silent'
-    const quill = ({
-      hasFocus: jest.fn().mockImplementation(() => true),
-      on: jest
-        .fn()
-        .mockImplementation((name, fn) =>
-          fn(mockRange, mockRange, eventSource)
-        ),
-      off: jest.fn()
-    } as unknown) as Quill
+  it('do nothing if focus has not changed', () => {
+    const isFocused = true
+    const state = {
+      editor: {
+        isFocused
+      }
+    } as StateType
+    const dispatch = jest.fn()
 
-    const { result } = renderHook(() => useHasFocus({ quill }))
+    const { result } = renderHook(() => useHasFocus({ state, dispatch }))
 
-    expect(quill.hasFocus).not.toHaveBeenCalled()
-    expect(result.current.hasFocus).toBe(false)
+    result.current.handleFocusChange(isFocused)
+
+    expect(dispatch).not.toHaveBeenCalled()
   })
 
-  it('sets hasFocus state', () => {
-    const eventSource = 'user'
-    const quill = ({
-      hasFocus: jest.fn().mockImplementation(() => true),
-      on: jest
-        .fn()
-        .mockImplementation(
-          (name: 'selection-change', fn: SelectionChangeHandler) =>
-            fn(mockRange, mockRange, eventSource)
-        ),
-      off: jest.fn()
-    } as unknown) as Quill
+  it('update state and sets a new focus value', () => {
+    const isFocused = true
+    const newIsFocused = false
+    const state = {
+      editor: {
+        isFocused
+      }
+    } as StateType
+    const dispatch = jest.fn()
 
-    const { result } = renderHook(() => useHasFocus({ quill }))
+    const { result } = renderHook(() => useHasFocus({ state, dispatch }))
 
-    expect(quill.hasFocus).toHaveBeenCalled()
-    expect(result.current.hasFocus).toBe(true)
+    result.current.handleFocusChange(newIsFocused)
+
+    expect(dispatch).toHaveBeenCalledWith({
+      type: 'TOOLBAR/SET_DISABLED',
+      payload: !newIsFocused
+    })
+    expect(dispatch).toHaveBeenCalledWith({
+      type: 'EDITOR/SET_IS_FOCUSED',
+      payload: newIsFocused
+    })
   })
 })
