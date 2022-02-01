@@ -2,7 +2,6 @@ import cx from 'classnames'
 import React, { forwardRef, ReactNode, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Collapse } from '@material-ui/core'
-import { ArrowDownMinor16 } from '@toptal/picasso/Icon'
 import { SizeType, BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -11,6 +10,7 @@ import Container from '../Container'
 import Typography from '../Typography'
 import { isString } from '../utils'
 import { Rotate180 } from '../utils/Transitions'
+import { ArrowDownMinor16 } from '../Icon'
 
 type VariantType = 'bordered' | 'default' | 'withHeaderBar'
 
