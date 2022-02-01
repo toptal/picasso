@@ -1,5 +1,30 @@
 # Change Log
 
+## 25.0.0
+
+### Major Changes
+
+- [#2409](https://github.com/toptal/picasso/pull/2409) [`163d5609`](https://github.com/toptal/picasso/commit/163d56095fd29689e9700cabbc06fb36692bf710) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  > Tip: execute `yarn lerna exec "yarn remove @toptal/picasso-lab"` to remove `picasso-lab` in all projects
+
+  ### DatePicker
+
+  - Replace `picasso-lab` import with `picasso` (because we merged `picasso-lab` into `picasso`)
+
+  ### Dropzone
+
+  - Replace `picasso-lab` import with `picasso` (because we merged `picasso-lab` into `picasso`)
+
+  ### FieldWrapper
+
+  - Replace `picasso-lab` import with `picasso` (because we merged `picasso-lab` into `picasso`)
+
+### Patch Changes
+
+- Updated dependencies [[`802b673c`](https://github.com/toptal/picasso/commit/802b673cc3042d9dd79da0e029346dda40fa2001), [`163d5609`](https://github.com/toptal/picasso/commit/163d56095fd29689e9700cabbc06fb36692bf710)]:
+  - @toptal/picasso@18.0.0
+
 ## 24.0.0
 
 ### Patch Changes

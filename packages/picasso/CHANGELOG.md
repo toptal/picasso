@@ -1,5 +1,23 @@
 # Change Log
 
+## 18.0.0
+
+### Major Changes
+
+- [#2409](https://github.com/toptal/picasso/pull/2409) [`163d5609`](https://github.com/toptal/picasso/commit/163d56095fd29689e9700cabbc06fb36692bf710) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  ### Common
+
+  - Move `picasso-lab` components to `picasso`
+
+### Patch Changes
+
+- [#2408](https://github.com/toptal/picasso/pull/2408) [`802b673c`](https://github.com/toptal/picasso/commit/802b673cc3042d9dd79da0e029346dda40fa2001) Thanks [@denys-medynskyi](https://github.com/denys-medynskyi)! - ---
+
+  ### PageFooter
+
+  - make copyright text customizable in `PageFooter`
+
 ## 17.4.1
 
 ### Patch Changes
