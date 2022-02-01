@@ -9,14 +9,7 @@ type Props = {
   dispatch: Dispatch<ActionsType>
 }
 
-const actions = {
-  toolbar: {
-    setBold: () => {}
-  },
-  editor: {}
-}
-
-const useHasFocus = ({ state, actions }: Props) => {
+const useHasFocus = ({ state, dispatch }: Props) => {
   const handleFocusChange = useCallback(
     (isFocused: boolean) => {
       const hasCurrentFocus = isFocused

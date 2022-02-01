@@ -1,25 +1,25 @@
 import { useMemo, useEffect } from 'react'
-import Quill, { EditorChangeHandler, TextChangeHandler } from 'quill'
+import Quill, { SelectionChangeHandler, TextChangeHandler } from 'quill'
 
 import getFocusChangeHandler from '../../utils/getFocusChangeHandler'
 import getTextChangeHandler from '../../utils/getTextChangeHandler'
 import { ToolbarStateType } from '../../../TextEditor/store/toolbar/types'
-import getEditorChangeHandler from '../../utils/getEditorChangeHandler'
+import getSelectionChangeHandler from '../../utils/getSelectionChangeHandler'
 
 type Props = {
   quill?: Quill
   handleFocusChange?: (isFocused: boolean) => void
   handleTextChange?: (html: string) => void
-  handleFormatChange?: (format: ToolbarStateType['format']) => void
+  handleSelectionChange?: (format: ToolbarStateType['format']) => void
 }
 
 const useSubscribeToQuillEvents = ({
   quill,
   handleFocusChange,
   handleTextChange,
-  handleFormatChange
+  handleSelectionChange
 }: Props) => {
-  const selectionChangeHandler = useMemo(() => {
+  const focusChangeHandler = useMemo(() => {
     if (!quill || !handleFocusChange) {
       return () => {}
     }
@@ -35,29 +35,29 @@ const useSubscribeToQuillEvents = ({
     return getTextChangeHandler(quill, handleTextChange)
   }, [quill, handleTextChange])
 
-  const editorChangeHandler: EditorChangeHandler = useMemo(() => {
-    if (!quill || !handleFormatChange) {
+  const selectionChangeHandler: SelectionChangeHandler = useMemo(() => {
+    if (!quill || !handleSelectionChange) {
       return () => {}
     }
 
-    return getEditorChangeHandler(quill, handleFormatChange)
-  }, [quill, handleFormatChange])
+    return getSelectionChangeHandler(quill, handleSelectionChange)
+  }, [quill, handleSelectionChange])
 
   useEffect(() => {
     if (!quill) {
       return
     }
 
+    quill.on('selection-change', focusChangeHandler)
     quill.on('selection-change', selectionChangeHandler)
     quill.on('text-change', textChangeHandler)
-    quill.on('editor-change', editorChangeHandler)
 
     return () => {
+      quill.off('selection-change', focusChangeHandler)
       quill.off('selection-change', selectionChangeHandler)
       quill.off('text-change', textChangeHandler)
-      quill.off('editor-change', editorChangeHandler)
     }
-  }, [quill, selectionChangeHandler, textChangeHandler, editorChangeHandler])
+  }, [quill, focusChangeHandler, textChangeHandler, selectionChangeHandler])
 }
 
 export default useSubscribeToQuillEvents

@@ -19,7 +19,7 @@ export type Props = BaseProps & {
   handleFocusChange?: (isFocused: boolean) => void
   handleTextChange: (html: string) => void
   handleTextFormat: (formatType: 'bold' | 'italic', value: boolean) => void
-  handleFormatChange: (format: ToolbarStateType['format']) => void
+  handleSelectionChange: (format: ToolbarStateType['format']) => void
   disabled?: boolean
 }
 
@@ -45,7 +45,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     handleFocusChange,
     handleTextChange,
     handleTextFormat,
-    handleFormatChange
+    handleSelectionChange
   },
   ref
 ) {
@@ -56,7 +56,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     quill,
     handleFocusChange,
     handleTextChange,
-    handleFormatChange
+    handleSelectionChange
   })
 
   useAutofocus({ autofocus, quill })

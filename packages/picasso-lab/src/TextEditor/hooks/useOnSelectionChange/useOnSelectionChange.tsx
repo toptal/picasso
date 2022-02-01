@@ -8,8 +8,8 @@ type Props = {
   dispatch: Dispatch<ActionsType>
 }
 
-const useOnFormatChange = ({ dispatch }: Props) => {
-  const handleFormatChange = useCallback(
+const useOnSelectionChange = ({ dispatch }: Props) => {
+  const handleSelectionChange = useCallback(
     ({ bold, italic, header, list }: ToolbarStateType['format']) => {
       actions.setBold(dispatch)(bold)
       actions.setItalic(dispatch)(italic)
@@ -19,7 +19,7 @@ const useOnFormatChange = ({ dispatch }: Props) => {
     [dispatch]
   )
 
-  return { handleFormatChange }
+  return { handleSelectionChange }
 }
 
-export default useOnFormatChange
+export default useOnSelectionChange
