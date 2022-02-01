@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react'
 import { Typography } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import useQuillInstance from './hooks/useQuillInstance'
@@ -11,6 +10,7 @@ import useSubscribeToQuillEvents from './hooks/useSubscribeToQuillEvents'
 import useDisabledEditor from './hooks/useDisabledEditor'
 import useEditorLoseFocusFix from './hooks/useEditorLoseFocusFix'
 import useKeyBindings from './hooks/useKeyBindings'
+import { ToolbarStateType } from '../TextEditor/store/toolbar/types'
 
 export type Props = BaseProps & {
   autofocus?: boolean
@@ -19,6 +19,7 @@ export type Props = BaseProps & {
   handleFocusChange?: (isFocused: boolean) => void
   handleTextChange: (html: string) => void
   handleTextFormat: (formatType: 'bold' | 'italic', value: boolean) => void
+  handleFormatChange: (format: ToolbarStateType['format']) => void
   disabled?: boolean
 }
 
@@ -39,20 +40,24 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     autofocus,
     disabled,
     id,
-    className,
-    style,
     'data-testid': dataTestId,
     placeholder,
     handleFocusChange,
     handleTextChange,
-    handleTextFormat
+    handleTextFormat,
+    handleFormatChange
   },
   ref
 ) {
   const classes = useStyles()
   const quill = useQuillInstance({ id, placeholder })
 
-  useSubscribeToQuillEvents({ quill, handleFocusChange, handleTextChange })
+  useSubscribeToQuillEvents({
+    quill,
+    handleFocusChange,
+    handleTextChange,
+    handleFormatChange
+  })
 
   useAutofocus({ autofocus, quill })
   useDisabledEditor({ disabled, quill })
@@ -71,11 +76,10 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
       variant='body'
       color='dark-grey'
       size='medium'
-      className={cx(classes.root, className)}
+      className={classes.root}
       data-testid={dataTestId}
       id={id}
       ref={ref}
-      style={style}
     />
   )
 })
