@@ -9,7 +9,6 @@ This package combines the state-management power of [React Final Form](https://f
 The following peer dependencies are required:
 
 - `@toptal/picasso`
-- `@toptal/picasso-lab`
 - `@toptal/picasso-shared`
 - `react`
 - `react-dom`
