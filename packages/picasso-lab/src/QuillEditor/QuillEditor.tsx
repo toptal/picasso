@@ -10,6 +10,7 @@ import useAutofocus from './hooks/useAutofocus'
 import useSubscribeToQuillEvents from './hooks/useSubscribeToQuillEvents'
 import useDisabledEditor from './hooks/useDisabledEditor'
 import useEditorLoseFocusFix from './hooks/useEditorLoseFocusFix'
+import useKeyBindings from './hooks/useKeyBindings'
 
 export type Props = BaseProps & {
   autofocus?: boolean
@@ -17,7 +18,7 @@ export type Props = BaseProps & {
   placeholder?: string
   handleFocusChange?: (isFocused: boolean) => void
   handleTextChange: (html: string) => void
-  handleFormatChange: () => void
+  handleTextFormat: (formatType: 'bold' | 'italic', value: boolean) => void
   disabled?: boolean
 }
 
@@ -43,8 +44,8 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     'data-testid': dataTestId,
     placeholder,
     handleFocusChange,
-    handleTextChange
-    // handleFormatChange
+    handleTextChange,
+    handleTextFormat
   },
   ref
 ) {
@@ -61,6 +62,8 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   // when clicking anywhere quill loses focus, we need
   // to prevent it when clicking inside toolbar
   useEditorLoseFocusFix({ quill, id })
+
+  useKeyBindings({ quill, handleTextFormat })
 
   return (
     <Typography

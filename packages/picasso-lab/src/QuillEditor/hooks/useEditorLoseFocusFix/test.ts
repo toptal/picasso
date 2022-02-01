@@ -13,11 +13,12 @@ describe('useEditorLoseFocusFix', () => {
     jest.spyOn(mockElement, 'removeEventListener')
   })
   it('triggers callback on mousedown', () => {
+    const id = 'editorId'
     const quill = ({
       getModule: () => ({ container: mockElement })
     } as unknown) as Quill
 
-    renderHook(() => useEditorLoseFocusFix({ quill }))
+    renderHook(() => useEditorLoseFocusFix({ quill, id }))
 
     const mouseDownEvent = new MouseEvent('mousedown')
 

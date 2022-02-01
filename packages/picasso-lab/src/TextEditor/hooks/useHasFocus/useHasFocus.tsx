@@ -12,7 +12,6 @@ type Props = {
 const useHasFocus = ({ state, dispatch }: Props) => {
   const handleFocusChange = useCallback(
     (isFocused: boolean) => {
-      console.log('isFocused:', isFocused)
       const hasCurrentFocus = isFocused
 
       if (state.editor.isFocused !== hasCurrentFocus) {

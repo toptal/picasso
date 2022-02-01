@@ -18,30 +18,20 @@ export const getModules = (): QuillOptionsStatic['modules'] => {
       matchVisual: false
     },
     keyboard: {
+      // we need to specify default bindings
+      // because Quill don't allow us to setup bindings via
+      // quill.keyboard.addBinding for default Quill
+      // key shortcuts otherwise
       bindings: {
         bold: {
           key: 'B',
           ctrlKey: true,
-          // handler: function(
-          //   this: { quill: Quill },
-          //   _: StaticRange,
-          //   context: { format: ToolbarStateType['format'] }
-          // ) {
-          //   this.quill.format('bold', !context.format.bold)
-          //   toolbarActions.setBold(dispatch)(!context.format.bold)
-          // }
+          handler: function () {}
         },
         italic: {
           key: 'I',
           ctrlKey: true,
-          // handler: function(
-          //   this: { quill: Quill },
-          //   _: StaticRange,
-          //   context: { format: ToolbarStateType['format'] }
-          // ) {
-          //   this.quill.format('italic', !context.format.italic)
-          //   toolbarActions.setItalic(dispatch)(!context.format.italic)
-          // }
+          handler: function () {}
         }
       }
     }

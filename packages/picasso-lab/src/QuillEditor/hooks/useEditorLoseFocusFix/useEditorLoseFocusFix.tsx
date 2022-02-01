@@ -15,9 +15,7 @@ const useEditorLooseFocusFix = ({ quill, id }: Props) => {
       event.preventDefault()
     }
 
-    const toolbarContainer: HTMLElement | null = document.getElementById(
-      `${id}toolbar`
-    )
+    const toolbarContainer = document.getElementById(`${id}toolbar`)
 
     if (toolbarContainer) {
       toolbarContainer.addEventListener('mousedown', handler)

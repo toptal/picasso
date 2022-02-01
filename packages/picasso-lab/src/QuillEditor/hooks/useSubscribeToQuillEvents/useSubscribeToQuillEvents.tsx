@@ -38,12 +38,10 @@ const useSubscribeToQuillEvents = ({
 
     quill.on('selection-change', selectionChangeHandler)
     quill.on('text-change', textChangeHandler)
-    // quill.on('selection-change', selectionChangeHandler)
 
     return () => {
       quill.off('selection-change', selectionChangeHandler)
       quill.off('text-change', textChangeHandler)
-      // quill.off('selection-change', selectionChangeHandler)
     }
   }, [quill, selectionChangeHandler, textChangeHandler])
 }

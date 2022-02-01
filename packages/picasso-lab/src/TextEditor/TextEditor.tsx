@@ -1,4 +1,4 @@
-import React, { forwardRef, Dispatch } from 'react'
+import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -6,7 +6,8 @@ import { Container } from '@toptal/picasso'
 
 import styles from './styles'
 import Toolbar from './TextEditorToolbar'
-import { TextEditorChangeHandler, ActionsType, StateType } from './types'
+import { TextEditorChangeHandler } from './types'
+import toolbarActionTypes from './store/toolbar/actionTypes'
 import useTextEditorState from './hooks/useTextEditorState'
 import useHasFocus from './hooks/useHasFocus'
 import QuillEditor from '../QuillEditor'
@@ -64,12 +65,25 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   const { dispatch, state } = useTextEditorState()
 
   const { handleFocusChange } = useHasFocus({ state, dispatch })
+  const handleTextFormat = (formatType: 'bold' | 'italic', value: boolean) => {
+    dispatch({
+      type: toolbarActionTypes[formatType],
+      payload: value
+    })
+  }
 
   return (
     <Container
-      className={cx(classes.editorWrapper, {
-        [classes.disabled]: disabled
-      })}
+      className={cx(
+        classes.editorWrapper,
+        {
+          [classes.disabled]: disabled
+        },
+        className
+      )}
+      data-testid={dataTestId}
+      style={style}
+      ref={ref}
     >
       <Toolbar
         id={id}
@@ -83,7 +97,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         id={id}
         placeholder={placeholder}
         handleFocusChange={handleFocusChange}
-        handleFormatChange={() => {}}
+        handleTextFormat={handleTextFormat}
         handleTextChange={onChange}
       />
     </Container>
