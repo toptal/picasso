@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- [#2409](https://github.com/toptal/picasso/pull/2409) [`163d5609`](https://github.com/toptal/picasso/commit/163d56095fd29689e9700cabbc06fb36692bf710) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  > Tip: execute `yarn lerna exec "yarn remove @toptal/picasso-lab"` to remove `picasso-lab` in all projects
+
+  - Add codemod for replacing `picasso-lab` with `picasso`
+
 ## 3.3.0
 
 ### Minor Changes
