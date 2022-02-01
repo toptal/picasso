@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Radio } from '@toptal/picasso'
-import { TypographyOverflow } from '@toptal/picasso-lab'
+import { Container, Radio, TypographyOverflow } from '@toptal/picasso'
 
 const Example = () => {
   const [value, setValue] = useState('')

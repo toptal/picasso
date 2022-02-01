@@ -1,7 +1,6 @@
 import React from 'react'
-import { Typography, Link } from '@toptal/picasso'
+import { Typography, Link, Timeline, Note } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
-import { Timeline, Note } from '@toptal/picasso-lab'
 import { Tasks16, Pencil16, Email16 } from '@toptal/picasso/Icon'
 import { mount } from '@cypress/react'
 

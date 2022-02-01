@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import { Note } from '@toptal/picasso-lab'
+import { Note } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const NoteExample = () => (

@@ -1,7 +1,12 @@
 import React from 'react'
 import { mount } from '@cypress/react'
-import { Table, Button, Container } from '@toptal/picasso'
-import { Section, SectionProps } from '@toptal/picasso-lab'
+import {
+  Table,
+  Button,
+  Container,
+  Section,
+  SectionProps
+} from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const talents = [

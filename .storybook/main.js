@@ -3,7 +3,6 @@ const path = require('path')
 const { IgnoreNotFoundPlugin } = require('./plugins')
 
 // example1: /packages/picasso/src/Button/Button.tsx
-// example2: /packages/picasso-lab/src/Slider/Slider.tsx
 const PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP = /packages\/.*\/src\/(.*)\/\1.tsx$/
 
 const { env } = process
@@ -76,10 +75,6 @@ module.exports = {
       '@toptal/picasso/Icon': path.resolve(
         __dirname,
         '../packages/picasso/src/Icon'
-      ),
-      '@toptal/picasso-lab': path.resolve(
-        __dirname,
-        '../packages/picasso-lab/src'
       ),
       '@toptal/picasso-forms': path.resolve(
         __dirname,

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Container } from '@toptal/picasso'
-import { Dropzone, DropzoneProps } from '@toptal/picasso-lab'
+import { Container, Dropzone, DropzoneProps } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { mount } from '@cypress/react'
 

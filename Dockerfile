@@ -40,7 +40,6 @@ COPY --chown=node:node package.json yarn.lock ./
 
 # Copy package.json to restore symlinks in a single yarn install
 COPY --chown=node:node packages/picasso/package.json ./packages/picasso/package.json
-COPY --chown=node:node packages/picasso-lab/package.json ./packages/picasso-lab/package.json
 COPY --chown=node:node packages/picasso-charts/package.json ./packages/picasso-charts/package.json
 COPY --chown=node:node packages/picasso-forms/package.json ./packages/picasso-forms/package.json
 COPY --chown=node:node packages/shared/package.json ./packages/shared/package.json

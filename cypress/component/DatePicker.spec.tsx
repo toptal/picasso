@@ -1,14 +1,12 @@
 import { mount } from '@cypress/react'
-import { Container } from '@toptal/picasso'
-import {
-  DatePicker,
-  DatePickerProps
-} from '@toptal/picasso-lab'
+import { Container, DatePicker, DatePickerProps } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import React, { useState } from 'react'
 
 const TestDatePicker = (props: Partial<DatePickerProps>) => {
-  const [value, setValue] = useState<DatePickerProps['value']>(props.value || new Date(2020, 11, 27))
+  const [value, setValue] = useState<DatePickerProps['value']>(
+    props.value || new Date(2020, 11, 27)
+  )
 
   return (
     <TestingPicasso>
