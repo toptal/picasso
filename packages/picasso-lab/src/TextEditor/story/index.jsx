@@ -10,12 +10,12 @@ const page = PicassoBook.section('Picasso Lab').createPage(
   `
 )
 
-// page
-//   .createTabChapter('Props')
-//   .addComponentDocs({ component: TextEditor, name: 'TextEditor' })
+page
+  .createTabChapter('Props')
+  .addComponentDocs({ component: TextEditor, name: 'TextEditor' })
 
 page
   .createChapter()
   .addExample('TextEditor/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  // .addExample('TextEditor/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
+// .addExample('TextEditor/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
 // .addExample('TextEditor/story/Limit.example.tsx', 'Limit Length') // picasso-skip-visuals

@@ -125,6 +125,11 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   )
 })
 
+TextEditor.defaultProps = {
+  autofocus: false,
+  disabled: false
+}
+
 TextEditor.displayName = 'TextEditor'
 
 export default TextEditor
