@@ -7,7 +7,6 @@ import { Container } from '@toptal/picasso'
 import QuillEditor from '../QuillEditor'
 import Toolbar from '../TextEditorToolbar'
 import styles from './styles'
-import { TextEditorChangeHandler } from './types'
 import { actions as toolbarActions } from './store/toolbar'
 import useTextEditorState from './hooks/useTextEditorState'
 import useHasFocus from './hooks/useHasFocus'
@@ -38,7 +37,7 @@ export interface Props extends StandardProps {
   /**
    * Callback on text change
    */
-  onChange: TextEditorChangeHandler
+  onChange: (value: string) => void
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
   testIds?: {
