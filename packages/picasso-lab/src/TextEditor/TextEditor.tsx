@@ -88,10 +88,16 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
 
   return (
     <Container
-      className={cx(className, classes.editorWrapper, {
-        [classes.disabled]: disabled
-      })}
+      className={cx(
+        classes.editorWrapper,
+        {
+          [classes.disabled]: disabled
+        },
+        className
+      )}
       style={style}
+      ref={ref}
+      data-testid={dataTestId}
     >
       <Toolbar
         id={id}
@@ -109,8 +115,6 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         handleSelectionChange={handleSelectionChange}
         handleTextChange={onChange}
         setToolbarHandlers={setToolbarHandlers}
-        data-testid={dataTestId}
-        ref={ref}
       />
     </Container>
   )
