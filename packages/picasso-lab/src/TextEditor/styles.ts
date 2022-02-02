@@ -142,22 +142,6 @@ export default (theme: Theme) => {
       width: '7.125em'
     },
 
-    button: {
-      borderRadius: sizes.borderRadius.small,
-
-      '&+&': {
-        marginLeft: '0.5em'
-      }
-    },
-
-    activeButton: {
-      backgroundColor: palette.grey.dark,
-
-      '&:not(:hover) svg': {
-        fill: palette.common.white
-      }
-    },
-
     disabled: {
       background: palette.grey.lighter,
       borderRadius: '0.25em',

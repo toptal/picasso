@@ -43,9 +43,6 @@ export interface Props extends BaseProps {
   placeholder?: string
 }
 
-// Using { index: 1 } to inject CSS generated classes after the button's classes
-// in order to prevent Button's styles to override custom TextEditor styles
-// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
   name: 'TextEditor'
 })

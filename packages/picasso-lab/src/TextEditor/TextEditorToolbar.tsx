@@ -9,7 +9,7 @@ import {
 import { makeStyles, Theme } from '@material-ui/core'
 
 import styles from './styles'
-import TextEditorButton from './TextEditorButton'
+import TextEditorButton from '../TextEditorButton'
 import { ToolbarHandlers, ToolbarStateType } from './store/toolbar/types'
 
 type Props = {
