@@ -2,7 +2,7 @@ import { Dispatch, useCallback } from 'react'
 
 import { ToolbarStateType } from '../../store/toolbar/types'
 import { actions } from '../../store/toolbar'
-import { ActionsType } from '../../types'
+import { ActionsType } from '../../store'
 
 type Props = {
   dispatch: Dispatch<ActionsType>
