@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { Container } from '@toptal/picasso'
 
@@ -14,7 +14,7 @@ import useHasFocus from './hooks/useHasFocus'
 import useOnSelectionChange from './hooks/useOnSelectionChange'
 import { ToolbarHandlers } from './store/toolbar/types'
 
-export interface Props extends BaseProps {
+export interface Props extends StandardProps {
   /** Indicates that an element is to be focused on page load */
   autofocus?: boolean
   /**
@@ -41,6 +41,10 @@ export interface Props extends BaseProps {
   onChange: TextEditorChangeHandler
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
+  testIds?: {
+    wrapper?: string
+    editor?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -56,7 +60,8 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     id,
     onChange,
     placeholder,
-    style
+    style,
+    testIds
   },
   ref
 ) {
@@ -97,7 +102,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
       )}
       style={style}
       ref={ref}
-      data-testid={dataTestId}
+      data-testid={testIds?.wrapper || dataTestId}
     >
       <Toolbar
         id={id}
@@ -115,6 +120,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         handleSelectionChange={handleSelectionChange}
         handleTextChange={onChange}
         setToolbarHandlers={setToolbarHandlers}
+        data-testid={testIds?.editor}
       />
     </Container>
   )
