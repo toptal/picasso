@@ -1,6 +1,6 @@
 import { useCallback, Dispatch } from 'react'
 
-import { StateType, ActionsType } from '../../types'
+import { StateType, ActionsType } from '../../store'
 import { actions as editorActions } from '../../store/editor'
 import { actions as toolbarActions } from '../../store/toolbar'
 

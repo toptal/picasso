@@ -63,6 +63,6 @@ export type ToolbarActionsType =
   | SetDisabled
 
 export type ToolbarReducerType = (
-  state: ToolbarStateType,
+  state: ToolbarStateType | undefined,
   action: ToolbarActionsType
 ) => ToolbarStateType

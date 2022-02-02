@@ -12,6 +12,6 @@ export type EditorIsFocusedActionType = {
 export type EditorActionsType = EditorIsFocusedActionType
 
 export type EditorReducerType = (
-  state: EditorStateType,
+  state: EditorStateType | undefined,
   action: EditorActionsType
 ) => EditorStateType

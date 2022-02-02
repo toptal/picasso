@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks'
 
-import { StateType } from '../../types'
+import { StateType } from '../../store'
 import useHasFocus from './useHasFocus'
 
 describe('useHasFocus', () => {

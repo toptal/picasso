@@ -31,6 +31,7 @@
     "react-dom": "^16.12.0"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.7.1",
     "@toptal/picasso-provider": "^0.6.0",
     "@types/quill": "^2.0.9",
     "ap-style-title-case": "^1.1.2",

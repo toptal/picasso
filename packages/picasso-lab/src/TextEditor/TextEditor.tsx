@@ -67,7 +67,6 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   const { dispatch, state } = useTextEditorState()
 
   const { handleFocusChange } = useHasFocus({ state, dispatch })
-
   const { handleSelectionChange } = useOnSelectionChange({ dispatch })
 
   const handleTextFormat = useCallback(
