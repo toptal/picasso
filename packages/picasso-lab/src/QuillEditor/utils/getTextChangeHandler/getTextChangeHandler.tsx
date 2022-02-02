@@ -1,8 +1,7 @@
-import {
-  removeClasses,
-  removeCursorSpan
-} from '@toptal/picasso-lab/TextEditor/utils'
 import Quill, { TextChangeHandler } from 'quill'
+
+import removeClasses from '../remove-classes'
+import removeCursorSpan from '../remove-cursor-span'
 
 const getTextChangeHandler = (
   quill: Quill,
