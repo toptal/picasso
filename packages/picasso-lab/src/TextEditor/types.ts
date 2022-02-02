@@ -1,10 +1,8 @@
 import { MouseEventHandler, ChangeEvent } from 'react'
 
-export type HTMLString = string
-
 export type HeaderValueType = '3' | ''
 
-export type TextEditorChangeHandler = (value: HTMLString) => void
+export type TextEditorChangeHandler = (value: string) => void
 
 export type ButtonHandlerType = MouseEventHandler<HTMLButtonElement>
 

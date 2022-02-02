@@ -1,7 +1,6 @@
-import Quill, { SelectionChangeHandler } from 'quill'
+import { SelectionChangeHandler } from 'quill'
 
 const getFocusChangeHandler = (
-  quill: Quill,
   handleFocusChange: (isFocused: boolean) => void
 ) => {
   const handler: SelectionChangeHandler = (range, _, source) => {

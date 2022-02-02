@@ -11,7 +11,6 @@ import { actions as toolbarActions } from './store/toolbar'
 import useTextEditorState from './hooks/useTextEditorState'
 import useHasFocus from './hooks/useHasFocus'
 import useOnSelectionChange from './hooks/useOnSelectionChange'
-import { ToolbarHandlers } from './store/toolbar/types'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -82,10 +81,16 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     },
     [dispatch]
   )
+  const handleListFormat = useCallback(
+    (value: 'bullet' | 'ordered' | false) => {
+      toolbarActions.setList(dispatch)(value)
+    },
+    [dispatch]
+  )
 
-  const setToolbarHandlers = useCallback(
-    (handlers: ToolbarHandlers) => {
-      toolbarActions.setHandlers(dispatch)(handlers)
+  const handleInit = useCallback(
+    ({ toolbarHandlers }) => {
+      toolbarActions.setHandlers(dispatch)(toolbarHandlers)
     },
     [dispatch]
   )
@@ -116,9 +121,10 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         placeholder={placeholder}
         handleFocusChange={handleFocusChange}
         handleTextFormat={handleTextFormat}
+        handleListFormat={handleListFormat}
         handleSelectionChange={handleSelectionChange}
         handleTextChange={onChange}
-        setToolbarHandlers={setToolbarHandlers}
+        onInit={handleInit}
         data-testid={testIds?.editor}
       />
     </Container>

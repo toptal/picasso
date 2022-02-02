@@ -3,7 +3,6 @@ import { EditorReducerType } from './types'
 import initialState from './initialState'
 
 const reducer: EditorReducerType = (state = initialState, action) => {
-  console.log({ editorState: action })
   switch (action.type) {
     case actionTypes.setIsFocused:
       return {

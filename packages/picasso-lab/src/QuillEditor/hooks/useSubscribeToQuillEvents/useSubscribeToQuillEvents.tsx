@@ -20,12 +20,12 @@ const useSubscribeToQuillEvents = ({
   handleSelectionChange
 }: Props) => {
   const focusChangeHandler = useMemo(() => {
-    if (!quill || !handleFocusChange) {
+    if (!handleFocusChange) {
       return () => {}
     }
 
-    return getFocusChangeHandler(quill, handleFocusChange)
-  }, [quill, handleFocusChange])
+    return getFocusChangeHandler(handleFocusChange)
+  }, [handleFocusChange])
 
   const textChangeHandler: TextChangeHandler = useMemo(() => {
     if (!quill || !handleTextChange) {

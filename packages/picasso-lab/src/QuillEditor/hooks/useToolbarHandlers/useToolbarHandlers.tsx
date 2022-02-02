@@ -1,19 +1,19 @@
 import Quill from 'quill'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 
 import { ToolbarHandlers } from '../../../TextEditor/store/toolbar/types'
 
 type Props = {
   quill?: Quill
   handleTextFormat: (formatType: 'bold' | 'italic', value: boolean) => void
-  setToolbarHandlers: (handlers: ToolbarHandlers) => void
+  handleListFormat: (value: 'bullet' | 'ordered' | false) => void
 }
 
 const useToolbarHandlers = ({
   quill,
   handleTextFormat,
-  setToolbarHandlers
-}: Props) => {
+  handleListFormat
+}: Props): { toolbarHandlers: ToolbarHandlers } => {
   const handleHeader: ToolbarHandlers['handleHeader'] = useCallback(
     event => {
       if (!quill) {
@@ -51,7 +51,7 @@ const useToolbarHandlers = ({
     const currentItalic = quill.getFormat().italic
     const toggledItalic = !currentItalic
 
-    quill.format('italic', !toggledItalic)
+    quill.format('italic', toggledItalic)
     handleTextFormat('italic', toggledItalic)
   }, [quill, handleTextFormat])
 
@@ -61,9 +61,11 @@ const useToolbarHandlers = ({
     }
 
     const currentList = quill.getFormat().list
+    const value = currentList === 'ordered' ? false : 'ordered'
 
-    quill.format('list', currentList === 'ordered' ? false : 'ordered')
-  }, [quill])
+    quill.format('list', value)
+    handleListFormat(value)
+  }, [quill, handleListFormat])
 
   const handleUnordered: ToolbarHandlers['handleUnordered'] = useCallback(() => {
     if (!quill) {
@@ -71,9 +73,11 @@ const useToolbarHandlers = ({
     }
 
     const currentList = quill.getFormat().list
+    const value = currentList === 'bullet' ? false : 'bullet'
 
-    quill.format('list', currentList === 'bullet' ? false : 'bullet')
-  }, [quill])
+    quill.format('list', value)
+    handleListFormat(value)
+  }, [quill, handleListFormat])
 
   const toolbarHandlers = useMemo(
     () => ({
@@ -86,9 +90,7 @@ const useToolbarHandlers = ({
     [handleHeader, handleBold, handleItalic, handleOrdered, handleUnordered]
   )
 
-  useEffect(() => {
-    setToolbarHandlers(toolbarHandlers)
-  }, [toolbarHandlers, setToolbarHandlers])
+  return { toolbarHandlers }
 }
 
 export default useToolbarHandlers

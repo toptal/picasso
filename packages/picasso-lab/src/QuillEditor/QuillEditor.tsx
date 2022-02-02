@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useEffect } from 'react'
 import { Typography } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -23,9 +23,10 @@ export type Props = BaseProps & {
   handleFocusChange?: (isFocused: boolean) => void
   handleTextChange: (html: string) => void
   handleTextFormat: (formatType: 'bold' | 'italic', value: boolean) => void
+  handleListFormat: (value: 'bullet' | 'ordered' | false) => void
   handleSelectionChange: (format: ToolbarStateType['format']) => void
-  setToolbarHandlers: (handlers: ToolbarHandlers) => void
   disabled?: boolean
+  onInit: (props: { toolbarHandlers: ToolbarHandlers }) => void
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -43,7 +44,8 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     handleTextChange,
     handleTextFormat,
     handleSelectionChange,
-    setToolbarHandlers
+    handleListFormat,
+    onInit
   },
   ref
 ) {
@@ -67,7 +69,16 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   useEditorLoseFocusFix({ quill, id })
 
   useKeyBindings({ quill, handleTextFormat })
-  useToolbarHandlers({ setToolbarHandlers, quill, handleTextFormat })
+  const { toolbarHandlers } = useToolbarHandlers({
+    quill,
+    handleTextFormat,
+    handleListFormat
+  })
+
+  useEffect(() => {
+    console.log(toolbarHandlers)
+    onInit({ toolbarHandlers })
+  }, [toolbarHandlers, onInit])
 
   return (
     <Typography
