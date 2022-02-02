@@ -116,32 +116,6 @@ export default (theme: Theme) => {
       padding: '0.5em'
     },
 
-    qlToolbar: {
-      display: 'flex',
-      borderBottom: `1px solid ${palette.grey.light2}`,
-      paddingBottom: '0.5em'
-    },
-
-    qlFormats: {
-      display: 'flex',
-      alignItems: 'center',
-      position: 'relative',
-
-      '&:not(:last-child)::after': {
-        content: '""',
-        height: '1em',
-        width: '1px',
-        position: 'relative',
-        marginLeft: '0.5em',
-        marginRight: '0.5em',
-        backgroundColor: palette.grey.lighter2
-      }
-    },
-
-    textStylesSelect: {
-      width: '7.125em'
-    },
-
     disabled: {
       background: palette.grey.lighter,
       borderRadius: '0.25em',

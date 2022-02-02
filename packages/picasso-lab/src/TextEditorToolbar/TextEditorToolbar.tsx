@@ -10,28 +10,37 @@ import { makeStyles, Theme } from '@material-ui/core'
 
 import styles from './styles'
 import TextEditorButton from '../TextEditorButton'
-import { ToolbarHandlers, ToolbarStateType } from './store/toolbar/types'
 
 type Props = {
   id: string
-  formatState: ToolbarStateType['format']
-  handlers: ToolbarHandlers
+  formatState: {
+    header: '3' | ''
+    bold: boolean
+    italic: boolean
+    list: false | 'bullet' | 'ordered'
+  }
+  handlers: {
+    handleHeader?: (event: React.ChangeEvent<{ value: '3' | '' }>) => void
+    handleBold?: (e: React.MouseEvent<HTMLButtonElement>) => void
+    handleItalic?: (e: React.MouseEvent<HTMLButtonElement>) => void
+    handleUnordered?: (e: React.MouseEvent<HTMLButtonElement>) => void
+    handleOrdered?: (e: React.MouseEvent<HTMLButtonElement>) => void
+  }
   disabled?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'TextEditorToolbar',
-  index: 10
+  name: 'TextEditorToolbar'
 })
 
 export const TextEditorToolbar = (props: Props) => {
   const { id, formatState, handlers, disabled } = props
 
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
-    <Container id={`${id}toolbar`} className={classes.qlToolbar}>
-      <Container className={classes.qlFormats}>
+    <Container id={`${id}toolbar`} className={classes.toolbar}>
+      <Container className={classes.group}>
         <Select
           onChange={handlers.handleHeader}
           value={formatState.header}
@@ -41,11 +50,11 @@ export const TextEditorToolbar = (props: Props) => {
           ]}
           size='small'
           menuWidth='123px'
-          className={classes.textStylesSelect}
+          className={classes.select}
           disabled={disabled}
         />
       </Container>
-      <Container className={classes.qlFormats}>
+      <Container className={classes.group}>
         <TextEditorButton
           icon={<Bold16 />}
           onClick={handlers.handleBold}
@@ -59,7 +68,7 @@ export const TextEditorToolbar = (props: Props) => {
           disabled={disabled}
         />
       </Container>
-      <Container className={classes.qlFormats}>
+      <Container className={classes.group}>
         <TextEditorButton
           icon={<ListUnordered16 />}
           onClick={handlers.handleUnordered}
