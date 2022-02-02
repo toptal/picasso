@@ -2,39 +2,36 @@ import { useMemo, useReducer } from 'react'
 
 import * as editorStore from '../../store/editor'
 import * as toolbarStore from '../../store/toolbar'
-import { ToolbarReducerType } from '../../store/toolbar/types'
-import { EditorReducerType } from '../../store/editor/types'
 import { StateType, ActionsType } from '../../types'
 
-type CombinedReducers = {
-  toolbar: ToolbarReducerType
-  editor: EditorReducerType
+const allReducers = {
+  toolbar: toolbarStore.reducer,
+  editor: editorStore.reducer
 }
 
-const combineReducers = (reducers: CombinedReducers) => (
+const combineReducers = (reducers: typeof allReducers) => (
   state: StateType,
   action: ActionsType
 ): StateType => {
-  const newState: StateType = Object.keys(reducers).reduce(
-    (acc: StateType, prop: keyof CombinedReducers) => ({
-      ...acc,
-      [prop]: reducers[prop](acc[prop], action)
-    }),
-    state
-  )
+  const newState = {} as StateType
+
+  Object.entries(reducers).forEach(entry => {
+    const currentKey = entry[0]
+    const currentReducer = entry[1]
+
+    // @ts-ignore
+    newState[currentKey] = currentReducer(state[currentKey], action)
+  })
 
   return newState
 }
 
-const rootReducer = combineReducers({
-  toolbar: toolbarStore.reducer,
-  editor: editorStore.reducer
-})
+const rootReducer = combineReducers(allReducers)
 
 export const initialState = {
   toolbar: toolbarStore.initialState,
   editor: editorStore.initialState
-}
+} as const
 
 const useTextEditorState = () => {
   const [state, dispatch] = useReducer(rootReducer, initialState)

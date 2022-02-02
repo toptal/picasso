@@ -2,7 +2,6 @@ import actionTypes from './actionTypes'
 import { ToolbarReducerType } from './types'
 
 const reducer: ToolbarReducerType = (state, action) => {
-  console.log({ toolbarAction: action })
   switch (action.type) {
     case actionTypes.bold:
       return {
