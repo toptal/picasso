@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { Container } from '@toptal/picasso'
 
@@ -13,7 +13,7 @@ import useHasFocus from './hooks/useHasFocus'
 import useOnSelectionChange from './hooks/useOnSelectionChange'
 import { ToolbarHandlers } from './store/toolbar/types'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
   autofocus?: boolean
   /**
