@@ -7,11 +7,13 @@ import { Container } from '@toptal/picasso'
 import QuillEditor from '../QuillEditor'
 import Toolbar from '../TextEditorToolbar'
 import styles from './styles'
-import useTextEditorState from './hooks/useTextEditorState'
-import useOnSelectionChange from './hooks/useOnSelectionChange'
-import useOnTextFormat from './hooks/useOnTextFormat'
-import useOnFocus from './hooks/useOnFocus'
-import useToolbarHandlers from './hooks/useToolbarHandlers'
+import {
+  useTextEditorState,
+  useOnSelectionChange,
+  useOnTextFormat,
+  useOnFocus,
+  useToolbarHandlers
+} from './hooks'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -72,7 +74,6 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
 
   const { handleSelectionChange } = useOnSelectionChange({ dispatch })
   const { handleTextFormat } = useOnTextFormat({ dispatch })
-
   const {
     handleBold,
     handleItalic,
@@ -80,7 +81,6 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     handleOrdered,
     handleUnordered
   } = useToolbarHandlers({ handleTextFormat, format: state.toolbar.format })
-
   const { handleFocus, handleBlur } = useOnFocus({
     editorRef,
     toolbarRef,
@@ -118,15 +118,15 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
       />
       <QuillEditor
         ref={editorRef}
-        isFocused={isEditorFocused}
         disabled={disabled}
-        id={id}
-        placeholder={placeholder}
-        handleTextFormat={handleTextFormat}
-        handleSelectionChange={handleSelectionChange}
-        handleTextChange={onChange}
-        format={state.toolbar.format}
         data-testid={testIds?.editor}
+        id={id}
+        isFocused={isEditorFocused}
+        format={state.toolbar.format}
+        placeholder={placeholder}
+        onTextFormat={handleTextFormat}
+        onSelectionChange={handleSelectionChange}
+        onTextChange={onChange}
       />
     </Container>
   )

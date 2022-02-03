@@ -7,31 +7,30 @@ import getSelectionChangeHandler from '../../utils/getSelectionChangeHandler'
 
 type Props = {
   quill?: Quill
-  handleFocusChange?: (isFocused: boolean) => void
-  handleTextChange?: (html: string) => void
-  handleSelectionChange?: (format: ToolbarStateType['format']) => void
+  onTextChange?: (html: string) => void
+  onSelectionChange?: (format: ToolbarStateType['format']) => void
 }
 
 const useSubscribeToQuillEvents = ({
   quill,
-  handleTextChange,
-  handleSelectionChange
+  onTextChange,
+  onSelectionChange
 }: Props) => {
   const textChangeHandler: TextChangeHandler = useMemo(() => {
-    if (!quill || !handleTextChange) {
+    if (!quill || !onTextChange) {
       return () => {}
     }
 
-    return getTextChangeHandler(quill, handleTextChange)
-  }, [quill, handleTextChange])
+    return getTextChangeHandler(quill, onTextChange)
+  }, [quill, onTextChange])
 
   const selectionChangeHandler: SelectionChangeHandler = useMemo(() => {
-    if (!quill || !handleSelectionChange) {
+    if (!quill || !onSelectionChange) {
       return () => {}
     }
 
-    return getSelectionChangeHandler(quill, handleSelectionChange)
-  }, [quill, handleSelectionChange])
+    return getSelectionChangeHandler(quill, onSelectionChange)
+  }, [quill, onSelectionChange])
 
   useEffect(() => {
     if (!quill) {

@@ -5,11 +5,13 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import useQuillInstance from './hooks/useQuillInstance'
 import styles from './styles'
-import useFocus from './hooks/useFocus'
-import useSubscribeToQuillEvents from './hooks/useSubscribeToQuillEvents'
-import useDisabledEditor from './hooks/useDisabledEditor'
-import useKeyBindings from './hooks/useKeyBindings'
-import useFormat from './hooks/useFormat'
+import {
+  useFocus,
+  useSubscribeToQuillEvents,
+  useDisabledEditor,
+  useKeyBindings,
+  useFormat
+} from './hooks'
 import {
   TextFormatHandler,
   ChangeHandler,
@@ -19,13 +21,13 @@ import {
 
 export type Props = BaseProps & {
   disabled?: boolean
-  handleSelectionChange: SelectionHandler
-  handleTextFormat: TextFormatHandler
-  handleTextChange: ChangeHandler
   id: string
+  isFocused: boolean
   format: FormatType
   placeholder?: string
-  isFocused: boolean
+  onSelectionChange: SelectionHandler
+  onTextFormat: TextFormatHandler
+  onTextChange: ChangeHandler
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -35,14 +37,14 @@ const useStyles = makeStyles<Theme>(styles, {
 const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   {
     disabled,
-    id,
     'data-testid': dataTestId,
-    placeholder,
-    handleTextChange,
-    handleTextFormat,
-    handleSelectionChange,
+    id,
+    isFocused,
     format,
-    isFocused
+    placeholder,
+    onSelectionChange,
+    onTextFormat,
+    onTextChange
   },
   ref
 ) {
@@ -51,13 +53,13 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
 
   useSubscribeToQuillEvents({
     quill,
-    handleTextChange,
-    handleSelectionChange
+    onTextChange,
+    onSelectionChange
   })
 
   useFocus({ isFocused, quill })
   useDisabledEditor({ disabled, quill })
-  useKeyBindings({ quill, handleTextFormat })
+  useKeyBindings({ quill, onTextFormat })
   useFormat({ quill, format })
 
   return (

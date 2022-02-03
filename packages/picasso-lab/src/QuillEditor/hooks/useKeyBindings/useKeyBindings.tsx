@@ -5,10 +5,10 @@ import { TextFormatHandler } from '../../types'
 
 const useKeyBindings = ({
   quill,
-  handleTextFormat
+  onTextFormat
 }: {
   quill?: Quill
-  handleTextFormat: TextFormatHandler
+  onTextFormat: TextFormatHandler
 }) => {
   useEffect(() => {
     if (!quill) {
@@ -23,7 +23,7 @@ const useKeyBindings = ({
       function (range, context) {
         const isBold = context.format.bold
 
-        handleTextFormat('bold', !isBold)
+        onTextFormat('bold', !isBold)
       }
     )
 
@@ -35,10 +35,10 @@ const useKeyBindings = ({
       function (range, context) {
         const isItalic = context.format.italic
 
-        handleTextFormat('italic', !isItalic)
+        onTextFormat('italic', !isItalic)
       }
     )
-  }, [quill, handleTextFormat])
+  }, [quill, onTextFormat])
 }
 
 export default useKeyBindings
