@@ -6,12 +6,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
-      width: '100%',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      zIndex: zIndex.appBar
+      width: '100%'
     },
     light: {
       backgroundColor: palette.common.white,
@@ -34,6 +29,11 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       }
     },
     wrapper: {
+      zIndex: zIndex.appBar,
+      position: 'sticky',
+      top: 0,
+      left: 0,
+      right: 0,
       height: headerHeight.default,
       [screens('small', 'medium')]: {
         height: headerHeight.smallAndMedium

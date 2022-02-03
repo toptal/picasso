@@ -106,12 +106,11 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   )
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.wrapper} style={style}>
       <header
         {...rest}
         ref={ref}
         className={cx('mui-fixed', classes.root, classes[variant], className)}
-        style={style}
       >
         <div className={innerClassName}>
           <div className={classes.left}>
