@@ -1,22 +1,17 @@
 import Quill, { SelectionChangeHandler } from 'quill'
 
-import { initialState } from '../../../TextEditor/store/toolbar'
-import { ToolbarStateType } from '../../../TextEditor/store/toolbar/types'
+import { FormatType } from '../../types'
 
 type QuillFormatType = {
   bold?: true
   italic?: true
   list?: 'bullet' | 'ordered'
   header?: 3
-} | null
+}
 
 const getToolbarStateFromQuillFormat: (
   format: QuillFormatType
-) => ToolbarStateType['format'] = format => {
-  if (!format) {
-    return initialState.format
-  }
-
+) => FormatType = format => {
   return {
     bold: format.bold || false,
     italic: format.italic || false,
@@ -27,7 +22,7 @@ const getToolbarStateFromQuillFormat: (
 
 const getSelectionChangeHandler = (
   quill: Quill,
-  handleFormatChange: (format: ToolbarStateType['format']) => void
+  handleFormatChange: (format: FormatType) => void
 ) => {
   const handler: SelectionChangeHandler = (range, oldRange, source) => {
     const isSilentEvent = source === 'silent'
@@ -42,7 +37,12 @@ const getSelectionChangeHandler = (
       handleFormatChange(getToolbarStateFromQuillFormat(format))
     } else {
       // when user clicks out of text editor
-      handleFormatChange(initialState.format)
+      handleFormatChange({
+        bold: false,
+        italic: false,
+        list: false,
+        header: ''
+      })
     }
   }
 

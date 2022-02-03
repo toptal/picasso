@@ -2,13 +2,13 @@ import { useMemo, useEffect } from 'react'
 import Quill, { SelectionChangeHandler, TextChangeHandler } from 'quill'
 
 import getTextChangeHandler from '../../utils/getTextChangeHandler'
-import { ToolbarStateType } from '../../../TextEditor/store/toolbar/types'
 import getSelectionChangeHandler from '../../utils/getSelectionChangeHandler'
+import { SelectionHandler, ChangeHandler } from '../../types'
 
 type Props = {
   quill?: Quill
-  onTextChange?: (html: string) => void
-  onSelectionChange?: (format: ToolbarStateType['format']) => void
+  onTextChange: ChangeHandler
+  onSelectionChange: SelectionHandler
 }
 
 const useSubscribeToQuillEvents = ({
