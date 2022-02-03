@@ -10,23 +10,25 @@ import useSubscribeToQuillEvents from './hooks/useSubscribeToQuillEvents'
 import useDisabledEditor from './hooks/useDisabledEditor'
 import useEditorLoseFocusFix from './hooks/useEditorLoseFocusFix'
 import useKeyBindings from './hooks/useKeyBindings'
-import {
-  ToolbarHandlers,
-  ToolbarStateType
-} from '../TextEditor/store/toolbar/types'
 import useToolbarHandlers from './hooks/useToolbarHandlers'
+import {
+  TextFormatHandler,
+  FocusHandler,
+  ChangeHandler,
+  SelectionHandler,
+  InitHandler
+} from './types'
 
 export type Props = BaseProps & {
   autofocus?: boolean
-  id: string
-  placeholder?: string
-  handleFocusChange?: (isFocused: boolean) => void
-  handleTextChange: (html: string) => void
-  handleTextFormat: (formatType: 'bold' | 'italic', value: boolean) => void
-  handleListFormat: (value: 'bullet' | 'ordered' | false) => void
-  handleSelectionChange: (format: ToolbarStateType['format']) => void
   disabled?: boolean
-  onInit: (props: { toolbarHandlers: ToolbarHandlers }) => void
+  handleFocusChange?: FocusHandler
+  handleSelectionChange: SelectionHandler
+  handleTextFormat: TextFormatHandler
+  handleTextChange: ChangeHandler
+  id: string
+  onInit: InitHandler
+  placeholder?: string
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -44,7 +46,6 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     handleTextChange,
     handleTextFormat,
     handleSelectionChange,
-    handleListFormat,
     onInit
   },
   ref
@@ -71,12 +72,10 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   useKeyBindings({ quill, handleTextFormat })
   const { toolbarHandlers } = useToolbarHandlers({
     quill,
-    handleTextFormat,
-    handleListFormat
+    handleTextFormat
   })
 
   useEffect(() => {
-    console.log(toolbarHandlers)
     onInit({ toolbarHandlers })
   }, [toolbarHandlers, onInit])
 

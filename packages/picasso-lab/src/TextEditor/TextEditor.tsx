@@ -11,6 +11,7 @@ import { actions as toolbarActions } from './store/toolbar'
 import useTextEditorState from './hooks/useTextEditorState'
 import useHasFocus from './hooks/useHasFocus'
 import useOnSelectionChange from './hooks/useOnSelectionChange'
+import useOnTextFormat from './hooks/useOnTextFormat'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -69,24 +70,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   const { handleFocusChange } = useHasFocus({ state, dispatch })
   const { handleSelectionChange } = useOnSelectionChange({ dispatch })
 
-  const handleTextFormat = useCallback(
-    (formatType: 'bold' | 'italic', value: boolean) => {
-      const actionMap = {
-        bold: toolbarActions.setBold,
-        italic: toolbarActions.setItalic
-      }
-      const action = actionMap[formatType]
-
-      action(dispatch)(value)
-    },
-    [dispatch]
-  )
-  const handleListFormat = useCallback(
-    (value: 'bullet' | 'ordered' | false) => {
-      toolbarActions.setList(dispatch)(value)
-    },
-    [dispatch]
-  )
+  const { handleTextFormat } = useOnTextFormat({ dispatch })
 
   const handleInit = useCallback(
     ({ toolbarHandlers }) => {
@@ -121,7 +105,6 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         placeholder={placeholder}
         handleFocusChange={handleFocusChange}
         handleTextFormat={handleTextFormat}
-        handleListFormat={handleListFormat}
         handleSelectionChange={handleSelectionChange}
         handleTextChange={onChange}
         onInit={handleInit}

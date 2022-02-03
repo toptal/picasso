@@ -3,7 +3,7 @@ import Quill from 'quill'
 import React from 'react'
 import { act } from '@toptal/picasso/test-utils'
 
-import { HeaderValueType } from '../../../TextEditor/types'
+import { HeaderValue } from '../../types'
 import useToolbarHandlers from './useToolbarHandlers'
 
 const mockQuill = ({
@@ -15,9 +15,9 @@ const mockQuill = ({
 
 const mockButtonEvent = {} as React.MouseEvent<HTMLButtonElement>
 
-const getMockedHeaderEventWithValue = (value?: HeaderValueType) =>
+const getMockedHeaderEventWithValue = (value?: HeaderValue) =>
   ({ target: { value } } as React.ChangeEvent<{
-    value: HeaderValueType
+    value: HeaderValue
   }>)
 
 describe('useToolbarHandlers', () => {
@@ -27,9 +27,9 @@ describe('useToolbarHandlers', () => {
   it('handles header format', async () => {
     const quill = mockQuill
     const handleTextFormat = jest.fn()
-    const handleListFormat = jest.fn()
+
     const { result } = renderHook(() =>
-      useToolbarHandlers({ quill, handleTextFormat, handleListFormat })
+      useToolbarHandlers({ quill, handleTextFormat })
     )
 
     const { handleHeader } = result.current.toolbarHandlers
@@ -57,9 +57,9 @@ describe('useToolbarHandlers', () => {
   it('handles bold', () => {
     const quill = mockQuill
     const handleTextFormat = jest.fn()
-    const handleListFormat = jest.fn()
+
     const { result } = renderHook(() =>
-      useToolbarHandlers({ quill, handleTextFormat, handleListFormat })
+      useToolbarHandlers({ quill, handleTextFormat })
     )
 
     const { handleBold } = result.current.toolbarHandlers
@@ -75,9 +75,9 @@ describe('useToolbarHandlers', () => {
   it('handles italic', () => {
     const quill = mockQuill
     const handleTextFormat = jest.fn()
-    const handleListFormat = jest.fn()
+
     const { result } = renderHook(() =>
-      useToolbarHandlers({ quill, handleTextFormat, handleListFormat })
+      useToolbarHandlers({ quill, handleTextFormat })
     )
 
     const { handleItalic } = result.current.toolbarHandlers
@@ -94,9 +94,9 @@ describe('useToolbarHandlers', () => {
     it('handles ordered', () => {
       const quill = mockQuill
       const handleTextFormat = jest.fn()
-      const handleListFormat = jest.fn()
+
       const { result } = renderHook(() =>
-        useToolbarHandlers({ quill, handleTextFormat, handleListFormat })
+        useToolbarHandlers({ quill, handleTextFormat })
       )
 
       const { handleOrdered } = result.current.toolbarHandlers
@@ -107,14 +107,13 @@ describe('useToolbarHandlers', () => {
         }
       })
       expect(quill.format).toHaveBeenCalledWith('list', 'ordered')
-      expect(handleListFormat).toHaveBeenCalledWith('ordered')
     })
     it('handles unordered', () => {
       const quill = mockQuill
       const handleTextFormat = jest.fn()
-      const handleListFormat = jest.fn()
+
       const { result } = renderHook(() =>
-        useToolbarHandlers({ quill, handleTextFormat, handleListFormat })
+        useToolbarHandlers({ quill, handleTextFormat })
       )
 
       const { handleUnordered } = result.current.toolbarHandlers
@@ -125,7 +124,6 @@ describe('useToolbarHandlers', () => {
         }
       })
       expect(quill.format).toHaveBeenCalledWith('list', 'bullet')
-      expect(handleListFormat).toHaveBeenCalledWith('bullet')
     })
   })
 })

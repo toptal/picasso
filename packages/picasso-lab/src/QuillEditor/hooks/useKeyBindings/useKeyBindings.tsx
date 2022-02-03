@@ -1,12 +1,14 @@
 import Quill from 'quill'
 import { useEffect } from 'react'
 
+import { TextFormatHandler } from '../../types'
+
 const useKeyBindings = ({
   quill,
   handleTextFormat
 }: {
   quill?: Quill
-  handleTextFormat: (formatType: 'bold' | 'italic', value: boolean) => void
+  handleTextFormat: TextFormatHandler
 }) => {
   useEffect(() => {
     if (!quill) {

@@ -1,25 +1,8 @@
-import {
-  HeaderValueType,
-  ButtonHandlerType,
-  SelectOnChangeHandler
-} from '../../types'
+import { FormatType, ToolbarHandlers } from './../../../QuillEditor/types'
 import actionTypes from './actionTypes'
 
-export type ToolbarHandlers = {
-  handleHeader?: SelectOnChangeHandler
-  handleBold?: ButtonHandlerType
-  handleItalic?: ButtonHandlerType
-  handleOrdered?: ButtonHandlerType
-  handleUnordered?: ButtonHandlerType
-}
-
 export type ToolbarStateType = {
-  format: {
-    header: HeaderValueType
-    bold: boolean
-    italic: boolean
-    list: 'bullet' | 'ordered' | false
-  }
+  format: FormatType
   handlers: ToolbarHandlers
   disabled: boolean
 }

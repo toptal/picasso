@@ -1,18 +1,16 @@
 import Quill from 'quill'
 import { useCallback, useMemo } from 'react'
 
-import { ToolbarHandlers } from '../../../TextEditor/store/toolbar/types'
+import { TextFormatHandler, ToolbarHandlers } from '../../types'
 
 type Props = {
   quill?: Quill
-  handleTextFormat: (formatType: 'bold' | 'italic', value: boolean) => void
-  handleListFormat: (value: 'bullet' | 'ordered' | false) => void
+  handleTextFormat: TextFormatHandler
 }
 
 const useToolbarHandlers = ({
   quill,
-  handleTextFormat,
-  handleListFormat
+  handleTextFormat
 }: Props): { toolbarHandlers: ToolbarHandlers } => {
   const handleHeader: ToolbarHandlers['handleHeader'] = useCallback(
     event => {
@@ -64,8 +62,8 @@ const useToolbarHandlers = ({
     const value = currentList === 'ordered' ? false : 'ordered'
 
     quill.format('list', value)
-    handleListFormat(value)
-  }, [quill, handleListFormat])
+    handleTextFormat('list', value)
+  }, [quill, handleTextFormat])
 
   const handleUnordered: ToolbarHandlers['handleUnordered'] = useCallback(() => {
     if (!quill) {
@@ -76,8 +74,8 @@ const useToolbarHandlers = ({
     const value = currentList === 'bullet' ? false : 'bullet'
 
     quill.format('list', value)
-    handleListFormat(value)
-  }, [quill, handleListFormat])
+    handleTextFormat('list', value)
+  }, [quill, handleTextFormat])
 
   const toolbarHandlers = useMemo(
     () => ({
