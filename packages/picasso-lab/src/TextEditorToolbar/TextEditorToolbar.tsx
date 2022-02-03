@@ -14,14 +14,14 @@ import { ButtonHandlerType, SelectOnChangeHandler } from './types'
 import { FormatType } from '../QuillEditor'
 
 type Props = {
+  disabled: boolean
   id: string
   format: FormatType
-  handleHeader: SelectOnChangeHandler
-  handleBold: ButtonHandlerType
-  handleItalic: ButtonHandlerType
-  handleOrdered: ButtonHandlerType
-  handleUnordered: ButtonHandlerType
-  disabled?: boolean
+  onBoldClick: ButtonHandlerType
+  onItalicClick: ButtonHandlerType
+  onHeaderChange: SelectOnChangeHandler
+  onUnorderedClick: ButtonHandlerType
+  onOrderedClick: ButtonHandlerType
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -31,14 +31,14 @@ const useStyles = makeStyles<Theme>(styles, {
 export const TextEditorToolbar = forwardRef<HTMLDivElement, Props>(
   function TextEditorToolbar(props: Props, ref) {
     const {
+      disabled,
       id,
       format,
-      handleHeader,
-      handleBold,
-      handleItalic,
-      handleOrdered,
-      handleUnordered,
-      disabled
+      onBoldClick,
+      onItalicClick,
+      onHeaderChange,
+      onUnorderedClick,
+      onOrderedClick
     } = props
 
     const classes = useStyles(props)
@@ -47,7 +47,7 @@ export const TextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       <Container id={`${id}toolbar`} ref={ref} className={classes.toolbar}>
         <Container className={classes.group}>
           <Select
-            onChange={handleHeader}
+            onChange={onHeaderChange}
             value={format.header}
             options={[
               { value: '3', text: 'heading' },
@@ -62,13 +62,13 @@ export const TextEditorToolbar = forwardRef<HTMLDivElement, Props>(
         <Container className={classes.group}>
           <TextEditorButton
             icon={<Bold16 />}
-            onClick={handleBold}
+            onClick={onBoldClick}
             active={format.bold}
             disabled={disabled}
           />
           <TextEditorButton
             icon={<Italic16 />}
-            onClick={handleItalic}
+            onClick={onItalicClick}
             active={format.italic}
             disabled={disabled}
           />
@@ -76,13 +76,13 @@ export const TextEditorToolbar = forwardRef<HTMLDivElement, Props>(
         <Container className={classes.group}>
           <TextEditorButton
             icon={<ListUnordered16 />}
-            onClick={handleUnordered}
+            onClick={onUnorderedClick}
             active={format.list === 'bullet'}
             disabled={disabled}
           />
           <TextEditorButton
             icon={<ListOrdered16 />}
-            onClick={handleOrdered}
+            onClick={onOrderedClick}
             active={format.list === 'ordered'}
             disabled={disabled}
           />
@@ -91,6 +91,21 @@ export const TextEditorToolbar = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
+
+TextEditorToolbar.defaultProps = {
+  disabled: false,
+  format: {
+    bold: false,
+    italic: false,
+    list: false,
+    header: ''
+  },
+  onBoldClick: () => {},
+  onItalicClick: () => {},
+  onHeaderChange: () => {},
+  onUnorderedClick: () => {},
+  onOrderedClick: () => {}
+}
 
 TextEditorToolbar.displayName = 'TextEditorToolbar'
 

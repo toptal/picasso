@@ -107,14 +107,14 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     >
       <Toolbar
         ref={toolbarRef}
+        disabled={disabled || state.toolbar.disabled}
         id={id}
         format={state.toolbar.format}
-        handleBold={handleBold}
-        handleItalic={handleItalic}
-        handleHeader={handleHeader}
-        handleOrdered={handleOrdered}
-        handleUnordered={handleUnordered}
-        disabled={disabled || state.toolbar.disabled}
+        onBoldClick={handleBold}
+        onItalicClick={handleItalic}
+        onUnorderedClick={handleUnordered}
+        onOrderedClick={handleOrdered}
+        onHeaderChange={handleHeader}
       />
       <QuillEditor
         ref={editorRef}

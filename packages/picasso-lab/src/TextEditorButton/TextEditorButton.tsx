@@ -6,10 +6,10 @@ import { makeStyles, Theme } from '@material-ui/core'
 import styles from './styles'
 
 type Props = BaseProps & {
+  active: boolean
+  disabled: boolean
   icon: ReactElement
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
-  active?: boolean
-  disabled?: boolean
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 // Using { index: 10 } to inject CSS generated classes after the button's classes
@@ -22,7 +22,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 const TextEditorButton = (props: Props) => {
   const { icon, onClick, active, className, style, disabled, ...rest } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <Button.Circular
@@ -41,6 +41,12 @@ const TextEditorButton = (props: Props) => {
       {...rest}
     />
   )
+}
+
+TextEditorButton.defaultProps = {
+  active: false,
+  disabled: false,
+  onClick: () => {}
 }
 
 TextEditorButton.displayName = 'TextEditorButton'
