@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { Container, Select } from '@toptal/picasso'
 import {
   Bold16,
@@ -33,58 +33,60 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'TextEditorToolbar'
 })
 
-export const TextEditorToolbar = (props: Props) => {
-  const { id, formatState, handlers, disabled } = props
+export const TextEditorToolbar = forwardRef<HTMLDivElement, Props>(
+  function TextEditorToolbar(props: Props, ref) {
+    const { id, formatState, handlers, disabled } = props
 
-  const classes = useStyles(props)
+    const classes = useStyles(props)
 
-  return (
-    <Container id={`${id}toolbar`} className={classes.toolbar}>
-      <Container className={classes.group}>
-        <Select
-          onChange={handlers.handleHeader}
-          value={formatState.header}
-          options={[
-            { value: '3', text: 'heading' },
-            { value: '', text: 'normal' }
-          ]}
-          size='small'
-          menuWidth='123px'
-          className={classes.select}
-          disabled={disabled}
-        />
+    return (
+      <Container id={`${id}toolbar`} ref={ref} className={classes.toolbar}>
+        <Container className={classes.group}>
+          <Select
+            onChange={handlers.handleHeader}
+            value={formatState.header}
+            options={[
+              { value: '3', text: 'heading' },
+              { value: '', text: 'normal' }
+            ]}
+            size='small'
+            menuWidth='123px'
+            className={classes.select}
+            disabled={disabled}
+          />
+        </Container>
+        <Container className={classes.group}>
+          <TextEditorButton
+            icon={<Bold16 />}
+            onClick={handlers.handleBold}
+            active={formatState.bold}
+            disabled={disabled}
+          />
+          <TextEditorButton
+            icon={<Italic16 />}
+            onClick={handlers.handleItalic}
+            active={formatState.italic}
+            disabled={disabled}
+          />
+        </Container>
+        <Container className={classes.group}>
+          <TextEditorButton
+            icon={<ListUnordered16 />}
+            onClick={handlers.handleUnordered}
+            active={formatState.list === 'bullet'}
+            disabled={disabled}
+          />
+          <TextEditorButton
+            icon={<ListOrdered16 />}
+            onClick={handlers.handleOrdered}
+            active={formatState.list === 'ordered'}
+            disabled={disabled}
+          />
+        </Container>
       </Container>
-      <Container className={classes.group}>
-        <TextEditorButton
-          icon={<Bold16 />}
-          onClick={handlers.handleBold}
-          active={formatState.bold}
-          disabled={disabled}
-        />
-        <TextEditorButton
-          icon={<Italic16 />}
-          onClick={handlers.handleItalic}
-          active={formatState.italic}
-          disabled={disabled}
-        />
-      </Container>
-      <Container className={classes.group}>
-        <TextEditorButton
-          icon={<ListUnordered16 />}
-          onClick={handlers.handleUnordered}
-          active={formatState.list === 'bullet'}
-          disabled={disabled}
-        />
-        <TextEditorButton
-          icon={<ListOrdered16 />}
-          onClick={handlers.handleOrdered}
-          active={formatState.list === 'ordered'}
-          disabled={disabled}
-        />
-      </Container>
-    </Container>
-  )
-}
+    )
+  }
+)
 
 TextEditorToolbar.displayName = 'TextEditorToolbar'
 

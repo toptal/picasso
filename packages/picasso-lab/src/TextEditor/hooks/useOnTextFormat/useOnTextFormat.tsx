@@ -19,6 +19,7 @@ const useOnTextFormat = ({ dispatch }: Props) => {
       }
       const action = actionMap[formatType]
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       action(dispatch)(value)
     },

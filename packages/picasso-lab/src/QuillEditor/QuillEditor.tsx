@@ -5,10 +5,9 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import useQuillInstance from './hooks/useQuillInstance'
 import styles from './styles'
-import useAutofocus from './hooks/useAutofocus'
+import useFocus from './hooks/useFocus'
 import useSubscribeToQuillEvents from './hooks/useSubscribeToQuillEvents'
 import useDisabledEditor from './hooks/useDisabledEditor'
-import useEditorLoseFocusFix from './hooks/useEditorLoseFocusFix'
 import useKeyBindings from './hooks/useKeyBindings'
 import useToolbarHandlers from './hooks/useToolbarHandlers'
 import {
@@ -20,7 +19,6 @@ import {
 } from './types'
 
 export type Props = BaseProps & {
-  autofocus?: boolean
   disabled?: boolean
   handleFocusChange?: FocusHandler
   handleSelectionChange: SelectionHandler
@@ -29,6 +27,7 @@ export type Props = BaseProps & {
   id: string
   onInit: InitHandler
   placeholder?: string
+  isFocused: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -37,16 +36,15 @@ const useStyles = makeStyles<Theme>(styles, {
 
 const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   {
-    autofocus,
     disabled,
     id,
     'data-testid': dataTestId,
     placeholder,
-    handleFocusChange,
     handleTextChange,
     handleTextFormat,
     handleSelectionChange,
-    onInit
+    onInit,
+    isFocused
   },
   ref
 ) {
@@ -55,20 +53,12 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
 
   useSubscribeToQuillEvents({
     quill,
-    handleFocusChange,
     handleTextChange,
     handleSelectionChange
   })
 
-  useAutofocus({ autofocus, quill })
+  useFocus({ isFocused, quill })
   useDisabledEditor({ disabled, quill })
-
-  // common issue of custom toolbar
-  // https://github.com/quilljs/quill/issues/1290
-  // when clicking anywhere quill loses focus, we need
-  // to prevent it when clicking inside toolbar
-  useEditorLoseFocusFix({ quill, id })
-
   useKeyBindings({ quill, handleTextFormat })
   const { toolbarHandlers } = useToolbarHandlers({
     quill,

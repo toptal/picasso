@@ -1,7 +1,6 @@
 import { useMemo, useEffect } from 'react'
 import Quill, { SelectionChangeHandler, TextChangeHandler } from 'quill'
 
-import getFocusChangeHandler from '../../utils/getFocusChangeHandler'
 import getTextChangeHandler from '../../utils/getTextChangeHandler'
 import { ToolbarStateType } from '../../../TextEditor/store/toolbar/types'
 import getSelectionChangeHandler from '../../utils/getSelectionChangeHandler'
@@ -15,18 +14,9 @@ type Props = {
 
 const useSubscribeToQuillEvents = ({
   quill,
-  handleFocusChange,
   handleTextChange,
   handleSelectionChange
 }: Props) => {
-  const focusChangeHandler = useMemo(() => {
-    if (!handleFocusChange) {
-      return () => {}
-    }
-
-    return getFocusChangeHandler(handleFocusChange)
-  }, [handleFocusChange])
-
   const textChangeHandler: TextChangeHandler = useMemo(() => {
     if (!quill || !handleTextChange) {
       return () => {}
@@ -48,16 +38,14 @@ const useSubscribeToQuillEvents = ({
       return
     }
 
-    quill.on('selection-change', focusChangeHandler)
     quill.on('selection-change', selectionChangeHandler)
     quill.on('text-change', textChangeHandler)
 
     return () => {
-      quill.off('selection-change', focusChangeHandler)
       quill.off('selection-change', selectionChangeHandler)
       quill.off('text-change', textChangeHandler)
     }
-  }, [quill, focusChangeHandler, textChangeHandler, selectionChangeHandler])
+  }, [quill, textChangeHandler, selectionChangeHandler])
 }
 
 export default useSubscribeToQuillEvents

@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback } from 'react'
+import React, { forwardRef, useCallback, useRef, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -9,9 +9,9 @@ import Toolbar from '../TextEditorToolbar'
 import styles from './styles'
 import { actions as toolbarActions } from './store/toolbar'
 import useTextEditorState from './hooks/useTextEditorState'
-import useHasFocus from './hooks/useHasFocus'
 import useOnSelectionChange from './hooks/useOnSelectionChange'
 import useOnTextFormat from './hooks/useOnTextFormat'
+import useOnFocus from './hooks/useOnFocus'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -65,11 +65,12 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   ref
 ) {
   const classes = useStyles()
+  const toolbarRef = useRef<HTMLDivElement>(null)
+  const editorRef = useRef<HTMLDivElement>(null)
   const { dispatch, state } = useTextEditorState()
+  const [isEditorFocused, setIsEditorFocused] = useState(autofocus!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const { handleFocusChange } = useHasFocus({ state, dispatch })
   const { handleSelectionChange } = useOnSelectionChange({ dispatch })
-
   const { handleTextFormat } = useOnTextFormat({ dispatch })
 
   const handleInit = useCallback(
@@ -78,6 +79,13 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     },
     [dispatch]
   )
+  const { handleFocus, handleBlur } = useOnFocus({
+    editorRef,
+    toolbarRef,
+    onFocus: useCallback(() => setIsEditorFocused(true), [setIsEditorFocused]),
+    onBlur: useCallback(() => setIsEditorFocused(false), [setIsEditorFocused]),
+    dispatch
+  })
 
   return (
     <Container
@@ -88,22 +96,26 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         },
         className
       )}
+      tabIndex={-1}
       style={style}
       ref={ref}
       data-testid={testIds?.wrapper || dataTestId}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
     >
       <Toolbar
+        ref={toolbarRef}
         id={id}
         formatState={state.toolbar.format}
         handlers={state.toolbar.handlers}
         disabled={disabled || state.toolbar.disabled}
       />
       <QuillEditor
-        autofocus={autofocus}
+        ref={editorRef}
+        isFocused={isEditorFocused}
         disabled={disabled}
         id={id}
         placeholder={placeholder}
-        handleFocusChange={handleFocusChange}
         handleTextFormat={handleTextFormat}
         handleSelectionChange={handleSelectionChange}
         handleTextChange={onChange}

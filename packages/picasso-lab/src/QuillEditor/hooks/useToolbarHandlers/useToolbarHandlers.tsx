@@ -17,6 +17,8 @@ const useToolbarHandlers = ({
       if (!quill) {
         return
       }
+
+      console.log('handleHeader', event)
       const selectValue = event.target.value
 
       // when we want to unformat we should pass false

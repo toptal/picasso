@@ -1,30 +1,30 @@
 import Quill from 'quill'
 import { renderHook } from '@testing-library/react-hooks'
 
-import useAutofocus from './useAutofocus'
+import useFocus from './useFocus'
 
-describe('useAutofocus', () => {
-  describe('when autofocus is off', () => {
+describe('useFocus', () => {
+  describe('when isFocused is off', () => {
     it('does not focus quill', () => {
-      const autofocus = false
+      const isFocused = false
       const quill = ({
         focus: jest.fn()
       } as unknown) as Quill
 
-      renderHook(() => useAutofocus({ quill, autofocus }))
+      renderHook(() => useFocus({ quill, isFocused }))
 
       expect(quill.focus).not.toHaveBeenCalled()
     })
   })
 
-  describe('when autofocus is on', () => {
+  describe('when isFocused is on', () => {
     it('does focus editor', () => {
-      const autofocus = true
+      const isFocused = true
       const quill = ({
         focus: jest.fn()
       } as unknown) as Quill
 
-      const { rerender } = renderHook(() => useAutofocus({ quill, autofocus }))
+      const { rerender } = renderHook(() => useFocus({ quill, isFocused }))
 
       rerender()
 
