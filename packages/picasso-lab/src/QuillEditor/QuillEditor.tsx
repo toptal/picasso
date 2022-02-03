@@ -20,7 +20,7 @@ import {
 } from './types'
 
 export type Props = BaseProps & {
-  disabled?: boolean
+  disabled: boolean
   id: string
   isFocused: boolean
   format: FormatType
@@ -75,5 +75,21 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     />
   )
 })
+
+QuillEditor.defaultProps = {
+  disabled: false,
+  isFocused: false,
+  format: {
+    bold: false,
+    italic: false,
+    list: false,
+    header: ''
+  },
+  onSelectionChange: () => {},
+  onTextFormat: () => {},
+  onTextChange: () => {}
+}
+
+QuillEditor.displayName = 'QuillEditor'
 
 export default QuillEditor

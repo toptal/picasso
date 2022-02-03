@@ -4,7 +4,7 @@ import { renderHook } from '@testing-library/react-hooks'
 import useDisabledEditor from './useDisabledEditor'
 
 describe('useDisabledEditor', () => {
-  describe('when disabled is off', () => {
+  describe('when disabled is false', () => {
     it('does not disable the editor', () => {
       const disabled = false
       const quill = ({
@@ -13,29 +13,20 @@ describe('useDisabledEditor', () => {
 
       renderHook(() => useDisabledEditor({ disabled, quill }))
 
-      expect(quill.enable).not.toHaveBeenCalled()
+      expect(quill.enable).toHaveBeenCalledWith(true)
     })
   })
 
-  describe('when disabled is on', () => {
-    it('disables the editor', () => {
+  describe('when disabled is true', () => {
+    it('does disable the editor', () => {
+      const disabled = true
       const quill = ({
         enable: jest.fn()
       } as unknown) as Quill
 
-      const { rerender } = renderHook(
-        ({ disabled }) => useDisabledEditor({ disabled, quill }),
-        {
-          initialProps: {
-            disabled: true
-          }
-        }
-      )
+      renderHook(() => useDisabledEditor({ disabled, quill }))
 
       expect(quill.enable).toHaveBeenCalledWith(false)
-      rerender({ disabled: false })
-      expect(quill.enable).toHaveBeenCalledWith(true)
-      expect(quill.enable).toHaveBeenCalledTimes(2)
     })
   })
 })

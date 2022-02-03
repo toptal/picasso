@@ -118,7 +118,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
       />
       <QuillEditor
         ref={editorRef}
-        disabled={disabled}
+        disabled={disabled!} // eslint-disable-line @typescript-eslint/no-non-null-assertion
         data-testid={testIds?.editor}
         id={id}
         isFocused={isEditorFocused}
