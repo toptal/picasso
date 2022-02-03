@@ -7,11 +7,11 @@ import { Container } from '@toptal/picasso'
 import QuillEditor from '../QuillEditor'
 import Toolbar from '../TextEditorToolbar'
 import styles from './styles'
-import { actions as toolbarActions } from './store/toolbar'
 import useTextEditorState from './hooks/useTextEditorState'
 import useOnSelectionChange from './hooks/useOnSelectionChange'
 import useOnTextFormat from './hooks/useOnTextFormat'
 import useOnFocus from './hooks/useOnFocus'
+import useToolbarHandlers from './hooks/useToolbarHandlers'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -73,12 +73,14 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
   const { handleSelectionChange } = useOnSelectionChange({ dispatch })
   const { handleTextFormat } = useOnTextFormat({ dispatch })
 
-  const handleInit = useCallback(
-    ({ toolbarHandlers }) => {
-      toolbarActions.setHandlers(dispatch)(toolbarHandlers)
-    },
-    [dispatch]
-  )
+  const {
+    handleBold,
+    handleItalic,
+    handleHeader,
+    handleOrdered,
+    handleUnordered
+  } = useToolbarHandlers({ handleTextFormat, format: state.toolbar.format })
+
   const { handleFocus, handleBlur } = useOnFocus({
     editorRef,
     toolbarRef,
@@ -106,8 +108,12 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
       <Toolbar
         ref={toolbarRef}
         id={id}
-        formatState={state.toolbar.format}
-        handlers={state.toolbar.handlers}
+        format={state.toolbar.format}
+        handleBold={handleBold}
+        handleItalic={handleItalic}
+        handleHeader={handleHeader}
+        handleOrdered={handleOrdered}
+        handleUnordered={handleUnordered}
         disabled={disabled || state.toolbar.disabled}
       />
       <QuillEditor
@@ -119,7 +125,7 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         handleTextFormat={handleTextFormat}
         handleSelectionChange={handleSelectionChange}
         handleTextChange={onChange}
-        onInit={handleInit}
+        format={state.toolbar.format}
         data-testid={testIds?.editor}
       />
     </Container>

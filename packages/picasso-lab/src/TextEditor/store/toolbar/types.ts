@@ -1,9 +1,8 @@
-import { FormatType, ToolbarHandlers } from './../../../QuillEditor/types'
+import { FormatType } from './../../../QuillEditor/types'
 import actionTypes from './actionTypes'
 
 export type ToolbarStateType = {
   format: FormatType
-  handlers: ToolbarHandlers
   disabled: boolean
 }
 
@@ -27,11 +26,6 @@ export type SetHeaderActionType = {
   payload: ToolbarStateType['format']['header']
 }
 
-export type SetHandlersActionType = {
-  type: typeof actionTypes.handlers
-  payload: ToolbarHandlers
-}
-
 export type SetDisabled = {
   type: typeof actionTypes.disabled
   payload: boolean
@@ -42,7 +36,6 @@ export type ToolbarActionsType =
   | SetItalicActionType
   | SetListActionType
   | SetHeaderActionType
-  | SetHandlersActionType
   | SetDisabled
 
 export type ToolbarReducerType = (

@@ -3,7 +3,6 @@ const actionTypes = {
   header: 'TOOLBAR/SET_HEADER',
   italic: 'TOOLBAR/SET_ITALIC',
   list: 'TOOLBAR/SET_LIST',
-  handlers: 'TOOLBAR/SET_HANDLERS',
   disabled: 'TOOLBAR/SET_DISABLED'
 } as const
 

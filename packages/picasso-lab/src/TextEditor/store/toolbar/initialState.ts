@@ -7,13 +7,6 @@ const initialState: ToolbarStateType = {
     italic: false,
     list: false
   },
-  handlers: {
-    handleBold: undefined,
-    handleItalic: undefined,
-    handleHeader: undefined,
-    handleOrdered: undefined,
-    handleUnordered: undefined
-  },
   disabled: true
 }
 

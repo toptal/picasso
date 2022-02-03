@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect } from 'react'
+import React, { forwardRef } from 'react'
 import { Typography } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -9,23 +9,21 @@ import useFocus from './hooks/useFocus'
 import useSubscribeToQuillEvents from './hooks/useSubscribeToQuillEvents'
 import useDisabledEditor from './hooks/useDisabledEditor'
 import useKeyBindings from './hooks/useKeyBindings'
-import useToolbarHandlers from './hooks/useToolbarHandlers'
+import useFormat from './hooks/useFormat'
 import {
   TextFormatHandler,
-  FocusHandler,
   ChangeHandler,
   SelectionHandler,
-  InitHandler
+  FormatType
 } from './types'
 
 export type Props = BaseProps & {
   disabled?: boolean
-  handleFocusChange?: FocusHandler
   handleSelectionChange: SelectionHandler
   handleTextFormat: TextFormatHandler
   handleTextChange: ChangeHandler
   id: string
-  onInit: InitHandler
+  format: FormatType
   placeholder?: string
   isFocused: boolean
 }
@@ -43,7 +41,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     handleTextChange,
     handleTextFormat,
     handleSelectionChange,
-    onInit,
+    format,
     isFocused
   },
   ref
@@ -60,14 +58,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   useFocus({ isFocused, quill })
   useDisabledEditor({ disabled, quill })
   useKeyBindings({ quill, handleTextFormat })
-  const { toolbarHandlers } = useToolbarHandlers({
-    quill,
-    handleTextFormat
-  })
-
-  useEffect(() => {
-    onInit({ toolbarHandlers })
-  }, [toolbarHandlers, onInit])
+  useFormat({ quill, format })
 
   return (
     <Typography

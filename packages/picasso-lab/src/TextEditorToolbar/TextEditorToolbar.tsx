@@ -10,22 +10,17 @@ import { makeStyles, Theme } from '@material-ui/core'
 
 import styles from './styles'
 import TextEditorButton from '../TextEditorButton'
+import { ButtonHandlerType, SelectOnChangeHandler } from './types'
+import { FormatType } from '../QuillEditor'
 
 type Props = {
   id: string
-  formatState: {
-    header: '3' | ''
-    bold: boolean
-    italic: boolean
-    list: false | 'bullet' | 'ordered'
-  }
-  handlers: {
-    handleHeader?: (event: React.ChangeEvent<{ value: '3' | '' }>) => void
-    handleBold?: (e: React.MouseEvent<HTMLButtonElement>) => void
-    handleItalic?: (e: React.MouseEvent<HTMLButtonElement>) => void
-    handleUnordered?: (e: React.MouseEvent<HTMLButtonElement>) => void
-    handleOrdered?: (e: React.MouseEvent<HTMLButtonElement>) => void
-  }
+  format: FormatType
+  handleHeader: SelectOnChangeHandler
+  handleBold: ButtonHandlerType
+  handleItalic: ButtonHandlerType
+  handleOrdered: ButtonHandlerType
+  handleUnordered: ButtonHandlerType
   disabled?: boolean
 }
 
@@ -35,7 +30,16 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const TextEditorToolbar = forwardRef<HTMLDivElement, Props>(
   function TextEditorToolbar(props: Props, ref) {
-    const { id, formatState, handlers, disabled } = props
+    const {
+      id,
+      format,
+      handleHeader,
+      handleBold,
+      handleItalic,
+      handleOrdered,
+      handleUnordered,
+      disabled
+    } = props
 
     const classes = useStyles(props)
 
@@ -43,8 +47,8 @@ export const TextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       <Container id={`${id}toolbar`} ref={ref} className={classes.toolbar}>
         <Container className={classes.group}>
           <Select
-            onChange={handlers.handleHeader}
-            value={formatState.header}
+            onChange={handleHeader}
+            value={format.header}
             options={[
               { value: '3', text: 'heading' },
               { value: '', text: 'normal' }
@@ -58,28 +62,28 @@ export const TextEditorToolbar = forwardRef<HTMLDivElement, Props>(
         <Container className={classes.group}>
           <TextEditorButton
             icon={<Bold16 />}
-            onClick={handlers.handleBold}
-            active={formatState.bold}
+            onClick={handleBold}
+            active={format.bold}
             disabled={disabled}
           />
           <TextEditorButton
             icon={<Italic16 />}
-            onClick={handlers.handleItalic}
-            active={formatState.italic}
+            onClick={handleItalic}
+            active={format.italic}
             disabled={disabled}
           />
         </Container>
         <Container className={classes.group}>
           <TextEditorButton
             icon={<ListUnordered16 />}
-            onClick={handlers.handleUnordered}
-            active={formatState.list === 'bullet'}
+            onClick={handleUnordered}
+            active={format.list === 'bullet'}
             disabled={disabled}
           />
           <TextEditorButton
             icon={<ListOrdered16 />}
-            onClick={handlers.handleOrdered}
-            active={formatState.list === 'ordered'}
+            onClick={handleOrdered}
+            active={format.list === 'ordered'}
             disabled={disabled}
           />
         </Container>

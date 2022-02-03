@@ -24,11 +24,6 @@ const reducer: ToolbarReducerType = (state = initialState, action) => {
         ...state,
         format: { ...state.format, list: action.payload }
       }
-    case actionTypes.handlers:
-      return {
-        ...state,
-        handlers: action.payload
-      }
 
     case actionTypes.disabled:
       return {
