@@ -10,6 +10,13 @@ export type FormatType = {
   header: HeaderValue
 }
 
+export type QuillFormatType = {
+  bold?: true
+  italic?: true
+  list?: 'bullet' | 'ordered'
+  header?: 3
+}
+
 export type TextFormatHandler = (
   formatName: 'bold' | 'italic' | 'list' | 'header',
   value: BoldValue | ItalicValue | ListValue | HeaderValue

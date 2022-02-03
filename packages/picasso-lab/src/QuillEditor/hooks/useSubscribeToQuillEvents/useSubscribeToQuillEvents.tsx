@@ -17,7 +17,7 @@ const useSubscribeToQuillEvents = ({
   onSelectionChange
 }: Props) => {
   const textChangeHandler: TextChangeHandler = useMemo(() => {
-    if (!quill || !onTextChange) {
+    if (!quill) {
       return () => {}
     }
 
@@ -25,7 +25,7 @@ const useSubscribeToQuillEvents = ({
   }, [quill, onTextChange])
 
   const selectionChangeHandler: SelectionChangeHandler = useMemo(() => {
-    if (!quill || !onSelectionChange) {
+    if (!quill) {
       return () => {}
     }
 
