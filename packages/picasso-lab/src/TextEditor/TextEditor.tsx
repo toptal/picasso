@@ -80,7 +80,11 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     handleHeader,
     handleOrdered,
     handleUnordered
-  } = useToolbarHandlers({ handleTextFormat, format: state.toolbar.format })
+  } = useToolbarHandlers({
+    editorRef,
+    handleTextFormat,
+    format: state.toolbar.format
+  })
   const { handleFocus, handleBlur } = useOnFocus({
     editorRef,
     toolbarRef,
@@ -122,7 +126,6 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
         data-testid={testIds?.editor}
         id={id}
         isFocused={isEditorFocused}
-        format={state.toolbar.format}
         placeholder={placeholder}
         onTextFormat={handleTextFormat}
         onSelectionChange={handleSelectionChange}

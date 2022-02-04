@@ -1,5 +1,16 @@
-import { FormatType } from './../../../QuillEditor/types'
 import actionTypes from './actionTypes'
+
+export type HeaderValue = '3' | ''
+export type BoldValue = boolean
+export type ItalicValue = boolean
+export type ListValue = 'bullet' | 'ordered' | false
+
+export type FormatType = {
+  bold: BoldValue
+  italic: ItalicValue
+  list: ListValue
+  header: HeaderValue
+}
 
 export type ToolbarStateType = {
   format: FormatType

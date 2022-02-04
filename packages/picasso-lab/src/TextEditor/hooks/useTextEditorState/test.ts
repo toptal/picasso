@@ -4,7 +4,6 @@ import { act } from '@toptal/picasso/test-utils'
 import useTextEditorState from './useTextEditorState'
 import { initialState } from './../../store'
 import { actionTypes } from '../../store/toolbar'
-import { actionTypes as editorActionTypes } from '../../store/editor'
 
 describe('useTextEditorState', () => {
   it('returns initial state', () => {
@@ -12,24 +11,6 @@ describe('useTextEditorState', () => {
 
     expect(result.current.state).toEqual(initialState)
     expect(result.current.dispatch).toBeInstanceOf(Function)
-  })
-
-  describe('editor', () => {
-    it('udpates isFocused', () => {
-      const { result } = renderHook(() => useTextEditorState())
-      const dispatch = result.current.dispatch
-
-      expect(result.current.state).toEqual(initialState)
-      act(() =>
-        dispatch({ type: editorActionTypes.setIsFocused, payload: true })
-      )
-      expect(result.current.state).toEqual({
-        ...initialState,
-        editor: {
-          isFocused: true
-        }
-      })
-    })
   })
 
   describe('toolbar', () => {

@@ -11,7 +11,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import styles from './styles'
 import TextEditorButton from '../TextEditorButton'
 import { ButtonHandlerType, SelectOnChangeHandler } from './types'
-import { FormatType } from '../QuillEditor'
+import { FormatType } from '../TextEditor'
 
 type Props = {
   disabled: boolean

@@ -5,6 +5,7 @@ import useSubscribeToQuillEvents from './useSubscribeToQuillEvents'
 
 describe('useSubscribeToQuillEvents', () => {
   it('subscribes to events correctly', () => {
+    const id = 'editorId'
     const onTextChange = jest.fn
     const onSelectionChange = jest.fn
     const quill = ({
@@ -13,10 +14,10 @@ describe('useSubscribeToQuillEvents', () => {
     } as unknown) as Quill
 
     const { unmount } = renderHook(() =>
-      useSubscribeToQuillEvents({ quill, onTextChange, onSelectionChange })
+      useSubscribeToQuillEvents({ id, quill, onTextChange, onSelectionChange })
     )
 
-    expect(quill.on).toHaveBeenCalledTimes(2)
+    expect(quill.on).toHaveBeenCalledTimes(3)
     expect(quill.on).toHaveBeenCalledWith(
       'selection-change',
       expect.any(Function)
@@ -26,7 +27,7 @@ describe('useSubscribeToQuillEvents', () => {
 
     unmount()
 
-    expect(quill.off).toHaveBeenCalledTimes(2)
+    expect(quill.off).toHaveBeenCalledTimes(3)
     expect(quill.off).toHaveBeenCalledWith(
       'selection-change',
       expect.any(Function)

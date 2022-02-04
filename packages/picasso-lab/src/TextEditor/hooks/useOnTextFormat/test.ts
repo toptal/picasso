@@ -12,7 +12,12 @@ describe('useOnTextFormat', () => {
 
     const handleTextFormat = result.current.handleTextFormat
 
-    act(() => handleTextFormat('bold', true))
+    act(() =>
+      handleTextFormat({
+        formatName: 'bold',
+        value: true
+      })
+    )
 
     expect(dispatch).toHaveBeenCalledTimes(1)
     expect(dispatch).toHaveBeenCalledWith({
@@ -20,7 +25,12 @@ describe('useOnTextFormat', () => {
       payload: true
     })
 
-    act(() => handleTextFormat('bold', false))
+    act(() =>
+      handleTextFormat({
+        formatName: 'bold',
+        value: false
+      })
+    )
     expect(dispatch).toHaveBeenCalledWith({
       type: actionTypes.bold,
       payload: false
@@ -33,7 +43,12 @@ describe('useOnTextFormat', () => {
 
     const handleTextFormat = result.current.handleTextFormat
 
-    act(() => handleTextFormat('italic', true))
+    act(() =>
+      handleTextFormat({
+        formatName: 'italic',
+        value: true
+      })
+    )
 
     expect(dispatch).toHaveBeenCalledTimes(1)
     expect(dispatch).toHaveBeenCalledWith({
@@ -41,7 +56,12 @@ describe('useOnTextFormat', () => {
       payload: true
     })
 
-    act(() => handleTextFormat('italic', false))
+    act(() =>
+      handleTextFormat({
+        formatName: 'italic',
+        value: false
+      })
+    )
     expect(dispatch).toHaveBeenCalledWith({
       type: actionTypes.italic,
       payload: false
@@ -54,7 +74,12 @@ describe('useOnTextFormat', () => {
 
     const handleTextFormat = result.current.handleTextFormat
 
-    act(() => handleTextFormat('list', 'bullet'))
+    act(() =>
+      handleTextFormat({
+        formatName: 'list',
+        value: 'bullet'
+      })
+    )
 
     expect(dispatch).toHaveBeenCalledTimes(1)
     expect(dispatch).toHaveBeenCalledWith({
@@ -62,7 +87,12 @@ describe('useOnTextFormat', () => {
       payload: 'bullet'
     })
 
-    act(() => handleTextFormat('list', false))
+    act(() =>
+      handleTextFormat({
+        formatName: 'list',
+        value: undefined
+      })
+    )
     expect(dispatch).toHaveBeenCalledWith({
       type: actionTypes.list,
       payload: false
@@ -75,7 +105,12 @@ describe('useOnTextFormat', () => {
 
     const handleTextFormat = result.current.handleTextFormat
 
-    act(() => handleTextFormat('header', '3'))
+    act(() =>
+      handleTextFormat({
+        formatName: 'header',
+        value: 3
+      })
+    )
 
     expect(dispatch).toHaveBeenCalledTimes(1)
     expect(dispatch).toHaveBeenCalledWith({
@@ -83,7 +118,12 @@ describe('useOnTextFormat', () => {
       payload: '3'
     })
 
-    act(() => handleTextFormat('header', ''))
+    act(() =>
+      handleTextFormat({
+        formatName: 'header',
+        value: undefined
+      })
+    )
     expect(dispatch).toHaveBeenCalledWith({
       type: actionTypes.header,
       payload: ''

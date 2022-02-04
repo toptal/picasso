@@ -4,51 +4,57 @@ import Quill, { RangeStatic, Sources } from 'quill'
 import getSelectionChangeHandler from './getSelectionChangeHandler'
 
 const mockRange: RangeStatic = { index: 0, length: 0 }
-const defaultFormat = {
-  bold: false,
-  italic: false,
-  header: '',
-  list: false
-}
 
 describe('getSelectionChangeHandler', () => {
   it('does nothing when silent event', () => {
-    const handleFormatChange = jest.fn()
+    const onSelectionChange = jest.fn()
     const quill = ({
       getFormat: jest.fn()
     } as unknown) as Quill
 
-    const handler = getSelectionChangeHandler(quill, handleFormatChange)
+    const handler = getSelectionChangeHandler(quill, onSelectionChange)
 
     act(() => handler(mockRange, mockRange, 'silent'))
 
-    expect(handleFormatChange).not.toHaveBeenCalled()
+    expect(onSelectionChange).not.toHaveBeenCalled()
   })
 
-  it('calls handleFormatChange with proper format when editor is focused', () => {
-    const handleFormatChange = jest.fn()
+  it('does nothing when api event', () => {
+    const onSelectionChange = jest.fn()
+    const quill = ({
+      getFormat: jest.fn()
+    } as unknown) as Quill
+
+    const handler = getSelectionChangeHandler(quill, onSelectionChange)
+
+    act(() => handler(mockRange, mockRange, 'api'))
+
+    expect(onSelectionChange).not.toHaveBeenCalled()
+  })
+
+  it('calls onSelectionChange with proper format when selection has been changed', () => {
+    const onSelectionChange = jest.fn()
     const quill = ({
       getFormat: jest.fn().mockImplementation(() => ({ bold: true }))
     } as unknown) as Quill
 
-    const handler = getSelectionChangeHandler(quill, handleFormatChange)
+    const handler = getSelectionChangeHandler(quill, onSelectionChange)
 
     act(() => handler(mockRange, mockRange, 'user'))
 
-    expect(handleFormatChange).toHaveBeenCalledTimes(1)
-    expect(handleFormatChange).toHaveBeenCalledWith({
-      ...defaultFormat,
+    expect(onSelectionChange).toHaveBeenCalledTimes(1)
+    expect(onSelectionChange).toHaveBeenCalledWith({
       bold: true
     })
   })
 
-  it('calls handleFormatChange with default format when clicking outside of editor', () => {
-    const handleFormatChange = jest.fn()
+  it('does not call onSelectionChange when clicking outside of editor', () => {
+    const onSelectionChange = jest.fn()
     const quill = ({
       getFormat: jest.fn()
     } as unknown) as Quill
 
-    const handler = getSelectionChangeHandler(quill, handleFormatChange) as (
+    const handler = getSelectionChangeHandler(quill, onSelectionChange) as (
       range: RangeStatic | null,
       oldRange: RangeStatic | null,
       sources: Sources
@@ -56,7 +62,6 @@ describe('getSelectionChangeHandler', () => {
 
     act(() => handler(null, null, 'user'))
 
-    expect(handleFormatChange).toHaveBeenCalledTimes(1)
-    expect(handleFormatChange).toHaveBeenCalledWith(defaultFormat)
+    expect(onSelectionChange).toHaveBeenCalledTimes(0)
   })
 })

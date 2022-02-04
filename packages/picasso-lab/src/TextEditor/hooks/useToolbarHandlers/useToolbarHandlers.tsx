@@ -1,29 +1,87 @@
-import { TextFormatHandler, FormatType } from '../../../QuillEditor'
+import { useCallback } from 'react'
+
+import {
+  TextFormatHandler,
+  CUSTOM_QUILL_EDITOR_FORMAT_EVENT,
+  FormatType as EditorFormatType
+} from '../../../QuillEditor'
 import {
   SelectOnChangeHandler,
   ButtonHandlerType
 } from '../../../TextEditorToolbar'
+import { FormatType } from '../../store/toolbar'
+import { convertHeaderToEditorValue } from '../../utils/convertFormat'
 
 type Props = {
+  editorRef: React.RefObject<HTMLDivElement>
   handleTextFormat: TextFormatHandler
   format: FormatType
 }
 
-const useToolbarHandlers = ({ handleTextFormat, format }: Props) => {
-  const handleBold: ButtonHandlerType = () =>
-    handleTextFormat('bold', !format.bold)
+const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
+  const sendFormatEvent = useCallback(
+    (detail: Partial<EditorFormatType>) => {
+      const boldFormatEvent = new CustomEvent(
+        CUSTOM_QUILL_EDITOR_FORMAT_EVENT,
+        {
+          detail
+        }
+      )
 
-  const handleItalic: ButtonHandlerType = () =>
-    handleTextFormat('italic', !format.italic)
+      editorRef.current?.dispatchEvent(boldFormatEvent)
+    },
+    [editorRef]
+  )
 
-  const handleOrdered: ButtonHandlerType = () =>
-    handleTextFormat('list', format.list === 'ordered' ? false : 'ordered')
+  const handleBold: ButtonHandlerType = () => {
+    const bold = !format.bold
 
-  const handleUnordered: ButtonHandlerType = () =>
-    handleTextFormat('list', format.list === 'bullet' ? false : 'bullet')
+    sendFormatEvent({ bold })
+    handleTextFormat({
+      formatName: 'bold',
+      value: bold
+    })
+  }
 
-  const handleHeader: SelectOnChangeHandler = event =>
-    handleTextFormat('header', event.target.value)
+  const handleItalic: ButtonHandlerType = () => {
+    const italic = !format.italic
+
+    sendFormatEvent({ italic })
+    handleTextFormat({
+      formatName: 'italic',
+      value: italic
+    })
+  }
+
+  const handleOrdered: ButtonHandlerType = () => {
+    const list = format.list === false ? 'ordered' : undefined
+
+    sendFormatEvent({ list })
+    handleTextFormat({
+      formatName: 'list',
+      value: list
+    })
+  }
+
+  const handleUnordered: ButtonHandlerType = () => {
+    const list = format.list === false ? 'bullet' : undefined
+
+    sendFormatEvent({ list })
+    handleTextFormat({
+      formatName: 'list',
+      value: list
+    })
+  }
+
+  const handleHeader: SelectOnChangeHandler = event => {
+    const header = convertHeaderToEditorValue(event.target.value)
+
+    sendFormatEvent({ header })
+    handleTextFormat({
+      formatName: 'header',
+      value: header
+    })
+  }
 
   return {
     handleBold,

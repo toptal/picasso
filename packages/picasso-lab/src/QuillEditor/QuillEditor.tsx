@@ -9,21 +9,14 @@ import {
   useFocus,
   useSubscribeToQuillEvents,
   useDisabledEditor,
-  useKeyBindings,
-  useFormat
+  useKeyBindings
 } from './hooks'
-import {
-  TextFormatHandler,
-  ChangeHandler,
-  SelectionHandler,
-  FormatType
-} from './types'
+import { TextFormatHandler, ChangeHandler, SelectionHandler } from './types'
 
 export type Props = BaseProps & {
   disabled: boolean
   id: string
   isFocused: boolean
-  format: FormatType
   placeholder?: string
   onSelectionChange: SelectionHandler
   onTextFormat: TextFormatHandler
@@ -40,7 +33,6 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     'data-testid': dataTestId,
     id,
     isFocused,
-    format,
     placeholder,
     onSelectionChange,
     onTextFormat,
@@ -51,16 +43,15 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   const classes = useStyles()
   const quill = useQuillInstance({ id, placeholder })
 
+  useFocus({ isFocused, quill })
+  useDisabledEditor({ disabled, quill })
+  useKeyBindings({ quill, onTextFormat })
   useSubscribeToQuillEvents({
+    id,
     quill,
     onTextChange,
     onSelectionChange
   })
-
-  useFocus({ isFocused, quill })
-  useDisabledEditor({ disabled, quill })
-  useKeyBindings({ quill, onTextFormat })
-  useFormat({ quill, format })
 
   return (
     <Typography
@@ -79,12 +70,6 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
 QuillEditor.defaultProps = {
   disabled: false,
   isFocused: false,
-  format: {
-    bold: false,
-    italic: false,
-    list: false,
-    header: ''
-  },
   onSelectionChange: () => {},
   onTextFormat: () => {},
   onTextChange: () => {}

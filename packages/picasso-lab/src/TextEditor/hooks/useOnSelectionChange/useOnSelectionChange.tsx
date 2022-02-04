@@ -1,8 +1,9 @@
 import { Dispatch, useCallback } from 'react'
 
-import { ToolbarStateType } from '../../store/toolbar/types'
-import { actions } from '../../store/toolbar'
+import { FormatType as EditorFormatType } from '../../../QuillEditor'
+import { actions as toolbarActions } from '../../store/toolbar'
 import { ActionsType } from '../../store'
+import { getToolbarFormatFromEditorFormat } from '../../utils/convertFormat'
 
 type Props = {
   dispatch: Dispatch<ActionsType>
@@ -10,11 +11,15 @@ type Props = {
 
 const useOnSelectionChange = ({ dispatch }: Props) => {
   const handleSelectionChange = useCallback(
-    ({ bold, italic, header, list }: ToolbarStateType['format']) => {
-      actions.setBold(dispatch)(bold)
-      actions.setItalic(dispatch)(italic)
-      actions.setHeader(dispatch)(header)
-      actions.setList(dispatch)(list)
+    (editorFormat: EditorFormatType) => {
+      const { bold, italic, header, list } = getToolbarFormatFromEditorFormat(
+        editorFormat
+      )
+
+      toolbarActions.setBold(dispatch)(bold)
+      toolbarActions.setItalic(dispatch)(italic)
+      toolbarActions.setHeader(dispatch)(header)
+      toolbarActions.setList(dispatch)(list)
     },
     [dispatch]
   )

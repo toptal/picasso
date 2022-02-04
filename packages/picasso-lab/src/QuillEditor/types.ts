@@ -1,7 +1,7 @@
-export type HeaderValue = '3' | ''
-export type BoldValue = boolean
-export type ItalicValue = boolean
-export type ListValue = 'bullet' | 'ordered' | false
+export type BoldValue = boolean | undefined
+export type ItalicValue = boolean | undefined
+export type ListValue = 'bullet' | 'ordered' | undefined
+export type HeaderValue = 3 | undefined
 
 export type FormatType = {
   bold: BoldValue
@@ -10,16 +10,12 @@ export type FormatType = {
   header: HeaderValue
 }
 
-export type QuillFormatType = {
-  bold?: true
-  italic?: true
-  list?: 'bullet' | 'ordered'
-  header?: 3
-}
+export type TextFormatHandlerEvent =
+  | { formatName: 'bold'; value: BoldValue }
+  | { formatName: 'italic'; value: ItalicValue }
+  | { formatName: 'list'; value: ListValue }
+  | { formatName: 'header'; value: HeaderValue }
 
-export type TextFormatHandler = (
-  formatName: 'bold' | 'italic' | 'list' | 'header',
-  value: BoldValue | ItalicValue | ListValue | HeaderValue
-) => void
+export type TextFormatHandler = (e: TextFormatHandlerEvent) => void
 export type SelectionHandler = (format: FormatType) => void
 export type ChangeHandler = (html: string) => void

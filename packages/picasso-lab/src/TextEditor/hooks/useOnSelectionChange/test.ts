@@ -14,7 +14,7 @@ describe('useOnSelectionChange', () => {
       result.current.handleSelectionChange({
         bold: true,
         italic: false,
-        header: '3',
+        header: 3,
         list: 'ordered'
       })
     )

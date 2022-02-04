@@ -1,31 +1,27 @@
 import Quill, { SelectionChangeHandler } from 'quill'
 
-import { FormatType, QuillFormatType } from '../../types'
-import normalizeQuillFormat from '../normalizeQuillFormat'
+import { FormatType, SelectionHandler } from '../../types'
 
 const getSelectionChangeHandler = (
   quill: Quill,
-  handleFormatChange: (format: FormatType) => void
+  onSelectionChange: SelectionHandler
 ) => {
-  const handler: SelectionChangeHandler = (range, oldRange, source) => {
+  const handler: SelectionChangeHandler = (range, _, source) => {
     const isSilentEvent = source === 'silent'
+    const isFromApi = source === 'api'
 
     if (isSilentEvent) {
       return
     }
 
-    if (range) {
-      const format: QuillFormatType = quill.getFormat(range)
+    if (isFromApi) {
+      return
+    }
 
-      handleFormatChange(normalizeQuillFormat(format))
-    } else {
-      // when user clicks out of text editor
-      handleFormatChange({
-        bold: false,
-        italic: false,
-        list: false,
-        header: ''
-      })
+    if (range) {
+      const format = quill.getFormat(range) as FormatType
+
+      onSelectionChange(format)
     }
   }
 

@@ -23,7 +23,11 @@ const useKeyBindings = ({
       function (range, context) {
         const isBold = context.format.bold
 
-        onTextFormat('bold', !isBold)
+        quill.format('bold', !isBold)
+        onTextFormat({
+          formatName: 'bold',
+          value: !isBold
+        })
       }
     )
 
@@ -35,7 +39,11 @@ const useKeyBindings = ({
       function (range, context) {
         const isItalic = context.format.italic
 
-        onTextFormat('italic', !isItalic)
+        quill.format('italic', !isItalic)
+        onTextFormat({
+          formatName: 'italic',
+          value: !isItalic
+        })
       }
     )
   }, [quill, onTextFormat])
