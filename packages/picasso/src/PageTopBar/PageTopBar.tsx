@@ -21,12 +21,15 @@ import { useBreakpoint } from '../utils'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light'
+type LogoType = 'default' | 'topscreen'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Title which is displayed along the `Logo` */
   title?: string
   /** Link component to wrap `Logo`  */
   logoLink?: ReactElement
+  /** Type of logo */
+  logoType?: LogoType
   /** Content for the left side of the `Header`  */
   leftContent?: ReactNode
   /** Content for the right side of the `Header`  */
@@ -50,6 +53,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     style,
     title,
     logoLink,
+    logoType = 'default',
     leftContent,
     rightContent,
     actionItems,
@@ -72,13 +76,24 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
   const isDark = variant === 'dark'
-  const logo = (
+
+  const logoDefault = (
     <Logo
       variant={isDark ? 'white' : 'default'}
       emblem={isCompactLayout}
       className={classes.logo}
     />
   )
+
+  const logoTopScreen = (
+    <>
+      topScreenLogo
+    </>
+  )
+
+  const isTopScreenLogo = logoType === 'topscreen';
+
+  const logoComponent = isTopScreenLogo ? logoTopScreen : logoDefault 
 
   const titleComponent = title && (
     <Container left='small' flex alignItems='center'>
@@ -114,7 +129,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
               flex
               alignItems='center'
             >
-              {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
+              {logoLink ? React.cloneElement(logoLink, {}, logoComponent) : logoComponent}
             </Container>
             {!isCompactLayout && titleComponent}
             {leftContent}
@@ -131,6 +146,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
 })
 
 PageTopBar.defaultProps = {
+  logoType: 'default',
   variant: 'dark'
 }
 
