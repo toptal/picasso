@@ -15,21 +15,27 @@
  *
  * Steps:
  *  1. replace `picasso-lab` with `picasso`
- *  2. get all `@toptal/picasso` modules (child modules as well) and remove them
+ *  2. get all `@toptal/picasso` modules (child modules as well) and remove all
+ *  of them, except namespace modules
  *  3. combine `@toptal/picasso` (child modules as well) modules respectively
  *  4. insert at the beginning of the file
  *
- *  child modules - `@toptal/picasso/A`, `@toptal/picasso/A/B`, ...
+ *  child modules - `@toptal/picasso/utils`, `@toptal/picasso/Icon`,
+ *  `@toptal/picasso/test-utils`
+ *
+ *  IMPORTANT: Does not cover edge cases for comments and namespace imports.
  */
+
 import {
-  Core,
   ImportDefaultSpecifier,
   ImportNamespaceSpecifier,
   ImportSpecifier,
-  JSCodeshift,
   Transform,
-  ImportDeclaration
+  ImportDeclaration,
+  Specifier as JSCodeshiftSpecifier
 } from 'jscodeshift'
+
+import { replaceWith, RootType, JSCodeshift } from '../../utils'
 
 type ImportTypes =
   | ImportSpecifier
@@ -44,51 +50,63 @@ interface Specifier {
     | 'ImportNamespaceSpecifier'
 }
 
+type CommentsType = JSCodeshiftSpecifier['comments']
+type ImportsMapValueType = { specifiers: Specifier[]; comments: CommentsType }
+type ImportsMapType = Map<string, ImportsMapValueType>
+
+const isSpecifiedImport = (
+  node: ImportDeclaration,
+  moduleSpecifier: string
+) => {
+  if (typeof node.source.value === 'string') {
+    return (
+      node.source.value === moduleSpecifier ||
+      node.source.value.startsWith(`${moduleSpecifier}/`)
+    )
+  }
+
+  return false
+}
+
 const isPicassoImport = (node: ImportDeclaration) =>
-  node.source.value === '@toptal/picasso' ||
-  new RegExp(node.source.value as string).test('^(@toptal/picasso/.*)$')
+  isSpecifiedImport(node, '@toptal/picasso')
 
 const createImport = (
-  j: JSCodeshift,
   specifiers: Specifier[],
   moduleSpecifier: string,
-  root: ReturnType<Core>
+  j: JSCodeshift
 ) => {
   const imports: ImportTypes[] = []
+  const module = j.stringLiteral(moduleSpecifier)
 
   specifiers.forEach(specifier => {
+    const identifier = j.identifier(specifier.name)
+
     if (specifier.type === 'ImportDefaultSpecifier') {
-      imports.push(j.importDefaultSpecifier(j.identifier(specifier.name)))
+      imports.push(j.importDefaultSpecifier(identifier))
     } else if (specifier.type === 'ImportSpecifier') {
-      imports.push(j.importSpecifier(j.identifier(specifier.name)))
-    } else {
-      root
-        .find(j.Declaration)
-        .at(0)
-        .get()
-        .insertBefore(
-          j.importDeclaration(
-            [j.importNamespaceSpecifier(j.identifier(specifier.name))],
-            j.stringLiteral(moduleSpecifier)
-          )
-        )
+      imports.push(j.importSpecifier(identifier))
     }
   })
 
-  return j.importDeclaration(imports, j.stringLiteral(moduleSpecifier))
+  return j.importDeclaration(imports, module)
 }
 
 const insertImports = (
-  root: ReturnType<Core>,
-  j: JSCodeshift,
-  importsMap: Map<string, Specifier[]>
+  importsMap: ImportsMapType,
+  root: RootType,
+  j: JSCodeshift
 ) => {
-  for (const [moduleSpecifier, specifiers] of importsMap) {
-    root
-      .find(j.Declaration)
-      .at(0)
-      .get()
-      .insertBefore(createImport(j, specifiers, moduleSpecifier, root))
+  const node = root.get().node
+
+  for (const [moduleSpecifier, { specifiers, comments }] of importsMap) {
+    if (node.comments) {
+      node.comments = node.comments.concat(comments || [])
+    } else {
+      node.comments = comments
+    }
+
+    node.program.body.unshift(createImport(specifiers, moduleSpecifier, j))
   }
 }
 
@@ -106,42 +124,60 @@ const getSpecifierName = (specifier: any) => {
   return name
 }
 
-const transform: Transform = (file, api) => {
-  const j = api.jscodeshift
-  const root: ReturnType<Core> = j(file.source)
-  const importsMap: Map<string, Specifier[]> = new Map()
+const getImportsMap = (
+  filter: (node: ImportDeclaration) => boolean,
+  root: RootType,
+  j: JSCodeshift
+) => {
+  const importsMap: ImportsMapType = new Map()
 
-  root
-    .find(j.StringLiteral, ({ value }) => value.includes('picasso-lab'))
-    .map(path => {
-      path.value.value = path.value.value.replace('picasso-lab', 'picasso')
+  root.find(j.ImportDeclaration, filter).forEach(path => {
+    const moduleSpecifier = path.value.source.value as string
+    const comments = path.value.comments || []
+    const specifiers: Specifier[] =
+      path.value.specifiers?.map(specifier => ({
+        name: getSpecifierName(specifier),
+        type: specifier.type
+      })) || []
 
-      return path
-    })
+    if (importsMap.has(moduleSpecifier)) {
+      const currImport = importsMap.get(moduleSpecifier)!
+      const prevSpecifiers = currImport.specifiers || []
+      const prevComments = currImport.comments || []
 
+      importsMap.set(moduleSpecifier, {
+        specifiers: [...prevSpecifiers, ...specifiers],
+        comments: [...prevComments, ...comments]
+      })
+    } else {
+      importsMap.set(moduleSpecifier, { specifiers, comments })
+    }
+
+    return path
+  })
+
+  return importsMap
+}
+
+const removeNonNamespaceImports = (root: RootType, j: JSCodeshift) => {
   root
     .find(j.ImportDeclaration, isPicassoImport)
-    .forEach(path => {
-      const moduleSpecifier = path.value.source.value as string
-      const specifiers: Specifier[] =
-        path.value.specifiers?.map(specifier => ({
-          name: getSpecifierName(specifier),
-          type: specifier.type
-        })) || []
-
-      if (importsMap.has(moduleSpecifier)) {
-        const prevSpecifiers = importsMap.get(moduleSpecifier) as Specifier[]
-
-        importsMap.set(moduleSpecifier, [...prevSpecifiers, ...specifiers])
-      } else {
-        importsMap.set(moduleSpecifier, specifiers)
-      }
-
-      return path
-    })
+    .filter(
+      path => path.value.specifiers![0].type !== 'ImportNamespaceSpecifier'
+    )
     .remove()
+}
 
-  insertImports(root, j, importsMap)
+const transform: Transform = (file, api) => {
+  const j = api.jscodeshift
+  const root: RootType = j(file.source)
+
+  replaceWith('picasso-lab', 'picasso', root, j)
+  const importsMap = getImportsMap(isPicassoImport, root, j)
+
+  removeNonNamespaceImports(root, j)
+
+  insertImports(importsMap, root, j)
 
   return root.toSource({ quote: 'single' })
 }
