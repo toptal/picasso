@@ -19,6 +19,7 @@ import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import { useBreakpoint } from '../utils'
 import styles from './styles'
+import SvgTopScreenLogo from './TopScreenLogo/TopScreenLogo'
 
 type VariantType = 'dark' | 'light'
 type LogoType = 'default' | 'topscreen'
@@ -85,15 +86,11 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     />
   )
 
-  const logoTopScreen = (
-    <>
-      topScreenLogo
-    </>
-  )
+  const logoTopScreen = <SvgTopScreenLogo />
 
-  const isTopScreenLogo = logoType === 'topscreen';
+  const isTopScreenLogo = logoType === 'topscreen'
 
-  const logoComponent = isTopScreenLogo ? logoTopScreen : logoDefault 
+  const logoComponent = isTopScreenLogo ? logoTopScreen : logoDefault
 
   const titleComponent = title && (
     <Container left='small' flex alignItems='center'>
@@ -129,7 +126,9 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
               flex
               alignItems='center'
             >
-              {logoLink ? React.cloneElement(logoLink, {}, logoComponent) : logoComponent}
+              {logoLink
+                ? React.cloneElement(logoLink, {}, logoComponent)
+                : logoComponent}
             </Container>
             {!isCompactLayout && titleComponent}
             {leftContent}
