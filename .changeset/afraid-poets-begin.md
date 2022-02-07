@@ -2,4 +2,9 @@
 '@toptal/picasso': patch
 ---
 
-Update PageTopBar from fixed to sticky position
+---
+
+### PageTopBar
+
+- update PageTopBar component from fixed to sticky position
+- move `style` prop from the `header` to the parent element
