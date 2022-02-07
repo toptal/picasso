@@ -1,13 +1,13 @@
-import { combineReducers } from '@reduxjs/toolkit'
-
 import * as toolbarStore from './toolbar'
-import { StateType } from './types'
+import { StateType, ActionsType } from './types'
 
 export * from './types'
 
-export const combinedReducers = combineReducers<StateType>({
-  toolbar: toolbarStore.reducer
-})
+export const combinedReducers = (state: StateType, action: ActionsType) => {
+  return {
+    toolbar: toolbarStore.reducer(state.toolbar, action)
+  }
+}
 
 export const initialState = {
   toolbar: toolbarStore.initialState

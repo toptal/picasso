@@ -1,6 +1,7 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useRef } from 'react'
 import { Typography } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
+import { useCombinedRefs } from '@toptal/picasso/utils'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import useQuillInstance from './hooks/useQuillInstance'
@@ -9,7 +10,8 @@ import {
   useFocus,
   useSubscribeToQuillEvents,
   useDisabledEditor,
-  useKeyBindings
+  useKeyBindings,
+  useSubscribeToTextEditorEvents
 } from './hooks'
 import { TextFormatHandler, ChangeHandler, SelectionHandler } from './types'
 
@@ -42,15 +44,22 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
 ) {
   const classes = useStyles()
   const quill = useQuillInstance({ id, placeholder })
+  const editorRef = useCombinedRefs<HTMLDivElement>(
+    ref,
+    useRef<HTMLDivElement>(null)
+  )
 
   useFocus({ isFocused, quill })
   useDisabledEditor({ disabled, quill })
   useKeyBindings({ quill, onTextFormat })
   useSubscribeToQuillEvents({
-    id,
     quill,
     onTextChange,
     onSelectionChange
+  })
+  useSubscribeToTextEditorEvents({
+    editorRef,
+    quill
   })
 
   return (
@@ -62,7 +71,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
       className={classes.root}
       data-testid={dataTestId}
       id={id}
-      ref={ref}
+      ref={editorRef}
     />
   )
 })

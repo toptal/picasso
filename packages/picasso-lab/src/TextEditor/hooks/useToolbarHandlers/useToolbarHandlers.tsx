@@ -21,14 +21,11 @@ type Props = {
 const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
   const sendFormatEvent = useCallback(
     (detail: Partial<EditorFormatType>) => {
-      const boldFormatEvent = new CustomEvent(
-        CUSTOM_QUILL_EDITOR_FORMAT_EVENT,
-        {
-          detail
-        }
-      )
+      const formatEvent = new CustomEvent(CUSTOM_QUILL_EDITOR_FORMAT_EVENT, {
+        detail
+      })
 
-      editorRef.current?.dispatchEvent(boldFormatEvent)
+      editorRef.current?.dispatchEvent(formatEvent)
     },
     [editorRef]
   )
