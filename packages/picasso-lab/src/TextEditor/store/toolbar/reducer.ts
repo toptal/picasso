@@ -1,0 +1,39 @@
+import actionTypes from './actionTypes'
+import { ToolbarReducerType } from './types'
+import initialState from './initialState'
+
+const reducer: ToolbarReducerType = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.bold:
+      return {
+        ...state,
+        format: { ...state.format, bold: action.payload }
+      }
+    case actionTypes.italic:
+      return {
+        ...state,
+        format: { ...state.format, italic: action.payload }
+      }
+    case actionTypes.header:
+      return {
+        ...state,
+        format: { ...state.format, header: action.payload }
+      }
+    case actionTypes.list:
+      return {
+        ...state,
+        format: { ...state.format, list: action.payload }
+      }
+
+    case actionTypes.disabled:
+      return {
+        ...state,
+        disabled: action.payload
+      }
+
+    default:
+      return state
+  }
+}
+
+export default reducer

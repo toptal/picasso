@@ -1,217 +1,194 @@
-import { renderHook } from '@testing-library/react-hooks'
-import Quill from 'quill'
 import React from 'react'
 import { act } from '@toptal/picasso/test-utils'
+import { renderHook } from '@testing-library/react-hooks'
 
-import { HeaderValueType, ActionCreatorsType } from '../../types'
-import { EMPTY_STATE } from '../../constants'
 import useToolbarHandlers from './useToolbarHandlers'
+import { initialState } from './../../store'
 
-const ref = {
-  current: ({
-    format: jest.fn(),
-    focus: jest.fn(),
-    hasFocus: jest.fn()
-  } as unknown) as Quill
+const initialFormatState = initialState.toolbar.format
+const mockEvent = {} as React.MouseEvent<HTMLButtonElement, MouseEvent>
+
+const editorRef = {
+  current: null
 }
-
-const actions: ActionCreatorsType = {
-  setBold: jest.fn(),
-  setHeader: jest.fn(),
-  setItalic: jest.fn(),
-  setList: jest.fn()
-}
-
-const mockButtonEvent = {} as React.MouseEvent<HTMLButtonElement>
-
-const getMockedHeaderEventWithValue = (value?: HeaderValueType) =>
-  ({ target: { value } } as React.ChangeEvent<{
-    value: HeaderValueType
-  }>)
 
 describe('useToolbarHandlers', () => {
-  afterEach(() => {
-    jest.clearAllMocks()
-  })
-  it('handles header format', async () => {
-    const { result } = renderHook(() =>
-      useToolbarHandlers({ ref, toolbarState: EMPTY_STATE, actions })
-    )
+  describe('calls handleTextFormat with proper arguments', () => {
+    it('checks handleBold', () => {
+      const handleTextFormat = jest.fn()
+      const initFormat = initialFormatState
 
-    const { handleHeader } = result.current
-
-    const mockEventSelect = getMockedHeaderEventWithValue('3')
-    const mockEventUnselect = getMockedHeaderEventWithValue()
-
-    handleHeader(mockEventSelect)
-    expect(ref.current.format).toHaveBeenCalledWith('header', 3)
-
-    handleHeader(mockEventUnselect)
-    expect(ref.current.format).toHaveBeenCalledWith('header', false)
-  })
-
-  describe('bold', () => {
-    it('handles bold format with empty state', () => {
-      const { result } = renderHook(
-        ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+      const { rerender, result } = renderHook(
+        ({ format }) =>
+          useToolbarHandlers({
+            editorRef,
+            handleTextFormat,
+            format
+          }),
         {
           initialProps: {
-            toolbarState: EMPTY_STATE
+            format: initFormat
           }
         }
       )
 
-      const { handleBold } = result.current
+      act(() => result.current.handleBold(mockEvent))
 
-      act(() => {
-        handleBold(mockButtonEvent)
+      expect(handleTextFormat).toHaveBeenCalledTimes(1)
+      expect(handleTextFormat).toHaveBeenCalledWith({
+        formatName: 'bold',
+        value: !initFormat.bold
       })
-      expect(ref.current.format).toHaveBeenCalledWith('bold', true)
-      expect(actions.setBold).toHaveBeenCalledWith(true)
+
+      const newFormat = { ...initFormat, bold: true }
+
+      rerender({ format: newFormat })
+      act(() => result.current.handleBold(mockEvent))
+
+      expect(handleTextFormat).toHaveBeenCalledTimes(2)
+      expect(handleTextFormat).toHaveBeenCalledWith({
+        formatName: 'bold',
+        value: !newFormat.bold
+      })
     })
-    it('handles bold format with state', () => {
-      const { result } = renderHook(
-        ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+    it('checks handleItalic', () => {
+      const handleTextFormat = jest.fn()
+      const initFormat = initialFormatState
+
+      const { rerender, result } = renderHook(
+        ({ format }) =>
+          useToolbarHandlers({
+            editorRef,
+            handleTextFormat,
+            format
+          }),
         {
           initialProps: {
-            toolbarState: { ...EMPTY_STATE, bold: true } as const
+            format: initFormat
           }
         }
       )
 
-      const { handleBold } = result.current
+      act(() => result.current.handleItalic(mockEvent))
 
-      act(() => {
-        handleBold(mockButtonEvent)
+      expect(handleTextFormat).toHaveBeenCalledTimes(1)
+      expect(handleTextFormat).toHaveBeenCalledWith({
+        formatName: 'italic',
+        value: !initFormat.italic
       })
-      expect(ref.current.format).toHaveBeenCalledWith('bold', false)
-      expect(actions.setBold).toHaveBeenCalledWith(false)
+
+      const newFormat = { ...initFormat, italic: true }
+
+      rerender({ format: newFormat })
+      act(() => result.current.handleItalic(mockEvent))
+
+      expect(handleTextFormat).toHaveBeenCalledTimes(2)
+      expect(handleTextFormat).toHaveBeenCalledWith({
+        formatName: 'italic',
+        value: !newFormat.italic
+      })
     })
-  })
+    it('checks handleHeader', () => {
+      const handleTextFormat = jest.fn()
+      const initFormat = initialFormatState
 
-  describe('italic', () => {
-    it('handles italic format with empty state', () => {
-      const { result } = renderHook(
-        ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
-        {
-          initialProps: {
-            toolbarState: EMPTY_STATE
-          }
-        }
+      const { result } = renderHook(() =>
+        useToolbarHandlers({
+          editorRef,
+          handleTextFormat,
+          format: initFormat
+        })
       )
 
-      const { handleItalic } = result.current
+      act(() => result.current.handleHeader({ target: { value: '3' } } as any))
 
-      act(() => {
-        handleItalic(mockButtonEvent)
+      expect(handleTextFormat).toHaveBeenCalledTimes(1)
+      expect(handleTextFormat).toHaveBeenCalledWith({
+        formatName: 'header',
+        value: 3
       })
-      expect(ref.current.format).toHaveBeenCalledWith('italic', true)
-      expect(actions.setItalic).toHaveBeenCalledWith(true)
+
+      act(() => result.current.handleHeader({ target: { value: '' } } as any))
+
+      expect(handleTextFormat).toHaveBeenCalledTimes(2)
+      expect(handleTextFormat).toHaveBeenCalledWith({
+        formatName: 'header',
+        value: undefined
+      })
     })
-    it('handles italic format with state', () => {
-      const { result } = renderHook(
-        ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+    it('checks handleUnordered', () => {
+      const handleTextFormat = jest.fn()
+      const initFormat = initialFormatState
+
+      const { rerender, result } = renderHook(
+        ({ format }) =>
+          useToolbarHandlers({
+            editorRef,
+            handleTextFormat,
+            format
+          }),
         {
           initialProps: {
-            toolbarState: { ...EMPTY_STATE, italic: true } as const
+            format: initFormat
           }
         }
       )
 
-      const { handleItalic } = result.current
+      act(() => result.current.handleUnordered(mockEvent))
 
-      act(() => {
-        handleItalic(mockButtonEvent)
+      expect(handleTextFormat).toHaveBeenCalledTimes(1)
+      expect(handleTextFormat).toHaveBeenCalledWith({
+        formatName: 'list',
+        value: 'bullet'
       })
-      expect(ref.current.format).toHaveBeenCalledWith('italic', false)
-      expect(actions.setItalic).toHaveBeenCalledWith(false)
+
+      const newFormat = { ...initFormat, list: 'bullet' } as const
+
+      rerender({ format: newFormat })
+      act(() => result.current.handleUnordered(mockEvent))
+
+      expect(handleTextFormat).toHaveBeenCalledTimes(2)
+      expect(handleTextFormat).toHaveBeenCalledWith({
+        formatName: 'list',
+        value: undefined
+      })
     })
-  })
+    it('checks handleOrdered', () => {
+      const handleTextFormat = jest.fn()
+      const initFormat = initialFormatState
 
-  describe('ordered list', () => {
-    it('handles ordered list format with empty state', () => {
-      const { result } = renderHook(
-        ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
+      const { rerender, result } = renderHook(
+        ({ format }) =>
+          useToolbarHandlers({
+            editorRef,
+            handleTextFormat,
+            format
+          }),
         {
           initialProps: {
-            toolbarState: EMPTY_STATE
+            format: initFormat
           }
         }
       )
 
-      const { handleOrdered } = result.current
+      act(() => result.current.handleOrdered(mockEvent))
 
-      act(() => {
-        handleOrdered(mockButtonEvent)
+      expect(handleTextFormat).toHaveBeenCalledTimes(1)
+      expect(handleTextFormat).toHaveBeenCalledWith({
+        formatName: 'list',
+        value: 'ordered'
       })
-      expect(ref.current.format).toHaveBeenCalledWith('list', 'ordered')
-    })
-    it('handles ordered list format with state', () => {
-      const { result } = renderHook(
-        ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
-        {
-          initialProps: {
-            toolbarState: {
-              ...EMPTY_STATE,
-              list: 'ordered'
-            } as const
-          }
-        }
-      )
 
-      const { handleOrdered } = result.current
+      const newFormat = { ...initFormat, list: 'ordered' } as const
 
-      act(() => {
-        handleOrdered(mockButtonEvent)
+      rerender({ format: newFormat })
+      act(() => result.current.handleOrdered(mockEvent))
+
+      expect(handleTextFormat).toHaveBeenCalledTimes(2)
+      expect(handleTextFormat).toHaveBeenCalledWith({
+        formatName: 'list',
+        value: undefined
       })
-      expect(ref.current.format).toHaveBeenCalledWith('list', false)
-    })
-  })
-  describe('unordered list', () => {
-    it('handles unordered list format with empty state', () => {
-      const { result } = renderHook(
-        ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
-        {
-          initialProps: {
-            toolbarState: EMPTY_STATE
-          }
-        }
-      )
-
-      const { handleUnordered } = result.current
-
-      act(() => {
-        handleUnordered(mockButtonEvent)
-      })
-      expect(ref.current.format).toHaveBeenCalledWith('list', 'bullet')
-    })
-    it('handles ordered list format with state', () => {
-      const { result } = renderHook(
-        ({ toolbarState }) =>
-          useToolbarHandlers({ ref, toolbarState, actions }),
-        {
-          initialProps: {
-            toolbarState: {
-              ...EMPTY_STATE,
-              list: 'bullet'
-            } as const
-          }
-        }
-      )
-
-      const { handleUnordered } = result.current
-
-      act(() => {
-        handleUnordered(mockButtonEvent)
-      })
-      expect(ref.current.format).toHaveBeenCalledWith('list', false)
     })
   })
 })

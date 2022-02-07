@@ -1,88 +1,92 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 
 import {
-  ToolbarStateType,
-  EditorRefType,
-  ToolbarHandlers,
-  ActionCreatorsType
-} from '../../types'
+  TextFormatHandler,
+  CUSTOM_QUILL_EDITOR_FORMAT_EVENT,
+  FormatType as EditorFormatType
+} from '../../../QuillEditor'
+import {
+  SelectOnChangeHandler,
+  ButtonHandlerType
+} from '../../../TextEditorToolbar'
+import { FormatType } from '../../store/toolbar'
+import { convertHeaderToEditorValue } from '../../utils/convertFormat'
 
 type Props = {
-  ref: EditorRefType
-  toolbarState: ToolbarStateType
-  actions: ActionCreatorsType
+  editorRef: React.RefObject<HTMLDivElement>
+  handleTextFormat: TextFormatHandler
+  format: FormatType
 }
 
-const useToolbarHandlers = ({ ref, toolbarState, actions }: Props) => {
-  const { bold, italic, list } = toolbarState
-  const { setBold, setItalic } = actions
+const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
+  const sendFormatEvent = useCallback(
+    (detail: Partial<EditorFormatType>) => {
+      const formatEvent = new CustomEvent(CUSTOM_QUILL_EDITOR_FORMAT_EVENT, {
+        detail
+      })
 
-  const handleHeader: ToolbarHandlers['handleHeader'] = useCallback(
-    event => {
-      const quill = ref.current
-
-      if (!quill) {
-        return
-      }
-
-      const selectValue = event.target.value
-
-      // when we want to unformat we should pass false
-      quill.format('header', selectValue ? parseFloat(selectValue) : false)
-      // we need to return focus into editor, it remembers itself last position of cursor
-      setTimeout(() => {
-        quill.focus()
-      }, 0)
+      editorRef.current?.dispatchEvent(formatEvent)
     },
-    [ref]
+    [editorRef]
   )
 
-  const handleBold: ToolbarHandlers['handleBold'] = useCallback(() => {
-    const quill = ref.current
+  const handleBold: ButtonHandlerType = () => {
+    const bold = !format.bold
 
-    if (quill) {
-      quill.format('bold', !bold)
-      setBold(!bold)
-    }
-  }, [bold, ref, setBold])
+    sendFormatEvent({ bold })
+    handleTextFormat({
+      formatName: 'bold',
+      value: bold
+    })
+  }
 
-  const handleItalic: ToolbarHandlers['handleItalic'] = useCallback(() => {
-    const quill = ref.current
+  const handleItalic: ButtonHandlerType = () => {
+    const italic = !format.italic
 
-    if (quill) {
-      quill.format('italic', !italic)
-      setItalic(!italic)
-    }
-  }, [italic, ref, setItalic])
+    sendFormatEvent({ italic })
+    handleTextFormat({
+      formatName: 'italic',
+      value: italic
+    })
+  }
 
-  const handleOrdered: ToolbarHandlers['handleOrdered'] = useCallback(() => {
-    const quill = ref.current
+  const handleOrdered: ButtonHandlerType = () => {
+    const list = format.list === false ? 'ordered' : undefined
 
-    if (quill) {
-      quill.format('list', list === 'ordered' ? false : 'ordered')
-    }
-  }, [list, ref])
+    sendFormatEvent({ list })
+    handleTextFormat({
+      formatName: 'list',
+      value: list
+    })
+  }
 
-  const handleUnordered: ToolbarHandlers['handleUnordered'] = useCallback(() => {
-    const quill = ref.current
+  const handleUnordered: ButtonHandlerType = () => {
+    const list = format.list === false ? 'bullet' : undefined
 
-    if (quill) {
-      quill.format('list', list === 'bullet' ? false : 'bullet')
-    }
-  }, [list, ref])
+    sendFormatEvent({ list })
+    handleTextFormat({
+      formatName: 'list',
+      value: list
+    })
+  }
 
-  const toolbarHandlers = useMemo(
-    () => ({
-      handleHeader,
-      handleBold,
-      handleItalic,
-      handleOrdered,
-      handleUnordered
-    }),
-    [handleHeader, handleBold, handleItalic, handleOrdered, handleUnordered]
-  )
+  const handleHeader: SelectOnChangeHandler = event => {
+    const header = convertHeaderToEditorValue(event.target.value)
 
-  return toolbarHandlers
+    sendFormatEvent({ header })
+    handleTextFormat({
+      formatName: 'header',
+      value: header
+    })
+  }
+
+  return {
+    handleBold,
+    handleItalic,
+    handleOrdered,
+    handleUnordered,
+    handleHeader
+  }
 }
 
 export default useToolbarHandlers

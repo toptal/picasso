@@ -1,13 +1,19 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useCallback, useRef, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import { Typography, Container } from '@toptal/picasso'
+import { Container } from '@toptal/picasso'
 
+import QuillEditor from '../QuillEditor'
+import Toolbar from '../TextEditorToolbar'
 import styles from './styles'
-import TextEditorToolbar from './TextEditorToolbar'
-import useTextEditor from './hooks/useTextEditor'
-import { TextEditorChangeHandler } from './types'
+import {
+  useTextEditorState,
+  useOnSelectionChange,
+  useOnTextFormat,
+  useOnFocus,
+  useToolbarHandlers
+} from './hooks'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -33,14 +39,15 @@ export interface Props extends BaseProps {
   /**
    * Callback on text change
    */
-  onChange: TextEditorChangeHandler
+  onChange: (value: string) => void
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
+  testIds?: {
+    wrapper?: string
+    editor?: string
+  }
 }
 
-// Using { index: 1 } to inject CSS generated classes after the button's classes
-// in order to prevent Button's styles to override custom TextEditor styles
-// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
   name: 'TextEditor'
 })
@@ -54,43 +61,84 @@ export const TextEditor = forwardRef<HTMLDivElement, Props>(function TextEditor(
     id,
     onChange,
     placeholder,
-    style
+    style,
+    testIds
   },
   ref
 ) {
   const classes = useStyles()
-  const { toolbarState, toolbarHandlers } = useTextEditor({
-    id,
-    onChange,
-    placeholder,
-    autofocus,
-    disabled
+  const toolbarRef = useRef<HTMLDivElement>(null)
+  const editorRef = useRef<HTMLDivElement>(null)
+  const { dispatch, state } = useTextEditorState()
+  const [isEditorFocused, setIsEditorFocused] = useState(autofocus!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
+
+  const { handleSelectionChange } = useOnSelectionChange({ dispatch })
+  const { handleTextFormat } = useOnTextFormat({ dispatch })
+  const {
+    handleBold,
+    handleItalic,
+    handleHeader,
+    handleOrdered,
+    handleUnordered
+  } = useToolbarHandlers({
+    editorRef,
+    handleTextFormat,
+    format: state.toolbar.format
+  })
+  const { handleFocus, handleBlur } = useOnFocus({
+    editorRef,
+    toolbarRef,
+    onFocus: useCallback(() => setIsEditorFocused(true), [setIsEditorFocused]),
+    onBlur: useCallback(() => setIsEditorFocused(false), [setIsEditorFocused]),
+    dispatch
   })
 
   return (
     <Container
-      className={cx(classes.editorWrapper, { [classes.disabled]: disabled })}
+      className={cx(
+        classes.editorWrapper,
+        {
+          [classes.disabled]: disabled
+        },
+        className
+      )}
+      tabIndex={-1}
+      style={style}
+      ref={ref}
+      data-testid={testIds?.wrapper || dataTestId}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
     >
-      <TextEditorToolbar
+      <Toolbar
+        ref={toolbarRef}
+        disabled={disabled || state.toolbar.disabled}
         id={id}
-        state={toolbarState}
-        handlers={toolbarHandlers}
-        disabled={disabled}
+        format={state.toolbar.format}
+        onBoldClick={handleBold}
+        onItalicClick={handleItalic}
+        onUnorderedClick={handleUnordered}
+        onOrderedClick={handleOrdered}
+        onHeaderChange={handleHeader}
       />
-      <Typography
-        as='div'
-        variant='body'
-        color='dark-grey'
-        size='medium'
-        className={cx(classes.root, className)}
-        data-testid={dataTestId}
+      <QuillEditor
+        ref={editorRef}
+        disabled={disabled!} // eslint-disable-line @typescript-eslint/no-non-null-assertion
+        data-testid={testIds?.editor}
         id={id}
-        ref={ref}
-        style={style}
+        isFocused={isEditorFocused}
+        placeholder={placeholder}
+        onTextFormat={handleTextFormat}
+        onSelectionChange={handleSelectionChange}
+        onTextChange={onChange}
       />
     </Container>
   )
 })
+
+TextEditor.defaultProps = {
+  autofocus: false,
+  disabled: false
+}
 
 TextEditor.displayName = 'TextEditor'
 
