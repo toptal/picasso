@@ -178,6 +178,8 @@ export { default as Note } from './Note'
 export type { NoteProps } from './Note'
 export { default as Timeline } from './Timeline'
 export type { TimelineProps } from './Timeline'
+export { default as ASTRenderer } from './ASTRenderer'
+export type { ASTRendererProps, ASTType } from './ASTRenderer'
 
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'
