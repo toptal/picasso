@@ -23,6 +23,8 @@ import styles from './styles'
 type VariantType = 'dark' | 'light'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
+  /** Style applied to header element */
+  className?: string
   /** Title which is displayed along the `Logo` */
   title?: string
   /** Link component to wrap `Logo`  */
