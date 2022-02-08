@@ -21,4 +21,12 @@ describe('Page.TopBar', () => {
 
     expect(container).toMatchSnapshot()
   })
+
+  it('render with TopScreen logo', () => {
+    const { container } = render(
+      <PageTopBar title='Something' logoType='topscreen' />
+    )
+
+    expect(container).toMatchSnapshot()
+  })
 })
