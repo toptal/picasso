@@ -30,12 +30,13 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     },
     wrapper: {
       zIndex: zIndex.appBar,
-      position: 'sticky',
       top: 0,
       left: 0,
       right: 0,
       height: headerHeight.default,
+      position: 'sticky',
       [screens('small', 'medium')]: {
+        position: 'fixed',
         height: headerHeight.smallAndMedium
       }
     },
