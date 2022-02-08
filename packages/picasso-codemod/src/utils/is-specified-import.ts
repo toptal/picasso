@@ -5,7 +5,6 @@ import { ImportDeclaration } from 'jscodeshift'
  *
  *  j(file.source)
  *    .find(j.ImportDeclaration, (node) => isSpecifiedImport(node, 'module/name'))
- *
  */
 const isSpecifiedImport = (
   node: ImportDeclaration,

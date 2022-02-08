@@ -35,7 +35,12 @@ import {
   Specifier as JSCodeshiftSpecifier
 } from 'jscodeshift'
 
-import { replaceWith, RootType, JSCodeshift } from '../../utils'
+import {
+  replaceWith,
+  isSpecifiedImport,
+  RootType,
+  JSCodeshift
+} from '../../utils'
 
 type ImportTypes =
   | ImportSpecifier
@@ -53,20 +58,6 @@ interface Specifier {
 type CommentsType = JSCodeshiftSpecifier['comments']
 type ImportsMapValueType = { specifiers: Specifier[]; comments: CommentsType }
 type ImportsMapType = Map<string, ImportsMapValueType>
-
-const isSpecifiedImport = (
-  node: ImportDeclaration,
-  moduleSpecifier: string
-) => {
-  if (typeof node.source.value === 'string') {
-    return (
-      node.source.value === moduleSpecifier ||
-      node.source.value.startsWith(`${moduleSpecifier}/`)
-    )
-  }
-
-  return false
-}
 
 const isPicassoImport = (node: ImportDeclaration) =>
   isSpecifiedImport(node, '@toptal/picasso')
