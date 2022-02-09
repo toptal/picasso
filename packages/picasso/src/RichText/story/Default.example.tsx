@@ -1,5 +1,5 @@
 import React from 'react'
-import { ASTRenderer, ASTType } from '@toptal/picasso'
+import { RichText, ASTType } from '@toptal/picasso'
 
 const ast: ASTType = {
   type: 'root',
@@ -119,7 +119,7 @@ const ast: ASTType = {
 const style = { maxWidth: '500px' }
 
 const Example = () => {
-  return <ASTRenderer style={style} value={ast} />
+  return <RichText style={style} value={ast} />
 }
 
 export default Example

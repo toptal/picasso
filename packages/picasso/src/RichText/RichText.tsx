@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { ReactElement, useMemo } from 'react'
 import { toH } from 'hast-to-hyperscript'
 import { BaseProps } from '@toptal/picasso-shared'
 
@@ -34,20 +34,15 @@ const Wrapper = ({
   )
 }
 
-export const ASTRenderer = ({
+export const RichText = ({
   value,
   style,
   className,
   'data-testid': dataTestId
 }: Props) => {
-  const jsx = useMemo(
-    () =>
-      toH(React.createElement, value) as React.DetailedReactHTMLElement<
-        {},
-        HTMLElement
-      >,
-    [value]
-  )
+  const jsx = useMemo(() => toH(React.createElement, value) as ReactElement, [
+    value
+  ])
   const mappedJsx = useMemo(() => mapToPicasso(jsx), [jsx])
 
   return (
@@ -57,4 +52,4 @@ export const ASTRenderer = ({
   )
 }
 
-export default ASTRenderer
+export default RichText
