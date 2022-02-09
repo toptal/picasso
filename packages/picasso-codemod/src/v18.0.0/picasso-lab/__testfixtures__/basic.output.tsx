@@ -1,11 +1,11 @@
-// comment 1
-/* comment 2 */
+// comment 2
+/* comment 3 */
 /**
  * @time Tue 08 Feb 2022 12:04:13 PM +04
  *
  * docs
  */
-/* Only these cases can have deeper imports according to picasso guidelines */
+/* comment 1 */
 import { _TestUtils } from '@toptal/picasso/test-utils';
 import { _Utils } from '@toptal/picasso/utils';
 import { _Icon1 } from '@toptal/picasso/Icon';

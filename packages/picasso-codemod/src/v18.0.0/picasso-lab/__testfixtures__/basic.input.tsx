@@ -3,13 +3,13 @@ import { _MUI } from 'mui'
 import { _useState } from 'react'
 import { _ExistingComponent1, _ExistingComponent2 } from '@toptal/picasso'
 
-/* Only these cases can have deeper imports according to picasso guidelines */
+/* comment 1 */
 import { _Icon1 } from '@toptal/picasso/Icon'
 import { _Utils } from '@toptal/picasso/utils'
 import { _TestUtils } from '@toptal/picasso/test-utils'
 
-// comment 1
-import { _Component1 } from '@toptal/picasso-lab' /* comment 2 */
+// comment 2
+import { _Component1 } from '@toptal/picasso-lab' /* comment 3 */
 import { _Component2, _Component3 } from '@toptal/picasso-lab'
 
 /**
