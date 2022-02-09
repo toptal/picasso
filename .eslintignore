@@ -1,5 +1,3 @@
 dist-package
 build
 node_modules
-
-packages/picasso-codemod/src/v18.0.0/picasso-lab/__testfixtures__/*.tsx
