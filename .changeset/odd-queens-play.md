@@ -1,5 +1,6 @@
 ---
 '@toptal/picasso': minor
 ---
+### PageTopBar
 
-add custom logo to `Page.TopBar` component with the new `logoType` prop
+- add custom logo with the new `logoType` prop
