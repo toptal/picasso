@@ -1,8 +1,8 @@
-import { RootType, JSCodeshift } from './types'
+import { Core, JSCodeshift } from 'jscodeshift'
 
 const findComponents = (
   componentName: string,
-  root: RootType,
+  root: ReturnType<Core>,
   j: JSCodeshift
 ) => {
   // we need a special check for elements with dot. e.g. Page.Header

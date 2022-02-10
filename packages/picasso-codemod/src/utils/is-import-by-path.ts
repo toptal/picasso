@@ -6,10 +6,7 @@ import { ImportDeclaration } from 'jscodeshift'
  *  j(file.source)
  *    .find(j.ImportDeclaration, (node) => isSpecifiedImport(node, 'module/name'))
  */
-const isSpecifiedImport = (
-  node: ImportDeclaration,
-  moduleSpecifier: string
-) => {
+const isImportByPath = (node: ImportDeclaration, moduleSpecifier: string) => {
   if (typeof node.source.value === 'string') {
     return (
       node.source.value === moduleSpecifier ||
@@ -20,4 +17,4 @@ const isSpecifiedImport = (
   return false
 }
 
-export { isSpecifiedImport }
+export { isImportByPath }

@@ -1,9 +1,9 @@
-import { RootType, JSCodeshift } from './types'
+import { Core, JSCodeshift } from 'jscodeshift'
 
 const renameImport = (
   from: string,
   to: string,
-  root: RootType,
+  root: ReturnType<Core>,
   j: JSCodeshift
 ) => {
   root.find(j.ImportSpecifier).forEach(el => {

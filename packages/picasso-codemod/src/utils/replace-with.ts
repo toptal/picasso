@@ -1,9 +1,9 @@
-import { RootType, JSCodeshift } from './types'
+import { Core, JSCodeshift } from 'jscodeshift'
 
 const replaceWith = (
   prev: string,
   curr: string,
-  root: RootType,
+  root: ReturnType<Core>,
   j: JSCodeshift
 ) => {
   root

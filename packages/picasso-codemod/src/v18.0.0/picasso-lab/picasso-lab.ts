@@ -27,20 +27,17 @@
  */
 
 import {
+  Core,
   ImportDefaultSpecifier,
   ImportNamespaceSpecifier,
   ImportSpecifier,
   Transform,
   ImportDeclaration,
+  JSCodeshift,
   Specifier as JSCodeshiftSpecifier
 } from 'jscodeshift'
 
-import {
-  replaceWith,
-  isSpecifiedImport,
-  RootType,
-  JSCodeshift
-} from '../../utils'
+import { replaceWith, isImportByPath } from '../../utils'
 
 type ImportTypes =
   | ImportSpecifier
@@ -60,7 +57,7 @@ type ImportsMapValueType = { specifiers: Specifier[]; comments: CommentsType }
 type ImportsMapType = Map<string, ImportsMapValueType>
 
 const isPicassoImport = (node: ImportDeclaration) =>
-  isSpecifiedImport(node, '@toptal/picasso')
+  isImportByPath(node, '@toptal/picasso')
 
 const createImport = (
   specifiers: Specifier[],
@@ -85,7 +82,7 @@ const createImport = (
 
 const insertImports = (
   importsMap: ImportsMapType,
-  root: RootType,
+  root: ReturnType<Core>,
   j: JSCodeshift
 ) => {
   const node = root.get().node
@@ -117,7 +114,7 @@ const getSpecifierName = (specifier: any) => {
 
 const getImportsMap = (
   filter: (node: ImportDeclaration) => boolean,
-  root: RootType,
+  root: ReturnType<Core>,
   j: JSCodeshift
 ) => {
   const importsMap: ImportsMapType = new Map()
@@ -150,7 +147,7 @@ const getImportsMap = (
   return importsMap
 }
 
-const removeNonNamespaceImports = (root: RootType, j: JSCodeshift) => {
+const removeNonNamespaceImports = (root: ReturnType<Core>, j: JSCodeshift) => {
   root
     .find(j.ImportDeclaration, isPicassoImport)
     .filter(
@@ -161,7 +158,7 @@ const removeNonNamespaceImports = (root: RootType, j: JSCodeshift) => {
 
 const transform: Transform = (file, api) => {
   const j = api.jscodeshift
-  const root: RootType = j(file.source)
+  const root: ReturnType<Core> = j(file.source)
 
   replaceWith('picasso-lab', 'picasso', root, j)
   const importsMap = getImportsMap(isPicassoImport, root, j)
