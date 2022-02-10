@@ -6,6 +6,11 @@ import { render } from '@toptal/picasso/test-utils'
 
 import Tooltip, { Props } from './Tooltip'
 
+jest.mock('@toptal/picasso/utils', () => ({
+  ...(jest.requireActual('@toptal/picasso/utils') as {}),
+  isPointerDevice: jest.fn(() => true)
+}))
+
 const TOOLTIP_SHORT_DELAY = 200
 const TOOLTIP_LONG_DELAY = 500
 
