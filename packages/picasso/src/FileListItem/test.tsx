@@ -4,6 +4,11 @@ import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import FileListItem, { Props } from './FileListItem'
 
+jest.mock('@toptal/picasso/utils', () => ({
+  ...(jest.requireActual('@toptal/picasso/utils') as {}),
+  isPointerDevice: jest.fn(() => true)
+}))
+
 const testIds = {
   progressBar: 'file-list-item-progressbar'
 }
