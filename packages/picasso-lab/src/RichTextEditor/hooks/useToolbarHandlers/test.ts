@@ -3,7 +3,7 @@ import { act } from '@toptal/picasso/test-utils'
 import { renderHook } from '@testing-library/react-hooks'
 
 import useToolbarHandlers from './useToolbarHandlers'
-import { initialState } from './../../store'
+import { initialState } from '../../store'
 
 const initialFormatState = initialState.toolbar.format
 const mockEvent = {} as React.MouseEvent<HTMLButtonElement, MouseEvent>

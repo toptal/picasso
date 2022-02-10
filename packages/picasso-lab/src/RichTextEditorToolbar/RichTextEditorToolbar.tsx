@@ -9,9 +9,9 @@ import {
 import { makeStyles, Theme } from '@material-ui/core'
 
 import styles from './styles'
-import TextEditorButton from '../TextEditorButton'
+import TextEditorButton from '../RichTextEditorButton'
 import { ButtonHandlerType, SelectOnChangeHandler } from './types'
-import { FormatType } from '../TextEditor'
+import { FormatType } from '../RichTextEditor'
 
 type Props = {
   disabled: boolean
@@ -25,11 +25,11 @@ type Props = {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'TextEditorToolbar'
+  name: 'RichTextEditorToolbar'
 })
 
-export const TextEditorToolbar = forwardRef<HTMLDivElement, Props>(
-  function TextEditorToolbar(props: Props, ref) {
+export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
+  function RichTextEditorToolbar(props: Props, ref) {
     const {
       disabled,
       id,
@@ -92,7 +92,7 @@ export const TextEditorToolbar = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-TextEditorToolbar.defaultProps = {
+RichTextEditorToolbar.defaultProps = {
   disabled: false,
   format: {
     bold: false,
@@ -107,6 +107,6 @@ TextEditorToolbar.defaultProps = {
   onOrderedClick: () => {}
 }
 
-TextEditorToolbar.displayName = 'TextEditorToolbar'
+RichTextEditorToolbar.displayName = 'RichTextEditorToolbar'
 
-export default TextEditorToolbar
+export default RichTextEditorToolbar

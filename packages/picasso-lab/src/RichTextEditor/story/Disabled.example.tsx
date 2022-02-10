@@ -1,10 +1,10 @@
 import React from 'react'
-import { TextEditor } from '@toptal/picasso-lab'
+import { RichTextEditor } from '@toptal/picasso-lab'
 import { noop } from '@toptal/picasso/utils'
 
 const Example = () => {
   return (
-    <TextEditor
+    <RichTextEditor
       id='foo'
       onChange={noop}
       placeholder='Write some cool rich text'

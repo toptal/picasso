@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
-import { TextEditor, TextEditorChangeHandler } from '@toptal/picasso-lab'
+import {
+  RichTextEditor,
+  RichTextEditorChangeHandler
+} from '@toptal/picasso-lab'
 import { Container } from '@toptal/picasso'
 
 const Example = () => {
   const [value, setValue] = useState<string | undefined>()
 
-  const handleChange: TextEditorChangeHandler = newValue => setValue(newValue)
+  const handleChange: RichTextEditorChangeHandler = newValue =>
+    setValue(newValue)
 
   return (
     <>
-      <TextEditor
+      <RichTextEditor
         id='editor'
         onChange={handleChange}
         placeholder='Write some cool rich text'

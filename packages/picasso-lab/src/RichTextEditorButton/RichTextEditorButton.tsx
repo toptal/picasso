@@ -20,7 +20,7 @@ const useStyles = makeStyles<Theme>(styles, {
   index: 10
 })
 
-const TextEditorButton = (props: Props) => {
+const RichTextEditorButton = (props: Props) => {
   const { icon, onClick, active, className, style, disabled, ...rest } = props
   const classes = useStyles(props)
 
@@ -43,12 +43,12 @@ const TextEditorButton = (props: Props) => {
   )
 }
 
-TextEditorButton.defaultProps = {
+RichTextEditorButton.defaultProps = {
   active: false,
   disabled: false,
   onClick: () => {}
 }
 
-TextEditorButton.displayName = 'TextEditorButton'
+RichTextEditorButton.displayName = 'RichTextEditorButton'
 
-export default TextEditorButton
+export default RichTextEditorButton

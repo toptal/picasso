@@ -1,6 +1,6 @@
 import { ChangeEvent, MouseEventHandler } from 'react'
 
-import { HeaderValue } from '../TextEditor'
+import { HeaderValue } from '../RichTextEditor'
 
 export type ButtonHandlerType = MouseEventHandler<HTMLButtonElement>
 

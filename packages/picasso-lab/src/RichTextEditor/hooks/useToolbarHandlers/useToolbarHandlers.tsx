@@ -8,7 +8,7 @@ import {
 import {
   SelectOnChangeHandler,
   ButtonHandlerType
-} from '../../../TextEditorToolbar'
+} from '../../../RichTextEditorToolbar'
 import { FormatType } from '../../store/toolbar'
 import { convertHeaderToEditorValue } from '../../utils/convertFormat'
 

@@ -1,9 +1,9 @@
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './TextEditor'
+import { Props } from './RichTextEditor'
 import { FormatType, HeaderValue } from './store/toolbar'
 
-export { default } from './TextEditor'
+export { default } from './RichTextEditor'
 export type { FormatType, HeaderValue }
 export * from './types'
-export type TextEditorProps = OmitInternalProps<Props>
+export type RichTextEditorProps = OmitInternalProps<Props>
