@@ -18,7 +18,7 @@ export const getModules = (): QuillOptionsStatic['modules'] => {
     clipboard: {
       matchVisual: false,
       allowed: {
-        tags: ['b', 'strong', 'i', 'p', 'br', 'ul', 'ol', 'li'],
+        tags: ['b', 'strong', 'i', 'p', 'br', 'ul', 'ol', 'li', 'h3'],
         attributes: []
       },
       keepSelection: true,
