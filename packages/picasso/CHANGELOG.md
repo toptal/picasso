@@ -1,5 +1,11 @@
 # Change Log
 
+## 18.2.0
+
+### Minor Changes
+
+- [#2426](https://github.com/toptal/picasso/pull/2426) [`906b2015`](https://github.com/toptal/picasso/commit/906b20156bf876ab0dba728ca62b581c2d56f0e8) Thanks [@sergiubutnarasu](https://github.com/sergiubutnarasu)! - Disable dropzone when multiple property is false and a file is already selected.
+
 ## 18.1.0
 
 ### Minor Changes
