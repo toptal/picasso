@@ -1,5 +1,15 @@
 # Change Log
 
+## 18.1.0
+
+### Minor Changes
+
+- [#2413](https://github.com/toptal/picasso/pull/2413) [`65c762e1`](https://github.com/toptal/picasso/commit/65c762e1c1646737b37f575e21ffb63209decbde) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  ### FormLabel
+
+  - added size prop with `medium` and `large` values
+
 ## 18.0.0
 
 ### Major Changes
