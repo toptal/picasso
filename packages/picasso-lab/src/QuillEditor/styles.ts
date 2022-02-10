@@ -90,10 +90,21 @@ const editor = {
   }
 }
 
+const clipboard = {
+  '& .ql-clipboard': {
+    left: '-100000px',
+    height: '1px',
+    overflowY: 'hidden',
+    position: 'absolute',
+    top: '50%'
+  }
+}
+
 const quillSpecificStyles = (theme: Theme) => ({
   ...placeholder(theme),
   ...editor,
-  ...hidden
+  ...hidden,
+  ...clipboard
 })
 
 export default (theme: Theme) => {

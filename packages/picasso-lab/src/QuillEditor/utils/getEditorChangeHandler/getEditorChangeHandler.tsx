@@ -1,22 +1,28 @@
-import Quill from 'quill'
+import Quill, { RangeStatic, Sources } from 'quill'
+import Delta from 'quill-delta'
 
 import { FormatType } from '../../types'
+
+type SelectionChangeArgs = [RangeStatic, RangeStatic, Sources]
+type TextChangeArgx = [Delta, Delta, Sources]
 
 const getEditorChangeHandler = (
   quill: Quill,
   onSelectionChange: (format: FormatType) => void
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handler = (name: 'text-change' | 'selection-change', ...args: any) => {
+  const handler = (
+    name: 'text-change' | 'selection-change',
+    ...args: SelectionChangeArgs | TextChangeArgx
+  ) => {
     if (!quill) {
       return
     }
 
     if (name === 'selection-change') {
-      const [range, , source] = args
+      const [range, , source] = args as SelectionChangeArgs
 
       if (source === 'silent') {
-        const format = quill.getFormat(range) as FormatType
+        const format = quill.getFormat(range || undefined) as FormatType
 
         onSelectionChange(format)
       }

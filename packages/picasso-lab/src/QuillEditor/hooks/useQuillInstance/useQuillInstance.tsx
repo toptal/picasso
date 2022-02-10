@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Quill, { QuillOptionsStatic } from 'quill'
+import 'quill-paste-smart'
 
 import {
   useTypographyClasses,
@@ -15,7 +16,13 @@ export type EditorOptionsType = {
 export const getModules = (): QuillOptionsStatic['modules'] => {
   return {
     clipboard: {
-      matchVisual: false
+      matchVisual: false,
+      allowed: {
+        tags: ['b', 'strong', 'i', 'p', 'br', 'ul', 'ol', 'li', 'h3'],
+        attributes: []
+      },
+      keepSelection: true,
+      substituteBlockElements: true
     },
     keyboard: {
       // we need to specify default bindings
