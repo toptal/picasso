@@ -1,7 +1,12 @@
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { useTitleCase, BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import {
+  useTitleCase,
+  BaseProps,
+  TextLabelProps,
+  SizeType
+} from '@toptal/picasso-shared'
 
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
@@ -25,9 +30,11 @@ export interface Props
   inline?: boolean
   /** Component used for the root node */
   as?: ComponentType
+  /** Component size */
+  size?: SizeType<'medium' | 'large'>
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoFormLabel' })
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoFormLabel' })
 
 export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
   props,
@@ -43,10 +50,11 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     as: Component = 'label',
     titleCase: propsTitleCase,
     requiredDecoration,
+    size = 'medium',
     ...rest
   } = props
 
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   const isInline = inline || Component === 'span'
   const titleCase = useTitleCase(propsTitleCase)
@@ -66,10 +74,11 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
       )}
       style={style}
     >
-      {requiredDecoration === 'asterisk' && (
-        <span className={classes.asterisk}>*</span>
-      )}
-      <span className={classes.text}>
+      <span className={classes[size]}>
+        {requiredDecoration === 'asterisk' && (
+          <span className={classes.asterisk}>*</span>
+        )}
+
         {titleCase ? toTitleCase(children) : children}
         {requiredDecoration === 'optional' && ' (optional)'}
       </span>
@@ -79,7 +88,8 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
 
 FormLabel.defaultProps = {
   as: 'label',
-  inline: false
+  inline: false,
+  size: 'medium'
 }
 
 FormLabel.displayName = 'FormLabel'

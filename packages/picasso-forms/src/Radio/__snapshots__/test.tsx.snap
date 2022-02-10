@@ -18,7 +18,7 @@ exports[`FormRadio renders 1`] = `
             for="color"
           >
             <span
-              class="PicassoFormLabel-text"
+              class="PicassoFormLabel-medium"
             >
               What's your favorite color?
                (optional)
@@ -61,7 +61,7 @@ exports[`FormRadio renders 1`] = `
                     class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
                   >
                     <span
-                      class="PicassoFormLabel-text"
+                      class="PicassoFormLabel-medium"
                     >
                       Crimson
                     </span>
@@ -97,7 +97,7 @@ exports[`FormRadio renders 1`] = `
                     class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
                   >
                     <span
-                      class="PicassoFormLabel-text"
+                      class="PicassoFormLabel-medium"
                     >
                       Moccasin
                     </span>
@@ -131,13 +131,13 @@ exports[`FormRadio required with asterisk 1`] = `
             for="color"
           >
             <span
-              class="PicassoFormLabel-asterisk"
+              class="PicassoFormLabel-medium"
             >
-              *
-            </span>
-            <span
-              class="PicassoFormLabel-text"
-            >
+              <span
+                class="PicassoFormLabel-asterisk"
+              >
+                *
+              </span>
               What's your favorite color?
             </span>
           </label>
@@ -178,7 +178,7 @@ exports[`FormRadio required with asterisk 1`] = `
                     class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
                   >
                     <span
-                      class="PicassoFormLabel-text"
+                      class="PicassoFormLabel-medium"
                     >
                       Crimson
                     </span>
@@ -214,7 +214,7 @@ exports[`FormRadio required with asterisk 1`] = `
                     class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
                   >
                     <span
-                      class="PicassoFormLabel-text"
+                      class="PicassoFormLabel-medium"
                     >
                       Moccasin
                     </span>

@@ -43,7 +43,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
               class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="PicassoFormLabel-text"
+                class="PicassoFormLabel-medium"
               >
                 Checkbox 1
               </span>
@@ -82,7 +82,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
               class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="PicassoFormLabel-text"
+                class="PicassoFormLabel-medium"
               >
                 Checkbox 2
               </span>
@@ -121,7 +121,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
               class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="PicassoFormLabel-text"
+                class="PicassoFormLabel-medium"
               >
                 Checkbox 3
               </span>
@@ -160,7 +160,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
               class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="PicassoFormLabel-text"
+                class="PicassoFormLabel-medium"
               >
                 Checkbox 4
               </span>
@@ -199,7 +199,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
               class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="PicassoFormLabel-text"
+                class="PicassoFormLabel-medium"
               >
                 Checkbox 5
               </span>
@@ -238,7 +238,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
               class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="PicassoFormLabel-text"
+                class="PicassoFormLabel-medium"
               >
                 Checkbox 6
               </span>
@@ -285,7 +285,7 @@ exports[`Checkbox checkbox interaction should render checked checkbox 1`] = `
         class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
       >
         <span
-          class="PicassoFormLabel-text"
+          class="PicassoFormLabel-medium"
         >
           Select item
         </span>
@@ -486,7 +486,7 @@ exports[`Checkbox should render default checkbox with label 1`] = `
         class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
       >
         <span
-          class="PicassoFormLabel-text"
+          class="PicassoFormLabel-medium"
         >
           Select item
         </span>

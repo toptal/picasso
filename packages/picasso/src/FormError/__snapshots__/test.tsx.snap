@@ -14,7 +14,7 @@ exports[`FormError renders 1`] = `
           class="PicassoFormLabel-root"
         >
           <span
-            class="PicassoFormLabel-text"
+            class="PicassoFormLabel-medium"
           >
             Label:
           </span>
