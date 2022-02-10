@@ -1,3 +1,13 @@
+/* TOP-LEVEL comment */
+
+/* still TOP-LEVEL comment */
+import { _MUI } from 'mui'
+import { _TestUtils } from '@toptal/picasso/test-utils'
+import { _Utils } from '@toptal/picasso/utils'
+
+/* comment 1 */
+import { _Icon } from '@toptal/picasso/Icon'
+
 // comment 2
 /* comment 3 */
 /**
@@ -5,11 +15,6 @@
  *
  * docs
  */
-/* comment 1 */
-import { _TestUtils } from '@toptal/picasso/test-utils';
-import { _Utils } from '@toptal/picasso/utils';
-import { _Icon1 } from '@toptal/picasso/Icon';
-
 import _Picasso2, {
  _ExistingComponent1,
  _ExistingComponent2,
@@ -18,10 +23,9 @@ import _Picasso2, {
  _Component3,
  _Component1Type,
  default as _Component5Default,
- Component6 as _CustomName1,
-} from '@toptal/picasso';
+ Component6 as _CustomName1
+} from '@toptal/picasso'
 
-import { _MUI } from 'mui'
 /* @ts-rule */
 import { _useState } from 'react'
 

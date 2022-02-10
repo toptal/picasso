@@ -37,7 +37,7 @@ import {
   Specifier as JSCodeshiftSpecifier
 } from 'jscodeshift'
 
-import { replaceWith, isImportByPath } from '../../utils'
+import { replaceWith, isImportByPath, hasTopLevelComment } from '../../utils'
 
 type ImportTypes =
   | ImportSpecifier
@@ -85,16 +85,18 @@ const insertImports = (
   root: ReturnType<Core>,
   j: JSCodeshift
 ) => {
-  const node = root.get().node
+  const _hastTopLevelComment = hasTopLevelComment(root, j)
 
   for (const [moduleSpecifier, { specifiers, comments }] of importsMap) {
-    if (node.comments) {
-      node.comments = node.comments.concat(comments || [])
+    const imports = createImport(specifiers, moduleSpecifier, j)
+
+    if (_hastTopLevelComment) {
+      root.find(j.Declaration).at(0).insertAfter(imports)
     } else {
-      node.comments = comments
+      root.get().program.body.unshift(imports)
     }
 
-    node.program.body.unshift(createImport(specifiers, moduleSpecifier, j))
+    imports.comments = comments
   }
 }
 

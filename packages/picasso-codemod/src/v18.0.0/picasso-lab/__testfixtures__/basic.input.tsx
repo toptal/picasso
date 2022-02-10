@@ -1,10 +1,13 @@
+/* TOP-LEVEL comment */
+
+/* still TOP-LEVEL comment */
 import { _MUI } from 'mui'
 /* @ts-rule */
 import { _useState } from 'react'
 import { _ExistingComponent1, _ExistingComponent2 } from '@toptal/picasso'
 
 /* comment 1 */
-import { _Icon1 } from '@toptal/picasso/Icon'
+import { _Icon } from '@toptal/picasso/Icon'
 import { _Utils } from '@toptal/picasso/utils'
 import { _TestUtils } from '@toptal/picasso/test-utils'
 
