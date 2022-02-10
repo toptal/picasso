@@ -83,3 +83,4 @@ page
   .addExample('Dropzone/story/Disabled.example.tsx', 'Completed') // picasso-skip-visuals
   .addExample('Dropzone/story/Multiple.example.tsx', 'Completed Multiple files') // picasso-skip-visuals
   .addExample('Dropzone/story/Error.example.tsx', 'Upload Failed') // picasso-skip-visuals
+  .addExample('Dropzone/story/SingleFile.example.tsx', 'Single File') // picasso-skip-visuals

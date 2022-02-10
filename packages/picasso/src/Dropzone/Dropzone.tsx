@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -75,12 +75,17 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
     validator
   } = props
 
+  const isDisabled = useMemo(
+    () => Boolean(disabled || (!multiple && value && value.length > 0)),
+    [disabled, multiple, value]
+  )
+
   const { getRootProps, isDragActive, getInputProps } = useDropzone({
     accept,
     minSize,
     maxSize,
     multiple,
-    disabled,
+    disabled: isDisabled,
     onDrop,
     onDropAccepted,
     onDropRejected,
@@ -100,7 +105,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
           className: cx(classes.root, {
             [classes.dragActive]: isDragActive,
             [classes.hovered]: hovered,
-            [classes.disabled]: disabled,
+            [classes.disabled]: isDisabled,
             [classes.focused]: focused
           })
         })}
