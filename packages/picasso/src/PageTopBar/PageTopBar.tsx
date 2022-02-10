@@ -19,18 +19,16 @@ import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import { useBreakpoint } from '../utils'
 import styles from './styles'
-import SvgTopScreenLogo from './TopScreenLogo/TopScreenLogo'
 
 type VariantType = 'dark' | 'light'
-type LogoType = 'default' | 'topscreen'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Title which is displayed along the `Logo` */
   title?: string
   /** Link component to wrap `Logo`  */
   logoLink?: ReactElement
-  /** Type of logo */
-  logoType?: LogoType
+  /** Content for the custom logo */
+  logo?: ReactNode
   /** Content for the left side of the `Header`  */
   leftContent?: ReactNode
   /** Content for the right side of the `Header`  */
@@ -54,7 +52,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     style,
     title,
     logoLink,
-    logoType = 'default',
+    logo,
     leftContent,
     rightContent,
     actionItems,
@@ -86,11 +84,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     />
   )
 
-  const logoTopScreen = <SvgTopScreenLogo />
-
-  const isTopScreenLogo = logoType === 'topscreen'
-
-  const logoComponent = isTopScreenLogo ? logoTopScreen : logoDefault
+  const logoComponent = logo || logoDefault
 
   const titleComponent = title && (
     <Container left='small' flex alignItems='center'>
@@ -145,7 +139,6 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
 })
 
 PageTopBar.defaultProps = {
-  logoType: 'default',
   variant: 'dark'
 }
 
