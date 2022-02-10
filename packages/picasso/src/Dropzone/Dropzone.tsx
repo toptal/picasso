@@ -75,12 +75,16 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
     validator
   } = props
 
+  const isDisabled = Boolean(
+    disabled || (!multiple && value && value.length > 0)
+  )
+
   const { getRootProps, isDragActive, getInputProps } = useDropzone({
     accept,
     minSize,
     maxSize,
     multiple,
-    disabled,
+    disabled: isDisabled,
     onDrop,
     onDropAccepted,
     onDropRejected,
@@ -100,7 +104,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
           className: cx(classes.root, {
             [classes.dragActive]: isDragActive,
             [classes.hovered]: hovered,
-            [classes.disabled]: disabled,
+            [classes.disabled]: isDisabled,
             [classes.focused]: focused
           })
         })}

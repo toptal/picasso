@@ -30,4 +30,23 @@ describe('Dropzone', () => {
 
     expect(queryByText('hint example')).toBeVisible()
   })
+
+  describe("when doesn't accept multiple files and there is already a file", () => {
+    it('disables the dropzone', () => {
+      const { getByTestId } = renderDropzone({
+        'data-testid': 'dropzone',
+        multiple: false,
+
+        value: [
+          {
+            uploading: false,
+            progress: 0,
+            file: new File(['resume.pdf'], 'resume.pdf')
+          }
+        ]
+      })
+
+      expect(getByTestId('dropzone').className).toContain('disabled')
+    })
+  })
 })
