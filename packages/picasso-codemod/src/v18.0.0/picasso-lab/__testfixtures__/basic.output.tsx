@@ -1,7 +1,7 @@
 /* TOP-LEVEL comment */
 
 /* still TOP-LEVEL comment */
-import { _MUI } from 'mui';
+import { _MUI } from 'mui'
 import { _TestUtils } from '@toptal/picasso/test-utils';
 import { _Utils } from '@toptal/picasso/utils';
 
@@ -23,19 +23,19 @@ import _Picasso2, {
  _Component3,
  _Component1Type,
  default as _Component5Default,
- Component6 as _CustomName1
+ Component6 as _CustomName1,
 } from '@toptal/picasso';
 
 /* @ts-rule */
-import { _useState } from 'react';
+import { _useState } from 'react'
 
-import * as _PicassoLab from '@toptal/picasso';
-import * as _Picasso1 from '@toptal/picasso';
+import * as _PicassoLab from '@toptal/picasso'
+import * as _Picasso1 from '@toptal/picasso'
 
-import { _NOT_EFFECTED1 } from '@toptal/picasso-shared';
+import { _NOT_EFFECTED1 } from '@toptal/picasso-shared'
 
-import { _NOT_EFFECTED2 } from '../RelativePath';
+import { _NOT_EFFECTED2 } from '../RelativePath'
 
-const foo = (res: string) => res;
+const foo = (res: string) => res
 
-foo('@toptal/picasso');
+foo('@toptal/picasso')
