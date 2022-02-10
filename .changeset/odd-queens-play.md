@@ -3,4 +3,4 @@
 ---
 ### PageTopBar
 
-- add custom logo with the new `logoType` prop
+- add custom logo with the new `logo` prop
