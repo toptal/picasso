@@ -34,7 +34,7 @@ import {
   Transform,
   ImportDeclaration,
   JSCodeshift,
-  Specifier as JSCodeshiftSpecifier
+  ASTPath
 } from 'jscodeshift'
 
 import { replaceWith, isImportByPath, hasTopLevelComment } from '../../utils'
@@ -52,8 +52,7 @@ interface Specifier {
     | 'ImportNamespaceSpecifier'
 }
 
-type CommentsType = JSCodeshiftSpecifier['comments']
-type ImportsMapValueType = { specifiers: Specifier[]; comments: CommentsType }
+type ImportsMapValueType = { specifiers: Specifier[] }
 type ImportsMapType = Map<string, ImportsMapValueType>
 
 const isPicassoImport = (node: ImportDeclaration) =>
@@ -87,7 +86,7 @@ const insertImports = (
 ) => {
   const _hastTopLevelComment = hasTopLevelComment(root, j)
 
-  for (const [moduleSpecifier, { specifiers, comments }] of importsMap) {
+  for (const [moduleSpecifier, { specifiers }] of importsMap) {
     const imports = createImport(specifiers, moduleSpecifier, j)
 
     if (_hastTopLevelComment) {
@@ -95,8 +94,6 @@ const insertImports = (
     } else {
       root.get().program.body.unshift(imports)
     }
-
-    imports.comments = comments
   }
 }
 
@@ -115,6 +112,7 @@ const getSpecifierName = (specifier: any) => {
 }
 
 const getImportsMap = (
+  unsolvableIdentifierNames: Set<string>,
   filter: (node: ImportDeclaration) => boolean,
   root: ReturnType<Core>,
   j: JSCodeshift
@@ -123,24 +121,28 @@ const getImportsMap = (
 
   root.find(j.ImportDeclaration, filter).forEach(path => {
     const moduleSpecifier = path.value.source.value as string
-    const comments = path.value.comments || []
-    const specifiers: Specifier[] =
-      path.value.specifiers?.map(specifier => ({
-        name: getSpecifierName(specifier),
-        type: specifier.type
-      })) || []
+    const specifiers: Specifier[] = []
+
+    path.value.specifiers?.forEach(specifier => {
+      const specifierName = getSpecifierName(specifier)
+
+      if (!unsolvableIdentifierNames.has(specifierName)) {
+        specifiers.push({
+          name: specifierName,
+          type: specifier.type
+        })
+      }
+    })
 
     if (importsMap.has(moduleSpecifier)) {
       const currImport = importsMap.get(moduleSpecifier)!
       const prevSpecifiers = currImport.specifiers || []
-      const prevComments = currImport.comments || []
 
       importsMap.set(moduleSpecifier, {
-        specifiers: [...prevSpecifiers, ...specifiers],
-        comments: [...prevComments, ...comments]
+        specifiers: [...prevSpecifiers, ...specifiers]
       })
     } else {
-      importsMap.set(moduleSpecifier, { specifiers, comments })
+      importsMap.set(moduleSpecifier, { specifiers })
     }
 
     return path
@@ -149,23 +151,81 @@ const getImportsMap = (
   return importsMap
 }
 
-const removeNonNamespaceImports = (root: ReturnType<Core>, j: JSCodeshift) => {
+const removeNonNamespaceImports = (
+  unsolvableIdentifierNames: Set<string>,
+  root: ReturnType<Core>,
+  j: JSCodeshift
+) => {
   root
     .find(j.ImportDeclaration, isPicassoImport)
+    .filter(
+      path =>
+        !unsolvableIdentifierNames.has(
+          getSpecifierName(path.value.specifiers![0])
+        )
+    )
     .filter(
       path => path.value.specifiers![0].type !== 'ImportNamespaceSpecifier'
     )
     .remove()
 }
 
+const getUnsolvableImportDeclarations = (
+  target: string,
+  root: ReturnType<Core>,
+  j: JSCodeshift
+) => {
+  const unsolvableImportDeclarations: ASTPath<ImportDeclaration>[] = []
+
+  root
+    .find(j.ImportDeclaration, ({ source }) => source.value === target)
+    .forEach(path => {
+      // we don't know what user would like to do with comments, thus, only user
+      // can decide what to do with imports that have comments.
+      if (path.value.comments) {
+        unsolvableImportDeclarations.push(path)
+      }
+    })
+
+  return unsolvableImportDeclarations
+}
+
+const getUnsolvableIdentifierNames = (
+  unsolvableImportDeclarations: ASTPath<ImportDeclaration>[]
+) => {
+  const unsolvableIdentifierNames: Set<string> = new Set()
+
+  unsolvableImportDeclarations.forEach(path => {
+    path.value.specifiers?.forEach(specifier =>
+      unsolvableIdentifierNames.add(getSpecifierName(specifier))
+    )
+  })
+
+  return unsolvableIdentifierNames
+}
+
 const transform: Transform = (file, api) => {
   const j = api.jscodeshift
   const root: ReturnType<Core> = j(file.source)
 
-  replaceWith('picasso-lab', 'picasso', root, j)
-  const importsMap = getImportsMap(isPicassoImport, root, j)
+  const unsolvableImportDeclarations = getUnsolvableImportDeclarations(
+    '@toptal/picasso-lab',
+    root,
+    j
+  )
+  const unsolvableIdentifierNames = getUnsolvableIdentifierNames(
+    unsolvableImportDeclarations
+  )
 
-  removeNonNamespaceImports(root, j)
+  replaceWith('picasso-lab', 'picasso', root, j)
+  const importsMap = getImportsMap(
+    unsolvableIdentifierNames,
+    isPicassoImport,
+    root,
+    j
+  )
+
+  removeNonNamespaceImports(unsolvableIdentifierNames, root, j)
 
   insertImports(importsMap, root, j)
 
