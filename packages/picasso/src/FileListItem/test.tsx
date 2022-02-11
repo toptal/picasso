@@ -4,11 +4,6 @@ import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import FileListItem, { Props } from './FileListItem'
 
-jest.mock('@toptal/picasso/utils', () => ({
-  ...(jest.requireActual('@toptal/picasso/utils') as {}),
-  isPointerDevice: jest.fn(() => true)
-}))
-
 const testIds = {
   progressBar: 'file-list-item-progressbar'
 }
@@ -17,6 +12,15 @@ const renderFileListItem = (props: OmitInternalProps<Props>) =>
   render(<FileListItem testIds={testIds} {...props} />)
 
 describe('FileListItem', () => {
+  beforeEach(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(() => ({
+        matches: false
+      }))
+    })
+  })
+
   const file = {
     file: new File(['user-profile-picture.png'], 'user-profile-picture.png'),
     uploading: false,

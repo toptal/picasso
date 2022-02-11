@@ -11,13 +11,19 @@ const testIds = {
   input: 'input'
 }
 
-jest.mock('@toptal/picasso/utils', () => ({
-  ...(jest.requireActual('@toptal/picasso/utils') as {}),
-  isPointerDevice: jest.fn(() => true)
-}))
-
 // eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
+  beforeEach(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(() => ({
+        matches: true,
+        addListener: jest.fn(),
+        removeListener: jest.fn()
+      }))
+    })
+  })
+
   beforeAll(() => {
     jest.useFakeTimers()
   })

@@ -2,14 +2,20 @@ import React from 'react'
 import { fireEvent, render, waitFor } from '@toptal/picasso/test-utils'
 
 import TypographyOverflow from '.'
-
-jest.mock('@toptal/picasso/utils', () => ({
-  ...(jest.requireActual('@toptal/picasso/utils') as {}),
-  isOverflown: jest.fn(() => true),
-  isPointerDevice: jest.fn(() => true)
+jest.mock('../utils/is-overflown.ts', () => ({
+  __esModule: true,
+  default: jest.fn(() => true)
 }))
 
 describe('TypographyOverflow', () => {
+  beforeEach(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(() => ({
+        matches: false
+      }))
+    })
+  })
   describe('when overflow happened', () => {
     it('renders tooltip by default', async () => {
       const { getByTestId, queryByTestId } = render(
