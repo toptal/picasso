@@ -1,6 +1,8 @@
 import React from 'react'
 import { Page } from '@toptal/picasso'
 
+const Example = () => <Page.TopBar logo={logo} />
+
 const logo = (
   <svg width='120' height='25' xmlns='http://www.w3.org/2000/svg'>
     <path
@@ -9,12 +11,6 @@ const logo = (
       fill-rule='nonzero'
     />
   </svg>
-)
-
-const Example = () => (
-  <div style={{ height: '4.5rem' }}>
-    <Page.TopBar logo={logo} />
-  </div>
 )
 
 export default Example
