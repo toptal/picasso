@@ -7,9 +7,10 @@ const warnUsersAbout = (
   const totalImports = unsolvableImportDeclarations.length
 
   if (totalImports > 0) {
-    console.log(
-      '\x1b[33m%s\x1b[0m',
-      `[***] Unresolved import statement${totalImports > 1 ? 's' : ''}:`
+    process.stdout.write(
+      `\x1b[33m[***] Unresolved import statement${
+        totalImports > 1 ? 's' : ''
+      }:\x1b[0m\n`
     )
   }
 
@@ -17,14 +18,13 @@ const warnUsersAbout = (
     if (elem.value.loc?.start) {
       const { line, column } = elem.value.loc?.start
 
-      console.log(`${filePath}:${line}:${column}`)
+      process.stdout.write(`${filePath}:${line}:${column}\n`)
     }
   })
 
   if (totalImports > 0) {
-    console.log(
-      '\x1b[33m%s\x1b[0m',
-      '[***] There are some unresolved import statements, please fix them.'
+    process.stdout.write(
+      '\x1b[33m[***] There are some unresolved import statements, please fix them.\x1b[0m\n'
     )
   }
 }
