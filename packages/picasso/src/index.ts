@@ -179,6 +179,9 @@ export type { NoteProps } from './Note'
 export { default as Timeline } from './Timeline'
 export type { TimelineProps } from './Timeline'
 
+export { default as RatingThumbs } from './RatingThumbs'
+export type { RatingThumbsProps } from './RatingThumbs'
+
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'
 
