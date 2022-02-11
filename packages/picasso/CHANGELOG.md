@@ -1,5 +1,15 @@
 # Change Log
 
+## 18.3.0
+
+### Minor Changes
+
+- [#2421](https://github.com/toptal/picasso/pull/2421) [`e652eb11`](https://github.com/toptal/picasso/commit/e652eb11fd514ca038503f30f3a1ad921e291e85) Thanks [@RusPosevkin](https://github.com/RusPosevkin)! - ---
+
+  ### PageTopBar
+
+  - add custom logo with the new `logo` prop
+
 ## 18.2.0
 
 ### Minor Changes
