@@ -190,6 +190,35 @@ const getUnsolvableImportDeclarations = (
   return unsolvableImportDeclarations
 }
 
+const warnUsersAbout = (
+  unsolvableImportDeclarations: ASTPath<ImportDeclaration>[],
+  filePath: string
+) => {
+  const totalImports = unsolvableImportDeclarations.length
+
+  if (totalImports > 0) {
+    console.log(
+      '\x1b[33m%s\x1b[0m',
+      `[***] Unresolved import statement${totalImports > 1 ? 's' : ''}:`
+    )
+  }
+
+  unsolvableImportDeclarations.forEach(elem => {
+    if (elem.value.loc?.start) {
+      const { line, column } = elem.value.loc?.start
+
+      console.log(`${filePath}:${line}:${column}`)
+    }
+  })
+
+  if (totalImports > 0) {
+    console.log(
+      '\x1b[33m%s\x1b[0m',
+      '[***] There are some unresolved import statements, please fix them.'
+    )
+  }
+}
+
 const getUnsolvableIdentifierNames = (
   unsolvableImportDeclarations: ASTPath<ImportDeclaration>[]
 ) => {
@@ -228,6 +257,8 @@ const transform: Transform = (file, api) => {
   removeNonNamespaceImports(unsolvableIdentifierNames, root, j)
 
   insertImports(importsMap, root, j)
+
+  warnUsersAbout(unsolvableImportDeclarations, file.path)
 
   return root.toSource({ quote: 'single' })
 }
