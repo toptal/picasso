@@ -97,7 +97,7 @@ const insertImports = (
     if (_hastTopLevelComment) {
       root.find(j.Declaration).at(0).insertAfter(imports)
     } else {
-      root.get().program.body.unshift(imports)
+      root.get().node.program.body.unshift(imports)
     }
   }
 }
