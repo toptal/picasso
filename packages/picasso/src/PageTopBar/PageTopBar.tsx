@@ -27,6 +27,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   title?: string
   /** Link component to wrap `Logo`  */
   logoLink?: ReactElement
+  /** Logo to display */
+  logo?: ReactNode
   /** Content for the left side of the `Header`  */
   leftContent?: ReactNode
   /** Content for the right side of the `Header`  */
@@ -50,6 +52,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     style,
     title,
     logoLink,
+    logo,
     leftContent,
     rightContent,
     actionItems,
@@ -72,13 +75,16 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
   const isDark = variant === 'dark'
-  const logo = (
+
+  const logoDefault = (
     <Logo
       variant={isDark ? 'white' : 'default'}
       emblem={isCompactLayout}
       className={classes.logo}
     />
   )
+
+  const logoComponent = logo || logoDefault
 
   const titleComponent = title && (
     <Container left='small' flex alignItems='center'>
@@ -114,7 +120,9 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
               flex
               alignItems='center'
             >
-              {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
+              {logoLink
+                ? React.cloneElement(logoLink, {}, logoComponent)
+                : logoComponent}
             </Container>
             {!isCompactLayout && titleComponent}
             {leftContent}

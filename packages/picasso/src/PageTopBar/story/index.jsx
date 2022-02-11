@@ -22,6 +22,7 @@ const chapter = PicassoBook.connectToPage(page =>
     })
     .addExample('PageTopBar/story/Link.example.tsx', 'With link')
     .addExample('PageTopBar/story/WithoutTitle.example.tsx', 'Without title')
+    .addExample('PageTopBar/story/Logo.example.tsx', 'With custom logo')
 )
 
 export default {
