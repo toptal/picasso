@@ -3,8 +3,8 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 import { Badge as MuiBadge } from '@material-ui/core'
-import { toTitleCase } from '@toptal/picasso/utils'
 
+import { toTitleCase } from '../utils'
 import styles from './styles'
 
 type VariantType = 'white' | 'red'

@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
-import { palette } from '@toptal/picasso/utils'
+
+import { palette } from '../utils'
 
 const HEIGHT = 10
 const WIDTH = 200

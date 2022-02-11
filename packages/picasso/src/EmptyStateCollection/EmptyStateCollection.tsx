@@ -5,8 +5,8 @@ import React, {
   cloneElement
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Search16 as Search } from '@toptal/picasso/Icon'
 
+import { Search16 as Search } from '../Icon'
 import Container from '../Container'
 import Typography from '../Typography'
 import styles from './styles'
