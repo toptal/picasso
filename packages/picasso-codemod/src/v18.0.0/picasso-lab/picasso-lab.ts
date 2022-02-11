@@ -174,7 +174,7 @@ const transform: Transform = (file, api) => {
     unsolvableImportDeclarations
   )
 
-  replaceWith('picasso-lab', 'picasso', root, j)
+  const replaced = replaceWith('picasso-lab', 'picasso', root, j)
   const importsMap = getImportsMap(
     unsolvableIdentifierNames,
     isPicassoImport,
@@ -182,11 +182,11 @@ const transform: Transform = (file, api) => {
     j
   )
 
-  removeNonNamespaceImports(unsolvableIdentifierNames, root, j)
-
-  insertImports(importsMap, root, j)
-
-  warnUsersAbout(unsolvableImportDeclarations, file.path)
+  if (replaced) {
+    removeNonNamespaceImports(unsolvableIdentifierNames, root, j)
+    insertImports(importsMap, root, j)
+    warnUsersAbout(unsolvableImportDeclarations, file.path)
+  }
 
   return root.toSource({ quote: 'single' })
 }
