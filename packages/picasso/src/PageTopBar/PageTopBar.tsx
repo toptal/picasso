@@ -27,7 +27,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   title?: string
   /** Link component to wrap `Logo`  */
   logoLink?: ReactElement
-  /** Content for the custom logo */
+  /** Logo to display */
   logo?: ReactNode
   /** Content for the left side of the `Header`  */
   leftContent?: ReactNode
