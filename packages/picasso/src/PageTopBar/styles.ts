@@ -5,8 +5,7 @@ export const headerHeight = { default: '3.5rem', smallAndMedium: '3rem' }
 export default ({ palette, layout, zIndex, screens }: Theme) =>
   createStyles({
     root: {
-      fontSize: '1rem',
-      width: '100%'
+      fontSize: '1rem'
     },
     light: {
       backgroundColor: palette.common.white,
