@@ -2,12 +2,8 @@ import React from 'react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 
+import '../../../../__tests__/matchMedia'
 import FileListItem, { Props } from './FileListItem'
-
-jest.mock('@toptal/picasso/utils', () => ({
-  ...(jest.requireActual('@toptal/picasso/utils') as {}),
-  isPointerDevice: jest.fn(() => true)
-}))
 
 const testIds = {
   progressBar: 'file-list-item-progressbar'

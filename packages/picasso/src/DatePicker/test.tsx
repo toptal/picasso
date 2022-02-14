@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
 
+import '../../../../__tests__/matchMedia'
 import { act, fireEvent, render } from '../test-utils'
 import DatePicker, { Props } from './DatePicker'
 import Tooltip from '../Tooltip'
@@ -10,11 +11,6 @@ const testIds = {
   calendar: 'calendar',
   input: 'input'
 }
-
-jest.mock('@toptal/picasso/utils', () => ({
-  ...(jest.requireActual('@toptal/picasso/utils') as {}),
-  isPointerDevice: jest.fn(() => true)
-}))
 
 // eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
