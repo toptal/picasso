@@ -22,16 +22,20 @@ export default ({ palette, sizes }: Theme) =>
       border: `1px solid ${palette.grey.lighter2}`
     },
 
-<<<<<<< HEAD
     isFocused: {
       borderColor: palette.blue.main,
       ...outline(palette.primary.main)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
     isFocused: {
       borderColor: palette.blue.main,
       ...outline(palette.primary.main)
 =======
+=======
+    },
+
+>>>>>>> 4034d0326 (fix: style)
     counter: {
       position: 'absolute',
       bottom: 0,
@@ -52,7 +56,10 @@ export default ({ palette, sizes }: Theme) =>
         display: 'inline-block',
         background: palette.grey.lighter2
       }
+<<<<<<< HEAD
 >>>>>>> 6f2b0789c (chore: add counter component)
 >>>>>>> ce941ed45 (chore: add counter component)
+=======
+>>>>>>> 4034d0326 (fix: style)
     }
   })
