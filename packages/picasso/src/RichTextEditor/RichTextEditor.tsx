@@ -103,7 +103,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
         className={cx(
           classes.editorWrapper,
           {
-            [classes.disabled]: disabled
+            [classes.disabled]: disabled,
+            [classes.isFocused]: isEditorFocused
           },
           className
         )}
