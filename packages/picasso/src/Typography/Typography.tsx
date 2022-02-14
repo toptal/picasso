@@ -11,7 +11,8 @@ import {
 
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
-import { getTypographyClassName, toMuiVariant } from './utils'
+import toMuiVariant from './utils/to-mui-variant'
+import getTypographyClassName from './utils/get-typography-class-name'
 
 export interface Props
   extends StandardProps,

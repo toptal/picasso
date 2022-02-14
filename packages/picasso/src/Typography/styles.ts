@@ -1,7 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
-import { toMuiVariant } from './utils'
+import toMuiVariant from './utils/to-mui-variant'
 
 const getHeadingMedium = (theme: Theme) => ({
   color: theme.palette.common.black,
@@ -49,6 +49,7 @@ PicassoProvider.override(theme => {
 
 export default (theme: Theme) => {
   const { palette, typography } = theme
+
   // All the body variants are mapped to the same MUI variant (body1) -> declaring styles via custom class names
   return createStyles({
     bodyXxsmall: {

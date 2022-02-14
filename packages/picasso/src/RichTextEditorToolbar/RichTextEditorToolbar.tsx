@@ -1,12 +1,7 @@
 import React, { forwardRef } from 'react'
-import {
-  Bold16,
-  Italic16,
-  ListOrdered16,
-  ListUnordered16
-} from '@toptal/picasso/Icon'
 import { makeStyles, Theme } from '@material-ui/core'
 
+import { Bold16, Italic16, ListOrdered16, ListUnordered16 } from '../Icon'
 import Container from '../Container'
 import Select from '../Select'
 import styles from './styles'

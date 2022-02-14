@@ -1,5 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import typographyStyles from '@toptal/picasso/Typography/styles'
+
+import typographyStyles from '../../Typography/styles'
 
 const useTypographyClasses = makeStyles<Theme>(typographyStyles, {
   name: 'TextEditorTypography'

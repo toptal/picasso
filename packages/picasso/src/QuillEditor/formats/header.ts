@@ -1,6 +1,7 @@
-import { getTypographyClassName } from '@toptal/picasso/Typography/utils'
 import { Classes } from '@toptal/picasso-shared'
 import Quill from 'quill'
+
+import getTypographyClassName from '../../Typography/utils/get-typography-class-name'
 
 const QuillHeader = Quill.import('formats/header')
 
