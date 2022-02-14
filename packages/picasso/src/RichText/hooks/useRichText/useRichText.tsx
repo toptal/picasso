@@ -19,7 +19,10 @@ type Props = {
   children?: React.ReactNode
 }
 
-const Li = ({ children }: Props) => <ListItem>{children}</ListItem>
+// List internaly passes another props to ListItem
+const Li = ({ children, ...props }: Props) => (
+  <ListItem {...props}>{children}</ListItem>
+)
 
 /* eslint-disable id-length */
 const P = ({ children }: Props) => (
