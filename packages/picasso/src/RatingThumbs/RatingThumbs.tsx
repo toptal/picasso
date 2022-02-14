@@ -1,5 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import classNames from 'classnames'
 import React, { ChangeEvent, forwardRef, useCallback, useState } from 'react'
 
 import { ThumbsDown16, ThumbsDown24, ThumbsUp24 } from '../Icon'
@@ -74,8 +75,11 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
       <div ref={ref}>
         <label className={classes.label} htmlFor={positiveInputId}>
           <ThumbsUp
-            className={classes.thumbs}
-            color={value === true ? 'green' : 'lightGrey'}
+            className={classNames(
+              classes.thumbs,
+              interactive && classes.interactiveThumbs,
+              value === true && classes.thumbsPositive
+            )}
           />
 
           <input
@@ -93,8 +97,11 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
 
         <label className={classes.label} htmlFor={negativeInputId}>
           <ThumbsDown
-            className={classes.thumbs}
-            color={value === false ? 'red' : 'lightGrey'}
+            className={classNames(
+              classes.thumbs,
+              interactive && classes.interactiveThumbs,
+              value === false && classes.thumbsNegative
+            )}
           />
 
           <input

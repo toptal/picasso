@@ -1,6 +1,6 @@
-import { createStyles } from '@material-ui/core/styles'
+import { createStyles, Theme } from '@material-ui/core'
 
-export default () =>
+export default ({ palette }: Theme) =>
   createStyles({
     radio: {
       display: 'none'
@@ -11,6 +11,19 @@ export default () =>
       }
     },
     thumbs: {
-      cursor: 'pointer'
+      color: palette.grey.light2,
+      transition: 'color .3s'
+    },
+    interactiveThumbs: {
+      cursor: 'pointer',
+      '&:hover': {
+        color: palette.text.primary
+      }
+    },
+    thumbsPositive: {
+      color: palette.green.main
+    },
+    thumbsNegative: {
+      color: palette.red.main
     }
   })
