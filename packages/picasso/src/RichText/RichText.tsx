@@ -40,8 +40,10 @@ export const RichText = ({
   className,
   'data-testid': dataTestId
 }: Props) => {
-  const jsx = useMemo(() => toH(createElement, value) as ReactElement, [value])
-  const mappedJsx = useMemo(() => mapToPicasso(jsx), [jsx])
+  const mappedJsx = useMemo(
+    () => mapToPicasso(toH(createElement, value) as ReactElement),
+    [value]
+  )
 
   return (
     <Wrapper className={className} style={style} data-testid={dataTestId}>
