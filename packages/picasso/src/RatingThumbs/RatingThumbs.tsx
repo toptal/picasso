@@ -87,6 +87,7 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
             onChange={handleChange}
             readOnly={!interactive}
             checked={value === true}
+            data-testid='positive-input'
           />
         </label>
 
@@ -105,6 +106,7 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
             onChange={handleChange}
             readOnly={!interactive}
             checked={value === false}
+            data-testid='negative-input'
           />
         </label>
       </div>

@@ -1,0 +1,278 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RatingThumbs should render for size large 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div>
+      <label
+        class="makeStyles-label"
+        for="1-posititve"
+      >
+        <svg
+          class="PicassoSvgThumbsUp24-root makeStyles-thumbs PicassoSvgThumbsUp24-lightGrey"
+          style="min-width: 24px; min-height: 24px;"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12.443 1.077l1.063.358a2.544 2.544 0 011.643 3.025l-.944 3.808 2.592-.475c2.398-.44 4.696 1.167 5.132 3.592a4.51 4.51 0 010 1.596l-.924 5.134C20.497 20.944 18.06 23 15.215 23H12.77c-2.448.001-3.9-.495-6.356-1.487H2.47A1.48 1.48 0 011 20.025v-8.923a1.48 1.48 0 011.471-1.487h3.605L10.7 1.75a1.464 1.464 0 011.742-.673zm-.88 1.18L7 10.014V20.67l.141.057C9.661 21.73 10.813 22 12.771 22h2.444c2.358 0 4.383-1.708 4.806-4.062l.924-5.134a3.51 3.51 0 000-1.242c-.339-1.882-2.116-3.126-3.968-2.786l-4.115.755.372-1.503.944-3.809a1.544 1.544 0 00-.991-1.837l-1.063-.358a.47.47 0 00-.561.232zM6 20.511v-9.898H2.471a.48.48 0 00-.471.488v8.923a.48.48 0 00.471.488L6 20.512z"
+          />
+        </svg>
+        <input
+          class="makeStyles-radio"
+          data-testid="positive-input"
+          id="1-posititve"
+          name="rating-thumbs"
+          type="radio"
+          value="positive"
+        />
+      </label>
+      <label
+        class="makeStyles-label"
+        for="1-negative"
+      >
+        <svg
+          class="PicassoSvgThumbsDown24-root makeStyles-thumbs PicassoSvgThumbsDown24-lightGrey"
+          style="min-width: 24px; min-height: 24px;"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11.23 1c2.448-.001 3.9.495 6.356 1.487h3.943A1.48 1.48 0 0123 3.975v8.923a1.48 1.48 0 01-1.471 1.487h-3.605L13.3 22.25a1.464 1.464 0 01-1.742.674l-1.063-.359a2.544 2.544 0 01-1.643-3.025l.944-3.808-2.592.475c-2.398.44-4.696-1.167-5.132-3.592a4.51 4.51 0 010-1.596l.924-5.134C3.503 3.056 5.94 1 8.785 1h2.445zm0 1H8.785C6.427 2 4.402 3.708 3.979 6.062l-.924 5.134a3.51 3.51 0 000 1.242c.339 1.882 2.116 3.126 3.968 2.786l4.115-.755-.372 1.503-.944 3.809c-.194.783.24 1.584.991 1.837l1.063.358a.47.47 0 00.561-.232L17 13.982V3.329l-.141-.056C14.339 2.27 13.187 2 11.229 2zM18 13.385h3.529a.48.48 0 00.471-.487V3.975a.48.48 0 00-.471-.488H18v9.898z"
+          />
+        </svg>
+        <input
+          class="makeStyles-radio"
+          data-testid="negative-input"
+          id="1-negative"
+          name="rating-thumbs"
+          type="radio"
+          value="negative"
+        />
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RatingThumbs should render for size small 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div>
+      <label
+        class="makeStyles-label"
+        for="0-posititve"
+      >
+        <svg
+          class="PicassoSvgThumbsUp16-root makeStyles-thumbs PicassoSvgThumbsUp16-lightGrey"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8.778.26L9.5.5a1.707 1.707 0 011.117 2.034l-.642 2.56 1.762-.319a3 3 0 013.488 3.488l-.628 3.453A4 4 0 0110.662 15H9c-1.664 0-3.33-.333-5-1H2a1 1 0 01-1-1V7a1 1 0 011-1h2.45L7.593.712A1 1 0 018.778.259zm-.316.948l-.01.015L5.02 7 5 6.999v6.307c1.341.464 2.673.695 4 .694h1.662a3 3 0 002.951-2.463l.628-3.452a2 2 0 00-2.326-2.326l-3.287.596.377-1.503.641-2.56a.707.707 0 00-.462-.843l-.722-.241zM4 13V6.999L2 7v6h2z"
+          />
+        </svg>
+        <input
+          class="makeStyles-radio"
+          data-testid="positive-input"
+          id="0-posititve"
+          name="rating-thumbs"
+          type="radio"
+          value="positive"
+        />
+      </label>
+      <label
+        class="makeStyles-label"
+        for="0-negative"
+      >
+        <svg
+          class="PicassoSvgThumbsDown16-root makeStyles-thumbs PicassoSvgThumbsDown16-lightGrey"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M7.003 1c1.664 0 3.33.333 5 1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2.45L8.41 15.288a1 1 0 01-1.185.453l-.722-.241a1.707 1.707 0 01-1.116-2.034l.641-2.56-1.761.319A3 3 0 01.778 7.737l.628-3.453A4 4 0 015.342 1h1.661zM12 9h2.003V3H12L12 9zM7.003 2H5.342A3 3 0 002.39 4.463l-.628 3.452a2 2 0 002.326 2.326l3.287-.596-.377 1.503-.641 2.56a.707.707 0 00.462.843l.723.241.008-.015L10.984 9H11V2.693A12.144 12.144 0 007.003 2z"
+          />
+        </svg>
+        <input
+          class="makeStyles-radio"
+          data-testid="negative-input"
+          id="0-negative"
+          name="rating-thumbs"
+          type="radio"
+          value="negative"
+        />
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RatingThumbs should show correct thumbs when value is false 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div>
+      <label
+        class="makeStyles-label"
+        for="4-posititve"
+      >
+        <svg
+          class="PicassoSvgThumbsUp16-root makeStyles-thumbs PicassoSvgThumbsUp16-lightGrey"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8.778.26L9.5.5a1.707 1.707 0 011.117 2.034l-.642 2.56 1.762-.319a3 3 0 013.488 3.488l-.628 3.453A4 4 0 0110.662 15H9c-1.664 0-3.33-.333-5-1H2a1 1 0 01-1-1V7a1 1 0 011-1h2.45L7.593.712A1 1 0 018.778.259zm-.316.948l-.01.015L5.02 7 5 6.999v6.307c1.341.464 2.673.695 4 .694h1.662a3 3 0 002.951-2.463l.628-3.452a2 2 0 00-2.326-2.326l-3.287.596.377-1.503.641-2.56a.707.707 0 00-.462-.843l-.722-.241zM4 13V6.999L2 7v6h2z"
+          />
+        </svg>
+        <input
+          class="makeStyles-radio"
+          data-testid="positive-input"
+          id="4-posititve"
+          name="rating-thumbs"
+          type="radio"
+          value="positive"
+        />
+      </label>
+      <label
+        class="makeStyles-label"
+        for="4-negative"
+      >
+        <svg
+          class="PicassoSvgThumbsDown16-root makeStyles-thumbs PicassoSvgThumbsDown16-red"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M7.003 1c1.664 0 3.33.333 5 1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2.45L8.41 15.288a1 1 0 01-1.185.453l-.722-.241a1.707 1.707 0 01-1.116-2.034l.641-2.56-1.761.319A3 3 0 01.778 7.737l.628-3.453A4 4 0 015.342 1h1.661zM12 9h2.003V3H12L12 9zM7.003 2H5.342A3 3 0 002.39 4.463l-.628 3.452a2 2 0 002.326 2.326l3.287-.596-.377 1.503-.641 2.56a.707.707 0 00.462.843l.723.241.008-.015L10.984 9H11V2.693A12.144 12.144 0 007.003 2z"
+          />
+        </svg>
+        <input
+          checked=""
+          class="makeStyles-radio"
+          data-testid="negative-input"
+          id="4-negative"
+          name="rating-thumbs"
+          type="radio"
+          value="negative"
+        />
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RatingThumbs should show correct thumbs when value is true 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div>
+      <label
+        class="makeStyles-label"
+        for="3-posititve"
+      >
+        <svg
+          class="PicassoSvgThumbsUp16-root makeStyles-thumbs PicassoSvgThumbsUp16-green"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8.778.26L9.5.5a1.707 1.707 0 011.117 2.034l-.642 2.56 1.762-.319a3 3 0 013.488 3.488l-.628 3.453A4 4 0 0110.662 15H9c-1.664 0-3.33-.333-5-1H2a1 1 0 01-1-1V7a1 1 0 011-1h2.45L7.593.712A1 1 0 018.778.259zm-.316.948l-.01.015L5.02 7 5 6.999v6.307c1.341.464 2.673.695 4 .694h1.662a3 3 0 002.951-2.463l.628-3.452a2 2 0 00-2.326-2.326l-3.287.596.377-1.503.641-2.56a.707.707 0 00-.462-.843l-.722-.241zM4 13V6.999L2 7v6h2z"
+          />
+        </svg>
+        <input
+          checked=""
+          class="makeStyles-radio"
+          data-testid="positive-input"
+          id="3-posititve"
+          name="rating-thumbs"
+          type="radio"
+          value="positive"
+        />
+      </label>
+      <label
+        class="makeStyles-label"
+        for="3-negative"
+      >
+        <svg
+          class="PicassoSvgThumbsDown16-root makeStyles-thumbs PicassoSvgThumbsDown16-lightGrey"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M7.003 1c1.664 0 3.33.333 5 1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2.45L8.41 15.288a1 1 0 01-1.185.453l-.722-.241a1.707 1.707 0 01-1.116-2.034l.641-2.56-1.761.319A3 3 0 01.778 7.737l.628-3.453A4 4 0 015.342 1h1.661zM12 9h2.003V3H12L12 9zM7.003 2H5.342A3 3 0 002.39 4.463l-.628 3.452a2 2 0 002.326 2.326l3.287-.596-.377 1.503-.641 2.56a.707.707 0 00.462.843l.723.241.008-.015L10.984 9H11V2.693A12.144 12.144 0 007.003 2z"
+          />
+        </svg>
+        <input
+          class="makeStyles-radio"
+          data-testid="negative-input"
+          id="3-negative"
+          name="rating-thumbs"
+          type="radio"
+          value="negative"
+        />
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RatingThumbs should show correct thumbs when value is undefined 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div>
+      <label
+        class="makeStyles-label"
+        for="2-posititve"
+      >
+        <svg
+          class="PicassoSvgThumbsUp16-root makeStyles-thumbs PicassoSvgThumbsUp16-lightGrey"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8.778.26L9.5.5a1.707 1.707 0 011.117 2.034l-.642 2.56 1.762-.319a3 3 0 013.488 3.488l-.628 3.453A4 4 0 0110.662 15H9c-1.664 0-3.33-.333-5-1H2a1 1 0 01-1-1V7a1 1 0 011-1h2.45L7.593.712A1 1 0 018.778.259zm-.316.948l-.01.015L5.02 7 5 6.999v6.307c1.341.464 2.673.695 4 .694h1.662a3 3 0 002.951-2.463l.628-3.452a2 2 0 00-2.326-2.326l-3.287.596.377-1.503.641-2.56a.707.707 0 00-.462-.843l-.722-.241zM4 13V6.999L2 7v6h2z"
+          />
+        </svg>
+        <input
+          class="makeStyles-radio"
+          data-testid="positive-input"
+          id="2-posititve"
+          name="rating-thumbs"
+          type="radio"
+          value="positive"
+        />
+      </label>
+      <label
+        class="makeStyles-label"
+        for="2-negative"
+      >
+        <svg
+          class="PicassoSvgThumbsDown16-root makeStyles-thumbs PicassoSvgThumbsDown16-lightGrey"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M7.003 1c1.664 0 3.33.333 5 1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2.45L8.41 15.288a1 1 0 01-1.185.453l-.722-.241a1.707 1.707 0 01-1.116-2.034l.641-2.56-1.761.319A3 3 0 01.778 7.737l.628-3.453A4 4 0 015.342 1h1.661zM12 9h2.003V3H12L12 9zM7.003 2H5.342A3 3 0 002.39 4.463l-.628 3.452a2 2 0 002.326 2.326l3.287-.596-.377 1.503-.641 2.56a.707.707 0 00.462.843l.723.241.008-.015L10.984 9H11V2.693A12.144 12.144 0 007.003 2z"
+          />
+        </svg>
+        <input
+          class="makeStyles-radio"
+          data-testid="negative-input"
+          id="2-negative"
+          name="rating-thumbs"
+          type="radio"
+          value="negative"
+        />
+      </label>
+    </div>
+  </div>
+</div>
+`;
