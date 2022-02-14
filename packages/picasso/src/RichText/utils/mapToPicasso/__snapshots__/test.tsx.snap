@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mapToPicasso goes through children recursively 1`] = `
+<li>
+  <div
+    class="PicassoContainer-flex PicassoListItem-listContainer"
+  >
+    <div
+      class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"
+    >
+      <svg
+        class="PicassoSvgBullet16-root"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 6a2 2 0 110 4 2 2 0 010-4z"
+        />
+      </svg>
+    </div>
+    <div
+      class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+    >
+      this is 
+      <strong
+        class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-semibold MuiTypography-body1"
+      >
+        bold
+      </strong>
+    </div>
+  </div>
+</li>
+`;

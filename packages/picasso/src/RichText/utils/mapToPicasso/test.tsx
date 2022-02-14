@@ -53,6 +53,6 @@ describe('mapToPicasso', () => {
     expect((liElement.type as Function).name).toEqual('Li')
     expect(typeof liStringElement).toEqual('string')
     expect((liStrongElement.type as Function).name).toEqual('Strong')
-    expect(container.querySelector('ul li')).toHaveTextContent('this is bold')
+    expect(container.querySelector('ul li')).toMatchSnapshot()
   })
 })

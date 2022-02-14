@@ -3,7 +3,8 @@ import React, {
   isValidElement,
   ReactElement,
   ReactNode,
-  ReactNodeArray
+  ReactNodeArray,
+  FC
 } from 'react'
 
 import Typography from '../../../Typography'
@@ -41,7 +42,7 @@ const H3 = ({ children }: Props) => (
 const Ul = ({ children }: Props) => <List variant='unordered'>{children}</List>
 const Ol = ({ children }: Props) => <List variant='ordered'>{children}</List>
 
-const componentMap = {
+const componentMap: Record<string, FC> = {
   p: P,
   strong: Strong,
   em: Em,
