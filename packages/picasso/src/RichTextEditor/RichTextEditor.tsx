@@ -68,16 +68,10 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       id,
       onChange,
       placeholder,
-<<<<<<< HEAD
-=======
       minlength,
       maxlength,
-<<<<<<< HEAD
->>>>>>> 403109da7 (chore: initial commit)
-=======
       getMinLengthMessage,
       getMaxLengthMessage,
->>>>>>> ce941ed45 (chore: add counter component)
       style,
       testIds
     },
@@ -88,16 +82,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     const editorRef = useRef<HTMLDivElement>(null)
     const { dispatch, state } = useTextEditorState()
     const [isEditorFocused, setIsEditorFocused] = useState(autofocus!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    const [counterMessage, setCounterMessage] = useState(
-      'initial counter message'
-    )
->>>>>>> 403109da7 (chore: initial commit)
-=======
     const [counterMessage, setCounterMessage] = useState('')
->>>>>>> ce941ed45 (chore: add counter component)
 
     const { handleSelectionChange } = useOnSelectionChange({ dispatch })
     const { handleTextFormat } = useOnTextFormat({ dispatch })
@@ -124,16 +109,6 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       dispatch
     })
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    React.useEffect(() => {
-      console.log(counterMessage)
-    }, [counterMessage])
-
->>>>>>> 403109da7 (chore: initial commit)
-=======
->>>>>>> ce941ed45 (chore: add counter component)
     return (
       <Container
         className={cx(
@@ -169,14 +144,11 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           id={id}
           isFocused={isEditorFocused}
           placeholder={placeholder}
-<<<<<<< HEAD
-=======
           minLength={minlength}
           maxLength={maxlength}
           getMinLengthMessage={getMinLengthMessage}
           getMaxLengthMessage={getMaxLengthMessage}
           counterMessageHandler={setCounterMessage}
->>>>>>> 403109da7 (chore: initial commit)
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}

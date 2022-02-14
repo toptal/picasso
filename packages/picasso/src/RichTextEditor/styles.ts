@@ -4,10 +4,7 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 export default ({ palette, sizes }: Theme) =>
   createStyles({
     editorWrapper: {
-<<<<<<< HEAD
-=======
       position: 'relative',
->>>>>>> ce941ed45 (chore: add counter component)
       borderRadius: sizes.borderRadius.small,
       border: `1px solid ${palette.grey.light2}`,
       padding: '0.5em',
@@ -25,17 +22,8 @@ export default ({ palette, sizes }: Theme) =>
     isFocused: {
       borderColor: palette.blue.main,
       ...outline(palette.primary.main)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    isFocused: {
-      borderColor: palette.blue.main,
-      ...outline(palette.primary.main)
-=======
-=======
     },
 
->>>>>>> 4034d0326 (fix: style)
     counter: {
       position: 'absolute',
       bottom: 0,
@@ -56,10 +44,5 @@ export default ({ palette, sizes }: Theme) =>
         display: 'inline-block',
         background: palette.grey.lighter2
       }
-<<<<<<< HEAD
->>>>>>> 6f2b0789c (chore: add counter component)
->>>>>>> ce941ed45 (chore: add counter component)
-=======
->>>>>>> 4034d0326 (fix: style)
     }
   })
