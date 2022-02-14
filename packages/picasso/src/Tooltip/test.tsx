@@ -33,7 +33,7 @@ describe('Tooltip', () => {
     beforeEach(() => {
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
-        value: jest.fn().mockImplementation(() => ({
+        value: jest.fn(() => ({
           matches: true
         }))
       })
@@ -156,7 +156,7 @@ describe('Tooltip', () => {
     beforeEach(() => {
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
-        value: jest.fn().mockImplementation(() => ({
+        value: jest.fn(() => ({
           matches: false
         }))
       })
