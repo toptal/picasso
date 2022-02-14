@@ -1,17 +1,17 @@
-import React, { ReactElement, useMemo } from 'react'
+import React, { ReactElement, useMemo, ReactNode, createElement } from 'react'
 import { toH } from 'hast-to-hyperscript'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import { ASTType } from './types'
 import Container from '../Container'
-import mapToPicasso from './utils/mapToPicasso/mapToPicasso'
+import mapToPicasso from './utils/mapToPicasso'
 
 export interface Props extends BaseProps {
   value: ASTType
 }
 
 interface WrapperProps extends BaseProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const Wrapper = ({
@@ -40,9 +40,7 @@ export const RichText = ({
   className,
   'data-testid': dataTestId
 }: Props) => {
-  const jsx = useMemo(() => toH(React.createElement, value) as ReactElement, [
-    value
-  ])
+  const jsx = useMemo(() => toH(createElement, value) as ReactElement, [value])
   const mappedJsx = useMemo(() => mapToPicasso(jsx), [jsx])
 
   return (
