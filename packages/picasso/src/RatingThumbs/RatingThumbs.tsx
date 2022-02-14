@@ -30,7 +30,7 @@ export interface Props extends BaseProps {
   interactive?: boolean
 
   /**
-   * Size of the input control. Defaults to large
+   * Size of the input control. Defaults to small
    */
   size?: Size
 }
@@ -49,7 +49,7 @@ let globalId = 0
 
 export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
   function RatingThumbs(
-    { name, interactive = true, size = 'large', value, onChange },
+    { name, interactive = true, size = 'small', value, onChange },
     ref
   ) {
     const classes = useStyles()

@@ -3,8 +3,21 @@ import { RatingThumbs } from '../RatingThumbs'
 
 const chapter = PicassoBook.connectToPage(page =>
   page
-    .createChapter('Thumbs Rating', `FIXME`)
-    .addExample('RatingThumbs/story/Default.example.tsx', 'Default')
+    .createChapter('Thumbs Rating')
+    .addExample('RatingThumbs/story/Default.example.tsx', {
+      title: 'Default',
+      description: 'Default behavior'
+    })
+    .addExample('RatingThumbs/story/NonInteractive.example.tsx', {
+      title: 'Non Interactive',
+      description:
+        'Rating thumbs can be non-interactive. In this mode the user cannot change its value'
+    })
+    .addExample('RatingThumbs/story/Sizes.example.tsx', {
+      title: 'Different sizes',
+      description:
+        'There are 2 options of sizes for the RatingThumbs component: small (default) and large'
+    })
 )
 
 const componentDocs = PicassoBook.createComponentDocs(
