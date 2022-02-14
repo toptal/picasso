@@ -62,6 +62,11 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       id,
       onChange,
       placeholder,
+<<<<<<< HEAD
+=======
+      minlength,
+      maxlength,
+>>>>>>> 403109da7 (chore: initial commit)
       style,
       testIds
     },
@@ -72,6 +77,12 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     const editorRef = useRef<HTMLDivElement>(null)
     const { dispatch, state } = useTextEditorState()
     const [isEditorFocused, setIsEditorFocused] = useState(autofocus!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
+<<<<<<< HEAD
+=======
+    const [counterMessage, setCounterMessage] = useState(
+      'initial counter message'
+    )
+>>>>>>> 403109da7 (chore: initial commit)
 
     const { handleSelectionChange } = useOnSelectionChange({ dispatch })
     const { handleTextFormat } = useOnTextFormat({ dispatch })
@@ -98,6 +109,13 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       dispatch
     })
 
+<<<<<<< HEAD
+=======
+    React.useEffect(() => {
+      console.log(counterMessage)
+    }, [counterMessage])
+
+>>>>>>> 403109da7 (chore: initial commit)
     return (
       <Container
         className={cx(
@@ -133,6 +151,12 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           id={id}
           isFocused={isEditorFocused}
           placeholder={placeholder}
+<<<<<<< HEAD
+=======
+          minLength={minlength}
+          maxLength={maxlength}
+          counterMessageHandler={setCounterMessage}
+>>>>>>> 403109da7 (chore: initial commit)
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}
