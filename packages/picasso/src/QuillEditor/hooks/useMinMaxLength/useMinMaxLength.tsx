@@ -3,40 +3,38 @@ import Delta from 'quill-delta'
 import { useEffect } from 'react'
 
 type Props = {
-  editorRef: React.RefObject<HTMLDivElement>
   quill?: Quill
   minLength?: number
   maxLength?: number
+  getMinLengthMessage?: (minLength: number, currLength: number) => string
+  getMaxLengthMessage?: (maxLength: number, currLength: number) => string
   counterMessageHandler: React.Dispatch<React.SetStateAction<string>>
 }
-
-const getMinLengthMessage = (minLength: number, currLength: number) =>
-  `${currLength}/${minLength}`
-const getMaxLengthMessage = (maxLength: number, currLength: number) =>
-  `${maxLength}/${currLength}`
 
 const getMessageForMinLength = (
   minLength: number,
   currLength: number,
-  getMinLengthMessage: (minLength: number, currLength: number) => string
+  getMinLengthMessage?: (minLength: number, currLength: number) => string
 ) => {
-  return (
-    (getMinLengthMessage && getMinLengthMessage(minLength, currLength)) ||
-    `${minLength} characters required, current count is ${
-      minLength - currLength
-    }`
-  )
+  if (getMinLengthMessage) {
+    return getMinLengthMessage(minLength, currLength)
+  }
+
+  return `${minLength} characters required, current count is ${
+    minLength - currLength
+  }`
 }
 
 const getMessageForMaxLength = (
   maxLength: number,
   currLength: number,
-  getMaxLengthMessage: (maxLength: number, currLength: number) => string
+  getMaxLengthMessage?: (maxLength: number, currLength: number) => string
 ) => {
-  return (
-    (getMaxLengthMessage && getMaxLengthMessage(maxLength, currLength)) ||
-    `${maxLength - currLength} characters left`
-  )
+  if (getMaxLengthMessage) {
+    return getMaxLengthMessage(maxLength, currLength)
+  }
+
+  return `${maxLength - currLength} characters left`
 }
 
 const maxLengthReached = (quill: Quill, delta: Delta, oldContents: Delta) => {
@@ -56,14 +54,29 @@ const maxLengthReached = (quill: Quill, delta: Delta, oldContents: Delta) => {
 }
 
 const useMinMaxLength = ({
-  editorRef,
   quill,
   minLength,
   maxLength,
+  getMinLengthMessage,
+  getMaxLengthMessage,
   counterMessageHandler
 }: Props) => {
   useEffect(() => {
-    if (!editorRef.current || !quill) {
+    if (minLength) {
+      counterMessageHandler(
+        getMessageForMinLength(minLength, 0, getMinLengthMessage)
+      )
+    } else if (maxLength) {
+      counterMessageHandler(
+        getMessageForMaxLength(maxLength, 0, getMaxLengthMessage)
+      )
+    } else {
+      counterMessageHandler('')
+    }
+  }, [minLength, maxLength, getMinLengthMessage, getMaxLengthMessage])
+
+  useEffect(() => {
+    if (!quill) {
       return
     }
 

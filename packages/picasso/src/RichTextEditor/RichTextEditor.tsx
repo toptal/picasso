@@ -39,13 +39,19 @@ export interface Props extends BaseProps {
    * If this value isn't specified, the user can enter an unlimited
    * number of characters.
    */
-  // TODO implement
   maxlength?: number
   /**
    * The minimum number of characters required that the user should enter.
    */
-  // TODO implement
   minlength?: number
+  /**
+   * Custom counter message for minlength
+   */
+  getMinLengthMessage?: (minLength: number, currLength: number) => string
+  /**
+   * Custom counter message for maxlength
+   */
+  getMaxLengthMessage?: (maxLength: number, currLength: number) => string
   /**
    * Callback on text change
    */
@@ -77,7 +83,12 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
 =======
       minlength,
       maxlength,
+<<<<<<< HEAD
 >>>>>>> 403109da7 (chore: initial commit)
+=======
+      getMinLengthMessage,
+      getMaxLengthMessage,
+>>>>>>> ce941ed45 (chore: add counter component)
       style,
       testIds
     },
@@ -89,11 +100,15 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     const { dispatch, state } = useTextEditorState()
     const [isEditorFocused, setIsEditorFocused] = useState(autofocus!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     const [counterMessage, setCounterMessage] = useState(
       'initial counter message'
     )
 >>>>>>> 403109da7 (chore: initial commit)
+=======
+    const [counterMessage, setCounterMessage] = useState('')
+>>>>>>> ce941ed45 (chore: add counter component)
 
     const { handleSelectionChange } = useOnSelectionChange({ dispatch })
     const { handleTextFormat } = useOnTextFormat({ dispatch })
@@ -162,17 +177,16 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           id={id}
           isFocused={isEditorFocused}
           placeholder={placeholder}
-<<<<<<< HEAD
-=======
-          minLength={minlength}
-          maxLength={maxlength}
-          counterMessageHandler={setCounterMessage}
->>>>>>> 403109da7 (chore: initial commit)
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}
           defaultValue={defaultValueInHtml}
         />
+        {(minlength || maxlength) && (
+          <Container className={cx(classes.counter, className)} style={style}>
+            {counterMessage}
+          </Container>
+        )}
       </Container>
     )
   }
