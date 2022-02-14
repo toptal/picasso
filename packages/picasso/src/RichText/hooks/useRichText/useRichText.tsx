@@ -1,12 +1,15 @@
+import { toH } from 'hast-to-hyperscript'
 import React, {
-  createElement,
-  isValidElement,
-  ReactElement,
-  ReactNode,
+  useMemo,
   ReactNodeArray,
+  createElement,
+  ReactElement,
+  isValidElement,
+  ReactNode,
   FC
 } from 'react'
 
+import { ASTType } from '../../types'
 import Typography from '../../../Typography'
 import Container from '../../../Container'
 import List from '../../../List'
@@ -64,12 +67,24 @@ const picassoMapper = (child: ReactNode): ReactNode => {
   return createElement(type, { key: child.key }, mappedChildren)
 }
 
-const mapToPicasso = (
-  jsx: ReactElement<{ children: ReactNodeArray }>
-): ReactNodeArray => {
-  const children = jsx.props.children
+const useRichText = (value: ASTType): ReactNodeArray | ReactNode => {
+  const mappedTextNodes = useMemo(() => {
+    const isSingleChild = value.children.length === 1
+    const reactElement = toH(createElement, value) as ReactElement
 
-  return children.map(picassoMapper)
+    if (isSingleChild) {
+      return picassoMapper(reactElement)
+    }
+
+    // first node of tree is always "root",
+    // which is transformed to wrapping div when children.length > 1
+    // when single children, there is no wrapping div and it returns textNode right away
+    const textNodes = reactElement.props.children
+
+    return textNodes.map(picassoMapper)
+  }, [value])
+
+  return mappedTextNodes
 }
 
-export default mapToPicasso
+export default useRichText
