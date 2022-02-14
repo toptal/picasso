@@ -2,6 +2,7 @@ import React from 'react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 
+import '../../../../__tests__/matchMedia'
 import FileListItem, { Props } from './FileListItem'
 
 const testIds = {
@@ -12,15 +13,6 @@ const renderFileListItem = (props: OmitInternalProps<Props>) =>
   render(<FileListItem testIds={testIds} {...props} />)
 
 describe('FileListItem', () => {
-  beforeEach(() => {
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: jest.fn().mockImplementation(() => ({
-        matches: false
-      }))
-    })
-  })
-
   const file = {
     file: new File(['user-profile-picture.png'], 'user-profile-picture.png'),
     uploading: false,

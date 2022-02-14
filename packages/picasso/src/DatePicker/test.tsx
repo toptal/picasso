@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
 
+import '../../../../__tests__/matchMedia'
 import { act, fireEvent, render } from '../test-utils'
 import DatePicker, { Props } from './DatePicker'
 import Tooltip from '../Tooltip'
@@ -13,17 +14,6 @@ const testIds = {
 
 // eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
-  beforeEach(() => {
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: jest.fn().mockImplementation(() => ({
-        matches: true,
-        addListener: jest.fn(),
-        removeListener: jest.fn()
-      }))
-    })
-  })
-
   beforeAll(() => {
     jest.useFakeTimers()
   })

@@ -1,21 +1,14 @@
 import React from 'react'
 import { fireEvent, render, waitFor } from '@toptal/picasso/test-utils'
 
+import '../../../../__tests__/matchMedia'
 import TypographyOverflow from '.'
-jest.mock('../utils/is-overflown.ts', () => ({
+jest.mock('../utils/is-overflown', () => ({
   __esModule: true,
   default: jest.fn(() => true)
 }))
 
 describe('TypographyOverflow', () => {
-  beforeEach(() => {
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: jest.fn().mockImplementation(() => ({
-        matches: false
-      }))
-    })
-  })
   describe('when overflow happened', () => {
     it('renders tooltip by default', async () => {
       const { getByTestId, queryByTestId } = render(
