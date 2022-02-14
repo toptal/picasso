@@ -5,7 +5,7 @@
  * Tolerance of the render could be 0-2px depending on the font that is used,
  * and also affected by the right-padding added at Ellipsis component.
  */
-const FONT_RENDER_CORRECTION = 0.475
+const FONT_RENDER_CORRECTION = 0.5
 
 const isOverflown = (element: HTMLElement) => {
   const { scrollWidth, scrollHeight } = element
