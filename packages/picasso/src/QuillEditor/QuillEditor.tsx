@@ -11,7 +11,12 @@ import {
   useSubscribeToQuillEvents,
   useDisabledEditor,
   useKeyBindings,
+<<<<<<< HEAD
   useSubscribeToTextEditorEvents
+=======
+  useSubscribeToTextEditorEvents,
+  useMinMaxLength
+>>>>>>> 403109da7 (chore: initial commit)
 } from './hooks'
 import { TextFormatHandler, ChangeHandler, SelectionHandler } from './types'
 import useDefaultValue from './hooks/useDefaultValue'
@@ -25,6 +30,12 @@ export type Props = BaseProps & {
   id: string
   isFocused: boolean
   placeholder?: string
+<<<<<<< HEAD
+=======
+  minLength?: number
+  maxLength?: number
+  counterMessageHandler: React.Dispatch<React.SetStateAction<string>>
+>>>>>>> 403109da7 (chore: initial commit)
   onSelectionChange: SelectionHandler
   onTextFormat: TextFormatHandler
   onTextChange: ChangeHandler
@@ -42,6 +53,12 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     id,
     isFocused,
     placeholder,
+<<<<<<< HEAD
+=======
+    minLength,
+    maxLength,
+    counterMessageHandler,
+>>>>>>> 403109da7 (chore: initial commit)
     onSelectionChange,
     onTextFormat,
     onTextChange
@@ -57,6 +74,16 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
 
   useFocus({ isFocused, quill })
   useDisabledEditor({ disabled, quill })
+<<<<<<< HEAD
+=======
+  useMinMaxLength({
+    editorRef,
+    quill,
+    minLength,
+    maxLength,
+    counterMessageHandler
+  })
+>>>>>>> 403109da7 (chore: initial commit)
   useKeyBindings({ quill, onTextFormat })
   useSubscribeToQuillEvents({
     quill,
