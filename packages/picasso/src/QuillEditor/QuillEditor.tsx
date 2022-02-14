@@ -29,6 +29,8 @@ export type Props = BaseProps & {
 =======
   minLength?: number
   maxLength?: number
+  getMinLengthMessage?: (minLength: number, currLength: number) => string
+  getMaxLengthMessage?: (maxLength: number, currLength: number) => string
   counterMessageHandler: React.Dispatch<React.SetStateAction<string>>
 >>>>>>> 403109da7 (chore: initial commit)
   onSelectionChange: SelectionHandler
@@ -51,6 +53,8 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
 =======
     minLength,
     maxLength,
+    getMinLengthMessage,
+    getMaxLengthMessage,
     counterMessageHandler,
 >>>>>>> 403109da7 (chore: initial commit)
     onSelectionChange,
@@ -71,10 +75,11 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
 <<<<<<< HEAD
 =======
   useMinMaxLength({
-    editorRef,
     quill,
     minLength,
     maxLength,
+    getMinLengthMessage,
+    getMaxLengthMessage,
     counterMessageHandler
   })
 >>>>>>> 403109da7 (chore: initial commit)
