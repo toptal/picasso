@@ -5,7 +5,9 @@ import {
   Container
 } from '@toptal/picasso'
 
-const ast = {
+import { ASTType } from '../types'
+
+const ast: ASTType = {
   type: 'root',
   children: [
     {
@@ -129,11 +131,10 @@ const Example = () => {
   return (
     <>
       <RichTextEditor
-        id='editor'
+        id='defaultValueEditor'
         onChange={handleChange}
         placeholder='Write some cool rich text'
         defaultValue={ast}
-        autofocus
       />
       <Container
         padded='small'

@@ -14,10 +14,14 @@ import {
   useOnFocus,
   useToolbarHandlers
 } from './hooks'
+import { ASTType } from './types'
+import useDefaultValue from './hooks/useDefaultValue'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
   autofocus?: boolean
+  /** Default value in hast format */
+  defaultValue?: ASTType
   /**
    * This Boolean attribute indicates that the user cannot interact with the control.
    */
@@ -58,6 +62,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       'data-testid': dataTestId,
       autofocus,
       className,
+      defaultValue,
       disabled,
       id,
       onChange,
@@ -98,6 +103,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       dispatch
     })
 
+    const { defaultValueInHtml } = useDefaultValue({ defaultValue })
+
     return (
       <Container
         className={cx(
@@ -136,6 +143,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}
+          defaultValue={defaultValueInHtml}
         />
       </Container>
     )
