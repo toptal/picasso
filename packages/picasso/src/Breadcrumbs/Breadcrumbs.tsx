@@ -1,8 +1,8 @@
 import React, { forwardRef, ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
-import { ChevronRight16 } from '@toptal/picasso/Icon'
 import { Breadcrumbs as MuiBreadcrumbs } from '@material-ui/core'
 
+import { ChevronRight16 } from '../Icon'
 import Item from '../BreadcrumbsItem'
 import './styles'
 

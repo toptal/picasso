@@ -10,8 +10,8 @@ import { Theme, makeStyles } from '@material-ui/core/styles'
 import PopperJs, { ReferenceObject, PopperOptions } from 'popper.js'
 import { BaseProps } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
-import ModalContext from '@toptal/picasso/Modal/ModalContext'
 
+import ModalContext from '../Modal/ModalContext'
 import useWidthOf from '../utils/use-width-of'
 import styles from './styles'
 

@@ -1,10 +1,9 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
-import { VariantType as ContainerVariants } from '@toptal/picasso/Container'
 import { makeStyles, Theme } from '@material-ui/core'
 
-import Container from '../Container'
+import Container, { VariantType as ContainerVariants } from '../Container'
 import Typography from '../Typography'
 import { Exclamation16, Done16, Info16 } from '../Icon'
 import styles from './styles'

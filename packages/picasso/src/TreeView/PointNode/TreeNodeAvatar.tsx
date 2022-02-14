@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
-import getNameInitials from '@toptal/picasso/utils/get-name-initials'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
+import getNameInitials from '../../utils/get-name-initials'
 import styles from './styles'
 
 export interface Props extends StandardProps {

@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
-import { palette } from '@toptal/picasso/utils'
 import ContentLoader from 'react-content-loader'
 import { pxFromRem, BaseProps } from '@toptal/picasso-shared'
+
+import { palette } from '../utils'
 
 interface ImageProps extends BaseProps {
   /** Each variant exposes a different set of props */
