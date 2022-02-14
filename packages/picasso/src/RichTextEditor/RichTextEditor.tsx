@@ -79,16 +79,10 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       id,
       onChange,
       placeholder,
-<<<<<<< HEAD
-=======
       minlength,
       maxlength,
-<<<<<<< HEAD
->>>>>>> 403109da7 (chore: initial commit)
-=======
       getMinLengthMessage,
       getMaxLengthMessage,
->>>>>>> ce941ed45 (chore: add counter component)
       style,
       testIds
     },
@@ -99,16 +93,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     const editorRef = useRef<HTMLDivElement>(null)
     const { dispatch, state } = useTextEditorState()
     const [isEditorFocused, setIsEditorFocused] = useState(autofocus!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    const [counterMessage, setCounterMessage] = useState(
-      'initial counter message'
-    )
->>>>>>> 403109da7 (chore: initial commit)
-=======
     const [counterMessage, setCounterMessage] = useState('')
->>>>>>> ce941ed45 (chore: add counter component)
 
     const { handleSelectionChange } = useOnSelectionChange({ dispatch })
     const { handleTextFormat } = useOnTextFormat({ dispatch })
@@ -177,6 +162,11 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           id={id}
           isFocused={isEditorFocused}
           placeholder={placeholder}
+          minLength={minlength}
+          maxLength={maxlength}
+          getMinLengthMessage={getMinLengthMessage}
+          getMaxLengthMessage={getMaxLengthMessage}
+          counterMessageHandler={setCounterMessage}
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}

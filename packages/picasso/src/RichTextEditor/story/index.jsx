@@ -19,8 +19,4 @@ page
   .addExample('RichTextEditor/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('RichTextEditor/story/DefaultValue.example.tsx', 'Default value') // picasso-skip-visuals
   .addExample('RichTextEditor/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
-<<<<<<< HEAD
-// .addExample('RichTextEditor/story/Limit.example.tsx', 'Limit Length') // picasso-skip-visuals
-=======
   .addExample('RichTextEditor/story/Limit.example.tsx', 'Limit Length') // picasso-skip-visuals
->>>>>>> 403109da7 (chore: initial commit)

@@ -11,12 +11,8 @@ import {
   useSubscribeToQuillEvents,
   useDisabledEditor,
   useKeyBindings,
-<<<<<<< HEAD
-  useSubscribeToTextEditorEvents
-=======
   useSubscribeToTextEditorEvents,
   useMinMaxLength
->>>>>>> 403109da7 (chore: initial commit)
 } from './hooks'
 import { TextFormatHandler, ChangeHandler, SelectionHandler } from './types'
 import useDefaultValue from './hooks/useDefaultValue'
@@ -30,14 +26,11 @@ export type Props = BaseProps & {
   id: string
   isFocused: boolean
   placeholder?: string
-<<<<<<< HEAD
-=======
   minLength?: number
   maxLength?: number
   getMinLengthMessage?: (minLength: number, currLength: number) => string
   getMaxLengthMessage?: (maxLength: number, currLength: number) => string
   counterMessageHandler: React.Dispatch<React.SetStateAction<string>>
->>>>>>> 403109da7 (chore: initial commit)
   onSelectionChange: SelectionHandler
   onTextFormat: TextFormatHandler
   onTextChange: ChangeHandler
@@ -55,14 +48,11 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     id,
     isFocused,
     placeholder,
-<<<<<<< HEAD
-=======
     minLength,
     maxLength,
     getMinLengthMessage,
     getMaxLengthMessage,
     counterMessageHandler,
->>>>>>> 403109da7 (chore: initial commit)
     onSelectionChange,
     onTextFormat,
     onTextChange
@@ -78,8 +68,6 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
 
   useFocus({ isFocused, quill })
   useDisabledEditor({ disabled, quill })
-<<<<<<< HEAD
-=======
   useMinMaxLength({
     quill,
     minLength,
@@ -88,7 +76,6 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     getMaxLengthMessage,
     counterMessageHandler
   })
->>>>>>> 403109da7 (chore: initial commit)
   useKeyBindings({ quill, onTextFormat })
   useSubscribeToQuillEvents({
     quill,
