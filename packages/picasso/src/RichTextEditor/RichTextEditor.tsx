@@ -11,7 +11,7 @@ import cx from 'classnames'
 import hastUtilToHtml from 'hast-util-to-html'
 
 import Container from '../Container'
-import QuillEditor from '../QuillEditor'
+import QuillEditor, { TextLengthChangeHandler } from '../QuillEditor'
 import Toolbar from '../RichTextEditorToolbar'
 import styles from './styles'
 import {
@@ -162,11 +162,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           id={id}
           isFocused={isEditorFocused}
           placeholder={placeholder}
-          minLength={minlength}
-          maxLength={maxlength}
-          getMinLengthMessage={getMinLengthMessage}
-          getMaxLengthMessage={getMaxLengthMessage}
-          counterMessageHandler={setCounterMessage}
+          maxlength={maxlength}
+          onTextLengthChange={handleCounter}
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}

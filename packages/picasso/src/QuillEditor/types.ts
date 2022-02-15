@@ -19,3 +19,4 @@ export type TextFormatHandlerEvent =
 export type TextFormatHandler = (e: TextFormatHandlerEvent) => void
 export type SelectionHandler = (format: FormatType) => void
 export type ChangeHandler = (html: string) => void
+export type TextLengthChangeHandler = (length: number) => void

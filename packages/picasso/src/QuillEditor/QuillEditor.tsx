@@ -11,11 +11,15 @@ import {
   useSubscribeToQuillEvents,
   useDisabledEditor,
   useKeyBindings,
-  useSubscribeToTextEditorEvents,
-  useMinMaxLength
+  useSubscribeToTextEditorEvents
 } from './hooks'
-import { TextFormatHandler, ChangeHandler, SelectionHandler } from './types'
 import useDefaultValue from './hooks/useDefaultValue'
+import {
+  TextFormatHandler,
+  ChangeHandler,
+  SelectionHandler,
+  TextLengthChangeHandler
+} from './types'
 
 export type Props = BaseProps & {
   /**
@@ -26,14 +30,11 @@ export type Props = BaseProps & {
   id: string
   isFocused: boolean
   placeholder?: string
-  minLength?: number
-  maxLength?: number
-  getMinLengthMessage?: (minLength: number, currLength: number) => string
-  getMaxLengthMessage?: (maxLength: number, currLength: number) => string
-  counterMessageHandler: React.Dispatch<React.SetStateAction<string>>
+  maxlength?: number
   onSelectionChange: SelectionHandler
   onTextFormat: TextFormatHandler
   onTextChange: ChangeHandler
+  onTextLengthChange: TextLengthChangeHandler
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -48,11 +49,8 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     id,
     isFocused,
     placeholder,
-    minLength,
-    maxLength,
-    getMinLengthMessage,
-    getMaxLengthMessage,
-    counterMessageHandler,
+    maxlength,
+    onTextLengthChange,
     onSelectionChange,
     onTextFormat,
     onTextChange
@@ -68,19 +66,14 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
 
   useFocus({ isFocused, quill })
   useDisabledEditor({ disabled, quill })
-  useMinMaxLength({
-    quill,
-    minLength,
-    maxLength,
-    getMinLengthMessage,
-    getMaxLengthMessage,
-    counterMessageHandler
-  })
+
   useKeyBindings({ quill, onTextFormat })
   useSubscribeToQuillEvents({
     quill,
     onTextChange,
-    onSelectionChange
+    onSelectionChange,
+    onTextLengthChange,
+    maxlength
   })
   useSubscribeToTextEditorEvents({
     editorRef,
@@ -107,6 +100,7 @@ QuillEditor.defaultProps = {
   isFocused: false,
   onSelectionChange: () => {},
   onTextFormat: () => {},
+  onTextLengthChange: () => {},
   onTextChange: () => {}
 }
 
