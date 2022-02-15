@@ -7,19 +7,28 @@ import { Container } from '../Container'
 import styles from './styles'
 
 type Props = BaseProps & {
-  counterMessage?: string
+  message?: string
 }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'TextEditorCounter'
 })
 
-const RichTextEditorCounter = ({ counterMessage, className, style }: Props) => {
+const RichTextEditorCounter = ({
+  message,
+  className,
+  style,
+  'data-testid': dataTestId
+}: Props) => {
   const classes = useStyles()
 
   return (
-    <Container className={cx(classes.counter, className)} style={style}>
-      {counterMessage}
+    <Container
+      className={cx(classes.counter, className)}
+      style={style}
+      data-testid={dataTestId}
+    >
+      {message}
     </Container>
   )
 }

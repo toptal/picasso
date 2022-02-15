@@ -5,48 +5,22 @@ import { TextLengthChangeHandler } from '../../../QuillEditor'
 type Props = {
   minlength?: number
   maxlength?: number
-  getMinLengthMessage?: (minLength: number, currLength: number) => string
-  getMaxLengthMessage?: (maxLength: number, currLength: number) => string
-}
-
-const getMessageForMinLength = (
-  minlength: number,
-  currLength: number,
-  getMinLengthMessage: Props['getMinLengthMessage']
-) => {
-  if (getMinLengthMessage) {
-    return getMinLengthMessage(minlength, currLength)
-  }
-
-  return `${minlength} characters required, current count is ${
-    minlength - currLength
-  }`
-}
-
-const getMessageForMaxLength = (
-  maxlength: number,
-  currLength: number,
-  getMaxLengthMessage: Props['getMaxLengthMessage']
-) => {
-  if (getMaxLengthMessage) {
-    return getMaxLengthMessage(maxlength, currLength)
-  }
-
-  return `${maxlength - currLength} characters left`
+  minLengthMessage?: (minLength: number, currLength: number) => string
+  maxLengthMessage?: (maxLength: number, currLength: number) => string
 }
 
 const getInitialCounterMessage = ({
   minlength,
   maxlength,
-  getMinLengthMessage,
-  getMaxLengthMessage
+  minLengthMessage,
+  maxLengthMessage
 }: Props) => {
-  if (minlength) {
-    return getMessageForMinLength(minlength, 0, getMinLengthMessage)
+  if (minlength && minLengthMessage) {
+    return minLengthMessage(minlength, 0)
   }
 
-  if (maxlength) {
-    return getMessageForMaxLength(maxlength, 0, getMaxLengthMessage)
+  if (maxlength && maxLengthMessage) {
+    return maxLengthMessage(maxlength, 0)
   }
 
   return ''
@@ -55,35 +29,31 @@ const getInitialCounterMessage = ({
 const useCounter = ({
   minlength,
   maxlength,
-  getMinLengthMessage,
-  getMaxLengthMessage
+  minLengthMessage,
+  maxLengthMessage
 }: Props) => {
   const [counterMessage, setCounterMessage] = useState(() =>
     getInitialCounterMessage({
       minlength,
       maxlength,
-      getMinLengthMessage,
-      getMaxLengthMessage
+      minLengthMessage,
+      maxLengthMessage
     })
   )
 
   const handleCounterMessage: TextLengthChangeHandler = useCallback(
     currLength => {
-      if (minlength && currLength <= minlength) {
-        setCounterMessage(
-          getMessageForMinLength(minlength, currLength, getMinLengthMessage)
-        )
+      if (minLengthMessage && minlength && currLength <= minlength) {
+        setCounterMessage(minLengthMessage(minlength, currLength))
       }
 
-      if (maxlength && currLength <= maxlength) {
+      if (maxLengthMessage && maxlength && currLength <= maxlength) {
         if (!minlength || (minlength && minlength <= currLength)) {
-          setCounterMessage(
-            getMessageForMaxLength(maxlength, currLength, getMaxLengthMessage)
-          )
+          setCounterMessage(maxLengthMessage(maxlength, currLength))
         }
       }
     },
-    [minlength, maxlength, getMinLengthMessage, getMaxLengthMessage]
+    [minlength, maxlength, minLengthMessage, maxLengthMessage]
   )
 
   return { counterMessage, handleCounterMessage }

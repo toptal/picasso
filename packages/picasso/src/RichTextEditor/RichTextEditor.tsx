@@ -49,11 +49,11 @@ export interface Props extends BaseProps {
   /**
    * Custom counter message for minlength
    */
-  getMinLengthMessage?: (minLength: number, currLength: number) => string
+  minLengthMessage?: (minLength: number, currLength: number) => string
   /**
    * Custom counter message for maxlength
    */
-  getMaxLengthMessage?: (maxLength: number, currLength: number) => string
+  maxLengthMessage?: (maxLength: number, currLength: number) => string
   /**
    * Callback on text change
    */
@@ -83,8 +83,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       placeholder,
       minlength,
       maxlength,
-      getMinLengthMessage,
-      getMaxLengthMessage,
+      minLengthMessage,
+      maxLengthMessage,
       style,
       testIds
     },
@@ -133,8 +133,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     const { counterMessage, handleCounterMessage } = useCounter({
       minlength,
       maxlength,
-      getMinLengthMessage,
-      getMaxLengthMessage
+      minLengthMessage,
+      maxLengthMessage
     })
 
     return (
@@ -179,9 +179,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           onTextChange={onChange}
           defaultValue={defaultValueInHtml}
         />
-        {(minlength || maxlength) && (
-          <Counter counterMessage={counterMessage} />
-        )}
+        {(minlength || maxlength) && <Counter message={counterMessage} />}
       </Container>
     )
   }
@@ -189,7 +187,13 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
 
 RichTextEditor.defaultProps = {
   autofocus: false,
-  disabled: false
+  disabled: false,
+  minLengthMessage: (minlength, currLength) =>
+    `${minlength} characters required, current count is ${
+      minlength - currLength
+    }`,
+  maxLengthMessage: (maxlength, currLength) =>
+    `${maxlength - currLength} characters left`
 }
 
 RichTextEditor.displayName = 'RichTextEditor'
