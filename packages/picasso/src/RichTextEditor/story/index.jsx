@@ -16,6 +16,6 @@ page
 
 page
   .createChapter()
-  .addExample('RichTextEditor/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('RichTextEditor/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
+  // .addExample('RichTextEditor/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+  // .addExample('RichTextEditor/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
   .addExample('RichTextEditor/story/Limit.example.tsx', 'Limit Length') // picasso-skip-visuals

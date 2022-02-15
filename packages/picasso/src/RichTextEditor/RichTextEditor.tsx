@@ -4,7 +4,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import Container from '../Container'
-import QuillEditor from '../QuillEditor'
+import QuillEditor, { TextLengthChangeHandler } from '../QuillEditor'
 import Toolbar from '../RichTextEditorToolbar'
 import styles from './styles'
 import {
@@ -109,6 +109,15 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       dispatch
     })
 
+
+    // TODO: create custom hook that will take care of messages
+    // const { handleCounter, counterMessage } = useCounter({ minlength, maxlength })
+
+    const handleCounter: TextLengthChangeHandler = useCallback(
+      length => console.log(length),
+      []
+    )
+
     return (
       <Container
         className={cx(
@@ -144,11 +153,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           id={id}
           isFocused={isEditorFocused}
           placeholder={placeholder}
-          minLength={minlength}
-          maxLength={maxlength}
-          getMinLengthMessage={getMinLengthMessage}
-          getMaxLengthMessage={getMaxLengthMessage}
-          counterMessageHandler={setCounterMessage}
+          maxlength={maxlength}
+          onTextLengthChange={handleCounter}
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}
