@@ -1,6 +1,6 @@
 import { createStyles, Theme } from '@material-ui/core'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, transitions }: Theme) =>
   createStyles({
     radio: {
       display: 'none'
@@ -12,7 +12,7 @@ export default ({ palette }: Theme) =>
     },
     thumbs: {
       color: palette.grey.light2,
-      transition: 'color .3s'
+      transition: `color ${transitions.duration.short}ms linear`
     },
     interactiveThumbs: {
       cursor: 'pointer',

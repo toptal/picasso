@@ -3,6 +3,7 @@ import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import classNames from 'classnames'
 import React, { ChangeEvent, forwardRef, useCallback, useState } from 'react'
 
+import { Container } from '..'
 import { ThumbsDown16, ThumbsDown24, ThumbsUp24 } from '../Icon'
 import ThumbsUp16 from '../Icon/ThumbsUp16'
 import styles from './styles'
@@ -18,7 +19,7 @@ export interface Props extends BaseProps {
   /**
    * Current value for the rating, true means thumbs up, false thumbs down and undefined means not selected
    */
-  value?: boolean | undefined
+  value?: boolean
 
   /**
    * Callback invoked when the rating is changed
@@ -34,12 +35,18 @@ export interface Props extends BaseProps {
    * Size of the input control. Defaults to small
    */
   size?: Size
+
+  // For testing
+  'data-positive-testid'?: string
+  'data-negative-testid'?: string
 }
 
 const useStyles = makeStyles<Theme>(styles)
 
-const POSITIVE_VALUE = 'positive'
-const NEGATIVE_VALUE = 'negative'
+enum ThumbsValue {
+  POSITIVE = 'positive',
+  NEGATIVE = 'negative'
+}
 
 const componentsBySize = {
   small: [ThumbsUp16, ThumbsDown16],
@@ -50,7 +57,15 @@ let globalId = 0
 
 export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
   function RatingThumbs(
-    { name, interactive = true, size = 'small', value, onChange },
+    {
+      name,
+      interactive = true,
+      size = 'small',
+      value,
+      onChange,
+      'data-positive-testid': positiveTestId = `${name}-positive-testid`,
+      'data-negative-testid': negativeTestId = `${name}-negative-testid`
+    },
     ref
   ) {
     const classes = useStyles()
@@ -65,21 +80,20 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
     const handleChange = useCallback(
       (event: ChangeEvent<HTMLInputElement>) => {
         if (interactive) {
-          onChange?.(event.target.value === POSITIVE_VALUE, event)
+          onChange?.(event.target.value === ThumbsValue.POSITIVE, event)
         }
       },
       [onChange, interactive]
     )
 
     return (
-      <div ref={ref}>
+      <Container ref={ref}>
         <label className={classes.label} htmlFor={positiveInputId}>
           <ThumbsUp
-            className={classNames(
-              classes.thumbs,
-              interactive && classes.interactiveThumbs,
-              value === true && classes.thumbsPositive
-            )}
+            className={classNames(classes.thumbs, {
+              [classes.interactiveThumbs]: interactive,
+              [classes.thumbsPositive]: value === true
+            })}
           />
 
           <input
@@ -87,21 +101,20 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
             className={classes.radio}
             type='radio'
             name={name}
-            value={POSITIVE_VALUE}
+            value={ThumbsValue.POSITIVE}
             onChange={handleChange}
             readOnly={!interactive}
             checked={value === true}
-            data-testid='positive-input'
+            data-testid={positiveTestId}
           />
         </label>
 
         <label className={classes.label} htmlFor={negativeInputId}>
           <ThumbsDown
-            className={classNames(
-              classes.thumbs,
-              interactive && classes.interactiveThumbs,
-              value === false && classes.thumbsNegative
-            )}
+            className={classNames(classes.thumbs, {
+              [classes.interactiveThumbs]: interactive,
+              [classes.thumbsNegative]: value === false
+            })}
           />
 
           <input
@@ -109,14 +122,14 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
             className={classes.radio}
             type='radio'
             name={name}
-            value={NEGATIVE_VALUE}
+            value={ThumbsValue.NEGATIVE}
             onChange={handleChange}
             readOnly={!interactive}
             checked={value === false}
-            data-testid='negative-input'
+            data-testid={negativeTestId}
           />
         </label>
-      </div>
+      </Container>
     )
   }
 )

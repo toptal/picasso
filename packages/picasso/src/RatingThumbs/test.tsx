@@ -4,10 +4,17 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import RatingThumbs, { Props } from './RatingThumbs'
 
-const defaultProps = {
+enum DataIds {
+  POSITIVE_INPUT = 'positive-input',
+  NEGATIVE_INPUT = 'negative-input'
+}
+
+const defaultProps: Props = {
   name: 'rating-thumbs',
-  onChange: jest.fn()
-} as const
+  onChange: jest.fn(),
+  'data-positive-testid': DataIds.POSITIVE_INPUT,
+  'data-negative-testid': DataIds.NEGATIVE_INPUT
+}
 
 const renderRatingThumbs = (props: Partial<OmitInternalProps<Props>> = {}) => {
   const normalizedProps: Props = { ...defaultProps, ...props }
@@ -17,10 +24,10 @@ const renderRatingThumbs = (props: Partial<OmitInternalProps<Props>> = {}) => {
     ...result,
 
     getPositiveInput: () =>
-      result.getByTestId('positive-input') as HTMLInputElement,
+      result.getByTestId(DataIds.POSITIVE_INPUT) as HTMLInputElement,
 
     getNegativeInput: () =>
-      result.getByTestId('negative-input') as HTMLInputElement
+      result.getByTestId(DataIds.NEGATIVE_INPUT) as HTMLInputElement
   } as const
 }
 
@@ -31,65 +38,64 @@ const expectNotNull = <T extends any>(val: T): NonNullable<T> => {
 }
 
 describe('RatingThumbs', () => {
-  it.each([['small'], ['large']] as const)(
-    'should render for size %s',
-    size => {
-      const { container } = renderRatingThumbs({ size })
+  describe('when asked to render with different sizes', () => {
+    it.each([['small'], ['large']] as const)(
+      'renders the correct icon size %s',
+      size => {
+        const { container } = renderRatingThumbs({ size })
 
-      expect(container).toMatchSnapshot()
-    }
-  )
+        expect(container).toMatchSnapshot()
+      }
+    )
+  })
 
-  it.each([
+  describe.each([
     [undefined, false, false],
     [true, true, false],
     [false, false, true]
-  ])(
-    'should show correct thumbs when value is %s',
-    (value, positiveChecked, negativeChecked) => {
-      const {
-        container,
-        getNegativeInput,
-        getPositiveInput
-      } = renderRatingThumbs({
+  ])('when value is %s', (value, positiveChecked, negativeChecked) => {
+    it('shows correct input checked', () => {
+      const { getNegativeInput, getPositiveInput } = renderRatingThumbs({
         value
       })
 
-      expect(container).toMatchSnapshot()
-
       expect(getPositiveInput().checked).toStrictEqual(positiveChecked)
       expect(getNegativeInput().checked).toStrictEqual(negativeChecked)
-    }
-  )
-
-  it('should trigger onChange when clicking the label', () => {
-    const onChange = jest.fn()
-
-    const { getPositiveInput } = renderRatingThumbs({ onChange })
-
-    const parentLabel = expectNotNull(getPositiveInput().parentElement)
-
-    expect(parentLabel).toBeInstanceOf(HTMLLabelElement)
-
-    fireEvent.click(parentLabel)
-
-    expect(onChange).toHaveBeenCalledWith(true, expect.anything())
+    })
   })
 
-  it('should not trigger onChange when not interactive', () => {
-    const onChange = jest.fn()
+  describe('when clicking on a thumb label', () => {
+    it('triggers onChange with the correct value and event', () => {
+      const onChange = jest.fn()
 
-    const { getPositiveInput } = renderRatingThumbs({
-      onChange,
-      interactive: false
+      const { getPositiveInput } = renderRatingThumbs({ onChange })
+
+      const parentLabel = expectNotNull(getPositiveInput().parentElement)
+
+      expect(parentLabel).toBeInstanceOf(HTMLLabelElement)
+
+      fireEvent.click(parentLabel)
+
+      expect(onChange).toHaveBeenCalledWith(true, expect.anything())
     })
+  })
 
-    const parentLabel = expectNotNull(getPositiveInput().parentElement)
+  describe('when not interactive', () => {
+    it("doesn't trigger onChange", () => {
+      const onChange = jest.fn()
 
-    expect(parentLabel).toBeInstanceOf(HTMLLabelElement)
+      const { getPositiveInput } = renderRatingThumbs({
+        onChange,
+        interactive: false
+      })
 
-    fireEvent.click(parentLabel)
+      const parentLabel = expectNotNull(getPositiveInput().parentElement)
 
-    expect(onChange).not.toHaveBeenCalled()
+      expect(parentLabel).toBeInstanceOf(HTMLLabelElement)
+
+      fireEvent.click(parentLabel)
+
+      expect(onChange).not.toHaveBeenCalled()
+    })
   })
 })
