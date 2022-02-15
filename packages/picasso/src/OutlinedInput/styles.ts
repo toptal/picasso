@@ -99,6 +99,7 @@ export default ({ palette, sizes: { input } }: Theme) =>
     hidden: {
       display: 'none'
     },
+
     rootSmall: {
       padding: '0.25rem 0.625rem',
       height: '1.5rem'
@@ -106,6 +107,10 @@ export default ({ palette, sizes: { input } }: Theme) =>
     rootMedium: {
       padding: input.padding,
       height: input.height
+    },
+    rootLarge: {
+      padding: '0.75rem',
+      height: '3rem'
     },
     rootFull: {
       width: '100%'
@@ -128,6 +133,10 @@ export default ({ palette, sizes: { input } }: Theme) =>
     },
     inputMedium: {
       fontSize: '0.875rem',
+      lineHeight: '1rem'
+    },
+    inputLarge: {
+      fontSize: '1rem',
       lineHeight: '1rem'
     },
     inputMultiline: {},

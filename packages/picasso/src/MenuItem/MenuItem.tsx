@@ -52,7 +52,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   value?: string | Readonly<string[]> | number
   /** Variant of colors */
   variant?: VariantType
-  /** Size of component */
+  /** Component size */
   size?: SizeType<'small' | 'medium'>
   /** Disables changing colors on hover/focus */
   nonSelectable?: boolean
