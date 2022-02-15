@@ -1,5 +1,13 @@
 # Change Log
 
+## 18.3.1
+
+### Patch Changes
+
+- [#2440](https://github.com/toptal/picasso/pull/2440) [`ac198e4a`](https://github.com/toptal/picasso/commit/ac198e4adfa0560dc93feac78910dbb0811ff139) Thanks [@mupkoo](https://github.com/mupkoo)! - ### Info Icon
+
+  Update `Info` icon to the new one from Product Iconography
+
 ## 18.3.0
 
 ### Minor Changes
