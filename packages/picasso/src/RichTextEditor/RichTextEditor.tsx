@@ -11,15 +11,17 @@ import cx from 'classnames'
 import hastUtilToHtml from 'hast-util-to-html'
 
 import Container from '../Container'
-import QuillEditor, { TextLengthChangeHandler } from '../QuillEditor'
+import QuillEditor from '../QuillEditor'
 import Toolbar from '../RichTextEditorToolbar'
+import Counter from '../RichTextEditorCounter'
 import styles from './styles'
 import {
   useTextEditorState,
   useOnSelectionChange,
   useOnTextFormat,
   useOnFocus,
-  useToolbarHandlers
+  useToolbarHandlers,
+  useCounter
 } from './hooks'
 import { ASTType } from './types'
 
@@ -93,10 +95,10 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     const editorRef = useRef<HTMLDivElement>(null)
     const { dispatch, state } = useTextEditorState()
     const [isEditorFocused, setIsEditorFocused] = useState(autofocus!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    const [counterMessage, setCounterMessage] = useState('')
 
     const { handleSelectionChange } = useOnSelectionChange({ dispatch })
     const { handleTextFormat } = useOnTextFormat({ dispatch })
+
     const {
       handleBold,
       handleItalic,
@@ -108,6 +110,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       handleTextFormat,
       format: state.toolbar.format
     })
+
     const { handleFocus, handleBlur } = useOnFocus({
       editorRef,
       toolbarRef,
@@ -126,6 +129,13 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       /* eslint-disable-next-line */
       []
     )
+
+    const { counterMessage, handleCounterMessage } = useCounter({
+      minlength,
+      maxlength,
+      getMinLengthMessage,
+      getMaxLengthMessage
+    })
 
     return (
       <Container
@@ -163,16 +173,14 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           isFocused={isEditorFocused}
           placeholder={placeholder}
           maxlength={maxlength}
-          onTextLengthChange={handleCounter}
+          onTextLengthChange={handleCounterMessage}
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}
           defaultValue={defaultValueInHtml}
         />
         {(minlength || maxlength) && (
-          <Container className={cx(classes.counter, className)} style={style}>
-            {counterMessage}
-          </Container>
+          <Counter counterMessage={counterMessage} />
         )}
       </Container>
     )
