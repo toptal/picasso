@@ -41,17 +41,17 @@ export interface Props extends BaseProps {
    * If this value isn't specified, the user can enter an unlimited
    * number of characters.
    */
-  maxlength?: number
+  maxLength?: number
   /**
    * The minimum number of characters required that the user should enter.
    */
-  minlength?: number
+  minLength?: number
   /**
-   * Custom counter message for minlength
+   * Custom counter message for minLength
    */
   minLengthMessage?: (minLength: number, currLength: number) => string
   /**
-   * Custom counter message for maxlength
+   * Custom counter message for maxLength
    */
   maxLengthMessage?: (maxLength: number, currLength: number) => string
   /**
@@ -81,8 +81,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       id,
       onChange,
       placeholder,
-      minlength,
-      maxlength,
+      minLength,
+      maxLength,
       minLengthMessage,
       maxLengthMessage,
       style,
@@ -131,8 +131,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     )
 
     const { counterMessage, handleCounterMessage } = useCounter({
-      minlength,
-      maxlength,
+      minLength,
+      maxLength,
       minLengthMessage,
       maxLengthMessage
     })
@@ -172,14 +172,14 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           id={id}
           isFocused={isEditorFocused}
           placeholder={placeholder}
-          maxlength={maxlength}
+          maxLength={maxLength}
           onTextLengthChange={handleCounterMessage}
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}
           defaultValue={defaultValueInHtml}
         />
-        {(minlength || maxlength) && <Counter message={counterMessage} />}
+        {(minLength || maxLength) && <Counter message={counterMessage} />}
       </Container>
     )
   }
@@ -188,12 +188,12 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
 RichTextEditor.defaultProps = {
   autofocus: false,
   disabled: false,
-  minLengthMessage: (minlength, currLength) =>
-    `${minlength} characters required, current count is ${
-      minlength - currLength
+  minLengthMessage: (minLength, currLength) =>
+    `${minLength} characters required, current count is ${
+      minLength - currLength
     }`,
-  maxLengthMessage: (maxlength, currLength) =>
-    `${maxlength - currLength} characters left`
+  maxLengthMessage: (maxLength, currLength) =>
+    `${maxLength - currLength} characters left`
 }
 
 RichTextEditor.displayName = 'RichTextEditor'

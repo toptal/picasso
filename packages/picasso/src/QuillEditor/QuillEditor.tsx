@@ -30,7 +30,7 @@ export type Props = BaseProps & {
   id: string
   isFocused: boolean
   placeholder?: string
-  maxlength?: number
+  maxLength?: number
   onSelectionChange: SelectionHandler
   onTextFormat: TextFormatHandler
   onTextChange: ChangeHandler
@@ -49,7 +49,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     id,
     isFocused,
     placeholder,
-    maxlength,
+    maxLength,
     onTextLengthChange,
     onSelectionChange,
     onTextFormat,
@@ -73,7 +73,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     onTextChange,
     onSelectionChange,
     onTextLengthChange,
-    maxlength
+    maxLength
   })
   useSubscribeToTextEditorEvents({
     editorRef,

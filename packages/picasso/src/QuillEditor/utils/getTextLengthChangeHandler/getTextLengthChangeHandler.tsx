@@ -4,21 +4,21 @@ import { TextLengthChangeHandler } from '../../types'
 
 type Props = {
   quill: Quill
-  maxlength?: number
+  maxLength?: number
   onTextLengthChange?: TextLengthChangeHandler
 }
 
 const getTextLengthChangeHandler = ({
   quill,
-  maxlength,
+  maxLength,
   onTextLengthChange
 }: Props) => {
   const handler: TextChangeHandler = (delta, oldContents) => {
     const currentLength = quill.getLength() - 1
-    const isOverLimit = maxlength && currentLength > maxlength
+    const isOverLimit = maxLength && currentLength > maxLength
 
     if (onTextLengthChange) {
-      if (!maxlength || !isOverLimit) {
+      if (!maxLength || !isOverLimit) {
         onTextLengthChange(currentLength)
       }
     }
