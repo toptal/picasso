@@ -8,6 +8,7 @@ import styles from './styles'
 
 type Props = BaseProps & {
   message?: string
+  error?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -16,6 +17,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 const RichTextEditorCounter = ({
   message,
+  error,
   className,
   style,
   'data-testid': dataTestId
@@ -24,7 +26,13 @@ const RichTextEditorCounter = ({
 
   return (
     <Container
-      className={cx(classes.counter, className)}
+      className={cx(
+        classes.counter,
+        {
+          [classes.counterError]: error
+        },
+        className
+      )}
       style={style}
       data-testid={dataTestId}
     >

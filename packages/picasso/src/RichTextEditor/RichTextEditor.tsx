@@ -130,7 +130,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       []
     )
 
-    const { counterMessage, handleCounterMessage } = useCounter({
+    const { counterMessage, error, handleCounterMessage } = useCounter({
       minLength,
       maxLength,
       minLengthMessage,
@@ -172,14 +172,15 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           id={id}
           isFocused={isEditorFocused}
           placeholder={placeholder}
-          maxLength={maxLength}
           onTextLengthChange={handleCounterMessage}
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}
           defaultValue={defaultValueInHtml}
         />
-        {(minLength || maxLength) && <Counter message={counterMessage} />}
+        {(minLength || maxLength) && (
+          <Counter error={error} message={counterMessage} />
+        )}
       </Container>
     )
   }
@@ -189,11 +190,13 @@ RichTextEditor.defaultProps = {
   autofocus: false,
   disabled: false,
   minLengthMessage: (minLength, currLength) =>
-    `${minLength} characters required, current count is ${
-      minLength - currLength
-    }`,
+    currLength < minLength
+      ? `${minLength} characters required, current count is ${currLength}`
+      : `${currLength} characters entered`,
   maxLengthMessage: (maxLength, currLength) =>
-    `${maxLength - currLength} characters left`
+    currLength <= maxLength
+      ? `${maxLength - currLength} characters left`
+      : `${currLength - maxLength} over the limit`
 }
 
 RichTextEditor.displayName = 'RichTextEditor'

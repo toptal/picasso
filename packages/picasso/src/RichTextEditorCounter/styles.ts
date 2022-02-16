@@ -22,5 +22,9 @@ export default ({ palette }: Theme) =>
         display: 'inline-block',
         background: palette.grey.lighter2
       }
+    },
+
+    counterError: {
+      color: palette.red.main
     }
   })

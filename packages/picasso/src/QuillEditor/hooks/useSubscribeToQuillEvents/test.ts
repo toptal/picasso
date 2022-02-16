@@ -22,7 +22,7 @@ describe('useSubscribeToQuillEvents', () => {
       })
     )
 
-    expect(quill.on).toHaveBeenCalledTimes(3)
+    expect(quill.on).toHaveBeenCalledTimes(4)
     expect(quill.on).toHaveBeenCalledWith(
       'selection-change',
       expect.any(Function)
@@ -32,7 +32,7 @@ describe('useSubscribeToQuillEvents', () => {
 
     unmount()
 
-    expect(quill.off).toHaveBeenCalledTimes(3)
+    expect(quill.off).toHaveBeenCalledTimes(4)
     expect(quill.off).toHaveBeenCalledWith(
       'selection-change',
       expect.any(Function)

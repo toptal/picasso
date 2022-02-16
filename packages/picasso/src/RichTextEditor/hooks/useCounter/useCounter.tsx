@@ -40,23 +40,38 @@ const useCounter = ({
       maxLengthMessage
     })
   )
+  const [error, setError] = useState(!!minLength)
 
   const handleCounterMessage: TextLengthChangeHandler = useCallback(
     currLength => {
-      if (minLengthMessage && minLength && currLength <= minLength) {
-        setCounterMessage(minLengthMessage(minLength, currLength))
+      if (minLengthMessage && minLength) {
+        if (currLength < minLength) {
+          setCounterMessage(minLengthMessage(minLength, currLength))
+          setError(true)
+
+          return
+        } else if (!maxLength) {
+          setCounterMessage(minLengthMessage(minLength, currLength))
+          setError(false)
+
+          return
+        }
       }
 
-      if (maxLengthMessage && maxLength && currLength <= maxLength) {
-        if (!minLength || (minLength && minLength <= currLength)) {
-          setCounterMessage(maxLengthMessage(maxLength, currLength))
+      if (maxLengthMessage && maxLength) {
+        if (currLength < maxLength) {
+          setError(false)
+        } else {
+          setError(true)
         }
+
+        setCounterMessage(maxLengthMessage(maxLength, currLength))
       }
     },
     [minLength, maxLength, minLengthMessage, maxLengthMessage]
   )
 
-  return { counterMessage, handleCounterMessage }
+  return { counterMessage, error, handleCounterMessage }
 }
 
 export default useCounter

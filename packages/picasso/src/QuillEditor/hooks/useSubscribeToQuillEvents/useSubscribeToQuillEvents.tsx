@@ -35,7 +35,7 @@ const useSubscribeToQuillEvents = ({
       return () => {}
     }
 
-    return getTextLengthChangeHandler({ quill, maxLength, onTextLengthChange })
+    return getTextLengthChangeHandler(quill, onTextLengthChange)
   }, [maxLength, onTextLengthChange, quill])
 
   const textChangeHandler: TextChangeHandler = useMemo(() => {

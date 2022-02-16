@@ -2,45 +2,14 @@ import Quill, { TextChangeHandler } from 'quill'
 
 import { TextLengthChangeHandler } from '../../types'
 
-type Props = {
-  quill: Quill
-  maxLength?: number
-  onTextLengthChange?: TextLengthChangeHandler
-}
-
-const getTextLengthChangeHandler = ({
-  quill,
-  maxLength,
-  onTextLengthChange
-}: Props) => {
-  const handler: TextChangeHandler = (delta, oldContents) => {
+const getTextLengthChangeHandler = (
+  quill: Quill,
+  onTextLengthChange: TextLengthChangeHandler
+) => {
+  const handler: TextChangeHandler = () => {
     const currentLength = quill.getLength() - 1
-    const isOverLimit = maxLength && currentLength > maxLength
 
-    if (onTextLengthChange) {
-      if (!maxLength || !isOverLimit) {
-        onTextLengthChange(currentLength)
-      }
-    }
-
-    if (isOverLimit) {
-      const selection = quill.getSelection()
-
-      quill.setContents(oldContents, 'silent')
-
-      if (selection) {
-        let cursorPositionBeforeRemoval = selection.index - 1
-
-        const wasRemovedNewLine =
-          delta.ops[delta.ops.length - 1].insert === '\n'
-
-        if (wasRemovedNewLine) {
-          cursorPositionBeforeRemoval = selection.index
-        }
-
-        setTimeout(() => quill.setSelection(cursorPositionBeforeRemoval, 0), 0)
-      }
-    }
+    onTextLengthChange(currentLength)
   }
 
   return handler
