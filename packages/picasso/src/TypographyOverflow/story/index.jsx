@@ -81,3 +81,4 @@ page
       await makeScreenshot()
     }
   })
+  .addExample('TypographyOverflow/story/Table.example.tsx', 'Table')

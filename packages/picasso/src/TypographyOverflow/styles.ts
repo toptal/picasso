@@ -24,6 +24,6 @@ export default () =>
        * So to be sure, that text container in slightly wider than parent,
        * we have to to add some super-minor space at the end.
        */
-      paddingRight: '0.9px'
+      paddingRight: '1px'
     }
   })
