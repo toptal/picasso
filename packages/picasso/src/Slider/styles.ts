@@ -15,7 +15,8 @@ PicassoProvider.override(() => ({
 export default ({ palette }: Theme) =>
   createStyles({
     wrapper: {
-      margin: `${rem('6px')} 0`
+      margin: `${rem('6px')} 0`,
+      width: '100%'
     },
     root: {
       display: 'block',
