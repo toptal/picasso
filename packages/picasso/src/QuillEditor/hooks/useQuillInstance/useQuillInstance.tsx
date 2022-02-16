@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Quill, { QuillOptionsStatic } from 'quill'
+import Quill, { QuillOptionsStatic, RangeStatic } from 'quill'
 import 'quill-paste-smart'
 
 import {
@@ -11,6 +11,31 @@ import {
 export type EditorOptionsType = {
   id: string
   placeholder?: string
+}
+
+type ContextType = {
+  prefix: string
+  suffix: string
+  collapsed: boolean
+  offset: number
+  format: { [name: string]: string | number | boolean | undefined }
+}
+
+/* eslint-disable func-style */
+function removeFormatWhenAllSelected(
+  this: { quill: Quill },
+  _: RangeStatic,
+  { collapsed, offset, suffix, prefix, format }: ContextType
+) {
+  if (!collapsed && offset === 0 && !suffix && !prefix) {
+    // When backspace on the first character of a list,
+    // remove the list instead
+    Object.keys(format).forEach(key => {
+      this.quill.format(key, false, Quill.sources.USER)
+    })
+  }
+
+  return true
 }
 
 export const getModules = (): QuillOptionsStatic['modules'] => {
@@ -41,6 +66,16 @@ export const getModules = (): QuillOptionsStatic['modules'] => {
           metaKey: true,
           ctrlKey: true,
           handler: function () {}
+        },
+        customBackspace: {
+          key: 'backspace',
+          format: ['list', 'header'],
+          handler: removeFormatWhenAllSelected
+        },
+        customDel: {
+          key: 'delete',
+          format: ['list', 'header'],
+          handler: removeFormatWhenAllSelected
         }
       }
     }
