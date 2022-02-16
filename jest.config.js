@@ -1,7 +1,7 @@
 module.exports = {
   roots: ['<rootDir>/packages'],
   transform: {
-    '^.+\\.(ts|tsx)$': 'babel-jest'
+    '^.+\\.[t|j]sx?$': 'babel-jest'
   },
   setupFiles: ['jest-canvas-mock', './jest-setup-dom.js'],
   testMatch: ['**/(test).(js|jsx|ts|tsx)'],
@@ -28,5 +28,6 @@ module.exports = {
     '^@toptal/picasso-provider$':
       '<rootDir>packages/picasso-provider/src/index.ts'
   },
-  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx']
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  transformIgnorePatterns: [`^node_modules/(?!hast-to-hypescript}/.*)`]
 }
