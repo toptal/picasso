@@ -1,5 +1,13 @@
 # Change Log
 
+## 18.4.0
+
+### Minor Changes
+
+- [#2419](https://github.com/toptal/picasso/pull/2419) [`67c6d803`](https://github.com/toptal/picasso/commit/67c6d803e5db2349c21e279a105b4bdd326bae0e) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ### RichText
+
+  New component that accepts AST and renders Picasso components. AST needs to be in [HAST format](https://github.com/syntax-tree/hast)
+
 ## 18.3.1
 
 ### Patch Changes
