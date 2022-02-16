@@ -1,5 +1,5 @@
 import React from 'react'
-import { Slider, Typography, Container } from '@toptal/picasso'
+import { Slider, Typography, Container, Grid } from '@toptal/picasso'
 
 type Value = number | number[]
 
@@ -22,28 +22,48 @@ const Example = () => {
 
   return (
     <Container>
-      <Typography variant='heading' size='small'>
-        Time Zone
-      </Typography>
-      <Container
-        top='xlarge'
-        flex
-        alignItems='center'
-        justifyContent='center'
-        gap='medium'
-      >
-        <Typography size='medium'>{firstValue}</Typography>
-        <Slider
-          value={value}
-          min={0}
-          max={23}
-          onChange={handleChange}
-          tooltip='on'
-          tooltipFormat={renderLabel}
-          compact
-        />
-        <Typography size='medium'>{secondValue}</Typography>
-      </Container>
+      <Grid alignItems='center' spacing={16}>
+        <Grid.Item small={1}>
+          <Typography align='center' size='medium'>
+            {firstValue}
+          </Typography>
+        </Grid.Item>
+        <Grid.Item small={10}>
+          <Slider
+            value={value}
+            min={0}
+            max={23}
+            onChange={handleChange}
+            tooltip='on'
+            tooltipFormat={renderLabel}
+            compact
+          />
+        </Grid.Item>
+        <Grid.Item small={1}>
+          <Typography align='center' size='medium'>
+            {secondValue}
+          </Typography>
+        </Grid.Item>
+      </Grid>
+      {/* <Container */}
+      {/*  top='xlarge' */}
+      {/*  flex */}
+      {/*  alignItems='center' */}
+      {/*  justifyContent='center' */}
+      {/*  gap='medium' */}
+      {/* > */}
+      {/*  <Typography size='medium'>{firstValue}</Typography> */}
+      {/*  <Slider */}
+      {/*    value={value} */}
+      {/*    min={0} */}
+      {/*    max={23} */}
+      {/*    onChange={handleChange} */}
+      {/*    tooltip='on' */}
+      {/*    tooltipFormat={renderLabel} */}
+      {/*    compact */}
+      {/*  /> */}
+      {/*  <Typography size='medium'>{secondValue}</Typography> */}
+      {/* </Container> */}
     </Container>
   )
 }
