@@ -27,16 +27,6 @@ describe('useDefaultValue', () => {
     expect(quill.clipboard.convert).not.toHaveBeenCalled()
     expect(quill.setContents).not.toHaveBeenCalled()
   })
-  it('does nothing without quill', () => {
-    const quill = undefined
-    const defaultValue = '<p>foobar</p>'
-
-    const { result } = renderHook(() =>
-      useDefaultValue({ defaultValue, quill })
-    )
-
-    expect(result.current).toBeUndefined()
-  })
   it('sets to correct contents', () => {
     const quill = quillMock
     const defaultValue = '<p>foobar</p>'
