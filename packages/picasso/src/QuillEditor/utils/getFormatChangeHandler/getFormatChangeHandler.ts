@@ -6,10 +6,13 @@ export const getFormatChangeHandler = (quill: Quill) => {
   const handler = (e: CustomEvent<FormatType>) => {
     const format = e.detail
 
-    quill.format('bold', format.bold)
-    quill.format('italic', format.italic)
-    quill.format('list', format.list)
-    quill.format('header', format.header)
+    Object.entries(format).forEach(([key, value]) => {
+      quill.format(key, value)
+
+      if (key === 'header') {
+        setTimeout(() => quill.focus(), 0)
+      }
+    })
   }
 
   return handler
