@@ -1,10 +1,10 @@
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent, act } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import RatingThumbs, { Props } from './RatingThumbs'
 
-enum DataIds {
+const enum DataIds {
   POSITIVE_INPUT = 'positive-input',
   NEGATIVE_INPUT = 'negative-input'
 }
@@ -12,8 +12,10 @@ enum DataIds {
 const defaultProps: Props = {
   name: 'rating-thumbs',
   onChange: jest.fn(),
-  'data-positive-testid': DataIds.POSITIVE_INPUT,
-  'data-negative-testid': DataIds.NEGATIVE_INPUT
+  dataIds: {
+    positiveInput: DataIds.POSITIVE_INPUT,
+    negativeInput: DataIds.NEGATIVE_INPUT
+  }
 }
 
 const renderRatingThumbs = (props: Partial<OmitInternalProps<Props>> = {}) => {
@@ -74,7 +76,9 @@ describe('RatingThumbs', () => {
 
       expect(parentLabel).toBeInstanceOf(HTMLLabelElement)
 
-      fireEvent.click(parentLabel)
+      act(() => {
+        fireEvent.click(parentLabel)
+      })
 
       expect(onChange).toHaveBeenCalledWith(true, expect.anything())
     })
@@ -93,7 +97,9 @@ describe('RatingThumbs', () => {
 
       expect(parentLabel).toBeInstanceOf(HTMLLabelElement)
 
-      fireEvent.click(parentLabel)
+      act(() => {
+        fireEvent.click(parentLabel)
+      })
 
       expect(onChange).not.toHaveBeenCalled()
     })

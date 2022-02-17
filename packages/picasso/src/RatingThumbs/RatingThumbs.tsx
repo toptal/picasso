@@ -3,9 +3,8 @@ import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import classNames from 'classnames'
 import React, { ChangeEvent, forwardRef, useCallback, useState } from 'react'
 
-import { Container } from '..'
-import { ThumbsDown16, ThumbsDown24, ThumbsUp24 } from '../Icon'
-import ThumbsUp16 from '../Icon/ThumbsUp16'
+import { Container } from '../Container'
+import { ThumbsDown16, ThumbsDown24, ThumbsUp16, ThumbsUp24 } from '../Icon'
 import styles from './styles'
 
 type Size = SizeType<'small' | 'large'>
@@ -37,13 +36,15 @@ export interface Props extends BaseProps {
   size?: Size
 
   // For testing
-  'data-positive-testid'?: string
-  'data-negative-testid'?: string
+  dataIds?: {
+    positiveInput?: string
+    negativeInput?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles)
 
-enum ThumbsValue {
+const enum ThumbsValue {
   POSITIVE = 'positive',
   NEGATIVE = 'negative'
 }
@@ -57,15 +58,7 @@ let globalId = 0
 
 export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
   function RatingThumbs(
-    {
-      name,
-      interactive = true,
-      size = 'small',
-      value,
-      onChange,
-      'data-positive-testid': positiveTestId = `${name}-positive-testid`,
-      'data-negative-testid': negativeTestId = `${name}-negative-testid`
-    },
+    { name, interactive = true, size = 'small', value, onChange, dataIds = {} },
     ref
   ) {
     const classes = useStyles()
@@ -105,7 +98,7 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
             onChange={handleChange}
             readOnly={!interactive}
             checked={value === true}
-            data-testid={positiveTestId}
+            data-testid={dataIds.positiveInput}
           />
         </label>
 
@@ -126,7 +119,7 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
             onChange={handleChange}
             readOnly={!interactive}
             checked={value === false}
-            data-testid={negativeTestId}
+            data-testid={dataIds.negativeInput}
           />
         </label>
       </Container>
