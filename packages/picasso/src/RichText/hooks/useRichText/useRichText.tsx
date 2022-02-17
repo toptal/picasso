@@ -1,4 +1,4 @@
-import { toH } from 'hast-to-hyperscript'
+import toH from 'hast-to-hyperscript'
 import React, {
   useMemo,
   ReactNodeArray,

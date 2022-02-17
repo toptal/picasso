@@ -28,6 +28,5 @@ module.exports = {
     '^@toptal/picasso-provider$':
       '<rootDir>packages/picasso-provider/src/index.ts'
   },
-  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  transformIgnorePatterns: [`^node_modules/(?!hast-to-hypescript}/.*)`]
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx']
 }
