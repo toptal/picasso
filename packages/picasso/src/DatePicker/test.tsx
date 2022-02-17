@@ -12,6 +12,9 @@ const testIds = {
   input: 'input'
 }
 
+const FAR_EAST_TIMEZONE = 'Asia/Tokyo'
+const NEW_YORK_TIMEZONE = 'America/New_York'
+
 // eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
   beforeAll(() => {
@@ -427,17 +430,76 @@ describe('DatePicker', () => {
   })
 
   describe('Calendar', () => {
-    it('should display date in given timezone', () => {
-      const { getByPlaceholderText, getByTestId } = renderDatePicker({
-        ...defaultProps,
+    it.each([
+      {
+        date: '2020-06-25T00:00:00+09:00',
         timezone: FAR_EAST_TIMEZONE,
-        value: new Date(2020, 6, 24, 18)
-      })
+        expectedSelectedDate: '25'
+      },
+      {
+        date: '2020-06-24T23:59:59+09:00',
+        timezone: FAR_EAST_TIMEZONE,
+        expectedSelectedDate: '24'
+      },
+      {
+        date: '2020-06-25T00:00:00-05:00',
+        timezone: NEW_YORK_TIMEZONE,
+        expectedSelectedDate: '25'
+      }
+    ])(
+      'should display date in given timezone',
+      ({ date, timezone, expectedSelectedDate }) => {
+        const { getByPlaceholderText, getByTestId } = renderDatePicker({
+          ...defaultProps,
+          timezone,
+          value: new Date(date)
+        })
 
-      fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
+        fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
 
-      expect(getByTestId('day-button-selected')).toHaveTextContent('25')
-    })
+        expect(getByTestId('day-button-selected')).toHaveTextContent(
+          expectedSelectedDate
+        )
+      }
+    )
+
+    it.each([
+      {
+        date: '2020-06-25T00:00:00+09:00',
+        timezone: FAR_EAST_TIMEZONE
+      },
+      {
+        date: '2020-06-24T23:59:59+09:00',
+        timezone: FAR_EAST_TIMEZONE
+      },
+      {
+        date: '2020-06-25T00:00:00-05:00',
+        timezone: NEW_YORK_TIMEZONE
+      }
+    ])(
+      'should display date in given timezone after day click',
+      async ({ date, timezone }) => {
+        const {
+          getByPlaceholderText,
+          getByTestId,
+          getByText
+        } = renderDatePicker({
+          ...defaultProps,
+          timezone,
+          value: new Date(date)
+        })
+
+        fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
+
+        const day15 = getByText(/15/)
+
+        fireEvent.click(day15)
+
+        fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
+
+        expect(getByTestId('day-button-selected')).toHaveTextContent('15')
+      }
+    )
 
     describe('when `enableReset` option is passed', () => {
       it('should not close calendar on `reset` button click', async () => {
@@ -457,8 +519,6 @@ describe('DatePicker', () => {
       })
     })
   })
-
-  const FAR_EAST_TIMEZONE = 'Asia/Tokyo'
 
   const defaultProps = {
     onChange: () => {},
