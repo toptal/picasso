@@ -18,7 +18,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
             for="checkbox-group"
           >
             <span
-              class="PicassoFormLabel-text"
+              class="PicassoFormLabel-medium"
             >
               checkbox-group-label
                (optional)
@@ -65,7 +65,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                     class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
                   >
                     <span
-                      class="PicassoFormLabel-text"
+                      class="PicassoFormLabel-medium"
                     >
                       checkbox-label-0
                     </span>
@@ -105,7 +105,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                     class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
                   >
                     <span
-                      class="PicassoFormLabel-text"
+                      class="PicassoFormLabel-medium"
                     >
                       checkbox-label-1
                     </span>
@@ -166,7 +166,7 @@ exports[`Form.Checkbox default render for single checkbox 1`] = `
               class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="PicassoFormLabel-text"
+                class="PicassoFormLabel-medium"
               >
                 The checkbox label
               </span>
@@ -224,13 +224,13 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
               class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="PicassoFormLabel-asterisk"
+                class="PicassoFormLabel-medium"
               >
-                *
-              </span>
-              <span
-                class="PicassoFormLabel-text"
-              >
+                <span
+                  class="PicassoFormLabel-asterisk"
+                >
+                  *
+                </span>
                 The checkbox label
               </span>
             </span>

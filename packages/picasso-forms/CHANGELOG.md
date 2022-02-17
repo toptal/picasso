@@ -1,5 +1,37 @@
 # Change Log
 
+## 29.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`67c6d803`](https://github.com/toptal/picasso/commit/67c6d803e5db2349c21e279a105b4bdd326bae0e)]:
+  - @toptal/picasso@18.4.0
+
+## 28.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`e652eb11`](https://github.com/toptal/picasso/commit/e652eb11fd514ca038503f30f3a1ad921e291e85)]:
+  - @toptal/picasso@18.3.0
+
+## 27.0.0
+
+### Minor Changes
+
+- [#2426](https://github.com/toptal/picasso/pull/2426) [`906b2015`](https://github.com/toptal/picasso/commit/906b20156bf876ab0dba728ca62b581c2d56f0e8) Thanks [@sergiubutnarasu](https://github.com/sergiubutnarasu)! - Disable dropzone when multiple property is false and a file is already selected.
+
+### Patch Changes
+
+- Updated dependencies [[`906b2015`](https://github.com/toptal/picasso/commit/906b20156bf876ab0dba728ca62b581c2d56f0e8)]:
+  - @toptal/picasso@18.2.0
+
+## 26.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`65c762e1`](https://github.com/toptal/picasso/commit/65c762e1c1646737b37f575e21ffb63209decbde)]:
+  - @toptal/picasso@18.1.0
+
 ## 25.0.0
 
 ### Major Changes

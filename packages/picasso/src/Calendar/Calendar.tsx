@@ -6,8 +6,8 @@ import cx from 'classnames'
 import format from 'date-fns/format'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
-import { ChevronMinor16, BackMinor16 } from '@toptal/picasso/Icon'
 
+import { ChevronMinor16, BackMinor16 } from '../Icon'
 import Button from '../Button'
 import Typography from '../Typography'
 import {

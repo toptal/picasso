@@ -1,7 +1,7 @@
 module.exports = {
   roots: ['<rootDir>/packages'],
   transform: {
-    '^.+\\.(ts|tsx)$': 'babel-jest'
+    '^.+\\.[t|j]sx?$': 'babel-jest'
   },
   setupFiles: ['jest-canvas-mock', './jest-setup-dom.js'],
   testMatch: ['**/(test).(js|jsx|ts|tsx)'],

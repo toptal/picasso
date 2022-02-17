@@ -14,7 +14,7 @@ exports[`FormLabel disabled 1`] = `
           class="PicassoFormLabel-root PicassoFormLabel-disabled"
         >
           <span
-            class="PicassoFormLabel-text"
+            class="PicassoFormLabel-medium"
           >
             Label
           </span>
@@ -39,7 +39,7 @@ exports[`FormLabel renders 1`] = `
           class="PicassoFormLabel-root"
         >
           <span
-            class="PicassoFormLabel-text"
+            class="PicassoFormLabel-medium"
           >
             Label
           </span>
@@ -64,7 +64,7 @@ exports[`FormLabel required with (optional) 1`] = `
           class="PicassoFormLabel-root"
         >
           <span
-            class="PicassoFormLabel-text"
+            class="PicassoFormLabel-medium"
           >
             Label
              (optional)
@@ -90,13 +90,13 @@ exports[`FormLabel required with asterisk 1`] = `
           class="PicassoFormLabel-root"
         >
           <span
-            class="PicassoFormLabel-asterisk"
+            class="PicassoFormLabel-medium"
           >
-            *
-          </span>
-          <span
-            class="PicassoFormLabel-text"
-          >
+            <span
+              class="PicassoFormLabel-asterisk"
+            >
+              *
+            </span>
             Label
           </span>
         </label>

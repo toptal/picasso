@@ -1,12 +1,11 @@
 import React from 'react'
 import { fireEvent, render, waitFor } from '@toptal/picasso/test-utils'
 
+import '../../../../__tests__/matchMedia'
 import TypographyOverflow from '.'
-
-jest.mock('@toptal/picasso/utils', () => ({
-  ...(jest.requireActual('@toptal/picasso/utils') as {}),
-  isOverflown: jest.fn(() => true),
-  isPointerDevice: jest.fn(() => true)
+jest.mock('../utils/is-overflown', () => ({
+  __esModule: true,
+  default: jest.fn(() => true)
 }))
 
 describe('TypographyOverflow', () => {

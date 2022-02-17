@@ -1,5 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Page.TopBar render with custom logo 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoTopBar-wrapper"
+    >
+      <header
+        class="mui-fixed PicassoTopBar-root PicassoTopBar-dark"
+      >
+        <div
+          class="PicassoTopBar-content"
+        >
+          <div
+            class="PicassoTopBar-left"
+          >
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoTopBar-logoContainer"
+            >
+              <div>
+                Custom logo content
+              </div>
+            </div>
+            <div
+              class="PicassoContainer-leftsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex"
+            >
+              <div
+                class="PicassoTopBar-divider"
+              />
+              <div
+                class="PicassoContainer-leftsmallMargin"
+              >
+                <p
+                  class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"
+                >
+                  Something
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="PicassoTopBar-right"
+          />
+        </div>
+      </header>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Page.TopBar render with link 1`] = `
 <div>
   <div

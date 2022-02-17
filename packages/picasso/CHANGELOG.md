@@ -1,5 +1,55 @@
 # Change Log
 
+## 18.4.1
+
+### Patch Changes
+
+- [#2449](https://github.com/toptal/picasso/pull/2449) [`e6f05363`](https://github.com/toptal/picasso/commit/e6f05363cc6f7a49a1f2b95d7ea85662b4724389) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ### RichText
+
+  Downgrade version of `hast-to-hyperscript` to version without ESM to fix jest tests in all other projects
+
+## 18.4.0
+
+### Minor Changes
+
+- [#2419](https://github.com/toptal/picasso/pull/2419) [`67c6d803`](https://github.com/toptal/picasso/commit/67c6d803e5db2349c21e279a105b4bdd326bae0e) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ### RichText
+
+  New component that accepts AST and renders Picasso components. AST needs to be in [HAST format](https://github.com/syntax-tree/hast)
+
+## 18.3.1
+
+### Patch Changes
+
+- [#2440](https://github.com/toptal/picasso/pull/2440) [`ac198e4a`](https://github.com/toptal/picasso/commit/ac198e4adfa0560dc93feac78910dbb0811ff139) Thanks [@mupkoo](https://github.com/mupkoo)! - ### Info Icon
+
+  Update `Info` icon to the new one from Product Iconography
+
+## 18.3.0
+
+### Minor Changes
+
+- [#2421](https://github.com/toptal/picasso/pull/2421) [`e652eb11`](https://github.com/toptal/picasso/commit/e652eb11fd514ca038503f30f3a1ad921e291e85) Thanks [@RusPosevkin](https://github.com/RusPosevkin)! - ---
+
+  ### PageTopBar
+
+  - add custom logo with the new `logo` prop
+
+## 18.2.0
+
+### Minor Changes
+
+- [#2426](https://github.com/toptal/picasso/pull/2426) [`906b2015`](https://github.com/toptal/picasso/commit/906b20156bf876ab0dba728ca62b581c2d56f0e8) Thanks [@sergiubutnarasu](https://github.com/sergiubutnarasu)! - Disable dropzone when multiple property is false and a file is already selected.
+
+## 18.1.0
+
+### Minor Changes
+
+- [#2413](https://github.com/toptal/picasso/pull/2413) [`65c762e1`](https://github.com/toptal/picasso/commit/65c762e1c1646737b37f575e21ffb63209decbde) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  ### FormLabel
+
+  - added size prop with `medium` and `large` values
+
 ## 18.0.0
 
 ### Major Changes

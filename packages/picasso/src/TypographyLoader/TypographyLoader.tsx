@@ -1,7 +1,8 @@
 import React from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
-import { palette } from '@toptal/picasso/utils'
+
+import { palette } from '../utils'
 
 export interface Props extends BaseProps {
   /** Specify the amount of rows */

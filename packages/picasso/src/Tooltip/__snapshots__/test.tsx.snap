@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tooltip renders closed by default 1`] = `
+exports[`Tooltip with isPointerDevice being true renders closed by default 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -15,7 +15,7 @@ exports[`Tooltip renders closed by default 1`] = `
 </div>
 `;
 
-exports[`Tooltip renders initially opened 1`] = `
+exports[`Tooltip with isPointerDevice being true renders initially opened 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -56,7 +56,7 @@ exports[`Tooltip renders initially opened 1`] = `
 </div>
 `;
 
-exports[`Tooltip renders with portals disabled 1`] = `
+exports[`Tooltip with isPointerDevice being true renders with portals disabled 1`] = `
 <div>
   <div
     class="Picasso-root"

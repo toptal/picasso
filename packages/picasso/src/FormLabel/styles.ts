@@ -14,27 +14,30 @@ export default ({ palette }: Theme) =>
       color: alpha(palette.grey[400], 0.48)
     },
 
-    text: {
-      fontSize: '0.875em'
+    medium: {
+      fontSize: '0.875rem'
+    },
+
+    large: {
+      fontSize: '1rem'
     },
 
     asterisk: {
       marginRight: '0.3125em',
-      color: palette.error.main,
-      fontSize: '0.875em'
+      color: palette.error.main
     },
 
     inline: {
       display: 'inline-block',
       marginBottom: 0,
 
-      '& $text': {
+      '& $medium': {
         fontSize: '0.8125rem',
         verticalAlign: 'top'
       },
 
       '& $asterisk': {
-        fontSize: '0.8125em',
+        fontSize: '0.8125rem',
         verticalAlign: 'top'
       }
     }

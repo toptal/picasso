@@ -1,5 +1,33 @@
 # Change Log
 
+## 22.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`67c6d803`](https://github.com/toptal/picasso/commit/67c6d803e5db2349c21e279a105b4bdd326bae0e)]:
+  - @toptal/picasso@18.4.0
+
+## 21.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`e652eb11`](https://github.com/toptal/picasso/commit/e652eb11fd514ca038503f30f3a1ad921e291e85)]:
+  - @toptal/picasso@18.3.0
+
+## 20.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`906b2015`](https://github.com/toptal/picasso/commit/906b20156bf876ab0dba728ca62b581c2d56f0e8)]:
+  - @toptal/picasso@18.2.0
+
+## 19.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`65c762e1`](https://github.com/toptal/picasso/commit/65c762e1c1646737b37f575e21ffb63209decbde)]:
+  - @toptal/picasso@18.1.0
+
 ## 18.0.0
 
 ### Patch Changes

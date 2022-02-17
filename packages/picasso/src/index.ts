@@ -178,6 +178,8 @@ export { default as Note } from './Note'
 export type { NoteProps } from './Note'
 export { default as Timeline } from './Timeline'
 export type { TimelineProps } from './Timeline'
+export { default as RichText } from './RichText'
+export type { RichTextProps, ASTType } from './RichText'
 
 export { default as RatingThumbs } from './RatingThumbs'
 export type { RatingThumbsProps } from './RatingThumbs'

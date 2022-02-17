@@ -2,7 +2,6 @@
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
-import { Calendar16 } from '@toptal/picasso/Icon'
 import formatDate from 'date-fns/format'
 import PopperJs from 'popper.js'
 import React, {
@@ -15,6 +14,7 @@ import React, {
   useState
 } from 'react'
 
+import { Calendar16 } from '../Icon'
 import Popper from '../Popper'
 import Container from '../Container'
 import Input, { InputProps } from '../Input'
