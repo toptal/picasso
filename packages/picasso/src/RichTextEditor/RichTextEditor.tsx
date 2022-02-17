@@ -130,7 +130,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       []
     )
 
-    const { counterMessage, error, handleCounterMessage } = useCounter({
+    const { counterMessage, counterError, handleCounterMessage } = useCounter({
       minLength,
       maxLength,
       minLengthMessage,
@@ -179,7 +179,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           defaultValue={defaultValueInHtml}
         />
         {(minLength || maxLength) && (
-          <Counter error={error} message={counterMessage} />
+          <Counter error={counterError} message={counterMessage} />
         )}
       </Container>
     )

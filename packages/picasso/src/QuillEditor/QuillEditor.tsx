@@ -64,7 +64,6 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
 
   useFocus({ isFocused, quill })
   useDisabledEditor({ disabled, quill })
-
   useKeyBindings({ quill, onTextFormat })
   useSubscribeToQuillEvents({
     quill,
