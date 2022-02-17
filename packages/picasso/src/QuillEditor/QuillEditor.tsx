@@ -17,6 +17,9 @@ import { TextFormatHandler, ChangeHandler, SelectionHandler } from './types'
 import useDefaultValue from './hooks/useDefaultValue'
 
 export type Props = BaseProps & {
+  /**
+   * HTML string
+   */
   defaultValue?: string
   disabled: boolean
   id: string

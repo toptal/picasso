@@ -15,7 +15,7 @@ import {
   useToolbarHandlers
 } from './hooks'
 import { ASTType } from './types'
-import useDefaultValue from './hooks/useDefaultValue'
+import useHTMLString from './hooks/useHTMLString'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -103,7 +103,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       dispatch
     })
 
-    const { defaultValueInHtml } = useDefaultValue({ defaultValue })
+    const defaultValueInHtml = useHTMLString(defaultValue)
 
     return (
       <Container

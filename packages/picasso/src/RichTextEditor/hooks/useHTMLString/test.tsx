@@ -2,21 +2,21 @@ import { renderHook } from '@testing-library/react-hooks'
 import { toHtml } from 'hast-util-to-html'
 
 import { ASTType } from '../../types'
-import useDefaultValue from './useDefaultValue'
+import useHTMLString from './useHTMLString'
 
 jest.mock('hast-util-to-html', () => ({
   __esModule: true,
   toHtml: jest.fn()
 }))
 
-describe('useDefaultValue', () => {
+describe('useHTMLString', () => {
   describe('when defaultValue is undefined', () => {
     it('returns empty string', () => {
       const defaultValue = undefined
 
-      const { result } = renderHook(() => useDefaultValue({ defaultValue }))
+      const { result } = renderHook(() => useHTMLString(defaultValue))
 
-      expect(result.current.defaultValueInHtml).toBe('')
+      expect(result.current).toBeUndefined()
     })
   })
   describe('when correct defaultValue', () => {
@@ -33,7 +33,7 @@ describe('useDefaultValue', () => {
         ]
       }
 
-      const { rerender } = renderHook(() => useDefaultValue({ defaultValue }))
+      const { rerender } = renderHook(() => useHTMLString(defaultValue))
 
       expect(toHtml).toHaveBeenCalledWith(defaultValue)
       rerender()

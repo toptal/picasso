@@ -1,6 +1,6 @@
 import Quill from 'quill'
 import Delta from 'quill-delta'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 type Props = {
   quill?: Quill
@@ -8,8 +8,10 @@ type Props = {
 }
 
 const useDefaultValue = ({ defaultValue, quill }: Props) => {
+  const hasBeenCalled = useRef(false)
+
   useEffect(() => {
-    if (!defaultValue || !quill) {
+    if (!defaultValue || !quill || hasBeenCalled.current) {
       return
     }
 
@@ -19,6 +21,7 @@ const useDefaultValue = ({ defaultValue, quill }: Props) => {
     )
 
     quill.setContents(delta, 'api')
+    hasBeenCalled.current = true
   }, [defaultValue, quill])
 }
 
