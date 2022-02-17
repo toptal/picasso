@@ -28,7 +28,7 @@ render () {
 }
 ```
 
-**_A [`Picasso`](/?path=/story/components-folder--picasso) component rendered at root level is required for the library theme configuration and theme to work properly._**
+**_A [`Picasso`](/?path=/story/components-picasso--picasso) component rendered at root level is required for the library theme configuration and theme to work properly._**
 
 ## Documentation
 

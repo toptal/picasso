@@ -52,7 +52,7 @@ To make it possible a utility function \`getServersideStylesheets\` was introduc
     }
   )
   .addExample(
-    'tutorials/ServerSideRendering/story/ServerSideUtils.example.tsx',
+    'tutorials/server-side-rendering/story/ServerSideUtils.example.tsx',
     {
       id: 'server-side-utils',
       showEditCode: false

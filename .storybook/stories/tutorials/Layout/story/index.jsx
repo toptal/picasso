@@ -20,7 +20,7 @@ header, footer, sidebar and main content.
  * Usage of \`Section\` for defining content sections
 `
   )
-  .addExample('tutorials/Layout/story/Layout.final.example.tsx', {
+  .addExample('tutorials/layout/story/Layout.final.example.tsx', {
     title: 'End result'
   })
 
@@ -53,7 +53,7 @@ content in \`Page.Content\`.
       title: 'First step: Define page'
     }
   )
-  .addExample('tutorials/Layout/story/Layout.1.example.tsx', {
+  .addExample('tutorials/layout/story/Layout.1.example.tsx', {
     id: 'layout-1'
   }) // picasso-skip-visuals
 
@@ -70,7 +70,7 @@ For demonstration purposes, it's been added additional padding for Sidebar and t
       title: 'Second step: Implement sidebar and main content layout'
     }
   )
-  .addExample('tutorials/Layout/story/Layout.2.example.tsx', {
+  .addExample('tutorials/layout/story/Layout.2.example.tsx', {
     id: 'layout-2'
   }) // picasso-skip-visuals
 
@@ -85,7 +85,7 @@ which is a part of Picasso librabry. It should fill all available height of the 
       title: 'Third step: Sidebar menu'
     }
   )
-  .addExample('tutorials/Layout/story/Layout.3.example.tsx', {
+  .addExample('tutorials/layout/story/Layout.3.example.tsx', {
     id: 'layout-3'
   }) // picasso-skip-visuals
 
@@ -104,7 +104,7 @@ around the page and we need to make \`MainContent\` grow and fill all available 
       title: 'Forth step: Title and sections'
     }
   )
-  .addExample('tutorials/Layout/story/Layout.4.example.tsx', {
+  .addExample('tutorials/layout/story/Layout.4.example.tsx', {
     id: 'layout-4'
   }) // picasso-skip-visuals
 
@@ -127,6 +127,6 @@ And that's it, we have implemented our goal.
       title: 'Forth step: Main content'
     }
   )
-  .addExample('tutorials/Layout/story/Layout.final.example.tsx', {
+  .addExample('tutorials/layout/story/Layout.final.example.tsx', {
     id: 'layout-5'
   }) // picasso-skip-visuals
