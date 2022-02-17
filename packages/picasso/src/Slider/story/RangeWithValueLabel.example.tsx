@@ -45,25 +45,6 @@ const Example = () => {
           </Typography>
         </Grid.Item>
       </Grid>
-      {/* <Container */}
-      {/*  top='xlarge' */}
-      {/*  flex */}
-      {/*  alignItems='center' */}
-      {/*  justifyContent='center' */}
-      {/*  gap='medium' */}
-      {/* > */}
-      {/*  <Typography size='medium'>{firstValue}</Typography> */}
-      {/*  <Slider */}
-      {/*    value={value} */}
-      {/*    min={0} */}
-      {/*    max={23} */}
-      {/*    onChange={handleChange} */}
-      {/*    tooltip='on' */}
-      {/*    tooltipFormat={renderLabel} */}
-      {/*    compact */}
-      {/*  /> */}
-      {/*  <Typography size='medium'>{secondValue}</Typography> */}
-      {/* </Container> */}
     </Container>
   )
 }
