@@ -1,5 +1,13 @@
 # Change Log
 
+## 18.4.1
+
+### Patch Changes
+
+- [#2449](https://github.com/toptal/picasso/pull/2449) [`e6f05363`](https://github.com/toptal/picasso/commit/e6f05363cc6f7a49a1f2b95d7ea85662b4724389) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ### RichText
+
+  Downgrade version of `hast-to-hyperscript` to version without ESM to fix jest tests in all other projects
+
 ## 18.4.0
 
 ### Minor Changes
