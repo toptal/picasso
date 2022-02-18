@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import Quill, { QuillOptionsStatic } from 'quill'
 import 'quill-paste-smart'
-import Delta from 'quill-delta'
 
 import {
   useTypographyClasses,
@@ -12,20 +11,6 @@ import {
 export type EditorOptionsType = {
   id: string
   placeholder?: string
-}
-
-/* eslint-disable func-style */
-function removeFormatWhenAllSelected(this: { quill: Quill }) {
-  const textLength = this.quill.getLength() - 1
-  const selection = this.quill.getSelection()
-  const isSelectedEverything = textLength === selection?.length
-
-  if (isSelectedEverything) {
-    this.quill.setContents(new Delta(), Quill.sources.USER)
-  } else {
-    // Otherwise propogate to Quill's default
-    return true
-  }
 }
 
 export const getModules = (): QuillOptionsStatic['modules'] => {
@@ -58,14 +43,6 @@ export const getModules = (): QuillOptionsStatic['modules'] => {
           metaKey: true,
           ctrlKey: true,
           handler: function () {}
-        },
-        customBackspace: {
-          key: 'backspace',
-          handler: removeFormatWhenAllSelected
-        },
-        customDel: {
-          key: 'delete',
-          handler: removeFormatWhenAllSelected
         }
       }
     }
