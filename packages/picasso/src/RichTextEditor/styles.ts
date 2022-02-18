@@ -7,22 +7,20 @@ export default ({ palette, sizes }: Theme) =>
       borderRadius: sizes.borderRadius.small,
       border: `1px solid ${palette.grey.light2}`,
       padding: '0.5em',
-      '&:hover:not($disabled):not($isFocused)': {
+
+      '&:hover:not($disabled)': {
         borderColor: palette.grey.main2
       }
     },
 
     disabled: {
+      pointerEvents: 'none',
       background: palette.grey.lighter,
-      borderRadius: '0.25em',
-      border: `1px solid ${palette.grey.lighter2}`,
-      pointerEvents: 'none'
+      border: `1px solid ${palette.grey.lighter2}`
     },
 
-    isFocused: {
-      '&:hover:not($disabled)': {
-        borderColor: palette.blue.main,
-        ...outline(palette.primary.main)
-      }
+    focused: {
+      borderColor: palette.grey.main2,
+      ...outline(palette.primary.main)
     }
   })
