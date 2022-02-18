@@ -1,7 +1,14 @@
-import React, { forwardRef, useCallback, useRef, useState } from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import hastUtilToHtml from 'hast-util-to-html'
 
 import Container from '../Container'
 import QuillEditor from '../QuillEditor'
@@ -15,7 +22,6 @@ import {
   useToolbarHandlers
 } from './hooks'
 import { ASTType } from './types'
-import useHTMLString from './hooks/useHTMLString'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -103,7 +109,12 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       dispatch
     })
 
-    const defaultValueInHtml = useHTMLString(defaultValue)
+    const defaultValueInHtml = useMemo(
+      () => (defaultValue ? hastUtilToHtml(defaultValue) : defaultValue),
+      // this effects needs to happen only once on first render
+      /* eslint-disable-next-line */
+      []
+    )
 
     return (
       <Container
