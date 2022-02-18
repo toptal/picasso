@@ -1,5 +1,19 @@
 # Change Log
 
+## 18.5.0
+
+### Minor Changes
+
+- [#2442](https://github.com/toptal/picasso/pull/2442) [`11576821`](https://github.com/toptal/picasso/commit/11576821ab8be61b7c22ca2cb44f9e643f334753) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  ### Input
+
+  - added `large` size
+
+  ### Select
+
+  - added `large` size
+
 ## 18.4.1
 
 ### Patch Changes
