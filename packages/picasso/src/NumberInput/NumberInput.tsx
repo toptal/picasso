@@ -167,6 +167,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       enableReset,
       width,
       icon,
+      size,
       ...rest
     } = props
 
@@ -218,6 +219,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         onChange={onChange}
         endAdornment={endAdornment}
         startAdornment={startAdornment}
+        size={size}
       />
     )
   }
@@ -229,7 +231,8 @@ NumberInput.defaultProps = {
   step: 1,
   min: -Infinity,
   max: Infinity,
-  hideControls: false
+  hideControls: false,
+  size: 'medium'
 }
 
 NumberInput.displayName = 'NumberInput'
