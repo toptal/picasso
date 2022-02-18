@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Quill, { QuillOptionsStatic, RangeStatic } from 'quill'
+import Quill, { QuillOptionsStatic } from 'quill'
 import 'quill-paste-smart'
 import Delta from 'quill-delta'
 
@@ -14,27 +14,13 @@ export type EditorOptionsType = {
   placeholder?: string
 }
 
-type ContextType = {
-  /**
-   * If true, handler is called only if the user’s selection is collapsed,
-   * i.e. in cursor form. If false, the users’s selection must be non-zero length,
-   * such as when the user has highlighted text.
-   */
-  collapsed: boolean
-}
-
 /* eslint-disable func-style */
-function removeFormatWhenAllSelected(
-  this: { quill: Quill },
-  _: RangeStatic,
-  { collapsed }: ContextType
-) {
-  const isUserSelectionNonZero = !collapsed
+function removeFormatWhenAllSelected(this: { quill: Quill }) {
   const textLength = this.quill.getLength() - 1
   const selection = this.quill.getSelection()
   const isSelectedEverything = textLength === selection?.length
 
-  if (isUserSelectionNonZero && isSelectedEverything) {
+  if (isSelectedEverything) {
     this.quill.setContents(new Delta(), Quill.sources.USER)
   } else {
     // Otherwise propogate to Quill's default
