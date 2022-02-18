@@ -70,11 +70,8 @@ export interface Props
   limit?: number
   /** Type of the counter of characters */
   counter?: CounterType
-  /**
-   * Size of component
-   * @default medium
-   */
-  size?: SizeType<'small' | 'medium'>
+  /** Component size */
+  size?: SizeType<'small' | 'medium' | 'large'>
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
   /** Callback invoked when reset button was clicked */

@@ -102,7 +102,7 @@ export default ({ typography, palette, shadows }: Theme) =>
       lineHeight: '1.125rem'
     },
     stringContentMedium: {
-      fontSize: '0.8125rem',
+      fontSize: '0.875rem',
       lineHeight: '1.25rem'
     },
     stringContentSemibold: {
