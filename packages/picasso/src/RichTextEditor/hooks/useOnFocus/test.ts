@@ -115,7 +115,9 @@ describe('useOnFocus', () => {
 
     it('does nothing when focusElement is in toolbar', () => {
       const hookOptions = {
-        editorRef: { current: {} } as React.RefObject<HTMLDivElement>,
+        editorRef: ({
+          contains: jest.fn().mockImplementation(() => false)
+        } as unknown) as React.RefObject<HTMLDivElement>,
         toolbarRef: ({
           current: { contains: jest.fn().mockImplementation(() => true) }
         } as unknown) as React.RefObject<HTMLDivElement>,
@@ -136,9 +138,36 @@ describe('useOnFocus', () => {
       expect(hookOptions.onBlur).not.toHaveBeenCalled()
       expect(hookOptions.onFocus).not.toHaveBeenCalled()
     })
+    it('does nothing when focusElement is in editor', () => {
+      const hookOptions = {
+        editorRef: ({
+          contains: jest.fn().mockImplementation(() => true)
+        } as unknown) as React.RefObject<HTMLDivElement>,
+        toolbarRef: ({
+          current: { contains: jest.fn().mockImplementation(() => false) }
+        } as unknown) as React.RefObject<HTMLDivElement>,
+        onFocus: jest.fn(),
+        onBlur: jest.fn(),
+        dispatch: jest.fn()
+      }
+
+      const { result } = renderHook(() => useOnFocus(hookOptions))
+
+      const handleBlur = result.current.handleBlur
+
+      act(() => {
+        handleBlur(mockEvent)
+      })
+
+      expect(hookOptions.dispatch).not.toHaveBeenCalled()
+      expect(hookOptions.onBlur).not.toHaveBeenCalled()
+      expect(hookOptions.onFocus).not.toHaveBeenCalled()
+    })
     it('disables toolbar and calls onBlur when clicked outside the editor or toolbar', () => {
       const hookOptions = {
-        editorRef: { current: {} } as React.RefObject<HTMLDivElement>,
+        editorRef: ({
+          current: { contains: jest.fn().mockImplementation(() => false) }
+        } as unknown) as React.RefObject<HTMLDivElement>,
         toolbarRef: ({
           current: { contains: jest.fn().mockImplementation(() => false) }
         } as unknown) as React.RefObject<HTMLDivElement>,
