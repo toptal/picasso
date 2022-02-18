@@ -43,7 +43,9 @@ export const getModules = (): QuillOptionsStatic['modules'] => {
     clipboard: {
       matchVisual: false,
       allowed: {
-        tags: ['b', 'strong', 'i', 'p', 'br', 'ul', 'ol', 'li', 'h3'],
+        // unsupported tags will be also removed on BE side, so before extending
+        // make sure, that our API supports new type
+        tags: ['b', 'strong', 'i', 'em', 'p', 'br', 'ul', 'ol', 'li', 'h3'],
         attributes: []
       },
       keepSelection: true,
