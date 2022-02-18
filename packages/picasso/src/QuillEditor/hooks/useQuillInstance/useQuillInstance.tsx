@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Quill, { QuillOptionsStatic, RangeStatic } from 'quill'
 import 'quill-paste-smart'
+import Delta from 'quill-delta'
 
 import {
   useTypographyClasses,
@@ -14,28 +15,31 @@ export type EditorOptionsType = {
 }
 
 type ContextType = {
-  prefix: string
-  suffix: string
+  /**
+   * If true, handler is called only if the user’s selection is collapsed,
+   * i.e. in cursor form. If false, the users’s selection must be non-zero length,
+   * such as when the user has highlighted text.
+   */
   collapsed: boolean
-  offset: number
-  format: { [name: string]: string | number | boolean | undefined }
 }
 
 /* eslint-disable func-style */
 function removeFormatWhenAllSelected(
   this: { quill: Quill },
   _: RangeStatic,
-  { collapsed, offset, suffix, prefix, format }: ContextType
+  { collapsed }: ContextType
 ) {
-  if (!collapsed && offset === 0 && !suffix && !prefix) {
-    // When backspace on the first character of a list,
-    // remove the list instead
-    Object.keys(format).forEach(key => {
-      this.quill.format(key, false, Quill.sources.USER)
-    })
-  }
+  const isUserSelectionNonZero = !collapsed
+  const textLength = this.quill.getLength() - 1
+  const selection = this.quill.getSelection()
+  const isSelectedEverything = textLength === selection?.length
 
-  return true
+  if (isUserSelectionNonZero && isSelectedEverything) {
+    this.quill.setContents(new Delta(), Quill.sources.USER)
+  } else {
+    // Otherwise propogate to Quill's default
+    return true
+  }
 }
 
 export const getModules = (): QuillOptionsStatic['modules'] => {
@@ -71,12 +75,10 @@ export const getModules = (): QuillOptionsStatic['modules'] => {
         },
         customBackspace: {
           key: 'backspace',
-          format: ['list', 'header'],
           handler: removeFormatWhenAllSelected
         },
         customDel: {
           key: 'delete',
-          format: ['list', 'header'],
           handler: removeFormatWhenAllSelected
         }
       }
