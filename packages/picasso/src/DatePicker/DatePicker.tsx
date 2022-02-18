@@ -275,7 +275,7 @@ export const DatePicker = (props: Props) => {
 
     onChange(nextTimezoneValue)
     setInputValue(formatInputValue(nextValue))
-    setCalendarValue(nextTimezoneValue)
+    setCalendarValue(nextValue)
 
     if (hideOnSelect) {
       focus()
