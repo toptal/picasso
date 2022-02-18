@@ -1,5 +1,11 @@
 # Change Log
 
+## 18.5.1
+
+### Patch Changes
+
+- [#2457](https://github.com/toptal/picasso/pull/2457) [`9a4dd244`](https://github.com/toptal/picasso/commit/9a4dd24417197a9bf030181a150ff3053d12edc0) Thanks [@sanex3339](https://github.com/sanex3339)! - - chore(date-picker): fix an invalid displayed date after clicking in DatePicker when timezone is passed
+
 ## 18.5.0
 
 ### Minor Changes
