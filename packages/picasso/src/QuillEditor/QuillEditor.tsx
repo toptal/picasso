@@ -14,8 +14,13 @@ import {
   useSubscribeToTextEditorEvents
 } from './hooks'
 import { TextFormatHandler, ChangeHandler, SelectionHandler } from './types'
+import useDefaultValue from './hooks/useDefaultValue'
 
 export type Props = BaseProps & {
+  /**
+   * HTML string
+   */
+  defaultValue?: string
   disabled: boolean
   id: string
   isFocused: boolean
@@ -31,6 +36,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   {
+    defaultValue,
     disabled,
     'data-testid': dataTestId,
     id,
@@ -61,6 +67,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     editorRef,
     quill
   })
+  useDefaultValue({ defaultValue, quill })
 
   return (
     <Typography

@@ -1,7 +1,14 @@
-import React, { forwardRef, useCallback, useRef, useState } from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import hastUtilToHtml from 'hast-util-to-html'
 
 import Container from '../Container'
 import QuillEditor from '../QuillEditor'
@@ -14,10 +21,13 @@ import {
   useOnFocus,
   useToolbarHandlers
 } from './hooks'
+import { ASTType } from './types'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
   autofocus?: boolean
+  /** Default value in [HAST](https://github.com/syntax-tree/hast) format */
+  defaultValue?: ASTType
   /**
    * This Boolean attribute indicates that the user cannot interact with the control.
    */
@@ -58,6 +68,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       'data-testid': dataTestId,
       autofocus,
       className,
+      defaultValue,
       disabled,
       id,
       onChange,
@@ -98,6 +109,13 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       dispatch
     })
 
+    const defaultValueInHtml = useMemo(
+      () => (defaultValue ? hastUtilToHtml(defaultValue) : defaultValue),
+      // this effects needs to happen only once on first render
+      /* eslint-disable-next-line */
+      []
+    )
+
     return (
       <Container
         className={cx(
@@ -136,6 +154,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}
+          defaultValue={defaultValueInHtml}
         />
       </Container>
     )
