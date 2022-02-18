@@ -31,11 +31,16 @@ describe('useDefaultValue', () => {
     const quill = quillMock
     const defaultValue = '<p>foobar</p>'
 
-    renderHook(() => useDefaultValue({ defaultValue, quill }))
+    const { rerender } = renderHook(() =>
+      useDefaultValue({ defaultValue, quill })
+    )
 
     expect(quill.clipboard.convert).toHaveBeenCalledWith(defaultValue)
     expect(quill.clipboard.convert).toHaveBeenCalledTimes(1)
     expect(quill.setContents).toHaveBeenCalledWith(deltaMock, 'api')
+    expect(quill.setContents).toHaveBeenCalledTimes(1)
+    rerender()
+    expect(quill.clipboard.convert).toHaveBeenCalledTimes(1)
     expect(quill.setContents).toHaveBeenCalledTimes(1)
   })
 })
