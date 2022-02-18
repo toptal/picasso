@@ -14,8 +14,18 @@ const getEditorChangeHandler = (
     name: 'text-change' | 'selection-change',
     ...args: SelectionChangeArgs | TextChangeArgx
   ) => {
-    if (!quill) {
-      return
+    if (name === 'text-change') {
+      const [, , source] = args as TextChangeArgx
+      // this event is triggered when format of block element is changed
+      // for example from p > h3 | h3 > ol
+      const isFromApi = source === 'api'
+
+      if (!isFromApi) {
+        return
+      }
+      const format = quill.getFormat() as FormatType
+
+      onSelectionChange(format)
     }
 
     if (name === 'selection-change') {
