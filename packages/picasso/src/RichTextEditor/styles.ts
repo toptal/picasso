@@ -15,11 +15,14 @@ export default ({ palette, sizes }: Theme) =>
     disabled: {
       background: palette.grey.lighter,
       borderRadius: '0.25em',
-      border: `1px solid ${palette.grey.lighter2}`
+      border: `1px solid ${palette.grey.lighter2}`,
+      pointerEvents: 'none'
     },
 
     isFocused: {
-      borderColor: palette.blue.main,
-      ...outline(palette.primary.main)
+      '&:hover:not($disabled)': {
+        borderColor: palette.blue.main,
+        ...outline(palette.primary.main)
+      }
     }
   })
