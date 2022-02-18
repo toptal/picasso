@@ -26,7 +26,7 @@ import { ASTType } from './types'
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
   autofocus?: boolean
-  /** Default value in hast format */
+  /** Default value in [HAST](https://github.com/syntax-tree/hast) format */
   defaultValue?: ASTType
   /**
    * This Boolean attribute indicates that the user cannot interact with the control.
