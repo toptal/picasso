@@ -36,7 +36,7 @@ export interface Props extends BaseProps {
   size?: Size
 
   // For testing
-  dataIds?: {
+  testIds?: {
     positiveInput?: string
     negativeInput?: string
   }
@@ -58,7 +58,7 @@ let globalId = 0
 
 export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
   function RatingThumbs(
-    { name, interactive = true, size = 'small', value, onChange, dataIds = {} },
+    { name, interactive = true, size = 'small', value, onChange, testIds = {} },
     ref
   ) {
     const classes = useStyles()
@@ -98,7 +98,7 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
             onChange={handleChange}
             readOnly={!interactive}
             checked={value === true}
-            data-testid={dataIds.positiveInput}
+            data-testid={testIds.positiveInput}
           />
         </label>
 
@@ -119,7 +119,7 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
             onChange={handleChange}
             readOnly={!interactive}
             checked={value === false}
-            data-testid={dataIds.negativeInput}
+            data-testid={testIds.negativeInput}
           />
         </label>
       </Container>

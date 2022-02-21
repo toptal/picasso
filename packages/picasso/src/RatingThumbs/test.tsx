@@ -12,7 +12,7 @@ const enum DataIds {
 const defaultProps: Props = {
   name: 'rating-thumbs',
   onChange: jest.fn(),
-  dataIds: {
+  testIds: {
     positiveInput: DataIds.POSITIVE_INPUT,
     negativeInput: DataIds.NEGATIVE_INPUT
   }
@@ -70,6 +70,7 @@ describe('RatingThumbs', () => {
       })
 
       expect(onChange).toHaveBeenCalledWith(true, expect.anything())
+      expect(onChange).toHaveBeenCalledTimes(1)
     })
   })
 
