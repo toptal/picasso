@@ -40,17 +40,6 @@ const expectNotNull = <T extends any>(val: T): NonNullable<T> => {
 }
 
 describe('RatingThumbs', () => {
-  describe('when asked to render with different sizes', () => {
-    it.each([['small'], ['large']] as const)(
-      'renders the correct icon size %s',
-      size => {
-        const { container } = renderRatingThumbs({ size })
-
-        expect(container).toMatchSnapshot()
-      }
-    )
-  })
-
   describe.each([
     [undefined, false, false],
     [true, true, false],
