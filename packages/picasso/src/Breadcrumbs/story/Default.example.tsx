@@ -53,9 +53,15 @@ const Example = () => (
       <Nav />
       <Switch>
         <Redirect exact from='/' to='/usa/software/toptal' />
-        <Route path='/usa' component={Usa} exact />
-        <Route path='/usa/software' component={Software} exact />
-        <Route path='/usa/software/toptal' component={Toptal} exact />
+        <Route path='/usa/software/toptal'>
+          <Toptal />
+        </Route>
+        <Route path='/usa/software'>
+          <Software />
+        </Route>
+        <Route path='/usa'>
+          <Usa />
+        </Route>
       </Switch>
     </Router>
   </Container>
