@@ -1,13 +1,13 @@
 import React, { forwardRef, useState, ChangeEvent } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
-import ButtonBase from '@material-ui/core/ButtonBase'
 
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import styles from './styles'
 import SvgEye16 from '../Icon/Eye16'
 import SvgEyeHidden16 from '../Icon/EyeHidden16'
+import Button from '../Button'
 
 export interface Props
   extends Omit<
@@ -51,17 +51,13 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
 
     const endAdornment = (
       <InputAdornment position='end'>
-        <ButtonBase
-          disabled={disabled}
-          classes={{
-            root: classes.toggle,
-            disabled: classes.toggleDisabled
-          }}
+        <Button.Circular
+          className={classes.toggle}
+          variant='flat'
+          icon={showPassword ? <SvgEyeHidden16 /> : <SvgEye16 />}
           onClick={handleToggleVisibilityClick}
           data-testid='password-input-toggle'
-        >
-          {showPassword ? <SvgEyeHidden16 /> : <SvgEye16 />}
-        </ButtonBase>
+        />
       </InputAdornment>
     )
 
