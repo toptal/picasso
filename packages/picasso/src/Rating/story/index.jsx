@@ -1,6 +1,5 @@
 import Rating from '../Rating'
 import PicassoBook from '~/.storybook/components/PicassoBook'
-import ratingThumbsStory from '../../RatingThumbs/story'
 
 const page = PicassoBook.section('Components').createPage(
   'Rating',
@@ -17,7 +16,6 @@ const page = PicassoBook.section('Components').createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Rating, name: 'Rating' })
-  .addComponentDocs(ratingThumbsStory.componentDocs)
 
 page
   .createChapter()
@@ -40,5 +38,3 @@ page
     description:
       'The rating component has two sizes - small (default) and large. It can be set via size parameter.'
   }) // picasso-skip-visuals
-
-page.connect(ratingThumbsStory.chapter)
