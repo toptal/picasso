@@ -4,21 +4,13 @@ import {
   PasswordInputProps
 } from '@toptal/picasso'
 
-import { validators } from '../utils'
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
 export type Props = PasswordInputProps & FieldProps<PasswordInputProps['value']>
 
-const { composeValidators } = validators
-
 export const PasswordInput = (props: Props) => {
-  const { validate } = props
-
   return (
-    <FieldWrapper<PasswordInputProps>
-      {...props}
-      validate={composeValidators([validate])}
-    >
+    <FieldWrapper<PasswordInputProps> {...props}>
       {(inputProps: PasswordInputProps) => {
         return <PicassoPasswordInput {...inputProps} />
       }}
