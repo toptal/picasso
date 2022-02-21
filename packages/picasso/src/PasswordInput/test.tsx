@@ -4,7 +4,7 @@ import { render, fireEvent } from '@toptal/picasso/test-utils'
 import PasswordInput, { Props as PasswordInputProps } from './PasswordInput'
 
 const PasswordInputRenderer = (
-  props: { initialValue: number | string } & Partial<PasswordInputProps>
+  props: { initialValue: string } & Partial<PasswordInputProps>
 ) => {
   const [value, setValue] = useState(props.initialValue)
 
@@ -16,7 +16,7 @@ const PasswordInputRenderer = (
 }
 
 const renderPasswordInput = (
-  props: Partial<PasswordInputProps> & { initialValue?: number | string } = {}
+  props: Partial<PasswordInputProps> & { initialValue?: string } = {}
 ) => {
   const { initialValue = 'asd' } = props
 

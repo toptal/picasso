@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useState, ChangeEvent } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
@@ -16,13 +16,13 @@ export interface Props
     >,
     BaseProps {
   /** Value of the `input` element. */
-  value?: string | number
+  value?: string
   /** Indicates whether component is in error state */
   error?: boolean
   /** Indicates whether component is in disabled state */
   disabled?: boolean
-  /** Callback invoked when `NumberInput` changes its state. */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  /** Callback invoked when `PasswordInput` changes its state. */
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 const useStyles = makeStyles<Theme>(styles, {
