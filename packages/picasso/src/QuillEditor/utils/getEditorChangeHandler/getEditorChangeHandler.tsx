@@ -4,7 +4,7 @@ import Delta from 'quill-delta'
 import { FormatType } from '../../types'
 
 type SelectionChangeArgs = [RangeStatic, RangeStatic, Sources]
-type TextChangeArgx = [Delta, Delta, Sources]
+type TextChangeArgs = [Delta, Delta, Sources]
 
 const getEditorChangeHandler = (
   quill: Quill,
@@ -12,10 +12,10 @@ const getEditorChangeHandler = (
 ) => {
   const handler = (
     name: 'text-change' | 'selection-change',
-    ...args: SelectionChangeArgs | TextChangeArgx
+    ...args: SelectionChangeArgs | TextChangeArgs
   ) => {
     if (name === 'text-change') {
-      const [, , source] = args as TextChangeArgx
+      const [, , source] = args as TextChangeArgs
       // this event is triggered when format of block element is changed
       // for example from p > h3 | h3 > ol
       const isFromApi = source === 'api'
