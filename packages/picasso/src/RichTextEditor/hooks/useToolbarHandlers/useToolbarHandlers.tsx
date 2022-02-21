@@ -51,7 +51,7 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
   }
 
   const handleOrdered: ButtonHandlerType = () => {
-    const list = format.list === false ? 'ordered' : undefined
+    const list = format.list === 'ordered' ? undefined : 'ordered'
 
     sendFormatEvent({ list })
     handleTextFormat({
@@ -61,7 +61,7 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
   }
 
   const handleUnordered: ButtonHandlerType = () => {
-    const list = format.list === false ? 'bullet' : undefined
+    const list = format.list === 'bullet' ? undefined : 'bullet'
 
     sendFormatEvent({ list })
     handleTextFormat({
