@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [#2415](https://github.com/toptal/picasso/pull/2415) [`e13b6a0c`](https://github.com/toptal/picasso/commit/e13b6a0c2d300471a2708f843e4f1b460bacc412) Thanks [@LashaJini](https://github.com/LashaJini)! - - Fix duplication of imports in picasso-lab removal codemod
+
 ## 4.0.0
 
 ### Major Changes

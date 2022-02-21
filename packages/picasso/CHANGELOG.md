@@ -1,5 +1,13 @@
 # Change Log
 
+## 18.5.2
+
+### Patch Changes
+
+- [#2465](https://github.com/toptal/picasso/pull/2465) [`2cb23f53`](https://github.com/toptal/picasso/commit/2cb23f530d28c5c4f32126fe3e1540972bb7facf) Thanks [@sanex3339](https://github.com/sanex3339)! - ### Stepper
+
+  - change `Stepper` background color to `inherit`
+
 ## 18.5.1
 
 ### Patch Changes
