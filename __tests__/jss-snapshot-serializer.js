@@ -1,5 +1,3 @@
-/* global HTMLElement */
-
 const MARKER = '__jss-snapshot-serializer-marker__'
 
 // JSS generates the class names that follow this format:
