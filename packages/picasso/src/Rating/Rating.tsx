@@ -1,10 +1,17 @@
-import React, { forwardRef, ReactNode, ChangeEvent, useCallback } from 'react'
+import React, {
+  forwardRef,
+  ReactNode,
+  ChangeEvent,
+  useCallback,
+  ComponentType
+} from 'react'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import Container from '../Container'
 import RatingIcon from '../RatingIcon'
+import RatingThumbs from '../RatingThumbs'
 import styles from './styles'
 
 export type RatingSize = SizeType<'small' | 'large'>
@@ -30,88 +37,98 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoRating'
 })
 
-const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
-  const {
-    name,
-    value,
-    onChange,
-    renderItem = (_, icon) => icon,
-    max,
-    interactive = true,
-    size = 'small',
-    ...rest
-  } = props
+export type RatingComponent = ComponentType<Props> & {
+  Thumbs: typeof RatingThumbs
+}
 
-  const classes = useStyles()
+type RatingComponentPartial = ComponentType<Props> & {
+  Thumbs?: typeof RatingThumbs
+}
 
-  const handleChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      if (onChange && interactive) {
-        onChange(event)
-      }
-    },
-    [onChange, interactive]
-  )
+const Rating: RatingComponentPartial = forwardRef<HTMLDivElement, Props>(
+  function Rating(props, ref) {
+    const {
+      name,
+      value,
+      onChange,
+      renderItem = (_, icon) => icon,
+      max,
+      interactive = true,
+      size = 'small',
+      ...rest
+    } = props
 
-  const resetInputId = `${name}-reset`
+    const classes = useStyles()
 
-  return (
-    <Container
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      ref={ref}
-    >
-      {[...Array(max)].map((_, index) => {
-        const itemValue = index + 1
-        const itemId = `${name}-${itemValue}`
+    const handleChange = useCallback(
+      (event: ChangeEvent<HTMLInputElement>) => {
+        if (onChange && interactive) {
+          onChange(event)
+        }
+      },
+      [onChange, interactive]
+    )
 
-        const defaultIcon = (
-          <RatingIcon
-            active={!!value && itemValue <= value}
-            interactive={interactive}
-            size={size}
-          />
-        )
+    const resetInputId = `${name}-reset`
 
-        // When the user clicks again on the selected rating, reset the rating
-        const shouldReset = itemValue === Number(value)
+    return (
+      <Container
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+      >
+        {[...Array(max)].map((_, index) => {
+          const itemValue = index + 1
+          const itemId = `${name}-${itemValue}`
 
-        return (
-          <label
-            key={itemId}
-            htmlFor={shouldReset ? resetInputId : itemId}
-            className={cx(classes.label, {
-              [classes.clickableLabel]: interactive
-            })}
-          >
-            {renderItem(itemValue, defaultIcon)}
-            <input
-              type='radio'
-              name={name}
-              id={itemId}
-              value={itemValue}
-              onChange={handleChange}
-              readOnly={!interactive}
-              checked={itemValue === value}
-              className={classes.radio}
-              data-testid={itemId}
+          const defaultIcon = (
+            <RatingIcon
+              active={!!value && itemValue <= value}
+              interactive={interactive}
+              size={size}
             />
-          </label>
-        )
-      })}
+          )
 
-      {/* Reset input. Triggered when the user clicks on an already selected rating icon */}
-      <input
-        type='radio'
-        name={name}
-        id={resetInputId}
-        value=''
-        onChange={handleChange}
-        className={classes.radio}
-      />
-    </Container>
-  )
-})
+          // When the user clicks again on the selected rating, reset the rating
+          const shouldReset = itemValue === Number(value)
+
+          return (
+            <label
+              key={itemId}
+              htmlFor={shouldReset ? resetInputId : itemId}
+              className={cx(classes.label, {
+                [classes.clickableLabel]: interactive
+              })}
+            >
+              {renderItem(itemValue, defaultIcon)}
+              <input
+                type='radio'
+                name={name}
+                id={itemId}
+                value={itemValue}
+                onChange={handleChange}
+                readOnly={!interactive}
+                checked={itemValue === value}
+                className={classes.radio}
+                data-testid={itemId}
+              />
+            </label>
+          )
+        })}
+
+        {/* Reset input. Triggered when the user clicks on an already selected rating icon */}
+        <input
+          type='radio'
+          name={name}
+          id={resetInputId}
+          value=''
+          onChange={handleChange}
+          className={classes.radio}
+        />
+      </Container>
+    )
+  }
+)
 
 Rating.defaultProps = {
   interactive: true,
@@ -120,5 +137,6 @@ Rating.defaultProps = {
 }
 
 Rating.displayName = 'Rating'
+Rating.Thumbs = RatingThumbs
 
-export default Rating
+export default Rating as RatingComponent

@@ -180,8 +180,6 @@ export { default as Timeline } from './Timeline'
 export type { TimelineProps } from './Timeline'
 export { default as RichText } from './RichText'
 export type { RichTextProps, ASTType } from './RichText'
-
-export { default as RatingThumbs } from './RatingThumbs'
 export type { RatingThumbsProps } from './RatingThumbs'
 
 // hygen code generator inserts export statements above this comment.

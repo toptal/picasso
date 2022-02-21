@@ -127,6 +127,6 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-RatingThumbs.displayName = 'RatingThumbs'
+RatingThumbs.displayName = 'Rating.Thumbs'
 
 export default RatingThumbs
