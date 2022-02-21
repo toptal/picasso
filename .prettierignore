@@ -22,3 +22,5 @@ packages/topkit-analytics-charts/src/AnalyticsChart/index.ts
 
 packages/picasso-codemod/src/v17.0.0/container-borders/__testfixtures__/expected.tsx
 packages/picasso-codemod/src/v17.0.0/container-borders/__testfixtures__/actual.tsx
+packages/picasso-codemod/src/v18.0.0/picasso-lab/__testfixtures__/basic.input.tsx
+packages/picasso-codemod/src/v18.0.0/picasso-lab/__testfixtures__/basic.output.tsx
