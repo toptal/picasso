@@ -1,5 +1,15 @@
 # Change Log
 
+## 18.7.0
+
+### Minor Changes
+
+- [#2437](https://github.com/toptal/picasso/pull/2437) [`ef6eecb0`](https://github.com/toptal/picasso/commit/ef6eecb07094b69a4938213c5107685c4887c539) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Rating.Thumbs
+
+  - add new component for Rating on positive (thumbs up) and negative (thumbs down) feedback
+
 ## 18.6.0
 
 ### Minor Changes
