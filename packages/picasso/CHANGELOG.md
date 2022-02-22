@@ -1,5 +1,33 @@
 # Change Log
 
+## 18.5.2
+
+### Patch Changes
+
+- [#2465](https://github.com/toptal/picasso/pull/2465) [`2cb23f53`](https://github.com/toptal/picasso/commit/2cb23f530d28c5c4f32126fe3e1540972bb7facf) Thanks [@sanex3339](https://github.com/sanex3339)! - ### Stepper
+
+  - change `Stepper` background color to `inherit`
+
+## 18.5.1
+
+### Patch Changes
+
+- [#2457](https://github.com/toptal/picasso/pull/2457) [`9a4dd244`](https://github.com/toptal/picasso/commit/9a4dd24417197a9bf030181a150ff3053d12edc0) Thanks [@sanex3339](https://github.com/sanex3339)! - - chore(date-picker): fix an invalid displayed date after clicking in DatePicker when timezone is passed
+
+## 18.5.0
+
+### Minor Changes
+
+- [#2442](https://github.com/toptal/picasso/pull/2442) [`11576821`](https://github.com/toptal/picasso/commit/11576821ab8be61b7c22ca2cb44f9e643f334753) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  ### Input
+
+  - added `large` size
+
+  ### Select
+
+  - added `large` size
+
 ## 18.4.1
 
 ### Patch Changes

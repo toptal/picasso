@@ -72,10 +72,10 @@ export interface SelectProps<
   /** Whether to render native browser select or not */
   native?: boolean
   /**
-   * Size of component
+   * Component size
    * @default medium
    */
-  size?: SizeType<'small' | 'medium'>
+  size?: SizeType<'small' | 'medium' | 'large'>
   /** Whether to render reset icon which clears selected value */
   enableReset?: boolean
   popperContainer?: HTMLElement

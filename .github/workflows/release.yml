@@ -123,7 +123,6 @@ jobs:
             }
 
       - name: Trigger build image job
-        if: ${{ steps.changesets.outputs.published == 'true' }}
         uses: toptal/jenkins-job-trigger-action@1.0.0
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
@@ -143,7 +142,6 @@ jobs:
           job_timeout: '3600'
 
       - name: Trigger deployment job
-        if: ${{ steps.changesets.outputs.published == 'true' }}
         uses: toptal/jenkins-job-trigger-action@1.0.0
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs

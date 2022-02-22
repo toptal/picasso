@@ -40,6 +40,21 @@ const Example = () => {
           />
         </Container>
       </Container>
+      <Container padded='small'>
+        <Typography variant='heading' size='small'>
+          Large
+        </Typography>
+        <Container top='small' bottom='small'>
+          <Select
+            size='large'
+            options={OPTIONS}
+            value={value}
+            placeholder='Choose an option...'
+            width='auto'
+            onChange={handleChange}
+          />
+        </Container>
+      </Container>
     </Container>
   )
 }

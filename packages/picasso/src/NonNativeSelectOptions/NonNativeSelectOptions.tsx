@@ -86,7 +86,7 @@ const renderOptions = ({
       <NonNativeSelectOption
         key={option.key || option.value}
         option={option}
-        size={size}
+        size={size === 'large' ? 'medium' : size}
         selected={selection.isOptionSelected(option)}
         highlighted={highlightedIndex === index + offset}
         description={option.description}

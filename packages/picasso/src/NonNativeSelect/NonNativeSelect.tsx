@@ -114,7 +114,11 @@ export const NonNativeSelect = documentable(
       })
 
       const searchInput = showSearch ? (
-        <MenuItem as='div' size={size} nonSelectable>
+        <MenuItem
+          as='div'
+          size={size === 'large' ? 'medium' : size}
+          nonSelectable
+        >
           <OutlinedInput
             inputRef={searchInputRef}
             className={classes.searchOutlinedInput}
@@ -166,7 +170,7 @@ export const NonNativeSelect = documentable(
               inputProps={{
                 size: 1 // let input to have smallest width by default for width:'shrink'
               }}
-              size={size}
+              size={size === 'large' ? 'medium' : size}
               role='textbox'
               enableReset={enableReset ? selection.isSelected() : false}
               autoComplete={
