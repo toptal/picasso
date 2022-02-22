@@ -1,3 +1,4 @@
+import ratingThumbsStory from '../../RatingThumbs/story'
 import Rating from '../Rating'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -16,17 +17,13 @@ const page = PicassoBook.section('Components').createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Rating, name: 'Rating' })
+  .addComponentDocs(ratingThumbsStory.componentDocs)
 
 page
   .createChapter()
   .addExample('Rating/story/Default.example.tsx', {
     title: 'Default',
     description: 'Default behavior'
-  }) // picasso-skip-visuals
-  .addExample('Rating/story/CustomIcons.example.tsx', {
-    title: 'Custom Icon',
-    description:
-      'The icons are fully customizable. You can provide a custom icon to render or add a tooltip to the default one.'
   }) // picasso-skip-visuals
   .addExample('Rating/story/NonInteractive.example.tsx', {
     title: 'Non Interactive',
@@ -37,4 +34,9 @@ page
     title: 'Sizes example',
     description:
       'The rating component has two sizes - small (default) and large. It can be set via size parameter.'
+  }) // picasso-skip-visuals
+  .addExample('Rating/story/CustomIcons.example.tsx', {
+    title: 'Custom Icon',
+    description:
+      'The icons are fully customizable. You can provide a custom icon to render or add a tooltip to the default one.'
   }) // picasso-skip-visuals

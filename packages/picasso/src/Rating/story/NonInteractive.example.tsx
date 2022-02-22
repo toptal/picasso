@@ -1,13 +1,25 @@
 import React from 'react'
-import { Rating } from '@toptal/picasso'
+import { Container, Rating, Typography } from '@toptal/picasso'
 
 const Example = () => {
   const value = 3
 
   return (
-    <div style={{ height: 26 }}>
-      <Rating interactive={false} name='rating' value={value} />
-    </div>
+    <Container padded='small'>
+      <Container bottom='medium'>
+        <Typography size='medium' variant='heading'>
+          Stars
+        </Typography>
+        <Rating interactive={false} name='rating' value={value} />
+      </Container>
+
+      <Container>
+        <Typography size='medium' variant='heading'>
+          Thumbs
+        </Typography>
+        <Rating.Thumbs interactive={false} name='rating-thumbs' value={false} />
+      </Container>
+    </Container>
   )
 }
 

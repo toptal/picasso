@@ -5,6 +5,7 @@ import cx from 'classnames'
 
 import Container from '../Container'
 import RatingIcon from '../RatingIcon'
+import Thumbs from '../RatingThumbs'
 import styles from './styles'
 
 export type RatingSize = SizeType<'small' | 'large'>
@@ -121,4 +122,6 @@ Rating.defaultProps = {
 
 Rating.displayName = 'Rating'
 
-export default Rating
+export default Object.assign(Rating, {
+  Thumbs
+})

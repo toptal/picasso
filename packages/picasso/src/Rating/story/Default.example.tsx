@@ -1,17 +1,38 @@
 import React, { ChangeEvent, useState } from 'react'
-import { Rating } from '@toptal/picasso'
+import { Container, Rating, Typography } from '@toptal/picasso'
 
 const Example = () => {
-  const [value, setValue] = useState(1)
+  const [starsValue, setStarsValue] = useState(1)
+  const [thumbsValue, setThumbsValue] = useState<boolean>()
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(event.target.value))
+  const onChangeStarsValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setStarsValue(Number(event.target.value))
   }
 
   return (
-    <div style={{ height: 26 }}>
-      <Rating onChange={onChange} name='rating' value={value} />
-    </div>
+    <Container padded='small'>
+      <Container bottom='medium'>
+        <Typography size='medium' variant='heading'>
+          Stars
+        </Typography>
+        <Rating
+          onChange={onChangeStarsValue}
+          name='rating'
+          value={starsValue}
+        />
+      </Container>
+
+      <Container>
+        <Typography size='medium' variant='heading'>
+          Thumbs
+        </Typography>
+        <Rating.Thumbs
+          onChange={setThumbsValue}
+          name='rating-thumbs'
+          value={thumbsValue}
+        />
+      </Container>
+    </Container>
   )
 }
 
