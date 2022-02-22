@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, RatingThumbs, RatingThumbsProps } from '@toptal/picasso'
+import { Container, Rating, RatingThumbsProps } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { mount } from '@cypress/react'
 
@@ -10,7 +10,7 @@ const defaultProps: RatingThumbsProps = {
 const renderRatingThumbs = (props: Partial<RatingThumbsProps> = {}) => (
   <TestingPicasso>
     <Container padded='small'>
-      <RatingThumbs {...defaultProps} {...props} />
+      <Rating.Thumbs {...defaultProps} {...props} />
     </Container>
   </TestingPicasso>
 )
