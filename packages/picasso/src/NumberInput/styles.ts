@@ -1,6 +1,6 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 
-export default ({ palette, transitions }: Theme) =>
+export default ({ palette, transitions, sizes: { borderRadius } }: Theme) =>
   createStyles({
     root: {
       paddingRight: 0,
@@ -38,11 +38,32 @@ export default ({ palette, transitions }: Theme) =>
         background: palette.grey.main,
         borderColor: palette.grey.main
       },
+
+      '&:first-child': {
+        borderTopRightRadius: borderRadius.small
+      },
+
+      '&:last-child': {
+        borderBottomRightRadius: borderRadius.small
+      },
+
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
       transitionProperty: 'border, color, background'
     },
 
     controlDisabled: {
       opacity: 0.48
+    },
+
+    small: {
+      height: '0.75rem'
+    },
+
+    medium: {
+      height: '1rem'
+    },
+
+    large: {
+      height: '1.5rem'
     }
   })
