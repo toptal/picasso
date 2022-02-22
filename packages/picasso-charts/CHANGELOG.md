@@ -1,5 +1,12 @@
 # Change Log
 
+## 25.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`ef6eecb0`](https://github.com/toptal/picasso/commit/ef6eecb07094b69a4938213c5107685c4887c539)]:
+  - @toptal/picasso@18.7.0
+
 ## 24.0.0
 
 ### Patch Changes
