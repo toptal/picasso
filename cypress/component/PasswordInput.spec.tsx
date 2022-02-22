@@ -3,7 +3,9 @@ import { mount } from '@cypress/react'
 import { PasswordInput } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const PasswordInputExample = () => <PasswordInput value='asd' />
+const PasswordInputExample = () => (
+  <PasswordInput value='asd' data-testid='password-input' />
+)
 
 describe('PasswordInput', () => {
   describe('shows password after toggle click', () => {

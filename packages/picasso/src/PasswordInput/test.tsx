@@ -12,7 +12,7 @@ const PasswordInputRenderer = (
     setValue(e.target.value)
   }
 
-  return <PasswordInput value={value} onChange={handleChange} />
+  return <PasswordInput {...props} value={value} onChange={handleChange} />
 }
 
 const renderPasswordInput = (
@@ -27,7 +27,9 @@ const renderPasswordInput = (
 
 describe('PasswordInput', () => {
   it('shows and hides password', async () => {
-    const { getByDisplayValue, getByTestId } = renderPasswordInput()
+    const { getByDisplayValue, getByTestId } = renderPasswordInput({
+      'data-testid': 'password-input'
+    })
 
     const input = getByDisplayValue('asd') as HTMLInputElement
     const toggle = getByTestId('password-input-toggle')
