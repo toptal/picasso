@@ -1,7 +1,8 @@
 import React, { forwardRef, useRef, RefObject, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
+import { BaseProps, OmitInternalProps, SizeType } from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
+import cx from 'classnames'
 
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
@@ -45,6 +46,7 @@ type NumberAdornmentProps = {
   inputRef: RefObject<HTMLInputElement>
   classes: Record<string, string>
   disabled?: boolean
+  size?: SizeType<'small' | 'medium' | 'large'>
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -56,7 +58,16 @@ const nativeInputValueSetter = isBrowser()
   : undefined
 
 const NumberAdornment = (props: NumberAdornmentProps) => {
-  const { step, min, max, value, inputRef, classes, disabled } = props
+  const {
+    step,
+    min,
+    max,
+    value,
+    inputRef,
+    classes,
+    disabled,
+    size = 'medium'
+  } = props
 
   const normalizedStep = Number(step)
   const normalizedValue = Number(value)
@@ -126,7 +137,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
         <ButtonBase
           disabled={disabled}
           classes={{
-            root: classes.control,
+            root: cx(classes.control, classes[size]),
             disabled: classes.controlDisabled
           }}
           onClick={handleUpClick}
@@ -136,7 +147,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
         <ButtonBase
           disabled={disabled}
           classes={{
-            root: classes.control,
+            root: cx(classes.control, classes[size]),
             disabled: classes.controlDisabled
           }}
           onClick={handleDownClick}
@@ -167,6 +178,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       enableReset,
       width,
       icon,
+      size,
       ...rest
     } = props
 
@@ -186,6 +198,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         inputRef={inputRef}
         classes={classes}
         disabled={disabled}
+        size={size}
       />
     )
 
@@ -218,6 +231,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         onChange={onChange}
         endAdornment={endAdornment}
         startAdornment={startAdornment}
+        size={size}
       />
     )
   }
@@ -229,7 +243,8 @@ NumberInput.defaultProps = {
   step: 1,
   min: -Infinity,
   max: Infinity,
-  hideControls: false
+  hideControls: false,
+  size: 'medium'
 }
 
 NumberInput.displayName = 'NumberInput'

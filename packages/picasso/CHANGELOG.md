@@ -1,5 +1,15 @@
 # Change Log
 
+## 18.6.0
+
+### Minor Changes
+
+- [#2459](https://github.com/toptal/picasso/pull/2459) [`d5aa8112`](https://github.com/toptal/picasso/commit/d5aa811242cb52a8109d5ba80e85ef4f9d0e8fd3) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  ### NumberInput
+
+  - added `large` size
+
 ## 18.5.2
 
 ### Patch Changes
