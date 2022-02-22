@@ -1,16 +1,12 @@
-import React, { forwardRef, useRef, RefObject, ReactNode } from 'react'
+import React, { forwardRef, useRef, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, OmitInternalProps, SizeType } from '@toptal/picasso-shared'
-import ButtonBase from '@material-ui/core/ButtonBase'
-import cx from 'classnames'
+import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
-import Container from '../Container'
 import { useCombinedRefs } from '../utils'
-import { ArrowDownMinor16, ArrowUpMinor16 } from '../Icon'
 import styles from './styles'
-import isBrowser from '../utils/is-browser'
+import { NumberInputEndAdornment } from '../NumberInputEndAdornment'
 
 export interface Props
   extends Omit<
@@ -38,128 +34,7 @@ export interface Props
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-type NumberAdornmentProps = {
-  min: number | string
-  max: number | string
-  step: number | string
-  value: Props['value']
-  inputRef: RefObject<HTMLInputElement>
-  classes: Record<string, string>
-  disabled?: boolean
-  size?: SizeType<'small' | 'medium' | 'large'>
-}
-
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const nativeInputValueSetter = isBrowser()
-  ? (Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype,
-      'value'
-    ) as PropertyDescriptor).set!
-  : undefined
-
-const NumberAdornment = (props: NumberAdornmentProps) => {
-  const {
-    step,
-    min,
-    max,
-    value,
-    inputRef,
-    classes,
-    disabled,
-    size = 'medium'
-  } = props
-
-  const normalizedStep = Number(step)
-  const normalizedValue = Number(value)
-  const normalizedMin = Number(min)
-  const normalizedMax = Number(max)
-
-  const fireEvent = (nextValue: number) => {
-    if (!nativeInputValueSetter) {
-      return
-    }
-
-    const input = inputRef.current
-
-    nativeInputValueSetter.call(input, nextValue)
-
-    const event = new Event('input', {
-      bubbles: true,
-      cancelable: true
-    })
-
-    if (input) {
-      input.dispatchEvent(event)
-    }
-  }
-
-  const handleUpClick = () => {
-    if (typeof value === 'undefined') {
-      return
-    }
-
-    let nextValue = normalizedValue + normalizedStep
-
-    if (nextValue <= max) {
-      if (normalizedValue < normalizedMin + normalizedStep) {
-        nextValue = normalizedMin + normalizedStep
-      }
-
-      fireEvent(nextValue)
-    } else if (normalizedValue !== normalizedMax) {
-      nextValue = normalizedMax
-      fireEvent(nextValue)
-    }
-  }
-
-  const handleDownClick = () => {
-    if (typeof value === 'undefined') {
-      return
-    }
-
-    let nextValue = normalizedValue - normalizedStep
-
-    if (nextValue >= min) {
-      if (normalizedValue > normalizedMax - normalizedStep) {
-        nextValue = normalizedMax - normalizedStep
-      }
-
-      fireEvent(nextValue)
-    } else if (normalizedValue !== normalizedMin) {
-      nextValue = normalizedMin
-      fireEvent(nextValue)
-    }
-  }
-
-  return (
-    <InputAdornment position='end'>
-      <Container flex direction='column' inline>
-        <ButtonBase
-          disabled={disabled}
-          classes={{
-            root: cx(classes.control, classes[size]),
-            disabled: classes.controlDisabled
-          }}
-          onClick={handleUpClick}
-        >
-          <ArrowUpMinor16 />
-        </ButtonBase>
-        <ButtonBase
-          disabled={disabled}
-          classes={{
-            root: cx(classes.control, classes[size]),
-            disabled: classes.controlDisabled
-          }}
-          onClick={handleDownClick}
-        >
-          <ArrowDownMinor16 />
-        </ButtonBase>
-      </Container>
-    </InputAdornment>
-  )
-}
-
-const useStyles = makeStyles<Theme>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoNumberInput'
 })
 
@@ -182,7 +57,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       ...rest
     } = props
 
-    const classes = useStyles()
+    const classes = useStyles(props)
 
     const inputRef = useCombinedRefs<HTMLInputElement>(
       ref,
@@ -190,15 +65,14 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
     )
 
     const endAdornment = hideControls ? null : (
-      <NumberAdornment
+      <NumberInputEndAdornment
         step={step}
         min={min}
         max={max}
         value={value}
-        inputRef={inputRef}
-        classes={classes}
         disabled={disabled}
         size={size}
+        inputRef={inputRef}
       />
     )
 
