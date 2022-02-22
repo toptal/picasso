@@ -12,7 +12,7 @@ export default ({ palette, transitions }: Theme) =>
     },
     thumbs: {
       color: palette.grey.light2,
-      transition: `color ${transitions.duration.short}ms linear`
+      transition: `color ${transitions.duration.shorter}ms linear`
     },
     interactiveThumbs: {
       cursor: 'pointer',
@@ -21,9 +21,15 @@ export default ({ palette, transitions }: Theme) =>
       }
     },
     thumbsPositive: {
-      color: palette.green.main
+      color: palette.green.main,
+      '&:hover': {
+        color: palette.green.main
+      }
     },
     thumbsNegative: {
-      color: palette.red.main
+      color: palette.red.main,
+      '&:hover': {
+        color: palette.red.main
+      }
     }
   })
