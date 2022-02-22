@@ -11,8 +11,7 @@ export default ({ spacing }: Theme) =>
         '-webkit-appearance': 'none',
         appearance: 'none',
         margin: 0
-      },
-      '-moz-appearance': 'textfield'
+      }
     },
 
     toggle: {

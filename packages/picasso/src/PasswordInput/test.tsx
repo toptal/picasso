@@ -26,17 +26,11 @@ const renderPasswordInput = (
 }
 
 describe('PasswordInput', () => {
-  it('renders', () => {
-    const { container } = renderPasswordInput()
-
-    expect(container.firstChild).toMatchSnapshot()
-  })
-
-  it('increase value', async () => {
-    const { getByDisplayValue, getByRole } = renderPasswordInput()
+  it('shows and hides password', async () => {
+    const { getByDisplayValue, getByTestId } = renderPasswordInput()
 
     const input = getByDisplayValue('asd') as HTMLInputElement
-    const toggle = getByRole('button')
+    const toggle = getByTestId('password-input-toggle')
 
     expect(input.type).toBe('password')
 

@@ -18,8 +18,6 @@ export const PasswordInput = (props: Props) => {
   )
 }
 
-PasswordInput.defaultProps = {}
-
 PasswordInput.displayName = 'PasswordInput'
 
 export default PasswordInput
