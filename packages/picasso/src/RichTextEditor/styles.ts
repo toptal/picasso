@@ -20,8 +20,8 @@ export default ({ palette, sizes }: Theme) =>
       border: `1px solid ${palette.grey.lighter2}`
     },
 
-    isFocused: {
-      borderColor: palette.blue.main,
+    focused: {
+      borderColor: palette.grey.main2,
       ...outline(palette.primary.main)
     }
   })

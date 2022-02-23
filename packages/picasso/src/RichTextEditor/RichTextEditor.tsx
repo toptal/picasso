@@ -103,7 +103,6 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
 
     const { handleSelectionChange } = useOnSelectionChange({ dispatch })
     const { handleTextFormat } = useOnTextFormat({ dispatch })
-
     const {
       handleBold,
       handleItalic,
@@ -115,7 +114,6 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       handleTextFormat,
       format: state.toolbar.format
     })
-
     const { handleFocus, handleBlur } = useOnFocus({
       editorRef,
       toolbarRef,
