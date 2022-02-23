@@ -38,19 +38,15 @@ const defaultMaxLengthMessage: CounterMessageSetter = (
 const getInitialCounterMessage = ({
   minLength,
   maxLength,
-  minLengthMessage,
-  maxLengthMessage
+  minLengthMessage = defaultMinLengthMessage,
+  maxLengthMessage = defaultMaxLengthMessage
 }: Props) => {
   if (minLength) {
-    return minLengthMessage
-      ? minLengthMessage(minLength, 0, true)
-      : defaultMinLengthMessage(minLength, 0, true)
+    return minLengthMessage(minLength, 0, true)
   }
 
   if (maxLength) {
-    return maxLengthMessage
-      ? maxLengthMessage(maxLength, 0, false)
-      : defaultMaxLengthMessage(maxLength, 0, false)
+    return maxLengthMessage(maxLength, 0, false)
   }
 
   return ''
@@ -59,8 +55,8 @@ const getInitialCounterMessage = ({
 const useCounter = ({
   minLength,
   maxLength,
-  minLengthMessage,
-  maxLengthMessage
+  minLengthMessage = defaultMinLengthMessage,
+  maxLengthMessage = defaultMaxLengthMessage
 }: Props) => {
   const [message, setMesssage] = useState(() =>
     getInitialCounterMessage({
@@ -75,15 +71,13 @@ const useCounter = ({
   const handleCounterMessage: TextLengthChangeHandler = useCallback(
     currLength => {
       if (minLength) {
-        const getMessage = minLengthMessage || defaultMinLengthMessage
-
         if (currLength < minLength) {
-          setMesssage(getMessage(minLength, currLength, true))
+          setMesssage(minLengthMessage(minLength, currLength, true))
           setIsError(true)
 
           return
         } else if (!maxLength) {
-          setMesssage(getMessage(minLength, currLength, false))
+          setMesssage(minLengthMessage(minLength, currLength, false))
           setIsError(false)
 
           return
@@ -91,26 +85,24 @@ const useCounter = ({
       }
 
       if (maxLength) {
-        const getMessage = maxLengthMessage || defaultMaxLengthMessage
-
         if (
           maxLength - currLength <= CLOSE_TO_LIMIT &&
           maxLength - currLength >= 0
         ) {
-          setMesssage(getMessage(maxLength, currLength, false))
+          setMesssage(maxLengthMessage(maxLength, currLength, false))
           setIsError(true)
 
           return
         }
 
         if (currLength < maxLength) {
-          setMesssage(getMessage(maxLength, currLength, false))
+          setMesssage(maxLengthMessage(maxLength, currLength, false))
           setIsError(false)
 
           return
         }
 
-        setMesssage(getMessage(maxLength, currLength, true))
+        setMesssage(maxLengthMessage(maxLength, currLength, true))
         setIsError(true)
       }
     },
