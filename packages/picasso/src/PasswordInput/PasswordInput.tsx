@@ -14,7 +14,13 @@ import { InputProps } from '../Input'
 export interface Props
   extends Omit<
       OmitInternalProps<OutlinedInputProps>,
-      'defaultValue' | 'type' | 'rows' | 'rowsMax' | 'multiline' | 'enableReset'
+      | 'defaultValue'
+      | 'type'
+      | 'rows'
+      | 'rowsMax'
+      | 'multiline'
+      | 'enableReset'
+      | 'onResetClick'
     >,
     BaseProps {
   /** Value of the `input` element. */
@@ -42,7 +48,6 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       onChange,
       disabled,
       error,
-      onResetClick,
       width,
       style,
       className,
@@ -81,7 +86,6 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
           'data-testid': rest.testIds?.input
         }}
         width={width}
-        onResetClick={onResetClick}
         error={error}
         inputRef={ref}
         type={showPassword ? 'text' : 'password'}
