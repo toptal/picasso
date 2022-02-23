@@ -1,12 +1,13 @@
 import { useCallback, useState } from 'react'
 
 import { TextLengthChangeHandler } from '../../../QuillEditor'
+import { CounterMessageSetter } from '../../RichTextEditor'
 
 type Props = {
   minLength?: number
   maxLength?: number
-  minLengthMessage?: (minLength: number, currLength: number) => string
-  maxLengthMessage?: (maxLength: number, currLength: number) => string
+  minLengthMessage?: CounterMessageSetter
+  maxLengthMessage?: CounterMessageSetter
 }
 
 const getInitialCounterMessage = ({
@@ -16,11 +17,11 @@ const getInitialCounterMessage = ({
   maxLengthMessage
 }: Props) => {
   if (minLength && minLengthMessage) {
-    return minLengthMessage(minLength, 0)
+    return minLengthMessage(minLength, 0).message
   }
 
   if (maxLength && maxLengthMessage) {
-    return maxLengthMessage(maxLength, 0)
+    return maxLengthMessage(maxLength, 0).message
   }
 
   return ''
@@ -32,7 +33,7 @@ const useCounter = ({
   minLengthMessage,
   maxLengthMessage
 }: Props) => {
-  const [counterMessage, setCounterMessage] = useState(() =>
+  const [message, setMessage] = useState(() =>
     getInitialCounterMessage({
       minLength,
       maxLength,
@@ -40,38 +41,43 @@ const useCounter = ({
       maxLengthMessage
     })
   )
-  const [counterError, setCounterError] = useState(!!minLength)
+  const [isError, setIsError] = useState(!!minLength)
 
   const handleCounterMessage: TextLengthChangeHandler = useCallback(
     currLength => {
       if (minLengthMessage && minLength) {
         if (currLength < minLength) {
-          setCounterMessage(minLengthMessage(minLength, currLength))
-          setCounterError(true)
+          const { message, isError } = minLengthMessage(minLength, currLength)
+
+          setMessage(message)
+          setIsError(isError)
 
           return
         } else if (!maxLength) {
-          setCounterMessage(minLengthMessage(minLength, currLength))
-          setCounterError(false)
+          const { message, isError } = minLengthMessage(minLength, currLength)
+
+          setMessage(message)
+          setIsError(isError)
 
           return
         }
       }
 
       if (maxLengthMessage && maxLength) {
-        if (currLength < maxLength) {
-          setCounterError(false)
-        } else {
-          setCounterError(true)
-        }
+        const { message, isError } = maxLengthMessage(maxLength, currLength)
 
-        setCounterMessage(maxLengthMessage(maxLength, currLength))
+        setMessage(message)
+        setIsError(isError)
       }
     },
     [minLength, maxLength, minLengthMessage, maxLengthMessage]
   )
 
-  return { counterMessage, counterError, handleCounterMessage }
+  return {
+    counterMessage: message,
+    counterError: isError,
+    handleCounterMessage
+  }
 }
 
 export default useCounter

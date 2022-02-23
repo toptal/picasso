@@ -25,6 +25,11 @@ import {
 } from './hooks'
 import { ASTType } from './types'
 
+export type CounterMessageSetter = (
+  limit: number,
+  currLength: number
+) => { message: string; isError: boolean }
+
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
   autofocus?: boolean
@@ -49,11 +54,11 @@ export interface Props extends BaseProps {
   /**
    * Custom counter message for minLength
    */
-  minLengthMessage?: (minLength: number, currLength: number) => string
+  minLengthMessage?: CounterMessageSetter
   /**
    * Custom counter message for maxLength
    */
-  maxLengthMessage?: (maxLength: number, currLength: number) => string
+  maxLengthMessage?: CounterMessageSetter
   /**
    * Callback on text change
    */
@@ -178,7 +183,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           onTextChange={onChange}
           defaultValue={defaultValueInHtml}
         />
-        {(minLength || maxLength) && (
+        {counterMessage && (
           <Counter error={counterError} message={counterMessage} />
         )}
       </Container>
@@ -189,14 +194,36 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
 RichTextEditor.defaultProps = {
   autofocus: false,
   disabled: false,
-  minLengthMessage: (minLength, currLength) =>
-    currLength < minLength
-      ? `${minLength} characters required, current count is ${currLength}`
-      : `${currLength} characters entered`,
-  maxLengthMessage: (maxLength, currLength) =>
-    currLength <= maxLength
-      ? `${maxLength - currLength} characters left`
-      : `${currLength - maxLength} over the limit`
+  minLengthMessage: (minLength, currLength) => {
+    if (currLength < minLength) {
+      return {
+        message: `${minLength} characters required, current count is ${currLength}`,
+        isError: true
+      }
+    }
+
+    return { message: `${currLength} characters entered`, isError: false }
+  },
+  maxLengthMessage: (maxLength, currLength) => {
+    if (currLength < maxLength) {
+      return {
+        message: `${maxLength - currLength} characters left`,
+        isError: false
+      }
+    }
+
+    if (currLength === maxLength) {
+      return {
+        message: `${maxLength - currLength} characters left`,
+        isError: true
+      }
+    }
+
+    return {
+      message: `${currLength - maxLength} over the limit`,
+      isError: true
+    }
+  }
 }
 
 RichTextEditor.displayName = 'RichTextEditor'
