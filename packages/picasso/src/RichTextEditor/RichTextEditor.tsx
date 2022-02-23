@@ -13,15 +13,23 @@ import hastUtilToHtml from 'hast-util-to-html'
 import Container from '../Container'
 import QuillEditor from '../QuillEditor'
 import Toolbar from '../RichTextEditorToolbar'
+import Counter from '../RichTextEditorCounter'
 import styles from './styles'
 import {
   useTextEditorState,
   useOnSelectionChange,
   useOnTextFormat,
   useOnFocus,
-  useToolbarHandlers
+  useToolbarHandlers,
+  useCounter
 } from './hooks'
 import { ASTType } from './types'
+
+export type CounterMessageSetter = (
+  limit: number,
+  currLength: number,
+  isError: boolean
+) => string
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -39,13 +47,19 @@ export interface Props extends BaseProps {
    * If this value isn't specified, the user can enter an unlimited
    * number of characters.
    */
-  // TODO implement
-  maxlength?: number
+  maxLength?: number
   /**
    * The minimum number of characters required that the user should enter.
    */
-  // TODO implement
-  minlength?: number
+  minLength?: number
+  /**
+   * Custom counter message for minLength
+   */
+  minLengthMessage?: CounterMessageSetter
+  /**
+   * Custom counter message for maxLength
+   */
+  maxLengthMessage?: CounterMessageSetter
   /**
    * Callback on text change
    */
@@ -73,6 +87,10 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       id,
       onChange,
       placeholder,
+      minLength,
+      maxLength,
+      minLengthMessage,
+      maxLengthMessage,
       style,
       testIds
     },
@@ -116,6 +134,13 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       []
     )
 
+    const { counterMessage, counterError, handleCounterMessage } = useCounter({
+      minLength,
+      maxLength,
+      minLengthMessage,
+      maxLengthMessage
+    })
+
     return (
       <Container
         className={cx(
@@ -151,11 +176,15 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           id={id}
           isFocused={isEditorFocused}
           placeholder={placeholder}
+          onTextLengthChange={handleCounterMessage}
           onTextFormat={handleTextFormat}
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}
           defaultValue={defaultValueInHtml}
         />
+        {counterMessage && (
+          <Counter error={counterError} message={counterMessage} />
+        )}
       </Container>
     )
   }

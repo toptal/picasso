@@ -13,8 +13,13 @@ import {
   useKeyBindings,
   useSubscribeToTextEditorEvents
 } from './hooks'
-import { TextFormatHandler, ChangeHandler, SelectionHandler } from './types'
 import useDefaultValue from './hooks/useDefaultValue'
+import {
+  TextFormatHandler,
+  ChangeHandler,
+  SelectionHandler,
+  TextLengthChangeHandler
+} from './types'
 
 export type Props = BaseProps & {
   /**
@@ -28,6 +33,7 @@ export type Props = BaseProps & {
   onSelectionChange: SelectionHandler
   onTextFormat: TextFormatHandler
   onTextChange: ChangeHandler
+  onTextLengthChange: TextLengthChangeHandler
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -42,6 +48,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     id,
     isFocused,
     placeholder,
+    onTextLengthChange,
     onSelectionChange,
     onTextFormat,
     onTextChange
@@ -61,7 +68,8 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   useSubscribeToQuillEvents({
     quill,
     onTextChange,
-    onSelectionChange
+    onSelectionChange,
+    onTextLengthChange
   })
   useSubscribeToTextEditorEvents({
     editorRef,
@@ -88,6 +96,7 @@ QuillEditor.defaultProps = {
   isFocused: false,
   onSelectionChange: () => {},
   onTextFormat: () => {},
+  onTextLengthChange: () => {},
   onTextChange: () => {}
 }
 

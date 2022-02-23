@@ -7,16 +7,22 @@ describe('useSubscribeToQuillEvents', () => {
   it('subscribes to events correctly', () => {
     const onTextChange = jest.fn
     const onSelectionChange = jest.fn
+    const onTextLengthChange = jest.fn
     const quill = ({
       on: jest.fn(),
       off: jest.fn()
     } as unknown) as Quill
 
     const { unmount } = renderHook(() =>
-      useSubscribeToQuillEvents({ quill, onTextChange, onSelectionChange })
+      useSubscribeToQuillEvents({
+        quill,
+        onTextChange,
+        onTextLengthChange,
+        onSelectionChange
+      })
     )
 
-    expect(quill.on).toHaveBeenCalledTimes(3)
+    expect(quill.on).toHaveBeenCalledTimes(4)
     expect(quill.on).toHaveBeenCalledWith(
       'selection-change',
       expect.any(Function)
@@ -26,7 +32,7 @@ describe('useSubscribeToQuillEvents', () => {
 
     unmount()
 
-    expect(quill.off).toHaveBeenCalledTimes(3)
+    expect(quill.off).toHaveBeenCalledTimes(4)
     expect(quill.off).toHaveBeenCalledWith(
       'selection-change',
       expect.any(Function)

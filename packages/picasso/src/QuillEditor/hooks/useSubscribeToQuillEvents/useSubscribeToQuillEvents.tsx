@@ -8,19 +8,34 @@ import Quill, {
 import getTextChangeHandler from '../../utils/getTextChangeHandler'
 import getSelectionChangeHandler from '../../utils/getSelectionChangeHandler'
 import getEditorChangeHandler from '../../utils/getEditorChangeHandler'
-import { SelectionHandler, ChangeHandler } from '../../types'
+import getTextLengthChangeHandler from '../../utils/getTextLengthChangeHandler'
+import {
+  SelectionHandler,
+  ChangeHandler,
+  TextLengthChangeHandler
+} from '../../types'
 
 type Props = {
   quill?: Quill
   onTextChange: ChangeHandler
   onSelectionChange: SelectionHandler
+  onTextLengthChange: TextLengthChangeHandler
 }
 
 const useSubscribeToQuillEvents = ({
   quill,
   onTextChange,
-  onSelectionChange
+  onSelectionChange,
+  onTextLengthChange
 }: Props) => {
+  const textLengthChangeHandler = useMemo(() => {
+    if (!quill) {
+      return () => {}
+    }
+
+    return getTextLengthChangeHandler(quill, onTextLengthChange)
+  }, [quill, onTextLengthChange])
+
   const textChangeHandler: TextChangeHandler = useMemo(() => {
     if (!quill) {
       return () => {}
@@ -52,14 +67,22 @@ const useSubscribeToQuillEvents = ({
 
     quill.on('selection-change', selectionChangeHandler)
     quill.on('text-change', textChangeHandler)
+    quill.on('text-change', textLengthChangeHandler)
     quill.on('editor-change', editorChangeHandler)
 
     return () => {
       quill.off('selection-change', selectionChangeHandler)
       quill.off('text-change', textChangeHandler)
+      quill.off('text-change', textLengthChangeHandler)
       quill.off('editor-change', editorChangeHandler)
     }
-  }, [quill, textChangeHandler, selectionChangeHandler, editorChangeHandler])
+  }, [
+    quill,
+    textChangeHandler,
+    selectionChangeHandler,
+    editorChangeHandler,
+    textLengthChangeHandler
+  ])
 }
 
 export default useSubscribeToQuillEvents
