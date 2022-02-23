@@ -181,6 +181,8 @@ export type { TimelineProps } from './Timeline'
 export { default as RichText } from './RichText'
 export type { RichTextProps, ASTType } from './RichText'
 export type { RatingThumbsProps } from './RatingThumbs'
+export { default as PasswordInput } from './PasswordInput'
+export type { PasswordInputProps } from './PasswordInput'
 
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'
