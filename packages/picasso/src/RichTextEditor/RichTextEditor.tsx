@@ -27,8 +27,9 @@ import { ASTType } from './types'
 
 export type CounterMessageSetter = (
   limit: number,
-  currLength: number
-) => { message: string; isError: boolean }
+  currLength: number,
+  isError: boolean
+) => string
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -191,37 +192,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
 
 RichTextEditor.defaultProps = {
   autofocus: false,
-  disabled: false,
-  minLengthMessage: (minLength, currLength) => {
-    if (currLength < minLength) {
-      return {
-        message: `${minLength} characters required, current count is ${currLength}`,
-        isError: true
-      }
-    }
-
-    return { message: `${currLength} characters entered`, isError: false }
-  },
-  maxLengthMessage: (maxLength, currLength) => {
-    if (currLength < maxLength) {
-      return {
-        message: `${maxLength - currLength} characters left`,
-        isError: false
-      }
-    }
-
-    if (currLength === maxLength) {
-      return {
-        message: `${maxLength - currLength} characters left`,
-        isError: true
-      }
-    }
-
-    return {
-      message: `${currLength - maxLength} over the limit`,
-      isError: true
-    }
-  }
+  disabled: false
 }
 
 RichTextEditor.displayName = 'RichTextEditor'

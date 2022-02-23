@@ -10,18 +10,47 @@ type Props = {
   maxLengthMessage?: CounterMessageSetter
 }
 
+const CLOSE_TO_LIMIT = 10
+const defaultMinLengthMessage: CounterMessageSetter = (
+  minLength,
+  currLength,
+  isError
+) => {
+  if (isError) {
+    return `${minLength} characters required, current count is ${currLength}`
+  }
+
+  return `${currLength} characters entered`
+}
+
+const defaultMaxLengthMessage: CounterMessageSetter = (
+  maxLength,
+  currLength,
+  isError
+) => {
+  if (isError) {
+    return `${currLength - maxLength} over the limit`
+  }
+
+  return `${maxLength - currLength} characters left`
+}
+
 const getInitialCounterMessage = ({
   minLength,
   maxLength,
   minLengthMessage,
   maxLengthMessage
 }: Props) => {
-  if (minLength && minLengthMessage) {
-    return minLengthMessage(minLength, 0).message
+  if (minLength) {
+    return minLengthMessage
+      ? minLengthMessage(minLength, 0, true)
+      : defaultMinLengthMessage(minLength, 0, true)
   }
 
-  if (maxLength && maxLengthMessage) {
-    return maxLengthMessage(maxLength, 0).message
+  if (maxLength) {
+    return maxLengthMessage
+      ? maxLengthMessage(maxLength, 0, false)
+      : defaultMaxLengthMessage(maxLength, 0, false)
   }
 
   return ''
@@ -33,7 +62,7 @@ const useCounter = ({
   minLengthMessage,
   maxLengthMessage
 }: Props) => {
-  const [message, setMessage] = useState(() =>
+  const [message, setMesssage] = useState(() =>
     getInitialCounterMessage({
       minLength,
       maxLength,
@@ -45,29 +74,44 @@ const useCounter = ({
 
   const handleCounterMessage: TextLengthChangeHandler = useCallback(
     currLength => {
-      if (minLengthMessage && minLength) {
-        if (currLength < minLength) {
-          const { message, isError } = minLengthMessage(minLength, currLength)
+      if (minLength) {
+        const getMessage = minLengthMessage || defaultMinLengthMessage
 
-          setMessage(message)
-          setIsError(isError)
+        if (currLength < minLength) {
+          setMesssage(getMessage(minLength, currLength, true))
+          setIsError(true)
 
           return
         } else if (!maxLength) {
-          const { message, isError } = minLengthMessage(minLength, currLength)
-
-          setMessage(message)
-          setIsError(isError)
+          setMesssage(getMessage(minLength, currLength, false))
+          setIsError(false)
 
           return
         }
       }
 
-      if (maxLengthMessage && maxLength) {
-        const { message, isError } = maxLengthMessage(maxLength, currLength)
+      if (maxLength) {
+        const getMessage = maxLengthMessage || defaultMaxLengthMessage
 
-        setMessage(message)
-        setIsError(isError)
+        if (
+          maxLength - currLength <= CLOSE_TO_LIMIT &&
+          maxLength - currLength >= 0
+        ) {
+          setMesssage(getMessage(maxLength, currLength, false))
+          setIsError(true)
+
+          return
+        }
+
+        if (currLength < maxLength) {
+          setMesssage(getMessage(maxLength, currLength, false))
+          setIsError(false)
+
+          return
+        }
+
+        setMesssage(getMessage(maxLength, currLength, true))
+        setIsError(true)
       }
     },
     [minLength, maxLength, minLengthMessage, maxLengthMessage]

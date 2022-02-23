@@ -50,10 +50,8 @@ describe('useCounter', () => {
     const hookOptions = {
       minLength: 4,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      minLengthMessage: (_minLength: number, _currLength: number) => ({
-        message: 'custom message',
-        isError: false
-      })
+      minLengthMessage: (_minLength: number, _currLength: number) =>
+        'custom message'
     }
 
     const { result } = renderHook(() => useCounter(hookOptions))
@@ -67,10 +65,8 @@ describe('useCounter', () => {
     const hookOptions = {
       maxLength: 8,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      maxLengthMessage: (_maxLength: number, _currLength: number) => ({
-        message: 'custom message',
-        isError: false
-      })
+      maxLengthMessage: (_maxLength: number, _currLength: number) =>
+        'custom message'
     }
 
     const { result } = renderHook(() => useCounter(hookOptions))

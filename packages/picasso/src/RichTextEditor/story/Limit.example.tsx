@@ -17,8 +17,8 @@ const Example = () => {
         id='limit'
         onChange={handleChange}
         placeholder='Write some cool rich text'
-        minLength={4}
-        maxLength={8}
+        minLength={5}
+        maxLength={25}
       />
       <Container
         padded='small'
