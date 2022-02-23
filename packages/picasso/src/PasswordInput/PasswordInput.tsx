@@ -1,6 +1,7 @@
-import React, { forwardRef, useState, ChangeEvent } from 'react'
+import React, { forwardRef, useState, ChangeEvent, useCallback } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
@@ -8,11 +9,12 @@ import styles from './styles'
 import SvgEye16 from '../Icon/Eye16'
 import SvgEyeHidden16 from '../Icon/EyeHidden16'
 import Button from '../Button'
+import { InputProps } from '../Input'
 
 export interface Props
   extends Omit<
       OmitInternalProps<OutlinedInputProps>,
-      'defaultValue' | 'type' | 'rows' | 'rowsMax' | 'multiline'
+      'defaultValue' | 'type' | 'rows' | 'rowsMax' | 'multiline' | 'enableReset'
     >,
     BaseProps {
   /** Value of the `input` element. */
@@ -23,6 +25,10 @@ export interface Props
   disabled?: boolean
   /** Callback invoked when `PasswordInput` changes its state. */
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  testIds?: InputProps['testIds'] & {
+    input?: string
+    toggle?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -37,17 +43,18 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       disabled,
       error,
       onResetClick,
-      enableReset,
       width,
+      style,
+      className,
       ...rest
     } = props
 
     const [showPassword, setShowPassword] = useState(false)
     const classes = useStyles()
 
-    const handleToggleVisibilityClick = () => {
+    const handleToggleVisibilityClick = useCallback(() => {
       setShowPassword(previousState => !previousState)
-    }
+    }, [])
 
     const endAdornment = (
       <InputAdornment position='end'>
@@ -56,23 +63,24 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
           variant='flat'
           icon={showPassword ? <SvgEyeHidden16 /> : <SvgEye16 />}
           onClick={handleToggleVisibilityClick}
-          data-testid={`${rest['data-testid']}-toggle`}
+          data-testid={rest.testIds?.toggle}
         />
       </InputAdornment>
     )
 
     return (
       <OutlinedInput
+        style={style}
+        className={cx(classes.root, className)}
         classes={{
-          root: classes.root,
           input: classes.input
         }}
         inputProps={{
-          ...rest
+          ...rest,
+          'data-testid': rest.testIds?.input
         }}
         width={width}
         onResetClick={onResetClick}
-        enableReset={enableReset}
         error={error}
         inputRef={ref}
         type={showPassword ? 'text' : 'password'}

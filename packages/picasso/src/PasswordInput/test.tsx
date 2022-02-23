@@ -1,34 +1,24 @@
-import React, { useState, ChangeEventHandler } from 'react'
+import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import PasswordInput, { Props as PasswordInputProps } from './PasswordInput'
 
-const PasswordInputRenderer = (
-  props: { initialValue: string } & Partial<PasswordInputProps>
-) => {
-  const [value, setValue] = useState(props.initialValue)
-
-  const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
-    setValue(e.target.value)
-  }
-
-  return <PasswordInput {...props} value={value} onChange={handleChange} />
-}
-
 const renderPasswordInput = (
   props: Partial<PasswordInputProps> & { initialValue?: string } = {}
 ) => {
-  const { initialValue = 'asd' } = props
+  const { initialValue } = props
 
-  return render(
-    <PasswordInputRenderer initialValue={initialValue} {...props} />
-  )
+  return render(<PasswordInput {...props} value={initialValue} />)
 }
 
 describe('PasswordInput', () => {
   it('shows and hides password', async () => {
     const { getByDisplayValue, getByTestId } = renderPasswordInput({
-      'data-testid': 'password-input'
+      initialValue: 'asd',
+      testIds: {
+        input: 'password-input',
+        toggle: 'password-input-toggle'
+      }
     })
 
     const input = getByDisplayValue('asd') as HTMLInputElement

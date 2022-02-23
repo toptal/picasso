@@ -4,7 +4,13 @@ import { PasswordInput } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const PasswordInputExample = () => (
-  <PasswordInput value='asd' data-testid='password-input' />
+  <PasswordInput
+    value='asd'
+    testIds={{
+      input: 'password-input',
+      toggle: 'password-input-toggle'
+    }}
+  />
 )
 
 describe('PasswordInput', () => {
