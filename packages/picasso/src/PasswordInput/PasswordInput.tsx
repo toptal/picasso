@@ -64,6 +64,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
           icon={showPassword ? <SvgEyeHidden16 /> : <SvgEye16 />}
           onClick={handleToggleVisibilityClick}
           data-testid={rest.testIds?.toggle}
+          disabled={disabled}
         />
       </InputAdornment>
     )
