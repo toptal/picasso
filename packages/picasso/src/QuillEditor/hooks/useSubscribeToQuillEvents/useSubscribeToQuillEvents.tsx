@@ -20,15 +20,13 @@ type Props = {
   onTextChange: ChangeHandler
   onSelectionChange: SelectionHandler
   onTextLengthChange: TextLengthChangeHandler
-  maxLength?: number
 }
 
 const useSubscribeToQuillEvents = ({
   quill,
   onTextChange,
   onSelectionChange,
-  onTextLengthChange,
-  maxLength
+  onTextLengthChange
 }: Props) => {
   const textLengthChangeHandler = useMemo(() => {
     if (!quill) {
@@ -36,7 +34,7 @@ const useSubscribeToQuillEvents = ({
     }
 
     return getTextLengthChangeHandler(quill, onTextLengthChange)
-  }, [maxLength, onTextLengthChange, quill])
+  }, [quill, onTextLengthChange])
 
   const textChangeHandler: TextChangeHandler = useMemo(() => {
     if (!quill) {
