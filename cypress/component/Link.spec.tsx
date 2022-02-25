@@ -126,7 +126,7 @@ describe('Link', () => {
         </TestingPicasso>
       )
 
-      cy.get('[data-testid="link"')
+      cy.get('[data-testid="link"]')
         .realHover()
         .should(
           'have.css',
@@ -148,7 +148,7 @@ describe('Link', () => {
         </TestingPicasso>
       )
 
-      cy.get('[data-testid="link"')
+      cy.get('[data-testid="link"]')
         .realHover()
         .should(
           'have.css',
@@ -170,7 +170,7 @@ describe('Link', () => {
         </TestingPicasso>
       )
 
-      cy.get('[data-testid="link"')
+      cy.get('[data-testid="link"]')
         .realHover()
         .should('have.css', 'text-decoration', 'none solid rgb(32, 78, 207)')
     })
@@ -188,7 +188,7 @@ describe('Link', () => {
         </TestingPicasso>
       )
 
-      cy.get('[data-testid="link"')
+      cy.get('[data-testid="link"]')
         .realHover()
         .should('have.css', 'text-decoration', 'none solid rgb(32, 78, 207)')
     })
@@ -207,13 +207,13 @@ describe('Link', () => {
         </TestingPicasso>
       )
 
-      cy.get('[data-testid="blue-link"').should(
+      cy.get('[data-testid="blue-link"]').should(
         'have.css',
         'color',
         DARKER_BLUE
       )
 
-      cy.get('[data-testid="white-link"').should('have.css', 'color', GREY)
+      cy.get('[data-testid="white-link"]').should('have.css', 'color', GREY)
     })
   })
 })

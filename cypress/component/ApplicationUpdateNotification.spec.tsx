@@ -38,7 +38,7 @@ describe('ApplicationUpdateNotification', () => {
       </TestingPicasso>
     )
 
-    cy.get('[data-testid="trigger"').click()
+    cy.get('[data-testid="trigger"]').click()
     cy.get('body').happoScreenshot()
   })
 
@@ -49,14 +49,14 @@ describe('ApplicationUpdateNotification', () => {
       </TestingPicasso>
     )
 
-    cy.get('[data-testid="trigger"').click()
-    cy.get('[data-testid="application-update-notification"').should(
+    cy.get('[data-testid="trigger"]').click()
+    cy.get('[data-testid="application-update-notification"]').should(
       'be.visible'
     )
 
-    cy.get('[data-testid="update-later-button"').click()
+    cy.get('[data-testid="update-later-button"]').click()
 
-    cy.get('[data-testid="application-update-notification"').should(
+    cy.get('[data-testid="application-update-notification"]').should(
       'not.be.visible'
     )
   })

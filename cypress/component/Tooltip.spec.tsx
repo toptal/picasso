@@ -307,22 +307,22 @@ describe('Tooltip', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it.skip('renders on hover, and hides on click', () => {
+  it('renders on hover, and hides on click', () => {
     mount(<BasicTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
-    cy.get('[data-testid="tooltip-trigger"').realHover({
+    cy.get('[data-testid="tooltip-trigger"]').realHover({
       position: { x: 0, y: -200 }
     })
-    cy.get('[data-testid="tooltip-content"').should('not.exist')
-    cy.get('[data-testid="tooltip-trigger"').realHover()
+    cy.get('[data-testid="tooltip-content"]').should('not.exist')
+    cy.get('[data-testid="tooltip-trigger"]').realHover()
 
-    cy.get('[data-testid="tooltip-content"').should('be.visible')
+    cy.get('[data-testid="tooltip-content"]').should('be.visible')
 
-    cy.get('[data-testid="tooltip-trigger"').click()
-    cy.get('[data-testid="tooltip-content"').should('not.be.visible')
+    cy.get('[data-testid="tooltip-trigger"]').click()
+    cy.get('[data-testid="tooltip-content"]').should('not.be.visible')
   })
 
-  it.skip('renders on hover, and hides on click for Checkbox', () => {
+  it('renders on hover, and hides on click for Checkbox', () => {
     mount(<CheckboxTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.get('[data-testid="tooltip-trigger"]')
@@ -335,42 +335,42 @@ describe('Tooltip', () => {
     cy.get('[data-testid="tooltip-content"]').should('exist')
     cy.get('body').happoScreenshot()
     cy.get('@trigger').click()
-    cy.get('[data-testid="tooltip-content"').should('not.be.visible')
+    cy.get('[data-testid="tooltip-content"]').should('not.be.visible')
   })
 
-  it.skip('renders on hover, and hides on click for Radio', () => {
+  it('renders on hover, and hides on click for Radio', () => {
     mount(<RadioTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
-    cy.get('[data-testid="trigger"').realHover({ position: { x: 0, y: -200 } })
-    cy.get('[data-testid="tooltip-content"').should('not.exist')
-    cy.get('[data-testid="trigger"').realHover()
-    cy.get('[data-testid="tooltip-content"').should('be.visible')
+    cy.get('[data-testid="trigger"]').realHover({ position: { x: 0, y: -200 } })
+    cy.get('[data-testid="tooltip-content"]').should('not.exist')
+    cy.get('[data-testid="trigger"]').realHover()
+    cy.get('[data-testid="tooltip-content"]').should('be.visible')
     cy.get('body').happoScreenshot()
-    cy.get('[data-testid="trigger"').click()
-    cy.get('[data-testid="tooltip-content"').should('not.be.visible')
+    cy.get('[data-testid="trigger"]').click()
+    cy.get('[data-testid="tooltip-content"]').should('not.be.visible')
   })
 
-  it.skip('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
+  it('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
     mount(<BasicTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
-    cy.get('[data-testid="tooltip-trigger"').realHover({
+    cy.get('[data-testid="tooltip-trigger"]').realHover({
       position: { x: 0, y: -200 }
     })
-    cy.get('[data-testid="tooltip-content"').should('not.exist')
-    cy.get('[data-testid="tooltip-trigger"').realHover()
+    cy.get('[data-testid="tooltip-content"]').should('not.exist')
+    cy.get('[data-testid="tooltip-trigger"]').realHover()
 
-    cy.get('[data-testid="tooltip-content"').should('be.visible')
+    cy.get('[data-testid="tooltip-content"]').should('be.visible')
 
-    cy.get('[data-testid="tooltip-trigger"').click()
-    cy.get('[data-testid="tooltip-trigger"').realHover({ position: 'topLeft' })
-    cy.get('[data-testid="tooltip-trigger"').realHover({
+    cy.get('[data-testid="tooltip-trigger"]').click()
+    cy.get('[data-testid="tooltip-trigger"]').realHover({ position: 'topLeft' })
+    cy.get('[data-testid="tooltip-trigger"]').realHover({
       position: 'bottomRight'
     })
 
-    cy.get('[data-testid="tooltip-content"').should('not.be.visible')
+    cy.get('[data-testid="tooltip-content"]').should('not.be.visible')
   })
 
-  it.skip('renders interactive content', () => {
+  it('renders interactive content', () => {
     mount(<LinkTooltipExample />)
     cy.get('[data-testid="tooltip-trigger"]').as('Trigger').realHover()
     cy.get('[data-testid="tooltip-content"]').as('Content').should('be.visible')
@@ -381,14 +381,14 @@ describe('Tooltip', () => {
     cy.get('@Content').should('be.visible')
 
     cy.get('@Trigger').click()
-    cy.get('[data-testid="tooltip-content"]').should('not.be.visible')
+    cy.get('@Content').should('not.be.visible')
   })
 
   it('renders inside an autocomplete', () => {
     mount(<AutocompleteTooltipExample />)
 
-    cy.get('[data-testid="autocomplete"').click()
-    cy.get('[data-testid="tooltip-content"').should('exist')
+    cy.get('[data-testid="autocomplete"]').click()
+    cy.get('[data-testid="tooltip-content"]').should('exist')
     cy.get('body').happoScreenshot()
   })
 
