@@ -25,7 +25,6 @@ export {
 export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListener'
 
 export { capitalize } from './capitalize'
-export { dashToCamelCase } from './dash-to-camel-case'
 export { default as disableUnsupportedProps } from './disable-unsupported-props'
 export { forwardRef, documentable } from './forward-ref'
 export { default as getNameInitials } from './get-name-initials'
