@@ -20,7 +20,7 @@ const getCleanupOnAllContentRemoval = (quill: Quill) => {
     const isFormatApplied = Object.keys(currentFormat).length > 0
 
     if (isFormatApplied) {
-      quill.setContents(new Delta(), 'silent')
+      quill.setContents(new Delta(), 'api')
     }
   }
 
