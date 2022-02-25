@@ -307,7 +307,7 @@ describe('Tooltip', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders on hover, and hides on click', () => {
+  it.skip('renders on hover, and hides on click', () => {
     mount(<BasicTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.get('[data-testid="tooltip-trigger"').realHover({
@@ -322,7 +322,7 @@ describe('Tooltip', () => {
     cy.get('[data-testid="tooltip-content"').should('not.be.visible')
   })
 
-  it('renders on hover, and hides on click for Checkbox', () => {
+  it.skip('renders on hover, and hides on click for Checkbox', () => {
     mount(<CheckboxTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.get('[data-testid="tooltip-trigger"]')
@@ -338,7 +338,7 @@ describe('Tooltip', () => {
     cy.get('[data-testid="tooltip-content"').should('not.be.visible')
   })
 
-  it('renders on hover, and hides on click for Radio', () => {
+  it.skip('renders on hover, and hides on click for Radio', () => {
     mount(<RadioTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.get('[data-testid="trigger"').realHover({ position: { x: 0, y: -200 } })
@@ -350,7 +350,7 @@ describe('Tooltip', () => {
     cy.get('[data-testid="tooltip-content"').should('not.be.visible')
   })
 
-  it('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
+  it.skip('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
     mount(<BasicTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.get('[data-testid="tooltip-trigger"').realHover({
@@ -370,7 +370,7 @@ describe('Tooltip', () => {
     cy.get('[data-testid="tooltip-content"').should('not.be.visible')
   })
 
-  it('renders interactive content', () => {
+  it.skip('renders interactive content', () => {
     mount(<LinkTooltipExample />)
     cy.get('[data-testid="tooltip-trigger"]').as('Trigger').realHover()
     cy.get('[data-testid="tooltip-content"]').as('Content').should('be.visible')
