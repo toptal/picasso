@@ -22,7 +22,7 @@ exports[`NumberInput renders 1`] = `
         class="PicassoContainer-flex PicassoContainer-inline PicassoContainer-column"
       >
         <button
-          class="MuiButtonBase-root PicassoNumberInput-control PicassoNumberInput-medium"
+          class="MuiButtonBase-root NumberInputEndAdornment-medium NumberInputEndAdornment-root"
           tabindex="0"
           type="button"
         >
@@ -37,7 +37,7 @@ exports[`NumberInput renders 1`] = `
           </svg>
         </button>
         <button
-          class="MuiButtonBase-root PicassoNumberInput-control PicassoNumberInput-medium"
+          class="MuiButtonBase-root NumberInputEndAdornment-medium NumberInputEndAdornment-root"
           tabindex="0"
           type="button"
         >
