@@ -1,5 +1,20 @@
 # Change Log
 
+## 33.0.0
+
+### Minor Changes
+
+- [#2462](https://github.com/toptal/picasso/pull/2462) [`e425ab4b`](https://github.com/toptal/picasso/commit/e425ab4b01c76059f4ef98c2d50d27adefe2d25f) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### PasswordInput
+
+  - add new component for form wrapper
+
+### Patch Changes
+
+- Updated dependencies [[`e425ab4b`](https://github.com/toptal/picasso/commit/e425ab4b01c76059f4ef98c2d50d27adefe2d25f)]:
+  - @toptal/picasso@18.8.0
+
 ## 32.0.0
 
 ### Patch Changes
