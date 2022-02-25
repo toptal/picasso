@@ -1,5 +1,17 @@
 # Change Log
 
+## 18.9.0
+
+### Minor Changes
+
+- [#2467](https://github.com/toptal/picasso/pull/2467) [`77a7efc5`](https://github.com/toptal/picasso/commit/77a7efc590eae2a5c48edce7a2ac58baf386f60c) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  ### NumberInput
+
+  - Extracted NumberInputEndAdornment
+  - Fixed design inconsistencies
+  - Added 'large' size icons for NumberInputEndAdornment
+
 ## 18.8.0
 
 ### Minor Changes
