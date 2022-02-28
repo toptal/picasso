@@ -2,15 +2,15 @@ import { act } from '@toptal/picasso/test-utils'
 import Quill from 'quill'
 import Delta from 'quill-delta'
 
-import getCleanupOnAllContentRemoval from './getCleanupOnAllContentRemoval'
+import getCleanupOnAllContentRemovalHandler from './getCleanupOnAllContentRemovalHandler'
 
-describe('getCleanupOnAllContentRemoval', () => {
+describe('getCleanupOnAllContentRemovalHandler', () => {
   it('does nothing when not delete operation', () => {
     const quill = ({
       getLength: jest.fn()
     } as unknown) as Quill
 
-    const handler = getCleanupOnAllContentRemoval(quill)
+    const handler = getCleanupOnAllContentRemovalHandler(quill)
 
     act(() => handler(new Delta().insert('foo'), new Delta(), 'user'))
 
@@ -22,7 +22,7 @@ describe('getCleanupOnAllContentRemoval', () => {
       getFormat: jest.fn()
     } as unknown) as Quill
 
-    const handler = getCleanupOnAllContentRemoval(quill)
+    const handler = getCleanupOnAllContentRemovalHandler(quill)
 
     act(() => handler(new Delta().delete(5), new Delta(), 'user'))
 
@@ -36,7 +36,7 @@ describe('getCleanupOnAllContentRemoval', () => {
       setContents: jest.fn()
     } as unknown) as Quill
 
-    const handler = getCleanupOnAllContentRemoval(quill)
+    const handler = getCleanupOnAllContentRemovalHandler(quill)
 
     act(() => handler(new Delta().delete(5), new Delta(), 'user'))
 
@@ -51,7 +51,7 @@ describe('getCleanupOnAllContentRemoval', () => {
       setContents: jest.fn()
     } as unknown) as Quill
 
-    const handler = getCleanupOnAllContentRemoval(quill)
+    const handler = getCleanupOnAllContentRemovalHandler(quill)
 
     act(() => handler(new Delta().delete(5), new Delta(), 'user'))
 

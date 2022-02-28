@@ -9,7 +9,7 @@ import getTextChangeHandler from '../../utils/getTextChangeHandler'
 import getSelectionChangeHandler from '../../utils/getSelectionChangeHandler'
 import getEditorChangeHandler from '../../utils/getEditorChangeHandler'
 import getTextLengthChangeHandler from '../../utils/getTextLengthChangeHandler'
-import getCleanupOnAllContentRemoval from '../../utils/getCleanupOnAllContentRemoval'
+import getCleanupOnAllContentRemovalHandler from '../../utils/getCleanupOnAllContentRemovalHandler'
 import {
   SelectionHandler,
   ChangeHandler,
@@ -66,7 +66,7 @@ const useSubscribeToQuillEvents = ({
       return () => {}
     }
 
-    return getCleanupOnAllContentRemoval(quill)
+    return getCleanupOnAllContentRemovalHandler(quill)
   }, [quill])
 
   useEffect(() => {

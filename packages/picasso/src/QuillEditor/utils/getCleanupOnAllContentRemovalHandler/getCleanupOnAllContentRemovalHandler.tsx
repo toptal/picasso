@@ -1,7 +1,7 @@
 import Quill, { TextChangeHandler } from 'quill'
 import Delta from 'quill-delta'
 
-const getCleanupOnAllContentRemoval = (quill: Quill) => {
+const getCleanupOnAllContentRemovalHandler = (quill: Quill) => {
   const handler: TextChangeHandler = newDelta => {
     const isDeleteOperation = 'delete' in newDelta.ops[0]
 
@@ -27,4 +27,4 @@ const getCleanupOnAllContentRemoval = (quill: Quill) => {
   return handler
 }
 
-export default getCleanupOnAllContentRemoval
+export default getCleanupOnAllContentRemovalHandler
