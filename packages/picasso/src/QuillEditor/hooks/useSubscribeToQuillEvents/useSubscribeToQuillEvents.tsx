@@ -9,6 +9,7 @@ import getTextChangeHandler from '../../utils/getTextChangeHandler'
 import getSelectionChangeHandler from '../../utils/getSelectionChangeHandler'
 import getEditorChangeHandler from '../../utils/getEditorChangeHandler'
 import getTextLengthChangeHandler from '../../utils/getTextLengthChangeHandler'
+import getCleanupOnAllContentRemovalHandler from '../../utils/getCleanupOnAllContentRemovalHandler'
 import {
   SelectionHandler,
   ChangeHandler,
@@ -60,6 +61,14 @@ const useSubscribeToQuillEvents = ({
     return getEditorChangeHandler(quill, onSelectionChange)
   }, [quill, onSelectionChange])
 
+  const cleanupOnAllContentRemovalHandler: TextChangeHandler = useMemo(() => {
+    if (!quill) {
+      return () => {}
+    }
+
+    return getCleanupOnAllContentRemovalHandler(quill)
+  }, [quill])
+
   useEffect(() => {
     if (!quill) {
       return
@@ -68,12 +77,14 @@ const useSubscribeToQuillEvents = ({
     quill.on('selection-change', selectionChangeHandler)
     quill.on('text-change', textChangeHandler)
     quill.on('text-change', textLengthChangeHandler)
+    quill.on('text-change', cleanupOnAllContentRemovalHandler)
     quill.on('editor-change', editorChangeHandler)
 
     return () => {
       quill.off('selection-change', selectionChangeHandler)
       quill.off('text-change', textChangeHandler)
       quill.off('text-change', textLengthChangeHandler)
+      quill.off('text-change', cleanupOnAllContentRemovalHandler)
       quill.off('editor-change', editorChangeHandler)
     }
   }, [
@@ -81,7 +92,8 @@ const useSubscribeToQuillEvents = ({
     textChangeHandler,
     selectionChangeHandler,
     editorChangeHandler,
-    textLengthChangeHandler
+    textLengthChangeHandler,
+    cleanupOnAllContentRemovalHandler
   ])
 }
 
