@@ -11,6 +11,8 @@ export default ({ palette }: Theme) =>
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
+      pointerEvents: ({ disabled }: { disabled: boolean }) =>
+        disabled ? 'none' : 'unset',
 
       '&:not(:last-child)::after': {
         content: '""',

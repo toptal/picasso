@@ -99,6 +99,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     const classes = useStyles()
     const toolbarRef = useRef<HTMLDivElement>(null)
     const editorRef = useRef<HTMLDivElement>(null)
+    const wrapperRef = useRef<HTMLDivElement>(null)
     const { dispatch, state } = useTextEditorState()
     const [isEditorFocused, setIsEditorFocused] = useState(autoFocus!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
@@ -118,6 +119,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     const { handleFocus, handleBlur } = useOnFocus({
       editorRef,
       toolbarRef,
+      wrapperRef,
       onFocus: useCallback(() => setIsEditorFocused(true), [
         setIsEditorFocused
       ]),
@@ -153,7 +155,15 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
         )}
         tabIndex={-1}
         style={style}
-        ref={ref}
+        ref={node => {
+          if (typeof ref === 'function') {
+            ref(node)
+          } else if (ref != null) {
+            ref.current = node
+          }
+          // @ts-ignore
+          wrapperRef.current = node
+        }}
         data-testid={testIds?.wrapper || dataTestId}
         onFocus={handleFocus}
         onBlur={handleBlur}

@@ -6,6 +6,7 @@ import { ActionsType } from '../../store'
 type Props = {
   editorRef: React.RefObject<HTMLDivElement>
   toolbarRef: React.RefObject<HTMLDivElement>
+  wrapperRef: React.RefObject<HTMLDivElement>
   onFocus: () => void
   onBlur: () => void
   dispatch: React.Dispatch<ActionsType>
@@ -14,13 +15,14 @@ type Props = {
 const useOnFocus = ({
   editorRef,
   toolbarRef,
+  wrapperRef,
   onFocus,
   onBlur,
   dispatch
 }: Props) => {
   const handleFocus = useCallback(
     (e: React.FocusEvent<HTMLDivElement>) => {
-      if (!editorRef.current || !toolbarRef.current) {
+      if (!editorRef.current || !toolbarRef.current || !wrapperRef) {
         return
       }
 
@@ -35,7 +37,7 @@ const useOnFocus = ({
 
       onFocus()
     },
-    [dispatch, onFocus, editorRef, toolbarRef]
+    [dispatch, onFocus, editorRef, toolbarRef, wrapperRef]
   )
 
   const handleBlur = useCallback(
@@ -48,15 +50,21 @@ const useOnFocus = ({
 
       const isFocusElementInToolbar = toolbarRef.current.contains(focusElement)
       const isFocusElementInEditor = editorRef.current.contains(focusElement)
+      const isFocusElementWrapper = wrapperRef.current === focusElement
 
-      if (isFocusElementInToolbar || isFocusElementInEditor) {
+      if (
+        isFocusElementInToolbar ||
+        isFocusElementInEditor ||
+        isFocusElementWrapper
+      ) {
         return
       }
+      console.log(focusElement)
 
       toolbarActions.setDisabled(dispatch)(true)
       onBlur()
     },
-    [dispatch, onBlur, toolbarRef, editorRef]
+    [dispatch, onBlur, toolbarRef, editorRef, wrapperRef]
   )
 
   return {
