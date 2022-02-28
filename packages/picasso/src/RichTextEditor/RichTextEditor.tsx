@@ -33,7 +33,7 @@ export type CounterMessageSetter = (
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
-  autofocus?: boolean
+  autoFocus?: boolean
   /** Default value in [HAST](https://github.com/syntax-tree/hast) format */
   defaultValue?: ASTType
   /**
@@ -80,7 +80,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
   function RichTextEditor(
     {
       'data-testid': dataTestId,
-      autofocus,
+      autoFocus,
       className,
       defaultValue,
       disabled,
@@ -100,7 +100,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     const toolbarRef = useRef<HTMLDivElement>(null)
     const editorRef = useRef<HTMLDivElement>(null)
     const { dispatch, state } = useTextEditorState()
-    const [isEditorFocused, setIsEditorFocused] = useState(autofocus!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
+    const [isEditorFocused, setIsEditorFocused] = useState(autoFocus!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
     const { handleSelectionChange } = useOnSelectionChange({ dispatch })
     const { handleTextFormat } = useOnTextFormat({ dispatch })
@@ -191,7 +191,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
 )
 
 RichTextEditor.defaultProps = {
-  autofocus: false,
+  autoFocus: false,
   disabled: false
 }
 
