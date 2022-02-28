@@ -61,7 +61,7 @@ const useSubscribeToQuillEvents = ({
     return getEditorChangeHandler(quill, onSelectionChange)
   }, [quill, onSelectionChange])
 
-  const cleanupOnAllContentRemoval: TextChangeHandler = useMemo(() => {
+  const cleanupOnAllContentRemovalHandler: TextChangeHandler = useMemo(() => {
     if (!quill) {
       return () => {}
     }
@@ -77,14 +77,14 @@ const useSubscribeToQuillEvents = ({
     quill.on('selection-change', selectionChangeHandler)
     quill.on('text-change', textChangeHandler)
     quill.on('text-change', textLengthChangeHandler)
-    quill.on('text-change', cleanupOnAllContentRemoval)
+    quill.on('text-change', cleanupOnAllContentRemovalHandler)
     quill.on('editor-change', editorChangeHandler)
 
     return () => {
       quill.off('selection-change', selectionChangeHandler)
       quill.off('text-change', textChangeHandler)
       quill.off('text-change', textLengthChangeHandler)
-      quill.off('text-change', cleanupOnAllContentRemoval)
+      quill.off('text-change', cleanupOnAllContentRemovalHandler)
       quill.off('editor-change', editorChangeHandler)
     }
   }, [
@@ -93,7 +93,7 @@ const useSubscribeToQuillEvents = ({
     selectionChangeHandler,
     editorChangeHandler,
     textLengthChangeHandler,
-    cleanupOnAllContentRemoval
+    cleanupOnAllContentRemovalHandler
   ])
 }
 
