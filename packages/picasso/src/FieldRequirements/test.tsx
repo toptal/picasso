@@ -1,0 +1,109 @@
+import React, { ReactNode } from 'react'
+import { render } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
+
+import FieldRequirements, { Props } from './FieldRequirements'
+import { FieldRequirement } from './types'
+
+const renderFieldRequirements = (
+  children: ReactNode,
+  props: OmitInternalProps<Props>
+) => {
+  return render(<FieldRequirements {...props}>{children}</FieldRequirements>)
+}
+
+const requirements: FieldRequirement[] = [
+  {
+    message: 'At least one number',
+    validator: (value: string) => /\d/.test(value),
+    'data-testid': 'requirement-1'
+  },
+  {
+    message: 'At least one uppercase character',
+    validator: (value: string) => /[A-Z]/.test(value),
+    'data-testid': 'requirement-2'
+  }
+]
+
+describe('FieldRequirements', () => {
+  it('default render', () => {
+    const { getByTestId, rerender } = renderFieldRequirements(null, {
+      requirements,
+      open: true,
+      value: 'asd',
+      testIds: {
+        root: 'root',
+        gridContainer: 'gridContainer'
+      }
+    })
+
+    const gridContainer = getByTestId('gridContainer')
+
+    expect(gridContainer).toBeInTheDocument()
+
+    const requirement1DefaultIcon = getByTestId('requirement-1-default-icon')
+    const requirement2DefaultIcon = getByTestId('requirement-2-default-icon')
+
+    expect(requirement1DefaultIcon).toBeVisible()
+    expect(requirement2DefaultIcon).toBeVisible()
+
+    rerender(
+      <FieldRequirements open value='asd1' requirements={requirements} />
+    )
+
+    const requirement1ValidIcon = getByTestId('requirement-1-valid-icon')
+
+    expect(requirement1DefaultIcon).not.toBeVisible()
+    expect(requirement1ValidIcon).toBeVisible()
+
+    rerender(
+      <FieldRequirements open value='asd1A' requirements={requirements} />
+    )
+
+    const requirement2ValidIcon = getByTestId('requirement-2-valid-icon')
+
+    expect(requirement2DefaultIcon).not.toBeVisible()
+    expect(requirement2ValidIcon).toBeVisible()
+  })
+
+  it('renders error state', () => {
+    const { getByTestId, rerender } = renderFieldRequirements(null, {
+      requirements,
+      open: true,
+      error: true,
+      value: 'asd',
+      testIds: {
+        root: 'root',
+        gridContainer: 'gridContainer'
+      }
+    })
+
+    const gridContainer = getByTestId('gridContainer')
+
+    expect(gridContainer).toBeInTheDocument()
+
+    const requirement1ErrorIcon = getByTestId('requirement-1-error-icon')
+    const requirement2ErrorIcon = getByTestId('requirement-2-error-icon')
+
+    expect(requirement1ErrorIcon).toBeVisible()
+    expect(requirement2ErrorIcon).toBeVisible()
+
+    rerender(
+      <FieldRequirements open value='asd1' requirements={requirements} />
+    )
+
+    const requirement1ValidIcon = getByTestId('requirement-1-valid-icon')
+
+    expect(requirement1ErrorIcon).not.toBeVisible()
+    expect(requirement1ValidIcon).toBeVisible()
+
+    rerender(
+      <FieldRequirements open value='asd1A' requirements={requirements} />
+    )
+
+    const requirement2ValidIcon = getByTestId('requirement-2-valid-icon')
+
+    expect(requirement2ErrorIcon).not.toBeVisible()
+    expect(requirement2ValidIcon).toBeVisible()
+  })
+})
