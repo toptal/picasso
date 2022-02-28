@@ -44,8 +44,6 @@ export { default as useSafeState } from './use-safe-state'
 export { default as useWidthOf } from './use-width-of'
 export { default as unsafeErrorLog } from './unsafe-error-log'
 export { default as sum } from './sum'
-// NOTE: Prevent type removal on prettier format
-// prettier-ignore
 export type { ReferenceObject } from './use-width-of'
 
 export const Transitions = TransitionUtils
@@ -56,6 +54,4 @@ export * from './Modal'
 
 export { formatAmount, DEFAULT_CURRENCY, DEFAULT_LOCALE } from './Formatters'
 
-// NOTE: Prevent type removal on prettier format
-// prettier-ignore
 export type { FormatAmount } from './Formatters'
