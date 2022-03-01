@@ -12,7 +12,7 @@ import { replaceLineBreaksWithTags } from './utils'
 
 export interface Props extends BaseProps {
   /** Content of the component */
-  children: string | ReactNode
+  children: ReactNode
   /** Number of lines displayed initially */
   rows?: number
   /** Text used by action link showing whole content */
@@ -25,6 +25,10 @@ export interface Props extends BaseProps {
   disableToggle?: boolean
   /** Callback triggered when show more/less is clicked */
   onToggle?: () => void
+  testIds?: {
+    contentWrapper?: string
+    toggleButton?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoShowMore' })
@@ -43,6 +47,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
     onToggle = () => {},
     className,
     style,
+    testIds,
     ...rest
   } = props
   const classes = useStyles()
@@ -65,6 +70,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         color='dark-grey'
         className={className}
         style={style}
+        data-testid={testIds?.contentWrapper}
       >
         {showContent && (
           <Truncate lines={!shownMore && rows}>{content}</Truncate>
@@ -87,6 +93,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
             </div>
           }
           iconPosition='right'
+          data-testid={testIds?.toggleButton}
         >
           {shownMore ? lessText : moreText}
         </Button.Action>

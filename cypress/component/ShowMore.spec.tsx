@@ -52,4 +52,26 @@ describe('ShowMore', () => {
     )
     cy.get('body').happoScreenshot()
   })
+
+  it('Renders 0 rows', () => {
+    const contentWrapper = 'content-wrapper'
+
+    mount(
+      <TestingPicasso>
+        <ShowMore
+          rows={0}
+          testIds={{
+            contentWrapper
+          }}
+        >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos earum
+          vitae quam odit omnis quod in voluptates est doloremque nulla sequi,
+          illum deleniti, beatae quo? Eaque similique nemo omnis quasi?
+        </ShowMore>
+      </TestingPicasso>
+    )
+
+    cy.get(`[data-testid="${contentWrapper}"]`).should('have.value', '')
+    cy.get('body').happoScreenshot()
+  })
 })
