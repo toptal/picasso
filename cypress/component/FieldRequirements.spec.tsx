@@ -9,12 +9,12 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const requirements: FieldRequirement[] = [
   {
-    message: 'At least one number',
+    message: '1 number',
     validator: (value: string) => /\d/.test(value),
     'data-testid': 'requirement-1'
   },
   {
-    message: 'At least one uppercase character',
+    message: '1 uppercase character',
     validator: (value: string) => /[A-Z]/.test(value),
     'data-testid': 'requirement-2'
   }

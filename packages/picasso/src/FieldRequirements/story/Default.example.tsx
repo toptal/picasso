@@ -9,7 +9,7 @@ const requirements: FieldRequirement[] = [
   },
   {
     message: 'Max 10 characters',
-    validator: value => value.length < 10
+    validator: value => value.length <= 10
   },
   { message: 'No space character', validator: value => !/\s/.test(value) }
 ]
