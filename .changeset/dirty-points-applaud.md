@@ -5,7 +5,7 @@
 ---
 ### FieldWrapper
 
-- add new prop to render field requirements if exist
+- add new prop to render passed field requirements
 
 ### PasswordInput
 
