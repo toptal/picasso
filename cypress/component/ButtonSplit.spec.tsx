@@ -25,7 +25,7 @@ describe('Button.Split', () => {
     mount(
       <TestingPicasso>
         <Container padded='small'>
-          <Button.Split testIds={{ menuButton: 'menuButton' }} menu={menu}>
+          <Button.Split testIds={{ menuButton: 'menu-button' }} menu={menu}>
             Button
           </Button.Split>
         </Container>

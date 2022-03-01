@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { SnackbarProvider } from 'notistack'
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 
 import { useDrawer, usePageTopBar } from '../RootContext'
 import styles from './styles'
@@ -14,13 +14,11 @@ const MAX_NOTIFICATION_MESSAGES = 5
 
 interface Props {
   /** Notification DOMNode for createPortal */
+  children: React.ReactNode
   container?: HTMLElement
 }
 
-const NotificationsProvider: FunctionComponent<Props> = ({
-  children,
-  container
-}) => {
+const NotificationsProvider = ({ children, container }: Props) => {
   const { hasTopBar } = usePageTopBar()
   const classes = useStyles()
   const { hasDrawer } = useDrawer()

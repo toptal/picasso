@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  ReactNode,
-  ReactComponentElement
-} from 'react'
+import React, { HTMLAttributes, ReactNode, ReactComponentElement } from 'react'
 
 import { Alignment, BlockWidth } from './settings'
 import { OverviewBlockGroupContext } from './OverviewBlockGroupContext'
@@ -30,7 +25,7 @@ const shouldInjectRow = (children?: ReactNode) => {
     .some(el => el.type.displayName === OverviewBlockRow.displayName)
 }
 
-const OverviewBlockGroup: FunctionComponent<Props> = props => {
+const OverviewBlockGroup = (props: Props) => {
   const { children, align = 'default', blockWidth = 'regular', ...rest } = props
 
   return (

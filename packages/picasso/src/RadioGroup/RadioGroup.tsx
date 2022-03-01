@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { GridSize } from '@material-ui/core/Grid'
 import MUIRadioGroup, { RadioGroupProps } from '@material-ui/core/RadioGroup'
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
@@ -29,7 +29,7 @@ const useStyles = makeStyles<Theme>(styles, {
   index: -1
 })
 
-const RadioGroup: FunctionComponent<Props> = props => {
+const RadioGroup = (props: Props) => {
   const { horizontal, spacing, small, medium, large, ...rest } = props
   const { grid: gridClass, gridItem: gridItemClass, ...classes } = useStyles()
   const { spacing: themeSpacing } = useTheme()

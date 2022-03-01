@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { DirectionType } from '../Stepper'
@@ -11,7 +11,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoStepConnector'
 })
 
-export const StepConnector: FunctionComponent<Props> = ({ direction }) => {
+export const StepConnector = ({ direction }: Props) => {
   const classes = useStyles()
 
   if (direction === 'vertical') {

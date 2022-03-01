@@ -3,7 +3,7 @@ import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
-import React, { FunctionComponent, ReactNode, useLayoutEffect } from 'react'
+import React, { ReactNode, useLayoutEffect } from 'react'
 
 import { CloseMinor16 } from '../Icon'
 import styles from './styles'
@@ -34,7 +34,7 @@ export interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoDrawer' })
 
-export const Drawer: FunctionComponent<Props> = props => {
+export const Drawer = (props: Props) => {
   const {
     children,
     disablePortal,

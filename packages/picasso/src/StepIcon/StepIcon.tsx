@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react'
+import React, { HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -13,7 +13,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepIcon' })
 
-export const StepIcon: FunctionComponent<Props> = props => {
+export const StepIcon = (props: Props) => {
   const { active, completed, ...rest } = props
   const classes = useStyles()
 

@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks'
-import React, { FC } from 'react'
+import React, { ReactNode } from 'react'
 
 import MenuContext, { MenuContextProps } from '../../../Menu/MenuContext'
 import useSlideMenuItem, { Props } from './use-slide-menu-item'
@@ -8,9 +8,13 @@ const renderUseSlideMenuItem = (
   props: Props,
   contextProps: MenuContextProps
 ) => {
-  const wrapper: FC = ({ children }) => (
-    <MenuContext.Provider value={contextProps}>{children}</MenuContext.Provider>
-  )
+  const wrapper = ({ children }: { children: ReactNode }) => {
+    return (
+      <MenuContext.Provider value={contextProps}>
+        {children}
+      </MenuContext.Provider>
+    )
+  }
 
   return renderHook(() => useSlideMenuItem(props), { wrapper })
 }

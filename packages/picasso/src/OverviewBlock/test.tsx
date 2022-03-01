@@ -62,7 +62,7 @@ describe('OverviewBlock', () => {
           to: '/',
           'data-testid': 'OverviewBlock'
         })
-        const block = getByTestId('OverviewBlock')
+        const block = getByTestId('overview-block')
 
         // By the Link component to -> href
         expect(block).toHaveAttribute('href', '/')
@@ -79,7 +79,7 @@ describe('OverviewBlock', () => {
           'data-testid': 'OverviewBlock'
         })
 
-        expect(getByTestId('OverviewBlock').nodeName).toBe('BUTTON')
+        expect(getByTestId('overview-block').nodeName).toBe('BUTTON')
       })
     })
   })
@@ -92,7 +92,7 @@ describe('OverviewBlock', () => {
         'data-testid': 'OverviewBlock'
       })
 
-      expect(getByTestId('OverviewBlock').nodeName).toBe('DIV')
+      expect(getByTestId('overview-block').nodeName).toBe('DIV')
     })
 
     it('renders the element as `Link`', () => {
@@ -101,7 +101,7 @@ describe('OverviewBlock', () => {
         to: '/',
         'data-testid': 'OverviewBlock'
       })
-      const block = getByTestId('OverviewBlock')
+      const block = getByTestId('overview-block')
 
       // By the Link component to -> href
       expect(block).toHaveAttribute('href', '/')

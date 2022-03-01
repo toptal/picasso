@@ -12,7 +12,7 @@ describe('Avatar.Group', () => {
       />
     )
 
-    expect(getAllByTestId('AvatarItem')).toHaveLength(5)
+    expect(getAllByTestId('avatar-item')).toHaveLength(5)
   })
 
   it('renders Avatars within limit', () => {
@@ -23,19 +23,19 @@ describe('Avatar.Group', () => {
       />
     )
 
-    expect(getAllByTestId('AvatarItem')).toHaveLength(3)
+    expect(getAllByTestId('avatar-item')).toHaveLength(3)
   })
 
   it('renders limited number of Avatars', () => {
     const { getAllByTestId, getByTestId } = render(
       <Avatar.Group
         limit={6}
-        testIds={{ overLimit: 'overLimit' }}
+        testIds={{ overLimit: 'over-limit' }}
         items={Array(8).fill({ 'data-testid': 'AvatarItem' })}
       />
     )
 
-    expect(getAllByTestId('AvatarItem')).toHaveLength(5)
-    expect(getByTestId('overLimit')).toHaveTextContent('+3')
+    expect(getAllByTestId('avatar-item')).toHaveLength(5)
+    expect(getByTestId('over-limit')).toHaveTextContent('+3')
   })
 })

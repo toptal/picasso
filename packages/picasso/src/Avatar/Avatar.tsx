@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, useCallback } from 'react'
+import React, { HTMLAttributes, useCallback } from 'react'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
@@ -33,7 +33,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   }
 }
 
-export const Avatar: FunctionComponent<Props> = ({
+export const Avatar = ({
   alt,
   src,
   className,
@@ -43,7 +43,7 @@ export const Avatar: FunctionComponent<Props> = ({
   variant,
   testIds,
   ...rest
-}) => {
+}: Props) => {
   const renderAvatar = useCallback(() => {
     if (src) {
       return (
