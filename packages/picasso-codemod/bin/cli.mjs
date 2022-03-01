@@ -30,13 +30,13 @@ const findFilesInMonorepo = () =>
       '.',
       '-name',
       '*.tsx',
-      '\(',
+      '(',
       ...['-path', paths.monorepo.libs],
       ...['-or', '-path', paths.monorepo.apps],
       ...['-or', '-path', paths.monorepo.hosts],
       ...['-or', '-path', paths.monorepo.namespaceApps],
       ...['-or', '-path', paths.monorepo.namespaceLibs],
-      '\)'
+      ')'
     ]
   )
 
@@ -74,13 +74,12 @@ const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
   }
   else if (!isMonorepo) {
     const files = globbySync(paths.spa)
+
     args = args.concat(files)
   } else {
     const findFilesOutput = findFilesInMonorepo()
 
-    console.log('')
-    console.log('Monorepo files to process:', findFilesOutput.stdout)
-    console.log('')
+    console.log('\nMonorepo files to process: %o\n', findFilesOutput.stdout)
 
     args.push('--stdin')
     options = {
@@ -89,9 +88,7 @@ const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
     }
   }
 
-  console.log('')
-  console.log(`Executing command: jscodeshift ${args.join(' ')}`)
-  console.log('')
+  console.log('\nExecuting command: jscodeshift %s\n', args.join(' '))
 
   const result = execaSync(
     jscodeshift,
@@ -115,7 +112,7 @@ export const run = () => {
         files      example: app/**/*.tsx
       
       Options
-	      --parser-config  Add parser config
+        --parser-config  Add parser config
 
       Examples
         $ npx @toptal/picasso-codemod v17.0.0/typography-sizes
