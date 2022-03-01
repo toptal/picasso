@@ -15,6 +15,8 @@ export type Props = PasswordInputProps &
 
 const { composeValidators } = validators
 
+const TIMEOUT = 500
+
 export const PasswordInput = ({
   validate,
   hideRequirements,
@@ -51,7 +53,7 @@ export const PasswordInput = ({
       open={showContent}
       error={error}
       description='Please make sure that your password contains:'
-      timeout={500}
+      timeout={TIMEOUT}
       requirements={[
         {
           message: 'At least 8 characters',
@@ -95,7 +97,10 @@ export const PasswordInput = ({
         const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
           inputProps.onBlur?.(event)
 
-          setShowContent(false)
+          // Hide the requirements after a short delay
+          setTimeout(() => {
+            setShowContent(false)
+          }, TIMEOUT)
         }
 
         return (
