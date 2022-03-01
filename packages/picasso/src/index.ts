@@ -7,7 +7,10 @@ export type { AccountSelectProps } from './AccountSelect'
 export { default as Amount } from './Amount'
 export type { AmountProps } from './Amount'
 export { default as Autocomplete } from './Autocomplete'
-export type { AutocompleteProps, Item as AutocompleteItem } from './Autocomplete'
+export type {
+  AutocompleteProps,
+  Item as AutocompleteItem
+} from './Autocomplete'
 export { default as Avatar } from './Avatar'
 export type { AvatarProps } from './Avatar'
 export { default as Button } from './Button'
@@ -125,7 +128,12 @@ export { default as Quote } from './Quote'
 export type { QuoteProps } from './Quote'
 export { default as Rating } from './Rating'
 export type { RatingProps } from './Rating'
-export { default as TreeView, TreeViewContainer, useTreeView, TreeNodeAvatar } from './TreeView'
+export {
+  default as TreeView,
+  TreeViewContainer,
+  useTreeView,
+  TreeNodeAvatar
+} from './TreeView'
 export type { TreeNodeInterface } from './TreeView'
 export { default as StaticTreeView } from './StaticTreeView'
 export { default as TimePicker } from './TimePicker'
