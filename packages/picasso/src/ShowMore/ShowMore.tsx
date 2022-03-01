@@ -59,7 +59,9 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         : children,
     [children]
   )
-  const showContent = rows !== 0 || shownMore
+
+  const isContentVisible = rows !== 0 || shownMore
+  const lines = shownMore ? -1 : rows
 
   return (
     <>
@@ -72,9 +74,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         style={style}
         data-testid={testIds?.contentWrapper}
       >
-        {showContent && (
-          <Truncate lines={!shownMore && rows}>{content}</Truncate>
-        )}
+        {isContentVisible && <Truncate lines={lines}>{content}</Truncate>}
       </Typography>
       {!disableToggle && (
         <Button.Action
