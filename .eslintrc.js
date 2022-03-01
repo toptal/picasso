@@ -26,6 +26,7 @@ module.exports = {
   rules: {
     '@toptal/davinci/no-private-package-imports': 'off'
   },
+  ignorePatterns: ['*.output.tsx', '*.input.tsx'],
   overrides: [
     {
       files: ['*.example.jsx', '*.example.tsx'],
