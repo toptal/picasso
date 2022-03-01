@@ -8,7 +8,7 @@ describe('Avatar.Group', () => {
     const { getAllByTestId } = render(
       <Avatar.Group
         limit={5}
-        items={Array(5).fill({ 'data-testid': 'AvatarItem' })}
+        items={Array(5).fill({ 'data-testid': 'avatar-item' })}
       />
     )
 
@@ -19,7 +19,7 @@ describe('Avatar.Group', () => {
     const { getAllByTestId } = render(
       <Avatar.Group
         limit={5}
-        items={Array(3).fill({ 'data-testid': 'AvatarItem' })}
+        items={Array(3).fill({ 'data-testid': 'avatar-item' })}
       />
     )
 
@@ -31,7 +31,7 @@ describe('Avatar.Group', () => {
       <Avatar.Group
         limit={6}
         testIds={{ overLimit: 'over-limit' }}
-        items={Array(8).fill({ 'data-testid': 'AvatarItem' })}
+        items={Array(8).fill({ 'data-testid': 'avatar-item' })}
       />
     )
 

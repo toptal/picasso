@@ -22,7 +22,7 @@ const renderOverviewBlock = (
 
 let spiedOnTitleCase: jest.SpyInstance
 
-describe('OverviewBlock', () => {
+describe('overview-block', () => {
   beforeEach(() => {
     spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
   })
@@ -60,7 +60,7 @@ describe('OverviewBlock', () => {
           as: Link,
           onClick: jest.fn(),
           to: '/',
-          'data-testid': 'OverviewBlock'
+          'data-testid': 'overview-block'
         })
         const block = getByTestId('overview-block')
 
@@ -76,7 +76,7 @@ describe('OverviewBlock', () => {
           value: 'abc dk9',
           label: 'abc ps0',
           onClick: jest.fn(),
-          'data-testid': 'OverviewBlock'
+          'data-testid': 'overview-block'
         })
 
         expect(getByTestId('overview-block').nodeName).toBe('BUTTON')
@@ -89,7 +89,7 @@ describe('OverviewBlock', () => {
       const { getByTestId } = renderOverviewBlock({
         value: 'abc dk9',
         label: 'abc ps0',
-        'data-testid': 'OverviewBlock'
+        'data-testid': 'overview-block'
       })
 
       expect(getByTestId('overview-block').nodeName).toBe('DIV')
@@ -99,7 +99,7 @@ describe('OverviewBlock', () => {
       const { getByTestId } = renderOverviewBlock({
         as: Link,
         to: '/',
-        'data-testid': 'OverviewBlock'
+        'data-testid': 'overview-block'
       })
       const block = getByTestId('overview-block')
 
