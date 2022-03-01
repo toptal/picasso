@@ -14,7 +14,7 @@ const menu = (
 )
 
 const testIds = {
-  menuButton: 'menuButton',
+  menuButton: 'menu-button',
   actionButton: 'actionButton'
 }
 
