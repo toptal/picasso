@@ -20,11 +20,13 @@ const requirements: FieldRequirement<string>[] = [
   }
 ]
 
-const FieldRequirementsExample = (props: Partial<FieldRequirementsProps>) => (
+const FieldRequirementsExample = (
+  props: Partial<FieldRequirementsProps<string>>
+) => (
   <FieldRequirements<string>
+    value='asd1'
     open
     requirements={requirements}
-    value='asd1'
     testIds={{
       description: 'field-requirements-description',
       root: 'field-requirements-root',

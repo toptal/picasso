@@ -53,19 +53,19 @@ describe('FieldRequirements', () => {
       <FieldRequirements open value='asd1' requirements={requirements} />
     )
 
-    const requirement1ValidIcon = getByTestId('requirement-1-valid-icon')
+    const requirement1SuccessIcon = getByTestId('requirement-1-success-icon')
 
     expect(requirement1DefaultIcon).not.toBeVisible()
-    expect(requirement1ValidIcon).toBeVisible()
+    expect(requirement1SuccessIcon).toBeVisible()
 
     rerender(
       <FieldRequirements open value='asd1A' requirements={requirements} />
     )
 
-    const requirement2ValidIcon = getByTestId('requirement-2-valid-icon')
+    const requirement2SuccessIcon = getByTestId('requirement-2-success-icon')
 
     expect(requirement2DefaultIcon).not.toBeVisible()
-    expect(requirement2ValidIcon).toBeVisible()
+    expect(requirement2SuccessIcon).toBeVisible()
   })
 
   it('renders error state', () => {
@@ -94,18 +94,18 @@ describe('FieldRequirements', () => {
       <FieldRequirements open value='asd1' requirements={requirements} />
     )
 
-    const requirement1ValidIcon = getByTestId('requirement-1-valid-icon')
+    const requirement1SuccessIcon = getByTestId('requirement-1-success-icon')
 
     expect(requirement1ErrorIcon).not.toBeVisible()
-    expect(requirement1ValidIcon).toBeVisible()
+    expect(requirement1SuccessIcon).toBeVisible()
 
     rerender(
       <FieldRequirements open value='asd1A' requirements={requirements} />
     )
 
-    const requirement2ValidIcon = getByTestId('requirement-2-valid-icon')
+    const requirement2SuccessIcon = getByTestId('requirement-2-success-icon')
 
     expect(requirement2ErrorIcon).not.toBeVisible()
-    expect(requirement2ValidIcon).toBeVisible()
+    expect(requirement2SuccessIcon).toBeVisible()
   })
 })

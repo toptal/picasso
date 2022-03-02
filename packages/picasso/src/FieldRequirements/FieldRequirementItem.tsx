@@ -20,6 +20,12 @@ const colorMap: Record<FieldRequirementItemStatus, ColorType> = {
   error: 'red'
 }
 
+const IconsMap = {
+  default: Bullet16,
+  success: CheckMinor16,
+  error: CloseMinor16
+}
+
 interface Props
   extends PropsWithChildren<{
     'data-testid'?: string
@@ -33,28 +39,18 @@ const FieldRequirementItem = ({
 }: Props) => {
   const classes = useStyles()
 
+  const IconComponent = IconsMap[status]
+
   return (
     <Grid.Item
       small={6}
       className={classes.fieldRequirementItem}
       data-testid={dataTestId}
     >
-      {status === 'success' ? (
-        <CheckMinor16
-          color={colorMap[status]}
-          data-testid={`${dataTestId}-valid-icon`}
-        />
-      ) : status === 'error' ? (
-        <CloseMinor16
-          color={colorMap[status]}
-          data-testid={`${dataTestId}-error-icon`}
-        />
-      ) : (
-        <Bullet16
-          color={colorMap[status]}
-          data-testid={`${dataTestId}-default-icon`}
-        />
-      )}
+      <IconComponent
+        color={colorMap[status]}
+        data-testid={`${dataTestId}-${status}-icon`}
+      />
       <Typography
         color={colorMap[status]}
         className={classes.fieldRequirementItemMessage}
