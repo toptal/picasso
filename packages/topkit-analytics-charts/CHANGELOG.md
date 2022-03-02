@@ -1,5 +1,18 @@
 # Change Log
 
+## 25.0.0
+
+### Patch Changes
+
+- [#2451](https://github.com/toptal/picasso/pull/2451) [`53efb37c`](https://github.com/toptal/picasso/commit/53efb37cc242cff904a06eb793b5ded47945204e) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  ### Applies to all Components
+
+  - fix linting errors
+
+- Updated dependencies []:
+  - @toptal/picasso-charts@28.0.0
+
 ## 24.0.0
 
 ### Patch Changes

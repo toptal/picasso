@@ -1,5 +1,31 @@
 # Change Log
 
+## 18.10.0
+
+### Minor Changes
+
+- [#2478](https://github.com/toptal/picasso/pull/2478) [`cd39e12b`](https://github.com/toptal/picasso/commit/cd39e12b96e88d870e7470310291cbb7b9a89ce3) Thanks [@dulishkovych](https://github.com/dulishkovych)! - ---
+  ### StepLabel
+  - make Stepper responsive by hiding stepper labels on small screens (using media queries)
+
+### Patch Changes
+
+- [#2451](https://github.com/toptal/picasso/pull/2451) [`53efb37c`](https://github.com/toptal/picasso/commit/53efb37cc242cff904a06eb793b5ded47945204e) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  ### Applies to all Components
+
+  - fix linting errors
+
+  ### package.json
+
+  - update `davinci` to `v11.11.0`
+  - update `cypress` to `v9.5.0`
+  - add `webpack` `v4.0.0` to resolutions
+
+- Updated dependencies [[`53efb37c`](https://github.com/toptal/picasso/commit/53efb37cc242cff904a06eb793b5ded47945204e), [`53efb37c`](https://github.com/toptal/picasso/commit/53efb37cc242cff904a06eb793b5ded47945204e)]:
+  - @toptal/picasso-provider@0.6.1
+  - @toptal/picasso-shared@7.2.3
+
 ## 18.9.0
 
 ### Minor Changes
