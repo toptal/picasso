@@ -15,7 +15,7 @@ const Example = () => {
         <Typography size='medium' variant='heading'>
           Stars
         </Typography>
-        <Rating
+        <Rating.Stars
           onChange={onChangeStarsValue}
           name='rating'
           value={starsValue}

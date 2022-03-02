@@ -10,7 +10,7 @@ const Example = () => {
         <Typography size='medium' variant='heading'>
           Stars
         </Typography>
-        <Rating interactive={false} name='rating' value={value} />
+        <Rating.Stars interactive={false} name='rating' value={value} />
       </Container>
 
       <Container>

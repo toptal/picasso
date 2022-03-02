@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 
-import Rating, { Props } from './Rating'
+import RatingStars, { Props } from './RatingStars'
 
 const defaultProps: Props = {
   name: 'rating-name',
@@ -9,9 +9,10 @@ const defaultProps: Props = {
   onChange: jest.fn()
 }
 
-const renderRating = (props = defaultProps) => render(<Rating {...props} />)
+const renderRating = (props = defaultProps) =>
+  render(<RatingStars {...props} />)
 
-describe('Rating', () => {
+describe('Rating.Stars', () => {
   it('renders', () => {
     const { container } = renderRating()
 

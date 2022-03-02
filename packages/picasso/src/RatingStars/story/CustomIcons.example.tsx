@@ -16,7 +16,7 @@ const Example = () => {
 
   return (
     <div style={{ height: 26 }}>
-      <Rating
+      <Rating.Stars
         onChange={onChange}
         name='render-item-rating'
         value={value}

@@ -28,7 +28,7 @@ const Example = () => {
               Small (default)
             </Typography>
             <Container top='small' bottom='small'>
-              <Rating
+              <Rating.Stars
                 size='small'
                 onChange={onChangeSmall}
                 name='small-rating'
@@ -42,7 +42,7 @@ const Example = () => {
               Large
             </Typography>
             <Container top='small' bottom='small'>
-              <Rating
+              <Rating.Stars
                 size='large'
                 onChange={onChangeLarge}
                 name='large-rating'
