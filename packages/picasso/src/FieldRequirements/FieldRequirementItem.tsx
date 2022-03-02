@@ -6,22 +6,29 @@ import Typography from '../Typography'
 import Grid from '../Grid'
 import styles from './styles'
 import { CheckMinor16, CloseMinor16 } from '../Icon'
+import { ColorType } from '../../../shared/src'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'FieldRequirementItem'
 })
 
+export type FieldRequirementItemStatus = 'default' | 'success' | 'error'
+
+const colorMap: Record<FieldRequirementItemStatus, ColorType> = {
+  default: 'dark-grey',
+  success: 'inherit',
+  error: 'red'
+}
+
 interface Props
   extends PropsWithChildren<{
     'data-testid'?: string
   }> {
-  valid: boolean
-  error?: boolean
+  status: FieldRequirementItemStatus
 }
 const FieldRequirementItem = ({
   children,
-  valid,
-  error,
+  status,
   'data-testid': dataTestId
 }: Props) => {
   const classes = useStyles()
@@ -32,12 +39,12 @@ const FieldRequirementItem = ({
       className={classes.fieldRequirementItem}
       data-testid={dataTestId}
     >
-      {valid ? (
+      {status === 'success' ? (
         <CheckMinor16
           color='inherit'
           data-testid={`${dataTestId}-valid-icon`}
         />
-      ) : error ? (
+      ) : status === 'error' ? (
         <CloseMinor16 color='red' data-testid={`${dataTestId}-error-icon`} />
       ) : (
         <Bullet16
@@ -46,7 +53,7 @@ const FieldRequirementItem = ({
         />
       )}
       <Typography
-        color={valid ? 'inherit' : error ? 'red' : 'dark-grey'}
+        color={colorMap[status]}
         className={classes.fieldRequirementItemMessage}
         size='xxsmall'
       >

@@ -4,7 +4,9 @@ import { Collapse } from '@material-ui/core'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import FieldRequirementItem from './FieldRequirementItem'
+import FieldRequirementItem, {
+  FieldRequirementItemStatus
+} from './FieldRequirementItem'
 import Typography from '../Typography'
 import { FieldRequirement } from './types'
 import Grid from '../Grid'
@@ -72,16 +74,25 @@ export const FieldRequirements = forwardRef<HTMLDivElement, Props>(
           spacing={0}
           data-testid={testIds?.gridContainer}
         >
-          {requirements.map(requirement => (
-            <FieldRequirementItem
-              key={requirement.message}
-              valid={requirement.validator(value)}
-              error={error}
-              data-testid={requirement['data-testid']}
-            >
-              {requirement.message}
-            </FieldRequirementItem>
-          ))}
+          {requirements.map(requirement => {
+            let status: FieldRequirementItemStatus = 'default'
+
+            if (requirement.validator(value)) {
+              status = 'success'
+            } else if (error) {
+              status = 'error'
+            }
+
+            return (
+              <FieldRequirementItem
+                key={requirement.message}
+                status={status}
+                data-testid={requirement['data-testid']}
+              >
+                {requirement.message}
+              </FieldRequirementItem>
+            )
+          })}
         </Grid>
       </Collapse>
     )
