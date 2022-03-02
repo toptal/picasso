@@ -42,12 +42,17 @@ export type SetDisabled = {
   payload: boolean
 }
 
+export type ResetFormatType = {
+  type: typeof actionTypes.resetFormat
+}
+
 export type ToolbarActionsType =
   | SetBoldActionType
   | SetItalicActionType
   | SetListActionType
   | SetHeaderActionType
   | SetDisabled
+  | ResetFormatType
 
 export type ToolbarReducerType = (
   state: ToolbarStateType | undefined,

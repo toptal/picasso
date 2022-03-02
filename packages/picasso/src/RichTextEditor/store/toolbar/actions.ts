@@ -6,7 +6,8 @@ import {
   SetHeaderActionType,
   SetItalicActionType,
   SetListActionType,
-  SetDisabled
+  SetDisabled,
+  ResetFormatType
 } from './types'
 
 const setBold = (dispatch: Dispatch<SetBoldActionType>) => (
@@ -28,12 +29,16 @@ const setList = (dispatch: Dispatch<SetListActionType>) => (
 const setDisabled = (dispatch: Dispatch<SetDisabled>) => (payload: boolean) =>
   dispatch({ type: actionTypes.disabled, payload })
 
+const resetFormat = (dispatch: Dispatch<ResetFormatType>) => () =>
+  dispatch({ type: actionTypes.resetFormat })
+
 const actions = {
   setBold,
   setItalic,
   setHeader,
   setList,
-  setDisabled
+  setDisabled,
+  resetFormat
 }
 
 export default actions

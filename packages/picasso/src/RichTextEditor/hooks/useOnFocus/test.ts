@@ -201,10 +201,13 @@ describe('useOnFocus', () => {
         handleBlur(mockEvent)
       })
 
-      expect(hookOptions.dispatch).toHaveBeenCalledTimes(1)
+      expect(hookOptions.dispatch).toHaveBeenCalledTimes(2)
       expect(hookOptions.dispatch).toHaveBeenCalledWith({
         payload: true,
         type: toolbarActionTypes.disabled
+      })
+      expect(hookOptions.dispatch).toHaveBeenCalledWith({
+        type: toolbarActionTypes.resetFormat
       })
       expect(hookOptions.onBlur).toHaveBeenCalledTimes(1)
       expect(hookOptions.onFocus).not.toHaveBeenCalled()

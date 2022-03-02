@@ -20,7 +20,7 @@ const useDefaultValue = ({ defaultValue, quill }: Props) => {
       defaultValue
     )
 
-    quill.setContents(delta, 'silent')
+    quill.setContents(delta, 'api')
     hasBeenCalled.current = true
   }, [defaultValue, quill])
 }
