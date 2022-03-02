@@ -20,7 +20,7 @@ type Props = {
   onOrderedClick: ButtonHandlerType
 }
 
-const useStyles = makeStyles<Theme>(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'RichTextEditorToolbar'
 })
 

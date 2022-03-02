@@ -17,6 +17,7 @@ describe('useOnFocus', () => {
       const hookOptions = {
         editorRef: emptyRef,
         toolbarRef: emptyRef,
+        wrapperRef: emptyRef,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
         dispatch: jest.fn()
@@ -40,6 +41,9 @@ describe('useOnFocus', () => {
         editorRef: { current: {} } as React.RefObject<HTMLDivElement>,
         toolbarRef: ({
           current: { contains: jest.fn().mockImplementation(() => true) }
+        } as unknown) as React.RefObject<HTMLDivElement>,
+        wrapperRef: ({
+          current: { contains: jest.fn().mockImplementation(() => false) }
         } as unknown) as React.RefObject<HTMLDivElement>,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
@@ -66,6 +70,9 @@ describe('useOnFocus', () => {
       const hookOptions = {
         editorRef: { current: {} } as React.RefObject<HTMLDivElement>,
         toolbarRef: ({
+          current: { contains: jest.fn().mockImplementation(() => false) }
+        } as unknown) as React.RefObject<HTMLDivElement>,
+        wrapperRef: ({
           current: { contains: jest.fn().mockImplementation(() => false) }
         } as unknown) as React.RefObject<HTMLDivElement>,
         onFocus: jest.fn(),
@@ -95,6 +102,7 @@ describe('useOnFocus', () => {
       const hookOptions = {
         editorRef: emptyRef,
         toolbarRef: emptyRef,
+        wrapperRef: emptyRef,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
         dispatch: jest.fn()
@@ -121,6 +129,9 @@ describe('useOnFocus', () => {
         toolbarRef: ({
           current: { contains: jest.fn().mockImplementation(() => true) }
         } as unknown) as React.RefObject<HTMLDivElement>,
+        wrapperRef: ({
+          current: { contains: jest.fn().mockImplementation(() => false) }
+        } as unknown) as React.RefObject<HTMLDivElement>,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
         dispatch: jest.fn()
@@ -146,6 +157,9 @@ describe('useOnFocus', () => {
         toolbarRef: ({
           current: { contains: jest.fn().mockImplementation(() => false) }
         } as unknown) as React.RefObject<HTMLDivElement>,
+        wrapperRef: ({
+          current: { contains: jest.fn().mockImplementation(() => false) }
+        } as unknown) as React.RefObject<HTMLDivElement>,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
         dispatch: jest.fn()
@@ -169,6 +183,9 @@ describe('useOnFocus', () => {
           current: { contains: jest.fn().mockImplementation(() => false) }
         } as unknown) as React.RefObject<HTMLDivElement>,
         toolbarRef: ({
+          current: { contains: jest.fn().mockImplementation(() => false) }
+        } as unknown) as React.RefObject<HTMLDivElement>,
+        wrapperRef: ({
           current: { contains: jest.fn().mockImplementation(() => false) }
         } as unknown) as React.RefObject<HTMLDivElement>,
         onFocus: jest.fn(),
