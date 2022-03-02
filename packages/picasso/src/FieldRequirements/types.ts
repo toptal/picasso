@@ -18,5 +18,10 @@ export type ValueType =
 export interface FieldRequirement<TInputType extends ValueType = ValueType> {
   message: string
   validator: (value: TInputType) => boolean
-  'data-testid'?: string
+  testIds?: {
+    root?: string
+    successIcon?: string
+    errorIcon?: string
+    defaultIcon?: string
+  }
 }

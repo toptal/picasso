@@ -87,7 +87,7 @@ export const FieldRequirements = function <
             <FieldRequirementItem
               key={requirement.message}
               status={status}
-              data-testid={requirement['data-testid']}
+              testIds={requirement.testIds}
             >
               {requirement.message}
             </FieldRequirementItem>

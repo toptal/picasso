@@ -1,11 +1,10 @@
 import React, { PropsWithChildren } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import Bullet16 from '../Icon/Bullet16'
 import Typography from '../Typography'
 import Grid from '../Grid'
 import styles from './styles'
-import { CheckMinor16, CloseMinor16 } from '../Icon'
+import { Bullet16, CheckMinor16, CloseMinor16 } from '../Icon'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'FieldRequirementItem'
@@ -26,31 +25,28 @@ const IconsMap = {
   error: CloseMinor16
 }
 
-interface Props
-  extends PropsWithChildren<{
-    'data-testid'?: string
-  }> {
+interface Props extends PropsWithChildren<{}> {
   status: FieldRequirementItemStatus
+  testIds?: {
+    root?: string
+    successIcon?: string
+    errorIcon?: string
+    defaultIcon?: string
+  }
 }
-const FieldRequirementItem = ({
-  children,
-  status,
-  'data-testid': dataTestId
-}: Props) => {
+const FieldRequirementItem = ({ children, status, testIds }: Props) => {
   const classes = useStyles()
 
   const IconComponent = IconsMap[status]
+  const iconTestId = getIconTestId(status, testIds)
 
   return (
     <Grid.Item
       small={6}
       className={classes.fieldRequirementItem}
-      data-testid={dataTestId}
+      data-testid={testIds?.root}
     >
-      <IconComponent
-        color={colorMap[status]}
-        data-testid={`${dataTestId}-${status}-icon`}
-      />
+      <IconComponent color={colorMap[status]} data-testid={iconTestId} />
       <Typography
         color={colorMap[status]}
         className={classes.fieldRequirementItemMessage}
@@ -63,3 +59,22 @@ const FieldRequirementItem = ({
 }
 
 export default FieldRequirementItem
+
+const getIconTestId = (
+  status: FieldRequirementItemStatus,
+  testIds?: {
+    root?: string
+    successIcon?: string
+    errorIcon?: string
+    defaultIcon?: string
+  }
+) => {
+  if (status === 'error') {
+    return testIds?.errorIcon
+  }
+  if (status === 'success') {
+    return testIds?.successIcon
+  }
+
+  return testIds?.defaultIcon
+}
