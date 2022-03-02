@@ -131,8 +131,7 @@ const Example = () => {
         }}
         getDisplayValue={getAutocompleteDisplayValue}
       />
-      <Form.Rating
-        titleCase
+      <Form.Rating.Stars
         name='rating'
         label='How much do you love Picasso?'
         required

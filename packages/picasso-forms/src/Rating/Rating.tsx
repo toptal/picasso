@@ -1,22 +1,22 @@
 import React from 'react'
-import { Rating as PicassoRating, RatingProps } from '@toptal/picasso'
+import {
+  Rating as PicassoRating,
+  RatingStarsProps as PicassoRatingStarsProps
+} from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
-export type Props = RatingProps & FieldProps<RatingProps['value']>
+export type RatingStarsProps = PicassoRatingStarsProps &
+  FieldProps<PicassoRatingStarsProps['value']>
 
-export const Rating = (props: Props) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <FieldWrapper<RatingProps> {...props} type='number'>
-    {(inputProps: RatingProps) => {
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      return <PicassoRating {...inputProps} />
-    }}
+const Stars = (props: RatingStarsProps) => (
+  <FieldWrapper<PicassoRatingStarsProps> {...props} type='number'>
+    {inputProps => <PicassoRating.Stars {...inputProps} />}
   </FieldWrapper>
 )
 
-Rating.defaultProps = {}
-
-Rating.displayName = 'Rating'
+export const Rating = {
+  Stars
+}
 
 export default Rating
