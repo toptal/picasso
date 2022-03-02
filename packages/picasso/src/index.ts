@@ -192,7 +192,11 @@ export type { RatingThumbsProps } from './RatingThumbs'
 export { default as PasswordInput } from './PasswordInput'
 export type { PasswordInputProps } from './PasswordInput'
 export { default as FieldRequirements } from './FieldRequirements'
-export type { FieldRequirementsProps, FieldRequirement } from './FieldRequirements'
+export type {
+  FieldRequirementsProps,
+  FieldRequirement,
+  ValueType as FieldRequirementValueType
+} from './FieldRequirements'
 
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'

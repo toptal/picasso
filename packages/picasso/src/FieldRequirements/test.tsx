@@ -3,16 +3,18 @@ import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import FieldRequirements, { Props } from './FieldRequirements'
-import { FieldRequirement } from './types'
+import { FieldRequirement, ValueType } from './types'
 
-const renderFieldRequirements = (
+const renderFieldRequirements = function <TInputValue extends ValueType>(
   children: ReactNode,
-  props: OmitInternalProps<Props>
-) => {
-  return render(<FieldRequirements {...props}>{children}</FieldRequirements>)
+  props: OmitInternalProps<Props<TInputValue>>
+) {
+  return render(
+    <FieldRequirements<TInputValue> {...props}>{children}</FieldRequirements>
+  )
 }
 
-const requirements: FieldRequirement[] = [
+const requirements: FieldRequirement<string>[] = [
   {
     message: 'At least one number',
     validator: (value: string) => /\d/.test(value),

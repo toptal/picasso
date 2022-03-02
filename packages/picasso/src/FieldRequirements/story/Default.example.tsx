@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container, Input, FieldRequirements } from '@toptal/picasso'
 import type { FieldRequirement } from '@toptal/picasso'
 
-const requirements: FieldRequirement[] = [
+const requirements: FieldRequirement<string>[] = [
   {
     message: 'Min 5 characters',
     validator: value => value.length >= 5

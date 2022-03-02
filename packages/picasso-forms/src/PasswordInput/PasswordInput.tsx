@@ -1,7 +1,8 @@
 import React, { useState, FocusEvent, ReactNode } from 'react'
 import {
   PasswordInput as PicassoPasswordInput,
-  PasswordInputProps
+  PasswordInputProps,
+  FieldRequirementValueType
 } from '@toptal/picasso'
 import { FieldValidator } from 'final-form'
 
@@ -15,7 +16,24 @@ export type Props = PasswordInputProps &
 
 const { composeValidators } = validators
 
-const TIMEOUT = 500
+const ANIMATION_TIMEOUT = 500 // same as in Picasso/FieldRequirements
+
+const validatePassword: FieldValidator<PasswordInputProps['value']> = (
+  value?: string
+) => {
+  if (!value) {
+    return undefined
+  }
+
+  const isValidPassword =
+    passwordValidators.atLeastEightCharacters(value) &&
+    passwordValidators.atLeastOneNumber(value) &&
+    passwordValidators.atLeastOneUpperCaseCharacter(value) &&
+    passwordValidators.atLeastOneLowerCaseCharacter(value) &&
+    passwordValidators.atLeastOneSpecialCharacter(value)
+
+  return isValidPassword ? undefined : 'Invalid password'
+}
 
 export const PasswordInput = ({
   validate,
@@ -24,36 +42,23 @@ export const PasswordInput = ({
 }: Props) => {
   const [showContent, setShowContent] = useState(false)
 
-  const validatePassword: FieldValidator<PasswordInputProps['value']> = (
-    value?: string
-  ) => {
-    if (!value || hideRequirements) {
-      return undefined
-    }
-
-    const validationResult =
-      passwordValidators.atLeastEightCharacters(value) &&
-      passwordValidators.atLeastOneNumber(value) &&
-      passwordValidators.atLeastOneUpperCaseCharacter(value) &&
-      passwordValidators.atLeastOneLowerCaseCharacter(value) &&
-      passwordValidators.atLeastOneSpecialCharacter(value)
-
-    return validationResult ? undefined : 'Invalid password'
-  }
+  const validationsObject = hideRequirements
+    ? validate
+    : composeValidators([validatePassword, validate])
 
   const renderFieldRequirements: ({
     value,
     error
   }: {
-    value?: any
+    value?: FieldRequirementValueType
     error?: boolean
   }) => ReactNode = ({ value, error }) => (
-    <Form.FieldRequirements
-      value={value}
+    <Form.FieldRequirements<string>
+      value={(value ?? '') as string}
       open={showContent}
       error={error}
       description='Please make sure that your password contains:'
-      timeout={TIMEOUT}
+      timeout={ANIMATION_TIMEOUT}
       requirements={[
         {
           message: 'At least 8 characters',
@@ -82,7 +87,7 @@ export const PasswordInput = ({
   return (
     <FieldWrapper<PasswordInputProps>
       {...rest}
-      validate={composeValidators([validatePassword, validate])}
+      validate={validationsObject}
       renderFieldRequirements={
         !hideRequirements ? renderFieldRequirements : undefined
       }
@@ -100,7 +105,7 @@ export const PasswordInput = ({
           // Hide the requirements after a short delay
           setTimeout(() => {
             setShowContent(false)
-          }, TIMEOUT)
+          }, ANIMATION_TIMEOUT)
         }
 
         return (

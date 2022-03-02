@@ -6,13 +6,13 @@ import Typography from '../Typography'
 import Grid from '../Grid'
 import styles from './styles'
 import { CheckMinor16, CloseMinor16 } from '../Icon'
-import { ColorType } from '../../../shared/src'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'FieldRequirementItem'
 })
 
 export type FieldRequirementItemStatus = 'default' | 'success' | 'error'
+type ColorType = 'dark-grey' | 'inherit' | 'red'
 
 const colorMap: Record<FieldRequirementItemStatus, ColorType> = {
   default: 'dark-grey',
@@ -41,14 +41,17 @@ const FieldRequirementItem = ({
     >
       {status === 'success' ? (
         <CheckMinor16
-          color='inherit'
+          color={colorMap[status]}
           data-testid={`${dataTestId}-valid-icon`}
         />
       ) : status === 'error' ? (
-        <CloseMinor16 color='red' data-testid={`${dataTestId}-error-icon`} />
+        <CloseMinor16
+          color={colorMap[status]}
+          data-testid={`${dataTestId}-error-icon`}
+        />
       ) : (
         <Bullet16
-          color='dark-grey'
+          color={colorMap[status]}
           data-testid={`${dataTestId}-default-icon`}
         />
       )}
