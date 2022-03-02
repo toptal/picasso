@@ -5,7 +5,7 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import FieldRequirements, { Props } from './FieldRequirements'
 import { FieldRequirement, ValueType } from './types'
 
-const renderFieldRequirements = function <TInputValue extends ValueType>(
+const renderFieldRequirements = function<TInputValue extends ValueType>(
   children: ReactNode,
   props: OmitInternalProps<Props<TInputValue>>
 ) {
@@ -45,11 +45,11 @@ describe('FieldRequirements', () => {
       value: 'asd',
       testIds: {
         root: 'root',
-        gridContainer: 'gridContainer'
+        gridContainer: 'grid-container'
       }
     })
 
-    const gridContainer = getByTestId('gridContainer')
+    const gridContainer = getByTestId('grid-container')
 
     expect(gridContainer).toBeInTheDocument()
 
@@ -86,11 +86,11 @@ describe('FieldRequirements', () => {
       value: 'asd',
       testIds: {
         root: 'root',
-        gridContainer: 'gridContainer'
+        gridContainer: 'grid-container'
       }
     })
 
-    const gridContainer = getByTestId('gridContainer')
+    const gridContainer = getByTestId('grid-container')
 
     expect(gridContainer).toBeInTheDocument()
 
