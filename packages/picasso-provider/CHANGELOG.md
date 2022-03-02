@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.6.1
+
+### Patch Changes
+
+- [#2451](https://github.com/toptal/picasso/pull/2451) [`53efb37c`](https://github.com/toptal/picasso/commit/53efb37cc242cff904a06eb793b5ded47945204e) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  ### Applies to all Components
+
+  - fix linting errors
+
 ## 0.6.0
 
 ### Minor Changes
