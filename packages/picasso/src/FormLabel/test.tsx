@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
@@ -8,28 +8,30 @@ import Form from '../Form'
 
 jest.mock('ap-style-title-case')
 
-const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
+const TestFormLabel = ({
   children,
   requiredDecoration,
   disabled,
   titleCase,
   htmlFor,
   inline
-}) => (
-  <Form>
-    <Form.Field>
-      <FormLabel
-        requiredDecoration={requiredDecoration}
-        disabled={disabled}
-        titleCase={titleCase}
-        htmlFor={htmlFor}
-        inline={inline}
-      >
-        {children}
-      </FormLabel>
-    </Form.Field>
-  </Form>
-)
+}: OmitInternalProps<Props>) => {
+  return (
+    <Form>
+      <Form.Field>
+        <FormLabel
+          requiredDecoration={requiredDecoration}
+          disabled={disabled}
+          titleCase={titleCase}
+          htmlFor={htmlFor}
+          inline={inline}
+        >
+          {children}
+        </FormLabel>
+      </Form.Field>
+    </Form>
+  )
+}
 
 let spiedOnTitleCase: jest.SpyInstance
 

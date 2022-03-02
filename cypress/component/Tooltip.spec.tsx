@@ -370,10 +370,14 @@ describe('Tooltip', () => {
     cy.get('[data-testid="tooltip-content"]').should('not.be.visible')
   })
 
-  it('renders interactive content', () => {
+  it.skip('renders interactive content', () => {
     mount(<LinkTooltipExample />)
-    cy.get('[data-testid="tooltip-trigger"]').as('Trigger').realHover()
-    cy.get('[data-testid="tooltip-content"]').as('Content').should('be.visible')
+    cy.get('[data-testid="tooltip-trigger"]')
+      .as('Trigger')
+      .realHover()
+    cy.get('[data-testid="tooltip-content"]')
+      .as('Content')
+      .should('be.visible')
     cy.get('body').happoScreenshot()
 
     cy.get('@Content').click()

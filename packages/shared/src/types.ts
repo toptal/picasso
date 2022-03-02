@@ -22,6 +22,7 @@ export interface JssProps {
 
 export interface TextLabelProps {
   /** Defines if the text should be transformed to title case */
+  children?: React.ReactNode
   titleCase?: boolean
 }
 

@@ -1,10 +1,11 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Grid, { Props } from './Grid'
+import Grid from './Grid'
 
-const TestGrid: FunctionComponent<OmitInternalProps<Props>> = () => <Grid />
+const TestGrid = () => {
+  return <Grid />
+}
 
 describe('Grid', () => {
   it('renders', () => {

@@ -1,6 +1,5 @@
 import React, {
   ReactNode,
-  FunctionComponent,
   HTMLAttributes,
   MouseEvent,
   useCallback
@@ -28,7 +27,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoInputAdornment'
 })
 
-const InputAdornment: FunctionComponent<Props> = props => {
+const InputAdornment = (props: Props) => {
   const {
     className,
     style,

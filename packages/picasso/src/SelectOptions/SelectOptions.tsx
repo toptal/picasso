@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import cx from 'classnames'
 
 import ScrollMenu, { ScrollMenuProps } from '../ScrollMenu'
@@ -11,7 +11,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSelectOptions'
 })
 
-const SelectOptions: FunctionComponent<Props> = props => {
+const SelectOptions = (props: Props) => {
   const {
     selectedIndex,
     onBlur,

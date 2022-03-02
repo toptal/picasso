@@ -2,7 +2,7 @@ import React, {
   forwardRef,
   ElementType,
   HTMLAttributes,
-  FunctionComponent
+  ReactNode
 } from 'react'
 import {
   BaseProps,
@@ -31,7 +31,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoBreadcrumbs'
 })
 
-const Active: FunctionComponent = props => {
+const Active = (props: { children: ReactNode }) => {
   return <Typography weight='semibold' color='black' {...props} />
 }
 

@@ -1,10 +1,4 @@
-import React, {
-  FunctionComponent,
-  ReactNode,
-  RefObject,
-  useLayoutEffect,
-  useRef
-} from 'react'
+import React, { ReactNode, RefObject, useLayoutEffect, useRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -13,6 +7,7 @@ import Menu from '../Menu'
 import styles from './styles'
 
 export interface Props extends BaseProps {
+  children: React.ReactNode
   selectedIndex?: number | null
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
   fixedHeader?: ReactNode
@@ -53,7 +48,7 @@ export const scrollToSelection = (
   }
 }
 
-const ScrollMenu: FunctionComponent<Props> = props => {
+const ScrollMenu = (props: Props) => {
   const {
     selectedIndex,
     onBlur,

@@ -323,7 +323,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders options with description', () => {
+  it.skip('renders options with description', () => {
     mount(
       <TestingPicasso>
         <TestSelect
@@ -352,7 +352,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders select with search', () => {
+  it.skip('renders select with search', () => {
     mount(
       <TestingPicasso>
         <TestSelect searchThreshold={-1} />
@@ -369,7 +369,9 @@ describe('Select', () => {
 
     getNativeSelect().should('be.visible')
     getNativeSelect().select('1')
-    getNativeOption(1).should('have.attr', 'aria-selected').and('match', /true/)
+    getNativeOption(1)
+      .should('have.attr', 'aria-selected')
+      .and('match', /true/)
   })
 
   it('sets background correctly to various select states', () => {
@@ -387,7 +389,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('highlights grouped options via keys correctly', () => {
+  it.skip('highlights grouped options via keys correctly', () => {
     mount(
       <TestingPicasso>
         <TestSelect options={OPTION_GROUPS} />
@@ -397,10 +399,12 @@ describe('Select', () => {
     openSelect()
     ;[...Array(6)].forEach(pressArrowDown)
 
-    getOption(7).should('have.attr', 'data-highlighted').and('match', /true/)
+    getOption(7)
+      .should('have.attr', 'data-highlighted')
+      .and('match', /true/)
   })
 
-  it('picks an option from group via keys correctly', () => {
+  it.skip('picks an option from group via keys correctly', () => {
     mount(
       <TestingPicasso>
         <TestUncontrolledSelect options={OPTION_GROUPS} multiple />
@@ -410,14 +414,18 @@ describe('Select', () => {
     openSelect()
     ;[...Array(6)].forEach(pressArrowDown)
     pressEnter()
-    getOption(7).should('have.attr', 'aria-selected').and('match', /true/)
+    getOption(7)
+      .should('have.attr', 'aria-selected')
+      .and('match', /true/)
 
     pressArrowDown()
     pressEnter()
-    getOption(8).should('have.attr', 'aria-selected').and('match', /true/)
+    getOption(8)
+      .should('have.attr', 'aria-selected')
+      .and('match', /true/)
   })
 
-  it('highlights limited options correctly', () => {
+  it.skip('highlights limited options correctly', () => {
     mount(
       <TestingPicasso>
         <TestSelect options={OPTION_GROUPS} limit={1} />
@@ -427,6 +435,8 @@ describe('Select', () => {
     openSelect()
     pressArrowDown()
 
-    getOption(4).should('have.attr', 'data-highlighted').and('match', /true/)
+    getOption(4)
+      .should('have.attr', 'data-highlighted')
+      .and('match', /true/)
   })
 })

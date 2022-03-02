@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react'
+import React, { HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIStepLabel from '@material-ui/core/StepLabel'
@@ -20,7 +20,7 @@ export interface Props
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepLabel' })
 
-export const StepLabel: FunctionComponent<Props> = props => {
+export const StepLabel = (props: Props) => {
   const {
     active,
     className,

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -16,7 +16,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoAvatarWrapper'
 })
 
-const AvatarWrapper: FunctionComponent<Props> = props => {
+const AvatarWrapper = (props: Props) => {
   const { children, className, style, 'data-testid': dataTestId } = props
   const classes = useStyles(props)
 

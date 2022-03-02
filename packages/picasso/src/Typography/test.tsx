@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
@@ -7,24 +7,26 @@ import Typography, { Props } from './Typography'
 
 jest.mock('ap-style-title-case')
 
-const TestTypography: FunctionComponent<OmitInternalProps<Props>> = ({
+const TestTypography = ({
   align,
   weight,
   variant,
   size,
   titleCase,
   children
-}) => (
-  <Typography
-    align={align}
-    weight={weight}
-    variant={variant}
-    size={size}
-    titleCase={titleCase}
-  >
-    {children}
-  </Typography>
-)
+}: OmitInternalProps<Props>) => {
+  return (
+    <Typography
+      align={align}
+      weight={weight}
+      variant={variant}
+      size={size}
+      titleCase={titleCase}
+    >
+      {children}
+    </Typography>
+  )
+}
 
 let spiedOnTitleCase: jest.SpyInstance
 

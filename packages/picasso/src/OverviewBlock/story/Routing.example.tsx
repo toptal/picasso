@@ -28,10 +28,15 @@ const RoutingExample = () => (
       </OverviewBlock.Group>
 
       <Switch>
-        <Route path='/' exact component={Index} />
-        <Route path='/about' component={About} />
-        <Route path='/users' component={Users} />
-        <Route component={Index} />
+        <Route path='/about'>
+          <About />
+        </Route>
+        <Route path='/users'>
+          <Users />
+        </Route>
+        <Route>
+          <Index />
+        </Route>
       </Switch>
     </div>
   </Router>

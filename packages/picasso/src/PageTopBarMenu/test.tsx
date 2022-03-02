@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 /* eslint-disable-next-line */
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
@@ -6,15 +6,17 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import Menu from '../Menu'
 import PageTopBarMenu, { Props } from './PageTopBarMenu'
 
-const TestPageTopBarMenu: FunctionComponent<OmitInternalProps<Props>> = ({
+const TestPageTopBarMenu = ({
   children,
   name,
   avatar
-}) => (
-  <PageTopBarMenu name={name} avatar={avatar}>
-    {children}
-  </PageTopBarMenu>
-)
+}: OmitInternalProps<Props>) => {
+  return (
+    <PageTopBarMenu name={name} avatar={avatar}>
+      {children}
+    </PageTopBarMenu>
+  )
+}
 
 describe('PageTopBarMenu', () => {
   it('renders', () => {
