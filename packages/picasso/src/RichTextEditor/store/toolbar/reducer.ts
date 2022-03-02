@@ -31,6 +31,12 @@ const reducer: ToolbarReducerType = (state = initialState, action) => {
         disabled: action.payload
       }
 
+    case actionTypes.resetFormat:
+      return {
+        ...state,
+        format: initialState.format
+      }
+
     default:
       return state
   }

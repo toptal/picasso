@@ -22,21 +22,26 @@ describe('useSubscribeToQuillEvents', () => {
       })
     )
 
-    expect(quill.on).toHaveBeenCalledTimes(4)
+    expect(quill.on).toHaveBeenCalledTimes(5)
     expect(quill.on).toHaveBeenCalledWith(
       'selection-change',
       expect.any(Function)
     )
     expect(quill.on).toHaveBeenCalledWith('text-change', expect.any(Function))
+    expect(quill.on).toHaveBeenCalledWith('editor-change', expect.any(Function))
     expect(quill.off).not.toHaveBeenCalled()
 
     unmount()
 
-    expect(quill.off).toHaveBeenCalledTimes(4)
+    expect(quill.off).toHaveBeenCalledTimes(5)
     expect(quill.off).toHaveBeenCalledWith(
       'selection-change',
       expect.any(Function)
     )
     expect(quill.off).toHaveBeenCalledWith('text-change', expect.any(Function))
+    expect(quill.off).toHaveBeenCalledWith(
+      'editor-change',
+      expect.any(Function)
+    )
   })
 })

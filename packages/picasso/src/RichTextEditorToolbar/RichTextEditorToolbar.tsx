@@ -44,7 +44,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
         <Container className={classes.group}>
           <Select
             onChange={onHeaderChange}
-            value={disabled ? '' : format.header}
+            value={format.header}
             options={[
               { value: '3', text: 'heading' },
               { value: '', text: 'normal' }
@@ -59,13 +59,13 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
           <TextEditorButton
             icon={<Bold16 />}
             onClick={onBoldClick}
-            active={disabled ? false : format.bold}
+            active={format.bold}
             disabled={disabled}
           />
           <TextEditorButton
             icon={<Italic16 />}
             onClick={onItalicClick}
-            active={disabled ? false : format.italic}
+            active={format.italic}
             disabled={disabled}
           />
         </Container>
@@ -73,13 +73,13 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
           <TextEditorButton
             icon={<ListUnordered16 />}
             onClick={onUnorderedClick}
-            active={disabled ? false : format.list === 'bullet'}
+            active={format.list === 'bullet'}
             disabled={disabled}
           />
           <TextEditorButton
             icon={<ListOrdered16 />}
             onClick={onOrderedClick}
-            active={disabled ? false : format.list === 'ordered'}
+            active={format.list === 'ordered'}
             disabled={disabled}
           />
         </Container>

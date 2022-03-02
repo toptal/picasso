@@ -37,7 +37,7 @@ describe('useDefaultValue', () => {
 
     expect(quill.clipboard.convert).toHaveBeenCalledWith(defaultValue)
     expect(quill.clipboard.convert).toHaveBeenCalledTimes(1)
-    expect(quill.setContents).toHaveBeenCalledWith(deltaMock, 'silent')
+    expect(quill.setContents).toHaveBeenCalledWith(deltaMock, 'api')
     expect(quill.setContents).toHaveBeenCalledTimes(1)
     rerender()
     expect(quill.clipboard.convert).toHaveBeenCalledTimes(1)

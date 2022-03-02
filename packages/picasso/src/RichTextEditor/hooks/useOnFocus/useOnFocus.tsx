@@ -59,9 +59,10 @@ const useOnFocus = ({
       ) {
         return
       }
-      console.log(focusElement)
 
       toolbarActions.setDisabled(dispatch)(true)
+
+      toolbarActions.resetFormat(dispatch)()
       onBlur()
     },
     [dispatch, onBlur, toolbarRef, editorRef, wrapperRef]
