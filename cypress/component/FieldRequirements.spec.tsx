@@ -7,7 +7,7 @@ import {
 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const requirements: FieldRequirement[] = [
+const requirements: FieldRequirement<string>[] = [
   {
     message: '1 number',
     validator: (value: string) => /\d/.test(value),
@@ -21,7 +21,7 @@ const requirements: FieldRequirement[] = [
 ]
 
 const FieldRequirementsExample = (props: Partial<FieldRequirementsProps>) => (
-  <FieldRequirements
+  <FieldRequirements<string>
     open
     requirements={requirements}
     value='asd1'
@@ -38,7 +38,7 @@ describe('FieldRequirements', () => {
   it('renders requirements with bullets and checks for default', () => {
     mount(
       <TestingPicasso>
-        <FieldRequirementsExample />
+        <FieldRequirementsExample value='dene' />
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
