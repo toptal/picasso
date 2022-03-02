@@ -11,12 +11,22 @@ const requirements: FieldRequirement<string>[] = [
   {
     message: '1 number',
     validator: (value: string) => /\d/.test(value),
-    'data-testid': 'requirement-1'
+    testIds: {
+      root: 'requirement-1',
+      defaultIcon: 'requirement-1-default-icon',
+      successIcon: 'requirement-1-success-icon',
+      errorIcon: 'requirement-1-error-icon'
+    }
   },
   {
     message: '1 uppercase character',
     validator: (value: string) => /[A-Z]/.test(value),
-    'data-testid': 'requirement-2'
+    testIds: {
+      root: 'requirement-2',
+      defaultIcon: 'requirement-2-default-icon',
+      successIcon: 'requirement-2-success-icon',
+      errorIcon: 'requirement-2-error-icon'
+    }
   }
 ]
 
