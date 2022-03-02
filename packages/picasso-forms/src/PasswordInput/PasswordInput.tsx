@@ -1,8 +1,7 @@
 import React, { useState, FocusEvent, ReactNode } from 'react'
 import {
   PasswordInput as PicassoPasswordInput,
-  PasswordInputProps,
-  FieldRequirementValueType
+  PasswordInputProps
 } from '@toptal/picasso'
 import { FieldValidator } from 'final-form'
 
@@ -50,11 +49,11 @@ export const PasswordInput = ({
     value,
     error
   }: {
-    value?: FieldRequirementValueType
+    value?: string
     error?: boolean
   }) => ReactNode = ({ value, error }) => (
     <Form.FieldRequirements<string>
-      value={(value ?? '') as string}
+      value={value}
       open={showContent}
       error={error}
       description='Please make sure that your password contains:'

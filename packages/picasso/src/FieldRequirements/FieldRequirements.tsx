@@ -8,15 +8,14 @@ import FieldRequirementItem, {
   FieldRequirementItemStatus
 } from './FieldRequirementItem'
 import Typography from '../Typography'
-import { FieldRequirement, ValueType } from './types'
+import { FieldRequirement } from './types'
 import Grid from '../Grid'
 
-export interface Props<TInputValue extends ValueType = ValueType>
-  extends BaseProps {
+export interface Props<TValueType> extends BaseProps {
   /** A string that defines the title of the requirement list */
   description?: string
   /** Value of the related input. It will be used to validate the requirements */
-  value: TInputValue
+  value?: TValueType
   /** Open/Close the requirements section. Opening it with focus is the default behavior */
   open: boolean
   /** Indicate whether `PasswordInput` is in error state */
@@ -24,7 +23,7 @@ export interface Props<TInputValue extends ValueType = ValueType>
   /** Duration for the collapse animation */
   timeout?: number
   /** Array of object to specify requirements. They will be executed */
-  requirements: FieldRequirement<TInputValue>[]
+  requirements: FieldRequirement<TValueType>[]
   testIds?: {
     root?: string
     description?: string
@@ -36,9 +35,7 @@ const ANIMATION_TIMEOUT = 500
 
 const useStyles = makeStyles<Theme>(styles)
 
-export const FieldRequirements = function <
-  TInputValue extends ValueType = ValueType
->({
+export const FieldRequirements = function<TValueType>({
   value,
   description,
   open,
@@ -48,7 +45,7 @@ export const FieldRequirements = function <
   className,
   style,
   testIds
-}: Props<TInputValue>) {
+}: Props<TValueType>) {
   const classes = useStyles()
 
   return (
@@ -77,7 +74,8 @@ export const FieldRequirements = function <
         {requirements.map(requirement => {
           let status: FieldRequirementItemStatus = 'default'
 
-          if (requirement.validator(value)) {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          if (requirement.validator(value!)) {
             status = 'success'
           } else if (error) {
             status = 'error'
@@ -100,7 +98,8 @@ export const FieldRequirements = function <
 
 FieldRequirements.defaultProps = {
   open: false,
-  timeout: ANIMATION_TIMEOUT
+  timeout: ANIMATION_TIMEOUT,
+  value: ''
 }
 
 FieldRequirements.displayName = 'FieldRequirements'

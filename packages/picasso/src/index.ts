@@ -194,8 +194,7 @@ export type { PasswordInputProps } from './PasswordInput'
 export { default as FieldRequirements } from './FieldRequirements'
 export type {
   FieldRequirementsProps,
-  FieldRequirement,
-  ValueType as FieldRequirementValueType
+  FieldRequirement
 } from './FieldRequirements'
 
 // hygen code generator inserts export statements above this comment.

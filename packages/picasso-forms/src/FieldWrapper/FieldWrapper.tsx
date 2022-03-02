@@ -52,7 +52,7 @@ export type Props<
     fieldType?: string
     children: (props: any) => React.ReactNode
     renderFieldRequirements?: (props: {
-      value?: ValueType
+      value?: TInputValue
       error?: boolean
     }) => React.ReactNode
   }
