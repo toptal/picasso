@@ -122,6 +122,6 @@ RatingStars.defaultProps = {
   size: 'small'
 }
 
-RatingStars.displayName = 'Rating.Stars'
+RatingStars.displayName = 'RatingStars'
 
 export default RatingStars
