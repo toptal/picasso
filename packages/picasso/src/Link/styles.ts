@@ -43,7 +43,7 @@ export default ({ typography, palette }: Theme) =>
     visited: {},
     blue: {
       '&:visited, &$visited': {
-        color: '#6727cf'
+        color: palette.purple.main
       }
     },
     white: {
