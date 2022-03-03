@@ -3,6 +3,9 @@
 '@toptal/picasso-forms': major
 ---
 
-Rename `Rating` to `Rating.Stars` and its `picasso-forms` counterpart, `Form.Rating`
+---
+### Rating
+
+- Rename `Rating` to `Rating.Stars` and its `picasso-forms` counterpart, `Form.Rating`
 to `Form.Rating.Stars`, as to better reflect the nomenclature in BASE, and to
 consistently accomodate new variants, like the recently implemented `Rating.Thumbs`
