@@ -55,7 +55,7 @@ const checkIsMonorepo = async () => {
   return result.exitCode === 0
 }
 
-const runTransform = async ({ codemod, parserConfig }) => {
+const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
   const codemodPath = path.join(codemodsDirectory, `${codemod}/index.ts`)
   const isMonorepo = await checkIsMonorepo()
 
@@ -69,7 +69,10 @@ const runTransform = async ({ codemod, parserConfig }) => {
     args.push(`--parser-config=${parserConfig}`)
   }
 
-  if (!isMonorepo) {
+  if (inputFiles) {
+    args = args.concat(inputFiles)
+  }
+  else if (!isMonorepo) {
     const files = globbySync(paths.spa)
     args = args.concat(files)
   } else {
@@ -107,8 +110,9 @@ const runTransform = async ({ codemod, parserConfig }) => {
 export const run = () => {
   const cli = meow(`
     Usage
-      $ npx @toptal/picasso-codemod <codemod>
+      $ npx @toptal/picasso-codemod <codemod> [<files>]
         codemod    example: v17.0.0/typography-sizes
+        files      example: app/**/*.tsx
       
       Options
 	      --parser-config  Add parser config
@@ -116,6 +120,7 @@ export const run = () => {
       Examples
         $ npx @toptal/picasso-codemod v17.0.0/typography-sizes
         $ npx @toptal/picasso-codemod v17.0.0/typography-sizes --parser-config=path/to/your/config.json
+        $ npx @toptal/picasso-codemod v17.0.0/typography-sizes app/**/*.tsx
     `,
     {
       importMeta: import.meta,
@@ -128,10 +133,12 @@ export const run = () => {
   )
 
   const codemod = cli.input[0]
+  const inputFiles = cli.input.slice(1)
   const parserConfig = cli.flags.parserConfig
 
   return runTransform({
     codemod,
+    inputFiles,
     parserConfig
   })
 }
