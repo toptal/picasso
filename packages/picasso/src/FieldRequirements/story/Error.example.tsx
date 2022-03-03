@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
-import { Container, Input, FieldRequirements } from '@toptal/picasso'
-import type { FieldRequirement } from '@toptal/picasso'
+import {
+  Container,
+  Input,
+  FieldRequirements,
+  FieldRequirement
+} from '@toptal/picasso'
 
 const requirements: FieldRequirement<string>[] = [
   {
@@ -9,7 +13,7 @@ const requirements: FieldRequirement<string>[] = [
   },
   {
     message: 'Max 10 characters',
-    validator: value => value.length < 10
+    validator: value => value.length <= 10
   },
   { message: 'No space character', validator: value => !/\s/.test(value) }
 ]
