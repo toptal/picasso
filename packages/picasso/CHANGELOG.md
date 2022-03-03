@@ -1,5 +1,26 @@
 # Change Log
 
+## 18.11.0
+
+### Minor Changes
+
+- [#2404](https://github.com/toptal/picasso/pull/2404) [`2eedad81`](https://github.com/toptal/picasso/commit/2eedad81d89f516c62e2e6a4da049ec3fc1fd10d) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### ShowMore
+
+  - Accepts ReactNode as children
+
+  It uses native functionality from `react-truncate`. In shortened state
+  it converts children to string which is then truncated to set number of
+  `rows`. That means any **formatting will be lost until the content is
+  expanded**.
+
+  - Accepts 0 in `rows` prop
+
+  Previously, setting any falsy value to rows resulted into content
+  being expanded. Now when you explicitly set rows to 0, no content
+  is shown and only "Show more" button is there to display the content.
+
 ## 18.10.0
 
 ### Minor Changes
