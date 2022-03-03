@@ -12,6 +12,44 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 ## Included Scripts
 
+### v18.0.0
+
+#### `picasso-lab`
+
+Merges `picasso-lab` imports into `picasso` and replaces `picasso-lab` reference with `picasso`.
+
+> Note: Some edge cases are not covered.
+>
+> If imports cannot be resolved, user will be shown with the warning - which
+> files cannot be updated and needs manual inspection.
+
+Here's how the diff should look like:
+
+```diff
+-import { Component1, Component2 } from '@toptal/picasso-lab'
++import { Component1, Component2 } from '@toptal/picasso'
+-import * as NamespaceImport from '@toptal/picasso-lab'
++import * as NamespaceImport from '@toptal/picasso'
+-import { Component1 } from '@toptal/picasso'
+-import { Component2 } from '@toptal/picasso-lab'
++import { Component1, Component2 } from '@toptal/picasso'
+-import { Component1 } from '@toptal/picasso'
+-// unresolved import
+-import { Component2 } from '@toptal/picasso-lab'
++import { Component1 } from '@toptal/picasso'
++// unresolved import
++import { Component2 } from '@toptal/picasso'
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx @toptal/picasso-codemod v18.0.0/picasso-lab
+```
+
+</details>
+
 ### v17.0.0
 
 #### `typography-sizes`
@@ -21,11 +59,11 @@ Transforms `Typography`, `TypographyOverflow` and `Amount` size prop from `'smal
 This change only applies to variant `body` (which is default)
 
 > **Remember to run this codemod only once in your structure!**
-> 
+>
 > Because in first run: `small --> xsmall`
-> 
+>
 > but in second run: `xsmall --> xxsmall`
-> 
+>
 > If you need to run it again, revert/checkout previous changes
 
 Here's how the diff should look like:
@@ -67,22 +105,25 @@ codemod by default checks only `Typography`, `TypographyOverflow` and `Amount` c
 If you want to include other components, you need to:
 
 1. create a json file and put your components in it:
+
 ```json
 {
   "includeComponents": ["Foo", "Bar"]
 }
 ```
+
 2. run command with `--parser-config` param:
+
 ```shell
 npx @toptal/picasso-codemod v17.0.0/typography-sizes --parser-config=path/to/your/config.json
 ```
-
 
 #### `container-borders`
 
 Removes `bordered` prop from `Container` components with all colored variants.
 
 Here's how the diff should look like:
+
 ```diff
 -<Container variant='red' bordered>text</Container>
 +<Container variant='red'>text</Container>
@@ -155,8 +196,6 @@ npx @toptal/picasso-codemod v16.0.0/revert-colors
 ```
 
 </details>
-
-
 
 ### v5.0.0
 
