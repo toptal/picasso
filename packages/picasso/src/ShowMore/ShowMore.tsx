@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo, useState } from 'react'
+import React, { forwardRef, ReactNode, useMemo, useState } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Truncate from 'react-truncate'
@@ -12,8 +12,8 @@ import { replaceLineBreaksWithTags } from './utils'
 
 export interface Props extends BaseProps {
   /** Content of the component */
-  children: string
-  /** Number of characters displayed initially */
+  children: ReactNode
+  /** Number of lines displayed initially */
   rows?: number
   /** Text used by action link showing whole content */
   moreText?: string
@@ -25,6 +25,10 @@ export interface Props extends BaseProps {
   disableToggle?: boolean
   /** Callback triggered when show more/less is clicked */
   onToggle?: () => void
+  testIds?: {
+    contentWrapper?: string
+    toggleButton?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoShowMore' })
@@ -43,11 +47,21 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
     onToggle = () => {},
     className,
     style,
+    testIds,
     ...rest
   } = props
   const classes = useStyles()
   const [shownMore, setShownMore] = useState(initialExpanded)
-  const text = useMemo(() => replaceLineBreaksWithTags(children), [children])
+  const content = useMemo(
+    () =>
+      typeof children === 'string'
+        ? replaceLineBreaksWithTags(children)
+        : children,
+    [children]
+  )
+
+  const isContentVisible = rows !== 0 || shownMore
+  const lines = shownMore ? -1 : rows
 
   return (
     <>
@@ -58,8 +72,9 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         color='dark-grey'
         className={className}
         style={style}
+        data-testid={testIds?.contentWrapper}
       >
-        <Truncate lines={!shownMore && rows}>{text}</Truncate>
+        {isContentVisible && <Truncate lines={lines}>{content}</Truncate>}
       </Typography>
       {!disableToggle && (
         <Button.Action
@@ -78,6 +93,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
             </div>
           }
           iconPosition='right'
+          data-testid={testIds?.toggleButton}
         >
           {shownMore ? lessText : moreText}
         </Button.Action>
