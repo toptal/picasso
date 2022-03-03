@@ -5,12 +5,12 @@ import {
   Pin16,
   PinSolid16,
   Rating,
-  RatingProps
+  RatingStarsProps
 } from '@toptal/picasso'
 import RatingIcon from '@toptal/picasso/RatingIcon'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const defaultProps: RatingProps = {
+const defaultProps: RatingStarsProps = {
   name: 'rating',
   value: 1,
   size: 'small'
@@ -19,12 +19,12 @@ const defaultProps: RatingProps = {
 const renderRating = (props = defaultProps) => (
   <TestingPicasso>
     <Container padded='small'>
-      <Rating {...props} />
+      <Rating.Stars {...props} />
     </Container>
   </TestingPicasso>
 )
 
-describe('Rating', () => {
+describe('Rating.Stars', () => {
   it('renders default rating', () => {
     mount(renderRating())
 
