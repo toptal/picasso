@@ -69,7 +69,7 @@ const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
     args.push(`--parser-config=${parserConfig}`)
   }
 
-  if (inputFiles) {
+  if (inputFiles.length > 0) {
     args = args.concat(inputFiles)
   }
   else if (!isMonorepo) {

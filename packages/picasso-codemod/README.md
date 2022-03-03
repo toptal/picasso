@@ -6,6 +6,35 @@
 
 This repository contains a collection of codemod scripts based for use with [JSCodeshift](https://github.com/facebook/jscodeshift) that help update Picasso APIs.
 
+## Usage:
+
+```shell
+npx @toptal/picasso-codemod <codemod> [<files>] [options]
+```
+
+@toptal/picasso-codemod can detect what type of 
+repository you use and select files automatically for you.
+
+For `monorepo` it looks through following paths:
+
+```shell
+*libs/*/src/**/*.tsx
+*hosts/*/src/**/*.tsx
+*apps/*/src/**/*.tsx
+*namespaces/*/libs/*/src/**/*.tsx
+*namespaces/*/apps/*/src/**/*.tsx
+```
+
+and for `SPA` it checks:
+
+```shell
+src/**/*.tsx
+```
+
+If your repository follows a different structure, you can **specify 
+path to your files as a second parameter** (`files`) shown in the usage 
+command.
+
 ## Limitations
 
 Codemods do not guarantee the code format preservation. Therefore be sure to run `prettier` and `eslint` on your repo after applying a codemod. Take a look [here](https://github.com/benjamn/recast/issues/140) to learn more about the issue.
