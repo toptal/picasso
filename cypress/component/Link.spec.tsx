@@ -10,7 +10,7 @@ import {
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const DARKER_BLUE = 'rgb(15, 37, 110)'
+const DARKER_BLUE = 'rgb(103, 39, 207)'
 const GREY = 'rgb(196, 198, 202)'
 
 const TestUserBadgeLink = () => {
