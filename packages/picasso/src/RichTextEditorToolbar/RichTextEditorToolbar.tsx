@@ -13,6 +13,13 @@ type Props = {
   disabled: boolean
   id: string
   format: FormatType
+  testIds?: {
+    headerSelect?: string
+    boldButton?: string
+    italicButton?: string
+    unorderedListButton?: string
+    orderedListButton?: string
+  }
   onBoldClick: ButtonHandlerType
   onItalicClick: ButtonHandlerType
   onHeaderChange: SelectOnChangeHandler
@@ -34,10 +41,12 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       onItalicClick,
       onHeaderChange,
       onUnorderedClick,
-      onOrderedClick
+      onOrderedClick,
+      testIds
     } = props
 
     const classes = useStyles(props)
+    const isHeadingFormat = format.header === '3'
 
     return (
       <Container id={`${id}toolbar`} ref={ref} className={classes.toolbar}>
@@ -53,20 +62,23 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             menuWidth='123px'
             className={classes.select}
             disabled={disabled}
+            data-testid={testIds?.headerSelect}
           />
         </Container>
         <Container className={classes.group}>
           <TextEditorButton
             icon={<Bold16 />}
             onClick={onBoldClick}
-            active={format.bold}
-            disabled={disabled}
+            active={isHeadingFormat ? false : format.bold}
+            disabled={isHeadingFormat || disabled}
+            data-testid={testIds?.boldButton}
           />
           <TextEditorButton
             icon={<Italic16 />}
             onClick={onItalicClick}
-            active={format.italic}
-            disabled={disabled}
+            active={isHeadingFormat ? false : format.italic}
+            disabled={isHeadingFormat || disabled}
+            data-testid={testIds?.italicButton}
           />
         </Container>
         <Container className={classes.group}>
@@ -75,12 +87,14 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             onClick={onUnorderedClick}
             active={format.list === 'bullet'}
             disabled={disabled}
+            data-testid={testIds?.unorderedListButton}
           />
           <TextEditorButton
             icon={<ListOrdered16 />}
             onClick={onOrderedClick}
             active={format.list === 'ordered'}
             disabled={disabled}
+            data-testid={testIds?.orderedListButton}
           />
         </Container>
       </Container>

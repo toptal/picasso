@@ -73,7 +73,9 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
   const handleHeader: SelectOnChangeHandler = event => {
     const header = convertHeaderToEditorValue(event.target.value)
 
-    sendFormatEvent({ header })
+    sendFormatEvent(
+      header ? { header, bold: false, italic: false } : { header }
+    )
     handleTextFormat({
       formatName: 'header',
       value: header

@@ -69,6 +69,11 @@ export interface Props extends BaseProps {
   testIds?: {
     wrapper?: string
     editor?: string
+    headerSelect?: string
+    boldButton?: string
+    italicButton?: string
+    unorderedListButton?: string
+    orderedListButton?: string
   }
 }
 
@@ -178,6 +183,13 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           onUnorderedClick={handleUnordered}
           onOrderedClick={handleOrdered}
           onHeaderChange={handleHeader}
+          testIds={{
+            headerSelect: testIds?.headerSelect,
+            boldButton: testIds?.boldButton,
+            italicButton: testIds?.italicButton,
+            unorderedListButton: testIds?.unorderedListButton,
+            orderedListButton: testIds?.orderedListButton
+          }}
         />
         <QuillEditor
           ref={editorRef}
