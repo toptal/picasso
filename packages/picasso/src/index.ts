@@ -83,8 +83,8 @@ export type { PromptModalProps } from './PromptModal'
 export { default as Radio } from './Radio'
 export type { RadioProps } from './Radio'
 export type { RadioGroupProps } from './RadioGroup'
-export { default as RichTextEditor } from '../../picasso/src/RichTextEditor'
-export type { RichTextEditorProps, RichTextEditorChangeHandler } from '../../picasso/src/RichTextEditor'
+export { default as RichTextEditor } from './RichTextEditor'
+export type { RichTextEditorProps, RichTextEditorChangeHandler } from './RichTextEditor'
 export { default as Select } from './Select'
 export type {
   SelectProps,
