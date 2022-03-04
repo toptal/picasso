@@ -66,7 +66,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
         <Button.Circular
           className={classes.toggle}
           variant='flat'
-          icon={showPassword ? <SvgEyeHidden16 /> : <SvgEye16 />}
+          icon={showPassword ? <SvgEye16 /> : <SvgEyeHidden16 />}
           onClick={handleToggleVisibilityClick}
           data-testid={rest.testIds?.toggle}
           disabled={disabled}

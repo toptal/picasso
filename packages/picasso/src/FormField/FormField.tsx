@@ -14,6 +14,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   error?: string
   /** The content of the Form.Field */
   children: ReactNode
+  /** Field requirements for this specific field */
+  fieldRequirements?: ReactNode
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoFormField' })
@@ -22,7 +24,15 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
   props,
   ref
 ) {
-  const { className, style, hint, children, error, ...rest } = props
+  const {
+    className,
+    style,
+    hint,
+    children,
+    error,
+    fieldRequirements,
+    ...rest
+  } = props
 
   const classes = useStyles()
 
@@ -37,6 +47,7 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
       {children}
       {error && <FormError className={classes.error}>{error}</FormError>}
       {hint && <FormHint className={classes.hint}>{hint}</FormHint>}
+      {fieldRequirements}
     </div>
   )
 })

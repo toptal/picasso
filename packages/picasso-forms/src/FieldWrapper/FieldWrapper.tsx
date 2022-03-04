@@ -51,6 +51,10 @@ export type Props<
     hideLabelRequiredDecoration?: boolean
     fieldType?: string
     children: (props: any) => React.ReactNode
+    renderFieldRequirements?: (props: {
+      value?: TInputValue
+      error?: boolean
+    }) => React.ReactNode
   }
 
 type FieldMeta<T> = FieldMetaState<T> & {
@@ -155,6 +159,7 @@ const FieldWrapper = <
     enableReset,
     onResetClick,
     'data-testid': dataTestId,
+    renderFieldRequirements,
     // FieldProps - https://final-form.org/docs/react-final-form/types/FieldProps
     afterSubmit,
     allowNull,
@@ -267,7 +272,15 @@ const FieldWrapper = <
   )
 
   return (
-    <PicassoForm.Field error={error} hint={hint} data-testid={dataTestId}>
+    <PicassoForm.Field
+      error={error}
+      hint={hint}
+      data-testid={dataTestId}
+      fieldRequirements={renderFieldRequirements?.({
+        value: input.value,
+        error: error
+      })}
+    >
       {!hideFieldLabel && label && (
         <PicassoForm.Label
           requiredDecoration={requiredDecoration}
