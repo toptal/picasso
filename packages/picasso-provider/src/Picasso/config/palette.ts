@@ -18,6 +18,7 @@ declare module '@material-ui/core/styles/createPalette' {
     green: SimplePaletteColorOptions
     yellow: SimplePaletteColorOptions
     red: SimplePaletteColorOptions
+    purple: SimplePaletteColorOptions
   }
 }
 
@@ -57,6 +58,9 @@ export const colors = {
     main: '#00cc83',
     dark: '#03b080',
     darker: '#05947c'
+  },
+  purple: {
+    main: '#6727cf'
   },
   common: {
     black: '#000',
