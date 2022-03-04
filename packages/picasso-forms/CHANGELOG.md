@@ -1,5 +1,24 @@
 # Change Log
 
+## 37.0.0
+
+### Minor Changes
+
+- [#2476](https://github.com/toptal/picasso/pull/2476) [`c2e71484`](https://github.com/toptal/picasso/commit/c2e714841c17d90cf075630a8c4bffab92741ff5) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### FieldWrapper
+
+  - add new prop to render passed field requirements
+
+  ### PasswordInput
+
+  - update the component to render field requirements
+
+### Patch Changes
+
+- Updated dependencies [[`c2e71484`](https://github.com/toptal/picasso/commit/c2e714841c17d90cf075630a8c4bffab92741ff5)]:
+  - @toptal/picasso@18.12.0
+
 ## 36.0.0
 
 ### Patch Changes
