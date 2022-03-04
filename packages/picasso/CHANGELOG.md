@@ -1,5 +1,15 @@
 # Change Log
 
+## 18.13.0
+
+### Minor Changes
+
+- [#2485](https://github.com/toptal/picasso/pull/2485) [`b8cf916d`](https://github.com/toptal/picasso/commit/b8cf916db7b4e64feb4afda3f1488690f0aefee4) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### Link
+
+  - Aligned color for visited state with BASE. Changed to `#6727cf`
+
 ## 18.12.0
 
 ### Minor Changes
