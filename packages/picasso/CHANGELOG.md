@@ -1,5 +1,19 @@
 # Change Log
 
+## 18.12.0
+
+### Minor Changes
+
+- [#2476](https://github.com/toptal/picasso/pull/2476) [`c2e71484`](https://github.com/toptal/picasso/commit/c2e714841c17d90cf075630a8c4bffab92741ff5) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### FieldRequirements
+
+  - add new input component to list requirements
+
+  ### FormField
+
+  - add new prop to pass field requirements as a ReactNode
+
 ## 18.11.0
 
 ### Minor Changes
