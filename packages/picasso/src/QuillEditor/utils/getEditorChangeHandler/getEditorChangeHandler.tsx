@@ -6,9 +6,11 @@ import { FormatType } from '../../types'
 type SelectionChangeArgs = [RangeStatic, RangeStatic, Sources]
 type TextChangeArgs = [Delta, Delta, Sources]
 
-// When we write heading and enter new line, we have normal text format.
-// We need to send this information to the state
-const handleNewLineAfterHeader = ({
+/**
+ * When we write block format and enter new empty line, we have unformated text format.
+ * We need to send this information to the state
+ */
+const handleNewLineAfterBlock = ({
   quill,
   onSelectionChange,
   latestDelta
@@ -17,14 +19,23 @@ const handleNewLineAfterHeader = ({
   onSelectionChange: (format: FormatType) => void
   latestDelta: Delta
 }) => {
-  const isHeaderFormatRemoved =
-    latestDelta.ops[latestDelta.ops.length - 1]?.attributes?.header === null
+  const latestAttributes =
+    latestDelta.ops[latestDelta.ops.length - 1]?.attributes
 
-  if (isHeaderFormatRemoved) {
+  const isHeaderFormatRemoved = latestAttributes?.header === null
+  const isListFormatRemoved = latestAttributes?.list === null
+
+  if (isHeaderFormatRemoved || isListFormatRemoved) {
     const format = quill.getFormat() as FormatType
 
-    onSelectionChange({ ...format, header: undefined })
+    onSelectionChange({ ...format, header: undefined, list: undefined })
   }
+}
+
+const isDeleteOperationOfSelection = (delta: Delta) => {
+  const delOperation = delta.ops[0].delete
+
+  return delOperation && delOperation > 1
 }
 
 const getEditorChangeHandler = (
@@ -46,7 +57,11 @@ const getEditorChangeHandler = (
         // for example from p > h3 | h3 > ol
         onSelectionChange(quill.getFormat() as FormatType)
       } else if (isFromUser) {
-        handleNewLineAfterHeader({ latestDelta, quill, onSelectionChange })
+        handleNewLineAfterBlock({ latestDelta, quill, onSelectionChange })
+
+        if (isDeleteOperationOfSelection(latestDelta)) {
+          onSelectionChange(quill.getFormat() as FormatType)
+        }
       }
     }
   }

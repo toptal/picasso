@@ -7,16 +7,22 @@ import { mount } from '@cypress/react'
 import { RichTextEditor, RichTextEditorProps, Container } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
+const headerSelect = 'headerSelect'
+const boldButton = 'boldButton'
+const italicButton = 'italicButton'
+const ulButton = 'ulButton'
+const olButton = 'olButton'
+
 const defaultProps = {
   id: 'foo',
   onChange: () => {},
   placeholder: 'placeholder',
   testIds: {
-    headerSelect: 'headerSelect',
-    boldButton: 'boldButton',
-    italicButton: 'italicButton',
-    unorderedListButton: 'unorderedListButton',
-    orderedListButton: 'orderedListButton'
+    headerSelect,
+    boldButton,
+    italicButton,
+    unorderedListButton: ulButton,
+    orderedListButton: olButton
   }
 }
 
@@ -30,13 +36,13 @@ const renderEditor = (props: RichTextEditorProps) => (
   </TestingPicasso>
 )
 
-const buttonIsActive = (
+const buttonShouldBeActive = (
   button: Cypress.Chainable<JQuery<HTMLButtonElement>>
 ) => {
   button.should('have.css', 'background-color').and('eq', 'rgb(69, 80, 101)')
 }
 
-const buttonIsNotActive = (
+const buttonShouldNotBeActive = (
   button: Cypress.Chainable<JQuery<HTMLButtonElement>>
 ) => {
   button.should('have.css', 'background-color').and('eq', 'rgba(0, 0, 0, 0)')
@@ -50,6 +56,7 @@ describe('RichTextEditor', () => {
   })
 
   it('handles keybindings correctly', () => {
+    // render the editor
     mount(renderEditor(defaultProps))
 
     const content = {
@@ -58,27 +65,21 @@ describe('RichTextEditor', () => {
       bold_italic: 'text with bold and italic format'
     }
 
+    // set aliases
     cy.get(editorSelector).as('editor')
-    cy.get(`[data-testid="${defaultProps.testIds.boldButton}"]`).as(
-      'boldButton'
-    )
-    cy.get(`[data-testid="${defaultProps.testIds.italicButton}"]`).as(
-      'italicButton'
-    )
+    cy.get(`[data-testid="${boldButton}"]`).as('boldButton')
+    cy.get(`[data-testid="${italicButton}"]`).as('italicButton')
 
+    // test bold
     cy.get('@editor').type('{ctrl}b')
+    buttonShouldBeActive(cy.get('@boldButton'))
+    cy.get('@editor').type(content.bold).type('{enter}')
+    cy.contains(content.bold).should('have.css', 'font-weight').and('eq', '600')
 
-    buttonIsActive(cy.get('@boldButton'))
-    cy.get('@editor')
-      .type(content.bold)
-      .type('{enter}')
-    cy.contains(content.bold)
-      .should('have.css', 'font-weight')
-      .and('eq', '600')
-
+    // test bold italic
     cy.get('@editor').type('{ctrl}i')
-    buttonIsActive(cy.get('@boldButton'))
-    buttonIsActive(cy.get('@italicButton'))
+    buttonShouldBeActive(cy.get('@boldButton'))
+    buttonShouldBeActive(cy.get('@italicButton'))
 
     cy.get('@editor').type(content.bold_italic)
     cy.contains(content.bold_italic)
@@ -89,10 +90,11 @@ describe('RichTextEditor', () => {
       .should('have.css', 'font-style')
       .and('eq', 'italic')
 
+    // test italic
     cy.get('@editor').type('{ctrl}b')
     cy.get('@editor').type(`{enter}${content.italic}`)
-    buttonIsNotActive(cy.get('@boldButton'))
-    buttonIsActive(cy.get('@italicButton'))
+    buttonShouldNotBeActive(cy.get('@boldButton'))
+    buttonShouldBeActive(cy.get('@italicButton'))
 
     cy.contains(content.italic)
       .should('have.css', 'font-style')
@@ -100,6 +102,7 @@ describe('RichTextEditor', () => {
   })
 
   it('formats text correctly when changed in toolbar', () => {
+    // render the editor
     mount(renderEditor(defaultProps))
 
     // resize the editor
@@ -111,29 +114,17 @@ describe('RichTextEditor', () => {
       }
     })
 
+    // set aliases
     cy.get(editorSelector).as('editor')
-
-    cy.get(`[data-testid="${defaultProps.testIds.headerSelect}"]`).as(
-      'headerSelect'
-    )
-    cy.get(`[data-testid="${defaultProps.testIds.boldButton}"]`).as(
-      'boldButton'
-    )
-    cy.get(`[data-testid="${defaultProps.testIds.italicButton}"]`).as(
-      'italicButton'
-    )
-    cy.get(`[data-testid="${defaultProps.testIds.unorderedListButton}"]`).as(
-      'ulButton'
-    )
-    cy.get(`[data-testid="${defaultProps.testIds.orderedListButton}"]`).as(
-      'olButton'
-    )
+    cy.get(`[data-testid="${headerSelect}"]`).as('headerSelect')
+    cy.get(`[data-testid="${boldButton}"]`).as('boldButton')
+    cy.get(`[data-testid="${italicButton}"]`).as('italicButton')
+    cy.get(`[data-testid="${ulButton}"]`).as('ulButton')
+    cy.get(`[data-testid="${olButton}"]`).as('olButton')
 
     cy.get('@editor').realClick()
     cy.get('@headerSelect').realClick()
-    cy.get('span')
-      .contains('heading')
-      .realClick()
+    cy.get('span').contains('heading').realClick()
     cy.get('@editor').realType('Heading text{enter}')
 
     cy.get('@editor').realType('normal text{enter}')
@@ -160,5 +151,118 @@ describe('RichTextEditor', () => {
     cy.get('@editor').realType('ordered list item{enter}')
 
     cy.get('body').happoScreenshot()
+  })
+
+  describe('select all and delete', () => {
+    it('removes header format', () => {
+      // render editor
+      mount(renderEditor(defaultProps))
+
+      // set aliases
+      cy.get(editorSelector).as('editor')
+      cy.get(`[data-testid="${headerSelect}"]`).as('headerSelect')
+
+      // add heading to editor
+      cy.get('@editor').realClick()
+      cy.get('@headerSelect').realClick()
+      cy.get('span').contains('heading').realClick()
+      cy.get('@editor').type('Heading example{enter}')
+
+      // remove all
+      cy.get('@editor').type('{selectall}{del}')
+      cy.get('.ql-blank').should('exist')
+      cy.get('@headerSelect').find('input').should('have.value', 'normal')
+    })
+
+    it('removes lists', () => {
+      // render editor
+      mount(renderEditor(defaultProps))
+
+      // set aliases
+      cy.get(editorSelector).as('editor')
+      cy.get(`[data-testid="${ulButton}"]`).as('ulButton')
+      cy.get(`[data-testid="${olButton}"]`).as('olButton')
+      cy.get(`[data-testid="${boldButton}"]`).as('boldButton')
+      cy.get(`[data-testid="${italicButton}"]`).as('italicButton')
+
+      // add formatted text with lists
+      cy.get('@editor').type('normal text')
+      cy.get('@boldButton').realClick()
+      cy.get('@editor').type(' bold text{enter}')
+      cy.get('@olButton').realClick()
+      cy.get('@editor').type('list item{enter}')
+
+      // remove all
+      cy.get('@editor').type('{selectall}{del}')
+
+      // move mouse from ol button
+      cy.get('@editor').realHover()
+
+      cy.get('.ql-blank').should('exist')
+      buttonShouldNotBeActive(cy.get('@olButton'))
+      buttonShouldNotBeActive(cy.get('@boldButton'))
+    })
+  })
+
+  describe('removes block format on new line', () => {
+    it('removes header', () => {
+      // render editor
+      mount(renderEditor(defaultProps))
+
+      // set aliases
+      cy.get(editorSelector).as('editor')
+      cy.get(`[data-testid="${headerSelect}"]`).as('headerSelect')
+
+      // add heading to editor
+      cy.get('@editor').realClick()
+      cy.get('@headerSelect').realClick()
+      cy.get('span').contains('heading').realClick()
+      cy.get('@editor').type('Heading example{enter}')
+
+      // on new line we have unformatted text
+      cy.get('@headerSelect').find('input').should('have.value', 'normal')
+    })
+    it('removes list', () => {
+      // render editor
+      mount(renderEditor(defaultProps))
+
+      // set aliases
+      cy.get(editorSelector).as('editor')
+      cy.get(`[data-testid="${ulButton}"]`).as('ulButton')
+      cy.get(`[data-testid="${olButton}"]`).as('olButton')
+
+      // add ul
+      cy.get('@editor').realClick()
+      cy.get('@ulButton').realClick()
+      cy.get('@editor').realHover()
+      // first enter triggers new line with list item, another enter removes the format
+      cy.get('@editor').type('list item{enter}{enter}')
+      buttonShouldNotBeActive(cy.get('@ulButton'))
+
+      // add ol
+      cy.get('@editor').realClick()
+      cy.get('@olButton').realClick()
+      cy.get('@editor').realHover()
+      // first enter triggers new line with list item, another enter removes the format
+      cy.get('@editor').type('list item{enter}{enter}')
+      buttonShouldNotBeActive(cy.get('@olButton'))
+    })
+    it('keeps bold', () => {
+      // render editor
+      mount(renderEditor(defaultProps))
+
+      // set aliases
+      cy.get(editorSelector).as('editor')
+      cy.get(`[data-testid="${boldButton}"]`).as('boldButton')
+
+      // add bold to editor
+      cy.get('@editor').realClick()
+      cy.get('@boldButton').realClick()
+      cy.get('@editor').realHover()
+      cy.get('@editor').type('Button example{enter}')
+
+      // on new line we have bold format preserved
+      buttonShouldBeActive(cy.get('@boldButton'))
+    })
   })
 })
