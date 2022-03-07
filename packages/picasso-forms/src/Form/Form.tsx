@@ -4,7 +4,11 @@ import {
   FormProps as FinalFormProps
 } from 'react-final-form'
 import { FormApi, SubmissionErrors, getIn, setIn, AnyObject } from 'final-form'
-import { Form as PicassoForm, Container } from '@toptal/picasso'
+import {
+  Form as PicassoForm,
+  Container,
+  FieldRequirements
+} from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
 import Autocomplete from '../Autocomplete'
@@ -33,6 +37,7 @@ import {
   FormContextProps,
   createFormContext
 } from './FormContext'
+import PasswordInput from '../PasswordInput'
 
 export type Props<T = AnyObject> = FinalFormProps<T> & {
   disableScrollOnError?: boolean
@@ -184,5 +189,7 @@ Form.ConfigProvider = FormConfigContext.Provider
 Form.Switch = Switch
 Form.Rating = Rating
 Form.Dropzone = Dropzone
+Form.PasswordInput = PasswordInput
+Form.FieldRequirements = FieldRequirements
 
 export default Form
