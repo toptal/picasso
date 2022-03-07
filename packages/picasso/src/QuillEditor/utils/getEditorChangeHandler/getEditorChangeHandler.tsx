@@ -45,9 +45,7 @@ const getEditorChangeHandler = (
         // this event is triggered when format of block element is changed
         // for example from p > h3 | h3 > ol
         onSelectionChange(quill.getFormat() as FormatType)
-      }
-
-      if (isFromUser) {
+      } else if (isFromUser) {
         handleNewLineAfterHeader({ latestDelta, quill, onSelectionChange })
       }
     }
