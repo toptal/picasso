@@ -126,7 +126,9 @@ describe('RichTextEditor', () => {
 
     cy.get('@editor').realClick()
     cy.get('@headerSelect').realClick()
-    cy.get('span').contains('heading').realClick()
+    cy.get('span')
+      .contains('heading')
+      .realClick()
     cy.get('@editor').realType('Heading text{enter}')
 
     cy.get('@editor').realType('normal text{enter}')
