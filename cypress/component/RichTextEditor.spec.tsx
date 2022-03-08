@@ -271,4 +271,55 @@ describe('RichTextEditor', () => {
       buttonShouldBeActive(cy.get('@boldButton'))
     })
   })
+
+  describe.only('switching between block formats', () => {
+    it('keeps only one block element active', () => {
+      // render editor
+      mount(renderEditor(defaultProps))
+
+      // set aliases
+      cy.get(editorSelector).as('editor')
+      cy.get(`[data-testid="${headerSelect}"]`).as('headerSelect')
+      cy.get(`[data-testid="${boldButton}"]`).as('boldButton')
+      cy.get(`[data-testid="${italicButton}"]`).as('italicButton')
+      cy.get(`[data-testid="${olButton}"]`).as('olButton')
+      cy.get(`[data-testid="${ulButton}"]`).as('ulButton')
+      // set heading format
+      cy.get('@editor').realClick()
+      cy.get('@headerSelect').realClick()
+      cy.get('span')
+        .contains('heading')
+        .realClick()
+      cy.get('@editor').type('foobar')
+      cy.get('@headerSelect')
+        .find('input')
+        .should('have.value', 'heading')
+
+      // change to ul
+      cy.get('@ulButton').realClick()
+      cy.get('@headerSelect')
+        .find('input')
+        .should('have.value', 'normal')
+      buttonShouldBeActive(cy.get('@ulButton'))
+
+      // change to ol
+      cy.get('@olButton').realClick()
+      cy.get('@headerSelect')
+        .find('input')
+        .should('have.value', 'normal')
+      buttonShouldNotBeActive(cy.get('@ulButton'))
+      buttonShouldBeActive(cy.get('@olButton'))
+
+      // change back to heading
+      cy.get('@headerSelect').realClick()
+      cy.get('span')
+        .contains('heading')
+        .realClick()
+      cy.get('@headerSelect')
+        .find('input')
+        .should('have.value', 'heading')
+      buttonShouldNotBeActive(cy.get('@ulButton'))
+      buttonShouldNotBeActive(cy.get('@olButton'))
+    })
+  })
 })
