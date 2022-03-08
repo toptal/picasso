@@ -321,4 +321,25 @@ describe('RichTextEditor', () => {
         .and('not.include', 'focused')
     })
   })
+
+  describe('toolbar', () => {
+    it('disables bold and italic when header format is active', () => {
+      mount(renderEditor(defaultProps))
+      setAliases()
+
+      cy.get('@editor').realClick()
+
+      setSelectValue(cy.get('@headerSelect'), 'heading')
+      cy.get('@boldButton').should('have.attr', 'disabled')
+      cy.get('@italicButton').should('have.attr', 'disabled')
+      cy.get('@ulButton').should('not.have.attr', 'disabled')
+      cy.get('@olButton').should('not.have.attr', 'disabled')
+
+      setSelectValue(cy.get('@headerSelect'), 'normal')
+      cy.get('@boldButton').should('not.have.attr', 'disabled')
+      cy.get('@italicButton').should('not.have.attr', 'disabled')
+      cy.get('@ulButton').should('not.have.attr', 'disabled')
+      cy.get('@olButton').should('not.have.attr', 'disabled')
+    })
+  })
 })
