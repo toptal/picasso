@@ -2,4 +2,7 @@
 '@toptal/picasso-provider': patch
 ---
 
-Updated PicassoProvider to include new purple color
+---
+### PicassoProvider
+
+- added new purple.main color in palette
