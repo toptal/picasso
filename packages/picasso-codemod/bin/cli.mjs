@@ -1,4 +1,5 @@
 import path from 'path'
+import fs from 'fs'
 import { createRequire } from 'module'
 import { fileURLToPath } from 'url'
 import meow from 'meow'
@@ -24,39 +25,34 @@ const paths = {
 }
 
 const findFilesInMonorepo = () =>
-  execaSync(
-    'find',
-    [
-      '.',
-      '-name',
-      '*.tsx',
-      '(',
-      ...['-path', paths.monorepo.libs],
-      ...['-or', '-path', paths.monorepo.apps],
-      ...['-or', '-path', paths.monorepo.hosts],
-      ...['-or', '-path', paths.monorepo.namespaceApps],
-      ...['-or', '-path', paths.monorepo.namespaceLibs],
-      ')'
-    ]
-  )
+  execaSync('find', [
+    '.',
+    '-name',
+    '*.tsx',
+    '(',
+    ...['-path', paths.monorepo.libs],
+    ...['-or', '-path', paths.monorepo.apps],
+    ...['-or', '-path', paths.monorepo.hosts],
+    ...['-or', '-path', paths.monorepo.namespaceApps],
+    ...['-or', '-path', paths.monorepo.namespaceLibs],
+    ')'
+  ])
 
 const checkIsMonorepo = async () => {
-  const result = await execa(
-    'yarn',
-    [
-      'workspaces',
-      'info'
-    ],
-    {
-      reject: false
-    }
-  )
+  const result = await execa('yarn', ['workspaces', 'info'], {
+    reject: false
+  })
 
   return result.exitCode === 0
 }
 
+const findCodemodPath = codemod =>
+  ['ts', 'js']
+    .map(ext => path.join(codemodsDirectory, `${codemod}/index.${ext}`))
+    .find(fs.existsSync)
+
 const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
-  const codemodPath = path.join(codemodsDirectory, `${codemod}/index.ts`)
+  const codemodPath = findCodemodPath(codemod)
   const isMonorepo = await checkIsMonorepo()
 
   let args = []
@@ -71,8 +67,7 @@ const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
 
   if (inputFiles.length > 0) {
     args = args.concat(inputFiles)
-  }
-  else if (!isMonorepo) {
+  } else if (!isMonorepo) {
     const files = globbySync(paths.spa)
 
     args = args.concat(files)
@@ -90,14 +85,10 @@ const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
 
   console.log('\nExecuting command: jscodeshift %s\n', args.join(' '))
 
-  const result = execaSync(
-    jscodeshift,
-    args,
-    {
-      stdout: 'inherit',
-      ...options
-    }
-  )
+  const result = execaSync(jscodeshift, args, {
+    stdout: 'inherit',
+    ...options
+  })
 
   if (result.error) {
     throw result.error
@@ -105,7 +96,8 @@ const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
 }
 
 export const run = () => {
-  const cli = meow(`
+  const cli = meow(
+    `
     Usage
       $ npx @toptal/picasso-codemod <codemod> [<files>]
         codemod    example: v17.0.0/typography-sizes

@@ -5,7 +5,7 @@ const findImportsFor = (root, j) => (importPath, exportName) =>
     j.ImportDeclaration,
     ({ source, specifiers }) =>
       source.value === importPath &&
-      specifiers.some(({ imported }) => imported.name === exportName)
+      specifiers.some(({ imported }) => imported?.name === exportName)
   )
 
 const transformPicassoMain = (root, j) => {
