@@ -1,7 +1,8 @@
 import React from 'react'
 import {
   Rating as PicassoRating,
-  RatingStarsProps as PicassoRatingStarsProps
+  RatingStarsProps as PicassoRatingStarsProps,
+  RatingThumbsProps as PicassoRatingThumbsProps
 } from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
@@ -15,8 +16,18 @@ const Stars = (props: RatingStarsProps) => (
   </FieldWrapper>
 )
 
+export type RatingThumbsProps = PicassoRatingThumbsProps &
+  FieldProps<PicassoRatingThumbsProps['value']>
+
+const Thumbs = (props: RatingThumbsProps) => (
+  <FieldWrapper<PicassoRatingThumbsProps> {...props}>
+    {inputProps => <PicassoRating.Thumbs {...inputProps} />}
+  </FieldWrapper>
+)
+
 export const Rating = {
-  Stars
+  Stars,
+  Thumbs
 }
 
 export default Rating
