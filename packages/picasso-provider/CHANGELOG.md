@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.7.0
+
+### Minor Changes
+
+- [#2494](https://github.com/toptal/picasso/pull/2494) [`d82ed00d`](https://github.com/toptal/picasso/commit/d82ed00d8ab94b77654f2b3be4776aa514c44daa) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### PicassoProvider
+
+  - added new purple.main color in palette
+
 ## 0.6.1
 
 ### Patch Changes
