@@ -1,11 +1,11 @@
 /* eslint-disable promise/catch-or-return */
 /* eslint-disable promise/always-return */
 /* eslint-disable max-statements */
-// <reference types="cypress" />
 import React from 'react'
 import { mount } from '@cypress/react'
 import { RichTextEditor, RichTextEditorProps, Container } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
+import { isOn } from '@cypress/skip-test'
 
 const headerSelect = 'headerSelect'
 const boldButton = 'boldButton'
@@ -96,7 +96,11 @@ describe('RichTextEditor', () => {
     }
 
     // test bold
-    cy.get('@editor').type('{ctrl}b')
+    if (isOn('mac')) {
+      cy.get('@editor').type('{cmd}b')
+    } else {
+      cy.get('@editor').type('{ctrl}b')
+    }
     buttonShouldBeActive(cy.get('@boldButton'))
     cy.get('@editor')
       .type(content.bold)
@@ -106,7 +110,11 @@ describe('RichTextEditor', () => {
       .should('include.html', 'strong')
 
     // test bold italic
-    cy.get('@editor').type('{ctrl}i')
+    if (isOn('mac')) {
+      cy.get('@editor').type('{cmd}i')
+    } else {
+      cy.get('@editor').type('{ctrl}i')
+    }
     buttonShouldBeActive(cy.get('@boldButton'))
     buttonShouldBeActive(cy.get('@italicButton'))
 
@@ -118,7 +126,11 @@ describe('RichTextEditor', () => {
       .should('include.html', 'strong')
 
     // test italic
-    cy.get('@editor').type('{ctrl}b')
+    if (isOn('mac')) {
+      cy.get('@editor').type('{cmd}b')
+    } else {
+      cy.get('@editor').type('{ctrl}b')
+    }
     cy.get('@editor').type(`{enter}${content.italic}`)
     buttonShouldNotBeActive(cy.get('@boldButton'))
     buttonShouldBeActive(cy.get('@italicButton'))

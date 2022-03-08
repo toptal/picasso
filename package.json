@@ -55,6 +55,7 @@
     "@changesets/changelog-github": "^0.4.1",
     "@changesets/cli": "^2.17.0",
     "@cypress/react": "^5.10.3",
+    "@cypress/skip-test": "^2.6.1",
     "@cypress/webpack-dev-server": "^1.7.0",
     "@cypress/webpack-preprocessor": "^5.9.1",
     "@storybook/addon-a11y": "^6.3.12",
