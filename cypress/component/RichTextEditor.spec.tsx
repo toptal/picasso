@@ -300,4 +300,25 @@ describe('RichTextEditor', () => {
       buttonShouldNotBeActive(cy.get('@olButton'))
     })
   })
+
+  describe('disabled editor', () => {
+    it('renders disabled', () => {
+      // render editor
+      mount(renderEditor({ ...defaultProps, disabled: true }))
+
+      cy.get('body').happoScreenshot()
+    })
+
+    it('cannot be focused', () => {
+      // render editor
+      mount(renderEditor({ ...defaultProps, disabled: true }))
+      setAliases()
+
+      cy.get('@editor').realClick()
+
+      cy.get('@wrapper')
+        .should('have.attr', 'class')
+        .and('not.include', 'focused')
+    })
+  })
 })
