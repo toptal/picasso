@@ -50,6 +50,22 @@ const buttonShouldNotBeActive = (
   button.should('have.attr', 'class').and('not.include', 'activeButton')
 }
 
+const selectShouldHaveValue = (
+  select: Cypress.Chainable<JQuery<HTMLButtonElement>>,
+  value: string
+) => {
+  select.find('input').should('have.value', value)
+}
+
+const setSelectValue = (
+  select: Cypress.Chainable<JQuery<HTMLButtonElement>>,
+  value: string
+) => {
+  select.realClick()
+  cy.get('span')
+    .contains(value)
+    .realClick()
+}
 const setAliases = () => {
   // set aliases
   cy.get(editorSelector).as('editor')
@@ -127,10 +143,7 @@ describe('RichTextEditor', () => {
     })
 
     cy.get('@editor').realClick()
-    cy.get('@headerSelect').realClick()
-    cy.get('span')
-      .contains('heading')
-      .realClick()
+    setSelectValue(cy.get('@headerSelect'), 'heading')
     cy.get('@editor').realType('Heading text{enter}')
 
     cy.get('@editor').realType('normal text{enter}')
@@ -167,18 +180,13 @@ describe('RichTextEditor', () => {
 
       // add heading to editor
       cy.get('@editor').realClick()
-      cy.get('@headerSelect').realClick()
-      cy.get('span')
-        .contains('heading')
-        .realClick()
+      setSelectValue(cy.get('@headerSelect'), 'heading')
       cy.get('@editor').type('Heading example{enter}')
 
       // remove all
       cy.get('@editor').type('{selectall}{del}')
       cy.get('.ql-blank').should('exist')
-      cy.get('@headerSelect')
-        .find('input')
-        .should('have.value', 'normal')
+      selectShouldHaveValue(cy.get('@headerSelect'), 'normal')
     })
 
     it('removes lists', () => {
@@ -210,16 +218,11 @@ describe('RichTextEditor', () => {
 
       // add heading to editor
       cy.get('@editor').realClick()
-      cy.get('@headerSelect').realClick()
-      cy.get('span')
-        .contains('heading')
-        .realClick()
+      setSelectValue(cy.get('@headerSelect'), 'heading')
       cy.get('@editor').type('Heading example{enter}')
 
       // on new line we have unformatted text
-      cy.get('@headerSelect')
-        .find('input')
-        .should('have.value', 'normal')
+      selectShouldHaveValue(cy.get('@headerSelect'), 'normal')
     })
     it('removes list', () => {
       // render editor
@@ -263,38 +266,24 @@ describe('RichTextEditor', () => {
 
       // set heading format
       cy.get('@editor').realClick()
-      cy.get('@headerSelect').realClick()
-      cy.get('span')
-        .contains('heading')
-        .realClick()
+      setSelectValue(cy.get('@headerSelect'), 'heading')
       cy.get('@editor').type('foobar')
-      cy.get('@headerSelect')
-        .find('input')
-        .should('have.value', 'heading')
+      selectShouldHaveValue(cy.get('@headerSelect'), 'heading')
 
       // change to ul
       cy.get('@ulButton').realClick()
-      cy.get('@headerSelect')
-        .find('input')
-        .should('have.value', 'normal')
+      selectShouldHaveValue(cy.get('@headerSelect'), 'normal')
       buttonShouldBeActive(cy.get('@ulButton'))
 
       // change to ol
       cy.get('@olButton').realClick()
-      cy.get('@headerSelect')
-        .find('input')
-        .should('have.value', 'normal')
+      selectShouldHaveValue(cy.get('@headerSelect'), 'normal')
       buttonShouldNotBeActive(cy.get('@ulButton'))
       buttonShouldBeActive(cy.get('@olButton'))
 
       // change back to heading
-      cy.get('@headerSelect').realClick()
-      cy.get('span')
-        .contains('heading')
-        .realClick()
-      cy.get('@headerSelect')
-        .find('input')
-        .should('have.value', 'heading')
+      setSelectValue(cy.get('@headerSelect'), 'heading')
+      selectShouldHaveValue(cy.get('@headerSelect'), 'heading')
       buttonShouldNotBeActive(cy.get('@ulButton'))
       buttonShouldNotBeActive(cy.get('@olButton'))
     })
