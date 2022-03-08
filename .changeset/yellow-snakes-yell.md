@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso-provider': patch
+'@toptal/picasso-provider': minor
 ---
 
 ---
