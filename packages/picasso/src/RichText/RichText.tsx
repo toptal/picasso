@@ -6,7 +6,11 @@ import Container from '../Container'
 import useRichText from './hooks/useRichText'
 
 export interface Props extends BaseProps {
-  value: ASTType
+  /** If output of RichTextEditor is already in database, always use AST.
+   * in case we need to showcase preview before sending data to BE, we can pass
+   * the HTML output
+   */
+  value: ASTType | string
 }
 
 export const RichText = ({
