@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useCallback, useState } from 'react'
 import { mount } from '@cypress/react'
 import { Container } from '@toptal/picasso'
@@ -129,7 +130,7 @@ const FormExample = () => {
           />
 
           {Array.from({ length: 10 }).map((_, index) => (
-            <Container top='large' bottom='large' key={String(index)}>
+            <Container top='large' bottom='large' key={index}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime,
               assumenda suscipit amet ad libero, explicabo eaque fugiat sapiente
               beatae, earum consequatur enim. Esse aut unde possimus quam illum
