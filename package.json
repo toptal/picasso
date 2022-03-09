@@ -29,6 +29,7 @@
     "test:cypress:open": "yarn build:package && yarn test:setup cypress open-ct",
     "test:setup": "cross-env TZ=UTC NODE_ENV=test",
     "test:unit": "yarn test:setup jest",
+    "test:unit:debug": "yarn test:setup cross-env NODE_OPTIONS=--inspect-brk jest",
     "test:unit:ci": "yarn test:unit --maxWorkers=4 --ci",
     "test:unit:watch": "yarn test:unit --watch",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
