@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react'
 import FormGroup, { FormGroupProps } from '@material-ui/core/FormGroup'
 import { GridSize } from '@material-ui/core/Grid'
@@ -58,7 +59,7 @@ const CheckboxGroup = (props: Props) => {
       >
         {children.map((child, index) => (
           <Grid.Item
-            key={String(index)}
+            key={index}
             className={gridItemClass}
             small={small}
             medium={medium}
