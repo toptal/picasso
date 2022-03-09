@@ -9,6 +9,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import hastUtilToHtml from 'hast-util-to-html'
+import hastSanitize from 'hast-util-sanitize'
 
 import Container from '../Container'
 import QuillEditor from '../QuillEditor'
@@ -135,8 +136,11 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     })
 
     const defaultValueInHtml = useMemo(
-      () => (defaultValue ? hastUtilToHtml(defaultValue) : defaultValue),
       // this effects needs to happen only once on first render
+      () =>
+        defaultValue
+          ? hastUtilToHtml(hastSanitize(defaultValue))
+          : defaultValue,
       /* eslint-disable-next-line */
       []
     )

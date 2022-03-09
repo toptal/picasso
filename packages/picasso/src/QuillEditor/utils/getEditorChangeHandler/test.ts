@@ -4,7 +4,7 @@ import Delta from 'quill-delta'
 
 import getEditorChangeHandler from './getEditorChangeHandler'
 
-const deltaMock = new Delta()
+const deltaMock = new Delta().insert('foo')
 
 describe('getEditorChangeHandler', () => {
   describe('text-change event', () => {
