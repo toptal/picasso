@@ -1,6 +1,4 @@
 import toH from 'hast-to-hyperscript'
-import hastFromDom from 'hast-util-from-dom'
-import hastSanitize from 'hast-util-sanitize'
 import React, {
   useMemo,
   createElement,
@@ -10,7 +8,7 @@ import React, {
   FC
 } from 'react'
 
-import { ASTType, ElementType } from '../../types'
+import { ASTType } from '../../types'
 import Typography from '../../../Typography'
 import Container from '../../../Container'
 import List from '../../../List'
@@ -71,28 +69,14 @@ const picassoMapper = (child: ReactNode): ReactNode => {
   return createElement(type, { key: child.key }, mappedChildren)
 }
 
-const useRichText = (value: ASTType | string): ReactNode[] | ReactNode => {
+const useRichText = (value: ASTType): ReactNode[] | ReactNode => {
   const mappedTextNodes = useMemo(() => {
-    let ast: ASTType
-
-    if (typeof value === 'string') {
-      const dom = new DOMParser().parseFromString(value, 'text/html')
-      const domHast = hastSanitize(hastFromDom(dom.body)) as ElementType
-
-      ast = {
-        type: 'root',
-        children: domHast.children
-      }
-    } else {
-      ast = value
-    }
-
-    if (!ast.children) {
+    if (!value.children) {
       return null
     }
 
-    const isSingleChild = ast.children.length === 1
-    const reactElement = toH(createElement, ast) as ReactElement
+    const isSingleChild = value.children.length === 1
+    const reactElement = toH(createElement, value) as ReactElement
 
     if (isSingleChild) {
       return picassoMapper(reactElement)

@@ -15,6 +15,7 @@ import {
   documentable,
   disableUnsupportedProps,
   sum,
+  htmlToHast,
   isBrowser
 } from '@toptal/picasso/utils'
 import { render, act } from '@toptal/picasso/test-utils'
@@ -230,7 +231,7 @@ describe('useWidthOf', () => {
     }
     const element = {
       getBoundingClientRect: () => rect
-    }
+    } as ReferenceObject
 
     const { queryByText } = render(<TestUseWidthOf element={element} />)
     const message = queryByText('100px')
@@ -306,5 +307,41 @@ describe('isBrowser', () => {
     windowSpy.mockImplementation(() => ({}))
 
     expect(isBrowser()).toBe(true)
+  })
+})
+
+describe('htmlToHast', () => {
+  describe('invalid HTML string', () => {
+    it('returns null', () => {
+      const html = 'foobar'
+      const result = htmlToHast(html)
+
+      expect(result).toEqual({ type: 'root', children: undefined })
+    })
+  })
+
+  describe('valid HTML string', () => {
+    it('returns valid Picasso components', () => {
+      const html = '<h3>heading</h3><p>normal</p>'
+      const result = htmlToHast(html)
+
+      expect(result).toEqual({
+        type: 'root',
+        children: [
+          {
+            type: 'element',
+            tagName: 'h3',
+            properties: {},
+            children: [{ type: 'text', value: 'heading' }]
+          },
+          {
+            type: 'element',
+            tagName: 'p',
+            properties: {},
+            children: [{ type: 'text', value: 'normal' }]
+          }
+        ]
+      })
+    })
   })
 })
