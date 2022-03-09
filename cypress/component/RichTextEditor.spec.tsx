@@ -1,6 +1,8 @@
 /* eslint-disable promise/catch-or-return */
 /* eslint-disable promise/always-return */
 /* eslint-disable max-statements */
+/* eslint-disable max-nested-callbacks */
+/* eslint-disable max-lines-per-function */
 import React from 'react'
 import { mount } from '@cypress/react'
 import { RichTextEditor, RichTextEditorProps, Container } from '@toptal/picasso'
@@ -319,6 +321,45 @@ describe('RichTextEditor', () => {
       cy.get('@wrapper')
         .should('have.attr', 'class')
         .and('not.include', 'focused')
+    })
+  })
+
+  describe('toolbar', () => {
+    it('disables bold and italic when header format is active', () => {
+      mount(renderEditor(defaultProps))
+      setAliases()
+
+      cy.get('@editor').realClick()
+
+      setSelectValue(cy.get('@headerSelect'), 'heading')
+      cy.get('@boldButton').should('have.attr', 'disabled')
+      cy.get('@italicButton').should('have.attr', 'disabled')
+      cy.get('@ulButton').should('not.have.attr', 'disabled')
+      cy.get('@olButton').should('not.have.attr', 'disabled')
+
+      setSelectValue(cy.get('@headerSelect'), 'normal')
+      cy.get('@boldButton').should('not.have.attr', 'disabled')
+      cy.get('@italicButton').should('not.have.attr', 'disabled')
+      cy.get('@ulButton').should('not.have.attr', 'disabled')
+      cy.get('@olButton').should('not.have.attr', 'disabled')
+    })
+
+    it.only('does not open selectbox on click when toolbar is disabled', () => {
+      mount(renderEditor(defaultProps))
+      setAliases()
+
+      cy.on('fail', error => {
+        expect(error.message).to.include('prevents user mouse interaction')
+      })
+
+      cy.get('@headerSelect')
+        .find('input')
+        .should('have.attr', 'disabled')
+      cy.get('@headerSelect').click({ timeout: 100 })
+      // the click should not open select but just simply trigger focus on whole editor
+      cy.get('@headerSelect')
+        .find('input')
+        .should('not.have.attr', 'disabled')
     })
   })
 })
