@@ -149,9 +149,14 @@ const Example = () => {
         }}
         getDisplayValue={getAutocompleteDisplayValue}
       />
-      <Form.Rating
+      <Form.Rating.Stars
         name='rating'
         label='How much do you love Picasso?'
+        required
+      />
+      <Form.Rating.Thumbs
+        name='thumbs'
+        label='Would you recommend picasso?'
         required
       />
       <Form.FileInput

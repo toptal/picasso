@@ -127,7 +127,7 @@ export type { SwitchProps } from './Switch'
 export { default as Quote } from './Quote'
 export type { QuoteProps } from './Quote'
 export { default as Rating } from './Rating'
-export type { RatingProps } from './Rating'
+export type { RatingStarsProps, RatingThumbsProps } from './Rating'
 export {
   default as TreeView,
   TreeViewContainer,
@@ -188,7 +188,6 @@ export { default as Timeline } from './Timeline'
 export type { TimelineProps } from './Timeline'
 export { default as RichText } from './RichText'
 export type { RichTextProps, ASTType } from './RichText'
-export type { RatingThumbsProps } from './RatingThumbs'
 export { default as PasswordInput } from './PasswordInput'
 export type { PasswordInputProps } from './PasswordInput'
 export { default as FieldRequirements } from './FieldRequirements'

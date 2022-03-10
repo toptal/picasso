@@ -5,7 +5,6 @@ import cx from 'classnames'
 
 import Container from '../Container'
 import RatingIcon from '../RatingIcon'
-import Thumbs from '../RatingThumbs'
 import styles from './styles'
 
 export type RatingSize = SizeType<'small' | 'large'>
@@ -31,7 +30,10 @@ const useStyles = makeStyles(styles, {
   name: 'PicassoRating'
 })
 
-const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
+const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
+  props,
+  ref
+) {
   const {
     name,
     value,
@@ -114,14 +116,12 @@ const Rating = forwardRef<HTMLDivElement, Props>(function Rating(props, ref) {
   )
 })
 
-Rating.defaultProps = {
+RatingStars.defaultProps = {
   interactive: true,
   max: 5,
   size: 'small'
 }
 
-Rating.displayName = 'Rating'
+RatingStars.displayName = 'RatingStars'
 
-export default Object.assign(Rating, {
-  Thumbs
-})
+export default RatingStars

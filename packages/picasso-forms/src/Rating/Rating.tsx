@@ -1,22 +1,63 @@
 import React from 'react'
-import { Rating as PicassoRating, RatingProps } from '@toptal/picasso'
+import {
+  Rating as PicassoRating,
+  RatingStarsProps as PicassoRatingStarsProps,
+  RatingThumbsProps as PicassoRatingThumbsProps
+} from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import { validators } from '../utils'
 
-export type Props = RatingProps & FieldProps<RatingProps['value']>
+export type RatingStarsProps = PicassoRatingStarsProps &
+  FieldProps<PicassoRatingStarsProps['value']>
 
-export const Rating = (props: Props) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <FieldWrapper<RatingProps> {...props} type='number'>
-    {(inputProps: RatingProps) => {
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      return <PicassoRating {...inputProps} />
-    }}
+const Stars = (props: RatingStarsProps) => (
+  <FieldWrapper<PicassoRatingStarsProps> {...props} type='number'>
+    {inputProps => <PicassoRating.Stars {...inputProps} />}
   </FieldWrapper>
 )
 
-Rating.defaultProps = {}
+export type RatingThumbsProps = PicassoRatingThumbsProps &
+  FieldProps<PicassoRatingThumbsProps['value']> & { requirePositive?: boolean }
 
-Rating.displayName = 'Rating'
+/*
+ * The default required validator gives an error when the value is false, this
+ * makes sense for checkboxes and similar controls, with the Thumbs component
+ * however, it is expected to return false as the thumbs down option. We are
+ * overriding the default required validation to only give an error on
+ * null/undefined values.
+ *
+ * We still have an requiredPositive prop in case you need to have the default
+ * behavior and requires a thumbs up for whatever reason.
+ */
+const thumbsRequired = (value: boolean | undefined) =>
+  value == null ? validators.required(null) : undefined
+
+const Thumbs = ({
+  required,
+  validate,
+  requirePositive,
+  ...props
+}: RatingThumbsProps) => {
+  const validateOverride = validators.composeValidators([
+    required && !requirePositive ? thumbsRequired : undefined,
+    validate
+  ])
+
+  return (
+    <FieldWrapper<PicassoRatingThumbsProps>
+      validate={validateOverride}
+      required={requirePositive}
+      {...props}
+    >
+      {inputProps => <PicassoRating.Thumbs {...inputProps} />}
+    </FieldWrapper>
+  )
+}
+
+export const Rating = {
+  Stars,
+  Thumbs
+} as const
 
 export default Rating

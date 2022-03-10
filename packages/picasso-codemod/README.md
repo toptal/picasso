@@ -41,6 +41,29 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 ## Included Scripts
 
+### v19.0.0
+
+#### `rename-rating-stars`
+
+Transforms old `Rating` and `Form.Ratings` to their new names, `Rating.Stars` and `Form.Rating.Stars`
+
+```diff
+-<Rating />
++<Rating.Stars />
+
+-<Form.Rating />
++<Form.Rating.Stars />
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx @toptal/picasso-codemod v19.0.0/rename-rating-stars
+```
+
+</details>
+
 ### v18.0.0
 
 #### `picasso-lab`

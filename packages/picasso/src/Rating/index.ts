@@ -1,6 +1,10 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import Stars from '../RatingStars'
+import Thumbs from '../RatingThumbs'
 
-import { Props } from './Rating'
+export type { RatingStarsProps } from '../RatingStars'
+export type { RatingThumbsProps } from '../RatingThumbs'
 
-export { default } from './Rating'
-export type RatingProps = OmitInternalProps<Props>
+export default {
+  Stars,
+  Thumbs
+}
