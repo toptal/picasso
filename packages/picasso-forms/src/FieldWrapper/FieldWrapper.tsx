@@ -64,13 +64,10 @@ type FieldMeta<T> = FieldMetaState<T> & {
 
 const getInputValidateStatus = <T extends ValueType>(
   meta: FieldMeta<T>,
-  formConfig: FormConfigProps
+  formConfig: FormConfigProps,
+  showValidState?: boolean
 ): [string | undefined, ValidateStatus | undefined] => {
   if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
-    return [undefined, undefined]
-  }
-
-  if (!meta.error && !meta.submitError) {
     return [undefined, undefined]
   }
 
@@ -90,7 +87,7 @@ const getInputValidateStatus = <T extends ValueType>(
     return [meta.submitError, 'error']
   }
 
-  return [undefined, 'success']
+  return [undefined, showValidState ? 'success' : undefined]
 }
 
 const getValidators = (required: boolean, validate?: any) => {
@@ -165,6 +162,7 @@ const FieldWrapper = <
     onResetClick,
     'data-testid': dataTestId,
     renderFieldRequirements,
+    showValidState,
     // FieldProps - https://final-form.org/docs/react-final-form/types/FieldProps
     afterSubmit,
     allowNull,
@@ -234,7 +232,8 @@ const FieldWrapper = <
 
   const [errorMessage, validateStatus] = getInputValidateStatus<TInputValue>(
     meta,
-    formConfig
+    formConfig,
+    showValidState
   )
 
   const childProps: Record<string, unknown> = {

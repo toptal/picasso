@@ -9,13 +9,14 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, SizeType, ValidateStatus } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput, { BaseInputProps } from '../OutlinedInput'
 import { disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
+import { CheckMinor24 } from '../Icon'
 
 type IconPosition = 'start' | 'end'
 type CounterType = 'remaining' | 'entered'
@@ -33,8 +34,11 @@ export interface Props
   value?: string
   /** Placeholder for value */
   placeholder?: string
+  /** @deprecated */
   /** Indicate whether `Input` is in error state */
   error?: boolean
+  /** Indicate whether `Input` is in error or success state */
+  validateStatus?: ValidateStatus
   /** If true, the `Input` will be disabled */
   disabled?: boolean
   /** Width of the component */
@@ -106,6 +110,7 @@ type EndAdornmentProps = Pick<
   | 'limit'
   | 'counter'
   | 'testIds'
+  | 'validateStatus'
 > & { charsLength?: number }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoInput' })
@@ -226,7 +231,8 @@ const EndAdornment = (props: EndAdornmentProps) => {
     multiline,
     charsLength,
     testIds,
-    counter
+    counter,
+    validateStatus
   } = props
 
   if (icon && iconPosition === 'end') {
@@ -242,6 +248,16 @@ const EndAdornment = (props: EndAdornmentProps) => {
         counter={counter!}
         limit={limit}
         testIds={testIds}
+      />
+    )
+  }
+
+  if (validateStatus === 'success') {
+    return (
+      <IconAdornment
+        disabled={disabled}
+        position='end'
+        icon={<CheckMinor24 color='green' />}
       />
     )
   }
@@ -276,7 +292,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     defaultValue,
     value,
     placeholder,
-    error,
+    validateStatus,
     disabled,
     icon,
     iconPosition,
@@ -330,7 +346,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       defaultValue={defaultValue}
       value={value}
       placeholder={placeholder}
-      error={error}
+      error={validateStatus === 'error'}
       disabled={disabled}
       multiline={multiline}
       autoFocus={autoFocus}
@@ -365,6 +381,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             multiline={multiline}
             counter={counter}
             testIds={testIds}
+            validateStatus={validateStatus}
           />
         )
       }
