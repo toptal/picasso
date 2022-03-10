@@ -12,7 +12,7 @@ import {
 } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { FileUpload } from '@toptal/picasso/FileInput'
-import { TextLabelProps } from '@toptal/picasso-shared'
+import { TextLabelProps, ValidateStatus } from '@toptal/picasso-shared'
 
 import { useFormContext } from '../Form/FormContext'
 import { useFormConfig, FormConfigProps, RequiredVariant } from '../FormConfig'
@@ -50,6 +50,7 @@ export type Props<
     hideFieldLabel?: boolean
     hideLabelRequiredDecoration?: boolean
     fieldType?: string
+    showValidState?: boolean
     children: (props: any) => React.ReactNode
     renderFieldRequirements?: (props: {
       value?: TInputValue
@@ -61,31 +62,35 @@ type FieldMeta<T> = FieldMetaState<T> & {
   dirtyAfterBlur?: boolean
 }
 
-const getInputError = <T extends ValueType>(
+const getInputValidateStatus = <T extends ValueType>(
   meta: FieldMeta<T>,
   formConfig: FormConfigProps
-) => {
+): [string | undefined, ValidateStatus | undefined] => {
   if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
-    return null
+    return [undefined, undefined]
   }
 
   if (!meta.error && !meta.submitError) {
-    return null
+    return [undefined, undefined]
   }
 
   if (!meta.touched) {
-    return null
+    return [undefined, undefined]
   }
 
   if (meta.error) {
-    return meta.error
+    return [meta.error, 'error']
   }
 
   if (meta.dirtySinceLastSubmit) {
-    return null
+    return [undefined, undefined]
   }
 
-  return meta.submitError
+  if (meta.submitError) {
+    return [meta.submitError, 'error']
+  }
+
+  return [undefined, 'success']
 }
 
 const getValidators = (required: boolean, validate?: any) => {
@@ -102,12 +107,12 @@ const getValidators = (required: boolean, validate?: any) => {
 
 const getProps = ({
   hideFieldLabel,
-  error,
-  label
+  label,
+  validateStatus
 }: {
   hideFieldLabel?: boolean
-  error: string
   label: string
+  validateStatus?: ValidateStatus
 }) => {
   if (hideFieldLabel) {
     return {
@@ -116,7 +121,7 @@ const getProps = ({
   }
 
   return {
-    error: Boolean(error)
+    validateStatus
   }
 }
 
@@ -227,13 +232,16 @@ const FieldWrapper = <
     })
   }, [input, onResetClick])
 
-  const error = getInputError<TInputValue>(meta, formConfig)
+  const [errorMessage, validateStatus] = getInputValidateStatus<TInputValue>(
+    meta,
+    formConfig
+  )
 
   const childProps: Record<string, unknown> = {
     id,
     ...rest,
     ...input,
-    ...getProps({ hideFieldLabel, error, label }),
+    ...getProps({ hideFieldLabel, label, validateStatus }),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
       input.onChange(event)
@@ -273,12 +281,12 @@ const FieldWrapper = <
 
   return (
     <PicassoForm.Field
-      error={error}
+      error={errorMessage}
       hint={hint}
       data-testid={dataTestId}
       fieldRequirements={renderFieldRequirements?.({
         value: input.value,
-        error: error
+        error: validateStatus ? validateStatus === 'error' : undefined
       })}
     >
       {!hideFieldLabel && label && (
