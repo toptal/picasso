@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react'
 import { GridSize } from '@material-ui/core/Grid'
 import MUIRadioGroup, { RadioGroupProps } from '@material-ui/core/RadioGroup'
@@ -48,7 +49,7 @@ const RadioGroup = (props: Props) => {
       >
         {children.map((child, index) => (
           <Grid.Item
-            key={String(index)}
+            key={index}
             className={gridItemClass}
             small={small}
             medium={medium}

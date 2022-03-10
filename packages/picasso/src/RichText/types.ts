@@ -14,5 +14,5 @@ export type ASTChildType = ElementType | TextType
 
 export type ASTType = {
   type: 'root'
-  children: ASTChildType[]
+  children?: ASTChildType[]
 }
