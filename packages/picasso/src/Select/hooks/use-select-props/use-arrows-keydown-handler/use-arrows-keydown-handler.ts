@@ -37,9 +37,11 @@ const useArrowsKeyDownHandler = <
           nonDisabledOptions.length
         )
         // Convert non-disabled index to the actual one
-        const actualIndex = nonDisabledOptions[nextNonDisabledIndex].actualIndex
+        const nextOption = nonDisabledOptions[nextNonDisabledIndex]
 
-        setHighlightedIndex(actualIndex)
+        if (nextOption != null) {
+          setHighlightedIndex(nextOption.actualIndex)
+        }
       } else {
         open()
       }
