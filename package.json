@@ -145,9 +145,9 @@
     "lodash": "^4.17.21",
     "**/marksy/marked": "^0.6.0",
     "**/npx/npm": "^5.7.1",
-    "prettierx": "^0.17.0",
     "@storybook/react": "^6.4.19",
     "merge-deep": "^3.0.3",
-    "webpack": "^4.0.0"
+    "webpack": "^4.0.0",
+    "trim": "^0.0.3"
   }
 }
