@@ -11,6 +11,7 @@ import InputAdornment from '../InputAdornment'
 import { useCombinedRefs } from '../utils'
 import styles from './styles'
 import { NumberInputEndAdornment } from '../NumberInputEndAdornment'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 export interface Props
   extends Omit<
@@ -55,6 +56,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       value,
       onChange,
       disabled,
+      error,
       validateStatus,
       onResetClick,
       enableReset,
@@ -63,6 +65,14 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       size,
       ...rest
     } = props
+
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'NumberInput',
+      description:
+        'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+    })
 
     const classes = useStyles(props)
 
@@ -105,7 +115,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         width={width}
         onResetClick={onResetClick}
         enableReset={enableReset}
-        error={validateStatus === 'error'}
+        error={validateStatus === 'error' || error}
         inputRef={inputRef}
         type='number'
         value={value}

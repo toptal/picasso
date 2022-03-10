@@ -17,6 +17,7 @@ import { disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
 import { CheckMinor24 } from '../Icon'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 type IconPosition = 'start' | 'end'
 type CounterType = 'remaining' | 'entered'
@@ -292,6 +293,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     defaultValue,
     value,
     placeholder,
+    error,
     validateStatus,
     disabled,
     icon,
@@ -321,6 +323,14 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     ...rest
   } = purifyProps(props)
 
+  usePropDeprecationWarning({
+    props,
+    name: 'error',
+    componentName: 'Input',
+    description:
+      'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+  })
+
   const charsLength = value ? value.length : 0
 
   const classes = useStyles()
@@ -346,7 +356,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       defaultValue={defaultValue}
       value={value}
       placeholder={placeholder}
-      error={validateStatus === 'error'}
+      error={validateStatus === 'error' || error}
       disabled={disabled}
       multiline={multiline}
       autoFocus={autoFocus}

@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function, max-lines */
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, ValidateStatus } from '@toptal/picasso-shared'
 import formatDate from 'date-fns/format'
 import PopperJs from 'popper.js'
 import React, {
@@ -39,6 +39,7 @@ import {
   timezoneFormat,
   getStartOfTheDayDate
 } from './utils'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 const EMPTY_INPUT_VALUE = ''
 
@@ -83,8 +84,11 @@ export interface Props
   icon?: ReactNode
   /** Specify a value if want to enable browser autofill */
   autoComplete?: string
-  /** Indicate whether `DatePicker`'s input is in error state */
+  /** @deprecated */
+  /** Indicate whether `Input` is in error state */
   error?: boolean
+  /** Indicate whether `Input` is in error or success state */
+  validateStatus?: ValidateStatus
   /** Function to override default markup to show Date */
   renderDay?: (args: DayProps) => ReactNode
   popperContainer?: HTMLElement
@@ -122,9 +126,19 @@ export const DatePicker = (props: Props) => {
     size,
     parseInputValue,
     testIds,
+    error,
+    validateStatus,
     ...rest
   } = props
   const classes = useStyles()
+
+  usePropDeprecationWarning({
+    props,
+    name: 'error',
+    componentName: 'DatePicker',
+    description:
+      'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+  })
 
   const inputProps = rest
 
@@ -311,9 +325,9 @@ export const DatePicker = (props: Props) => {
         event.currentTarget.blur()
       } else {
         // TODO: Manage this whole logic inside simple-react-calendar
-        const firstButton = calendarRef.current?.querySelector<HTMLButtonElement>(
-          'button:not([tabindex="-1"])'
-        )
+        const firstButton = calendarRef.current?.querySelector<
+          HTMLButtonElement
+        >('button:not([tabindex="-1"])')
 
         if (firstButton) {
           firstButton.focus()
@@ -339,13 +353,16 @@ export const DatePicker = (props: Props) => {
       <InputAdornment position='start' disablePointerEvents>
         {icon || <Calendar16 />}
       </InputAdornment>
-    ) : undefined
+    ) : (
+      undefined
+    )
 
   return (
     <>
       <Container inline={width !== 'full'} ref={inputWrapperRef}>
         <Input
           {...inputProps}
+          validateStatus={validateStatus || (error ? 'error' : undefined)}
           ref={inputRef}
           onKeyDown={handleInputKeydown}
           onClick={handleFocusOrClick}
