@@ -124,6 +124,15 @@ describe('TagSelector', () => {
 
     expect(onChange).toHaveBeenCalledWith([testOptions[0]])
   })
+
+  it('shows check icon if validateStatus equals to success', () => {
+    const { container } = renderTagSelector({
+      ...testProps,
+      validateStatus: 'success'
+    })
+
+    expect(container).toMatchSnapshot()
+  })
 })
 
 describe('isIncluded', () => {

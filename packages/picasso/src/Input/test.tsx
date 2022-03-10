@@ -129,4 +129,13 @@ describe('Input', () => {
     fireEvent.click(inputWrapper!)
     expect(handleClick).toHaveBeenCalledTimes(2)
   })
+
+  it('shows check icon if validateStatus equals to success', () => {
+    const { container } = renderInput({
+      value: 'Some value',
+      validateStatus: 'success'
+    })
+
+    expect(container).toMatchSnapshot()
+  })
 })

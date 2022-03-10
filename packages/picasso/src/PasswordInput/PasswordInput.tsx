@@ -14,6 +14,7 @@ import SvgEye16 from '../Icon/Eye16'
 import SvgEyeHidden16 from '../Icon/EyeHidden16'
 import Button from '../Button'
 import { InputProps } from '../Input'
+import { CheckMinor24 } from '../Icon'
 
 export interface Props
   extends Omit<
@@ -71,6 +72,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
 
     const endAdornment = (
       <InputAdornment position='end'>
+        {validateStatus === 'success' && <CheckMinor24 color='green' />}
         <Button.Circular
           className={classes.toggle}
           variant='flat'

@@ -3,7 +3,7 @@ import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import PasswordInput, { Props as PasswordInputProps } from './PasswordInput'
 
-const renderPasswordInput = (
+const renderInput = (
   props: Partial<PasswordInputProps> & { initialValue?: string } = {}
 ) => {
   const { initialValue } = props
@@ -13,7 +13,7 @@ const renderPasswordInput = (
 
 describe('PasswordInput', () => {
   it('shows and hides password', async () => {
-    const { getByDisplayValue, getByTestId } = renderPasswordInput({
+    const { getByDisplayValue, getByTestId } = renderInput({
       initialValue: 'asd',
       testIds: {
         input: 'password-input',
@@ -29,5 +29,14 @@ describe('PasswordInput', () => {
     fireEvent.click(toggle)
 
     expect(input.type).toBe('text')
+  })
+
+  it('shows check icon if validateStatus equals to success', () => {
+    const { container } = renderInput({
+      value: 'Some value',
+      validateStatus: 'success'
+    })
+
+    expect(container).toMatchSnapshot()
   })
 })

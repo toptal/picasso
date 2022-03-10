@@ -124,5 +124,14 @@ describe('NumberInput', () => {
 
       expect(input.value).toBe('-95')
     })
+
+    it('shows check icon if validateStatus equals to success', () => {
+      const { container } = renderNumberInput({
+        value: '10',
+        validateStatus: 'success'
+      })
+
+      expect(container).toMatchSnapshot()
+    })
   })
 })

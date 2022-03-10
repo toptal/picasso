@@ -1,8 +1,8 @@
 import React, { useState, ChangeEventHandler } from 'react'
-import { NumberInput, Container } from '@toptal/picasso'
+import { PasswordInput, Container } from '@toptal/picasso'
 
 const ErroredExample = () => {
-  const [value, setValue] = useState('1')
+  const [value, setValue] = useState('asd')
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
     setValue(event.target.value)
@@ -10,13 +10,10 @@ const ErroredExample = () => {
 
   return (
     <Container>
-      <NumberInput
-        error
+      <PasswordInput
+        validateStatus='error'
         value={value}
         onChange={handleChange}
-        step='5'
-        max='100'
-        min='-100'
       />
     </Container>
   )

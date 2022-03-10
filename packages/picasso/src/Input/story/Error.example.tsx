@@ -12,13 +12,13 @@ const Example = () => {
     <Container flex inline>
       <Container right='small'>
         <Input
-          error
+          validateStatus='error'
           value={value}
           onChange={handleChange}
           data-testid='input'
         />
       </Container>
-      <Input error placeholder='Placeholder' />
+      <Input validateStatus='error' placeholder='Placeholder' />
     </Container>
   )
 }
