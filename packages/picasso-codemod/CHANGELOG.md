@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.2.0
+
+### Minor Changes
+
+- [#2481](https://github.com/toptal/picasso/pull/2481) [`4e9c01c7`](https://github.com/toptal/picasso/commit/4e9c01c722fa138d8d8c820240853f2d206e1b58) Thanks [@augustobmoura](https://github.com/augustobmoura)! - - Addition of a codemod for renaming the components `Rating` and `Form.Rating` to `Rating.Stars` and `Form.Rating.Stars` respectively
+
 ## 4.1.0
 
 ### Minor Changes
