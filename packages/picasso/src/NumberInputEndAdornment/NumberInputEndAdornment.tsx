@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { RefObject } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, SizeType, ValidateStatus } from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import cx from 'classnames'
 
@@ -11,7 +11,8 @@ import {
   ArrowDownMinor16,
   ArrowUpMinor16,
   ArrowDownMinor24,
-  ArrowUpMinor24
+  ArrowUpMinor24,
+  CheckMinor24
 } from '../Icon'
 import styles from './styles'
 import isBrowser from '../utils/is-browser'
@@ -31,6 +32,8 @@ export interface Props extends BaseProps {
   size?: SizeType<'small' | 'medium' | 'large'>
   /** Ref of the input element */
   inputRef: RefObject<HTMLInputElement>
+  /** Indicates whether `Input` is in error or success state */
+  validateStatus?: ValidateStatus
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -53,7 +56,8 @@ export const NumberInputEndAdornment = (props: Props) => {
     value,
     disabled,
     size = 'medium',
-    inputRef
+    inputRef,
+    validateStatus
   } = props
 
   const classes = useStyles(props)
@@ -130,6 +134,9 @@ export const NumberInputEndAdornment = (props: Props) => {
 
   return (
     <InputAdornment position='end'>
+      {validateStatus === 'success' && (
+        <CheckMinor24 color='green' className={classes.checkMinorIcon} />
+      )}
       <Container flex direction='column' inline>
         <ButtonBase
           disabled={disabled}

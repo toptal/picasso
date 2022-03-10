@@ -1,6 +1,10 @@
 import React, { forwardRef, useRef, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  OmitInternalProps,
+  ValidateStatus
+} from '@toptal/picasso-shared'
 
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
@@ -26,8 +30,11 @@ export interface Props
   hideControls?: boolean
   /** Specify icon which should be rendered inside NumberInput */
   icon?: ReactNode
-  /** Indicates whether component is in error state */
+  /** @deprecated */
+  /** Indicate whether `Input` is in error state */
   error?: boolean
+  /** Indicates whether `Input` is in error or success state */
+  validateStatus?: ValidateStatus
   /** Indicates whether component is in disabled state */
   disabled?: boolean
   /** Callback invoked when `NumberInput` changes its state. */
@@ -48,7 +55,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       value,
       onChange,
       disabled,
-      error,
+      validateStatus,
       onResetClick,
       enableReset,
       width,
@@ -73,6 +80,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         disabled={disabled}
         size={size}
         inputRef={inputRef}
+        validateStatus={validateStatus}
       />
     )
 
@@ -97,7 +105,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         width={width}
         onResetClick={onResetClick}
         enableReset={enableReset}
-        error={error}
+        error={validateStatus === 'error'}
         inputRef={inputRef}
         type='number'
         value={value}

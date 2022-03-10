@@ -1,6 +1,11 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 
-export default ({ palette, transitions, sizes: { borderRadius } }: Theme) =>
+export default ({
+  palette,
+  transitions,
+  spacing,
+  sizes: { borderRadius }
+}: Theme) =>
   createStyles({
     root: {
       borderLeft: `1px solid ${palette.grey.light2}`,
@@ -53,5 +58,9 @@ export default ({ palette, transitions, sizes: { borderRadius } }: Theme) =>
     large: {
       height: '1.5rem',
       width: '2.125rem'
+    },
+
+    checkMinorIcon: {
+      paddingRight: spacing(1)
     }
   })
