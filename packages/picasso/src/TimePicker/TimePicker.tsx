@@ -84,7 +84,7 @@ export const TimePicker = (props: Props) => {
         iconPosition='end'
         icon={icon}
         width={width}
-        validateStatus={validateStatus || error ? 'error' : undefined}
+        validateStatus={validateStatus || (error ? 'error' : undefined)}
         className={cx(classes.root, className)}
         inputProps={{
           className: classes.inputBase,
@@ -115,7 +115,7 @@ export const TimePicker = (props: Props) => {
       iconPosition='end'
       icon={icon}
       width={width}
-      validateStatus={validateStatus || error ? 'error' : undefined}
+      validateStatus={validateStatus || (error ? 'error' : undefined)}
       inputProps={{
         className: classes.inputBase,
         step: 60, // 1 min

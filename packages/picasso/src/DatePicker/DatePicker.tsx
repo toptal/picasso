@@ -85,9 +85,9 @@ export interface Props
   /** Specify a value if want to enable browser autofill */
   autoComplete?: string
   /** @deprecated */
-  /** Indicate whether `Input` is in error state */
+  /** Indicate whether `DatePicker` is in error state */
   error?: boolean
-  /** Indicate whether `Input` is in error or success state */
+  /** Indicate whether `DatePicker` is in error or success state */
   validateStatus?: ValidateStatus
   /** Function to override default markup to show Date */
   renderDay?: (args: DayProps) => ReactNode

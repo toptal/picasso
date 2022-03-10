@@ -14,7 +14,7 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, ValidateStatus } from '@toptal/picasso-shared'
 
 import Input, { InputProps } from '../Input'
 import Menu from '../Menu'
@@ -31,6 +31,7 @@ import { useAutocomplete, EMPTY_INPUT_VALUE } from './use-autocomplete'
 import styles from './styles'
 import { BaseInputProps } from '../OutlinedInput'
 import unsafeErrorLog from '../utils/unsafe-error-log'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 export interface Props
   extends BaseProps,
@@ -84,8 +85,11 @@ export interface Props
   startAdornment?: ReactNode
   /** ReactNode for labels that will be used as end InputAdornment - */
   endAdornment?: ReactNode
-  /** Indicate whether `Input` is in error state */
+  /** @deprecated */
+  /** Indicate whether `Autocomplete` is in error state */
   error?: boolean
+  /** Indicate whether `Autocomplete` is in error or success state */
+  validateStatus?: ValidateStatus
   /** Specify icon which should be rendered inside Input */
   icon?: ReactNode
   /** Custom input component */
@@ -130,6 +134,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       enableReset,
       endAdornment,
       error,
+      validateStatus,
       getDisplayValue = getItemText,
       getKey: customGetKey,
       icon,
@@ -159,6 +164,15 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       disabled = false,
       ...rest
     } = props
+
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'Autocomplete',
+      description:
+        'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+    })
+
     const classes = useStyles()
 
     const getKey = (item: Item) => {
@@ -277,7 +291,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           <InputComponent
             {...rest}
             {...getInputProps()}
-            error={error}
+            validateStatus={validateStatus || (error ? 'error' : undefined)}
             icon={icon}
             disabled={disabled}
             defaultValue={undefined}

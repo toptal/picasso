@@ -7,7 +7,7 @@ import React, {
   FocusEventHandler,
   Fragment
 } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, ValidateStatus } from '@toptal/picasso-shared'
 
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
 import TagSelectorInput from '../TagSelectorInput'
@@ -15,6 +15,9 @@ import { Props as InputProps } from '../Input'
 import TagSelectorLabel from '../TagSelectorLabel'
 import unsafeErrorLog from '../utils/unsafe-error-log'
 import noop from '../utils/noop'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import InputAdornment from '../InputAdornment'
+import { CheckMinor24 } from '../Icon'
 
 export interface Item extends AutocompleteItem {
   value?: string
@@ -35,8 +38,11 @@ export interface Props
   placeholder?: string
   /** Disables `TagSelector` */
   disabled?: boolean
-  /** Indicate whether `Input` is in error state */
+  /** @deprecated */
+  /** Indicate whether `TagSelector` is in error state */
   error?: boolean
+  /** Indicate whether `TagSelector` is in error or success state */
+  validateStatus?: ValidateStatus
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** Text prefix for other option */
@@ -106,8 +112,18 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       value: values = [],
       width,
       popperContainer,
+      error,
+      validateStatus,
       ...rest
     } = props
+
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'TagSelector',
+      description:
+        'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+    })
 
     const handleDelete = (value: Item) => {
       if (disabled) {
@@ -182,9 +198,17 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       )
     }
 
+    const endAdornment =
+      validateStatus === 'success' ? (
+        <InputAdornment position='end'>
+          <CheckMinor24 color='green' />
+        </InputAdornment>
+      ) : null
+
     return (
       <Autocomplete
         {...rest}
+        validateStatus={validateStatus || (error ? 'error' : undefined)}
         ref={ref}
         placeholder={values.length === 0 ? placeholder : undefined}
         options={autocompleteOptions}
@@ -198,6 +222,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         startAdornment={values.map(item => (
           <Fragment key={getKey(item)}>{renderLabel(item)}</Fragment>
         ))}
+        endAdornment={endAdornment}
         loading={loading}
         disabled={disabled}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}

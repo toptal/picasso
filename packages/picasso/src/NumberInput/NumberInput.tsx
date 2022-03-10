@@ -32,9 +32,9 @@ export interface Props
   /** Specify icon which should be rendered inside NumberInput */
   icon?: ReactNode
   /** @deprecated */
-  /** Indicate whether `Input` is in error state */
+  /** Indicate whether `NumberInput` is in error state */
   error?: boolean
-  /** Indicates whether `Input` is in error or success state */
+  /** Indicates whether `NumberInput` is in error or success state */
   validateStatus?: ValidateStatus
   /** Indicates whether component is in disabled state */
   disabled?: boolean
