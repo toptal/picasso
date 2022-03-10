@@ -54,7 +54,6 @@ export const Select = <T extends ValueType, M extends boolean = false>({
 
 Select.defaultProps = {
   disabled: false,
-  error: false,
   getDisplayValue: getOptionText,
   iconPosition: 'start',
   loading: false,

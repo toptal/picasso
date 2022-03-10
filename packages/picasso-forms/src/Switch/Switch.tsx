@@ -1,17 +1,22 @@
 import React from 'react'
 import { Switch as PicassoSwitch, SwitchProps } from '@toptal/picasso'
+import { ValidateStatus } from '@toptal/picasso-shared'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
 export type FormSwitchProps = Omit<SwitchProps, 'onChange'> & {
   onChange?: SwitchProps['onChange']
+  validateStatus?: ValidateStatus
 }
 export type Props = FormSwitchProps & FieldProps<SwitchProps['value']>
 
 export const Switch = (props: Props) => (
   <FieldWrapper<FormSwitchProps> hideLabelRequiredDecoration {...props}>
-    {(inputProps: SwitchProps) => {
-      return <PicassoSwitch {...inputProps} />
+    {(inputProps: FormSwitchProps) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { validateStatus, ...rest } = inputProps
+
+      return <PicassoSwitch {...rest} />
     }}
   </FieldWrapper>
 )

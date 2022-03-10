@@ -5,7 +5,7 @@ import {
   ReactNode
 } from 'react'
 import PopperJs from 'popper.js'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, SizeType, ValidateStatus } from '@toptal/picasso-shared'
 
 import { OutlinedInputProps } from '../OutlinedInput'
 
@@ -23,15 +23,19 @@ export interface SelectProps<
   T extends ValueType = ValueType,
   M extends boolean = boolean,
   V = M extends true ? T[] : T
-> extends BaseProps,
+>
+  extends BaseProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'onChange' | 'size' | 'color' | 'value'
     > {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
+  /** @deprecated */
   /** Indicate whether `Select` is in error state */
   error?: boolean
+  /** Indicate whether `Select` is in error or success state */
+  validateStatus?: ValidateStatus
   /** Component ID */
   id?: string
   /** Width of the component */

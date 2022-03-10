@@ -1,6 +1,10 @@
 import React, { forwardRef, useState, ChangeEvent, useCallback } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  OmitInternalProps,
+  ValidateStatus
+} from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
@@ -25,8 +29,11 @@ export interface Props
     BaseProps {
   /** Value of the `input` element. */
   value?: string
-  /** Indicates whether component is in error state */
+  /** @deprecated */
+  /** Indicate whether `PasswordInput` is in error state */
   error?: boolean
+  /** Indicate whether `PasswordInput` is in error or success state */
+  validateStatus?: ValidateStatus
   /** Indicates whether component is in disabled state */
   disabled?: boolean
   /** Callback invoked when `PasswordInput` changes its state. */
@@ -48,6 +55,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       onChange,
       disabled,
       error,
+      validateStatus,
       width,
       style,
       className,
@@ -86,7 +94,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
           'data-testid': rest.testIds?.input
         }}
         width={width}
-        error={error}
+        error={validateStatus === 'error' || error}
         inputRef={ref}
         type={showPassword ? 'text' : 'password'}
         value={value}

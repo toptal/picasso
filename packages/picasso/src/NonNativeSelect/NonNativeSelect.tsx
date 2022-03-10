@@ -53,6 +53,7 @@ export const NonNativeSelect = documentable(
         placeholder,
         disabled,
         error,
+        validateStatus,
         multiple,
         value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
         size,
@@ -153,7 +154,7 @@ export const NonNativeSelect = documentable(
               {...rest}
               onChange={onChange as any}
               inputRef={selectRef}
-              error={error}
+              error={validateStatus === 'error' || error}
               disabled={disabled}
               id={id}
               startAdornment={startAdornment}
@@ -248,7 +249,6 @@ export const NonNativeSelect = documentable(
 
 NonNativeSelect.defaultProps = {
   disabled: false,
-  error: false,
   getDisplayValue: getOptionText,
   iconPosition: 'start',
   loading: false,

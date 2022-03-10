@@ -19,6 +19,7 @@ import NativeSelectOptions from '../NativeSelectOptions'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 const useStyles = makeStyles<Theme>(styles)
 
@@ -43,6 +44,7 @@ export const NativeSelect = documentable(
         placeholder,
         disabled,
         error,
+        validateStatus,
         multiple,
         value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
         size,
@@ -64,6 +66,14 @@ export const NativeSelect = documentable(
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...rest
       } = props
+
+      usePropDeprecationWarning({
+        props,
+        name: 'error',
+        componentName: 'NativeSelect',
+        description:
+          'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+      })
 
       const classes = useStyles()
 
@@ -106,7 +116,7 @@ export const NativeSelect = documentable(
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={selectRef}
-          error={error}
+          error={validateStatus === 'error' || error}
           disabled={disabled}
           name={name}
           id={id}
@@ -175,7 +185,6 @@ export const NativeSelect = documentable(
 
 NativeSelect.defaultProps = {
   disabled: false,
-  error: false,
   getDisplayValue: getOptionText,
   iconPosition: 'start',
   loading: false,
