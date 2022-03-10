@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { forwardRef, useMemo, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -61,7 +62,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   const pageButtons = pages.map((page, index) => {
     if (page === ELLIPSIS) {
       return (
-        <Container key={String(index)} className={classes.ellipsis}>
+        <Container key={index} className={classes.ellipsis}>
           <Typography size='xsmall' weight='semibold' color='black'>
             {ELLIPSIS}
           </Typography>
@@ -71,7 +72,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
 
     return (
       <PaginationButton
-        key={String(index)}
+        key={index}
         className={classes.button}
         page={Number(page)}
         activePage={activePage}

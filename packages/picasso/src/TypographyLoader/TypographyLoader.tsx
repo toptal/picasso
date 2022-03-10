@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
@@ -36,7 +37,7 @@ const Paragraph = ({ className, style = {} }: BaseProps) => (
 export const TypographyLoader = ({ className, rows = 1, style }: Props) => (
   <>
     {Array.from({ length: rows }).map((_, index) => (
-      <Paragraph className={className} key={String(index)} style={style} />
+      <Paragraph className={className} key={index} style={style} />
     ))}
   </>
 )

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
@@ -30,7 +31,7 @@ const renderTabs = (
       <Tabs onChange={onChange} value={value}>
         {tabs.map((tab, index) => (
           <Tabs.Tab
-            key={String(index)}
+            key={index}
             data-testid={`tab-${index + 1}`}
             value={tab.value}
             label={tab.label}
