@@ -136,6 +136,11 @@ const Example = () => {
         label='How much do you love Picasso?'
         required
       />
+      <Form.Rating.Thumbs
+        name='thumbs1'
+        label='Would you recommend picasso?'
+        required
+      />
       <Form.FileInput
         titleCase
         required
