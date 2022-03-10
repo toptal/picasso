@@ -13856,6 +13856,14 @@ hast-to-hyperscript@^9.0.0, hast-to-hyperscript@^9.0.1:
     unist-util-is "^4.0.0"
     web-namespaces "^1.0.0"
 
+hast-util-from-dom@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/hast-util-from-dom/-/hast-util-from-dom-3.0.0.tgz#e0ea87fafaf3ec64650fc9404ab1538238f32cb5"
+  integrity sha512-4vQuGiD5Y/wlD7fZiY4mZML/6oh0GOnH38UNyeDFcSTE4AHF0zjKHZfbd+ekVwPvsZXRl8choc99INHUwSPJlg==
+  dependencies:
+    hastscript "^6.0.0"
+    web-namespaces "^1.0.0"
+
 hast-util-from-parse5@^6.0.0:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/hast-util-from-parse5/-/hast-util-from-parse5-6.0.1.tgz#554e34abdeea25ac76f5bd950a1f0180e0b3bc2a"
@@ -13888,6 +13896,13 @@ hast-util-raw@6.0.1:
     web-namespaces "^1.0.0"
     xtend "^4.0.0"
     zwitch "^1.0.0"
+
+hast-util-sanitize@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/hast-util-sanitize/-/hast-util-sanitize-3.0.2.tgz#b0b783220af528ba8fe6999f092d138908678520"
+  integrity sha512-+2I0x2ZCAyiZOO/sb4yNLFmdwPBnyJ4PBkVTUMKMqBwYNA+lXSgOmoRXlJFazoyid9QPogRRKgKhVEodv181sA==
+  dependencies:
+    xtend "^4.0.0"
 
 hast-util-to-parse5@^6.0.0:
   version "6.0.0"

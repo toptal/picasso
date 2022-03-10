@@ -6,6 +6,9 @@ import Container from '../Container'
 import useRichText from './hooks/useRichText'
 
 export interface Props extends BaseProps {
+  /**
+   * [hast](https://github.com/syntax-tree/hast) format
+   */
   value: ASTType
 }
 

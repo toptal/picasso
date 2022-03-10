@@ -1,7 +1,6 @@
 import toH from 'hast-to-hyperscript'
 import React, {
   useMemo,
-  ReactNodeArray,
   createElement,
   ReactElement,
   isValidElement,
@@ -70,8 +69,12 @@ const picassoMapper = (child: ReactNode): ReactNode => {
   return createElement(type, { key: child.key }, mappedChildren)
 }
 
-const useRichText = (value: ASTType): ReactNodeArray | ReactNode => {
+const useRichText = (value: ASTType): ReactNode[] | ReactNode => {
   const mappedTextNodes = useMemo(() => {
+    if (!value.children) {
+      return null
+    }
+
     const isSingleChild = value.children.length === 1
     const reactElement = toH(createElement, value) as ReactElement
 
