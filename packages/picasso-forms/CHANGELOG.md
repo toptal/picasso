@@ -1,5 +1,30 @@
 # Change Log
 
+## 39.0.0
+
+### Major Changes
+
+- [#2481](https://github.com/toptal/picasso/pull/2481) [`4e9c01c7`](https://github.com/toptal/picasso/commit/4e9c01c722fa138d8d8c820240853f2d206e1b58) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Rating
+
+  - Rename `Rating` to `Rating.Stars` and its `picasso-forms` counterpart, `Form.Rating`
+    to `Form.Rating.Stars`, as to better reflect the nomenclature in BASE, and to
+    consistently accomodate new variants, like the recently implemented `Rating.Thumbs`
+
+### Minor Changes
+
+- [#2481](https://github.com/toptal/picasso/pull/2481) [`4e9c01c7`](https://github.com/toptal/picasso/commit/4e9c01c722fa138d8d8c820240853f2d206e1b58) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Form.Rating.Thumbs
+
+  - Add missing Rating.Thumbs as Form.Rating.Thumbs
+
+### Patch Changes
+
+- Updated dependencies [[`4e9c01c7`](https://github.com/toptal/picasso/commit/4e9c01c722fa138d8d8c820240853f2d206e1b58), [`8a371aef`](https://github.com/toptal/picasso/commit/8a371aefeee0022396800b108c1b1d297b2ee86d)]:
+  - @toptal/picasso@19.0.0
+
 ## 38.0.0
 
 ### Patch Changes
