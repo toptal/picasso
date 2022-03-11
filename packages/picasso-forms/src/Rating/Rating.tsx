@@ -13,7 +13,12 @@ export type RatingStarsProps = PicassoRatingStarsProps &
 
 const Stars = (props: RatingStarsProps) => (
   <FieldWrapper<PicassoRatingStarsProps> {...props} type='number'>
-    {inputProps => <PicassoRating.Stars {...inputProps} />}
+    {(inputProps: RatingStarsProps) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { validateStatus, ...rest } = inputProps
+
+      return <PicassoRating.Stars {...rest} />
+    }}
   </FieldWrapper>
 )
 
@@ -50,7 +55,12 @@ const Thumbs = ({
       required={requirePositive}
       {...props}
     >
-      {inputProps => <PicassoRating.Thumbs {...inputProps} />}
+      {(inputProps: RatingThumbsProps) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { validateStatus, ...rest } = inputProps
+
+        return <PicassoRating.Thumbs {...rest} />
+      }}
     </FieldWrapper>
   )
 }
