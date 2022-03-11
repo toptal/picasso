@@ -131,11 +131,14 @@ describe('Input', () => {
   })
 
   it('shows check icon if validateStatus equals to success', () => {
-    const { container } = renderInput({
+    const { getByTestId } = renderInput({
       value: 'Some value',
-      validateStatus: 'success'
+      validateStatus: 'success',
+      testIds: { validIcon: 'valid-icon' }
     })
 
-    expect(container).toMatchSnapshot()
+    const validIcon = getByTestId('valid-icon')
+
+    expect(validIcon).toBeVisible()
   })
 })

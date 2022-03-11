@@ -42,6 +42,7 @@ export interface Props
   testIds?: InputProps['testIds'] & {
     input?: string
     toggle?: string
+    validIcon?: string
   }
 }
 
@@ -60,6 +61,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       width,
       style,
       className,
+      testIds,
       ...rest
     } = props
 
@@ -72,13 +74,15 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
 
     const endAdornment = (
       <InputAdornment position='end'>
-        {validateStatus === 'success' && <CheckMinor24 color='green' />}
+        {validateStatus === 'success' && (
+          <CheckMinor24 color='green' data-testid={testIds?.validIcon} />
+        )}
         <Button.Circular
           className={classes.toggle}
           variant='flat'
           icon={showPassword ? <SvgEye16 /> : <SvgEyeHidden16 />}
           onClick={handleToggleVisibilityClick}
-          data-testid={rest.testIds?.toggle}
+          data-testid={testIds?.toggle}
           disabled={disabled}
         />
       </InputAdornment>
@@ -93,10 +97,10 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
         }}
         inputProps={{
           ...rest,
-          'data-testid': rest.testIds?.input
+          'data-testid': testIds?.input
         }}
         width={width}
-        error={validateStatus === 'error' || error}
+        error={Boolean(validateStatus === 'error' || error)}
         inputRef={ref}
         type={showPassword ? 'text' : 'password'}
         value={value}

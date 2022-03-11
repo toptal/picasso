@@ -24,30 +24,7 @@ const testProps = {
 }
 
 const renderTagSelector = (props: OmitInternalProps<Props>) => {
-  const {
-    loading,
-    disabled,
-    otherOptionLabel,
-    options,
-    placeholder,
-    value,
-    onInputChange,
-    onChange
-  } = props
-
-  return render(
-    <TagSelector
-      showOtherOption
-      loading={loading}
-      disabled={disabled}
-      otherOptionLabel={otherOptionLabel}
-      options={options}
-      placeholder={placeholder}
-      value={value}
-      onInputChange={onInputChange}
-      onChange={onChange}
-    />
-  )
+  return render(<TagSelector {...props} />)
 }
 
 const selectOption = async (
@@ -126,12 +103,15 @@ describe('TagSelector', () => {
   })
 
   it('shows check icon if validateStatus equals to success', () => {
-    const { container } = renderTagSelector({
-      ...testProps,
-      validateStatus: 'success'
+    const { getByTestId } = renderTagSelector({
+      value: [testOptions[0]],
+      validateStatus: 'success',
+      testIds: { validIcon: 'valid-icon' }
     })
 
-    expect(container).toMatchSnapshot()
+    const validIcon = getByTestId('valid-icon')
+
+    expect(validIcon).toBeVisible()
   })
 })
 

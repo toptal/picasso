@@ -40,6 +40,10 @@ export interface Props
   disabled?: boolean
   /** Callback invoked when `NumberInput` changes its state. */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  testIds?: {
+    validIcon?: string
+    resetButton?: string
+  }
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -63,6 +67,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       width,
       icon,
       size,
+      testIds,
       ...rest
     } = props
 
@@ -91,6 +96,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         size={size}
         inputRef={inputRef}
         validateStatus={validateStatus}
+        testIds={testIds}
       />
     )
 
@@ -115,7 +121,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         width={width}
         onResetClick={onResetClick}
         enableReset={enableReset}
-        error={validateStatus === 'error' || error}
+        error={Boolean(validateStatus === 'error' || error)}
         inputRef={inputRef}
         type='number'
         value={value}
@@ -124,6 +130,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         endAdornment={endAdornment}
         startAdornment={startAdornment}
         size={size}
+        testIds={testIds}
       />
     )
   }

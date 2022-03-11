@@ -88,6 +88,7 @@ export interface Props
   testIds?: {
     inputAdornment?: string
     resetButton?: string
+    validIcon?: string
   }
 }
 
@@ -258,7 +259,7 @@ const EndAdornment = (props: EndAdornmentProps) => {
       <IconAdornment
         disabled={disabled}
         position='end'
-        icon={<CheckMinor24 color='green' />}
+        icon={<CheckMinor24 color='green' data-testid={testIds?.validIcon} />}
       />
     )
   }
@@ -356,7 +357,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       defaultValue={defaultValue}
       value={value}
       placeholder={placeholder}
-      error={validateStatus === 'error' || error}
+      error={Boolean(validateStatus === 'error' || error)}
       disabled={disabled}
       multiline={multiline}
       autoFocus={autoFocus}

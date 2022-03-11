@@ -154,7 +154,7 @@ export const NonNativeSelect = documentable(
               {...rest}
               onChange={onChange as any}
               inputRef={selectRef}
-              error={validateStatus === 'error' || error}
+              error={Boolean(validateStatus === 'error' || error)}
               disabled={disabled}
               id={id}
               startAdornment={startAdornment}

@@ -63,7 +63,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         defaultValue={defaultValue}
         value={value}
         placeholder={placeholder}
-        error={validateStatus === 'error' || error}
+        error={Boolean(validateStatus === 'error' || error)}
         disabled={disabled}
         autoFocus={autoFocus}
         autoComplete={autoComplete}

@@ -23,7 +23,7 @@ const TestSelect = ({
   placeholder = 'Choose an option...',
   width = 'auto',
   native = false,
-  error = false,
+  validateStatus,
   disabled = false,
   loading = false,
   enableReset = false,
@@ -43,7 +43,7 @@ const TestSelect = ({
     width={width}
     multiple={multiple}
     native={native}
-    error={error}
+    validateStatus={validateStatus}
     disabled={disabled}
     loading={loading}
     enableReset={enableReset}

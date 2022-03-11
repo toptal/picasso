@@ -50,6 +50,7 @@ exports[`TagSelector disabled render 1`] = `
           </div>
           <input
             aria-autocomplete="list"
+            aria-invalid="false"
             autocomplete="off"
             class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium Mui-disabled Mui-disabled MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
             disabled=""
@@ -130,6 +131,7 @@ exports[`TagSelector preselected value 1`] = `
             </div>
             <input
               aria-autocomplete="list"
+              aria-invalid="false"
               autocomplete="off"
               class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
               type="text"
@@ -179,6 +181,7 @@ exports[`TagSelector renders 1`] = `
         >
           <input
             aria-autocomplete="list"
+            aria-invalid="false"
             autocomplete="off"
             class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
             placeholder="Please select..."

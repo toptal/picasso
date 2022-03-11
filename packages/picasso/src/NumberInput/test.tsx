@@ -19,6 +19,8 @@ const NumberInputRenderer = (
       min={-100}
       value={value}
       onChange={handleChange}
+      validateStatus={props.validateStatus}
+      testIds={props.testIds}
     />
   )
 }
@@ -126,12 +128,15 @@ describe('NumberInput', () => {
     })
 
     it('shows check icon if validateStatus equals to success', () => {
-      const { container } = renderNumberInput({
+      const { getByTestId } = renderNumberInput({
         value: '10',
-        validateStatus: 'success'
+        validateStatus: 'success',
+        testIds: { validIcon: 'valid-icon' }
       })
 
-      expect(container).toMatchSnapshot()
+      const validIcon = getByTestId('valid-icon')
+
+      expect(validIcon).toBeVisible()
     })
   })
 })

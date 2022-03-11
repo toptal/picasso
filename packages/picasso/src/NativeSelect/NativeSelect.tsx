@@ -116,7 +116,7 @@ export const NativeSelect = documentable(
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={selectRef}
-          error={validateStatus === 'error' || error}
+          error={Boolean(validateStatus === 'error' || error)}
           disabled={disabled}
           name={name}
           id={id}

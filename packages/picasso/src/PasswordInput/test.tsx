@@ -3,18 +3,14 @@ import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import PasswordInput, { Props as PasswordInputProps } from './PasswordInput'
 
-const renderInput = (
-  props: Partial<PasswordInputProps> & { initialValue?: string } = {}
-) => {
-  const { initialValue } = props
-
-  return render(<PasswordInput {...props} value={initialValue} />)
+const renderInput = (props: Partial<PasswordInputProps>) => {
+  return render(<PasswordInput {...props} />)
 }
 
 describe('PasswordInput', () => {
   it('shows and hides password', async () => {
     const { getByDisplayValue, getByTestId } = renderInput({
-      initialValue: 'asd',
+      value: 'asd',
       testIds: {
         input: 'password-input',
         toggle: 'password-input-toggle'
@@ -32,11 +28,14 @@ describe('PasswordInput', () => {
   })
 
   it('shows check icon if validateStatus equals to success', () => {
-    const { container } = renderInput({
-      value: 'Some value',
-      validateStatus: 'success'
+    const { getByTestId } = renderInput({
+      value: 'asd',
+      validateStatus: 'success',
+      testIds: { validIcon: 'valid-icon' }
     })
 
-    expect(container).toMatchSnapshot()
+    const validIcon = getByTestId('valid-icon')
+
+    expect(validIcon).toBeVisible()
   })
 })

@@ -34,6 +34,9 @@ export interface Props extends BaseProps {
   inputRef: RefObject<HTMLInputElement>
   /** Indicates whether `Input` is in error or success state */
   validateStatus?: ValidateStatus
+  testIds?: {
+    validIcon?: string
+  }
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -57,7 +60,8 @@ export const NumberInputEndAdornment = (props: Props) => {
     disabled,
     size = 'medium',
     inputRef,
-    validateStatus
+    validateStatus,
+    testIds
   } = props
 
   const classes = useStyles(props)
@@ -135,7 +139,11 @@ export const NumberInputEndAdornment = (props: Props) => {
   return (
     <InputAdornment position='end'>
       {validateStatus === 'success' && (
-        <CheckMinor24 color='green' className={classes.checkMinorIcon} />
+        <CheckMinor24
+          color='green'
+          className={classes.checkMinorIcon}
+          data-testid={testIds?.validIcon}
+        />
       )}
       <Container flex direction='column' inline>
         <ButtonBase

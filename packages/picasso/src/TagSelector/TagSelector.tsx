@@ -86,6 +86,9 @@ export interface Props
   }) => ReactNode
   /** DOM element that wraps the Popper */
   popperContainer?: HTMLElement
+  testIds?: {
+    validIcon?: string
+  }
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
@@ -114,6 +117,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       popperContainer,
       error,
       validateStatus,
+      testIds,
       ...rest
     } = props
 
@@ -201,7 +205,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const endAdornment =
       validateStatus === 'success' ? (
         <InputAdornment position='end'>
-          <CheckMinor24 color='green' />
+          <CheckMinor24 color='green' data-testid={testIds?.validIcon} />
         </InputAdornment>
       ) : null
 
