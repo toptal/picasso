@@ -15,6 +15,7 @@ import SvgEyeHidden16 from '../Icon/EyeHidden16'
 import Button from '../Button'
 import { InputProps } from '../Input'
 import { CheckMinor24 } from '../Icon'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 export interface Props
   extends Omit<
@@ -64,6 +65,14 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       testIds,
       ...rest
     } = props
+
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'PasswordInput',
+      description:
+        'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+    })
 
     const [showPassword, setShowPassword] = useState(false)
     const classes = useStyles()

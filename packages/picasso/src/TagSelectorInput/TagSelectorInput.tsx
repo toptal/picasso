@@ -5,6 +5,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Props as InputProps } from '../Input/Input'
 import OutlinedInput from '../OutlinedInput'
 import styles from './styles'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTagSelectorInput'
@@ -41,6 +42,14 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       testIds,
       ...rest
     } = props
+
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'TagSelectorInput',
+      description:
+        'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+    })
 
     const classes = useStyles()
     let usedEndAdornment = null

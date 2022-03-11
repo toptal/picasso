@@ -27,6 +27,7 @@ import NonNativeSelectOptions from '../NonNativeSelectOptions'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
 import NonNativeSelectLimitFooter from '../NonNativeSelectLimitFooter'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 const useStyles = makeStyles<Theme>(styles)
 
@@ -72,6 +73,14 @@ export const NonNativeSelect = documentable(
         testIds,
         ...rest
       } = props
+
+      usePropDeprecationWarning({
+        props,
+        name: 'error',
+        componentName: 'NonNativeSelect',
+        description:
+          'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+      })
 
       const classes = useStyles()
 
