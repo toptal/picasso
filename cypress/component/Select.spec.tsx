@@ -242,7 +242,7 @@ describe('Select', () => {
   it('renders with error', () => {
     mount(
       <TestingPicasso>
-        <TestSelect error />
+        <TestSelect validateStatus='error' />
       </TestingPicasso>
     )
 
@@ -380,8 +380,8 @@ describe('Select', () => {
         <div style={{ background: palette.yellow.main }}>
           <TestSelect />
           <TestSelect native />
-          <TestSelect error />
-          <TestSelect native error />
+          <TestSelect validateStatus='error' />
+          <TestSelect native validateStatus='error' />
         </div>
       </TestingPicasso>
     )
