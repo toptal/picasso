@@ -285,7 +285,7 @@ const FieldWrapper = <
       data-testid={dataTestId}
       fieldRequirements={renderFieldRequirements?.({
         value: input.value,
-        error: validateStatus ? validateStatus === 'error' : undefined
+        error: validateStatus === 'error'
       })}
     >
       {!hideFieldLabel && label && (
