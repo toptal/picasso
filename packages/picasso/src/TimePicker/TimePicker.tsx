@@ -8,6 +8,7 @@ import cx from 'classnames'
 import Input, { InputProps } from '../Input'
 import { Time16 } from '../Icon'
 import styles from './styles'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTimePicker'
@@ -42,7 +43,16 @@ export interface Props
 }
 
 export const TimePicker = (props: Props) => {
-  const { onChange, value, width, className, ...rest } = props
+  const { onChange, value, width, className, error, status, ...rest } = props
+
+  usePropDeprecationWarning({
+    props,
+    name: 'error',
+    componentName: 'TimePicker',
+    description:
+      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+  })
+
   const classes = useStyles()
   const browser = detect()
   const isSafari = browser?.name === 'safari'
@@ -66,6 +76,7 @@ export const TimePicker = (props: Props) => {
         iconPosition='end'
         icon={icon}
         width={width}
+        status={error ? 'error' : status}
         className={cx(classes.root, className)}
         inputProps={{
           className: classes.inputBase,
@@ -96,6 +107,7 @@ export const TimePicker = (props: Props) => {
       iconPosition='end'
       icon={icon}
       width={width}
+      status={status || (error ? 'error' : undefined)}
       inputProps={{
         className: classes.inputBase,
         step: 60, // 1 min
@@ -103,6 +115,10 @@ export const TimePicker = (props: Props) => {
       }}
     />
   )
+}
+
+TimePicker.defaultProps = {
+  status: 'default'
 }
 
 TimePicker.displayName = 'TimePicker'

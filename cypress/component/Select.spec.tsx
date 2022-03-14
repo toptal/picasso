@@ -23,7 +23,7 @@ const TestSelect = ({
   placeholder = 'Choose an option...',
   width = 'auto',
   native = false,
-  error = false,
+  status,
   disabled = false,
   loading = false,
   enableReset = false,
@@ -43,7 +43,7 @@ const TestSelect = ({
     width={width}
     multiple={multiple}
     native={native}
-    error={error}
+    status={status}
     disabled={disabled}
     loading={loading}
     enableReset={enableReset}
@@ -242,7 +242,7 @@ describe('Select', () => {
   it('renders with error', () => {
     mount(
       <TestingPicasso>
-        <TestSelect error />
+        <TestSelect status='error' />
       </TestingPicasso>
     )
 
@@ -380,8 +380,8 @@ describe('Select', () => {
         <div style={{ background: palette.yellow.main }}>
           <TestSelect />
           <TestSelect native />
-          <TestSelect error />
-          <TestSelect native error />
+          <TestSelect status='error' />
+          <TestSelect native status='error' />
         </div>
       </TestingPicasso>
     )

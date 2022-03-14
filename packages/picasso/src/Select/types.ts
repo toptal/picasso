@@ -7,7 +7,7 @@ import {
 import PopperJs from 'popper.js'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
-import { OutlinedInputProps } from '../OutlinedInput'
+import { OutlinedInputProps, Status } from '../OutlinedInput'
 
 /**
  * Select props are generalized over possible values in the component and whether
@@ -23,15 +23,19 @@ export interface SelectProps<
   T extends ValueType = ValueType,
   M extends boolean = boolean,
   V = M extends true ? T[] : T
-> extends BaseProps,
+>
+  extends BaseProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'onChange' | 'size' | 'color' | 'value'
     > {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
+  /** @deprecated */
   /** Indicate whether `Select` is in error state */
   error?: boolean
+  /** Indicate whether `Select` is in error or success state */
+  status?: Status
   /** Component ID */
   id?: string
   /** Width of the component */
