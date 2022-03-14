@@ -66,28 +66,31 @@ const getInputValidateStatus = <T extends ValueType>(
   meta: FieldMeta<T>,
   formConfig: FormConfigProps,
   showValidState?: boolean
-): [string | undefined, ValidateStatus | undefined] => {
+): { errorMessage?: string; validateStatus?: ValidateStatus } => {
   if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
-    return [undefined, undefined]
+    return {}
   }
 
   if (!meta.touched) {
-    return [undefined, undefined]
+    return {}
   }
 
   if (meta.error) {
-    return [meta.error, 'error']
+    return { errorMessage: meta.error, validateStatus: 'error' }
   }
 
   if (meta.dirtySinceLastSubmit) {
-    return [undefined, undefined]
+    return {}
   }
 
   if (meta.submitError) {
-    return [meta.submitError, 'error']
+    return { errorMessage: meta.submitError, validateStatus: 'error' }
   }
 
-  return [undefined, showValidState ? 'success' : undefined]
+  return {
+    validateStatus:
+      showValidState ?? formConfig.showValidState ? 'success' : undefined
+  }
 }
 
 const getValidators = (required: boolean, validate?: any) => {
@@ -230,7 +233,7 @@ const FieldWrapper = <
     })
   }, [input, onResetClick])
 
-  const [errorMessage, validateStatus] = getInputValidateStatus<TInputValue>(
+  const { errorMessage, validateStatus } = getInputValidateStatus<TInputValue>(
     meta,
     formConfig,
     showValidState

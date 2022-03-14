@@ -35,7 +35,6 @@ describe('PasswordInput', () => {
     it('shows valid icon', () => {
       mount(<PasswordInputExample validateStatus='success' />)
 
-      cy.get('[data-testid="valid-icon"]').should('be.visible')
       cy.get('body').happoScreenshot()
     })
   })

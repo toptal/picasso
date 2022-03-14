@@ -11,6 +11,7 @@ const skills = [
 ]
 
 const EMPTY_INPUT_VALUE = ''
+const FORM_NAME_PREFIX = 'validateStatus'
 
 const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
   if (!str) {
@@ -41,29 +42,30 @@ const Example = () => {
           set('')
         }}
         required
-        name='firstName'
+        name={`${FORM_NAME_PREFIX}Name`}
         label='First name'
         placeholder='e.g. Bruce'
         showValidState
       />
       <Form.Input
         required
-        name='lastName'
+        name={`${FORM_NAME_PREFIX}LastName`}
         label='Last name'
         placeholder='e.g. Wayne'
+        limit={10}
         showValidState
       />
       <Form.NumberInput
         enableReset
         required
-        name='age'
+        name={`${FORM_NAME_PREFIX}Age`}
         label="What's your age?"
         placeholder='e.g. 25'
         showValidState
       />
       <Form.TagSelector
         required
-        name='skills'
+        name={`${FORM_NAME_PREFIX}Skills`}
         label='Skills'
         inputValue={skillInputValue}
         options={skillOptions}

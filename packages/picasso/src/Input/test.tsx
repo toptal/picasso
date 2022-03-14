@@ -130,15 +130,24 @@ describe('Input', () => {
     expect(handleClick).toHaveBeenCalledTimes(2)
   })
 
-  it('shows check icon if validateStatus equals to success', () => {
-    const { getByTestId } = renderInput({
-      value: 'Some value',
-      validateStatus: 'success',
-      testIds: { validIcon: 'valid-icon' }
+  describe('when validateStatus equals to success', () => {
+    it('shows valid icon', () => {
+      const testProps: Props = {
+        value: 'Some value',
+        validateStatus: 'success',
+        testIds: { validIcon: 'valid-icon' }
+      }
+
+      const { getByTestId, rerender } = renderInput(testProps)
+
+      const validIcon = getByTestId('valid-icon')
+
+      expect(validIcon).toBeVisible()
+
+      // re-render with different props
+      rerender(<Input {...testProps} validateStatus='error' />)
+
+      expect(validIcon).not.toBeVisible()
     })
-
-    const validIcon = getByTestId('valid-icon')
-
-    expect(validIcon).toBeVisible()
   })
 })

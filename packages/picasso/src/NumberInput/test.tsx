@@ -126,17 +126,26 @@ describe('NumberInput', () => {
 
       expect(input.value).toBe('-95')
     })
+  })
 
-    it('shows check icon if validateStatus equals to success', () => {
-      const { getByTestId } = renderNumberInput({
+  describe('when validateStatus equals to success', () => {
+    it('shows valid icon', () => {
+      const testProps: NumberInputProps = {
         value: '10',
         validateStatus: 'success',
         testIds: { validIcon: 'valid-icon' }
-      })
+      }
+
+      const { getByTestId, rerender } = renderNumberInput(testProps)
 
       const validIcon = getByTestId('valid-icon')
 
       expect(validIcon).toBeVisible()
+
+      // re-render with different props
+      rerender(<NumberInput {...testProps} validateStatus='error' />)
+
+      expect(validIcon).not.toBeVisible()
     })
   })
 })

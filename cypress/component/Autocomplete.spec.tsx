@@ -246,9 +246,9 @@ describe('Autocomplete', () => {
   it.skip('renders loading and error states', () => {
     mount(
       <TestingPicasso>
-        <TestAutocomplete error />
+        <TestAutocomplete validateStatus='error' />
         <TestAutocomplete loading />
-        <TestAutocomplete value='Croatia' error />
+        <TestAutocomplete value='Croatia' validateStatus='error' />
         <TestAutocomplete value='Croatia' loading />
       </TestingPicasso>
     )

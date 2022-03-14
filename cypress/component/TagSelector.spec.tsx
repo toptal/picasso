@@ -81,7 +81,6 @@ describe('TagSelector', () => {
     it('shows valid icon', () => {
       mount(<NoOptionSelectedExample validateStatus='success' />)
 
-      cy.get('[data-testid="valid-icon"]').should('be.visible')
       cy.get('body').happoScreenshot()
     })
   })

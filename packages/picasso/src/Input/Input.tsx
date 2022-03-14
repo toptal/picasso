@@ -241,9 +241,12 @@ const EndAdornment = (props: EndAdornmentProps) => {
     return <IconAdornment disabled={disabled} position='end' icon={icon} />
   }
 
+  const adornmentsArray: ReactElement[] = []
+
   if (charsLength && hasCounter({ counter, limit })) {
-    return (
+    adornmentsArray.push(
       <LimitAdornment
+        key='limitAdornment'
         charsLength={charsLength}
         multiline={multiline}
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -255,13 +258,18 @@ const EndAdornment = (props: EndAdornmentProps) => {
   }
 
   if (validateStatus === 'success') {
-    return (
+    adornmentsArray.push(
       <IconAdornment
+        key='validateStatus'
         disabled={disabled}
         position='end'
         icon={<CheckMinor24 color='green' data-testid={testIds?.validIcon} />}
       />
     )
+  }
+
+  if (adornmentsArray.length > 0) {
+    return <>{adornmentsArray}</>
   }
 
   return null

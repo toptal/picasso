@@ -8,7 +8,7 @@ const Example = () => (
         <Form.Field error='This field is required'>
           <Form.Label htmlFor='district'>District</Form.Label>
           <Input
-            error
+            validateStatus='error'
             id='district'
             width='full'
             placeholder='e.g., Sant Marti'
