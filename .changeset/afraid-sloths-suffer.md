@@ -4,18 +4,6 @@
 
 ---
 
-### Form.Input
+### Form.ConfigProvider
 
-- added new prop `showValidState` to enable displaying check-icon after validations passed successfully
-
-### Form.NumberInput
-
-- added new prop `showValidState` to enable displaying check-icon after validations passed successfully
-
-### Form.PasswordInput
-
-- added new prop `showValidState` to enable displaying check-icon after validations passed successfully
-
-### Form.TagSelector
-
-- added new prop `showValidState` to enable displaying check-icon after validations passed successfully
+- added new config `showValidState` for the provider to enable displaying check-icon inside each field after validations passed successfully

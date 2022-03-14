@@ -61,33 +61,58 @@ type FieldMeta<T> = FieldMetaState<T> & {
   dirtyAfterBlur?: boolean
 }
 
-const getInputStatus = <T extends ValueType>(
+const getInputErrorMessage = <T extends ValueType>(
   meta: FieldMeta<T>,
   formConfig: FormConfigProps
-): { errorMessage?: string; status?: ValidateStatus } => {
+) => {
   if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
-    return {}
+    return null
+  }
+
+  if (!meta.error && !meta.submitError) {
+    return null
   }
 
   if (!meta.touched) {
-    return {}
+    return null
   }
 
   if (meta.error) {
-    return { errorMessage: meta.error, status: 'error' }
+    return meta.error
   }
 
   if (meta.dirtySinceLastSubmit) {
-    return {}
+    return null
+  }
+
+  return meta.submitError
+}
+
+const getInputStatus = <T extends ValueType>(
+  meta: FieldMeta<T>,
+  formConfig: FormConfigProps
+): ValidateStatus | undefined => {
+  if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
+    return undefined
+  }
+
+  if (!meta.touched) {
+    return undefined
+  }
+
+  if (meta.error) {
+    return 'error'
+  }
+
+  if (meta.dirtySinceLastSubmit) {
+    return undefined
   }
 
   if (meta.submitError) {
-    return { errorMessage: meta.submitError, status: 'error' }
+    return 'error'
   }
 
-  return {
-    status: formConfig.showValidState ? 'success' : undefined
-  }
+  return formConfig.showValidState ? 'success' : undefined
 }
 
 const getValidators = (required: boolean, validate?: any) => {
@@ -229,7 +254,8 @@ const FieldWrapper = <
     })
   }, [input, onResetClick])
 
-  const { errorMessage, status } = getInputStatus<TInputValue>(meta, formConfig)
+  const errorMessage = getInputErrorMessage<TInputValue>(meta, formConfig)
+  const status = getInputStatus<TInputValue>(meta, formConfig)
 
   const childProps: Record<string, unknown> = {
     id,
