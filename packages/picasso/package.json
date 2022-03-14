@@ -71,7 +71,6 @@
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.12",
     "**/marksy/marked": "^0.6.0",
-    "**/npx/npm": "^5.7.1",
     "d3-array": "^2.12.1"
   },
   "sideEffects": [
