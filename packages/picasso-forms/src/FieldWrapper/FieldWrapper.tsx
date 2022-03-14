@@ -50,7 +50,6 @@ export type Props<
     hideFieldLabel?: boolean
     hideLabelRequiredDecoration?: boolean
     fieldType?: string
-    showValidState?: boolean
     children: (props: any) => React.ReactNode
     renderFieldRequirements?: (props: {
       value?: TInputValue
@@ -64,8 +63,7 @@ type FieldMeta<T> = FieldMetaState<T> & {
 
 const getInputStatus = <T extends ValueType>(
   meta: FieldMeta<T>,
-  formConfig: FormConfigProps,
-  showValidState?: boolean
+  formConfig: FormConfigProps
 ): { errorMessage?: string; status?: ValidateStatus } => {
   if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
     return {}
@@ -88,7 +86,7 @@ const getInputStatus = <T extends ValueType>(
   }
 
   return {
-    status: showValidState ?? formConfig.showValidState ? 'success' : undefined
+    status: formConfig.showValidState ? 'success' : undefined
   }
 }
 
@@ -164,7 +162,6 @@ const FieldWrapper = <
     onResetClick,
     'data-testid': dataTestId,
     renderFieldRequirements,
-    showValidState,
     // FieldProps - https://final-form.org/docs/react-final-form/types/FieldProps
     afterSubmit,
     allowNull,
@@ -232,11 +229,7 @@ const FieldWrapper = <
     })
   }, [input, onResetClick])
 
-  const { errorMessage, status } = getInputStatus<TInputValue>(
-    meta,
-    formConfig,
-    showValidState
-  )
+  const { errorMessage, status } = getInputStatus<TInputValue>(meta, formConfig)
 
   const childProps: Record<string, unknown> = {
     id,

@@ -3,8 +3,7 @@ import { Container } from '@toptal/picasso'
 import { Form, FormConfigProps } from '@toptal/picasso-forms'
 
 const formConfig: FormConfigProps = {
-  requiredVariant: 'asterisk',
-  showValidState: true
+  requiredVariant: 'asterisk'
 }
 
 const Example = () => (
