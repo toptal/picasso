@@ -4,6 +4,18 @@
 
 ---
 
-### FieldWrapper
+### Form.Input
 
-- added new prop `showValidState` to enable displaying valid state green-check icon inside `Form.Input`, `Form.PasswordInput`, `Form.NumberInput` and `Form.TagSelector` components when validations passes successfully. It won't do anything for other input fields.
+- added new prop `showValidState` to enable displaying check-icon after validations passed successfully
+
+### Form.NumberInput
+
+- added new prop `showValidState` to enable displaying check-icon after validations passed successfully
+
+### Form.PasswordInput
+
+- added new prop `showValidState` to enable displaying check-icon after validations passed successfully
+
+### Form.TagSelector
+
+- added new prop `showValidState` to enable displaying check-icon after validations passed successfully
