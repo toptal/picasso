@@ -79,7 +79,7 @@
     "brace": "^0.11.1",
     "cache-loader": "^4.1.0",
     "chalk": "^4.1.0",
-    "commitizen": "^4.2.2",
+    "commitizen": "^4.2.4",
     "copy-to-clipboard": "^3.3.1",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.3",
