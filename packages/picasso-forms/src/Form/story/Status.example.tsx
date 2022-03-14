@@ -11,7 +11,7 @@ const skills = [
 ]
 
 const EMPTY_INPUT_VALUE = ''
-const FORM_NAME_PREFIX = 'validateStatus'
+const FORM_NAME_PREFIX = 'status'
 
 const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
   if (!str) {

@@ -19,7 +19,7 @@ export const RadioGroup = (props: Props) => {
       <FieldWrapper {...rest} type='radio'>
         {radioGroupProps => {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { validateStatus, ...restRadioGroupProps } = radioGroupProps
+          const { status, ...restRadioGroupProps } = radioGroupProps
 
           return (
             <PicassoRadio.Group {...restRadioGroupProps}>

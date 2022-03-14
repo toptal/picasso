@@ -46,15 +46,10 @@ const InitiallySelectedOptionExample = () => {
   )
 }
 
-const NoOptionSelectedExample = ({
-  validateStatus
-}: Partial<TagSelectorProps>) => {
+const NoOptionSelectedExample = ({ status }: Partial<TagSelectorProps>) => {
   return (
     <TestingPicasso>
-      <TagSelector
-        validateStatus={validateStatus}
-        testIds={{ validIcon: 'valid-icon' }}
-      />
+      <TagSelector status={status} testIds={{ validIcon: 'valid-icon' }} />
     </TestingPicasso>
   )
 }
@@ -77,9 +72,9 @@ describe('TagSelector', () => {
     getOption('Option 1').should('not.exist')
   })
 
-  describe('when validateStatus equals to success', () => {
+  describe('when in a valid state', () => {
     it('shows valid icon', () => {
-      mount(<NoOptionSelectedExample validateStatus='success' />)
+      mount(<NoOptionSelectedExample status='success' />)
 
       cy.get('body').happoScreenshot()
     })

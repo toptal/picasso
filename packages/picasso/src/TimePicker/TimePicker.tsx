@@ -43,22 +43,14 @@ export interface Props
 }
 
 export const TimePicker = (props: Props) => {
-  const {
-    onChange,
-    value,
-    width,
-    className,
-    error,
-    validateStatus,
-    ...rest
-  } = props
+  const { onChange, value, width, className, error, status, ...rest } = props
 
   usePropDeprecationWarning({
     props,
     name: 'error',
     componentName: 'TimePicker',
     description:
-      'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+      'Use the `status` prop instead. error is deprecated and will be removed in the next major release.'
   })
 
   const classes = useStyles()
@@ -84,7 +76,7 @@ export const TimePicker = (props: Props) => {
         iconPosition='end'
         icon={icon}
         width={width}
-        validateStatus={validateStatus || (error ? 'error' : undefined)}
+        status={status || (error ? 'error' : undefined)}
         className={cx(classes.root, className)}
         inputProps={{
           className: classes.inputBase,
@@ -115,7 +107,7 @@ export const TimePicker = (props: Props) => {
       iconPosition='end'
       icon={icon}
       width={width}
-      validateStatus={validateStatus || (error ? 'error' : undefined)}
+      status={status || (error ? 'error' : undefined)}
       inputProps={{
         className: classes.inputBase,
         step: 60, // 1 min

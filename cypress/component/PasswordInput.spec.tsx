@@ -3,13 +3,11 @@ import { mount } from '@cypress/react'
 import { PasswordInput, PasswordInputProps } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-const PasswordInputExample = ({
-  validateStatus
-}: Partial<PasswordInputProps>) => (
+const PasswordInputExample = ({ status }: Partial<PasswordInputProps>) => (
   <TestingPicasso>
     <PasswordInput
       value='asd'
-      validateStatus={validateStatus}
+      status={status}
       testIds={{
         input: 'password-input',
         toggle: 'password-input-toggle',
@@ -31,9 +29,9 @@ describe('PasswordInput', () => {
     })
   })
 
-  describe('when validateStatus equals to success', () => {
+  describe('when in a valid state', () => {
     it('shows valid icon', () => {
-      mount(<PasswordInputExample validateStatus='success' />)
+      mount(<PasswordInputExample status='success' />)
 
       cy.get('body').happoScreenshot()
     })

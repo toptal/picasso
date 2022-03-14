@@ -76,4 +76,4 @@ page
   .addExample('TagSelector/story/Loading.example.tsx', 'Loading')
   .addExample('TagSelector/story/Disabled.example.tsx', 'Disabled')
   .addExample('TagSelector/story/FullWidth.example.tsx', 'Full width')
-  .addExample('TagSelector/story/ValidateStatus.example.tsx', 'Validate Status') // picasso-skip-visuals
+  .addExample('TagSelector/story/Status.example.tsx', 'Status') // picasso-skip-visuals

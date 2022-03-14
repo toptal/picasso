@@ -130,11 +130,11 @@ describe('Input', () => {
     expect(handleClick).toHaveBeenCalledTimes(2)
   })
 
-  describe('when validateStatus equals to success', () => {
+  describe('when in a valid state', () => {
     it('shows valid icon', () => {
       const testProps: Props = {
         value: 'Some value',
-        validateStatus: 'success',
+        status: 'success',
         testIds: { validIcon: 'valid-icon' }
       }
 
@@ -145,7 +145,7 @@ describe('Input', () => {
       expect(validIcon).toBeVisible()
 
       // re-render with different props
-      rerender(<Input {...testProps} validateStatus='error' />)
+      rerender(<Input {...testProps} status='error' />)
 
       expect(validIcon).not.toBeVisible()
     })

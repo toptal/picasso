@@ -11,7 +11,7 @@ const ErroredExample = () => {
   return (
     <Container>
       <NumberInput
-        validateStatus='error'
+        status='error'
         value={value}
         onChange={handleChange}
         step='5'

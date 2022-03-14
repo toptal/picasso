@@ -22,9 +22,7 @@ const Example = () => {
         placeholder='Placeholder'
         onChange={handleChange}
         data-testid='input'
-        validateStatus={
-          value ? (value === 'pass' ? 'success' : 'error') : undefined
-        }
+        status={value ? (value === 'pass' ? 'success' : 'error') : undefined}
       />
     </Container>
   )

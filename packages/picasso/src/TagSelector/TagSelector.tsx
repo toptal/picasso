@@ -42,7 +42,7 @@ export interface Props
   /** Indicate whether `TagSelector` is in error state */
   error?: boolean
   /** Indicate whether `TagSelector` is in error or success state */
-  validateStatus?: ValidateStatus
+  status?: ValidateStatus
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** Text prefix for other option */
@@ -116,7 +116,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       width,
       popperContainer,
       error,
-      validateStatus,
+      status,
       testIds,
       ...rest
     } = props
@@ -126,7 +126,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       name: 'error',
       componentName: 'TagSelector',
       description:
-        'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+        'Use the `status` prop instead. error is deprecated and will be removed in the next major release.'
     })
 
     const handleDelete = (value: Item) => {
@@ -203,7 +203,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     }
 
     const endAdornment =
-      validateStatus === 'success' ? (
+      status === 'success' ? (
         <InputAdornment position='end'>
           <CheckMinor24 color='green' data-testid={testIds?.validIcon} />
         </InputAdornment>
@@ -212,7 +212,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     return (
       <Autocomplete
         {...rest}
-        validateStatus={validateStatus || (error ? 'error' : undefined)}
+        status={status || (error ? 'error' : undefined)}
         ref={ref}
         placeholder={values.length === 0 ? placeholder : undefined}
         options={autocompleteOptions}

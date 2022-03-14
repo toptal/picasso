@@ -20,7 +20,7 @@ const DefaultExample = () => {
       <PasswordInput
         value={value}
         onChange={handleChange}
-        validateStatus={value.length >= 3 ? 'success' : 'error'}
+        status={value.length >= 3 ? 'success' : 'error'}
       />
     </Container>
   )

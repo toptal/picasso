@@ -15,7 +15,4 @@ page
   .addExample('PasswordInput/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('PasswordInput/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
   .addExample('PasswordInput/story/Error.example.tsx', 'Errored') // picasso-skip-visuals
-  .addExample(
-    'PasswordInput/story/ValidateStatus.example.tsx',
-    'Validate Status'
-  ) // picasso-skip-visuals
+  .addExample('PasswordInput/story/Status.example.tsx', 'Status') // picasso-skip-visuals

@@ -43,7 +43,7 @@ const PromptModalDefaultExample = () => {
           return (
             <Input
               width='full'
-              validateStatus={error ? 'error' : undefined}
+              status={error ? 'error' : undefined}
               value={String(result || '')}
               onChange={handleChange}
             />

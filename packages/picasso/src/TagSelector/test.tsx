@@ -102,11 +102,14 @@ describe('TagSelector', () => {
     expect(onChange).toHaveBeenCalledWith([testOptions[0]])
   })
 
-  describe('when validateStatus equals to success', () => {
+  describe('when in a valid state', () => {
     it('shows check icon', () => {
       const { getByTestId, rerender } = renderTagSelector({
         ...testProps,
-        validateStatus: 'success'
+        testIds: {
+          validIcon: 'valid-icon'
+        },
+        status: 'success'
       })
 
       const validIcon = getByTestId('valid-icon')
@@ -114,7 +117,7 @@ describe('TagSelector', () => {
       expect(validIcon).toBeVisible()
 
       // rerender with different props
-      rerender(<TagSelector {...testProps} validateStatus='error' />)
+      rerender(<TagSelector {...testProps} status='error' />)
 
       expect(validIcon).not.toBeVisible()
     })

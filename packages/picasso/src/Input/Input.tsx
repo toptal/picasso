@@ -39,7 +39,7 @@ export interface Props
   /** Indicate whether `Input` is in error state */
   error?: boolean
   /** Indicate whether `Input` is in error or success state */
-  validateStatus?: ValidateStatus
+  status?: ValidateStatus
   /** If true, the `Input` will be disabled */
   disabled?: boolean
   /** Width of the component */
@@ -112,7 +112,7 @@ type EndAdornmentProps = Pick<
   | 'limit'
   | 'counter'
   | 'testIds'
-  | 'validateStatus'
+  | 'status'
 > & { charsLength?: number }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoInput' })
@@ -234,7 +234,7 @@ const EndAdornment = (props: EndAdornmentProps) => {
     charsLength,
     testIds,
     counter,
-    validateStatus
+    status
   } = props
 
   if (icon && iconPosition === 'end') {
@@ -257,7 +257,7 @@ const EndAdornment = (props: EndAdornmentProps) => {
     )
   }
 
-  if (validateStatus === 'success') {
+  if (status === 'success') {
     adornmentsArray.push(
       <IconAdornment
         key='validateStatus'
@@ -303,7 +303,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     value,
     placeholder,
     error,
-    validateStatus,
+    status,
     disabled,
     icon,
     iconPosition,
@@ -337,7 +337,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     name: 'error',
     componentName: 'Input',
     description:
-      'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+      'Use the `status` prop instead. error is deprecated and will be removed in the next major release.'
   })
 
   const charsLength = value ? value.length : 0
@@ -365,7 +365,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       defaultValue={defaultValue}
       value={value}
       placeholder={placeholder}
-      error={Boolean(validateStatus === 'error' || error)}
+      error={Boolean(status === 'error' || error)}
       disabled={disabled}
       multiline={multiline}
       autoFocus={autoFocus}
@@ -400,7 +400,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             multiline={multiline}
             counter={counter}
             testIds={testIds}
-            validateStatus={validateStatus}
+            status={status}
           />
         )
       }

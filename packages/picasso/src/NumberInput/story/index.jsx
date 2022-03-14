@@ -17,4 +17,4 @@ page
   .addExample('NumberInput/story/Error.example.tsx', 'Errored')
   .addExample('NumberInput/story/WithIcon.example.tsx', 'With Icon')
   .addExample('NumberInput/story/Sizes.example.tsx', 'Sizes')
-  .addExample('NumberInput/story/ValidateStatus.example.tsx', 'Validate Status') // picasso-skip-visuals
+  .addExample('NumberInput/story/Status.example.tsx', 'Status') // picasso-skip-visuals

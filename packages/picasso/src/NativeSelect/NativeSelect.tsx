@@ -44,7 +44,7 @@ export const NativeSelect = documentable(
         placeholder,
         disabled,
         error,
-        validateStatus,
+        status,
         multiple,
         value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
         size,
@@ -72,7 +72,7 @@ export const NativeSelect = documentable(
         name: 'error',
         componentName: 'NativeSelect',
         description:
-          'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+          'Use the `status` prop instead. error is deprecated and will be removed in the next major release.'
       })
 
       const classes = useStyles()
@@ -116,7 +116,7 @@ export const NativeSelect = documentable(
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={selectRef}
-          error={Boolean(validateStatus === 'error' || error)}
+          error={Boolean(status === 'error' || error)}
           disabled={disabled}
           name={name}
           id={id}

@@ -62,11 +62,11 @@ type FieldMeta<T> = FieldMetaState<T> & {
   dirtyAfterBlur?: boolean
 }
 
-const getInputValidateStatus = <T extends ValueType>(
+const getInputStatus = <T extends ValueType>(
   meta: FieldMeta<T>,
   formConfig: FormConfigProps,
   showValidState?: boolean
-): { errorMessage?: string; validateStatus?: ValidateStatus } => {
+): { errorMessage?: string; status?: ValidateStatus } => {
   if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
     return {}
   }
@@ -76,7 +76,7 @@ const getInputValidateStatus = <T extends ValueType>(
   }
 
   if (meta.error) {
-    return { errorMessage: meta.error, validateStatus: 'error' }
+    return { errorMessage: meta.error, status: 'error' }
   }
 
   if (meta.dirtySinceLastSubmit) {
@@ -84,12 +84,11 @@ const getInputValidateStatus = <T extends ValueType>(
   }
 
   if (meta.submitError) {
-    return { errorMessage: meta.submitError, validateStatus: 'error' }
+    return { errorMessage: meta.submitError, status: 'error' }
   }
 
   return {
-    validateStatus:
-      showValidState ?? formConfig.showValidState ? 'success' : undefined
+    status: showValidState ?? formConfig.showValidState ? 'success' : undefined
   }
 }
 
@@ -108,11 +107,11 @@ const getValidators = (required: boolean, validate?: any) => {
 const getProps = ({
   hideFieldLabel,
   label,
-  validateStatus
+  status
 }: {
   hideFieldLabel?: boolean
   label: string
-  validateStatus?: ValidateStatus
+  status?: ValidateStatus
 }) => {
   if (hideFieldLabel) {
     return {
@@ -121,7 +120,7 @@ const getProps = ({
   }
 
   return {
-    validateStatus
+    status
   }
 }
 
@@ -233,7 +232,7 @@ const FieldWrapper = <
     })
   }, [input, onResetClick])
 
-  const { errorMessage, validateStatus } = getInputValidateStatus<TInputValue>(
+  const { errorMessage, status } = getInputStatus<TInputValue>(
     meta,
     formConfig,
     showValidState
@@ -243,7 +242,7 @@ const FieldWrapper = <
     id,
     ...rest,
     ...input,
-    ...getProps({ hideFieldLabel, label, validateStatus }),
+    ...getProps({ hideFieldLabel, label, status }),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
       input.onChange(event)
@@ -288,7 +287,7 @@ const FieldWrapper = <
       data-testid={dataTestId}
       fieldRequirements={renderFieldRequirements?.({
         value: input.value,
-        error: validateStatus === 'error'
+        error: status === 'error'
       })}
     >
       {!hideFieldLabel && label && (

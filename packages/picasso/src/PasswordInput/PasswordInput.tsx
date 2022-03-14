@@ -35,7 +35,7 @@ export interface Props
   /** Indicate whether `PasswordInput` is in error state */
   error?: boolean
   /** Indicate whether `PasswordInput` is in error or success state */
-  validateStatus?: ValidateStatus
+  status?: ValidateStatus
   /** Indicates whether component is in disabled state */
   disabled?: boolean
   /** Callback invoked when `PasswordInput` changes its state. */
@@ -58,7 +58,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       onChange,
       disabled,
       error,
-      validateStatus,
+      status,
       width,
       style,
       className,
@@ -71,7 +71,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       name: 'error',
       componentName: 'PasswordInput',
       description:
-        'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+        'Use the `status` prop instead. error is deprecated and will be removed in the next major release.'
     })
 
     const [showPassword, setShowPassword] = useState(false)
@@ -83,7 +83,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
 
     const endAdornment = (
       <InputAdornment position='end'>
-        {validateStatus === 'success' && (
+        {status === 'success' && (
           <CheckMinor24 color='green' data-testid={testIds?.validIcon} />
         )}
         <Button.Circular
@@ -109,7 +109,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
           'data-testid': testIds?.input
         }}
         width={width}
-        error={Boolean(validateStatus === 'error' || error)}
+        error={Boolean(status === 'error' || error)}
         inputRef={ref}
         type={showPassword ? 'text' : 'password'}
         value={value}

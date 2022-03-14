@@ -30,16 +30,19 @@ describe('PasswordInput', () => {
     expect(input.type).toBe('text')
   })
 
-  describe('when validateStatus equals to success', () => {
+  describe('when in a valid state', () => {
     it('shows valid icon', () => {
-      const { getByTestId, rerender } = renderInput(testProps)
+      const { getByTestId, rerender } = renderInput({
+        ...testProps,
+        status: 'success'
+      })
 
       const validIcon = getByTestId('valid-icon')
 
       expect(validIcon).toBeVisible()
 
       // re-render with different props
-      rerender(<PasswordInput {...testProps} validateStatus='error' />)
+      rerender(<PasswordInput {...testProps} status='error' />)
 
       expect(validIcon).not.toBeVisible()
     })

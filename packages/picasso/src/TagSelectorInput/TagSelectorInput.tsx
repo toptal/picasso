@@ -20,7 +20,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       value,
       placeholder,
       error,
-      validateStatus,
+      status,
       disabled,
       autoFocus,
       autoComplete,
@@ -48,7 +48,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       name: 'error',
       componentName: 'TagSelectorInput',
       description:
-        'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+        'Use the `status` prop instead. error is deprecated and will be removed in the next major release.'
     })
 
     const classes = useStyles()
@@ -72,7 +72,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         defaultValue={defaultValue}
         value={value}
         placeholder={placeholder}
-        error={Boolean(validateStatus === 'error' || error)}
+        error={Boolean(status === 'error' || error)}
         disabled={disabled}
         autoFocus={autoFocus}
         autoComplete={autoComplete}

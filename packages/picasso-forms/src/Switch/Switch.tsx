@@ -6,7 +6,7 @@ import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
 export type FormSwitchProps = Omit<SwitchProps, 'onChange'> & {
   onChange?: SwitchProps['onChange']
-  validateStatus?: ValidateStatus
+  status?: ValidateStatus
 }
 export type Props = FormSwitchProps & FieldProps<SwitchProps['value']>
 
@@ -14,7 +14,7 @@ export const Switch = (props: Props) => (
   <FieldWrapper<FormSwitchProps> hideLabelRequiredDecoration {...props}>
     {(inputProps: FormSwitchProps) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { validateStatus, ...rest } = inputProps
+      const { status, ...rest } = inputProps
 
       return <PicassoSwitch {...rest} />
     }}

@@ -10,7 +10,7 @@ const Example = () => {
 
   return (
     <Select
-      validateStatus='error'
+      status='error'
       onChange={handleChange}
       options={OPTIONS}
       value={value}

@@ -54,7 +54,7 @@ export const NonNativeSelect = documentable(
         placeholder,
         disabled,
         error,
-        validateStatus,
+        status,
         multiple,
         value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
         size,
@@ -79,7 +79,7 @@ export const NonNativeSelect = documentable(
         name: 'error',
         componentName: 'NonNativeSelect',
         description:
-          'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+          'Use the `status` prop instead. error is deprecated and will be removed in the next major release.'
       })
 
       const classes = useStyles()
@@ -163,7 +163,7 @@ export const NonNativeSelect = documentable(
               {...rest}
               onChange={onChange as any}
               inputRef={selectRef}
-              error={Boolean(validateStatus === 'error' || error)}
+              error={Boolean(status === 'error' || error)}
               disabled={disabled}
               id={id}
               startAdornment={startAdornment}

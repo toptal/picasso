@@ -35,7 +35,7 @@ export interface SelectProps<
   /** Indicate whether `Select` is in error state */
   error?: boolean
   /** Indicate whether `Select` is in error or success state */
-  validateStatus?: ValidateStatus
+  status?: ValidateStatus
   /** Component ID */
   id?: string
   /** Width of the component */

@@ -15,7 +15,7 @@ const Stars = (props: RatingStarsProps) => (
   <FieldWrapper<PicassoRatingStarsProps> {...props} type='number'>
     {(inputProps: RatingStarsProps) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { validateStatus, ...rest } = inputProps
+      const { status, ...rest } = inputProps
 
       return <PicassoRating.Stars {...rest} />
     }}
@@ -57,7 +57,7 @@ const Thumbs = ({
     >
       {(inputProps: RatingThumbsProps) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { validateStatus, ...rest } = inputProps
+        const { status, ...rest } = inputProps
 
         return <PicassoRating.Thumbs {...rest} />
       }}

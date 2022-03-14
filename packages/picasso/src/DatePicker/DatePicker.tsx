@@ -88,7 +88,7 @@ export interface Props
   /** Indicate whether `DatePicker` is in error state */
   error?: boolean
   /** Indicate whether `DatePicker` is in error or success state */
-  validateStatus?: ValidateStatus
+  status?: ValidateStatus
   /** Function to override default markup to show Date */
   renderDay?: (args: DayProps) => ReactNode
   popperContainer?: HTMLElement
@@ -127,7 +127,7 @@ export const DatePicker = (props: Props) => {
     parseInputValue,
     testIds,
     error,
-    validateStatus,
+    status,
     ...rest
   } = props
   const classes = useStyles()
@@ -137,7 +137,7 @@ export const DatePicker = (props: Props) => {
     name: 'error',
     componentName: 'DatePicker',
     description:
-      'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+      'Use the `status` prop instead. error is deprecated and will be removed in the next major release.'
   })
 
   const inputProps = rest
@@ -362,7 +362,7 @@ export const DatePicker = (props: Props) => {
       <Container inline={width !== 'full'} ref={inputWrapperRef}>
         <Input
           {...inputProps}
-          validateStatus={validateStatus || (error ? 'error' : undefined)}
+          status={status || (error ? 'error' : undefined)}
           ref={inputRef}
           onKeyDown={handleInputKeydown}
           onClick={handleFocusOrClick}

@@ -65,7 +65,7 @@ const Example = () => {
           setInputValue(newInputValue)
           setOptions(filterOptions(newInputValue))
         }}
-        validateStatus={value.length === 2 ? 'success' : 'error'}
+        status={value.length === 2 ? 'success' : 'error'}
       />
     </Container>
   )

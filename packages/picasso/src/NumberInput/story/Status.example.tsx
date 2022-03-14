@@ -29,7 +29,7 @@ const Example = () => {
         step='1'
         max='100'
         min='-100'
-        validateStatus={isValid ? 'success' : 'error'}
+        status={isValid ? 'success' : 'error'}
       />
     </Container>
   )

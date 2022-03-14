@@ -35,7 +35,7 @@ export interface Props
   /** Indicate whether `NumberInput` is in error state */
   error?: boolean
   /** Indicates whether `NumberInput` is in error or success state */
-  validateStatus?: ValidateStatus
+  status?: ValidateStatus
   /** Indicates whether component is in disabled state */
   disabled?: boolean
   /** Callback invoked when `NumberInput` changes its state. */
@@ -61,7 +61,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       onChange,
       disabled,
       error,
-      validateStatus,
+      status,
       onResetClick,
       enableReset,
       width,
@@ -76,7 +76,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       name: 'error',
       componentName: 'NumberInput',
       description:
-        'Use the validateStatus prop instead. error is deprecated and will be removed in the next major release.'
+        'Use the `status` prop instead. error is deprecated and will be removed in the next major release.'
     })
 
     const classes = useStyles(props)
@@ -95,7 +95,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         disabled={disabled}
         size={size}
         inputRef={inputRef}
-        validateStatus={validateStatus}
+        status={status}
         testIds={testIds}
       />
     )
@@ -121,7 +121,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         width={width}
         onResetClick={onResetClick}
         enableReset={enableReset}
-        error={Boolean(validateStatus === 'error' || error)}
+        error={Boolean(status === 'error' || error)}
         inputRef={inputRef}
         type='number'
         value={value}

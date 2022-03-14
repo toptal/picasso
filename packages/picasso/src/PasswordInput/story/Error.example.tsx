@@ -10,11 +10,7 @@ const ErroredExample = () => {
 
   return (
     <Container>
-      <PasswordInput
-        validateStatus='error'
-        value={value}
-        onChange={handleChange}
-      />
+      <PasswordInput status='error' value={value} onChange={handleChange} />
     </Container>
   )
 }

@@ -3,11 +3,7 @@ import { Autocomplete } from '@toptal/picasso'
 
 const Example = () => (
   <div>
-    <Autocomplete
-      validateStatus='error'
-      placeholder='Error input...'
-      value=''
-    />
+    <Autocomplete status='error' placeholder='Error input...' value='' />
   </div>
 )
 

@@ -33,7 +33,7 @@ export interface Props extends BaseProps {
   /** Ref of the input element */
   inputRef: RefObject<HTMLInputElement>
   /** Indicates whether `Input` is in error or success state */
-  validateStatus?: ValidateStatus
+  status?: ValidateStatus
   testIds?: {
     validIcon?: string
   }
@@ -60,7 +60,7 @@ export const NumberInputEndAdornment = (props: Props) => {
     disabled,
     size = 'medium',
     inputRef,
-    validateStatus,
+    status,
     testIds
   } = props
 
@@ -138,7 +138,7 @@ export const NumberInputEndAdornment = (props: Props) => {
 
   return (
     <InputAdornment position='end'>
-      {validateStatus === 'success' && (
+      {status === 'success' && (
         <CheckMinor24
           color='green'
           className={classes.checkMinorIcon}
