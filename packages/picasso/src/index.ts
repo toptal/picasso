@@ -33,7 +33,7 @@ export type { FileInputProps } from './FileInput'
 export { default as FileList } from './FileList'
 export type { FileListProps } from './FileList'
 export { default as Form } from './Form'
-export type { FormProps, InputFieldStatus } from './Form'
+export type { FormProps } from './Form'
 export { default as FormHint } from './FormHint'
 export type { FormHintProps } from './FormHint'
 export { default as FormError } from './FormError'
@@ -195,6 +195,7 @@ export type {
   FieldRequirementsProps,
   FieldRequirement
 } from './FieldRequirements'
+export type { Status as OutlinedInputStatus } from './OutlinedInput'
 
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'

@@ -409,6 +409,7 @@ exports[`PromptModal showPrompt with input returns result on Submit action 1`] =
                     class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
                   >
                     <input
+                      aria-invalid="false"
                       aria-label="test-input"
                       autocomplete="none"
                       class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"

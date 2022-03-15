@@ -15,9 +15,10 @@ import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
 import Button from '../Button'
-import { CloseMinor16 } from '../Icon'
+import { CheckMinor24, CloseMinor16 } from '../Icon'
 import styles from './styles'
 import noop from '../utils/noop'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 type ValueType =
   | (string | number | boolean | object)[]
@@ -25,6 +26,8 @@ type ValueType =
   | number
   | boolean
   | object
+
+export type Status = 'error' | 'success'
 
 export type BaseInputProps = InputBaseComponentProps & {
   variant?: 'dark' | 'light'
@@ -52,8 +55,11 @@ export interface Props
   rowsMax?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
+  /** @deprecated */
   /** If true, the input will indicate an error. */
   error?: boolean
+  /** Indicates that input is in error or success state */
+  status?: Status
   startAdornment?: ReactNode
   endAdornment?: ReactNode
   onChange?: ChangeEventHandler<HTMLInputElement>
@@ -69,6 +75,7 @@ export interface Props
   inputRef?: React.Ref<HTMLInputElement>
   testIds?: {
     resetButton?: string
+    validIcon?: string
   }
 }
 
@@ -110,6 +117,16 @@ const ResetButton = ({
   </InputAdornment>
 )
 
+const ValidIconAdornment = ({
+  'data-testid': dataTestId
+}: {
+  'data-testid'?: string
+}) => (
+  <InputAdornment position='end'>
+    <CheckMinor24 color='green' data-testid={dataTestId} />
+  </InputAdornment>
+)
+
 const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   props,
   ref
@@ -128,6 +145,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     value,
     type,
     error,
+    status,
     startAdornment,
     endAdornment: userDefinedEndAdornment,
     onChange,
@@ -140,17 +158,31 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     ...rest
   } = props
 
+  usePropDeprecationWarning({
+    props,
+    name: 'error',
+    componentName: 'OutlinedInput',
+    description:
+      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+  })
+
   const classes = useStyles(props)
   const isDark = inputProps?.variant === 'dark'
   const shouldShowReset = enableReset && !disabled
-  const endAdornment = shouldShowReset ? (
+  const anyEndAdornmentAdded = status === 'success' || shouldShowReset
+  const endAdornment = anyEndAdornmentAdded ? (
     <>
-      <ResetButton
-        classes={classes}
-        hasValue={Boolean(value)}
-        onClick={onResetClick}
-        testIds={testIds}
-      />
+      {status === 'success' && (
+        <ValidIconAdornment data-testid={testIds?.validIcon} />
+      )}
+      {shouldShowReset && (
+        <ResetButton
+          classes={classes}
+          hasValue={Boolean(value)}
+          onClick={onResetClick}
+          testIds={testIds}
+        />
+      )}
       {userDefinedEndAdornment}
     </>
   ) : (
@@ -181,7 +213,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
       style={style}
       labelWidth={0}
       fullWidth={width === 'full'}
-      error={error}
+      error={Boolean(status === 'error' || error)}
       inputComponent={inputComponent}
       inputProps={inputProps}
       ref={ref}

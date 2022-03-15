@@ -8,12 +8,12 @@ import {
 import {
   Form as PicassoForm,
   RequiredDecoration,
-  DateOrDateRangeType
+  DateOrDateRangeType,
+  OutlinedInputStatus
 } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { FileUpload } from '@toptal/picasso/FileInput'
 import { TextLabelProps } from '@toptal/picasso-shared'
-import { InputFieldStatus } from '@toptal/picasso/Form'
 
 import { useFormContext } from '../Form/FormContext'
 import { useFormConfig, FormConfigProps, RequiredVariant } from '../FormConfig'
@@ -21,7 +21,7 @@ import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
 
-type ValueType =
+export type ValueType =
   | string
   | string[]
   | number
@@ -51,6 +51,7 @@ export type Props<
     hideFieldLabel?: boolean
     hideLabelRequiredDecoration?: boolean
     fieldType?: string
+    status?: OutlinedInputStatus
     children: (props: any) => React.ReactNode
     renderFieldRequirements?: (props: {
       value?: TInputValue
@@ -89,33 +90,6 @@ export const getInputErrorMessage = <T extends ValueType>(
   return meta.submitError
 }
 
-export const getInputStatus = <T extends ValueType>(
-  meta: FieldMetaState<T>,
-  formConfig: FormConfigProps
-): InputFieldStatus | undefined => {
-  if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
-    return undefined
-  }
-
-  if (!meta.touched) {
-    return undefined
-  }
-
-  if (meta.error) {
-    return 'error'
-  }
-
-  if (meta.dirtySinceLastSubmit) {
-    return undefined
-  }
-
-  if (meta.submitError) {
-    return 'error'
-  }
-
-  return formConfig.showValidState ? 'success' : undefined
-}
-
 const getValidators = (required: boolean, validate?: any) => {
   if (required && validate) {
     return composeValidators([requiredValidator, validate])
@@ -135,7 +109,7 @@ const getProps = ({
 }: {
   hideFieldLabel?: boolean
   label: string
-  status?: InputFieldStatus
+  status?: OutlinedInputStatus
 }) => {
   if (hideFieldLabel) {
     return {
@@ -143,9 +117,13 @@ const getProps = ({
     }
   }
 
-  return {
-    status
+  if (status) {
+    return {
+      status
+    }
   }
+
+  return {}
 }
 
 const getRequiredDecoration = (
@@ -188,6 +166,7 @@ const FieldWrapper = <
     onResetClick,
     'data-testid': dataTestId,
     renderFieldRequirements,
+    status,
     // FieldProps - https://final-form.org/docs/react-final-form/types/FieldProps
     afterSubmit,
     allowNull,
@@ -256,7 +235,6 @@ const FieldWrapper = <
   }, [input, onResetClick])
 
   const errorMessage = getInputErrorMessage<TInputValue>(meta, formConfig)
-  const status = getInputStatus<TInputValue>(meta, formConfig)
 
   const childProps: Record<string, unknown> = {
     id,
@@ -324,8 +302,6 @@ const FieldWrapper = <
     </PicassoForm.Field>
   )
 }
-
-FieldWrapper.defaultProps = {}
 
 FieldWrapper.displayName = 'FieldWrapper'
 
