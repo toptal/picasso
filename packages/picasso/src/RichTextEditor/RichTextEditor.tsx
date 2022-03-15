@@ -45,6 +45,8 @@ export interface Props extends BaseProps {
   disabled?: boolean
   /** unique identificator */
   id: string
+  /** Indicate wether the editor is in an error state  */
+  error?: boolean
   /**
    * The maximum number of characters that the user can enter.
    * If this value isn't specified, the user can enter an unlimited
@@ -100,11 +102,11 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       minLengthMessage,
       maxLengthMessage,
       style,
+      error,
       testIds
     },
     ref
   ) {
-    debugger
     const classes = useStyles()
     const toolbarRef = useRef<HTMLDivElement>(null)
     const editorRef = useRef<HTMLDivElement>(null)
@@ -161,7 +163,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           classes.editorWrapper,
           {
             [classes.disabled]: disabled,
-            [classes.focused]: isEditorFocused
+            [classes.focused]: isEditorFocused,
+            [classes.invalid]: error
           },
           className
         )}
