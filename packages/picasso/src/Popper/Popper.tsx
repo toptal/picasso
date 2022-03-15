@@ -1,14 +1,9 @@
-import React, {
-  forwardRef,
-  ReactNode,
-  useContext,
-  useLayoutEffect
-} from 'react'
+import React, { forwardRef, ReactNode, useContext } from 'react'
 import cx from 'classnames'
 import MUIPopper from '@material-ui/core/Popper'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import PopperJs, { ReferenceObject, PopperOptions } from 'popper.js'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 
 import ModalContext from '../Modal/ModalContext'
@@ -142,7 +137,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   const widthStyle = useWidthStyle({ autoWidth, width, anchorEl })
   const anchorElWidthStyle = !isCompactLayout && widthStyle
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (isCompactLayout && open && document.body.style.overflow !== 'hidden') {
       const prev = document.body.style.overflow
 

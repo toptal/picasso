@@ -1,4 +1,5 @@
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 
 export interface ReferenceObject {
   offsetParent?: Element
@@ -10,7 +11,7 @@ const useWidthOf = <T extends ReferenceObject>(element: T | null) => {
 
   const offsetParent = element?.offsetParent
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!element) {
       return
     }

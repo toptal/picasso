@@ -21,6 +21,7 @@ export {
   generateRandomString,
   generateRandomStringOrGetEmptyInTest
 } from '@toptal/picasso-provider'
+export { useIsomorphicLayoutEffect, isBrowser } from '@toptal/picasso-shared'
 
 export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListener'
 
@@ -32,7 +33,6 @@ export { default as isBoolean } from './is-boolean'
 export { default as isNumber } from './is-number'
 export { default as isOverflown } from './is-overflown'
 export { default as isPointerDevice } from './is-pointer-device'
-export { default as isBrowser } from './is-browser'
 export { default as isString } from './is-string'
 export { default as isSubstring } from './is-substring'
 export { default as kebabToCamelCase } from './kebab-to-camel-case'

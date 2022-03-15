@@ -1,11 +1,12 @@
-import { useRef, useLayoutEffect, useState, useCallback } from 'react'
+import { useRef, useState, useCallback } from 'react'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 
 const useSafeState = <S>(initState: S | (() => S)) => {
   const [state, unsafeSetState] = useState<S>(initState)
 
   const isMounted = useRef(false)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     isMounted.current = true
 
     return () => {

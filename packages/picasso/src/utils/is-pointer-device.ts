@@ -1,4 +1,4 @@
-import isBrowser from './is-browser'
+import { isBrowser } from '@toptal/picasso-shared'
 
 const isPointerDevice = (): boolean | undefined => {
   return isBrowser()

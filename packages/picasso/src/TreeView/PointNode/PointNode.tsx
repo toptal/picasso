@@ -1,12 +1,6 @@
-import React, {
-  forwardRef,
-  ReactNode,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react'
+import React, { forwardRef, ReactNode, useMemo, useRef, useState } from 'react'
 
+import { useIsomorphicLayoutEffect } from '../../utils'
 import { DynamicPointNode } from '../types'
 import { NodeContent } from './NodeContent'
 
@@ -26,7 +20,7 @@ export const PointNode = forwardRef<SVGGElement, Props>(
       return `translate(${node.x},${node.y})`
     }, [node.x, node.y])
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       if (nodeRef.current) {
         const { offsetWidth: width, offsetHeight: height } = node.ref?.current
           ?.firstElementChild?.firstElementChild as HTMLElement
