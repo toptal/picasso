@@ -61,7 +61,7 @@ type FieldMeta<T> = FieldMetaState<T> & {
   dirtyAfterBlur?: boolean
 }
 
-const getInputErrorMessage = <T extends ValueType>(
+export const getInputErrorMessage = <T extends ValueType>(
   meta: FieldMeta<T>,
   formConfig: FormConfigProps
 ) => {
@@ -88,8 +88,8 @@ const getInputErrorMessage = <T extends ValueType>(
   return meta.submitError
 }
 
-const getInputStatus = <T extends ValueType>(
-  meta: FieldMeta<T>,
+export const getInputStatus = <T extends ValueType>(
+  meta: FieldMetaState<T>,
   formConfig: FormConfigProps
 ): ValidateStatus | undefined => {
   if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
