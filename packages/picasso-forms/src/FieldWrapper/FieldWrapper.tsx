@@ -12,7 +12,8 @@ import {
 } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { FileUpload } from '@toptal/picasso/FileInput'
-import { TextLabelProps, ValidateStatus } from '@toptal/picasso-shared'
+import { TextLabelProps } from '@toptal/picasso-shared'
+import { InputFieldStatus } from '@toptal/picasso/Form'
 
 import { useFormContext } from '../Form/FormContext'
 import { useFormConfig, FormConfigProps, RequiredVariant } from '../FormConfig'
@@ -91,7 +92,7 @@ export const getInputErrorMessage = <T extends ValueType>(
 export const getInputStatus = <T extends ValueType>(
   meta: FieldMetaState<T>,
   formConfig: FormConfigProps
-): ValidateStatus | undefined => {
+): InputFieldStatus | undefined => {
   if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
     return undefined
   }
@@ -134,7 +135,7 @@ const getProps = ({
 }: {
   hideFieldLabel?: boolean
   label: string
-  status?: ValidateStatus
+  status?: InputFieldStatus
 }) => {
   if (hideFieldLabel) {
     return {
