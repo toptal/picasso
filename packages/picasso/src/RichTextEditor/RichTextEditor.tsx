@@ -32,6 +32,8 @@ export type CounterMessageSetter = (
   isError: boolean
 ) => string
 
+const noop = () => {}
+
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
   autoFocus?: boolean
@@ -64,7 +66,7 @@ export interface Props extends BaseProps {
   /**
    * Callback on text change
    */
-  onChange: (value: string) => void
+  onChange?: (value: string) => void
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
   testIds?: {
@@ -91,7 +93,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       defaultValue,
       disabled,
       id,
-      onChange,
+      onChange = noop,
       placeholder,
       minLength,
       maxLength,
@@ -102,6 +104,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     },
     ref
   ) {
+    debugger
     const classes = useStyles()
     const toolbarRef = useRef<HTMLDivElement>(null)
     const editorRef = useRef<HTMLDivElement>(null)

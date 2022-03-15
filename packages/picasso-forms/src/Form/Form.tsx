@@ -29,6 +29,7 @@ import SubmitButton from '../SubmitButton'
 import Switch from '../Switch'
 import Rating from '../Rating'
 import Dropzone from '../Dropzone'
+import RichTextEditor from '../RichTextEditor'
 import { FormConfigContext } from '../FormConfig'
 import { createScrollToErrorDecorator } from '../utils'
 import {
@@ -191,5 +192,6 @@ Form.Rating = Rating
 Form.Dropzone = Dropzone
 Form.PasswordInput = PasswordInput
 Form.FieldRequirements = FieldRequirements
+Form.RichTextEditor = RichTextEditor
 
 export default Form
