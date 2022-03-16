@@ -4,43 +4,38 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 const getSizeProps = (unitInRem: string) => ({
   borderRadius: unitInRem,
   height: unitInRem,
-  lineHeight: unitInRem,
   minWidth: unitInRem
 })
 
 export default ({ palette }: Theme) =>
   createStyles({
-    root: {
-      borderStyle: 'solid',
-      borderWidth: '1px',
-      display: 'inline-flex',
-      fontSize: rem('10px'),
-      fontWeight: 600,
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
     // variants
+    root: {
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      fontSize: rem('10px'),
+      fontWeight: 600
+    },
     white: {
       background: palette.common.white,
-      borderColor: palette.grey.light,
-      color: palette.grey.dark
+      color: palette.grey.dark,
+      borderColor: palette.grey.light2
     },
     red: {
-      backgroundColor: palette.red.main,
+      color: palette.common.white,
       borderColor: palette.red.main,
-      color: palette.common.white
-    },
-    // sizes
-    large: {
-      padding: '0 3px',
-      ...getSizeProps('1.25rem')
+      backgroundColor: palette.red.main
     },
     small: {
-      padding: '0 2px',
-      ...getSizeProps('0.75rem')
+      padding: '4px 1px',
+      ...getSizeProps(rem('12px'))
     },
     medium: {
-      padding: '0 1px',
-      ...getSizeProps('1rem')
+      padding: '6px 2px',
+      ...getSizeProps(rem('16px'))
+    },
+    large: {
+      padding: '8px 4px',
+      ...getSizeProps(rem('20px'))
     }
   })

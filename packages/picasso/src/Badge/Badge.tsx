@@ -1,16 +1,18 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import { Badge as MuiBadge } from '@material-ui/core'
+import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import styles from './styles'
+import { toTitleCase } from '../utils'
 
 type VariantType = 'white' | 'red'
 type SizeType = 'medium' | 'small' | 'large'
 
 export interface Props extends BaseProps, TextLabelProps {
   /** The `Badge` content */
-  content: number
+  content: number | string
   /** Variant of the `Badge` */
   variant?: VariantType
   /** Size of the `Badge` */
@@ -23,14 +25,14 @@ export interface Props extends BaseProps, TextLabelProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoBadge' })
 
-const thresholds = {
+const thresholds: { [k in SizeType]: number } = {
   small: 9,
   medium: 99,
   large: 99
 }
 
 const format = (content: number, size: SizeType, max?: number): string => {
-  const trimThreshold = max || thresholds[size]
+  const trimThreshold = max ?? thresholds[size]
 
   if (content > trimThreshold) {
     return `${trimThreshold}+`
@@ -45,26 +47,40 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   ref
 ) {
   const {
+    children,
     style,
     variant = 'white',
-    size = 'large',
+    size = 'medium',
     content,
-    'data-testid': dataTestId,
-    max
+    max,
+    titleCase: propsTitleCase
   } = props
+
   const classes = useStyles()
 
+  const titleCase = useTitleCase(propsTitleCase)
+
   return (
-    <>
-      <span
-        ref={ref}
-        data-testid={dataTestId}
-        className={cx(classes.root, classes[variant], classes[size])}
-        style={style}
-      >
-        {format(content, size, max)}
-      </span>
-    </>
+    <MuiBadge
+      ref={ref}
+      style={style}
+      badgeContent={
+        typeof content === 'string'
+          ? titleCase
+            ? toTitleCase(content)
+            : content
+          : format(content, size, max)
+      }
+      classes={{
+        anchorOriginTopRightRectangle: cx(
+          classes.root,
+          classes[variant],
+          classes[size]
+        )
+      }}
+    >
+      {children}
+    </MuiBadge>
   )
 })
 
