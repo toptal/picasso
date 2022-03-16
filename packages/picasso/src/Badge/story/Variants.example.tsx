@@ -9,7 +9,13 @@ const Example = () => (
       </Typography>
     </Container>
     <Container top='small'>
-      <Badge content={1} variant='white' />
+      <Container inline right='small'>
+        <Badge content={1} variant='white' />
+      </Container>
+
+      <Container inline right='small'>
+        <Badge content='text' variant='white' />
+      </Container>
     </Container>
 
     <Container top='medium'>
@@ -18,7 +24,12 @@ const Example = () => (
       </Typography>
     </Container>
     <Container top='small'>
-      <Badge content={100} variant='red' />
+      <Container inline right='small'>
+        <Badge content={100} variant='red' />
+      </Container>
+      <Container inline right='small'>
+        <Badge content='text' variant='red' />
+      </Container>
     </Container>
   </>
 )

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { Children, forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { Badge as MuiBadge } from '@material-ui/core'
@@ -11,12 +11,21 @@ type VariantType = 'white' | 'red'
 type SizeType = 'medium' | 'small' | 'large'
 
 export interface Props extends BaseProps, TextLabelProps {
-  /** The `Badge` content */
+  /**
+   * The `Badge` content
+   */
   content: number | string
-  /** Variant of the `Badge` */
+
+  /**
+   * Variant of the `Badge`
+   */
   variant?: VariantType
-  /** Size of the `Badge` */
+
+  /**
+   * Size of the `Badge`
+   */
   size?: SizeType
+
   /**
    * Max count to show. By default 9 for small size, 99 for other sizes
    */
@@ -43,10 +52,7 @@ const format = (content: number, size: SizeType, max?: number): string => {
 
 // eslint-disable-next-line react/display-name
 export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
-  props,
-  ref
-) {
-  const {
+  {
     children,
     style,
     variant = 'white',
@@ -54,11 +60,14 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
     content,
     max,
     titleCase: propsTitleCase
-  } = props
-
+  },
+  ref
+) {
   const classes = useStyles()
 
   const titleCase = useTitleCase(propsTitleCase)
+
+  const hasChildren = Children.count(children) > 0
 
   return (
     <MuiBadge
@@ -72,22 +81,15 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
           : format(content, size, max)
       }
       classes={{
-        anchorOriginTopRightRectangle: cx(
-          classes.root,
-          classes[variant],
-          classes[size]
-        )
+        badge: cx(classes.root, classes[variant], classes[size], {
+          [classes.static]: !hasChildren
+        })
       }}
     >
       {children}
     </MuiBadge>
   )
 })
-
-Badge.defaultProps = {
-  variant: 'white',
-  size: 'large'
-}
 
 Badge.displayName = 'Badge'
 

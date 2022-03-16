@@ -16,6 +16,10 @@ export default ({ palette }: Theme) =>
       fontSize: rem('10px'),
       fontWeight: 600
     },
+    static: {
+      position: 'unset',
+      transform: 'unset'
+    },
     white: {
       background: palette.common.white,
       color: palette.grey.dark,
@@ -27,15 +31,15 @@ export default ({ palette }: Theme) =>
       backgroundColor: palette.red.main
     },
     small: {
-      padding: '4px 1px',
+      padding: '1px 4px',
       ...getSizeProps(rem('12px'))
     },
     medium: {
-      padding: '6px 2px',
+      padding: '2px 6px',
       ...getSizeProps(rem('16px'))
     },
     large: {
-      padding: '8px 4px',
+      padding: '4px 8px',
       ...getSizeProps(rem('20px'))
     }
   })
