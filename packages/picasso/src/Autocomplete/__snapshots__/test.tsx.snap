@@ -212,6 +212,7 @@ exports[`Autocomplete static behavior renders 1`] = `
         >
           <input
             aria-autocomplete="list"
+            aria-invalid="false"
             autocomplete="off"
             class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             data-testid="autocomplete"
@@ -554,6 +555,7 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
 exports[`Autocomplete static behavior uses a custom popper container 1`] = `
 <input
   aria-autocomplete="list"
+  aria-invalid="false"
   autocomplete="off"
   class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
   data-testid="autocomplete"
