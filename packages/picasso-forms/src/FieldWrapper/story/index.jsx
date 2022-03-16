@@ -98,6 +98,15 @@ const componentDocs = PicassoBook.createComponentDocs(
       description:
         "A function that takes the value from the input and name of the field and converts the value into the value you want stored as this field's value in the form"
     },
+    status: {
+      name: 'status',
+      type: {
+        name: 'OutlinedFieldStatus',
+        description: '"default" | "error" | "success"'
+      },
+      description:
+        'The status of the field to be used by the OutlinedInput component'
+    },
     subscription: {
       name: 'subscription',
       type: {
