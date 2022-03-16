@@ -20,7 +20,7 @@ export default ({ palette, sizes }: Theme) =>
       border: `1px solid ${palette.grey.lighter2}`
     },
 
-    invalid: {
+    error: {
       '&, &:hover:not($disabled)': {
         borderColor: palette.red.main
       }

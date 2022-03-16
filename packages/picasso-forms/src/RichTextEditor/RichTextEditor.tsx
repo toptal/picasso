@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import {
   RichTextEditor as PicassoRichTextEditor,
   RichTextEditorProps
@@ -8,12 +8,32 @@ import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
 export type Props = RichTextEditorProps & FieldProps<string>
 
-export const RichTextEditor = (props: Props) => (
-  <FieldWrapper<RichTextEditorProps & { value: string }> value='' {...props}>
-    {(inputProps: RichTextEditorProps) => (
-      <PicassoRichTextEditor {...inputProps} />
-    )}
-  </FieldWrapper>
-)
+type InternalProps = RichTextEditorProps & { value: string }
+
+export const RichTextEditor = ({ onChange, ...rest }: Props) => {
+  const [value, setValue] = useState('')
+
+  // Because RichTextEditor doesn't have an value input we need to implement this
+  // as an compatibility layer between final-form
+  const handleOnChange = useCallback(
+    (newVal: string) => {
+      setValue(newVal)
+      onChange?.(newVal)
+    },
+    [onChange, setValue]
+  )
+
+  return (
+    <FieldWrapper<InternalProps>
+      value={value}
+      onChange={handleOnChange}
+      {...rest}
+    >
+      {(inputProps: RichTextEditorProps) => (
+        <PicassoRichTextEditor {...inputProps} />
+      )}
+    </FieldWrapper>
+  )
+}
 
 export default RichTextEditor

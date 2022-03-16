@@ -10,6 +10,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import hastUtilToHtml from 'hast-util-to-html'
 import hastSanitize from 'hast-util-sanitize'
+import { noop } from '@toptal/picasso/utils'
 
 import Container from '../Container'
 import QuillEditor from '../QuillEditor'
@@ -32,8 +33,6 @@ export type CounterMessageSetter = (
   isError: boolean
 ) => string
 
-const noop = () => {}
-
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
   autoFocus?: boolean
@@ -45,7 +44,9 @@ export interface Props extends BaseProps {
   disabled?: boolean
   /** unique identificator */
   id: string
-  /** Indicate wether the editor is in an error state  */
+  /**
+   * Indicate wether the editor is in an error state
+   */
   error?: boolean
   /**
    * The maximum number of characters that the user can enter.
@@ -69,6 +70,14 @@ export interface Props extends BaseProps {
    * Callback on text change
    */
   onChange?: (value: string) => void
+  /**
+   * Callback for blur event
+   */
+  onBlur?: () => void
+  /**
+   * Callback for focus event
+   */
+  onFocus?: () => void
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
   testIds?: {
@@ -96,6 +105,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       disabled,
       id,
       onChange = noop,
+      onFocus = noop,
+      onBlur = noop,
       placeholder,
       minLength,
       maxLength,
@@ -127,16 +138,23 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       handleTextFormat,
       format: state.toolbar.format
     })
+
+    const wrappedOnFocus = useCallback(() => {
+      setIsEditorFocused(true)
+      onFocus?.()
+    }, [setIsEditorFocused, onFocus])
+
+    const wrappedOnBlur = useCallback(() => {
+      setIsEditorFocused(false)
+      onBlur?.()
+    }, [setIsEditorFocused, onBlur])
+
     const { handleFocus, handleBlur } = useOnFocus({
       editorRef,
       toolbarRef,
       wrapperRef,
-      onFocus: useCallback(() => setIsEditorFocused(true), [
-        setIsEditorFocused
-      ]),
-      onBlur: useCallback(() => setIsEditorFocused(false), [
-        setIsEditorFocused
-      ]),
+      onFocus: wrappedOnFocus,
+      onBlur: wrappedOnBlur,
       dispatch
     })
 
@@ -164,7 +182,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           {
             [classes.disabled]: disabled,
             [classes.focused]: isEditorFocused,
-            [classes.invalid]: error
+            [classes.error]: error
           },
           className
         )}
