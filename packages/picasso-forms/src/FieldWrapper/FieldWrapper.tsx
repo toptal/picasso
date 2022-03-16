@@ -63,7 +63,7 @@ type FieldMeta<T> = FieldMetaState<T> & {
   dirtyAfterBlur?: boolean
 }
 
-export const getInputErrorMessage = <T extends ValueType>(
+export const getInputError = <T extends ValueType>(
   meta: FieldMeta<T>,
   formConfig: FormConfigProps
 ) => {
@@ -234,7 +234,7 @@ const FieldWrapper = <
     })
   }, [input, onResetClick])
 
-  const errorMessage = getInputErrorMessage<TInputValue>(meta, formConfig)
+  const error = getInputError<TInputValue>(meta, formConfig)
 
   const childProps: Record<string, unknown> = {
     id,
@@ -280,7 +280,7 @@ const FieldWrapper = <
 
   return (
     <PicassoForm.Field
-      error={errorMessage}
+      error={error}
       hint={hint}
       data-testid={dataTestId}
       fieldRequirements={renderFieldRequirements?.({
@@ -302,6 +302,8 @@ const FieldWrapper = <
     </PicassoForm.Field>
   )
 }
+
+FieldWrapper.defaultProps = {}
 
 FieldWrapper.displayName = 'FieldWrapper'
 

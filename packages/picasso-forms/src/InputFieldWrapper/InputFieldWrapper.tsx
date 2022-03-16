@@ -7,17 +7,18 @@ import FieldWrapper, {
   ValueType
 } from '../FieldWrapper'
 import { FormConfigProps, useFormConfig } from '../FormConfig'
+import { FormInputProps } from '../Input'
 
 export const getInputStatus = <T extends ValueType>(
   meta: FieldMetaState<T>,
   formConfig: FormConfigProps
-): OutlinedInputStatus | undefined => {
+): OutlinedInputStatus => {
   if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
-    return undefined
+    return 'default'
   }
 
   if (!meta.touched) {
-    return undefined
+    return 'default'
   }
 
   if (meta.error) {
@@ -25,35 +26,30 @@ export const getInputStatus = <T extends ValueType>(
   }
 
   if (meta.dirtySinceLastSubmit) {
-    return undefined
+    return 'default'
   }
 
   if (meta.submitError) {
     return 'error'
   }
 
-  return formConfig.showValidState ? 'success' : undefined
+  return formConfig.showValidState ? 'success' : 'default'
 }
 
 const InputFieldWrapper = <
-  TWrappedComponentProps extends { value?: ValueType },
-  TInputValue extends ValueType = TWrappedComponentProps['value']
+  TFormInputProps extends {},
+  TValue extends string | undefined
 >(
-  props: FieldWrapperProps<TInputValue, TWrappedComponentProps>
+  props: FieldWrapperProps<TValue, TFormInputProps>
 ) => {
   const { name } = props
 
   const { meta } = useField(name)
   const formConfig = useFormConfig()
 
-  const status = getInputStatus<TInputValue>(meta, formConfig)
+  const status = getInputStatus<TValue>(meta, formConfig)
 
-  return (
-    <FieldWrapper<TWrappedComponentProps, TInputValue>
-      {...props}
-      status={status}
-    />
-  )
+  return <FieldWrapper<FormInputProps, TValue> {...props} status={status} />
 }
 
 InputFieldWrapper.defaultProps = {}

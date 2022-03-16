@@ -27,7 +27,7 @@ type ValueType =
   | boolean
   | object
 
-export type Status = 'error' | 'success'
+export type Status = 'error' | 'success' | 'default'
 
 export type BaseInputProps = InputBaseComponentProps & {
   variant?: 'dark' | 'light'
@@ -169,12 +169,9 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   const classes = useStyles(props)
   const isDark = inputProps?.variant === 'dark'
   const shouldShowReset = enableReset && !disabled
-  const anyEndAdornmentAdded = status === 'success' || shouldShowReset
-  const endAdornment = anyEndAdornmentAdded ? (
+  const hasEndAdornment = status === 'success' || shouldShowReset
+  const endAdornment = hasEndAdornment ? (
     <>
-      {status === 'success' && (
-        <ValidIconAdornment data-testid={testIds?.validIcon} />
-      )}
       {shouldShowReset && (
         <ResetButton
           classes={classes}
@@ -182,6 +179,9 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
           onClick={onResetClick}
           testIds={testIds}
         />
+      )}
+      {status === 'success' && (
+        <ValidIconAdornment data-testid={testIds?.validIcon} />
       )}
       {userDefinedEndAdornment}
     </>
@@ -236,7 +236,8 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
 OutlinedInput.defaultProps = {
   width: 'auto',
   size: 'medium',
-  onResetClick: noop
+  onResetClick: noop,
+  status: 'default'
 }
 
 OutlinedInput.displayName = 'OutlinedInput'

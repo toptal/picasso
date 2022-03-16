@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { Input as PicassoInput, InputProps } from '@toptal/picasso'
 
-import { FieldProps } from '../FieldWrapper'
-import InputFieldWrapper from '../InputFieldWrapper'
+import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
 export type FormInputProps = Omit<InputProps, 'onResetClick'> & {
   /** Callback invoked when reset button was clicked */
@@ -31,9 +30,9 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   }, [props.name])
 
   return (
-    <InputFieldWrapper<FormInputProps> {...props}>
+    <FieldWrapper<FormInputProps> {...props}>
       {(inputProps: InputProps) => <PicassoInput {...inputProps} ref={ref} />}
-    </InputFieldWrapper>
+    </FieldWrapper>
   )
 })
 

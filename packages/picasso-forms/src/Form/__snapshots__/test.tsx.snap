@@ -87,7 +87,6 @@ exports[`Form renders with an error 1`] = `
               id="test"
               name="test"
               placeholder="test input"
-              status="error"
               type="text"
               value=""
             />
