@@ -8,7 +8,8 @@ import {
 import {
   Form as PicassoForm,
   RequiredDecoration,
-  DateOrDateRangeType
+  DateOrDateRangeType,
+  OutlinedInputStatus
 } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { FileUpload } from '@toptal/picasso/FileInput'
@@ -20,7 +21,7 @@ import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
 
-type ValueType =
+export type ValueType =
   | string
   | string[]
   | number
@@ -50,6 +51,7 @@ export type Props<
     hideFieldLabel?: boolean
     hideLabelRequiredDecoration?: boolean
     fieldType?: string
+    status?: OutlinedInputStatus
     children: (props: any) => React.ReactNode
     renderFieldRequirements?: (props: {
       value?: TInputValue
@@ -61,7 +63,7 @@ type FieldMeta<T> = FieldMetaState<T> & {
   dirtyAfterBlur?: boolean
 }
 
-const getInputError = <T extends ValueType>(
+export const getInputError = <T extends ValueType>(
   meta: FieldMeta<T>,
   formConfig: FormConfigProps
 ) => {
@@ -102,12 +104,12 @@ const getValidators = (required: boolean, validate?: any) => {
 
 const getProps = ({
   hideFieldLabel,
-  error,
-  label
+  label,
+  status
 }: {
   hideFieldLabel?: boolean
-  error: string
   label: string
+  status?: OutlinedInputStatus
 }) => {
   if (hideFieldLabel) {
     return {
@@ -115,9 +117,13 @@ const getProps = ({
     }
   }
 
-  return {
-    error: Boolean(error)
+  if (status) {
+    return {
+      status
+    }
   }
+
+  return {}
 }
 
 const getRequiredDecoration = (
@@ -160,6 +166,7 @@ const FieldWrapper = <
     onResetClick,
     'data-testid': dataTestId,
     renderFieldRequirements,
+    status,
     // FieldProps - https://final-form.org/docs/react-final-form/types/FieldProps
     afterSubmit,
     allowNull,
@@ -233,7 +240,7 @@ const FieldWrapper = <
     id,
     ...rest,
     ...input,
-    ...getProps({ hideFieldLabel, error, label }),
+    ...getProps({ hideFieldLabel, label, status }),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
       input.onChange(event)
@@ -278,7 +285,7 @@ const FieldWrapper = <
       data-testid={dataTestId}
       fieldRequirements={renderFieldRequirements?.({
         value: input.value,
-        error: error
+        error: status === 'error'
       })}
     >
       {!hideFieldLabel && label && (
