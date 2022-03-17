@@ -6,7 +6,8 @@ import {
 import { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import { FieldProps } from '../FieldWrapper'
+import InputFieldWrapper from '../InputFieldWrapper'
 
 export type Props = NumberInputProps & FieldProps<NumberInputProps['value']>
 
@@ -27,14 +28,14 @@ export const NumberInput = (props: Props) => {
   }
 
   return (
-    <FieldWrapper<NumberInputProps>
+    <InputFieldWrapper<NumberInputProps>
       {...props}
       validate={composeValidators([validateNumberLimits, validate])}
     >
       {(inputProps: NumberInputProps) => {
         return <PicassoNumberInput {...inputProps} />
       }}
-    </FieldWrapper>
+    </InputFieldWrapper>
   )
 }
 
