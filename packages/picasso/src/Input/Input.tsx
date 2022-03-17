@@ -281,6 +281,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     defaultValue,
     value,
     placeholder,
+    error,
     status,
     disabled,
     icon,
@@ -343,7 +344,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       defaultValue={defaultValue}
       value={value}
       placeholder={placeholder}
-      status={status}
+      status={error ? 'error' : status}
       disabled={disabled}
       multiline={multiline}
       autoFocus={autoFocus}

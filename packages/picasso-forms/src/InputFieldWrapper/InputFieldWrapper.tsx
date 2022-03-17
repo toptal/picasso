@@ -4,10 +4,10 @@ import { FieldMetaState, useField } from 'react-final-form'
 
 import FieldWrapper, {
   Props as FieldWrapperProps,
-  ValueType
+  ValueType,
+  IFormComponentProps
 } from '../FieldWrapper'
 import { FormConfigProps, useFormConfig } from '../FormConfig'
-import { FormInputProps } from '../Input'
 
 export const getInputStatus = <T extends ValueType>(
   meta: FieldMetaState<T>,
@@ -37,19 +37,24 @@ export const getInputStatus = <T extends ValueType>(
 }
 
 const InputFieldWrapper = <
-  TFormInputProps extends {},
-  TValue extends string | undefined
+  TWrappedComponentProps extends IFormComponentProps,
+  TInputValue extends ValueType = TWrappedComponentProps['value']
 >(
-  props: FieldWrapperProps<TValue, TFormInputProps>
+  props: FieldWrapperProps<TWrappedComponentProps, TInputValue>
 ) => {
   const { name } = props
 
   const { meta } = useField(name)
   const formConfig = useFormConfig()
 
-  const status = getInputStatus<TValue>(meta, formConfig)
+  const status = getInputStatus<TInputValue>(meta, formConfig)
 
-  return <FieldWrapper<FormInputProps, TValue> {...props} status={status} />
+  return (
+    <FieldWrapper<IFormComponentProps, TInputValue>
+      status={status}
+      {...props}
+    />
+  )
 }
 
 InputFieldWrapper.defaultProps = {}
