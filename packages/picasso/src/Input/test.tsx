@@ -129,4 +129,25 @@ describe('Input', () => {
     fireEvent.click(inputWrapper!)
     expect(handleClick).toHaveBeenCalledTimes(2)
   })
+
+  describe('when in a valid state', () => {
+    it('shows valid icon', () => {
+      const testProps: Props = {
+        value: 'Some value',
+        status: 'success',
+        testIds: { validIcon: 'valid-icon' }
+      }
+
+      const { getByTestId, rerender } = renderInput(testProps)
+
+      const validIcon = getByTestId('valid-icon')
+
+      expect(validIcon).toBeVisible()
+
+      // re-render with different props
+      rerender(<Input {...testProps} status='error' />)
+
+      expect(validIcon).not.toBeVisible()
+    })
+  })
 })
