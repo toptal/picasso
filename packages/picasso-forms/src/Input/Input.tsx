@@ -31,7 +31,7 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   }, [props.name])
 
   return (
-    <InputFieldWrapper<FormInputProps, string | undefined> {...props}>
+    <InputFieldWrapper<FormInputProps> {...props}>
       {(inputProps: InputProps) => <PicassoInput {...inputProps} ref={ref} />}
     </InputFieldWrapper>
   )
