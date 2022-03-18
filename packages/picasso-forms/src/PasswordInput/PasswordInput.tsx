@@ -1,4 +1,4 @@
-import React, { useState, FocusEvent, ReactNode } from 'react'
+import React, { useState, FocusEvent, ReactNode, useCallback } from 'react'
 import {
   PasswordInput as PicassoPasswordInput,
   PasswordInputProps
@@ -6,9 +6,10 @@ import {
 import { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import { FieldProps } from '../FieldWrapper'
 import passwordValidators from './validators'
 import Form from '../Form'
+import InputFieldWrapper from '../InputFieldWrapper'
 
 export type Props = PasswordInputProps &
   FieldProps<PasswordInputProps['value']> & { hideRequirements?: boolean }
@@ -83,8 +84,19 @@ export const PasswordInput = ({
     />
   )
 
+  const handleShowContent = useCallback(() => {
+    setShowContent(true)
+  }, [])
+
+  const handleHideContent = useCallback(() => {
+    // Hide the requirements after a short delay
+    setTimeout(() => {
+      setShowContent(false)
+    }, ANIMATION_TIMEOUT)
+  }, [])
+
   return (
-    <FieldWrapper<PasswordInputProps>
+    <InputFieldWrapper<PasswordInputProps>
       {...rest}
       validate={validationsObject}
       renderFieldRequirements={
@@ -92,33 +104,48 @@ export const PasswordInput = ({
       }
     >
       {(inputProps: PasswordInputProps) => {
-        const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
-          inputProps.onFocus?.(event)
-
-          setShowContent(true)
-        }
-
-        const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
-          inputProps.onBlur?.(event)
-
-          // Hide the requirements after a short delay
-          setTimeout(() => {
-            setShowContent(false)
-          }, ANIMATION_TIMEOUT)
-        }
-
         return (
-          <PicassoPasswordInput
+          <FieldRenderer
             {...inputProps}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            onHideContent={handleHideContent}
+            onShowContent={handleShowContent}
           />
         )
       }}
-    </FieldWrapper>
+    </InputFieldWrapper>
   )
 }
 
 PasswordInput.displayName = 'PasswordInput'
 
 export default PasswordInput
+
+interface FieldRendererProps extends PasswordInputProps {
+  onShowContent: () => void
+  onHideContent: () => void
+}
+const FieldRenderer = (props: FieldRendererProps) => {
+  const { onFocus, onBlur, onShowContent, onHideContent, ...rest } = props
+
+  const handleFocus = useCallback(
+    (event: FocusEvent<HTMLInputElement>) => {
+      onFocus?.(event)
+
+      onShowContent()
+    },
+    [onFocus, onShowContent]
+  )
+
+  const handleBlur = useCallback(
+    (event: FocusEvent<HTMLInputElement>) => {
+      onBlur?.(event)
+
+      onHideContent()
+    },
+    [onBlur, onHideContent]
+  )
+
+  return (
+    <PicassoPasswordInput {...rest} onFocus={handleFocus} onBlur={handleBlur} />
+  )
+}
