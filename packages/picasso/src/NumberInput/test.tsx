@@ -19,6 +19,8 @@ const NumberInputRenderer = (
       min={-100}
       value={value}
       onChange={handleChange}
+      status={props.status}
+      testIds={props.testIds}
     />
   )
 }
@@ -123,6 +125,27 @@ describe('NumberInput', () => {
       fireEvent.click(controlUp)
 
       expect(input.value).toBe('-95')
+    })
+  })
+
+  describe('when in a valid state', () => {
+    it('shows valid icon', () => {
+      const testProps: NumberInputProps = {
+        value: '10',
+        status: 'success',
+        testIds: { validIcon: 'valid-icon' }
+      }
+
+      const { getByTestId, rerender } = renderNumberInput(testProps)
+
+      const validIcon = getByTestId('valid-icon')
+
+      expect(validIcon).toBeVisible()
+
+      // re-render with different props
+      rerender(<NumberInput {...testProps} status='error' />)
+
+      expect(validIcon).not.toBeVisible()
     })
   })
 })
