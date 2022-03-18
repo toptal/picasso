@@ -40,9 +40,13 @@ export type FieldProps<TInputValue> = FinalFieldProps<
 > &
   TextLabelProps
 
+export interface IFormComponentProps {
+  value?: ValueType
+}
+
 export type Props<
-  TInputValue,
-  TWrappedComponentProps
+  TWrappedComponentProps extends IFormComponentProps,
+  TInputValue
 > = TWrappedComponentProps &
   FieldProps<TInputValue> &
   TextLabelProps & {
@@ -150,10 +154,10 @@ const getRequiredDecoration = (
 }
 
 const FieldWrapper = <
-  TWrappedComponentProps extends { value?: ValueType },
+  TWrappedComponentProps extends IFormComponentProps,
   TInputValue extends ValueType = TWrappedComponentProps['value']
 >(
-  props: Props<TInputValue, TWrappedComponentProps>
+  props: Props<TWrappedComponentProps, TInputValue>
 ) => {
   const {
     type,
