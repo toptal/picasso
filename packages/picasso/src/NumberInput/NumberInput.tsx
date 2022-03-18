@@ -7,6 +7,7 @@ import InputAdornment from '../InputAdornment'
 import { useCombinedRefs } from '../utils'
 import styles from './styles'
 import { NumberInputEndAdornment } from '../NumberInputEndAdornment'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 export interface Props
   extends Omit<
@@ -26,8 +27,6 @@ export interface Props
   hideControls?: boolean
   /** Specify icon which should be rendered inside NumberInput */
   icon?: ReactNode
-  /** Indicates whether component is in error state */
-  error?: boolean
   /** Indicates whether component is in disabled state */
   disabled?: boolean
   /** Callback invoked when `NumberInput` changes its state. */
@@ -49,13 +48,23 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       onChange,
       disabled,
       error,
+      status,
       onResetClick,
       enableReset,
       width,
       icon,
       size,
+      testIds,
       ...rest
     } = props
+
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'NumberInput',
+      description:
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+    })
 
     const classes = useStyles(props)
 
@@ -97,7 +106,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         width={width}
         onResetClick={onResetClick}
         enableReset={enableReset}
-        error={error}
+        status={error ? 'error' : status}
         inputRef={inputRef}
         type='number'
         value={value}
@@ -106,6 +115,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         endAdornment={endAdornment}
         startAdornment={startAdornment}
         size={size}
+        testIds={testIds}
       />
     )
   }
@@ -118,7 +128,8 @@ NumberInput.defaultProps = {
   min: -Infinity,
   max: Infinity,
   hideControls: false,
-  size: 'medium'
+  size: 'medium',
+  status: 'default'
 }
 
 NumberInput.displayName = 'NumberInput'
