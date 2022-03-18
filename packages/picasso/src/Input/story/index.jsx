@@ -55,3 +55,4 @@ page
   .addExample('Input/story/WithLimit.example.tsx', 'With Limit')
   .addExample('Input/story/ResetButton.example.tsx', 'With reset button') // picasso-skip-visuals
   .addExample('Input/story/Refs.example.tsx', 'Refs') // picasso-skip-visuals
+  .addExample('Input/story/Status.example.tsx', 'Status') // picasso-skip-visuals
