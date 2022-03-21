@@ -5,12 +5,15 @@ import {
 } from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import { OmitKnown } from '../utils/types'
 
-export type Props = RichTextEditorProps & FieldProps<string>
+// RemoveIndex is needed for using Omit, we are still reintroducing the index though
+export type Props = RichTextEditorProps &
+  OmitKnown<FieldProps<string>, 'defaultValue'>
 
 type InternalProps = RichTextEditorProps & { value: string }
 
-export const RichTextEditor = ({ onChange, ...rest }: Props) => {
+export const RichTextEditor = ({ onChange, defaultValue, ...rest }: Props) => {
   const [value, setValue] = useState('')
 
   // Because RichTextEditor doesn't have an value input we need to implement this
@@ -30,7 +33,7 @@ export const RichTextEditor = ({ onChange, ...rest }: Props) => {
       {...rest}
     >
       {(inputProps: RichTextEditorProps) => (
-        <PicassoRichTextEditor {...inputProps} />
+        <PicassoRichTextEditor defaultValue={defaultValue} {...inputProps} />
       )}
     </FieldWrapper>
   )

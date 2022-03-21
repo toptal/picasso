@@ -8,9 +8,13 @@ const RichTextEditorExample = () => (
       <Container bottom='small'>
         <Form.RichTextEditor
           required
+          defaultValue={{
+            type: 'root',
+            children: [{ type: 'text', value: 'Example of default text' }]
+          }}
           label='Text editor'
-          id='editor1'
-          name='editor1'
+          id='editor'
+          name='editor'
         />
       </Container>
 
