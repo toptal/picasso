@@ -149,13 +149,6 @@ types supported by picasso-forms.
     'picasso-form'
   )
   .addExample(
-    'Form/story/DisabledState.example.tsx',
-    {
-      title: 'Disabled state'
-    },
-    'picasso-form'
-  ) // picasso-skip-visuals
-  .addExample(
     'Form/story/CustomValidator.example.tsx',
     {
       title: 'Custom validator',
