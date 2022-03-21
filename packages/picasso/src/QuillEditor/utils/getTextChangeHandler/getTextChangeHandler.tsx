@@ -14,6 +14,14 @@ const getTextChangeHandler = (
       return
     }
 
+    const isEmpty = quill.getLength() === 1
+
+    if (isEmpty) {
+      handleTextChange('')
+
+      return
+    }
+
     const [cleanValue] = [quill.root.innerHTML]
       .map(removeCursorSpan)
       .map(removeClasses)
