@@ -1,10 +1,6 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
 
-const Example = () => (
-  <div>
-    <Button fullWidth>Full width</Button>
-  </div>
-)
+const Example = args => <Button fullWidth>Full width</Button>
 
-export default Example
+export default Example.bind({})

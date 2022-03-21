@@ -59,6 +59,8 @@
     "@cypress/webpack-dev-server": "^1.7.0",
     "@cypress/webpack-preprocessor": "^5.9.1",
     "@storybook/addon-a11y": "^6.4.19",
+    "@storybook/addon-docs": "^6.4.19",
+    "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-viewport": "^6.4.19",
     "@storybook/react": "^6.4.19",
     "@storybook/theming": "^6.4.19",
