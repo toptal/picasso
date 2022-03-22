@@ -1,8 +1,5 @@
-import React, { useState, FocusEvent, ReactNode, useCallback } from 'react'
-import {
-  PasswordInput as PicassoPasswordInput,
-  PasswordInputProps
-} from '@toptal/picasso'
+import React, { useState, ReactNode, useCallback } from 'react'
+import { PasswordInputProps } from '@toptal/picasso'
 import { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'
@@ -10,6 +7,7 @@ import { FieldProps } from '../FieldWrapper'
 import passwordValidators from './validators'
 import Form from '../Form'
 import InputFieldWrapper from '../InputFieldWrapper'
+import FieldRenderer from './FieldRenderer'
 
 export type Props = PasswordInputProps &
   FieldProps<PasswordInputProps['value']> & { hideRequirements?: boolean }
@@ -119,33 +117,3 @@ export const PasswordInput = ({
 PasswordInput.displayName = 'PasswordInput'
 
 export default PasswordInput
-
-interface FieldRendererProps extends PasswordInputProps {
-  onShowContent: () => void
-  onHideContent: () => void
-}
-const FieldRenderer = (props: FieldRendererProps) => {
-  const { onFocus, onBlur, onShowContent, onHideContent, ...rest } = props
-
-  const handleFocus = useCallback(
-    (event: FocusEvent<HTMLInputElement>) => {
-      onFocus?.(event)
-
-      onShowContent()
-    },
-    [onFocus, onShowContent]
-  )
-
-  const handleBlur = useCallback(
-    (event: FocusEvent<HTMLInputElement>) => {
-      onBlur?.(event)
-
-      onHideContent()
-    },
-    [onBlur, onHideContent]
-  )
-
-  return (
-    <PicassoPasswordInput {...rest} onFocus={handleFocus} onBlur={handleBlur} />
-  )
-}
