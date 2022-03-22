@@ -9,7 +9,7 @@ import styles from './styles'
 import SvgEye16 from '../Icon/Eye16'
 import SvgEyeHidden16 from '../Icon/EyeHidden16'
 import Button from '../Button'
-import { InputProps } from '../Input'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 export interface Props
   extends Omit<
@@ -25,13 +25,11 @@ export interface Props
     BaseProps {
   /** Value of the `input` element. */
   value?: string
-  /** Indicates whether component is in error state */
-  error?: boolean
   /** Indicates whether component is in disabled state */
   disabled?: boolean
   /** Callback invoked when `PasswordInput` changes its state. */
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
-  testIds?: InputProps['testIds'] & {
+  testIds?: OutlinedInputProps['testIds'] & {
     input?: string
     toggle?: string
   }
@@ -48,11 +46,21 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       onChange,
       disabled,
       error,
+      status,
       width,
       style,
       className,
+      testIds,
       ...rest
     } = props
+
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'PasswordInput',
+      description:
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+    })
 
     const [showPassword, setShowPassword] = useState(false)
     const classes = useStyles()
@@ -68,7 +76,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
           variant='flat'
           icon={showPassword ? <SvgEye16 /> : <SvgEyeHidden16 />}
           onClick={handleToggleVisibilityClick}
-          data-testid={rest.testIds?.toggle}
+          data-testid={testIds?.toggle}
           disabled={disabled}
         />
       </InputAdornment>
@@ -83,16 +91,17 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
         }}
         inputProps={{
           ...rest,
-          'data-testid': rest.testIds?.input
+          'data-testid': testIds?.input
         }}
         width={width}
-        error={error}
+        status={error ? 'error' : status}
         inputRef={ref}
         type={showPassword ? 'text' : 'password'}
         value={value}
         disabled={disabled}
         onChange={onChange}
         endAdornment={endAdornment}
+        testIds={testIds}
       />
     )
   }
@@ -100,7 +109,8 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
 
 PasswordInput.defaultProps = {
   onChange: () => {},
-  value: ''
+  value: '',
+  status: 'default'
 }
 
 PasswordInput.displayName = 'PasswordInput'
