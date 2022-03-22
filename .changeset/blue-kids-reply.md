@@ -1,5 +1,0 @@
----
-'@toptal/picasso': major
----
-
-test
