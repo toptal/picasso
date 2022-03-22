@@ -141,12 +141,12 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
 
     const wrappedOnFocus = useCallback(() => {
       setIsEditorFocused(true)
-      onFocus?.()
+      onFocus()
     }, [setIsEditorFocused, onFocus])
 
     const wrappedOnBlur = useCallback(() => {
       setIsEditorFocused(false)
-      onBlur?.()
+      onBlur()
     }, [setIsEditorFocused, onBlur])
 
     const { handleFocus, handleBlur } = useOnFocus({
