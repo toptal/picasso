@@ -32,6 +32,9 @@ export type OnlyIndex<T> = {
 export type OmitKnown<T, K extends keyof NoIndex<T>> = Omit<NoIndex<T>, K> & OnlyIndex<T>
 
 
-export type Merge<T1, T2 extends { [k in keyof NoIndex<T1>]?: unknown }> = {
+/**
+ * Merge 2 object types, if the two have the a property with the same, prefer the type of the second one
+ */
+export type Merge<T1, T2> = {
   [k in keyof NoIndex<T1>]: k extends keyof T2 ? T2[k] : NoIndex<T1>[k]
 } & OnlyIndex<T1>

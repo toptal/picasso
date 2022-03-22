@@ -13,8 +13,10 @@ type OverriddenProps = {
   initialValue?: never
 }
 
-export type Props = RichTextEditorProps &
-  Merge<FieldProps<string>, OverriddenProps>
+export type Props = Merge<
+  RichTextEditorProps & FieldProps<string>,
+  OverriddenProps
+>
 
 type InternalProps = RichTextEditorProps & { value: string }
 
