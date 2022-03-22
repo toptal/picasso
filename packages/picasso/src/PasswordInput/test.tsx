@@ -3,23 +3,22 @@ import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import PasswordInput, { Props as PasswordInputProps } from './PasswordInput'
 
-const renderPasswordInput = (
-  props: Partial<PasswordInputProps> & { initialValue?: string } = {}
-) => {
-  const { initialValue } = props
+const testProps: PasswordInputProps = {
+  value: 'asd',
+  testIds: {
+    input: 'password-input',
+    toggle: 'password-input-toggle',
+    validIcon: 'valid-icon'
+  }
+}
 
-  return render(<PasswordInput {...props} value={initialValue} />)
+const renderInput = (props: Partial<PasswordInputProps>) => {
+  return render(<PasswordInput {...props} />)
 }
 
 describe('PasswordInput', () => {
   it('shows and hides password', async () => {
-    const { getByDisplayValue, getByTestId } = renderPasswordInput({
-      initialValue: 'asd',
-      testIds: {
-        input: 'password-input',
-        toggle: 'password-input-toggle'
-      }
-    })
+    const { getByDisplayValue, getByTestId } = renderInput(testProps)
 
     const input = getByDisplayValue('asd') as HTMLInputElement
     const toggle = getByTestId('password-input-toggle')
@@ -29,5 +28,23 @@ describe('PasswordInput', () => {
     fireEvent.click(toggle)
 
     expect(input.type).toBe('text')
+  })
+
+  describe('when in a valid state', () => {
+    it('shows valid icon', () => {
+      const { getByTestId, rerender } = renderInput({
+        ...testProps,
+        status: 'success'
+      })
+
+      const validIcon = getByTestId('valid-icon')
+
+      expect(validIcon).toBeVisible()
+
+      // re-render with different props
+      rerender(<PasswordInput {...testProps} status='error' />)
+
+      expect(validIcon).not.toBeVisible()
+    })
   })
 })
