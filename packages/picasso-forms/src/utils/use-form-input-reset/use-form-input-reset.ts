@@ -7,15 +7,15 @@ export type Props<TInputValue> = {
   onResetClick?: (callback: (resetValue: string) => void) => void
 }
 
+const defaultOnResetClick = (callback: (resetValue: string) => void) => {
+  callback('')
+}
+
 const useFormInputReset = <TInputValue>({
   input,
   enableReset,
-  onResetClick
+  onResetClick = defaultOnResetClick
 }: Props<TInputValue>): (() => void) | undefined => {
-  const defaultResetClickHandler = useCallback(() => {
-    input.onChange('')
-  }, [input])
-
   const resetClickHandler = useCallback(() => {
     onResetClick!((resetValue: string) => {
       input.onChange(resetValue)
@@ -26,7 +26,7 @@ const useFormInputReset = <TInputValue>({
     return
   }
 
-  return onResetClick ? resetClickHandler : defaultResetClickHandler
+  return resetClickHandler
 }
 
 export default useFormInputReset
