@@ -7,6 +7,7 @@ import {
 } from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import FieldLabel from '../FieldLabel'
 import CheckboxGroupContext from './CheckboxGroupContext'
 
 export type Props = CheckboxGroupProps & FieldProps<CheckboxProps['value']>
@@ -16,7 +17,21 @@ export const CheckboxGroup = (props: Props) => {
 
   return (
     <CheckboxGroupContext.Provider value={props.name}>
-      <FieldWrapper titleCase={titleCase} {...rest} type='checkbox'>
+      <FieldWrapper
+        titleCase={titleCase}
+        {...rest}
+        type='checkbox'
+        label={
+          props.label ? (
+            <FieldLabel
+              id={props.id}
+              required={props.required}
+              label={props.label}
+              titleCase={props.titleCase}
+            />
+          ) : null
+        }
+      >
         {() => (
           <PicassoCheckbox.Group {...rest}>{children}</PicassoCheckbox.Group>
         )}

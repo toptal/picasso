@@ -4,6 +4,7 @@ import { FileUpload } from '@toptal/picasso/FileInput'
 import { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import FieldLabel from '../FieldLabel'
 
 export type Props = DropzoneProps &
   FieldProps<DropzoneProps['value']> & {
@@ -54,6 +55,14 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
     <FieldWrapper<DropzoneProps, FileUpload[] | undefined>
       hideErrors
       {...props}
+      label={
+        <FieldLabel
+          id={props.id}
+          required={props.required}
+          label={props.label}
+          titleCase={props.titleCase}
+        />
+      }
     >
       {inputProps => (
         <PicassoDropzone
