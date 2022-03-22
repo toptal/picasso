@@ -9,6 +9,7 @@ import Input, { InputProps } from '../Input'
 import { Time16 } from '../Icon'
 import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import { Status } from '../OutlinedInput'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTimePicker'
@@ -37,9 +38,12 @@ export interface Props
       | 'rowsMax'
       | 'limit'
       | 'placeholder'
+      | 'status'
     > {
   /** Time value that will be selected in TimePicker */
   value?: string
+  /** Indicate whether `TimePicker` is in error state */
+  status?: Exclude<Status, 'success'>
 }
 
 export const TimePicker = (props: Props) => {
@@ -76,7 +80,7 @@ export const TimePicker = (props: Props) => {
         iconPosition='end'
         icon={icon}
         width={width}
-        status={error ? 'error' : status}
+        status={error ? 'error' : (status as Status)}
         className={cx(classes.root, className)}
         inputProps={{
           className: classes.inputBase,
@@ -107,7 +111,7 @@ export const TimePicker = (props: Props) => {
       iconPosition='end'
       icon={icon}
       width={width}
-      status={status || (error ? 'error' : undefined)}
+      status={error ? 'error' : (status as Status)}
       inputProps={{
         className: classes.inputBase,
         step: 60, // 1 min

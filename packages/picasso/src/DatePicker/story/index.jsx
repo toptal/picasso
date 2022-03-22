@@ -53,3 +53,4 @@ page
     description:
       'Type any year value like `2015` to get a random date within this year'
   }) // picasso-skip-visuals
+  .addExample('DatePicker/story/Status.example.tsx', 'Status') // picasso-skip-visuals

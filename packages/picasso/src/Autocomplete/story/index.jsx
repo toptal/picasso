@@ -64,7 +64,7 @@ if needed.
   .addExample('Autocomplete/story/FullWidth.example.tsx', 'Full width') // picasso-skip-visuals
   .addExample('Autocomplete/story/MenuWidth.example.tsx', 'Menu width') // picasso-skip-visuals
   .addExample('Autocomplete/story/Loading.example.tsx', 'Loading') // picasso-skip-visuals
-  .addExample('Autocomplete/story/Error.example.tsx', 'Error') // picasso-skip-visuals
+  .addExample('Autocomplete/story/Status.example.tsx', 'Status') // picasso-skip-visuals
   .addExample('Autocomplete/story/WithIcons.example.tsx', 'With Icon') // picasso-skip-visuals
   .addExample(
     'Autocomplete/story/WithDescription.example.tsx',
@@ -93,4 +93,3 @@ when it makes sense to have autofill enabled.
       'to meet their requirements https://developers.google.com/places/web-service/policies in such cases ' +
       'we have to show the "Powered By Google" label.'
   }) // picasso-skip-visuals
-  .addExample('Autocomplete/story/Status.example.tsx', 'Validation Status') // picasso-skip-visuals

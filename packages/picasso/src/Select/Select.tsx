@@ -75,7 +75,8 @@ Select.defaultProps = {
   limit: DEFAULT_LIMIT,
   enableAutofill: false,
   searchPlaceholder: 'Search',
-  native: false
+  native: false,
+  status: 'default'
 }
 
 export default Select
