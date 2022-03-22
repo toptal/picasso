@@ -285,7 +285,6 @@ const FieldWrapper = <
         <PicassoForm.Label
           requiredDecoration={requiredDecoration}
           htmlFor={id}
-          disabled={rest.disabled}
           titleCase={titleCase}
         >
           {label}
