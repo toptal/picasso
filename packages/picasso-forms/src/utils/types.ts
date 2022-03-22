@@ -22,10 +22,16 @@ export type OnlyIndex<T> = {
 
 /**
  * This is an Omit implementation that works with indexed types (meaning it ignores index types altogether)
+ *
  * For background see the issues:
+ *
  * https://github.com/microsoft/TypeScript/issues/45367
  * https://github.com/microsoft/TypeScript/issues/42436
  * https://github.com/microsoft/TypeScript/issues/31153
  */
 export type OmitKnown<T, K extends keyof NoIndex<T>> = Omit<NoIndex<T>, K> & OnlyIndex<T>
 
+
+export type Merge<T1, T2 extends { [k in keyof NoIndex<T1>]?: unknown }> = {
+  [k in keyof NoIndex<T1>]: k extends keyof T2 ? T2[k] : NoIndex<T1>[k]
+} & OnlyIndex<T1>

@@ -1,15 +1,22 @@
-import React, { useCallback, useState } from 'react'
 import {
   RichTextEditor as PicassoRichTextEditor,
   RichTextEditorProps
 } from '@toptal/picasso'
+import React, { useCallback, useState } from 'react'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
-import { OmitKnown } from '../utils/types'
+import { Merge } from '../utils/types'
 
-// RemoveIndex is needed for using Omit, we are still reintroducing the index though
+type OverriddenProps = {
+  defaultValue?: RichTextEditorProps['defaultValue']
+  value?: never
+  initialValue?: never
+}
+
+// We need to ignore the defaultValue from FieldProps, but Omit doesn't work with indexed types
+// We used our own workaround instead
 export type Props = RichTextEditorProps &
-  OmitKnown<FieldProps<string>, 'defaultValue'>
+  Merge<FieldProps<string>, OverriddenProps>
 
 type InternalProps = RichTextEditorProps & { value: string }
 
