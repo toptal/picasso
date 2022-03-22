@@ -242,6 +242,9 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
 
 RichTextEditor.defaultProps = {
   autoFocus: false,
+  onChange: noop,
+  onFocus: noop,
+  onBlur: noop,
   disabled: false
 }
 

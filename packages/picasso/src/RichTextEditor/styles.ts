@@ -9,7 +9,7 @@ export default ({ palette, sizes }: Theme) =>
       border: `1px solid ${palette.grey.light2}`,
       padding: '0.5em',
 
-      '&:hover:not($disabled)': {
+      '&:hover:not($disabled):not($error)': {
         borderColor: palette.grey.main2
       }
     },
@@ -21,9 +21,7 @@ export default ({ palette, sizes }: Theme) =>
     },
 
     error: {
-      '&, &:hover:not($disabled)': {
-        borderColor: palette.red.main
-      }
+      borderColor: palette.red.main
     },
 
     focused: {
