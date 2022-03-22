@@ -7,7 +7,7 @@ export type Props<TInputValue> = {
   onResetClick?: (callback: (resetValue: string) => void) => void
 }
 
-const useFormReset = <TInputValue>({
+const useFormInputReset = <TInputValue>({
   input,
   enableReset,
   onResetClick
@@ -23,10 +23,10 @@ const useFormReset = <TInputValue>({
   }, [input, onResetClick])
 
   if (!enableReset) {
-    return {}
+    return
   }
 
   return onResetClick ? resetClickHandler : defaultResetClickHandler
 }
 
-export default useFormReset
+export default useFormInputReset

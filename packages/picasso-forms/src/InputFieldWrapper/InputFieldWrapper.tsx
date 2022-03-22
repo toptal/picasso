@@ -8,7 +8,7 @@ import FieldWrapper, {
   IFormComponentProps
 } from '../FieldWrapper'
 import { FormConfigProps, useFormConfig } from '../FormConfig'
-import useFormReset from './use-form-reset'
+import useFormInputReset from './use-form-input-reset'
 
 export const getInputStatus = <T extends ValueType>(
   meta: FieldMetaState<T>,
@@ -49,7 +49,7 @@ const InputFieldWrapper = <
   const formConfig = useFormConfig()
 
   const status = getInputStatus<TInputValue>(meta, formConfig)
-  const onFormInputResetClick = useFormReset<TInputValue>({
+  const onFormInputResetClick = useFormInputReset<TInputValue>({
     input,
     enableReset,
     onResetClick
