@@ -4,16 +4,17 @@ import {
   AutocompleteProps
 } from '@toptal/picasso'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import { FieldProps } from '../FieldWrapper'
+import InputFieldWrapper from '../InputFieldWrapper'
 
 export type Props = AutocompleteProps & FieldProps<AutocompleteProps['value']>
 
 export const Autocomplete = (props: Props) => (
-  <FieldWrapper<AutocompleteProps> {...props}>
+  <InputFieldWrapper<AutocompleteProps> {...props}>
     {(inputProps: AutocompleteProps) => {
       return <PicassoAutocomplete {...inputProps} />
     }}
-  </FieldWrapper>
+  </InputFieldWrapper>
 )
 
 Autocomplete.displayName = 'Autocomplete'

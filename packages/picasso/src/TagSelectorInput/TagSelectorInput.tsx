@@ -5,6 +5,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Props as InputProps } from '../Input/Input'
 import OutlinedInput from '../OutlinedInput'
 import styles from './styles'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTagSelectorInput'
@@ -18,6 +19,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       defaultValue,
       value,
       placeholder,
+      status,
       error,
       disabled,
       autoFocus,
@@ -41,6 +43,14 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       ...rest
     } = props
 
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'TagSelectorInput',
+      description:
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+    })
+
     const classes = useStyles()
     let usedEndAdornment = null
 
@@ -62,7 +72,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         defaultValue={defaultValue}
         value={value}
         placeholder={placeholder}
-        error={error}
+        status={error ? 'error' : status}
         disabled={disabled}
         autoFocus={autoFocus}
         autoComplete={autoComplete}
@@ -89,7 +99,8 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
 
 TagSelectorInput.defaultProps = {
   multiline: false,
-  width: 'auto'
+  width: 'auto',
+  status: 'default'
 }
 
 TagSelectorInput.displayName = 'TagSelectorInput'
