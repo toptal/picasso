@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent, useCallback, useEffect } from 'react'
+import React, { ChangeEvent, FocusEvent, useEffect } from 'react'
 import {
   useField,
   FieldProps as FinalFieldProps,
@@ -166,8 +166,6 @@ const FieldWrapper = <
     hint,
     label,
     required,
-    enableReset,
-    onResetClick,
     'data-testid': dataTestId,
     renderFieldRequirements,
     status,
@@ -228,16 +226,6 @@ const FieldWrapper = <
     value
   })
 
-  const defaultResetClickHandler = useCallback(() => {
-    input.onChange('')
-  }, [input])
-
-  const resetClickHandler = useCallback(() => {
-    onResetClick((resetValue: string) => {
-      input.onChange(resetValue)
-    })
-  }, [input, onResetClick])
-
   const error = getInputError<TInputValue>(meta, formConfig)
 
   const childProps: Record<string, unknown> = {
@@ -267,13 +255,6 @@ const FieldWrapper = <
         rest.onFocus(event)
       }
     }
-  }
-
-  if (enableReset) {
-    childProps.onResetClick = onResetClick
-      ? resetClickHandler
-      : defaultResetClickHandler
-    childProps.enableReset = enableReset
   }
 
   const requiredDecoration = getRequiredDecoration(
