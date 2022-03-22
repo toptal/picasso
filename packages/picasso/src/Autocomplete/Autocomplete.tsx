@@ -29,8 +29,9 @@ import OtherOptionMenuItem from './OtherOptionMenuItem'
 import { Item, ChangedOptions } from './types'
 import { useAutocomplete, EMPTY_INPUT_VALUE } from './use-autocomplete'
 import styles from './styles'
-import { BaseInputProps } from '../OutlinedInput'
+import { BaseInputProps, Status } from '../OutlinedInput'
 import unsafeErrorLog from '../utils/unsafe-error-log'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 export interface Props
   extends BaseProps,
@@ -84,8 +85,11 @@ export interface Props
   startAdornment?: ReactNode
   /** ReactNode for labels that will be used as end InputAdornment - */
   endAdornment?: ReactNode
-  /** Indicate whether `Input` is in error state */
+  /** @deprecated */
+  /** Indicate whether `Autocomplete` is in error state */
   error?: boolean
+  /** Indicate whether `Autocomplete` is in error or success state */
+  status?: Status
   /** Specify icon which should be rendered inside Input */
   icon?: ReactNode
   /** Custom input component */
@@ -130,6 +134,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       enableReset,
       endAdornment,
       error,
+      status,
       getDisplayValue = getItemText,
       getKey: customGetKey,
       icon,
@@ -159,6 +164,15 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       disabled = false,
       ...rest
     } = props
+
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'Autocomplete',
+      description:
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+    })
+
     const classes = useStyles()
 
     const getKey = (item: Item) => {
@@ -277,7 +291,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           <InputComponent
             {...rest}
             {...getInputProps()}
-            error={error}
+            status={error ? 'error' : status}
             icon={icon}
             disabled={disabled}
             defaultValue={undefined}
@@ -329,7 +343,8 @@ Autocomplete.defaultProps = {
   width: 'auto',
   enableReset: true,
   poweredByGoogle: false,
-  disabled: false
+  disabled: false,
+  status: 'default'
 }
 
 Autocomplete.displayName = 'Autocomplete'
