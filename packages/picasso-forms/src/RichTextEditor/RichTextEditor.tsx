@@ -13,29 +13,27 @@ type OverriddenProps = {
   initialValue?: never
 }
 
-// We need to ignore the defaultValue from FieldProps, but Omit doesn't work with indexed types
-// We used our own workaround instead
 export type Props = RichTextEditorProps &
   Merge<FieldProps<string>, OverriddenProps>
 
 type InternalProps = RichTextEditorProps & { value: string }
 
 export const RichTextEditor = ({ onChange, defaultValue, ...rest }: Props) => {
-  const [value, setValue] = useState('')
+  const [internalValue, setInternalValue] = useState('')
 
   // Because RichTextEditor doesn't have an value input we need to implement this
   // as an compatibility layer between final-form
   const handleOnChange = useCallback(
     (newVal: string) => {
-      setValue(newVal)
+      setInternalValue(newVal)
       onChange?.(newVal)
     },
-    [onChange, setValue]
+    [onChange, setInternalValue]
   )
 
   return (
     <FieldWrapper<InternalProps>
-      value={value}
+      value={internalValue}
       onChange={handleOnChange}
       {...rest}
     >
