@@ -3,7 +3,11 @@ import { Form } from '@toptal/picasso-forms'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop } from '@toptal/picasso/utils'
-import { AutocompleteItem } from '@toptal/picasso'
+import {
+  AutocompleteItem,
+  TagSelector,
+  TagSelectorProps
+} from '@toptal/picasso'
 
 const options = [
   {
@@ -42,6 +46,14 @@ const InitiallySelectedOptionExample = () => {
   )
 }
 
+const NoOptionSelectedExample = ({ status }: Partial<TagSelectorProps>) => {
+  return (
+    <TestingPicasso>
+      <TagSelector status={status} testIds={{ validIcon: 'valid-icon' }} />
+    </TestingPicasso>
+  )
+}
+
 const getOptions = () => cy.get('[role=option]')
 const getOption = (text: string) => getOptions().contains(text)
 const openTagSelector = () => cy.get('input[type="text"]').click()
@@ -58,5 +70,13 @@ describe('TagSelector', () => {
     openTagSelector()
     getOptions().should('have.length', 1)
     getOption('Option 1').should('not.exist')
+  })
+
+  describe('when in a valid state', () => {
+    it('shows valid icon', () => {
+      mount(<NoOptionSelectedExample status='success' />)
+
+      cy.get('body').happoScreenshot()
+    })
   })
 })
