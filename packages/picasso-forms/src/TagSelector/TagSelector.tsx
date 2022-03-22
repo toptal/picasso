@@ -4,16 +4,17 @@ import {
   TagSelectorProps
 } from '@toptal/picasso'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import { FieldProps } from '../FieldWrapper'
+import InputFieldWrapper from '../InputFieldWrapper'
 
 export type Props = TagSelectorProps & FieldProps<TagSelectorProps['value']>
 
 export const TagSelector = (props: Props) => (
-  <FieldWrapper<TagSelectorProps> {...props}>
+  <InputFieldWrapper<TagSelectorProps> {...props}>
     {(inputProps: TagSelectorProps) => {
       return <PicassoTagSelector {...inputProps} />
     }}
-  </FieldWrapper>
+  </InputFieldWrapper>
 )
 
 TagSelector.defaultProps = {

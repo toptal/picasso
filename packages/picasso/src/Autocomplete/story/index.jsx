@@ -93,3 +93,4 @@ when it makes sense to have autofill enabled.
       'to meet their requirements https://developers.google.com/places/web-service/policies in such cases ' +
       'we have to show the "Powered By Google" label.'
   }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/Status.example.tsx', 'Validation Status') // picasso-skip-visuals
