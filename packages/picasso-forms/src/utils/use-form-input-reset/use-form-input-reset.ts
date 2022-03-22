@@ -11,7 +11,7 @@ const useFormInputReset = <TInputValue>({
   input,
   enableReset,
   onResetClick
-}: Props<TInputValue>) => {
+}: Props<TInputValue>): (() => void) | undefined => {
   const defaultResetClickHandler = useCallback(() => {
     input.onChange('')
   }, [input])

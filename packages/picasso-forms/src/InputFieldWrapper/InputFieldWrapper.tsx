@@ -8,7 +8,7 @@ import FieldWrapper, {
   IFormComponentProps
 } from '../FieldWrapper'
 import { FormConfigProps, useFormConfig } from '../FormConfig'
-import useFormInputReset from './use-form-input-reset'
+import useFormInputReset from '../utils/use-form-input-reset'
 
 export const getInputStatus = <T extends ValueType>(
   meta: FieldMetaState<T>,
