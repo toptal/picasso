@@ -34,10 +34,12 @@ export interface Props
   value?: string
   /** Placeholder for value */
   placeholder?: string
-  /** @deprecated */
-  /** Indicate whether `Input` is in error state */
+  /**
+   * @deprecated Use the `status` prop instead to both support success and error states
+   * Indicate whether `Input` is in error state
+   */
   error?: boolean
-  /** Indicate whether `Input` is in error or success state */
+  /** Indicate `Input` status */
   status?: Status
   /** If true, the `Input` will be disabled */
   disabled?: boolean

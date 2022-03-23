@@ -15,18 +15,10 @@ export const RadioGroup = (props: Props) => {
 
   return (
     <RadioGroupContext.Provider value={props.name}>
-      {}
       <FieldWrapper {...rest} type='radio'>
-        {radioGroupProps => {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { error, ...restRadioGroupProps } = radioGroupProps
-
-          return (
-            <PicassoRadio.Group {...restRadioGroupProps}>
-              {children}
-            </PicassoRadio.Group>
-          )
-        }}
+        {inputProps => (
+          <PicassoRadio.Group {...inputProps}>{children}</PicassoRadio.Group>
+        )}
       </FieldWrapper>
     </RadioGroupContext.Provider>
   )
