@@ -1,19 +1,18 @@
 import React from 'react'
-import { Container, Select } from '@toptal/picasso'
+import { Select, Form } from '@toptal/picasso'
 
 const Example = () => {
   return (
-    <Container flex direction='column'>
-      <Container padded='small'>
-        <Select placeholder='default' status='default' options={[]} />
-      </Container>
-      <Container padded='small'>
-        <Select placeholder='error' status='error' options={[]} />
-      </Container>
-      <Container padded='small'>
-        <Select placeholder='success' status='success' options={[]} />
-      </Container>
-    </Container>
+    <Form>
+      <Form.Field>
+        <Form.Label>Default</Form.Label>
+        <Select options={[]} status='default' width='auto' />
+      </Form.Field>
+      <Form.Field>
+        <Form.Label>Error</Form.Label>
+        <Select options={[]} status='error' width='auto' />
+      </Form.Field>
+    </Form>
   )
 }
 

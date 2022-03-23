@@ -55,8 +55,7 @@ export interface Props
   rowsMax?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
-  /** @deprecated */
-  /** If true, the input will indicate an error. */
+  /** @deprecated If true, the input will indicate an error. */
   error?: boolean
   /** Indicates that input is in error or success state */
   status?: Status

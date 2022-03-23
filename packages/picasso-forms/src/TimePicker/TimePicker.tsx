@@ -15,7 +15,10 @@ export type Props = FormTimePickerProps & FieldProps<TimePickerProps['value']>
 export const TimePicker = (props: Props) => (
   <InputFieldWrapper<FormTimePickerProps> {...props}>
     {(inputProps: TimePickerProps) => {
-      return <PicassoTimePicker {...inputProps} />
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { enableReset, onResetClick, ...rest } = inputProps
+
+      return <PicassoTimePicker {...rest} />
     }}
   </InputFieldWrapper>
 )

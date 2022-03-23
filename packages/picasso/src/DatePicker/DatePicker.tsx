@@ -85,8 +85,7 @@ export interface Props
   icon?: ReactNode
   /** Specify a value if want to enable browser autofill */
   autoComplete?: string
-  /** @deprecated */
-  /** Indicate whether `DatePicker` is in error state */
+  /** @deprecated Indicate whether `DatePicker` is in error state */
   error?: boolean
   /** Indicate whether `DatePicker` is in error or success state */
   status?: Status
@@ -146,10 +145,8 @@ export const DatePicker = (props: Props) => {
   const [calendarIsShown, setCalendarIsShown] = useState(false)
   const [isInputFocused, setIsInputFocused] = useState(false)
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
-  const [
-    calendarValue,
-    setCalendarValue
-  ] = useState<DateOrDateRangeType | null>(null)
+  const [calendarValue, setCalendarValue] =
+    useState<DateOrDateRangeType | null>(null)
 
   const [normalizedMinDate, normalizedMaxDate] = useMemo(() => {
     return [getStartOfTheDayDate(minDate), getStartOfTheDayDate(maxDate)]
@@ -326,9 +323,10 @@ export const DatePicker = (props: Props) => {
         event.currentTarget.blur()
       } else {
         // TODO: Manage this whole logic inside simple-react-calendar
-        const firstButton = calendarRef.current?.querySelector<
-          HTMLButtonElement
-        >('button:not([tabindex="-1"])')
+        const firstButton =
+          calendarRef.current?.querySelector<HTMLButtonElement>(
+            'button:not([tabindex="-1"])'
+          )
 
         if (firstButton) {
           firstButton.focus()
@@ -354,9 +352,7 @@ export const DatePicker = (props: Props) => {
       <InputAdornment position='start' disablePointerEvents>
         {icon || <Calendar16 />}
       </InputAdornment>
-    ) : (
-      undefined
-    )
+    ) : undefined
 
   return (
     <>

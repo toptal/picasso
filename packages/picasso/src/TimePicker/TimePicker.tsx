@@ -32,8 +32,6 @@ export interface Props
       | 'counter'
       | 'endAdornment'
       | 'startAdornment'
-      | 'enableReset'
-      | 'onResetClick'
       | 'multilineResizable'
       | 'rowsMax'
       | 'limit'
@@ -80,7 +78,7 @@ export const TimePicker = (props: Props) => {
         iconPosition='end'
         icon={icon}
         width={width}
-        status={error ? 'error' : (status as Status)}
+        status={error ? 'error' : status}
         className={cx(classes.root, className)}
         inputProps={{
           className: classes.inputBase,
@@ -111,7 +109,7 @@ export const TimePicker = (props: Props) => {
       iconPosition='end'
       icon={icon}
       width={width}
-      status={error ? 'error' : (status as Status)}
+      status={error ? 'error' : status}
       inputProps={{
         className: classes.inputBase,
         step: 60, // 1 min

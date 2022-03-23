@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { Container, DatePicker, Typography } from '@toptal/picasso'
+import { DatePicker, Form } from '@toptal/picasso'
 
 const Example = () => {
   const [datepickerValue, setDatepickerValue] = useState<Date>()
 
   return (
-    <Container flex direction='column'>
-      <Container padded='small'>
-        <Typography>Default</Typography>
+    <Form>
+      <Form.Field>
+        <Form.Label>Default</Form.Label>
         <DatePicker
           value={datepickerValue}
           onChange={date => {
@@ -15,9 +15,9 @@ const Example = () => {
           }}
           status='default'
         />
-      </Container>
-      <Container padded='small'>
-        <Typography>Error</Typography>
+      </Form.Field>
+      <Form.Field>
+        <Form.Label>Error</Form.Label>
         <DatePicker
           value={datepickerValue}
           onChange={date => {
@@ -25,9 +25,9 @@ const Example = () => {
           }}
           status='error'
         />
-      </Container>
-      <Container padded='small'>
-        <Typography>Success</Typography>
+      </Form.Field>
+      <Form.Field>
+        <Form.Label>Success</Form.Label>
         <DatePicker
           value={datepickerValue}
           onChange={date => {
@@ -35,8 +35,8 @@ const Example = () => {
           }}
           status='success'
         />
-      </Container>
-    </Container>
+      </Form.Field>
+    </Form>
   )
 }
 

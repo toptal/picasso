@@ -1,18 +1,18 @@
 import React from 'react'
-import { Container, TimePicker, Typography } from '@toptal/picasso'
+import { TimePicker, Form } from '@toptal/picasso'
 
 const Example = () => {
   return (
-    <Container flex direction='column'>
-      <Container padded='small'>
-        <Typography>Default</Typography>
+    <Form>
+      <Form.Field>
+        <Form.Label>Default</Form.Label>
         <TimePicker status='default' />
-      </Container>
-      <Container padded='small'>
-        <Typography>Error</Typography>
+      </Form.Field>
+      <Form.Field>
+        <Form.Label>Error</Form.Label>
         <TimePicker status='error' />
-      </Container>
-    </Container>
+      </Form.Field>
+    </Form>
   )
 }
 

@@ -85,8 +85,7 @@ export interface Props
   startAdornment?: ReactNode
   /** ReactNode for labels that will be used as end InputAdornment - */
   endAdornment?: ReactNode
-  /** @deprecated */
-  /** Indicate whether `Autocomplete` is in error state */
+  /** @deprecated Indicate whether `Autocomplete` is in error state */
   error?: boolean
   /** Indicate whether `Autocomplete` is in error or success state */
   status?: Status
