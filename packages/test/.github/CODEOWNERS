@@ -1,0 +1,10 @@
+# This file defines individuals or teams that are responsible for code.
+#
+# https://github.com/blog/2392-introducing-code-owners
+# https://help.github.com/articles/about-codeowners/
+#
+# Lines starting with '#' are comments.
+# Each line is a file pattern followed by one or more owners.
+
+# These owners will be the default owners for everything in the repo.
+* @toptal/%team name%

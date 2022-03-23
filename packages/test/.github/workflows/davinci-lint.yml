@@ -1,0 +1,30 @@
+name: Lint
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: [master]
+
+jobs:
+  lint:
+    name: Check:Lint
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - uses: ./.github/actions/yarn-install
+
+      - uses: ./.github/actions/lint

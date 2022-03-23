@@ -1,0 +1,63 @@
+{
+  "name": "@toptal/test",
+  "version": "0.0.1",
+  "description": "Toptal frontend application created with Davinci CLI",
+  "author": "Toptal",
+  "homepage": "https://github.com/toptal/test/tree/master#readme",
+  "license": "SEE LICENSE IN LICENSE.MD",
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.9.12",
+    "@cypress/webpack-preprocessor": "^5.11.1",
+    "@toptal/browserslist-config": "1.2.1-alpha-fx-2460-put-the-integration-tests-gh-workflow-in-davinci-skeleton.190+c8388fd6",
+    "@toptal/davinci": "^11.14.0",
+    "@types/jest": "^27.0.3",
+    "@types/react": "^17.0.42",
+    "@types/react-dom": "^17.0.14",
+    "@types/styled-components": "^5.1.14",
+    "babel-plugin-istanbul": "^6.1.1",
+    "wait-on": "^5.2.0",
+    "yarn-deduplicate": "^2.0.0"
+  },
+  "scripts": {
+    "analyze": "davinci engine analyze",
+    "build": "davinci engine build",
+    "start": "PORT=3000 davinci engine start --https --open-url https://local-development.staging.toptal.net:3000",
+    "start:ci": "PORT=3000 davinci engine start --https",
+    "test": "davinci qa unit --runInBand true",
+    "test:ci": "LANG=en_US davinci qa unit --ci --maxWorkers 100% --testTimeout=10000 --silent",
+    "test:integration": "NODE_ENV=test davinci qa e2e --baseUrl=https://local-development.staging.toptal.net:3000",
+    "test:integration:ci": "yarn start:ci & wait-on -i 10000 https://local-development.staging.toptal.net:3000 && yarn test:integration",
+    "lint": "davinci syntax lint code . && davinci syntax lint styles .",
+    "typecheck": "tsc --noEmit",
+    "prepublish": "if [ -f 'yarn.lock' ]; then yarn-deduplicate yarn.lock; fi"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "davinci syntax lint code",
+      "prettier",
+      "git add"
+    ],
+    "styles.{js,jsx,ts,tsx}": [
+      "davinci syntax lint styles",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "davinci ci danger --local"
+    }
+  },
+  "sideEffects": false,
+  "main": "./src/index.tsx",
+  "dependencies": {
+    "@toptal/picasso": "^19.0.1",
+    "@toptal/picasso-provider": "^0.7.0",
+    "graphql": "^16.3.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3",
+    "typescript": "^4.6.2"
+  }
+}

@@ -1,0 +1,157 @@
+name: Deploy Temploy
+
+on:
+  pull_request:
+    branches: [master]
+  issue_comment:
+    types: [ created ]
+
+concurrency:
+  group: temploy-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+
+jobs:
+  build-push-image:
+    name: Build & Push image
+    if: >
+      github.event.pull_request || (
+        github.event.issue.pull_request &&
+        github.event.comment.body == '@toptal-bot run temploy'
+      )
+    timeout-minutes: 45
+    env:
+      GCR_ACCOUNT_KEY: ${{ secrets.GCR_ACCOUNT_KEY }}
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.get-branch.outputs.sha }}
+      repository_name: ${{ steps.get-repo.outputs.repository_name }}
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@d1af9509c9794689332b13f11ada1dfd07fc06ce
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - id: branch
+        uses: xt0rted/pull-request-comment-branch@v1.3.0
+
+      - name: Specify branch
+        id: get-branch
+        run: |
+          echo "::set-output name=branch::${{ steps.branch.outputs.head_ref }}"
+          echo "::set-output name=sha::${{ steps.branch.outputs.head_sha }}"
+
+      - name: Specify repository name
+        id: get-repo
+        run: echo ::set-output name=repository_name::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
+
+      - name: Checkout davinci
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci
+          token: ${{ env.GITHUB_TOKEN }}
+          path: davinci
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - uses: ./.github/actions/yarn-install
+
+      - name: Build
+        run: yarn build
+        env:
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: gcr.io/toptal-hub/${{ steps.get-repo.outputs.repository_name }}-release
+          tags: |
+            type=raw,value={{branch}}
+            type=raw,value={{sha}}
+            type=raw,value=${{ steps.get-branch.outputs.sha }}
+          flavor: latest=false
+
+      - name: Login to GCloud Registry
+        uses: docker/login-action@v1
+        with:
+          registry: gcr.io
+          username: _json_key
+          password: ${{ env.GCR_ACCOUNT_KEY }}
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and push image
+        uses: docker/build-push-action@v2
+        with:
+          tags: ${{ steps.meta.outputs.tags }}
+          push: true
+          context: .
+          file: ./davinci/packages/ci/src/configs/docker/Dockerfile.gha-deploy
+          build-args: |
+            ENV_RUNTIME_ENTRYPOINT=./davinci/packages/ci/src/configs/docker/env-runtime.entrypoint.sh
+            DIST_FOLDER=./dist
+            NGINX_CONFIG=./davinci/packages/davinci/docker/nginx-vhost.conf
+            VERSION=${{ steps.get-branch.outputs.sha }}
+
+  deploy-temploy:
+    name: Deploy Temploy
+    timeout-minutes: 45
+    runs-on: ubuntu-latest
+    needs: [build-push-image]
+    env:
+      JENKINS_USER: toptal-jenkins
+      JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_JENKINS_BUILD_TOKEN }}
+      REPOSITORY_NAME: ${{ needs.build-push-image.outputs.repository_name }}
+      RELEASE: ${{ needs.build-push-image.outputs.repository_name }}-pr-${{ github.event.number || github.event.issue.number }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - uses: ./.github/actions/extract-env-variables
+        id: env-variables
+        with:
+          github_token: ${{ env.GITHUB_TOKEN }}
+          filename: .env.temploy
+
+      - name: Trigger temploy job
+        uses: toptal/jenkins-job-trigger-action@1.0.0
+        with:
+          jenkins_url: https://jenkins-build.toptal.net/
+          jenkins_user: ${{ env.JENKINS_USER }}
+          jenkins_token: ${{ env.JENKINS_BUILD_TOKEN }}
+          job_name: '${{ env.REPOSITORY_NAME }}/job/${{ env.REPOSITORY_NAME }}-temploy-helm-run'
+          job_params: |
+            {
+              "REPOSITORY_NAME": "${{ env.REPOSITORY_NAME }}",
+              "TAG": "${{ needs.build-push-image.outputs.sha }}",
+              "ENV": "${{ steps.env-variables.outputs.variables }}",
+              "RELEASE": "${{ env.RELEASE }}"
+            }
+          job_timeout: '1200'
+
+      - name: Post temploy link
+        uses: actions/github-script@v3.0.0
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            const { issue: { number: issue_number }, repo: { owner, repo }  } = context
+            const body = 'Temploy was scheduled, it will become available in a few minutes and available at https://${{ env.RELEASE }}.toptal.rocks'
+            github.issues.createComment({ issue_number, owner, repo, body })

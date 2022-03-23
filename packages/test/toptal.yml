@@ -1,0 +1,12 @@
+# This file stores the project specific information
+#
+# Docs about the format of total.yml file:
+# https://github.com/toptal/cataloger#toptalyml
+# 
+
+owner:
+  name: %Team name%
+  url: https://team.toptal.net/users?team_id=
+  channel: %Team slack channel%
+
+technology: ['node']

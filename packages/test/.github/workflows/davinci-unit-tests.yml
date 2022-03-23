@@ -1,0 +1,32 @@
+name: Unit Tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: [master]
+
+jobs:
+  typecheck:
+    name: Check:UnitTests
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@dffcefda964529302c673388c65a8137995e9603
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - uses: ./.github/actions/yarn-install
+
+      - uses: ./.github/actions/unit-tests

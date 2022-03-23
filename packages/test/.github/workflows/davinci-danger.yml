@@ -1,0 +1,34 @@
+name: Danger
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: [master]
+
+jobs:
+  danger:
+    name: Check:Danger
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    steps:
+      - name: Cancel previous workflow
+        uses: styfle/cancel-workflow-action@dffcefda964529302c673388c65a8137995e9603
+
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - uses: ./.github/actions/yarn-install
+
+      - uses: ./.github/actions/danger
