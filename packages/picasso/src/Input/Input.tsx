@@ -39,7 +39,7 @@ export interface Props
    * Indicate whether `Input` is in error state
    */
   error?: boolean
-  /** Indicate whether `Input` is in error or success state */
+  /** Indicate `Input` status */
   status?: Status
   /** If true, the `Input` will be disabled */
   disabled?: boolean

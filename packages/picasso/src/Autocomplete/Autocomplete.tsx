@@ -90,7 +90,7 @@ export interface Props
    * Indicate whether `Autocomplete` is in error state
    */
   error?: boolean
-  /** Indicate whether `Autocomplete` is in error or success state */
+  /** Indicate `Autocomplete` status */
   status?: Status
   /** Specify icon which should be rendered inside Input */
   icon?: ReactNode

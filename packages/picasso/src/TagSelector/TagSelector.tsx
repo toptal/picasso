@@ -42,7 +42,7 @@ export interface Props
    * Indicate whether `TagSelector` is in error state
    */
   error?: boolean
-  /** Indicate whether `TagSelector` is in error or success state */
+  /** Indicate `TagSelector` status */
   status?: Status
   /** Shows the loading icon when options are loading */
   loading?: boolean

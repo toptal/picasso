@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { DatePicker, Form } from '@toptal/picasso'
+import { DatePicker, DatePickerValue, Form } from '@toptal/picasso'
 
 const Example = () => {
-  const [datepickerValue, setDatepickerValue] = useState<Date>()
+  const [datepickerValue, setDatepickerValue] = useState<DatePickerValue>()
 
   return (
     <Form>
@@ -11,7 +11,7 @@ const Example = () => {
         <DatePicker
           value={datepickerValue}
           onChange={date => {
-            setDatepickerValue(date as Date)
+            setDatepickerValue(date)
           }}
           status='default'
         />
@@ -21,7 +21,7 @@ const Example = () => {
         <DatePicker
           value={datepickerValue}
           onChange={date => {
-            setDatepickerValue(date as Date)
+            setDatepickerValue(date)
           }}
           status='error'
         />
@@ -31,7 +31,7 @@ const Example = () => {
         <DatePicker
           value={datepickerValue}
           onChange={date => {
-            setDatepickerValue(date as Date)
+            setDatepickerValue(date)
           }}
           status='success'
         />

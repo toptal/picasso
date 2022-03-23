@@ -60,7 +60,7 @@ export interface Props
    * Indicate whether input is in error state
    */
   error?: boolean
-  /** Indicates that input is in error or success state */
+  /** Indicate input status */
   status?: Status
   startAdornment?: ReactNode
   endAdornment?: ReactNode

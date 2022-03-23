@@ -90,7 +90,7 @@ export interface Props
    * Indicate whether `DatePicker` is in error state
    */
   error?: boolean
-  /** Indicate whether `DatePicker` is in error or success state */
+  /** Indicate `DatePicker` status */
   status?: Status
   /** Function to override default markup to show Date */
   renderDay?: (args: DayProps) => ReactNode
