@@ -1,19 +1,22 @@
 import React from 'react'
-import { Container, Autocomplete } from '@toptal/picasso'
+import { Autocomplete, Form } from '@toptal/picasso'
 
 const Example = () => {
   return (
-    <Container flex direction='column'>
-      <Container padded='small'>
-        <Autocomplete placeholder='default' value='Ukraine' status='default' />
-      </Container>
-      <Container padded='small'>
-        <Autocomplete placeholder='success' value='Ukraine' status='success' />
-      </Container>
-      <Container padded='small'>
-        <Autocomplete placeholder='error' value='Ukraine' status='error' />
-      </Container>
-    </Container>
+    <Form>
+      <Form.Field>
+        <Form.Label>Default</Form.Label>
+        <Autocomplete value='Ukraine' status='default' />
+      </Form.Field>
+      <Form.Field>
+        <Form.Label>Error</Form.Label>
+        <Autocomplete value='Ukraine' status='error' />
+      </Form.Field>
+      <Form.Field>
+        <Form.Label>Success</Form.Label>
+        <Autocomplete value='Ukraine' status='success' />
+      </Form.Field>
+    </Form>
   )
 }
 

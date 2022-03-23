@@ -85,10 +85,12 @@ export interface Props
   startAdornment?: ReactNode
   /** ReactNode for labels that will be used as end InputAdornment - */
   endAdornment?: ReactNode
-  /** @deprecated */
-  /** Indicate whether `Autocomplete` is in error state */
+  /**
+   * @deprecated Use the `status` prop instead to both support success and error states
+   * Indicate whether `Autocomplete` is in error state
+   */
   error?: boolean
-  /** Indicate whether `Autocomplete` is in error or success state */
+  /** Indicate `Autocomplete` status */
   status?: Status
   /** Specify icon which should be rendered inside Input */
   icon?: ReactNode

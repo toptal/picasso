@@ -43,6 +43,7 @@ export const NativeSelect = documentable(
         placeholder,
         disabled,
         error,
+        status,
         multiple,
         value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
         size,
@@ -106,7 +107,6 @@ export const NativeSelect = documentable(
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={selectRef}
-          error={error}
           disabled={disabled}
           name={name}
           id={id}
@@ -119,6 +119,7 @@ export const NativeSelect = documentable(
               size={size}
               className={classes.nativeInput}
               testIds={testIds}
+              status={error ? 'error' : status}
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...getInputProps()}
             />
@@ -175,7 +176,6 @@ export const NativeSelect = documentable(
 
 NativeSelect.defaultProps = {
   disabled: false,
-  error: false,
   getDisplayValue: getOptionText,
   iconPosition: 'start',
   loading: false,
@@ -187,7 +187,8 @@ NativeSelect.defaultProps = {
   width: 'full',
   searchThreshold: 10,
   enableAutofill: false,
-  searchPlaceholder: 'Search'
+  searchPlaceholder: 'Search',
+  status: 'default'
 }
 
 NativeSelect.displayName = 'NativeSelect'

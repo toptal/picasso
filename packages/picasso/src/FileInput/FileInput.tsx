@@ -60,7 +60,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
       <Button
         size='small'
         variant='secondary'
-        disabled={disabled || preventAddingNewFiles}
+        disabled={Boolean(disabled || preventAddingNewFiles)}
         onClick={() => inputRef.current && inputRef.current.click()}
       >
         Choose File
