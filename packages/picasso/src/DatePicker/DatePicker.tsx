@@ -85,7 +85,10 @@ export interface Props
   icon?: ReactNode
   /** Specify a value if want to enable browser autofill */
   autoComplete?: string
-  /** @deprecated Indicate whether `DatePicker` is in error state */
+  /**
+   * @deprecated Use the `status` prop instead to both support success and error states
+   * Indicate whether `DatePicker` is in error state
+   */
   error?: boolean
   /** Indicate whether `DatePicker` is in error or success state */
   status?: Status
