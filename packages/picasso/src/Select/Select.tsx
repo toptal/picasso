@@ -43,6 +43,14 @@ export const Select = <T extends ValueType, M extends boolean = false>({
       'Use the Autocomplete component if you require dynamic options.'
   })
 
+  usePropDeprecationWarning({
+    props,
+    name: 'error',
+    componentName: 'Select',
+    description:
+      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+  })
+
   return native ? (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <NativeSelect {...purifyProps(props)} />
@@ -54,7 +62,6 @@ export const Select = <T extends ValueType, M extends boolean = false>({
 
 Select.defaultProps = {
   disabled: false,
-  error: false,
   getDisplayValue: getOptionText,
   iconPosition: 'start',
   loading: false,
@@ -68,7 +75,8 @@ Select.defaultProps = {
   limit: DEFAULT_LIMIT,
   enableAutofill: false,
   searchPlaceholder: 'Search',
-  native: false
+  native: false,
+  status: 'default'
 }
 
 export default Select
