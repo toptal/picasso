@@ -326,8 +326,8 @@ export const DatePicker = (props: Props) => {
       } else {
         // TODO: Manage this whole logic inside simple-react-calendar
         const firstButton =
-          calendarRef.current?.querySelector<HTMLButtonElement
-            >('button:not([tabindex="-1"])'
+          calendarRef.current?.querySelector<HTMLButtonElement>(
+            'button:not([tabindex="-1"])'
           )
 
         if (firstButton) {
