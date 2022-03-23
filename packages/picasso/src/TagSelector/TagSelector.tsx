@@ -37,10 +37,12 @@ export interface Props
   placeholder?: string
   /** Disables `TagSelector` */
   disabled?: boolean
-  /** @deprecated */
-  /** Indicate whether `TagSelector` is in error state */
+  /**
+   * @deprecated Use the `status` prop instead to both support success and error states
+   * Indicate whether `TagSelector` is in error state
+   */
   error?: boolean
-  /** Indicate whether `TagSelector` is in error or success state */
+  /** Indicate `TagSelector` status */
   status?: Status
   /** Shows the loading icon when options are loading */
   loading?: boolean

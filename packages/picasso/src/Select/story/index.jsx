@@ -56,7 +56,7 @@ page
       'Maximum number of options on the list can be controlled through `limit` property'
   }) // picasso-skip-visuals
   .addExample('Select/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
-  .addExample('Select/story/Error.example.tsx', 'Error') // picasso-skip-visuals
+  .addExample('Select/story/Status.example.tsx', 'Status') // picasso-skip-visuals
   .addExample('Select/story/WithIcon.example.tsx', 'With icon') // picasso-skip-visuals
   .addExample('Select/story/WithDescription.example.tsx', 'With description') // picasso-skip-visuals
   .addExample('Select/story/Loading.example.tsx', 'Loading') // picasso-skip-visuals
