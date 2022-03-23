@@ -14,13 +14,7 @@ import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 export interface Props
   extends Omit<
       OmitInternalProps<OutlinedInputProps>,
-      | 'defaultValue'
-      | 'type'
-      | 'rows'
-      | 'rowsMax'
-      | 'multiline'
-      | 'enableReset'
-      | 'onResetClick'
+      'defaultValue' | 'type' | 'rows' | 'rowsMax' | 'multiline'
     >,
     BaseProps {
   /** Value of the `input` element. */
@@ -51,6 +45,8 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       style,
       className,
       testIds,
+      enableReset,
+      onResetClick,
       ...rest
     } = props
 
@@ -102,6 +98,8 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
         onChange={onChange}
         endAdornment={endAdornment}
         testIds={testIds}
+        onResetClick={onResetClick}
+        enableReset={enableReset}
       />
     )
   }

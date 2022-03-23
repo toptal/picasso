@@ -38,6 +38,8 @@ import {
   timezoneFormat,
   getStartOfTheDayDate
 } from './utils'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import { Status } from '../OutlinedInput'
 
 const EMPTY_INPUT_VALUE = ''
 
@@ -82,8 +84,13 @@ export interface Props
   icon?: ReactNode
   /** Specify a value if want to enable browser autofill */
   autoComplete?: string
-  /** Indicate whether `DatePicker`'s input is in error state */
+  /**
+   * @deprecated Use the `status` prop instead to both support success and error states
+   * Indicate whether `DatePicker` is in error state
+   */
   error?: boolean
+  /** Indicate `DatePicker` status */
+  status?: Status
   /** Function to override default markup to show Date */
   renderDay?: (args: DayProps) => ReactNode
   popperContainer?: HTMLElement
@@ -121,19 +128,27 @@ export const DatePicker = (props: Props) => {
     size,
     parseInputValue,
     testIds,
+    error,
+    status,
     ...rest
   } = props
   const classes = useStyles()
+
+  usePropDeprecationWarning({
+    props,
+    name: 'error',
+    componentName: 'DatePicker',
+    description:
+      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+  })
 
   const inputProps = rest
 
   const [calendarIsShown, setCalendarIsShown] = useState(false)
   const [isInputFocused, setIsInputFocused] = useState(false)
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
-  const [
-    calendarValue,
-    setCalendarValue
-  ] = useState<DateOrDateRangeType | null>(null)
+  const [calendarValue, setCalendarValue] =
+    useState<DateOrDateRangeType | null>(null)
 
   const [normalizedMinDate, normalizedMaxDate] = useMemo(() => {
     return [getStartOfTheDayDate(minDate), getStartOfTheDayDate(maxDate)]
@@ -310,9 +325,10 @@ export const DatePicker = (props: Props) => {
         event.currentTarget.blur()
       } else {
         // TODO: Manage this whole logic inside simple-react-calendar
-        const firstButton = calendarRef.current?.querySelector<
-          HTMLButtonElement
-        >('button:not([tabindex="-1"])')
+        const firstButton =
+          calendarRef.current?.querySelector<HTMLButtonElement
+            >('button:not([tabindex="-1"])'
+          )
 
         if (firstButton) {
           firstButton.focus()
@@ -347,6 +363,7 @@ export const DatePicker = (props: Props) => {
       <Container inline={width !== 'full'} ref={inputWrapperRef}>
         <Input
           {...inputProps}
+          status={error ? 'error' : status}
           ref={inputRef}
           onKeyDown={handleInputKeydown}
           onClick={handleFocusOrClick}
@@ -400,7 +417,8 @@ DatePicker.defaultProps = {
   onBlur: noop,
   editDateFormat: 'MM-dd-yyyy',
   displayDateFormat: 'MMM d, yyyy',
-  autoComplete: 'off'
+  autoComplete: 'off',
+  status: 'default'
 }
 
 DatePicker.displayName = 'DatePicker'
