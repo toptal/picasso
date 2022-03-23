@@ -3,9 +3,9 @@ import {
   RichTextEditorProps
 } from '@toptal/picasso'
 import React, { useCallback, useState } from 'react'
+import { Object } from 'ts-toolbelt'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
-import { Merge } from '../utils/types'
 
 type OverriddenProps = {
   defaultValue?: RichTextEditorProps['defaultValue']
@@ -13,9 +13,9 @@ type OverriddenProps = {
   initialValue?: never
 }
 
-export type Props = Merge<
-  RichTextEditorProps & FieldProps<string>,
-  OverriddenProps
+export type Props = Object.Merge<
+  OverriddenProps,
+  RichTextEditorProps & FieldProps<string>
 >
 
 type InternalProps = RichTextEditorProps & { value: string }
