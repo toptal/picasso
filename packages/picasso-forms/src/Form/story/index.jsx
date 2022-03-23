@@ -222,3 +222,7 @@ however, you may need custom validators for more complex types of fields.
     title: 'Field requirements',
     description: 'Showcase how to display field requirements.'
   }) // picasso-skip-visuals
+  .addExample('Form/story/Status.example.tsx', {
+    title: 'Status',
+    description: 'Showcase how to enable success status via form configuration.'
+  }) // picasso-skip-visuals
