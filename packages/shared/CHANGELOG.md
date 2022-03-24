@@ -1,5 +1,16 @@
 # Change Log
 
+## 7.3.0
+
+### Minor Changes
+
+- [#2521](https://github.com/toptal/picasso/pull/2521) [`fc9b34cc`](https://github.com/toptal/picasso/commit/fc9b34ccad04a2e7926a84eb1d710350f1d663d5) Thanks [@deniskaber](https://github.com/deniskaber)! - Change useLayoutEffect to useIsomorphicLayoutEffect for SSR support
+
+### Patch Changes
+
+- Updated dependencies [[`fc9b34cc`](https://github.com/toptal/picasso/commit/fc9b34ccad04a2e7926a84eb1d710350f1d663d5)]:
+  - @toptal/picasso-provider@0.7.1
+
 ## 7.2.4
 
 ### Patch Changes
