@@ -22,7 +22,10 @@ const useMainStyles = makeStyles(styles, {
   name: 'PicassoPageHeadMain'
 })
 
-const Title = ({ titleCase, children }: TextLabelProps) => {
+const Title = ({
+  titleCase,
+  children
+}: TextLabelProps & { children: ReactNode }) => {
   return (
     <Typography variant='heading' size='large' titleCase={titleCase}>
       {children}

@@ -7,7 +7,6 @@ import {
 } from 'react-final-form'
 import {
   Form as PicassoForm,
-  RequiredDecoration,
   DateOrDateRangeType,
   OutlinedInputStatus
 } from '@toptal/picasso'
@@ -16,7 +15,7 @@ import { FileUpload } from '@toptal/picasso/FileInput'
 import { TextLabelProps } from '@toptal/picasso-shared'
 
 import { useFormContext } from '../Form/FormContext'
-import { useFormConfig, FormConfigProps, RequiredVariant } from '../FormConfig'
+import { useFormConfig, FormConfigProps } from '../FormConfig'
 import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
@@ -52,10 +51,10 @@ export type Props<
   TextLabelProps & {
     name: string
     type?: string
-    hideFieldLabel?: boolean
-    hideLabelRequiredDecoration?: boolean
+    label?: React.ReactNode
     fieldType?: string
     status?: OutlinedInputStatus
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: (props: any) => React.ReactNode
     renderFieldRequirements?: (props: {
       value?: TInputValue
@@ -94,6 +93,7 @@ export const getInputError = <T extends ValueType>(
   return meta.submitError
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getValidators = (required: boolean, validate?: any) => {
   if (required && validate) {
     return composeValidators([requiredValidator, validate])
@@ -106,53 +106,6 @@ const getValidators = (required: boolean, validate?: any) => {
   return validate
 }
 
-const getProps = ({
-  hideFieldLabel,
-  label,
-  status
-}: {
-  hideFieldLabel?: boolean
-  label: string
-  status?: OutlinedInputStatus
-}) => {
-  if (hideFieldLabel) {
-    return {
-      label
-    }
-  }
-
-  if (status) {
-    return {
-      status
-    }
-  }
-
-  return {}
-}
-
-const getRequiredDecoration = (
-  hideLabelRequiredDecoration?: boolean,
-  required?: boolean,
-  requiredVariant?: RequiredVariant
-): RequiredDecoration | undefined => {
-  if (hideLabelRequiredDecoration) {
-    return
-  }
-
-  const showAsterisk = required && requiredVariant === 'asterisk'
-
-  if (showAsterisk) {
-    return 'asterisk'
-  }
-
-  const showOptional =
-    !required && (!requiredVariant || requiredVariant === 'default')
-
-  if (showOptional) {
-    return 'optional'
-  }
-}
-
 const FieldWrapper = <
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue extends ValueType = TWrappedComponentProps['value']
@@ -161,8 +114,6 @@ const FieldWrapper = <
 ) => {
   const {
     type,
-    hideFieldLabel,
-    hideLabelRequiredDecoration,
     hint,
     label,
     required,
@@ -187,7 +138,6 @@ const FieldWrapper = <
     validate,
     validateFields,
     value,
-    titleCase,
     //
     ...rest
   } = props
@@ -232,7 +182,6 @@ const FieldWrapper = <
     id,
     ...rest,
     ...input,
-    ...getProps({ hideFieldLabel, label, status }),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
       input.onChange(event)
@@ -257,12 +206,6 @@ const FieldWrapper = <
     }
   }
 
-  const requiredDecoration = getRequiredDecoration(
-    hideLabelRequiredDecoration,
-    required,
-    formConfig.requiredVariant
-  )
-
   return (
     <PicassoForm.Field
       error={error}
@@ -273,15 +216,7 @@ const FieldWrapper = <
         error: status === 'error'
       })}
     >
-      {!hideFieldLabel && label && (
-        <PicassoForm.Label
-          requiredDecoration={requiredDecoration}
-          htmlFor={id}
-          titleCase={titleCase}
-        >
-          {label}
-        </PicassoForm.Label>
-      )}
+      {label}
       {children(childProps)}
     </PicassoForm.Field>
   )
