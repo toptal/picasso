@@ -150,6 +150,7 @@
     "webpack": "^4.0.0",
     "glob-parent": "^6.0.2",
     "prettier": "^2.5.1",
-    "trim": "^0.0.3"
+    "trim": "^0.0.3",
+    "ansi-regex": "^5.0.1"
   }
 }
