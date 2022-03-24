@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react'
+import { useIsomorphicLayoutEffect } from '../hooks'
 
 const PROXIMA_NOVA_FONT = 'https://use.typekit.net/rlr4crj.css'
 
@@ -46,7 +46,7 @@ const findFontsLoader = () => {
 }
 
 const FontsLoader = () => {
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const existingFontLoader = findFontsLoader()
 
     if (!existingFontLoader) {

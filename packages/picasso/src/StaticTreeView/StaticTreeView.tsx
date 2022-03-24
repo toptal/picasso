@@ -1,5 +1,6 @@
-import React, { useLayoutEffect, useState, useMemo, useRef } from 'react'
+import React, { useState, useMemo, useRef } from 'react'
 
+import { useIsomorphicLayoutEffect } from '../utils'
 import {
   TreeViewPropsBase,
   useTree,
@@ -55,7 +56,7 @@ const StaticTreeView = (props: Props) => {
     leftMostNodeX: 0
   })
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (svgRef.current) {
       const bbox = svgRef.current.getBBox()
       const extremes = findExtremeNodes(nodes)
