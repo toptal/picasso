@@ -21,7 +21,7 @@ export const DatePicker = (props: Props) => {
       {...rest}
       label={
         <FieldLabel
-          id={props.id}
+          name={props.name}
           required={props.required}
           label={label}
           titleCase={titleCase}
