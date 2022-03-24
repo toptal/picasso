@@ -179,6 +179,7 @@ const FieldWrapper = <
 
   const childProps: Record<string, unknown> = {
     id,
+    status,
     ...rest,
     ...input,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
