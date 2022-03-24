@@ -31,16 +31,18 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
     warnAutocompleteDisabledInput(props.name)
   }, [props.name])
 
+  const { label, titleCase, ...rest } = props
+
   return (
     <InputFieldWrapper<FormInputProps>
-      {...props}
+      {...rest}
       label={
-        props.label ? (
+        label ? (
           <FieldLabel
             id={props.id}
             required={props.required}
-            label={props.label}
-            titleCase={props.titleCase}
+            label={label}
+            titleCase={titleCase}
           />
         ) : null
       }

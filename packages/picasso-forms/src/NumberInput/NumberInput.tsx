@@ -18,7 +18,8 @@ const MAX = 2147483647
 const { composeValidators } = validators
 
 export const NumberInput = (props: Props) => {
-  const { min = MIN, max = MAX, validate } = props
+  const { min = MIN, max = MAX, validate, label, titleCase, ...rest } = props
+
   const validateNumberLimits: FieldValidator<NumberInputProps['value']> = value => {
     if (Number(value) > max) {
       return `Must be less than or equal to ${max}.`
@@ -30,15 +31,15 @@ export const NumberInput = (props: Props) => {
 
   return (
     <InputFieldWrapper<NumberInputProps>
-      {...props}
+      {...rest}
       validate={composeValidators([validateNumberLimits, validate])}
       label={
-        props.label ? (
+        label ? (
           <FieldLabel
             id={props.id}
             required={props.required}
-            label={props.label}
-            titleCase={props.titleCase}
+            label={label}
+            titleCase={titleCase}
           />
         ) : null
       }
