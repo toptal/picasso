@@ -4,6 +4,7 @@ import { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'
 import { FieldProps } from '../FieldWrapper'
+import FieldLabel from '../FieldLabel'
 import passwordValidators from './validators'
 import Form from '../Form'
 import InputFieldWrapper from '../InputFieldWrapper'
@@ -99,6 +100,16 @@ export const PasswordInput = ({
       validate={validationsObject}
       renderFieldRequirements={
         !hideRequirements ? renderFieldRequirements : undefined
+      }
+      label={
+        rest.label ? (
+          <FieldLabel
+            id={rest.id}
+            required={rest.required}
+            label={rest.label}
+            titleCase={rest.titleCase}
+          />
+        ) : null
       }
     >
       {(inputProps: PasswordInputProps) => {

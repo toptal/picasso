@@ -41,7 +41,6 @@ const ButtonCheckbox = ({ name, value, required, ...restProps }: Props) => {
   return (
     <FieldWrapper
       type='checkbox'
-      hideFieldLabel
       required={required}
       {...restProps}
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
