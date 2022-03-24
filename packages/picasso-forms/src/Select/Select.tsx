@@ -15,11 +15,10 @@ export type Props<
   M extends boolean = false
 > = SelectProps<T, M> & FieldProps<SelectProps<T, M>['value']>
 
-export const Select = <T extends SelectValueType, M extends boolean = false>({
-  name,
-  id = name,
-  ...rest
-}: Props<T, M>) => {
+export const Select = <T extends SelectValueType, M extends boolean = false>(
+  props: Props<T, M>
+) => {
+  const { name, id = name, label, titleCase, ...rest } = props
   const randomizedId = id ? generateRandomStringOrGetEmptyInTest(id) : undefined
 
   return (
@@ -28,12 +27,12 @@ export const Select = <T extends SelectValueType, M extends boolean = false>({
       name={name}
       id={randomizedId}
       label={
-        rest.label ? (
+        label ? (
           <FieldLabel
             id={rest.id}
             required={rest.required}
-            label={rest.label}
-            titleCase={rest.titleCase}
+            label={label}
+            titleCase={titleCase}
           />
         ) : null
       }

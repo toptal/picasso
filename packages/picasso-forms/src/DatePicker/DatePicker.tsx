@@ -13,23 +13,27 @@ export type FormDatePickerProps = Omit<DatePickerProps, 'onChange'> & {
 }
 export type Props = FormDatePickerProps & FieldProps<DatePickerProps['value']>
 
-export const DatePicker = (props: Props) => (
-  <InputFieldWrapper<FormDatePickerProps>
-    {...props}
-    label={
-      <FieldLabel
-        id={props.id}
-        required={props.required}
-        label={props.label}
-        titleCase={props.titleCase}
-      />
-    }
-  >
-    {(inputProps: DatePickerProps) => {
-      return <PicassoDatePicker {...inputProps} />
-    }}
-  </InputFieldWrapper>
-)
+export const DatePicker = (props: Props) => {
+  const { label, titleCase, ...rest } = props
+
+  return (
+    <InputFieldWrapper<FormDatePickerProps>
+      {...rest}
+      label={
+        <FieldLabel
+          id={props.id}
+          required={props.required}
+          label={label}
+          titleCase={titleCase}
+        />
+      }
+    >
+      {(inputProps: DatePickerProps) => {
+        return <PicassoDatePicker {...inputProps} />
+      }}
+    </InputFieldWrapper>
+  )
+}
 
 DatePicker.defaultProps = {}
 

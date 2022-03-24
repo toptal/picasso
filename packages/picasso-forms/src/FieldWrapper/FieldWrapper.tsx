@@ -47,8 +47,7 @@ export type Props<
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue
 > = TWrappedComponentProps &
-  FieldProps<TInputValue> &
-  TextLabelProps & {
+  FieldProps<TInputValue> & {
     name: string
     type?: string
     label?: React.ReactNode
