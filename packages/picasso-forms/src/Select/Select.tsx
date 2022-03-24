@@ -29,7 +29,7 @@ export const Select = <T extends SelectValueType, M extends boolean = false>(
       label={
         label ? (
           <FieldLabel
-            id={rest.id}
+            name={rest.name}
             required={rest.required}
             label={label}
             titleCase={titleCase}

@@ -36,7 +36,7 @@ export const NumberInput = (props: Props) => {
       label={
         label ? (
           <FieldLabel
-            id={props.id}
+            name={props.name}
             required={props.required}
             label={label}
             titleCase={titleCase}

@@ -5,7 +5,7 @@ import { TextLabelProps } from '@toptal/picasso-shared'
 import { useFormConfig, RequiredVariant } from '../FormConfig'
 
 export type Props = {
-  id?: string
+  name?: string
   label?: string
   required?: boolean
 } & TextLabelProps
@@ -29,7 +29,7 @@ const getRequiredDecoration = (
 }
 
 const FieldLabel = (props: Props) => {
-  const { label, required, titleCase, id } = props
+  const { label, required, titleCase, name } = props
 
   const formConfig = useFormConfig()
   const requiredDecoration = getRequiredDecoration(
@@ -40,7 +40,7 @@ const FieldLabel = (props: Props) => {
   return (
     <PicassoForm.Label
       requiredDecoration={requiredDecoration}
-      htmlFor={id}
+      htmlFor={name}
       titleCase={titleCase}
     >
       {label}
