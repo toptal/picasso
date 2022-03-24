@@ -51,7 +51,6 @@ export const Checkbox = ({
   return (
     <FieldWrapper
       type='checkbox'
-      hideFieldLabel
       required={required}
       {...restProps}
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

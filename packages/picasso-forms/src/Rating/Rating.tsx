@@ -6,6 +6,7 @@ import {
 } from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import FieldLabel from '../FieldLabel'
 import { validators } from '../utils'
 
 export type RatingStarsProps = PicassoRatingStarsProps &
@@ -49,6 +50,16 @@ const Thumbs = ({
       validate={validateOverride}
       required={requirePositive}
       {...props}
+      label={
+        props.label ? (
+          <FieldLabel
+            id={props.id}
+            required={props.required}
+            label={props.label}
+            titleCase={props.titleCase}
+          />
+        ) : null
+      }
     >
       {inputProps => <PicassoRating.Thumbs {...inputProps} />}
     </FieldWrapper>
