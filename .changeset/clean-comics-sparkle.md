@@ -2,9 +2,9 @@
 '@toptal/picasso': minor
 ---
 
-- Input components which use `error` prop are updated. It is still being supported but it will be deprecated and totally replaced with `status` in the next major release.
-
 ---
+
+- Input components which use `error` prop are updated. It is still being supported but it will be deprecated and totally replaced with `status` in the next major release.
 
 ### Autocomplete
 
