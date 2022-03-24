@@ -13,28 +13,32 @@ export type FormTimePickerProps = Omit<TimePickerProps, 'onChange'> & {
 }
 export type Props = FormTimePickerProps & FieldProps<TimePickerProps['value']>
 
-export const TimePicker = (props: Props) => (
-  <InputFieldWrapper<FormTimePickerProps>
-    {...props}
-    label={
-      props.label ? (
-        <FieldLabel
-          id={props.id}
-          required={props.required}
-          label={props.label}
-          titleCase={props.titleCase}
-        />
-      ) : null
-    }
-  >
-    {(inputProps: TimePickerProps) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { enableReset, onResetClick, ...rest } = inputProps
+export const TimePicker = (props: Props) => {
+  const { label, titleCase, ...rest } = props
 
-      return <PicassoTimePicker {...rest} />
-    }}
-  </InputFieldWrapper>
-)
+  return (
+    <InputFieldWrapper<FormTimePickerProps>
+      {...rest}
+      label={
+        label ? (
+          <FieldLabel
+            id={props.id}
+            required={props.required}
+            label={label}
+            titleCase={titleCase}
+          />
+        ) : null
+      }
+    >
+      {(inputProps: TimePickerProps) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { enableReset, onResetClick, ...rest } = inputProps
+
+        return <PicassoTimePicker {...rest} />
+      }}
+    </InputFieldWrapper>
+  )
+}
 
 TimePicker.displayName = 'TimePicker'
 
