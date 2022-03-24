@@ -9,11 +9,12 @@ const getSizeProps = (unitInRem: string) => ({
 
 export default ({ palette }: Theme) =>
   createStyles({
-    // variants
     root: {
       borderWidth: '1px',
       borderStyle: 'solid',
       fontSize: rem('10px'),
+      lineHeight: rem('12px'),
+      padding: '.3em',
       fontWeight: 600
     },
     static: {
@@ -31,15 +32,13 @@ export default ({ palette }: Theme) =>
       backgroundColor: palette.red.main
     },
     small: {
-      padding: '1px 4px',
+      lineHeight: rem('10px'),
       ...getSizeProps(rem('12px'))
     },
     medium: {
-      padding: '2px 6px',
       ...getSizeProps(rem('16px'))
     },
     large: {
-      padding: '4px 8px',
       ...getSizeProps(rem('20px'))
     }
   })

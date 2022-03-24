@@ -50,7 +50,6 @@ const format = (content: number, size: SizeType, max?: number): string => {
   return String(content)
 }
 
-// eslint-disable-next-line react/display-name
 export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   {
     children,
