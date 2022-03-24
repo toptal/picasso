@@ -21,21 +21,21 @@ export type Props = Object.Merge<
 type InternalProps = RichTextEditorProps & { value: string }
 
 export const RichTextEditor = ({ onChange, defaultValue, ...rest }: Props) => {
-  const [internalValue, setInternalValue] = useState('')
+  const [value, setValue] = useState('')
 
   // Because RichTextEditor doesn't have an value input we need to implement this
   // as an compatibility layer between final-form
   const handleOnChange = useCallback(
     (newVal: string) => {
-      setInternalValue(newVal)
+      setValue(newVal)
       onChange?.(newVal)
     },
-    [onChange, setInternalValue]
+    [onChange, setValue]
   )
 
   return (
     <FieldWrapper<InternalProps>
-      value={internalValue}
+      value={value}
       onChange={handleOnChange}
       {...rest}
     >
