@@ -104,7 +104,7 @@ export const PasswordInput = ({
       label={
         rest.label ? (
           <FieldLabel
-            id={rest.id}
+            name={rest.name}
             required={rest.required}
             label={rest.label}
             titleCase={rest.titleCase}

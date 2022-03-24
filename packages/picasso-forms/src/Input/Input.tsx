@@ -39,7 +39,7 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
       label={
         label ? (
           <FieldLabel
-            id={props.id}
+            name={props.name}
             required={props.required}
             label={label}
             titleCase={titleCase}

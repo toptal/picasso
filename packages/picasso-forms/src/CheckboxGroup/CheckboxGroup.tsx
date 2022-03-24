@@ -13,21 +13,20 @@ import CheckboxGroupContext from './CheckboxGroupContext'
 export type Props = CheckboxGroupProps & FieldProps<CheckboxProps['value']>
 
 export const CheckboxGroup = (props: Props) => {
-  const { children, titleCase, ...rest } = props
+  const { children, titleCase, label, ...rest } = props
 
   return (
     <CheckboxGroupContext.Provider value={props.name}>
       <FieldWrapper
-        titleCase={titleCase}
         {...rest}
         type='checkbox'
         label={
-          props.label ? (
+          label ? (
             <FieldLabel
-              id={props.id}
+              name={props.name}
               required={props.required}
-              label={props.label}
-              titleCase={props.titleCase}
+              label={label}
+              titleCase={titleCase}
             />
           ) : null
         }
