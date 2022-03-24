@@ -10,25 +10,29 @@ import InputFieldWrapper from '../InputFieldWrapper'
 
 export type Props = TagSelectorProps & FieldProps<TagSelectorProps['value']>
 
-export const TagSelector = (props: Props) => (
-  <InputFieldWrapper<TagSelectorProps>
-    {...props}
-    label={
-      props.label ? (
-        <FieldLabel
-          id={props.id}
-          required={props.required}
-          label={props.label}
-          titleCase={props.titleCase}
-        />
-      ) : null
-    }
-  >
-    {(inputProps: TagSelectorProps) => {
-      return <PicassoTagSelector {...inputProps} />
-    }}
-  </InputFieldWrapper>
-)
+export const TagSelector = (props: Props) => {
+  const { label, titleCase, ...rest } = props
+
+  return (
+    <InputFieldWrapper<TagSelectorProps>
+      {...rest}
+      label={
+        label ? (
+          <FieldLabel
+            id={props.id}
+            required={props.required}
+            label={label}
+            titleCase={titleCase}
+          />
+        ) : null
+      }
+    >
+      {(inputProps: TagSelectorProps) => {
+        return <PicassoTagSelector {...inputProps} />
+      }}
+    </InputFieldWrapper>
+  )
+}
 
 TagSelector.defaultProps = {
   initialValue: []
