@@ -12,7 +12,7 @@ import RadioGroupContext from './RadioGroupContext'
 export type Props = RadioGroupProps & FieldProps<RadioProps['value']>
 
 export const RadioGroup = (props: Props) => {
-  const { children, ...rest } = props
+  const { children, label, titleCase, ...rest } = props
 
   return (
     <RadioGroupContext.Provider value={props.name}>
@@ -20,12 +20,12 @@ export const RadioGroup = (props: Props) => {
         {...rest}
         type='radio'
         label={
-          props.label ? (
+          label ? (
             <FieldLabel
               id={props.id}
               required={props.required}
-              label={props.label}
-              titleCase={props.titleCase}
+              label={label}
+              titleCase={titleCase}
             />
           ) : null
         }
