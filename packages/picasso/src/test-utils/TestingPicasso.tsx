@@ -2,7 +2,11 @@ import React from 'react'
 import Picasso from '@toptal/picasso-provider'
 import { TextLabelProps } from '@toptal/picasso-shared'
 
-export const TestingPicasso = ({ children, titleCase }: TextLabelProps) => {
+export type Props = TextLabelProps & {
+  children: React.ReactNode
+}
+
+export const TestingPicasso = ({ children, titleCase }: Props) => {
   return (
     <Picasso
       loadFavicon={false}
