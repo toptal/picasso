@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form as PicassoForm, RequiredDecoration } from '@toptal/picasso'
+import { TextLabelProps } from '@toptal/picasso-shared'
 
 import { useFormConfig, RequiredVariant } from '../FormConfig'
 
@@ -7,8 +8,7 @@ export type Props = {
   id?: string
   label?: string
   required?: boolean
-  titleCase?: boolean
-}
+} & TextLabelProps
 
 const getRequiredDecoration = (
   required?: boolean,
