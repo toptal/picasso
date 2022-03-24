@@ -57,7 +57,7 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
       {...props}
       label={
         <FieldLabel
-          id={props.id}
+          name={props.name}
           required={props.required}
           label={props.label}
           titleCase={props.titleCase}

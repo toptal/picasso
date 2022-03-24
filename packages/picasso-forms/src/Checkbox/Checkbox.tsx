@@ -23,6 +23,7 @@ export const Checkbox = ({
   name,
   value,
   required,
+  label,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   defaultValue,
   ...restProps
@@ -39,7 +40,7 @@ export const Checkbox = ({
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           input: { value: inputValue, type, ...restInput }
         }: FinalFormFieldProps<CheckboxValue>) => {
-          return <PicassoCheckbox {...restProps} {...restInput} />
+          return <PicassoCheckbox {...restProps} {...restInput} label={label} />
         }}
       </Field>
     )
@@ -59,6 +60,7 @@ export const Checkbox = ({
       {(input: CheckboxProps) => (
         <PicassoCheckbox
           {...input}
+          label={label}
           titleCase={restProps.titleCase}
           requiredDecoration={requiredDecoration}
         />

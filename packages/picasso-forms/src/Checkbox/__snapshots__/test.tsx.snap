@@ -26,7 +26,6 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
           </label>
           <div
             class="MuiFormGroup-root PicassoCheckboxGroup-root PicassoCheckboxGroup-root"
-            label="checkbox-group-label"
             name="checkbox-group"
           >
             <div
