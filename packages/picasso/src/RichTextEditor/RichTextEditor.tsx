@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  useCallback,
-  useMemo,
-  useRef,
-  useState
-} from 'react'
+import React, { forwardRef, useMemo, useRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -42,7 +36,7 @@ export interface Props extends BaseProps {
    * This Boolean attribute indicates that the user cannot interact with the control.
    */
   disabled?: boolean
-  /** unique identificator */
+  /** unique identifier */
   id: string
   /**
    * Indicate wether the editor is in an error state
@@ -99,7 +93,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
   function RichTextEditor(
     {
       'data-testid': dataTestId,
-      autoFocus,
+      autoFocus = false,
       className,
       defaultValue,
       disabled,
@@ -123,7 +117,6 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     const editorRef = useRef<HTMLDivElement>(null)
     const wrapperRef = useRef<HTMLDivElement>(null)
     const { dispatch, state } = useTextEditorState()
-    const [isEditorFocused, setIsEditorFocused] = useState(autoFocus!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
     const { handleSelectionChange } = useOnSelectionChange({ dispatch })
     const { handleTextFormat } = useOnTextFormat({ dispatch })
@@ -139,22 +132,13 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       format: state.toolbar.format
     })
 
-    const wrappedOnFocus = useCallback(() => {
-      setIsEditorFocused(true)
-      onFocus()
-    }, [setIsEditorFocused, onFocus])
-
-    const wrappedOnBlur = useCallback(() => {
-      setIsEditorFocused(false)
-      onBlur()
-    }, [setIsEditorFocused, onBlur])
-
-    const { handleFocus, handleBlur } = useOnFocus({
+    const { isEditorFocused, handleFocus, handleBlur } = useOnFocus({
+      autoFocus,
       editorRef,
       toolbarRef,
       wrapperRef,
-      onFocus: wrappedOnFocus,
-      onBlur: wrappedOnBlur,
+      onFocus,
+      onBlur,
       dispatch
     })
 

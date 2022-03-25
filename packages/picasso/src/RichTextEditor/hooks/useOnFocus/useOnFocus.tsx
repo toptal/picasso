@@ -1,9 +1,10 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 import { actions as toolbarActions } from '../../store/toolbar'
 import { ActionsType } from '../../store'
 
 type Props = {
+  autoFocus: boolean
   editorRef: React.RefObject<HTMLDivElement>
   toolbarRef: React.RefObject<HTMLDivElement>
   wrapperRef: React.RefObject<HTMLDivElement>
@@ -13,6 +14,7 @@ type Props = {
 }
 
 const useOnFocus = ({
+  autoFocus,
   editorRef,
   toolbarRef,
   wrapperRef,
@@ -20,6 +22,8 @@ const useOnFocus = ({
   onBlur,
   dispatch
 }: Props) => {
+  const [isEditorFocused, setIsEditorFocused] = useState(autoFocus)
+
   const handleFocus = useCallback(
     (e: React.FocusEvent<HTMLDivElement>) => {
       if (!editorRef.current || !toolbarRef.current || !wrapperRef) {
@@ -34,6 +38,8 @@ const useOnFocus = ({
       if (isFocusElementInToolbar) {
         return
       }
+
+      setIsEditorFocused(true)
 
       onFocus()
     },
@@ -63,12 +69,16 @@ const useOnFocus = ({
       toolbarActions.setDisabled(dispatch)(true)
 
       toolbarActions.resetFormat(dispatch)()
+
+      setIsEditorFocused(false)
+
       onBlur()
     },
     [dispatch, onBlur, toolbarRef, editorRef, wrapperRef]
   )
 
   return {
+    isEditorFocused,
     handleFocus,
     handleBlur
   }
