@@ -1,7 +1,8 @@
-import React, { ComponentProps } from 'react'
+import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 
-import Form from '../Form'
+import { RatingThumbsProps } from './Rating'
+import Form, { Props as FormProps } from '../Form'
 
 let defaultOnSubmit: jest.Mock = jest.fn()
 
@@ -13,8 +14,8 @@ enum TestId {
 
 const renderThumbsForm = (
   props: {
-    form?: Partial<ComponentProps<typeof Form>>
-    thumbs?: Partial<ComponentProps<typeof Form['Rating']['Thumbs']>>
+    form?: Partial<FormProps>
+    thumbs?: Partial<RatingThumbsProps>
   } = {}
 ) =>
   render(
@@ -40,6 +41,32 @@ describe('Rating', () => {
   })
 
   describe('Thumbs', () => {
+    it('renders default Thumbs', () => {
+      const { container } = render(
+        <Form onSubmit={defaultOnSubmit}>
+          <Form.Rating.Thumbs
+            name='thumbs'
+            testIds={{
+              positiveInput: TestId.POSITIVE_THUMB,
+              negativeInput: TestId.NEGATIVE_THUMB
+            }}
+          />
+        </Form>
+      )
+
+      expect(container).toMatchSnapshot()
+    })
+
+    it('renders default Stars', () => {
+      const { container } = render(
+        <Form onSubmit={defaultOnSubmit}>
+          <Form.Rating.Stars name='stars' />
+        </Form>
+      )
+
+      expect(container).toMatchSnapshot()
+    })
+
     describe('when submitting while required', () => {
       it("don't show a validation error for negative values", () => {
         const { getByTestId, queryByText } = renderThumbsForm({
