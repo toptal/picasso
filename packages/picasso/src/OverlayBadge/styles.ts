@@ -24,6 +24,7 @@ export default ({ palette }: Theme) =>
     small: {
       fontSize: '0.57rem',
       height: '0.75rem',
+      lineHeight: '0.75rem',
       minWidth: '0.75rem',
       borderRadius: '0.75rem',
       padding: '0'
