@@ -82,7 +82,7 @@ describe('Tabs', () => {
   })
 
   it('renders with icon', () => {
-    mount(renderTabs({ withIconIndicies: [1, 3] }))
+    mount(renderTabs({ withIconIndicies: [0, 3] }))
 
     cy.get('body').happoScreenshot()
   })
