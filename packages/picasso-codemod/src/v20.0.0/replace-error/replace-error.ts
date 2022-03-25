@@ -71,14 +71,51 @@ const transform: Transform = (file, api) => {
 
         if (
           attributeValue?.type === 'JSXExpressionContainer' &&
-          attributeValue?.expression.type === 'BooleanLiteral'
+          attributeValue?.expression
         ) {
-          return j.jsxAttribute(
-            j.jsxIdentifier('status'),
-            j.stringLiteral(
-              attributeValue.expression.value ? 'error' : 'default'
+          const { expression } = attributeValue
+
+          // E.g. <Input error={true} />
+          if (expression.type === 'BooleanLiteral') {
+            return j.jsxAttribute(
+              j.jsxIdentifier('status'),
+              j.stringLiteral(expression.value ? 'error' : 'default')
             )
-          )
+          }
+
+          // E.g. <Input error={error} />
+          if (expression.type === 'Identifier') {
+            const conditionalExpression = j.conditionalExpression(
+              expression,
+              j.stringLiteral('error'),
+              j.stringLiteral('default')
+            )
+
+            return j.jsxAttribute(
+              j.jsxIdentifier('status'),
+              j.jsxExpressionContainer(conditionalExpression)
+            )
+          }
+
+          // E.g. <Input error={hasError || isValid} />
+          if (expression.type === 'LogicalExpression') {
+            const logicalExpression = j.logicalExpression(
+              expression.operator,
+              expression.left,
+              expression.right
+            )
+
+            const conditionalExpression = j.conditionalExpression(
+              logicalExpression,
+              j.stringLiteral('error'),
+              j.stringLiteral('default')
+            )
+
+            return j.jsxAttribute(
+              j.jsxIdentifier('status'),
+              j.jsxExpressionContainer(conditionalExpression)
+            )
+          }
         }
       })
   })
