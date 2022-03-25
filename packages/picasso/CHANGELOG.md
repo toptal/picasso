@@ -1,5 +1,15 @@
 # Change Log
 
+## 19.1.1
+
+### Patch Changes
+
+- [#2543](https://github.com/toptal/picasso/pull/2543) [`c25d0953`](https://github.com/toptal/picasso/commit/c25d0953ff819f7e6e82ad8a3cee8b4467ec3889) Thanks [@hmschreiner](https://github.com/hmschreiner)! - ---
+
+  ### OverlayBadge
+
+  - Fix line-height on small variant
+
 ## 19.1.0
 
 ### Minor Changes
