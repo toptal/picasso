@@ -1,6 +1,6 @@
 import { FieldMetaState } from 'react-final-form'
 
-import { getInputError } from './FieldWrapper'
+import { getInputError } from './use-validation'
 
 describe('getErrorInput', () => {
   describe('when field has an error', () => {
@@ -10,7 +10,7 @@ describe('getErrorInput', () => {
         touched: true
       }
 
-      expect(getInputError(meta, {})).toBe('Some error message')
+      expect(getInputError(meta)).toBe('Some error message')
     })
   })
 
@@ -22,7 +22,7 @@ describe('getErrorInput', () => {
         submitError: 'Some error message'
       }
 
-      expect(getInputError(meta, {})).toBe('Some error message')
+      expect(getInputError(meta)).toBe('Some error message')
     })
   })
 
@@ -32,7 +32,7 @@ describe('getErrorInput', () => {
         touched: true
       }
 
-      expect(getInputError(meta, {})).toBeNull()
+      expect(getInputError(meta)).toBeNull()
     })
   })
 
@@ -43,7 +43,7 @@ describe('getErrorInput', () => {
         error: 'Some error message'
       }
 
-      expect(getInputError(meta, {})).toBeNull()
+      expect(getInputError(meta)).toBeNull()
     })
   })
 
@@ -55,18 +55,19 @@ describe('getErrorInput', () => {
         dirtySinceLastSubmit: true
       }
 
-      expect(getInputError(meta, {})).toBeNull()
+      expect(getInputError(meta)).toBeNull()
     })
   })
 
   describe('when validate on submit enabled and modified since last submit', () => {
     it('returns null', () => {
+      const shouldValidateOnSubmit = true
       const meta: FieldMetaState<string> = {
         modifiedSinceLastSubmit: true,
         submitError: 'Some error message'
       }
 
-      expect(getInputError(meta, { validateOnSubmit: true })).toBeNull()
+      expect(getInputError(meta, shouldValidateOnSubmit)).toBeNull()
     })
   })
 })

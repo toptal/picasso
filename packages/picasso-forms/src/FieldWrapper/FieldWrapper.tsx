@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent, useEffect } from 'react'
+import React, { ChangeEvent, FocusEvent, useMemo } from 'react'
 import {
   useField,
   FieldProps as FinalFieldProps,
@@ -14,9 +14,8 @@ import { Item } from '@toptal/picasso/Autocomplete'
 import { FileUpload } from '@toptal/picasso/FileInput'
 import { TextLabelProps } from '@toptal/picasso-shared'
 
-import { useFormContext } from '../Form/FormContext'
-import { useFormConfig, FormConfigProps } from '../FormConfig'
-import { validators } from '../utils'
+import { useFormConfig } from '../FormConfig'
+import { validators, useValidation } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
 
@@ -61,35 +60,8 @@ export type Props<
     }) => React.ReactNode
   }
 
-type FieldMeta<T> = FieldMetaState<T> & {
+export type FieldMeta<T> = FieldMetaState<T> & {
   dirtyAfterBlur?: boolean
-}
-
-export const getInputError = <T extends ValueType>(
-  meta: FieldMeta<T>,
-  formConfig: FormConfigProps
-) => {
-  if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
-    return null
-  }
-
-  if (!meta.error && !meta.submitError) {
-    return null
-  }
-
-  if (!meta.touched) {
-    return null
-  }
-
-  if (meta.error) {
-    return meta.error
-  }
-
-  if (meta.dirtySinceLastSubmit) {
-    return null
-  }
-
-  return meta.submitError
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -141,24 +113,14 @@ const FieldWrapper = <
     ...rest
   } = props
 
-  const formConfig = useFormConfig()
-  const { setValidators, clearValidators } = useFormContext()
-  const validators = getValidators(required, validate)
-
-  if (formConfig.validateOnSubmit) {
-    setValidators(name, validators)
-  }
-
-  useEffect(() => {
-    return () => {
-      if (formConfig.validateOnSubmit) {
-        clearValidators(name)
-      }
-    }
-  }, [clearValidators, formConfig.validateOnSubmit, name])
+  const { validateOnSubmit: shouldValidateOnSubmit } = useFormConfig()
+  const validators = useMemo(
+    () => getValidators(required, validate),
+    [required, validate]
+  )
 
   const { meta, input } = useField<TInputValue>(name, {
-    validate: formConfig.validateOnSubmit ? undefined : validators,
+    validate: shouldValidateOnSubmit ? undefined : validators,
     type,
     afterSubmit,
     allowNull,
@@ -175,7 +137,12 @@ const FieldWrapper = <
     value
   })
 
-  const error = getInputError<TInputValue>(meta, formConfig)
+  const error = useValidation({
+    name,
+    meta,
+    validators,
+    shouldValidateOnSubmit
+  })
 
   const childProps: Record<string, unknown> = {
     id,
