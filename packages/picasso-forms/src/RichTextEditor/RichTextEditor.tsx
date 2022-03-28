@@ -1,4 +1,5 @@
 import {
+  ASTType,
   RichTextEditor as PicassoRichTextEditor,
   RichTextEditorProps
 } from '@toptal/picasso'
@@ -8,7 +9,7 @@ import { Object } from 'ts-toolbelt'
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
 type OverriddenProps = {
-  defaultValue?: RichTextEditorProps['defaultValue']
+  defaultValue?: ASTType
   value?: never
   initialValue?: never
 }
