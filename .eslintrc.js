@@ -14,7 +14,13 @@ const generateConfig = () =>
         rules: {
           'no-restricted-imports': [
             'error',
-            ...forbiddenPackageNames.map(name => `@toptal/${name}`)
+            ...forbiddenPackageNames.map(name => `@toptal/${name}`),
+            {
+              name: 'react',
+              importNames: ['useLayoutEffect'],
+              message:
+                '`useLayoutEffect` causes a warning in SSR. Use `useIsomorphicLayoutEffect` from `@toptal/picasso-shared`'
+            }
           ]
         }
       }

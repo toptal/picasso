@@ -3,13 +3,14 @@ import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
-import React, { ReactNode, useLayoutEffect } from 'react'
+import React, { ReactNode } from 'react'
 
 import { CloseMinor16 } from '../Icon'
 import styles from './styles'
 import Button from '../Button'
 import Container from '../Container'
 import DrawerTitle from '../DrawerTitle'
+import { useIsomorphicLayoutEffect } from '../utils'
 
 type AnchorType = 'bottom' | 'left' | 'right' | 'top'
 
@@ -49,7 +50,7 @@ export const Drawer = (props: Props) => {
   const theme = useTheme()
   const container = usePicassoRoot()
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setHasDrawer(open)
 
     const cleanup = () => {

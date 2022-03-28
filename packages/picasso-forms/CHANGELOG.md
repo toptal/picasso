@@ -1,5 +1,28 @@
 # Change Log
 
+## 39.0.2
+
+### Patch Changes
+
+- [#2524](https://github.com/toptal/picasso/pull/2524) [`b577baee`](https://github.com/toptal/picasso/commit/b577baee1dc565bbf97dffa663b26a3af0f58f9e) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### FieldWrapper
+
+  - Removed styling in labels for disabled inputs, they don't follow BASE design
+
+## 39.0.1
+
+### Patch Changes
+
+- [#2509](https://github.com/toptal/picasso/pull/2509) [`6e29b84f`](https://github.com/toptal/picasso/commit/6e29b84f03daad28abe899f98f819cec2fefbb0a) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Select
+
+  - fix null pointer exception when using keyboard controls on an empty select
+
+- Updated dependencies [[`6e29b84f`](https://github.com/toptal/picasso/commit/6e29b84f03daad28abe899f98f819cec2fefbb0a)]:
+  - @toptal/picasso@19.0.1
+
 ## 39.0.0
 
 ### Major Changes

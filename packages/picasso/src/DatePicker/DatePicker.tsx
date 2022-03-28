@@ -8,7 +8,6 @@ import React, {
   KeyboardEvent,
   ReactNode,
   useCallback,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState
@@ -19,7 +18,7 @@ import Popper from '../Popper'
 import Container from '../Container'
 import Input, { InputProps } from '../Input'
 import InputAdornment from '../InputAdornment'
-import { noop } from '../utils'
+import { noop, useIsomorphicLayoutEffect } from '../utils'
 import Calendar, {
   DateOrDateRangeType,
   DateRangeType,
@@ -185,18 +184,18 @@ export const DatePicker = (props: Props) => {
   // Keep the input value in sync with date value update
   // Updating on incoming date value or timezone change
   // Should not update when input is focused to prevent overriding it's value
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     updateInputValue({ preventUpdateOnFocus: true })
   }, [value, timezone])
 
   // Keep the input format in sync with its 'focus' state
   // Updating on input focus state change
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     updateInputValue({ preventUpdateOnFocus: false })
   }, [isInputFocused])
 
   // Keep the calendar in sync with the input value
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setCalendarValue(() => {
       if (!value) {
         return null
@@ -311,9 +310,9 @@ export const DatePicker = (props: Props) => {
         event.currentTarget.blur()
       } else {
         // TODO: Manage this whole logic inside simple-react-calendar
-        const firstButton = calendarRef.current?.querySelector<HTMLButtonElement>(
-          'button:not([tabindex="-1"])'
-        )
+        const firstButton = calendarRef.current?.querySelector<
+          HTMLButtonElement
+        >('button:not([tabindex="-1"])')
 
         if (firstButton) {
           firstButton.focus()
@@ -339,7 +338,9 @@ export const DatePicker = (props: Props) => {
       <InputAdornment position='start' disablePointerEvents>
         {icon || <Calendar16 />}
       </InputAdornment>
-    ) : undefined
+    ) : (
+      undefined
+    )
 
   return (
     <>

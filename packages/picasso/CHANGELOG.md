@@ -1,5 +1,47 @@
 # Change Log
 
+## 19.2.0
+
+### Minor Changes
+
+- [#2546](https://github.com/toptal/picasso/pull/2546) [`9a075e8a`](https://github.com/toptal/picasso/commit/9a075e8af6ff2d3775cdf8eb2bda0490c1e75ae0) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### Tabs.Tab
+
+  - when using `icon`, underline is extended under it
+
+## 19.1.1
+
+### Patch Changes
+
+- [#2543](https://github.com/toptal/picasso/pull/2543) [`c25d0953`](https://github.com/toptal/picasso/commit/c25d0953ff819f7e6e82ad8a3cee8b4467ec3889) Thanks [@hmschreiner](https://github.com/hmschreiner)! - ---
+
+  ### OverlayBadge
+
+  - Fix line-height on small variant
+
+## 19.1.0
+
+### Minor Changes
+
+- [#2521](https://github.com/toptal/picasso/pull/2521) [`fc9b34cc`](https://github.com/toptal/picasso/commit/fc9b34ccad04a2e7926a84eb1d710350f1d663d5) Thanks [@deniskaber](https://github.com/deniskaber)! - Change useLayoutEffect to useIsomorphicLayoutEffect for SSR support
+
+### Patch Changes
+
+- Updated dependencies [[`fc9b34cc`](https://github.com/toptal/picasso/commit/fc9b34ccad04a2e7926a84eb1d710350f1d663d5)]:
+  - @toptal/picasso-shared@7.3.0
+  - @toptal/picasso-provider@0.7.1
+
+## 19.0.1
+
+### Patch Changes
+
+- [#2509](https://github.com/toptal/picasso/pull/2509) [`6e29b84f`](https://github.com/toptal/picasso/commit/6e29b84f03daad28abe899f98f819cec2fefbb0a) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Select
+
+  - fix null pointer exception when using keyboard controls on an empty select
+
 ## 19.0.0
 
 ### Major Changes

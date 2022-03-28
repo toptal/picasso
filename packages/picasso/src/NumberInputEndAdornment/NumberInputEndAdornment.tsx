@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { RefObject } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, SizeType, isBrowser } from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import cx from 'classnames'
 
@@ -14,7 +14,6 @@ import {
   ArrowUpMinor24
 } from '../Icon'
 import styles from './styles'
-import isBrowser from '../utils/is-browser'
 
 export interface Props extends BaseProps {
   /** Value of the `input` element. */
