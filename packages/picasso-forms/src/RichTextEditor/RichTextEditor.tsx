@@ -4,7 +4,7 @@ import {
   RichTextEditorProps
 } from '@toptal/picasso'
 import React, { useCallback, useState } from 'react'
-import { Object } from 'ts-toolbelt'
+import { Except } from 'type-fest'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
@@ -14,10 +14,9 @@ type OverriddenProps = {
   initialValue?: never
 }
 
-export type Props = Object.Merge<
-  OverriddenProps,
-  RichTextEditorProps & FieldProps<string>
->
+export type Props = RichTextEditorProps &
+  Except<FieldProps<string>, keyof OverriddenProps> &
+  OverriddenProps
 
 type InternalProps = RichTextEditorProps & { value: string }
 
@@ -42,7 +41,7 @@ export const RichTextEditor = ({ onChange, defaultValue, ...rest }: Props) => {
     >
       {(inputProps: RichTextEditorProps) => (
         <PicassoRichTextEditor
-          defaultValue={defaultValue as ASTType | undefined}
+          defaultValue={defaultValue}
           {...inputProps}
         />
       )}
