@@ -4,9 +4,9 @@ import {
   AutocompleteProps
 } from '@toptal/picasso'
 
-import { FieldProps } from '../FieldWrapper'
+import { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
-import InputFieldWrapper from '../InputFieldWrapper'
+import InputField from '../InputField'
 
 export type Props = AutocompleteProps & FieldProps<AutocompleteProps['value']>
 
@@ -14,7 +14,7 @@ export const Autocomplete = (props: Props) => {
   const { label, titleCase, ...rest } = props
 
   return (
-    <InputFieldWrapper<AutocompleteProps>
+    <InputField<AutocompleteProps>
       {...rest}
       label={
         label ? (
@@ -30,7 +30,7 @@ export const Autocomplete = (props: Props) => {
       {(inputProps: AutocompleteProps) => {
         return <PicassoAutocomplete {...inputProps} />
       }}
-    </InputFieldWrapper>
+    </InputField>
   )
 }
 

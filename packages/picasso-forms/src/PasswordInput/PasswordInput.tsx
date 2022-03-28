@@ -3,11 +3,11 @@ import { PasswordInputProps } from '@toptal/picasso'
 import { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'
-import { FieldProps } from '../FieldWrapper'
+import { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import passwordValidators from './validators'
 import Form from '../Form'
-import InputFieldWrapper from '../InputFieldWrapper'
+import InputField from '../InputField'
 import FieldRenderer from './FieldRenderer'
 
 export type Props = PasswordInputProps &
@@ -95,7 +95,7 @@ export const PasswordInput = ({
   }, [])
 
   return (
-    <InputFieldWrapper<PasswordInputProps>
+    <InputField<PasswordInputProps>
       {...rest}
       validate={validationsObject}
       renderFieldRequirements={
@@ -121,7 +121,7 @@ export const PasswordInput = ({
           />
         )
       }}
-    </InputFieldWrapper>
+    </InputField>
   )
 }
 

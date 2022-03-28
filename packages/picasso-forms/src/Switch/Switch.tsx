@@ -5,7 +5,7 @@ import {
   Form as PicassoForm
 } from '@toptal/picasso'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import PicassoField, { FieldProps } from '../Field'
 
 export type FormSwitchProps = Omit<SwitchProps, 'onChange'> & {
   onChange?: SwitchProps['onChange']
@@ -13,7 +13,7 @@ export type FormSwitchProps = Omit<SwitchProps, 'onChange'> & {
 export type Props = FormSwitchProps & FieldProps<SwitchProps['value']>
 
 export const Switch = (props: Props) => (
-  <FieldWrapper<FormSwitchProps>
+  <PicassoField<FormSwitchProps>
     {...props}
     label={
       props.label ? (
@@ -26,7 +26,7 @@ export const Switch = (props: Props) => (
     {(inputProps: SwitchProps) => {
       return <PicassoSwitch {...inputProps} />
     }}
-  </FieldWrapper>
+  </PicassoField>
 )
 
 Switch.defaultProps = {}
