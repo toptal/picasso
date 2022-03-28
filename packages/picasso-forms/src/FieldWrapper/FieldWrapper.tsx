@@ -2,7 +2,6 @@ import React, { ChangeEvent, FocusEvent, useMemo } from 'react'
 import {
   useField,
   FieldProps as FinalFieldProps,
-  FieldMetaState,
   FieldRenderProps
 } from 'react-final-form'
 import {
@@ -59,10 +58,6 @@ export type Props<
       error?: boolean
     }) => React.ReactNode
   }
-
-export type FieldMeta<T> = FieldMetaState<T> & {
-  dirtyAfterBlur?: boolean
-}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getValidators = (required: boolean, validate?: any) => {

@@ -1,18 +1,19 @@
 import { useEffect } from 'react'
 import { FieldValidator } from 'final-form'
+import { FieldMetaState } from 'react-final-form'
 
-import { ValueType, FieldMeta } from '../../FieldWrapper'
+import { ValueType } from '../../FieldWrapper'
 import { useFormContext } from '../../Form/FormContext'
 
 export type Props<T extends ValueType> = {
   name: string
-  meta: FieldMeta<T>
+  meta: FieldMetaState<T>
   validators: FieldValidator<T>
   shouldValidateOnSubmit?: boolean
 }
 
 export const getInputError = <T extends ValueType>(
-  meta: FieldMeta<T>,
+  meta: FieldMetaState<T>,
   shouldValidateOnSubmit?: boolean
 ) => {
   if (shouldValidateOnSubmit && meta.modifiedSinceLastSubmit) {
