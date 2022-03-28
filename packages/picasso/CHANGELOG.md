@@ -1,5 +1,15 @@
 # Change Log
 
+## 19.2.0
+
+### Minor Changes
+
+- [#2546](https://github.com/toptal/picasso/pull/2546) [`9a075e8a`](https://github.com/toptal/picasso/commit/9a075e8af6ff2d3775cdf8eb2bda0490c1e75ae0) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### Tabs.Tab
+
+  - when using `icon`, underline is extended under it
+
 ## 19.1.1
 
 ### Patch Changes
