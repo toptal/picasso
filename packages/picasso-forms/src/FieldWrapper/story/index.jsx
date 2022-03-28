@@ -1,9 +1,9 @@
-import Field from '../Field'
+import FieldWrapper from '../FieldWrapper'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(
-  Field,
-  'Form.Field',
+  FieldWrapper,
+  'FieldWrapper',
   undefined,
   {
     name: {
