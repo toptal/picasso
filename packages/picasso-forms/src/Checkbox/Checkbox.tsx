@@ -5,7 +5,7 @@ import {
   FieldRenderProps as FinalFormFieldProps
 } from 'react-final-form'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import PicassoField, { FieldProps } from '../Field'
 import { CheckboxGroupContext } from '../CheckboxGroup'
 import { useFormConfig } from '../FormConfig'
 
@@ -50,7 +50,7 @@ export const Checkbox = ({
   const requiredDecoration = showAsterisk ? 'asterisk' : undefined
 
   return (
-    <FieldWrapper
+    <PicassoField
       type='checkbox'
       required={required}
       {...restProps}
@@ -65,7 +65,7 @@ export const Checkbox = ({
           requiredDecoration={requiredDecoration}
         />
       )}
-    </FieldWrapper>
+    </PicassoField>
   )
 }
 

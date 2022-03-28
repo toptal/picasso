@@ -1,5 +1,5 @@
 import Form from '../Form'
-import formFieldStory from '../../FieldWrapper/story'
+import formFieldStory from '../../Field/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Picasso Forms').createPage('Form', 'Form')

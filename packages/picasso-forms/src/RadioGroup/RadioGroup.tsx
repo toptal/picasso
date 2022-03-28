@@ -5,7 +5,7 @@ import {
   RadioGroupProps
 } from '@toptal/picasso'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import PicassoField, { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import RadioGroupContext from './RadioGroupContext'
 
@@ -16,7 +16,7 @@ export const RadioGroup = (props: Props) => {
 
   return (
     <RadioGroupContext.Provider value={props.name}>
-      <FieldWrapper
+      <PicassoField
         {...rest}
         type='radio'
         label={
@@ -35,7 +35,7 @@ export const RadioGroup = (props: Props) => {
             {children}
           </PicassoRadio.Group>
         )}
-      </FieldWrapper>
+      </PicassoField>
     </RadioGroupContext.Provider>
   )
 }

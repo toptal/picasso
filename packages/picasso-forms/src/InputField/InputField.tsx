@@ -2,11 +2,11 @@ import React from 'react'
 import { OutlinedInputStatus } from '@toptal/picasso'
 import { FieldMetaState, useField } from 'react-final-form'
 
-import FieldWrapper, {
-  Props as FieldWrapperProps,
+import Field, {
+  Props as FieldProps,
   ValueType,
   IFormComponentProps
-} from '../FieldWrapper'
+} from '../Field'
 import { FormConfigProps, useFormConfig } from '../FormConfig'
 import useFormInputReset from '../utils/use-form-input-reset'
 
@@ -37,11 +37,11 @@ export const getInputStatus = <T extends ValueType>(
   return formConfig.showValidState ? 'success' : 'default'
 }
 
-const InputFieldWrapper = <
+const InputField = <
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue extends ValueType = TWrappedComponentProps['value']
 >(
-  props: FieldWrapperProps<TWrappedComponentProps, TInputValue>
+  props: FieldProps<TWrappedComponentProps, TInputValue>
 ) => {
   const { name, children, enableReset, onResetClick, ...rest } = props
 
@@ -56,7 +56,7 @@ const InputFieldWrapper = <
   })
 
   return (
-    <FieldWrapper<IFormComponentProps, TInputValue>
+    <Field<IFormComponentProps, TInputValue>
       status={status}
       name={name}
       onResetClick={onFormInputResetClick}
@@ -64,12 +64,12 @@ const InputFieldWrapper = <
       {...rest}
     >
       {children}
-    </FieldWrapper>
+    </Field>
   )
 }
 
-InputFieldWrapper.defaultProps = {}
+InputField.defaultProps = {}
 
-InputFieldWrapper.displayName = 'InputFieldWrapper'
+InputField.displayName = 'InputField'
 
-export default InputFieldWrapper
+export default InputField

@@ -1,6 +1,6 @@
 import { FieldMetaState } from 'react-final-form'
 
-import { getInputStatus } from './InputFieldWrapper'
+import { getInputStatus } from './InputField'
 
 describe('getInputStatus', () => {
   describe('when field has an error', () => {
