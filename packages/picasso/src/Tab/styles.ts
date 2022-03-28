@@ -29,14 +29,12 @@ PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
     },
     labelIcon: {
       minHeight: 0,
+      paddingRight: '1.5rem',
       paddingTop: rem('9px'),
       '& $wrapper > *:first-child': {
         position: 'absolute',
-        right: '-1.5rem',
+        right: 0,
         marginBottom: 0
-      },
-      '&:not(:last-child)': {
-        marginRight: '3.5em'
       }
     },
     selected: {
