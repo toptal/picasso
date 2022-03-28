@@ -12,7 +12,7 @@ export type Props<T extends ValueType> = {
   shouldValidateOnSubmit?: boolean
 }
 
-export const getInputError = <T extends ValueType>(
+export const getFieldError = <T extends ValueType>(
   meta: FieldMetaState<T>,
   shouldValidateOnSubmit?: boolean
 ) => {
@@ -39,7 +39,7 @@ export const getInputError = <T extends ValueType>(
   return meta.submitError
 }
 
-const useValidation = <T extends ValueType>({
+const useFieldValidation = <T extends ValueType>({
   name,
   meta,
   validators,
@@ -57,7 +57,7 @@ const useValidation = <T extends ValueType>({
     }
   }, [setValidators, clearValidators, validators, shouldValidateOnSubmit, name])
 
-  return getInputError(meta, shouldValidateOnSubmit)
+  return getFieldError(meta, shouldValidateOnSubmit)
 }
 
-export default useValidation
+export default useFieldValidation

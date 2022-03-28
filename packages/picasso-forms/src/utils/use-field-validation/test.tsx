@@ -1,8 +1,8 @@
 import { FieldMetaState } from 'react-final-form'
 
-import { getInputError } from './use-validation'
+import { getFieldError } from './use-field-validation'
 
-describe('getErrorInput', () => {
+describe('getFieldError', () => {
   describe('when field has an error', () => {
     it('returns the error message', () => {
       const meta: FieldMetaState<string> = {
@@ -10,7 +10,7 @@ describe('getErrorInput', () => {
         touched: true
       }
 
-      expect(getInputError(meta)).toBe('Some error message')
+      expect(getFieldError(meta)).toBe('Some error message')
     })
   })
 
@@ -22,7 +22,7 @@ describe('getErrorInput', () => {
         submitError: 'Some error message'
       }
 
-      expect(getInputError(meta)).toBe('Some error message')
+      expect(getFieldError(meta)).toBe('Some error message')
     })
   })
 
@@ -32,7 +32,7 @@ describe('getErrorInput', () => {
         touched: true
       }
 
-      expect(getInputError(meta)).toBeNull()
+      expect(getFieldError(meta)).toBeNull()
     })
   })
 
@@ -43,7 +43,7 @@ describe('getErrorInput', () => {
         error: 'Some error message'
       }
 
-      expect(getInputError(meta)).toBeNull()
+      expect(getFieldError(meta)).toBeNull()
     })
   })
 
@@ -55,7 +55,7 @@ describe('getErrorInput', () => {
         dirtySinceLastSubmit: true
       }
 
-      expect(getInputError(meta)).toBeNull()
+      expect(getFieldError(meta)).toBeNull()
     })
   })
 
@@ -67,7 +67,7 @@ describe('getErrorInput', () => {
         submitError: 'Some error message'
       }
 
-      expect(getInputError(meta, shouldValidateOnSubmit)).toBeNull()
+      expect(getFieldError(meta, shouldValidateOnSubmit)).toBeNull()
     })
   })
 })

@@ -14,7 +14,7 @@ import { FileUpload } from '@toptal/picasso/FileInput'
 import { TextLabelProps } from '@toptal/picasso-shared'
 
 import { useFormConfig } from '../FormConfig'
-import { validators, useValidation } from '../utils'
+import { validators, useFieldValidation } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
 
@@ -132,7 +132,7 @@ const FieldWrapper = <
     value
   })
 
-  const error = useValidation({
+  const error = useFieldValidation({
     name,
     meta,
     validators,
