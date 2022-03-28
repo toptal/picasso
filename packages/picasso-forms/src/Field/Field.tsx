@@ -72,7 +72,7 @@ const getValidators = (required: boolean, validate?: any) => {
   return validate
 }
 
-const FieldWrapper = <
+const Field = <
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue extends ValueType = TWrappedComponentProps['value']
 >(
@@ -184,8 +184,8 @@ const FieldWrapper = <
   )
 }
 
-FieldWrapper.defaultProps = {}
+Field.defaultProps = {}
 
-FieldWrapper.displayName = 'FieldWrapper'
+Field.displayName = 'Field'
 
-export default FieldWrapper
+export default Field

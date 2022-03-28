@@ -3,7 +3,7 @@ import { Dropzone as PicassoDropzone, DropzoneProps } from '@toptal/picasso'
 import { FileUpload } from '@toptal/picasso/FileInput'
 import { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import PicassoField, { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 
 export type Props = DropzoneProps &
@@ -52,7 +52,7 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
   }
 
   return (
-    <FieldWrapper<DropzoneProps, FileUpload[] | undefined>
+    <PicassoField<DropzoneProps, FileUpload[] | undefined>
       hideErrors
       {...props}
       label={
@@ -84,7 +84,7 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
           }}
         />
       )}
-    </FieldWrapper>
+    </PicassoField>
   )
 }
 

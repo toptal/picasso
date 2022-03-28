@@ -3,7 +3,7 @@ import { FileInput as PicassoFileInput, FileInputProps } from '@toptal/picasso'
 import { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
 import { FileUpload } from '@toptal/picasso/FileInput'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import PicassoField, { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 
 type FinalFormOnChangeType = FinalFieldInputProps<
@@ -44,7 +44,7 @@ export const FileInput = (props: Props) => {
   }
 
   return (
-    <FieldWrapper<FileInputProps, FileUpload[] | undefined>
+    <PicassoField<FileInputProps, FileUpload[] | undefined>
       {...props}
       label={
         props.label ? (
@@ -68,7 +68,7 @@ export const FileInput = (props: Props) => {
           }}
         />
       )}
-    </FieldWrapper>
+    </PicassoField>
   )
 }
 

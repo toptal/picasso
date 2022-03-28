@@ -5,7 +5,7 @@ import {
   RatingThumbsProps as PicassoRatingThumbsProps
 } from '@toptal/picasso'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import PicassoField, { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import { validators } from '../utils'
 
@@ -16,7 +16,7 @@ const Stars = (props: RatingStarsProps) => {
   const { label, titleCase, ...rest } = props
 
   return (
-    <FieldWrapper<PicassoRatingStarsProps>
+    <PicassoField<PicassoRatingStarsProps>
       {...rest}
       type='number'
       label={
@@ -31,7 +31,7 @@ const Stars = (props: RatingStarsProps) => {
       }
     >
       {inputProps => <PicassoRating.Stars {...inputProps} />}
-    </FieldWrapper>
+    </PicassoField>
   )
 }
 
@@ -52,14 +52,8 @@ const thumbsRequired = (value: boolean | undefined) =>
   value == null ? validators.required(null) : undefined
 
 const Thumbs = (props: RatingThumbsProps) => {
-  const {
-    required,
-    validate,
-    requirePositive,
-    label,
-    titleCase,
-    ...rest
-  } = props
+  const { required, validate, requirePositive, label, titleCase, ...rest } =
+    props
 
   const validateOverride = validators.composeValidators([
     required && !requirePositive ? thumbsRequired : undefined,
@@ -67,7 +61,7 @@ const Thumbs = (props: RatingThumbsProps) => {
   ])
 
   return (
-    <FieldWrapper<PicassoRatingThumbsProps>
+    <PicassoField<PicassoRatingThumbsProps>
       validate={validateOverride}
       required={requirePositive}
       {...rest}
@@ -83,7 +77,7 @@ const Thumbs = (props: RatingThumbsProps) => {
       }
     >
       {inputProps => <PicassoRating.Thumbs {...inputProps} />}
-    </FieldWrapper>
+    </PicassoField>
   )
 }
 

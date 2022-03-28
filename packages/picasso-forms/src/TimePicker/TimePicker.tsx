@@ -4,8 +4,8 @@ import {
   TimePickerProps
 } from '@toptal/picasso'
 
-import { FieldProps } from '../FieldWrapper'
-import InputFieldWrapper from '../InputFieldWrapper'
+import { FieldProps } from '../Field'
+import InputField from '../InputField'
 import FieldLabel from '../FieldLabel'
 
 export type FormTimePickerProps = Omit<TimePickerProps, 'onChange'> & {
@@ -17,7 +17,7 @@ export const TimePicker = (props: Props) => {
   const { label, titleCase, ...rest } = props
 
   return (
-    <InputFieldWrapper<FormTimePickerProps>
+    <InputField<FormTimePickerProps>
       {...rest}
       label={
         label ? (
@@ -36,7 +36,7 @@ export const TimePicker = (props: Props) => {
 
         return <PicassoTimePicker {...rest} />
       }}
-    </InputFieldWrapper>
+    </InputField>
   )
 }
 

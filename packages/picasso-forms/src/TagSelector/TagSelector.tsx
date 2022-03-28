@@ -4,9 +4,9 @@ import {
   TagSelectorProps
 } from '@toptal/picasso'
 
-import { FieldProps } from '../FieldWrapper'
+import { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
-import InputFieldWrapper from '../InputFieldWrapper'
+import InputField from '../InputField'
 
 export type Props = TagSelectorProps & FieldProps<TagSelectorProps['value']>
 
@@ -14,7 +14,7 @@ export const TagSelector = (props: Props) => {
   const { label, titleCase, ...rest } = props
 
   return (
-    <InputFieldWrapper<TagSelectorProps>
+    <InputField<TagSelectorProps>
       {...rest}
       label={
         label ? (
@@ -30,7 +30,7 @@ export const TagSelector = (props: Props) => {
       {(inputProps: TagSelectorProps) => {
         return <PicassoTagSelector {...inputProps} />
       }}
-    </InputFieldWrapper>
+    </InputField>
   )
 }
 
