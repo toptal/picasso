@@ -49,7 +49,7 @@ const SvgCopy16 = forwardRef(function SvgCopy16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 2H2v10H1V1h11v1zM4 4h11v11H4V4zm1 1v9h9V5H5z' />
+      <path d='M12 2H2v10H1V1h11v1ZM4 4h11v11H4V4Zm1 1v9h9V5H5Z' />
     </svg>
   )
 })

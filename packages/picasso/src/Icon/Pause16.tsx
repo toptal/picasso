@@ -49,7 +49,7 @@ const SvgPause16 = forwardRef(function SvgPause16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 0a8 8 0 110 16A8 8 0 018 0zm0 1a7 7 0 100 14A7 7 0 008 1zM7 5v6H6V5h1zm3 0v6H9V5h1z' />
+      <path d='M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm0 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1ZM7 5v6H6V5h1Zm3 0v6H9V5h1Z' />
     </svg>
   )
 })

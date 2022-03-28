@@ -49,7 +49,7 @@ const SvgPinSolid24 = forwardRef(function SvgPinSolid24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 0a9 9 0 019 9c0 3.314-3 8.314-9 15-6-6.686-9-11.686-9-15a9 9 0 019-9zm0 6a3 3 0 100 6 3 3 0 000-6z' />
+      <path d='M12 0a9 9 0 0 1 9 9c0 3.314-3 8.314-9 15-6-6.686-9-11.686-9-15a9 9 0 0 1 9-9Zm0 6a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z' />
     </svg>
   )
 })

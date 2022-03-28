@@ -49,7 +49,7 @@ const SvgVideoOn24 = forwardRef(function SvgVideoOn24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M18 8.571L24 6v12l-6-2.571V19H0V5h18v3.571zm0 1.088v4.682l5 2.142V7.517l-5 2.142zM17 9V6H1v12h16V9z' />
+      <path d='M18 8.571 24 6v12l-6-2.571V19H0V5h18v3.571Zm0 1.088v4.682l5 2.142V7.517l-5 2.142ZM17 9V6H1v12h16V9Z' />
     </svg>
   )
 })

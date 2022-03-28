@@ -49,7 +49,7 @@ const SvgTime16 = forwardRef(function SvgTime16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M7.5 15a7.5 7.5 0 110-15 7.5 7.5 0 010 15zm0-1a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM7 8H4V7h3V2h1v6H7z' />
+      <path d='M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13ZM7 8H4V7h3V2h1v6H7Z' />
     </svg>
   )
 })

@@ -42,8 +42,8 @@ const getBaseSize = (componentName = '') => {
   return 16
 }
 
-const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
-  const displayName = `'${componentName.name}'`
+const iconTemplate = ({ componentName, jsx }, { tpl }) => {
+  const displayName = `'${componentName}'`
   const baseSize = `${getBaseSize(displayName)}`
 
   const svgElement = jsx.openingElement
@@ -57,40 +57,45 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
   // add `data-testid={testId} to svg root tag
   decorateWithIdentifierProp(svgElement, 'data-testid', 'testId')
 
-  const typeScriptTpl = template.smart({ plugins: ['typescript'] })
+  const makeStylesHook = `const useStyles = makeStyles(styles, { name: 'Picasso${componentName}' })`
+  const classes = 'const classes: Record<string, string> = useStyles(props)'
+  const props = `
+  props: Props,
+  ref: Ref<SVGSVGElement>
+  `
 
-  const makeStylesHook = `const useStyles = makeStyles(styles, { name: 'Picasso${componentName.name}' })`
+  const ts = `
+type ScaleType =
+    | 1
+    | 2
+    | 3
+    | 4
+export interface Props extends StandardProps {
+  scale?: ScaleType,
+  color?: string,
+  base?: number
+}
+`
 
-  return typeScriptTpl.ast`
+  return tpl`
     import React, { forwardRef, Ref } from 'react'
     import cx from 'classnames'
     import { makeStyles } from '@material-ui/core/styles'
     import { StandardProps } from '@toptal/picasso-shared'
-
+    ${'\n'}
     import kebabToCamelCase from '../utils/kebab-to-camel-case'
     import styles from './styles'
 
     const BASE_SIZE = ${baseSize}
 
-    type ScaleType =
-      | 1
-      | 2
-      | 3
-      | 4
-
-    export interface Props extends StandardProps {
-      scale?: ScaleType
-      color?: string
-      base?: number
-    }
+    ${ts}
     ${makeStylesHook}
     const ${componentName} = forwardRef(function ${componentName}(
-      props: Props,
-      ref: Ref<SVGSVGElement>
+      ${props}
     ) {
       const { className, style = {}, color, scale, base, 'data-testid': testId } = props
 
-      const classes: Record<string, string> = useStyles(props)
+      ${classes}
       const classNames = [classes.root, className]
 
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)

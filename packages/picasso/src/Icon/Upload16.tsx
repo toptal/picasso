@@ -43,13 +43,12 @@ const SvgUpload16 = forwardRef(function SvgUpload16(
 
   return (
     <svg
-      viewBox='0 0 16 16'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
     >
-      <path d='M1 12v2h13v-2h1v3H0v-3h1zM7.5.793L11.207 4.5l-.707.707-2.501-2.5L8 12H7l-.001-9.293-2.499 2.5-.707-.707 3-3L7.5.793z' />
+      <path d='M1 12v2h13v-2h1v3H0v-3h1ZM7.5.793 11.207 4.5l-.707.707-2.501-2.5L8 12H7l-.001-9.293-2.499 2.5-.707-.707 3-3L7.5.793Z' />
     </svg>
   )
 })

@@ -49,7 +49,7 @@ const SvgUploadDocument24 = forwardRef(function SvgUploadDocument24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M19 13h-1V2H2v20h11v1H1V1h18v12zM4 7h12v1H4V7zm0 3h12v1H4v-1zm0 3h5v1H4v-1zm15 3.707V23h-1v-6.293l-2.5 2.5-.707-.707 3.707-3.707.707.707 3 3-.707.707-2.5-2.5z' />
+      <path d='M19 13h-1V2H2v20h11v1H1V1h18v12ZM4 7h12v1H4V7Zm0 3h12v1H4v-1Zm0 3h5v1H4v-1Zm15 3.707V23h-1v-6.293l-2.5 2.5-.707-.707 3.707-3.707.707.707 3 3-.707.707-2.5-2.5Z' />
     </svg>
   )
 })

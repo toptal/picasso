@@ -49,7 +49,7 @@ const SvgBankWire24 = forwardRef(function SvgBankWire24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M2 26h28v4H2v-4zm1 1v2h26v-2H3zM2 8l14-6 14 6v3H2V8zm1 .66V10h26V8.66L16 3.087 3 8.659zM4 12h6v13H4V12zm1 1v11h4V13H5zm8-1h6v13h-6V12zm1 1v11h4V13h-4zm8-1h6v13h-6V12zm1 1v11h4V13h-4z' />
+      <path d='M2 26h28v4H2v-4Zm1 1v2h26v-2H3ZM2 8l14-6 14 6v3H2V8Zm1 .66V10h26V8.66L16 3.087 3 8.659ZM4 12h6v13H4V12Zm1 1v11h4V13H5Zm8-1h6v13h-6V12Zm1 1v11h4V13h-4Zm8-1h6v13h-6V12Zm1 1v11h4V13h-4Z' />
     </svg>
   )
 })

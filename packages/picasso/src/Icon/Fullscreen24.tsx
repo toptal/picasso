@@ -49,7 +49,7 @@ const SvgFullscreen24 = forwardRef(function SvgFullscreen24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M3 18h4v1H2v-5h1v4zM22 6v4h-1V6h-4V5h5v1zM0 3h24v18H0V3zm1 1v16h22V4H1z' />
+      <path d='M3 18h4v1H2v-5h1v4ZM22 6v4h-1V6h-4V5h5v1ZM0 3h24v18H0V3Zm1 1v16h22V4H1Z' />
     </svg>
   )
 })

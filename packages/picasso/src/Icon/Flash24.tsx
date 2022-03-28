@@ -49,7 +49,7 @@ const SvgFlash24 = forwardRef(function SvgFlash24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 0v9h8l-9 15v-9H3l9-15zm-1 3.609L4.765 14H12v6.388L18.233 10H11V3.609z' />
+      <path d='M12 0v9h8l-9 15v-9H3l9-15Zm-1 3.609L4.765 14H12v6.388L18.233 10H11V3.609Z' />
     </svg>
   )
 })

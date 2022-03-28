@@ -49,7 +49,7 @@ const SvgFilter24 = forwardRef(function SvgFilter24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M0 6h24v1H0V6zm6 12h12v1H6v-1zm15-6v1H3v-1h18z' />
+      <path d='M0 6h24v1H0V6Zm6 12h12v1H6v-1Zm15-6v1H3v-1h18Z' />
     </svg>
   )
 })

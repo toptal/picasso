@@ -49,7 +49,7 @@ const SvgNumericalAnalysis24 = forwardRef(function SvgNumericalAnalysis24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M23 1v22H1V1h22zm-1 1H2v20h20V2zm-5 17v1h-1v-1h1zm-7.379-5.328l.707.707-2.12 2.121 2.12 2.121-.707.707-2.121-2.12-2.121 2.12-.707-.707 2.12-2.121-2.12-2.121.707-.707 2.121 2.12 2.121-2.12zM20 16v1h-7v-1h7zm-3-3v1h-1v-1h1zM8 4v3h3v1H8v3H7V8H4V7h3V4h1zm12 3v1h-7V7h7z' />
+      <path d='M23 1v22H1V1h22Zm-1 1H2v20h20V2Zm-5 17v1h-1v-1h1Zm-7.379-5.328.707.707-2.12 2.121 2.12 2.121-.707.707-2.121-2.12-2.121 2.12-.707-.707 2.12-2.121-2.12-2.121.707-.707 2.121 2.12 2.121-2.12ZM20 16v1h-7v-1h7Zm-3-3v1h-1v-1h1ZM8 4v3h3v1H8v3H7V8H4V7h3V4h1Zm12 3v1h-7V7h7Z' />
     </svg>
   )
 })

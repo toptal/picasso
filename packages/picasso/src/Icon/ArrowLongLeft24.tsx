@@ -49,7 +49,7 @@ const SvgArrowLongLeft24 = forwardRef(function SvgArrowLongLeft24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8.5 6.793l.707.707-4.5 4.5H21v1H4.708l4.5 4.5-.708.707L2.793 12.5l.707-.707 5-5z' />
+      <path d='m8.5 6.793.707.707-4.5 4.5H21v1H4.708l4.5 4.5-.708.707L2.793 12.5l.707-.707 5-5Z' />
     </svg>
   )
 })

@@ -49,7 +49,7 @@ const SvgDownload24 = forwardRef(function SvgDownload24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 17.293l3.5-3.5.707.707-4.707 4.707L6.793 14.5l.707-.707 3.5 3.5V2h1v15.293zM22 21v1H1v-4h1v3h19v-3h1v3z' />
+      <path d='m12 17.293 3.5-3.5.707.707-4.707 4.707L6.793 14.5l.707-.707 3.5 3.5V2h1v15.293ZM22 21v1H1v-4h1v3h19v-3h1v3Z' />
     </svg>
   )
 })

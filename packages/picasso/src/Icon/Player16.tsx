@@ -49,7 +49,7 @@ const SvgPlayer16 = forwardRef(function SvgPlayer16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M16 2v12H0V2h16zm-1 1H1v10h14V3zM6 5l5 3-5 3V5zm1.001 1.766v2.467L9.057 8 7.001 6.766z' />
+      <path d='M16 2v12H0V2h16Zm-1 1H1v10h14V3ZM6 5l5 3-5 3V5Zm1.001 1.766v2.467L9.057 8 7.001 6.766Z' />
     </svg>
   )
 })

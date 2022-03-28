@@ -49,7 +49,7 @@ const SvgUnavailable16 = forwardRef(function SvgUnavailable16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 0a8 8 0 110 16A8 8 0 018 0zm5.29 3.416l-9.874 9.875a7 7 0 009.874-9.874zM8 1a7 7 0 00-5.29 11.584l9.874-9.875A6.973 6.973 0 008 1z' />
+      <path d='M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm5.29 3.416-9.874 9.875a7 7 0 0 0 9.874-9.874ZM8 1a7 7 0 0 0-5.29 11.584l9.874-9.875A6.973 6.973 0 0 0 8 1Z' />
     </svg>
   )
 })

@@ -49,7 +49,7 @@ const SvgUiGuidelines16 = forwardRef(function SvgUiGuidelines16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M15 2h-5v12h5V2zm1 0v13H9V1h7v1zM0 3h7v1H0V3zm0 3h7v1H0V6zm0 3h7v1H0V9zm0 3h7v1H0v-1z' />
+      <path d='M15 2h-5v12h5V2Zm1 0v13H9V1h7v1ZM0 3h7v1H0V3Zm0 3h7v1H0V6Zm0 3h7v1H0V9Zm0 3h7v1H0v-1Z' />
     </svg>
   )
 })

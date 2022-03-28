@@ -49,7 +49,7 @@ const SvgLegalInfo16 = forwardRef(function SvgLegalInfo16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M11 0l4 4v12H1V0h10zm-.414 1H2v14h12V4.414L10.586 1zM8 11V7H6V6h3v5h2v1H6v-1h2zM7 4h2v1H7V4z' />
+      <path d='m11 0 4 4v12H1V0h10Zm-.414 1H2v14h12V4.414L10.586 1ZM8 11V7H6V6h3v5h2v1H6v-1h2ZM7 4h2v1H7V4Z' />
     </svg>
   )
 })

@@ -49,7 +49,7 @@ const SvgCheckMinor16 = forwardRef(function SvgCheckMinor16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z' />
+      <path d='m6.5 9.793 4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2Z' />
     </svg>
   )
 })

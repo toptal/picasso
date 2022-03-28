@@ -49,7 +49,7 @@ const SvgTrash24 = forwardRef(function SvgTrash24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M9 3V0h6v3h8v1H1V3h8zm1 0h4V1h-4v2zm10 20V5h1v19H3V5h1v18h16zM9 10h1v8H9v-8zm5 0h1v8h-1v-8z' />
+      <path d='M9 3V0h6v3h8v1H1V3h8Zm1 0h4V1h-4v2Zm10 20V5h1v19H3V5h1v18h16ZM9 10h1v8H9v-8Zm5 0h1v8h-1v-8Z' />
     </svg>
   )
 })

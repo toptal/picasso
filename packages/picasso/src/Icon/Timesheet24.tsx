@@ -49,7 +49,7 @@ const SvgTimesheet24 = forwardRef(function SvgTimesheet24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M5 6v1H1v16h21V7h-4V6h5v18H0V6h5zm9 12v1H5v-1h9zm4 0v1h-2v-1h2zm-4-4v1H5v-1h9zm4 0v1h-2v-1h2zM11.5 0a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 1a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm.5 1v4H9V5h2V2h1z' />
+      <path d='M5 6v1H1v16h21V7h-4V6h5v18H0V6h5Zm9 12v1H5v-1h9Zm4 0v1h-2v-1h2Zm-4-4v1H5v-1h9Zm4 0v1h-2v-1h2ZM11.5 0a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 1a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Zm.5 1v4H9V5h2V2h1Z' />
     </svg>
   )
 })

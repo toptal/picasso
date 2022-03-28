@@ -43,13 +43,12 @@ const SvgTransfer24 = forwardRef(function SvgTransfer24(
 
   return (
     <svg
-      viewBox='0 0 24 24'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
     >
-      <path d='M22 14v1H4.707l3.5 3.5-.707.707L2.293 14H22zm-5.5-9.207L21.707 10H2V9h17.293l-3.5-3.5.707-.707z' />
+      <path d='M22 14v1H4.707l3.5 3.5-.707.707L2.293 14H22Zm-5.5-9.207L21.707 10H2V9h17.293l-3.5-3.5.707-.707Z' />
     </svg>
   )
 })

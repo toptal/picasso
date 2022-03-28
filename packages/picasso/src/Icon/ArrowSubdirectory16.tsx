@@ -49,7 +49,7 @@ const SvgArrowSubdirectory16 = forwardRef(function SvgArrowSubdirectory16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M10.5 12.207l-.707-.707L12.29 9H2V4h1v4h9.292l-2.5-2.5.708-.707L14.207 8.5 10.5 12.207z' />
+      <path d='m10.5 12.207-.707-.707L12.29 9H2V4h1v4h9.292l-2.5-2.5.708-.707L14.207 8.5 10.5 12.207Z' />
     </svg>
   )
 })

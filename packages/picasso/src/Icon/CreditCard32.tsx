@@ -49,7 +49,7 @@ const SvgCreditCard32 = forwardRef(function SvgCreditCard32(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M31 10V7a1 1 0 00-1-1H2a1 1 0 00-1 1v3h30zm0 1H1v14a1 1 0 001 1h28a1 1 0 001-1V11zM2 5h28a2 2 0 012 2v18a2 2 0 01-2 2H2a2 2 0 01-2-2V7a2 2 0 012-2zm2 11h10v1H4v-1zm0 4h5v1H4v-1zm19-4h5v1h-5v-1z' />
+      <path d='M31 10V7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v3h30Zm0 1H1v14a1 1 0 0 0 1 1h28a1 1 0 0 0 1-1V11ZM2 5h28a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm2 11h10v1H4v-1Zm0 4h5v1H4v-1Zm19-4h5v1h-5v-1Z' />
     </svg>
   )
 })

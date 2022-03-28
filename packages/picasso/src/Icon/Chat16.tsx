@@ -49,7 +49,7 @@ const SvgChat16 = forwardRef(function SvgChat16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M13 5h3v7h-1l-3 3v-3H7v-2h1v1h5v1.586L14.586 11H15V6h-2V5zM0 1h12v8H5v3L2 9H0V1zm1 1v6h1.414L4 9.586V8h7V2H1z' />
+      <path d='M13 5h3v7h-1l-3 3v-3H7v-2h1v1h5v1.586L14.586 11H15V6h-2V5ZM0 1h12v8H5v3L2 9H0V1Zm1 1v6h1.414L4 9.586V8h7V2H1Z' />
     </svg>
   )
 })

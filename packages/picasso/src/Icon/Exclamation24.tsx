@@ -49,7 +49,7 @@ const SvgExclamation24 = forwardRef(function SvgExclamation24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M11.5 22C5.701 22 1 17.299 1 11.5S5.701 1 11.5 1 22 5.701 22 11.5 17.299 22 11.5 22zm0-1a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM11 6h1v8h-1V6zm0 10h1v1h-1v-1z' />
+      <path d='M11.5 22C5.701 22 1 17.299 1 11.5S5.701 1 11.5 1 22 5.701 22 11.5 17.299 22 11.5 22Zm0-1a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM11 6h1v8h-1V6Zm0 10h1v1h-1v-1Z' />
     </svg>
   )
 })

@@ -49,7 +49,7 @@ const SvgArrowDownMinor24 = forwardRef(function SvgArrowDownMinor24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M18.007 8.3l.707.707-6 6-.707.707-.707-.707-6-6 .707-.707 6 6 6-6z' />
+      <path d='m18.007 8.3.707.707-6 6-.707.707-.707-.707-6-6 .707-.707 6 6 6-6Z' />
     </svg>
   )
 })

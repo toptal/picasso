@@ -49,7 +49,7 @@ const SvgFolder24 = forwardRef(function SvgFolder24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M7 3l3 3h14v15H0V3h7zm-.415 1H1v16h22V7H9.586L6.585 4z' />
+      <path d='m7 3 3 3h14v15H0V3h7Zm-.415 1H1v16h22V7H9.586L6.585 4Z' />
     </svg>
   )
 })

@@ -42,10 +42,10 @@ const cleanupSketch = (doc, params, extra) => {
 
   if (config.mergePaths !== false) {
     cleanupAttributes(paths)
-    svg.content = [paths]
+    svg.children = [paths]
   } else {
     paths.forEach(cleanupAttributes)
-    svg.content = paths
+    svg.children = paths
   }
 
   return doc
@@ -55,22 +55,28 @@ module.exports = {
   svgoConfig: {
     plugins: [
       {
-        cleanupSketch: {
-          type: 'full',
-          description: 'Cleanup svg after export from sketch',
-          fn: cleanupSketch
+        name: 'preset-default',
+        params: {
+          overrides: {
+            removeViewBox: false
+          }
         }
       },
       {
-        removeAttrs: {
+        name: 'removeAttrs',
+        params: {
           attrs: '(stroke|width|height|xmlns.*)'
         }
       },
       {
-        removeViewBox: false
+        name: 'removeDimensions',
+        active: true
       },
       {
-        removeDimensions: true
+        name: 'cleanupSketch',
+        type: 'full',
+        description: 'Cleanup svg after export from sketch',
+        fn: cleanupSketch
       }
     ]
   }

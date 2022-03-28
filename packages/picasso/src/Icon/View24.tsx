@@ -49,7 +49,7 @@ const SvgView24 = forwardRef(function SvgView24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M2 23H1V1h9v1H2v20h20v-8h1v9H2zM22 2.707l-9.5 9.5-.707-.707 9.5-9.5H15V1h8v8h-1V2.707z' />
+      <path d='M2 23H1V1h9v1H2v20h20v-8h1v9H2ZM22 2.707l-9.5 9.5-.707-.707 9.5-9.5H15V1h8v8h-1V2.707Z' />
     </svg>
   )
 })

@@ -49,7 +49,7 @@ const SvgPortfolioDesigner24 = forwardRef(function SvgPortfolioDesigner24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M1 1h9v9H1V1zm1 1v7h7V2H2zm12-1h9v9h-9V1zm1 1v7h7V2h-7zM1 14h9v9H1v-9zm1 8h7v-7H2v7zm12-8h9v9h-9v-9zm1 8h7v-7h-7v7z' />
+      <path d='M1 1h9v9H1V1Zm1 1v7h7V2H2Zm12-1h9v9h-9V1Zm1 1v7h7V2h-7ZM1 14h9v9H1v-9Zm1 8h7v-7H2v7Zm12-8h9v9h-9v-9Zm1 8h7v-7h-7v7Z' />
     </svg>
   )
 })

@@ -49,7 +49,7 @@ const SvgHeartbeat16 = forwardRef(function SvgHeartbeat16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M4.589 8L6 .95l2.025 10.127 1.946-8.75L11.39 8H16v1h-5.388l-.583-2.325-2.055 9.246L6 6.05 5.41 9H0V8z' />
+      <path d='M4.589 8 6 .95l2.025 10.127 1.946-8.75L11.39 8H16v1h-5.388l-.583-2.325-2.055 9.246L6 6.05 5.41 9H0V8z' />
     </svg>
   )
 })

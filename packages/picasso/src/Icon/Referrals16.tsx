@@ -49,7 +49,7 @@ const SvgReferrals16 = forwardRef(function SvgReferrals16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M14.5 6.793l.707.707L8.5 14.207l-.707-.707 6-6-6-6L8.5.793l6 6zm-7 0l.707.707L1.5 14.207.793 13.5l6-6-6-6L1.5.793l6 6z' />
+      <path d='m14.5 6.793.707.707L8.5 14.207l-.707-.707 6-6-6-6L8.5.793l6 6Zm-7 0 .707.707L1.5 14.207.793 13.5l6-6-6-6L1.5.793l6 6Z' />
     </svg>
   )
 })

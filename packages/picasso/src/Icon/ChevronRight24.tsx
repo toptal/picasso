@@ -49,7 +49,7 @@ const SvgChevronRight24 = forwardRef(function SvgChevronRight24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M15.5 10.793l.707.707L9.5 18.207l-.707-.707 6-6-6-6 .707-.707 6 6z' />
+      <path d='m15.5 10.793.707.707L9.5 18.207l-.707-.707 6-6-6-6 .707-.707 6 6Z' />
     </svg>
   )
 })

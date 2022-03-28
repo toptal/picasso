@@ -53,7 +53,7 @@ const SvgNew16 = forwardRef(function SvgNew16(
       <path
         fillRule='evenodd'
         clipRule='evenodd'
-        d='M8 1v1H2v12h12V8h1v7H1V1h7zm4 0l3 3-6 6H6V7l6-6zM7 7.414l5-4.999L13.585 4 8.584 9H7V7.414z'
+        d='M8 1v1H2v12h12V8h1v7H1V1h7Zm4 0 3 3-6 6H6V7l6-6ZM7 7.414l5-4.999L13.585 4 8.584 9H7V7.414Z'
       />
     </svg>
   )

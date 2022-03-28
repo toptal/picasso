@@ -49,7 +49,7 @@ const SvgRepresentatives16 = forwardRef(function SvgRepresentatives16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M2 0h12v16l-6-4.005L2 16V0zm1 1v13.13l5-3.337 5 3.337V1H3z' />
+      <path d='M2 0h12v16l-6-4.005L2 16V0Zm1 1v13.13l5-3.337 5 3.337V1H3Z' />
     </svg>
   )
 })

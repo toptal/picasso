@@ -49,7 +49,7 @@ const SvgFunction24 = forwardRef(function SvgFunction24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M11.5 1a3.5 3.5 0 01.5 6.964V12h8v5h3v7h-7v-7h3v-4H4v4h3v7H0v-7h3v-5h8V7.965A3.5 3.5 0 0111.5 1zM22 18h-5v5h5v-5zM6 18H1v5h5v-5zm5.5-16a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' />
+      <path d='M11.5 1a3.5 3.5 0 0 1 .5 6.964V12h8v5h3v7h-7v-7h3v-4H4v4h3v7H0v-7h3v-5h8V7.965A3.5 3.5 0 0 1 11.5 1ZM22 18h-5v5h5v-5ZM6 18H1v5h5v-5Zm5.5-16a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z' />
     </svg>
   )
 })

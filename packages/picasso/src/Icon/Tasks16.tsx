@@ -49,7 +49,7 @@ const SvgTasks16 = forwardRef(function SvgTasks16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M3.5 3.793l3-3 .707.707-3 3-.707.707L1.793 3.5l.707-.707 1 1zM3 1v1H1v4h4V5h1v2H0V1h3zM0 9h6v6H0V9zm1 1v4h4v-4H1zm7-7h8v1H8V3zm0 8h8v1H8v-1z' />
+      <path d='m3.5 3.793 3-3 .707.707-3 3-.707.707L1.793 3.5l.707-.707 1 1ZM3 1v1H1v4h4V5h1v2H0V1h3ZM0 9h6v6H0V9Zm1 1v4h4v-4H1Zm7-7h8v1H8V3Zm0 8h8v1H8v-1Z' />
     </svg>
   )
 })

@@ -49,7 +49,7 @@ const SvgPlaySolid16 = forwardRef(function SvgPlaySolid16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M15 8L2 15V1z' />
+      <path d='M15 8 2 15V1z' />
     </svg>
   )
 })
