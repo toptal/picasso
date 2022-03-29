@@ -1,4 +1,5 @@
 require('happo-cypress')
+require('@cypress/skip-test/support')
 require('cypress-plugin-tab')
 require('cypress-real-events/support')
 require('./commands')
