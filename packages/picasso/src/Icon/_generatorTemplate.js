@@ -45,6 +45,7 @@ const getBaseSize = (componentName = '') => {
 const iconTemplate = ({ componentName, jsx }, { tpl }) => {
   const displayName = `'${componentName}'`
   const baseSize = `${getBaseSize(displayName)}`
+  const styleName = `Picasso${componentName}`
 
   const svgElement = jsx.openingElement
 
@@ -57,26 +58,6 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
   // add `data-testid={testId} to svg root tag
   decorateWithIdentifierProp(svgElement, 'data-testid', 'testId')
 
-  const makeStylesHook = `const useStyles = makeStyles(styles, { name: 'Picasso${componentName}' })`
-  const classes = 'const classes: Record<string, string> = useStyles(props)'
-  const props = `
-  props: Props,
-  ref: Ref<SVGSVGElement>
-  `
-
-  const ts = `
-type ScaleType =
-    | 1
-    | 2
-    | 3
-    | 4
-export interface Props extends StandardProps {
-  scale?: ScaleType,
-  color?: string,
-  base?: number
-}
-`
-
   return tpl`
     import React, { forwardRef, Ref } from 'react'
     import cx from 'classnames'
@@ -85,17 +66,28 @@ export interface Props extends StandardProps {
     ${'\n'}
     import kebabToCamelCase from '../utils/kebab-to-camel-case'
     import styles from './styles'
-
     const BASE_SIZE = ${baseSize}
-
-    ${ts}
-    ${makeStylesHook}
+    ${'\n'}
+    type ScaleType =
+      | 1
+      | 2
+      | 3
+      | 4
+    export interface Props extends StandardProps {
+      scale?: ScaleType,
+      color?: string,
+      base?: number
+    }
+    const useStyles = makeStyles(styles, {
+      name: '${styleName}'
+    })
     const ${componentName} = forwardRef(function ${componentName}(
-      ${props}
+      props: Props,
+      ref: Ref<SVGSVGElement>
     ) {
       const { className, style = {}, color, scale, base, 'data-testid': testId } = props
 
-      ${classes}
+      const classes: Record<string, string> = useStyles(props)
       const classNames = [classes.root, className]
 
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -110,14 +102,13 @@ export interface Props extends StandardProps {
         minHeight: \`\${scaledSize}px\`,
         ...style
       }
-
+      ${'\n'}
       return (
         ${jsx}
       )
     })
-
+    ${'\n'}
     ${componentName}.displayName = ${displayName}
-
     export default ${componentName}
   `
 }

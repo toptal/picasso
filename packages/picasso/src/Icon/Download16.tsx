@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgDownload16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgDownload16'
+})
 const SvgDownload16 = forwardRef(function SvgDownload16(
   props: Props,
   ref: Ref<SVGSVGElement>

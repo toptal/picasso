@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgCalendarReminder16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgCalendarReminder16'
+})
 const SvgCalendarReminder16 = forwardRef(function SvgCalendarReminder16(
   props: Props,
   ref: Ref<SVGSVGElement>

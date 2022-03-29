@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgSearch16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgSearch16'
+})
 const SvgSearch16 = forwardRef(function SvgSearch16(
   props: Props,
   ref: Ref<SVGSVGElement>
