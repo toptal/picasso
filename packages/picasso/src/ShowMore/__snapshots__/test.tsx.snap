@@ -41,7 +41,7 @@ exports[`ShowMore renders 1`] = `
             viewBox="0 0 16 16"
           >
             <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
             />
           </svg>
         </div>
@@ -92,7 +92,7 @@ exports[`ShowMore when custom lessText text is specified should render with cust
             viewBox="0 0 16 16"
           >
             <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
             />
           </svg>
         </div>
@@ -143,7 +143,7 @@ exports[`ShowMore when custom showMore text is specified should render with cust
             viewBox="0 0 16 16"
           >
             <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
             />
           </svg>
         </div>
@@ -220,7 +220,7 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
             viewBox="0 0 16 16"
           >
             <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
             />
           </svg>
         </div>
@@ -271,7 +271,7 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
             viewBox="0 0 16 16"
           >
             <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
             />
           </svg>
         </div>
@@ -322,7 +322,7 @@ exports[`ShowMore when show more link is clicked should render expanded version 
             viewBox="0 0 16 16"
           >
             <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
             />
           </svg>
         </div>
