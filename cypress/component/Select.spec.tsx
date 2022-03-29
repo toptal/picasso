@@ -174,7 +174,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders open', () => {
+  it.skip('renders open', () => {
     mount(
       <TestingPicasso>
         <TestSelect />
