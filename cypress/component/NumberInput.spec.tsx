@@ -29,4 +29,12 @@ describe('NumberInput', () => {
       cy.get('body').happoScreenshot()
     })
   })
+
+  describe('when in an invalid state', () => {
+    it('shows error', () => {
+      mount(<NumberInputExample status='error' />)
+
+      cy.get('body').happoScreenshot()
+    })
+  })
 })
