@@ -5,7 +5,7 @@ import {
   FieldRenderProps as FinalFormFieldProps
 } from 'react-final-form'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import PicassoField, { FieldProps } from '../Field'
 import { CheckboxGroupContext } from '../CheckboxGroup'
 import { useFormConfig } from '../FormConfig'
 
@@ -23,6 +23,7 @@ export const Checkbox = ({
   name,
   value,
   required,
+  label,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   defaultValue,
   ...restProps
@@ -39,7 +40,7 @@ export const Checkbox = ({
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           input: { value: inputValue, type, ...restInput }
         }: FinalFormFieldProps<CheckboxValue>) => {
-          return <PicassoCheckbox {...restProps} {...restInput} />
+          return <PicassoCheckbox {...restProps} {...restInput} label={label} />
         }}
       </Field>
     )
@@ -49,9 +50,8 @@ export const Checkbox = ({
   const requiredDecoration = showAsterisk ? 'asterisk' : undefined
 
   return (
-    <FieldWrapper
+    <PicassoField
       type='checkbox'
-      hideFieldLabel
       required={required}
       {...restProps}
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -60,11 +60,12 @@ export const Checkbox = ({
       {(input: CheckboxProps) => (
         <PicassoCheckbox
           {...input}
+          label={label}
           titleCase={restProps.titleCase}
           requiredDecoration={requiredDecoration}
         />
       )}
-    </FieldWrapper>
+    </PicassoField>
   )
 }
 

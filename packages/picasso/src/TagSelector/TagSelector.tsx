@@ -15,6 +15,8 @@ import { Props as InputProps } from '../Input'
 import TagSelectorLabel from '../TagSelectorLabel'
 import unsafeErrorLog from '../utils/unsafe-error-log'
 import noop from '../utils/noop'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import { Status } from '../OutlinedInput'
 
 export interface Item extends AutocompleteItem {
   value?: string
@@ -35,8 +37,13 @@ export interface Props
   placeholder?: string
   /** Disables `TagSelector` */
   disabled?: boolean
-  /** Indicate whether `Input` is in error state */
+  /**
+   * @deprecated Use the `status` prop instead to both support success and error states
+   * Indicate whether `TagSelector` is in error state
+   */
   error?: boolean
+  /** Indicate `TagSelector` status */
+  status?: Status
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** Text prefix for other option */
@@ -80,6 +87,9 @@ export interface Props
   }) => ReactNode
   /** DOM element that wraps the Popper */
   popperContainer?: HTMLElement
+  testIds?: {
+    validIcon?: string
+  }
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
@@ -106,8 +116,19 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       value: values = [],
       width,
       popperContainer,
+      error,
+      status,
+      testIds,
       ...rest
     } = props
+
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'TagSelector',
+      description:
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+    })
 
     const handleDelete = (value: Item) => {
       if (disabled) {
@@ -185,6 +206,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     return (
       <Autocomplete
         {...rest}
+        status={error ? 'error' : status}
         ref={ref}
         placeholder={values.length === 0 ? placeholder : undefined}
         options={autocompleteOptions}
@@ -211,6 +233,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         enableReset={false}
         getKey={getKey}
         popperContainer={popperContainer}
+        testIds={testIds}
       />
     )
   }
@@ -227,7 +250,8 @@ TagSelector.defaultProps = {
   otherOptionLabel: 'Add new option: ',
   noOptionsText: 'No matches found',
   placeholder: '',
-  showOtherOption: false
+  showOtherOption: false,
+  status: 'default'
 }
 
 TagSelector.displayName = 'TagSelector'

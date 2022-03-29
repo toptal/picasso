@@ -14,6 +14,6 @@ page
   .createChapter()
   .addExample('NumberInput/story/Default.example.tsx', 'Default')
   .addExample('NumberInput/story/Disabled.example.tsx', 'Disabled')
-  .addExample('NumberInput/story/Errored.example.tsx', 'Errored')
+  .addExample('NumberInput/story/Status.example.tsx', 'Status') // picasso-skip-visuals
   .addExample('NumberInput/story/WithIcon.example.tsx', 'With Icon')
   .addExample('NumberInput/story/Sizes.example.tsx', 'Sizes')

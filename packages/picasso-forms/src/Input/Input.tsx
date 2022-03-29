@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { Input as PicassoInput, InputProps } from '@toptal/picasso'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import { FieldProps } from '../Field'
+import FieldLabel from '../FieldLabel'
+import InputField from '../InputField'
 
 export type FormInputProps = Omit<InputProps, 'onResetClick'> & {
   /** Callback invoked when reset button was clicked */
@@ -29,10 +31,24 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
     warnAutocompleteDisabledInput(props.name)
   }, [props.name])
 
+  const { label, titleCase, ...rest } = props
+
   return (
-    <FieldWrapper<FormInputProps> {...props}>
+    <InputField<FormInputProps>
+      {...rest}
+      label={
+        label ? (
+          <FieldLabel
+            name={props.name}
+            required={props.required}
+            label={label}
+            titleCase={titleCase}
+          />
+        ) : null
+      }
+    >
       {(inputProps: InputProps) => <PicassoInput {...inputProps} ref={ref} />}
-    </FieldWrapper>
+    </InputField>
   )
 })
 

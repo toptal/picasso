@@ -197,6 +197,7 @@ export type {
   FieldRequirementsProps,
   FieldRequirement
 } from './FieldRequirements'
+export type { Status as OutlinedInputStatus } from './OutlinedInput'
 
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'

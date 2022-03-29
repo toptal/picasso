@@ -1,11 +1,11 @@
 import { createContext, useContext, MutableRefObject } from 'react'
 import { FieldValidator } from 'final-form'
 
-export type Validators = Record<string, FieldValidator<unknown>>
+export type Validators = Record<string, FieldValidator<any>>
 
 export type FormContextProps = {
   getValidators: () => Validators
-  setValidators: (fieldName: string, validator: FieldValidator<unknown>) => void
+  setValidators: (fieldName: string, validator: FieldValidator<any>) => void
   clearValidators: (fieldName: string) => void
 }
 
@@ -23,9 +23,8 @@ export const createFormContext = (): FormContextProps => {
   }
 }
 
-export const FormContext = createContext<MutableRefObject<
-  FormContextProps
-> | null>(null)
+export const FormContext =
+  createContext<MutableRefObject<FormContextProps> | null>(null)
 
 export const useFormContext = () => {
   const context = useContext(FormContext)

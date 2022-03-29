@@ -5,17 +5,35 @@ import {
   RatingThumbsProps as PicassoRatingThumbsProps
 } from '@toptal/picasso'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import PicassoField, { FieldProps } from '../Field'
+import FieldLabel from '../FieldLabel'
 import { validators } from '../utils'
 
 export type RatingStarsProps = PicassoRatingStarsProps &
   FieldProps<PicassoRatingStarsProps['value']>
 
-const Stars = (props: RatingStarsProps) => (
-  <FieldWrapper<PicassoRatingStarsProps> {...props} type='number'>
-    {inputProps => <PicassoRating.Stars {...inputProps} />}
-  </FieldWrapper>
-)
+const Stars = (props: RatingStarsProps) => {
+  const { label, titleCase, ...rest } = props
+
+  return (
+    <PicassoField<PicassoRatingStarsProps>
+      {...rest}
+      type='number'
+      label={
+        label ? (
+          <FieldLabel
+            name={props.name}
+            required={props.required}
+            label={label}
+            titleCase={titleCase}
+          />
+        ) : null
+      }
+    >
+      {inputProps => <PicassoRating.Stars {...inputProps} />}
+    </PicassoField>
+  )
+}
 
 export type RatingThumbsProps = PicassoRatingThumbsProps &
   FieldProps<PicassoRatingThumbsProps['value']> & { requirePositive?: boolean }
@@ -33,25 +51,33 @@ export type RatingThumbsProps = PicassoRatingThumbsProps &
 const thumbsRequired = (value: boolean | undefined) =>
   value == null ? validators.required(null) : undefined
 
-const Thumbs = ({
-  required,
-  validate,
-  requirePositive,
-  ...props
-}: RatingThumbsProps) => {
+const Thumbs = (props: RatingThumbsProps) => {
+  const { required, validate, requirePositive, label, titleCase, ...rest } =
+    props
+
   const validateOverride = validators.composeValidators([
     required && !requirePositive ? thumbsRequired : undefined,
     validate
   ])
 
   return (
-    <FieldWrapper<PicassoRatingThumbsProps>
+    <PicassoField<PicassoRatingThumbsProps>
       validate={validateOverride}
       required={requirePositive}
-      {...props}
+      {...rest}
+      label={
+        label ? (
+          <FieldLabel
+            name={props.name}
+            required={props.required}
+            label={label}
+            titleCase={titleCase}
+          />
+        ) : null
+      }
     >
       {inputProps => <PicassoRating.Thumbs {...inputProps} />}
-    </FieldWrapper>
+    </PicassoField>
   )
 }
 
