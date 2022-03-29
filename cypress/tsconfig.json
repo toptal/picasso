@@ -2,11 +2,13 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "noEmit": true,
+    "allowJs": true,
     "types": [
       "cypress",
       "cypress-plugin-tab/src",
       "@types/happo-cypress",
-      "cypress-real-events"
+      "cypress-real-events",
+      "@cypress/skip-test"
     ]
   },
   "include": [

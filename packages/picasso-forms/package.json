@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-forms",
-  "version": "39.0.2",
+  "version": "39.1.0",
   "description": "Picasso form components",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
@@ -39,6 +39,7 @@
   "devDependencies": {
     "@types/classnames": "^2.3.1",
     "@types/react-final-form-listeners": "^1.0.0",
-    "storybook-readme": "^5.0.9"
+    "storybook-readme": "^5.0.9",
+    "type-fest": "^2.12.1"
   }
 }

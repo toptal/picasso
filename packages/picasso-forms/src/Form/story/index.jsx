@@ -168,7 +168,7 @@ however, you may need custom validators for more complex types of fields.
       completely controlled and they are controlled by final-form, which
       gives you the opportunity to rely on it with displaying errors,
       validations, etc.
-      
+
       However, sometimes you may need to be able to modify the form input
       value.
       `
@@ -217,6 +217,10 @@ however, you may need custom validators for more complex types of fields.
   .addExample('Form/story/NoScrolling.example.tsx', {
     title: 'No scrolling case',
     description: "Showcase Form's behavior on form submission error."
+  }) // picasso-skip-visuals
+  .addExample('Form/story/RichTextEditor.example.tsx', {
+    title: 'Rich text editor',
+    description: 'Showcase how to use RichTextEditor in the form.'
   }) // picasso-skip-visuals
   .addExample('Form/story/FieldRequirements.example.tsx', {
     title: 'Field requirements',
