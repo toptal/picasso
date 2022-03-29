@@ -152,6 +152,7 @@
     "glob-parent": "^6.0.2",
     "prettier": "^2.5.1",
     "trim": "^0.0.3",
-    "ansi-regex": "^5.0.1"
+    "ansi-regex": "^5.0.1",
+    "minimist": "^1.2.6"
   }
 }
