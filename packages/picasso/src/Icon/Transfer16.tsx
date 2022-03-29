@@ -43,6 +43,7 @@ const SvgTransfer16 = forwardRef(function SvgTransfer16(
 
   return (
     <svg
+      viewBox='0 0 16 16'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}

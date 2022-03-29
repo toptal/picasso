@@ -43,6 +43,7 @@ const SvgUpload24 = forwardRef(function SvgUpload24(
 
   return (
     <svg
+      viewBox='0 0 24 24'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}

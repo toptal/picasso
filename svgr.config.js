@@ -63,14 +63,14 @@ module.exports = {
         }
       },
       {
+        name: 'removeDimensions',
+        active: true
+      },
+      {
         name: 'removeAttrs',
         params: {
           attrs: '(stroke|width|height|xmlns.*)'
         }
-      },
-      {
-        name: 'removeDimensions',
-        active: true
       },
       {
         name: 'cleanupSketch',
