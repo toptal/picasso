@@ -41,6 +41,26 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 ## Included Scripts
 
+### v20.0.0
+
+#### `overlay-badge`
+
+Rename the removed `OverlayBadge` to `Badge`, `Badge` now has functionality from both
+
+``` diff
+-import { OverlayBadge } from '@toptal/picasso'
++import { Badge } from '@toptal/picasso'
+
+const foo = () => (
+-  <OverlayBadge>
+-    <Avatar />
+-  </OverlayBadge>
++  <Badge>
++    <Avatar />
++  </Badge>
+)
+```
+
 ### v19.0.0
 
 #### `rename-rating-stars`
