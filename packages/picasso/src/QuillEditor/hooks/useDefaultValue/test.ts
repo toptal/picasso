@@ -10,12 +10,12 @@ const deltaMock = {
     { insert: 'Grey', attributes: { italic: true } }
   ]
 } as Delta
-const quillMock = ({
+const quillMock = {
   clipboard: {
     convert: jest.fn((): Delta => deltaMock)
   },
   setContents: jest.fn()
-} as unknown) as Quill
+} as unknown as Quill
 
 describe('useDefaultValue', () => {
   it('does nothing without defaultValue', () => {
@@ -37,7 +37,7 @@ describe('useDefaultValue', () => {
 
     expect(quill.clipboard.convert).toHaveBeenCalledWith(defaultValue)
     expect(quill.clipboard.convert).toHaveBeenCalledTimes(1)
-    expect(quill.setContents).toHaveBeenCalledWith(deltaMock, 'api')
+    expect(quill.setContents).toHaveBeenCalledWith(deltaMock, 'user')
     expect(quill.setContents).toHaveBeenCalledTimes(1)
     rerender()
     expect(quill.clipboard.convert).toHaveBeenCalledTimes(1)

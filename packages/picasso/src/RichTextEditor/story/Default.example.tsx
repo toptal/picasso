@@ -17,7 +17,6 @@ const Example = () => {
         id='editor'
         onChange={handleChange}
         placeholder='Write some cool rich text'
-        autoFocus
       />
       <Container
         padded='small'

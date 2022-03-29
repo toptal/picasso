@@ -26,6 +26,7 @@ const useOnFocus = ({
 
   const handleFocus = useCallback(
     (e: React.FocusEvent<HTMLDivElement>) => {
+      console.log('focus')
       if (!editorRef.current || !toolbarRef.current || !wrapperRef) {
         return
       }
