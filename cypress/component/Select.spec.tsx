@@ -282,7 +282,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders with custom menu width', () => {
+  it.skip('renders with custom menu width', () => {
     mount(
       <TestingPicasso>
         <TestSelect placeholder='ID' width='shrink' menuWidth='200px' />
@@ -369,9 +369,7 @@ describe('Select', () => {
 
     getNativeSelect().should('be.visible')
     getNativeSelect().select('1')
-    getNativeOption(1)
-      .should('have.attr', 'aria-selected')
-      .and('match', /true/)
+    getNativeOption(1).should('have.attr', 'aria-selected').and('match', /true/)
   })
 
   it('sets background correctly to various select states', () => {
@@ -399,9 +397,7 @@ describe('Select', () => {
     openSelect()
     ;[...Array(6)].forEach(pressArrowDown)
 
-    getOption(7)
-      .should('have.attr', 'data-highlighted')
-      .and('match', /true/)
+    getOption(7).should('have.attr', 'data-highlighted').and('match', /true/)
   })
 
   it.skip('picks an option from group via keys correctly', () => {
@@ -414,15 +410,11 @@ describe('Select', () => {
     openSelect()
     ;[...Array(6)].forEach(pressArrowDown)
     pressEnter()
-    getOption(7)
-      .should('have.attr', 'aria-selected')
-      .and('match', /true/)
+    getOption(7).should('have.attr', 'aria-selected').and('match', /true/)
 
     pressArrowDown()
     pressEnter()
-    getOption(8)
-      .should('have.attr', 'aria-selected')
-      .and('match', /true/)
+    getOption(8).should('have.attr', 'aria-selected').and('match', /true/)
   })
 
   it.skip('highlights limited options correctly', () => {
@@ -435,8 +427,6 @@ describe('Select', () => {
     openSelect()
     pressArrowDown()
 
-    getOption(4)
-      .should('have.attr', 'data-highlighted')
-      .and('match', /true/)
+    getOption(4).should('have.attr', 'data-highlighted').and('match', /true/)
   })
 })
