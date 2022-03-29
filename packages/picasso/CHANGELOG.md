@@ -1,5 +1,15 @@
 # Change Log
 
+## 19.3.0
+
+### Minor Changes
+
+- [#2312](https://github.com/toptal/picasso/pull/2312) [`f433783c`](https://github.com/toptal/picasso/commit/f433783cf6e565ee84dd08fe5abcb868b12ac070) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### RichTextEditor
+
+  Added new component to enable writting formatted text.
+
 ## 19.2.0
 
 ### Minor Changes
