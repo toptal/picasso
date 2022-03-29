@@ -1,5 +1,15 @@
 # Change Log
 
+## 39.2.0
+
+### Minor Changes
+
+- [#2536](https://github.com/toptal/picasso/pull/2536) [`0950255b`](https://github.com/toptal/picasso/commit/0950255bf20899b1e6e22f9fa1e7c5e0c79022e6) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Form.ConfigProvider
+
+  - added new config `showValidState` for the provider to enable displaying check-icon inside each field after validations passed successfully
+
 ## 39.1.0
 
 ### Minor Changes
