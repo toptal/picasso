@@ -13,7 +13,7 @@ import { FormatType } from '../../store/toolbar'
 import { convertHeaderToEditorValue } from '../../utils/convertFormat'
 
 type Props = {
-  editorRef: React.RefObject<HTMLDivElement>
+  editorRef: React.RefObject<HTMLDivElement | null>
   handleTextFormat: TextFormatHandler
   format: FormatType
 }

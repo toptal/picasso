@@ -64,9 +64,7 @@ const setSelectValue = (
   value: string
 ) => {
   select.realClick()
-  cy.get('span')
-    .contains(value)
-    .realClick()
+  cy.get('span').contains(value).realClick()
 }
 const setAliases = () => {
   // set aliases
@@ -104,12 +102,8 @@ describe('RichTextEditor', () => {
       cy.get('@editor').type('{ctrl}b')
     }
     buttonShouldBeActive(cy.get('@boldButton'))
-    cy.get('@editor')
-      .type(content.bold)
-      .type('{enter}')
-    cy.contains(content.bold)
-      .parent()
-      .should('include.html', 'strong')
+    cy.get('@editor').type(content.bold).type('{enter}')
+    cy.contains(content.bold).parent().should('include.html', 'strong')
 
     // test bold italic
     if (isOn('mac')) {
@@ -137,9 +131,7 @@ describe('RichTextEditor', () => {
     buttonShouldNotBeActive(cy.get('@boldButton'))
     buttonShouldBeActive(cy.get('@italicButton'))
 
-    cy.contains(content.italic)
-      .parent()
-      .should('include.html', 'em')
+    cy.contains(content.italic).parent().should('include.html', 'em')
   })
 
   it('formats text correctly when changed in toolbar', () => {
@@ -344,7 +336,7 @@ describe('RichTextEditor', () => {
       cy.get('@olButton').should('not.have.attr', 'disabled')
     })
 
-    it.only('does not open selectbox on click when toolbar is disabled', () => {
+    it('does not open selectbox on click when toolbar is disabled', () => {
       mount(renderEditor(defaultProps))
       setAliases()
 
@@ -352,14 +344,10 @@ describe('RichTextEditor', () => {
         expect(error.message).to.include('prevents user mouse interaction')
       })
 
-      cy.get('@headerSelect')
-        .find('input')
-        .should('have.attr', 'disabled')
+      cy.get('@headerSelect').find('input').should('have.attr', 'disabled')
       cy.get('@headerSelect').click({ timeout: 100 })
       // the click should not open select but just simply trigger focus on whole editor
-      cy.get('@headerSelect')
-        .find('input')
-        .should('not.have.attr', 'disabled')
+      cy.get('@headerSelect').find('input').should('not.have.attr', 'disabled')
     })
   })
 })

@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo, useRef } from 'react'
+import React, { forwardRef, useRef, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -113,9 +113,9 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     ref
   ) {
     const classes = useStyles()
-    const toolbarRef = useRef<HTMLDivElement>(null)
-    const editorRef = useRef<HTMLDivElement>(null)
-    const wrapperRef = useRef<HTMLDivElement>(null)
+    const toolbarRef = useRef<HTMLDivElement | null>(null)
+    const editorRef = useRef<HTMLDivElement | null>(null)
+    const wrapperRef = useRef<HTMLDivElement | null>(null)
     const { dispatch, state } = useTextEditorState()
 
     const { handleSelectionChange } = useOnSelectionChange({ dispatch })
@@ -142,14 +142,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       dispatch
     })
 
-    const defaultValueInHtml = useMemo(
-      // this effects needs to happen only once on first render
-      () =>
-        defaultValue
-          ? hastUtilToHtml(hastSanitize(defaultValue))
-          : defaultValue,
-      /* eslint-disable-next-line */
-      []
+    const [defaultValueInHtml] = useState(
+      defaultValue ? hastUtilToHtml(hastSanitize(defaultValue)) : defaultValue
     )
 
     const { counterMessage, counterError, handleCounterMessage } = useCounter({
@@ -178,7 +172,6 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           } else if (ref != null) {
             ref.current = node
           }
-          // @ts-ignore
           wrapperRef.current = node
         }}
         data-testid={testIds?.wrapper || dataTestId}
@@ -205,7 +198,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
         />
         <QuillEditor
           ref={editorRef}
-          disabled={disabled!} // eslint-disable-line @typescript-eslint/no-non-null-assertion
+          disabled={!!disabled}
           data-testid={testIds?.editor}
           id={id}
           isFocused={isEditorFocused}
