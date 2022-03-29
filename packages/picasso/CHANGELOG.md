@@ -1,5 +1,67 @@
 # Change Log
 
+## 19.4.0
+
+### Minor Changes
+
+- [#2536](https://github.com/toptal/picasso/pull/2536) [`0950255b`](https://github.com/toptal/picasso/commit/0950255bf20899b1e6e22f9fa1e7c5e0c79022e6) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  - Input components which use `error` prop are updated. It is still being supported but it will be deprecated and totally replaced with `status` in the next major release.
+
+  ### Autocomplete
+
+  - added new prop `status` to indicate the status of input field
+  - added deprecation warning for `error` prop usage
+
+  ### DatePicker
+
+  - added new prop `status` to indicate the status of input field
+  - added deprecation warning for `error` prop usage
+
+  ### Input
+
+  - added new prop `status` to indicate the status of input field
+  - added deprecation warning for `error` prop usage
+  - added new functionality to display valid state green-check icon inside input field when `status="success"`
+
+  ### NativeSelect
+
+  - added new prop `status` to indicate the status of input field
+  - added deprecation warning for `error` prop usage
+
+  ### NonNativeSelect
+
+  - added new prop `status` to indicate the status of input field
+  - added deprecation warning for `error` prop usage
+
+  ### NumberInput
+
+  - added new prop `status` to indicate the status of input field
+  - added deprecation warning for `error` prop usage
+  - added new functionality to display valid state green-check icon inside input field when `status="success"`
+
+  ### PasswordInput
+
+  - added new prop `status` to indicate the status of input field
+  - added deprecation warning for `error` prop usage
+  - added new functionality to display valid state green-check icon inside input field when `status="success"`
+
+  ### Select
+
+  - added new prop `status` to indicate the status of input field
+  - added deprecation warning for `error` prop usage
+
+  ### TagSelector
+
+  - added new prop `status` to indicate the status of input field
+  - added deprecation warning for `error` prop usage
+  - added new functionality to display valid state green-check icon inside input field when `status="success"`
+
+  ### TimePicker
+
+  - added new prop `status` to indicate the status of input field
+  - added deprecation warning for `error` prop usage
+
 ## 19.3.0
 
 ### Minor Changes
