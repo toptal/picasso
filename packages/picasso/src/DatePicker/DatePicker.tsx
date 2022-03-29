@@ -8,6 +8,7 @@ import React, {
   KeyboardEvent,
   ReactNode,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState
@@ -18,7 +19,7 @@ import Popper from '../Popper'
 import Container from '../Container'
 import Input, { InputProps } from '../Input'
 import InputAdornment from '../InputAdornment'
-import { noop, useIsomorphicLayoutEffect } from '../utils'
+import { noop } from '../utils'
 import Calendar, {
   DateOrDateRangeType,
   DateRangeType,
@@ -199,18 +200,18 @@ export const DatePicker = (props: Props) => {
   // Keep the input value in sync with date value update
   // Updating on incoming date value or timezone change
   // Should not update when input is focused to prevent overriding it's value
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     updateInputValue({ preventUpdateOnFocus: true })
   }, [value, timezone])
 
   // Keep the input format in sync with its 'focus' state
   // Updating on input focus state change
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     updateInputValue({ preventUpdateOnFocus: false })
   }, [isInputFocused])
 
   // Keep the calendar in sync with the input value
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     setCalendarValue(() => {
       if (!value) {
         return null
@@ -354,9 +355,7 @@ export const DatePicker = (props: Props) => {
       <InputAdornment position='start' disablePointerEvents>
         {icon || <Calendar16 />}
       </InputAdornment>
-    ) : (
-      undefined
-    )
+    ) : undefined
 
   return (
     <>

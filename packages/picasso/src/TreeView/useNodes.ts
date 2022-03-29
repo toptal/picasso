@@ -1,7 +1,6 @@
-import { createRef, useMemo, useRef, useState } from 'react'
+import { createRef, useEffect, useMemo, useRef, useState } from 'react'
 import { HierarchyPointNode } from 'd3-hierarchy'
 
-import { useIsomorphicLayoutEffect } from '../utils'
 import { DirectionsType, DynamicPointNode, TreeNodeInterface } from './types'
 
 const getDynamicNodes = (
@@ -124,7 +123,7 @@ export const useNodes = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dynamicNodes, initialized, direction, verticalMargin, horizontalMargin])
 
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     if (!dynamicNodes[0].ref.current || initialized) {
       return
     }

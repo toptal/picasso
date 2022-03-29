@@ -1,10 +1,10 @@
-import { useIsomorphicLayoutEffect } from '../hooks'
+import { useEffect } from 'react'
 
 const PROXIMA_NOVA_FONT = 'https://use.typekit.net/rlr4crj.css'
 
 // Feature check for rel='preload' as soon it's not supported by FF and IE
 // https://www.w3.org/TR/preload/#link-type-preload
-const DOMTokenListSupports = function(tokenList: DOMTokenList, token: string) {
+const DOMTokenListSupports = function (tokenList: DOMTokenList, token: string) {
   if (!tokenList || !tokenList.supports) {
     return
   }
@@ -46,7 +46,7 @@ const findFontsLoader = () => {
 }
 
 const FontsLoader = () => {
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     const existingFontLoader = findFontsLoader()
 
     if (!existingFontLoader) {
