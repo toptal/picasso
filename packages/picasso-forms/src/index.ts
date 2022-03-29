@@ -23,7 +23,6 @@ export type {
   FieldRenderProps,
   FormRenderProps,
   FormSpyRenderProps,
-  FieldProps,
   FormProps,
   FieldInputProps
 } from 'react-final-form'
@@ -42,6 +41,7 @@ export {
 
 // Picasso Forms exports
 export { default as Form } from './Form'
-export { default as FieldWrapper } from './Field'
+export { default as FieldWrapper } from './FieldWrapper'
+export type { FieldProps } from './Field'
 export type { FormConfigProps, RequiredVariant } from './FormConfig'
 // hygen code generator inserts export statements above this comment.

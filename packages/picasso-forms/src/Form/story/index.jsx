@@ -1,5 +1,5 @@
 import Form from '../Form'
-import formFieldStory from '../../Field/story'
+import fieldWrapperStory from '../../FieldWrapper/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Picasso Forms').createPage('Form', 'Form')
@@ -127,7 +127,7 @@ Tip: It is possible to have autocomplete 'on' for the form, and 'off' for specif
       }
     }
   })
-  .addComponentDocs(formFieldStory.componentDocs)
+  .addComponentDocs(fieldWrapperStory.componentDocs)
 
 page
   .createChapter()
