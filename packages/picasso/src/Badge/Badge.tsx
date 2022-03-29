@@ -1,4 +1,4 @@
-import React, { Children, forwardRef } from 'react'
+import React, { Children, forwardRef, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { Badge as MuiBadge } from '@material-ui/core'
@@ -30,6 +30,11 @@ export interface Props extends BaseProps, TextLabelProps {
    * Max count to show. By default 9 for small size, 99 for other sizes
    */
   max?: number
+
+  /**
+   * The badged will be overlaid on it's children 
+   */
+  children?: ReactNode
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoBadge' })
