@@ -5,7 +5,7 @@ import {
   FieldRenderProps as FinalFormFieldProps
 } from 'react-final-form'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import PicassoField, { FieldProps } from '../Field'
 import { CheckboxGroupContext } from '../CheckboxGroup'
 
 type CheckboxValue =
@@ -39,16 +39,15 @@ const ButtonCheckbox = ({ name, value, required, ...restProps }: Props) => {
   }
 
   return (
-    <FieldWrapper
+    <PicassoField
       type='checkbox'
-      hideFieldLabel
       required={required}
       {...restProps}
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       name={name!}
     >
       {(input: ButtonCheckboxProps) => <Button.Checkbox {...input} />}
-    </FieldWrapper>
+    </PicassoField>
   )
 }
 

@@ -12,10 +12,11 @@ import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
-import OutlinedInput, { BaseInputProps } from '../OutlinedInput'
+import OutlinedInput, { BaseInputProps, Status } from '../OutlinedInput'
 import { disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 type IconPosition = 'start' | 'end'
 type CounterType = 'remaining' | 'entered'
@@ -33,8 +34,13 @@ export interface Props
   value?: string
   /** Placeholder for value */
   placeholder?: string
-  /** Indicate whether `Input` is in error state */
+  /**
+   * @deprecated Use the `status` prop instead to both support success and error states
+   * Indicate whether `Input` is in error state
+   */
   error?: boolean
+  /** Indicate `Input` status */
+  status?: Status
   /** If true, the `Input` will be disabled */
   disabled?: boolean
   /** Width of the component */
@@ -83,6 +89,7 @@ export interface Props
   testIds?: {
     inputAdornment?: string
     resetButton?: string
+    validIcon?: string
   }
 }
 
@@ -277,6 +284,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     value,
     placeholder,
     error,
+    status,
     disabled,
     icon,
     iconPosition,
@@ -305,6 +313,14 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     ...rest
   } = purifyProps(props)
 
+  usePropDeprecationWarning({
+    props,
+    name: 'error',
+    componentName: 'Input',
+    description:
+      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+  })
+
   const charsLength = value ? value.length : 0
 
   const classes = useStyles()
@@ -330,7 +346,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       defaultValue={defaultValue}
       value={value}
       placeholder={placeholder}
-      error={error}
+      status={error ? 'error' : status}
       disabled={disabled}
       multiline={multiline}
       autoFocus={autoFocus}
@@ -386,7 +402,8 @@ Input.defaultProps = {
   size: 'medium',
   width: 'auto',
   onChange: () => {},
-  onResetClick: () => {}
+  onResetClick: () => {},
+  status: 'default'
 }
 
 Input.displayName = 'Input'

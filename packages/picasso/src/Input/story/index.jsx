@@ -30,8 +30,8 @@ page
     }
   })
   .addExample('Input/story/Disabled.example.tsx', 'Disabled')
-  .addExample('Input/story/Error.example.tsx', {
-    title: 'Error',
+  .addExample('Input/story/Status.example.tsx', {
+    title: 'Status',
     effect: async (testPage, makeScreenshot) => {
       await testPage.hover('[data-testid="input"]')
       await makeScreenshot()
@@ -39,7 +39,7 @@ page
       await testPage.click('[data-testid="input"]')
       await makeScreenshot()
     }
-  })
+  }) // picasso-skip-visuals
   .addExample('Input/story/WithIcon.example.tsx', 'With icon')
   .addExample('Input/story/Sizes.example.tsx', 'Sizes')
   .addExample('Input/story/FullWidth.example.tsx', 'Full width')

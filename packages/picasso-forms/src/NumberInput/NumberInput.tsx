@@ -6,7 +6,9 @@ import {
 import { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import { FieldProps } from '../Field'
+import FieldLabel from '../FieldLabel'
+import InputField from '../InputField'
 
 export type Props = NumberInputProps & FieldProps<NumberInputProps['value']>
 
@@ -16,8 +18,11 @@ const MAX = 2147483647
 const { composeValidators } = validators
 
 export const NumberInput = (props: Props) => {
-  const { min = MIN, max = MAX, validate } = props
-  const validateNumberLimits: FieldValidator<NumberInputProps['value']> = value => {
+  const { min = MIN, max = MAX, validate, label, titleCase, ...rest } = props
+
+  const validateNumberLimits: FieldValidator<
+    NumberInputProps['value']
+  > = value => {
     if (Number(value) > max) {
       return `Must be less than or equal to ${max}.`
     }
@@ -27,14 +32,24 @@ export const NumberInput = (props: Props) => {
   }
 
   return (
-    <FieldWrapper<NumberInputProps>
-      {...props}
+    <InputField<NumberInputProps>
+      {...rest}
       validate={composeValidators([validateNumberLimits, validate])}
+      label={
+        label ? (
+          <FieldLabel
+            name={props.name}
+            required={props.required}
+            label={label}
+            titleCase={titleCase}
+          />
+        ) : null
+      }
     >
       {(inputProps: NumberInputProps) => {
         return <PicassoNumberInput {...inputProps} />
       }}
-    </FieldWrapper>
+    </InputField>
   )
 }
 

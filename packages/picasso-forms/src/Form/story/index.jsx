@@ -1,5 +1,5 @@
 import Form from '../Form'
-import formFieldStory from '../../FieldWrapper/story'
+import fieldWrapperStory from '../../FieldWrapper/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Picasso Forms').createPage('Form', 'Form')
@@ -127,7 +127,7 @@ Tip: It is possible to have autocomplete 'on' for the form, and 'off' for specif
       }
     }
   })
-  .addComponentDocs(formFieldStory.componentDocs)
+  .addComponentDocs(fieldWrapperStory.componentDocs)
 
 page
   .createChapter()
@@ -225,4 +225,8 @@ however, you may need custom validators for more complex types of fields.
   .addExample('Form/story/FieldRequirements.example.tsx', {
     title: 'Field requirements',
     description: 'Showcase how to display field requirements.'
+  }) // picasso-skip-visuals
+  .addExample('Form/story/Status.example.tsx', {
+    title: 'Form Level Status Configuration',
+    description: 'Showcase how to enable success status via form configuration.'
   }) // picasso-skip-visuals

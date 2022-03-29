@@ -43,6 +43,30 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 ### v20.0.0
 
+#### `replace-error`
+
+Replaces `error` prop with `status` prop for input components that supports `error` prop: `Input`, `NumberInput`, `Autocomplete`, `PasswordInput`, `DatePicker`, `TimePicker`, `Select` and `TagSelector`
+
+```diff
+-<Input error={true} />
++<Input status='error' />
+
+-<Input error={error} />
++<Input status={error ? 'error' : 'default'} />
+
+-<Input error={hasError || isValid} />
++<Input status={hasError || isValid ? 'error' : 'default'} />
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx @toptal/picasso-codemod v20.0.0/replace-error
+```
+
+</details>
+
 #### `overlay-badge`
 
 Rename the removed `OverlayBadge` to `Badge`, `Badge` now has functionality from both
