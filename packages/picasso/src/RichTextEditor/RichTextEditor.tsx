@@ -142,7 +142,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       dispatch
     })
 
-    const [defaultValueInHtml] = useState(
+    const [defaultValueInHtml] = useState(() =>
       defaultValue ? hastUtilToHtml(hastSanitize(defaultValue)) : defaultValue
     )
 
