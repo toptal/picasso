@@ -18,10 +18,6 @@ page
     component: Tooltip,
     name: 'Tooltip',
     additionalDocs: {
-      variant: {
-        type: 'enum',
-        enums: ['light', 'dark']
-      },
       delay: {
         type: 'enum',
         enums: ['short', 'long']
@@ -38,7 +34,6 @@ page
   .createChapter()
   .addExample('Tooltip/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('Tooltip/story/Placement.example.tsx', 'Placement') // picasso-skip-visuals
-  .addExample('Tooltip/story/Variant.example.tsx', 'Variant') // picasso-skip-visuals
   .addExample('Tooltip/story/Trigger.example.tsx', 'Trigger') // picasso-skip-visuals
   .addExample('Tooltip/story/Interactive.example.tsx', 'Interactive') // picasso-skip-visuals
   .addExample('Tooltip/story/ControlListeners.example.tsx', 'Control Listeners') // picasso-skip-visuals

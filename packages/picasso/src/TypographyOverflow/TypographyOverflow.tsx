@@ -7,7 +7,7 @@ import styles from './styles'
 import Tooltip from '../Tooltip'
 import Typography, { TypographyProps } from '../Typography'
 import { isOverflown } from '../utils'
-import { DelayType, VariantType } from '../Tooltip/Tooltip'
+import { DelayType } from '../Tooltip/Tooltip'
 
 export interface Props extends BaseProps, TypographyProps {
   /** A typography which can possibly overflow */
@@ -18,8 +18,6 @@ export interface Props extends BaseProps, TypographyProps {
   tooltipContent?: ReactNode
   /** A delay in showing the tooltip when typography overflows. */
   tooltipDelay?: DelayType
-  /** Tooltip color variant to use. */
-  tooltipVariant?: VariantType
   /** Do not show tooltips for shorten content. */
   disableTooltip?: boolean
 }
@@ -34,7 +32,6 @@ export const TypographyOverflow = (props: Props) => {
     lines = 1,
     tooltipContent,
     tooltipDelay,
-    tooltipVariant,
     disableTooltip,
     className,
     onClick,
@@ -128,7 +125,6 @@ export const TypographyOverflow = (props: Props) => {
     <Tooltip
       open={isTooltipOpened}
       content={tooltipContent ?? children}
-      variant={tooltipVariant}
       placement='top'
       delay={tooltipDelay}
       interactive
