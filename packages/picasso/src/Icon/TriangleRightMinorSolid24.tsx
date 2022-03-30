@@ -49,7 +49,7 @@ const SvgTriangleRightMinorSolid24 = forwardRef(
         ref={ref}
         data-testid={testId}
       >
-        <path d='M7 4l10 8-10 8z' />
+        <path d='m7 4 10 8-10 8z' />
       </svg>
     )
   }

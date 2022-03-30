@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgOwnerDefault16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgOwnerDefault16'
+})
 const SvgOwnerDefault16 = forwardRef(function SvgOwnerDefault16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgOwnerDefault16 = forwardRef(function SvgOwnerDefault16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 6a3 3 0 013 3h2a3 3 0 013 3v1a3 3 0 01-3 3H8a3 3 0 01-3-3H3a3 3 0 01-3-3V9a3 3 0 013-3h5zm5 4h-2a3 3 0 01-3 3H6a2 2 0 002 2h5a2 2 0 002-2v-1a2 2 0 00-2-2zM8 7H3a2 2 0 00-2 2v1a2 2 0 002 2h2a3 3 0 013-3h2a2 2 0 00-2-2zm2 3H8a2 2 0 00-2 2h2a2 2 0 002-2zm4-9v2h2v1h-2v2h-1V4h-2V3h2V1h1z' />
+      <path d='M8 6a3 3 0 0 1 3 3h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3H3a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h5Zm5 4h-2a3 3 0 0 1-3 3H6a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2ZM8 7H3a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h2a3 3 0 0 1 3-3h2a2 2 0 0 0-2-2Zm2 3H8a2 2 0 0 0-2 2h2a2 2 0 0 0 2-2Zm4-9v2h2v1h-2v2h-1V4h-2V3h2V1h1Z' />
     </svg>
   )
 })

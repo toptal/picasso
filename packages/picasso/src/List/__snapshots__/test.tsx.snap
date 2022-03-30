@@ -141,7 +141,7 @@ exports[`List renders unordered list 1`] = `
               viewBox="0 0 16 16"
             >
               <path
-                d="M8 6a2 2 0 110 4 2 2 0 010-4z"
+                d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"
               />
             </svg>
           </div>
@@ -165,7 +165,7 @@ exports[`List renders unordered list 1`] = `
               viewBox="0 0 16 16"
             >
               <path
-                d="M8 6a2 2 0 110 4 2 2 0 010-4z"
+                d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"
               />
             </svg>
           </div>
@@ -189,7 +189,7 @@ exports[`List renders unordered list 1`] = `
               viewBox="0 0 16 16"
             >
               <path
-                d="M8 6a2 2 0 110 4 2 2 0 010-4z"
+                d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"
               />
             </svg>
           </div>
@@ -213,7 +213,7 @@ exports[`List renders unordered list 1`] = `
               viewBox="0 0 16 16"
             >
               <path
-                d="M8 6a2 2 0 110 4 2 2 0 010-4z"
+                d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"
               />
             </svg>
           </div>
@@ -237,7 +237,7 @@ exports[`List renders unordered list 1`] = `
               viewBox="0 0 16 16"
             >
               <path
-                d="M8 6a2 2 0 110 4 2 2 0 010-4z"
+                d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"
               />
             </svg>
           </div>

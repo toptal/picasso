@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgMore16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgMore16'
+})
 const SvgMore16 = forwardRef(function SvgMore16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgMore16 = forwardRef(function SvgMore16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 5a2 2 0 110-4 2 2 0 010 4zm0-1a1 1 0 100-2 1 1 0 000 2zm0 6a2 2 0 110-4 2 2 0 010 4zm0-1a1 1 0 100-2 1 1 0 000 2zm0 6a2 2 0 110-4 2 2 0 010 4zm0-1a1 1 0 100-2 1 1 0 000 2z' />
+      <path d='M8 5a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm0-1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm0-1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm0-1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z' />
     </svg>
   )
 })

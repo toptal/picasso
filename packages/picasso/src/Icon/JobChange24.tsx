@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgJobChange24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgJobChange24'
+})
 const SvgJobChange24 = forwardRef(function SvgJobChange24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgJobChange24 = forwardRef(function SvgJobChange24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M14 12v1H1v5h13v1H0V6h7V3h6v3h7v5h-1V7H1v5h13zM8 6h4V4H8v2zm11.5 10.793l2-2 .707.707-2 2-.707.707-1.707-1.707.707-.707 1 1zm0 4.207a4.5 4.5 0 110-9 4.5 4.5 0 010 9zm0-1a3.5 3.5 0 100-7 3.5 3.5 0 000 7z' />
+      <path d='M14 12v1H1v5h13v1H0V6h7V3h6v3h7v5h-1V7H1v5h13ZM8 6h4V4H8v2Zm11.5 10.793 2-2 .707.707-2 2-.707.707-1.707-1.707.707-.707 1 1Zm0 4.207a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9Zm0-1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z' />
     </svg>
   )
 })

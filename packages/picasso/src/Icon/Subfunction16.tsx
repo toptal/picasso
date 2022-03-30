@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgSubfunction16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgSubfunction16'
+})
 const SvgSubfunction16 = forwardRef(function SvgSubfunction16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgSubfunction16 = forwardRef(function SvgSubfunction16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M10 1v5H8v2h5v3.05a2.5 2.5 0 11-1 0V9H3v2h2v5H0v-5h2V8h5V6H5V1h5zM4 12H1v3h3v-3zm8.5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3zM9 2H6v3h3V2z' />
+      <path d='M10 1v5H8v2h5v3.05a2.5 2.5 0 1 1-1 0V9H3v2h2v5H0v-5h2V8h5V6H5V1h5ZM4 12H1v3h3v-3Zm8.5 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM9 2H6v3h3V2Z' />
     </svg>
   )
 })

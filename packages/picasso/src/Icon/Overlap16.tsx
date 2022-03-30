@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgOverlap16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgOverlap16'
+})
 const SvgOverlap16 = forwardRef(function SvgOverlap16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgOverlap16 = forwardRef(function SvgOverlap16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 2H2v10H1V1h11v1zm2 2h1v11H4v-1h10V4zM4 4h8v8H4V4zm1 1v6h6V5H5z' />
+      <path d='M12 2H2v10H1V1h11v1Zm2 2h1v11H4v-1h10V4ZM4 4h8v8H4V4Zm1 1v6h6V5H5Z' />
     </svg>
   )
 })

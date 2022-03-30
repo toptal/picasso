@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgLock16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgLock16'
+})
 const SvgLock16 = forwardRef(function SvgLock16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgLock16 = forwardRef(function SvgLock16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M4 7V4a4 4 0 118 0v3h2v9H2V7h2zm1 0h6V4a3 3 0 10-6 0v3zM4 8H3v7h10V8H4z' />
+      <path d='M4 7V4a4 4 0 1 1 8 0v3h2v9H2V7h2Zm1 0h6V4a3 3 0 1 0-6 0v3ZM4 8H3v7h10V8H4Z' />
     </svg>
   )
 })

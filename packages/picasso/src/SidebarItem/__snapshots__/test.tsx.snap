@@ -63,7 +63,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 viewBox="0 0 16 16"
               >
                 <path
-                  d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                  d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
                 />
               </svg>
             </div>
@@ -193,7 +193,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 viewBox="0 0 16 16"
               >
                 <path
-                  d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                  d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
                 />
               </svg>
             </div>
@@ -286,7 +286,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
               viewBox="0 0 16 16"
             >
               <path
-                d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+                d="M16 11H7v4l-7-4V1h16v10Zm-1-9H1v8.42l5 2.857V10h9V2Z"
               />
             </svg>
             <div
@@ -370,7 +370,7 @@ exports[`SidebarItem is selected 1`] = `
               viewBox="0 0 16 16"
             >
               <path
-                d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+                d="M16 11H7v4l-7-4V1h16v10Zm-1-9H1v8.42l5 2.857V10h9V2Z"
               />
             </svg>
             <div
@@ -466,7 +466,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                     viewBox="0 0 16 16"
                   >
                     <path
-                      d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+                      d="M16 11H7v4l-7-4V1h16v10Zm-1-9H1v8.42l5 2.857V10h9V2Z"
                     />
                   </svg>
                   <div
@@ -488,7 +488,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             viewBox="0 0 16 16"
           >
             <path
-              d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+              d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
             />
           </svg>
         </div>
@@ -579,7 +579,7 @@ exports[`SidebarItem with icon 1`] = `
               viewBox="0 0 16 16"
             >
               <path
-                d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+                d="M16 11H7v4l-7-4V1h16v10Zm-1-9H1v8.42l5 2.857V10h9V2Z"
               />
             </svg>
             <div

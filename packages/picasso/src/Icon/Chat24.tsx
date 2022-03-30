@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgChat24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgChat24'
+})
 const SvgChat24 = forwardRef(function SvgChat24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgChat24 = forwardRef(function SvgChat24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M11 16h1v1h7v2.586L21.586 17H23V9h-4V8h5v10h-2l-4 4v-4h-7v-2zM0 2h18v13H7v4l-4-4H0V2zm1 1v11h2.414L6 16.586V14h11V3H1z' />
+      <path d='M11 16h1v1h7v2.586L21.586 17H23V9h-4V8h5v10h-2l-4 4v-4h-7v-2ZM0 2h18v13H7v4l-4-4H0V2Zm1 1v11h2.414L6 16.586V14h11V3H1Z' />
     </svg>
   )
 })

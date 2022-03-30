@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgLanguage24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgLanguage24'
+})
 const SvgLanguage24 = forwardRef(function SvgLanguage24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgLanguage24 = forwardRef(function SvgLanguage24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 18l-5 5v-5H1V1h22v17H8zm-4 2.586L7.586 17H22V2H2v15h2v3.586zM16.437 14h-1.235l-.767-1.924h-4.316L9.352 14H8.117l3.484-8.671h1.339L16.437 14zm-2.327-2.886l-1.833-4.667-1.846 4.667h3.679z' />
+      <path d='m8 18-5 5v-5H1V1h22v17H8Zm-4 2.586L7.586 17H22V2H2v15h2v3.586ZM16.437 14h-1.235l-.767-1.924h-4.316L9.352 14H8.117l3.484-8.671h1.339L16.437 14Zm-2.327-2.886-1.833-4.667-1.846 4.667h3.679Z' />
     </svg>
   )
 })

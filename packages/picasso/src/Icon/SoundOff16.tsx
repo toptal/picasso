@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgSoundOff16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgSoundOff16'
+})
 const SvgSoundOff16 = forwardRef(function SvgSoundOff16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgSoundOff16 = forwardRef(function SvgSoundOff16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M7 2v12l-3-3H0V5h4l3-3zM6 4.414L4.414 6H1v4h3.414L6 11.585V4.414zm7.5 1.379l.707.707-1.5 1.5 1.5 1.5-.707.707-1.5-1.5-1.5 1.5-.707-.707 1.5-1.5-1.5-1.5.707-.707 1.5 1.5 1.5-1.5z' />
+      <path d='M7 2v12l-3-3H0V5h4l3-3ZM6 4.414 4.414 6H1v4h3.414L6 11.585V4.414Zm7.5 1.379.707.707-1.5 1.5 1.5 1.5-.707.707-1.5-1.5-1.5 1.5-.707-.707 1.5-1.5-1.5-1.5.707-.707 1.5 1.5 1.5-1.5Z' />
     </svg>
   )
 })

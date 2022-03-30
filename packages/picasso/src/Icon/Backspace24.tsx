@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgBackspace24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgBackspace24'
+})
 const SvgBackspace24 = forwardRef(function SvgBackspace24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgBackspace24 = forwardRef(function SvgBackspace24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M24 4v16H6l-6-8 6-8h18zm-1 1H6.5l-5.25 7 5.25 7H23V5zm-6.5 3.793l.707.707-2.5 2.5 2.5 2.5-.707.707-2.5-2.5-2.5 2.5-.707-.707 2.5-2.5-2.5-2.5.707-.707 2.5 2.5 2.5-2.5z' />
+      <path d='M24 4v16H6l-6-8 6-8h18Zm-1 1H6.5l-5.25 7 5.25 7H23V5Zm-6.5 3.793.707.707-2.5 2.5 2.5 2.5-.707.707-2.5-2.5-2.5 2.5-.707-.707 2.5-2.5-2.5-2.5.707-.707 2.5 2.5 2.5-2.5Z' />
     </svg>
   )
 })

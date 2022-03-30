@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgCheckMinor24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgCheckMinor24'
+})
 const SvgCheckMinor24 = forwardRef(function SvgCheckMinor24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgCheckMinor24 = forwardRef(function SvgCheckMinor24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z' />
+      <path d='m10.5 14.793 6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3Z' />
     </svg>
   )
 })

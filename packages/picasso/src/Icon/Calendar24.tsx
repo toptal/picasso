@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgCalendar24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgCalendar24'
+})
 const SvgCalendar24 = forwardRef(function SvgCalendar24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgCalendar24 = forwardRef(function SvgCalendar24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M5 4V2h1v2h12V2h1v2h5v18H0V4h5zm0 1H1v4h22V5h-4v2h-1V5H6v2H5V5zm18 5H1v11h22V10z' />
+      <path d='M5 4V2h1v2h12V2h1v2h5v18H0V4h5Zm0 1H1v4h22V5h-4v2h-1V5H6v2H5V5Zm18 5H1v11h22V10Z' />
     </svg>
   )
 })

@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgPod24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgPod24'
+})
 const SvgPod24 = forwardRef(function SvgPod24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgPod24 = forwardRef(function SvgPod24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M6 13a5 5 0 110 10 5 5 0 010-10zm12 0a5 5 0 110 10 5 5 0 010-10zM6 14a4 4 0 100 8 4 4 0 000-8zm12 0a4 4 0 100 8 4 4 0 000-8zM6 1a5 5 0 110 10A5 5 0 016 1zm12 0a5 5 0 110 10 5 5 0 010-10zM6 2a4 4 0 100 8 4 4 0 000-8zm12 0a4 4 0 100 8 4 4 0 000-8z' />
+      <path d='M6 13a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm12 0a5 5 0 1 1 0 10 5 5 0 0 1 0-10ZM6 14a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm12 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM6 1a5 5 0 1 1 0 10A5 5 0 0 1 6 1Zm12 0a5 5 0 1 1 0 10 5 5 0 0 1 0-10ZM6 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm12 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z' />
     </svg>
   )
 })
