@@ -64,18 +64,27 @@ const picassoMapper = (child: ReactNode): ReactNode => {
 
   const type =
     componentMap[child.type as keyof typeof componentMap] || child.type
-  const mappedChildren = child.props.children.map(picassoMapper)
+
+  const hasChildChildren = child.props.children
+
+  const mappedChildren = hasChildChildren
+    ? child.props.children.map(picassoMapper)
+    : null
 
   return createElement(type, { key: child.key }, mappedChildren)
 }
 
 const useRichText = (value: ASTType): ReactNode[] | ReactNode => {
   const mappedTextNodes = useMemo(() => {
-    if (!value.children) {
+    const isEmpty =
+      !value.children ||
+      (Array.isArray(value.children) && value.children.length === 0)
+
+    if (isEmpty) {
       return null
     }
 
-    const isSingleChild = value.children.length === 1
+    const isSingleChild = value.children?.length === 1
     const reactElement = toH(createElement, value) as ReactElement
 
     if (isSingleChild) {
