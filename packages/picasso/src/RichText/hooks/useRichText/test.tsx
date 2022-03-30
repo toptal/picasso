@@ -7,7 +7,7 @@ import useRichText from './useRichText'
 describe('useRichText', () => {
   describe('not allowed tags', () => {
     it('returns the unmapped tag', () => {
-      const tree = ({
+      const tree = {
         type: 'root',
         children: [
           {
@@ -17,7 +17,7 @@ describe('useRichText', () => {
             children: [{ type: 'text', value: 'foobar' }]
           }
         ]
-      } as unknown) as ASTType
+      } as unknown as ASTType
       const { result } = renderHook(() => useRichText(tree))
 
       const header = result.current as ReactElement
@@ -120,5 +120,56 @@ describe('useRichText', () => {
     expect(liElementFirst.props.children).toEqual(['foo'])
     expect((liElementSecond.type as Function).name).toEqual('Li')
     expect(liElementSecond.props.children).toEqual(['bar'])
+  })
+
+  it('handles empty children', () => {
+    const { result } = renderHook(() =>
+      useRichText({
+        type: 'root',
+        children: []
+      })
+    )
+
+    expect(result.current).toBeNull()
+  })
+
+  it('handles empty children deeper in the tree', () => {
+    const tree: ASTType = {
+      type: 'root',
+      children: [
+        {
+          type: 'element',
+          tagName: 'h3',
+          properties: {},
+          children: [{ type: 'text', value: 'foobar' }]
+        },
+        {
+          type: 'element',
+          tagName: 'br',
+          properties: {},
+          children: []
+        }
+      ]
+    }
+
+    const { result } = renderHook(() => useRichText(tree))
+
+    const [headingElement, brElement] = result.current as [
+      ReactElement,
+      ReactElement
+    ]
+
+    expect((headingElement.type as Function).name).toEqual('H3')
+    expect(brElement.type).toEqual('br')
+  })
+
+  it('handles undefined children', () => {
+    const { result } = renderHook(() =>
+      useRichText({
+        type: 'root'
+      })
+    )
+
+    expect(result.current).toBeNull()
   })
 })

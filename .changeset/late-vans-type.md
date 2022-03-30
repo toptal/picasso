@@ -5,4 +5,4 @@
 ---
 ### RichText
 
-handle empty children of ReactNode
+Handle empty children of ReactNode.

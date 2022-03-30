@@ -21,7 +21,6 @@ const Example = () => {
       </Grid.Item>
     </Grid>
   )
-  // return
 }
 
 const defaultValue: ASTType = {
