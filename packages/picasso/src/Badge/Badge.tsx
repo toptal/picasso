@@ -32,7 +32,7 @@ export interface Props extends BaseProps, TextLabelProps {
   max?: number
 
   /**
-   * The badged will be overlaid on it's children 
+   * The badged will be overlaid on it's children
    */
   children?: ReactNode
 }
@@ -63,6 +63,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
     size = 'medium',
     content,
     max,
+    'data-testid': testId,
     titleCase: propsTitleCase
   },
   ref
@@ -77,6 +78,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
     <MuiBadge
       ref={ref}
       style={style}
+      data-testid={testId}
       badgeContent={
         typeof content === 'string'
           ? titleCase
