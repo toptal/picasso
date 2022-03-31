@@ -70,7 +70,7 @@ exports[`NonNativeSelectOption sets attributes correctly 1`] = `
               viewBox="0 0 16 16"
             >
               <path
-                d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
+                d="m6.5 9.793 4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2Z"
               />
             </svg>
           </div>

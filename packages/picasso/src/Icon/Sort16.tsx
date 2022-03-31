@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgSort16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgSort16'
+})
 const SvgSort16 = forwardRef(function SvgSort16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgSort16 = forwardRef(function SvgSort16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M5 5v8.292l2.5-2.5.707.708L4.5 15.207l-.707-.707-3-3 .707-.707 2.5 2.5V5h1zM11.5.793L15.207 4.5l-.707.707-2.5-2.5V11h-1V2.707l-2.5 2.5-.707-.707 3-3L11.5.793z' />
+      <path d='M5 5v8.292l2.5-2.5.707.708L4.5 15.207l-.707-.707-3-3 .707-.707 2.5 2.5V5h1ZM11.5.793 15.207 4.5l-.707.707-2.5-2.5V11h-1V2.707l-2.5 2.5-.707-.707 3-3L11.5.793Z' />
     </svg>
   )
 })

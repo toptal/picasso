@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgClose24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgClose24'
+})
 const SvgClose24 = forwardRef(function SvgClose24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgClose24 = forwardRef(function SvgClose24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12.707 12l8.5 8.5-.707.707-8.5-8.5-8.5 8.5-.707-.707 8.5-8.5-8.5-8.5.707-.707 8.5 8.5 8.5-8.5.707.707-8.5 8.5z' />
+      <path d='m12.707 12 8.5 8.5-.707.707-8.5-8.5-8.5 8.5-.707-.707 8.5-8.5-8.5-8.5.707-.707 8.5 8.5 8.5-8.5.707.707-8.5 8.5Z' />
     </svg>
   )
 })

@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgBullet16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgBullet16'
+})
 const SvgBullet16 = forwardRef(function SvgBullet16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgBullet16 = forwardRef(function SvgBullet16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 6a2 2 0 110 4 2 2 0 010-4z' />
+      <path d='M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z' />
     </svg>
   )
 })

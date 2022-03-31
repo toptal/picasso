@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgChevronRight24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgChevronRight24'
+})
 const SvgChevronRight24 = forwardRef(function SvgChevronRight24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgChevronRight24 = forwardRef(function SvgChevronRight24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M15.5 10.793l.707.707L9.5 18.207l-.707-.707 6-6-6-6 .707-.707 6 6z' />
+      <path d='m15.5 10.793.707.707L9.5 18.207l-.707-.707 6-6-6-6 .707-.707 6 6Z' />
     </svg>
   )
 })

@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgProfile24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgProfile24'
+})
 const SvgProfile24 = forwardRef(function SvgProfile24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgProfile24 = forwardRef(function SvgProfile24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M9.235 14.433A7.002 7.002 0 0112 1a7 7 0 012.765 13.433A9.004 9.004 0 0121 23h-1a8 8 0 10-16 0H3c0-4.006 2.617-7.4 6.235-8.567zM12 14a6 6 0 100-12 6 6 0 000 12z' />
+      <path d='M9.235 14.433A7.002 7.002 0 0 1 12 1a7 7 0 0 1 2.765 13.433A9.004 9.004 0 0 1 21 23h-1a8 8 0 1 0-16 0H3c0-4.006 2.617-7.4 6.235-8.567ZM12 14a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z' />
     </svg>
   )
 })

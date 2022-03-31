@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgPencil16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgPencil16'
+})
 const SvgPencil16 = forwardRef(function SvgPencil16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgPencil16 = forwardRef(function SvgPencil16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M11.5.793L15.207 4.5 4.707 15H1v-3.707L8.793 3.5V3.5l.707-.707 2-2zm-2 3.415l-7.5 7.5V14h2.293l7.499-7.5L9.5 4.208zm2-2L10.207 3.5l2.292 2.293L13.793 4.5 11.5 2.207z' />
+      <path d='M11.5.793 15.207 4.5 4.707 15H1v-3.707L8.793 3.5V3.5l.707-.707 2-2Zm-2 3.415-7.5 7.5V14h2.293l7.499-7.5L9.5 4.208Zm2-2L10.207 3.5l2.292 2.293L13.793 4.5 11.5 2.207Z' />
     </svg>
   )
 })

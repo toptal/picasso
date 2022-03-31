@@ -42,9 +42,10 @@ const getBaseSize = (componentName = '') => {
   return 16
 }
 
-const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
-  const displayName = `'${componentName.name}'`
+const iconTemplate = ({ componentName, jsx }, { tpl }) => {
+  const displayName = `'${componentName}'`
   const baseSize = `${getBaseSize(displayName)}`
+  const styleName = `Picasso${componentName}`
 
   const svgElement = jsx.openingElement
 
@@ -57,33 +58,29 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
   // add `data-testid={testId} to svg root tag
   decorateWithIdentifierProp(svgElement, 'data-testid', 'testId')
 
-  const typeScriptTpl = template.smart({ plugins: ['typescript'] })
-
-  const makeStylesHook = `const useStyles = makeStyles(styles, { name: 'Picasso${componentName.name}' })`
-
-  return typeScriptTpl.ast`
+  return tpl`
     import React, { forwardRef, Ref } from 'react'
     import cx from 'classnames'
     import { makeStyles } from '@material-ui/core/styles'
     import { StandardProps } from '@toptal/picasso-shared'
-
+    ${'\n'}
     import kebabToCamelCase from '../utils/kebab-to-camel-case'
     import styles from './styles'
-
     const BASE_SIZE = ${baseSize}
-
+    ${'\n'}
     type ScaleType =
       | 1
       | 2
       | 3
       | 4
-
     export interface Props extends StandardProps {
-      scale?: ScaleType
-      color?: string
+      scale?: ScaleType,
+      color?: string,
       base?: number
     }
-    ${makeStylesHook}
+    const useStyles = makeStyles(styles, {
+      name: '${styleName}'
+    })
     const ${componentName} = forwardRef(function ${componentName}(
       props: Props,
       ref: Ref<SVGSVGElement>
@@ -105,14 +102,13 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
         minHeight: \`\${scaledSize}px\`,
         ...style
       }
-
+      ${'\n'}
       return (
         ${jsx}
       )
     })
-
+    ${'\n'}
     ${componentName}.displayName = ${displayName}
-
     export default ${componentName}
   `
 }

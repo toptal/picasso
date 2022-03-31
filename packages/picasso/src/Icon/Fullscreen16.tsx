@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgFullscreen16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgFullscreen16'
+})
 const SvgFullscreen16 = forwardRef(function SvgFullscreen16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgFullscreen16 = forwardRef(function SvgFullscreen16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M3 11h2v1H2V9h1v2zm11-6v2h-1V5h-2V4h3v1zM0 2h16v12H0V2zm1 1v10h14V3H1z' />
+      <path d='M3 11h2v1H2V9h1v2Zm11-6v2h-1V5h-2V4h3v1ZM0 2h16v12H0V2Zm1 1v10h14V3H1Z' />
     </svg>
   )
 })

@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgListUnordered16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgListUnordered16'
+})
 const SvgListUnordered16 = forwardRef(function SvgListUnordered16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgListUnordered16 = forwardRef(function SvgListUnordered16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M2.5 13a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 1a.5.5 0 100 1 .5.5 0 000-1zM15 14v1H6v-1h9zM2.5 7a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 1a.5.5 0 100 1 .5.5 0 000-1zM15 8v1H6V8h9zM2.5 1a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 1a.5.5 0 100 1 .5.5 0 000-1zM15 2v1H6V2h9z' />
+      <path d='M2.5 13a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1ZM15 14v1H6v-1h9ZM2.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1ZM15 8v1H6V8h9ZM2.5 1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1ZM15 2v1H6V2h9Z' />
     </svg>
   )
 })

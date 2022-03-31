@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgArrowLongDown16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgArrowLongDown16'
+})
 const SvgArrowLongDown16 = forwardRef(function SvgArrowLongDown16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgArrowLongDown16 = forwardRef(function SvgArrowLongDown16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 2v10.293l2.5-2.5.707.707L7.5 14.207 3.793 10.5l.707-.707 2.5 2.5V2h1z' />
+      <path d='M8 2v10.293l2.5-2.5.707.707L7.5 14.207 3.793 10.5l.707-.707 2.5 2.5V2h1Z' />
     </svg>
   )
 })

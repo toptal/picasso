@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgPerformance16' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgPerformance16'
+})
 const SvgPerformance16 = forwardRef(function SvgPerformance16(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgPerformance16 = forwardRef(function SvgPerformance16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M13 14h2v1H1v-1h2V8h1v6h2V6h1v8h2V4h1v10h2V2h1v12z' />
+      <path d='M13 14h2v1H1v-1h2V8h1v6h2V6h1v8h2V4h1v10h2V2h1v12Z' />
     </svg>
   )
 })

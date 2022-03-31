@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgSupport24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgSupport24'
+})
 const SvgSupport24 = forwardRef(function SvgSupport24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -53,7 +55,7 @@ const SvgSupport24 = forwardRef(function SvgSupport24(
       <path
         fillRule='evenodd'
         clipRule='evenodd'
-        d='M12 0a9 9 0 018.996 8.735L21 9h2a1 1 0 011 1v6a1 1 0 01-1 1h-2v3.5a1.5 1.5 0 01-1.355 1.493L19.5 22h-3.585a1.5 1.5 0 01-1.415 1h-2a1.5 1.5 0 010-3h2a1.5 1.5 0 011.415 1H19.5a.5.5 0 00.492-.41L20 20.5V17h-1V9h1a8 8 0 00-15.996-.25L4 9h1v8H1a1 1 0 01-1-1v-6a1 1 0 011-1h2a9 9 0 019-9zM4 10v6H1v-6h3zm16 6v-6h3v6h-3zm-5.5 5h-2a.5.5 0 00-.09.992l.09.008h2a.5.5 0 00.09-.992L14.5 21z'
+        d='M12 0a9 9 0 0 1 8.996 8.735L21 9h2a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2v3.5a1.5 1.5 0 0 1-1.355 1.493L19.5 22h-3.585a1.5 1.5 0 0 1-1.415 1h-2a1.5 1.5 0 0 1 0-3h2a1.5 1.5 0 0 1 1.415 1H19.5a.5.5 0 0 0 .492-.41L20 20.5V17h-1V9h1a8 8 0 0 0-15.996-.25L4 9h1v8H1a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h2a9 9 0 0 1 9-9ZM4 10v6H1v-6h3Zm16 6v-6h3v6h-3Zm-5.5 5h-2a.5.5 0 0 0-.09.992l.09.008h2a.5.5 0 0 0 .09-.992L14.5 21Z'
       />
     </svg>
   )

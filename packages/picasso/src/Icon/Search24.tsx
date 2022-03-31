@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgSearch24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgSearch24'
+})
 const SvgSearch24 = forwardRef(function SvgSearch24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgSearch24 = forwardRef(function SvgSearch24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M15.854 15.147l6.353 6.353-.707.707-6.353-6.353a8.5 8.5 0 11.707-.707zM9.5 17a7.5 7.5 0 100-15 7.5 7.5 0 000 15z' />
+      <path d='m15.854 15.147 6.353 6.353-.707.707-6.353-6.353a8.5 8.5 0 1 1 .707-.707ZM9.5 17a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z' />
     </svg>
   )
 })

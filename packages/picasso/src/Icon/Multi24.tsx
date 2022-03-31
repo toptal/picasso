@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgMulti24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgMulti24'
+})
 const SvgMulti24 = forwardRef(function SvgMulti24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgMulti24 = forwardRef(function SvgMulti24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M6 11l5.196 3v6L6 23 .804 20v-6L6 11zm12 0l5.196 3v6L18 23l-5.196-3v-6L18 11zM6 12.155l-4.197 2.422v4.845L6 21.844l4.196-2.422v-4.845L6 12.155zm12 0l-4.197 2.422v4.845L18 21.844l4.196-2.422v-4.845L18 12.155zM12 0l5.196 3v6L12 12 6.804 9V3L12 0zm0 1.155L7.803 3.577v4.845L12 10.844l4.196-2.422V3.577L12 1.155z' />
+      <path d='m6 11 5.196 3v6L6 23 .804 20v-6L6 11Zm12 0 5.196 3v6L18 23l-5.196-3v-6L18 11ZM6 12.155l-4.197 2.422v4.845L6 21.844l4.196-2.422v-4.845L6 12.155Zm12 0-4.197 2.422v4.845L18 21.844l4.196-2.422v-4.845L18 12.155ZM12 0l5.196 3v6L12 12 6.804 9V3L12 0Zm0 1.155L7.803 3.577v4.845L12 10.844l4.196-2.422V3.577L12 1.155Z' />
     </svg>
   )
 })

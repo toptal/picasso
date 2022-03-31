@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgHeartbeat24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgHeartbeat24'
+})
 const SvgHeartbeat24 = forwardRef(function SvgHeartbeat24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgHeartbeat24 = forwardRef(function SvgHeartbeat24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M6.598 12L9.056.942l2.983 16.901 2.866-13.852L17.369 12H24v1h-7.37l-1.535-4.992-3.134 15.148L8.943 6.06 7.401 13H0v-1z' />
+      <path d='M6.598 12 9.056.942l2.983 16.901 2.866-13.852L17.369 12H24v1h-7.37l-1.535-4.992-3.134 15.148L8.943 6.06 7.401 13H0v-1z' />
     </svg>
   )
 })

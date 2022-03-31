@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgArrowDropDown24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgArrowDropDown24'
+})
 const SvgArrowDropDown24 = forwardRef(function SvgArrowDropDown24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgArrowDropDown24 = forwardRef(function SvgArrowDropDown24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M11.372 16.215l-6.744-8.43C4.285 7.355 4.448 7 5 7h13.998c.556 0 .72.351.373.785l-6.744 8.43c-.343.43-.91.434-1.256 0z' />
+      <path d='m11.372 16.215-6.744-8.43C4.285 7.355 4.448 7 5 7h13.998c.556 0 .72.351.373.785l-6.744 8.43c-.343.43-.91.434-1.256 0Z' />
     </svg>
   )
 })

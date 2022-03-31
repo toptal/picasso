@@ -13,7 +13,9 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, { name: 'PicassoSvgReset24' })
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgReset24'
+})
 const SvgReset24 = forwardRef(function SvgReset24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -49,7 +51,7 @@ const SvgReset24 = forwardRef(function SvgReset24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M7.5 8.5h-1V5.519a8.5 8.5 0 105.755-2.015L12 3.5v-1a9.5 9.5 0 11-5.832 2H2.5v-1h5v5z' />
+      <path d='M7.5 8.5h-1V5.519a8.5 8.5 0 1 0 5.755-2.015L12 3.5v-1a9.5 9.5 0 1 1-5.832 2H2.5v-1h5v5Z' />
     </svg>
   )
 })
