@@ -26,11 +26,9 @@ export interface Props extends BaseProps {
   /** Callback invoked when a file item is removed */
   onRemove?: (fileName: string, index: number) => void
   /** Focus event handler */
-  onFocus?: FocusEventHandler<HTMLAnchorElement> &
-    FocusEventHandler<HTMLButtonElement>
+  onFocus?: FocusEventHandler<HTMLDivElement>
   /** Blur event handler */
-  onBlur?: FocusEventHandler<HTMLAnchorElement> &
-    FocusEventHandler<HTMLButtonElement>
+  onBlur?: FocusEventHandler<HTMLDivElement>
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'FileInputContent' })
@@ -64,14 +62,12 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
   )
 
   return (
-    <Container className={classes.root}>
+    <Container onFocus={onFocus} onBlur={onBlur} className={classes.root}>
       <Button
         size='small'
         variant='secondary'
         disabled={Boolean(disabled || preventAddingNewFiles)}
         onClick={() => inputRef.current && inputRef.current.click()}
-        onFocus={onFocus}
-        onBlur={onBlur}
       >
         Choose File
       </Button>
