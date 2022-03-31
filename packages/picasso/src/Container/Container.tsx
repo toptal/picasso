@@ -16,7 +16,8 @@ import styles, {
   VariantType
 } from './styles'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
-import { forwardRef, documentable } from '../utils/forward-ref'
+import { documentable } from '../utils/forward-ref'
+import { forwardRef } from '../utils'
 
 type ContainerType = 'div' | 'span'
 
@@ -130,9 +131,8 @@ export const Container = documentable(
 
               [classes[`${align}TextAlign`]]: typeof align === 'string',
 
-              [classes[
-                `${kebabToCamelCase(alignItems || '')}AlignItems`
-              ]]: alignItems,
+              [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
+                alignItems,
 
               [classes[
                 `${kebabToCamelCase(justifyContent || '')}JustifyContent`
