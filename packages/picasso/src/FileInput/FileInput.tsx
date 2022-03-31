@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from 'react'
+import React, { forwardRef, useRef, FocusEventHandler } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 
@@ -25,6 +25,12 @@ export interface Props extends BaseProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   /** Callback invoked when a file item is removed */
   onRemove?: (fileName: string, index: number) => void
+  /** Focus event handler */
+  onFocus?: FocusEventHandler<HTMLAnchorElement> &
+    FocusEventHandler<HTMLButtonElement>
+  /** Blur event handler */
+  onBlur?: FocusEventHandler<HTMLAnchorElement> &
+    FocusEventHandler<HTMLButtonElement>
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'FileInputContent' })
@@ -40,7 +46,9 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     hint,
     maxFiles = 1,
     onChange,
-    onRemove
+    onRemove,
+    onFocus,
+    onBlur
   } = props
 
   const classes = useStyles()
@@ -62,6 +70,8 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
         variant='secondary'
         disabled={Boolean(disabled || preventAddingNewFiles)}
         onClick={() => inputRef.current && inputRef.current.click()}
+        onFocus={onFocus}
+        onBlur={onBlur}
       >
         Choose File
       </Button>
