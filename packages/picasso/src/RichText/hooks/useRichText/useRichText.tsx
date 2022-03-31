@@ -72,13 +72,13 @@ const picassoMapper = (child: ReactNode): ReactNode => {
 
 const useRichText = (value: ASTType): ReactNode[] | ReactNode => {
   const mappedTextNodes = useMemo(() => {
-    const { children } = value
+    const { children: astChildren } = value
 
-    if (!children?.length) {
+    if (!astChildren?.length) {
       return null
     }
 
-    const isSingleChild = children.length === 1
+    const isSingleChild = astChildren.length === 1
     const reactElement = toH(createElement, value) as ReactElement
 
     if (isSingleChild) {

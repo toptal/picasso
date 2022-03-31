@@ -121,55 +121,60 @@ describe('useRichText', () => {
     expect((liElementSecond.type as Function).name).toEqual('Li')
     expect(liElementSecond.props.children).toEqual(['bar'])
   })
-
-  it('handles empty children', () => {
-    const { result } = renderHook(() =>
-      useRichText({
-        type: 'root',
-        children: []
-      })
-    )
-
-    expect(result.current).toBeNull()
-  })
-
-  it('handles empty children deeper in the tree', () => {
-    const tree: ASTType = {
-      type: 'root',
-      children: [
-        {
-          type: 'element',
-          tagName: 'h3',
-          properties: {},
-          children: [{ type: 'text', value: 'foobar' }]
-        },
-        {
-          type: 'element',
-          tagName: 'br',
-          properties: {},
+  describe('when children are empty', () => {
+    it('returns null', () => {
+      const { result } = renderHook(() =>
+        useRichText({
+          type: 'root',
           children: []
-        }
-      ]
-    }
+        })
+      )
 
-    const { result } = renderHook(() => useRichText(tree))
-
-    const [headingElement, brElement] = result.current as [
-      ReactElement,
-      ReactElement
-    ]
-
-    expect((headingElement.type as Function).name).toEqual('H3')
-    expect(brElement.type).toEqual('br')
+      expect(result.current).toBeNull()
+    })
   })
 
-  it('handles undefined children', () => {
-    const { result } = renderHook(() =>
-      useRichText({
-        type: 'root'
-      })
-    )
+  describe('when children of child are empty', () => {
+    it('returns correct node', () => {
+      const tree: ASTType = {
+        type: 'root',
+        children: [
+          {
+            type: 'element',
+            tagName: 'h3',
+            properties: {},
+            children: [{ type: 'text', value: 'foobar' }]
+          },
+          {
+            type: 'element',
+            tagName: 'br',
+            properties: {},
+            children: []
+          }
+        ]
+      }
 
-    expect(result.current).toBeNull()
+      const { result } = renderHook(() => useRichText(tree))
+
+      const [headingElement, brElement] = result.current as [
+        ReactElement,
+        ReactElement
+      ]
+
+      expect((headingElement.type as Function).name).toEqual('H3')
+      expect(brElement.type).toEqual('br')
+    })
+  })
+
+  describe('when children are undefined', () => {
+    it('returns null', () => {
+      const { result } = renderHook(() =>
+        useRichText({
+          type: 'root'
+        })
+      )
+
+      expect(result.current).toBeNull()
+    })
   })
 })
