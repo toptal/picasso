@@ -1,5 +1,13 @@
 # Change Log
 
+## 19.4.1
+
+### Patch Changes
+
+- [#2563](https://github.com/toptal/picasso/pull/2563) [`8f3f3363`](https://github.com/toptal/picasso/commit/8f3f3363bb586c77249731f9117dbdd74276b7b7) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  - replaced `useIsomorphicLayoutEffect` with `useEffect` where it was a better fit
+
 ## 19.4.0
 
 ### Minor Changes
