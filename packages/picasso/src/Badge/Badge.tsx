@@ -39,7 +39,7 @@ export interface Props extends BaseProps, TextLabelProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoBadge' })
 
-const thresholds: { [k in SizeType]: number } = {
+const thresholds: Record<SizeType, number> = {
   small: 9,
   medium: 99,
   large: 99
