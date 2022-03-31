@@ -1,18 +1,16 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import { RichText, RichTextEditor, Grid, ASTType } from '@toptal/picasso'
 import { htmlToHast } from '@toptal/picasso/utils'
 
 const Example = () => {
-  const [html, setHtml] = useState<string>('')
-
-  const onChange = useCallback((value: string) => setHtml(value), [setHtml])
+  const [html, setHtml] = useState('')
 
   return (
     <Grid>
       <Grid.Item small={12} large={6}>
         <RichTextEditor
           defaultValue={defaultValue}
-          onChange={onChange}
+          onChange={setHtml}
           id='editor'
         />
       </Grid.Item>
