@@ -1,7 +1,9 @@
 import {
+  ASTPath,
   Collection,
   ImportDeclaration,
   JSCodeshift,
+  JSXElement,
   Transform
 } from 'jscodeshift'
 
@@ -30,6 +32,25 @@ const patchImports = (imports: Collection<ImportDeclaration>) => {
     })
 }
 
+const addSizeMediumByDefaultWhenMissing = () => {
+  const isMissingSizeAttr = (path: ASTPath<JSXElement>) =>
+    !path.node.openingElement.attributes?.some(
+      attr => attr.type === 'JSXAttribute' && attr.name.name === 'size'
+    )
+
+  const addMediumSizeAttr = (path: ASTPath<JSXElement>) => {
+    path.node.openingElement.attributes ??= []
+    path.node.openingElement.attributes.unshift(
+      j.jsxAttribute(j.jsxIdentifier('size'), j.stringLiteral('medium'))
+    )
+  }
+
+  root
+    .findJSXElements(PREVIOUS_ELEMENT_NAME)
+    .filter(isMissingSizeAttr)
+    .forEach(addMediumSizeAttr)
+}
+
 const patchJsxElements = () => {
   root
     .findJSXElements(PREVIOUS_ELEMENT_NAME)
@@ -44,6 +65,7 @@ const transform: Transform = (file, api) => {
   const imports = findImportsFor('@toptal/picasso', PREVIOUS_ELEMENT_NAME)
 
   if (imports.size() > 0) {
+    addSizeMediumByDefaultWhenMissing()
     patchImports(imports)
     patchJsxElements()
   }

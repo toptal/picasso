@@ -60,7 +60,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
     children,
     style,
     variant = 'white',
-    size = 'medium',
+    size = 'large',
     content,
     max,
     'data-testid': testId,
