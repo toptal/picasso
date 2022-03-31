@@ -18,7 +18,7 @@ page
 
 page
   .createChapter()
-  .addExample('PageSidebar/story/Default.example.tsx', 'Default')
-  .addExample('PageSidebar/story/Variants.example.tsx', 'Variants')
+  .addExample('PageSidebar/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+  .addExample('PageSidebar/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
 
 page.connect(sidebarItemStory.chapter)

@@ -6,10 +6,10 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
+      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
     >
       <div
-        class="Sidebar-spacer"
+        class="PageSidebar-spacer"
       />
       <ul
         class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
@@ -136,10 +136,10 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
+      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
     >
       <div
-        class="Sidebar-spacer"
+        class="PageSidebar-spacer"
       />
       <ul
         class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
