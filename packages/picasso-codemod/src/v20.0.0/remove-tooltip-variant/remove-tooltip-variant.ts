@@ -38,7 +38,6 @@ const transform: Transform = (file, api) => {
     const specifiers = path.value.specifiers
 
     specifiers?.forEach(specifier => {
-      // collect only input field specifiers
       if (isSpecifierTooltip(specifier) && specifier.local?.name) {
         localSpecifiers.push(specifier.local?.name)
       }

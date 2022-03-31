@@ -1,6 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
+// copied and manually changed from packages/picasso-provider/src/Picasso/config/shadows.ts
 const ARROW_SHADOW = '0 0 2px 0 rgb(0 0 0 / 24%), 0 0 4px 0 rgb(0 0 0 / 12%)'
 
 export default ({ palette, shadows, sizes: { borderRadius } }: Theme) =>
