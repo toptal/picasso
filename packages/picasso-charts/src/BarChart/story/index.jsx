@@ -35,6 +35,12 @@ export const sharedChartDocs = {
     type: 'boolean',
     description:
       'Allows the tooltip to extend beyond the viewBox of the chart itself'
+  },
+  showBarLabel: {
+    name: 'showBarLabel',
+    type: 'boolean',
+    description: 'Shows label of each bar',
+    defaultValue: true
   }
 }
 
@@ -105,3 +111,8 @@ page
     },
     delay: 500
   })
+  .addExample('BarChart/story/HideBarLabel.example.tsx', {
+    title: 'Hide bar label',
+    description:
+      'You can hide label of each bar via `showBarLabel` prop being set to `false`.'
+  }) // picasso-skip-visuals

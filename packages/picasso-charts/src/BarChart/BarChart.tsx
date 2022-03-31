@@ -45,6 +45,8 @@ export interface Props<K extends string | number | symbol>
   testIds?: {
     tooltip?: string
   }
+  /** Shows label of each bar */
+  showBarLabel?: boolean
 }
 
 const StyleOverrides = () => (
@@ -89,6 +91,7 @@ const BarChart = <K extends string>({
   labelKey,
   getBarLabelColor = defaultGetBarLabelColor,
   testIds,
+  showBarLabel,
   ...rest
 }: Props<K>) => {
   const dataKeys = Object.keys(data[0].value) as K[]
@@ -155,10 +158,12 @@ const BarChart = <K extends string>({
               key={dataKey}
               dataKey={dataKey}
               label={
-                <BarChartLabel
-                  dataKey={dataKey}
-                  getBarLabelColor={getBarLabelColor}
-                />
+                showBarLabel ? (
+                  <BarChartLabel
+                    dataKey={dataKey}
+                    getBarLabelColor={getBarLabelColor}
+                  />
+                ) : undefined
               }
             >
               {data.map((entry, index) => {
@@ -182,7 +187,8 @@ const BarChart = <K extends string>({
 BarChart.defaultProps = {
   height: 200,
   width: 'auto',
-  tooltip: false
+  tooltip: false,
+  showBarLabel: true
 }
 
 export default BarChart
