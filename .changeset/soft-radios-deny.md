@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso-forms': major
+'@toptal/picasso': major
 ---
 
 ---
