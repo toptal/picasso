@@ -89,7 +89,6 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
         <Tooltip
           compact
           placement='top'
-          variant='dark'
           content={error ? 'Dismiss' : 'Remove File'}
         >
           <Button.Circular
