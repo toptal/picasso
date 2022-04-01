@@ -1,5 +1,15 @@
 # Change Log
 
+## 20.1.0
+
+### Minor Changes
+
+- [#2571](https://github.com/toptal/picasso/pull/2571) [`f75a83ee`](https://github.com/toptal/picasso/commit/f75a83ee4ff5e067a87d8ca3606df6eb54d33a65) Thanks [@rhuankarlus](https://github.com/rhuankarlus)! - ---
+
+  ### FileInput
+
+  - Added the `onFocus` and `onBlur` events to the `FileInput` component.
+
 ## 20.0.1
 
 ### Patch Changes
