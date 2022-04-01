@@ -1,5 +1,15 @@
 # Change Log
 
+## 20.0.1
+
+### Patch Changes
+
+- [#2566](https://github.com/toptal/picasso/pull/2566) [`52f992fe`](https://github.com/toptal/picasso/commit/52f992fe194db50ac9de1a7ba3667a388812e7f9) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### RichText
+
+  Handle empty children of ReactNode.
+
 ## 20.0.0
 
 ### Major Changes
