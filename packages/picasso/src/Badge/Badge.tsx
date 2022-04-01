@@ -45,15 +45,18 @@ const thresholds: Record<SizeType, number> = {
   large: 99
 }
 
-const format = (content: number, size: SizeType, max?: number): string => {
+const formatNumber = (
+  content: number,
+  size: SizeType,
+  max: number | undefined
+): string => {
   const trimThreshold = max ?? thresholds[size]
 
-  if (content > trimThreshold) {
-    return `${trimThreshold}+`
-  }
-
-  return String(content)
+  return content > trimThreshold ? `${trimThreshold}+` : String(content)
 }
+
+const formatString = (content: string, titleCase: boolean) =>
+  titleCase ? toTitleCase(content) : content
 
 export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   {
@@ -69,23 +72,21 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   ref
 ) {
   const classes = useStyles()
-
   const titleCase = useTitleCase(propsTitleCase)
 
   const hasChildren = Children.count(children) > 0
+
+  const badgeContent =
+    typeof content === 'string'
+      ? formatString(content, !!titleCase)
+      : formatNumber(content, size, max)
 
   return (
     <MuiBadge
       ref={ref}
       style={style}
       data-testid={testId}
-      badgeContent={
-        typeof content === 'string'
-          ? titleCase
-            ? toTitleCase(content)
-            : content
-          : format(content, size, max)
-      }
+      badgeContent={badgeContent}
       classes={{
         badge: cx(classes.root, classes[variant], classes[size], {
           [classes.static]: !hasChildren
@@ -96,6 +97,11 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
     </MuiBadge>
   )
 })
+
+Badge.defaultProps = {
+  variant: 'white',
+  size: 'large'
+}
 
 Badge.displayName = 'Badge'
 
