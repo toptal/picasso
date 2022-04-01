@@ -1,5 +1,15 @@
 # Change Log
 
+## 20.0.0
+
+### Major Changes
+
+- [#2572](https://github.com/toptal/picasso/pull/2572) [`1ba287fa`](https://github.com/toptal/picasso/commit/1ba287fa839146f347d7fba8842368f8cd2bbb0e) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Tooltip
+
+  - `variant` prop has been removed according to BASE 2.0 designs. From now on, tooltip background color will change according to `compact` prop usage.
+
 ## 19.4.1
 
 ### Patch Changes
