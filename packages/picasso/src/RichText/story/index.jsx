@@ -24,5 +24,11 @@ page
 
 page
   .createChapter()
-  .addExample('RichText/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('RichText/story/HTML.example.tsx', 'With HTML value') // picasso-skip-visuals
+  .addExample(
+    'RichText/story/Default.example.tsx',
+    'AST from BE for normal view'
+  ) // picasso-skip-visuals
+  .addExample(
+    'RichText/story/HTML.example.tsx',
+    'HTML from FE for live-editing preview'
+  ) // picasso-skip-visuals
