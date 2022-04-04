@@ -15,6 +15,7 @@ import { TextLabelProps } from '@toptal/picasso-shared'
 
 import { useFormConfig } from '../FormConfig'
 import { validators, useFieldValidation } from '../utils'
+import { wrapRequirementsWithValidator } from '../utils/validators'
 
 const { composeValidators, required: requiredValidator } = validators
 
@@ -41,6 +42,8 @@ export interface IFormComponentProps {
   value?: ValueType
 }
 
+export type FieldValidator = (value?: ValueType) => string | undefined
+
 export type Props<
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue
@@ -53,6 +56,8 @@ export type Props<
     status?: OutlinedInputStatus
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: (props: any) => React.ReactNode
+    showRequirements?: boolean
+    requirementsDescription?: string
     renderFieldRequirements?: (props: {
       value?: TInputValue
       error?: boolean
@@ -60,16 +65,26 @@ export type Props<
   }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getValidators = (required: boolean, validate?: any) => {
-  if (required && validate) {
-    return composeValidators([requiredValidator, validate])
+const getValidators = (
+  required: boolean,
+  validate?: any,
+  showRequirements?: boolean
+) => {
+  let validateFunction = validate
+
+  if (showRequirements && validate) {
+    validateFunction = wrapRequirementsWithValidator(validate)
   }
 
-  if (required && !validate) {
+  if (required && validateFunction) {
+    return composeValidators([requiredValidator, validateFunction])
+  }
+
+  if (required && !validateFunction) {
     return requiredValidator
   }
 
-  return validate
+  return validateFunction
 }
 
 const Field = <
@@ -85,6 +100,7 @@ const Field = <
     required,
     'data-testid': dataTestId,
     renderFieldRequirements,
+    showRequirements,
     status,
     // FieldProps - https://final-form.org/docs/react-final-form/types/FieldProps
     afterSubmit,
@@ -110,8 +126,8 @@ const Field = <
 
   const { validateOnSubmit: shouldValidateOnSubmit } = useFormConfig()
   const validators = useMemo(
-    () => getValidators(required, validate),
-    [required, validate]
+    () => getValidators(required, validate, showRequirements),
+    [required, showRequirements, validate]
   )
 
   const { meta, input } = useField<TInputValue>(name, {
@@ -170,7 +186,7 @@ const Field = <
 
   return (
     <PicassoForm.Field
-      error={error}
+      error={showRequirements ? { error, validate } : error}
       hint={hint}
       data-testid={dataTestId}
       fieldRequirements={renderFieldRequirements?.({

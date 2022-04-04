@@ -22,7 +22,7 @@ const Example = () => {
       }}
     >
       <Form.PasswordInput label='Password' name='password' required />
-      <Form.PasswordInput
+      {/* <Form.PasswordInput
         label='Confirm password'
         name='confirmPassword'
         hideRequirements
@@ -32,7 +32,7 @@ const Example = () => {
             return 'Passwords do not match'
           }
         }}
-      />
+      /> */}
       <Container top='small'>
         <Form.SubmitButton>Submit</Form.SubmitButton>
       </Container>

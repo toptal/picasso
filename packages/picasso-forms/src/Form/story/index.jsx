@@ -137,96 +137,96 @@ Form is a wrapper for 'react-final-form' Form component. It also
 provides inside all the necessary input components types.
     `
   )
-  .addExample(
-    'Form/story/Default.example.tsx',
-    {
-      title: 'Default',
-      description: `
-A general look of the form includes the examples of all the input
-types supported by picasso-forms.
-`
-    },
-    'picasso-form'
-  )
-  .addExample(
-    'Form/story/CustomValidator.example.tsx',
-    {
-      title: 'Custom validator',
-      description: `
-We have a 'required' validator included by default to each input type,
-however, you may need custom validators for more complex types of fields.
-`
-    },
-    'picasso-form'
-  ) // picasso-skip-visuals
-  .addExample(
-    'Form/story/ParseInput.example.tsx',
-    {
-      title: 'Change form input value',
-      description: `
-      When you use picasso-forms your form input components are no longer
-      completely controlled and they are controlled by final-form, which
-      gives you the opportunity to rely on it with displaying errors,
-      validations, etc.
+  //   .addExample(
+  //     'Form/story/Default.example.tsx',
+  //     {
+  //       title: 'Default',
+  //       description: `
+  // A general look of the form includes the examples of all the input
+  // types supported by picasso-forms.
+  // `
+  //     },
+  //     'picasso-form'
+  //   )
+  //   .addExample(
+  //     'Form/story/CustomValidator.example.tsx',
+  //     {
+  //       title: 'Custom validator',
+  //       description: `
+  // We have a 'required' validator included by default to each input type,
+  // however, you may need custom validators for more complex types of fields.
+  // `
+  //     },
+  //     'picasso-form'
+  //   ) // picasso-skip-visuals
+  //   .addExample(
+  //     'Form/story/ParseInput.example.tsx',
+  //     {
+  //       title: 'Change form input value',
+  //       description: `
+  //       When you use picasso-forms your form input components are no longer
+  //       completely controlled and they are controlled by final-form, which
+  //       gives you the opportunity to rely on it with displaying errors,
+  //       validations, etc.
 
-      However, sometimes you may need to be able to modify the form input
-      value.
-      `
-    },
-    'picasso-form'
-  ) // picasso-skip-visuals
-  .addExample(
-    'Form/story/BackendCommunication.example.tsx',
-    {
-      title: 'Backend communication',
-      description: `
-        The form usually need to send data to backend, so we need to have
-        backend communication and display the process of submission and
-        the results. The form-level results are represented by notifications.
-        `
-    },
-    'picasso-form'
-  ) // picasso-skip-visuals
-  .addExample(
-    'Form/story/CustomFormLevelConfiguration.example.tsx',
-    'Form Level Configurations'
-  )
-  .addExample(
-    'Form/story/ValidateOnSubmit.example.tsx',
-    {
-      title: 'Validate only on submit',
-      description: `
-            All fields should not show any validation error messages until submission is made.
-            `
-    },
-    'picasso-form'
-  ) // picasso-skip-visuals
-  .addExample('Form/story/FileInput.example.tsx', {
-    title: 'File input on a Form',
-    description: 'Showcase how to upload files on the form submission'
-  }) // picasso-skip-visuals
-  .addExample('Form/story/Dropzone.example.tsx', {
-    title: 'Dropzone on a Form',
-    description:
-      'Showcase how to upload files on the form submission using dropzone'
-  }) // picasso-skip-visuals
-  .addExample('Form/story/TitleCase.example.tsx', {
-    title: 'Title case',
-    description: "Display the field's label in title case."
-  }) // picasso-skip-visuals
-  .addExample('Form/story/NoScrolling.example.tsx', {
-    title: 'No scrolling case',
-    description: "Showcase Form's behavior on form submission error."
-  }) // picasso-skip-visuals
-  .addExample('Form/story/RichTextEditor.example.tsx', {
-    title: 'Rich text editor',
-    description: 'Showcase how to use RichTextEditor in the form.'
-  }) // picasso-skip-visuals
+  //       However, sometimes you may need to be able to modify the form input
+  //       value.
+  //       `
+  //     },
+  //     'picasso-form'
+  //   ) // picasso-skip-visuals
+  //   .addExample(
+  //     'Form/story/BackendCommunication.example.tsx',
+  //     {
+  //       title: 'Backend communication',
+  //       description: `
+  //         The form usually need to send data to backend, so we need to have
+  //         backend communication and display the process of submission and
+  //         the results. The form-level results are represented by notifications.
+  //         `
+  //     },
+  //     'picasso-form'
+  //   ) // picasso-skip-visuals
+  //   .addExample(
+  //     'Form/story/CustomFormLevelConfiguration.example.tsx',
+  //     'Form Level Configurations'
+  //   )
+  //   .addExample(
+  //     'Form/story/ValidateOnSubmit.example.tsx',
+  //     {
+  //       title: 'Validate only on submit',
+  //       description: `
+  //             All fields should not show any validation error messages until submission is made.
+  //             `
+  //     },
+  //     'picasso-form'
+  //   ) // picasso-skip-visuals
+  //   .addExample('Form/story/FileInput.example.tsx', {
+  //     title: 'File input on a Form',
+  //     description: 'Showcase how to upload files on the form submission'
+  //   }) // picasso-skip-visuals
+  //   .addExample('Form/story/Dropzone.example.tsx', {
+  //     title: 'Dropzone on a Form',
+  //     description:
+  //       'Showcase how to upload files on the form submission using dropzone'
+  //   }) // picasso-skip-visuals
+  //   .addExample('Form/story/TitleCase.example.tsx', {
+  //     title: 'Title case',
+  //     description: "Display the field's label in title case."
+  //   }) // picasso-skip-visuals
+  //   .addExample('Form/story/NoScrolling.example.tsx', {
+  //     title: 'No scrolling case',
+  //     description: "Showcase Form's behavior on form submission error."
+  //   }) // picasso-skip-visuals
+  //   .addExample('Form/story/RichTextEditor.example.tsx', {
+  //     title: 'Rich text editor',
+  //     description: 'Showcase how to use RichTextEditor in the form.'
+  //   }) // picasso-skip-visuals
   .addExample('Form/story/FieldRequirements.example.tsx', {
     title: 'Field requirements',
     description: 'Showcase how to display field requirements.'
   }) // picasso-skip-visuals
-  .addExample('Form/story/Status.example.tsx', {
-    title: 'Form Level Status Configuration',
-    description: 'Showcase how to enable success status via form configuration.'
-  }) // picasso-skip-visuals
+// .addExample('Form/story/Status.example.tsx', {
+//   title: 'Form Level Status Configuration',
+//   description: 'Showcase how to enable success status via form configuration.'
+// }) // picasso-skip-visuals
