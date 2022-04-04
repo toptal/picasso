@@ -2,19 +2,18 @@ import React, { Children, forwardRef, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { Badge as MuiBadge } from '@material-ui/core'
-import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import { toTitleCase } from '../utils'
 
 type VariantType = 'white' | 'red'
 type SizeType = 'medium' | 'small' | 'large'
 
-export interface Props extends BaseProps, TextLabelProps {
+export interface Props extends BaseProps {
   /**
    * The `Badge` content
    */
-  content: number | string
+  content: number
 
   /**
    * Variant of the `Badge`
@@ -55,9 +54,6 @@ const formatNumber = (
   return content > trimThreshold ? `${trimThreshold}+` : String(content)
 }
 
-const formatString = (content: string, titleCase: boolean) =>
-  titleCase ? toTitleCase(content) : content
-
 export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   {
     children,
@@ -66,20 +62,15 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
     size = 'large',
     content,
     max,
-    'data-testid': testId,
-    titleCase: propsTitleCase
+    'data-testid': testId
   },
   ref
 ) {
   const classes = useStyles()
-  const titleCase = useTitleCase(propsTitleCase)
 
   const hasChildren = Children.count(children) > 0
 
-  const badgeContent =
-    typeof content === 'string'
-      ? formatString(content, !!titleCase)
-      : formatNumber(content, size, max)
+  const badgeContent = formatNumber(content, size, max)
 
   return (
     <MuiBadge

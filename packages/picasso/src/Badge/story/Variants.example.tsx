@@ -14,7 +14,7 @@ const Example = () => (
       </Container>
 
       <Container inline right='small'>
-        <Badge content='text' variant='white' />
+        <Badge content={0} variant='white' />
       </Container>
     </Container>
 
@@ -28,7 +28,7 @@ const Example = () => (
         <Badge content={100} variant='red' />
       </Container>
       <Container inline right='small'>
-        <Badge content='text' variant='red' />
+        <Badge content={1} variant='red' />
       </Container>
     </Container>
   </>
