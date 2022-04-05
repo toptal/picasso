@@ -1,10 +1,10 @@
 import { rem } from '@toptal/picasso-shared'
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme, createStyles, StyleRules } from '@material-ui/core/styles'
 
-const getSizeProps = (unitInRem: string) => ({
+const getSizeProps = (unitInRem: string): StyleRules[keyof {}] => ({
   borderRadius: unitInRem,
   height: unitInRem,
-  minWidth: unitInRem
+  width: unitInRem
 })
 
 export default ({ palette }: Theme) =>
@@ -14,7 +14,7 @@ export default ({ palette }: Theme) =>
       borderStyle: 'solid',
       fontSize: rem('10px'),
       lineHeight: rem('12px'),
-      padding: '.3em',
+      padding: '.1em',
       fontWeight: 600
     },
     static: {
@@ -39,6 +39,7 @@ export default ({ palette }: Theme) =>
       ...getSizeProps(rem('16px'))
     },
     large: {
+      padding: '.3em',
       ...getSizeProps(rem('20px'))
     }
   })
