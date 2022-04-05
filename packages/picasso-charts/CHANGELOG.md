@@ -1,5 +1,15 @@
 # Change Log
 
+## 33.2.0
+
+### Minor Changes
+
+- [#2592](https://github.com/toptal/picasso/pull/2592) [`7470243f`](https://github.com/toptal/picasso/commit/7470243feefc9a84170d03cb6dde1eac3acbea0e) Thanks [@denieler](https://github.com/denieler)! - ---
+
+  ### BarChart
+
+  - added `isAnimationActive` prop to disable animations for the chart
+
 ## 33.1.0
 
 ### Minor Changes
