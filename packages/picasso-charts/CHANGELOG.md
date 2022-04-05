@@ -1,5 +1,15 @@
 # Change Log
 
+## 33.1.0
+
+### Minor Changes
+
+- [#2575](https://github.com/toptal/picasso/pull/2575) [`a1e931d0`](https://github.com/toptal/picasso/commit/a1e931d00b707a97783d8f443bbc14d06d96a896) Thanks [@DmitriyT51](https://github.com/DmitriyT51)! - ---
+
+  ### BarChart
+
+  - Add new optional prop `showBarLabel` for BarChart component which (being set to `false`) allows hiding labels of all bars.
+
 ## 33.0.0
 
 ### Patch Changes
