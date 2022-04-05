@@ -63,14 +63,6 @@ describe('FormLabel', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('required with asterisk', () => {
-    const { container } = render(
-      <TestFormLabel requiredDecoration='asterisk'>Label</TestFormLabel>
-    )
-
-    expect(container).toMatchSnapshot()
-  })
-
   it('should transform text to title case when Picasso titleCase property is true', () => {
     const TEXT_CONTENT = 'Test kb8'
 

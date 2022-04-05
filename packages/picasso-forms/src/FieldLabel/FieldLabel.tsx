@@ -14,12 +14,6 @@ const getRequiredDecoration = (
   required?: boolean,
   requiredVariant?: RequiredVariant
 ): RequiredDecoration | undefined => {
-  const showAsterisk = required && requiredVariant === 'asterisk'
-
-  if (showAsterisk) {
-    return 'asterisk'
-  }
-
   const showOptional =
     !required && (!requiredVariant || requiredVariant === 'default')
 

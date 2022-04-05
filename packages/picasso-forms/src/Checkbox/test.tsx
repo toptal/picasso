@@ -58,19 +58,6 @@ describe('Form.Checkbox', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('required with asterisk single checkbox', () => {
-    const { container } = renderCheckbox(
-      {
-        required: true
-      },
-      {
-        requiredVariant: 'asterisk'
-      }
-    )
-
-    expect(container).toMatchSnapshot()
-  })
-
   it('never shows (optional) postfix for single checkbox', () => {
     const { getByTestId } = renderCheckbox({})
 

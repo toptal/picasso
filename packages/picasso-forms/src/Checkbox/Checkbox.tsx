@@ -7,7 +7,6 @@ import {
 
 import PicassoField, { FieldProps } from '../Field'
 import { CheckboxGroupContext } from '../CheckboxGroup'
-import { useFormConfig } from '../FormConfig'
 
 type CheckboxValue = CheckboxProps['value'] | CheckboxProps['checked']
 
@@ -28,7 +27,6 @@ export const Checkbox = ({
   defaultValue,
   ...restProps
 }: Props) => {
-  const formConfig = useFormConfig()
   const groupName = useContext(CheckboxGroupContext)
   const isCheckboxInGroup = Boolean(groupName)
 
@@ -46,9 +44,6 @@ export const Checkbox = ({
     )
   }
 
-  const showAsterisk = required && formConfig.requiredVariant === 'asterisk'
-  const requiredDecoration = showAsterisk ? 'asterisk' : undefined
-
   return (
     <PicassoField
       type='checkbox'
@@ -62,7 +57,6 @@ export const Checkbox = ({
           {...input}
           label={label}
           titleCase={restProps.titleCase}
-          requiredDecoration={requiredDecoration}
         />
       )}
     </PicassoField>

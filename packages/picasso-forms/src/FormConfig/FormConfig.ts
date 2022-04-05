@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 
-export type RequiredVariant = 'default' | 'asterisk'
+export type RequiredVariant = 'default'
 
 export interface FormConfigProps {
   validateOnSubmit?: boolean

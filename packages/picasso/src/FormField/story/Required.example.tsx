@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Container, Typography } from '@toptal/picasso'
+import { Form, Input, Container } from '@toptal/picasso'
 
 const Example = () => (
   <Container
@@ -10,9 +10,6 @@ const Example = () => (
     }}
   >
     <Form style={{ maxWidth: '350px' }}>
-      <Container bottom={3}>
-        <Typography weight='semibold'>Recommended:</Typography>
-      </Container>
       <Form.Field>
         <Form.Label htmlFor='district'>District</Form.Label>
         <Input id='district' width='full' placeholder='e.g., Sant Marti' />
@@ -22,23 +19,6 @@ const Example = () => (
         <Form.Label htmlFor='city' requiredDecoration='optional'>
           City
         </Form.Label>
-        <Input id='city' width='full' placeholder='e.g., Barcelona' />
-      </Form.Field>
-    </Form>
-
-    <Form style={{ maxWidth: '350px' }}>
-      <Container bottom={3}>
-        <Typography weight='semibold'>Deprecated:</Typography>
-      </Container>
-      <Form.Field>
-        <Form.Label htmlFor='district' requiredDecoration='asterisk'>
-          District
-        </Form.Label>
-        <Input id='district' width='full' placeholder='e.g., Sant Marti' />
-      </Form.Field>
-
-      <Form.Field>
-        <Form.Label htmlFor='city'>City</Form.Label>
         <Input id='city' width='full' placeholder='e.g., Barcelona' />
       </Form.Field>
     </Form>

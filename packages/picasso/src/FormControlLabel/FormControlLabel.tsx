@@ -13,8 +13,9 @@ import { RequiredDecoration } from '../FormLabel'
 import styles from './styles'
 import Form from '../Form'
 
-export type FormControlLabelAttributesType = LabelHTMLAttributes<HTMLLabelElement> &
-  Pick<FormControlLabelProps, 'onChange'>
+export type FormControlLabelAttributesType =
+  LabelHTMLAttributes<HTMLLabelElement> &
+    Pick<FormControlLabelProps, 'onChange'>
 
 export interface Props
   extends StandardProps,
@@ -26,7 +27,7 @@ export interface Props
   label?: ReactNode
   /** Shows whether label is disabled or not */
   disabled?: boolean
-  /** Whether to show asterisk or (optional) postfix as a 'required' decoration */
+  /** Whether to show (optional) postfix as a 'required' decoration */
   requiredDecoration?: RequiredDecoration
 }
 

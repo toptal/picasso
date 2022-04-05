@@ -22,21 +22,11 @@ export default ({ palette }: Theme) =>
       fontSize: '1rem'
     },
 
-    asterisk: {
-      marginRight: '0.3125em',
-      color: palette.error.main
-    },
-
     inline: {
       display: 'inline-block',
       marginBottom: 0,
 
       '& $medium': {
-        fontSize: '0.8125rem',
-        verticalAlign: 'top'
-      },
-
-      '& $asterisk': {
         fontSize: '0.8125rem',
         verticalAlign: 'top'
       }

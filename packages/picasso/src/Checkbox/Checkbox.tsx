@@ -30,7 +30,7 @@ export interface Props
   label?: ReactNode
   /** The id of the input element */
   id?: string
-  /** Whether to show asterisk or (optional) postfix for the label as a 'required' decoration */
+  /** Whether to show (optional) postfix for the label as a 'required' decoration */
   requiredDecoration?: RequiredDecoration
   /** Callback invoked when `Checkbox` changed its value */
   onChange?: (

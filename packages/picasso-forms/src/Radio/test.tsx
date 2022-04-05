@@ -32,18 +32,4 @@ describe('FormRadio', () => {
 
     expect(container).toMatchSnapshot()
   })
-
-  it('required with asterisk', () => {
-    const { container } = renderFormRadio(
-      {
-        name: 'color',
-        required: true
-      },
-      {
-        requiredVariant: 'asterisk'
-      }
-    )
-
-    expect(container).toMatchSnapshot()
-  })
 })

@@ -74,12 +74,6 @@ describe('Checkbox', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('renders with asterisk', () => {
-    const { container } = renderCheckbox({ requiredDecoration: 'asterisk' })
-
-    expect(container).toMatchSnapshot()
-  })
-
   it('renders with (optional)', () => {
     const { container } = renderCheckbox({ requiredDecoration: 'optional' })
 
