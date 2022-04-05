@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#2569](https://github.com/toptal/picasso/pull/2569) [`e8833df2`](https://github.com/toptal/picasso/commit/e8833df2329c6285840ae02c0d029fe4eebb8247) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Project
+
+  - Update typescript to version 4.6
+
 ## 4.4.0
 
 ### Minor Changes
