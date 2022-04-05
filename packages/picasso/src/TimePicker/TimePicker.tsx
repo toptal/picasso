@@ -9,7 +9,6 @@ import Input, { InputProps } from '../Input'
 import { Time16 } from '../Icon'
 import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import { Status } from '../OutlinedInput'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTimePicker'
@@ -41,7 +40,7 @@ export interface Props
   /** Time value that will be selected in TimePicker */
   value?: string
   /** Indicate whether `TimePicker` is in `error` or `default` state */
-  status?: Exclude<Status, 'success'>
+  status?: 'error' | 'default'
 }
 
 export const TimePicker = (props: Props) => {

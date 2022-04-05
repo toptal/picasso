@@ -7,7 +7,7 @@ import {
 import PopperJs from 'popper.js'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
-import { OutlinedInputProps, Status } from '../OutlinedInput'
+import { OutlinedInputProps } from '../OutlinedInput'
 
 /**
  * Select props are generalized over possible values in the component and whether
@@ -33,7 +33,7 @@ export interface SelectProps<
   /** @deprecated Indicate whether `Select` is in error state */
   error?: boolean
   /** Indicate whether `Select` is in `error` or `default` state */
-  status?: Exclude<Status, 'success'>
+  status?: 'error' | 'default'
   /** Component ID */
   id?: string
   /** Width of the component */
