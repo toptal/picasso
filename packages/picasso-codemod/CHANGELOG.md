@@ -1,5 +1,23 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#2569](https://github.com/toptal/picasso/pull/2569) [`e8833df2`](https://github.com/toptal/picasso/commit/e8833df2329c6285840ae02c0d029fe4eebb8247) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Project
+
+  - Update typescript to version 4.6
+
+## 4.4.0
+
+### Minor Changes
+
+- [#2572](https://github.com/toptal/picasso/pull/2572) [`1ba287fa`](https://github.com/toptal/picasso/commit/1ba287fa839146f347d7fba8842368f8cd2bbb0e) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  - Added codemod for removing `varint` prop usage from `Tooltip` component
+
 ## 4.3.0
 
 ### Minor Changes

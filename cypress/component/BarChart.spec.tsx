@@ -78,6 +78,7 @@ const TestBarChart = ({ ...rest }) => (
       getBarLabelColor={() => palette.grey.dark}
       width={720}
       tooltip
+      isAnimationActive={false}
       {...rest}
     />
   </TestingPicasso>
@@ -98,6 +99,12 @@ const assertCustomTooltipContent = (text: string) => {
 }
 
 describe('BarChart', () => {
+  it('renders default chart', () => {
+    mount(<TestBarChart />)
+
+    cy.get('body').happoScreenshot()
+  })
+
   it('shows default tooltip on hover', () => {
     mount(<TestBarChart />)
 
@@ -145,5 +152,11 @@ describe('BarChart', () => {
 
     hoverOverBar('Los-Angeles')
     assertCustomTooltipContent('Infected: 2780Recovered: 3908')
+  })
+
+  it('hides label of each bar via passed `showBarLabel` prop being set to `false`', () => {
+    mount(<TestBarChart showBarLabel={false} />)
+
+    cy.get('body').happoScreenshot()
   })
 })

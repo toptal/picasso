@@ -50,21 +50,19 @@ pipeline {
           } else {
             imageCommitId = gitCommit()
           }
-          sshagent(credentials: ['e707ac4d-9c1a-43d1-a139-e3fd8c9ef412']) { //provbot (jenkins/provbot)
-            sh """
-              mkdir ${WORKSPACE}/deploy-docs
+          sh """
+            mkdir ${WORKSPACE}/deploy-docs
 
-              docker run --rm \
-              -v ${WORKSPACE}/deploy-docs:/app/deploy-docs \
-              -e DEPLOY_DOCS_PATH=/app/deploy-docs \
-              -e DEPLOY_DOCS_ARCHIVE=deploy-docs \
-              gcr.io/toptal-hub/${repoName}:${imageCommitId} \
-              ./bin/release-docs
+            docker run --rm \
+            -v ${WORKSPACE}/deploy-docs:/app/deploy-docs \
+            -e DEPLOY_DOCS_PATH=/app/deploy-docs \
+            -e DEPLOY_DOCS_ARCHIVE=deploy-docs \
+            gcr.io/toptal-hub/${repoName}:${imageCommitId} \
+            ./bin/release-docs
 
-              tar -zxvf ${WORKSPACE}/deploy-docs/deploy-docs.tar.gz -C ${WORKSPACE}/deploy-docs/
-              rm ${WORKSPACE}/deploy-docs/deploy-docs.tar.gz
-            """
-          } //sshagent
+            tar -zxvf ${WORKSPACE}/deploy-docs/deploy-docs.tar.gz -C ${WORKSPACE}/deploy-docs/
+            rm ${WORKSPACE}/deploy-docs/deploy-docs.tar.gz
+          """
         }//script
       }//steps
     }//stage
@@ -77,13 +75,14 @@ pipeline {
                           .replaceAll(/\/|\(/, '-')
                           .replaceAll(/\)/, '')
 
-
-          sh """
+          sshagent(credentials: ['e707ac4d-9c1a-43d1-a139-e3fd8c9ef412']) { //provbot (jenkins/provbot)
+            sh """
                 rsync -avz --delete -e ssh '${WORKSPACE}/deploy-docs/' 'docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch}' && \\
                 rm -rf ./build
                 rm -rf '${WORKSPACE}/deploy-docs'
-              """
-
+            """
+          } //sshagent
+  
           if (targetBranch != 'master') {
               existingComments = sh(returnStdout: true, script: "curl -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/${params.PR_ID}/comments | jq -r '.[] | select(.user.login | contains(\"toptal-devbot\")) | select(.body | contains(\"Demo\")) | .id'").split("\n")
               existingComments.each {

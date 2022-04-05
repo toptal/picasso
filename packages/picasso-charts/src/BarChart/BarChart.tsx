@@ -29,10 +29,23 @@ const {
   TICK_HEIGHT
 } = CHART_CONSTANTS
 
+export type BarChartDataItem<K extends string | number | symbol> = {
+  name: string
+  value: {
+    [key in K]: number
+  }
+}
+
 export interface Props<K extends string | number | symbol>
   extends BaseChartProps {
-  data: { name: string; value: { [key in K]: number } }[]
+  /**
+   * A list of data points to be rendered as a bar chart
+   * @type { name: string; value: { [key in K]: number }; }[]
+   */
+  data: BarChartDataItem<K>[]
+  /** Name of point on the horizontal axis */
   labelKey?: string
+  /** Maps bar's key with a color to fill */
   getBarColor: (params: {
     dataKey: string
     entry?: {
@@ -41,10 +54,15 @@ export interface Props<K extends string | number | symbol>
     }
     index?: number
   }) => string
+  /** Maps bar's key with a label color */
   getBarLabelColor?: (params: { dataKey: string; index?: number }) => string
   testIds?: {
     tooltip?: string
   }
+  /** Shows label of each bar */
+  showBarLabel?: boolean
+  /** If set false, animation of bar will be disabled */
+  isAnimationActive?: boolean
 }
 
 const StyleOverrides = () => (
@@ -89,6 +107,8 @@ const BarChart = <K extends string>({
   labelKey,
   getBarLabelColor = defaultGetBarLabelColor,
   testIds,
+  showBarLabel,
+  isAnimationActive,
   ...rest
 }: Props<K>) => {
   const dataKeys = Object.keys(data[0].value) as K[]
@@ -155,11 +175,14 @@ const BarChart = <K extends string>({
               key={dataKey}
               dataKey={dataKey}
               label={
-                <BarChartLabel
-                  dataKey={dataKey}
-                  getBarLabelColor={getBarLabelColor}
-                />
+                showBarLabel ? (
+                  <BarChartLabel
+                    dataKey={dataKey}
+                    getBarLabelColor={getBarLabelColor}
+                  />
+                ) : undefined
               }
+              isAnimationActive={isAnimationActive}
             >
               {data.map((entry, index) => {
                 const fill = getBarColor?.({ dataKey, entry, index })
@@ -182,7 +205,8 @@ const BarChart = <K extends string>({
 BarChart.defaultProps = {
   height: 200,
   width: 'auto',
-  tooltip: false
+  tooltip: false,
+  showBarLabel: true
 }
 
 export default BarChart

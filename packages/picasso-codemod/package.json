@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-codemod",
-  "version": "4.3.0",
+  "version": "5.0.0",
   "description": "Codemod scripts for Picasso.",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-codemod#readme",
@@ -23,6 +23,7 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
+    "typescript": "4.6.x",
     "react": "^16.12.0"
   },
   "devDependencies": {

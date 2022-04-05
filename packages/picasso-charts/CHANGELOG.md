@@ -1,5 +1,48 @@
 # Change Log
 
+## 34.0.0
+
+### Major Changes
+
+- [#2569](https://github.com/toptal/picasso/pull/2569) [`e8833df2`](https://github.com/toptal/picasso/commit/e8833df2329c6285840ae02c0d029fe4eebb8247) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Project
+
+  - Update typescript to version 4.6
+
+### Patch Changes
+
+- Updated dependencies [[`e8833df2`](https://github.com/toptal/picasso/commit/e8833df2329c6285840ae02c0d029fe4eebb8247)]:
+  - @toptal/picasso@21.0.0
+  - @toptal/picasso-shared@8.0.0
+
+## 33.2.0
+
+### Minor Changes
+
+- [#2592](https://github.com/toptal/picasso/pull/2592) [`7470243f`](https://github.com/toptal/picasso/commit/7470243feefc9a84170d03cb6dde1eac3acbea0e) Thanks [@denieler](https://github.com/denieler)! - ---
+
+  ### BarChart
+
+  - added `isAnimationActive` prop to disable animations for the chart
+
+## 33.1.0
+
+### Minor Changes
+
+- [#2575](https://github.com/toptal/picasso/pull/2575) [`a1e931d0`](https://github.com/toptal/picasso/commit/a1e931d00b707a97783d8f443bbc14d06d96a896) Thanks [@DmitriyT51](https://github.com/DmitriyT51)! - ---
+
+  ### BarChart
+
+  - Add new optional prop `showBarLabel` for BarChart component which (being set to `false`) allows hiding labels of all bars.
+
+## 33.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`1ba287fa`](https://github.com/toptal/picasso/commit/1ba287fa839146f347d7fba8842368f8cd2bbb0e)]:
+  - @toptal/picasso@20.0.0
+
 ## 32.0.0
 
 ### Patch Changes
