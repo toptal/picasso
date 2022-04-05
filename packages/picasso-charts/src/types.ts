@@ -22,10 +22,15 @@ export type PositionTranslate = {
 }
 
 export interface BaseChartProps extends BaseProps {
+  /** Height of chart */
   height?: number
+  /** Width of chart */
   width?: number
+  /** Toggle tooltip on hover */
   tooltip?: boolean
+  /** Requires `tooltip` to be `true` */
   customTooltip?: React.ReactElement
+  /** Allows the tooltip to extend beyond the viewBox of the chart itself */
   allowTooltipEscapeViewBox?: boolean
 }
 
@@ -43,12 +48,23 @@ export type LineConfig = Record<
 export type Domain = [number, number]
 
 export type BaseLineChartProps = BaseChartProps & {
+  /** Text label to be displayed on the Y axis */
   unit?: string
+  /** Name of point on the horizontal axis */
   xAxisKey?: string
+  /**
+   * A dictionary of each line name as a key and the line's color and variant for value
+   * @type Record<string, { color: string; variant?: 'solid' | 'reference' }>
+   */
   lineConfig: LineConfig
+  /** Children component which will be rendered below the line graphs */
   children?: ReactNode
+  /** Shows the bottom Y axis label */
   showBottomYAxisLabel?: boolean
+  /** Returns X axis ticks based on data */
   getXAxisTicks?: (orderedChartData: OrderedChartDataPoint[]) => number[]
+  /** Returns Y axis ticks */
   getYAxisTicks?: (domain: Domain) => number[]
+  /** The formatter function of tick. */
   formatYAxisTick?: (value: number, domain: Domain) => string
 }
