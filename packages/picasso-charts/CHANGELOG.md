@@ -1,5 +1,25 @@
 # Change Log
 
+## 33.2.0
+
+### Minor Changes
+
+- [#2592](https://github.com/toptal/picasso/pull/2592) [`7470243f`](https://github.com/toptal/picasso/commit/7470243feefc9a84170d03cb6dde1eac3acbea0e) Thanks [@denieler](https://github.com/denieler)! - ---
+
+  ### BarChart
+
+  - added `isAnimationActive` prop to disable animations for the chart
+
+## 33.1.0
+
+### Minor Changes
+
+- [#2575](https://github.com/toptal/picasso/pull/2575) [`a1e931d0`](https://github.com/toptal/picasso/commit/a1e931d00b707a97783d8f443bbc14d06d96a896) Thanks [@DmitriyT51](https://github.com/DmitriyT51)! - ---
+
+  ### BarChart
+
+  - Add new optional prop `showBarLabel` for BarChart component which (being set to `false`) allows hiding labels of all bars.
+
 ## 33.0.0
 
 ### Patch Changes

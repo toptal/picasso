@@ -57,8 +57,20 @@ export type HighlightConfig = {
 }
 
 export type Props = BaseLineChartProps & {
+  /**
+   * A list of data points to be rendered as a line chart
+   * @type { [key: string]: string|number; }[]
+   */
   data: ChartDataPoint[]
+  /**
+   * A list of regions to be highlighted
+   * @type { from: number; to: number; color: string; }[]
+   */
   highlights?: HighlightConfig[] | null
+  /**
+   * Will display a full-width horizontal dashed line at the specified height in the specified color
+   * @type { y: number; color: string; }[]
+   */
   referenceLines?: ReferenceLineType[]
 }
 

@@ -78,6 +78,7 @@ const TestBarChart = ({ ...rest }) => (
       getBarLabelColor={() => palette.grey.dark}
       width={720}
       tooltip
+      isAnimationActive={false}
       {...rest}
     />
   </TestingPicasso>
@@ -98,6 +99,12 @@ const assertCustomTooltipContent = (text: string) => {
 }
 
 describe('BarChart', () => {
+  it('renders default chart', () => {
+    mount(<TestBarChart />)
+
+    cy.get('body').happoScreenshot()
+  })
+
   it('shows default tooltip on hover', () => {
     mount(<TestBarChart />)
 
@@ -149,10 +156,6 @@ describe('BarChart', () => {
 
   it('hides label of each bar via passed `showBarLabel` prop being set to `false`', () => {
     mount(<TestBarChart showBarLabel={false} />)
-
-    // Wait for bars from BarChart to finish height animation
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(1000)
 
     cy.get('body').happoScreenshot()
   })
