@@ -29,10 +29,23 @@ const {
   TICK_HEIGHT
 } = CHART_CONSTANTS
 
+export type BarChartDataItem<K extends string | number | symbol> = {
+  name: string
+  value: {
+    [key in K]: number
+  }
+}
+
 export interface Props<K extends string | number | symbol>
   extends BaseChartProps {
-  data: { name: string; value: { [key in K]: number } }[]
+  /**
+   * A list of data points to be rendered as a bar chart
+   * @type { name: string; value: { [key in K]: number }; }[]
+   */
+  data: BarChartDataItem<K>[]
+  /** Name of point on the horizontal axis */
   labelKey?: string
+  /** Maps bar's key with a color to fill. */
   getBarColor: (params: {
     dataKey: string
     entry?: {
@@ -41,6 +54,7 @@ export interface Props<K extends string | number | symbol>
     }
     index?: number
   }) => string
+  /** Maps bar's key with a label color. */
   getBarLabelColor?: (params: { dataKey: string; index?: number }) => string
   testIds?: {
     tooltip?: string

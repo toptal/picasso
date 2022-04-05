@@ -6,83 +6,9 @@ const page = PicassoBook.section('Picasso Charts').createPage(
   'Responsive bar charts'
 )
 
-export const sharedChartDocs = {
-  height: {
-    name: 'height',
-    type: 'number',
-    description: 'Height of chart',
-    defaultValue: '200px'
-  },
-  width: {
-    name: 'width',
-    type: 'number',
-    description: 'Width of chart',
-    defaultValue: 'auto'
-  },
-  tooltip: {
-    name: 'tooltip',
-    type: 'boolean',
-    description: 'Toggle tooltip on hover',
-    defaultValue: false
-  },
-  customTooltip: {
-    name: 'customTooltip',
-    type: 'ReactElement',
-    description: 'Requires `tooltip` to be `true`'
-  },
-  allowTooltipEscapeViewBox: {
-    name: 'allowTooltipEscapeViewBox',
-    type: 'boolean',
-    description:
-      'Allows the tooltip to extend beyond the viewBox of the chart itself'
-  },
-  showBarLabel: {
-    name: 'showBarLabel',
-    type: 'boolean',
-    description: 'Shows label of each bar',
-    defaultValue: true
-  }
-}
-
 page.createTabChapter('Props').addComponentDocs({
   component: BarChart,
-  name: 'BarChart',
-  additionalDocs: Object.assign({}, sharedChartDocs, {
-    data: {
-      name: 'data',
-      type: {
-        name: '[]',
-        description: '{ name: string; value: { [key: K]: number } }'
-      },
-      description: 'A list of data points to be rendered as a bar chart',
-      required: true
-    },
-    getBarColor: {
-      name: 'getBarColor',
-      type: {
-        name: 'function',
-        description: `(params: {
-          dataKey: string
-          entry?: {
-            name: string
-            value: { [key in K]: number }
-          }
-          index?: number
-        }) => string`
-      },
-      description: "Maps bar's key with a color to fill.",
-      required: false
-    },
-    getBarLabelColor: {
-      name: 'getBarLabelColor',
-      type: {
-        name: 'function',
-        description: '(params: { dataKey: string; index?: number }) => string'
-      },
-      description: "Maps bar's key with a label color.",
-      required: false
-    }
-  })
+  name: 'BarChart'
 })
 
 page
