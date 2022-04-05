@@ -45,7 +45,7 @@ export interface Props extends BaseProps {
    * Indicate whether `RichTextEditor` is in error state
    */
   error?: boolean
-  /** Indicate `RichTextEditor` status */
+  /** Indicate `RichTextEditor` is in `error` or `default` state */
   status?: Exclude<Status, 'success'>
   /**
    * The maximum number of characters that the user can enter.

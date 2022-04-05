@@ -32,7 +32,7 @@ export interface SelectProps<
   disabled?: boolean
   /** @deprecated Indicate whether `Select` is in error state */
   error?: boolean
-  /** Indicate whether `Select` is in error state */
+  /** Indicate whether `Select` is in `error` or `default` state */
   status?: Exclude<Status, 'success'>
   /** Component ID */
   id?: string

@@ -40,7 +40,7 @@ export interface Props
     > {
   /** Time value that will be selected in TimePicker */
   value?: string
-  /** Indicate whether `TimePicker` is in error state */
+  /** Indicate whether `TimePicker` is in `error` or `default` state */
   status?: Exclude<Status, 'success'>
 }
 
