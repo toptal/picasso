@@ -1,7 +1,6 @@
 import React, { useState, ReactNode } from 'react'
 import {
   Container,
-  Sidebar,
   PortfolioDesigner16,
   Profile16,
   Globe16,
@@ -30,14 +29,14 @@ const useGetData = (): [boolean, () => void] => {
 }
 
 const SidebarMenu = ({ children }: { children: ReactNode }) => (
-  <Sidebar>
-    <Sidebar.Menu>
-      <Sidebar.Item icon={<PortfolioDesigner16 />}>Home</Sidebar.Item>
-      <Sidebar.Item icon={<Profile16 />}>Contacts</Sidebar.Item>
-      <Sidebar.Item icon={<Globe16 />}>Team</Sidebar.Item>
-    </Sidebar.Menu>
-    <Sidebar.Menu bottom>{children}</Sidebar.Menu>
-  </Sidebar>
+  <Page.Sidebar>
+    <Page.Sidebar.Menu>
+      <Page.Sidebar.Item icon={<PortfolioDesigner16 />}>Home</Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Profile16 />}>Contacts</Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Globe16 />}>Team</Page.Sidebar.Item>
+    </Page.Sidebar.Menu>
+    <Page.Sidebar.Menu bottom>{children}</Page.Sidebar.Menu>
+  </Page.Sidebar>
 )
 
 const RightContent = () => (
@@ -154,9 +153,9 @@ const PageExample = () => {
         <Page.TopBar rightContent={<RightContent />} title='Default example' />
         <Page.Content>
           <SidebarMenu>
-            <Sidebar.Item icon={<Update16 />} onClick={reloadData}>
+            <Page.Sidebar.Item icon={<Update16 />} onClick={reloadData}>
               Click me to reload the content!
-            </Sidebar.Item>
+            </Page.Sidebar.Item>
           </SidebarMenu>
           <Container
             style={{ flex: 1 }}

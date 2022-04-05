@@ -22,7 +22,7 @@ import Accordion from '../Accordion'
 import MenuItem, { MenuItemAttributes } from '../MenuItem'
 import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
-import { VariantType } from '../Sidebar/types'
+import { VariantType } from '../PageSidebar/types'
 import noop from '../utils/noop'
 
 export const SubMenuContext = React.createContext<{

@@ -4,7 +4,7 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import { Candidates16 } from '../Icon'
-import Sidebar from '../Sidebar'
+import PageSidebar from '../PageSidebar'
 import { Props } from './SidebarItem'
 
 jest.mock('ap-style-title-case')
@@ -18,7 +18,7 @@ const TestSidebarItem = ({
   menu
 }: OmitInternalProps<Props>) => {
   return (
-    <Sidebar.Item
+    <PageSidebar.Item
       icon={icon}
       selected={selected}
       collapsible={collapsible}
@@ -26,7 +26,7 @@ const TestSidebarItem = ({
       menu={menu}
     >
       {children}
-    </Sidebar.Item>
+    </PageSidebar.Item>
   )
 }
 
@@ -67,9 +67,9 @@ describe('SidebarItem', () => {
 
   it('use accordion for collapsible with menu', () => {
     const menu = (
-      <Sidebar.Menu>
-        <Sidebar.Item>Menu item</Sidebar.Item>
-      </Sidebar.Menu>
+      <PageSidebar.Menu>
+        <PageSidebar.Item>Menu item</PageSidebar.Item>
+      </PageSidebar.Menu>
     )
 
     const { container } = render(
@@ -83,20 +83,20 @@ describe('SidebarItem', () => {
 
   it('collapsible menu is expanded when one of the children is selected', () => {
     const { container } = render(
-      <Sidebar>
-        <Sidebar.Menu>
-          <Sidebar.Item
+      <PageSidebar>
+        <PageSidebar.Menu>
+          <PageSidebar.Item
             menu={
-              <Sidebar.Menu>
-                <Sidebar.Item selected>Menu item</Sidebar.Item>
-              </Sidebar.Menu>
+              <PageSidebar.Menu>
+                <PageSidebar.Item selected>Menu item</PageSidebar.Item>
+              </PageSidebar.Menu>
             }
             collapsible
           >
             Test item
-          </Sidebar.Item>
-        </Sidebar.Menu>
-      </Sidebar>
+          </PageSidebar.Item>
+        </PageSidebar.Menu>
+      </PageSidebar>
     )
 
     expect(container).toMatchSnapshot()
@@ -104,19 +104,19 @@ describe('SidebarItem', () => {
 
   it('collapsible menu is expanded when one of the children is selected and subMenu has a wrapper component', () => {
     const SubMenu = () => (
-      <Sidebar.Menu>
-        <Sidebar.Item selected>Menu item</Sidebar.Item>
-      </Sidebar.Menu>
+      <PageSidebar.Menu>
+        <PageSidebar.Item selected>Menu item</PageSidebar.Item>
+      </PageSidebar.Menu>
     )
 
     const { container } = render(
-      <Sidebar>
-        <Sidebar.Menu>
-          <Sidebar.Item menu={<SubMenu />} collapsible>
+      <PageSidebar>
+        <PageSidebar.Menu>
+          <PageSidebar.Item menu={<SubMenu />} collapsible>
             Test item
-          </Sidebar.Item>
-        </Sidebar.Menu>
-      </Sidebar>
+          </PageSidebar.Item>
+        </PageSidebar.Menu>
+      </PageSidebar>
     )
 
     expect(container).toMatchSnapshot()
@@ -124,9 +124,9 @@ describe('SidebarItem', () => {
 
   it("don't use accordion for non-collapsible with menu", () => {
     const menu = (
-      <Sidebar.Menu>
-        <Sidebar.Item>Menu item</Sidebar.Item>
-      </Sidebar.Menu>
+      <PageSidebar.Menu>
+        <PageSidebar.Item>Menu item</PageSidebar.Item>
+      </PageSidebar.Menu>
     )
 
     const { container } = render(
@@ -141,9 +141,9 @@ describe('SidebarItem', () => {
   it('should transform menu items text to title case when Picasso titleCase property is true', () => {
     const MENU_TEXT_CONTENT = 'Test vh5'
     const menu = (
-      <Sidebar.Menu>
-        <Sidebar.Item>{MENU_TEXT_CONTENT}</Sidebar.Item>
-      </Sidebar.Menu>
+      <PageSidebar.Menu>
+        <PageSidebar.Item>{MENU_TEXT_CONTENT}</PageSidebar.Item>
+      </PageSidebar.Menu>
     )
 
     const SIDEBAR_ITEM_TEXT_CONTENT = 'Test by2'
@@ -166,9 +166,9 @@ describe('SidebarItem', () => {
   it('should not transform menu items text to title case when Picasso titleCase property is true but the component property overrides it', () => {
     const TEXT_CONTENT = 'Test vi7'
     const menu = (
-      <Sidebar.Menu>
-        <Sidebar.Item>{TEXT_CONTENT}</Sidebar.Item>
-      </Sidebar.Menu>
+      <PageSidebar.Menu>
+        <PageSidebar.Item>{TEXT_CONTENT}</PageSidebar.Item>
+      </PageSidebar.Menu>
     )
 
     render(

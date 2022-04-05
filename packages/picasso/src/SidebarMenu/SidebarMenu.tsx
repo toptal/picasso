@@ -11,8 +11,8 @@ import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
-import { SidebarContext } from '../Sidebar'
-import { SidebarContextProps } from '../Sidebar/types'
+import { SidebarContext } from '../PageSidebar'
+import { SidebarContextProps } from '../PageSidebar/types'
 import * as SidebarItem from '../SidebarItem'
 import styles from './styles'
 
