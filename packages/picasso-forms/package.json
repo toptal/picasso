@@ -26,6 +26,7 @@
     "@toptal/picasso": "^20.0.0",
     "@toptal/picasso-shared": "^7.2.3",
     "react": "^16.12.0",
+    "typescript": "4.6.x",
     "react-dom": "^16.12.0"
   },
   "dependencies": {
