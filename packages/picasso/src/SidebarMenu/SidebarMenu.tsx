@@ -35,12 +35,14 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
     const {
       variant,
       expandedItemKey,
-      setExpandedItemKey
+      setExpandedItemKey,
+      isCollapsed: isSidebarCollapsed
     } = useContext<SidebarContextProps>(SidebarContext)
 
-    const expandSidebarItem = useCallback(index => setExpandedItemKey(index), [
-      setExpandedItemKey
-    ])
+    const expandSidebarItem = useCallback(
+      index => setExpandedItemKey(index),
+      [setExpandedItemKey]
+    )
 
     useEffect(() => {
       const hasSelectedItem = React.Children.map(children, child => {
@@ -58,7 +60,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
       const sidebarItem = child as ReactElement
 
       if (!sidebarItem.props.collapsible) {
-        return React.cloneElement(sidebarItem, { variant })
+        return React.cloneElement(sidebarItem, { variant, isSidebarCollapsed })
       }
 
       const isExpanded = expandedItemKey === index
@@ -67,6 +69,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         variant,
         isExpanded,
         expand: expandSidebarItem,
+        isSidebarCollapsed,
         index
       })
     })

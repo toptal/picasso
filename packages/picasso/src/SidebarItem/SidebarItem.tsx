@@ -12,18 +12,16 @@ import { MenuItemProps } from '@material-ui/core/MenuItem'
 import {
   BaseProps,
   TextLabelProps,
-  OverridableComponent,
-  useTitleCase
+  OverridableComponent
 } from '@toptal/picasso-shared'
 
-import Container from '../Container'
-import Typography from '../Typography'
 import Accordion from '../Accordion'
 import MenuItem, { MenuItemAttributes } from '../MenuItem'
 import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../Sidebar/types'
 import noop from '../utils/noop'
+import { ItemContent } from './ItemContent'
 
 export const SubMenuContext = React.createContext<{
   parentSidebarItemIndex?: number | null
@@ -52,6 +50,8 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Callback when item is hovered */
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  /** Indicates sidebar has collapsed */
+  isSidebarCollapsed?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -62,7 +62,6 @@ export const SidebarItem: OverridableComponent<Props> = memo(
   forwardRef<HTMLElement, Props>(function SidebarItem(props, ref) {
     const {
       as,
-      children,
       className,
       collapsible,
       disabled,
@@ -74,7 +73,6 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       onClick = noop,
       selected,
       style,
-      titleCase: propsTitleCase,
       variant = 'light',
       ...rest
     } = props
@@ -96,8 +94,6 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       [index, menu]
     )
 
-    const titleCase = useTitleCase(propsTitleCase)
-
     const handleMenuItemClick = (
       event: React.MouseEvent<HTMLElement, MouseEvent>
     ) => {
@@ -116,21 +112,6 @@ export const SidebarItem: OverridableComponent<Props> = memo(
         expand(index!)
       }
     }
-
-    const resolvedChildren =
-      typeof children === 'string' ? (
-        <Typography
-          className={classes.labelContent}
-          color='inherit'
-          size='medium'
-          titleCase={titleCase}
-          noWrap
-        >
-          {children}
-        </Typography>
-      ) : (
-        children
-      )
 
     const menuItem = (
       <MenuItem
@@ -155,18 +136,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
         variant={variant}
         nonSelectable
       >
-        <Container className={classes.noWrap} inline flex alignItems='center'>
-          {icon}
-          <Container
-            className={cx(classes.label, classes.noWrap, {
-              [classes.withIcon]: hasIcon
-            })}
-            flex
-            alignItems='center'
-          >
-            {resolvedChildren}
-          </Container>
-        </Container>
+        <ItemContent {...props} classes={classes} />
       </MenuItem>
     )
 

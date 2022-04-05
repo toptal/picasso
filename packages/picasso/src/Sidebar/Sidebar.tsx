@@ -7,7 +7,7 @@ import { useSidebar } from '@toptal/picasso-provider'
 import Button from '../Button'
 import Container from '../Container'
 import Dropdown from '../Dropdown'
-import { Overview16, Close16 } from '../Icon'
+import { Overview16, Close16, BackMinor16, ChevronRight16 } from '../Icon'
 import { useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
@@ -57,12 +57,15 @@ export interface Props extends BaseProps {
   /** Style variant of Sidebar and subcomponents */
   variant?: VariantType
   /** Content */
-  children?: ReactNode
+  children?: ReactNode | ChildrenType
+  /** Indicates Sidebar is collapsible */
+  collapsible?: boolean
 }
 
 export const SidebarContext = React.createContext<SidebarContextProps>({
   expandedItemKey: null,
-  setExpandedItemKey: () => {}
+  setExpandedItemKey: () => {},
+  isCollapsed: false
 })
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -74,7 +77,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   props,
   ref
 ) {
-  const { children, variant = 'light', className, style } = props
+  const { children, variant = 'light', className, style, collapsible } = props
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
 
@@ -88,6 +91,8 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
 
   const isCompactLayout = useBreakpoint(['small', 'medium'])
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
+  const [isHovered, setIsHovered] = useState<boolean>(false)
 
   const sidebar = (
     <Container
@@ -95,17 +100,32 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       flex
       direction='column'
       style={style}
-      className={cx(classes.root, className, classes[variant])}
+      className={cx(
+        classes.root,
+        className,
+        classes[variant],
+        collapsible && isCollapsed && classes.collapsed
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className={classes.spacer} />
+      {collapsible && isHovered && (
+        <Button.Circular
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className={classes.collapseButton}
+          icon={isCollapsed ? <ChevronRight16 /> : <BackMinor16 />}
+        />
+      )}
       <SidebarContext.Provider
         value={{
           variant,
           expandedItemKey,
-          setExpandedItemKey
+          setExpandedItemKey,
+          isCollapsed
         }}
       >
-        {children}
+        {isChildrenReactNode(children) ? children({ isCollapsed }) : children}
       </SidebarContext.Provider>
     </Container>
   )
@@ -130,3 +150,11 @@ export default Object.assign(Sidebar, {
   Item: SidebarItem,
   Logo: SidebarLogo
 })
+
+type ChildrenType = (props: { isCollapsed: boolean }) => ReactNode
+
+const isChildrenReactNode = (
+  children: ReactNode | ChildrenType
+): children is ChildrenType => {
+  return (children as ChildrenType)?.caller !== undefined
+}

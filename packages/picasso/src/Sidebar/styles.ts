@@ -8,6 +8,8 @@ export default ({ palette, screens, zIndex }: Theme) =>
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
       padding: '1rem 0',
       fontSize: '1rem',
+      position: 'relative',
+      transition: 'width 500ms ease-in-out',
 
       [screens('small', 'medium')]: {
         width: '100vw',
@@ -49,5 +51,14 @@ export default ({ palette, screens, zIndex }: Theme) =>
     dark: {
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
       backgroundColor: palette.grey.darker
+    },
+    collapseButton: {
+      position: 'absolute',
+      right: '-0.75rem',
+      top: '0.75rem'
+    },
+    collapsed: {
+      width: '5rem',
+      transition: 'width 500ms ease-in-out'
     }
   })

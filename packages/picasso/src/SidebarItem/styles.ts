@@ -15,6 +15,13 @@ export default ({ palette, sizes }: Theme) =>
       '$nestedMenuWithIcon &': {
         padding: '0 0 0 2.875rem',
         marginRight: '1rem'
+      },
+
+      '&::before': {
+        transition: 'transform 500ms ease-in-out'
+      },
+      '&::after': {
+        transition: 'transform 500ms ease-in-out'
       }
     },
     roundedBorder: {

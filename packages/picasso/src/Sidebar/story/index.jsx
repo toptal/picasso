@@ -20,5 +20,6 @@ page
   .createChapter()
   .addExample('Sidebar/story/Default.example.tsx', 'Default')
   .addExample('Sidebar/story/Variants.example.tsx', 'Variants')
+  .addExample('Sidebar/story/Collapsible.example.tsx', 'Collapsible')
 
 page.connect(sidebarItemStory.chapter)

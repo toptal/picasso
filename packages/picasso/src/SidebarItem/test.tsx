@@ -13,7 +13,7 @@ const TestSidebarItem = ({
   children,
   icon,
   selected,
-  collapsible,
+  collapsible: collapsible,
   titleCase,
   menu
 }: OmitInternalProps<Props>) => {
