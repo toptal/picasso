@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.4.0
+
+### Minor Changes
+
+- [#2572](https://github.com/toptal/picasso/pull/2572) [`1ba287fa`](https://github.com/toptal/picasso/commit/1ba287fa839146f347d7fba8842368f8cd2bbb0e) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  - Added codemod for removing `varint` prop usage from `Tooltip` component
+
 ## 4.3.0
 
 ### Minor Changes

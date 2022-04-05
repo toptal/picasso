@@ -263,16 +263,6 @@ describe('Tooltip', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it('renders in light variant', () => {
-    mount(<SnapshotTooltipExample variant='light' />)
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders in dark variant', () => {
-    mount(<SnapshotTooltipExample variant='dark' />)
-    cy.get('body').happoScreenshot()
-  })
-
   it('renders long text with max width', () => {
     mount(<SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} />)
     cy.get('body').happoScreenshot()
@@ -372,12 +362,8 @@ describe('Tooltip', () => {
 
   it.skip('renders interactive content', () => {
     mount(<LinkTooltipExample />)
-    cy.get('[data-testid="tooltip-trigger"]')
-      .as('Trigger')
-      .realHover()
-    cy.get('[data-testid="tooltip-content"]')
-      .as('Content')
-      .should('be.visible')
+    cy.get('[data-testid="tooltip-trigger"]').as('Trigger').realHover()
+    cy.get('[data-testid="tooltip-content"]').as('Content').should('be.visible')
     cy.get('body').happoScreenshot()
 
     cy.get('@Content').click()

@@ -17,8 +17,6 @@ import Typography from '../Typography'
 import { isPointerDevice } from '../utils'
 import styles from './styles'
 
-export type VariantType = 'light' | 'dark'
-
 export type PlacementType = TooltipProps['placement']
 
 type MaxWidthType = 'none' | 'default'
@@ -144,8 +142,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   /** Content to be rendered inside tooltip */
   content?: ReactNode
-  /** Select color variant to use */
-  variant?: VariantType
   /** Where should the tooltip be positioned */
   placement?: PlacementType
   /** Called when tooltip is opened */
@@ -191,7 +187,6 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     onClose,
     onTransitionExiting,
     onTransitionExited,
-    variant,
     disableListeners,
     preventOverflow,
     disablePortal,
@@ -204,7 +199,6 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
   } = props
 
   const classes = useStyles()
-  const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
   const picassoRootContainer = usePicassoRoot()
 
   const delayDuration = getDelayDuration(delay)
@@ -221,7 +215,6 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
   const title = (
     <Typography as='div' size='small' color='inherit'>
       {content}
-      {!compact && <span className={classes.arrow} ref={setArrowRef} />}
     </Typography>
   )
 
@@ -229,16 +222,13 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     <MUITooltip
       {...rest}
       ref={ref}
+      arrow={!compact}
       PopperProps={{
         ref: tooltipRef,
         container: container || picassoRootContainer,
         disablePortal,
         popperOptions: {
           modifiers: {
-            arrow: {
-              enabled: Boolean(arrowRef),
-              element: arrowRef
-            },
             preventOverflow: {
               enabled: preventOverflow,
               boundariesElement: 'window'
@@ -255,10 +245,9 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
         ...(onTransitionExited && { onExiting: onTransitionExited })
       }}
       classes={{
-        popper:
-          variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper,
+        arrow: classes.arrow,
         tooltip: cx(classes.tooltip, {
-          [classes.light]: variant === 'light',
+          [classes.light]: !compact,
           [classes.compact]: compact,
           [classes.noMaxWidth]: maxWidth === 'none'
         })
@@ -285,7 +274,6 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
 Tooltip.defaultProps = {
   preventOverflow: true,
   placement: 'top',
-  variant: 'dark',
   disablePortal: false,
   maxWidth: 'default',
   delay: 'short'

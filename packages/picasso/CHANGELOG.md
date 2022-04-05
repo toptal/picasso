@@ -1,5 +1,43 @@
 # Change Log
 
+## 20.1.0
+
+### Minor Changes
+
+- [#2571](https://github.com/toptal/picasso/pull/2571) [`f75a83ee`](https://github.com/toptal/picasso/commit/f75a83ee4ff5e067a87d8ca3606df6eb54d33a65) Thanks [@rhuankarlus](https://github.com/rhuankarlus)! - ---
+
+  ### FileInput
+
+  - Added the `onFocus` and `onBlur` events to the `FileInput` component.
+
+## 20.0.1
+
+### Patch Changes
+
+- [#2566](https://github.com/toptal/picasso/pull/2566) [`52f992fe`](https://github.com/toptal/picasso/commit/52f992fe194db50ac9de1a7ba3667a388812e7f9) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### RichText
+
+  Handle empty children of ReactNode.
+
+## 20.0.0
+
+### Major Changes
+
+- [#2572](https://github.com/toptal/picasso/pull/2572) [`1ba287fa`](https://github.com/toptal/picasso/commit/1ba287fa839146f347d7fba8842368f8cd2bbb0e) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Tooltip
+
+  - `variant` prop has been removed according to BASE 2.0 designs. From now on, tooltip background color will change according to `compact` prop usage.
+
+## 19.4.1
+
+### Patch Changes
+
+- [#2563](https://github.com/toptal/picasso/pull/2563) [`8f3f3363`](https://github.com/toptal/picasso/commit/8f3f3363bb586c77249731f9117dbdd74276b7b7) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  - replaced `useIsomorphicLayoutEffect` with `useEffect` where it was a better fit
+
 ## 19.4.0
 
 ### Minor Changes
