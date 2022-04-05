@@ -14,9 +14,8 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('BarChart/story/Default.example.tsx', {
-    title: 'Default',
-    delay: 500
-  })
+    title: 'Default'
+  }) // picasso-skip-visuals
   .addExample('BarChart/story/Tooltip.example.tsx', {
     title: 'Tooltip',
     description:

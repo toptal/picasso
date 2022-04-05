@@ -45,7 +45,7 @@ export interface Props<K extends string | number | symbol>
   data: BarChartDataItem<K>[]
   /** Name of point on the horizontal axis */
   labelKey?: string
-  /** Maps bar's key with a color to fill. */
+  /** Maps bar's key with a color to fill */
   getBarColor: (params: {
     dataKey: string
     entry?: {
@@ -54,13 +54,15 @@ export interface Props<K extends string | number | symbol>
     }
     index?: number
   }) => string
-  /** Maps bar's key with a label color. */
+  /** Maps bar's key with a label color */
   getBarLabelColor?: (params: { dataKey: string; index?: number }) => string
   testIds?: {
     tooltip?: string
   }
   /** Shows label of each bar */
   showBarLabel?: boolean
+  /** If set false, animation of bar will be disabled */
+  isAnimationActive?: boolean
 }
 
 const StyleOverrides = () => (
@@ -106,6 +108,7 @@ const BarChart = <K extends string>({
   getBarLabelColor = defaultGetBarLabelColor,
   testIds,
   showBarLabel,
+  isAnimationActive,
   ...rest
 }: Props<K>) => {
   const dataKeys = Object.keys(data[0].value) as K[]
@@ -179,6 +182,7 @@ const BarChart = <K extends string>({
                   />
                 ) : undefined
               }
+              isAnimationActive={isAnimationActive}
             >
               {data.map((entry, index) => {
                 const fill = getBarColor?.({ dataKey, entry, index })
