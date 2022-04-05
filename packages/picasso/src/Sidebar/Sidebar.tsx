@@ -57,7 +57,7 @@ export interface Props extends BaseProps {
   /** Style variant of Sidebar and subcomponents */
   variant?: VariantType
   /** Content */
-  children?: ReactNode | ChildrenType
+  children?: ReactNode
   /** Indicates Sidebar is collapsible */
   collapsible?: boolean
 }
@@ -125,7 +125,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
           isCollapsed
         }}
       >
-        {isChildrenReactNode(children) ? children({ isCollapsed }) : children}
+        {children}
       </SidebarContext.Provider>
     </Container>
   )
@@ -150,11 +150,3 @@ export default Object.assign(Sidebar, {
   Item: SidebarItem,
   Logo: SidebarLogo
 })
-
-type ChildrenType = (props: { isCollapsed: boolean }) => ReactNode
-
-const isChildrenReactNode = (
-  children: ReactNode | ChildrenType
-): children is ChildrenType => {
-  return (children as ChildrenType)?.caller !== undefined
-}

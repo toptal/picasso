@@ -1,16 +1,27 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes, useContext } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Container from '../Container'
+import { SidebarContextProps } from '../Sidebar/types'
+import { SidebarContext } from '../Sidebar'
 
 export interface Props
   extends BaseProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
-  children: ReactNode
+  children?: ReactNode
+  /** Icon to display when Sidebar is collapsed */
+  logoIcon?: ReactNode
+  /** Icon to display when Sidebar is default */
+  fullLogo?: ReactNode
 }
 
 export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
-  function SidebarLogo({ children, ...rest }, ref) {
+  function SidebarLogo({ children, logoIcon, fullLogo, ...rest }, ref) {
+    const { isCollapsed: isSidebarCollapsed } =
+      useContext<SidebarContextProps>(SidebarContext)
+
+    const content = isSidebarCollapsed ? logoIcon : fullLogo
+
     return (
       <Container
         {...rest}
@@ -20,7 +31,7 @@ export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
         left='large'
         alignItems='center'
       >
-        {children}
+        {content ?? children}
       </Container>
     )
   }

@@ -106,5 +106,8 @@ export default ({ palette, sizes }: Theme) =>
     collapsible: {
       margin: 0,
       padding: 0
+    },
+    collapsedContent: {
+      opacity: 0
     }
   })

@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette, screens, zIndex }: Theme) =>
+export default ({ palette, screens, zIndex, transitions }: Theme) =>
   createStyles({
     root: {
       height: '100%',
@@ -9,7 +9,7 @@ export default ({ palette, screens, zIndex }: Theme) =>
       padding: '1rem 0',
       fontSize: '1rem',
       position: 'relative',
-      transition: 'width 500ms ease-in-out',
+      transition: `width ${transitions.duration.enteringScreen}ms ease-in-out`,
 
       [screens('small', 'medium')]: {
         width: '100vw',
@@ -59,6 +59,6 @@ export default ({ palette, screens, zIndex }: Theme) =>
     },
     collapsed: {
       width: '5rem',
-      transition: 'width 500ms ease-in-out'
+      transition: `width ${transitions.duration.leavingScreen}ms ease-in-out`
     }
   })

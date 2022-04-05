@@ -40,17 +40,20 @@ export const ItemContent = (props: Props) => {
   return (
     <Container className={classes.noWrap} inline flex alignItems='center'>
       {icon}
-      {!isSidebarCollapsed && (
-        <Container
-          className={cx(classes.label, classes.noWrap, {
+      <Container
+        className={cx(
+          classes.label,
+          classes.noWrap,
+          isSidebarCollapsed && classes.collapsedContent,
+          {
             [classes.withIcon]: hasIcon
-          })}
-          flex
-          alignItems='center'
-        >
-          {resolvedChildren}
-        </Container>
-      )}
+          }
+        )}
+        flex
+        alignItems='center'
+      >
+        {resolvedChildren}
+      </Container>
     </Container>
   )
 }
