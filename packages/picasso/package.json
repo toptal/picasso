@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "21.0.0",
+  "version": "21.1.0",
   "description": "Toptal UI components library",
   "publishConfig": {
     "access": "public",
@@ -55,7 +55,6 @@
     "react-router-dom": "^5.2.0",
     "react-truncate": "^2.4.0",
     "simple-react-calendar": "^2.2.8"
-
   },
   "devDependencies": {
     "@babel/types": "^7.15.0",
