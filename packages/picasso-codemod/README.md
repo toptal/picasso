@@ -41,6 +41,37 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 ## Included Scripts
 
+
+### v22.0.0
+
+Replaces imports and components from `Sidebar` to `Page.Sidebar`
+
+#### `page-sidebar`
+
+```diff
+-<Sidebar>
+-  <Sidebar.Logo>Foo</Sidebar.Logo>
+-  <Sidebar.Menu>
+-    <Sidebar.Item></Sidebar.Item>
+-  </Sidebar.Menu>
+-</Sidebar>
++<Page.Sidebar>
++  <Page.Sidebar.Logo>Foo</Page.Sidebar.Logo>
++  <Page.Sidebar.Menu>
++    <Page.Sidebar.Item></Page.Sidebar.Item>
++  </Page.Sidebar.Menu>
++</Page.Sidebar>
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx @toptal/picasso-codemod v22.0.0/page-sidebar
+```
+
+</details>
+
 ### v20.0.0
 
 #### `replace-error`
