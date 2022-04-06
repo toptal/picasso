@@ -10,7 +10,7 @@ import { CheckboxGroupContext } from '../CheckboxGroup'
 
 type CheckboxValue = CheckboxProps['value'] | CheckboxProps['checked']
 
-type CheckboxFormProps = Omit<CheckboxProps, 'requiredDecoration'> & {
+type CheckboxFormProps = Omit<CheckboxProps, 'isOptional'> & {
   required?: boolean
 }
 type CheckboxWithoutGroup = CheckboxFormProps & FieldProps<CheckboxValue>

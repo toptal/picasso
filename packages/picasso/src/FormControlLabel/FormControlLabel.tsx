@@ -9,7 +9,6 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
-import { RequiredDecoration } from '../FormLabel'
 import styles from './styles'
 import Form from '../Form'
 
@@ -27,8 +26,8 @@ export interface Props
   label?: ReactNode
   /** Shows whether label is disabled or not */
   disabled?: boolean
-  /** Whether to show (optional) postfix as a 'required' decoration */
-  requiredDecoration?: RequiredDecoration
+  /** Whether to show (optional) postfix */
+  isOptional?: boolean
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -43,7 +42,7 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
       className,
       style,
       disabled,
-      requiredDecoration,
+      isOptional,
       titleCase,
       // Avoid passing external classes inside the rest props
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -70,7 +69,7 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
         <Form.Label
           className={classes.label}
           as='span'
-          requiredDecoration={requiredDecoration}
+          isOptional={isOptional}
           disabled={disabled}
           titleCase={titleCase}
         >

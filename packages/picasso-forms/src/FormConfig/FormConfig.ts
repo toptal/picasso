@@ -1,10 +1,7 @@
 import { createContext, useContext } from 'react'
 
-export type RequiredVariant = 'default'
-
 export interface FormConfigProps {
   validateOnSubmit?: boolean
-  requiredVariant?: RequiredVariant
   showValidState?: boolean
 }
 

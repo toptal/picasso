@@ -10,7 +10,7 @@ jest.mock('ap-style-title-case')
 
 const TestFormLabel = ({
   children,
-  requiredDecoration,
+  isOptional,
   disabled,
   titleCase,
   htmlFor,
@@ -20,7 +20,7 @@ const TestFormLabel = ({
     <Form>
       <Form.Field>
         <FormLabel
-          requiredDecoration={requiredDecoration}
+          isOptional={isOptional}
           disabled={disabled}
           titleCase={titleCase}
           htmlFor={htmlFor}
@@ -57,7 +57,7 @@ describe('FormLabel', () => {
 
   it('required with (optional)', () => {
     const { container } = render(
-      <TestFormLabel requiredDecoration='optional'>Label</TestFormLabel>
+      <TestFormLabel isOptional>Label</TestFormLabel>
     )
 
     expect(container).toMatchSnapshot()

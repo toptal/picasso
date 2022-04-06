@@ -16,7 +16,7 @@ const Example = () => (
       </Form.Field>
 
       <Form.Field>
-        <Form.Label htmlFor='city' requiredDecoration='optional'>
+        <Form.Label htmlFor='city' isOptional>
           City
         </Form.Label>
         <Input id='city' width='full' placeholder='e.g., Barcelona' />

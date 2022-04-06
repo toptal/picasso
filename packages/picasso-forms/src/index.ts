@@ -43,5 +43,5 @@ export {
 export { default as Form } from './Form'
 export { default as FieldWrapper } from './FieldWrapper'
 export type { FieldProps } from './Field'
-export type { FormConfigProps, RequiredVariant } from './FormConfig'
+export type { FormConfigProps } from './FormConfig'
 // hygen code generator inserts export statements above this comment.

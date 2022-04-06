@@ -12,7 +12,6 @@ import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
 type ComponentType = 'label' | 'span'
-export type RequiredDecoration = 'optional'
 
 export interface Props
   extends BaseProps,
@@ -20,8 +19,8 @@ export interface Props
     HTMLAttributes<HTMLLabelElement | HTMLSpanElement> {
   /** Content of the label */
   children: ReactNode
-  /** Whether to show (optional) postfix as a 'required' decoration */
-  requiredDecoration?: RequiredDecoration
+  /** Whether to show (optional) postfix */
+  isOptional?: boolean
   /** Is this label for disabled input or not */
   disabled?: boolean
   /** Specifies an id of the input */
@@ -47,9 +46,9 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     className,
     style,
     inline,
+    isOptional,
     as: Component = 'label',
     titleCase: propsTitleCase,
-    requiredDecoration,
     size = 'medium',
     ...rest
   } = props
@@ -76,7 +75,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     >
       <span className={classes[size]}>
         {titleCase ? toTitleCase(children) : children}
-        {requiredDecoration === 'optional' && ' (optional)'}
+        {isOptional && ' (optional)'}
       </span>
     </Component>
   )

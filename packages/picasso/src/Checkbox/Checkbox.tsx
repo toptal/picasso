@@ -8,7 +8,6 @@ import {
 import cx from 'classnames'
 import React, { ComponentProps, forwardRef, ReactNode } from 'react'
 
-import { RequiredDecoration } from '../FormLabel'
 import CheckboxGroup from '../CheckboxGroup'
 import Container from '../Container'
 import FormControlLabel from '../FormControlLabel'
@@ -30,8 +29,8 @@ export interface Props
   label?: ReactNode
   /** The id of the input element */
   id?: string
-  /** Whether to show (optional) postfix for the label as a 'required' decoration */
-  requiredDecoration?: RequiredDecoration
+  /** Whether to show (optional) postfix */
+  isOptional?: boolean
   /** Callback invoked when `Checkbox` changed its value */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -49,7 +48,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       className,
       style,
       disabled,
-      requiredDecoration,
+      isOptional,
       onChange,
       value,
       checked,
@@ -110,7 +109,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
           label: classes.label
         }}
         control={muiCheckbox}
-        requiredDecoration={requiredDecoration}
+        isOptional={isOptional}
         disabled={disabled}
         label={label}
         titleCase={titleCase}
