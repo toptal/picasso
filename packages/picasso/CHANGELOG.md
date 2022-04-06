@@ -1,5 +1,24 @@
 # Change Log
 
+## 21.2.0
+
+### Minor Changes
+
+- [#2588](https://github.com/toptal/picasso/pull/2588) [`ace2ae7c`](https://github.com/toptal/picasso/commit/ace2ae7c1e2771fd87985e0e62eaf8dc71d3c424) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### RichTextEditor
+
+  - added new prop `status` to indicate the status of input field
+  - added deprecation warning for `error` prop usage
+
+### Patch Changes
+
+- [#2589](https://github.com/toptal/picasso/pull/2589) [`e6ee5341`](https://github.com/toptal/picasso/commit/e6ee5341d2fd75659733f2a91b21a80912840e60) Thanks [@sunRock98](https://github.com/sunRock98)! - ---
+
+  ### DatePicker
+
+  - fixed a bug, that disabled DatePicker when clicked was showing a Calendar
+
 ## 21.1.0
 
 ### Minor Changes
