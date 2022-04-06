@@ -32,8 +32,8 @@ export interface SelectProps<
   disabled?: boolean
   /** @deprecated Indicate whether `Select` is in error state */
   error?: boolean
-  /** Indicate whether `Select` is in error state */
-  status?: Exclude<Status, 'success'>
+  /** Indicate whether `Select` is in `error` or `default` state */
+  status?: Extract<Status, 'error' | 'default'>
   /** Component ID */
   id?: string
   /** Width of the component */

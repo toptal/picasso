@@ -20,6 +20,8 @@ import {
   useCounter
 } from './hooks'
 import { ASTType } from '../RichText'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import { Status } from '../OutlinedInput'
 
 export type CounterMessageSetter = (
   limit: number,
@@ -39,9 +41,12 @@ export interface Props extends BaseProps {
   /** unique identifier */
   id: string
   /**
-   * Indicate wether the editor is in an error state
+   * @deprecated Use the `status` prop instead to both support success and error states
+   * Indicate whether `RichTextEditor` is in error state
    */
   error?: boolean
+  /** Indicate `RichTextEditor` is in `error` or `default` state */
+  status?: Extract<Status, 'error' | 'default'>
   /**
    * The maximum number of characters that the user can enter.
    * If this value isn't specified, the user can enter an unlimited
@@ -90,8 +95,8 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
-  function RichTextEditor(
-    {
+  function RichTextEditor(props, ref) {
+    const {
       'data-testid': dataTestId,
       autoFocus = false,
       className,
@@ -107,16 +112,23 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       minLengthMessage,
       maxLengthMessage,
       style,
-      error,
+      status,
       testIds
-    },
-    ref
-  ) {
+    } = props
+
     const classes = useStyles()
     const toolbarRef = useRef<HTMLDivElement | null>(null)
     const editorRef = useRef<HTMLDivElement | null>(null)
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const { dispatch, state } = useTextEditorState()
+
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'RichTextEditor',
+      description:
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+    })
 
     const { handleSelectionChange } = useOnSelectionChange({ dispatch })
     const { handleTextFormat } = useOnTextFormat({ dispatch })
@@ -160,7 +172,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           {
             [classes.disabled]: disabled,
             [classes.focused]: isEditorFocused,
-            [classes.error]: error
+            [classes.error]: status === 'error'
           },
           className
         )}
@@ -222,7 +234,8 @@ RichTextEditor.defaultProps = {
   onChange: noop,
   onFocus: noop,
   onBlur: noop,
-  disabled: false
+  disabled: false,
+  status: 'default'
 }
 
 RichTextEditor.displayName = 'RichTextEditor'

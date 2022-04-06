@@ -20,3 +20,4 @@ page
   .addExample('RichTextEditor/story/DefaultValue.example.tsx', 'Default value') // picasso-skip-visuals
   .addExample('RichTextEditor/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
   .addExample('RichTextEditor/story/Limit.example.tsx', 'Limit Length') // picasso-skip-visuals
+  .addExample('RichTextEditor/story/Status.example.tsx', 'Status') // picasso-skip-visuals
