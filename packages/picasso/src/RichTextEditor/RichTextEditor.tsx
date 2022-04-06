@@ -21,6 +21,7 @@ import {
 } from './hooks'
 import { ASTType } from '../RichText'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import { Status } from '../OutlinedInput'
 
 export type CounterMessageSetter = (
   limit: number,
@@ -45,7 +46,7 @@ export interface Props extends BaseProps {
    */
   error?: boolean
   /** Indicate `RichTextEditor` is in `error` or `default` state */
-  status?: 'error' | 'default'
+  status?: Extract<Status, 'error' | 'default'>
   /**
    * The maximum number of characters that the user can enter.
    * If this value isn't specified, the user can enter an unlimited
