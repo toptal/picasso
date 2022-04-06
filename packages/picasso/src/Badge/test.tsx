@@ -26,6 +26,18 @@ const renderBadge = (
 }
 
 describe('Badge', () => {
+  it('renders', () => {
+    const { container } = renderBadge({ content: 5 })
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders in red variant', () => {
+    const { container } = renderBadge({ content: 5, variant: 'red' })
+
+    expect(container).toMatchSnapshot()
+  })
+
   it('should transform content when value is more than 10 for small size', () => {
     const { getByText } = renderBadge({ content: 10, size: 'small' })
 
