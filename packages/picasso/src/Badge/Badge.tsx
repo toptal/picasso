@@ -10,29 +10,19 @@ type VariantType = 'white' | 'red'
 type SizeType = 'medium' | 'small' | 'large'
 
 export interface Props extends BaseProps {
-  /**
-   * The `Badge` content
-   */
+  /** The `Badge` content */
   content: number
 
-  /**
-   * Variant of the `Badge`
-   */
+  /** Variant of the `Badge` */
   variant?: VariantType
 
-  /**
-   * Size of the `Badge`
-   */
+  /** Size of the `Badge` */
   size?: SizeType
 
-  /**
-   * Max count to show. By default 9 for small size, 99 for other sizes
-   */
+  /** Max count to show. By default 9 for small size, 99 for other sizes */
   max?: number
 
-  /**
-   * The badged will be overlaid on it's children
-   */
+  /** The badged will be overlaid on it's children */
   children?: ReactNode
 }
 

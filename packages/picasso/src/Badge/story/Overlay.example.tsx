@@ -8,44 +8,35 @@ const Example = () => (
         White:
       </Typography>
     </Container>
-    <Container top='small' bottom='medium'>
-      <Container inline right='small'>
-        <Badge content={1} variant='white' size='small'>
-          <Avatar name='Jacqueline Roque' />
-        </Badge>
-      </Container>
-      <Container inline right='small'>
-        <Badge content={1} variant='white'>
-          <Avatar name='Jacqueline Roque' />
-        </Badge>
-      </Container>
-      <Container inline right='small'>
-        <Badge content={1} variant='white' size='large'>
-          <Avatar name='Jacqueline Roque' />
-        </Badge>
-      </Container>
+
+    <Container top='small' flex bottom='medium' gap='small'>
+      <Badge content={1} variant='white' size='small'>
+        <Avatar name='Jacqueline Roque' />
+      </Badge>
+      <Badge content={1} variant='white' size='medium'>
+        <Avatar name='Jacqueline Roque' />
+      </Badge>
+      <Badge content={1} variant='white' size='large'>
+        <Avatar name='Jacqueline Roque' />
+      </Badge>
     </Container>
+
     <Container>
       <Typography variant='heading' size='small'>
         Red:
       </Typography>
     </Container>
-    <Container top='small'>
-      <Container inline right='small'>
-        <Badge content={100} variant='red' size='small'>
-          <Avatar name='Adam Jones' />
-        </Badge>
-      </Container>
-      <Container inline right='small'>
-        <Badge content={100} variant='red'>
-          <Avatar name='Adam Jones' />
-        </Badge>
-      </Container>
-      <Container inline right='small'>
-        <Badge content={100} variant='red' size='large'>
-          <Avatar name='Adam Jones' />
-        </Badge>
-      </Container>
+
+    <Container top='small' flex gap='small'>
+      <Badge content={100} variant='red' size='small'>
+        <Avatar name='Adam Jones' />
+      </Badge>
+      <Badge content={100} variant='red' size='medium'>
+        <Avatar name='Adam Jones' />
+      </Badge>
+      <Badge content={100} variant='red' size='large'>
+        <Avatar name='Adam Jones' />
+      </Badge>
     </Container>
   </>
 )
