@@ -136,6 +136,7 @@ export const DatePicker = (props: Props) => {
     error,
     status,
     popperProps,
+    disabled,
     ...rest
   } = props
   const classes = useStyles()
@@ -344,6 +345,9 @@ export const DatePicker = (props: Props) => {
   }
 
   const handleFocusOrClick = () => {
+    if (disabled) {
+      return
+    }
     showCalendar()
     setIsInputFocused(true)
   }
@@ -368,6 +372,7 @@ export const DatePicker = (props: Props) => {
         <Input
           {...inputProps}
           status={error ? 'error' : status}
+          disabled={disabled}
           ref={inputRef}
           onKeyDown={handleInputKeydown}
           onClick={handleFocusOrClick}
