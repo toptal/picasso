@@ -6,9 +6,13 @@ exports[`Badge renders 1`] = `
     class="Picasso-root"
   >
     <span
-      class="PicassoBadge-root PicassoBadge-white PicassoBadge-large"
+      class="MuiBadge-root"
     >
-      5
+      <span
+        class="MuiBadge-badge PicassoBadge-root PicassoBadge-white PicassoBadge-large PicassoBadge-static MuiBadge-anchorOriginTopRightRectangle"
+      >
+        5
+      </span>
     </span>
   </div>
 </div>
@@ -20,9 +24,13 @@ exports[`Badge renders in red variant 1`] = `
     class="Picasso-root"
   >
     <span
-      class="PicassoBadge-root PicassoBadge-red PicassoBadge-large"
+      class="MuiBadge-root"
     >
-      5
+      <span
+        class="MuiBadge-badge PicassoBadge-root PicassoBadge-red PicassoBadge-large PicassoBadge-static MuiBadge-anchorOriginTopRightRectangle"
+      >
+        5
+      </span>
     </span>
   </div>
 </div>
