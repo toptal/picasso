@@ -1,11 +1,8 @@
 name: Handle contribution
 
 on:
-  workflow_dispatch:
   pull_request:
-    # Workflow runs when new PR is opened or when PR goes out of draft state
-    # notify-jira-about-contribution action, used below, ignores draft PRs
-    types: [opened, ready_for_review]
+    types: [opened, reopened, ready_for_review]
     branches:
       - master
 
@@ -22,6 +19,7 @@ jobs:
           path: ./.github/actions/
 
       - uses: ./.github/actions/notify-jira-about-contribution
+        if: github.event.pull_request.draft == false && !(github.actor == 'dependabot[bot]')
         with:
           team: frontend-experience-eng
           repo: picasso
