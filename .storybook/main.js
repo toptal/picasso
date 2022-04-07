@@ -3,7 +3,8 @@ const path = require('path')
 const { IgnoreNotFoundPlugin } = require('./plugins')
 
 // example1: /packages/picasso/src/Button/Button.tsx
-const PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP = /packages\/.*\/src\/(.*)\/\1.tsx$/
+const PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP =
+  /packages\/.*\/src\/(.*)\/\1.tsx$/
 
 const { env } = process
 const isDevelopment = env.NODE_ENV !== 'production' && env.NODE_ENV !== 'test'
@@ -41,7 +42,8 @@ module.exports = {
         }
 
         return true
-      }
+      },
+      shouldExtractLiteralValuesFromEnum: true
     }
   },
   webpackFinal: config => {
