@@ -6060,9 +6060,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-truncate@^2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@types/react-truncate/-/react-truncate-2.3.3.tgz#76dcea6a4a34db17c981dbe8e7515ae2b09fc997"
+"@types/react-truncate@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@types/react-truncate/-/react-truncate-2.3.4.tgz#1d5002e71e393b81b7877a147992a050f40075fa"
+  integrity sha512-+ugDlho66dRn7Sw/lPkE/wlOi0KUIRwY2KOiUiehWjFf7EmiMDjMpHqrBhiLJfH2Z9EC+qRBHC9o7iZoEmmWQw==
   dependencies:
     "@types/react" "*"
 
