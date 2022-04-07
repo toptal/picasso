@@ -14,6 +14,7 @@ export default ({ palette }: Theme) =>
       borderStyle: 'solid',
       fontSize: rem('10px'),
       lineHeight: rem('12px'),
+      padding: `0 ${rem('1px')}`,
       fontWeight: 600
     },
     static: {
@@ -32,15 +33,13 @@ export default ({ palette }: Theme) =>
     },
     small: {
       lineHeight: rem('10px'),
-      padding: `${rem('1px')} ${rem('4px')}`,
       ...getSizeProps(rem('12px'))
     },
     medium: {
-      padding: `${rem('2px')} ${rem('6px')}`,
       ...getSizeProps(rem('16px'))
     },
     large: {
-      padding: `${rem('4px')} ${rem('8px')}`,
+      padding: `0 ${rem('3px')}`,
       ...getSizeProps(rem('20px'))
     }
   })
