@@ -5,7 +5,7 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 type Props = Pick<AvatarProps, 'variant' | 'size'>
 
-const src = 'https://picasso.toptal.net/jacqueline-with-flowers-1954-square.jpg'
+const src = './jacqueline-with-flowers-1954-square.jpg'
 const name = 'Jacqueline Roque'
 const alt = 'Jacqueline Roque, Pablo Picasso, 1954'
 
