@@ -2,18 +2,18 @@ import React, { forwardRef, useState, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, StandardProps } from '@toptal/picasso-shared'
-import { useSidebar } from '@toptal/picasso-provider'
 
 import Button from '../Button'
 import Container from '../Container'
 import Dropdown from '../Dropdown'
-import { Overview16, Close16 } from '../Icon'
+import { Overview16, Close16, ChevronRight16, BackMinor16 } from '../Icon'
 import { useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
 import styles from './styles'
 import { SidebarContextProps, VariantType } from './types'
+import useSidebarState from './use-sidebar-state'
 
 export interface SmallScreenSidebarWrapperProps extends StandardProps {
   children?: ReactNode
@@ -58,11 +58,21 @@ export interface Props extends BaseProps {
   variant?: VariantType
   /** Content */
   children?: ReactNode
+  /** Indicates Sidebar is collapsible */
+  collapsible?: boolean
+  /** Indicates Sidebar is collapsed as default */
+  defaultCollapsed?: boolean
+  testIds?: {
+    hoverWrapper?: string
+    collapseButton?: string
+    container?: string
+  }
 }
 
 export const SidebarContext = React.createContext<SidebarContextProps>({
   expandedItemKey: null,
-  setExpandedItemKey: () => {}
+  setExpandedItemKey: () => {},
+  isCollapsed: false
 })
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -73,9 +83,25 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   props,
   ref
 ) {
-  const { children, variant = 'light', className, style } = props
+  const {
+    children,
+    variant = 'light',
+    className,
+    style,
+    collapsible,
+    defaultCollapsed,
+    testIds
+  } = props
   const classes = useStyles()
-  const { setHasSidebar } = useSidebar()
+  const {
+    expandedItemKey,
+    isCollapsed,
+    isHovered,
+    setHasSidebar,
+    setExpandedItemKey,
+    setIsCollapsed,
+    setIsHovered
+  } = useSidebarState({ defaultCollapsed })
 
   useIsomorphicLayoutEffect(() => {
     setHasSidebar(true)
@@ -86,27 +112,53 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   }, [setHasSidebar])
 
   const isCompactLayout = useBreakpoint(['small', 'medium'])
-  const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
+
+  const handleCollapseButtonClick = () => setIsCollapsed(!isCollapsed)
 
   const sidebar = (
-    <Container
-      ref={ref}
-      flex
-      direction='column'
-      style={style}
-      className={cx(classes.root, className, classes[variant])}
+    <div
+      className={cx(classes.hoverWrapper, {
+        [classes.hoverWrapperCollapsed]: collapsible && isCollapsed
+      })}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      data-testid={testIds?.hoverWrapper}
     >
-      <div className={classes.spacer} />
-      <SidebarContext.Provider
-        value={{
-          variant,
-          expandedItemKey,
-          setExpandedItemKey
-        }}
+      <Container
+        ref={ref}
+        flex
+        direction='column'
+        style={style}
+        className={cx(classes.root, className, classes[variant], {
+          [classes.rootCollapsed]: collapsible && isCollapsed
+        })}
+        data-testid={testIds?.container}
       >
-        {children}
-      </SidebarContext.Provider>
-    </Container>
+        <div className={classes.spacer} />
+        {collapsible && (
+          <Button.Circular
+            className={cx(classes.collapseButton, {
+              [classes.buttonVisible]: isHovered
+            })}
+            onClick={handleCollapseButtonClick}
+            icon={isCollapsed ? <ChevronRight16 /> : <BackMinor16 />}
+            aria-label='collapse sidebar'
+            variant='primary'
+            data-testid={testIds?.collapseButton}
+          />
+        )}
+        <SidebarContext.Provider
+          value={{
+            variant,
+            expandedItemKey,
+            setExpandedItemKey,
+            isCollapsed
+          }}
+        >
+          {children}
+        </SidebarContext.Provider>
+      </Container>
+    </div>
   )
 
   return isCompactLayout ? (

@@ -1,63 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageSidebar renders 1`] = `
+exports[`Sidebar renders 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
+      class="Sidebar-hoverWrapper"
     >
       <div
-        class="PageSidebar-spacer"
-      />
+        class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
+      >
+        <div
+          class="Sidebar-spacer"
+        />
+      </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`PageSidebar with menu 1`] = `
+exports[`Sidebar with menu 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
+      class="Sidebar-hoverWrapper"
     >
       <div
-        class="PageSidebar-spacer"
-      />
-      <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
-        role="menu"
-        tabindex="-1"
-      />
+        class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
+      >
+        <div
+          class="Sidebar-spacer"
+        />
+        <ul
+          class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+          role="menu"
+          tabindex="-1"
+        />
+      </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`PageSidebar with one normal and one bottom menu 1`] = `
+exports[`Sidebar with one normal and one bottom menu 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
+      class="Sidebar-hoverWrapper"
     >
       <div
-        class="PageSidebar-spacer"
-      />
-      <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
-        role="menu"
-        tabindex="-1"
-      />
-      <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
-        role="menu"
-        tabindex="-1"
-      />
+        class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
+      >
+        <div
+          class="Sidebar-spacer"
+        />
+        <ul
+          class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+          role="menu"
+          tabindex="-1"
+        />
+        <ul
+          class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
+          role="menu"
+          tabindex="-1"
+        />
+      </div>
     </div>
   </div>
 </div>

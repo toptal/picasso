@@ -181,4 +181,21 @@ describe('SidebarItem', () => {
 
     expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
   })
+
+  describe('when sidebar is collapsed', () => {
+    it('hides content of the item', () => {
+      const { getByTestId } = render(
+        <Sidebar collapsible defaultCollapsed>
+          <Sidebar.Menu>
+            <Sidebar.Item icon={<Candidates16 data-testid='icon' />}>
+              <span data-testid='text-content'>Menu item</span>
+            </Sidebar.Item>
+          </Sidebar.Menu>
+        </Sidebar>
+      )
+
+      expect(getByTestId('icon')).toBeVisible()
+      expect(getByTestId('text-content')).not.toBeVisible()
+    })
+  })
 })
