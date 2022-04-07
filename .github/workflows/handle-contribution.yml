@@ -3,38 +3,28 @@ name: Handle contribution
 on:
   workflow_dispatch:
   pull_request:
-    types: [opened]
+    # Workflow runs when new PR is opened or when PR goes out of draft state
+    # notify-jira-about-contribution action, used below, ignores draft PRs
+    types: [opened, ready_for_review]
     branches:
       - master
 
 jobs:
-  handle-contribution:
-    # if external contribution
-    if: ${{!contains(fromJson('["denieler", "TomasSlama", "OleksandrNechai", "OndrejTuma", "dmaklygin", "LashaJini", "separatio", "augustobmoura", "ozgurkececioglu", "toptal-build"]'), github.event.pull_request.user.login)}}
+  call-notify-jira-about-contribution:
     runs-on: ubuntu-latest
-    env:
-      JIRA_HOOK: ${{ secrets.JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}
+    name: Call notify jira about contribution
     steps:
-      - name: Notify JIRA
-        run: |
-          curl -X POST -H 'Content-type: application/json' \
-          --data '{"data": {"author":"${{github.event.pull_request.user.login}}", "author_url":"${{github.event.pull_request.user.html_url}}", "title":"${{github.event.pull_request.title}}", "number":"${{github.event.pull_request.number}}", "url":"${{github.event.pull_request.html_url}}", "repo":"picasso"}}' \
-          ${{ env.JIRA_HOOK }}
-      - name: Greet contributor
-        uses: actions/github-script@v5
+      - uses: actions/checkout@v2
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 
-              `
-              Greetings from FX team, @${context.payload.pull_request.user.login} :wave:\r\n\r\n
-              Thank you so much for contributing :bow: :rose:\r\n\r\n
-              We have got **high priority ticket** generated on [our Kanban board](https://toptal-core.atlassian.net/jira/software/c/projects/FX/boards/491) so we will do our best to make your experience supreme!\r\n\r\n
-              What's next? We will collaborate using [this workflow](https://toptal-core.atlassian.net/wiki/spaces/FE/pages/2396094469/Handling+contribution). For you this practically means making sure [DONE criteria](https://toptal-core.atlassian.net/wiki/spaces/FE/pages/1933377584/Done+criteria) is met and responding promptly to code review comments :wink:\r\n\r\n
-              :pray: please, help us improve, [rate your contributing experience](https://forms.gle/unzJBEJAHRz7LEtX8) after merge
-              `
-            })
+          repository: toptal/davinci-github-actions
+          token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+          ref: 'gha/notify-jira'
+          path: ./.github/actions/
+
+      - uses: ./.github/actions/notify-jira-about-contribution
+        with:
+          team: frontend-experience-eng
+          repo: picasso
+          pull_number: ${{ github.event.pull_request.number}}
+          jira-hook: ${{ secrets.JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}
+          github-token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
