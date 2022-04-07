@@ -40,8 +40,8 @@ export interface Props
     > {
   /** Time value that will be selected in TimePicker */
   value?: string
-  /** Indicate whether `TimePicker` is in error state */
-  status?: Exclude<Status, 'success'>
+  /** Indicate whether `TimePicker` is in `error` or `default` state */
+  status?: Extract<Status, 'error' | 'default'>
 }
 
 export const TimePicker = (props: Props) => {

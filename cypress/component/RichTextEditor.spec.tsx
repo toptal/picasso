@@ -84,6 +84,14 @@ describe('RichTextEditor', () => {
     cy.get('body').happoScreenshot()
   })
 
+  describe('when in an invalid state', () => {
+    it('shows error', () => {
+      mount(renderEditor({ ...defaultProps, status: 'error' }))
+
+      cy.get('body').happoScreenshot()
+    })
+  })
+
   it('handles keybindings correctly', () => {
     // render the editor
     mount(renderEditor(defaultProps))

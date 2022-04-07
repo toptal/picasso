@@ -6,7 +6,8 @@ import {
 import React, { useCallback, useState } from 'react'
 import { Except } from 'type-fest'
 
-import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import { FieldProps } from '../FieldWrapper'
+import InputField from '../InputField'
 
 type OverriddenProps = {
   defaultValue?: ASTType
@@ -34,18 +35,15 @@ export const RichTextEditor = ({ onChange, defaultValue, ...rest }: Props) => {
   )
 
   return (
-    <FieldWrapper<InternalProps>
+    <InputField<InternalProps>
       value={value}
       onChange={handleOnChange}
       {...rest}
     >
       {(inputProps: RichTextEditorProps) => (
-        <PicassoRichTextEditor
-          defaultValue={defaultValue}
-          {...inputProps}
-        />
+        <PicassoRichTextEditor defaultValue={defaultValue} {...inputProps} />
       )}
-    </FieldWrapper>
+    </InputField>
   )
 }
 

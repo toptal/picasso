@@ -28,10 +28,24 @@ export type ReferenceLine = {
 }
 
 export type Props = BaseLineChartProps & {
+  /**
+   * A record of data points to be rendered as a line chart
+   * @type { id: string; values: Record<string, number|null>; }[]
+   */
   data: Point[]
+  /**
+   * A list of dates and to be highlighted
+   * @type { data: string[]; color: string; }[]
+   */
   highlights?: Highlight[]
+  /**
+   * A record of data points to be rendered as a dashed horizontal line
+   * @type { data: Record<string, number>; color: string; }[]
+   */
   referenceLines?: ReferenceLine[]
+  /** A function to custom format the X axis label */
   formatXAxisLabel?: (label: string) => string
+  /** A value that helps formatting the chart */
   granularity?: ChartGranularity
 }
 
