@@ -6,7 +6,7 @@ import core, {
 } from 'jscodeshift'
 
 import {
-  addImport,
+  addImportMember,
   findComponents,
   findSpecifierForImport,
   isImportFor,
@@ -30,7 +30,7 @@ const transformImports = (root: Collection) => {
   const pageIdentifier = findSpecifierForImport(PICASSO_PAGE, root)
 
   if (pageIdentifier == null) {
-    addImport(PICASSO_PAGE, root)
+    addImportMember(PICASSO_PAGE, root)
   }
 
   root

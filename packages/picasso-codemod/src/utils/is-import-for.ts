@@ -3,11 +3,10 @@ import { ImportDeclaration } from 'jscodeshift'
 import { PackageMember } from './types'
 
 /**
- * Finds imports for specific member of a package.
+ * Finds import declarations for specific member of a package.
  *
- * Usage:
- *
- * ```
+ * @example
+ * ``` typescript
  *   j(file.source)
  *     .find(j.ImportDeclaration, decl => isImportFor('module', 'exportName', decl))
  * ```
