@@ -7,15 +7,15 @@ const getSizeProps = (unitInRem: string): StyleRules[keyof {}] => ({
   minWidth: unitInRem
 })
 
-export default ({ palette }: Theme) =>
+export default ({ palette, typography }: Theme) =>
   createStyles({
     root: {
       borderWidth: '1px',
       borderStyle: 'solid',
       fontSize: rem('10px'),
       lineHeight: rem('12px'),
-      padding: `0 ${rem('1px')}`,
-      fontWeight: 600
+      padding: '0 1px',
+      fontWeight: typography.fontWeights.bold
     },
     static: {
       position: 'unset',
@@ -39,7 +39,7 @@ export default ({ palette }: Theme) =>
       ...getSizeProps(rem('16px'))
     },
     large: {
-      padding: `0 ${rem('3px')}`,
+      padding: '0 3px',
       ...getSizeProps(rem('20px'))
     }
   })
