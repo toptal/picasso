@@ -73,7 +73,7 @@
     "@types/jest": "^27.4.1",
     "@types/jest-image-snapshot": "^3.1.0",
     "@types/puppeteer": "^1.19.0",
-    "@types/react-truncate": "^2.3.3",
+    "@types/react-truncate": "^2.3.4",
     "@types/storybook__react": "^5.2.1",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
