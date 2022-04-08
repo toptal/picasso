@@ -15,7 +15,7 @@ jobs:
         with:
           repository: toptal/davinci-github-actions
           token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
-          # ref: 'gha/notify-jira'
+          ref: 'gha/notify-jira-about-contribution'
           path: ./.github/actions/
 
       - uses: ./.github/actions/notify-jira-about-contribution
