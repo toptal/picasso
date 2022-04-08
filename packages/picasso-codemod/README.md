@@ -41,6 +41,37 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 ## Included Scripts
 
+### v22.0.0
+
+#### `remove-asterisks`
+
+This codemod aims to help you with transition to forms without asterisks. 
+It transforms `requiredDecoration` prop to `optional` boolean property. 
+Also removes `requiredVariant` from FormConfig context.
+
+```diff
+-<Form.Label requiredDecoration='asterisk'>Label</Form.Label>
++<Form.Label>Label</Form.Label>
+
+-<Form.Label requiredDecoration='optional'>Label</Form.Label>
++<Form.Label optional>Label</Form.Label>
+
+-<Form.ConfigProvider value={{ requiredVariant: 'asterisk' }}>
++<Form.ConfigProvider value={{}}>
+```
+
+You may want to refactor `Form.ConfigProvider` a little bit after runnning the codemod,
+for there may be some empty objects left.
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx @toptal/picasso-codemod v22.0.0/remove-asterisks
+```
+
+</details>
+
 ### v20.0.0
 
 #### `replace-error`
