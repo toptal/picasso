@@ -136,13 +136,6 @@ jobs:
     needs: [ build-docker-image ]
 
     steps:
-      - name: Checkout davinci GHAs
-        uses: actions/checkout@v2
-        with:
-          repository: toptal/davinci-github-actions
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          path: ./.github/actions/
-
       - name: Trigger doc deployment job
         uses: toptal/jenkins-job-trigger-action@1.0.0
         env:
