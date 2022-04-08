@@ -151,6 +151,7 @@ jobs:
           JENKINS_JOB_NAME: picasso-pr-specs
           BRANCH: ${{ github.event.pull_request.head.ref }}
           COMMIT_ID: ${{ github.event.pull_request.head.sha }}
+          PR_ID: ${{ github.event.pull_request.number }}
         with:
           jenkins_url: https://jenkins-build.toptal.net/
           jenkins_user: toptal-jenkins
@@ -160,7 +161,8 @@ jobs:
           job_params: |
             {
               "BRANCH": "${{ env.BRANCH }}",
-              "COMMIT_ID": "${{ env.COMMIT_ID }}"
+              "COMMIT_ID": "${{ env.COMMIT_ID }}",
+              "PR_ID": "${{ env.PR_ID }}"
             }
           job_timeout: '3600'
     
