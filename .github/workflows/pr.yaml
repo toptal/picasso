@@ -124,8 +124,8 @@ jobs:
           PR_ID: ${{ github.event.pull_request.id }}
         with:
           jenkins_url: https://jenkins-build.toptal.net/
-          jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
-          jenkins_token: ${{ env.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
+          jenkins_user: toptal-jenkins
+          jenkins_token: ${{ env.TOPTAL_JENKINS_BUILD_TOKEN }}
           proxy: ${{ env.HTTP_PROXY }}
           job_name: ${{ env.JENKINS_JOB_NAME }}
           job_params: |
@@ -149,8 +149,8 @@ jobs:
           COMMIT_ID: ${{ github.sha }}
         with:
           jenkins_url: https://jenkins-build.toptal.net/
-          jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
-          jenkins_token: ${{ env.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
+          jenkins_user: toptal-jenkins
+          jenkins_token: ${{ env.TOPTAL_JENKINS_BUILD_TOKEN }}
           proxy: ${{ env.HTTP_PROXY }}
           job_name: ${{ env.JENKINS_JOB_NAME }}
           job_params: |
