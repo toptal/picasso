@@ -27,13 +27,6 @@ pipeline {
   stages {
     // Perform this only for PRs
     stage('Git checkout PR') {
-      when {
-        not {
-          expression {
-            ghprbSourceBranch == 'changeset-release/master'
-          }
-        }
-      }
       steps {
         info "== Checking out Git revision ${COMMIT_ID}"
         gitCheckout(
@@ -57,11 +50,6 @@ pipeline {
 
     stage('Run visual tests') {
       when {
-        not {
-          expression {
-            ghprbSourceBranch == 'changeset-release/master'
-          }
-        }
         expression {
           ghprbMatchesComment(/test:visual|visual|all/)
         }
