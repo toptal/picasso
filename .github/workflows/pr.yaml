@@ -41,6 +41,7 @@ jobs:
       - uses: ./.github/actions/build-push-image
         env:
           GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          GCR_ACCOUNT_KEY: ${{ secrets.GCR_ACCOUNT_KEY }}
         with:
           sha: ${{ github.sha }}
           image_name: picasso-build-image
