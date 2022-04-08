@@ -19,6 +19,7 @@ env:
 jobs:
   build-docker-image:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: Build Picasso docker image
     runs-on: ubuntu-latest
     timeout-minutes: 45
     
@@ -50,6 +51,7 @@ jobs:
 
   tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: PR Checks
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
@@ -105,6 +107,7 @@ jobs:
 
   deploy-docs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: Deploy Picasso docs
     runs-on: ubuntu-latest
     needs: [ build-docker-image ]
 
@@ -135,8 +138,9 @@ jobs:
             }
           job_timeout: '3600'
 
-  trigger-old-visual-tests:
+  old-visual-tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: Old Visual Tests
     runs-on: ubuntu-latest
     needs: [ build-docker-image ]
 
