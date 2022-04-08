@@ -15,7 +15,7 @@ export default ({ palette, typography }: Theme) =>
       fontSize: rem('10px'),
       lineHeight: rem('12px'),
       padding: '0 1px',
-      fontWeight: typography.fontWeights.bold
+      fontWeight: typography.fontWeights.semibold
     },
     static: {
       position: 'unset',
