@@ -14,6 +14,36 @@ on:
       - ready_for_review # PR was converted from draft to open
 
 jobs:
+  build-docker-image:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - uses: ./.github/actions/build-push-image
+        with:
+          sha: ${{ github.sha }}
+          image_name: picasso-build-image
+          environment: temploy
+          docker_file: ./Dockerfile
+
   tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     runs-on: ubuntu-latest
@@ -35,32 +65,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+      
       - name: Increase max_user_watches
         run: echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v1
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Dependencies (from network)
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: |
-          yarn policies set-version
-          yarn install --frozen-lockfile --ignore-optional
-
-      - name: Install Dependencies (from cache)
-        if: steps.yarn-cache.outputs.cache-hit == 'true'
-        run: |
-          yarn policies set-version
-          yarn install --frozen-lockfile --ignore-optional --offline
+      - uses: ./.github/actions/yarn-install
 
       - name: Danger
         run: yarn davinci ci danger
@@ -82,3 +97,72 @@ jobs:
         env:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+
+  deploy-docs:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    runs-on: ubuntu-latest
+    needs: [ build-docker-image ]
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    steps:
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - name: Trigger doc deployment job
+        uses: toptal/jenkins-job-trigger-action@1.0.0
+        env:
+          JENKINS_JOB_NAME: picasso-docs
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+          PR_ID: ${{ github.event.pull_request.id }}
+        with:
+          jenkins_url: https://jenkins-deployment.toptal.net/
+          jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
+          jenkins_token: ${{ env.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
+          proxy: ${{ env.HTTP_PROXY }}
+          job_name: ${{ env.JENKINS_JOB_NAME }}
+          job_params: |
+            {
+              "BRANCH": "${{ env.BRANCH }}",
+              "PR_ID": "${{ env.PR_ID }}"
+            }
+          job_timeout: '3600'
+
+  trigger-old-visual-tests:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    runs-on: ubuntu-latest
+    needs: [ build-docker-image ]
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    steps:
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - name: Trigger doc deployment job
+        uses: toptal/jenkins-job-trigger-action@1.0.0
+        env:
+          JENKINS_JOB_NAME: picasso-pr-specs
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+          COMMIT_ID: ${{ github.sha }}
+        with:
+          jenkins_url: https://jenkins-deployment.toptal.net/
+          jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
+          jenkins_token: ${{ env.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
+          proxy: ${{ env.HTTP_PROXY }}
+          job_name: ${{ env.JENKINS_JOB_NAME }}
+          job_params: |
+            {
+              "BRANCH": "${{ env.BRANCH }}",
+              "COMMIT_ID": "${{ env.COMMIT_ID }}"
+            }
+          job_timeout: '3600'
+    
