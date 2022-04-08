@@ -125,7 +125,7 @@ jobs:
         with:
           jenkins_url: https://jenkins-build.toptal.net/
           jenkins_user: toptal-jenkins
-          jenkins_token: ${{ env.TOPTAL_JENKINS_BUILD_TOKEN }}
+          jenkins_token: ${{ secrets.TOPTAL_JENKINS_BUILD_TOKEN }}
           proxy: ${{ env.HTTP_PROXY }}
           job_name: ${{ env.JENKINS_JOB_NAME }}
           job_params: |
@@ -150,7 +150,7 @@ jobs:
         with:
           jenkins_url: https://jenkins-build.toptal.net/
           jenkins_user: toptal-jenkins
-          jenkins_token: ${{ env.TOPTAL_JENKINS_BUILD_TOKEN }}
+          jenkins_token: ${{ secrets.TOPTAL_JENKINS_BUILD_TOKEN }}
           proxy: ${{ env.HTTP_PROXY }}
           job_name: ${{ env.JENKINS_JOB_NAME }}
           job_params: |
