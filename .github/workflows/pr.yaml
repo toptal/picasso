@@ -121,7 +121,7 @@ jobs:
         env:
           JENKINS_JOB_NAME: picasso-docs
           BRANCH: ${{ github.event.pull_request.head.ref }}
-          PR_ID: ${{ github.event.pull_request.id }}
+          PR_ID: ${{ github.event.pull_request.number }}
         with:
           jenkins_url: https://jenkins-build.toptal.net/
           jenkins_user: toptal-jenkins
