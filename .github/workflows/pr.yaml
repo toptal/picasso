@@ -39,6 +39,8 @@ jobs:
           path: ./.github/actions/
 
       - uses: ./.github/actions/build-push-image
+        env:
+          GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
         with:
           sha: ${{ github.sha }}
           image_name: picasso-build-image
