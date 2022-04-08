@@ -43,7 +43,7 @@ jobs:
           GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           GCR_ACCOUNT_KEY: ${{ secrets.GCR_ACCOUNT_KEY }}
         with:
-          sha: ${{ github.sha }}
+          sha: ${{ github.event.pull_request.head.sha }}
           image_name: picasso-build-image
           environment: temploy
           docker_file: ./Dockerfile
@@ -146,7 +146,7 @@ jobs:
         env:
           JENKINS_JOB_NAME: picasso-pr-specs
           BRANCH: ${{ github.event.pull_request.head.ref }}
-          COMMIT_ID: ${{ github.sha }}
+          COMMIT_ID: ${{ github.event.pull_request.head.sha }}
         with:
           jenkins_url: https://jenkins-build.toptal.net/
           jenkins_user: toptal-jenkins
