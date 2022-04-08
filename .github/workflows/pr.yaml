@@ -44,7 +44,7 @@ jobs:
           GCR_ACCOUNT_KEY: ${{ secrets.GCR_ACCOUNT_KEY }}
         with:
           sha: ${{ github.event.pull_request.head.sha }}
-          image_name: picasso-build-image
+          image_name: picasso
           environment: temploy
           docker_file: ./Dockerfile
 

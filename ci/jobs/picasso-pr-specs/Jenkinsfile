@@ -3,7 +3,6 @@
 ghHelper = new helpers.GithubNotifyHelper()
 helper = new helpers.Helpers()
 repoName = 'picasso'
-buildImageJobName = "${repoName}-build-image"
 
 pipeline {
   agent { label 'docker' }
@@ -66,7 +65,7 @@ pipeline {
 
             docker run --rm \
             -v ${DIR}/__diff_output__:/app/__diff_output__ \
-            gcr.io/toptal-hub/${repoName}-build-image:${COMMIT_ID} \
+            gcr.io/toptal-hub/${repoName}:${COMMIT_ID} \
             yarn run test:visual:ci
           """
         }
