@@ -66,11 +66,10 @@ export const SidebarContext = React.createContext<SidebarContextProps>({
 })
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'Sidebar'
+  name: 'PageSidebar'
 })
 
-// eslint-disable-next-line react/display-name
-export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
+export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   props,
   ref
 ) {
@@ -119,13 +118,13 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   )
 })
 
-Sidebar.defaultProps = {
+PageSidebar.defaultProps = {
   variant: 'light'
 }
 
-Sidebar.displayName = 'Sidebar'
+PageSidebar.displayName = 'PageSidebar'
 
-export default Object.assign(Sidebar, {
+export default Object.assign(PageSidebar, {
   Menu: SidebarMenu,
   Item: SidebarItem,
   Logo: SidebarLogo

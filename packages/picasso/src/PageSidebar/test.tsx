@@ -3,14 +3,14 @@ import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './Sidebar'
-import Sidebar from './'
+import { Props } from './PageSidebar'
+import PageSidebar from './'
 
 const TestSidebar = ({ children }: OmitInternalProps<Props>) => {
-  return <Sidebar>{children}</Sidebar>
+  return <PageSidebar>{children}</PageSidebar>
 }
 
-describe('Sidebar', () => {
+describe('PageSidebar', () => {
   it('renders', () => {
     const { container } = render(<TestSidebar />)
 
@@ -20,7 +20,7 @@ describe('Sidebar', () => {
   it('with menu', () => {
     const { container } = render(
       <TestSidebar>
-        <Sidebar.Menu />
+        <PageSidebar.Menu />
       </TestSidebar>
     )
 
@@ -30,8 +30,8 @@ describe('Sidebar', () => {
   it('with one normal and one bottom menu', () => {
     const { container } = render(
       <TestSidebar>
-        <Sidebar.Menu />
-        <Sidebar.Menu bottom />
+        <PageSidebar.Menu />
+        <PageSidebar.Menu bottom />
       </TestSidebar>
     )
 

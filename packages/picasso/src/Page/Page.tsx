@@ -12,7 +12,7 @@ import PageBanner from '../PageBanner'
 import PageAutocomplete from '../PageAutocomplete'
 import PageArticle from '../PageArticle'
 import { PageContextProps, ViewportWidthType } from './types'
-import PageSidebar from '../Sidebar'
+import PageSidebar from '../PageSidebar'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
