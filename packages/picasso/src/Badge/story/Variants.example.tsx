@@ -8,8 +8,9 @@ const Example = () => (
         White:
       </Typography>
     </Container>
-    <Container top='small'>
+    <Container top='small' flex gap='small'>
       <Badge content={1} variant='white' />
+      <Badge content={0} variant='white' />
     </Container>
 
     <Container top='medium'>
@@ -17,8 +18,9 @@ const Example = () => (
         Red:
       </Typography>
     </Container>
-    <Container top='small'>
+    <Container top='small' flex gap='small'>
       <Badge content={100} variant='red' />
+      <Badge content={1} variant='red' />
     </Container>
   </>
 )

@@ -21,3 +21,4 @@ page
   .createChapter()
   .addExample('Badge/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
   .addExample('Badge/story/Sizes.example.tsx', 'Sizes') // picasso-skip-visuals
+  .addExample('Badge/story/Overlay.example.tsx', 'Overlay') // picasso-skip-visuals

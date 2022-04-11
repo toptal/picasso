@@ -67,6 +67,27 @@ npx @toptal/picasso-codemod v20.0.0/replace-error
 
 </details>
 
+#### `overlay-badge`
+
+Rename the removed `OverlayBadge` to `Badge`, `Badge` now has functionality from
+both components. We also add an prop `size` as `medium` in previous
+`OverlayBadge`s if `size` is missing, this is because the default for `Badge` is
+actually `large`
+
+``` diff
+-import { OverlayBadge } from '@toptal/picasso'
++import { Badge } from '@toptal/picasso'
+
+const foo = () => (
+-  <OverlayBadge>
+-    <Avatar />
+-  </OverlayBadge>
++  <Badge size="medium">
++    <Avatar />
++  </Badge>
+)
+```
+
 ### v19.0.0
 
 #### `rename-rating-stars`

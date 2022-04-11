@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge, Container } from '@toptal/picasso'
+import { Badge, Container, Avatar } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
@@ -17,6 +17,7 @@ describe('Badge', () => {
     )
     cy.get('body').happoScreenshot()
   })
+
   describe('white variant', () => {
     it('renders small', () => {
       mount(
@@ -39,6 +40,7 @@ describe('Badge', () => {
       )
       cy.get('body').happoScreenshot()
     })
+
     it('renders medium', () => {
       mount(
         <TestingPicasso>
@@ -63,6 +65,7 @@ describe('Badge', () => {
       )
       cy.get('body').happoScreenshot()
     })
+
     it('renders large', () => {
       mount(
         <TestingPicasso>
@@ -87,6 +90,7 @@ describe('Badge', () => {
       )
       cy.get('body').happoScreenshot()
     })
+
     it('renders custom max count', () => {
       mount(
         <TestingPicasso>
@@ -133,6 +137,7 @@ describe('Badge', () => {
       )
       cy.get('body').happoScreenshot()
     })
+
     it('renders medium', () => {
       mount(
         <TestingPicasso>
@@ -157,6 +162,7 @@ describe('Badge', () => {
       )
       cy.get('body').happoScreenshot()
     })
+
     it('renders large', () => {
       mount(
         <TestingPicasso>
@@ -181,6 +187,7 @@ describe('Badge', () => {
       )
       cy.get('body').happoScreenshot()
     })
+
     it('renders custom max count', () => {
       mount(
         <TestingPicasso>
@@ -198,6 +205,63 @@ describe('Badge', () => {
             </Container>
             <Container padded='small'>
               <Badge variant='red' size='large' content={9999} max={999} />
+            </Container>
+          </Container>
+        </TestingPicasso>
+      )
+      cy.get('body').happoScreenshot()
+    })
+
+    it('renders overlay badge', () => {
+      mount(
+        <TestingPicasso>
+          <Container
+            flex
+            style={{ background: 'blue' }}
+            padded='small'
+            alignItems='center'
+          >
+            <Container padded='small'>
+              <Badge variant='red' size='small' content={9999} max={999}>
+                <Avatar name='Foo Bar' />
+              </Badge>
+            </Container>
+
+            <Container padded='small'>
+              <Badge variant='red' size='medium' content={9999} max={999}>
+                <Avatar name='Foo Bar' />
+              </Badge>
+            </Container>
+
+            <Container padded='small'>
+              <Badge variant='red' size='large' content={9999} max={999}>
+                <Avatar name='Foo Bar' />
+              </Badge>
+            </Container>
+          </Container>
+
+          <Container
+            flex
+            style={{ background: 'blue' }}
+            padded='small'
+            alignItems='center'
+          >
+            <Container padded='small'>
+              <Badge variant='white' size='small' content={9999} max={999}>
+                <Avatar name='Foo Bar' />
+              </Badge>
+            </Container>
+
+            <Container padded='small'>
+              <Badge variant='white' size='medium' content={9999} max={999}>
+                <Avatar name='Foo Bar' />
+              </Badge>
+            </Container>
+
+            <Container padded='small'>
+              <Badge variant='white' size='large' content={9999} max={999}>
+                <Avatar name='Foo Bar' />
+              </Badge>
             </Container>
           </Container>
         </TestingPicasso>
