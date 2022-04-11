@@ -1,5 +1,21 @@
 # Change Log
 
+## 41.0.0
+
+### Major Changes
+
+- [#2569](https://github.com/toptal/picasso/pull/2569) [`e8833df2`](https://github.com/toptal/picasso/commit/e8833df2329c6285840ae02c0d029fe4eebb8247) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Project
+
+  - Update typescript to version 4.6
+
+### Patch Changes
+
+- Updated dependencies [[`e8833df2`](https://github.com/toptal/picasso/commit/e8833df2329c6285840ae02c0d029fe4eebb8247)]:
+  - @toptal/picasso@21.0.0
+  - @toptal/picasso-shared@8.0.0
+
 ## 40.0.0
 
 ### Patch Changes

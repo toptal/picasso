@@ -1,5 +1,4 @@
 import AnalyticsChart from '../AnalyticsChart'
-import { sharedLineChartDocs } from '../../../../picasso-charts/src/LineChart/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Picasso Charts').createPage(
@@ -9,48 +8,7 @@ const page = PicassoBook.section('Picasso Charts').createPage(
 
 page.createTabChapter('Props').addComponentDocs({
   component: AnalyticsChart,
-  name: 'AnalyticsChart',
-  additionalDocs: Object.assign({}, sharedLineChartDocs, {
-    data: {
-      name: 'data',
-      type: {
-        name: '[]',
-        description: '{ id: string, values: { [key: string]: number | null } }'
-      },
-      description: 'A record of data points to be rendered as a line chart',
-      required: true
-    },
-    highlights: {
-      name: 'highlights',
-      type: {
-        name: '[]',
-        description: '{ data: string[], color: string }'
-      },
-      description: 'A list of dates and to be highlighted'
-    },
-    referenceLines: {
-      name: 'referenceLines',
-      type: {
-        name: '[]',
-        description: `{ data: { [key: string]: number }, color: string }`
-      },
-      description:
-        'A record of data points to be rendered as a dashed horizontal line'
-    },
-    formatXAxisLabel: {
-      name: 'formatXAxisLabel',
-      type: {
-        name: 'function',
-        description: `(label: string) => string`
-      },
-      description: 'A function to custom format the X axis label'
-    },
-    granularity: {
-      name: 'granularity',
-      type: "'month' | 'week' | 'day' | 'hour'",
-      description: 'A value that helps formatting the chart'
-    }
-  })
+  name: 'AnalyticsChart'
 })
 
 page

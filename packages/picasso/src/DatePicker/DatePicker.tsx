@@ -101,6 +101,10 @@ export interface Props
   timezone?: string
   /** Custom parser for `DatePicker`'s input value to process custom input value, like, human-readable dates */
   parseInputValue?: DatePickerInputCustomValueParser
+  /** Additional data-* attrs for the inner Popper */
+  popperProps?: {
+    [key: `data-${string}`]: unknown
+  }
   testIds?: InputProps['testIds'] & {
     calendar?: string
     input?: string
@@ -131,6 +135,8 @@ export const DatePicker = (props: Props) => {
     testIds,
     error,
     status,
+    popperProps,
+    disabled,
     ...rest
   } = props
   const classes = useStyles()
@@ -339,6 +345,9 @@ export const DatePicker = (props: Props) => {
   }
 
   const handleFocusOrClick = () => {
+    if (disabled) {
+      return
+    }
     showCalendar()
     setIsInputFocused(true)
   }
@@ -363,6 +372,7 @@ export const DatePicker = (props: Props) => {
         <Input
           {...inputProps}
           status={error ? 'error' : status}
+          disabled={disabled}
           ref={inputRef}
           onKeyDown={handleInputKeydown}
           onClick={handleFocusOrClick}
@@ -388,6 +398,7 @@ export const DatePicker = (props: Props) => {
           container={popperContainer}
           popperOptions={DEFAULT_POPPER_OPTIONS}
           ref={popperRef}
+          {...popperProps}
         >
           <Calendar
             activeMonth={activeMonth}

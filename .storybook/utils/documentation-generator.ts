@@ -99,7 +99,7 @@ class DocumentationGenerator {
 
     // Array type
     if (typeName.match(ARRAY_REGEX)) {
-      const objectType = typeName.substring(0, typeName.indexOf('[]'))
+      const objectType = typeName.substring(0, typeName.lastIndexOf('[]'))
       const objectDescription = this.generateObjectDescription(objectType)
 
       return {
@@ -149,7 +149,11 @@ class DocumentationGenerator {
         .slice(0, -1)
         .map(prop => {
           const name = prop.split(':')[0].trim()
-          const value = prop.slice(prop.indexOf(':') + 1)
+          const value = prop
+            .slice(prop.indexOf(':') + 1)
+            .trim()
+            .replace('|', '\\|')
+
           return `| ${name}: | ${escapeType(value)} |`
         })
         .join('\r\n')

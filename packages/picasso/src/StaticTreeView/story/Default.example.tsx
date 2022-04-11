@@ -150,7 +150,7 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
             avatar={
               <TreeNodeAvatar
                 name='QQQQQQQQ QQQQQQQQ'
-                src='https://picasso.toptal.net/jacqueline-with-flowers-1954-square.jpg'
+                src='./jacqueline-with-flowers-1954-square.jpg'
               />
             }
           />
