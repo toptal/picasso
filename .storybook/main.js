@@ -24,6 +24,7 @@ module.exports = {
     './addons/anchor-link-handler/register',
     './addons/document-title/register'
   ],
+  staticDirs: [path.join(__dirname, './public')],
   stories: [path.join(__dirname, './load-stories.js')],
   typescript: {
     check: isDevelopment,
