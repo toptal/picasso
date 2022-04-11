@@ -52,10 +52,10 @@ describe('find-specifier-for-import', () => {
 
 describe('is-import-for', () => {
   describe('when testing against imports', () => {
-    it('returns the last known import declaration of the package member', () => {
+    it('returns true if ImportDeclaration is for a specific package', () => {
       const srcFile = `
         import { Form } from '@toptal/picasso-forms';
-        import { Bar, Quux } from '@toptal/picasso';
+        import { Quux } from '@toptal/picasso';
         import { Bar as PicassoBar, Foo } from '@toptal/picasso';`
       const root = j(srcFile)
 
