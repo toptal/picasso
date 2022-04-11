@@ -19,7 +19,6 @@ jobs:
           path: ./.github/actions/
 
       - uses: ./.github/actions/notify-jira-about-contribution
-        if: github.event.pull_request.draft == false && !(github.actor == 'dependabot[bot]')
         with:
           team: frontend-experience-eng
           repo: picasso
