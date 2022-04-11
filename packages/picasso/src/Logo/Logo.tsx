@@ -13,7 +13,6 @@ export interface Props extends BaseProps {
   emblem?: boolean
   /** Variant of the `Logo` */
   variant?: VariantType
-  'data-testid'?: string
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLogo' })

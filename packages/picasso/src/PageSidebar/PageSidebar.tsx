@@ -62,6 +62,9 @@ export interface Props extends BaseProps {
   collapsible?: boolean
   /** Indicates Sidebar is collapsed as default */
   defaultCollapsed?: boolean
+  /** Callback to get informed when sidebar is collapsed or uncollapsed */
+  onCollapseChange?: (collapsed: boolean) => void
+  /** Callback to notify when sidebar is having collapsed or default state */
   testIds?: {
     hoverWrapper?: string
     collapseButton?: string
@@ -90,6 +93,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     style,
     collapsible,
     defaultCollapsed,
+    onCollapseChange,
     testIds
   } = props
   const classes = useStyles()
@@ -113,7 +117,13 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
 
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
-  const handleCollapseButtonClick = () => setIsCollapsed(!isCollapsed)
+  const handleCollapseButtonClick = () => {
+    setIsCollapsed(!isCollapsed)
+
+    if (onCollapseChange) {
+      onCollapseChange(!isCollapsed)
+    }
+  }
 
   const sidebar = (
     <div
