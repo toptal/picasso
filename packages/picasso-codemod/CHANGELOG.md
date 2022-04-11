@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- [#2623](https://github.com/toptal/picasso/pull/2623) [`4a706471`](https://github.com/toptal/picasso/commit/4a706471de3922387578652ed283cd3bcd9810d9) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Codemods
+
+  - Add new codemod for refactoring the removed `OverlayBadge` into `Badge`
+
 ## 5.0.0
 
 ### Major Changes

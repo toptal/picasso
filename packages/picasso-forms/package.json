@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-forms",
-  "version": "41.0.0",
+  "version": "42.0.0",
   "description": "Picasso form components",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
@@ -23,7 +23,7 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso": "^21.0.0",
+    "@toptal/picasso": "^22.0.0",
     "@toptal/picasso-shared": "^8.0.0",
     "react": "^16.12.0",
     "typescript": "4.6.x",
