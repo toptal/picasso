@@ -9,7 +9,7 @@
 
 - removed asterisk for required field
 - removed `requiredDecoration` prop
-- added `isOptional` boolean prop
+- added `optional` boolean prop
 
 ### FormConfig context
 

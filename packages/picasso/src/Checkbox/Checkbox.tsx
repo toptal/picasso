@@ -30,7 +30,7 @@ export interface Props
   /** The id of the input element */
   id?: string
   /** Whether to show (optional) postfix */
-  isOptional?: boolean
+  optional?: boolean
   /** Callback invoked when `Checkbox` changed its value */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -48,7 +48,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       className,
       style,
       disabled,
-      isOptional,
+      optional,
       onChange,
       value,
       checked,
@@ -109,7 +109,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
           label: classes.label
         }}
         control={muiCheckbox}
-        isOptional={isOptional}
+        optional={optional}
         disabled={disabled}
         label={label}
         titleCase={titleCase}

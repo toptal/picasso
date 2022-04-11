@@ -20,7 +20,7 @@ export interface Props
   /** Content of the label */
   children: ReactNode
   /** Whether to show (optional) postfix */
-  isOptional?: boolean
+  optional?: boolean
   /** Is this label for disabled input or not */
   disabled?: boolean
   /** Specifies an id of the input */
@@ -46,7 +46,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     className,
     style,
     inline,
-    isOptional,
+    optional,
     as: Component = 'label',
     titleCase: propsTitleCase,
     size = 'medium',
@@ -75,7 +75,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     >
       <span className={classes[size]}>
         {titleCase ? toTitleCase(children) : children}
-        {isOptional && ' (optional)'}
+        {optional && ' (optional)'}
       </span>
     </Component>
   )

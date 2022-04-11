@@ -13,7 +13,7 @@ const FieldLabel = (props: Props) => {
 
   return (
     <PicassoForm.Label
-      isOptional={!required}
+      optional={!required}
       htmlFor={name}
       titleCase={titleCase}
     >

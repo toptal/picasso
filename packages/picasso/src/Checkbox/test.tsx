@@ -18,7 +18,7 @@ const renderCheckbox = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { label, disabled, titleCase, indeterminate, onChange, isOptional } =
+  const { label, disabled, titleCase, indeterminate, onChange, optional } =
     props
 
   return render(
@@ -28,7 +28,7 @@ const renderCheckbox = (
       indeterminate={indeterminate}
       onChange={onChange}
       titleCase={titleCase}
-      isOptional={isOptional}
+      optional={optional}
     />,
     undefined,
     picassoConfig
@@ -69,7 +69,7 @@ describe('Checkbox', () => {
   })
 
   it('renders with (optional)', () => {
-    const { container } = renderCheckbox({ isOptional: true })
+    const { container } = renderCheckbox({ optional: true })
 
     expect(container).toMatchSnapshot()
   })

@@ -27,7 +27,7 @@ export interface Props
   /** Shows whether label is disabled or not */
   disabled?: boolean
   /** Whether to show (optional) postfix */
-  isOptional?: boolean
+  optional?: boolean
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -42,7 +42,7 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
       className,
       style,
       disabled,
-      isOptional,
+      optional,
       titleCase,
       // Avoid passing external classes inside the rest props
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -69,7 +69,7 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
         <Form.Label
           className={classes.label}
           as='span'
-          isOptional={isOptional}
+          optional={optional}
           disabled={disabled}
           titleCase={titleCase}
         >

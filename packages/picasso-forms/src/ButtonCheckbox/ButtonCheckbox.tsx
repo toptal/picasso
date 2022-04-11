@@ -12,7 +12,7 @@ type CheckboxValue =
   | ButtonCheckboxProps['value']
   | ButtonCheckboxProps['checked']
 
-type CheckboxFormProps = Omit<ButtonCheckboxProps, 'isOptional'> & {
+type CheckboxFormProps = Omit<ButtonCheckboxProps, 'optional'> & {
   required?: boolean
 }
 type CheckboxWithoutGroup = CheckboxFormProps & FieldProps<CheckboxValue>
