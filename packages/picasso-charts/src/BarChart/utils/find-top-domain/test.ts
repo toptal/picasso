@@ -23,8 +23,8 @@ const CHART_DATA_UP_TO_1000 = [
 
 describe('findTopDomain', () => {
   it('finds top domain', () => {
-    expect(findTopDomain(CHART_DATA_UP_TO_10)).toEqual(10)
-    expect(findTopDomain(CHART_DATA_UP_TO_100)).toEqual(100)
-    expect(findTopDomain(CHART_DATA_UP_TO_1000)).toEqual(1000)
+    expect(findTopDomain(CHART_DATA_UP_TO_10)).toBe(10)
+    expect(findTopDomain(CHART_DATA_UP_TO_100)).toBe(100)
+    expect(findTopDomain(CHART_DATA_UP_TO_1000)).toBe(1000)
   })
 })

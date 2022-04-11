@@ -38,6 +38,6 @@ describe('findTopDomain', () => {
   it('finds top domain', () => {
     const topDomain = findTopDomain(CHART_DATA, 'x')
 
-    expect(topDomain).toEqual(5)
+    expect(topDomain).toBe(5)
   })
 })

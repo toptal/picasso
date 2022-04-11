@@ -16,7 +16,7 @@ const warnUsersAbout = (
 
   unsolvableImportDeclarations.forEach(elem => {
     if (elem.value.loc?.start) {
-      const { line, column } = elem.value.loc?.start
+      const { line, column } = elem.value.loc.start
 
       process.stdout.write(`${filePath}:${line}:${column}\n`)
     }

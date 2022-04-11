@@ -7,15 +7,15 @@ const getKeyboardEvent = (key: string, keyCode: number) =>
 
 describe('normalizeArrowKey', () => {
   it('normalizes correctly', () => {
-    expect(normalizeArrowKey(getKeyboardEvent('Test', 37))).toEqual('ArrowTest')
-    expect(normalizeArrowKey(getKeyboardEvent('Test', 38))).toEqual('ArrowTest')
-    expect(normalizeArrowKey(getKeyboardEvent('Test', 39))).toEqual('ArrowTest')
-    expect(normalizeArrowKey(getKeyboardEvent('Test', 40))).toEqual('ArrowTest')
+    expect(normalizeArrowKey(getKeyboardEvent('Test', 37))).toBe('ArrowTest')
+    expect(normalizeArrowKey(getKeyboardEvent('Test', 38))).toBe('ArrowTest')
+    expect(normalizeArrowKey(getKeyboardEvent('Test', 39))).toBe('ArrowTest')
+    expect(normalizeArrowKey(getKeyboardEvent('Test', 40))).toBe('ArrowTest')
 
-    expect(normalizeArrowKey(getKeyboardEvent('ArrowLeft', 37))).toEqual(
+    expect(normalizeArrowKey(getKeyboardEvent('ArrowLeft', 37))).toBe(
       'ArrowLeft'
     )
 
-    expect(normalizeArrowKey(getKeyboardEvent('Other', 127))).toEqual('Other')
+    expect(normalizeArrowKey(getKeyboardEvent('Other', 127))).toBe('Other')
   })
 })

@@ -128,7 +128,7 @@ describe('isIncluded', () => {
   it('compares object by reference', () => {
     const actual = isIncluded(testOptions, testOptions[0])
 
-    expect(actual).toEqual(true)
+    expect(actual).toBe(true)
   })
 
   it.each`

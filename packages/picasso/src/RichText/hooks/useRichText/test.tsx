@@ -22,12 +22,12 @@ describe('useRichText', () => {
 
       const header = result.current as ReactElement
 
-      expect(header.type).toEqual('h1')
+      expect(header.type).toBe('h1')
       expect(header.props.children).toEqual(['foobar'])
     })
   })
-  describe('allowed tags', () =>
-    (['p', 'h3', 'strong', 'em', 'ul', 'ol', 'li'] as const).forEach(tag => {
+  describe('allowed tags', () => {
+    ;(['p', 'h3', 'strong', 'em', 'ul', 'ol', 'li'] as const).forEach(tag => {
       it(`maps ${tag} with proper Picasso component`, () => {
         const tree: ASTType = {
           type: 'root',
@@ -49,7 +49,9 @@ describe('useRichText', () => {
         expect((element.type as Function).name).toEqual(componentName)
         expect(element.props.children).toEqual(['foobar'])
       })
-    }))
+    })
+  })
+
   it('handles mulltiple children', () => {
     const tree: ASTType = {
       type: 'root',
@@ -76,9 +78,9 @@ describe('useRichText', () => {
       ReactElement
     ]
 
-    expect((headerElement.type as Function).name).toEqual('H3')
+    expect((headerElement.type as Function).name).toBe('H3')
     expect(headerElement.props.children).toEqual(['foo'])
-    expect((paragraphElement.type as Function).name).toEqual('P')
+    expect((paragraphElement.type as Function).name).toBe('P')
     expect(paragraphElement.props.children).toEqual(['bar'])
   })
   it('handles children recursively', () => {
@@ -115,10 +117,10 @@ describe('useRichText', () => {
       ReactElement
     ]
 
-    expect((ulElement.type as Function).name).toEqual('Ul')
-    expect((liElementFirst.type as Function).name).toEqual('Li')
+    expect((ulElement.type as Function).name).toBe('Ul')
+    expect((liElementFirst.type as Function).name).toBe('Li')
     expect(liElementFirst.props.children).toEqual(['foo'])
-    expect((liElementSecond.type as Function).name).toEqual('Li')
+    expect((liElementSecond.type as Function).name).toBe('Li')
     expect(liElementSecond.props.children).toEqual(['bar'])
   })
   describe('when children are empty', () => {
@@ -161,8 +163,8 @@ describe('useRichText', () => {
         ReactElement
       ]
 
-      expect((headingElement.type as Function).name).toEqual('H3')
-      expect(brElement.type).toEqual('br')
+      expect((headingElement.type as Function).name).toBe('H3')
+      expect(brElement.type).toBe('br')
     })
   })
 

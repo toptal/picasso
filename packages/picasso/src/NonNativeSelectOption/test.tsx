@@ -49,8 +49,8 @@ describe('NonNativeSelectOption', () => {
 
     const option = getByRole('option')
 
-    expect(option.getAttribute('aria-selected')).toEqual('true')
-    expect(option.getAttribute('value')).toEqual('option1')
+    expect(option.getAttribute('aria-selected')).toBe('true')
+    expect(option.getAttribute('value')).toBe('option1')
 
     expect(container).toMatchSnapshot()
   })

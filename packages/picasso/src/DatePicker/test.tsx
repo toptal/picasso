@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
 
+// eslint-disable-next-line import/no-relative-packages
 import '../../../../__tests__/matchMedia'
 import { act, fireEvent, render } from '../test-utils'
 import DatePicker, { Props } from './DatePicker'

@@ -68,7 +68,7 @@ describe('Autocomplete', () => {
 
       const input = getByTestId('autocomplete') as HTMLInputElement
 
-      expect(input.placeholder).toEqual('test')
+      expect(input.placeholder).toBe('test')
     })
 
     it('renders an enableAutofill hidden input', () => {
@@ -144,7 +144,7 @@ describe('Autocomplete', () => {
 
       const input = getByTestId('autocomplete') as HTMLInputElement
 
-      expect(input.value).toEqual('Ukraine')
+      expect(input.value).toBe('Ukraine')
     })
 
     it('with custom input component', async () => {

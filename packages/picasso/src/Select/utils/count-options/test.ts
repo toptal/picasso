@@ -16,7 +16,7 @@ describe('countOptions', () => {
   }
 
   it('counts options', () => {
-    expect(countOptions(options)).toEqual(2)
-    expect(countOptions(groupedOptions)).toEqual(3)
+    expect(countOptions(options)).toBe(2)
+    expect(countOptions(groupedOptions)).toBe(3)
   })
 })
