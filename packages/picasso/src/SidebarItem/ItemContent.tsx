@@ -24,13 +24,7 @@ export const ItemContent = (props: Props) => {
 
   const resolvedChildren =
     typeof children === 'string' ? (
-      <Typography
-        className={classes.labelContent}
-        color='inherit'
-        size='medium'
-        titleCase={titleCase}
-        noWrap
-      >
+      <Typography color='inherit' size='medium' titleCase={titleCase} noWrap>
         {children}
       </Typography>
     ) : (
