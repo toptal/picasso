@@ -109,7 +109,6 @@ jobs:
       - name: Trigger doc deployment job
         uses: toptal/jenkins-job-trigger-action@1.0.0
         env:
-          JENKINS_JOB_NAME: picasso-docs
           BRANCH: ${{ github.event.pull_request.head.ref }}
           PR_ID: ${{ github.event.pull_request.number }}
         with:
@@ -117,7 +116,7 @@ jobs:
           jenkins_user: toptal-jenkins
           jenkins_token: ${{ secrets.TOPTAL_JENKINS_BUILD_TOKEN }}
           proxy: ${{ env.HTTP_PROXY }}
-          job_name: ${{ env.JENKINS_JOB_NAME }}
+          job_name: picasso-docs
           job_params: |
             {
               "BRANCH": "${{ env.BRANCH }}",
@@ -135,7 +134,6 @@ jobs:
       - name: Trigger doc deployment job
         uses: toptal/jenkins-job-trigger-action@1.0.0
         env:
-          JENKINS_JOB_NAME: picasso-pr-specs
           BRANCH: ${{ github.event.pull_request.head.ref }}
           COMMIT_ID: ${{ github.event.pull_request.head.sha }}
           PR_ID: ${{ github.event.pull_request.number }}
@@ -144,7 +142,7 @@ jobs:
           jenkins_user: toptal-jenkins
           jenkins_token: ${{ secrets.TOPTAL_JENKINS_BUILD_TOKEN }}
           proxy: ${{ env.HTTP_PROXY }}
-          job_name: ${{ env.JENKINS_JOB_NAME }}
+          job_name: picasso-pr-specs
           job_params: |
             {
               "BRANCH": "${{ env.BRANCH }}",
