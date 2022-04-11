@@ -3,10 +3,8 @@ import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import {
   Candidates16,
-  Help16,
   Logo,
   Overview16,
-  ReferralBonus16,
   Sidebar,
   SidebarProps
 } from '@toptal/picasso'
@@ -31,9 +29,7 @@ const SidebarExample = (props: SidebarProps) => {
             container: 'container'
           }}
         >
-          <Sidebar.Logo>
-            <Logo />
-          </Sidebar.Logo>
+          <Sidebar.Logo collapseLogo={<Logo emblem />} fullLogo={<Logo />} />
           <Sidebar.Menu>
             <Sidebar.Item
               icon={<Overview16 data-testid='sidebar-item-icon' />}
@@ -45,10 +41,6 @@ const SidebarExample = (props: SidebarProps) => {
 
           <Sidebar.Menu bottom>
             <Sidebar.Item icon={<Candidates16 />}>Opportunities</Sidebar.Item>
-            <Sidebar.Item icon={<ReferralBonus16 />}>
-              Referral Bonus
-            </Sidebar.Item>
-            <Sidebar.Item icon={<Help16 />}>Help</Sidebar.Item>
           </Sidebar.Menu>
         </Sidebar>
       </div>
@@ -57,42 +49,31 @@ const SidebarExample = (props: SidebarProps) => {
 }
 
 describe('Sidebar', () => {
-  it('renders sidebar menus and items', () => {
-    mount(<SidebarExample />)
-
-    cy.get('body').happoScreenshot()
-  })
-
-  describe('when sidebar is collapsible and collapsed', () => {
-    it('renders sidebar menus and items as collapsed', () => {
-      mount(<SidebarExample collapsible defaultCollapsed />)
-
-      cy.get('body').happoScreenshot()
-    })
-  })
-
-  describe('when sidebar is collapsible and collapsed button clicked', () => {
-    it('shrinks the sidebar and hides text contents of the sidebar items', () => {
+  describe('when the sidebar is collapsible', () => {
+    it('hides and shows the sidebar items text', () => {
       mount(<SidebarExample collapsible />)
 
-      // check if both icon and text content visible before collapsing
-      cy.get('[data-testid="sidebar-item-icon"]')
-        .as('sidebarItemIcon')
-        .should('be.visible')
-      cy.get('[data-testid="sidebar-item-text-content"]')
-        .as('sidebarItemTextContent')
-        .should('be.visible')
-
-      cy.get('[data-testid="hover-wrapper"]').realHover()
       cy.get('[data-testid="collapse-button"]')
         .as('collapseButton')
-        .should('be.visible')
+        .should('not.be.visible')
 
-      cy.get('@collapseButton').realClick()
+      cy.get('[data-testid="hover-wrapper"]')
+        .as('hoverWrapper')
+        .realHover()
+        .find('[data-testid="collapse-button"]')
+        .realClick()
 
-      // check text content hidden after collapsing while icon visible
-      cy.get('@sidebarItemIcon').should('be.visible')
-      cy.get('@sidebarItemTextContent').should('not.be.visible')
+      cy.get('@collapseButton').should('not.be.visible')
+      cy.get('@hoverWrapper').realHover()
+
+      cy.get('body').happoScreenshot()
+
+      cy.get('@hoverWrapper')
+        .realHover()
+        .find('[data-testid="collapse-button"]')
+        .realClick()
+
+      cy.get('body').happoScreenshot()
     })
   })
 })

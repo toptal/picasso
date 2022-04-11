@@ -11,7 +11,7 @@ const TestSidebar = ({ children }: OmitInternalProps<Props>) => {
   return <PageSidebar>{children}</PageSidebar>
 }
 
-const renderCollapsibleSidebar = (props: SidebarProps) => {
+const renderCollapsibleSidebar = (props: Props) => {
   return render(
     <PageSidebar
       {...props}
