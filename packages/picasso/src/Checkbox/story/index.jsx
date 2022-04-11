@@ -53,5 +53,8 @@ page
   .addExample('Checkbox/story/Indeterminate.example.tsx', {
     title: 'Indeterminate'
   })
-  .addExample('Checkbox/story/Required.example.tsx', 'Required')
+  .addExample(
+    'Checkbox/story/Required.Optional.example.tsx',
+    'Required vs. Optional'
+  )
   .addExample('Checkbox/story/CustomLabel.example.tsx', 'Custom label')

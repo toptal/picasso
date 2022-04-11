@@ -188,10 +188,6 @@ however, you may need custom validators for more complex types of fields.
     'picasso-form'
   ) // picasso-skip-visuals
   .addExample(
-    'Form/story/CustomFormLevelConfiguration.example.tsx',
-    'Form Level Configurations'
-  )
-  .addExample(
     'Form/story/ValidateOnSubmit.example.tsx',
     {
       title: 'Validate only on submit',

@@ -5,9 +5,8 @@
 
 ---
 
-### FormLabel
+### FormLabel, FormControlLabel, Checkbox
 
-- removed asterisk for required field
 - removed `requiredDecoration` prop
 - added `optional` boolean prop
 
