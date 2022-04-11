@@ -13,6 +13,10 @@ on:
       - reopened # PR was closed and is now open again
       - ready_for_review # PR was converted from draft to open
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
 
@@ -24,11 +28,6 @@ jobs:
     timeout-minutes: 45
     
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.6.0
-        with:
-          access_token: ${{ github.token }}
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -62,11 +61,6 @@ jobs:
       options: --privileged # thanks to this we can increase number of file watchers below
 
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.6.0
-        with:
-          access_token: ${{ github.token }}
-
       - name: Checkout
         uses: actions/checkout@v2
 
