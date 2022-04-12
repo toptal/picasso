@@ -185,13 +185,13 @@ describe('SidebarItem', () => {
   describe('when sidebar is collapsed', () => {
     it('hides content of the item', () => {
       const { getByTestId } = render(
-        <Sidebar collapsible defaultCollapsed>
-          <Sidebar.Menu>
-            <Sidebar.Item icon={<Candidates16 data-testid='icon' />}>
+        <PageSidebar collapsible defaultCollapsed>
+          <PageSidebar.Menu>
+            <PageSidebar.Item icon={<Candidates16 data-testid='icon' />}>
               <span data-testid='text-content'>Menu item</span>
-            </Sidebar.Item>
-          </Sidebar.Menu>
-        </Sidebar>
+            </PageSidebar.Item>
+          </PageSidebar.Menu>
+        </PageSidebar>
       )
 
       expect(getByTestId('icon')).toBeVisible()

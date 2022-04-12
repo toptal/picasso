@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sidebar renders 1`] = `
+exports[`PageSidebar renders 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="Sidebar-hoverWrapper"
+      class="PageSidebar-hoverWrapper"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
+        class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
       >
         <div
-          class="Sidebar-spacer"
+          class="PageSidebar-spacer"
         />
       </div>
     </div>
@@ -20,19 +20,19 @@ exports[`Sidebar renders 1`] = `
 </div>
 `;
 
-exports[`Sidebar with menu 1`] = `
+exports[`PageSidebar with menu 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="Sidebar-hoverWrapper"
+      class="PageSidebar-hoverWrapper"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
+        class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
       >
         <div
-          class="Sidebar-spacer"
+          class="PageSidebar-spacer"
         />
         <ul
           class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
@@ -45,19 +45,19 @@ exports[`Sidebar with menu 1`] = `
 </div>
 `;
 
-exports[`Sidebar with one normal and one bottom menu 1`] = `
+exports[`PageSidebar with one normal and one bottom menu 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="Sidebar-hoverWrapper"
+      class="PageSidebar-hoverWrapper"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
+        class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
       >
         <div
-          class="Sidebar-spacer"
+          class="PageSidebar-spacer"
         />
         <ul
           class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"

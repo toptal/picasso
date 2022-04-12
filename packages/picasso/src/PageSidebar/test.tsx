@@ -4,7 +4,7 @@ import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { fireEvent, waitFor } from '@testing-library/react'
 
-import PageSidebar, { Props } from './Sidebar'
+import PageSidebar, { Props } from './PageSidebar'
 import { Overview16 } from '../Icon'
 
 const TestSidebar = ({ children }: OmitInternalProps<Props>) => {

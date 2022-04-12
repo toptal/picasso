@@ -4,8 +4,8 @@ import { makeStyles, Theme } from '@material-ui/core'
 import cx from 'classnames'
 
 import Container from '../Container'
-import { SidebarContextProps } from '../Sidebar/types'
-import { SidebarContext } from '../Sidebar'
+import { SidebarContextProps } from '../PageSidebar/types'
+import { SidebarContext } from '../PageSidebar'
 import styles from './styles'
 export interface Props
   extends BaseProps,

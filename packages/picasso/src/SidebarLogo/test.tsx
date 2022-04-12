@@ -4,7 +4,7 @@ import { render } from '@toptal/picasso/test-utils'
 
 import Logo from '../Logo'
 import SidebarLogo, { Props } from './SidebarLogo'
-import { SidebarContext } from '../Sidebar/Sidebar'
+import { SidebarContext } from '../PageSidebar/PageSidebar'
 import { noop } from '../utils'
 
 const TestSidebarLogo = ({ children }: Props) => (

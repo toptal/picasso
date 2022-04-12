@@ -5,11 +5,11 @@ import {
   Candidates16,
   Logo,
   Overview16,
-  Sidebar,
-  SidebarProps
+  Page,
+  PageSidebarProps
 } from '@toptal/picasso'
 
-const SidebarExample = (props: SidebarProps) => {
+const SidebarExample = (props: PageSidebarProps) => {
   const { collapsible } = props
 
   return (
@@ -21,7 +21,7 @@ const SidebarExample = (props: SidebarProps) => {
           overflowY: 'scroll'
         }}
       >
-        <Sidebar
+        <Page.Sidebar
           collapsible={collapsible}
           testIds={{
             hoverWrapper: 'hover-wrapper',
@@ -29,20 +29,25 @@ const SidebarExample = (props: SidebarProps) => {
             container: 'container'
           }}
         >
-          <Sidebar.Logo collapseLogo={<Logo emblem />} fullLogo={<Logo />} />
-          <Sidebar.Menu>
-            <Sidebar.Item
+          <Page.Sidebar.Logo
+            collapseLogo={<Logo emblem />}
+            fullLogo={<Logo />}
+          />
+          <Page.Sidebar.Menu>
+            <Page.Sidebar.Item
               icon={<Overview16 data-testid='sidebar-item-icon' />}
               selected
             >
               <span data-testid='sidebar-item-text-content'>Overview</span>
-            </Sidebar.Item>
-          </Sidebar.Menu>
+            </Page.Sidebar.Item>
+          </Page.Sidebar.Menu>
 
-          <Sidebar.Menu bottom>
-            <Sidebar.Item icon={<Candidates16 />}>Opportunities</Sidebar.Item>
-          </Sidebar.Menu>
-        </Sidebar>
+          <Page.Sidebar.Menu bottom>
+            <Page.Sidebar.Item icon={<Candidates16 />}>
+              Opportunities
+            </Page.Sidebar.Item>
+          </Page.Sidebar.Menu>
+        </Page.Sidebar>
       </div>
     </TestingPicasso>
   )
