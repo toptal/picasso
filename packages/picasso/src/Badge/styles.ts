@@ -1,46 +1,45 @@
 import { rem } from '@toptal/picasso-shared'
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme, createStyles, StyleRules } from '@material-ui/core/styles'
 
-const getSizeProps = (unitInRem: string) => ({
+const getSizeProps = (unitInRem: string): StyleRules[keyof {}] => ({
   borderRadius: unitInRem,
   height: unitInRem,
-  lineHeight: unitInRem,
   minWidth: unitInRem
 })
 
-export default ({ palette }: Theme) =>
+export default ({ palette, typography }: Theme) =>
   createStyles({
     root: {
-      borderStyle: 'solid',
       borderWidth: '1px',
-      display: 'inline-flex',
+      borderStyle: 'solid',
       fontSize: rem('10px'),
-      fontWeight: 600,
-      alignItems: 'center',
-      justifyContent: 'center'
+      lineHeight: rem('12px'),
+      padding: '0 1px',
+      fontWeight: typography.fontWeights.semibold
     },
-    // variants
+    static: {
+      position: 'unset',
+      transform: 'unset'
+    },
     white: {
       background: palette.common.white,
-      borderColor: palette.grey.light,
-      color: palette.grey.dark
+      color: palette.grey.dark,
+      borderColor: palette.grey.light2
     },
     red: {
-      backgroundColor: palette.red.main,
+      color: palette.common.white,
       borderColor: palette.red.main,
-      color: palette.common.white
-    },
-    // sizes
-    large: {
-      padding: '0 3px',
-      ...getSizeProps('1.25rem')
+      backgroundColor: palette.red.main
     },
     small: {
-      padding: '0 2px',
-      ...getSizeProps('0.75rem')
+      lineHeight: rem('10px'),
+      ...getSizeProps(rem('12px'))
     },
     medium: {
-      padding: '0 1px',
-      ...getSizeProps('1rem')
+      ...getSizeProps(rem('16px'))
+    },
+    large: {
+      padding: '0 3px',
+      ...getSizeProps(rem('20px'))
     }
   })

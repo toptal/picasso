@@ -1,5 +1,20 @@
 # Change Log
 
+## 22.0.0
+
+### Major Changes
+
+- [#2561](https://github.com/toptal/picasso/pull/2561) [`eae1c46f`](https://github.com/toptal/picasso/commit/eae1c46fbaedbbebd1928dd704002e9a11b13264) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Badge
+
+  - Merged with OverlayBadge, now if has children it should work the same way as OverlayBadge
+  - Style was also updated to better follow BASE 2.0
+
+  ### OverlayBadge
+
+  - Removed in favor of Badge
+
 ## 21.2.0
 
 ### Minor Changes

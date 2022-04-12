@@ -43,16 +43,19 @@ describe('Badge', () => {
 
     expect(getByText('9+')).toBeVisible()
   })
+
   it('should not transform content when value is les than 10 for small size', () => {
     const { getByText } = renderBadge({ content: 9, size: 'small' })
 
     expect(getByText('9')).toBeVisible()
   })
+
   it('should transform content when value is more than 100 for medium size', () => {
     const { getByText } = renderBadge({ content: 100, size: 'medium' })
 
     expect(getByText('99+')).toBeVisible()
   })
+
   it('should not transform content when value is more than 100 for medium size', () => {
     const { getByText } = renderBadge({ content: 99, size: 'medium' })
 

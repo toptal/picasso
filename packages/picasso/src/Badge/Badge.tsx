@@ -1,70 +1,81 @@
-import React, { forwardRef } from 'react'
+import React, { Children, forwardRef, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import { Badge as MuiBadge } from '@material-ui/core'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 type VariantType = 'white' | 'red'
 type SizeType = 'medium' | 'small' | 'large'
 
-export interface Props extends BaseProps, TextLabelProps {
+export interface Props extends BaseProps {
   /** The `Badge` content */
   content: number
+
   /** Variant of the `Badge` */
   variant?: VariantType
+
   /** Size of the `Badge` */
   size?: SizeType
-  /**
-   * Max count to show. By default 9 for small size, 99 for other sizes
-   */
+
+  /** Max count to show. By default 9 for small size, 99 for other sizes */
   max?: number
+
+  /** The badged will be overlaid on it's children */
+  children?: ReactNode
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoBadge' })
 
-const thresholds = {
+const thresholds: Record<SizeType, number> = {
   small: 9,
   medium: 99,
   large: 99
 }
 
-const format = (content: number, size: SizeType, max?: number): string => {
-  const trimThreshold = max || thresholds[size]
+const formatNumber = (
+  content: number,
+  size: SizeType,
+  max: number | undefined
+): string => {
+  const trimThreshold = max ?? thresholds[size]
 
-  if (content > trimThreshold) {
-    return `${trimThreshold}+`
-  }
-
-  return String(content)
+  return content > trimThreshold ? `${trimThreshold}+` : String(content)
 }
 
-// eslint-disable-next-line react/display-name
 export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
-  props,
-  ref
-) {
-  const {
+  {
+    children,
     style,
     variant = 'white',
     size = 'large',
     content,
-    'data-testid': dataTestId,
-    max
-  } = props
+    max,
+    'data-testid': testId
+  },
+  ref
+) {
   const classes = useStyles()
 
+  const hasChildren = Children.count(children) > 0
+
+  const badgeContent = formatNumber(content, size, max)
+
   return (
-    <>
-      <span
-        ref={ref}
-        data-testid={dataTestId}
-        className={cx(classes.root, classes[variant], classes[size])}
-        style={style}
-      >
-        {format(content, size, max)}
-      </span>
-    </>
+    <MuiBadge
+      ref={ref}
+      style={style}
+      data-testid={testId}
+      badgeContent={badgeContent}
+      classes={{
+        badge: cx(classes.root, classes[variant], classes[size], {
+          [classes.static]: !hasChildren
+        })
+      }}
+    >
+      {children}
+    </MuiBadge>
   )
 })
 
