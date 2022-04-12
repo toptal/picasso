@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build:package": "lerna run build:package --stream --parallel",
-    "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook --quiet",
+    "build:storybook": "build-storybook -c .storybook -o build/storybook --quiet",
     "commit": "git-cz",
     "generate:component": "hygen component new",
     "generate:example": "hygen component example",
