@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form as PicassoForm, RequiredDecoration } from '@toptal/picasso'
 import { TextLabelProps } from '@toptal/picasso-shared'
+import { usePropDeprecationWarning } from '@toptal/picasso/utils/use-deprecation-warnings'
 
 import { useFormConfig, RequiredVariant } from '../FormConfig'
 
@@ -36,6 +37,13 @@ const FieldLabel = (props: Props) => {
     required,
     formConfig.requiredVariant
   )
+
+  usePropDeprecationWarning({
+    props,
+    name: 'requiredDecoration',
+    componentName: 'FieldLabel',
+    description: "There will be 'optional' boolean property instead"
+  })
 
   return (
     <PicassoForm.Label

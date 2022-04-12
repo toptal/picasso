@@ -10,6 +10,7 @@ import {
 
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 type ComponentType = 'label' | 'span'
 export type RequiredDecoration = 'asterisk' | 'optional'
@@ -58,6 +59,13 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
 
   const isInline = inline || Component === 'span'
   const titleCase = useTitleCase(propsTitleCase)
+
+  usePropDeprecationWarning({
+    props,
+    name: 'requiredDecoration',
+    componentName: 'FormLabel',
+    description: "There will be 'optional' boolean property instead"
+  })
 
   return (
     <Component

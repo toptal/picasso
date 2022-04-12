@@ -12,9 +12,11 @@ import cx from 'classnames'
 import { RequiredDecoration } from '../FormLabel'
 import styles from './styles'
 import Form from '../Form'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
-export type FormControlLabelAttributesType = LabelHTMLAttributes<HTMLLabelElement> &
-  Pick<FormControlLabelProps, 'onChange'>
+export type FormControlLabelAttributesType =
+  LabelHTMLAttributes<HTMLLabelElement> &
+    Pick<FormControlLabelProps, 'onChange'>
 
 export interface Props
   extends StandardProps,
@@ -51,6 +53,13 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
     } = props
 
     const classes = useStyles(props)
+
+    usePropDeprecationWarning({
+      props,
+      name: 'requiredDecoration',
+      componentName: 'FormControlLabel',
+      description: "There will be 'optional' boolean property instead"
+    })
 
     return (
       <label

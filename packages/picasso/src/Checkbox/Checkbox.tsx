@@ -13,6 +13,7 @@ import CheckboxGroup from '../CheckboxGroup'
 import Container from '../Container'
 import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCheckbox' })
 
@@ -57,6 +58,13 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       titleCase,
       ...rest
     } = props
+
+    usePropDeprecationWarning({
+      props,
+      name: 'requiredDecoration',
+      componentName: 'Checkbox',
+      description: "There will be 'optional' boolean property instead"
+    })
 
     const classes = useStyles()
     const rootClasses = {
