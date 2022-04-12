@@ -88,15 +88,6 @@ jobs:
       - name: Jest Tests
         run: yarn test:unit:ci
 
-      - name: Build packages
-        run: yarn build:package
-
-      - name: Cypress Tests # requires the packages to be built before running
-        uses: ./.github/actions/integration-tests
-        env:
-          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
-
   deploy-docs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Deploy Picasso docs
