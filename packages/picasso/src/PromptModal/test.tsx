@@ -1,5 +1,10 @@
 import React from 'react'
-import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
+import {
+  render,
+  fireEvent,
+  waitFor,
+  waitForElementToBeRemoved
+} from '@toptal/picasso/test-utils'
 
 import Button from '../Button'
 import Input from '../Input'
@@ -59,9 +64,7 @@ describe('PromptModal', () => {
 
     fireEvent.click(submitModal)
 
-    await waitFor(() => {
-      expect(queryByText('Modal content')).toBeFalsy()
-    })
+    await waitForElementToBeRemoved(submitModal)
 
     expect(baseElement).toMatchSnapshot()
   })
@@ -118,7 +121,7 @@ describe('PromptModal', () => {
     await waitFor(() => {
       expect(mockResult.mock.results[0].value).toBe(expectedResult)
     })
-
+    await waitForElementToBeRemoved(submitModal)
     expect(baseElement).toMatchSnapshot()
   })
 

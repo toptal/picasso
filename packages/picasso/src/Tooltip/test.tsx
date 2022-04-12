@@ -7,6 +7,7 @@ import Tooltip, { Props } from './Tooltip'
 
 const TOOLTIP_SHORT_DELAY = 200
 const TOOLTIP_LONG_DELAY = 500
+const INTERVAL = 50
 
 const TestContent = () => {
   return <div data-testid='tooltip-content'>Content</div>
@@ -84,13 +85,13 @@ describe('Tooltip', () => {
         () => {
           expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
         },
-        { timeout: TOOLTIP_SHORT_DELAY / 2 }
+        { timeout: TOOLTIP_SHORT_DELAY - 1 }
       )
       await waitFor(
         () => {
           expect(queryByTestId('tooltip-content')).toBeInTheDocument()
         },
-        { timeout: TOOLTIP_SHORT_DELAY }
+        { timeout: TOOLTIP_SHORT_DELAY + INTERVAL }
       )
 
       fireEvent.mouseLeave(getByTestId('tooltip-trigger'))
@@ -107,13 +108,11 @@ describe('Tooltip', () => {
         () => {
           expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
         },
-        { timeout: TOOLTIP_LONG_DELAY / 2 }
+        { timeout: TOOLTIP_LONG_DELAY - 1 }
       )
       await waitFor(
-        () => {
-          expect(queryByTestId('tooltip-content')).toBeInTheDocument()
-        },
-        { timeout: TOOLTIP_LONG_DELAY }
+        () => expect(queryByTestId('tooltip-content')).toBeInTheDocument(),
+        { timeout: TOOLTIP_LONG_DELAY + INTERVAL }
       )
 
       fireEvent.mouseLeave(getByTestId('tooltip-trigger'))

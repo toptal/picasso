@@ -27,7 +27,7 @@
     "@material-ui/core": "4.11.0",
     "@toptal/picasso": "^22.0.0",
     "@toptal/picasso-shared": "^8.0.0",
-    "react": "^16.12.0"
+    "react": ">=16.12.0 && < 19.0.0"
   },
   "devDependencies": {
     "@types/d3": "^6.3.0",
