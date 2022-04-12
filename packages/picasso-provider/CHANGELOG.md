@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [#2605](https://github.com/toptal/picasso/pull/2605) [`ec1ab713`](https://github.com/toptal/picasso/commit/ec1ab7130b28cac2ba7ad1080cb0859743cececb) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### React 18
+
+  update peerDependencies to support React@18
+
 ## 1.0.0
 
 ### Major Changes
