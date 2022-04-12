@@ -59,7 +59,6 @@ jobs:
         uses: changesets/action@c2918239208f2162b9d27a87f491375c51592434
         with:
           publish: yarn release
-          commit: Version Packages [skip ci]
         env:
           GITHUB_TOKEN: ${{ secrets.TOPTAL_BUILD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
