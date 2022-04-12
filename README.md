@@ -36,8 +36,8 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 | **lint**               | Lint all files                                                                 |
 | **start**              | Start storybook instance and inspect components                                |
 | **test**               | Run jest and cypress tests                                                     |
-| **test:cypress**       | Run cypress tests                                                              |
-| **test:cypress:open**  | Run cypress in development mode                                                |
+| **test:integration**       | Run cypress tests                                                              |
+| **test:integration:open**  | Run cypress in development mode                                                |
 | **test:unit**          | Run unit tests                                                                 |
 | **test:unit -u**       | Update jest snapshots                                                          |
 | **test:unit:watch**    | Run unit tests in watch mode                                                   |
