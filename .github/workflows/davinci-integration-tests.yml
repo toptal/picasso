@@ -1,0 +1,165 @@
+name: Davinci Integration tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: [master, main]
+
+# Read more about customization: https://toptal-core.atlassian.net/l/c/91SzvPoU#Generated-IT-Workflow
+env:
+  PARALLEL_MATRIX: |
+    [
+      {
+        "pkg": "default",
+        "location": ".",
+        "parallel_groups": 3
+      }
+    ]
+  PRINT_COVERAGE: false
+  COVERAGE_REPORT_DIR: coverage
+  COVERAGE_REPORTER: text-summary
+  COMMAND: test:integration:ci
+
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN_READ_ONLY }}
+  GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+  HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+  HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+  HAPPO_NONCE: ${{ github.run_id }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  create_matrix:
+    name: Create:Matrix
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - name: Run Matrix
+        id: set-matrix
+        uses: ./.github/actions/create-matrix
+        with:
+          parallel_groups: ${{ env.PARALLEL_GROUPS }}
+          parallel_matrix: ${{ env.PARALLEL_MATRIX }}
+          npm_token: ${{ env.NPM_TOKEN }}
+
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      isMonorepo: ${{ steps.set-matrix.outputs.isMonorepo }}
+
+  build_packages:
+    name: Build:Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - uses: ./.github/actions/yarn-install
+        with:
+          npm_token: ${{ env.NPM_TOKEN }}
+
+      - name: Build packages
+        run: yarn build:package
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v3
+        with:
+          name: pkgs-build
+          path: 'packages/**/dist-package'
+          retention-days: 1
+
+  integration_check:
+    name: Check:IntegrationTests
+    runs-on: ubuntu-latest
+    needs: [create_matrix, build_packages]
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.create_matrix.outputs.matrix) }}
+    env:
+      GROUP_INDEX: ${{ matrix.index }}
+      GROUP_LOCATION: ${{ matrix.location }}
+      GROUP_PACKAGE: ${{ matrix.pkg }}
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - uses: ./.github/actions/yarn-install
+        with:
+          npm_token: ${{ env.NPM_TOKEN }}
+
+      - name: Download Built packages
+        uses: actions/download-artifact@v3
+        with:
+          name: pkgs-build
+          path: packages
+
+      - uses: ./.github/actions/integration-tests
+        env:
+          PARALLEL_GROUPS: ${{ matrix.total }}
+        with:
+          command: yarn ${{ env.COMMAND }}
+
+      - name: Move coverage output to joint folder
+        if: ${{ env.PRINT_COVERAGE == 'true' }}
+        run: |
+          mkdir integration-coverage
+          mv $GROUP_LOCATION/$COVERAGE_REPORT_DIR/coverage-final.json integration-coverage/coverage.${GROUP_PACKAGE////-}.$GROUP_INDEX.json
+
+      - name: Upload Coverage
+        if: ${{ env.PRINT_COVERAGE == 'true' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: integration-coverage
+          path: integration-coverage
+
+  coverage_report:
+    name: Report:Coverage
+    runs-on: ubuntu-latest
+    needs: integration_check
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Finalize Happo
+        run: npx happo-e2e finalize
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - name: Print Coverage
+        if: ${{ env.PRINT_COVERAGE == 'true' }}
+        uses: ./.github/actions/report-coverage
+        with:
+          name: integration-coverage

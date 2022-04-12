@@ -3,7 +3,11 @@ const webpackPreprocessor = require('@cypress/webpack-preprocessor')
 const { startDevServer } = require('@cypress/webpack-dev-server')
 const happoTask = require('happo-cypress/task')
 
+const parallelization = require('./parallelization')
+
 module.exports = (on, config) => {
+  parallelization(config)
+
   const webpackConfig = webpackPreprocessor.defaultOptions.webpackOptions
 
   const rule = webpackConfig.module.rules[0]
