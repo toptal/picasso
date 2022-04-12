@@ -221,7 +221,8 @@ describe('Autocomplete', () => {
 
       fireEvent.click(input)
 
-      // TODO: figure out why renderOption is called twice
+      // 5 times on first render
+      // another 5 times on second rerender after click
       expect(renderOption).toHaveBeenCalledTimes(10)
       expect(getAllByTestId('custom-option')).toHaveLength(5)
       expect(getDisplayValue).not.toHaveBeenCalled()
@@ -240,7 +241,7 @@ describe('Autocomplete', () => {
 
       fireEvent.click(input)
 
-      // TODO: figure out why its being called 20 times
+      // when getKey is not passed, getDisplayValue is called twice for each option on every render
       expect(getDisplayValue).toHaveBeenCalledTimes(20)
       expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
     })
@@ -619,21 +620,17 @@ describe('Autocomplete', () => {
 
   describe('reset behavior', () => {
     it('when reset button clicked', () => {
-      const {
-        getByTestId,
-        getByRole,
-        getByText,
-        queryByText
-      } = renderAutocomplete({
-        options: testOptions,
-        value: ''
-      })
+      const { getByTestId, getByRole, getByText, queryByText } =
+        renderAutocomplete({
+          options: testOptions,
+          value: ''
+        })
 
       const input = getByTestId('autocomplete')
 
       fireEvent.click(input)
       fireEvent.click(getByText('Slovakia'))
-      fireEvent.click(getByRole('reset'))
+      fireEvent.click(getByRole('reset', { hidden: true }))
 
       expect(queryByText('Slovakia')).not.toBeInTheDocument()
     })
