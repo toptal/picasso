@@ -39,10 +39,9 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
       isCollapsed: isSidebarCollapsed
     } = useContext<SidebarContextProps>(SidebarContext)
 
-    const expandSidebarItem = useCallback(
-      index => setExpandedItemKey(index),
-      [setExpandedItemKey]
-    )
+    const expandSidebarItem = useCallback(setExpandedItemKey, [
+      setExpandedItemKey
+    ])
 
     useEffect(() => {
       const hasSelectedItem = React.Children.map(children, child => {

@@ -8,10 +8,8 @@ const useSidebarState = ({ defaultCollapsed }: Props) => {
   const useSidebarProps = useSidebar()
 
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(
-    Boolean(defaultCollapsed)
-  )
-  const [isHovered, setIsHovered] = useState<boolean>(false)
+  const [isCollapsed, setIsCollapsed] = useState(Boolean(defaultCollapsed))
+  const [isHovered, setIsHovered] = useState(false)
 
   return {
     ...useSidebarProps,
