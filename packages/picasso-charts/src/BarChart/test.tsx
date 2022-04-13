@@ -62,15 +62,19 @@ describe('BarChart', () => {
     )
   })
 
-  it('shows label of each bar with `showBarLabel` prop being set to `true` by default', () => {
+  it('shows label of each bar with `showBarLabel` prop being set to `true` by default', async () => {
     const { queryByText } = renderBarChart()
 
-    waitFor(() => expect(queryByText('118')).toBeInTheDocument())
+    await waitFor(() => {
+      expect(queryByText('118')).toBeInTheDocument()
+    })
   })
 
-  it('hides label of each bar via passed `showBarLabel` prop being set to `false', () => {
+  it('hides label of each bar via passed `showBarLabel` prop being set to `false', async () => {
     const { queryByText } = renderBarChart(false)
 
-    waitFor(() => expect(queryByText('118')).not.toBeInTheDocument())
+    await waitFor(() => {
+      expect(queryByText('118')).not.toBeInTheDocument()
+    })
   })
 })
