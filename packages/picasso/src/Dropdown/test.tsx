@@ -56,8 +56,10 @@ describe('Dropdown', () => {
       </Container>
     )
 
-    act(() => {
-      fireEvent.click(getByText('Open Dropdown'))
+    const trigger = getByText('Open Dropdown')
+
+    await act(async () => {
+      fireEvent.click(trigger)
     })
 
     await waitFor(() => {
