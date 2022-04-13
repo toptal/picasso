@@ -46,10 +46,13 @@ describe('Tooltip', () => {
       expect(container).toMatchSnapshot()
     })
 
-    it('renders initially opened', () => {
-      const { container, queryByTestId } = renderTooltip({ open: true })
+    it('renders initially opened', async () => {
+      const { container, getByTestId } = renderTooltip({ open: true })
 
-      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      await waitFor(() => {
+        expect(getByTestId('tooltip-content')).toBeInTheDocument()
+      })
+
       expect(container).toMatchSnapshot()
     })
 
