@@ -121,11 +121,14 @@ export const useAutocomplete = ({
 
   useEffect(() => {
     if (!isOpen) {
-      setHighlightedIndex(
+      const newHighlightedIndex =
         selectedIndex && selectedIndex !== -1 ? selectedIndex : 0
-      )
+
+      if (newHighlightedIndex !== highlightedIndex) {
+        setHighlightedIndex(newHighlightedIndex)
+      }
     }
-  }, [isOpen, selectedIndex])
+  }, [isOpen, selectedIndex, highlightedIndex])
 
   const shouldShowOtherOption = Boolean(showOtherOption) && selectedIndex === -1
 

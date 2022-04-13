@@ -24,6 +24,7 @@ module.exports = {
     './addons/anchor-link-handler/register',
     './addons/document-title/register'
   ],
+  staticDirs: ['./public'],
   stories: [path.join(__dirname, './load-stories.js')],
   typescript: {
     check: isDevelopment,
@@ -114,7 +115,8 @@ module.exports = {
     return config
   },
   reactOptions: {
-    fastRefresh: true
+    fastRefresh: true,
+    strictMode: true
   },
   features: {
     postcss: false

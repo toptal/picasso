@@ -422,7 +422,7 @@ describe('DatePicker', () => {
         const input = getByPlaceholderText(defaultProps.placeholder)
 
         fireEvent.focus(input)
-        fireEvent.click(getByRole('reset'))
+        fireEvent.click(getByRole('reset', { hidden: true }))
 
         expect(input).toHaveAttribute('value', '')
       })
@@ -479,15 +479,12 @@ describe('DatePicker', () => {
     ])(
       'should display date in given timezone after day click',
       async ({ date, timezone }) => {
-        const {
-          getByPlaceholderText,
-          getByTestId,
-          getByText
-        } = renderDatePicker({
-          ...defaultProps,
-          timezone,
-          value: new Date(date)
-        })
+        const { getByPlaceholderText, getByTestId, getByText } =
+          renderDatePicker({
+            ...defaultProps,
+            timezone,
+            value: new Date(date)
+          })
 
         fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
 
@@ -503,17 +500,14 @@ describe('DatePicker', () => {
 
     describe('when `enableReset` option is passed', () => {
       it('should not close calendar on `reset` button click', async () => {
-        const {
-          getByRole,
-          queryByTestId,
-          getByPlaceholderText
-        } = renderDatePicker({
-          ...defaultProps,
-          enableReset: true
-        })
+        const { getByRole, queryByTestId, getByPlaceholderText } =
+          renderDatePicker({
+            ...defaultProps,
+            enableReset: true
+          })
 
         fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
-        fireEvent.click(getByRole('reset'))
+        fireEvent.click(getByRole('reset', { hidden: true }))
 
         expect(queryByTestId('day-button-selected')).toBeInTheDocument()
       })

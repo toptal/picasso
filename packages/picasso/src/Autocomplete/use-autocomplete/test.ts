@@ -155,6 +155,14 @@ describe('useAutocomplete', () => {
 
     expect(result.current.highlightedIndex).toBe(0)
 
+    expect(result.current.isOpen).toBe(false)
+
+    act(() => {
+      result.current.getInputProps().onClick()
+    })
+
+    expect(result.current.isOpen).toBe(true)
+
     const firstItemProps = result.current.getItemProps(0, {
       text: 'Ukraine',
       value: 'UA'
