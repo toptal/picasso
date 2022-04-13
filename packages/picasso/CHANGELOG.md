@@ -1,5 +1,14 @@
 # Change Log
 
+## 22.1.1
+
+### Patch Changes
+
+- [#2633](https://github.com/toptal/picasso/pull/2633) [`f53a174f`](https://github.com/toptal/picasso/commit/f53a174f4295ad33c0ac943aa1a5020f19de8d6b) Thanks [@the-teacher](https://github.com/the-teacher)! - ### Modal
+
+  - `useScrollableShades` hook was covered with tests.
+  - With the commit [`c617c7d4`](https://github.com/toptal/picasso/commit/c617c7d4) the hook `useScrollableShades` was fixed to hide bottom shade for zoomed views.
+
 ## 22.1.0
 
 ### Minor Changes
