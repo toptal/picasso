@@ -5,7 +5,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import { useCombinedRefs } from '../utils'
-import useScrollableShades from './use-scrollable-shades'
+import useScrollableShades from './hooks/use-scrollable-shades'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Content of Modal */
