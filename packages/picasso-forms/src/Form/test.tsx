@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent, render } from '@toptal/picasso/test-utils'
+import { fireEvent, render, waitFor, act } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { Button } from '@toptal/picasso'
 
@@ -37,13 +37,6 @@ const renderForm = (
   )
 }
 
-/**
- * form submit does not return Promise or accept callback,
- * so there is no way to know when an error is displayed
- */
-const waitForFormToDisplayErrors = () =>
-  new Promise(resolve => setTimeout(resolve, 100))
-
 const scrollToMock = scrollTo as jest.Mock
 
 describe('Form', () => {
@@ -52,50 +45,50 @@ describe('Form', () => {
   })
 
   it('renders', async () => {
-    const { container, findByTestId } = renderForm({
+    const { container, getByText } = renderForm({
       onSubmit: () => {},
       mandatory: false
     })
 
-    const formElement = await findByTestId('form')
+    await act(() => {
+      fireEvent.click(getByText('Submit'))
+    })
 
-    fireEvent.submit(formElement)
-
-    await waitForFormToDisplayErrors()
-
-    expect(scrollToMock).toHaveBeenCalledTimes(0)
-    expect(container).toMatchSnapshot()
+    await waitFor(() => {
+      expect(scrollToMock).toHaveBeenCalledTimes(0)
+      expect(container).toMatchSnapshot()
+    })
   })
 
   it('renders with an error', async () => {
-    const { container, findByTestId } = renderForm({
+    const { container, getByText } = renderForm({
       onSubmit: () => Promise.resolve({ test: 'Some error' }),
       mandatory: true
     })
 
-    const formElement = await findByTestId('form')
+    await act(() => {
+      fireEvent.click(getByText('Submit'))
+    })
 
-    fireEvent.submit(formElement)
-
-    await waitForFormToDisplayErrors()
-
-    expect(scrollToMock).toHaveBeenCalledTimes(1)
-    expect(container).toMatchSnapshot()
+    await waitFor(() => {
+      expect(scrollToMock).toHaveBeenCalledTimes(1)
+      expect(container).toMatchSnapshot()
+    })
   })
 
   it('when `disableScrollOnError` is specified', async () => {
-    const { findByTestId } = renderForm({
+    const { getByText } = renderForm({
       onSubmit: () => ({ test: 'Some error' }),
       disableScrollOnError: true,
       mandatory: true
     })
 
-    const formElement = await findByTestId('form')
+    await act(() => {
+      fireEvent.click(getByText('Submit'))
+    })
 
-    fireEvent.submit(formElement)
-
-    await waitForFormToDisplayErrors()
-
-    expect(scrollToMock).not.toHaveBeenCalled()
+    await waitFor(() => {
+      expect(scrollToMock).not.toHaveBeenCalled()
+    })
   })
 })

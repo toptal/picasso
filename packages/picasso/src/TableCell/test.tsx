@@ -10,11 +10,13 @@ const renderTableCell = (
 ) => {
   return render(
     <TableContext.Provider value={{ spacing, variant }}>
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell {...rest}>{children}</Table.Cell>
-        </Table.Row>
-      </Table.Body>
+      <Table>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell {...rest}>{children}</Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
     </TableContext.Provider>
   )
 }
