@@ -3,15 +3,44 @@ import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import {
   Candidates16,
+  Container,
+  Grid,
   Logo,
   Overview16,
   Page,
-  PageSidebarProps
+  PageSidebarProps,
+  Typography
 } from '@toptal/picasso'
 
 const SidebarExample = (props: PageSidebarProps) => {
-  const { collapsible } = props
+  return (
+    <Page.Sidebar
+      {...props}
+      testIds={{
+        collapseButton: 'collapse-button',
+        container: 'container'
+      }}
+    >
+      <Page.Sidebar.Logo collapseLogo={<Logo emblem />} fullLogo={<Logo />} />
+      <Page.Sidebar.Menu>
+        <Page.Sidebar.Item
+          icon={<Overview16 data-testid='sidebar-item-icon' />}
+          selected
+        >
+          <span data-testid='sidebar-item-text-content'>Overview</span>
+        </Page.Sidebar.Item>
+      </Page.Sidebar.Menu>
 
+      <Page.Sidebar.Menu bottom>
+        <Page.Sidebar.Item icon={<Candidates16 />}>
+          Opportunities
+        </Page.Sidebar.Item>
+      </Page.Sidebar.Menu>
+    </Page.Sidebar>
+  )
+}
+
+const DefaultExample = (props: PageSidebarProps) => {
   return (
     <TestingPicasso>
       <div
@@ -21,41 +50,54 @@ const SidebarExample = (props: PageSidebarProps) => {
           overflowY: 'scroll'
         }}
       >
-        <Page.Sidebar
-          collapsible={collapsible}
-          testIds={{
-            collapseButton: 'collapse-button',
-            container: 'container'
-          }}
-        >
-          <Page.Sidebar.Logo
-            collapseLogo={<Logo emblem />}
-            fullLogo={<Logo />}
-          />
-          <Page.Sidebar.Menu>
-            <Page.Sidebar.Item
-              icon={<Overview16 data-testid='sidebar-item-icon' />}
-              selected
-            >
-              <span data-testid='sidebar-item-text-content'>Overview</span>
-            </Page.Sidebar.Item>
-          </Page.Sidebar.Menu>
-
-          <Page.Sidebar.Menu bottom>
-            <Page.Sidebar.Item icon={<Candidates16 />}>
-              Opportunities
-            </Page.Sidebar.Item>
-          </Page.Sidebar.Menu>
-        </Page.Sidebar>
+        <SidebarExample {...props} />
       </div>
     </TestingPicasso>
   )
 }
 
+const VariantsExample = () => {
+  return (
+    <TestingPicasso>
+      <Grid spacing={32}>
+        <Grid.Item style={{ height: '58rem' }}>
+          <Container bottom='small'>
+            <Typography variant='heading' size='small'>
+              Light (default):
+            </Typography>
+          </Container>
+          <SidebarExample variant='light' />
+        </Grid.Item>
+
+        <Grid.Item style={{ height: '58rem' }}>
+          <Container bottom='small'>
+            <Typography variant='heading' size='small'>
+              Dark:
+            </Typography>
+          </Container>
+          <SidebarExample variant='dark' />
+        </Grid.Item>
+      </Grid>
+    </TestingPicasso>
+  )
+}
+
 describe('Sidebar', () => {
+  it('renders sidebar with items', () => {
+    mount(<DefaultExample />)
+
+    cy.get('body').happoScreenshot()
+  })
+
+  it('renders sidebar as dark and light variants', () => {
+    mount(<VariantsExample />)
+
+    cy.get('body').happoScreenshot()
+  })
+
   describe('when the sidebar is collapsible', () => {
     it('hides and shows the sidebar items text', () => {
-      mount(<SidebarExample collapsible />)
+      mount(<DefaultExample collapsible />)
 
       cy.get('[data-testid="collapse-button"]')
         .as('collapseButton')
