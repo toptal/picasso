@@ -75,7 +75,7 @@ describe('Rating', () => {
 
         fireEvent.click(getByTestId(TestId.NEGATIVE_THUMB))
 
-        await act(async () => {
+        await act(() => {
           fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
         })
 
@@ -99,7 +99,7 @@ describe('Rating', () => {
           thumbs: { required: true, validate: () => ERROR_MSG }
         })
 
-        await act(async () => {
+        await act(() => {
           fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
         })
 
@@ -132,7 +132,7 @@ describe('Rating', () => {
 
         fireEvent.click(getByTestId(TestId.NEGATIVE_THUMB))
 
-        await act(async () => {
+        await act(() => {
           fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
         })
 
@@ -157,7 +157,7 @@ describe('Rating', () => {
 
         fireEvent.click(getByTestId(TestId.NEGATIVE_THUMB))
 
-        await act(async () => {
+        await act(() => {
           fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
         })
 

@@ -50,7 +50,7 @@ describe('Form', () => {
       mandatory: false
     })
 
-    await act(async () => {
+    await act(() => {
       fireEvent.click(getByText('Submit'))
     })
 
@@ -66,7 +66,7 @@ describe('Form', () => {
       mandatory: true
     })
 
-    await act(async () => {
+    await act(() => {
       fireEvent.click(getByText('Submit'))
     })
 
@@ -83,7 +83,7 @@ describe('Form', () => {
       mandatory: true
     })
 
-    await act(async () => {
+    await act(() => {
       fireEvent.click(getByText('Submit'))
     })
 
