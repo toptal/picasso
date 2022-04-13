@@ -16,8 +16,9 @@ jobs:
         with:
           repository: toptal/davinci-github-actions
           token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
-          ref: "fx-2615-investigate-and-fix-notify-jira-about-contribution"
           path: ./.github/actions/
+
+      - run: echo "${{ github.event.pull_request.head.ref }}"
 
       - uses: ./.github/actions/notify-jira-about-contribution
         with:
