@@ -24,7 +24,6 @@ const SidebarExample = (props: PageSidebarProps) => {
         <Page.Sidebar
           collapsible={collapsible}
           testIds={{
-            hoverWrapper: 'hover-wrapper',
             collapseButton: 'collapse-button',
             container: 'container'
           }}
@@ -62,18 +61,18 @@ describe('Sidebar', () => {
         .as('collapseButton')
         .should('not.be.visible')
 
-      cy.get('[data-testid="hover-wrapper"]')
-        .as('hoverWrapper')
+      cy.get('[data-testid="container"]')
+        .as('container')
         .realHover()
         .find('[data-testid="collapse-button"]')
         .realClick()
 
       cy.get('@collapseButton').should('not.be.visible')
-      cy.get('@hoverWrapper').realHover()
+      cy.get('@container').realHover()
 
       cy.get('body').happoScreenshot()
 
-      cy.get('@hoverWrapper')
+      cy.get('@container')
         .realHover()
         .find('[data-testid="collapse-button"]')
         .realClick()

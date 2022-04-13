@@ -18,6 +18,15 @@ export default ({ palette, screens, zIndex, transitions }: Theme) =>
       [screens('small', 'medium')]: {
         width: '100vw',
         overflowY: 'scroll'
+      },
+
+      '&::before': {
+        position: 'absolute',
+        content: '""',
+        left: 0,
+        top: 0,
+        width: '15.50rem',
+        height: '100%'
       }
     },
     responsiveWrapper: {
@@ -76,13 +85,10 @@ export default ({ palette, screens, zIndex, transitions }: Theme) =>
     },
     rootCollapsed: {
       width: '5rem',
-      transition: `width ${transitions.duration.leavingScreen}ms ease-in-out`
-    },
-    hoverWrapper: {
-      height: '100%',
-      width: '15.50rem'
-    },
-    hoverWrapperCollapsed: {
-      width: '5.75rem'
+      transition: `width ${transitions.duration.leavingScreen}ms ease-in-out`,
+
+      '&::before': {
+        width: '5.75rem'
+      }
     }
   })

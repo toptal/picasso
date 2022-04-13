@@ -6,15 +6,11 @@ exports[`PageSidebar renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PageSidebar-hoverWrapper"
+      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
-      >
-        <div
-          class="PageSidebar-spacer"
-        />
-      </div>
+        class="PageSidebar-spacer"
+      />
     </div>
   </div>
 </div>
@@ -26,20 +22,16 @@ exports[`PageSidebar with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PageSidebar-hoverWrapper"
+      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
-      >
-        <div
-          class="PageSidebar-spacer"
-        />
-        <ul
-          class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
-          role="menu"
-          tabindex="-1"
-        />
-      </div>
+        class="PageSidebar-spacer"
+      />
+      <ul
+        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+        role="menu"
+        tabindex="-1"
+      />
     </div>
   </div>
 </div>
@@ -51,25 +43,21 @@ exports[`PageSidebar with one normal and one bottom menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PageSidebar-hoverWrapper"
+      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
-      >
-        <div
-          class="PageSidebar-spacer"
-        />
-        <ul
-          class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
-          role="menu"
-          tabindex="-1"
-        />
-        <ul
-          class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
-          role="menu"
-          tabindex="-1"
-        />
-      </div>
+        class="PageSidebar-spacer"
+      />
+      <ul
+        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+        role="menu"
+        tabindex="-1"
+      />
+      <ul
+        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
+        role="menu"
+        tabindex="-1"
+      />
     </div>
   </div>
 </div>

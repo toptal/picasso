@@ -1,8 +1,7 @@
 import React from 'react'
 /* eslint-disable-next-line */
-import { render } from '@toptal/picasso/test-utils'
+import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import { fireEvent, waitFor } from '@testing-library/react'
 
 import PageSidebar, { Props } from './PageSidebar'
 import { Overview16 } from '../Icon'
@@ -17,7 +16,6 @@ const renderCollapsibleSidebar = (props: Props) => {
       {...props}
       collapsible
       testIds={{
-        hoverWrapper: 'hover-wrapper',
         collapseButton: 'collapse-button',
         container: 'container'
       }}
@@ -65,29 +63,9 @@ describe('PageSidebar', () => {
         defaultCollapsed: true
       })
 
-      fireEvent.mouseEnter(getByTestId('hover-wrapper'))
+      fireEvent.mouseEnter(getByTestId('container'))
       await waitFor(() => {
         expect(getByTestId('collapse-button')).toBeVisible()
-      })
-    })
-  })
-
-  describe('when collapse button clicked', () => {
-    it('triggers onCollapse callback', async () => {
-      const onCollapseChange = jest.fn()
-
-      const { getByTestId } = renderCollapsibleSidebar({
-        onCollapseChange
-      })
-
-      fireEvent.mouseEnter(getByTestId('hover-wrapper'))
-      await waitFor(() => {
-        expect(getByTestId('collapse-button')).toBeVisible()
-      })
-
-      fireEvent.click(getByTestId('collapse-button'))
-      await waitFor(() => {
-        expect(onCollapseChange).toHaveBeenCalledWith(true)
       })
     })
   })

@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, ReactNode } from 'react'
+import React, { forwardRef, useState, ReactNode, useCallback } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, StandardProps } from '@toptal/picasso-shared'
@@ -7,7 +7,7 @@ import Button from '../Button'
 import Container from '../Container'
 import Dropdown from '../Dropdown'
 import { Overview16, Close16, ChevronRight16, BackMinor16 } from '../Icon'
-import { useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
+import { noop, useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
@@ -62,11 +62,8 @@ export interface Props extends BaseProps {
   collapsible?: boolean
   /** Indicates Sidebar is collapsed as default */
   defaultCollapsed?: boolean
-  /** Callback to get informed when sidebar is collapsed or uncollapsed */
-  onCollapseChange?: (collapsed: boolean) => void
   /** Callback to notify when sidebar is having collapsed or default state */
   testIds?: {
-    hoverWrapper?: string
     collapseButton?: string
     container?: string
   }
@@ -93,7 +90,6 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     style,
     collapsible,
     defaultCollapsed,
-    onCollapseChange,
     testIds
   } = props
   const classes = useStyles()
@@ -117,58 +113,47 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
 
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
-  const handleCollapseButtonClick = () => {
-    setIsCollapsed(!isCollapsed)
-
-    if (onCollapseChange) {
-      onCollapseChange(!isCollapsed)
-    }
-  }
+  const handleCollapseButtonClick = useCallback(() => {
+    setIsCollapsed(previousState => !previousState)
+  }, [setIsCollapsed])
 
   const sidebar = (
-    <div
-      className={cx(classes.hoverWrapper, {
-        [classes.hoverWrapperCollapsed]: collapsible && isCollapsed
+    <Container
+      ref={ref}
+      flex
+      direction='column'
+      style={style}
+      className={cx(classes.root, className, classes[variant], {
+        [classes.rootCollapsed]: collapsible && isCollapsed
       })}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      data-testid={testIds?.hoverWrapper}
+      data-testid={testIds?.container}
+      onMouseEnter={collapsible ? () => setIsHovered(true) : noop}
+      onMouseLeave={collapsible ? () => setIsHovered(false) : noop}
     >
-      <Container
-        ref={ref}
-        flex
-        direction='column'
-        style={style}
-        className={cx(classes.root, className, classes[variant], {
-          [classes.rootCollapsed]: collapsible && isCollapsed
-        })}
-        data-testid={testIds?.container}
+      <div className={classes.spacer} />
+      {collapsible && (
+        <Button.Circular
+          className={cx(classes.collapseButton, {
+            [classes.buttonVisible]: isHovered
+          })}
+          onClick={handleCollapseButtonClick}
+          icon={isCollapsed ? <ChevronRight16 /> : <BackMinor16 />}
+          aria-label='collapse sidebar'
+          variant='primary'
+          data-testid={testIds?.collapseButton}
+        />
+      )}
+      <SidebarContext.Provider
+        value={{
+          variant,
+          expandedItemKey,
+          setExpandedItemKey,
+          isCollapsed
+        }}
       >
-        <div className={classes.spacer} />
-        {collapsible && (
-          <Button.Circular
-            className={cx(classes.collapseButton, {
-              [classes.buttonVisible]: isHovered
-            })}
-            onClick={handleCollapseButtonClick}
-            icon={isCollapsed ? <ChevronRight16 /> : <BackMinor16 />}
-            aria-label='collapse sidebar'
-            variant='primary'
-            data-testid={testIds?.collapseButton}
-          />
-        )}
-        <SidebarContext.Provider
-          value={{
-            variant,
-            expandedItemKey,
-            setExpandedItemKey,
-            isCollapsed
-          }}
-        >
-          {children}
-        </SidebarContext.Provider>
-      </Container>
-    </div>
+        {children}
+      </SidebarContext.Provider>
+    </Container>
   )
 
   return isCompactLayout ? (
