@@ -12,13 +12,15 @@ const TEST_DATA = [
 
 const renderBarChart = (showBarLabel?: boolean) => {
   return render(
-    <BarChart
-      data={TEST_DATA}
-      getBarColor={() => palette.blue.main}
-      getBarLabelColor={() => palette.grey.dark}
-      width={720}
-      showBarLabel={showBarLabel}
-    />
+    <div style={{ width: 720 }}>
+      <BarChart
+        data={TEST_DATA}
+        getBarColor={() => palette.blue.main}
+        getBarLabelColor={() => palette.grey.dark}
+        width={'100%'}
+        showBarLabel={showBarLabel}
+      />
+    </div>
   )
 }
 
@@ -62,19 +64,15 @@ describe('BarChart', () => {
     )
   })
 
-  it('shows label of each bar with `showBarLabel` prop being set to `true` by default', async () => {
+  it('shows label of each bar with `showBarLabel` prop being set to `true` by default', () => {
     const { queryByText } = renderBarChart()
 
-    await waitFor(() => {
-      expect(queryByText('118')).toBeInTheDocument()
-    })
+    waitFor(() => expect(queryByText('118')).toBeInTheDocument())
   })
 
-  it('hides label of each bar via passed `showBarLabel` prop being set to `false', async () => {
+  it('hides label of each bar via passed `showBarLabel` prop being set to `false', () => {
     const { queryByText } = renderBarChart(false)
 
-    await waitFor(() => {
-      expect(queryByText('118')).not.toBeInTheDocument()
-    })
+    waitFor(() => expect(queryByText('118')).not.toBeInTheDocument())
   })
 })
