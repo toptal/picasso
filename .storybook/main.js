@@ -115,7 +115,8 @@ module.exports = {
     return config
   },
   reactOptions: {
-    fastRefresh: true
+    fastRefresh: true,
+    strictMode: true
   },
   features: {
     postcss: false
