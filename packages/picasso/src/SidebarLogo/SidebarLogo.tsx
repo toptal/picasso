@@ -12,7 +12,7 @@ export interface Props
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   children?: ReactNode
   /** Logo to display when Sidebar is in collapsed state */
-  collapseLogo?: ReactNode
+  collapsedLogo?: ReactNode
   /** Logo to display when Sidebar is in default state */
   fullLogo?: ReactNode
 }
@@ -23,7 +23,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
   function SidebarLogo(
-    { children, collapseLogo, fullLogo, className, ...rest },
+    { children, collapsedLogo, fullLogo, className, ...rest },
     ref
   ) {
     const classes = useStyles()
@@ -31,7 +31,7 @@ export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
     const { isCollapsed: isSidebarCollapsed } =
       useContext<SidebarContextProps>(SidebarContext)
 
-    const logo = isSidebarCollapsed ? collapseLogo : fullLogo
+    const logo = isSidebarCollapsed ? collapsedLogo : fullLogo
 
     return (
       <Container

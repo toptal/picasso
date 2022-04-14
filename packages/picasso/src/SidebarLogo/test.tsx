@@ -25,7 +25,7 @@ const renderSidebarLogoWithContext = ({
       }}
     >
       <SidebarLogo
-        collapseLogo={<Logo emblem data-testid='collapse-logo' />}
+        collapsedLogo={<Logo emblem data-testid='collapse-logo' />}
         fullLogo={<Logo data-testid='full-logo' />}
       >
         <Logo variant='black' data-testid='children-logo' />
@@ -45,7 +45,7 @@ describe('SidebarLogo', () => {
     expect(container).toMatchSnapshot()
   })
 
-  describe('when sideber is collapsed', () => {
+  describe('when sidebar is collapsed', () => {
     it('renders collapsed logo with children', () => {
       const { getByTestId, queryByTestId } = renderSidebarLogoWithContext({
         isCollapsed: true
@@ -58,7 +58,7 @@ describe('SidebarLogo', () => {
     })
   })
 
-  describe('when sideber is not collapsed', () => {
+  describe('when sidebar is not collapsed', () => {
     it('renders full logo with children', () => {
       const { getByTestId, queryByTestId } = renderSidebarLogoWithContext({
         isCollapsed: false

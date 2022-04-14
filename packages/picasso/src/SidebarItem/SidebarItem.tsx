@@ -52,6 +52,9 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Indicates content is visible */
   isContentVisible?: boolean
+  testIds?: {
+    content?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -75,6 +78,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       style,
       variant = 'light',
       isContentVisible,
+      testIds,
       ...rest
     } = props
     const classes = useStyles()
@@ -139,6 +143,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       >
         <ItemContent
           {...props}
+          testIds={testIds}
           classes={classes}
           isContentVisible={isContentVisible}
         />

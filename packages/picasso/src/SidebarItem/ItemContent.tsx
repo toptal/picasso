@@ -9,6 +9,9 @@ import { Props as SidebarItemProps } from '../SidebarItem/SidebarItem'
 
 interface Props extends SidebarItemProps {
   classes: ClassNameMap<string>
+  testIds?: {
+    content?: string
+  }
 }
 export const ItemContent = (props: Props) => {
   const {
@@ -16,7 +19,8 @@ export const ItemContent = (props: Props) => {
     classes,
     titleCase: propsTitleCase,
     icon,
-    isContentVisible
+    isContentVisible,
+    testIds
   } = props
   const titleCase = useTitleCase(propsTitleCase)
 
@@ -41,6 +45,7 @@ export const ItemContent = (props: Props) => {
         })}
         flex
         alignItems='center'
+        data-testid={testIds?.content}
       >
         {resolvedChildren}
       </Container>
