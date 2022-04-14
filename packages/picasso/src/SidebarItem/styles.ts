@@ -99,5 +99,8 @@ export default ({ palette, sizes }: Theme) =>
     collapsible: {
       margin: 0,
       padding: 0
+    },
+    hiddenContent: {
+      visibility: 'hidden'
     }
   })

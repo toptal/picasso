@@ -3,8 +3,7 @@ import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './PageSidebar'
-import PageSidebar from './'
+import PageSidebar, { Props } from './PageSidebar'
 
 const TestSidebar = ({ children }: OmitInternalProps<Props>) => {
   return <PageSidebar>{children}</PageSidebar>

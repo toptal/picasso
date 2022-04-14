@@ -20,5 +20,6 @@ page
   .createChapter()
   .addExample('PageSidebar/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('PageSidebar/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
+  .addExample('PageSidebar/story/Collapsible.example.tsx', 'Collapsible') // picasso-skip-visuals
 
 page.connect(sidebarItemStory.chapter)

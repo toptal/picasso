@@ -4,4 +4,5 @@ export interface SidebarContextProps {
   variant?: VariantType
   expandedItemKey: number | null
   setExpandedItemKey: (expanded: number | null) => void
+  isCollapsed: boolean
 }

@@ -4,10 +4,35 @@ import { render } from '@toptal/picasso/test-utils'
 
 import Logo from '../Logo'
 import SidebarLogo, { Props } from './SidebarLogo'
+import { SidebarContext } from '../PageSidebar/PageSidebar'
+import { noop } from '../utils'
 
 const TestSidebarLogo = ({ children }: Props) => (
   <SidebarLogo>{children}</SidebarLogo>
 )
+
+const renderSidebarLogoWithContext = ({
+  isCollapsed
+}: {
+  isCollapsed: boolean
+}) => {
+  return render(
+    <SidebarContext.Provider
+      value={{
+        isCollapsed,
+        expandedItemKey: null,
+        setExpandedItemKey: noop
+      }}
+    >
+      <SidebarLogo
+        collapsedLogo={<Logo emblem data-testid='collapse-logo' />}
+        fullLogo={<Logo data-testid='full-logo' />}
+      >
+        <Logo variant='black' data-testid='children-logo' />
+      </SidebarLogo>
+    </SidebarContext.Provider>
+  )
+}
 
 describe('SidebarLogo', () => {
   it('renders', () => {
@@ -18,5 +43,31 @@ describe('SidebarLogo', () => {
     )
 
     expect(container).toMatchSnapshot()
+  })
+
+  describe('when sidebar is collapsed', () => {
+    it('renders collapsed logo with children', () => {
+      const { getByTestId, queryByTestId } = renderSidebarLogoWithContext({
+        isCollapsed: true
+      })
+
+      expect(getByTestId('collapse-logo')).toBeVisible()
+      expect(queryByTestId('full-logo')).toBeNull()
+
+      expect(getByTestId('children-logo')).toBeVisible()
+    })
+  })
+
+  describe('when sidebar is not collapsed', () => {
+    it('renders full logo with children', () => {
+      const { getByTestId, queryByTestId } = renderSidebarLogoWithContext({
+        isCollapsed: false
+      })
+
+      expect(queryByTestId('collapse-logo')).toBeNull()
+      expect(getByTestId('full-logo')).toBeVisible()
+
+      expect(getByTestId('children-logo')).toBeVisible()
+    })
   })
 })
