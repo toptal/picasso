@@ -4,17 +4,17 @@ const fs = require('fs')
 const { log } = require('./log')
 const { BUILD_FOLDER } = require('./constants')
 
-const copyLicense = packageRootDir => {
+const copyLicense = packageDir => {
   log('')
   log(
-    `Copying LICENSE file to the build folder "${BUILD_FOLDER}" of the package: ${packageRootDir}`,
+    `Copying LICENSE file to the build folder "${BUILD_FOLDER}" of the package: ${packageDir}`,
     'magenta'
   )
 
-  const licenseFile = path.resolve(__dirname, '../../LICENSE')
+  const licenseFile = path.resolve(packageDir, '../../LICENSE')
 
   const outputLicenseFile = path.resolve(
-    packageRootDir,
+    packageDir,
     `./${BUILD_FOLDER}/LICENSE`
   )
 
