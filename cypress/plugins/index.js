@@ -53,7 +53,8 @@ module.exports = (on, config) => {
     use: ['style-loader', 'css-loader']
   })
 
-  on('task', happoTask)
+  happoTask.register(on)
+
   on('dev-server:start', options =>
     startDevServer({ options, webpackConfig: webpackConfig })
   )

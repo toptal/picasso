@@ -25,25 +25,25 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 
 ## Project commands
 
-| Command                | Description                                                                    |
-| ---------------------- | ------------------------------------------------------------------------------ |
-| **build:package**      | Build the packages                                                             |
-| **build:storybook**    | Build Storybook as static website                                              |
-| **commit**             | Interactive conventional commits                                               |
-| **generate:component** | Generate a new component template                                              |
-| **generate:example**   | Generate a new component component code example                                |
-| **generate:icons**     | [Generate JSX icon components from svgs](#add-icon)                            |
-| **lint**               | Lint all files                                                                 |
-| **start**              | Start storybook instance and inspect components                                |
-| **test**               | Run jest and cypress tests                                                     |
-| **test:cypress**       | Run cypress tests                                                              |
-| **test:cypress:open**  | Run cypress in development mode                                                |
-| **test:unit**          | Run unit tests                                                                 |
-| **test:unit -u**       | Update jest snapshots                                                          |
-| **test:unit:watch**    | Run unit tests in watch mode                                                   |
-| **test:visual**        | Run [visual regression tests](./docs/contribution/visual-testing.md) in Docker |
-| **test:visual -u**     | Update visual regression snapshots in docker                                   |
-| **typecheck**          | Validate typescript compilation                                                |
+| Command                   | Description                                                                    |
+| ------------------------- | ------------------------------------------------------------------------------ |
+| **build:package**         | Build the packages                                                             |
+| **build:storybook**       | Build Storybook as static website                                              |
+| **commit**                | Interactive conventional commits                                               |
+| **generate:component**    | Generate a new component template                                              |
+| **generate:example**      | Generate a new component component code example                                |
+| **generate:icons**        | [Generate JSX icon components from svgs](#add-icon)                            |
+| **lint**                  | Lint all files                                                                 |
+| **start**                 | Start storybook instance and inspect components                                |
+| **test**                  | Run jest and cypress tests                                                     |
+| **test:integration**      | Run cypress tests                                                              |
+| **test:integration:open** | Run cypress in development mode                                                |
+| **test:unit**             | Run unit tests                                                                 |
+| **test:unit -u**          | Update jest snapshots                                                          |
+| **test:unit:watch**       | Run unit tests in watch mode                                                   |
+| **test:visual**           | Run [visual regression tests](./docs/contribution/visual-testing.md) in Docker |
+| **test:visual -u**        | Update visual regression snapshots in docker                                   |
+| **typecheck**             | Validate typescript compilation                                                |
 
 ## Icons
 
