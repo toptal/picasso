@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
+import mockMatchMedia from '@toptal/picasso-root/__tests__/matchMedia'
 
 import { act, fireEvent, render } from '../test-utils'
 import DatePicker, { Props } from './DatePicker'
@@ -16,6 +17,9 @@ const NEW_YORK_TIMEZONE = 'America/New_York'
 
 // eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
+  beforeEach(() => {
+    mockMatchMedia()
+  })
   beforeAll(() => {
     jest.useFakeTimers()
   })
@@ -278,9 +282,13 @@ describe('DatePicker', () => {
 
     describe('should work with `parseInputValue`', () => {
       describe('when parser returns parsed date', () => {
-        const parseInputValue: DatePickerInputCustomValueParser = jest
-          .fn()
-          .mockImplementation(() => new Date(2021, 0, 1))
+        let parseInputValue: DatePickerInputCustomValueParser
+
+        beforeEach(() => {
+          parseInputValue = jest
+            .fn()
+            .mockImplementation(() => new Date(2021, 0, 1))
+        })
 
         it('calls `onChange` handler with the parsed date', async () => {
           const handleChange = jest.fn()

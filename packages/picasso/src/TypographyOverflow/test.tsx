@@ -1,5 +1,6 @@
 import React from 'react'
 import { fireEvent, render, waitFor } from '@toptal/picasso/test-utils'
+import mockMatchMedia from '@toptal/picasso-root/__tests__/matchMedia'
 
 import TypographyOverflow from '.'
 jest.mock('../utils/is-overflown', () => ({
@@ -8,6 +9,9 @@ jest.mock('../utils/is-overflown', () => ({
 }))
 
 describe('TypographyOverflow', () => {
+  beforeEach(() => {
+    mockMatchMedia()
+  })
   describe('when overflow happened', () => {
     it('renders tooltip by default', async () => {
       const { getByTestId, queryByTestId } = render(

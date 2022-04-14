@@ -17,6 +17,7 @@
     "typeRoots": ["node_modules/@types", "@types"],
     "paths": {
       "@toptal/*": ["packages/*/src"],
+      "@toptal/picasso-root/*": ["./*"],
       "@topkit/analytics-charts": ["packages/topkit-analytics-charts/src"],
       "@topkit/analytics-charts/*": ["packages/topkit-analytics-charts/src/*"],
       "@toptal/picasso/*": ["packages/picasso/src/*"],
