@@ -1,11 +1,9 @@
 import React, {
-  useState,
   forwardRef,
   ReactNode,
   ReactElement,
   ChangeEvent,
-  HTMLAttributes,
-  cloneElement
+  HTMLAttributes
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip, { TooltipProps } from '@material-ui/core/Tooltip'
@@ -14,127 +12,25 @@ import { BaseProps } from '@toptal/picasso-shared'
 import { usePicassoRoot } from '@toptal/picasso-provider'
 
 import Typography from '../Typography'
-import { isPointerDevice } from '../utils'
 import styles from './styles'
-
-export type PlacementType = TooltipProps['placement']
-
-type MaxWidthType = 'none' | 'default'
+import { ChildrenProps, ContainerValue } from './types'
+import { useTooltipState } from './useTooltipState'
+import { useTooltipHandlers } from './useTooltipHandlers'
+import { useTooltipFollowCursor } from './useTooltipFollowCursor'
 
 export type DelayType = 'short' | 'long'
+
+export type MaxWidthType = 'none' | 'default'
+
+export type PlacementType = TooltipProps['placement']
 
 const delayDurations: { [k in DelayType]: number } = {
   short: 200,
   long: 500
 }
 
-interface UseTooltipHandlersOptions {
-  open?: boolean
-  onOpen?: (event: ChangeEvent<{}>) => void
-  onClose?: (event: ChangeEvent<{}>) => void
-  children: ReactElement<ChildrenProps>
-  disableListeners?: boolean
-  delay: DelayType
-}
-
-type ChildrenProps = {
-  onClick?: (event: ChangeEvent<{}>) => void
-  onMouseLeave?: () => void
-}
-
-type ContainerValue = HTMLElement | (() => HTMLElement)
-
-interface UseTooltipStateOptions {
-  externalOpen?: boolean
-}
-
-const useTooltipState = ({ externalOpen }: UseTooltipStateOptions) => {
-  const isTooltipControlled = typeof externalOpen !== 'undefined'
-  const [isOpen, setIsOpen] = useState(
-    isTooltipControlled ? externalOpen : false
-  )
-
-  const openTooltip = () => {
-    setIsOpen(true)
-  }
-  const closeTooltip = () => {
-    setIsOpen(false)
-  }
-
-  return {
-    isOpen: isTooltipControlled ? externalOpen : isOpen,
-    isControlled: isTooltipControlled,
-    openTooltip,
-    closeTooltip
-  }
-}
-
-const getDelayDuration = (delay: DelayType) => {
-  const isTouchDevice = !isPointerDevice()
-
+const getDelayDuration = (delay: DelayType, isTouchDevice: boolean) => {
   return isTouchDevice ? 0 : delayDurations[delay]
-}
-
-const useTooltipHandlers = ({
-  open: externalOpen,
-  onClose,
-  onOpen,
-  disableListeners,
-  children
-}: UseTooltipHandlersOptions) => {
-  const isTouchDevice = !isPointerDevice()
-  // After closing with click the tooltip should not be opened againg until the mouse leave event
-  const [ignoreOpening, setIgnoreOpening] = useState(false)
-  const { isOpen, isControlled, openTooltip, closeTooltip } = useTooltipState({
-    externalOpen
-  })
-
-  if (isControlled) {
-    return {
-      isOpen,
-      handleOpen: onOpen,
-      handleClose: onClose,
-      children
-    }
-  }
-  const handleClose = (event: ChangeEvent<{}>) => {
-    onClose?.(event)
-    closeTooltip()
-  }
-  const handleOpen = (event: ChangeEvent<{}>) => {
-    if (ignoreOpening) {
-      return
-    }
-
-    onOpen?.(event)
-    openTooltip()
-  }
-  const handleClick = (event: ChangeEvent<{}>) => {
-    if (disableListeners) {
-      return
-    }
-
-    children.props.onClick?.(event)
-    if (isOpen) {
-      setIgnoreOpening(true)
-      handleClose(event)
-    } else if (isTouchDevice) {
-      handleOpen(event)
-    }
-  }
-  const handleMouseLeave = () => {
-    setIgnoreOpening(false)
-  }
-
-  return {
-    isOpen,
-    handleOpen,
-    handleClose,
-    children: cloneElement(children, {
-      onClick: handleClick,
-      onMouseLeave: handleMouseLeave
-    })
-  }
 }
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -162,6 +58,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   delay?: DelayType
   /** Show a compact tooltip */
   compact?: boolean
+  /** If `true`, the tooltip follow the cursor over the wrapped element. This prop exists in material-ui@5+ */
+  followCursor?: boolean
   /** Max width of a tooltip */
   maxWidth?: MaxWidthType
   onTransitionExiting?: () => void
@@ -193,6 +91,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     delay = 'short',
     compact,
     maxWidth,
+    followCursor = false,
     tooltipRef,
     container,
     ...rest
@@ -201,15 +100,21 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
   const classes = useStyles()
   const picassoRootContainer = usePicassoRoot()
 
-  const delayDuration = getDelayDuration(delay)
+  const tooltipState = useTooltipState({ externalOpen: open, followCursor })
 
-  const { children, isOpen, handleOpen, handleClose } = useTooltipHandlers({
-    open,
+  const delayDuration = getDelayDuration(delay, tooltipState.isTouchDevice)
+
+  const { children, handleOpen, handleClose } = useTooltipHandlers({
     children: originalChildren as ReactElement<ChildrenProps>,
+    tooltipState,
     disableListeners,
     onOpen,
-    onClose,
-    delay
+    onClose
+  })
+
+  const followCursorTooltipData = useTooltipFollowCursor({
+    followCursor,
+    tooltipState
   })
 
   const title = (
@@ -222,7 +127,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     <MUITooltip
       {...rest}
       ref={ref}
-      arrow={!compact}
+      arrow={!compact && !followCursor}
       PopperProps={{
         ref: tooltipRef,
         container: container || picassoRootContainer,
@@ -237,7 +142,8 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
               enabled: preventOverflow
             }
           }
-        }
+        },
+        ...(followCursor && followCursorTooltipData?.followCursorPopperProps)
       }}
       TransitionProps={{
         // passing undefined onExiting or onExited changes Tooltip behavior
@@ -257,7 +163,8 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
       interactive={interactive}
       onClose={handleClose}
       onOpen={handleOpen}
-      open={isOpen}
+      onMouseMove={followCursorTooltipData?.handleMouseMove}
+      open={tooltipState.isOpen}
       placement={placement}
       title={title}
       disableHoverListener={disableListeners}

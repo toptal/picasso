@@ -4,6 +4,10 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import { render } from '@toptal/picasso/test-utils'
 
 import Tooltip, { Props } from './Tooltip'
+import {
+  mouseMoveDebounceTimeout,
+  mouseMoveCloseTooltipDistance
+} from './useTooltipFollowCursor'
 
 const TOOLTIP_SHORT_DELAY = 200
 const TOOLTIP_LONG_DELAY = 500
@@ -30,6 +34,17 @@ const renderTooltip = (props?: Partial<OmitInternalProps<Props>>) => {
 }
 
 describe('Tooltip', () => {
+  beforeAll(() => {
+    // By default in Jest window.getComputedStyle returns only partial styles
+    // To correctly calculate offsets in Popper.js we have to manually define styles for HTML element
+    const htmlElement = document.getElementsByTagName('html')[0]
+
+    htmlElement.style.marginLeft = '0'
+    htmlElement.style.marginTop = '0'
+    htmlElement.style.borderTopWidth = '0'
+    htmlElement.style.borderLeftWidth = '0'
+  })
+
   describe('with isPointerDevice being true', () => {
     beforeEach(() => {
       Object.defineProperty(window, 'matchMedia', {
@@ -152,6 +167,98 @@ describe('Tooltip', () => {
         expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
       })
     })
+
+    it('opens and moves tooltip on mouse move when followCursor prop is set and move distance is short', async () => {
+      const { getByTestId, queryByTestId } = renderTooltip({
+        followCursor: true
+      })
+
+      fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
+      await waitFor(
+        () => {
+          expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+        },
+        { timeout: TOOLTIP_SHORT_DELAY - 1 }
+      )
+      await waitFor(
+        () => expect(queryByTestId('tooltip-content')).toBeInTheDocument(),
+        { timeout: TOOLTIP_SHORT_DELAY + INTERVAL }
+      )
+      await waitFor(() => {
+        expect(document.querySelector('[role="tooltip"]')).toHaveStyle({
+          transform: 'translate3d(0px, -5px, 0)'
+        })
+      })
+
+      fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
+        clientX: 0,
+        clientY: 0
+      })
+      fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
+        clientX: mouseMoveCloseTooltipDistance - 1,
+        clientY: 0
+      })
+
+      await waitFor(
+        () => expect(queryByTestId('tooltip-content')).toBeInTheDocument(),
+        { timeout: mouseMoveDebounceTimeout + INTERVAL }
+      )
+
+      await waitFor(() => {
+        expect(document.querySelector('[role="tooltip"]')).toHaveStyle({
+          transform: 'translate3d(49px, -5px, 0)'
+        })
+      })
+    })
+
+    it('opens and moves tooltip on mouse move when followCursor prop is set and move distance is long', async () => {
+      const { getByTestId, queryByTestId } = renderTooltip({
+        followCursor: true
+      })
+
+      fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
+      await waitFor(
+        () => {
+          expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+        },
+        { timeout: TOOLTIP_SHORT_DELAY - 1 }
+      )
+      await waitFor(
+        () => expect(queryByTestId('tooltip-content')).toBeInTheDocument(),
+        { timeout: TOOLTIP_SHORT_DELAY + INTERVAL }
+      )
+      await waitFor(() => {
+        expect(document.querySelector('[role="tooltip"]')).toHaveStyle({
+          transform: 'translate3d(0px, -5px, 0)'
+        })
+      })
+
+      fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
+        clientX: 0,
+        clientY: 0
+      })
+      fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
+        clientX: mouseMoveCloseTooltipDistance + 1,
+        clientY: 0
+      })
+
+      await waitFor(
+        () => {
+          expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+        },
+        { timeout: mouseMoveDebounceTimeout - 1 }
+      )
+      await waitFor(
+        () => expect(queryByTestId('tooltip-content')).toBeInTheDocument(),
+        { timeout: mouseMoveDebounceTimeout + INTERVAL }
+      )
+
+      await waitFor(() => {
+        expect(document.querySelector('[role="tooltip"]')).toHaveStyle({
+          transform: 'translate3d(51px, -5px, 0)'
+        })
+      })
+    })
   })
 
   describe('with isPointerDevice being false', () => {
@@ -163,6 +270,7 @@ describe('Tooltip', () => {
         }))
       })
     })
+
     it('opens and closes tooltip on touch screens', async () => {
       const { getByTestId, queryByTestId, findByTestId } = renderTooltip()
 
@@ -173,6 +281,34 @@ describe('Tooltip', () => {
       await waitFor(() => {
         expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
       })
+    })
+
+    it('does not open tooltip on touch event when followCursor prop is set', async () => {
+      const { getByTestId, queryByTestId } = renderTooltip({
+        followCursor: true
+      })
+
+      fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
+      await waitFor(
+        () => {
+          expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+        },
+        { timeout: TOOLTIP_SHORT_DELAY + INTERVAL }
+      )
+
+      fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
+        clientX: 0,
+        clientY: 0
+      })
+      fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
+        clientX: mouseMoveCloseTooltipDistance - 1,
+        clientY: 0
+      })
+
+      await waitFor(
+        () => expect(queryByTestId('tooltip-content')).not.toBeInTheDocument(),
+        { timeout: mouseMoveDebounceTimeout + INTERVAL }
+      )
     })
   })
 })
