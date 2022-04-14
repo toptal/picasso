@@ -23,9 +23,9 @@ export type PositionTranslate = {
 
 export interface BaseChartProps extends BaseProps {
   /** Height of chart */
-  height?: number
+  height?: number | string
   /** Width of chart */
-  width?: number
+  width?: number | string
   /** Toggle tooltip on hover */
   tooltip?: boolean
   /** Requires `tooltip` to be `true` */
