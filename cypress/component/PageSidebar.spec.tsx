@@ -21,7 +21,7 @@ const SidebarExample = (props: PageSidebarProps) => {
         container: 'container'
       }}
     >
-      <Page.Sidebar.Logo collapseLogo={<Logo emblem />} fullLogo={<Logo />} />
+      <Page.Sidebar.Logo collapsedLogo={<Logo emblem />} fullLogo={<Logo />} />
       <Page.Sidebar.Menu>
         <Page.Sidebar.Item
           icon={<Overview16 data-testid='sidebar-item-icon' />}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
@@ -180,24 +180,5 @@ describe('SidebarItem', () => {
     )
 
     expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
-  })
-
-  describe('when sidebar is collapsed', () => {
-    it('hides content of the item', () => {
-      const { getByTestId } = render(
-        <PageSidebar.Item
-          isContentVisible={false}
-          icon={<Candidates16 data-testid='icon' />}
-          testIds={{
-            content: 'content'
-          }}
-        >
-          Menu item
-        </PageSidebar.Item>
-      )
-
-      expect(getByTestId('icon')).toBeVisible()
-      expect(screen.queryByTestId('content')).not.toBeVisible()
-    })
   })
 })
