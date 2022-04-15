@@ -33,7 +33,7 @@ const renderRatingThumbs = (props: Partial<OmitInternalProps<Props>> = {}) => {
   } as const
 }
 
-const expectNotNull = <T extends any>(val: T): NonNullable<T> => {
+const expectNotNull = <T,>(val: T): NonNullable<T> => {
   expect(val).not.toBeNull()
 
   return val as NonNullable<T>
