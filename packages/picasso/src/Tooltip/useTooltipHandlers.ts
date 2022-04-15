@@ -1,4 +1,10 @@
-import { ChangeEvent, cloneElement, ReactElement, useState } from 'react'
+import {
+  ChangeEvent,
+  MouseEvent,
+  cloneElement,
+  ReactElement,
+  useState
+} from 'react'
 
 import { TooltipState } from './useTooltipState'
 import { ChildrenProps } from './types'
@@ -6,6 +12,8 @@ import { ChildrenProps } from './types'
 interface UseTooltipHandlersOptions {
   onOpen?: (event: ChangeEvent<{}>) => void
   onClose?: (event: ChangeEvent<{}>) => void
+  onMouseOver?: (event: MouseEvent<HTMLDivElement>) => void
+  onMouseMove?: (event: MouseEvent<HTMLDivElement>) => void
   children: ReactElement<ChildrenProps>
   tooltipState: TooltipState
   disableListeners?: boolean
@@ -14,6 +22,8 @@ interface UseTooltipHandlersOptions {
 export const useTooltipHandlers = ({
   onClose,
   onOpen,
+  onMouseOver,
+  onMouseMove,
   tooltipState,
   disableListeners,
   children
@@ -61,12 +71,22 @@ export const useTooltipHandlers = ({
       handleOpen(event)
     }
   }
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (event: MouseEvent<HTMLDivElement>) => {
     targetHoveredRef.current = true
+    children.props.onMouseEnter?.(event)
   }
-  const handleMouseLeave = () => {
+  const handleMouseOver = (event: MouseEvent<HTMLDivElement>) => {
+    onMouseOver?.(event)
+    children.props.onMouseOver?.(event)
+  }
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    onMouseMove?.(event)
+    children.props.onMouseMove?.(event)
+  }
+  const handleMouseLeave = (event: MouseEvent<HTMLDivElement>) => {
     targetHoveredRef.current = false
     setIgnoreOpening(false)
+    children.props.onMouseLeave?.(event)
   }
 
   return {
@@ -75,6 +95,8 @@ export const useTooltipHandlers = ({
     children: cloneElement(children, {
       onClick: handleClick,
       onMouseEnter: handleMouseEnter,
+      onMouseOver: handleMouseOver,
+      onMouseMove: handleMouseMove,
       onMouseLeave: handleMouseLeave
     })
   }

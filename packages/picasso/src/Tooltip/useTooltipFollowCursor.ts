@@ -43,21 +43,33 @@ export const useTooltipFollowCursor = ({
     debounce(handleMouseStop, mouseMoveDebounceTimeout),
     [debounce, handleMouseStop]
   )
-  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
-    if (!followCursor) {
-      return
-    }
-
+  const calculateTooltipPosition = (event: MouseEvent<HTMLDivElement>) => {
     if (!mouseMoveStartPositionRef.current) {
       mouseMoveStartPositionRef.current = { x: event.clientX, y: event.clientY }
     }
 
     positionRef.current = { x: event.clientX, y: event.clientY }
+
     popperRef.current?.scheduleUpdate()
+  }
+  const handleMouseOver = (event: MouseEvent<HTMLDivElement>) => {
+    if (!followCursor) {
+      return
+    }
+
+    calculateTooltipPosition(event)
+  }
+
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (!followCursor) {
+      return
+    }
+
+    calculateTooltipPosition(event)
 
     const shouldCloseTooltip = isMouseMovedTooFar(
       positionRef.current,
-      mouseMoveStartPositionRef.current
+      mouseMoveStartPositionRef?.current ?? positionRef.current
     )
 
     // When the cursor is moved `mouseMoveCloseTooltipDistance` pixels and more in any direction, we close the tooltip
@@ -75,6 +87,7 @@ export const useTooltipFollowCursor = ({
 
   return {
     handleMouseMove,
+    handleMouseOver,
     followCursorPopperProps: {
       popperRef,
       modifiers: {

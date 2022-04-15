@@ -104,17 +104,19 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
 
   const delayDuration = getDelayDuration(delay, tooltipState.isTouchDevice)
 
+  const followCursorTooltipData = useTooltipFollowCursor({
+    followCursor,
+    tooltipState
+  })
+
   const { children, handleOpen, handleClose } = useTooltipHandlers({
     children: originalChildren as ReactElement<ChildrenProps>,
     tooltipState,
     disableListeners,
     onOpen,
-    onClose
-  })
-
-  const followCursorTooltipData = useTooltipFollowCursor({
-    followCursor,
-    tooltipState
+    onClose,
+    onMouseOver: followCursorTooltipData?.handleMouseOver,
+    onMouseMove: followCursorTooltipData?.handleMouseMove
   })
 
   const title = (
@@ -163,7 +165,6 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
       interactive={interactive}
       onClose={handleClose}
       onOpen={handleOpen}
-      onMouseMove={followCursorTooltipData?.handleMouseMove}
       open={tooltipState.isOpen}
       placement={placement}
       title={title}
