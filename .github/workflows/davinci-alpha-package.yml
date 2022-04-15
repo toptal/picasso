@@ -1,0 +1,112 @@
+name: Release Alpha Package
+
+on:
+  issue_comment:
+    types: [ created ]
+
+jobs:
+  triggerPrWorkflow:
+    name: Trigger PR Workflow
+    if: >
+      github.event.issue.pull_request &&
+      github.event.comment.body == '@toptal-bot run package:alpha-release'
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      STATUS_CHECK_NAME: Publish Alpha Package
+      STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Feedback on action started
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.issue;
+            await github.reactions.createForIssueComment({ owner, repo, comment_id: context.payload.comment.id, content: '+1' });
+
+      - id: branch
+        uses: xt0rted/pull-request-comment-branch@v1.3.0
+
+      - name: Specify branch
+        id: get-branch
+        run: |
+          echo "::set-output name=branch::${{ steps.branch.outputs.head_ref }}"
+          echo "::set-output name=sha::${{ steps.branch.outputs.head_sha }}"
+
+      - name: Configure git user
+        run: |
+          git config --global user.email "bot@toptal.com"
+          git config --global user.name "toptal-bot"
+
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ env.GITHUB_TOKEN }}
+          ref: ${{ steps.get-branch.outputs.branch }}
+          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - name: Set status check - pending
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.issue;
+            await github.repos.createCommitStatus({
+              repo,
+              owner,
+              state: 'pending',
+              sha: "${{ steps.get-branch.outputs.sha }}",
+              context: process.env.STATUS_CHECK_NAME,
+              target_url: process.env.STATUS_TARGET_URL
+            })
+
+      - name: Trigger alpha package
+        id: alpha-package
+        uses: ./.github/actions/build-alpha-package
+        with:
+          npm_token: ${{ env.NPM_TOKEN }}
+          branch: ${{ steps.get-branch.outputs.branch }}
+
+      - name: Alpha package — Handle success
+        if: ${{ success() }}
+        uses: actions/github-script@v4
+        env:
+          versions: ${{ steps.alpha-package.outputs.versions }}
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            const { repo: { owner, repo }, issue } = context
+            const { versions } = process.env
+            const body = "Your alpha package is ready 🎉<br/>" + versions.split(' ').reduce((acc, version) => {
+              acc += `\`yarn add ${version}\`<br/>`
+              return acc
+            }, '')
+            await github.issues.createComment({ issue_number: issue.number, owner, repo, body })
+
+      - name: Set status check - success / failure / error
+        if: ${{ always() }}
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.issue;
+
+            const status = "${{ job.status }}";
+            const state = status === 'cancelled' ? 'error' : status;
+
+            await github.repos.createCommitStatus({
+              repo,
+              owner,
+              state,
+              sha: "${{ steps.get-branch.outputs.sha }}",
+              context: process.env.STATUS_CHECK_NAME,
+              target_url: process.env.STATUS_TARGET_URL
+            })
