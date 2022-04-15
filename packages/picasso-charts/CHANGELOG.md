@@ -1,5 +1,15 @@
 # Change Log
 
+## 35.1.1
+
+### Patch Changes
+
+- [#2639](https://github.com/toptal/picasso/pull/2639) [`51521479`](https://github.com/toptal/picasso/commit/515214798acc2b0c3484255c9a2ec1fd00df6395) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### BarChart
+
+  - extend `width` and `height` props to accept strings (e.g. '100%')
+
 ## 35.1.0
 
 ### Minor Changes
