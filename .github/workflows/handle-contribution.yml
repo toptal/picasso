@@ -18,6 +18,12 @@ jobs:
           token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
           path: ./.github/actions/
 
+      - name: TMP
+        run: |
+          echo ${{ github.run_id }} &&
+          echo ${{ github.run_number }} &&
+          echo ${{ github.run_attempt }}
+
       - uses: ./.github/actions/notify-jira-about-contribution
         with:
           team: frontend-experience-eng
