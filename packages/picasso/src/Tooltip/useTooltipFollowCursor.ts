@@ -57,6 +57,8 @@ export const useTooltipFollowCursor = ({
       return
     }
 
+    console.log('over')
+
     calculateTooltipPosition(event)
   }
 
