@@ -71,11 +71,8 @@ export const useTooltipHandlers = ({
       handleOpen(event)
     }
   }
-  const handleMouseEnter = (event: MouseEvent<HTMLDivElement>) => {
-    targetHoveredRef.current = true
-    children.props.onMouseEnter?.(event)
-  }
   const handleMouseOver = (event: MouseEvent<HTMLDivElement>) => {
+    targetHoveredRef.current = true
     onMouseOver?.(event)
     children.props.onMouseOver?.(event)
   }
@@ -94,7 +91,6 @@ export const useTooltipHandlers = ({
     handleClose,
     children: cloneElement(children, {
       onClick: handleClick,
-      onMouseEnter: handleMouseEnter,
       onMouseOver: handleMouseOver,
       onMouseMove: handleMouseMove,
       onMouseLeave: handleMouseLeave
