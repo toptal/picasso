@@ -1,10 +1,10 @@
-import { ChangeEvent, MouseEvent } from 'react'
+import { MouseEvent } from 'react'
 
 export type ChildrenProps = {
-  onClick?: (event: ChangeEvent<{}>) => void
-  onMouseOver?: (event: MouseEvent<HTMLDivElement>) => void
-  onMouseMove?: (event: MouseEvent<HTMLDivElement>) => void
-  onMouseLeave?: (event: MouseEvent<HTMLDivElement>) => void
+  onClick?: (event: MouseEvent<HTMLElement>) => void
+  onMouseOver?: (event: MouseEvent<HTMLElement>) => void
+  onMouseMove?: (event: MouseEvent<HTMLElement>) => void
+  onMouseLeave?: (event: MouseEvent<HTMLElement>) => void
 }
 
 export type ContainerValue = HTMLElement | (() => HTMLElement)

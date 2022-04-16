@@ -116,7 +116,8 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     onOpen,
     onClose,
     onMouseOver: followCursorTooltipData?.handleMouseOver,
-    onMouseMove: followCursorTooltipData?.handleMouseMove
+    onMouseMove: followCursorTooltipData?.handleMouseMove,
+    onClick: followCursorTooltipData?.handleClick
   })
 
   const title = (

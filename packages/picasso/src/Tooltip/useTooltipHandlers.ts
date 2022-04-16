@@ -12,8 +12,9 @@ import { ChildrenProps } from './types'
 interface UseTooltipHandlersOptions {
   onOpen?: (event: ChangeEvent<{}>) => void
   onClose?: (event: ChangeEvent<{}>) => void
-  onMouseOver?: (event: MouseEvent<HTMLDivElement>) => void
-  onMouseMove?: (event: MouseEvent<HTMLDivElement>) => void
+  onMouseOver?: (event: MouseEvent<HTMLElement>) => void
+  onMouseMove?: (event: MouseEvent<HTMLElement>) => void
+  onClick?: (event: MouseEvent<HTMLElement>) => void
   children: ReactElement<ChildrenProps>
   tooltipState: TooltipState
   disableListeners?: boolean
@@ -24,6 +25,7 @@ export const useTooltipHandlers = ({
   onOpen,
   onMouseOver,
   onMouseMove,
+  onClick,
   tooltipState,
   disableListeners,
   children
@@ -58,32 +60,50 @@ export const useTooltipHandlers = ({
     onOpen?.(event)
     openTooltip()
   }
-  const handleClick = (event: ChangeEvent<{}>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
+    children.props.onClick?.(event)
+
     if (disableListeners) {
       return
     }
 
-    children.props.onClick?.(event)
     if (isOpen) {
       setIgnoreOpening(true)
       handleClose(event)
     } else if (isTouchDevice) {
       handleOpen(event)
     }
+
+    onClick?.(event)
   }
-  const handleMouseOver = (event: MouseEvent<HTMLDivElement>) => {
+  const handleMouseOver = (event: MouseEvent<HTMLElement>) => {
+    children.props.onMouseOver?.(event)
+
+    if (disableListeners) {
+      return
+    }
+
     targetHoveredRef.current = true
     onMouseOver?.(event)
-    children.props.onMouseOver?.(event)
   }
-  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
-    onMouseMove?.(event)
+  const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
     children.props.onMouseMove?.(event)
+
+    if (disableListeners) {
+      return
+    }
+
+    onMouseMove?.(event)
   }
-  const handleMouseLeave = (event: MouseEvent<HTMLDivElement>) => {
+  const handleMouseLeave = (event: MouseEvent<HTMLElement>) => {
+    children.props.onMouseLeave?.(event)
+
+    if (disableListeners) {
+      return
+    }
+
     targetHoveredRef.current = false
     setIgnoreOpening(false)
-    children.props.onMouseLeave?.(event)
   }
 
   return {

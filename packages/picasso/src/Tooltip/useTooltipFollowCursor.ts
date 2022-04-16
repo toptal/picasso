@@ -34,16 +34,16 @@ export const useTooltipFollowCursor = ({
   const popperRef = useRef<PopperJs | null>(null)
 
   const handleMouseStop = useCallback(() => {
-    if (followCursor && targetHoveredRef.current) {
+    if (targetHoveredRef.current) {
       mouseMoveStartPositionRef.current = null
       openTooltip()
     }
-  }, [followCursor, targetHoveredRef])
+  }, [targetHoveredRef])
   const handleMouseStopDebounced = useCallback(
     debounce(handleMouseStop, mouseMoveDebounceTimeout),
     [debounce, handleMouseStop]
   )
-  const calculateTooltipPosition = (event: MouseEvent<HTMLDivElement>) => {
+  const calculateTooltipPosition = (event: MouseEvent<HTMLElement>) => {
     if (!mouseMoveStartPositionRef.current) {
       mouseMoveStartPositionRef.current = { x: event.clientX, y: event.clientY }
     }
@@ -52,19 +52,7 @@ export const useTooltipFollowCursor = ({
 
     popperRef.current?.scheduleUpdate()
   }
-  const handleMouseOver = (event: MouseEvent<HTMLDivElement>) => {
-    if (!followCursor) {
-      return
-    }
-
-    calculateTooltipPosition(event)
-  }
-
-  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
-    if (!followCursor) {
-      return
-    }
-
+  const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
     calculateTooltipPosition(event)
 
     const shouldCloseTooltip = isMouseMovedTooFar(
@@ -87,7 +75,8 @@ export const useTooltipFollowCursor = ({
 
   return {
     handleMouseMove,
-    handleMouseOver,
+    handleMouseOver: calculateTooltipPosition,
+    handleClick: calculateTooltipPosition,
     followCursorPopperProps: {
       popperRef,
       modifiers: {
