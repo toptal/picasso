@@ -149,6 +149,14 @@ types supported by picasso-forms.
     'picasso-form'
   )
   .addExample(
+    'Form/story/FieldWrapper.example.tsx',
+    {
+      title: 'FieldWrapper',
+      description: ''
+    },
+    'picasso-form'
+  ) // picasso-skip-visuals
+  .addExample(
     'Form/story/CustomValidator.example.tsx',
     {
       title: 'Custom validator',
