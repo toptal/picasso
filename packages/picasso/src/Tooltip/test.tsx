@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, MouseEventHandler } from 'react'
 import { fireEvent, waitFor } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { render } from '@toptal/picasso/test-utils'
@@ -17,7 +17,15 @@ const TestContent = () => {
   return <div data-testid='tooltip-content'>Content</div>
 }
 
-const TestTrigger = forwardRef<HTMLDivElement>((props, ref) => {
+const TestTrigger = forwardRef<
+  HTMLDivElement,
+  {
+    onClick?: MouseEventHandler<HTMLDivElement>
+    onMouseOver?: MouseEventHandler<HTMLDivElement>
+    onMouseMove?: MouseEventHandler<HTMLDivElement>
+    onMouseLeave?: MouseEventHandler<HTMLDivElement>
+  }
+>((props, ref) => {
   return (
     <div ref={ref} data-testid='tooltip-trigger' {...props}>
       Trigger
@@ -28,7 +36,12 @@ const TestTrigger = forwardRef<HTMLDivElement>((props, ref) => {
 const renderTooltip = (props?: Partial<OmitInternalProps<Props>>) => {
   return render(
     <Tooltip id='tooltip-id' content={<TestContent />} {...props}>
-      <TestTrigger />
+      <TestTrigger
+        onClick={props?.onClick}
+        onMouseOver={props?.onMouseOver}
+        onMouseMove={props?.onMouseMove}
+        onMouseLeave={props?.onMouseLeave}
+      />
     </Tooltip>
   )
 }
@@ -140,15 +153,31 @@ describe('Tooltip', () => {
     })
 
     it('does not open tooltip with disabled listeners', async () => {
+      const onClickMock = jest.fn()
+      const onMouseOverMock = jest.fn()
+      const onMouseMoveMock = jest.fn()
+      const onMouseLeaveMock = jest.fn()
+
       const { getByTestId, findByTestId } = renderTooltip({
-        disableListeners: true
+        disableListeners: true,
+        onClick: onClickMock,
+        onMouseOver: onMouseOverMock,
+        onMouseMove: onMouseMoveMock,
+        onMouseLeave: onMouseLeaveMock
       })
 
       fireEvent.focus(getByTestId('tooltip-trigger'))
       fireEvent.click(getByTestId('tooltip-trigger'))
-      fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
+      fireEvent.mouseOver(getByTestId('tooltip-trigger'))
+      fireEvent.mouseMove(getByTestId('tooltip-trigger'))
+      fireEvent.mouseLeave(getByTestId('tooltip-trigger'))
 
       await expect(() => findByTestId('tooltip-content')).rejects.toThrow()
+
+      expect(onClickMock).toHaveBeenCalledTimes(1)
+      expect(onMouseOverMock).toHaveBeenCalledTimes(1)
+      expect(onMouseMoveMock).toHaveBeenCalledTimes(1)
+      expect(onMouseLeaveMock).toHaveBeenCalledTimes(1)
     })
 
     it('does not close tooltip when interactive content is used by the user', async () => {
