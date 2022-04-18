@@ -1,5 +1,16 @@
 # Change Log
 
+## 22.2.0
+
+### Minor Changes
+
+- [#2643](https://github.com/toptal/picasso/pull/2643) [`40b70c1b`](https://github.com/toptal/picasso/commit/40b70c1be90854b02ddcdc8d09116a26b62176f3) Thanks [@sanex3339](https://github.com/sanex3339)! - ---
+
+  ### Tooltip
+
+  - add `followCursor` prop based on implementation from `@material-ui@5+`
+  - fix of broken existing event listeners for `Tooltip`'s target when `disableListeners` is `true`
+
 ## 22.1.1
 
 ### Patch Changes
