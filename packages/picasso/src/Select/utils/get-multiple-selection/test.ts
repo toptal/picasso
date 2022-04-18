@@ -13,7 +13,7 @@ describe('getMultipleSelection', () => {
   it('gets empty', () => {
     const selection = getMultipleSelection([])
 
-    expect(selection.display(getDisplayValue)).toEqual('')
+    expect(selection.display(getDisplayValue)).toBe('')
     expect(selection.isOptionSelected(OPTIONS[0])).toBeFalsy()
     expect(selection.isOptionSelected(OPTIONS[1])).toBeFalsy()
     expect(selection.isOptionSelected(OPTIONS[2])).toBeFalsy()
@@ -23,7 +23,7 @@ describe('getMultipleSelection', () => {
   it('gets non-empty', () => {
     const selection = getMultipleSelection([OPTIONS[0], OPTIONS[1]])
 
-    expect(selection.display(getDisplayValue)).toEqual('One, Two')
+    expect(selection.display(getDisplayValue)).toBe('One, Two')
     expect(selection.isOptionSelected(OPTIONS[0])).toBeTruthy()
     expect(selection.isOptionSelected(OPTIONS[1])).toBeTruthy()
     expect(selection.isOptionSelected(OPTIONS[2])).toBeFalsy()

@@ -1,7 +1,6 @@
 import React from 'react'
 import { fireEvent, render, waitFor } from '@toptal/picasso/test-utils'
 
-import '../../../../__tests__/matchMedia'
 import TypographyOverflow from '.'
 jest.mock('../utils/is-overflown', () => ({
   __esModule: true,
