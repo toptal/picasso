@@ -2,8 +2,6 @@ import React from 'react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
 
-// eslint-disable-next-line import/no-relative-packages
-import '../../../../__tests__/matchMedia'
 import FileListItem, { Props } from './FileListItem'
 
 const testIds = {
