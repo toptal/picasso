@@ -5655,13 +5655,6 @@
   dependencies:
     "@types/ms" "*"
 
-"@types/detect-browser@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/detect-browser/-/detect-browser-4.0.0.tgz#5672576f9621aad8773489593fca2e4c57c29fb5"
-  integrity sha512-c2cAqR4G5QL2aPDgzpsk8ck/R+w7djxpe05Z8XYg1Ahfe/Bekb+06PG9zw64T6I1oNWDVM+IAsSbyASVydAdRw==
-  dependencies:
-    detect-browser "*"
-
 "@types/esprima@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@types/esprima/-/esprima-4.0.2.tgz#0303602d0644086d4802635d7abc9ac0eec57207"
@@ -10318,7 +10311,7 @@ detab@2.0.4:
   dependencies:
     repeat-string "^1.5.4"
 
-detect-browser@*, detect-browser@^5.3.0:
+detect-browser@^5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/detect-browser/-/detect-browser-5.3.0.tgz#9705ef2bddf46072d0f7265a1fe300e36fe7ceca"
   integrity sha512-53rsFbGdwMwlF7qvCt0ypLM5V5/Mbl0szB7GPN8y9NCcbknYOeVVXdrXEq+90IwAfrrzt6Hd+u2E2ntakICU8w==
