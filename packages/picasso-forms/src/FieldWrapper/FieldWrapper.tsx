@@ -1,11 +1,8 @@
 import React from 'react'
 
-import Field, {
-  Props as FieldProps,
-  ValueType,
-  IFormComponentProps
-} from '../Field'
+import { Props as FieldProps, ValueType, IFormComponentProps } from '../Field'
 import FieldLabel from '../FieldLabel'
+import InputField from '../InputField'
 
 export type Props<TWrappedComponentProps, TInputValue> = Omit<
   FieldProps<TWrappedComponentProps, TInputValue>,
@@ -21,7 +18,7 @@ const FieldWrapper = <
   const { label, name, titleCase, children, ...rest } = props
 
   return (
-    <Field<IFormComponentProps, TInputValue>
+    <InputField<IFormComponentProps, TInputValue>
       {...rest}
       name={name}
       label={
@@ -36,7 +33,7 @@ const FieldWrapper = <
       }
     >
       {children}
-    </Field>
+    </InputField>
   )
 }
 
