@@ -1,6 +1,5 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
-import mockMatchMedia from '@toptal/picasso-root/__tests__/matchMedia'
 
 import { act, fireEvent, render } from '../test-utils'
 import DatePicker, { Props } from './DatePicker'
@@ -17,9 +16,6 @@ const NEW_YORK_TIMEZONE = 'America/New_York'
 
 // eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
-  beforeEach(() => {
-    mockMatchMedia()
-  })
   beforeAll(() => {
     jest.useFakeTimers()
   })

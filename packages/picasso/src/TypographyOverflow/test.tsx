@@ -1,15 +1,11 @@
 import React, { ReactNode } from 'react'
 import { render, act } from '@toptal/picasso/test-utils'
 
-// import mockMatchMedia from '@toptal/picasso-root/__tests__/matchMedia'
 import Tooltip from '../Tooltip'
 import Typography from '../Typography'
 import { isOverflown } from '../utils'
 import TypographyOverflow from '.'
-// jest.mock('../utils/is-overflown', () => ({
-//   __esModule: true,
-//   default: jest.fn(() => true)
-// }))
+
 jest.mock('../Tooltip', () => {
   return {
     __esModule: true,

@@ -1,7 +1,6 @@
 import React from 'react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
-import mockMatchMedia from '@toptal/picasso-root/__tests__/matchMedia'
 
 import FileListItem, { Props } from './FileListItem'
 
@@ -13,9 +12,6 @@ const renderFileListItem = (props: OmitInternalProps<Props>) =>
   render(<FileListItem testIds={testIds} {...props} />)
 
 describe('FileListItem', () => {
-  beforeEach(() => {
-    mockMatchMedia()
-  })
   const file = {
     file: new File(['user-profile-picture.png'], 'user-profile-picture.png'),
     uploading: false,
