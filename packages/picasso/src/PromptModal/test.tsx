@@ -5,6 +5,7 @@ import {
   waitFor,
   waitForElementToBeRemoved
 } from '@toptal/picasso/test-utils'
+import { noop } from '@toptal/picasso/utils'
 
 import Button from '../Button'
 import Input from '../Input'
@@ -12,10 +13,8 @@ import PromptModal from '../PromptModal'
 import { useModal } from '../utils'
 
 describe('PromptModal', () => {
-  const spy = jest.spyOn(global.console, 'error')
-
-  afterEach(() => {
-    spy.mockClear()
+  beforeEach(() => {
+    jest.spyOn(console, 'error').mockImplementation(noop)
   })
 
   it('renders', () => {

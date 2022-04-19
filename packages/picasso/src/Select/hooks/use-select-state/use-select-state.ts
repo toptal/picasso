@@ -42,14 +42,17 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     limit = DEFAULT_LIMIT
   } = props
 
-  const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
-    options
-  ])
+  const flatOptions: Option[] = useMemo(
+    () => flattenOptions(options),
+    [options]
+  )
   const [value, setValue] = useState(valueProp)
+
   const selectedOptions = useMemo(
     () => getSelectedOptions(flatOptions, value),
     [flatOptions, value]
   )
+
   const selection = useMemo(
     () =>
       multiple
@@ -57,13 +60,13 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
         : getSingleSelection(selectedOptions[0]),
     [selectedOptions, multiple]
   )
-  const displayValue = useMemo(() => selection.display(getDisplayValue), [
-    selection,
-    getDisplayValue
-  ])
-  const [filterOptionsValue, setFilterOptionsValue] = useState(
-    EMPTY_INPUT_VALUE
+
+  const displayValue = useMemo(
+    () => selection.display(getDisplayValue),
+    [selection, getDisplayValue]
   )
+  const [filterOptionsValue, setFilterOptionsValue] =
+    useState(EMPTY_INPUT_VALUE)
   const filteredOptions = useMemo(
     () =>
       filterOptions({

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const davinciJestConfig = require('@toptal/davinci-qa/src/configs/jest.config.js')
 
 module.exports = {
@@ -16,8 +17,8 @@ module.exports = {
   modulePathIgnorePatterns: [
     ...davinciJestConfig.modulePathIgnorePatterns,
     '/dist-package'
-  ],
+  ]
   // jest.mock returns always undefined when true
-  resetMocks: false,
-  restoreMocks: false
+  // resetMocks: false,
+  // restoreMocks: false
 }

@@ -30,7 +30,9 @@ describe('useCounter', () => {
 
     const { counterMessage } = result.current
 
-    expect(counterMessage).toContain(4)
+    expect(counterMessage).toContain(
+      '4 characters required, current count is 0'
+    )
   })
 
   it('returns default message when only maxLength is provided', () => {
@@ -43,7 +45,7 @@ describe('useCounter', () => {
 
     const { counterMessage } = result.current
 
-    expect(counterMessage).toContain(4)
+    expect(counterMessage).toContain('4 characters left')
   })
 
   it('returns custom minLength message when minLengthMessage is provided', () => {
