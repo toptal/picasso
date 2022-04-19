@@ -4,6 +4,8 @@ import RichTextEditor from '../RichTextEditor'
 const page = PicassoBook.section('Components').createPage(
   'RichTextEditor',
   `
+  [Rich Text Editor and backend workflow](https://toptal-core.atlassian.net/wiki/spaces/ENG/pages/2733342852/Rich+Text+Editor+and+backend+workflow)
+
   ${PicassoBook.createBaseDocsLink(
     'https://share.goabstract.com/e4c79c6c-4bcd-4411-97b7-09e821925e8e?mode=build&sha=e93949b90e728478fecb60bd7ba1efc06803315b'
   )}
