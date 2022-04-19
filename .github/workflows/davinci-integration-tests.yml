@@ -12,7 +12,7 @@ env:
       {
         "pkg": "default",
         "location": ".",
-        "parallel_groups": 3
+        "parallel_groups": 4
       }
     ]
   PRINT_COVERAGE: false
@@ -78,12 +78,11 @@ jobs:
       - name: Build packages
         run: yarn build:package
 
-      - name: Upload packages
-        uses: actions/upload-artifact@v3
+      - name: Cache built packages
+        uses: actions/cache@v2
         with:
-          name: pkgs-build
           path: 'packages/**/dist-package'
-          retention-days: 1
+          key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
 
   integration_check:
     name: Check:IntegrationTests
@@ -115,11 +114,11 @@ jobs:
         with:
           npm_token: ${{ env.NPM_TOKEN }}
 
-      - name: Download Built packages
-        uses: actions/download-artifact@v3
+      - name: Get cached packages
+        uses: actions/cache@v2
         with:
-          name: pkgs-build
-          path: packages
+          path: 'packages/**/dist-package'
+          key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
 
       - uses: ./.github/actions/integration-tests
         env:
@@ -148,15 +147,19 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v2
 
-      - name: Finalize Happo
-        run: npx happo-e2e finalize
-
       - name: Checkout davinci GHAs
         uses: actions/checkout@v2
         with:
           repository: toptal/davinci-github-actions
           token: ${{ env.GITHUB_TOKEN }}
           path: ./.github/actions/
+
+      - uses: ./.github/actions/yarn-install
+        with:
+          npm_token: ${{ env.NPM_TOKEN }}
+
+      - name: Finalize Happo
+        run: npx happo-e2e finalize
 
       - name: Print Coverage
         if: ${{ env.PRINT_COVERAGE == 'true' }}
