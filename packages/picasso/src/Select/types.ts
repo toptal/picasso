@@ -57,8 +57,6 @@ export interface SelectProps<
       value: V
     }>
   ) => void
-  /** @deprecated Callback invoked when search value changes */
-  onSearchChange?: (value: string) => void
   /** Label to show when no options were found */
   noOptionsText?: string
   /** List of options or option groups to be rendered as `Select` */
