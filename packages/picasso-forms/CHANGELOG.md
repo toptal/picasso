@@ -1,5 +1,15 @@
 # Change Log
 
+## 42.2.0
+
+### Minor Changes
+
+- [#2652](https://github.com/toptal/picasso/pull/2652) [`4db0c320`](https://github.com/toptal/picasso/commit/4db0c32067be1956b41a40441f6c9dac09bca90e) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### FieldWrapper
+
+  - fix bug related to passing `status` to input
+
 ## 42.1.0
 
 ### Minor Changes
