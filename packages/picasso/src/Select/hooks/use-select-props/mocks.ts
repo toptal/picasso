@@ -22,7 +22,6 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
       error: false,
       loading: false,
       onChange: jest.fn(),
-      onSearchChange: jest.fn(),
       options: [],
       renderOption: jest.fn(),
       getDisplayValue: jest.fn(),

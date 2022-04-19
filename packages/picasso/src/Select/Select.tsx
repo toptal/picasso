@@ -37,14 +37,6 @@ export const Select = <T extends ValueType, M extends boolean = false>({
 }: SelectProps<T, M>) => {
   usePropDeprecationWarning({
     props,
-    name: 'onSearchChange',
-    componentName: 'Select',
-    description:
-      'Use the Autocomplete component if you require dynamic options.'
-  })
-
-  usePropDeprecationWarning({
-    props,
     name: 'error',
     componentName: 'Select',
     description:
