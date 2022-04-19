@@ -13,17 +13,17 @@ const renderFieldWrapper = () =>
         {(inputProps: any) => <Input {...inputProps} />}
       </FieldWrapper>
 
-      <Form.SubmitButton>Submit</Form.SubmitButton>
+      <Form.SubmitButton data-testid='submit'>Submit</Form.SubmitButton>
     </Form>
   )
 
 describe('FieldWrapper', () => {
   describe('when there is a field error', () => {
     it('passes status to its children', () => {
-      const { getByRole, getByText } = renderFieldWrapper()
+      const { getByTestId, getByText } = renderFieldWrapper()
 
       act(() => {
-        fireEvent.click(getByRole('button'))
+        fireEvent.click(getByTestId('submit'))
       })
 
       expect(getByText('Please complete this field.')).toBeVisible()

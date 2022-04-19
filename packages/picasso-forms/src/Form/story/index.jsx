@@ -230,7 +230,3 @@ however, you may need custom validators for more complex types of fields.
     title: 'Form Level Status Configuration',
     description: 'Showcase how to enable success status via form configuration.'
   }) // picasso-skip-visuals
-  .addExample('Form/story/CustomField.example.tsx', {
-    title: 'Custom field',
-    description: 'Showcase how to wrap your custom field in the form.'
-  }) // picasso-skip-visuals
