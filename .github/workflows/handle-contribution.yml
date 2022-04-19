@@ -17,7 +17,7 @@ jobs:
           repository: toptal/davinci-github-actions
           token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
           path: ./.github/actions/
-          ref: "refs/playground-branch-1"
+          ref: "playground-branch-1"
 
       - uses: ./.github/actions/notify-jira-about-contribution
         with:
