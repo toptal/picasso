@@ -115,17 +115,11 @@ describe('useSelectState', () => {
   beforeEach(() => {
     mockedUseHighlightedIndex.mockImplementation(() => [0, jest.fn()])
     mockedGetMultipleSelection.mockImplementation(utils.getMultipleSelection)
-    // (() => ({
-    //   display: jest.fn(() => MULTIPLE_SELECTION_VALUE),
-    //   isSelected: jest.fn(() => true),
-    //   isOptionSelected: jest.fn(() => true),
-    // }))
     mockedGetSingleSelection.mockImplementation(utils.getSingleSelection)
     mockedGetSelectedOptions.mockImplementation(() => options)
     mockedFilterOptions.mockImplementation(() => filteredOptions)
     mockedLimitOptions.mockImplementation(() => limitedOptions)
     mockedFlattenOptions.mockImplementation(() => flattenedOptions)
-    // defaultGetDisplayValue.mockClear()
   })
 
   afterEach(() => {
