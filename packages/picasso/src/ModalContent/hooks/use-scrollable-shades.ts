@@ -28,6 +28,7 @@ const useScrollableShades = (ref: React.RefObject<HTMLDivElement>) => {
     window.addEventListener('resize', updateShades)
 
     return () => {
+      updateShades.clear()
       el.removeEventListener('scroll', updateShades)
       window.addEventListener('resize', updateShades)
     }
