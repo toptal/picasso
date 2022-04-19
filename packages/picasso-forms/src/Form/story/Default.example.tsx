@@ -38,14 +38,12 @@ const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
 }
 
 const Example = () => {
-  const [skillInputValue, setSkillInputValue] = useState<string>(
-    EMPTY_INPUT_VALUE
-  )
+  const [skillInputValue, setSkillInputValue] =
+    useState<string>(EMPTY_INPUT_VALUE)
   const skillOptions = filterOptions(skillInputValue, skills)
 
-  const [autocompleteValue, setAutocompleteValue] = useState<string>(
-    EMPTY_INPUT_VALUE
-  )
+  const [autocompleteValue, setAutocompleteValue] =
+    useState<string>(EMPTY_INPUT_VALUE)
   const [autocompleteOptions, setAutocompleteOptions] = useState<Item[] | null>(
     countries
   )
@@ -53,7 +51,7 @@ const Example = () => {
   return (
     <Form
       autoComplete='off'
-      onSubmit={values => window.alert(values)}
+      onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
       initialValues={{ gender: 'female' }}
     >
       <Form.Input

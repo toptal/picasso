@@ -21,7 +21,7 @@ const minMaxValidator = (value?: string | number) => {
 }
 
 const CustomValidatorExample = () => (
-  <Form onSubmit={values => window.alert(values)}>
+  <Form onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}>
     <Form.Input
       required
       name='userName'
