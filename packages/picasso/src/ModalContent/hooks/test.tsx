@@ -5,7 +5,11 @@ import useScrollableShades from './use-scrollable-shades'
 
 jest.mock('debounce', () => ({
   __esModule: true,
-  default: (fn: Function) => fn
+  default: (fn: Function & { clear: () => void }) => {
+    fn.clear = jest.fn()
+
+    return fn
+  }
 }))
 
 interface currentProps {
