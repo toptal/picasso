@@ -1,5 +1,15 @@
 # Change Log
 
+## 22.2.1
+
+### Patch Changes
+
+- [#2655](https://github.com/toptal/picasso/pull/2655) [`93b2280d`](https://github.com/toptal/picasso/commit/93b2280d69a59019b89dd073d5994536a39119db) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  ### Select
+
+  - remove `onSearchChange` deprecated prop
+
 ## 22.2.0
 
 ### Minor Changes
