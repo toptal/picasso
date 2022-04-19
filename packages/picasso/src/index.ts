@@ -199,17 +199,3 @@ export type { Status as OutlinedInputStatus } from './OutlinedInput'
 
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'
-
-// TODO: Remove in @toptal/picasso@11.x.x version
-const PicassoFallback = () => {
-  throw new Error(`
-Picasso root component has been moved to @toptal/picasso-provider package.
-
-Please use:
-  import Picasso from '@toptal/picasso-provider'
-
-instead.
-  `)
-}
-
-export default PicassoFallback
