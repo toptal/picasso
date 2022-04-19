@@ -27,5 +27,5 @@ jobs:
           jira-hook: ${{ secrets.JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}
           github-token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
 
-      - run:
-        echo "${{ secrets.JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}"
+      - run: |
+          echo "${{ secrets.JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}"
