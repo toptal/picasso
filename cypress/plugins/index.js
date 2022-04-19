@@ -2,8 +2,8 @@ const path = require('path')
 const webpackPreprocessor = require('@cypress/webpack-preprocessor')
 const { startDevServer } = require('@cypress/webpack-dev-server')
 const happoTask = require('happo-cypress/task')
-
-const parallelization = require('./parallelization')
+// eslint-disable-next-line import/no-extraneous-dependencies
+const parallelization = require('@toptal/davinci-qa/src/configs/cypress/plugins/parallelization')
 
 module.exports = (on, config) => {
   parallelization(config)
