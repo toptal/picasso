@@ -21,9 +21,10 @@ jest.mock('../utils/use-deprecation-warnings', () => ({
   usePropDeprecationWarning: jest.fn()
 }))
 
-const mockedUsePropDeprecationWarning = usePropDeprecationWarning as jest.MockedFunction<
-  typeof usePropDeprecationWarning
->
+const mockedUsePropDeprecationWarning =
+  usePropDeprecationWarning as jest.MockedFunction<
+    typeof usePropDeprecationWarning
+  >
 
 const renderSelect = (
   props: OmitInternalProps<SelectProps>,
@@ -45,19 +46,5 @@ describe('Select', () => {
     const { getByTestId } = renderSelect({ options: [] })
 
     expect(getByTestId('non-native-select')).toBeInTheDocument()
-  })
-
-  it('warns about deprecated props', () => {
-    const props = { options: [] }
-
-    renderSelect(props)
-
-    expect(mockedUsePropDeprecationWarning).toHaveBeenCalledWith({
-      props: expect.objectContaining(props),
-      name: 'onSearchChange',
-      componentName: 'Select',
-      description:
-        'Use the Autocomplete component if you require dynamic options.'
-    })
   })
 })

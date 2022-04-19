@@ -6,15 +6,13 @@ const useSearchChangeHandler = <
   T extends ValueType,
   M extends boolean = false
 >({
-  selectState: { setFilterOptionsValue },
-  selectProps: { onSearchChange }
+  selectState: { setFilterOptionsValue }
 }: UseSelectProps<T, M>) =>
   useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      onSearchChange?.(event.target.value)
       setFilterOptionsValue(event.target.value)
     },
-    [onSearchChange, setFilterOptionsValue]
+    [setFilterOptionsValue]
   )
 
 export default useSearchChangeHandler
