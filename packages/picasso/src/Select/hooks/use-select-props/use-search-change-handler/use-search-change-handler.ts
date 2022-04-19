@@ -1,18 +1,12 @@
-import { useCallback, ChangeEvent } from 'react'
+import { ChangeEvent } from 'react'
 
 import { ValueType, UseSelectProps } from '../../../types'
 
-const useSearchChangeHandler = <
-  T extends ValueType,
-  M extends boolean = false
->({
-  selectState: { setFilterOptionsValue }
-}: UseSelectProps<T, M>) =>
-  useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setFilterOptionsValue(event.target.value)
-    },
-    [setFilterOptionsValue]
-  )
+const useSearchChangeHandler =
+  <T extends ValueType, M extends boolean = false>({
+    selectState: { setFilterOptionsValue }
+  }: UseSelectProps<T, M>) =>
+  (event: ChangeEvent<HTMLInputElement>) =>
+    setFilterOptionsValue(event.target.value)
 
 export default useSearchChangeHandler

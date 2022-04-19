@@ -6,4 +6,4 @@
 
 ### Select
 
-- remove `onSearchChange` deprecation leftover
+- remove `onSearchChange` deprecated prop
