@@ -2,4 +2,8 @@
 '@toptal/picasso': minor
 ---
 
-Added aria label to close button of Drawer component.
+
+---
+### Drawer
+
+- Add aria-label attribute to close button
