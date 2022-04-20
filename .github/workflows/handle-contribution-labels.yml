@@ -2,7 +2,7 @@ name: Handle Labels
 
 on:
   push:
-    branches: [master]
+    branches: "**"
 
 jobs:
   handle-labels:
