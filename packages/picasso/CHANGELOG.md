@@ -1,5 +1,15 @@
 # Change Log
 
+## 22.2.2
+
+### Patch Changes
+
+- [#2662](https://github.com/toptal/picasso/pull/2662) [`388e1589`](https://github.com/toptal/picasso/commit/388e1589903e082e1b2cdb7d74a5862055a8c717) Thanks [@sanex3339](https://github.com/sanex3339)! - ---
+
+  ### ModalContent
+
+  - clear `updateShades` debounce on component unmount
+
 ## 22.2.1
 
 ### Patch Changes
