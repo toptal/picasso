@@ -1,8 +1,9 @@
 name: Handle Labels
 
 on:
-  push:
-    branches: "**"
+  pull_request:
+    types: [opened, reopened, ready_for_review, converted_to_draft]
+    branches: [master]
 
 jobs:
   handle-labels:
