@@ -1,6 +1,6 @@
 import { Theme, ThemeOptions, createMuiTheme } from '@material-ui/core/styles'
 import { Overrides } from '@material-ui/core/styles/overrides'
-import { deepmerge } from '@material-ui/utils'
+import { deepmerge } from '@mui/utils'
 
 import {
   palette,
