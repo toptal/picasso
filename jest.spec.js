@@ -13,9 +13,5 @@ module.exports = {
     '^@toptal/picasso-provider$':
       '<rootDir>packages/picasso-provider/src/index.ts',
     '^@toptal/picasso-root/(.*)$': '<rootDir>/$1'
-  },
-  modulePathIgnorePatterns: [
-    ...davinciJestConfig.modulePathIgnorePatterns,
-    '/dist-package'
-  ]
+  }
 }
