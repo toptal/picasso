@@ -1,12 +1,11 @@
-name: Handle contribution
+name: Handle Labels
 
 on:
-  pull_request:
-    types: [opened, reopened, ready_for_review]
+  push:
     branches: [master]
 
 jobs:
-  call-notify-jira-about-contribution:
+  handle-labels:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     runs-on: ubuntu-latest
     name: Call notify jira about contribution
