@@ -34,16 +34,6 @@ const thresholds: Record<SizeType, number> = {
   large: 99
 }
 
-const formatNumber = (
-  content: number,
-  size: SizeType,
-  max: number | undefined
-): string => {
-  const trimThreshold = max ?? thresholds[size]
-
-  return content > trimThreshold ? `${trimThreshold}+` : String(content)
-}
-
 export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   {
     children,
@@ -60,14 +50,13 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
 
   const hasChildren = Children.count(children) > 0
 
-  const badgeContent = formatNumber(content, size, max)
-
   return (
     <MuiBadge
       ref={ref}
       style={style}
       data-testid={testId}
-      badgeContent={badgeContent}
+      badgeContent={content}
+      max={max || thresholds[size]}
       classes={{
         badge: cx(classes.root, classes[variant], classes[size], {
           [classes.static]: !hasChildren
