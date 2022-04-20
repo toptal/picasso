@@ -14,10 +14,10 @@ env:
       {
         "pkg": "default",
         "location": ".",
-        "parallel_groups": 4
+        "parallel_groups": 3
       }
     ]
-  PRINT_COVERAGE: false
+  PRINT_COVERAGE: false # code coverage is not working properly for component testing ( https://github.com/cypress-io/code-coverage/issues/472 )
   COVERAGE_REPORT_DIR: coverage
   COVERAGE_REPORTER: text-summary
   COMMAND: test:integration:ci
