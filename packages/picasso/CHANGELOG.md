@@ -1,5 +1,15 @@
 # Change Log
 
+## 22.3.1
+
+### Patch Changes
+
+- [#2675](https://github.com/toptal/picasso/pull/2675) [`a58b9232`](https://github.com/toptal/picasso/commit/a58b9232a0da30b299db0b0c499f5ba8126285d0) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Pagination
+
+  - Left ellipses were appearing even when not necessary
+
 ## 22.3.0
 
 ### Minor Changes
