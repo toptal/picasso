@@ -13,5 +13,21 @@ describe('hasEllipses', () => {
     expect(
       hasEllipses({ activePage: 2, totalPages: 3, siblingCount: 1 })
     ).toEqual([false, false])
+
+    expect(
+      hasEllipses({ activePage: 4, totalPages: 4, siblingCount: 2 })
+    ).toEqual([false, false])
+
+    expect(
+      hasEllipses({ activePage: 1, totalPages: 4, siblingCount: 2 })
+    ).toEqual([false, false])
+
+    expect(
+      hasEllipses({ activePage: 4, totalPages: 7, siblingCount: 2 })
+    ).toEqual([false, false])
+
+    expect(
+      hasEllipses({ activePage: 4, totalPages: 10, siblingCount: 2 })
+    ).toEqual([false, true])
   })
 })
