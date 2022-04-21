@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+yarn lint-staged
+yarn syncpack list-mismatches || (echo "you can use \033[0;32myarn syncpack:fix \033[0mto sync versions automatically or do it manually" && return 1)
