@@ -4,8 +4,9 @@ import React, {
   TableHTMLAttributes,
   useMemo
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITable from '@material-ui/core/Table'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import MUITable from '@mui/material/Table'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import TableCell from '../TableCell'

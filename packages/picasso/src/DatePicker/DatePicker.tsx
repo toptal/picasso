@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function, max-lines */
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps } from '@toptal/picasso-shared'
 import formatDate from 'date-fns/format'
 import PopperJs from 'popper.js'

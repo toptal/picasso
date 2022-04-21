@@ -1,19 +1,22 @@
-import { createStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 import { rem } from '@toptal/picasso-shared'
 
 PicassoProvider.override(({ layout }: Theme) => ({
   MuiSnackbarContent: {
-    message: {
-      display: 'flex',
-      maxWidth: layout.contentWidth,
-      padding: 0,
-      width: '100%',
-      minWidth: 0,
-      margin: '0 auto',
+    styleOverrides: {
+      message: {
+        display: 'flex',
+        maxWidth: layout.contentWidth,
+        padding: 0,
+        width: '100%',
+        minWidth: 0,
+        margin: '0 auto',
 
-      '& > div': {
-        width: '100%'
+        '& > div': {
+          width: '100%'
+        }
       }
     }
   }

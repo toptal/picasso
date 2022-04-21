@@ -11,9 +11,10 @@ import React, {
   FocusEventHandler,
   MouseEvent
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
+import { capitalize } from '@mui/material/utils'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Input, { InputProps } from '../Input'

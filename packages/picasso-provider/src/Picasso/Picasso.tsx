@@ -3,7 +3,7 @@ import {
   ThemeProvider,
   StyledEngineProvider,
   Theme,
-  DeprecatedThemeOptions
+  ThemeOptions
 } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
 import StylesProvider from '@mui/styles/StylesProvider'
@@ -160,7 +160,7 @@ interface PicassoProps extends TextLabelProps {
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
-  theme?: DeprecatedThemeOptions
+  theme?: ThemeOptions
   /** Disables transitions for components like Loader, to make testing easier */
   disableTransitions?: boolean
   /** Disables unique prefix for styles class names */

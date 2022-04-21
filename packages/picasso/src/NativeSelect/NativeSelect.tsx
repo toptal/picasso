@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
 import cx from 'classnames'
-import MuiNativeSelect from '@material-ui/core/NativeSelect'
-import { Theme, makeStyles } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
+import MuiNativeSelect from '@mui/material/NativeSelect'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import { capitalize } from '@mui/material/utils'
 
 import OutlinedInput from '../OutlinedInput'
 import SelectCaret from '../SelectCaret'
@@ -132,9 +133,8 @@ export const NativeSelect = documentable(
               [classes.placeholder]: !selection.isSelected()
             }),
             select: cx({
-              [classes.startAdornmentPadding]: React.isValidElement(
-                startAdornment
-              ),
+              [classes.startAdornmentPadding]:
+                React.isValidElement(startAdornment),
               [classes.endAdornmentPadding]: React.isValidElement(endAdornment)
             })
           }}

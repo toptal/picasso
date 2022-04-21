@@ -1,7 +1,8 @@
 import React, { HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUIStepLabel from '@material-ui/core/StepLabel'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import MUIStepLabel from '@mui/material/StepLabel'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import StepIcon from '../StepIcon'

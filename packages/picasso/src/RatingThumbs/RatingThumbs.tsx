@@ -1,4 +1,5 @@
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import classNames from 'classnames'
 import React, { ChangeEvent, forwardRef, useCallback, useState } from 'react'

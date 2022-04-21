@@ -1,6 +1,7 @@
 import React from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import InputMask from 'react-input-mask'
 import { detect } from 'detect-browser'
 import cx from 'classnames'

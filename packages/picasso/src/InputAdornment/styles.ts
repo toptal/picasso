@@ -1,16 +1,19 @@
-import { Theme, createStyles } from '@material-ui/core'
+import { Theme } from '@mui/material'
+import createStyles from '@mui/styles/createStyles'
 import { alpha } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(({ palette }) => ({
   MuiInputAdornment: {
-    root: {
-      color: palette.grey.dark
-    },
-    positionStart: {},
-    positionEnd: {
-      justifyContent: 'flex-end',
-      flexGrow: 1
+    styleOverrides: {
+      root: {
+        color: palette.grey.dark
+      },
+      positionStart: {},
+      positionEnd: {
+        justifyContent: 'flex-end',
+        flexGrow: 1
+      }
     }
   }
 }))

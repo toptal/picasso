@@ -1,8 +1,8 @@
 /* eslint-disable complexity */
 
 import React, { ReactNode, HTMLAttributes, Ref } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { PropTypes } from '@material-ui/core'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
 import {
   StandardProps,
@@ -23,6 +23,8 @@ type ContainerType = 'div' | 'span'
 type DirectionType = 'row' | 'column'
 
 type BorderableType = 'transparent' | 'white'
+
+type AlignmentType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
 
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoContainer'
@@ -64,7 +66,7 @@ export interface Props<V extends VariantType = VariantType>
   /** Component used for the root node */
   as?: ContainerType
   /** Text align of the inner text */
-  align?: PropTypes.Alignment
+  align?: AlignmentType
 }
 
 /**
@@ -130,9 +132,8 @@ export const Container = documentable(
 
               [classes[`${align}TextAlign`]]: typeof align === 'string',
 
-              [classes[
-                `${kebabToCamelCase(alignItems || '')}AlignItems`
-              ]]: alignItems,
+              [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
+                alignItems,
 
               [classes[
                 `${kebabToCamelCase(justifyContent || '')}JustifyContent`

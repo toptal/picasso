@@ -1,5 +1,6 @@
 import React, { ReactNode, RefObject, useRef } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -64,9 +65,10 @@ const ScrollMenu = (props: Props) => {
   const classes = useStyles()
   const menuRef = useRef<HTMLDivElement>(null)
 
-  useIsomorphicLayoutEffect(() => scrollToSelection(menuRef, selectedIndex), [
-    selectedIndex
-  ])
+  useIsomorphicLayoutEffect(
+    () => scrollToSelection(menuRef, selectedIndex),
+    [selectedIndex]
+  )
 
   return (
     <Menu

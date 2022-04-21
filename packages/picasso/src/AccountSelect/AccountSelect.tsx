@@ -1,5 +1,6 @@
 import React, { forwardRef, HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import UserBadge from '../UserBadge'
@@ -41,10 +42,8 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
     const { className, accounts, onSelect, style, ...rest } = props
     const classes = useStyles()
 
-    const {
-      accountItem: accountItemClass,
-      accountLink: accountLinkClass
-    } = classes
+    const { accountItem: accountItemClass, accountLink: accountLinkClass } =
+      classes
 
     return (
       <Menu {...rest} ref={ref} className={className} style={style}>
