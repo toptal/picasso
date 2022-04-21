@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
 import SkeletonLoader from '../SkeletonLoader'
@@ -8,14 +8,6 @@ import {
   getIconAttributes,
   getImageAttributes
 } from './MediaSkeletonLoader'
-
-jest.mock(
-  'react-content-loader',
-  () =>
-    ({ children, ...rest }: { children: ReactNode }) => {
-      return <span {...rest}>{children}</span>
-    }
-)
 
 const DEFAULT_BORDER_RADIUS = '5px'
 
