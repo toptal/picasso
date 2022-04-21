@@ -1,6 +1,6 @@
 import { ZoomBehavior, ZoomedElementBaseType } from 'd3-zoom'
 import { RefObject, useEffect, useMemo, useState } from 'react'
-import * as d3 from 'd3'
+import { zoom as d3zoom, select, zoomIdentity } from 'd3'
 
 export interface UseZoomArguments<
   ZoomRefElement extends ZoomedElementBaseType
@@ -26,7 +26,7 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
 }: UseZoomArguments<ZoomRefElement>): UseZoomResponse<ZoomRefElement> => {
   const [initialized, setInitialized] = useState(false)
   const zoom = useMemo(
-    () => d3.zoom<ZoomRefElement, unknown>().scaleExtent(scaleExtent),
+    () => d3zoom<ZoomRefElement, unknown>().scaleExtent(scaleExtent),
     [scaleExtent]
   )
 
@@ -35,7 +35,7 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
       return
     }
 
-    d3.select(rootRef.current).transition().call(zoom.scaleBy, step)
+    select(rootRef.current).transition().call(zoom.scaleBy, step)
   }
 
   useEffect(() => {
@@ -43,24 +43,24 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
       return
     }
 
-    const transformContainer = d3.select(rootRef.current.firstElementChild)
+    const transformContainer = select(rootRef.current.firstElementChild)
 
     zoom.on('zoom', (event: any) => {
       transformContainer.attr('transform', event.transform)
     })
 
     if (!initialized) {
-      d3.select(rootRef.current)
+      select(rootRef.current)
         .call(zoom)
-        .call(zoom.transform, d3.zoomIdentity.scale(initialScale))
+        .call(zoom.transform, zoomIdentity.scale(initialScale))
 
       if (center) {
-        d3.select(rootRef.current).call(zoom.translateTo, center.x, center.y)
+        select(rootRef.current).call(zoom.translateTo, center.x, center.y)
       }
 
       setInitialized(true)
     } else if (center) {
-      d3.select(rootRef.current)
+      select(rootRef.current)
         .transition()
         .duration(transitionDuration)
         .call(zoom.translateTo, center.x, center.y)
