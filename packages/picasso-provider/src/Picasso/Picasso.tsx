@@ -1,12 +1,13 @@
 /* eslint-disable complexity */
 import {
-  makeStyles,
-  MuiThemeProvider,
+  ThemeProvider,
+  StyledEngineProvider,
   Theme,
-  ThemeOptions,
-  StylesProvider,
-  createGenerateClassName
-} from '@material-ui/core/styles'
+  DeprecatedThemeOptions
+} from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import StylesProvider from '@mui/styles/StylesProvider'
+import createGenerateClassName from '@mui/styles/createGenerateClassName'
 import React, {
   ReactNode,
   useRef,
@@ -159,7 +160,7 @@ interface PicassoProps extends TextLabelProps {
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
-  theme?: ThemeOptions
+  theme?: DeprecatedThemeOptions
   /** Disables transitions for components like Loader, to make testing easier */
   disableTransitions?: boolean
   /** Disables unique prefix for styles class names */
@@ -198,22 +199,24 @@ const Picasso = ({
 
   return (
     <StylesProvider generateClassName={generateClassName}>
-      <MuiThemeProvider theme={PicassoProvider.theme}>
-        <PicassoGlobalStylesProvider
-          RootComponent={RootComponent}
-          environment={environment}
-          titleCase={titleCase}
-          disableTransitions={disableTransitions}
-        >
-          {fixViewport && <Viewport />}
-          {loadFonts && <FontsLoader />}
-          {reset && <CssBaseline />}
-          {loadFavicon && <Favicon environment={environment} />}
-          <NotificationsProvider container={notificationContainer}>
-            {children}
-          </NotificationsProvider>
-        </PicassoGlobalStylesProvider>
-      </MuiThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={PicassoProvider.theme}>
+          <PicassoGlobalStylesProvider
+            RootComponent={RootComponent}
+            environment={environment}
+            titleCase={titleCase}
+            disableTransitions={disableTransitions}
+          >
+            {fixViewport && <Viewport />}
+            {loadFonts && <FontsLoader />}
+            {reset && <CssBaseline />}
+            {loadFavicon && <Favicon environment={environment} />}
+            <NotificationsProvider container={notificationContainer}>
+              {children}
+            </NotificationsProvider>
+          </PicassoGlobalStylesProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </StylesProvider>
   )
 }

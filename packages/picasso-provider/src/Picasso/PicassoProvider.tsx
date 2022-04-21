@@ -1,5 +1,10 @@
-import { Theme, ThemeOptions, createMuiTheme } from '@material-ui/core/styles'
-import { Overrides } from '@material-ui/core/styles/overrides'
+import {
+  Theme,
+  DeprecatedThemeOptions,
+  createTheme,
+  adaptV4Theme,
+  Components
+} from '@mui/material/styles'
 import { deepmerge } from '@material-ui/utils'
 
 import {
@@ -49,25 +54,25 @@ class Provider {
     this.theme.layout.contentMinWidth = '768px'
   }
 
-  override(getOverride: (theme: Theme) => Partial<Overrides>) {
+  override(getOverride: (theme: Theme) => Partial<Components>) {
     const newOverride = getOverride(this.theme)
 
     this.extendThemeOverrides(newOverride)
   }
 
-  extendThemeOverrides(newOverride: Partial<Overrides>) {
-    const overrides = this.theme.overrides || {}
+  extendThemeOverrides(newOverride: Partial<Components>) {
+    const overrides = this.theme.components || {}
 
     Object.assign(overrides, newOverride)
 
-    this.theme.overrides = overrides
+    this.theme.components = overrides
   }
 
-  extendTheme(theme: ThemeOptions) {
+  extendTheme(theme: DeprecatedThemeOptions) {
     this.theme = deepmerge(this.theme, theme)
   }
 }
 
-const PicassoProvider = new Provider(createMuiTheme(picasso))
+const PicassoProvider = new Provider(createTheme(adaptV4Theme(picasso)))
 
 export default PicassoProvider
