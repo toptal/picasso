@@ -39,5 +39,10 @@ describe('hasEllipses', () => {
     expect(
       hasEllipses({ activePage: 4, totalPages: 8, siblingCount: 2 })
     ).toEqual([false, true])
+
+    // We want to check 1 .. 3 4 5 6 7 .. 9
+    expect(
+      hasEllipses({ activePage: 5, totalPages: 9, siblingCount: 2 })
+    ).toEqual([true, true])
   })
 })
