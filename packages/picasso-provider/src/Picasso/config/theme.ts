@@ -1,7 +1,7 @@
 import { Layout } from './layout'
 import { Sizes } from './sizes'
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@mui/material/styles/createTheme' {
   interface Theme {
     layout: Layout
     sizes: Sizes

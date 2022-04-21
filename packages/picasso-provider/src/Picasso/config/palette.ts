@@ -10,7 +10,7 @@ interface ColorSample {
   darker?: string
 }
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@mui/material/styles/createPalette' {
   export interface SimplePaletteColorOptions extends ColorSample {}
 
   interface Palette {
@@ -22,7 +22,7 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
-declare module '@material-ui/core' {
+declare module '@mui/material' {
   export interface Color extends ColorSample {}
 }
 
