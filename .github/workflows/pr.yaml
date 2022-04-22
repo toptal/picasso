@@ -67,8 +67,17 @@ jobs:
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           path: ./.github/actions/
 
-
       - uses: ./.github/actions/yarn-install
+
+      - uses: technote-space/get-diff-action@v6
+        with:
+          FILES: yarn.lock
+
+      - if: env.GIT_DIFF
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed('yarn.lock file has diff after `yarn install`')
 
       - name: Danger
         env:
