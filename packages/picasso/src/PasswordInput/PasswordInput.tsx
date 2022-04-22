@@ -15,7 +15,7 @@ import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 export interface Props
   extends Omit<
       OmitInternalProps<OutlinedInputProps>,
-      'defaultValue' | 'type' | 'rows' | 'rowsMax' | 'multiline'
+      'defaultValue' | 'type' | 'rows' | 'maxRows' | 'multiline'
     >,
     BaseProps {
   /** Value of the `input` element. */

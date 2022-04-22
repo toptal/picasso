@@ -53,7 +53,7 @@ export interface Props
   /** Specify rows amount for `TextArea` */
   rows?: string | number
   /* Maximum number of rows to display when multiline option is set to true. */
-  rowsMax?: string | number
+  maxRows?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
   /**
@@ -140,7 +140,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     multiline,
     autoFocus,
     rows,
-    rowsMax,
+    maxRows,
     width = 'auto',
     inputComponent,
     inputProps,
@@ -228,7 +228,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
       multiline={multiline}
       autoFocus={autoFocus}
       rows={rows}
-      maxRows={rowsMax}
+      maxRows={maxRows}
       onChange={onChange}
       disabled={disabled}
     />

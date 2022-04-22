@@ -30,7 +30,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       width,
       style,
       rows,
-      rowsMax,
+      maxRows,
       type,
       onChange,
       startAdornment,
@@ -79,7 +79,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         autoComplete={autoComplete}
         multiline={multiline}
         rows={rows}
-        rowsMax={rowsMax}
+        maxRows={maxRows}
         type={type}
         width={width}
         // html attributes

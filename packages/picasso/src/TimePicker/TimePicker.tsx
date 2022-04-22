@@ -34,7 +34,7 @@ export interface Props
       | 'endAdornment'
       | 'startAdornment'
       | 'multilineResizable'
-      | 'rowsMax'
+      | 'maxRows'
       | 'limit'
       | 'placeholder'
       | 'status'
