@@ -134,7 +134,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
         name: 'preventOverflow',
         enabled: preventOverflow,
         options: {
-          boundry: 'viewport'
+          boundary: 'viewport'
         }
       },
       { name: 'hide', enabled: preventOverflow }
