@@ -96,12 +96,10 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
         content={content}
         offset={{ top: isCompactLayout ? 0.8 : 'xsmall' }}
         popperOptions={{
-          modifiers: {
-            flip: { enabled: false },
-            preventOverflow: {
-              padding: 0
-            }
-          }
+          modifiers: [
+            { name: 'flip', enabled: false },
+            { name: 'preventOverflow', options: { padding: 0 } }
+          ]
         }}
       >
         {trigger}

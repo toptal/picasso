@@ -65,7 +65,7 @@ const Example = () => (
     <Container flex direction='column' gap='xsmall'>
       <Typography>With Tooltip</Typography>
       <div>
-        <Tooltip interactive content='ssddssdsdsd'>
+        <Tooltip content='ssddssdsdsd'>
           <Tag>Label</Tag>
         </Tooltip>
       </div>

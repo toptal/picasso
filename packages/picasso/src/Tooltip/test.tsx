@@ -180,23 +180,6 @@ describe('Tooltip', () => {
       expect(onMouseLeaveMock).toHaveBeenCalledTimes(1)
     })
 
-    it('does not close tooltip when interactive content is used by the user', async () => {
-      const { getByTestId, queryByTestId, findByTestId } = renderTooltip({
-        interactive: true
-      })
-
-      fireEvent.focus(getByTestId('tooltip-trigger'))
-      await findByTestId('tooltip-content')
-
-      fireEvent.mouseEnter(getByTestId('tooltip-content'))
-      await findByTestId('tooltip-content')
-
-      fireEvent.mouseLeave(getByTestId('tooltip-content'))
-      await waitFor(() => {
-        expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
-      })
-    })
-
     it('opens and moves tooltip on mouse move when followCursor prop is set and move distance is short', async () => {
       const { getByTestId, queryByTestId } = renderTooltip({
         followCursor: true

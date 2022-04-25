@@ -164,7 +164,7 @@ const LinkTooltipExample = () => {
 
   return (
     <TestingPicasso>
-      <Tooltip content={tooltipContent} interactive>
+      <Tooltip content={tooltipContent}>
         <Button data-testid='tooltip-trigger'>Button</Button>
       </Tooltip>
     </TestingPicasso>
@@ -176,7 +176,7 @@ const CheckboxTooltipExample = () => {
 
   return (
     <TestingPicasso>
-      <Tooltip content={tooltipContent} interactive>
+      <Tooltip content={tooltipContent}>
         <Checkbox label='Checkbox' data-testid='tooltip-trigger' />
       </Tooltip>
     </TestingPicasso>
@@ -188,7 +188,7 @@ const RadioTooltipExample = () => {
 
   return (
     <TestingPicasso>
-      <Tooltip content={tooltipContent} interactive>
+      <Tooltip content={tooltipContent}>
         <Radio label='Radio' data-testid='trigger' />
       </Tooltip>
     </TestingPicasso>

@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import React, { ReactNode, useCallback, useState } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -128,7 +128,6 @@ export const TypographyOverflow = (props: Props) => {
       content={tooltipContent ?? children}
       placement='top'
       delay={tooltipDelay}
-      interactive
       disableListeners={disableTooltip}
       onOpen={handleTooltipOpen}
       onClose={handleTooltipClose}

@@ -30,7 +30,7 @@ const PropTypeTableCell: FunctionComponent<Props> = props => {
   if (type.description) {
     return (
       <Table.Cell className={className}>
-        <Tooltip content={<Markdown>{type.description}</Markdown>} interactive>
+        <Tooltip content={<Markdown>{type.description}</Markdown>}>
           <div>
             <span className={classes.tooltipTarget}>{type.name}</span>
             <sup>?</sup>
