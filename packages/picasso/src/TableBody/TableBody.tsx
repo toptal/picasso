@@ -1,6 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes, useContext } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITableBody from '@material-ui/core/TableBody'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import MUITableBody from '@mui/material/TableBody'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'

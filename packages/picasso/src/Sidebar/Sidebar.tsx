@@ -1,5 +1,6 @@
 import React, { forwardRef, useState, ReactNode } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
 import { BaseProps, StandardProps } from '@toptal/picasso-shared'
 import { useSidebar } from '@toptal/picasso-provider'

@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import { Logo as LogoIcon, LogoEmblem as LogoEmblemIcon } from '../Icon'
@@ -17,10 +18,7 @@ export interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLogo' })
 
-export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(
-  props,
-  ref
-) {
+export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
   const { emblem, variant = 'default', style, className } = props
 
   const classes = useStyles()

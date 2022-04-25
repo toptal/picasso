@@ -5,7 +5,8 @@ import React, {
   MouseEvent,
   ReactNode
 } from 'react'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
 import {
   OverridableComponent,

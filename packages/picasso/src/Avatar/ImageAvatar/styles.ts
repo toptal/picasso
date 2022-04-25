@@ -1,5 +1,5 @@
 import { rem } from '@toptal/picasso-shared'
-import { createStyles } from '@material-ui/core/styles'
+import createStyles from '@mui/styles/createStyles'
 
 export default () =>
   createStyles({

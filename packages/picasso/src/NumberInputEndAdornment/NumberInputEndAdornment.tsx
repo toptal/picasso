@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { RefObject } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps, SizeType, isBrowser } from '@toptal/picasso-shared'
-import ButtonBase from '@material-ui/core/ButtonBase'
+import ButtonBase from '@mui/material/ButtonBase'
 import cx from 'classnames'
 
 import InputAdornment from '../InputAdornment'
@@ -38,10 +39,12 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const nativeInputValueSetter = isBrowser()
-  ? (Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype,
-      'value'
-    ) as PropertyDescriptor).set!
+  ? (
+      Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value'
+      ) as PropertyDescriptor
+    ).set!
   : undefined
 
 export const NumberInputEndAdornment = (props: Props) => {

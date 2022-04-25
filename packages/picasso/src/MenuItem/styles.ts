@@ -1,24 +1,27 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({
   MuiMenuItem: {
-    root: {
-      boxSizing: 'border-box',
-      lineHeight: '1rem',
-      padding: 0,
-      // to override MUI paddingTop and paddingBottom default values
-      paddingTop: 0,
-      paddingBottom: 0,
-      fontSize: '1rem',
-      minHeight: 'unset',
-      whiteSpace: 'normal'
-    },
-    gutters: {
-      padding: '0.625rem',
-      // to override MUI paddingLeft and paddingRight default values
-      paddingLeft: '0.625rem',
-      paddingRight: '0.625rem'
+    styleOverrides: {
+      root: {
+        boxSizing: 'border-box',
+        lineHeight: '1rem',
+        padding: 0,
+        // to override MUI paddingTop and paddingBottom default values
+        paddingTop: 0,
+        paddingBottom: 0,
+        fontSize: '1rem',
+        minHeight: 'unset',
+        whiteSpace: 'normal'
+      },
+      gutters: {
+        padding: '0.625rem',
+        // to override MUI paddingLeft and paddingRight default values
+        paddingLeft: '0.625rem',
+        paddingRight: '0.625rem'
+      }
     }
   }
 }))

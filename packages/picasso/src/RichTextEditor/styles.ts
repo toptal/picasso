@@ -1,5 +1,6 @@
 import { outline } from '@toptal/picasso-shared'
-import { createStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 
 export default ({ palette, sizes }: Theme) =>
   createStyles({

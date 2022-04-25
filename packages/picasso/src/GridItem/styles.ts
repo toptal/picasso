@@ -1,3 +1,3 @@
-import { createStyles } from '@material-ui/core'
+import createStyles from '@mui/styles/createStyles'
 
 export default () => createStyles({})

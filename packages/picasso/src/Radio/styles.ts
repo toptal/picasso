@@ -1,4 +1,5 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { rem, outline, mix } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
@@ -8,22 +9,24 @@ const RADIO_VERTICAL_MARGIN = '0.25em'
 
 PicassoProvider.override(({ palette, transitions }) => ({
   MuiRadio: {
-    root: {
-      color: palette.common.white,
-      fontSize: '1rem',
-      position: 'relative',
-      width: '1em',
-      height: '1em',
-      padding: '0',
-      margin: `${RADIO_VERTICAL_MARGIN} 0`,
-      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
+    styleOverrides: {
+      root: {
+        color: palette.common.white,
+        fontSize: '1rem',
+        position: 'relative',
+        width: '1em',
+        height: '1em',
+        padding: '0',
+        margin: `${RADIO_VERTICAL_MARGIN} 0`,
+        transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
 
-      '&$disabled': {
-        opacity: 0.48
+        '&$disabled': {
+          opacity: 0.48
+        }
+      },
+      checked: {
+        color: palette.primary.main
       }
-    },
-    checked: {
-      color: palette.primary.main
     }
   }
 }))

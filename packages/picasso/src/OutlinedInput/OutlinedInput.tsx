@@ -7,11 +7,12 @@ import React, {
   forwardRef
 } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
-import { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import capitalize from '@material-ui/core/utils/capitalize'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import MUIOutlinedInput from '@mui/material/OutlinedInput'
+import { InputBaseComponentProps } from '@mui/material/InputBase'
 import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
+import { capitalize } from '@mui/material/utils'
 
 import InputAdornment from '../InputAdornment'
 import Button from '../Button'
@@ -52,7 +53,7 @@ export interface Props
   /** Specify rows amount for `TextArea` */
   rows?: string | number
   /* Maximum number of rows to display when multiline option is set to true. */
-  rowsMax?: string | number
+  maxRows?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
   /**
@@ -139,7 +140,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     multiline,
     autoFocus,
     rows,
-    rowsMax,
+    maxRows,
     width = 'auto',
     inputComponent,
     inputProps,
@@ -213,7 +214,6 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
       }}
       className={className}
       style={style}
-      labelWidth={0}
       fullWidth={width === 'full'}
       error={Boolean(status === 'error' || error)}
       inputComponent={inputComponent}
@@ -228,7 +228,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
       multiline={multiline}
       autoFocus={autoFocus}
       rows={rows}
-      rowsMax={rowsMax}
+      maxRows={maxRows}
       onChange={onChange}
       disabled={disabled}
     />
