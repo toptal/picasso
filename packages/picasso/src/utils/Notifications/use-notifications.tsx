@@ -37,7 +37,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 const StyledNotification =
   // eslint-disable-next-line react/display-name
-  forwardRef<HTMLElement, Props>(function Notification(props, ref) {
+  forwardRef<HTMLDivElement, Props>(function Notification(props, ref) {
     const { content, icon, key, onClose, variant = 'white' } = props
     const classes = useStyles()
 
