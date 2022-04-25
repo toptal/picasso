@@ -1,6 +1,7 @@
 import React, { forwardRef, ReactElement } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 
 import { Props as InputProps } from '../Input/Input'
 import OutlinedInput from '../OutlinedInput'
@@ -29,7 +30,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       width,
       style,
       rows,
-      rowsMax,
+      maxRows,
       type,
       onChange,
       startAdornment,
@@ -78,7 +79,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         autoComplete={autoComplete}
         multiline={multiline}
         rows={rows}
-        rowsMax={rowsMax}
+        maxRows={maxRows}
         type={type}
         width={width}
         // html attributes

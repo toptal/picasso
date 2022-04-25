@@ -5,7 +5,8 @@ import React, {
   FunctionComponent
 } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 
 import { TableSection, TableSectionContext } from '../Table'
 import TableCell from '../TableCell'

@@ -6,7 +6,7 @@ import React, {
   ElementType
 } from 'react'
 import cx from 'classnames'
-import ButtonBase from '@material-ui/core/ButtonBase'
+import ButtonBase from '@mui/material/ButtonBase'
 import {
   StandardProps,
   SizeType,
@@ -16,7 +16,8 @@ import {
   TextLabelProps,
   Classes
 } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 
 import styles from './styles'
 import Loader from '../Loader'
@@ -45,8 +46,8 @@ export type IconPositionType = 'left' | 'right'
 
 export interface Props
   extends StandardProps,
-  TextLabelProps,
-  ButtonOrAnchorProps {
+    TextLabelProps,
+    ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */

@@ -1,5 +1,6 @@
 import React, { forwardRef, useState, ChangeEvent, useCallback } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -14,7 +15,7 @@ import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 export interface Props
   extends Omit<
       OmitInternalProps<OutlinedInputProps>,
-      'defaultValue' | 'type' | 'rows' | 'rowsMax' | 'multiline'
+      'defaultValue' | 'type' | 'rows' | 'maxRows' | 'multiline'
     >,
     BaseProps {
   /** Value of the `input` element. */

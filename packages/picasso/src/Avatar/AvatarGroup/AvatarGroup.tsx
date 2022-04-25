@@ -1,7 +1,8 @@
 import { BaseProps } from '@toptal/picasso-shared'
 import React, { useMemo } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 
 import { Container } from '../..'
 import Avatar, { AvatarSizeType } from '../Avatar'

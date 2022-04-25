@@ -1,6 +1,7 @@
 import React, { forwardRef, ReactNode } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITabs, { TabsProps } from '@material-ui/core/Tabs'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import MUITabs, { TabsProps } from '@mui/material/Tabs'
 import { ButtonOrAnchorProps, BaseProps } from '@toptal/picasso-shared'
 
 import Tab from '../Tab'

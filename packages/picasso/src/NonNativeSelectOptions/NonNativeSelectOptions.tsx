@@ -1,6 +1,7 @@
 import React, { ReactNode, useMemo } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 
 import MenuItem from '../MenuItem'
 import NonNativeSelectOption from '../NonNativeSelectOption'
@@ -167,9 +168,10 @@ const NonNativeSelectOptions = ({
   fixedFooter,
   testIds
 }: Props) => {
-  const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
-    options
-  ])
+  const flatOptions: Option[] = useMemo(
+    () => flattenOptions(options),
+    [options]
+  )
 
   if (!flatOptions.length && filterOptionsValue) {
     return (

@@ -1,11 +1,13 @@
-import { createStyles } from '@material-ui/core/styles'
+import createStyles from '@mui/styles/createStyles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({
   MuiListItem: {
-    root: {
-      '&$focusVisible': {
-        backgroundColor: 'unset !important'
+    styleOverrides: {
+      root: {
+        '&$focusVisible': {
+          backgroundColor: 'unset !important'
+        }
       }
     }
   }

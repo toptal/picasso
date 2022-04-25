@@ -1,7 +1,8 @@
 /* eslint-disable complexity */
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import { useBreakpoint } from '../utils'

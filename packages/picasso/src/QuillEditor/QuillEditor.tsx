@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 
 import { useCombinedRefs } from '../utils'
 import Typography from '../Typography'

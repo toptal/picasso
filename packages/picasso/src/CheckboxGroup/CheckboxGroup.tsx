@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
-import FormGroup, { FormGroupProps } from '@material-ui/core/FormGroup'
-import { GridSize } from '@material-ui/core/Grid'
-import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
+import FormGroup, { FormGroupProps } from '@mui/material/FormGroup'
+import { GridSize } from '@mui/material/Grid'
+import { Theme, useTheme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
 
 import Grid, { GridProps } from '../Grid'
@@ -28,15 +29,8 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 const CheckboxGroup = (props: Props) => {
-  const {
-    horizontal,
-    spacing,
-    small,
-    medium,
-    large,
-    className,
-    ...rest
-  } = props
+  const { horizontal, spacing, small, medium, large, className, ...rest } =
+    props
 
   const { grid: gridClass, gridItem: gridItemClass, ...classes } = useStyles()
   const { spacing: themeSpacing } = useTheme()

@@ -4,8 +4,9 @@ import React, {
   HTMLAttributes,
   ReactElement
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITab, { TabProps } from '@material-ui/core/Tab'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import MUITab, { TabProps } from '@mui/material/Tab'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import Typography from '../Typography'

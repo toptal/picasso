@@ -4,8 +4,9 @@ import React, {
   LabelHTMLAttributes,
   forwardRef
 } from 'react'
-import { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { FormControlLabelProps } from '@mui/material/FormControlLabel'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -13,8 +14,9 @@ import { RequiredDecoration } from '../FormLabel'
 import styles from './styles'
 import Form from '../Form'
 
-export type FormControlLabelAttributesType = LabelHTMLAttributes<HTMLLabelElement> &
-  Pick<FormControlLabelProps, 'onChange'>
+export type FormControlLabelAttributesType =
+  LabelHTMLAttributes<HTMLLabelElement> &
+    Pick<FormControlLabelProps, 'onChange'>
 
 export interface Props
   extends StandardProps,

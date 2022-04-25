@@ -1,6 +1,6 @@
 import {
   Theme,
-  DeprecatedThemeOptions,
+  ThemeOptions,
   createTheme,
   adaptV4Theme,
   Components
@@ -68,7 +68,7 @@ class Provider {
     this.theme.components = overrides
   }
 
-  extendTheme(theme: DeprecatedThemeOptions) {
+  extendTheme(theme: ThemeOptions) {
     this.theme = deepmerge(this.theme, theme)
   }
 }

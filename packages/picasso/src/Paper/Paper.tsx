@@ -1,5 +1,6 @@
-import MUIPaper from '@material-ui/core/Paper'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import MUIPaper from '@mui/material/Paper'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
