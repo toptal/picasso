@@ -27,10 +27,10 @@ jest.mock('../utils', () => ({
   isOverflown: jest.fn(() => true)
 }))
 
-const mockedTooltip = Tooltip as unknown as jest.Mock<
+const mockedTooltip = (Tooltip as unknown) as jest.Mock<
   ReturnType<typeof Tooltip>
 >
-const mockedTypography = Typography as unknown as jest.Mock<
+const mockedTypography = (Typography as unknown) as jest.Mock<
   ReturnType<typeof Typography>
 >
 const mockedIsOverflown = isOverflown as jest.Mock<
@@ -38,11 +38,6 @@ const mockedIsOverflown = isOverflown as jest.Mock<
 >
 
 describe('TypographyOverflow', () => {
-  beforeEach(() => {
-    // mockedTooltip.mockImplementation(({children}) => <>{children}</>)
-    // mockedTypography.mockImplementation(({children}) => <>{children}</>)
-  })
-
   describe('initial render', () => {
     it('renders only typography', () => {
       render(
