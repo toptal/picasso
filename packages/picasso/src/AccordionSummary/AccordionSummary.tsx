@@ -11,10 +11,6 @@ export interface Props extends StandardProps, ButtonOrAnchorProps {
   onClick?: () => void
 }
 
-// We can't create here intermediate object for AccordionSummary
-// because MUI Accordion use type check to set Summary in the
-// correct place of the markdown
-// https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Accordion/Accordion.js#L144
 export default withStyles(styles)(
   MUIAccordionSummary
 ) as FunctionComponent<Props>
