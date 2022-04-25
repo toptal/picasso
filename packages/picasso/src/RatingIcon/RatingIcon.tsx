@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
 
 import { Star16, StarSolid16, Star24, StarSolid24 } from '../Icon'

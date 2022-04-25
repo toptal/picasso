@@ -1,6 +1,7 @@
 import React, { forwardRef, HTMLAttributes, useContext } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITableCell from '@material-ui/core/TableCell'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import MUITableCell from '@mui/material/TableCell'
 import {
   BaseProps,
   ColorType,

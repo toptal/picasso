@@ -8,9 +8,9 @@ import React, {
   useRef
 } from 'react'
 import cx from 'classnames'
-import { Theme, makeStyles } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
-import MUIMenuItem from '@material-ui/core/MenuItem'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import MUIMenuItem from '@mui/material/MenuItem'
 import {
   useTitleCase,
   BaseProps,
@@ -19,8 +19,8 @@ import {
   SizeType,
   OverridableComponent
 } from '@toptal/picasso-shared'
+import { capitalize } from '@mui/material/utils'
 
-import Container from '../Container'
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
 import Paper from '../Paper'
 import Popper from '../Popper'
@@ -28,6 +28,7 @@ import Link from '../Link'
 import { ClickAwayListener, toTitleCase } from '../utils'
 import { useMenuItem } from './hooks'
 import styles from './styles'
+import Container from '../Container'
 
 export type VariantType = 'light' | 'dark'
 

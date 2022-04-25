@@ -5,9 +5,10 @@ import React, {
   useEffect,
   useRef
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import Dialog from '@material-ui/core/Dialog'
-import { PaperProps } from '@material-ui/core/Paper'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import Dialog from '@mui/material/Dialog'
+import { PaperProps } from '@mui/material/Paper'
 import cx from 'classnames'
 import {
   StandardProps,
@@ -93,9 +94,9 @@ const isFocusInsideTooltip = () => {
     return false
   }
 
-  const tooltipContainsFocusedElement = Array.from(
-    tooltipContainers
-  ).some(container => container.contains(document.activeElement))
+  const tooltipContainsFocusedElement = Array.from(tooltipContainers).some(
+    container => container.contains(document.activeElement)
+  )
 
   if (tooltipContainsFocusedElement) {
     return true
@@ -111,7 +112,10 @@ const generateKey = (() => {
 })()
 
 // eslint-disable-next-line react/display-name
-export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
+export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
+  props,
+  ref
+) {
   const {
     children,
     open,
@@ -132,7 +136,10 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   } = props
   const classes = useStyles(props)
   const picassoRootContainer = usePicassoRoot()
-  const rootRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
+  const rootRef = useCombinedRefs<HTMLDivElement>(
+    ref,
+    useRef<HTMLDivElement>(null)
+  )
   const modalId = useRef(generateKey())
 
   useEffect(() => {
@@ -215,12 +222,11 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       hideBackdrop={hideBackdrop}
       onBackdropClick={onBackdropClick}
       onClose={onClose}
-      onEnter={onOpen}
       open={open}
       transitionDuration={transitionDuration}
       maxWidth={false}
-      disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
-      disableBackdropClick
+      // we need our own mechanism to keep focus inside the Modals
+      disableEnforceFocus
       TransitionProps={transitionProps}
     >
       <ModalContext.Provider value>{children}</ModalContext.Provider>

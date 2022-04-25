@@ -1,7 +1,8 @@
 import React, { forwardRef, ReactNode } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import SnackbarContent from '@material-ui/core/SnackbarContent'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import SnackbarContent from '@mui/material/SnackbarContent'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Typography from '../Typography'
@@ -28,16 +29,10 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'ApplicationUpdateNotification'
 })
 
-export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
+export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
   function ApplicationUpdateNotification(props, ref) {
-    const {
-      title,
-      description,
-      onReloadClick,
-      onClose,
-      testIds,
-      ...rest
-    } = props
+    const { title, description, onReloadClick, onClose, testIds, ...rest } =
+      props
     const classes = useStyles()
 
     const notification = (

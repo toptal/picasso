@@ -1,4 +1,5 @@
-import { createStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material'
+import createStyles from '@mui/styles/createStyles'
 
 const WRAPPER_PADDING = '2em'
 const SHADE_HEIGHT = '80px'

@@ -1,5 +1,6 @@
-import MUICheckbox from '@material-ui/core/Checkbox'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import MUICheckbox from '@mui/material/Checkbox'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import {
   ButtonOrAnchorProps,
   BaseProps,

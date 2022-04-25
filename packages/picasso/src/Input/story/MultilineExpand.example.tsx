@@ -12,7 +12,7 @@ const Example = () => {
           <Input
             multiline
             rows={2}
-            rowsMax={5}
+            maxRows={5}
             placeholder='With auto-expand...'
           />
         </Container>
@@ -26,7 +26,7 @@ const Example = () => {
             multiline
             multilineResizable
             rows={2}
-            rowsMax={5}
+            maxRows={5}
             placeholder='With auto-expand and manual resize...'
           />
         </Container>

@@ -5,8 +5,9 @@ import React, {
   ChangeEvent,
   HTMLAttributes
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITooltip, { TooltipProps } from '@material-ui/core/Tooltip'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import MUITooltip, { TooltipProps } from '@mui/material/Tooltip'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 import { usePicassoRoot } from '@toptal/picasso-provider'

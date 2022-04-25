@@ -8,7 +8,8 @@ import React, {
   forwardRef
 } from 'react'
 import cx from 'classnames'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
@@ -59,7 +60,7 @@ export interface Props
   /** Specify rows amount for `TextArea` */
   rows?: string | number
   /** Maximum number of rows to display when multiline option is set to true. */
-  rowsMax?: string | number
+  maxRows?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
   /** Adds element at the start of the input - can't be used in combination with `iconPosition: start` */
@@ -297,7 +298,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     className,
     style,
     rows,
-    rowsMax,
+    maxRows,
     type,
     onChange,
     onClick,
@@ -351,7 +352,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       multiline={multiline}
       autoFocus={autoFocus}
       rows={rows}
-      rowsMax={rowsMax}
+      maxRows={maxRows}
       type={type}
       width={width}
       size={size}

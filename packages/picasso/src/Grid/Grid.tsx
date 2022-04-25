@@ -1,16 +1,30 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import MUIGrid, {
   GridSpacing,
-  GridItemsAlignment,
   GridDirection,
-  GridJustification,
   GridWrap
-} from '@material-ui/core/Grid'
+} from '@mui/material/Grid'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import GridItem from '../GridItem'
 import styles from './styles'
+
+type GridItemsAlignment =
+  | 'flex-start'
+  | 'center'
+  | 'flex-end'
+  | 'stretch'
+  | 'baseline'
+
+type GridJustification =
+  | 'flex-start'
+  | 'center'
+  | 'flex-end'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
@@ -62,7 +76,7 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
       spacing={humanToMUISpacing(spacing)}
       direction={direction}
       alignItems={alignItems}
-      justify={justifyContent}
+      justifyContent={justifyContent}
       wrap={wrap}
       classes={classes}
       className={className}

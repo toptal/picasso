@@ -1,1 +1,1 @@
-export { default as capitalize } from '@material-ui/core/utils/capitalize'
+export { default as capitalize } from '@mui/material/utils/capitalize'

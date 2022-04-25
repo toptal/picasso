@@ -2,8 +2,9 @@
 import React, { useRef } from 'react'
 import PopperJs from 'popper.js'
 import cx from 'classnames'
-import { Theme, makeStyles } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import { capitalize } from '@mui/material/utils'
 
 import { Search16 } from '../Icon'
 import OutlinedInput from '../OutlinedInput'
@@ -101,18 +102,14 @@ export const NonNativeSelect = documentable(
         selection,
         filteredOptions
       } = selectState
-      const {
-        getItemProps,
-        getRootProps,
-        getInputProps,
-        getSearchInputProps
-      } = useSelectProps({
-        selectRef,
-        popperRef,
-        searchInputRef,
-        selectProps: props,
-        selectState
-      })
+      const { getItemProps, getRootProps, getInputProps, getSearchInputProps } =
+        useSelectProps({
+          selectRef,
+          popperRef,
+          searchInputRef,
+          selectProps: props,
+          selectState
+        })
 
       const searchInput = showSearch ? (
         <MenuItem

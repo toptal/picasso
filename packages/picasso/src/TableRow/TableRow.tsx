@@ -6,8 +6,9 @@ import React, {
   useContext
 } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITableRow from '@material-ui/core/TableRow'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import MUITableRow from '@mui/material/TableRow'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'

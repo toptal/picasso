@@ -6,7 +6,8 @@ import React, {
   useEffect,
   HTMLAttributes
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
@@ -32,15 +33,13 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
 
     const classes = useStyles()
 
-    const {
-      variant,
-      expandedItemKey,
-      setExpandedItemKey
-    } = useContext<SidebarContextProps>(SidebarContext)
+    const { variant, expandedItemKey, setExpandedItemKey } =
+      useContext<SidebarContextProps>(SidebarContext)
 
-    const expandSidebarItem = useCallback(index => setExpandedItemKey(index), [
-      setExpandedItemKey
-    ])
+    const expandSidebarItem = useCallback(
+      index => setExpandedItemKey(index),
+      [setExpandedItemKey]
+    )
 
     useEffect(() => {
       const hasSelectedItem = React.Children.map(children, child => {

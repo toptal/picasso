@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react'
 import { useDropzone } from 'react-dropzone'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import { Upload24 } from '../Icon'
