@@ -61,7 +61,7 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
   return tpl`
     import React, { forwardRef, Ref } from 'react'
     import cx from 'classnames'
-    import { makeStyles } from '@material-ui/core/styles'
+    import { makeStyles } from '@mui/material/styles'
     import { StandardProps } from '@toptal/picasso-shared'
     ${'\n'}
     import kebabToCamelCase from '../utils/kebab-to-camel-case'
