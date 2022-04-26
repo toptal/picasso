@@ -122,7 +122,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     size = 'medium',
     onBackdropClick,
     onClose,
-    onOpen,
     className,
     style,
     container,
