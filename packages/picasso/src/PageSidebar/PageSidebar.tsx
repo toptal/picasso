@@ -1,19 +1,20 @@
-import React, { forwardRef, useState, ReactNode, useCallback } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import cx from 'classnames'
+import { useSidebar } from '@toptal/picasso-provider'
 import { BaseProps, StandardProps } from '@toptal/picasso-shared'
+import cx from 'classnames'
+import React, { forwardRef, ReactNode, useCallback, useState } from 'react'
 
 import Button from '../Button'
 import Container from '../Container'
 import Dropdown from '../Dropdown'
-import { Overview16, Close16, ChevronRight16, BackMinor16 } from '../Icon'
-import { noop, useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
-import SidebarMenu from '../SidebarMenu'
+import { BackMinor16, ChevronRight16, Close16, Overview16 } from '../Icon'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
+import SidebarMenu from '../SidebarMenu'
+import { noop, useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
+import { SidebarContextProvider } from './context'
 import styles from './styles'
-import { SidebarContextProps, VariantType } from './types'
-import useSidebarState from './use-sidebar-state'
+import { VariantType } from './types'
 
 export interface SmallScreenSidebarWrapperProps extends StandardProps {
   children?: ReactNode
@@ -69,12 +70,6 @@ export interface Props extends BaseProps {
   }
 }
 
-export const SidebarContext = React.createContext<SidebarContextProps>({
-  expandedItemKey: null,
-  setExpandedItemKey: () => {},
-  isCollapsed: false
-})
-
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PageSidebar'
 })
@@ -93,15 +88,9 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     testIds
   } = props
   const classes = useStyles()
-  const {
-    expandedItemKey,
-    isCollapsed,
-    isHovered,
-    setHasSidebar,
-    setExpandedItemKey,
-    setIsCollapsed,
-    setIsHovered
-  } = useSidebarState({ defaultCollapsed })
+  const { setHasSidebar } = useSidebar()
+  const [isCollapsed, setIsCollapsed] = useState(!!defaultCollapsed)
+  const [isHovered, setIsHovered] = useState(false)
 
   useIsomorphicLayoutEffect(() => {
     setHasSidebar(true)
@@ -143,16 +132,13 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
           data-testid={testIds?.collapseButton}
         />
       )}
-      <SidebarContext.Provider
-        value={{
-          variant,
-          expandedItemKey,
-          setExpandedItemKey,
-          isCollapsed
-        }}
+      <SidebarContextProvider
+        isCollapsed={isCollapsed}
+        isHovered={isHovered}
+        variant={variant}
       >
         {children}
-      </SidebarContext.Provider>
+      </SidebarContextProvider>
     </Container>
   )
 

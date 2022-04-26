@@ -1,12 +1,12 @@
-import React, { forwardRef, ReactNode, HTMLAttributes, useContext } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core'
 import cx from 'classnames'
 
 import Container from '../Container'
-import { SidebarContextProps } from '../PageSidebar/types'
-import { SidebarContext } from '../PageSidebar'
 import styles from './styles'
+import { useSidebarContext } from '../PageSidebar'
+
 export interface Props
   extends BaseProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
@@ -28,8 +28,7 @@ export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
   ) {
     const classes = useStyles()
 
-    const { isCollapsed: isSidebarCollapsed } =
-      useContext<SidebarContextProps>(SidebarContext)
+    const { isCollapsed: isSidebarCollapsed } = useSidebarContext()
 
     const logo = isSidebarCollapsed ? collapsedLogo : fullLogo
 
