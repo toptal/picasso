@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { Breakpoint } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'
+export type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'
 
 type BreakpointsList = {
   [key: string]: number

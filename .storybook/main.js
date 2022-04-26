@@ -2,6 +2,8 @@ const webpack = require('webpack')
 const path = require('path')
 const { IgnoreNotFoundPlugin } = require('./plugins')
 
+const toPath = filePath => path.join(process.cwd(), filePath)
+
 // example1: /packages/picasso/src/Button/Button.tsx
 const PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP =
   /packages\/.*\/src\/(.*)\/\1.tsx$/
@@ -94,7 +96,9 @@ module.exports = {
       '@toptal/picasso-provider': path.resolve(
         __dirname,
         '../packages/picasso-provider/src'
-      )
+      ),
+      '@emotion/core': toPath('node_modules/@emotion/react'),
+      'emotion-theming': toPath('node_modules/@emotion/react')
     }
 
     config.plugins.push(

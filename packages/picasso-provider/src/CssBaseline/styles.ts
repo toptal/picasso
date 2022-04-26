@@ -3,30 +3,28 @@ import createStyles from '@mui/styles/createStyles'
 
 export default ({ palette }: Theme) =>
   createStyles({
-    '@global': {
-      html: {
-        boxSizing: 'initial',
-        '-webkit-font-smoothing': 'antialiased',
-        '-moz-osx-font-smoothing': 'grayscale'
-      },
-      '*, *::before, *::after': {
-        boxSizing: 'inherit'
-      },
+    html: {
+      boxSizing: 'initial',
+      '-webkit-font-smoothing': 'antialiased',
+      '-moz-osx-font-smoothing': 'grayscale'
+    },
+    '*, *::before, *::after': {
+      boxSizing: 'inherit'
+    },
+    body: {
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh',
+      margin: 0,
+      backgroundColor: palette.common.white
+    },
+    '@media print': {
       body: {
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh',
-        margin: 0,
         backgroundColor: palette.common.white
-      },
-      '@media print': {
-        body: {
-          backgroundColor: palette.common.white
-        }
-      },
-      '#root': {
-        display: 'flex',
-        flex: 1
       }
+    },
+    '#root': {
+      display: 'flex',
+      flex: 1
     }
   })
