@@ -10,9 +10,10 @@ const hasEllipses = ({
   siblingCount
 }: Args): [boolean, boolean] => {
   const rightmostSibling = activePage + siblingCount
+
   const leftmostSibling = activePage - siblingCount
 
-  return [leftmostSibling > 1, rightmostSibling < totalPages - 1]
+  return [leftmostSibling > 2, rightmostSibling < totalPages - 1]
 }
 
 export default hasEllipses

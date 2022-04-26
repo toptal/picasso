@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "22.2.2",
+  "version": "22.3.1",
   "description": "Toptal UI components library",
   "publishConfig": {
     "access": "public",
@@ -37,7 +37,7 @@
     "@toptal/picasso-shared": "^8.1.0",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.3.1",
-    "d3": "^6.6.2",
+    "d3": "^6.7.0",
     "d3-hierarchy": "^2",
     "d3-zoom": "^2",
     "date-fns": "^2.9.0",
@@ -64,7 +64,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/react-hooks": "^7.0.2",
     "@types/classnames": "^2.3.1",
-    "@types/d3": "^6.3.0",
+    "@types/d3": "^6.7.4",
     "@types/quill": "^2.0.9",
     "@types/react-helmet": "^5.0.15",
     "@types/react-input-mask": "^3.0.0",
@@ -77,8 +77,7 @@
   "resolutions": {
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.12",
-    "**/marksy/marked": "^0.6.0",
-    "d3-array": "^2.12.1"
+    "**/marksy/marked": "^0.6.0"
   },
   "sideEffects": [
     "**/styles.ts",

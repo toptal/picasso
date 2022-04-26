@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
-import * as d3 from 'd3' // eslint-disable-line import/no-duplicates
-import { HierarchyPointNode } from 'd3' // eslint-disable-line import/no-duplicates
+import { hierarchy, HierarchyPointNode, tree } from 'd3'
 
 import { useNodes } from './useNodes'
 import {
@@ -60,7 +59,7 @@ const getPositionNoLeavesAndNoChildren = (
     const indexWithChildren: number = siblings.findIndex(leaf => leaf.children)
 
     if (indexWithChildren !== -1) {
-      const siblingWithChildren: d3.HierarchyPointNode<TreeNodeInterface> =
+      const siblingWithChildren: HierarchyPointNode<TreeNodeInterface> =
         siblings[indexWithChildren]
 
       position =
@@ -82,7 +81,7 @@ const getPositionNoLeavesAndNoChildren = (
 const getPositionLeavesAndChildren = (
   calculateNodePosition: (
     options: CalculateNodePositionOptions
-  ) => d3.HierarchyPointNode<TreeNodeInterface>,
+  ) => HierarchyPointNode<TreeNodeInterface>,
   coordinateType: CoordinateType,
   options: CalculateNodePositionOptions
 ) => {
@@ -102,7 +101,7 @@ const getPositionLeavesAndChildren = (
 const getPositionNoLeavesButChildren = (
   calculateNodePosition: (
     options: CalculateNodePositionOptions
-  ) => d3.HierarchyPointNode<TreeNodeInterface>,
+  ) => HierarchyPointNode<TreeNodeInterface>,
   coordinateType: CoordinateType,
   options: CalculateNodePositionOptions
 ) => {
@@ -134,9 +133,9 @@ const getPositionNoLeavesButChildren = (
   if (node.children.length % 2) {
     position = node.children[Math.floor(halfLength)][coordinateType]
   } else {
-    const middleChild: d3.HierarchyPointNode<TreeNodeInterface> =
+    const middleChild: HierarchyPointNode<TreeNodeInterface> =
       node.children[halfLength]
-    const previousToMiddleChild: d3.HierarchyPointNode<TreeNodeInterface> =
+    const previousToMiddleChild: HierarchyPointNode<TreeNodeInterface> =
       node.children[halfLength - 1]
 
     position =
@@ -235,9 +234,10 @@ export const useTree = ({
     [nodes]
   )
 
-  const selectedNode = useMemo(() => nodes.find(node => node.data.selected), [
-    nodes
-  ])
+  const selectedNode = useMemo(
+    () => nodes.find(node => node.data.selected),
+    [nodes]
+  )
 
   return {
     nodes,
@@ -255,13 +255,13 @@ const positionTreeNodes = ({
   verticalMargin,
   variant
 }: Required<UseTreeArguments>) => {
-  const root = d3.hierarchy(data)
+  const root = hierarchy(data)
   const fullNodeWidth = nodeWidth + 2 * horizontalMargin
   const fullNodeHeight = nodeHeight + 2 * verticalMargin
 
-  const rootNode = d3
-    .tree<TreeNodeInterface>()
-    .nodeSize([nodeWidth, nodeHeight])(root)
+  const rootNode = tree<TreeNodeInterface>().nodeSize([nodeWidth, nodeHeight])(
+    root
+  )
   const leaves = rootNode.leaves()
 
   if (direction === 'vertical') {

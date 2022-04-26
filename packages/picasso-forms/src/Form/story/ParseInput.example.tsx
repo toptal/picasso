@@ -3,7 +3,7 @@ import { Container, Typography } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
 const ParseInputExample = () => (
-  <Form onSubmit={values => window.alert(values)}>
+  <Form onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}>
     <Container bottom='small'>
       <Typography size='medium'>
         I want to trim my first name from the empty spaces:

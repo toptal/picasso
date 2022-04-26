@@ -3,7 +3,7 @@ import { Container } from '@toptal/picasso'
 import { Form, FormSpy } from '@toptal/picasso-forms'
 
 const Example = () => (
-  <Form onSubmit={values => window.alert(values)}>
+  <Form onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}>
     <Form.Input
       required
       name='firstName'

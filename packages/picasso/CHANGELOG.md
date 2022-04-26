@@ -1,5 +1,36 @@
 # Change Log
 
+## 22.3.1
+
+### Patch Changes
+
+- [#2675](https://github.com/toptal/picasso/pull/2675) [`a58b9232`](https://github.com/toptal/picasso/commit/a58b9232a0da30b299db0b0c499f5ba8126285d0) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Pagination
+
+  - Left ellipses were appearing even when not necessary
+
+## 22.3.0
+
+### Minor Changes
+
+- [#2666](https://github.com/toptal/picasso/pull/2666) [`0ffb81ac`](https://github.com/toptal/picasso/commit/0ffb81ac8cd9a865ad3056db2c84428bf1ac99ad) Thanks [@yusufzmly](https://github.com/yusufzmly)! - ---
+
+  ### Drawer
+
+  - Add aria-label attribute to close button
+
+### Patch Changes
+
+- [#2672](https://github.com/toptal/picasso/pull/2672) [`6ef91782`](https://github.com/toptal/picasso/commit/6ef91782fbd76b2e61d0e451e41f3ae93ad84d91) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Badge
+
+  - Use MUI `max` property instead of our custom.
+    When we sended `string` (+9999) to MUIBadge,
+    it worked as we expected, but when we passed `number` (150),
+    it was always trimmed by default mui `max` +99
+
 ## 22.2.2
 
 ### Patch Changes
