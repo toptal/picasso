@@ -89,6 +89,7 @@ export const Drawer = (props: Props) => {
           icon={<CloseMinor16 />}
           onClick={handleOnClose}
           className={classes.closeButton}
+          aria-label='Close drawer'
         />
       </Container>
     </MUIDrawer>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent, waitFor, act } from '@toptal/picasso/test-utils'
 
 import { RatingThumbsProps } from './Rating'
 import Form, { Props as FormProps } from '../Form'
@@ -68,13 +68,16 @@ describe('Rating', () => {
     })
 
     describe('when submitting while required', () => {
-      it("don't show a validation error for negative values", () => {
-        const { getByTestId, queryByText } = renderThumbsForm({
+      it("don't show a validation error for negative values", async () => {
+        const { queryByText, getByTestId } = renderThumbsForm({
           thumbs: { required: true }
         })
 
         fireEvent.click(getByTestId(TestId.NEGATIVE_THUMB))
-        fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
+
+        await act(() => {
+          fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
+        })
 
         expect(
           queryByText('Please complete this field.')
@@ -90,40 +93,48 @@ describe('Rating', () => {
     })
 
     describe('when submitting with custom validation', () => {
-      it('validate both required when having a custom validation with preference', () => {
+      it('validate both required when having a custom validation with preference', async () => {
         const ERROR_MSG = 'Errata'
         const { getByTestId, queryByText } = renderThumbsForm({
           thumbs: { required: true, validate: () => ERROR_MSG }
         })
 
-        fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
+        await act(() => {
+          fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
+        })
 
         expect(queryByText('Please complete this field.')).toBeInTheDocument()
 
         expect(defaultOnSubmit).toHaveBeenCalledTimes(0)
       })
 
-      it('validate both required and having a custom validation', () => {
+      it('validate both required and having a custom validation', async () => {
         const ERROR_MSG = 'Errata'
         const { getByTestId, queryByText } = renderThumbsForm({
           thumbs: { required: true, validate: () => ERROR_MSG }
         })
 
         fireEvent.click(getByTestId(TestId.NEGATIVE_THUMB))
-        fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
+
+        await waitFor(() => {
+          fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
+        })
 
         expect(queryByText(ERROR_MSG)).toBeInTheDocument()
 
         expect(defaultOnSubmit).toHaveBeenCalledTimes(0)
       })
 
-      it('validate both required and having a custom validation, everythin ok', () => {
+      it('validate both required and having a custom validation, everythin ok', async () => {
         const { getByTestId, queryByText } = renderThumbsForm({
           thumbs: { required: true, validate: () => undefined }
         })
 
         fireEvent.click(getByTestId(TestId.NEGATIVE_THUMB))
-        fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
+
+        await act(() => {
+          fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
+        })
 
         expect(
           queryByText('Please complete this field.')
@@ -139,13 +150,16 @@ describe('Rating', () => {
     })
 
     describe('when submitting with requiredPositive true', () => {
-      it("don't allow a negative value", () => {
+      it("don't allow a negative value", async () => {
         const { getByTestId, queryByText } = renderThumbsForm({
           thumbs: { requirePositive: true }
         })
 
         fireEvent.click(getByTestId(TestId.NEGATIVE_THUMB))
-        fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
+
+        await act(() => {
+          fireEvent.click(getByTestId(TestId.SUBMIT_BUTTON))
+        })
 
         expect(queryByText('Please complete this field.')).toBeInTheDocument()
 

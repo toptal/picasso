@@ -69,7 +69,7 @@ describe('PromptModal', () => {
     expect(baseElement).toMatchSnapshot()
   })
 
-  const identity = <T extends unknown>(value: T) => value
+  const identity = <T,>(value: T) => value
 
   it('showPrompt with input returns result on Submit action', async () => {
     const mockResult = jest.fn(identity)

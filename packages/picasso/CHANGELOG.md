@@ -1,5 +1,76 @@
 # Change Log
 
+## 22.3.1
+
+### Patch Changes
+
+- [#2675](https://github.com/toptal/picasso/pull/2675) [`a58b9232`](https://github.com/toptal/picasso/commit/a58b9232a0da30b299db0b0c499f5ba8126285d0) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Pagination
+
+  - Left ellipses were appearing even when not necessary
+
+## 22.3.0
+
+### Minor Changes
+
+- [#2666](https://github.com/toptal/picasso/pull/2666) [`0ffb81ac`](https://github.com/toptal/picasso/commit/0ffb81ac8cd9a865ad3056db2c84428bf1ac99ad) Thanks [@yusufzmly](https://github.com/yusufzmly)! - ---
+
+  ### Drawer
+
+  - Add aria-label attribute to close button
+
+### Patch Changes
+
+- [#2672](https://github.com/toptal/picasso/pull/2672) [`6ef91782`](https://github.com/toptal/picasso/commit/6ef91782fbd76b2e61d0e451e41f3ae93ad84d91) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Badge
+
+  - Use MUI `max` property instead of our custom.
+    When we sended `string` (+9999) to MUIBadge,
+    it worked as we expected, but when we passed `number` (150),
+    it was always trimmed by default mui `max` +99
+
+## 22.2.2
+
+### Patch Changes
+
+- [#2662](https://github.com/toptal/picasso/pull/2662) [`388e1589`](https://github.com/toptal/picasso/commit/388e1589903e082e1b2cdb7d74a5862055a8c717) Thanks [@sanex3339](https://github.com/sanex3339)! - ---
+
+  ### ModalContent
+
+  - clear `updateShades` debounce on component unmount
+
+## 22.2.1
+
+### Patch Changes
+
+- [#2655](https://github.com/toptal/picasso/pull/2655) [`93b2280d`](https://github.com/toptal/picasso/commit/93b2280d69a59019b89dd073d5994536a39119db) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  ### Select
+
+  - remove `onSearchChange` deprecated prop
+
+## 22.2.0
+
+### Minor Changes
+
+- [#2643](https://github.com/toptal/picasso/pull/2643) [`40b70c1b`](https://github.com/toptal/picasso/commit/40b70c1be90854b02ddcdc8d09116a26b62176f3) Thanks [@sanex3339](https://github.com/sanex3339)! - ---
+
+  ### Tooltip
+
+  - add `followCursor` prop based on implementation from `@material-ui@5+`
+  - fix of broken existing event listeners for `Tooltip`'s target when `disableListeners` is `true`
+
+## 22.1.1
+
+### Patch Changes
+
+- [#2633](https://github.com/toptal/picasso/pull/2633) [`f53a174f`](https://github.com/toptal/picasso/commit/f53a174f4295ad33c0ac943aa1a5020f19de8d6b) Thanks [@the-teacher](https://github.com/the-teacher)! - ### Modal
+
+  - `useScrollableShades` hook was covered with tests.
+  - With the commit [`c617c7d4`](https://github.com/toptal/picasso/commit/c617c7d4) the hook `useScrollableShades` was fixed to hide bottom shade for zoomed views.
+
 ## 22.1.0
 
 ### Minor Changes

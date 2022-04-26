@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
-const deserializeValue = <T extends unknown>(value: T) => {
+const deserializeValue = (value: unknown) => {
   if (value === 'true') {
     return true
   }

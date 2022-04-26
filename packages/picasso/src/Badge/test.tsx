@@ -71,9 +71,25 @@ describe('Badge', () => {
     expect(screen.getByTestId('badge-root')).toBeInTheDocument()
   })
 
-  it('should trim number with custom max value', () => {
-    const { getByText } = renderBadge({ content: 9999, max: 55, size: 'large' })
+  describe('when max is set', () => {
+    it('should trim number with custom max value', () => {
+      const { getByText } = renderBadge({
+        content: 9999,
+        max: 999,
+        size: 'large'
+      })
 
-    expect(getByText('55+')).toBeVisible()
+      expect(getByText('999+')).toBeVisible()
+    })
+
+    it('should not trim when content is lower than max value', () => {
+      const { getByText } = renderBadge({
+        content: 150,
+        max: 999,
+        size: 'large'
+      })
+
+      expect(getByText('150')).toBeVisible()
+    })
   })
 })

@@ -44,6 +44,7 @@ page
   .addExample('Tooltip/story/Delay.example.tsx', 'Delay') // picasso-skip-visuals
   .addExample('Tooltip/story/Compact.example.tsx', 'Compact') // picasso-skip-visuals
   .addExample('Tooltip/story/MaxWidth.example.tsx', 'Max Width') // picasso-skip-visuals
+  .addExample('Tooltip/story/FollowCursor.example.tsx', 'Follow Cursor') // picasso-skip-visuals
   .addExample('Tooltip/story/Dropdown.example.tsx', {
     title: 'Inside of a Dropdown',
     effect: async (testPage, makeScreenshot) => {

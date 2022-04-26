@@ -12,13 +12,13 @@ describe('responsive breakpoint utils', () => {
     it('small', () => {
       const mediaQuery = screens('small')
 
-      expect(mediaQuery).toEqual('@media (max-width: 576px)')
+      expect(mediaQuery).toBe('@media (max-width: 576px)')
     })
 
     it('small medium', () => {
       const mediaQuery = screens('small', 'medium')
 
-      expect(mediaQuery).toEqual(
+      expect(mediaQuery).toBe(
         '@media (max-width: 576px), (min-width: 576px) and (max-width: 768px)'
       )
     })
@@ -26,7 +26,7 @@ describe('responsive breakpoint utils', () => {
     it('small medium large', () => {
       const mediaQuery = screens('small', 'medium', 'large')
 
-      expect(mediaQuery).toEqual(
+      expect(mediaQuery).toBe(
         '@media (max-width: 576px), (min-width: 576px) and (max-width: 768px), (min-width: 768px) and (max-width: 992px)'
       )
     })
@@ -110,19 +110,19 @@ describe('non-responsive breakpoint utils', () => {
     it('small', () => {
       const mediaQuery = screens('small')
 
-      expect(mediaQuery).toEqual('')
+      expect(mediaQuery).toBe('')
     })
 
     it('small medium', () => {
       const mediaQuery = screens('small', 'medium')
 
-      expect(mediaQuery).toEqual('')
+      expect(mediaQuery).toBe('')
     })
 
     it('small medium large', () => {
       const mediaQuery = screens('small', 'medium', 'large')
 
-      expect(mediaQuery).toEqual(
+      expect(mediaQuery).toBe(
         '@media (min-width: 768px) and (max-width: 992px)'
       )
     })

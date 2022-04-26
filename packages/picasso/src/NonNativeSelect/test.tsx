@@ -148,18 +148,15 @@ describe('NonNativeSelect', () => {
   it('shows loader instead of options when opened in loading state', () => {
     const placeholder = 'Choose an option...'
 
-    const {
-      getByPlaceholderText,
-      queryByTestId,
-      queryAllByRole
-    } = renderSelect({
-      options: OPTIONS,
-      placeholder,
-      loading: true,
-      testIds: {
-        loader: 'loader'
-      }
-    })
+    const { getByPlaceholderText, queryByTestId, queryAllByRole } =
+      renderSelect({
+        options: OPTIONS,
+        placeholder,
+        loading: true,
+        testIds: {
+          loader: 'loader'
+        }
+      })
 
     const selectInput = getByPlaceholderText(placeholder)
 
@@ -354,7 +351,7 @@ describe('NonNativeSelect', () => {
     const options = getOptions(menu)
 
     options.forEach((option, index) =>
-      expect(option.textContent).toEqual(
+      expect(option.textContent).toBe(
         `${OPTIONS_WITH_DESCRIPTIONS[index].text}${OPTIONS_WITH_DESCRIPTIONS[index].description}`
       )
     )

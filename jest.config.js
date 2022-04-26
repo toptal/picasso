@@ -3,7 +3,11 @@ module.exports = {
   transform: {
     '^.+\\.[t|j]sx?$': 'babel-jest'
   },
-  setupFiles: ['jest-canvas-mock', './jest-setup-dom.js'],
+  setupFiles: [
+    'jest-canvas-mock',
+    './jest-setup-dom.js',
+    './__tests__/matchMedia.js'
+  ],
   testMatch: ['**/(test).(js|jsx|ts|tsx)'],
   testPathIgnorePatterns: ['/node_modules/', '/dist-package', '/build'],
 

@@ -13,7 +13,7 @@ describe('getSingleSelection', () => {
   it('gets empty', () => {
     const selection = getSingleSelection(null)
 
-    expect(selection.display(getDisplayValue)).toEqual('')
+    expect(selection.display(getDisplayValue)).toBe('')
     expect(selection.isOptionSelected(OPTIONS[0])).toBeFalsy()
     expect(selection.isOptionSelected(OPTIONS[1])).toBeFalsy()
     expect(selection.isOptionSelected(OPTIONS[2])).toBeFalsy()
@@ -23,7 +23,7 @@ describe('getSingleSelection', () => {
   it('gets non-empty', () => {
     const selection = getSingleSelection(OPTIONS[0])
 
-    expect(selection.display(getDisplayValue)).toEqual('One')
+    expect(selection.display(getDisplayValue)).toBe('One')
     expect(selection.isOptionSelected(OPTIONS[0])).toBeTruthy()
     expect(selection.isOptionSelected(OPTIONS[1])).toBeFalsy()
     expect(selection.isOptionSelected(OPTIONS[2])).toBeFalsy()

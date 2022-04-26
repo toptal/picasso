@@ -5,10 +5,16 @@ const fs = require('fs')
 const path = require('path')
 const yargs = require('yargs').argv
 
-const { log, copyPackageJson, copyReadme, safeExec } = require('./utils')
+const {
+  log,
+  copyPackageJson,
+  copyReadme,
+  copyLicense,
+  safeExec
+} = require('./utils')
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 
-const compile = function(tsConfig, packageJson, packageRootDir) {
+const compile = function (tsConfig, packageJson, packageRootDir) {
   const args = []
 
   log(`Building ${packageJson.name}:${packageJson.version}`)
@@ -33,6 +39,7 @@ const compile = function(tsConfig, packageJson, packageRootDir) {
 
   copyPackageJson(packageRootDir)
   copyReadme(packageRootDir)
+  copyLicense(packageRootDir)
 
   if (yargs.watch) {
     args.unshift('--watch')

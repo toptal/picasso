@@ -12,13 +12,15 @@ const TEST_DATA = [
 
 const renderBarChart = (showBarLabel?: boolean) => {
   return render(
-    <BarChart
-      data={TEST_DATA}
-      getBarColor={() => palette.blue.main}
-      getBarLabelColor={() => palette.grey.dark}
-      width={720}
-      showBarLabel={showBarLabel}
-    />
+    <div style={{ width: 720 }}>
+      <BarChart
+        data={TEST_DATA}
+        getBarColor={() => palette.blue.main}
+        getBarLabelColor={() => palette.grey.dark}
+        width={'100%'}
+        showBarLabel={showBarLabel}
+      />
+    </div>
   )
 }
 

@@ -1,7 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
 
-import '../../../../__tests__/matchMedia'
 import { act, fireEvent, render } from '../test-utils'
 import DatePicker, { Props } from './DatePicker'
 import Tooltip from '../Tooltip'
@@ -266,8 +265,8 @@ describe('DatePicker', () => {
 
         expect(input).toHaveAttribute('value', 'Dec 29, 2021')
 
-        await act(async () => {
-          await fireEvent.change(input, {
+        await act(() => {
+          fireEvent.change(input, {
             target: { value: '' }
           })
           fireEvent.blur(input)
@@ -294,8 +293,8 @@ describe('DatePicker', () => {
 
           const input = getByPlaceholderText(defaultProps.placeholder)
 
-          await act(async () => {
-            await fireEvent.change(input, {
+          await act(() => {
+            fireEvent.change(input, {
               target: { value: 'some random text' }
             })
             fireEvent.blur(input)
@@ -325,8 +324,8 @@ describe('DatePicker', () => {
 
           const input = getByPlaceholderText(defaultProps.placeholder)
 
-          await act(async () => {
-            await fireEvent.change(input, {
+          await act(() => {
+            fireEvent.change(input, {
               target: { value: 'some random text' }
             })
             fireEvent.blur(input)
@@ -353,8 +352,8 @@ describe('DatePicker', () => {
 
           const input = getByPlaceholderText(defaultProps.placeholder)
 
-          await act(async () => {
-            await fireEvent.change(input, {
+          await act(() => {
+            fireEvent.change(input, {
               target: { value: 'some random text' }
             })
             fireEvent.blur(input)
@@ -376,8 +375,8 @@ describe('DatePicker', () => {
 
           const input = getByPlaceholderText(defaultProps.placeholder)
 
-          await act(async () => {
-            await fireEvent.change(input, {
+          await act(() => {
+            fireEvent.change(input, {
               target: { value: 'some random text' }
             })
             fireEvent.blur(input)
@@ -401,8 +400,8 @@ describe('DatePicker', () => {
 
           const input = getByPlaceholderText(defaultProps.placeholder)
 
-          await act(async () => {
-            await fireEvent.change(input, { target: { value: '07-26-2021' } })
+          await act(() => {
+            fireEvent.change(input, { target: { value: '07-26-2021' } })
             fireEvent.blur(input)
           })
 

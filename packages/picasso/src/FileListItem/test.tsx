@@ -1,8 +1,7 @@
 import React from 'react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
 
-import '../../../../__tests__/matchMedia'
 import FileListItem, { Props } from './FileListItem'
 
 const testIds = {
@@ -30,7 +29,7 @@ describe('FileListItem', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('fires callback on remove', () => {
+  it('fires callback on remove', async () => {
     const handleRemove = jest.fn()
 
     const { getByRole } = renderFileListItem({
@@ -41,7 +40,9 @@ describe('FileListItem', () => {
 
     fireEvent.click(getByRole('button'))
 
-    expect(handleRemove).toHaveBeenCalled()
+    await waitFor(() => {
+      expect(handleRemove).toHaveBeenCalled()
+    })
   })
 
   describe('when file is uploading', () => {

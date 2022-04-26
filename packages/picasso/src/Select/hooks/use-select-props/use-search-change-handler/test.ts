@@ -12,8 +12,6 @@ describe('useSearchChangeHandler', () => {
 
     result.current(event)
 
-    expect(props.selectProps.onSearchChange).toHaveBeenCalledTimes(1)
-    expect(props.selectProps.onSearchChange).toHaveBeenCalledWith('foo')
     expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledTimes(1)
     expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledWith('foo')
   })
