@@ -56,6 +56,11 @@ export interface Props
   activeMonth?: Date
   disabledIntervals?: { start: Date; end: Date }[]
   weekStartsOn?: number
+  renderMonthHeader?: ({
+    switchMonth,
+    activeMonth: headerActiveMonth
+  }: MonthHeaderProps) => JSX.Element | null
+  customRender?: ({ children }: CalendarProps) => JSX.Element
 }
 
 const isDateRange = (
@@ -81,6 +86,8 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     disabledIntervals,
     renderDay,
     weekStartsOn,
+    customRender,
+    renderMonthHeader,
     ...rest
   } = props
 
@@ -99,9 +106,13 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
       <SimpleReactCalendar
         selected={getNormalizedValue(value)}
         onSelect={handleChange}
-        customRender={({ children }: CalendarProps) => {
-          return <div className={classes.root}>{children}</div>
-        }}
+        customRender={
+          customRender
+            ? customRender
+            : ({ children }: CalendarProps) => {
+                return <div className={classes.root}>{children}</div>
+              }
+        }
         renderDay={(dayProps: DayProps) => {
           const {
             key,
@@ -158,7 +169,9 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
           switchMonth,
           activeMonth: headerActiveMonth
         }: MonthHeaderProps) => {
-          return (
+          return renderMonthHeader ? (
+            renderMonthHeader({ switchMonth, activeMonth: headerActiveMonth })
+          ) : (
             <div className={classes.actions}>
               <Button
                 title='Previous month'
