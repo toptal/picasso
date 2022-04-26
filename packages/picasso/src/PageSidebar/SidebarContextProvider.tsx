@@ -12,7 +12,6 @@ const SidebarContext = React.createContext<SidebarContextProps>({
 
 export interface Props {
   variant?: VariantType
-  defaultCollapsed?: boolean
   isCollapsed: boolean
   isHovered: boolean
   children?: ReactNode
