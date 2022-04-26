@@ -9,4 +9,4 @@ export {
   SidebarContextProvider,
   useSidebarContext,
   Props as SidebarContextProviderProps
-} from './context'
+} from './SidebarContextProvider'

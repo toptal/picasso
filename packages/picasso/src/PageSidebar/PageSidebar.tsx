@@ -12,7 +12,7 @@ import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
 import SidebarMenu from '../SidebarMenu'
 import { noop, useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
-import { SidebarContextProvider } from './context'
+import { SidebarContextProvider } from './SidebarContextProvider'
 import styles from './styles'
 import { VariantType } from './types'
 
