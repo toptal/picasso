@@ -97,8 +97,14 @@ module.exports = {
         __dirname,
         '../packages/picasso-provider/src'
       ),
-      '@emotion/core': toPath('node_modules/@emotion/react'),
-      'emotion-theming': toPath('node_modules/@emotion/react')
+      '@emotion/core': path.resolve(
+        __dirname,
+        '../node_modules/@emotion/react'
+      ),
+      'emotion-theming': path.resolve(
+        __dirname,
+        '../node_modules/@emotion/react'
+      )
     }
 
     config.plugins.push(
