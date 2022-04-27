@@ -4,7 +4,7 @@ import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps } from '@toptal/picasso-shared'
 import formatDate from 'date-fns/format'
-import PopperJs from 'popper.js'
+import { Instance as PopperJsInstance } from '@popperjs/core'
 import React, {
   KeyboardEvent,
   ReactNode,
@@ -166,7 +166,7 @@ export const DatePicker = (props: Props) => {
   const showCalendar = () => setCalendarIsShown(true)
 
   const inputRef = useRef<HTMLInputElement>(null)
-  const popperRef = useRef<PopperJs>(null)
+  const popperRef = useRef<PopperJsInstance>(null)
   const calendarRef = useRef<HTMLDivElement>(null)
   const inputWrapperRef = useRef<HTMLDivElement>(null)
 
@@ -230,7 +230,7 @@ export const DatePicker = (props: Props) => {
 
   const isInsideDatePicker = (node: Node) => {
     return (
-      popperRef.current?.popper.contains(node) ||
+      popperRef.current?.state.elements.popper.contains(node) ||
       inputWrapperRef.current?.contains(node)
     )
   }

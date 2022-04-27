@@ -24,7 +24,9 @@ const mockedUsePicassoRoot = usePicassoRoot as jest.Mock<
   ReturnType<typeof usePicassoRoot>
 >
 const mockedMakeStyles = makeStyles as jest.Mock<ReturnType<typeof makeStyles>>
-const mockedMUIPopper = MUIPopper as jest.Mock<ReturnType<typeof MUIPopper>>
+const mockedMUIPopper = MUIPopper as unknown as jest.Mock<
+  ReturnType<typeof MUIPopper>
+>
 
 const rootDiv = document.createElement('div')
 

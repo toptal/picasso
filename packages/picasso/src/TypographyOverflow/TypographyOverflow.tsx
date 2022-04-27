@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import React, { ReactNode, useCallback, useState } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'

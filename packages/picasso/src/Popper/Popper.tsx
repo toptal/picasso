@@ -3,7 +3,11 @@ import cx from 'classnames'
 import MUIPopper from '@mui/material/Popper'
 import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
-import PopperJs, { ReferenceObject, PopperOptions } from 'popper.js'
+import {
+  Instance as PopperJsInstance,
+  Options,
+  VirtualElement
+} from '@popperjs/core'
 import { BaseProps, useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 
@@ -25,6 +29,9 @@ export type PopperPlacementType =
   | 'top-start'
   | 'top'
 
+type ReferenceObject = Element | VirtualElement
+export type PopperOptions = Partial<Options>
+
 export interface Props extends BaseProps {
   children?: ReactNode
   /** if true, the popper is visible */
@@ -42,8 +49,8 @@ export interface Props extends BaseProps {
    */
   container?: HTMLElement | (() => HTMLElement)
   /**
-   * HTML Element instance or a referenceObject
-   * https://popper.js.org/popper-documentation.html#referenceObject
+   * HTML Element instance or a VirtualElement
+   * https://popper.js.org/docs/v2/virtual-elements/
    */
   anchorEl: null | ReferenceObject | (() => ReferenceObject)
   /** Popper automatically resize to anchor element width */
@@ -63,36 +70,53 @@ const getAnchorEl = (
 const getPreventOverflowOptions = (isInsideModal: boolean) => {
   if (isInsideModal) {
     return {
-      boundariesElement: 'scrollParent',
-      padding: 0
+      options: {
+        boundary: 'clippingParents',
+        padding: 0
+      }
     }
   }
 
   return {
-    boundariesElement: 'viewport',
-    padding: 5
+    options: {
+      rootBoundary: 'viewport',
+      padding: 5
+    }
   }
 }
 
 export const getPopperOptions = (
-  popperOptions: PopperOptions,
+  popperOptions?: PopperOptions,
   isInsideModal = false
-) => ({
-  ...popperOptions,
-
-  modifiers: {
-    ...popperOptions.modifiers,
-    flip: {
-      enabled: true,
-      ...popperOptions.modifiers?.flip
-    },
-    preventOverflow: {
-      enabled: true,
-      ...getPreventOverflowOptions(isInsideModal),
-      ...popperOptions.modifiers?.preventOverflow
-    }
+): PopperOptions | undefined => {
+  if (!popperOptions) {
+    return undefined
   }
-})
+
+  const propModifiers = popperOptions.modifiers ?? []
+
+  const overriddenModifiers = propModifiers.map(propModifier => {
+    if (propModifier.name === 'flip') {
+      return {
+        enabled: true,
+        ...propModifier
+      }
+    } else if (propModifier.name === 'preventOverflow') {
+      return {
+        enabled: true,
+        ...getPreventOverflowOptions(isInsideModal),
+        ...propModifier
+      }
+    }
+
+    return propModifier
+  })
+
+  return {
+    ...popperOptions,
+    modifiers: overriddenModifiers
+  }
+}
 
 const useWidthStyle = ({
   anchorEl,
@@ -113,14 +137,17 @@ const useWidthStyle = ({
   return {}
 }
 
-export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
+export const Popper = forwardRef<PopperJsInstance, Props>(function Popper(
+  props,
+  ref
+) {
   const {
     children,
     open,
     anchorEl,
     className,
     container,
-    popperOptions = {},
+    popperOptions,
     autoWidth,
     width,
     enableCompactMode,
@@ -179,7 +206,6 @@ Popper.defaultProps = {
   open: false,
   disablePortal: false,
   placement: 'bottom',
-  popperOptions: {},
   autoWidth: true
 }
 

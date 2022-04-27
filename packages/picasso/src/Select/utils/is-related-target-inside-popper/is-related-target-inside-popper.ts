@@ -1,11 +1,11 @@
-import PopperJs from 'popper.js'
+import { Instance as PopperJsInstance } from '@popperjs/core'
 
 const isRelatedTargetInsidePopper = (
   event: React.FocusEvent,
-  popperRef: React.Ref<PopperJs> | undefined
+  popperRef: React.Ref<PopperJsInstance> | undefined
 ) =>
   typeof popperRef === 'object' &&
   popperRef?.current &&
-  popperRef.current.popper.contains(event.relatedTarget as Node)
+  popperRef.current.state.elements.popper.contains(event.relatedTarget as Node)
 
 export default isRelatedTargetInsidePopper

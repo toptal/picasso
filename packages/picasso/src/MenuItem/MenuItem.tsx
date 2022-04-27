@@ -188,11 +188,14 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           autoWidth={false}
           enableCompactMode
           popperOptions={{
-            modifiers: {
-              offset: {
-                offset: `-10px,6px`
+            modifiers: [
+              {
+                name: 'offset',
+                options: {
+                  offset: [-10, 6]
+                }
               }
-            }
+            ]
           }}
         >
           <ClickAwayListener onClickAway={onAwayClick}>

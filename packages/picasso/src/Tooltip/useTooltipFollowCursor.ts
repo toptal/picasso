@@ -1,5 +1,5 @@
 import { MouseEvent, useCallback, useRef } from 'react'
-import PopperJs from 'popper.js'
+import { Instance as PopperJsInstance } from '@popperjs/core'
 import debounce from 'debounce'
 
 import { TooltipState } from './useTooltipState'
@@ -31,7 +31,7 @@ export const useTooltipFollowCursor = ({
   const { targetHoveredRef, openTooltip, closeTooltip } = tooltipState
   const positionRef = useRef<CursorPosition>({ x: 0, y: 0 })
   const mouseMoveStartPositionRef = useRef<CursorPosition | null>(null)
-  const popperRef = useRef<PopperJs | null>(null)
+  const popperRef = useRef<PopperJsInstance | null>(null)
 
   const handleMouseStop = useCallback(() => {
     if (targetHoveredRef.current) {
@@ -50,7 +50,7 @@ export const useTooltipFollowCursor = ({
 
     positionRef.current = { x: event.clientX, y: event.clientY }
 
-    popperRef.current?.scheduleUpdate()
+    popperRef.current?.update()
   }
   const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
     calculateTooltipPosition(event)
@@ -79,12 +79,15 @@ export const useTooltipFollowCursor = ({
     handleClick: calculateTooltipPosition,
     followCursorPopperProps: {
       popperRef,
-      modifiers: {
-        offset: {
+      modifiers: [
+        {
+          name: 'offset',
           enabled: true,
-          offset: '0px,10px'
+          options: {
+            offset: [0, 10]
+          }
         }
-      },
+      ],
       anchorEl: {
         clientHeight: 0,
         clientWidth: 0,

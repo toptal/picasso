@@ -11,7 +11,7 @@ export default ({ zIndex, screens }: Theme) =>
         padding: 0,
         margin: 0
       },
-      '&[x-out-of-boundaries]': {
+      '&[data-popper-reference-hidden]': {
         display: 'none'
       }
     }
