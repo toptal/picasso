@@ -1,4 +1,4 @@
-import React, { ReactNode, RefObject, useRef } from 'react'
+import React, { forwardRef, ReactNode, RefObject, useRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -49,7 +49,7 @@ export const scrollToSelection = (
   }
 }
 
-const ScrollMenu = (props: Props) => {
+const ScrollMenu = forwardRef<HTMLUListElement, Props>((props: Props, ref) => {
   const {
     selectedIndex,
     onBlur,
@@ -64,21 +64,18 @@ const ScrollMenu = (props: Props) => {
   const classes = useStyles()
   const menuRef = useRef<HTMLDivElement>(null)
 
-  useIsomorphicLayoutEffect(() => scrollToSelection(menuRef, selectedIndex), [
-    selectedIndex
-  ])
+  useIsomorphicLayoutEffect(
+    () => scrollToSelection(menuRef, selectedIndex),
+    [selectedIndex]
+  )
 
   return (
     <Menu
+      ref={ref}
       className={cx(classes.menu, className)}
       style={style}
       role={role}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      onMouseDown={e => {
-        // ScrollMenu is used in dropdowns. Prevents blur --> dropdown close when scrolled.
-        e.preventDefault()
-      }}
     >
       {fixedHeader}
       <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
@@ -87,7 +84,7 @@ const ScrollMenu = (props: Props) => {
       {fixedFooter}
     </Menu>
   )
-}
+})
 
 ScrollMenu.defaultProps = {
   role: 'menu'
