@@ -1,0 +1,36 @@
+import { ReactNode } from 'react'
+
+/**
+ * Extracts only the text contents of a ReactNode *recursively*.
+ *
+ * Be aware that depending on the size of the node element tree this function
+ * can ve very slow and actually throw a StackOverflow error. Shouldn't be a
+ * problem for elements that you expect a shallow or raw text input.
+ *
+ * @example
+ * // Results on `Foo Bar`
+ * getNodeContent(<div>Foo <span>Bar</span></div>)
+ *
+ * @see {@link https://stackoverflow.com/a/60564620/4595583} for the inspiration
+ */
+export const getNodeTextContent = (node: ReactNode): string => {
+  switch (typeof node) {
+    case 'number':
+    case 'string':
+      return String(node)
+
+    case 'object':
+      if (Array.isArray(node)) {
+        return node.map(getNodeTextContent).join('')
+      }
+
+      if (node != null && 'props' in node) {
+        return getNodeTextContent(node.props.children)
+      }
+
+    // All other cases are ignored (booleans, null, undefined and non-elements)
+    // Fall through
+    default:
+      return ''
+  }
+}

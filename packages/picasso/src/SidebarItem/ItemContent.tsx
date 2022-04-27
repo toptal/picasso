@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 import cx from 'classnames'
 
 import Typography from '../Typography'
+import Tooltip from '../Tooltip'
 import Container from '../Container'
 import { Props as SidebarItemProps } from '../SidebarItem/SidebarItem'
 import { useSidebarContext } from '../PageSidebar'
 import Badge from '../Badge'
+import { getNodeTextContent } from '../utils'
 
 interface Props extends SidebarItemProps {
   classes: ClassNameMap<string>
@@ -15,6 +17,12 @@ interface Props extends SidebarItemProps {
     content?: string
   }
 }
+
+const wrapItemText = (text: string, titleCase: boolean) => (
+  <Typography color='inherit' size='medium' titleCase={titleCase} noWrap>
+    {text}
+  </Typography>
+)
 
 export const ItemContent = (props: Props) => {
   const {
@@ -26,39 +34,59 @@ export const ItemContent = (props: Props) => {
     badgeProps,
     testIds
   } = props
+
   const { isCollapsed } = useSidebarContext()
   const titleCase = useTitleCase(propsTitleCase)
 
   const hasIcon = Boolean(icon)
+  const hasBadge = Boolean(badgeProps)
+  const badgeNeedsToBeOverlay = isCollapsed
 
   const resolvedChildren =
-    typeof children === 'string' ? (
-      <Typography color='inherit' size='medium' titleCase={titleCase} noWrap>
-        {children}
-      </Typography>
-    ) : (
-      children
+    typeof children === 'string'
+      ? wrapItemText(children, !!titleCase)
+      : children
+
+  const buildBadge = (badgeChildren?: ReactNode) => {
+    if (!badgeProps) {
+      return badgeChildren
+    }
+
+    return (
+      <Badge
+        className={cx({
+          [classes.staticBadge]: !badgeNeedsToBeOverlay
+        })}
+        content={badgeProps.content}
+        variant={badgeProps.variant ?? 'red'}
+        size={badgeNeedsToBeOverlay ? 'small' : 'large'}
+      >
+        {badgeChildren}
+      </Badge>
     )
+  }
 
-  const isBadgeOverlay = isCollapsed
-  const badgeChildren = isBadgeOverlay ? icon : null
+  let wrappedIcon: ReactNode = icon
 
-  const badgeOrIconWithBadge = badgeProps && (
-    <Badge
-      className={cx({
-        [classes.staticBadge]: !isBadgeOverlay
-      })}
-      content={badgeProps.content}
-      variant={badgeProps.variant ?? 'red'}
-      size={isBadgeOverlay ? 'small' : 'large'}
-    >
-      {badgeChildren}
-    </Badge>
-  )
+  if (isCollapsed && hasIcon) {
+    wrappedIcon = (
+      <Tooltip
+        compact
+        placement='right'
+        content={getNodeTextContent(resolvedChildren)}
+      >
+        <div>{wrappedIcon}</div>
+      </Tooltip>
+    )
+  }
+
+  if (hasBadge && badgeNeedsToBeOverlay) {
+    wrappedIcon = buildBadge(wrappedIcon)
+  }
 
   return (
     <Container className={classes.noWrap} inline flex alignItems='center'>
-      {isBadgeOverlay && badgeOrIconWithBadge ? badgeOrIconWithBadge : icon}
+      {wrappedIcon}
 
       <Container
         className={cx(classes.label, classes.noWrap, {
@@ -71,7 +99,7 @@ export const ItemContent = (props: Props) => {
       >
         {resolvedChildren}
 
-        {!isBadgeOverlay && badgeOrIconWithBadge}
+        {!badgeNeedsToBeOverlay && buildBadge()}
       </Container>
     </Container>
   )
