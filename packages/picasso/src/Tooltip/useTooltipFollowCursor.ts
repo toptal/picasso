@@ -1,5 +1,5 @@
 import { MouseEvent, useCallback, useRef } from 'react'
-import { Instance as PopperJsInstance } from '@popperjs/core'
+import { Instance as PopperJs } from '@popperjs/core'
 import debounce from 'debounce'
 
 import { TooltipState } from './useTooltipState'
@@ -31,7 +31,7 @@ export const useTooltipFollowCursor = ({
   const { targetHoveredRef, openTooltip, closeTooltip } = tooltipState
   const positionRef = useRef<CursorPosition>({ x: 0, y: 0 })
   const mouseMoveStartPositionRef = useRef<CursorPosition | null>(null)
-  const popperRef = useRef<PopperJsInstance | null>(null)
+  const popperRef = useRef<PopperJs | null>(null)
 
   const handleMouseStop = useCallback(() => {
     if (targetHoveredRef.current) {

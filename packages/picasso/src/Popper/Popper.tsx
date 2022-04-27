@@ -3,11 +3,7 @@ import cx from 'classnames'
 import MUIPopper from '@mui/material/Popper'
 import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
-import {
-  Instance as PopperJsInstance,
-  Options,
-  VirtualElement
-} from '@popperjs/core'
+import { Instance as PopperJs, Options, VirtualElement } from '@popperjs/core'
 import { BaseProps, useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 
@@ -137,10 +133,7 @@ const useWidthStyle = ({
   return {}
 }
 
-export const Popper = forwardRef<PopperJsInstance, Props>(function Popper(
-  props,
-  ref
-) {
+export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   const {
     children,
     open,

@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import React, { useRef } from 'react'
-import { Instance as PopperJsInstance } from '@popperjs/core'
+import { Instance as PopperJs } from '@popperjs/core'
 import cx from 'classnames'
 import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
@@ -81,7 +81,7 @@ export const NonNativeSelect = documentable(
         useRef<HTMLInputElement>(null)
       )
       const searchInputRef = useRef<HTMLInputElement>(null)
-      const popperRef = useRef<PopperJsInstance>(null)
+      const popperRef = useRef<PopperJs>(null)
       const inputWrapperRef = useRef<HTMLDivElement>(null)
 
       const selectState = useSelectState({
