@@ -2,8 +2,6 @@ const webpack = require('webpack')
 const path = require('path')
 const { IgnoreNotFoundPlugin } = require('./plugins')
 
-const toPath = filePath => path.join(process.cwd(), filePath)
-
 // example1: /packages/picasso/src/Button/Button.tsx
 const PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP =
   /packages\/.*\/src\/(.*)\/\1.tsx$/
