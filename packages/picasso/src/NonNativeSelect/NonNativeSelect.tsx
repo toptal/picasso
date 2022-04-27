@@ -7,6 +7,7 @@ import capitalize from '@material-ui/core/utils/capitalize'
 
 import { Search16 } from '../Icon'
 import OutlinedInput from '../OutlinedInput'
+import Input from '../Input'
 import Popper from '../Popper'
 import MenuItem from '../MenuItem'
 import SelectCaret from '../SelectCaret'
@@ -80,6 +81,7 @@ export const NonNativeSelect = documentable(
         useRef<HTMLInputElement>(null)
       )
       const searchInputRef = useRef<HTMLInputElement>(null)
+      const searchOutlineRef = useRef<HTMLDivElement>(null)
       const popperRef = useRef<PopperJs>(null)
       const inputWrapperRef = useRef<HTMLDivElement>(null)
 
@@ -101,18 +103,15 @@ export const NonNativeSelect = documentable(
         selection,
         filteredOptions
       } = selectState
-      const {
-        getItemProps,
-        getRootProps,
-        getInputProps,
-        getSearchInputProps
-      } = useSelectProps({
-        selectRef,
-        popperRef,
-        searchInputRef,
-        selectProps: props,
-        selectState
-      })
+      const { getItemProps, getRootProps, getInputProps, getSearchInputProps } =
+        useSelectProps({
+          selectRef,
+          popperRef,
+          searchInputRef,
+          searchOutlineRef,
+          selectProps: props,
+          selectState
+        })
 
       const searchInput = showSearch ? (
         <MenuItem
@@ -120,17 +119,24 @@ export const NonNativeSelect = documentable(
           size={size === 'large' ? 'medium' : size}
           nonSelectable
         >
-          <OutlinedInput
-            inputRef={searchInputRef}
+          <Input
+            ref={searchInputRef}
+            outlineRef={searchOutlineRef}
             className={classes.searchOutlinedInput}
-            startAdornment={<Search16 className={classes.searchInputIcon} />}
+            icon={
+              <Search16
+                data-testid={testIds?.searchIcon}
+                className={classes.searchInputIcon}
+              />
+            }
             placeholder={searchPlaceholder}
             size={size}
             value={filterOptionsValue}
             testIds={testIds}
+            data-testid={testIds?.searchInput}
             aria-autocomplete='list'
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...getSearchInputProps()}
+            inputProps={{ ...getSearchInputProps() }}
           />
         </MenuItem>
       ) : null

@@ -94,6 +94,8 @@ export interface SelectProps<
     noOptions?: string
     loader?: string
     limitFooter?: string
+    searchInput?: string
+    searchIcon?: string
   }
 }
 
@@ -161,6 +163,7 @@ export interface UseSelectProps<
   V = M extends true ? T[] : T
 > {
   searchInputRef?: React.Ref<HTMLInputElement>
+  searchOutlineRef?: React.RefObject<HTMLDivElement>
   selectRef: React.Ref<HTMLInputElement>
   popperRef?: React.Ref<PopperJs>
   selectProps: SelectProps<T, M, V>
