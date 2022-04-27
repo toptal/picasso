@@ -10,7 +10,8 @@ import {
   Referrals16,
   Resources16,
   ReferralBonus16,
-  Help16
+  Help16,
+  Participants16
 } from '@toptal/picasso/Icon'
 
 const Example = () => (
@@ -32,7 +33,7 @@ const Example = () => (
           Candidates
         </Page.Sidebar.Item>
         <Page.Sidebar.Item icon={<Team16 />}>Team</Page.Sidebar.Item>
-        <Page.Sidebar.Item>Users</Page.Sidebar.Item>
+        <Page.Sidebar.Item icon={<Participants16 />}>Users</Page.Sidebar.Item>
         <Page.Sidebar.Item icon={<Billing16 />} disabled>
           Billing
         </Page.Sidebar.Item>
