@@ -24,7 +24,6 @@ const picasso: ThemeOptions = {
   sizes,
   breakpoints,
   screens,
-  shadows,
   typography,
   components: {
     MuiButtonBase: {
@@ -80,6 +79,22 @@ class Provider {
   }
 }
 
-const PicassoProvider = new Provider(createTheme(picasso))
+/**
+ * This is the workaround for shadows due to no direct access to shadows values
+ * After theme creation, this function overrides the first 6 shadows values
+ * @param muiShadows MUI's shadows values as string[] with exact length of 25
+ * @param picassoShadows shadows values that we want to override
+ */
+const overrideShadowsArray = (
+  muiShadows: string[],
+  picassoShadows: string[]
+) => {
+  picassoShadows.forEach((shadow, index) => (muiShadows[index] = shadow))
+}
+
+const theme = createTheme(picasso)
+
+overrideShadowsArray(theme.shadows, shadows)
+const PicassoProvider = new Provider(theme)
 
 export default PicassoProvider
