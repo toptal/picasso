@@ -175,6 +175,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
     })
 
+    const inputWrapperRef = useRef<HTMLDivElement>(null)
+    const optionsListRef = useRef<HTMLUListElement>(null)
     const classes = useStyles()
 
     const getKey = (item: Item) => {
@@ -212,7 +214,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onFocus,
       onBlur,
       enableReset,
-      showOtherOption
+      showOtherOption,
+      inputWrapperRef,
+      optionsListRef
     })
 
     const optionsLength = options ? options.length : 0
@@ -221,6 +225,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       <SelectOptions
         data-testid={testIds?.scrollMenu}
         selectedIndex={highlightedIndex}
+        ref={optionsListRef}
       >
         {options?.map((option, index) => (
           <Menu.Item
@@ -266,8 +271,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         <Loader size='small' />
       </InputAdornment>
     )
-
-    const inputWrapperRef = useRef<HTMLDivElement>(null)
 
     return (
       <div

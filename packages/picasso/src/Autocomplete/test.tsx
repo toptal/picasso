@@ -335,38 +335,59 @@ describe('Autocomplete', () => {
       expect(onChange).toHaveBeenCalledWith('t', { isSelected: false })
     })
 
-    it('on blur', () => {
+    it('closes menu on blur', () => {
       const onBlur = jest.fn()
-      const { getByTestId } = renderAutocomplete({
+      const { queryByTestId, getByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
-        onBlur
+        onBlur,
+        testIds: {
+          input: 'autocomplete',
+          scrollMenu: 'menu'
+        }
       })
 
       const input = getByTestId('autocomplete')
 
       expect(onBlur).toHaveBeenCalledTimes(0)
 
-      fireEvent.focus(input)
+      fireEvent.click(input)
 
-      fireEvent.blur(input)
+      expect(getByTestId('menu')).toBeVisible()
 
+      fireEvent.blur(input, { relatedTarget: null })
+
+      expect(queryByTestId('menu')).not.toBeInTheDocument()
       expect(onBlur).toHaveBeenCalledTimes(1)
     })
+    describe('when onBlur is triggered by using scrollbar', () => {
+      it('does not close menu', () => {
+        const onBlur = jest.fn()
+        const { getByTestId } = renderAutocomplete({
+          options: testOptions,
+          value: '',
+          onBlur,
+          testIds: {
+            input: 'autocomplete',
+            scrollMenu: 'menu'
+          }
+        })
 
-    it('prevents mouseDown on ScrollMenu', () => {
-      const { getByTestId } = renderAutocomplete({
-        options: testOptions,
-        value: ''
+        const input = getByTestId('autocomplete')
+
+        expect(onBlur).toHaveBeenCalledTimes(0)
+
+        fireEvent.click(input)
+
+        expect(getByTestId('menu')).toBeVisible()
+
+        fireEvent.blur(input, {
+          relatedTarget: getByTestId('menu')
+        })
+
+        expect(getByTestId('menu')).toBeInTheDocument()
+        expect(onBlur).toHaveBeenCalledTimes(0)
       })
-
-      const input = getByTestId('autocomplete')
-
-      fireEvent.click(input)
-      const scrollMenu = getByTestId(testIds.scrollMenu)
-      const isPrevented = !fireEvent.mouseDown(scrollMenu)
-
-      expect(isPrevented).toBeTruthy()
     })
 
     it('on select option', () => {

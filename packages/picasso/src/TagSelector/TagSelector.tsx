@@ -89,6 +89,8 @@ export interface Props
   popperContainer?: HTMLElement
   testIds?: {
     validIcon?: string
+    scrollMenu?: string
+    menuItem?: string
   }
 }
 
