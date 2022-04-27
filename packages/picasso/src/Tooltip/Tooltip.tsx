@@ -3,7 +3,7 @@ import React, {
   ReactNode,
   ReactElement,
   HTMLAttributes,
-  ChangeEvent
+  SyntheticEvent
 } from 'react'
 import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
@@ -43,9 +43,9 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Where should the tooltip be positioned */
   placement?: PlacementType
   /** Called when tooltip is opened */
-  onOpen?: (event: ChangeEvent<{}>) => void
+  onOpen?: (event: Event | SyntheticEvent) => void
   /** Called when tooltip is closed */
-  onClose?: (event: ChangeEvent<{}>) => void
+  onClose?: (event: Event | SyntheticEvent) => void
   /** Whether user can interact with tooltip content */
   interactive?: boolean
   /** Programatically control tooltip's visibility */

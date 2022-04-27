@@ -1,5 +1,4 @@
 import {
-  ChangeEvent,
   MouseEvent,
   cloneElement,
   ReactElement,
@@ -11,8 +10,8 @@ import { TooltipState } from './useTooltipState'
 import { ChildrenProps } from './types'
 
 interface UseTooltipHandlersOptions {
-  onOpen?: (event: ChangeEvent<{}>) => void
-  onClose?: (event: ChangeEvent<{}>) => void
+  onOpen?: (event: Event | SyntheticEvent) => void
+  onClose?: (event: Event | SyntheticEvent) => void
   onMouseOver?: (event: MouseEvent<HTMLElement>) => void
   onMouseMove?: (event: MouseEvent<HTMLElement>) => void
   onClick?: (event: MouseEvent<HTMLElement>) => void
@@ -31,8 +30,8 @@ export const useTooltipHandlers = ({
   disableListeners,
   children
 }: UseTooltipHandlersOptions): {
-  handleOpen: (event: SyntheticEvent | Event) => void
-  handleClose: (event: SyntheticEvent | Event) => void
+  handleOpen: (event: Event | SyntheticEvent) => void
+  handleClose: (event: Event | SyntheticEvent) => void
   children: ReactElement<ChildrenProps>
 } => {
   const {
@@ -48,8 +47,8 @@ export const useTooltipHandlers = ({
 
   if (isControlled) {
     return {
-      handleOpen: onOpen as (event: SyntheticEvent | Event) => void,
-      handleClose: onClose as (event: SyntheticEvent | Event) => void,
+      handleOpen: onOpen as (event: Event | SyntheticEvent) => void,
+      handleClose: onClose as (event: Event | SyntheticEvent) => void,
       children
     }
   }
