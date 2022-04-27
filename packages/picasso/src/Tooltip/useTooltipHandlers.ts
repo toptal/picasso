@@ -1,4 +1,5 @@
 import {
+  ChangeEvent,
   MouseEvent,
   cloneElement,
   ReactElement,
@@ -10,8 +11,8 @@ import { TooltipState } from './useTooltipState'
 import { ChildrenProps } from './types'
 
 interface UseTooltipHandlersOptions {
-  onOpen?: (event: Event | SyntheticEvent<Element, Event>) => void
-  onClose?: (event: Event | SyntheticEvent<Element, Event>) => void
+  onOpen?: (event: ChangeEvent<{}>) => void
+  onClose?: (event: ChangeEvent<{}>) => void
   onMouseOver?: (event: MouseEvent<HTMLElement>) => void
   onMouseMove?: (event: MouseEvent<HTMLElement>) => void
   onClick?: (event: MouseEvent<HTMLElement>) => void
@@ -29,7 +30,11 @@ export const useTooltipHandlers = ({
   tooltipState,
   disableListeners,
   children
-}: UseTooltipHandlersOptions) => {
+}: UseTooltipHandlersOptions): {
+  handleOpen: (event: SyntheticEvent | Event) => void
+  handleClose: (event: SyntheticEvent | Event) => void
+  children: ReactElement<ChildrenProps>
+} => {
   const {
     isOpen,
     isControlled,
@@ -43,21 +48,21 @@ export const useTooltipHandlers = ({
 
   if (isControlled) {
     return {
-      handleOpen: onOpen,
-      handleClose: onClose,
+      handleOpen: onOpen as (event: SyntheticEvent | Event) => void,
+      handleClose: onClose as (event: SyntheticEvent | Event) => void,
       children
     }
   }
-  const handleClose = (event: Event | SyntheticEvent<Element, Event>) => {
-    onClose?.(event)
+  const handleClose = (event: SyntheticEvent | Event) => {
+    onClose?.(event as SyntheticEvent)
     closeTooltip()
   }
-  const handleOpen = (event: Event | SyntheticEvent<Element, Event>) => {
+  const handleOpen = (event: SyntheticEvent | Event) => {
     if (ignoreOpening) {
       return
     }
 
-    onOpen?.(event)
+    onClose?.(event as SyntheticEvent)
     openTooltip()
   }
   const handleClick = (event: MouseEvent<HTMLElement>) => {
