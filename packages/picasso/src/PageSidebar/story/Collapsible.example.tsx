@@ -1,11 +1,10 @@
 import React from 'react'
-import { Page, Tag, Logo, Container, Typography } from '@toptal/picasso'
+import { Page, Logo, Typography } from '@toptal/picasso'
 import {
   Jobs16,
   Overview16,
   Candidates16,
   Team16,
-  Participants16,
   Billing16,
   LegalInfo16,
   Referrals16,
@@ -33,17 +32,14 @@ const Example = () => (
           Candidates
         </Page.Sidebar.Item>
         <Page.Sidebar.Item icon={<Team16 />}>Team</Page.Sidebar.Item>
-        <Page.Sidebar.Item icon={<Participants16 />}>Users</Page.Sidebar.Item>
+        <Page.Sidebar.Item>Users</Page.Sidebar.Item>
         <Page.Sidebar.Item icon={<Billing16 />} disabled>
           Billing
         </Page.Sidebar.Item>
-        <Page.Sidebar.Item icon={<LegalInfo16 />}>
+        <Page.Sidebar.Item badgeProps={{ content: 5 }} icon={<LegalInfo16 />}>
           <Typography size='medium' color='inherit'>
             Legal Info
           </Typography>
-          <Container left='medium'>
-            <Tag>5</Tag>
-          </Container>
         </Page.Sidebar.Item>
         <Page.Sidebar.Item
           collapsible

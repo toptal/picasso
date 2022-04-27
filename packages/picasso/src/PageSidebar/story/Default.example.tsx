@@ -1,11 +1,10 @@
 import React from 'react'
-import { Page, Tag, Logo, Container, Typography } from '@toptal/picasso'
+import { Page, Logo, Typography } from '@toptal/picasso'
 import {
   Jobs16,
   Overview16,
   Candidates16,
   Team16,
-  Participants16,
   Billing16,
   LegalInfo16,
   Referrals16,
@@ -31,19 +30,18 @@ const Example = () => (
           Overview
         </Page.Sidebar.Item>
         <Page.Sidebar.Item icon={<Jobs16 />}>Jobs</Page.Sidebar.Item>
-        <Page.Sidebar.Item icon={<Candidates16 />}>Candidates</Page.Sidebar.Item>
+        <Page.Sidebar.Item icon={<Candidates16 />}>
+          Candidates
+        </Page.Sidebar.Item>
         <Page.Sidebar.Item icon={<Team16 />}>Team</Page.Sidebar.Item>
-        <Page.Sidebar.Item icon={<Participants16 />}>Users</Page.Sidebar.Item>
+        <Page.Sidebar.Item>Users</Page.Sidebar.Item>
         <Page.Sidebar.Item icon={<Billing16 />} disabled>
           Billing
         </Page.Sidebar.Item>
-        <Page.Sidebar.Item icon={<LegalInfo16 />}>
+        <Page.Sidebar.Item badgeProps={{ content: 5 }} icon={<LegalInfo16 />}>
           <Typography size='medium' color='inherit'>
             Legal Info
           </Typography>
-          <Container left='medium'>
-            <Tag>5</Tag>
-          </Container>
         </Page.Sidebar.Item>
         <Page.Sidebar.Item
           collapsible
@@ -66,8 +64,12 @@ const Example = () => (
       </Page.Sidebar.Menu>
 
       <Page.Sidebar.Menu bottom>
-        <Page.Sidebar.Item icon={<Candidates16 />}>Opportunities</Page.Sidebar.Item>
-        <Page.Sidebar.Item icon={<ReferralBonus16 />}>Referral Bonus</Page.Sidebar.Item>
+        <Page.Sidebar.Item icon={<Candidates16 />}>
+          Opportunities
+        </Page.Sidebar.Item>
+        <Page.Sidebar.Item icon={<ReferralBonus16 />}>
+          Referral Bonus
+        </Page.Sidebar.Item>
         <Page.Sidebar.Item icon={<Help16 />}>Help</Page.Sidebar.Item>
       </Page.Sidebar.Menu>
     </Page.Sidebar>

@@ -4,7 +4,8 @@ import React, {
   ElementType,
   ChangeEvent,
   memo,
-  useMemo
+  useMemo,
+  useCallback
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -22,6 +23,7 @@ import styles from './styles'
 import { VariantType } from '../PageSidebar/types'
 import noop from '../utils/noop'
 import { ItemContent } from './ItemContent'
+import { BadgeProps } from '../Badge'
 
 export const SubMenuContext = React.createContext<{
   parentSidebarItemIndex?: number | null
@@ -42,6 +44,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   menu?: ReactElement
   /** Component name to render the menu item as */
   as?: ElementType<MenuItemProps>
+  badgeProps?: Omit<BadgeProps, 'size' | 'children'>
   variant?: VariantType
   isExpanded?: boolean
   expand?: (index: number | null) => void
@@ -99,28 +102,30 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       [index, menu]
     )
 
-    const handleMenuItemClick = (
-      event: React.MouseEvent<HTMLElement, MouseEvent>
-    ) => {
-      if (!hasMenu) {
-        onClick(event)
-      }
-    }
+    const handleMenuItemClick = useCallback(
+      (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+        if (!hasMenu) {
+          onClick(event)
+        }
+      },
+      [hasMenu, onClick]
+    )
 
-    const handleAccordionChange = (
-      event: ChangeEvent<{}>,
-      expansion: boolean
-    ) => {
-      event.stopPropagation()
-      if (expansion) {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        expand(index!)
-      }
-    }
+    const handleAccordionChange = useCallback(
+      (event: ChangeEvent<{}>, expansion: boolean) => {
+        event.stopPropagation()
+
+        if (expansion) {
+          expand(index ?? null)
+        }
+      },
+      [index, expand]
+    )
 
     const menuItem = (
       <MenuItem
         {...rest}
+        classes={classes}
         as={as}
         ref={ref}
         style={style}

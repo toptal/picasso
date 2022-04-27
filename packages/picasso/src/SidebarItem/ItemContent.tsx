@@ -6,6 +6,8 @@ import cx from 'classnames'
 import Typography from '../Typography'
 import Container from '../Container'
 import { Props as SidebarItemProps } from '../SidebarItem/SidebarItem'
+import { useSidebarContext } from '../PageSidebar'
+import Badge from '../Badge'
 
 interface Props extends SidebarItemProps {
   classes: ClassNameMap<string>
@@ -13,6 +15,7 @@ interface Props extends SidebarItemProps {
     content?: string
   }
 }
+
 export const ItemContent = (props: Props) => {
   const {
     children,
@@ -20,8 +23,10 @@ export const ItemContent = (props: Props) => {
     titleCase: propsTitleCase,
     icon,
     isContentVisible,
+    badgeProps,
     testIds
   } = props
+  const { isCollapsed } = useSidebarContext()
   const titleCase = useTitleCase(propsTitleCase)
 
   const hasIcon = Boolean(icon)
@@ -35,9 +40,26 @@ export const ItemContent = (props: Props) => {
       children
     )
 
+  const isBadgeOverlay = isCollapsed
+  const badgeChildren = isBadgeOverlay ? icon : null
+
+  const badgeOrIconWithBadge = badgeProps && (
+    <Badge
+      className={cx({
+        [classes.staticBadge]: !isBadgeOverlay
+      })}
+      content={badgeProps.content}
+      variant={badgeProps.variant ?? 'red'}
+      size={isBadgeOverlay ? 'small' : 'large'}
+    >
+      {badgeChildren}
+    </Badge>
+  )
+
   return (
     <Container className={classes.noWrap} inline flex alignItems='center'>
-      {icon}
+      {isBadgeOverlay && badgeOrIconWithBadge ? badgeOrIconWithBadge : icon}
+
       <Container
         className={cx(classes.label, classes.noWrap, {
           [classes.withIcon]: hasIcon,
@@ -48,6 +70,8 @@ export const ItemContent = (props: Props) => {
         data-testid={testIds?.content}
       >
         {resolvedChildren}
+
+        {!isBadgeOverlay && badgeOrIconWithBadge}
       </Container>
     </Container>
   )

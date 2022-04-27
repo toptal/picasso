@@ -100,6 +100,9 @@ export default ({ palette, sizes }: Theme) =>
       margin: 0,
       padding: 0
     },
+    staticBadge: {
+      marginLeft: '1rem'
+    },
     hiddenContent: {
       visibility: 'hidden'
     }
