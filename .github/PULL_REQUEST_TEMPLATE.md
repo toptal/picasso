@@ -14,8 +14,9 @@ Describe the changes and motivations for the pull request.
 | --------------------------------------- | --------------------------------------- |
 | Insert screenshots or screen recordings | Insert screenshots or screen recordings |
 
-### Review
+### Development checks
 
+- [ ] Add changeset according to [guidelines](https://github.com/toptal/picasso/blob/master/docs/contribution/changeset-guidelines.md) (if needed)
 - [ ] Read [CONTRIBUTING.md](https://github.com/toptal/picasso/blob/master/CONTRIBUTING.md) and [Component API principles](https://github.com/toptal/picasso/blob/master/docs/contribution/component-api.md)
 - [ ] Annotate all `props` in component with documentation
 - [ ] Create `examples` for component
@@ -23,6 +24,13 @@ Describe the changes and motivations for the pull request.
 - [ ] Ensure that tests pass by running `yarn test`
 - [ ] Ensure that visuals tests pass by running `yarn test:visual`. If not - check the documentation [how to fix visual tests](https://github.com/toptal/picasso/blob/master/docs/contribution/visual-testing.md#fixing-broken-visual-tests-inside-a-pr)
 - [ ] Ensure the changed/created components have not caused accessibility issues. [How to use accessibility plugin in storybook](https://github.com/toptal/picasso/blob/master/docs/contribution/accessibility.md).
+- [ ] Self reviewed
+- [ ] Covered with tests
+
+**Breaking change**
+
+- [ ] codemod is created
+- [ ] test alpha package of Picasso in StaffPortal
 
 <details>
 <summary>PR commands</summary>
