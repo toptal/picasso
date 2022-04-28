@@ -1,5 +1,4 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import cx from 'classnames'
 import { BaseProps, ColorType, SizeType } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core'
 
@@ -108,7 +107,7 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
         as='div'
         weight={weight}
         color={color}
-        className={cx(className, classes.content)}
+        className={className}
       >
         {children}
       </Typography>
