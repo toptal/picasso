@@ -146,6 +146,19 @@ const Field = <
     ...input,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
+      /**
+       * The fix for autofill in Firefox, it's taken from:
+       * https://github.com/facebook/react/issues/18986#issuecomment-636354428
+       * https://github.com/facebook/react/issues/15739
+       */
+      Object.defineProperty(event.target, 'defaultValue', {
+        configurable: true,
+        get() {
+          return ''
+        },
+        set() {}
+      })
+
       input.onChange(event)
 
       if (rest.onChange) {
