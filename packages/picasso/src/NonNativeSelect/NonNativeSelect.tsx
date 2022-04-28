@@ -53,6 +53,7 @@ export const NonNativeSelect = documentable(
         renderOption = defaultRenderOption,
         placeholder,
         disabled,
+        disablePortal,
         error,
         status,
         multiple,
@@ -197,6 +198,7 @@ export const NonNativeSelect = documentable(
               open
               anchorEl={inputWrapperRef.current}
               container={popperContainer}
+              disablePortal={disablePortal}
             >
               {loading ? (
                 <NonNativeSelectLoader data-testid={testIds?.loader} />
