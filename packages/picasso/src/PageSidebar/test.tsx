@@ -1,5 +1,4 @@
 import React from 'react'
-/* eslint-disable-next-line */
 import { render, fireEvent, act } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
