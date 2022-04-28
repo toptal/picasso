@@ -29,7 +29,7 @@ Describe the changes and motivations for the pull request.
 
 **Breaking change**
 
-- [ ] codemod is created
+- [ ] codemod is created and showcased in the changeset
 - [ ] test alpha package of Picasso in StaffPortal
 
 <details>
