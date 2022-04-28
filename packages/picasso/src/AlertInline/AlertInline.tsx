@@ -4,7 +4,7 @@ import { BaseProps, ColorType, SizeType } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core'
 
 import Container, { VariantType as ContainerVariants } from '../Container'
-import Typography from '../Typography'
+import Typography, { TypographyProps } from '../Typography'
 import {
   Exclamation16,
   Done16,
@@ -83,6 +83,16 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
     typographyColor = 'light-blue'
   }
 
+  let size = 'small' as TypographyProps['size']
+  let weight = 'semibold' as TypographyProps['weight']
+  let color = typographyColor
+
+  if (alertVariant === 'block') {
+    size = 'medium'
+    color = 'black'
+    weight = 'regular'
+  }
+
   return (
     <Container inline flex ref={ref} className={classes.root}>
       <Container
@@ -94,9 +104,10 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
         {renderAlertIcon(variant, alertVariant)}
       </Container>
       <Typography
-        size='medium'
+        size={size}
         as='div'
-        color={alertVariant === 'block' ? 'black' : typographyColor}
+        weight={weight}
+        color={color}
         className={cx(className, classes.content)}
       >
         {children}

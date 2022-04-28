@@ -8,8 +8,5 @@ export default () =>
     },
     iconWrapper: {
       height: '1.375em'
-    },
-    content: {
-      lineHeight: '1.375rem'
     }
   })
