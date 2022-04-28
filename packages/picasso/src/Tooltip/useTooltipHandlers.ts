@@ -52,12 +52,12 @@ export const useTooltipHandlers = ({
     onClose?.(event)
     closeTooltip()
   }
-  const handleOpen = (event: SyntheticEvent | Event) => {
+  const handleOpen = (event: SyntheticEvent) => {
     if (ignoreOpening) {
       return
     }
 
-    onClose?.(event)
+    onOpen?.(event)
     openTooltip()
   }
   const handleClick = (event: MouseEvent<HTMLElement>) => {
