@@ -25,7 +25,7 @@ export type PopperPlacementType =
   | 'top-start'
   | 'top'
 
-type ReferenceObject = Element | VirtualElement
+export type ReferenceObject = Element | VirtualElement
 export type PopperOptions = Partial<Options>
 
 export interface Props extends BaseProps {
