@@ -132,9 +132,8 @@ export const NativeSelect = documentable(
               [classes.placeholder]: !selection.isSelected()
             }),
             select: cx({
-              [classes.startAdornmentPadding]: React.isValidElement(
-                startAdornment
-              ),
+              [classes.startAdornmentPadding]:
+                React.isValidElement(startAdornment),
               [classes.endAdornmentPadding]: React.isValidElement(endAdornment)
             })
           }}

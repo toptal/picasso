@@ -80,7 +80,6 @@ const matchScreenshot = async (options: Options) => {
   expect(image).toMatchImageSnapshot(options)
 }
 
-// TODO: Make this more universal when we add more components and their variations
 export const assertVisuals = (
   kind: string,
   type: string,

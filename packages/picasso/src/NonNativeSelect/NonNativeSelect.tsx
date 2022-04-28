@@ -101,18 +101,14 @@ export const NonNativeSelect = documentable(
         selection,
         filteredOptions
       } = selectState
-      const {
-        getItemProps,
-        getRootProps,
-        getInputProps,
-        getSearchInputProps
-      } = useSelectProps({
-        selectRef,
-        popperRef,
-        searchInputRef,
-        selectProps: props,
-        selectState
-      })
+      const { getItemProps, getRootProps, getInputProps, getSearchInputProps } =
+        useSelectProps({
+          selectRef,
+          popperRef,
+          searchInputRef,
+          selectProps: props,
+          selectState
+        })
 
       const searchInput = showSearch ? (
         <MenuItem
