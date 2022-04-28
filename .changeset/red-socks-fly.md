@@ -6,4 +6,4 @@
 
 ### Color Type
 
-- Add `ligt-blue` to shared color types
+- Add `light-blue` to shared color types

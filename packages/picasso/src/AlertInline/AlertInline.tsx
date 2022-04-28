@@ -30,40 +30,25 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   alertVariant?: AlertVariant // undocumented prop, only for internal usage
 }
 
+const AlertIcons = {
+  block: {
+    red: <Exclamation16 color='red' />,
+    green: <Done16 color='green' />,
+    blue: <Info16 color='light-blue' />,
+    yellow: <Exclamation16 color='yellow' />
+  },
+  inline: {
+    red: <ExclamationSolid16 color='red' />,
+    green: <DoneSolid16 color='green' />,
+    blue: <InfoSolid16 color='light-blue' />,
+    yellow: <ExclamationSolid16 color='yellow' />
+  }
+}
+
 export const renderAlertIcon = (
   variant?: VariantType,
   alertVariant?: AlertVariant
-) => {
-  if (alertVariant === 'block') {
-    switch (variant) {
-      case 'red':
-        return <Exclamation16 color='red' />
-
-      case 'green':
-        return <Done16 color='green' />
-
-      case 'blue':
-        return <Info16 color='light-blue' />
-
-      case 'yellow':
-        return <Exclamation16 color='yellow' />
-    }
-  }
-
-  switch (variant) {
-    case 'red':
-      return <ExclamationSolid16 color='red' />
-
-    case 'green':
-      return <DoneSolid16 color='green' />
-
-    case 'blue':
-      return <InfoSolid16 color='light-blue' />
-
-    case 'yellow':
-      return <ExclamationSolid16 color='yellow' />
-  }
-}
+) => alertVariant && variant && AlertIcons[alertVariant][variant]
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAlertInline'
@@ -75,6 +60,7 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
 ) {
   const classes = useStyles()
   const { variant, children, className, iconPadding, alertVariant } = props
+  const icon = renderAlertIcon(variant, alertVariant)
 
   let typographyColor = variant as ColorType
 
@@ -82,14 +68,17 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
     typographyColor = 'light-blue'
   }
 
-  let size = 'small' as TypographyProps['size']
-  let weight = 'semibold' as TypographyProps['weight']
-  let color = typographyColor
-
-  if (alertVariant === 'block') {
-    size = 'medium'
-    color = 'black'
-    weight = 'regular'
+  const typographyProps = {
+    inline: {
+      size: 'small' as TypographyProps['size'],
+      weight: 'semibold' as TypographyProps['weight'],
+      color: typographyColor
+    },
+    block: {
+      size: 'medium' as TypographyProps['size'],
+      weight: 'regular' as TypographyProps['weight'],
+      color: 'black' as ColorType
+    }
   }
 
   return (
@@ -100,13 +89,13 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
         alignItems='center'
         className={classes.iconWrapper}
       >
-        {renderAlertIcon(variant, alertVariant)}
+        {icon}
       </Container>
       <Typography
-        size={size}
+        size={alertVariant && typographyProps[alertVariant].size}
         as='div'
-        weight={weight}
-        color={color}
+        weight={alertVariant && typographyProps[alertVariant].weight}
+        color={alertVariant && typographyProps[alertVariant].color}
         className={className}
       >
         {children}
