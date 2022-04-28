@@ -15,4 +15,4 @@
 
 ### Typography
 
-- Add `lightBlue` style
+- Add `lightBlue` color
