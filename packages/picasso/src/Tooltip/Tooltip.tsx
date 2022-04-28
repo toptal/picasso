@@ -43,9 +43,9 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Where should the tooltip be positioned */
   placement?: PlacementType
   /** Called when tooltip is opened */
-  onOpen?: (event: Event | SyntheticEvent) => void
+  onOpen?: (event: SyntheticEvent) => void
   /** Called when tooltip is closed */
-  onClose?: (event: Event | SyntheticEvent) => void
+  onClose?: (event: SyntheticEvent | Event) => void
   /** Whether user can interact with tooltip content */
   interactive?: boolean
   /** Programatically control tooltip's visibility */
