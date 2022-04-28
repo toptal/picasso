@@ -45,27 +45,33 @@ describe('PageSidebar', () => {
     it('reflects on its state', async () => {
       const NEW_EXPANDED_KEY = 42
 
+      const BTN_TESTID = 'btn'
+      const OUTPUT_TESTID = 'out'
+
       const Example = () => {
         const { setExpandedItemKey, expandedItemKey } = useSidebarContext()
 
         return (
           <div>
-            <button onClick={() => setExpandedItemKey(NEW_EXPANDED_KEY)}>
+            <button
+              data-testid={BTN_TESTID}
+              onClick={() => setExpandedItemKey(NEW_EXPANDED_KEY)}
+            >
               Change it
             </button>
-            <span role='log'>{expandedItemKey}</span>
+            <span data-testid={OUTPUT_TESTID}>{expandedItemKey}</span>
           </div>
         )
       }
 
-      const { getByRole } = render(
+      const { getByTestId } = render(
         <SidebarContextProvider isHovered={false} isCollapsed={false}>
           <Example />
         </SidebarContextProvider>
       )
 
-      const button = getByRole('button')
-      const text = getByRole('log')
+      const button = getByTestId(BTN_TESTID)
+      const text = getByTestId(OUTPUT_TESTID)
 
       expect(text).not.toHaveTextContent(NEW_EXPANDED_KEY.toString())
 
