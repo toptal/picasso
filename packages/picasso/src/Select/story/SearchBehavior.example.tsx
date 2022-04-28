@@ -1,7 +1,15 @@
 import React, { useState, ChangeEvent } from 'react'
-import { Select, Form, Container, NumberInput } from '@toptal/picasso'
+import {
+  Select,
+  Form,
+  Container,
+  NumberInput,
+  Drawer,
+  Button
+} from '@toptal/picasso'
 
 const SelectSearchBehaviourExample = () => {
+  const [isOpen, setIsOpen] = useState(false)
   const [value, setValue] = useState<string>('')
   const [threshold, setThreshold] = useState(4)
 
@@ -21,8 +29,34 @@ const SelectSearchBehaviourExample = () => {
   }
 
   return (
-    <Container flex>
-      <Container right='small'>
+    <Container flex gap='small' direction='column'>
+      <Form.Field>
+        <Form.Label>Search for an option</Form.Label>
+        <Select
+          onChange={handleChange}
+          value={value}
+          options={OPTIONS}
+          placeholder='Choose an option...'
+          width='auto'
+          searchThreshold={threshold}
+          data-testid='select'
+        />
+      </Form.Field>
+
+      <Form.Field>
+        <Form.Label>Search threshold</Form.Label>
+        <NumberInput
+          value={threshold}
+          onChange={handleThresholdChange}
+          data-testid='input-threshold'
+        />
+      </Form.Field>
+      <Form.Field>
+        <Form.Label>Inside Drawer with disablePortal</Form.Label>
+        <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
+      </Form.Field>
+
+      <Drawer open={isOpen} onClose={() => setIsOpen(false)}>
         <Form.Field>
           <Form.Label>Search for an option</Form.Label>
           <Select
@@ -33,19 +67,10 @@ const SelectSearchBehaviourExample = () => {
             width='auto'
             searchThreshold={threshold}
             data-testid='select'
+            disablePortal
           />
         </Form.Field>
-      </Container>
-      <Container>
-        <Form.Field>
-          <Form.Label>Search threshold</Form.Label>
-          <NumberInput
-            value={threshold}
-            onChange={handleThresholdChange}
-            data-testid='input-threshold'
-          />
-        </Form.Field>
-      </Container>
+      </Drawer>
     </Container>
   )
 }

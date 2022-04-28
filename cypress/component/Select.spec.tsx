@@ -429,4 +429,10 @@ describe('Select', () => {
 
     getOption(4).should('have.attr', 'data-highlighted').and('match', /true/)
   })
+
+  // describe('when rendered in Drawer with search behaviour', () => {
+  //   it('is possible to focus the search input', () => {
+
+  //   })
+  // })
 })

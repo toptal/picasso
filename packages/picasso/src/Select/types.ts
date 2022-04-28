@@ -30,6 +30,8 @@ export interface SelectProps<
     > {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
+  /** To render select options in portal. Should be disabled in Modals */
+  disablePortal?: boolean
   /** @deprecated Indicate whether `Select` is in error state */
   error?: boolean
   /** Indicate whether `Select` is in `error` or `default` state */
