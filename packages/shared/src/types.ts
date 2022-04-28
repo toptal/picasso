@@ -90,6 +90,7 @@ export type ColorType =
   | 'grey'
   | 'dark-grey'
   | 'black'
+  | 'light-blue'
   | 'inherit'
 
 export interface TransitionProps {

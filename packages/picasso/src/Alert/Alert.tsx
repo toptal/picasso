@@ -38,7 +38,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       variant={variant}
       className={className}
     >
-      <AlertInline variant={variant} iconPadding='small'>
+      <AlertInline variant={variant} iconPadding='small' alertVariant='block'>
         {children}
       </AlertInline>
       {onClose && renderAlertCloseButton({ onClose })}

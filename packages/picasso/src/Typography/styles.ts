@@ -122,6 +122,9 @@ export default (theme: Theme) => {
     black: {
       color: palette.common.black
     },
+    lightBlue: {
+      color: palette.blue.light
+    },
     invert: {
       color: palette.common.white
     },

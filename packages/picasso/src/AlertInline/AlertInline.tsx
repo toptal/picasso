@@ -1,11 +1,18 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, ColorType, SizeType } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core'
 
 import Container, { VariantType as ContainerVariants } from '../Container'
 import Typography from '../Typography'
-import { Exclamation16, Done16, Info16 } from '../Icon'
+import {
+  Exclamation16,
+  Done16,
+  Info16,
+  ExclamationSolid16,
+  DoneSolid16,
+  InfoSolid16
+} from '../Icon'
 import styles from './styles'
 
 export type VariantType = Extract<
@@ -13,27 +20,49 @@ export type VariantType = Extract<
   ContainerVariants
 >
 
+type AlertVariant = 'inline' | 'block'
+
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Main content of the Alert */
   children?: ReactNode
   /** Style variant of Alert */
   variant?: VariantType
   iconPadding?: SizeType<'xsmall' | 'small'> // undocumented prop, only for internal usage
+  alertVariant?: AlertVariant // undocumented prop, only for internal usage
 }
 
-export const renderAlertIcon = (variant?: VariantType) => {
+export const renderAlertIcon = (
+  variant?: VariantType,
+  alertVariant?: AlertVariant
+) => {
+  if (alertVariant === 'block') {
+    switch (variant) {
+      case 'red':
+        return <Exclamation16 color='red' />
+
+      case 'green':
+        return <Done16 color='green' />
+
+      case 'blue':
+        return <Info16 color='light-blue' />
+
+      case 'yellow':
+        return <Exclamation16 color='yellow' />
+    }
+  }
+
   switch (variant) {
     case 'red':
-      return <Exclamation16 color='red' />
+      return <ExclamationSolid16 color='red' />
 
     case 'green':
-      return <Done16 color='green' />
+      return <DoneSolid16 color='green' />
 
     case 'blue':
-      return <Info16 color='light-blue' />
+      return <InfoSolid16 color='light-blue' />
 
     case 'yellow':
-      return <Exclamation16 color='yellow' />
+      return <ExclamationSolid16 color='yellow' />
   }
 }
 
@@ -46,7 +75,13 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   ref
 ) {
   const classes = useStyles()
-  const { variant, children, className, iconPadding } = props
+  const { variant, children, className, iconPadding, alertVariant } = props
+
+  let typographyColor = variant as ColorType
+
+  if (variant === 'blue') {
+    typographyColor = 'light-blue'
+  }
 
   return (
     <Container inline flex ref={ref} className={classes.root}>
@@ -56,12 +91,12 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
         alignItems='center'
         className={classes.iconWrapper}
       >
-        {renderAlertIcon(variant)}
+        {renderAlertIcon(variant, alertVariant)}
       </Container>
       <Typography
         size='medium'
         as='div'
-        color='black'
+        color={alertVariant === 'block' ? 'black' : typographyColor}
         className={cx(className, classes.content)}
       >
         {children}
@@ -72,7 +107,8 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
 
 AlertInline.defaultProps = {
   variant: 'yellow',
-  iconPadding: 'xsmall'
+  iconPadding: 'xsmall',
+  alertVariant: 'inline'
 }
 
 AlertInline.displayName = 'AlertInline'
