@@ -10,7 +10,6 @@ import React, {
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
 import { PopperPlacementType } from '@material-ui/core/Popper'
-import { PopperOptions } from 'popper.js'
 import RootRef from '@material-ui/core/RootRef'
 import { Theme } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
@@ -22,7 +21,7 @@ import {
 } from '@toptal/picasso-shared'
 
 import DropdownArrow from '../DropdownArrow'
-import Popper from '../Popper'
+import Popper, { PopperOptions } from '../Popper'
 import Paper from '../Paper'
 import styles from './styles'
 import noop from '../utils/noop'
@@ -229,13 +228,18 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           className={classes.popper}
           anchorEl={anchorEl}
           popperOptions={{
-            onCreate: focus,
+            onFirstUpdate: focus,
             /*
             Fixes https://github.com/toptal/picasso/pull/2124#issuecomment-894341054
             When the anchor goes above the viewport, popper goes to infinite flipping.
             flipped: true -> flipped: false -> flipped: true -> ...
             */
-            modifiers: { flip: { enabled: contentOverflow !== 'visible' } },
+            modifiers: [
+              {
+                enabled: contentOverflow !== 'visible',
+                name: 'flip'
+              }
+            ],
             ...popperOptions
           }}
           placement={placement}

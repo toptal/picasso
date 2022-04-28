@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import React, { useRef } from 'react'
-import PopperJs from 'popper.js'
+import { Instance as PopperJs } from '@popperjs/core'
 import cx from 'classnames'
 import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'

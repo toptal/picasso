@@ -12,9 +12,9 @@ jest.mock('@toptal/picasso-provider', () => ({
   useBreakpoint: () => true,
   usePicassoRoot: jest.fn()
 }))
-jest.mock('@mui/material/styles', () => ({
-  makeStyles: jest.fn(() => () => ({ root: 'TEST_CLASS_NAME+1' }))
-}))
+jest.mock('@mui/styles/makeStyles', () =>
+  jest.fn(() => () => ({ root: className }))
+)
 jest.mock('../utils/use-width-of', () => ({
   __esModule: true,
   default: () => '300px'
@@ -24,7 +24,9 @@ const mockedUsePicassoRoot = usePicassoRoot as jest.Mock<
   ReturnType<typeof usePicassoRoot>
 >
 const mockedMakeStyles = makeStyles as jest.Mock<ReturnType<typeof makeStyles>>
-const mockedMUIPopper = MUIPopper as jest.Mock<ReturnType<typeof MUIPopper>>
+const mockedMUIPopper = MUIPopper as unknown as jest.Mock<
+  ReturnType<typeof MUIPopper>
+>
 
 const rootDiv = document.createElement('div')
 
@@ -52,6 +54,8 @@ const defaultPopperProps = {
 }
 
 const renderComponent = (props: Partial<Props> = {}) => {
+  const popperOptions = getPopperOptions(props.popperOptions ?? {})
+
   return render(
     <div id='root'>
       <Popper
@@ -59,6 +63,7 @@ const renderComponent = (props: Partial<Props> = {}) => {
         anchorEl={anchorEl}
         disablePortal={disablePortal}
         placement={placement}
+        popperOptions={popperOptions}
         {...props}
       >
         {children}
