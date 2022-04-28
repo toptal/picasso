@@ -1,5 +1,4 @@
 export { default } from './SliderValueLabel'
 export type {
-  Props as SliderValueLabelProps,
-  ValueLabelProps
+  Props as ValueLabelProps,
 } from './SliderValueLabel'

@@ -4,7 +4,7 @@ import { Container, Slider } from '@toptal/picasso'
 type Value = number | number[]
 
 const Example = () => {
-  const handleChange = (_: React.ChangeEvent<{}>, value: Value) => {
+  const handleChange = (_: Event, value: Value) => {
     window.console.log('onChange: ', value)
   }
 

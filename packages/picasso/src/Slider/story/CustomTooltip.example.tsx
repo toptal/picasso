@@ -16,7 +16,7 @@ const BottomTooltip = ({
 )
 
 const CustomSliderTooltip = () => {
-  const handleChange = (event: ChangeEvent<{}>, value: number | number[]) => {
+  const handleChange = (event: Event, value: number | number[]) => {
     window.console.log('onChange: ', value)
   }
 

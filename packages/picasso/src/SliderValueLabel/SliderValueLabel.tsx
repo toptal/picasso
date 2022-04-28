@@ -1,23 +1,19 @@
 import React, { useRef } from 'react'
-import { ValueLabelProps as MUIValueLabelProps } from '@mui/material/Slider'
 
 import Tooltip from '../Tooltip'
 import { useSliderContext } from '../Slider/SliderContext'
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
-// This type is needed because ValueLabelProps does not describe all exposed props
-export type ValueLabelProps = MUIValueLabelProps & {
-  valueLabelDisplay: ValueLabelDisplay
-  index: number
-}
-
-export interface Props extends ValueLabelProps {
+export interface Props {
   tooltip?: ValueLabelDisplay
   disablePortal?: boolean
   compact?: boolean
   valueLabelDisplay: ValueLabelDisplay
   index: number
+  children: React.ReactNode
+  open: boolean
+  value: React.ReactNode
 }
 
 const SliderValueLabel = ({
@@ -35,7 +31,7 @@ const SliderValueLabel = ({
   const isTooltipAlwaysVisible = tooltip === 'on'
 
   if (valueLabelDisplay === 'off') {
-    return children
+    return <>{children}</>
   }
 
   const getPlacement = () => {

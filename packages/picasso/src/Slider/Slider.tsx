@@ -1,15 +1,7 @@
-import React, {
-  forwardRef,
-  ChangeEvent,
-  ComponentProps,
-  useRef,
-  useMemo
-} from 'react'
+import React, { forwardRef, ComponentProps, useRef, useMemo } from 'react'
 import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
-import MUISlider, {
-  ValueLabelProps as MUIValueLabelProps
-} from '@mui/material/Slider'
+import MUISlider from '@mui/material/Slider'
 import cx from 'classnames'
 
 import SliderValueLabel, { ValueLabelProps } from '../SliderValueLabel'
@@ -53,7 +45,7 @@ export interface Props extends ComponentProps<typeof MUISlider> {
   /** Disable the portal behavior of the tooltip. The children stay within it's parent */
   disablePortal?: boolean
   /** Callback invoked when slider changes its state. */
-  onChange?: (event: ChangeEvent<{}>, value: Value) => void
+  onChange?: (event: Event, value: Value) => void
   /** Hide thumb when value is undefined or null. Works only when the component is controlled. */
   hideThumbOnEmpty?: boolean
   /** Disable track highlight. */
@@ -117,9 +109,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     [tooltip, disablePortal, compact]
   )
 
-  // From Workaround for https://github.com/mui-org/material-ui/issues/21889
-  const ValueLabelComponent = (UserDefinedTooltip ||
-    DefaultValueLabelComponent) as unknown as React.ElementType<MUIValueLabelProps>
+  const ValueLabelComponent = UserDefinedTooltip || DefaultValueLabelComponent
 
   return (
     <SliderContextProvider>
@@ -147,7 +137,9 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
               [markInactive]: isThumbHidden || disableTrackHighlight
             })
           }}
-          ValueLabelComponent={ValueLabelComponent}
+          components={{
+            ValueLabel: ValueLabelComponent
+          }}
           valueLabelFormat={tooltipFormat}
           valueLabelDisplay={tooltip}
           onChange={onChange}

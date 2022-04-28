@@ -2,14 +2,16 @@ import { Theme } from '@mui/material/styles'
 import createStyles from '@mui/styles/createStyles'
 import { rem } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
+import { sliderClasses } from '@mui/material/Slider'
 
 PicassoProvider.override(() => ({
   MuiSlider: {
     styleOverrides: {
       thumb: {
-        '&:hover, &$active, &$focusVisible': {
-          boxShadow: 'none'
-        }
+        [`&:hover, &.${sliderClasses.active}, &.${sliderClasses.focusVisible}`]:
+          {
+            boxShadow: 'none'
+          }
       }
     }
   }
@@ -30,19 +32,25 @@ export default ({ palette }: Theme) =>
     rail: {
       height: rem('1px'),
       borderRadius: 'unset',
-      opacity: 0.24
+      opacity: 0.24,
+      border: 'none',
+      transform: 'none'
     },
     track: {
       backgroundColor: palette.primary.main,
       borderRadius: 'unset',
-      height: rem('1px')
+      height: '1px',
+      border: 'none',
+      transform: 'none'
     },
     thumb: {
       backgroundColor: palette.primary.main,
       border: `${rem('2px')} solid ${palette.common.white}`,
       height: rem('15px'),
       width: rem('15px'),
-      marginTop: rem('-7px')
+      marginTop: rem('-7px'),
+      transform: 'translateX(-50%)',
+      transition: 'none'
     },
     mark: {
       backgroundColor: palette.grey.main,

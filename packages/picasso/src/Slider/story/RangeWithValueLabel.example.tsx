@@ -14,7 +14,7 @@ const renderLabel = (value: Value) => {
 const Example = () => {
   const [value, setValue] = React.useState<Value>([10, 20])
 
-  const handleChange = (_: React.ChangeEvent<{}>, newValue: Value) => {
+  const handleChange = (_: Event, newValue: Value) => {
     setValue(newValue)
   }
 

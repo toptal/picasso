@@ -5,7 +5,7 @@ type Value = number | number[]
 
 const Example = () => {
   const [value, setValue] = useState<Value>()
-  const handleChange = (_: React.ChangeEvent<{}>, newValue: Value) => {
+  const handleChange = (_: Event, newValue: Value) => {
     setValue(newValue)
   }
 

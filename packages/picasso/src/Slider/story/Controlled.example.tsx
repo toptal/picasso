@@ -6,7 +6,7 @@ type Value = number | number[]
 
 const Example = () => {
   const [value, setValue] = useState(0)
-  const handleChange = (_: React.ChangeEvent<{}>, newValue: Value) => {
+  const handleChange = (_: Event, newValue: Value) => {
     setValue(Number(newValue))
   }
 
