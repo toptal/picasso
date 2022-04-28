@@ -1,5 +1,6 @@
-# Github Workflow
-In order to maintain good strict [semver](https://semver.org/) versioning of `Picasso`  our commit convention follows [conventionalcommits.org](https://www.conventionalcommits.org) workflow.  This helps us to automatically determine version change by automatic analysis of git commits between two given releases. 
+# GitHub Workflow
+
+In order to maintain good strict [semver](https://semver.org/) versioning of `Picasso` our commit convention follows [conventionalcommits.org](https://www.conventionalcommits.org) workflow. This helps us to automatically determine version change by automatic analysis of git commits between two given releases.
 
 ## PR workflow
 Every PR’s is checked against several automatic jobs which are always automatically run on every push. You don’t need to trigger any special phrase as running all jobs takes ~4minutes we currently run all on every commit. 

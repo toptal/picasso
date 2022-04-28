@@ -9,5 +9,5 @@ import README from '../../../../packages/picasso/README.md'
 import CHANGELOG from '../../../../packages/picasso/CHANGELOG.md'
 
 const section = PicassoBook.section('Picasso')
-section.createDocPage('Readme', doc(README))
+section.createDocPage('Introduction', doc(README))
 section.createDocPage('Changelog', doc(CHANGELOG))
