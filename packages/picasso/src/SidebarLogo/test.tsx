@@ -1,11 +1,9 @@
 import React from 'react'
-/* eslint-disable-next-line */
 import { render } from '@toptal/picasso/test-utils'
 
 import Logo from '../Logo'
 import SidebarLogo, { Props } from './SidebarLogo'
-import { SidebarContext } from '../PageSidebar/PageSidebar'
-import { noop } from '../utils'
+import { SidebarContextProvider } from '../PageSidebar'
 
 const TestSidebarLogo = ({ children }: Props) => (
   <SidebarLogo>{children}</SidebarLogo>
@@ -17,20 +15,14 @@ const renderSidebarLogoWithContext = ({
   isCollapsed: boolean
 }) => {
   return render(
-    <SidebarContext.Provider
-      value={{
-        isCollapsed,
-        expandedItemKey: null,
-        setExpandedItemKey: noop
-      }}
-    >
+    <SidebarContextProvider isCollapsed={isCollapsed} isHovered={false}>
       <SidebarLogo
         collapsedLogo={<Logo emblem data-testid='collapse-logo' />}
         fullLogo={<Logo data-testid='full-logo' />}
       >
         <Logo variant='black' data-testid='children-logo' />
       </SidebarLogo>
-    </SidebarContext.Provider>
+    </SidebarContextProvider>
   )
 }
 

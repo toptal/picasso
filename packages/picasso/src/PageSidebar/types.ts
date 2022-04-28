@@ -5,4 +5,5 @@ export interface SidebarContextProps {
   expandedItemKey: number | null
   setExpandedItemKey: (expanded: number | null) => void
   isCollapsed: boolean
+  isHovered: boolean
 }
