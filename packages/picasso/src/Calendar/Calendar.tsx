@@ -3,13 +3,9 @@ import React, { forwardRef, ReactNode } from 'react'
 // @ts-ignore
 import SimpleReactCalendar from 'simple-react-calendar'
 import cx from 'classnames'
-import format from 'date-fns/format'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import { ChevronMinor16, BackMinor16 } from '../Icon'
-import Button from '../Button'
-import Typography from '../Typography'
 import {
   CalendarProps,
   MonthHeaderProps,
@@ -19,6 +15,8 @@ import {
   DaysOfWeekProps
 } from './types'
 import styles from './styles'
+import MonthHeader from './components/MonthHeader/MonthHeader'
+import CalendarRoot from './components/CalendarRoot/CalendarRoot'
 
 type SimpleReactCalendarRangeType = {
   start: Date
@@ -56,11 +54,8 @@ export interface Props
   activeMonth?: Date
   disabledIntervals?: { start: Date; end: Date }[]
   weekStartsOn?: number
-  renderMonthHeader?: ({
-    switchMonth,
-    activeMonth: headerActiveMonth
-  }: MonthHeaderProps) => JSX.Element | null
-  customRender?: ({ children }: CalendarProps) => JSX.Element
+  renderMonthHeader?: (props: MonthHeaderProps) => JSX.Element | null
+  renderRoot?: (props: CalendarProps) => JSX.Element
 }
 
 const isDateRange = (
@@ -86,8 +81,8 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     disabledIntervals,
     renderDay,
     weekStartsOn,
-    customRender,
-    renderMonthHeader,
+    renderRoot = rootProps => <CalendarRoot {...rootProps} />,
+    renderMonthHeader = MonthHeader,
     ...rest
   } = props
 
@@ -106,13 +101,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
       <SimpleReactCalendar
         selected={getNormalizedValue(value)}
         onSelect={handleChange}
-        customRender={
-          customRender
-            ? customRender
-            : ({ children }: CalendarProps) => {
-                return <div className={classes.root}>{children}</div>
-              }
-        }
+        customRender={renderRoot}
         renderDay={(dayProps: DayProps) => {
           const {
             key,
@@ -165,36 +154,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               })
             : defaultMarkup
         }}
-        renderMonthHeader={({
-          switchMonth,
-          activeMonth: headerActiveMonth
-        }: MonthHeaderProps) => {
-          return renderMonthHeader ? (
-            renderMonthHeader({ switchMonth, activeMonth: headerActiveMonth })
-          ) : (
-            <div className={classes.actions}>
-              <Button
-                title='Previous month'
-                variant='secondary'
-                size='small'
-                onClick={() => switchMonth(-1)}
-              >
-                <BackMinor16 />
-              </Button>
-              <Typography variant='heading' size='medium'>
-                {format(headerActiveMonth, 'MMMM y')}
-              </Typography>
-              <Button
-                title='Next month'
-                variant='secondary'
-                size='small'
-                onClick={() => switchMonth(1)}
-              >
-                <ChevronMinor16 />
-              </Button>
-            </div>
-          )
-        }}
+        renderMonthHeader={renderMonthHeader}
         renderDaysOfWeek={({ children }: DaysOfWeekProps) => {
           return <div className={classes.weekDays}>{children}</div>
         }}

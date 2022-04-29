@@ -9,10 +9,11 @@ exports[`Calendar renders 1`] = `
       tabindex="0"
     >
       <div
-        class="PicassoCalendar-root"
+        class="PicassoCalendarRoot-root"
       >
         <div
-          class="PicassoCalendar-actions"
+          class="PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+          style="margin-bottom: 1.5rem;"
         >
           <button
             class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"

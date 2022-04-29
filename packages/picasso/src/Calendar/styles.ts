@@ -1,18 +1,8 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { alpha, rem } from '@toptal/picasso-shared'
 
-export default ({ palette, shadows }: Theme) =>
+export default ({ palette }: Theme) =>
   createStyles({
-    root: {
-      padding: '1.875em',
-      color: palette.grey.darker,
-      display: 'flex',
-      flexDirection: 'column',
-      flexBasis: '20.5rem',
-      maxWidth: '20.5rem',
-      boxShadow: shadows[2],
-      backgroundColor: palette.common.white
-    },
     month: {},
     week: {
       display: 'flex'
