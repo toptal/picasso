@@ -9,7 +9,7 @@ Picasso is Toptal's component library, based on Toptal's design system - BASE. U
 ## Installation instructions
 
 ```js
-yarn add @toptal/picasso
+yarn add @toptal/picasso @toptal/picasso-provider
 ```
 
 ## Start using the library
