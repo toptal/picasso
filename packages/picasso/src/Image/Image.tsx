@@ -2,6 +2,7 @@ import React, { forwardRef, ImgHTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
+import { MUI5Picasso } from '@toptal/picasso-provider'
 
 import styles from './styles'
 
@@ -60,4 +61,12 @@ Image.defaultProps = {
 
 Image.displayName = 'Image'
 
-export default Image
+const WrappedImage = (props: Props) => {
+  return (
+    <MUI5Picasso>
+      <Image {...props} />
+    </MUI5Picasso>
+  )
+}
+
+export default WrappedImage
