@@ -30,7 +30,7 @@ export default ({ palette, shadows, sizes: { borderRadius } }: Theme) =>
     compact: {
       lineHeight: '1em',
       padding: `${rem('2px')} 0.5rem`,
-      margin: '0.25rem'
+      margin: '0.25rem !important'
     },
     noMaxWidth: {
       maxWidth: 'none'
