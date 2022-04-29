@@ -15,8 +15,8 @@ import {
   DaysOfWeekProps
 } from './types'
 import styles from './styles'
-import MonthHeader from './components/MonthHeader/MonthHeader'
-import CalendarRoot from './components/CalendarRoot/CalendarRoot'
+import CalendarMonthHeader from '../CalendarMonthHeader'
+import CalendarContainer from '../CalendarContainer'
 
 type SimpleReactCalendarRangeType = {
   start: Date
@@ -81,8 +81,8 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     disabledIntervals,
     renderDay,
     weekStartsOn,
-    renderRoot = rootProps => <CalendarRoot {...rootProps} />,
-    renderMonthHeader = MonthHeader,
+    renderRoot = rootProps => <CalendarContainer {...rootProps} />,
+    renderMonthHeader = CalendarMonthHeader,
     ...rest
   } = props
 

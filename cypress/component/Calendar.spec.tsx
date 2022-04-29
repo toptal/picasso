@@ -20,7 +20,7 @@ describe('Calendar', () => {
   })
 
   describe('when custom renderers are provided', () => {
-    it('renders calendar with the new layout', () => {
+    it('renders calendar with the custom layout', () => {
       mount(
         <TestCalendar
           onChange={noop}

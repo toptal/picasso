@@ -1,17 +1,17 @@
 import React from 'react'
 import { format } from 'date-fns'
 
-import Button from '../../../Button'
-import Typography from '../../../Typography'
-import { BackMinor16, ChevronMinor16 } from '../../../Icon'
-import { MonthHeaderProps } from '../../types'
-import Container from '../../../Container'
+import Button from '../Button'
+import Typography from '../Typography'
+import { BackMinor16, ChevronMinor16 } from '../Icon'
+import { MonthHeaderProps } from '../Calendar/types'
+import Container from '../Container'
 
-const MonthHeader = ({
+const CalendarMonthHeader = ({
   switchMonth,
   activeMonth: headerActiveMonth
 }: MonthHeaderProps) => (
-  <Container flex justifyContent='space-between' bottom={1.5}>
+  <Container flex justifyContent='space-between' bottom='medium'>
     <Button
       title='Previous month'
       variant='secondary'
@@ -34,4 +34,4 @@ const MonthHeader = ({
   </Container>
 )
 
-export default MonthHeader
+export default CalendarMonthHeader
