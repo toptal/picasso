@@ -14,6 +14,9 @@ export default ({ palette }: Theme) =>
     green: {
       color: palette.green.main
     },
+    darkGreen: {
+      color: palette.green.dark
+    },
     red: {
       color: palette.red.main
     },

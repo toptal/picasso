@@ -33,13 +33,13 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 const AlertIcons = {
   block: {
     red: <Exclamation16 color='red' />,
-    green: <Done16 color='green' />,
+    green: <Done16 color='dark-green' />,
     blue: <Info16 color='light-blue' />,
     yellow: <Exclamation16 color='yellow' />
   },
   inline: {
     red: <ExclamationSolid16 color='red' />,
-    green: <DoneSolid16 color='green' />,
+    green: <DoneSolid16 color='dark-green' />,
     blue: <InfoSolid16 color='light-blue' />,
     yellow: <ExclamationSolid16 color='yellow' />
   }
