@@ -48,7 +48,7 @@ const AlertIcons = {
 export const renderAlertIcon = (
   variant?: VariantType,
   alertVariant?: AlertVariant
-) => alertVariant && variant && AlertIcons[alertVariant][variant]
+) => AlertIcons[alertVariant!][variant!]
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAlertInline'
@@ -81,6 +81,8 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
     }
   }
 
+  const { size, weight, color } = typographyProps[alertVariant!]
+
   return (
     <Container inline flex ref={ref} className={classes.root}>
       <Container
@@ -92,10 +94,10 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
         {icon}
       </Container>
       <Typography
-        size={alertVariant && typographyProps[alertVariant].size}
+        size={size}
         as='div'
-        weight={alertVariant && typographyProps[alertVariant].weight}
-        color={alertVariant && typographyProps[alertVariant].color}
+        weight={weight}
+        color={color}
         className={className}
       >
         {children}
