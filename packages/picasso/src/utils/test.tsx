@@ -16,9 +16,11 @@ import {
   disableUnsupportedProps,
   sum,
   htmlToHast,
-  isBrowser
+  isBrowser,
+  useHandleClickOutside
 } from '@toptal/picasso/utils'
-import { render, act } from '@toptal/picasso/test-utils'
+import { render, act, fireEvent } from '@toptal/picasso/test-utils'
+import { renderHook } from '@testing-library/react-hooks'
 import React, { createRef, Ref, useEffect } from 'react'
 
 import unsafeErrorLog from './unsafe-error-log'
@@ -341,6 +343,70 @@ describe('htmlToHast', () => {
             children: [{ type: 'text', value: 'normal' }]
           }
         ]
+      })
+    })
+  })
+})
+
+const TestClickOutside = ({
+  handler
+}: {
+  handler: (event: MouseEvent) => void
+}) => {
+  const ref = React.useRef<HTMLDivElement>(null)
+
+  useHandleClickOutside({ ref, handler })
+
+  return (
+    <main>
+      <div ref={ref}>
+        <span data-testid='element-inside'>foo</span>
+      </div>
+      <span data-testid='element-outside'>bar</span>
+    </main>
+  )
+}
+
+describe('useHandleClickOutside', () => {
+  describe('with no ref', () => {
+    it('should not call the passed handler', () => {
+      const handler = jest.fn()
+
+      renderHook(() => useHandleClickOutside({ ref: undefined, handler }))
+
+      act(() => {
+        fireEvent.click(document)
+      })
+
+      expect(handler).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('with ref', () => {
+    describe('when event target is outside of ref component', () => {
+      it('should call the passed handler', () => {
+        const handler = jest.fn()
+
+        const { getByTestId } = render(<TestClickOutside handler={handler} />)
+
+        act(() => {
+          fireEvent.click(getByTestId('element-outside'))
+        })
+
+        expect(handler).toHaveBeenCalledTimes(1)
+      })
+    })
+    describe('when event target is inside of ref component', () => {
+      it('should not call the passed handler', () => {
+        const handler = jest.fn()
+
+        const { getByTestId } = render(<TestClickOutside handler={handler} />)
+
+        act(() => {
+          fireEvent.click(getByTestId('element-inside'))
+        })
+
+        expect(handler).not.toHaveBeenCalled()
       })
     })
   })
