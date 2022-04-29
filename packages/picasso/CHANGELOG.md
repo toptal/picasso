@@ -1,5 +1,15 @@
 # Change Log
 
+## 22.3.2
+
+### Patch Changes
+
+- [#2693](https://github.com/toptal/picasso/pull/2693) [`fc11cd9a`](https://github.com/toptal/picasso/commit/fc11cd9a466f2b965e1ccd786a8b9eda565b1a53) Thanks [@xandmore](https://github.com/xandmore)! - ---
+
+  ### Avatar
+
+  - Applied `image-rendering` css property for `<AvatarImage />`, preventing blur on downscaled images
+
 ## 22.3.1
 
 ### Patch Changes
