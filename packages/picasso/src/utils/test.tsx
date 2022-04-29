@@ -16,6 +16,7 @@ import {
   disableUnsupportedProps,
   sum,
   htmlToHast,
+  getNodeTextContent,
   isBrowser
 } from '@toptal/picasso/utils'
 import { render, act } from '@toptal/picasso/test-utils'
@@ -342,6 +343,64 @@ describe('htmlToHast', () => {
           }
         ]
       })
+    })
+  })
+})
+
+describe('getNodeTextContent', () => {
+  describe('when getting text from string node', () => {
+    it.each(['foo', ''])(
+      "returns its content original content, value: '%s'",
+      txt => {
+        expect(getNodeTextContent(txt)).toBe(txt)
+      }
+    )
+
+    it('strip spaces from start and end of the text', () => {
+      expect(getNodeTextContent('  foo   ')).toBe('foo')
+    })
+  })
+
+  describe('when getting text from a number node', () => {
+    it.each([42, -12, Infinity, NaN, -0])(
+      'returns its content original content, value: %s',
+      num => {
+        expect(getNodeTextContent(num)).toBe(String(num))
+      }
+    )
+  })
+
+  describe('when getting text from a array node', () => {
+    it('returns the contents of its elements joined by no space by default', () => {
+      expect(getNodeTextContent(['foo', <div>bar</div>, 45])).toBe('foo bar 45')
+    })
+  })
+
+  describe('when getting text from non printable nodes in react', () => {
+    it.each([null, undefined, true, false])(
+      'returns an empty string, value: "%s"',
+      nonOp => {
+        expect(getNodeTextContent(nonOp)).toBe('')
+      }
+    )
+  })
+
+  describe('when getting text from a complex node', () => {
+    it('returns an empty string, value: "%s"', () => {
+      expect(
+        getNodeTextContent(
+          <div>
+            <h1>Title</h1>
+            <caption>
+              <span>Subtitle</span>
+            </caption>
+            <p>
+              <img />
+              Amet quidem quod doloribus dignissimos
+            </p>
+          </div>
+        )
+      ).toBe('Title Subtitle Amet quidem quod doloribus dignissimos')
     })
   })
 })
