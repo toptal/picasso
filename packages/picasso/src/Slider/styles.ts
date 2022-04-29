@@ -27,21 +27,24 @@ export default ({ palette }: Theme) =>
       color: palette.grey.main,
       padding: `${rem('6px')} 0`,
       margin: `-${rem('6px')} 0`,
-      height: rem('1px')
+      height: rem('13px')
     },
     rail: {
       height: rem('1px'),
       borderRadius: 'unset',
       opacity: 0.24,
       border: 'none',
-      transform: 'none'
+      transform: 'none',
+      top: 'unset'
     },
     track: {
       backgroundColor: palette.primary.main,
       borderRadius: 'unset',
       height: '1px',
       border: 'none',
-      transform: 'none'
+      transform: 'none',
+      top: 'unset',
+      transition: 'none'
     },
     thumb: {
       backgroundColor: palette.primary.main,
@@ -50,7 +53,8 @@ export default ({ palette }: Theme) =>
       width: rem('15px'),
       marginTop: rem('-7px'),
       transform: 'translateX(-50%)',
-      transition: 'none'
+      transition: 'none',
+      top: 'unset'
     },
     mark: {
       backgroundColor: palette.grey.main,
