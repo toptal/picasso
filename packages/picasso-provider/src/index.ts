@@ -1,4 +1,5 @@
 export { default } from './Picasso'
+export { MUI5Picasso } from './Picasso'
 
 export {
   useScreenSize,

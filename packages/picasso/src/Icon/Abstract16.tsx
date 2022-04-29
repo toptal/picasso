@@ -1,7 +1,8 @@
 import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
-import { makeStyles } from '@material-ui/core/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { StandardProps } from '@toptal/picasso-shared'
+import { MUI5Picasso } from '@toptal/picasso-provider'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
@@ -57,4 +58,13 @@ const SvgAbstract16 = forwardRef(function SvgAbstract16(
 })
 
 SvgAbstract16.displayName = 'SvgAbstract16'
-export default SvgAbstract16
+
+const IconWithPicasso = () => {
+  return (
+    <MUI5Picasso>
+      <SvgAbstract16 />
+    </MUI5Picasso>
+  )
+}
+
+export default IconWithPicasso
