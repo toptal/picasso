@@ -19,6 +19,7 @@ concurrency:
 
 env:
   TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+  PARALLEL_GROUPS: 3
 
 jobs:
   build-docker-image:
@@ -48,13 +49,40 @@ jobs:
           environment: temploy
           docker_file: ./Dockerfile
 
+  create-matrix:
+    name: Create:Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          path: ./.github/actions/
+
+      - name: Run Matrix
+        id: set-matrix
+        uses: ./.github/actions/create-matrix
+        with:
+          parallel_groups: ${{ env.PARALLEL_GROUPS }}
+
   tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: PR Checks
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    needs: [create-matrix]
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.create-matrix.outputs.matrix) }}
 
     steps:
       - name: Checkout
@@ -66,7 +94,6 @@ jobs:
           repository: toptal/davinci-github-actions
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           path: ./.github/actions/
-
 
       - uses: ./.github/actions/yarn-install
 
@@ -81,8 +108,11 @@ jobs:
       - name: Type Check
         run: yarn typecheck
 
-      - name: Jest Tests
-        run: yarn test:unit:ci
+      - name: Unit tests
+        env:
+          GROUP_INDEX: ${{ matrix.index }}
+          GROUP_TOTAL: ${{ strategy.job-total }}
+        uses: ./.github/actions/unit-tests
 
       - name: Build packages
         run: yarn build:package
@@ -97,7 +127,7 @@ jobs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Deploy Picasso docs
     runs-on: ubuntu-latest
-    needs: [ build-docker-image ]
+    needs: [build-docker-image]
 
     steps:
       - name: Trigger doc deployment job
@@ -122,7 +152,7 @@ jobs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Old Visual Tests
     runs-on: ubuntu-latest
-    needs: [ build-docker-image ]
+    needs: [build-docker-image]
 
     steps:
       - name: Trigger doc deployment job
@@ -144,4 +174,3 @@ jobs:
               "PR_ID": "${{ env.PR_ID }}"
             }
           job_timeout: '3600'
-

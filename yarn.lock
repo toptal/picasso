@@ -1987,14 +1987,14 @@
     change-case-all "1.0.14"
     tslib "~2.3.0"
 
-"@graphql-codegen/typescript-operations@^2.1.4":
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-operations/-/typescript-operations-2.3.4.tgz#3341f940d7fae0417e5738787fa8793696277d54"
-  integrity sha512-Jnsx+YTCqwq8F0ebyZAJGVtt+PQNuB/0uv9mEMbgcUbo/7w6EX6NZ8JArRuuz8MUb/gbpeO+GkfuNX+F6A8ikw==
+"@graphql-codegen/typescript-operations@^2.3.5":
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-operations/-/typescript-operations-2.3.5.tgz#1e77b96da0949f9e0ecd6054eb28b582936e35e8"
+  integrity sha512-GCZQW+O+cIF62ioPkQMoSJGzjJhtr7ttZGJOAoN/Q/oolG8ph9jNFePKO67tSQ/POAs5HLqfat4kAlCK8OPV3Q==
   dependencies:
     "@graphql-codegen/plugin-helpers" "^2.4.0"
-    "@graphql-codegen/typescript" "^2.4.7"
-    "@graphql-codegen/visitor-plugin-common" "2.7.3"
+    "@graphql-codegen/typescript" "^2.4.8"
+    "@graphql-codegen/visitor-plugin-common" "2.7.4"
     auto-bind "~4.0.0"
     tslib "~2.3.0"
 
@@ -2010,14 +2010,14 @@
     auto-bind "~4.0.0"
     tslib "~2.3.0"
 
-"@graphql-codegen/typescript@^2.2.2", "@graphql-codegen/typescript@^2.4.7":
-  version "2.4.7"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-2.4.7.tgz#e72e87cd47a51b2bc232293762573a86182de469"
-  integrity sha512-1YAK+m9SZRS1Uy8hdXVQAaAG/WF2jdFD76wbMRQ8Lf5e9YbmtJuy1RpI13nZJTZbhFopd9zqoWFJHsU/oy4i7g==
+"@graphql-codegen/typescript@^2.2.2", "@graphql-codegen/typescript@^2.4.7", "@graphql-codegen/typescript@^2.4.8":
+  version "2.4.8"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-2.4.8.tgz#e8110baba9713cde72d57a5c95aa27400363ed9a"
+  integrity sha512-tVsHIkuyenBany7c5IMU1yi4S1er2hgyXJGNY7PcyhpJMx0eChmbqz1VTiZxDEwi8mDBS2mn3TaSJMh6xuJM5g==
   dependencies:
     "@graphql-codegen/plugin-helpers" "^2.4.0"
     "@graphql-codegen/schema-ast" "^2.4.1"
-    "@graphql-codegen/visitor-plugin-common" "2.7.3"
+    "@graphql-codegen/visitor-plugin-common" "2.7.4"
     auto-bind "~4.0.0"
     tslib "~2.3.0"
 
@@ -5246,35 +5246,35 @@
   resolved "https://registry.yarnpkg.com/@toptal/browserslist-config/-/browserslist-config-1.1.0.tgz#4af4c004076c5aa780645fca0baaedff80ad933b"
   integrity sha512-XLGaKMR2datU2rdww98jlQfLmbWsOYaEAuOMTbSXO2Wk2q4nNX9c4qIdYXjnzuDN9IkVVq6NJbC+0g1NZ+CS1w==
 
-"@toptal/davinci-bootstrap@3.1.13":
-  version "3.1.13"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-3.1.13.tgz#97dfd0f3e1446d4fbc8fadee071516d18f2781aa"
-  integrity sha512-HWiBuXXQZhyt/Yl6tFHdOeyi9X3a9aNHT6JzT/k137oR05HfGipg2CIpS9oVqpPGr9Og2RmhsUGlCyxFBXXkHA==
+"@toptal/davinci-bootstrap@3.1.16-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc":
+  version "3.1.16-alpha-chore-add-parallelization-to-unit-tests.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-3.1.16-alpha-chore-add-parallelization-to-unit-tests.2.tgz#e4475aaecab50c62e60efa0f48bc4e0391b14a6d"
+  integrity sha512-xWJ5txXqwSmB4LiySgHIzi+7+zGFgzvc7TRJCmhrfKS+XcUHcEgW1gt7IE3t6NveGZU1AWfIMXPDd9AhBNex9w==
   dependencies:
-    "@toptal/davinci-cli-shared" "1.5.1"
-    "@toptal/davinci-skeleton" "6.0.0"
-    "@toptal/davinci-skeleton-lib" "0.1.1"
-    "@toptal/davinci-skeleton-sub-app" "1.2.0"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc"
+    "@toptal/davinci-skeleton" "6.0.3-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc"
+    "@toptal/davinci-skeleton-lib" "0.1.2-alpha-chore-add-parallelization-to-unit-tests.312+3cff58fc"
+    "@toptal/davinci-skeleton-sub-app" "1.2.1-alpha-chore-add-parallelization-to-unit-tests.18+3cff58fc"
     find-yarn-workspace-root "^2.0.0"
     fs-extra "^9.0.1"
     lodash.kebabcase "^4.1.1"
     ora "^5.4.1"
 
-"@toptal/davinci-ci@1.14.5":
-  version "1.14.5"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-ci/-/davinci-ci-1.14.5.tgz#0744727c6e648f58a4452ffd78f631fd349150f1"
-  integrity sha512-c0tVkFFHkLPxK5/A0cesQgwEpIlwa05/NP9Oo/sDzQ25+gg6ZFOPWqMHz5QTQVo8qZKa8J4enQf3+slMOOQosg==
+"@toptal/davinci-ci@1.14.6-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc":
+  version "1.14.6-alpha-chore-add-parallelization-to-unit-tests.60"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-ci/-/davinci-ci-1.14.6-alpha-chore-add-parallelization-to-unit-tests.60.tgz#a44688f4a836eb73cf67ca2bea5c11c0ff8affce"
+  integrity sha512-jtVFZc3p/5Ee8Pv5R3910IlD8AIkiMElkD8zLYKXedMuQVqjPZjavQemrovHvdIiwpt15Do3nyq4Kkx9O77toA==
   dependencies:
     "@commitlint/cli" "^12.1.4"
     "@commitlint/config-conventional" "^16.0.0"
-    "@toptal/davinci-cli-shared" "1.5.1"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc"
     danger "^10.9.0"
     markdown-table "^2.0.0"
 
-"@toptal/davinci-cli-shared@1.5.1", "@toptal/davinci-cli-shared@^1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-1.5.1.tgz#a41c5a80c64b73ad4d0bbf28788b345c7d698084"
-  integrity sha512-DICvvBoY1tYJ8QfN5hAHll39vlx/1SenC3Bgkq/nEEm850kfUum+0TEXzQvSiGt06amoFfqjM+0TBLr96ummaA==
+"@toptal/davinci-cli-shared@1.5.2-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc":
+  version "1.5.2-alpha-chore-add-parallelization-to-unit-tests.60"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-1.5.2-alpha-chore-add-parallelization-to-unit-tests.60.tgz#b8603685a7f96888c21add6fada38dd247d53e5b"
+  integrity sha512-J2TMY3eFehY7ew9LwiJwnn/vbbmpak6u884CA73nFR1qVbYbI1Nc2jrqPl7Quxwr6PTb8IS022RjY6VdyZvqYg==
   dependencies:
     chalk "^4.1.2"
     execa "^5.1.1"
@@ -5282,25 +5282,33 @@
     js-yaml "^4.1.0"
     vorpal "^1.12.0"
 
-"@toptal/davinci-cloudflare-requests-handler@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.1.tgz#a220538c1bf21cf4ab2e12a6888a47c06a098d07"
-  integrity sha512-gKQYU2NxZJ8VLGETCDzlrOayfuELtxoRKFWPCNW7OXfgfNQlOmtoZVy127ZedEZ3K2gn9mPQdEBGH6SOFSKEIw==
+"@toptal/davinci-cloudflare-requests-handler@0.1.2-alpha-chore-add-parallelization-to-unit-tests.185+3cff58fc":
+  version "0.1.2-alpha-chore-add-parallelization-to-unit-tests.185"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.2-alpha-chore-add-parallelization-to-unit-tests.185.tgz#1cec1379c9f7d7906c784f4c4608e7650c630cf8"
+  integrity sha512-N3lpcppZpmbKFP0W4o9RvufKGKP+hgSZwsGx3aVdvf1FzCcmQaKRqTeiGkmmKaZ5e8mqGtsRH+AJ6zg0gCOUxQ==
 
-"@toptal/davinci-code@1.5.3":
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-1.5.3.tgz#41df823d971ea6e567de22346b4aef00510c1cfb"
-  integrity sha512-VpOnnwChXGPayjQoCHmZhnyom/cO43IncqY/WArPR8U6oaGHLqyWAXXxLAIYh7LV/rIAC4/B7TshJ77RT6iIaQ==
+"@toptal/davinci-code@1.5.4-alpha-chore-add-parallelization-to-unit-tests.53+3cff58fc":
+  version "1.5.4-alpha-chore-add-parallelization-to-unit-tests.53"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-1.5.4-alpha-chore-add-parallelization-to-unit-tests.53.tgz#38d62d3faf4248ee4905dafc3ab1b15041a178c3"
+  integrity sha512-JGYMrl0SF+9DPMNHNOSpOgrWaNamzFQs7Mv/8reBKKoSBAEQXxLsxNqY4O4nRoPh1I8dUXPFZEk6B41bLqY6DQ==
   dependencies:
-    "@toptal/davinci-cli-shared" "1.5.1"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc"
     hygen "^6.1.0"
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-engine@7.0.2":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-7.0.2.tgz#c6200ab3fa56b7776721e1d27fc4516791935e54"
-  integrity sha512-6fImQzoQygusnGCRGqizC2EN5egZVmF7nffk3gpABmOxC3TKZ2w7hR66fNRbiCdpz9ZQCTnT6wOAiHBb92ZQXg==
+"@toptal/davinci-dir-lint@0.1.1-alpha-chore-add-parallelization-to-unit-tests.11+3cff58fc":
+  version "0.1.1-alpha-chore-add-parallelization-to-unit-tests.11"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-dir-lint/-/davinci-dir-lint-0.1.1-alpha-chore-add-parallelization-to-unit-tests.11.tgz#e9570f1b731b831597a4c007ceb0e1f47d1479b9"
+  integrity sha512-h94HUO33cCGhlDiQX0ciYiA2bGZtnrsHtW9FrbYGM+HDKeGKHDfLaLgHApqkGhXszK+bqXkadUfnNU+KeKRSvg==
+  dependencies:
+    globby "^11.0.1"
+    lodash.kebabcase "^4.1.1"
+
+"@toptal/davinci-engine@7.1.2-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc":
+  version "7.1.2-alpha-chore-add-parallelization-to-unit-tests.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-7.1.2-alpha-chore-add-parallelization-to-unit-tests.2.tgz#9deef7ccd07a13d85571d9d284d5caf4dd3645df"
+  integrity sha512-cnwJH8tqnvqXzcTPrn0Y8dtvfT0BM8IVM3qvZsaDHJQf82AjFYfd+GrWbQqurp0z8TlRsGbG6bbGo5Db2Yvkhw==
   dependencies:
     "@babel/cli" "^7.14.3"
     "@babel/core" "^7.14.8"
@@ -5322,9 +5330,9 @@
     "@sentry/cli" "^1.68.0"
     "@size-limit/file" "^5.0.4"
     "@svgr/webpack" "^6.1.2"
-    "@toptal/davinci-cli-shared" "1.5.1"
-    "@toptal/davinci-cloudflare-requests-handler" "0.1.1"
-    "@toptal/davinci-monorepo" "6.5.0"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc"
+    "@toptal/davinci-cloudflare-requests-handler" "0.1.2-alpha-chore-add-parallelization-to-unit-tests.185+3cff58fc"
+    "@toptal/davinci-monorepo" "6.5.1-alpha-chore-add-parallelization-to-unit-tests.50+3cff58fc"
     babel-loader "^8.2.2"
     babel-plugin-graphql-tag "^3.3.0"
     babel-plugin-module-resolver "^4.1.0"
@@ -5352,7 +5360,7 @@
     path-browserify "^1.0.1"
     react-dev-utils "^12.0.0"
     react-hot-loader "^4.13.0"
-    react-refresh "^0.11.0"
+    react-refresh "^0.13.0"
     resolve-ts-aliases "^1.0.1"
     semantic-release "^18.0.0"
     semver "^7.3.2"
@@ -5365,10 +5373,10 @@
     webpack-dev-server "^4.7.3"
     workbox-webpack-plugin "^6.4.2"
 
-"@toptal/davinci-graphql-codegen@0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-graphql-codegen/-/davinci-graphql-codegen-0.2.1.tgz#f530b0ee8ccde742294bfbfef53f6c7433806aaf"
-  integrity sha512-vj9BYONOxNwTnM0/l++m2WSfsRdFXtgE708zoHIN+cUQkZJdmlleUQZtLqopq11cw01XkBDYoC9kIL5pCQDNQA==
+"@toptal/davinci-graphql-codegen@0.2.3-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc":
+  version "0.2.3-alpha-chore-add-parallelization-to-unit-tests.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-graphql-codegen/-/davinci-graphql-codegen-0.2.3-alpha-chore-add-parallelization-to-unit-tests.2.tgz#05481b2ae7a17d9ddf99a031a783fc6376089b69"
+  integrity sha512-B5D7dZJNW2n8MoIudBl90Z+eHQEPzrZgt2/L1qgHdIpsFDswaqEDAzacdm/Kq9you95KgYyAI3eg/qok9c7I7g==
   dependencies:
     "@google-cloud/storage" "^5.16.1"
     "@graphql-codegen/add" "^3.1.0"
@@ -5377,27 +5385,27 @@
     "@graphql-codegen/near-operation-file-preset" "^2.2.8"
     "@graphql-codegen/typed-document-node" "^2.2.7"
     "@graphql-codegen/typescript" "^2.2.2"
-    "@graphql-codegen/typescript-operations" "^2.1.4"
+    "@graphql-codegen/typescript-operations" "^2.3.5"
     "@graphql-codegen/typescript-resolvers" "^2.2.1"
     "@graphql-typed-document-node/core" "^3.1.0"
-    "@toptal/davinci-cli-shared" "^1.5.1"
-    "@toptal/davinci-monorepo" "6.5.0"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc"
+    "@toptal/davinci-monorepo" "6.5.1-alpha-chore-add-parallelization-to-unit-tests.50+3cff58fc"
     chalk "^4.1.2"
     graphql "^15.7.1"
 
-"@toptal/davinci-monorepo@6.5.0":
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-monorepo/-/davinci-monorepo-6.5.0.tgz#29ed66fc3b459e482a3fd8a1caf441d3d01007ce"
-  integrity sha512-r0iakmj1opXvdu7E92hZc1EZLNqvzPSbXSdIH/LNgPVxYY0PP1uJjt/i7r7n/qsvXrN9DUrENoJzvYYLBjHnMA==
+"@toptal/davinci-monorepo@6.5.1-alpha-chore-add-parallelization-to-unit-tests.50+3cff58fc":
+  version "6.5.1-alpha-chore-add-parallelization-to-unit-tests.50"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-monorepo/-/davinci-monorepo-6.5.1-alpha-chore-add-parallelization-to-unit-tests.50.tgz#2126971ea13ae4cc4013970bfea88de6fc7cde96"
+  integrity sha512-u7LsrgQ3Oetj+5M4No6RK83Oy65CmsKKInd6E5m1u20zRmgrBJKbzZhzR/Gty+MnmrQUvJRKaacfNQzo/rSlEw==
   dependencies:
-    "@toptal/davinci-cli-shared" "1.5.1"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc"
     execa "^5.1.1"
     glob "^7.1.7"
 
-"@toptal/davinci-qa@6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-6.0.1.tgz#e6f8f1b833f1057fae6ec698b8f94e920baea7e4"
-  integrity sha512-WTNpA05mg0xlhcyIHd4QGFJRL94USfM0qjInRl1KSVii/aOTZoENuQtExICAmeolslPtAdMnT54BOkvLoHjX+Q==
+"@toptal/davinci-qa@7.0.1-alpha-chore-add-parallelization-to-unit-tests.9+3cff58fc":
+  version "7.0.1-alpha-chore-add-parallelization-to-unit-tests.9"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-7.0.1-alpha-chore-add-parallelization-to-unit-tests.9.tgz#e8da2261922398f7e57e1b756536b9266b8362a1"
+  integrity sha512-92DdYooBBNvg8xYC1HxPiyHpAYxjAsnRlR2bJWNcj70kSyXO/aSULrarMo1x1679xprHvEcvPk5NsBePkV809Q==
   dependencies:
     "@babel/core" "^7.14.8"
     "@babel/preset-env" "^7.16.4"
@@ -5407,7 +5415,7 @@
     "@cypress/webpack-preprocessor" "^5.7.0"
     "@testing-library/jest-dom" "^5.14.1"
     "@testing-library/react" "^12.1.2"
-    "@toptal/davinci-cli-shared" "1.5.1"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc"
     "@types/jest" "^27.4.1"
     babel-jest "^27.5.1"
     cypress "^9.4.1"
@@ -5423,29 +5431,30 @@
     matchmedia-polyfill "^0.3.2"
     semver "^7.3.2"
 
-"@toptal/davinci-skeleton-lib@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton-lib/-/davinci-skeleton-lib-0.1.1.tgz#db38430f51443c05f4e058820986924b0fc0bf48"
-  integrity sha512-XTEfsVmKyzwNACjIcuNITs4xHXQzB95Zfc0dYRX4r7IPK7CL2rmOOkaAaxqvF9g56V+4nZ2/oyAw1GP1nQtb+A==
+"@toptal/davinci-skeleton-lib@0.1.2-alpha-chore-add-parallelization-to-unit-tests.312+3cff58fc":
+  version "0.1.2-alpha-chore-add-parallelization-to-unit-tests.312"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton-lib/-/davinci-skeleton-lib-0.1.2-alpha-chore-add-parallelization-to-unit-tests.312.tgz#c8c4151b2902f22433aa1bccca750a79407be523"
+  integrity sha512-9Cr9VYJdCiEQWKRIpRN8gUDL3OflXCtHRq8oFwDTqu17Vh0uSeTKYiLwwlRiPceCBKoJ5q3tVkleq2Z6H54giw==
 
-"@toptal/davinci-skeleton-sub-app@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton-sub-app/-/davinci-skeleton-sub-app-1.2.0.tgz#d6710691f9d2a586c78a42e3a9aad6058414569b"
-  integrity sha512-h9aXK3NUOIf/ohaDvJIx/9zXMp0Cio5c5WMIq6IZttW/kOctisywvvVPE0paZBz0OvzNAyatS7rQyUc4rlp7Qw==
+"@toptal/davinci-skeleton-sub-app@1.2.1-alpha-chore-add-parallelization-to-unit-tests.18+3cff58fc":
+  version "1.2.1-alpha-chore-add-parallelization-to-unit-tests.18"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton-sub-app/-/davinci-skeleton-sub-app-1.2.1-alpha-chore-add-parallelization-to-unit-tests.18.tgz#9bcf4d708284eb89ab8c3c029b8a8055d63d5b22"
+  integrity sha512-z1zoEZgDE/Ne/NPwpcsWsln4/J6nHnfSDERLA3yLiVTcaS17fS1dKvLVdZpQmXvALQSpDb68e+vleVSdjseY+A==
 
-"@toptal/davinci-skeleton@6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-6.0.0.tgz#5b740a148a41d3dc4ccaa1470d9c228d2031e5f0"
-  integrity sha512-HgJhwiNeqDW8O7He+m8+kfDSL+ThGq5zPrnvD/PNqpUCXZVeL18eR4CAin98vArw29ucdLuizF4462Qf+lxjxQ==
+"@toptal/davinci-skeleton@6.0.3-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc":
+  version "6.0.3-alpha-chore-add-parallelization-to-unit-tests.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-6.0.3-alpha-chore-add-parallelization-to-unit-tests.2.tgz#ac074ac17fa5e7b6bdc983b75175f1fa80fba130"
+  integrity sha512-4Qcpi5xcDrn6NWTr61p2C3+W4caFagfeeURffcv+Zz+7bwSiwYfPAIck+B66zFn0BGGi4M1iwFDEyfiI9KguPw==
 
-"@toptal/davinci-syntax@13.0.0":
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-13.0.0.tgz#ea3957f2e6c5e626a8b03a29ae21b471c5dec977"
-  integrity sha512-yWS3e451A192mUjWy5sVzGXfTDr8rOiX0Yy5Tx4/0u079b4AATLbi8cUnmdXFblxn1PX/2/wXcMcKj/1OC55Vw==
+"@toptal/davinci-syntax@13.1.2-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc":
+  version "13.1.2-alpha-chore-add-parallelization-to-unit-tests.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-13.1.2-alpha-chore-add-parallelization-to-unit-tests.2.tgz#3bc0aa5a935fcfd4f83870d29dd7889fc236612e"
+  integrity sha512-45AM0mWPnF3xmGHk3ilvpsyTxqRR9KyHVynqdCKmKNbCeJHQjV/rvgc28LQNTr61/3hCT2LUKnSpYI48tYwmig==
   dependencies:
     "@stylelint/postcss-css-in-js" "^0.37.2"
-    "@toptal/davinci-cli-shared" "1.5.1"
-    "@toptal/eslint-plugin-davinci" "5.0.0"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc"
+    "@toptal/davinci-dir-lint" "0.1.1-alpha-chore-add-parallelization-to-unit-tests.11+3cff58fc"
+    "@toptal/eslint-plugin-davinci" "5.0.1-alpha-chore-add-parallelization-to-unit-tests.38+3cff58fc"
     "@typescript-eslint/eslint-plugin" "^5.19.0"
     "@typescript-eslint/parser" "^5.19.0"
     eslint "^8.13.0"
@@ -5466,7 +5475,7 @@
     eslint-plugin-todo-plz "^1.2.1"
     eslint-plugin-unused-imports "2.0.0"
     husky "^7.0.4"
-    lint-staged "^12.3.7"
+    lint-staged "^12.4.1"
     postcss-syntax "^0.36.2"
     prettier "^2.3.2"
     prettier-config-standard "^4.0.0"
@@ -5475,38 +5484,38 @@
     stylelint-config-styled-components "^0.1.1"
     stylelint-processor-styled-components "^1.10.0"
 
-"@toptal/davinci-workflow@1.7.6":
-  version "1.7.6"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-workflow/-/davinci-workflow-1.7.6.tgz#453b265e46c39d9927266afe34bf61cf7e89c762"
-  integrity sha512-lPsv6F+8s7OZavLRs52hrOdJR+ddApbMyG+BPezE5B2Rf7jtGPw9nrWc6J52nUF6ilDkk78eNgGDgBJNmCGtSA==
+"@toptal/davinci-workflow@1.7.9-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc":
+  version "1.7.9-alpha-chore-add-parallelization-to-unit-tests.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-workflow/-/davinci-workflow-1.7.9-alpha-chore-add-parallelization-to-unit-tests.2.tgz#14030730ced05b03e08b9b9068ff8643bea6e3ee"
+  integrity sha512-ENKIzl8f4nNttjATMCzF2ZkNAvJYymTFsWygB5Neahd9bs4m+cYwSf37QtDkwEXPPAK/ftJ5bMCBIFJ33eMDtA==
   dependencies:
-    "@toptal/davinci-cli-shared" "1.5.1"
-    "@toptal/davinci-skeleton" "6.0.0"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc"
+    "@toptal/davinci-skeleton" "6.0.3-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc"
     chalk "^4.1.2"
     fs-extra "^9.0.1"
     lodash.kebabcase "^4.1.1"
     ora "^5.4.1"
 
-"@toptal/davinci@^14.0.0":
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-14.0.0.tgz#0a3a32fbac2e94dac588dba6c00c660b21d58e99"
-  integrity sha512-vOjwzGnTOBlwQ+BQygmNjrr7j9uPWaoqoA3WcCjCq297S7XqvJqVTtX+CX97moEjmUO1+QM1CdiV9fnsLBlnIg==
+"@toptal/davinci@14.2.2-alpha-chore-add-parallelization-to-unit-tests.2":
+  version "14.2.2-alpha-chore-add-parallelization-to-unit-tests.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-14.2.2-alpha-chore-add-parallelization-to-unit-tests.2.tgz#8faa429b23a703258895f1bf1ddc0b97e81d98d6"
+  integrity sha512-4ua65QyBhzsthM4w/xbfxCLOos8rmRspHZ4NDUoKAclG1tV73G+u3E6DVHV5CvE7/03BS+KiV+1lAQyKUl2X3Q==
   dependencies:
-    "@toptal/davinci-bootstrap" "3.1.13"
-    "@toptal/davinci-ci" "1.14.5"
-    "@toptal/davinci-cli-shared" "1.5.1"
-    "@toptal/davinci-code" "1.5.3"
-    "@toptal/davinci-engine" "7.0.2"
-    "@toptal/davinci-graphql-codegen" "0.2.1"
-    "@toptal/davinci-monorepo" "6.5.0"
-    "@toptal/davinci-qa" "6.0.1"
-    "@toptal/davinci-syntax" "13.0.0"
-    "@toptal/davinci-workflow" "1.7.6"
+    "@toptal/davinci-bootstrap" "3.1.16-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc"
+    "@toptal/davinci-ci" "1.14.6-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-chore-add-parallelization-to-unit-tests.60+3cff58fc"
+    "@toptal/davinci-code" "1.5.4-alpha-chore-add-parallelization-to-unit-tests.53+3cff58fc"
+    "@toptal/davinci-engine" "7.1.2-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc"
+    "@toptal/davinci-graphql-codegen" "0.2.3-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc"
+    "@toptal/davinci-monorepo" "6.5.1-alpha-chore-add-parallelization-to-unit-tests.50+3cff58fc"
+    "@toptal/davinci-qa" "7.0.1-alpha-chore-add-parallelization-to-unit-tests.9+3cff58fc"
+    "@toptal/davinci-syntax" "13.1.2-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc"
+    "@toptal/davinci-workflow" "1.7.9-alpha-chore-add-parallelization-to-unit-tests.2+3cff58fc"
 
-"@toptal/eslint-plugin-davinci@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@toptal/eslint-plugin-davinci/-/eslint-plugin-davinci-5.0.0.tgz#d780e647adf3630122154d40e3d6e3b1d5ac0a0e"
-  integrity sha512-zJxU15k7gtmywXK2ZAiIRIuRmKcCJblmK4sZQJhoApV3BTmf1RwczjvUsbqCH7MDP5sLcuuoIKqZKjwSd8WVGA==
+"@toptal/eslint-plugin-davinci@5.0.1-alpha-chore-add-parallelization-to-unit-tests.38+3cff58fc":
+  version "5.0.1-alpha-chore-add-parallelization-to-unit-tests.38"
+  resolved "https://registry.yarnpkg.com/@toptal/eslint-plugin-davinci/-/eslint-plugin-davinci-5.0.1-alpha-chore-add-parallelization-to-unit-tests.38.tgz#d9a1b54c011058abfc7e99d1d037f48ef68eb176"
+  integrity sha512-QDtyvB5QwD0CyfvyJGaoS1ijlzDBYstJ+UFlv1YTge6WIPdnTamPpB1yw+PNeSKgFKYlev27ZJfCNJlwoMrp/w==
   dependencies:
     eslint "^8.13.0"
     eslint-plugin-sort-keys-fix "^1.1.2"
@@ -16960,10 +16969,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-lint-staged@^12.3.7:
-  version "12.3.8"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-12.3.8.tgz#ee3fe2e16c9d76f99d8348072900b017d6d76901"
-  integrity sha512-0+UpNaqIwKRSGAFOCcpuYNIv/j5QGVC+xUVvmSdxHO+IfIGoHbFLo3XcPmV/LLnsVj5EAncNHVtlITSoY5qWGQ==
+lint-staged@^12.4.1:
+  version "12.4.1"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-12.4.1.tgz#63fa27bfc8a33515f6902f63f6670864f1fb233c"
+  integrity sha512-PTXgzpflrQ+pODQTG116QNB+Q6uUTDg5B5HqGvNhoQSGt8Qy+MA/6zSnR8n38+sxP5TapzeQGTvoKni0KRS8Vg==
   dependencies:
     cli-truncate "^3.1.0"
     colorette "^2.0.16"
@@ -21223,6 +21232,11 @@ react-refresh@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.11.0.tgz#77198b944733f0f1f1a90e791de4541f9f074046"
   integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
+
+react-refresh@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.13.0.tgz#cbd01a4482a177a5da8d44c9755ebb1f26d5a1c1"
+  integrity sha512-XP8A9BT0CpRBD+NYLLeIhld/RqG9+gktUjW1FkE+Vm7OCinbG1SshcK5tb9ls4kzvjZr9mOQc7HYgBngEyPAXg==
 
 react-resize-detector@^5.2.0:
   version "5.2.0"
