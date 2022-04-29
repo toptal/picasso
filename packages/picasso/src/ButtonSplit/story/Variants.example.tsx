@@ -20,6 +20,9 @@ const Example = () => {
       <Button.Split menu={menu} variant='secondary'>
         Secondary
       </Button.Split>
+      <Button.Split menu={menu} variant='positive'>
+        Positive
+      </Button.Split>
     </Container>
   )
 }

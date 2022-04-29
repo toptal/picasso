@@ -20,7 +20,7 @@ export interface Props
   /** A button can have different sizes */
   size?: ButtonProps['size']
   /** The variant to use */
-  variant?: 'primary' | 'secondary'
+  variant?: 'positive' | 'primary' | 'secondary'
   /** Is component disaled or not */
   disabled?: boolean
   // Internal props
