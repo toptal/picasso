@@ -33,8 +33,10 @@ const OPTIONS = [
   { value: '10', text: 'Option 10' },
   { value: '11', text: 'Option 11' },
   { value: '12', text: 'Option 12' },
+  { value: '21', text: 'Option 21' },
   { value: '13', text: 'Option 13' },
-  { value: '14', text: 'Option 14' }
+  { value: '14', text: 'Option 14' },
+  { value: '15', text: 'Option 15' }
 ]
 
 export default Example
