@@ -64,9 +64,10 @@ const ScrollMenu = (props: Props) => {
   const classes = useStyles()
   const menuRef = useRef<HTMLDivElement>(null)
 
-  useIsomorphicLayoutEffect(() => scrollToSelection(menuRef, selectedIndex), [
-    selectedIndex
-  ])
+  useIsomorphicLayoutEffect(
+    () => scrollToSelection(menuRef, selectedIndex),
+    [selectedIndex]
+  )
 
   return (
     <Menu
@@ -75,13 +76,17 @@ const ScrollMenu = (props: Props) => {
       role={role}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      onMouseDown={e => {
-        // ScrollMenu is used in dropdowns. Prevents blur --> dropdown close when scrolled.
-        e.preventDefault()
-      }}
     >
       {fixedHeader}
-      <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
+      <div
+        ref={menuRef}
+        className={classes.scrollView}
+        onBlur={onBlur}
+        onMouseDown={e => {
+          // ScrollMenu is used in dropdowns. Prevents blur --> dropdown close when scrolled.
+          e.preventDefault()
+        }}
+      >
         {children}
       </div>
       {fixedFooter}
