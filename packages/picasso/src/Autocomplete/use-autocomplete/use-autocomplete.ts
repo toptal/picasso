@@ -116,7 +116,21 @@ export const useAutocomplete = ({
     INITIAL_HIGHLIGHT_INDEX
   )
 
-  useHandleClickOutside({ ref: inputWrapperRef, handler: () => setOpen(false) })
+  useHandleClickOutside({
+    ref: inputWrapperRef,
+    handler: event => {
+      const isClickInOptionsList =
+        optionsListRef &&
+        optionsListRef.current &&
+        optionsListRef.current.contains(event.target as Node)
+
+      if (isClickInOptionsList) {
+        return
+      }
+
+      setOpen(false)
+    }
+  })
 
   const selectedIndex = useMemo(
     () =>
