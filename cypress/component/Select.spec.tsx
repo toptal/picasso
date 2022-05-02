@@ -5,7 +5,8 @@ import {
   Form,
   Container,
   SelectProps,
-  Settings16
+  Settings16,
+  Drawer
 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop, palette } from '@toptal/picasso/utils'
@@ -25,6 +26,7 @@ const TestSelect = ({
   native = false,
   status,
   disabled = false,
+  disablePortal,
   loading = false,
   enableReset = false,
   searchThreshold,
@@ -45,6 +47,7 @@ const TestSelect = ({
     native={native}
     status={status}
     disabled={disabled}
+    disablePortal={disablePortal}
     loading={loading}
     enableReset={enableReset}
     menuWidth={menuWidth}
@@ -162,7 +165,8 @@ const pressEnter = () => {
 
 const getNativeSelect = () => cy.get('select')
 
-// eslint-disable-next-line max-lines-per-function
+/* eslint-disable max-lines-per-function */
+/* eslint-disable max-statements */
 describe('Select', () => {
   it('renders', () => {
     mount(
@@ -430,9 +434,26 @@ describe('Select', () => {
     getOption(4).should('have.attr', 'data-highlighted').and('match', /true/)
   })
 
-  // describe('when rendered in Drawer with search behaviour', () => {
-  //   it('is possible to focus the search input', () => {
+  describe('when rendered in Drawer with search behaviour', () => {
+    it('is possible to focus the search input by click', () => {
+      mount(
+        <TestingPicasso>
+          <Drawer open>
+            <Form>
+              <Form.Field>
+                <TestSelect searchThreshold={-1} disablePortal />
+              </Form.Field>
+            </Form>
+          </Drawer>
+        </TestingPicasso>
+      )
 
-  //   })
-  // })
+      openSelect()
+
+      cy.get('[role="tooltip"]').find('input').as('searchInput')
+
+      cy.get('@searchInput').should('be.visible')
+      cy.get('@searchInput').click().should('have.focus')
+    })
+  })
 })

@@ -5,5 +5,4 @@
 ---
 ### Select
 
-- introduce new prop `disablePortal`. Needed in some edgecases,
-  for example when used in Drawer with search behaviour
+- introduce new prop `disablePortal` to allow using search input inside Drawer

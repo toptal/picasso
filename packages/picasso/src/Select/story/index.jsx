@@ -48,7 +48,7 @@ page
   .addExample('Select/story/SearchBehavior.example.tsx', {
     title: 'Search behavior',
     description: `Search is enabled when the number of options is greater or equal to \`searchThreshold\`.
-      ⚠️ When used in Drawer, we need to use \`disablePortal\` to search input work correctly.`
+      ⚠️ When used in Drawer, we need to use \`disablePortal\` to enable the mouse focus of the search input.`
   }) // picasso-skip-visuals
   .addExample('Select/story/Limit.example.tsx', {
     title: 'Limit',
