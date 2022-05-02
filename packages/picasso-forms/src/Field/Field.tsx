@@ -73,6 +73,8 @@ const getValidators = (required: boolean, validate?: any) => {
   return validate
 }
 
+const isFirefox = detect()?.name === 'firefox'
+
 const Field = <
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue extends ValueType = TWrappedComponentProps['value']
@@ -147,7 +149,7 @@ const Field = <
     ...input,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
-      if (detect()?.name === 'firefox' && event?.target) {
+      if (isFirefox && event?.target) {
         /**
          * The fix for autofill in Firefox, it's taken from:
          * https://github.com/facebook/react/issues/18986#issuecomment-636354428
