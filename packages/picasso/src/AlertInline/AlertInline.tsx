@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { BaseProps, ColorType, SizeType } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core'
+import { capitalize, makeStyles, Theme } from '@material-ui/core'
 
 import Container, { VariantType as ContainerVariants } from '../Container'
 import Typography, { TypographyProps } from '../Typography'
@@ -89,7 +89,7 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
         right={iconPadding}
         flex
         alignItems='center'
-        className={classes.iconWrapper}
+        className={classes[`iconWrapper${capitalize(alertVariant!)}`]}
       >
         {icon}
       </Container>
