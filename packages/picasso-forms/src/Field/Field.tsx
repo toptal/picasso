@@ -158,7 +158,7 @@ const Field = <
         Object.defineProperty(event.target, 'defaultValue', {
           configurable: true,
           get() {
-            return ''
+            return defaultValue ?? ''
           },
           set() {}
         })
