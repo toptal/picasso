@@ -12,6 +12,7 @@ import {
 import { Item } from '@toptal/picasso/Autocomplete'
 import { FileUpload } from '@toptal/picasso/FileInput'
 import { TextLabelProps } from '@toptal/picasso-shared'
+import { detect } from 'detect-browser'
 
 import { useFormConfig } from '../FormConfig'
 import { validators, useFieldValidation } from '../utils'
@@ -146,7 +147,7 @@ const Field = <
     ...input,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
-      if (event?.target) {
+      if (detect()?.name === 'firefox' && event?.target) {
         /**
          * The fix for autofill in Firefox, it's taken from:
          * https://github.com/facebook/react/issues/18986#issuecomment-636354428
