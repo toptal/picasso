@@ -176,6 +176,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     })
 
     const inputWrapperRef = useRef<HTMLDivElement>(null)
+    const inputRef = useRef<HTMLInputElement | null>(null)
     const optionsListRef = useRef<HTMLUListElement>(null)
     const classes = useStyles()
 
@@ -215,7 +216,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onBlur,
       enableReset,
       showOtherOption,
-      inputWrapperRef,
+      inputRef,
       optionsListRef
     })
 
@@ -301,7 +302,14 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             disabled={disabled}
             defaultValue={undefined}
             value={value}
-            ref={ref}
+            ref={node => {
+              inputRef.current = node
+              if (typeof ref === 'function') {
+                ref(node)
+              } else if (ref?.current) {
+                ref.current = node
+              }
+            }}
             placeholder={placeholder}
             inputProps={rest.inputProps}
             endAdornment={loading ? loadingComponent : endAdornment}

@@ -11,7 +11,6 @@ import {
 } from 'react'
 
 import { Item, ChangedOptions } from '../types'
-import { useHandleClickOutside } from '../../utils'
 
 export const EMPTY_INPUT_VALUE = ''
 export const INITIAL_HIGHLIGHT_INDEX = 0
@@ -91,7 +90,7 @@ export interface Props {
   enableReset?: boolean
   showOtherOption?: boolean
   disabled?: boolean
-  inputWrapperRef?: React.RefObject<HTMLDivElement>
+  inputRef?: React.RefObject<HTMLInputElement>
   optionsListRef?: React.RefObject<HTMLUListElement>
 }
 
@@ -108,29 +107,13 @@ export const useAutocomplete = ({
   enableReset,
   showOtherOption,
   disabled = false,
-  inputWrapperRef,
+  inputRef,
   optionsListRef
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number>(
     INITIAL_HIGHLIGHT_INDEX
   )
-
-  useHandleClickOutside({
-    ref: inputWrapperRef,
-    handler: event => {
-      const isClickInOptionsList =
-        optionsListRef &&
-        optionsListRef.current &&
-        optionsListRef.current.contains(event.target as Node)
-
-      if (isClickInOptionsList) {
-        return
-      }
-
-      setOpen(false)
-    }
-  })
 
   const selectedIndex = useMemo(
     () =>
@@ -222,6 +205,11 @@ export const useAutocomplete = ({
     )
 
     if (isBlurTriggeredByUsingScrollbar) {
+      // Keep focus inside the input
+      setTimeout(() => {
+        inputRef?.current?.focus()
+      }, 0)
+
       return
     }
 
