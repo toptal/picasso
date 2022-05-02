@@ -13,7 +13,7 @@ exports[`Alert renders 1`] = `
         class="PicassoContainer-flex PicassoContainer-inline PicassoAlertInline-root"
       >
         <div
-          class="PicassoContainer-rightsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-rightsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoAlertInline-iconWrapperBlock"
         >
           <svg
             class="PicassoSvgExclamation16-root PicassoSvgExclamation16-yellow"
