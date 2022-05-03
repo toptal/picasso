@@ -28,15 +28,8 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 const CheckboxGroup = (props: Props) => {
-  const {
-    horizontal,
-    spacing,
-    small,
-    medium,
-    large,
-    className,
-    ...rest
-  } = props
+  const { horizontal, spacing, small, medium, large, className, ...rest } =
+    props
 
   const { grid: gridClass, gridItem: gridItemClass, ...classes } = useStyles()
   const { spacing: themeSpacing } = useTheme()

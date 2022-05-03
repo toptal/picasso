@@ -30,14 +30,8 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
   function ApplicationUpdateNotification(props, ref) {
-    const {
-      title,
-      description,
-      onReloadClick,
-      onClose,
-      testIds,
-      ...rest
-    } = props
+    const { title, description, onReloadClick, onClose, testIds, ...rest } =
+      props
     const classes = useStyles()
 
     const notification = (

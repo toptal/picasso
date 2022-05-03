@@ -13,8 +13,9 @@ import { RequiredDecoration } from '../FormLabel'
 import styles from './styles'
 import Form from '../Form'
 
-export type FormControlLabelAttributesType = LabelHTMLAttributes<HTMLLabelElement> &
-  Pick<FormControlLabelProps, 'onChange'>
+export type FormControlLabelAttributesType =
+  LabelHTMLAttributes<HTMLLabelElement> &
+    Pick<FormControlLabelProps, 'onChange'>
 
 export interface Props
   extends StandardProps,

@@ -45,8 +45,8 @@ export type IconPositionType = 'left' | 'right'
 
 export interface Props
   extends StandardProps,
-  TextLabelProps,
-  ButtonOrAnchorProps {
+    TextLabelProps,
+    ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */

@@ -32,15 +32,13 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
 
     const classes = useStyles()
 
-    const {
-      variant,
-      expandedItemKey,
-      setExpandedItemKey
-    } = useContext<SidebarContextProps>(SidebarContext)
+    const { variant, expandedItemKey, setExpandedItemKey } =
+      useContext<SidebarContextProps>(SidebarContext)
 
-    const expandSidebarItem = useCallback(index => setExpandedItemKey(index), [
-      setExpandedItemKey
-    ])
+    const expandSidebarItem = useCallback(
+      index => setExpandedItemKey(index),
+      [setExpandedItemKey]
+    )
 
     useEffect(() => {
       const hasSelectedItem = React.Children.map(children, child => {

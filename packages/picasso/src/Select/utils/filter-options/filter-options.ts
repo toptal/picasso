@@ -4,7 +4,7 @@ import { isSubstring } from '../../../utils'
 
 interface Props {
   options: Option[] | OptionGroups
-  filterOptionsValue: string,
+  filterOptionsValue: string
   getDisplayValue: (option: Option | null) => string
 }
 
@@ -17,18 +17,19 @@ const filterOptions = ({
     return filterFlatOptions({ options, filterOptionsValue, getDisplayValue })
   }
 
-  return Object.keys(options)
-    .reduce((result: OptionGroups, group) => {
-      const filteredFlatOptions = filterFlatOptions(
-        { options: options[group], filterOptionsValue, getDisplayValue }
-      )
+  return Object.keys(options).reduce((result: OptionGroups, group) => {
+    const filteredFlatOptions = filterFlatOptions({
+      options: options[group],
+      filterOptionsValue,
+      getDisplayValue
+    })
 
-      if (filteredFlatOptions.length > 0) {
-        result[group] = filteredFlatOptions
-      }
+    if (filteredFlatOptions.length > 0) {
+      result[group] = filteredFlatOptions
+    }
 
-      return result
-    }, {})
+    return result
+  }, {})
 }
 
 const filterFlatOptions = ({

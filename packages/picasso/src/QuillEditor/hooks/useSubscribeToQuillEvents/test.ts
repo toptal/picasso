@@ -8,10 +8,10 @@ describe('useSubscribeToQuillEvents', () => {
     const onTextChange = jest.fn
     const onSelectionChange = jest.fn
     const onTextLengthChange = jest.fn
-    const quill = ({
+    const quill = {
       on: jest.fn(),
       off: jest.fn()
-    } as unknown) as Quill
+    } as unknown as Quill
 
     const { unmount } = renderHook(() =>
       useSubscribeToQuillEvents({

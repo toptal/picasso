@@ -7,9 +7,9 @@ describe('useDisabledEditor', () => {
   describe('when disabled is false', () => {
     it('does not disable the editor', () => {
       const disabled = false
-      const quill = ({
+      const quill = {
         enable: jest.fn()
-      } as unknown) as Quill
+      } as unknown as Quill
 
       renderHook(() => useDisabledEditor({ disabled, quill }))
 
@@ -20,9 +20,9 @@ describe('useDisabledEditor', () => {
   describe('when disabled is true', () => {
     it('does disable the editor', () => {
       const disabled = true
-      const quill = ({
+      const quill = {
         enable: jest.fn()
-      } as unknown) as Quill
+      } as unknown as Quill
 
       renderHook(() => useDisabledEditor({ disabled, quill }))
 

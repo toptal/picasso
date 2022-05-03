@@ -33,6 +33,6 @@ export const documentable = <T, P>(component: T): Component<T, P> => component
 export const forwardRef = <P, T>(
   component: (props: P, ref: React.Ref<T>) => React.ReactElement | null
 ) =>
-  (React.forwardRef(component) as unknown) as (
+  React.forwardRef(component) as unknown as (
     props: P & { ref?: React.Ref<T> }
   ) => React.ReactElement | null

@@ -7,10 +7,7 @@ const { env } = process
 const SPECIAL_CHARS_OR_SPACES = /[^\w]+/gi
 
 const normalize = name =>
-  name
-    .replace(SPECIAL_CHARS_OR_SPACES, '-')
-    .trim()
-    .toLowerCase()
+  name.replace(SPECIAL_CHARS_OR_SPACES, '-').trim().toLowerCase()
 
 const createSnapshotName = name => {
   const [component, test] = parseHumanName(name)

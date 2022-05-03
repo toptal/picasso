@@ -20,7 +20,8 @@ page
           enums: ['scroll', 'visible']
         },
         defaultValue: 'scroll',
-        description: "Sets the desired behavior for an element's overflow. When `scroll` it limits max-height of a content of the dropdown. When `visible` it displays as much content as it possible without vertical scrollbar."
+        description:
+          "Sets the desired behavior for an element's overflow. When `scroll` it limits max-height of a content of the dropdown. When `visible` it displays as much content as it possible without vertical scrollbar."
       }
     }
   })

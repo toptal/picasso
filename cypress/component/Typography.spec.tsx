@@ -59,15 +59,17 @@ describe('Typography', () => {
   it('renders colored', () => {
     mount(
       <TestingPicasso>
-        {([
-          'green',
-          'red',
-          'yellow',
-          'light-grey',
-          'grey',
-          'dark-grey',
-          'black'
-        ] as const).map(color => (
+        {(
+          [
+            'green',
+            'red',
+            'yellow',
+            'light-grey',
+            'grey',
+            'dark-grey',
+            'black'
+          ] as const
+        ).map(color => (
           <Typography key={color} color={color}>
             Text
           </Typography>
