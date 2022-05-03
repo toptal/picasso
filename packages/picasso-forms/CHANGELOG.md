@@ -1,5 +1,15 @@
 # Change Log
 
+## 42.2.1
+
+### Patch Changes
+
+- [#2698](https://github.com/toptal/picasso/pull/2698) [`2f85d8fb`](https://github.com/toptal/picasso/commit/2f85d8fb854c409f474217ca41db3dda0a9bfe84) Thanks [@pudek357](https://github.com/pudek357)! - ---
+
+  ### Field
+
+  - Make autofill work for controlled input in Firefox
+
 ## 42.2.0
 
 ### Minor Changes
