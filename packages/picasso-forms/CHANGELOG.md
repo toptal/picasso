@@ -1,5 +1,13 @@
 # Change Log
 
+## 42.2.2
+
+### Patch Changes
+
+- [#2715](https://github.com/toptal/picasso/pull/2715) [`a365d67d`](https://github.com/toptal/picasso/commit/a365d67d8d27e2f861a4f7d89e31ef4614e41706) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  - Applied prettier formatting to the whole codebase
+
 ## 42.2.1
 
 ### Patch Changes
