@@ -66,10 +66,6 @@ export default ({ palette, sizes }: Theme) =>
       }
     },
     selected: {},
-    label: {},
-    withIcon: {
-      marginLeft: '0.875em'
-    },
     collapsibleWrapper: {
       padding: '0 0 0 1rem',
       margin: '0 1rem'
@@ -99,11 +95,5 @@ export default ({ palette, sizes }: Theme) =>
     collapsible: {
       margin: 0,
       padding: 0
-    },
-    staticBadge: {
-      marginLeft: '1rem'
-    },
-    hiddenContent: {
-      visibility: 'hidden'
     }
   })

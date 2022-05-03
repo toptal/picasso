@@ -22,8 +22,8 @@ import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../PageSidebar/types'
 import noop from '../utils/noop'
-import { ItemContent } from './ItemContent'
 import { BadgeProps } from '../Badge'
+import SidebarItemContent from '../SidebarItemContent'
 
 export const SubMenuContext = React.createContext<{
   parentSidebarItemIndex?: number | null
@@ -44,7 +44,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   menu?: ReactElement
   /** Component name to render the menu item as */
   as?: ElementType<MenuItemProps>
-  badgeProps?: Omit<BadgeProps, 'size' | 'children'>
+  badgeProps?: Omit<BadgeProps, 'size' | 'children' | 'variant'>
   variant?: VariantType
   isExpanded?: boolean
   expand?: (index: number | null) => void
@@ -53,8 +53,8 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Callback when item is hovered */
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
-  /** Indicates content is visible */
-  isContentVisible?: boolean
+  /** Should it be shown as a compact icon */
+  compact?: boolean
   testIds?: {
     content?: string
   }
@@ -80,8 +80,6 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       selected,
       style,
       variant = 'light',
-      isContentVisible,
-      testIds,
       ...rest
     } = props
     const classes = useStyles()
@@ -146,12 +144,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
         variant={variant}
         nonSelectable
       >
-        <ItemContent
-          {...props}
-          testIds={testIds}
-          classes={classes}
-          isContentVisible={isContentVisible}
-        />
+        <SidebarItemContent {...props} />
       </MenuItem>
     )
 
@@ -221,7 +214,7 @@ SidebarItem.defaultProps = {
   onClick: noop,
   selected: false,
   expand: noop,
-  isContentVisible: true
+  compact: false
 }
 
 SidebarItem.displayName = 'SidebarItem'
