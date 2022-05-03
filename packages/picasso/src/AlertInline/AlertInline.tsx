@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { BaseProps, ColorType, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, ColorType } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core'
 
 import Container, { VariantType as ContainerVariants } from '../Container'
@@ -17,7 +17,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
   /** Style variant of Alert */
   variant?: VariantType
-  iconPadding?: SizeType<'xsmall' | 'small'> // undocumented prop, only for internal usage
 }
 
 const icons = {
@@ -36,7 +35,7 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   ref
 ) {
   const classes = useStyles()
-  const { variant, children, className, iconPadding } = props
+  const { variant, children, className } = props
   const icon = icons[variant!]
 
   let typographyColor = variant as ColorType
@@ -49,7 +48,7 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   return (
     <Container inline flex ref={ref} className={classes.root}>
       <Container
-        right={iconPadding}
+        right='xsmall'
         flex
         alignItems='center'
         className={classes.iconWrapper}
@@ -70,8 +69,7 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
 })
 
 AlertInline.defaultProps = {
-  variant: 'yellow',
-  iconPadding: 'xsmall'
+  variant: 'yellow'
 }
 
 AlertInline.displayName = 'AlertInline'

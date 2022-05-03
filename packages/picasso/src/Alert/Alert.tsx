@@ -1,6 +1,6 @@
 import React, { forwardRef, MouseEvent, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Container, { VariantType as ContainerVariants } from '../Container'
 import AlertInline from '../AlertInline'
@@ -21,7 +21,6 @@ export interface Props extends BaseProps {
   variant?: VariantType
   /** Callback invoked when close is clicked */
   onClose?: (event: MouseEvent<HTMLButtonElement>) => void
-  iconPadding?: SizeType<'xsmall' | 'small'> // undocumented prop, only for internal usage
 }
 
 const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
@@ -51,7 +50,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
   ref
 ) {
   const classes = useStyles()
-  const { children, variant, onClose, iconPadding, className } = props
+  const { children, variant, onClose, className } = props
   const icon = icons[variant!]
 
   return (
@@ -67,7 +66,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
     >
       <Container inline flex ref={ref} className={classes.root}>
         <Container
-          right={iconPadding}
+          right='small'
           flex
           alignItems='center'
           className={classes.iconWrapper}
@@ -90,8 +89,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
 })
 
 Alert.defaultProps = {
-  variant: 'yellow',
-  iconPadding: 'small'
+  variant: 'yellow'
 }
 
 Alert.displayName = 'Alert'
