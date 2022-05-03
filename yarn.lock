@@ -5247,10 +5247,10 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
-"@toptal/browserslist-config@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@toptal/browserslist-config/-/browserslist-config-1.1.0.tgz#4af4c004076c5aa780645fca0baaedff80ad933b"
-  integrity sha512-XLGaKMR2datU2rdww98jlQfLmbWsOYaEAuOMTbSXO2Wk2q4nNX9c4qIdYXjnzuDN9IkVVq6NJbC+0g1NZ+CS1w==
+"@toptal/browserslist-config@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@toptal/browserslist-config/-/browserslist-config-1.2.0.tgz#37c24c5897a0239bf79dcf8cfe062bd6e379db70"
+  integrity sha512-eelB1Rg9HyOv8e0PdKnlBExOV0N0aj+EbQw0Ybvh8XoL0wUQGSQ3U8/dAIaVLD2+TYiCUQdwaXT3DexHnCD7IQ==
 
 "@toptal/davinci-bootstrap@3.1.13":
   version "3.1.13"
