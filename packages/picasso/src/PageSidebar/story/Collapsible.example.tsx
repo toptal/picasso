@@ -44,6 +44,7 @@ const Example = () => (
         </Page.Sidebar.Item>
         <Page.Sidebar.Item
           collapsible
+          badgeProps={{ content: 10 }}
           icon={<Referrals16 />}
           menu={
             <Page.Sidebar.Menu>
@@ -57,7 +58,7 @@ const Example = () => (
         >
           Referrals
         </Page.Sidebar.Item>
-        <Page.Sidebar.Item icon={<Resources16 />}>
+        <Page.Sidebar.Item badgeProps={{ content: 10 }} icon={<Resources16 />}>
           Menu item with surprisingly long text content
         </Page.Sidebar.Item>
       </Page.Sidebar.Menu>

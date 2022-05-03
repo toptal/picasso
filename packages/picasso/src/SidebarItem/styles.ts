@@ -6,6 +6,7 @@ export default ({ palette, sizes }: Theme) =>
       height: '2.75em',
       padding: '0 1rem',
       margin: '0 1rem',
+      whiteSpace: 'nowrap',
       fontSize: '1rem',
       '$nestedMenu &': {
         padding: '0 0 0 2rem',
@@ -87,6 +88,9 @@ export default ({ palette, sizes }: Theme) =>
     },
     expandIconDisabled: {
       color: palette.grey.main
+    },
+    compactRoot: {
+      overflow: 'visible'
     },
     noWrap: {
       flex: 1,

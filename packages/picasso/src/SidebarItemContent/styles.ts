@@ -13,6 +13,6 @@ export default () =>
       visibility: 'hidden'
     },
     staticBadge: {
-      marginLeft: '1rem'
+      marginLeft: '0.5rem'
     }
   })

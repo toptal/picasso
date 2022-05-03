@@ -44,6 +44,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   menu?: ReactElement
   /** Component name to render the menu item as */
   as?: ElementType<MenuItemProps>
+  /** Definition of the embedded badge  */
   badgeProps?: Omit<BadgeProps, 'size' | 'children' | 'variant'>
   variant?: VariantType
   isExpanded?: boolean
@@ -79,6 +80,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       onClick = noop,
       selected,
       style,
+      compact,
       variant = 'light',
       ...rest
     } = props
@@ -133,6 +135,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
           classes.roundedBorder,
           classes[variant],
           {
+            [classes.compactRoot]: compact,
             [classes.selected]: !hasMenu && selected,
             [classes.collapsible]: hasMenu && collapsible
           },
