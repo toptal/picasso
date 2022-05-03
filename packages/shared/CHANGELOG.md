@@ -1,5 +1,20 @@
 # Change Log
 
+## 8.2.0
+
+### Minor Changes
+
+- [#2701](https://github.com/toptal/picasso/pull/2701) [`7d7a17b2`](https://github.com/toptal/picasso/commit/7d7a17b2748364a7880691cfec7b84162380ae11) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  ### Color Type
+
+  - Add `light-blue` color
+
+### Patch Changes
+
+- Updated dependencies [[`a365d67d`](https://github.com/toptal/picasso/commit/a365d67d8d27e2f861a4f7d89e31ef4614e41706)]:
+  - @toptal/picasso-provider@1.1.1
+
 ## 8.1.0
 
 ### Minor Changes
