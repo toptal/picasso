@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: toptal/davinci-github-actions
-          ref: v1
+          ref: v2
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           path: ./.github/actions/
 
@@ -45,9 +45,9 @@ jobs:
           GCR_ACCOUNT_KEY: ${{ secrets.GCR_ACCOUNT_KEY }}
         with:
           sha: ${{ github.event.pull_request.head.sha }}
-          image_name: picasso
+          image-name: picasso
           environment: temploy
-          docker_file: ./Dockerfile
+          docker-file: ./Dockerfile
 
   tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
@@ -65,10 +65,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: toptal/davinci-github-actions
-          ref: v1
+          ref: v2
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           path: ./.github/actions/
-
 
       - uses: ./.github/actions/yarn-install
 
