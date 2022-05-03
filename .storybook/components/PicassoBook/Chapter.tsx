@@ -159,12 +159,15 @@ class Chapter extends Base {
       )
     }
 
-    const sectionLinkId = normalize(sectionId)
+    const childSection = (this.options as any).title
+    const sectionLinkId = childSection
+      ? normalize(`${childSection}-${sectionId}`)
+      : normalize(sectionId)
     const permanentLink = generateUrl({
       host: getHost(),
       kind: this.page.section,
       type: this.page.title,
-      section: sectionId
+      section: sectionLinkId
     })
 
     const render = () => (

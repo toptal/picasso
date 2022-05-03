@@ -26,7 +26,7 @@ export const generateUrl = ({ host, kind, type, section }: UrlOptions) => {
     return url
   }
 
-  return `${url}#${normalize(section)}`
+  return `${url}#${section}`
 }
 
 export const generateIframeUrl = ({ host, kind, type }: UrlOptions) => {
