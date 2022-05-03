@@ -1,4 +1,4 @@
-import { render } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
 import React from 'react'
 
 import Menu from '../Menu'
@@ -104,5 +104,31 @@ describe('ScrollMenu', () => {
     )
 
     expect(container).toMatchSnapshot()
+  })
+
+  it('prevents mouseDown on list wrapper', () => {
+    const { getByTestId } = render(
+      <ScrollMenu
+        fixedFooter={<Menu.Item data-testid='footer'>footer</Menu.Item>}
+        fixedHeader={<Menu.Item data-testid='header'>header</Menu.Item>}
+        testIds={{ list: 'list' }}
+      >
+        <Menu.Item>top</Menu.Item>
+        <Menu.Item>middle</Menu.Item>
+        <Menu.Item>bottom</Menu.Item>
+      </ScrollMenu>
+    )
+
+    const list = getByTestId('list')
+    const header = getByTestId('header')
+    const footer = getByTestId('footer')
+
+    const isListPrevented = !fireEvent.mouseDown(list)
+    const isFooterPrevented = !fireEvent.mouseDown(footer)
+    const isHeaderNotPrevented = fireEvent.mouseDown(header)
+
+    expect(isListPrevented).toBeTruthy()
+    expect(isFooterPrevented).toBeTruthy()
+    expect(isHeaderNotPrevented).toBeTruthy()
   })
 })
