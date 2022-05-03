@@ -12,6 +12,7 @@
 
 - Add `DoneSolid16`, `DoneSolid24` icons
 - Add `InfoSolid16`, `InfoSolid24` icons
+- Add `darkGreen` color
 
 ### Typography
 

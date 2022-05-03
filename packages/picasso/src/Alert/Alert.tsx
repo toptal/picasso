@@ -42,7 +42,7 @@ const icons = {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAlertInline'
+  name: 'PicassoAlert'
 })
 
 export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
