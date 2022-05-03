@@ -354,21 +354,6 @@ describe('Autocomplete', () => {
       expect(onBlur).toHaveBeenCalledTimes(1)
     })
 
-    it('prevents mouseDown on ScrollMenu', () => {
-      const { getByTestId } = renderAutocomplete({
-        options: testOptions,
-        value: ''
-      })
-
-      const input = getByTestId('autocomplete')
-
-      fireEvent.click(input)
-      const scrollMenu = getByTestId(testIds.scrollMenu)
-      const isPrevented = !fireEvent.mouseDown(scrollMenu)
-
-      expect(isPrevented).toBeTruthy()
-    })
-
     it('on select option', () => {
       const onSelect = jest.fn()
       const onChange = jest.fn()

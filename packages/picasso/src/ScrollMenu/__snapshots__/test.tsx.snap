@@ -11,69 +11,72 @@ exports[`ScrollMenu renders 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoScrollMenu-scrollView"
         tabindex="0"
       >
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          role="menuitem"
-          tabindex="-1"
+        <div
+          class="PicassoScrollMenu-scrollView"
         >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            role="menuitem"
+            tabindex="-1"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
             >
-              <span
-                class="PicassoMenuItem-stringContent"
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
               >
-                top
-              </span>
+                <span
+                  class="PicassoMenuItem-stringContent"
+                >
+                  top
+                </span>
+              </div>
             </div>
-          </div>
-        </li>
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          role="menuitem"
-          tabindex="-1"
-        >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          </li>
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            role="menuitem"
+            tabindex="-1"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
             >
-              <span
-                class="PicassoMenuItem-stringContent"
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
               >
-                middle
-              </span>
+                <span
+                  class="PicassoMenuItem-stringContent"
+                >
+                  middle
+                </span>
+              </div>
             </div>
-          </div>
-        </li>
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          role="menuitem"
-          tabindex="-1"
-        >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          </li>
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            role="menuitem"
+            tabindex="-1"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
             >
-              <span
-                class="PicassoMenuItem-stringContent"
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
               >
-                bottom
-              </span>
+                <span
+                  class="PicassoMenuItem-stringContent"
+                >
+                  bottom
+                </span>
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+        </div>
       </div>
     </ul>
   </div>

@@ -14,6 +14,10 @@ export interface Props extends BaseProps {
   fixedHeader?: ReactNode
   fixedFooter?: ReactNode
   role?: 'listbox' | 'menu'
+  testIds?: {
+    root?: string
+    list?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -49,6 +53,12 @@ export const scrollToSelection = (
   }
 }
 
+const preventClick = (e: React.MouseEvent) => {
+  // ScrollMenu is used in dropdowns.
+  // When clicking on the scrollView, the dropdown should not close.
+  e.preventDefault()
+}
+
 const ScrollMenu = (props: Props) => {
   const {
     selectedIndex,
@@ -59,6 +69,8 @@ const ScrollMenu = (props: Props) => {
     fixedFooter,
     className,
     role,
+    testIds,
+    'data-testid': dataTestId,
     ...rest
   } = props
   const classes = useStyles()
@@ -74,22 +86,21 @@ const ScrollMenu = (props: Props) => {
       className={cx(classes.menu, className)}
       style={style}
       role={role}
-      // eslint-disable-next-line react/jsx-props-no-spreading
+      data-testid={dataTestId || testIds?.root}
       {...rest}
     >
       {fixedHeader}
-      <div
-        ref={menuRef}
-        className={classes.scrollView}
-        onBlur={onBlur}
-        onMouseDown={e => {
-          // ScrollMenu is used in dropdowns. Prevents blur --> dropdown close when scrolled.
-          e.preventDefault()
-        }}
-      >
-        {children}
+      <div onMouseDown={preventClick}>
+        <div
+          data-testid={testIds?.list}
+          ref={menuRef}
+          className={classes.scrollView}
+          onBlur={onBlur}
+        >
+          {children}
+        </div>
+        {fixedFooter}
       </div>
-      {fixedFooter}
     </Menu>
   )
 }
