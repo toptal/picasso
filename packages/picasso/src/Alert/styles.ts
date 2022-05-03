@@ -7,6 +7,6 @@ export default () =>
       lineHeight: '1.375em'
     },
     iconWrapper: {
-      height: '1.25em'
+      height: '1.375em'
     }
   })

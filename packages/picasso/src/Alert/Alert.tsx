@@ -1,13 +1,27 @@
-import React, { forwardRef, MouseEvent } from 'react'
+import React, { forwardRef, MouseEvent, ReactNode } from 'react'
+import { makeStyles, Theme } from '@material-ui/core'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
-import AlertInline, { AlertInlineProps } from '../AlertInline'
-import Container from '../Container'
+import Container, { VariantType as ContainerVariants } from '../Container'
+import AlertInline from '../AlertInline'
+import Typography from '../Typography'
 import Button from '../Button'
-import { CloseMinor16 } from '../Icon'
+import { CloseMinor16, Exclamation16, Done16, Info16 } from '../Icon'
+import styles from './styles'
 
-export interface Props extends AlertInlineProps {
+export type VariantType = Extract<
+  'red' | 'green' | 'yellow' | 'blue',
+  ContainerVariants
+>
+
+export interface Props extends BaseProps {
+  /** Main content of the Alert */
+  children?: ReactNode
+  /** Style variant of Alert */
+  variant?: VariantType
   /** Callback invoked when close is clicked */
   onClose?: (event: MouseEvent<HTMLButtonElement>) => void
+  iconPadding?: SizeType<'xsmall' | 'small'> // undocumented prop, only for internal usage
 }
 
 const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
@@ -21,11 +35,24 @@ const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
   </Container>
 )
 
+const icons = {
+  red: <Exclamation16 color='red' />,
+  green: <Done16 color='dark-green' />,
+  blue: <Info16 color='light-blue' />,
+  yellow: <Exclamation16 color='yellow' />
+}
+
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoAlertInline'
+})
+
 export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {
-  const { children, variant, onClose, className } = props
+  const classes = useStyles()
+  const { children, variant, onClose, iconPadding, className } = props
+  const icon = icons[variant!]
 
   return (
     <Container
@@ -38,16 +65,33 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       variant={variant}
       className={className}
     >
-      <AlertInline variant={variant} iconPadding='small' alertVariant='block'>
-        {children}
-      </AlertInline>
+      <Container inline flex ref={ref} className={classes.root}>
+        <Container
+          right={iconPadding}
+          flex
+          alignItems='center'
+          className={classes.iconWrapper}
+        >
+          {icon}
+        </Container>
+        <Typography
+          size='medium'
+          as='div'
+          weight='regular'
+          color='black'
+          className={className}
+        >
+          {children}
+        </Typography>
+      </Container>
       {onClose && renderAlertCloseButton({ onClose })}
     </Container>
   )
 })
 
 Alert.defaultProps = {
-  variant: 'yellow'
+  variant: 'yellow',
+  iconPadding: 'small'
 }
 
 Alert.displayName = 'Alert'
