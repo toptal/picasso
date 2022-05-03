@@ -12,7 +12,7 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop, palette } from '@toptal/picasso/utils'
 import { ValueType } from '@toptal/picasso/Select'
 
-const testIds = {
+const testIdsDefault = {
   resetButton: 'reset-adornment'
 }
 
@@ -165,8 +165,8 @@ const pressEnter = () => {
 
 const getNativeSelect = () => cy.get('select')
 
-/* eslint-disable max-lines-per-function */
 /* eslint-disable max-statements */
+/* eslint-disable-next-line max-lines-per-function */
 describe('Select', () => {
   it('renders', () => {
     mount(
@@ -301,14 +301,18 @@ describe('Select', () => {
   it('renders reset button', () => {
     mount(
       <TestingPicasso>
-        <TestSelect enableReset value={OPTIONS[0].value} testIds={testIds} />
+        <TestSelect
+          enableReset
+          value={OPTIONS[0].value}
+          testIds={testIdsDefault}
+        />
       </TestingPicasso>
     )
 
     // Cypress does not go well with :hover CSS selectors
     // It can fire mouse events via JS, but can't simulate browser cursor behaviour
     // To fix this issue we're using a force method to show the button so the screenshot is correct
-    cy.get(`[data-testid="${testIds.resetButton}"]`).invoke(
+    cy.get(`[data-testid="${testIdsDefault.resetButton}"]`).invoke(
       'attr',
       'style',
       'visibility: visible'
@@ -352,18 +356,6 @@ describe('Select', () => {
         <TestSelect icon={<Settings16 />} disabled />
       </TestingPicasso>
     )
-
-    cy.get('body').happoScreenshot()
-  })
-
-  it.skip('renders select with search', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect searchThreshold={-1} />
-      </TestingPicasso>
-    )
-
-    openSelect()
 
     cy.get('body').happoScreenshot()
   })
@@ -454,6 +446,93 @@ describe('Select', () => {
 
       cy.get('@searchInput').should('be.visible')
       cy.get('@searchInput').click().should('have.focus')
+    })
+  })
+
+  describe('with search input', () => {
+    it('renders', () => {
+      mount(
+        <TestingPicasso>
+          <TestSelect searchThreshold={-1} />
+        </TestingPicasso>
+      )
+
+      openSelect()
+
+      cy.get('body').happoScreenshot()
+    })
+    it('focuses the input on placeholder click', () => {
+      mount(
+        <TestingPicasso>
+          <TestSelect
+            searchThreshold={-1}
+            testIds={{ searchInput: 'search-input' }}
+          />
+        </TestingPicasso>
+      )
+
+      openSelect()
+
+      const searchSelector = '[data-testid="search-input"]'
+
+      cy.get(searchSelector).should('be.visible')
+      cy.get(searchSelector).click('center')
+      cy.get(searchSelector).find('input').should('be.focused')
+    })
+    it('focuses the input on wrapper click', () => {
+      mount(
+        <TestingPicasso>
+          <TestSelect
+            searchThreshold={-1}
+            testIds={{ searchInput: 'search-input' }}
+          />
+        </TestingPicasso>
+      )
+
+      openSelect()
+
+      const searchSelector = '[data-testid="search-input"]'
+
+      cy.get(searchSelector).should('be.visible')
+      cy.get(searchSelector).click('bottom')
+      cy.get(searchSelector).find('input').should('be.focused')
+    })
+    it('focuses the input on icon click', () => {
+      mount(
+        <TestingPicasso>
+          <TestSelect
+            searchThreshold={-1}
+            testIds={{ searchInput: 'search-input' }}
+          />
+        </TestingPicasso>
+      )
+
+      openSelect()
+
+      const searchSelector = '[data-testid="search-input"]'
+
+      cy.get(searchSelector).should('be.visible')
+      cy.get(searchSelector).closest('[role="menuitem"]').click(20, 20)
+      cy.get(searchSelector).find('input').should('be.focused')
+    })
+
+    it('focuses the input on type', () => {
+      mount(
+        <TestingPicasso>
+          <TestSelect
+            searchThreshold={-1}
+            testIds={{ searchInput: 'search-input' }}
+          />
+        </TestingPicasso>
+      )
+
+      openSelect()
+
+      const searchSelector = '[data-testid="search-input"]'
+
+      cy.get(searchSelector).should('be.visible')
+      cy.get('[data-testid="select"]').type('option')
+      cy.get(searchSelector).find('input').should('be.focused')
     })
   })
 })
