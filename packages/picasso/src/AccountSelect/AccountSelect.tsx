@@ -1,6 +1,7 @@
 import React, { forwardRef, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
@@ -41,19 +42,21 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
     const { className, accounts, onSelect, style, ...rest } = props
     const classes = useStyles()
 
-    const { accountItem: accountItemClass, accountLink: accountLinkClass } =
-      classes
-
     return (
-      <Menu {...rest} ref={ref} className={className} style={style}>
+      <Menu
+        {...rest}
+        ref={ref}
+        className={cx(classes.root, className)}
+        style={style}
+      >
         {accounts.map(account => (
           <Menu.Item
             disableGutters
-            className={accountItemClass}
+            className={classes.accountItem}
             key={`role-${account.id}`}
           >
             <Link
-              className={accountLinkClass}
+              className={classes.accountLink}
               href={account.href}
               onClick={() => onSelect(account)}
               noUnderline

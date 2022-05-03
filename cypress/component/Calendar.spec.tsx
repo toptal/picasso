@@ -11,6 +11,8 @@ const TestCalendar = (props: ComponentProps<typeof Calendar>) => (
 )
 
 describe('Calendar', () => {
+  // cy.clock() fixes the time so that the screenshots
+  // in happo are not affected by server timezone
   beforeEach(() => {
     cy.clock(new Date(2022, 4, 4).getTime())
   })

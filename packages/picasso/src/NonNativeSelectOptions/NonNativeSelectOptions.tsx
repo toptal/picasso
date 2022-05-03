@@ -54,7 +54,7 @@ const MenuGroup = (props: MenuGroupProps) => {
 
 export type Props = Pick<
   SelectProps,
-  'multiple' | 'size' | 'noOptionsText' | 'renderOption'
+  'multiple' | 'noOptionsText' | 'renderOption'
 > & {
   options: Option[] | OptionGroups
   highlightedIndex: number | null
@@ -73,20 +73,18 @@ const renderOptions = ({
   options,
   getItemProps,
   selection,
-  size,
   highlightedIndex,
   offset = 0,
   renderOption
 }: Pick<
   Props,
-  'getItemProps' | 'selection' | 'size' | 'highlightedIndex' | 'renderOption'
+  'getItemProps' | 'selection' | 'highlightedIndex' | 'renderOption'
 > & { options: Option[]; offset?: number }) => {
   return options.map((option, index) => {
     return (
       <NonNativeSelectOption
         key={option.key || option.value}
         option={option}
-        size={size === 'large' ? 'medium' : size}
         selected={selection.isOptionSelected(option)}
         highlighted={highlightedIndex === index + offset}
         description={option.description}
@@ -102,12 +100,11 @@ const renderGroups = ({
   groups,
   getItemProps,
   selection,
-  size,
   highlightedIndex,
   renderOption
 }: Pick<
   Props,
-  'getItemProps' | 'selection' | 'size' | 'highlightedIndex' | 'renderOption'
+  'getItemProps' | 'selection' | 'highlightedIndex' | 'renderOption'
 > & { groups: OptionGroups }) => {
   let optionsCount = 0
 
@@ -118,7 +115,6 @@ const renderGroups = ({
           options: groups[group],
           getItemProps,
           selection,
-          size,
           highlightedIndex,
           offset: optionsCount,
           renderOption
@@ -160,7 +156,6 @@ const NonNativeSelectOptions = ({
   getItemProps,
   onBlur,
   selection,
-  size,
   filterOptionsValue,
   noOptionsText,
   fixedHeader,
@@ -203,7 +198,6 @@ const NonNativeSelectOptions = ({
             options,
             getItemProps,
             selection,
-            size,
             highlightedIndex,
             renderOption
           })
@@ -211,7 +205,6 @@ const NonNativeSelectOptions = ({
             groups: options,
             getItemProps,
             selection,
-            size,
             highlightedIndex,
             renderOption
           })}

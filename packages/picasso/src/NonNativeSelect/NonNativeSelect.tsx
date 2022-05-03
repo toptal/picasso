@@ -115,8 +115,9 @@ export const NonNativeSelect = documentable(
       const searchInput = showSearch ? (
         <MenuItem
           as='div'
-          size={size === 'large' ? 'medium' : size}
           nonSelectable
+          disableGutters
+          className={classes.searchInputGutters}
         >
           <OutlinedInput
             inputRef={searchInputRef}
@@ -127,7 +128,7 @@ export const NonNativeSelect = documentable(
               </InputAdornment>
             }
             placeholder={searchPlaceholder}
-            size={size}
+            size={size === 'large' ? 'medium' : size}
             value={filterOptionsValue}
             testIds={testIds}
             aria-autocomplete='list'
@@ -208,7 +209,6 @@ export const NonNativeSelect = documentable(
                   onBlur={rootProps.onBlur}
                   selection={selection}
                   filterOptionsValue={filterOptionsValue}
-                  size={size}
                   multiple={multiple}
                   noOptionsText={noOptionsText}
                   fixedHeader={searchInput}

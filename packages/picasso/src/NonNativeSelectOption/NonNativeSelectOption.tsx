@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-import { SizeType } from '@toptal/picasso-shared'
 
 import MenuItem from '../MenuItem'
 import { ItemProps, Option, ValueType } from '../Select'
@@ -9,14 +8,12 @@ export interface Props<T extends ValueType> extends ItemProps {
   description?: ReactNode
   selected: boolean
   highlighted: boolean
-  size?: SizeType<'small' | 'medium'>
   option: Option<T>
 }
 
 const NonNativeSelectOption = React.memo(
   <T extends ValueType>({
     option,
-    size,
     selected,
     highlighted,
     description,
@@ -26,7 +23,6 @@ const NonNativeSelectOption = React.memo(
     return (
       <MenuItem
         value={option.value}
-        size={size}
         selected={highlighted}
         checkmarked={selected}
         titleCase={false}

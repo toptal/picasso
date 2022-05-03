@@ -2,6 +2,9 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 export default ({ palette }: Theme) =>
   createStyles({
+    root: {
+      padding: '0'
+    },
     accountItem: {
       height: 'auto',
 

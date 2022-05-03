@@ -15,7 +15,6 @@ const renderNonNativeSelectOption = ({
   onMouseEnter = noop,
   selected = false,
   highlighted = false,
-  size,
   onClick = noop,
   option = OPTION
 }: Partial<Props<string>> = {}) =>
@@ -26,7 +25,6 @@ const renderNonNativeSelectOption = ({
       onMouseEnter={onMouseEnter}
       selected={selected}
       highlighted={highlighted}
-      size={size}
       onClick={onClick}
       option={option}
     >
