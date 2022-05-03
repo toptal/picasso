@@ -103,9 +103,10 @@ export const getAttributes = (props: React.PropsWithChildren<Props>) => {
 
 export const MediaSkeletonLoader = (props: Props) => {
   const { className, style } = props
-  const { width, height, borderRadius } = useMemo(() => getAttributes(props), [
-    props
-  ])
+  const { width, height, borderRadius } = useMemo(
+    () => getAttributes(props),
+    [props]
+  )
 
   const viewBox = `0 0 ${width} ${height}`
 

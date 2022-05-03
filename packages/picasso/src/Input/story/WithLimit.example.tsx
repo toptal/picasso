@@ -14,15 +14,13 @@ const useInputValue = (defaultValue: string): [string, ChangeHandler] => {
 }
 
 const InputWithLimitExample = () => {
-  const [inputRemainingValue, handleInputRemainingChange] = useInputValue(
-    'Polonius, Hamlet'
-  )
+  const [inputRemainingValue, handleInputRemainingChange] =
+    useInputValue('Polonius, Hamlet')
   const [textAreaRemainingValue, handleTextareaRemainingChange] = useInputValue(
     'Brevity is the soul of wit...'
   )
-  const [inputEnteredValue, handleInputEnteredChange] = useInputValue(
-    'Bruce Wayne'
-  )
+  const [inputEnteredValue, handleInputEnteredChange] =
+    useInputValue('Bruce Wayne')
   const [textAreaEnteredValue, handleTextareaEnteredChange] = useInputValue(
     "It's not who I am underneath, but what I do that defines me."
   )

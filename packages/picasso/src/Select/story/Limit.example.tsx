@@ -6,26 +6,28 @@ const SelectSearchBehaviourExample = () => {
   const [multipleValues, setMultipleValues] = useState<string[]>([])
   const [limit, setLimit] = useState(50)
 
-  const handlerForSelectChange = (setState: (state: string) => void) => (
-    event: ChangeEvent<{
-      name?: string
-      value: string
-    }>
-  ) => {
-    setState(event.target.value)
-  }
+  const handlerForSelectChange =
+    (setState: (state: string) => void) =>
+    (
+      event: ChangeEvent<{
+        name?: string
+        value: string
+      }>
+    ) => {
+      setState(event.target.value)
+    }
 
-  const handleMultipleChange = (setState: (state: string[]) => void) => (
-    event: React.ChangeEvent<{ value: string[] }>
-  ) => {
-    setState(event.target.value)
-  }
+  const handleMultipleChange =
+    (setState: (state: string[]) => void) =>
+    (event: React.ChangeEvent<{ value: string[] }>) => {
+      setState(event.target.value)
+    }
 
-  const handlerForInputChange = (setState: (state: number) => void) => (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setState(parseInt(event.target.value, 10))
-  }
+  const handlerForInputChange =
+    (setState: (state: number) => void) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setState(parseInt(event.target.value, 10))
+    }
 
   return (
     <Container flex>
@@ -72,10 +74,12 @@ const SelectSearchBehaviourExample = () => {
   )
 }
 
-const optionsGenerator = (start = 1) => (value: number, key: number) => ({
-  value: `${key + start}`,
-  text: `Option ${key + start}`
-})
+const optionsGenerator =
+  (start = 1) =>
+  (value: number, key: number) => ({
+    value: `${key + start}`,
+    text: `Option ${key + start}`
+  })
 
 const LOTS_OF_OPTION_GROUPS = {
   'Group 1': Array.from({ length: 200 }, optionsGenerator()),

@@ -167,9 +167,10 @@ const NonNativeSelectOptions = ({
   fixedFooter,
   testIds
 }: Props) => {
-  const flatOptions: Option[] = useMemo(() => flattenOptions(options), [
-    options
-  ])
+  const flatOptions: Option[] = useMemo(
+    () => flattenOptions(options),
+    [options]
+  )
 
   if (!flatOptions.length && filterOptionsValue) {
     return (

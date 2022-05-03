@@ -20,8 +20,8 @@ const transform: Transform = (file, api) => {
       .findJSXElements('Accordion')
       // eslint-disable-next-line complexity
       .forEach(path => {
-        path.node.openingElement.attributes = path.node.openingElement.attributes?.map(
-          attribute => {
+        path.node.openingElement.attributes =
+          path.node.openingElement.attributes?.map(attribute => {
             if (
               attribute.type === 'JSXAttribute' &&
               attribute.name.name === 'bordered'
@@ -33,8 +33,7 @@ const transform: Transform = (file, api) => {
             }
 
             return attribute
-          }
-        )
+          })
       })
       .toSource({ quote: 'single' })
   )

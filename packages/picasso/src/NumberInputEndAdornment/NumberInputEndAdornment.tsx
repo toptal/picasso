@@ -38,10 +38,12 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const nativeInputValueSetter = isBrowser()
-  ? (Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype,
-      'value'
-    ) as PropertyDescriptor).set!
+  ? (
+      Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value'
+      ) as PropertyDescriptor
+    ).set!
   : undefined
 
 export const NumberInputEndAdornment = (props: Props) => {

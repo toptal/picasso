@@ -7,9 +7,9 @@ describe('useFocus', () => {
   describe('when isFocused is off', () => {
     it('does not focus quill', () => {
       const isFocused = false
-      const quill = ({
+      const quill = {
         focus: jest.fn()
-      } as unknown) as Quill
+      } as unknown as Quill
 
       renderHook(() => useFocus({ quill, isFocused }))
 
@@ -20,9 +20,9 @@ describe('useFocus', () => {
   describe('when isFocused is on', () => {
     it('does focus editor', () => {
       const isFocused = true
-      const quill = ({
+      const quill = {
         focus: jest.fn()
-      } as unknown) as Quill
+      } as unknown as Quill
 
       const { rerender } = renderHook(() => useFocus({ quill, isFocused }))
 

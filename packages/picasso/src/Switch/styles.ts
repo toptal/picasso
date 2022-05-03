@@ -53,9 +53,10 @@ PicassoProvider.override(({ palette, transitions }) => ({
       height: THUMB_SIZE,
       color: palette.common.white,
       // fix for bad subpixel rendering on 150% displays
-      '@media (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.5)': {
-        transform: 'translate(-0.2px, -0.3px)'
-      }
+      '@media (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.5)':
+        {
+          transform: 'translate(-0.2px, -0.3px)'
+        }
     },
     track: {
       borderRadius: TRACK_HEIGHT / 2,

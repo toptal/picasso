@@ -62,10 +62,7 @@ export const useNotifications = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
   const getNotification = useCallback(
-    () => (
-      notificationElement: React.ReactElement,
-      options?: OptionsObject
-    ) => {
+    () => (notificationElement: React.ReactElement, options?: OptionsObject) => {
       const closeNotification = () => {
         if (!notificationId) {
           return
@@ -93,30 +90,29 @@ export const useNotifications = () => {
   )
 
   const getPicassoNotification = useCallback(
-    (variant?: VariantType) => (
-      content: ReactNode,
-      icon?: ReactElement,
-      options?: OptionsObject
-    ) => {
-      const notificationComponent = (
-        <StyledNotification content={content} icon={icon} variant={variant} />
-      )
-      const showNotificaiton = getNotification()
-      const notificationId = showNotificaiton(notificationComponent, options)
+    (variant?: VariantType) =>
+      (content: ReactNode, icon?: ReactElement, options?: OptionsObject) => {
+        const notificationComponent = (
+          <StyledNotification content={content} icon={icon} variant={variant} />
+        )
+        const showNotificaiton = getNotification()
+        const notificationId = showNotificaiton(notificationComponent, options)
 
-      return notificationId
-    },
+        return notificationId
+      },
     [getNotification]
   )
 
   return {
-    showError: useMemo(() => getPicassoNotification('red'), [
-      getPicassoNotification
-    ]),
+    showError: useMemo(
+      () => getPicassoNotification('red'),
+      [getPicassoNotification]
+    ),
     showInfo: useMemo(() => getPicassoNotification(), [getPicassoNotification]),
-    showSuccess: useMemo(() => getPicassoNotification('green'), [
-      getPicassoNotification
-    ]),
+    showSuccess: useMemo(
+      () => getPicassoNotification('green'),
+      [getPicassoNotification]
+    ),
     showCustom: useMemo(() => getNotification(), [getNotification]),
     closeNotification: closeSnackbar
   }

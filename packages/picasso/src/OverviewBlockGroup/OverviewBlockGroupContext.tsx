@@ -12,9 +12,8 @@ const defaultSettings = {
   blockWidth: 'regular' as const
 }
 
-export const OverviewBlockGroupContext = createContext<OverviewBlockGroupSettings>(
-  defaultSettings
-)
+export const OverviewBlockGroupContext =
+  createContext<OverviewBlockGroupSettings>(defaultSettings)
 
 export const useOverviewBlockGroupContext = () => {
   return useContext(OverviewBlockGroupContext)

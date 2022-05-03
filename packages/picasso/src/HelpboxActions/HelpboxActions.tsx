@@ -23,9 +23,8 @@ export const HelpboxActions = forwardRef<HTMLDivElement, Props>(
 
     const classes = useStyles()
 
-    const { closeable }: HelpboxContextProps = useContext<HelpboxContextProps>(
-      HelpboxContext
-    )
+    const { closeable }: HelpboxContextProps =
+      useContext<HelpboxContextProps>(HelpboxContext)
 
     return (
       <Container

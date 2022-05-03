@@ -102,12 +102,8 @@ class Chapter extends Base {
       return this
     }
 
-    const {
-      component,
-      name,
-      description,
-      additionalDocs
-    } = componentDocumentation
+    const { component, name, description, additionalDocs } =
+      componentDocumentation
 
     if (!component.__docgenInfo && !additionalDocs) {
       return this

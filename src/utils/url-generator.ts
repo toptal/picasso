@@ -8,10 +8,7 @@ export interface UrlOptions {
 }
 
 export const normalize = (name: string) =>
-  name
-    .replace(SPECIAL_CHARS_OR_SPACES, '-')
-    .trim()
-    .toLowerCase()
+  name.replace(SPECIAL_CHARS_OR_SPACES, '-').trim().toLowerCase()
 
 export const getHost = () => {
   const { location } = window.parent.document

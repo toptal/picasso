@@ -29,7 +29,9 @@ const Example = () => {
   const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
     setValue(event.target.value)
   }
-  const handleMultipleChange = (event: React.ChangeEvent<{ value: string[] }>) => {
+  const handleMultipleChange = (
+    event: React.ChangeEvent<{ value: string[] }>
+  ) => {
     setValues(event.target.value)
   }
 

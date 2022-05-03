@@ -13,10 +13,7 @@ describe('getYAxisTicks', () => {
 
   it('gets y axis ticks for minutes unit that exceeds 1 hour', () => {
     expect(getYAxisTicks([0, 5444], 'minutes')).toStrictEqual([
-      0,
-      1440,
-      2880,
-      4320
+      0, 1440, 2880, 4320
     ])
   })
 })

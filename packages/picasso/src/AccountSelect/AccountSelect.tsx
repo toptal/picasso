@@ -41,10 +41,8 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
     const { className, accounts, onSelect, style, ...rest } = props
     const classes = useStyles()
 
-    const {
-      accountItem: accountItemClass,
-      accountLink: accountLinkClass
-    } = classes
+    const { accountItem: accountItemClass, accountLink: accountLinkClass } =
+      classes
 
     return (
       <Menu {...rest} ref={ref} className={className} style={style}>

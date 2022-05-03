@@ -8,9 +8,9 @@ describe('getTextLengthChangeHandler', () => {
   it('simply calls onTextLengthChange', () => {
     const onTextLengthChange = jest.fn()
     const currLength = 4
-    const quill = ({
+    const quill = {
       getLength: jest.fn().mockImplementation(() => currLength)
-    } as unknown) as Quill
+    } as unknown as Quill
 
     const handler = getTextLengthChangeHandler(quill, onTextLengthChange)
 
