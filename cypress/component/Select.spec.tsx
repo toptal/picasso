@@ -453,48 +453,40 @@ describe('Select', () => {
           />
         </TestingPicasso>
       )
-      const searchSelector = '[data-testid="search-input"]'
-      const selectSelector = '[data-testid="select"]'
 
-      const searchInputIsVisible = () => {
-        cy.get(searchSelector).should('be.visible')
-      }
+      const searchInput = '[data-testid="search-input"]'
+      const selectInput = '[data-testid="select"]'
 
-      const searchInputIsFocused = () => {
-        cy.get(searchSelector).find('input').should('be.focused')
-      }
-
-      const reopenSelect = () => {
-        openSelect()
-        cy.get(selectSelector).find('input').should('be.focused')
-      }
-
-      openSelect()
+      cy.get('[data-testid="select"]')
+        .click()
+        .find('input')
+        .should('be.focused')
 
       cy.get('body').happoScreenshot()
 
-      // focuses on by click on the input
-      searchInputIsVisible()
-      cy.get(searchSelector).click('center')
-      searchInputIsFocused()
+      // focuses on the Search input by clicking on the input
+      cy.get(searchInput).click('center').find('input').should('be.focused')
 
       // focuses on by click on the input wrapper
-      reopenSelect()
-      searchInputIsVisible()
-      cy.get(searchSelector).click('bottom')
-      searchInputIsFocused()
+      cy.get(selectInput)
+        .click()
+        .get(searchInput)
+        .click('bottom')
+        .find('input')
+        .should('be.focused')
 
       // focuses on by click on the search icon
-      reopenSelect()
-      searchInputIsVisible()
-      cy.get(searchSelector).closest('[role="menuitem"]').click(20, 20)
-      searchInputIsFocused()
+      cy.get(selectInput)
+        .click()
+        .get(searchInput)
+        .closest('[role="menuitem"]')
+        .click(20, 20)
+        .find('input')
+        .should('be.focused')
 
       // focuses on by typing
-      reopenSelect()
-      searchInputIsVisible()
-      cy.get(selectSelector).type('option')
-      searchInputIsFocused()
+      cy.get(selectInput).click().type('option')
+      cy.get(searchInput).find('input').should('be.focused')
     })
   })
 })
