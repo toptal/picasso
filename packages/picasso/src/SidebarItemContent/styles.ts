@@ -7,7 +7,7 @@ export default () =>
       minWidth: 0
     },
     withIcon: {
-      marginLeft: '0.875em'
+      marginLeft: '0.875rem'
     },
     hiddenContent: {
       visibility: 'hidden'

@@ -356,7 +356,7 @@ describe('getRectNodeTextContent', () => {
       }
     )
 
-    it('strip spaces from start and end of the text', () => {
+    it('strips spaces from start and end of the text', () => {
       expect(getReactNodeTextContent('  foo   ')).toBe('foo')
     })
   })
@@ -388,7 +388,7 @@ describe('getRectNodeTextContent', () => {
   })
 
   describe('when getting text from a complex node', () => {
-    it('returns an empty string, value: "%s"', () => {
+    it("returns it's children content recursively", () => {
       expect(
         getReactNodeTextContent(
           <div>
