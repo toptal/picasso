@@ -362,7 +362,7 @@ describe('Select', () => {
     getNativeOption(1).should('have.attr', 'aria-selected').and('match', /true/)
   })
 
-  it('sets background correctly to various select states', () => {
+  it.skip('sets background correctly to various select states', () => {
     mount(
       <TestingPicasso>
         <div style={{ background: palette.yellow.main }}>
