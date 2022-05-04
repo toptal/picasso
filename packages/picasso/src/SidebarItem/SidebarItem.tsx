@@ -135,7 +135,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
           classes.roundedBorder,
           classes[variant],
           {
-            [classes.compactRoot]: compact,
+            [classes.compact]: compact,
             [classes.selected]: !hasMenu && selected,
             [classes.collapsible]: hasMenu && collapsible
           },

@@ -9,11 +9,11 @@ import { ReactNode } from 'react'
  *
  * @example
  * // Results on `Foo Bar`
- * getNodeTextContent(<div>Foo <span>Bar</span></div>)
+ * getReactNodeTextContent(<div>Foo <span>Bar</span></div>)
  *
  * @see {@link https://stackoverflow.com/a/60564620/4595583} for the inspiration
  */
-export const getNodeTextContent = (node: ReactNode): string => {
+export const getReactNodeTextContent = (node: ReactNode): string => {
   switch (typeof node) {
     case 'number':
     case 'string':
@@ -21,11 +21,11 @@ export const getNodeTextContent = (node: ReactNode): string => {
 
     case 'object':
       if (Array.isArray(node)) {
-        return node.map(getNodeTextContent).filter(Boolean).join(' ')
+        return node.map(getReactNodeTextContent).filter(Boolean).join(' ')
       }
 
       if (node != null && 'props' in node) {
-        return getNodeTextContent(node.props.children)
+        return getReactNodeTextContent(node.props.children)
       }
 
     // All other cases are ignored (booleans, null, undefined and non-elements)

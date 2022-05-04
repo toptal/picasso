@@ -7,7 +7,7 @@ import Typography from '../Typography'
 import Tooltip from '../Tooltip'
 import Container from '../Container'
 import Badge, { BadgeProps } from '../Badge'
-import { getNodeTextContent } from '../utils'
+import { getReactNodeTextContent } from '../utils'
 import styles from './styles'
 
 export interface Props {
@@ -66,17 +66,21 @@ const CompactItemContent = (props: Props) => {
 
   let wrappedIcon = icon
 
-  if (hasBadge) {
-    wrappedIcon = (
-      <ItemContentBadge content={badgeProps.content}>
-        {wrappedIcon}
-      </ItemContentBadge>
-    )
-  }
+  wrappedIcon = hasBadge ? (
+    <ItemContentBadge content={badgeProps.content}>
+      {wrappedIcon}
+    </ItemContentBadge>
+  ) : (
+    wrappedIcon
+  )
 
   return (
     <Container className={classes.noWrap} inline flex alignItems='center'>
-      <Tooltip compact placement='right' content={getNodeTextContent(children)}>
+      <Tooltip
+        compact
+        placement='right'
+        content={getReactNodeTextContent(children)}
+      >
         <div>{wrappedIcon}</div>
       </Tooltip>
     </Container>

@@ -89,7 +89,7 @@ export default ({ palette, sizes }: Theme) =>
     expandIconDisabled: {
       color: palette.grey.main
     },
-    compactRoot: {
+    compact: {
       overflow: 'visible'
     },
     noWrap: {

@@ -16,7 +16,7 @@ import {
   disableUnsupportedProps,
   sum,
   htmlToHast,
-  getNodeTextContent,
+  getReactNodeTextContent,
   isBrowser
 } from '@toptal/picasso/utils'
 import { render, act } from '@toptal/picasso/test-utils'
@@ -347,17 +347,17 @@ describe('htmlToHast', () => {
   })
 })
 
-describe('getNodeTextContent', () => {
+describe('getRectNodeTextContent', () => {
   describe('when getting text from string node', () => {
     it.each(['foo', ''])(
       "returns its content original content, value: '%s'",
       txt => {
-        expect(getNodeTextContent(txt)).toBe(txt)
+        expect(getReactNodeTextContent(txt)).toBe(txt)
       }
     )
 
     it('strip spaces from start and end of the text', () => {
-      expect(getNodeTextContent('  foo   ')).toBe('foo')
+      expect(getReactNodeTextContent('  foo   ')).toBe('foo')
     })
   })
 
@@ -365,14 +365,16 @@ describe('getNodeTextContent', () => {
     it.each([42, -12, Infinity, NaN, -0])(
       'returns its content original content, value: %s',
       num => {
-        expect(getNodeTextContent(num)).toBe(String(num))
+        expect(getReactNodeTextContent(num)).toBe(String(num))
       }
     )
   })
 
   describe('when getting text from a array node', () => {
     it('returns the contents of its elements joined by no space by default', () => {
-      expect(getNodeTextContent(['foo', <div>bar</div>, 45])).toBe('foo bar 45')
+      expect(getReactNodeTextContent(['foo', <div>bar</div>, 45])).toBe(
+        'foo bar 45'
+      )
     })
   })
 
@@ -380,7 +382,7 @@ describe('getNodeTextContent', () => {
     it.each([null, undefined, true, false])(
       'returns an empty string, value: "%s"',
       nonOp => {
-        expect(getNodeTextContent(nonOp)).toBe('')
+        expect(getReactNodeTextContent(nonOp)).toBe('')
       }
     )
   })
@@ -388,7 +390,7 @@ describe('getNodeTextContent', () => {
   describe('when getting text from a complex node', () => {
     it('returns an empty string, value: "%s"', () => {
       expect(
-        getNodeTextContent(
+        getReactNodeTextContent(
           <div>
             <h1>Title</h1>
             <caption>
