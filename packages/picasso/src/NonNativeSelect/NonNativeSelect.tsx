@@ -27,6 +27,7 @@ import NonNativeSelectOptions from '../NonNativeSelectOptions'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
 import NonNativeSelectLimitFooter from '../NonNativeSelectLimitFooter'
+import InputAdornment from '../InputAdornment'
 
 const useStyles = makeStyles<Theme>(styles)
 
@@ -120,12 +121,17 @@ export const NonNativeSelect = documentable(
           <OutlinedInput
             inputRef={searchInputRef}
             className={classes.searchOutlinedInput}
-            startAdornment={<Search16 className={classes.searchInputIcon} />}
+            startAdornment={
+              <InputAdornment position='start' disablePointerEvents>
+                <Search16 />
+              </InputAdornment>
+            }
             placeholder={searchPlaceholder}
             size={size}
             value={filterOptionsValue}
             testIds={testIds}
             aria-autocomplete='list'
+            data-testid={testIds?.searchInput}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getSearchInputProps()}
           />

@@ -96,6 +96,7 @@ export interface SelectProps<
     noOptions?: string
     loader?: string
     limitFooter?: string
+    searchInput?: string
   }
 }
 
