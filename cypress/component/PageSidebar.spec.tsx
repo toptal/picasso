@@ -32,7 +32,7 @@ const SidebarExample = (props: PageSidebarProps) => {
         </Page.Sidebar.Item>
         <Page.Sidebar.Item
           icon={<Team16 />}
-          badgeProps={{
+          badge={{
             content: 5
           }}
           selected

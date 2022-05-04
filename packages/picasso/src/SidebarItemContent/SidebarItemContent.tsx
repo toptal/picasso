@@ -59,14 +59,14 @@ const ItemContentBadge = (props: ItemContentBadgeProps) => {
 }
 
 const CompactItemContent = (props: Props) => {
-  const { icon, children, badge: badgeProps } = props
+  const { icon, children, badge } = props
   const classes = useStyles()
 
-  const hasBadge = badgeProps != null
+  const hasBadge = badge != null
 
   const wrappedIcon =
     icon && hasBadge ? (
-      <ItemContentBadge content={badgeProps.content}>{icon}</ItemContentBadge>
+      <ItemContentBadge content={badge.content}>{icon}</ItemContentBadge>
     ) : (
       icon
     )
@@ -85,11 +85,11 @@ const CompactItemContent = (props: Props) => {
 }
 
 const ExpandedItemContent = (props: Props) => {
-  const { icon, badge: badgeProps, children, testIds } = props
+  const { icon, badge, children, testIds } = props
   const classes = useStyles()
 
   const hasIcon = icon != null
-  const hasBadge = badgeProps != null
+  const hasBadge = badge != null
 
   return (
     <Container className={classes.noWrap} inline flex alignItems='center'>
@@ -105,7 +105,7 @@ const ExpandedItemContent = (props: Props) => {
       >
         {children}
 
-        {hasBadge && <ItemContentBadge content={badgeProps.content} />}
+        {hasBadge && <ItemContentBadge content={badge.content} />}
       </Container>
     </Container>
   )
