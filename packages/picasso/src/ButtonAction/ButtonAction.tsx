@@ -7,7 +7,7 @@ import {
   OverridableComponent
 } from '@toptal/picasso-shared'
 
-import Button, { IconPositionType } from '../Button'
+import { Button, IconPositionType } from '../Button/Button'
 import styles from './styles'
 import Loader from '../Loader'
 

@@ -11,23 +11,20 @@ import Popper from '../Popper'
 import MenuItem from '../MenuItem'
 import SelectCaret from '../SelectCaret'
 import NonNativeSelectLoader from '../NonNativeSelectLoader'
-import {
-  useAdornments,
-  useSelectState,
-  useSelectProps,
-  renderOption as defaultRenderOption,
-  ValueType,
-  SelectProps,
-  getOptionText,
-  DEFAULT_LIMIT,
-  DEFAULT_SEARCH_THRESHOLD,
-  countOptions
-} from '../Select'
 import NonNativeSelectOptions from '../NonNativeSelectOptions'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
 import NonNativeSelectLimitFooter from '../NonNativeSelectLimitFooter'
 import InputAdornment from '../InputAdornment'
+import { SelectProps, ValueType } from '../Select/types'
+import {
+  countOptions,
+  DEFAULT_LIMIT,
+  DEFAULT_SEARCH_THRESHOLD,
+  getOptionText,
+  renderOption as defaultRenderOption
+} from '../Select/utils'
+import { useAdornments, useSelectProps, useSelectState } from '../Select/hooks'
 
 const useStyles = makeStyles<Theme>(styles)
 

@@ -13,7 +13,8 @@ import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
 import styles from './styles'
-import { SidebarContextProps, VariantType } from './types'
+import { VariantType } from './types'
+import { SidebarContext } from './SidebarContext'
 
 export interface SmallScreenSidebarWrapperProps extends StandardProps {
   children?: ReactNode
@@ -59,11 +60,6 @@ export interface Props extends BaseProps {
   /** Content */
   children?: ReactNode
 }
-
-export const SidebarContext = React.createContext<SidebarContextProps>({
-  expandedItemKey: null,
-  setExpandedItemKey: () => {}
-})
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'Sidebar'

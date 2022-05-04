@@ -4,7 +4,7 @@ import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 import { useSidebar } from '@toptal/picasso-provider'
 
-import { PageContext } from '../Page'
+import { PageContext } from '../Page/PageContext'
 import { PageContextProps } from '../Page/types'
 import styles from './styles'
 

@@ -4,7 +4,8 @@ import { SizeType, BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import { ArrowDownMinor24, ArrowDownMinor16 } from '../Icon'
-import Button, { ButtonProps } from '../Button'
+import { Button, Props as ButtonProps } from '../Button/Button'
+import { ButtonGroup } from '../ButtonGroup/ButtonGroup'
 import Dropdown from '../Dropdown'
 import styles from './styles'
 
@@ -121,7 +122,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
     }
 
     return (
-      <Button.Group {...rest} ref={ref} style={style} className={className}>
+      <ButtonGroup {...rest} ref={ref} style={style} className={className}>
         <Button
           {...actionButtonProps}
           className={`${commonClasses} ${classes.actionButton}`}
@@ -143,7 +144,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
             renderMenuButton({ isOpen, disabled })
           }
         </Dropdown>
-      </Button.Group>
+      </ButtonGroup>
     )
   }
 )

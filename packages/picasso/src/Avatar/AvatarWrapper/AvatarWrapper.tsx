@@ -4,7 +4,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import styles from './styles'
-import { AvatarSizeType, VariantType } from '../Avatar'
+import { AvatarSizeType, VariantType } from '../types'
 
 export interface Props extends BaseProps {
   children: ReactNode

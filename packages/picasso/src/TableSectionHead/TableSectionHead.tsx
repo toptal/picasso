@@ -7,7 +7,7 @@ import React, {
 import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import { TableSection, TableSectionContext } from '../Table'
+import { TableSection, TableSectionContext } from '../Table/TableSectionContext'
 import TableCell from '../TableCell'
 import TableRow from '../TableRow'
 import TableBody from '../TableBody'

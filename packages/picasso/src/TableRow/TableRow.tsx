@@ -11,7 +11,7 @@ import MUITableRow from '@material-ui/core/TableRow'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import { TableContext } from '../Table'
+import TableContext from '../Table/TableContext'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
   /** Should be valid `<tr>` children such as `Table.Cell`. */

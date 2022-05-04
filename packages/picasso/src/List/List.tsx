@@ -5,8 +5,7 @@ import cx from 'classnames'
 
 import ListItem from '../ListItem'
 import styles from './styles'
-
-export type ListVariant = 'ordered' | 'unordered'
+import { ListVariant } from './types'
 
 export type Props = BaseProps & {
   children: ReactNode

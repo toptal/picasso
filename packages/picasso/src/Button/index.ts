@@ -1,5 +1,7 @@
-import { Props } from './Button'
-
-export { default } from './Button'
-export type ButtonProps = Props
-export * from './Button'
+export type {
+  Props as ButtonProps,
+  IconPositionType,
+  VariantType
+} from './Button'
+export { Button } from './Button'
+export { default } from './ButtonCompound'

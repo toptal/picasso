@@ -1,5 +1,3 @@
-import { Props } from './ButtonCheckbox'
+export type { Props as ButtonCheckboxProps } from './ButtonCheckbox'
 
 export { default } from './ButtonCheckbox'
-export type ButtonCheckboxProps = Props
-export * from './ButtonCheckbox'

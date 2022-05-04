@@ -12,7 +12,8 @@ import cx from 'classnames'
 
 import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
-import { TableContext, TableSectionContext, TableSection } from '../Table'
+import TableContext from '../Table/TableContext'
+import { TableSectionContext, TableSection } from '../Table/TableSectionContext'
 import Typography from '../Typography'
 
 type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'

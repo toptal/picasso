@@ -13,7 +13,7 @@ import {
   Classes
 } from '@toptal/picasso-shared'
 
-import Button from '../Button'
+import { Button } from '../Button/Button'
 import ButtonGroupItem from '../ButtonGroupItem'
 import styles from './styles'
 

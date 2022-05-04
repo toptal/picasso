@@ -17,9 +17,7 @@ import TableFooter from '../TableFooter'
 import TableExpandableRow from '../TableExpandableRow'
 import TableContext from './TableContext'
 import styles from './styles'
-
-export type TableSpacing = 'compact' | 'narrow' | 'regular'
-export type TableVariant = 'clear' | 'bordered' | 'striped'
+import { TableSpacing, TableVariant } from './types'
 
 export interface Props
   extends BaseProps,

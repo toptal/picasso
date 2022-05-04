@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 
-import Stepper, { StepperBaseProps } from '../Stepper'
+import { Stepper, StepperBaseProps } from '../Stepper/Stepper'
 
 export type Props = StepperBaseProps
 

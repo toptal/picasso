@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
 import cx from 'classnames'
 
-import Button, { ButtonProps } from '../Button'
+import { Button, Props as ButtonProps } from '../Button/Button'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {

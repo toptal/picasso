@@ -6,7 +6,7 @@ import cx from 'classnames'
 import Container from '../Container'
 import Typography from '../Typography'
 import { Bullet16 } from '../Icon'
-import { ListVariant } from '../List/List'
+import { ListVariant } from '../List/types'
 import styles from './styles'
 
 export type Props = BaseProps & {

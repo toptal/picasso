@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import { TableSpacing, TableVariant } from './Table'
+import { TableSpacing, TableVariant } from './types'
 
 export interface TableConfig {
   spacing: TableSpacing

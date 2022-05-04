@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import { DirectionType } from '../Stepper'
+import { DirectionType } from '../Stepper/types'
 import { ChevronRight16 as ChevronRightIcon } from '../Icon'
 import styles from './styles'
 

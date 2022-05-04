@@ -4,7 +4,7 @@ import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import { TableSection, TableSectionContext } from '../Table'
+import { TableSection, TableSectionContext } from '../Table/TableSectionContext'
 
 export interface Props
   extends BaseProps,

@@ -3,9 +3,9 @@ import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
-import { Typography } from '../..'
+import { Typography } from '../../Typography/Typography'
 import styles from './styles'
-import type { AvatarSizeType } from '../Avatar'
+import type { AvatarSizeType } from '../types'
 
 interface Props extends BaseProps {
   children: ReactNode

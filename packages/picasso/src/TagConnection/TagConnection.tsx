@@ -1,8 +1,9 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import { Link16, Typography } from '..'
 import styles from '../Tag/styles'
+import Typography from '../Typography/Typography'
+import Link16 from '../Icon/Link16'
 
 export type Props = {
   /**

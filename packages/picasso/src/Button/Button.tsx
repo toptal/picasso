@@ -21,12 +21,6 @@ import { makeStyles, Theme } from '@material-ui/core'
 import styles from './styles'
 import Loader from '../Loader'
 import Container from '../Container'
-import Group from '../ButtonGroup'
-import Circular from '../ButtonCircular'
-import Action from '../ButtonAction'
-import Split from '../ButtonSplit'
-import Checkbox from '../ButtonCheckbox'
-import Radio from '../ButtonRadio'
 import noop from '../utils/noop'
 import toTitleCase from '../utils/to-title-case'
 
@@ -227,12 +221,3 @@ Button.defaultProps = {
 }
 
 Button.displayName = 'Button'
-
-export default Object.assign(Button, {
-  Group,
-  Circular,
-  Action,
-  Split,
-  Checkbox,
-  Radio
-})

@@ -1,18 +1,13 @@
 import React, { HTMLAttributes, useCallback } from 'react'
-import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
 import getNameInitials from '../utils/get-name-initials'
 import ImageAvatar from './ImageAvatar/ImageAvatar'
 import TextAvatar from './TextAvatar/TextAvatar'
 import IconAvatar from './IconAvatar/IconAvatar'
-import AvatarGroup from './AvatarGroup/AvatarGroup'
 import AvatarWrapper from './AvatarWrapper/AvatarWrapper'
-
-export type VariantType = 'square' | 'portrait' | 'landscape'
-export type AvatarSizeType = SizeType<
-  'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'
->
+import { AvatarSizeType, VariantType } from './types'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Alt text */
@@ -117,7 +112,3 @@ Avatar.defaultProps = {
 }
 
 Avatar.displayName = 'Avatar'
-
-export default Object.assign(Avatar, {
-  Group: AvatarGroup
-})

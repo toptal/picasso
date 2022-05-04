@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import { PageContext } from '../Page'
+import { PageContext } from '../Page/PageContext'
 import { PageContextProps } from '../Page/types'
 import styles from './styles'
 

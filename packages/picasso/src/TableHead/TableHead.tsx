@@ -4,7 +4,7 @@ import MUITableHead from '@material-ui/core/TableHead'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import { TableSectionContext, TableSection } from '../Table'
+import { TableSectionContext, TableSection } from '../Table/TableSectionContext'
 
 export interface Props
   extends BaseProps,

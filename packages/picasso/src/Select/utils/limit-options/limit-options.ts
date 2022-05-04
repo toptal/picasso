@@ -1,5 +1,5 @@
 import { Option, OptionGroups } from '../../types'
-import { isOptionsType } from '..'
+import { isOptionsType } from '../is-options-type/is-options-type'
 
 interface Props {
   options: Option[] | OptionGroups

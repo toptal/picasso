@@ -1,5 +1,3 @@
-import { Props } from './ButtonControlLabel'
+export { Props as ButtonControlLabelProps } from './ButtonControlLabel'
 
 export { default } from './ButtonControlLabel'
-export type ButtonControlLabelProps = Props
-export * from './ButtonControlLabel'

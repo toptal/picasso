@@ -5,7 +5,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Image from '../../Image'
 import Logo from '../../Logo'
-import type { AvatarSizeType } from '../Avatar'
+import type { AvatarSizeType } from '../types'
 import styles from './styles'
 
 export interface Props extends BaseProps {

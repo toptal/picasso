@@ -7,7 +7,7 @@ import {
   OverridableComponent
 } from '@toptal/picasso-shared'
 
-import Button from '../Button'
+import { Button } from '../Button/Button'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 

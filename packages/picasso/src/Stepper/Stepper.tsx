@@ -9,9 +9,7 @@ import StepLabel from '../StepLabel'
 import '../StepIcon'
 import StepConnector from '../StepConnector'
 import styles from './styles'
-import StepperVertical from '../StepperVertical'
-
-export type DirectionType = 'vertical' | 'horizontal'
+import { DirectionType } from './types'
 
 export interface StepperBaseProps
   extends BaseProps,
@@ -31,7 +29,7 @@ export interface Props extends StepperBaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
 
-const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
     active = 0,
     steps = [],
@@ -77,5 +75,3 @@ Stepper.defaultProps = {
 }
 
 Stepper.displayName = 'Stepper'
-
-export default Object.assign(Stepper, { Vertical: StepperVertical })

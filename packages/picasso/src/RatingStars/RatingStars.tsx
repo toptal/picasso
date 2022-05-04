@@ -1,13 +1,12 @@
 import React, { forwardRef, ReactNode, ChangeEvent, useCallback } from 'react'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import Container from '../Container'
 import RatingIcon from '../RatingIcon'
 import styles from './styles'
-
-export type RatingSize = SizeType<'small' | 'large'>
+import { RatingSize } from './types'
 
 export interface Props extends BaseProps {
   /** Value of the name attribute of the rating input */

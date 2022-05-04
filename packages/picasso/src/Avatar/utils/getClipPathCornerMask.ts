@@ -1,4 +1,4 @@
-import { AvatarSizeType } from './../Avatar'
+import { AvatarSizeType } from './../types'
 
 const CORNER_SIZE = {
   xxsmall: '0.5rem',

@@ -13,12 +13,8 @@ import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
-import TagGroup from '../TagGroup'
-import TagRectangular from '../TagRectangular'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
-import TagConnection from '../TagConnection'
-import TagCheckable from '../TagCheckable'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
@@ -134,10 +130,3 @@ Tag.defaultProps = {
 Tag.displayName = 'Tag'
 
 export { useStyles }
-
-export default Object.assign(Tag, {
-  Group: TagGroup,
-  Rectangular: TagRectangular,
-  Connection: TagConnection,
-  Checkable: TagCheckable
-})

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { SizeType } from '@toptal/picasso-shared'
 
 import MenuItem from '../MenuItem'
-import { ItemProps, Option, ValueType } from '../Select'
+import { ItemProps, Option, ValueType } from '../Select/types'
 
 export interface Props<T extends ValueType> extends ItemProps {
   children?: ReactNode

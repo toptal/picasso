@@ -1,6 +1,6 @@
 import cx from 'classnames'
 
-import { Props } from '../../Typography'
+import { Props } from '../../types'
 import kebabToCamelCase from '../../../utils/kebab-to-camel-case'
 
 const getTypographyClassName = (

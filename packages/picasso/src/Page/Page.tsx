@@ -11,9 +11,10 @@ import PageContent from '../PageContent'
 import PageBanner from '../PageBanner'
 import PageAutocomplete from '../PageAutocomplete'
 import PageArticle from '../PageArticle'
-import { PageContextProps, ViewportWidthType } from './types'
+import { ViewportWidthType } from './types'
 import PageSidebar from '../Sidebar'
 import styles from './styles'
+import { PageContext } from './PageContext'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** DEPRECATED! Component becomes responsive with width 100% and overrides width prop */
@@ -25,8 +26,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Children components (`Page.TopBar`, `Page.Content`, `Page.Footer`) */
   children: ReactNode
 }
-
-export const PageContext = React.createContext<PageContextProps>({})
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'Page'

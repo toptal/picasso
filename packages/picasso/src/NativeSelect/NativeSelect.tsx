@@ -6,19 +6,14 @@ import capitalize from '@material-ui/core/utils/capitalize'
 
 import OutlinedInput from '../OutlinedInput'
 import SelectCaret from '../SelectCaret'
-import {
-  ValueType,
-  getOptionText,
-  useAdornments,
-  useSelectState,
-  useSelectProps,
-  SelectProps,
-  renderOption as defaultRenderOption
-} from '../Select'
 import NativeSelectOptions from '../NativeSelectOptions'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
+import { SelectProps, ValueType } from '../Select/types'
+import defaultRenderOption from '../Select/utils/render-option'
+import getOptionText from '../Select/utils/get-option-text'
+import { useSelectProps, useSelectState, useAdornments } from '../Select/hooks'
 
 const useStyles = makeStyles<Theme>(styles)
 

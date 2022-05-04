@@ -4,7 +4,7 @@ import cx from 'classnames'
 
 import { Star16, StarSolid16, Star24, StarSolid24 } from '../Icon'
 import styles from './styles'
-import type { RatingSize } from '../RatingStars/RatingStars'
+import type { RatingSize } from '../RatingStars/types'
 
 export interface Props {
   active: boolean

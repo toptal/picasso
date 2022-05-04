@@ -4,3 +4,4 @@ import { Props } from './List'
 
 export { default } from './List'
 export type ListProps = OmitInternalProps<Props>
+export type { ListVariant } from './types'

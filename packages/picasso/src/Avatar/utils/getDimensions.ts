@@ -1,4 +1,4 @@
-import { VariantType } from '../Avatar'
+import { VariantType } from '../types'
 
 const DIMENSIONS_BY_VARIANT = {
   square: {

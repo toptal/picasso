@@ -5,18 +5,18 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import MenuItem from '../MenuItem'
 import NonNativeSelectOption from '../NonNativeSelectOption'
 import SelectOptions from '../SelectOptions'
-import {
-  flattenOptions,
-  isOptionsType,
-  FocusEventType,
-  ItemProps,
-  Option,
-  OptionGroups,
-  SelectProps,
-  Selection
-} from '../Select'
 import Typography from '../Typography'
 import styles from './styles'
+import {
+  OptionGroups,
+  SelectProps,
+  Option,
+  ItemProps,
+  FocusEventType,
+  Selection
+} from '../Select/types'
+import flattenOptions from '../Select/utils/flatten-options'
+import isOptionsType from '../Select/utils/is-options-type'
 
 const useStyles = makeStyles<Theme>(styles)
 
