@@ -37,14 +37,14 @@ const Example = () => (
         <Page.Sidebar.Item icon={<Billing16 />} disabled>
           Billing
         </Page.Sidebar.Item>
-        <Page.Sidebar.Item badgeProps={{ content: 5 }} icon={<LegalInfo16 />}>
+        <Page.Sidebar.Item badge={{ content: 5 }} icon={<LegalInfo16 />}>
           <Typography size='medium' color='inherit'>
             Legal Info
           </Typography>
         </Page.Sidebar.Item>
         <Page.Sidebar.Item
           collapsible
-          badgeProps={{ content: 10 }}
+          badge={{ content: 10 }}
           icon={<Referrals16 />}
           menu={
             <Page.Sidebar.Menu>
@@ -58,7 +58,7 @@ const Example = () => (
         >
           Referrals
         </Page.Sidebar.Item>
-        <Page.Sidebar.Item badgeProps={{ content: 10 }} icon={<Resources16 />}>
+        <Page.Sidebar.Item badge={{ content: 10 }} icon={<Resources16 />}>
           Menu item with surprisingly long text content
         </Page.Sidebar.Item>
       </Page.Sidebar.Menu>

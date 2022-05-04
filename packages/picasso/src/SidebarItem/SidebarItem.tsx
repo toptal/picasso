@@ -45,7 +45,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Component name to render the menu item as */
   as?: ElementType<MenuItemProps>
   /** Definition of the embedded badge  */
-  badgeProps?: Omit<BadgeProps, 'size' | 'children' | 'variant'>
+  badge?: Omit<BadgeProps, 'size' | 'children'>
   variant?: VariantType
   isExpanded?: boolean
   expand?: (index: number | null) => void
@@ -54,7 +54,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Callback when item is hovered */
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
-  /** Should it be shown as a compact icon */
+  /** Should it be shown as a compact variant. It becomes a single icon, content becomes a tooltip and badges become overlaid */
   compact?: boolean
   testIds?: {
     content?: string
@@ -82,6 +82,8 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       style,
       compact,
       variant = 'light',
+      // testIds is being destructured only for the purpose of excluding it from `...rest`
+      testIds, // eslint-disable-line @typescript-eslint/no-unused-vars
       ...rest
     } = props
     const classes = useStyles()

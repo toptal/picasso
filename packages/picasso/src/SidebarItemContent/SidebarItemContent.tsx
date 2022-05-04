@@ -13,7 +13,7 @@ import styles from './styles'
 export interface Props {
   compact?: boolean
   icon?: ReactElement
-  badgeProps?: Omit<BadgeProps, 'size' | 'children' | 'variant'>
+  badge?: Omit<BadgeProps, 'size' | 'children'>
   children?: ReactNode
   titleCase?: boolean
   testIds?: {
@@ -59,20 +59,17 @@ const ItemContentBadge = (props: ItemContentBadgeProps) => {
 }
 
 const CompactItemContent = (props: Props) => {
-  const { icon, children, badgeProps } = props
+  const { icon, children, badge: badgeProps } = props
   const classes = useStyles()
 
   const hasBadge = badgeProps != null
 
-  let wrappedIcon = icon
-
-  wrappedIcon = hasBadge ? (
-    <ItemContentBadge content={badgeProps.content}>
-      {wrappedIcon}
-    </ItemContentBadge>
-  ) : (
-    wrappedIcon
-  )
+  const wrappedIcon =
+    icon && hasBadge ? (
+      <ItemContentBadge content={badgeProps.content}>{icon}</ItemContentBadge>
+    ) : (
+      icon
+    )
 
   return (
     <Container className={classes.noWrap} inline flex alignItems='center'>
@@ -88,7 +85,7 @@ const CompactItemContent = (props: Props) => {
 }
 
 const ExpandedItemContent = (props: Props) => {
-  const { icon, badgeProps, children, testIds } = props
+  const { icon, badge: badgeProps, children, testIds } = props
   const classes = useStyles()
 
   const hasIcon = icon != null
