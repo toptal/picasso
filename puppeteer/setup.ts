@@ -1,12 +1,12 @@
 import { configureToMatchImageSnapshot } from 'jest-image-snapshot'
 
-// const toMatchImageSnapshot = configureToMatchImageSnapshot({
-//   comparisonMethod: 'ssim'
-// })
-
 const toMatchImageSnapshot = configureToMatchImageSnapshot({
-  comparisonMethod: 'pixelmatch'
+  comparisonMethod: 'ssim'
 })
+
+// const toMatchImageSnapshot = configureToMatchImageSnapshot({
+//   comparisonMethod: 'pixelmatch'
+// })
 
 expect.extend({ toMatchImageSnapshot })
 

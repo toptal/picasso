@@ -125,7 +125,7 @@ jobs:
     needs: [ build-docker-image ]
 
     steps:
-      - name: Trigger doc deployment job
+      - name: Trigger old visual tests job
         uses: toptal/jenkins-job-trigger-action@1.0.0
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
