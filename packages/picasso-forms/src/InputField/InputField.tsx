@@ -2,13 +2,10 @@ import React from 'react'
 import { OutlinedInputStatus } from '@toptal/picasso'
 import { FieldMetaState, useField } from 'react-final-form'
 
-import Field, {
-  Props as FieldProps,
-  ValueType,
-  IFormComponentProps
-} from '../Field'
+import Field, { Props as FieldProps, IFormComponentProps } from '../Field'
 import { FormConfigProps, useFormConfig } from '../FormConfig'
 import useFormInputReset from '../utils/use-form-input-reset'
+import { ValueType } from '../types'
 
 export const getInputStatus = <T extends ValueType>(
   meta: FieldMetaState<T>,

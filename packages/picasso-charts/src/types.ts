@@ -68,3 +68,9 @@ export type BaseLineChartProps = BaseChartProps & {
   /** The formatter function of tick. */
   formatYAxisTick?: (value: number, domain: Domain) => string
 }
+
+export type HighlightConfig = {
+  from: number
+  to: number
+  color: string
+}

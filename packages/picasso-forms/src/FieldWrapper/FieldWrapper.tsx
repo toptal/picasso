@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { Props as FieldProps, ValueType, IFormComponentProps } from '../Field'
+import { Props as FieldProps, IFormComponentProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
+import { ValueType } from '../types'
 
 export type Props<TWrappedComponentProps, TInputValue> = Omit<
   FieldProps<TWrappedComponentProps, TInputValue>,

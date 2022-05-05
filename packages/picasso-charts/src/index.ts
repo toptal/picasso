@@ -1,6 +1,5 @@
 export { default as LineChart } from './LineChart'
 export type {
-  HighlightConfig,
   LineChartProps,
   ReferenceLineType
 } from './LineChart'
@@ -11,6 +10,7 @@ export type {
   BaseLineChartProps,
   LineConfig,
   ChartDataPoint,
-  OrderedChartDataPoint
+  OrderedChartDataPoint,
+  HighlightConfig,
 } from './types'
 // hygen code generator inserts export statements above this comment.

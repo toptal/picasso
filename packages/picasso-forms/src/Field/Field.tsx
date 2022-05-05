@@ -4,32 +4,15 @@ import {
   FieldProps as FinalFieldProps,
   FieldRenderProps
 } from 'react-final-form'
-import {
-  Form as PicassoForm,
-  DateOrDateRangeType,
-  OutlinedInputStatus
-} from '@toptal/picasso'
-import { Item } from '@toptal/picasso/Autocomplete'
-import { FileUpload } from '@toptal/picasso/FileInput'
+import { Form as PicassoForm, OutlinedInputStatus } from '@toptal/picasso'
 import { TextLabelProps } from '@toptal/picasso-shared'
 import { detect } from 'detect-browser'
 
 import { useFormConfig } from '../FormConfig'
 import { validators, useFieldValidation } from '../utils'
+import { ValueType } from '../types'
 
 const { composeValidators, required: requiredValidator } = validators
-
-export type ValueType =
-  | string
-  | string[]
-  | number
-  | boolean
-  | null
-  | undefined
-  | FileUpload[]
-  | DateOrDateRangeType
-  | Item
-  | Item[]
 
 export type FieldProps<TInputValue> = FinalFieldProps<
   TInputValue,

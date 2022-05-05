@@ -3,5 +3,4 @@ export type {
   Highlight,
   Point,
   ReferenceLine,
-  ChartGranularity
-} from './AnalyticsChart'
+} from '../types'

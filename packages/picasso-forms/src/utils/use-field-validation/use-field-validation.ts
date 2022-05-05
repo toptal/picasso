@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { FieldValidator } from 'final-form'
 import { FieldMetaState } from 'react-final-form'
 
-import { ValueType } from '../../Field'
+import { ValueType } from '../../types'
 import { useFormContext } from '../../Form/FormContext'
 
 export type Props<T extends ValueType> = {
