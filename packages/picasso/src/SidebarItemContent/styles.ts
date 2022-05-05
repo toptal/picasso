@@ -7,12 +7,12 @@ export default () =>
       minWidth: 0
     },
     withIcon: {
-      marginLeft: '0.875rem'
+      marginLeft: '0.875em'
     },
     hiddenContent: {
       visibility: 'hidden'
     },
     staticBadge: {
-      marginLeft: '0.5rem'
+      marginLeft: '0.5em'
     }
   })
