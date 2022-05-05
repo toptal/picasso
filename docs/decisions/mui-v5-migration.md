@@ -19,7 +19,7 @@ Since migration requires many changes, we want to do it gradually.
 - migrate all components
 - replace old Picasso root with `PicassoV5`
 - remove MUIv4 packages
-- migrate Picasso to use tss-react
+- migrate Picasso to use `tss-react` or `styled`
 
 A PoC with `PicassoV5` and a sample component migration should be prepared before continuing.
 
