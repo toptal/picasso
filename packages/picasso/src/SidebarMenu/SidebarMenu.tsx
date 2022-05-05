@@ -1,6 +1,5 @@
 import React, {
   forwardRef,
-  useContext,
   ReactElement,
   useCallback,
   useEffect,
@@ -12,7 +11,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import { useSidebarContext } from '../PageSidebar'
-import * as SidebarItem from '../SidebarItem'
+import { useSubMenuContext } from '../SidebarItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
@@ -27,7 +26,7 @@ const useStyles = makeStyles<Theme>(styles, {
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
   function SidebarMenu(props, ref) {
     const { bottom, style, className, children, ...rest } = props
-    const { parentSidebarItemIndex } = useContext(SidebarItem.SubMenuContext)
+    const { parentSidebarItemIndex, isSubMenu } = useSubMenuContext()
 
     const classes = useStyles()
 
@@ -56,7 +55,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
 
     const items = React.Children.map(children, (child, index) => {
       const sidebarItem = child as ReactElement
-      const compact = isSidebarCollapsed
+      const compact = isSidebarCollapsed && !isSubMenu
 
       if (!sidebarItem.props.collapsible) {
         return React.cloneElement(sidebarItem, {
