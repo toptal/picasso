@@ -15,7 +15,7 @@ import SourceRender, { RenderResult } from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
 import { Typography, Button, Accordion, Container } from '@toptal/picasso'
-import Picasso, { useScreenSize } from '@toptal/picasso-provider'
+import Picasso, { useScreenSize, PicassoV5 } from '@toptal/picasso-provider'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Code16, Link16 } from '@toptal/picasso/Icon'
 
@@ -80,7 +80,10 @@ const Purifier: FunctionComponent = ({ children }) => {
 // for SSR rendering.
 // This fix is suggested here
 // https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85#option-2-lazily-show-component-with-uselayouteffect
-const PicassoSSR: FunctionComponent = ({ children }) => {
+const PicassoSSR: FunctionComponent<{ muiV5?: boolean }> = ({
+  children,
+  muiV5
+}) => {
   const [showPicasso, setShowPicasso] = useState(false)
 
   // Wait until after client-side hydration to show
@@ -90,6 +93,14 @@ const PicassoSSR: FunctionComponent = ({ children }) => {
 
   if (!showPicasso) {
     return null
+  }
+
+  if (muiV5) {
+    return (
+      <PicassoV5 fixViewport={false} loadFavicon={false}>
+        <Purifier>{children}</Purifier>
+      </PicassoV5>
+    )
   }
 
   return (
@@ -137,7 +148,8 @@ const getOriginalSourceCode = ({
 }
 
 const CodeExample = (props: Props) => {
-  const { permanentLink, showEditCode } = props
+  const { permanentLink, showEditCode, src } = props
+  const isMuiV5 = ['Switch'].some(name => src.startsWith(name))
 
   const classes = useStyles()
   const [sourceCode, setSourceCode] = useState(getOriginalSourceCode(props))
@@ -165,11 +177,21 @@ const CodeExample = (props: Props) => {
    * only actual component without source code editor
    */
   if (TEST_ENV === 'visual') {
-    const renderInTestPicasso = (element: ReactNode) => (
-      <Picasso loadFonts={false} fixViewport={false} loadFavicon={false}>
-        <Purifier>{element}</Purifier>
-      </Picasso>
-    )
+    const renderInTestPicasso = (element: ReactNode) => {
+      if (isMuiV5) {
+        return (
+          <PicassoV5 loadFonts={false} fixViewport={false} loadFavicon={false}>
+            <Purifier>{element}</Purifier>
+          </PicassoV5>
+        )
+      }
+
+      return (
+        <Picasso loadFonts={false} fixViewport={false} loadFavicon={false}>
+          <Purifier>{element}</Purifier>
+        </Picasso>
+      )
+    }
 
     return (
       <div className={classes.componentRenderer}>
@@ -204,7 +226,7 @@ const CodeExample = (props: Props) => {
   )
 
   const renderInPicasso = (element: ReactNode) => (
-    <PicassoSSR>{element}</PicassoSSR>
+    <PicassoSSR muiV5={isMuiV5}>{element}</PicassoSSR>
   )
 
   return (

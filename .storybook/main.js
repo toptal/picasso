@@ -94,6 +94,14 @@ module.exports = {
       '@toptal/picasso-provider': path.resolve(
         __dirname,
         '../packages/picasso-provider/src'
+      ),
+      '@emotion/core': path.resolve(
+        __dirname,
+        '../node_modules/@emotion/react'
+      ),
+      'emotion-theming': path.resolve(
+        __dirname,
+        '../node_modules/@emotion/react'
       )
     }
 

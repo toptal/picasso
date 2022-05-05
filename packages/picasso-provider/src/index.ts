@@ -1,4 +1,4 @@
-export { default } from './Picasso'
+export { default, PicassoV5 } from './Picasso'
 
 export {
   useScreenSize,
@@ -19,6 +19,7 @@ export {
 } from './Picasso/config'
 
 export { default as PicassoProvider } from './Picasso/PicassoProvider'
+export { default as PicassoProviderV5 } from './Picasso/PicassoProviderV5'
 
 export {
   usePicassoRoot,

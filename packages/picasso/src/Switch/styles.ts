@@ -1,6 +1,7 @@
-import { createStyles } from '@material-ui/core/styles'
+import createStyles from '@mui/styles/createStyles'
 import { outline } from '@toptal/picasso-shared'
-import { PicassoProvider } from '@toptal/picasso-provider'
+import { PicassoProviderV5 } from '@toptal/picasso-provider'
+import { switchClasses, buttonBaseClasses } from '@mui/material'
 
 const CONTROL_WIDTH = '1em'
 const LABEL_LEFT_MARGIN = '0.5em'
@@ -10,65 +11,65 @@ const THUMB_SIZE = 22
 const TRACK_HEIGHT = THUMB_SIZE + 2
 const TRACK_WIDTH = 40
 
-PicassoProvider.override(({ palette, transitions }) => ({
+PicassoProviderV5.override(({ palette, transitions }) => ({
   MuiSwitch: {
-    root: {
-      width: TRACK_WIDTH,
-      height: TRACK_HEIGHT,
-      padding: 0,
-      overflow: 'visible'
-    },
-    switchBase: {
-      top: 1,
-      left: 1,
-      padding: 0,
-      color: palette.common.white,
-      '&$checked': {
-        transform: 'translateX(16px)',
+    styleOverrides: {
+      root: {
+        width: TRACK_WIDTH,
+        height: TRACK_HEIGHT,
+        padding: 0,
+        overflow: 'visible'
+      },
+      switchBase: {
+        top: 1,
+        left: 1,
+        padding: 0,
         color: palette.common.white,
-        '& + $track': {
-          backgroundColor: palette.primary.main,
-          borderColor: palette.primary.main,
-          opacity: 1
+        [`&.${switchClasses.checked}`]: {
+          transform: 'translateX(16px)',
+          color: palette.common.white,
+          [`& + .${switchClasses.track}`]: {
+            backgroundColor: palette.primary.main,
+            borderColor: palette.primary.main,
+            opacity: 1
+          },
+          [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
+            opacity: 0.4,
+            backgroundColor: palette.primary.main,
+            borderColor: palette.primary.main
+          }
         },
-        '&$disabled + $track': {
+        [`&:hover, &.${buttonBaseClasses.focusVisible}`]: {
+          ...outline(palette.primary.main, 4)
+        },
+        [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
           opacity: 0.4,
-          backgroundColor: palette.primary.main,
-          borderColor: palette.primary.main
-        }
-      },
-      '&:hover, &.Mui-focusVisible': {
-        ...outline(palette.primary.main, 4)
-      },
-      '&$disabled': {
-        '& + $track': {
-          opacity: 0.4,
-          backgroundColor: palette.grey.main2,
+          backgroundColor: palette.common.black,
           borderColor: palette.grey.main2
         }
-      }
-    },
-    thumb: {
-      width: THUMB_SIZE,
-      height: THUMB_SIZE,
-      color: palette.common.white,
-      // fix for bad subpixel rendering on 150% displays
-      '@media (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.5)':
-        {
-          transform: 'translate(-0.2px, -0.3px)'
+      },
+      thumb: {
+        width: THUMB_SIZE,
+        height: THUMB_SIZE,
+        color: palette.common.white,
+        // fix for bad subpixel rendering on 150% displays
+        '@media (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.5)':
+          {
+            transform: 'translate(-0.2px, -0.3px)'
+          }
+      },
+      track: {
+        borderRadius: TRACK_HEIGHT / 2,
+        border: `1px solid ${palette.grey.main2}`,
+        backgroundColor: palette.grey.main2,
+        borderColor: palette.grey.main2,
+        opacity: 1,
+        transition: transitions.create(['background-color', 'border'])
+      },
+      disabled: {
+        [`& + .${switchClasses.track}`]: {
+          opacity: 0.4
         }
-    },
-    track: {
-      borderRadius: TRACK_HEIGHT / 2,
-      border: `1px solid ${palette.grey.main2}`,
-      backgroundColor: palette.grey.main2,
-      borderColor: palette.grey.main2,
-      opacity: 1,
-      transition: transitions.create(['background-color', 'border'])
-    },
-    disabled: {
-      '& + $track': {
-        opacity: 0.4
       }
     }
   }

@@ -6,27 +6,24 @@ exports[`Switch behaves correctly when interacting 1`] = `
   data-testid="switch"
 >
   <span
-    class="MuiSwitch-root"
+    class="MuiSwitch-root MuiSwitch-sizeMedium css-julti5-MuiSwitch"
   >
     <span
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-checked Mui-checked"
+      class="MuiSwitch-switchBase MuiSwitch-colorPrimary MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root Mui-checked css-1j7cuh1-MuiButtonBase-root-MuiSwitch"
     >
+      <input
+        class="MuiSwitch-input PrivateSwitchBase-input css-1m9pwf3"
+        type="checkbox"
+      />
       <span
-        class="MuiIconButton-label"
-      >
-        <input
-          class="PrivateSwitchBase-input MuiSwitch-input"
-          type="checkbox"
-          value=""
-        />
-        <span
-          class="MuiSwitch-thumb"
-        />
-      </span>
+        class="MuiSwitch-thumb css-jsexje-MuiSwitch"
+      />
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple"
+      />
     </span>
     <span
-      class="MuiSwitch-track"
+      class="MuiSwitch-track css-1yjjitx-MuiSwitch"
     />
   </span>
   <span
@@ -47,28 +44,25 @@ exports[`Switch renders default Switch without label 1`] = `
     class="Picasso-root"
   >
     <span
-      class="MuiSwitch-root"
+      class="MuiSwitch-root MuiSwitch-sizeMedium css-julti5-MuiSwitch"
     >
       <span
-        aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary"
+        class="MuiSwitch-switchBase MuiSwitch-colorPrimary MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root css-1j7cuh1-MuiButtonBase-root-MuiSwitch"
         data-testid="switch"
       >
+        <input
+          class="MuiSwitch-input PrivateSwitchBase-input css-1m9pwf3"
+          type="checkbox"
+        />
         <span
-          class="MuiIconButton-label"
-        >
-          <input
-            class="PrivateSwitchBase-input MuiSwitch-input"
-            type="checkbox"
-            value=""
-          />
-          <span
-            class="MuiSwitch-thumb"
-          />
-        </span>
+          class="MuiSwitch-thumb css-jsexje-MuiSwitch"
+        />
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple"
+        />
       </span>
       <span
-        class="MuiSwitch-track"
+        class="MuiSwitch-track css-1yjjitx-MuiSwitch"
       />
     </span>
   </div>
@@ -81,29 +75,24 @@ exports[`Switch renders disabled state 1`] = `
   data-testid="switch"
 >
   <span
-    class="MuiSwitch-root"
+    class="MuiSwitch-root MuiSwitch-sizeMedium css-julti5-MuiSwitch"
   >
     <span
       aria-disabled="true"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-disabled Mui-disabled Mui-disabled Mui-disabled"
+      class="MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-disabled MuiButtonBase-root Mui-disabled MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-disabled PrivateSwitchBase-root Mui-disabled css-1j7cuh1-MuiButtonBase-root-MuiSwitch"
       tabindex="-1"
     >
+      <input
+        class="MuiSwitch-input PrivateSwitchBase-input css-1m9pwf3"
+        disabled=""
+        type="checkbox"
+      />
       <span
-        class="MuiIconButton-label"
-      >
-        <input
-          class="PrivateSwitchBase-input MuiSwitch-input"
-          disabled=""
-          type="checkbox"
-          value=""
-        />
-        <span
-          class="MuiSwitch-thumb"
-        />
-      </span>
+        class="MuiSwitch-thumb css-jsexje-MuiSwitch"
+      />
     </span>
     <span
-      class="MuiSwitch-track"
+      class="MuiSwitch-track css-1yjjitx-MuiSwitch"
     />
   </span>
   <span

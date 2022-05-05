@@ -1,4 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { formControlLabelClasses } from '@mui/material'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(({ palette, typography }: Theme) => ({
@@ -18,7 +19,7 @@ PicassoProvider.override(({ palette, typography }: Theme) => ({
       cursor: 'pointer',
       userSelect: 'none',
 
-      '&$disabled': {
+      [`&.${formControlLabelClasses.disabled}`]: {
         pointerEvents: 'auto'
       }
     }
