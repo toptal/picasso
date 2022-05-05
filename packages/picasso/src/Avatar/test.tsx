@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Avatar, { Props } from './Avatar'
+import { Avatar, Props } from './Avatar'
 
 const renderAvatar = (props: OmitInternalProps<Props>) => {
   const { alt, name, src, size, testIds } = props

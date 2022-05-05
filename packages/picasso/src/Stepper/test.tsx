@@ -2,7 +2,7 @@ import React from 'react'
 import { render, PicassoConfig } from '@toptal/picasso/test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Stepper from './Stepper'
+import { Stepper } from './Stepper'
 import { StepperProps } from '.'
 
 jest.mock('ap-style-title-case')

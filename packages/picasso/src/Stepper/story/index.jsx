@@ -1,4 +1,4 @@
-import Stepper from '../Stepper'
+import { Stepper } from '../Stepper'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 import verticalStory from '../../StepperVertical/story'
 

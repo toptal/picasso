@@ -3,8 +3,10 @@ import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Tag, { Props } from './Tag'
-import { Link, Settings16 } from '..'
+import Tag from './TagCompound'
+import { Props } from './Tag'
+import Link from '../Link/Link'
+import { Settings16 } from '../Icon'
 
 jest.mock('ap-style-title-case')
 

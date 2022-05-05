@@ -8,7 +8,7 @@ import {
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Button, { Props } from './Button'
+import { Button, Props } from './Button'
 import Link from '../Link'
 
 jest.mock('ap-style-title-case')

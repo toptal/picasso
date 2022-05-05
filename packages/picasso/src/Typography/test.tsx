@@ -3,7 +3,8 @@ import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Typography, { Props } from './Typography'
+import { Typography } from './Typography'
+import { Props } from './types'
 
 jest.mock('ap-style-title-case')
 
