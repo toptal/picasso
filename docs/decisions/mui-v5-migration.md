@@ -27,11 +27,28 @@ A PoC with `PicassoV5` and a sample component migration should be prepared befor
 
 ### `emotion` vs `styled-components`
 
+_Pros:_
+
 - `emotion` is very similar to our current `makeStyles` CSS solution, so fewer changes
+
+_Cons:_
+
+- none
+
+**We propose to use `emotion`**
 
 ### feature branch vs using master directly
 
-we can merge our PR's to master without releasing, but it may block all other future hotfix releases
+_Pros:_
+
+- we can merge our PR's to master without releasing
+- it will eliminate conflicts
+
+_Cons:_
+
+- it may block all other future hotfix releases
+
+**We propose to use feature branch**
 
 ### feature branch vs creating v5 folder for each component
 
@@ -45,3 +62,5 @@ _Cons:_
 
 - it will be hard to maintain both components in the storybook even for local development
 - folders count will be doubled
+
+**We propose to use feature branch**
