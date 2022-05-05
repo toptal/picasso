@@ -72,8 +72,15 @@ const SidebarItemHeader = forwardRef<HTMLElement, Props>(
       variant = 'light',
       onClick,
       collapsible,
-      // testIds is being destructured only for the purpose of excluding it from `...rest`
-      testIds, // eslint-disable-line @typescript-eslint/no-unused-vars
+      // these props are being destructured only for the purpose of excluding them from `...rest`
+      /* eslint-disable @typescript-eslint/no-unused-vars */
+      badge,
+      testIds,
+      icon,
+      isExpanded,
+      expand,
+      index,
+      /* eslint-enable */
       ...rest
     } = props
 
@@ -129,7 +136,7 @@ const BasicSidebarItem = forwardRef<HTMLElement, Props>(
     const hasIcon = icon != null
 
     return (
-      <Container>
+      <>
         <SidebarItemHeader {...props} ref={ref} />
         {hasMenu && (
           <div
@@ -142,7 +149,7 @@ const BasicSidebarItem = forwardRef<HTMLElement, Props>(
             </SubMenuContextProvider>
           </div>
         )}
-      </Container>
+      </>
     )
   }
 )
@@ -263,6 +270,7 @@ SidebarItem.defaultProps = {
   onClick: noop,
   selected: false,
   expand: noop,
+  variant: 'light',
   compact: false
 }
 
