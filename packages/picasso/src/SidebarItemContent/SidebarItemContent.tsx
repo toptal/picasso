@@ -34,13 +34,9 @@ const resolveChildrenText = (text: ReactNode, titleCase: boolean) =>
     text
   )
 
-interface ItemContentBadgeProps {
-  content: number
-  children?: ReactNode
-}
+const ItemContentBadge = (props: Props['badge'] & { children?: ReactNode }) => {
+  const { children, variant = 'red', ...rest } = props
 
-const ItemContentBadge = (props: ItemContentBadgeProps) => {
-  const { content, children } = props
   const classes = useStyles()
   const isOverlay = React.Children.count(children) > 0
 
@@ -49,9 +45,9 @@ const ItemContentBadge = (props: ItemContentBadgeProps) => {
       className={cx({
         [classes.staticBadge]: !isOverlay
       })}
-      content={content}
-      variant='red'
+      variant={variant}
       size={isOverlay ? 'small' : 'large'}
+      {...rest}
     >
       {children}
     </Badge>
@@ -105,7 +101,7 @@ const ExpandedItemContent = (props: Props) => {
       >
         {children}
 
-        {hasBadge && <ItemContentBadge content={badge.content} />}
+        {hasBadge && <ItemContentBadge {...badge} />}
       </Container>
     </Container>
   )
