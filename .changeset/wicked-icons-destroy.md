@@ -6,4 +6,4 @@
 
 ### SidebarItem
 
-- Changed submenus to a dropdown when in compact mode
+- Change sub-menus to a dropdown when in compact mode
