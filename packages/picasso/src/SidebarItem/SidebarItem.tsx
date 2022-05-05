@@ -4,7 +4,8 @@ import React, {
   ElementType,
   ChangeEvent,
   memo,
-  useMemo
+  useMemo,
+  useCallback
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -21,7 +22,8 @@ import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../PageSidebar/types'
 import noop from '../utils/noop'
-import { ItemContent } from './ItemContent'
+import { BadgeProps } from '../Badge'
+import SidebarItemContent from '../SidebarItemContent'
 
 export const SubMenuContext = React.createContext<{
   parentSidebarItemIndex?: number | null
@@ -42,6 +44,8 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   menu?: ReactElement
   /** Component name to render the menu item as */
   as?: ElementType<MenuItemProps>
+  /** Definition of the embedded badge  */
+  badge?: Omit<BadgeProps, 'size' | 'children'>
   variant?: VariantType
   isExpanded?: boolean
   expand?: (index: number | null) => void
@@ -50,8 +54,8 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Callback when item is hovered */
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
-  /** Indicates content is visible */
-  isContentVisible?: boolean
+  /** Should it be shown as a compact variant. It becomes a single icon, content becomes a tooltip and badges become overlaid */
+  compact?: boolean
   testIds?: {
     content?: string
   }
@@ -76,9 +80,10 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       onClick = noop,
       selected,
       style,
+      compact,
       variant = 'light',
-      isContentVisible,
-      testIds,
+      // testIds is being destructured only for the purpose of excluding it from `...rest`
+      testIds, // eslint-disable-line @typescript-eslint/no-unused-vars
       ...rest
     } = props
     const classes = useStyles()
@@ -99,28 +104,30 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       [index, menu]
     )
 
-    const handleMenuItemClick = (
-      event: React.MouseEvent<HTMLElement, MouseEvent>
-    ) => {
-      if (!hasMenu) {
-        onClick(event)
-      }
-    }
+    const handleMenuItemClick = useCallback(
+      (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+        if (!hasMenu) {
+          onClick(event)
+        }
+      },
+      [hasMenu, onClick]
+    )
 
-    const handleAccordionChange = (
-      event: ChangeEvent<{}>,
-      expansion: boolean
-    ) => {
-      event.stopPropagation()
-      if (expansion) {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        expand(index!)
-      }
-    }
+    const handleAccordionChange = useCallback(
+      (event: ChangeEvent<{}>, isAccordionExpanded: boolean) => {
+        event.stopPropagation()
+
+        if (isAccordionExpanded) {
+          expand(index ?? null)
+        }
+      },
+      [index, expand]
+    )
 
     const menuItem = (
       <MenuItem
         {...rest}
+        classes={classes}
         as={as}
         ref={ref}
         style={style}
@@ -130,6 +137,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
           classes.roundedBorder,
           classes[variant],
           {
+            [classes.compact]: compact,
             [classes.selected]: !hasMenu && selected,
             [classes.collapsible]: hasMenu && collapsible
           },
@@ -141,12 +149,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
         variant={variant}
         nonSelectable
       >
-        <ItemContent
-          {...props}
-          testIds={testIds}
-          classes={classes}
-          isContentVisible={isContentVisible}
-        />
+        <SidebarItemContent {...props} />
       </MenuItem>
     )
 
@@ -216,7 +219,7 @@ SidebarItem.defaultProps = {
   onClick: noop,
   selected: false,
   expand: noop,
-  isContentVisible: true
+  compact: false
 }
 
 SidebarItem.displayName = 'SidebarItem'

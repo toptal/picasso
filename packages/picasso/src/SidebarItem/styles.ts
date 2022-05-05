@@ -6,6 +6,7 @@ export default ({ palette, sizes }: Theme) =>
       height: '2.75em',
       padding: '0 1rem',
       margin: '0 1rem',
+      whiteSpace: 'nowrap',
       fontSize: '1rem',
       '$nestedMenu &': {
         padding: '0 0 0 2rem',
@@ -66,10 +67,6 @@ export default ({ palette, sizes }: Theme) =>
       }
     },
     selected: {},
-    label: {},
-    withIcon: {
-      marginLeft: '0.875em'
-    },
     collapsibleWrapper: {
       padding: '0 0 0 1rem',
       margin: '0 1rem'
@@ -92,6 +89,9 @@ export default ({ palette, sizes }: Theme) =>
     expandIconDisabled: {
       color: palette.grey.main
     },
+    compact: {
+      overflow: 'visible'
+    },
     noWrap: {
       flex: 1,
       minWidth: 0
@@ -99,8 +99,5 @@ export default ({ palette, sizes }: Theme) =>
     collapsible: {
       margin: 0,
       padding: 0
-    },
-    hiddenContent: {
-      visibility: 'hidden'
     }
   })

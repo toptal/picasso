@@ -1,17 +1,17 @@
 import React from 'react'
-import { Page, Tag, Logo, Container, Typography } from '@toptal/picasso'
+import { Page, Logo, Typography } from '@toptal/picasso'
 import {
   Jobs16,
   Overview16,
   Candidates16,
   Team16,
-  Participants16,
   Billing16,
   LegalInfo16,
   Referrals16,
   Resources16,
   ReferralBonus16,
-  Help16
+  Help16,
+  Participants16
 } from '@toptal/picasso/Icon'
 
 const Example = () => (
@@ -37,16 +37,14 @@ const Example = () => (
         <Page.Sidebar.Item icon={<Billing16 />} disabled>
           Billing
         </Page.Sidebar.Item>
-        <Page.Sidebar.Item icon={<LegalInfo16 />}>
+        <Page.Sidebar.Item badge={{ content: 5 }} icon={<LegalInfo16 />}>
           <Typography size='medium' color='inherit'>
             Legal Info
           </Typography>
-          <Container left='medium'>
-            <Tag>5</Tag>
-          </Container>
         </Page.Sidebar.Item>
         <Page.Sidebar.Item
           collapsible
+          badge={{ content: 10 }}
           icon={<Referrals16 />}
           menu={
             <Page.Sidebar.Menu>
@@ -60,7 +58,7 @@ const Example = () => (
         >
           Referrals
         </Page.Sidebar.Item>
-        <Page.Sidebar.Item icon={<Resources16 />}>
+        <Page.Sidebar.Item badge={{ content: 10 }} icon={<Resources16 />}>
           Menu item with surprisingly long text content
         </Page.Sidebar.Item>
       </Page.Sidebar.Menu>

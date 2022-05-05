@@ -56,12 +56,12 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
 
     const items = React.Children.map(children, (child, index) => {
       const sidebarItem = child as ReactElement
-      const isContentVisible = !isSidebarCollapsed
+      const compact = isSidebarCollapsed
 
       if (!sidebarItem.props.collapsible) {
         return React.cloneElement(sidebarItem, {
           variant,
-          isContentVisible
+          compact
         })
       }
 
@@ -71,7 +71,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         variant,
         isExpanded,
         expand: expandSidebarItem,
-        isContentVisible,
+        compact,
         index
       })
     })

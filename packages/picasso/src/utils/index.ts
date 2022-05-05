@@ -56,3 +56,4 @@ export * from './Modal'
 export { formatAmount, DEFAULT_CURRENCY, DEFAULT_LOCALE } from './Formatters'
 
 export type { FormatAmount } from './Formatters'
+export * from './get-react-node-text-content'

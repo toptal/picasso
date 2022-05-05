@@ -9,6 +9,7 @@ import {
   Overview16,
   Page,
   PageSidebarProps,
+  Team16,
   Typography
 } from '@toptal/picasso'
 
@@ -28,6 +29,15 @@ const SidebarExample = (props: PageSidebarProps) => {
           selected
         >
           <span data-testid='sidebar-item-text-content'>Overview</span>
+        </Page.Sidebar.Item>
+        <Page.Sidebar.Item
+          icon={<Team16 />}
+          badge={{
+            content: 5
+          }}
+          selected
+        >
+          Team
         </Page.Sidebar.Item>
       </Page.Sidebar.Menu>
 
