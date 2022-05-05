@@ -72,7 +72,7 @@
     "@types/esprima": "^4.0.2",
     "@types/happo-cypress": "^1.17.2",
     "@types/jest": "^27.4.1",
-    "@types/jest-image-snapshot": "^3.1.0",
+    "@types/jest-image-snapshot": "^4.3.1",
     "@types/puppeteer": "^1.19.0",
     "@types/react-truncate": "^2.3.4",
     "babel-jest": "^26.6.3",
