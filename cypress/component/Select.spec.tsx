@@ -12,10 +12,6 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop, palette } from '@toptal/picasso/utils'
 import { ValueType } from '@toptal/picasso/Select'
 
-const testIds = {
-  resetButton: 'reset-adornment'
-}
-
 const TestSelect = ({
   onChange = noop,
   value = undefined,
@@ -299,6 +295,8 @@ describe('Select', () => {
   })
 
   it('renders reset button', () => {
+    const testIds = { resetButton: 'reset-adornment' }
+
     mount(
       <TestingPicasso>
         <TestSelect enableReset value={OPTIONS[0].value} testIds={testIds} />
@@ -352,18 +350,6 @@ describe('Select', () => {
         <TestSelect icon={<Settings16 />} disabled />
       </TestingPicasso>
     )
-
-    cy.get('body').happoScreenshot()
-  })
-
-  it.skip('renders select with search', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect searchThreshold={-1} />
-      </TestingPicasso>
-    )
-
-    openSelect()
 
     cy.get('body').happoScreenshot()
   })
@@ -454,6 +440,53 @@ describe('Select', () => {
 
       cy.get('@searchInput').should('be.visible')
       cy.get('@searchInput').click().should('have.focus')
+    })
+  })
+
+  describe('with search input', () => {
+    it('focuses the input', () => {
+      mount(
+        <TestingPicasso>
+          <TestSelect
+            searchThreshold={-1}
+            testIds={{ searchInput: 'search-input' }}
+          />
+        </TestingPicasso>
+      )
+
+      const searchInput = '[data-testid="search-input"]'
+      const selectInput = '[data-testid="select"]'
+
+      cy.get('[data-testid="select"]')
+        .click()
+        .find('input')
+        .should('be.focused')
+
+      cy.get('body').happoScreenshot()
+
+      // focuses on the Search input by clicking on the input
+      cy.get(searchInput).click('center').find('input').should('be.focused')
+
+      // focuses on by click on the input wrapper
+      cy.get(selectInput)
+        .click()
+        .get(searchInput)
+        .click('bottom')
+        .find('input')
+        .should('be.focused')
+
+      // focuses on by click on the search icon
+      cy.get(selectInput)
+        .click()
+        .get(searchInput)
+        .closest('[role="menuitem"]')
+        .click(20, 20)
+        .find('input')
+        .should('be.focused')
+
+      // focuses on by typing
+      cy.get(selectInput).click().type('option')
+      cy.get(searchInput).find('input').should('be.focused')
     })
   })
 })
