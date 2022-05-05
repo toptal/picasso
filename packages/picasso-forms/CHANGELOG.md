@@ -1,5 +1,15 @@
 # Change Log
 
+## 42.2.3
+
+### Patch Changes
+
+- [#2723](https://github.com/toptal/picasso/pull/2723) [`8d6dd96e`](https://github.com/toptal/picasso/commit/8d6dd96e00161b588e786fd9827e2ad35ff147a0) Thanks [@pudek357](https://github.com/pudek357)! - ---
+
+  ### Select
+
+  - Pass proper 'name' to 'FieldLabel'
+
 ## 42.2.2
 
 ### Patch Changes
