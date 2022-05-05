@@ -8,9 +8,6 @@ PicassoProvider.override(() => ({
       root: {
         cursor: 'pointer'
       }
-    },
-    defaultProps: {
-      underline: 'hover'
     }
   }
 }))
