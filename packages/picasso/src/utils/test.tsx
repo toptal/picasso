@@ -371,7 +371,7 @@ describe('getRectNodeTextContent', () => {
   })
 
   describe('when getting text from a array node', () => {
-    it('returns the contents of its elements joined by no space by default', () => {
+    it('returns the contents of its elements joined by space', () => {
       expect(getReactNodeTextContent(['foo', <div>bar</div>, 45])).toBe(
         'foo bar 45'
       )

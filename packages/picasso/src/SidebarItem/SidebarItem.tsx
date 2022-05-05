@@ -114,10 +114,10 @@ export const SidebarItem: OverridableComponent<Props> = memo(
     )
 
     const handleAccordionChange = useCallback(
-      (event: ChangeEvent<{}>, expansion: boolean) => {
+      (event: ChangeEvent<{}>, isAccordionExpanded: boolean) => {
         event.stopPropagation()
 
-        if (expansion) {
+        if (isAccordionExpanded) {
           expand(index ?? null)
         }
       },
