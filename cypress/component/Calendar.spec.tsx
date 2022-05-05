@@ -11,6 +11,10 @@ const TestCalendar = (props: ComponentProps<typeof Calendar>) => (
 )
 
 describe('Calendar', () => {
+  beforeEach(() => {
+    cy.clock(new Date(2022, 4, 4).getTime())
+  })
+
   describe('when no custom renderers provided', () => {
     it('renders default', () => {
       mount(<TestCalendar onChange={noop} />)
