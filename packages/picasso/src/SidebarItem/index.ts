@@ -5,4 +5,9 @@ import { Props } from './SidebarItem'
 export { default, getSelectedSubMenu } from './SidebarItem'
 export type SidebarItemProps = OmitInternalProps<Props>
 
-export * from './SubMenuContextProvider'
+export {
+  SubMenuContextProvider,
+  useSubMenuContext,
+  ContextProps as SubMenuContextProps,
+  Props as SubMenuContextProviderProps
+} from './SubMenuContextProvider'
