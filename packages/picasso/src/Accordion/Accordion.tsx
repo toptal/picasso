@@ -23,7 +23,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAccordion'
 })
 
-export const EmptyAccordionSummary = ({
+const EmptyAccordionSummary = ({
   'data-testid': dataTestId
 }: {
   'data-testid'?: string

@@ -15,14 +15,7 @@ const page = PicassoBook.section('Components').createPage(
 
 page.createTabChapter('Props').addComponentDocs({
   component: Accordion,
-  additionalDocs: {
-    onChange: {
-      type: {
-        name: 'function',
-        description: '(event: React.ChangeEvent<{}>, expanded: boolean) => void'
-      }
-    }
-  }
+  name: 'Accordion'
 })
 
 page
