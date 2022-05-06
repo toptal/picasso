@@ -1,5 +1,15 @@
 # Change Log
 
+## 22.4.1
+
+### Patch Changes
+
+- [#2732](https://github.com/toptal/picasso/pull/2732) [`93527039`](https://github.com/toptal/picasso/commit/93527039cbc64d47b9ef9dd46ea3be95ae01fe37) Thanks [@vshyrokov](https://github.com/vshyrokov)! - ---
+
+  ### Alert
+
+  - Remove duplicated className
+
 ## 22.4.0
 
 ### Minor Changes
