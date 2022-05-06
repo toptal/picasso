@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react'
 import { mount } from '@cypress/react'
 import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
+import { TestingPicasso, TestingPicassoV5 } from '@toptal/picasso/test-utils'
 import { noop } from '@toptal/picasso/utils'
 
 const RESPONSE_TIME = 1000
@@ -182,7 +182,7 @@ const skills = [
 
 const DisabledStateExample = () => {
   return (
-    <TestingPicasso muiV5>
+    <TestingPicasso>
       <Form onSubmit={noop}>
         <Form.Input
           disabled
@@ -284,13 +284,15 @@ const DisabledStateExample = () => {
           value='confimation'
           label='I confirm that I have legal permission from the client to feature this project.'
         />
-        <Form.Switch
-          disabled
-          value='public'
-          name='disabledPublicProfile'
-          label='Public Profile'
-          width='auto'
-        />
+        <TestingPicassoV5>
+          <Form.Switch
+            disabled
+            value='public'
+            name='disabledPublicProfile'
+            label='Public Profile'
+            width='auto'
+          />
+        </TestingPicassoV5>
 
         <Container top='small'>
           <Form.SubmitButton>Submit</Form.SubmitButton>

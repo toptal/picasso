@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
+import { renderV5, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Switch, { Props } from './Switch'
@@ -10,7 +10,7 @@ const renderSwitch = (
 ) => {
   const { label, disabled, titleCase, onChange } = props
 
-  return render(
+  return renderV5(
     <Switch
       disabled={disabled}
       label={label}

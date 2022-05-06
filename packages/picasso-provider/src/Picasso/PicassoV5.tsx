@@ -45,7 +45,7 @@ interface PicassoRootNodeProps {
 }
 
 const useGlobalStyles = makeStyles<Theme>(globalStyles, {
-  name: 'Picasso'
+  name: 'PicassoV5'
 })
 
 // eslint-disable-next-line react/display-name
