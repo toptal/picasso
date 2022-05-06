@@ -10,7 +10,7 @@ import { Props } from './types'
 import { SidebarItemHeader } from './SidebarItemHeader'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarItem'
+  name: 'PicassoSidebarItemAccordion'
 })
 
 export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(

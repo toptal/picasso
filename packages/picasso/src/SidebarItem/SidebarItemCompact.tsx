@@ -9,10 +9,10 @@ import { Props } from './types'
 import { SidebarItemHeader } from './SidebarItemHeader'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarItem'
+  name: 'PicassoSidebarItemCompact'
 })
 
-export const CompactSidebarItem = forwardRef<HTMLElement, Props>(
+export const SidebarItemCompact = forwardRef<HTMLElement, Props>(
   function CompactSidebarItem(props: Props, ref) {
     const { menu, index } = props
 

@@ -7,10 +7,10 @@ import { SubMenuContextProvider } from './SubMenuContextProvider'
 import { SidebarItemHeader } from './SidebarItemHeader'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarItem'
+  name: 'PicassoSidebarItemBasic'
 })
 
-export const BasicSidebarItem = forwardRef<HTMLElement, Props>(
+export const SidebarItemBasic = forwardRef<HTMLElement, Props>(
   function BasicSidebarItem(props: Props, ref) {
     const { menu, icon, index } = props
 

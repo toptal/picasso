@@ -8,7 +8,7 @@ import styles from './styles'
 import { Props } from './types'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarItem'
+  name: 'PicassoSidebarItemHeader'
 })
 
 export const SidebarItemHeader = forwardRef<HTMLElement, Props>(

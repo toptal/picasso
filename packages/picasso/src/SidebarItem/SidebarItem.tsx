@@ -2,8 +2,8 @@ import { OverridableComponent } from '@toptal/picasso-shared'
 import React, { forwardRef, memo, ReactElement } from 'react'
 
 import noop from '../utils/noop'
-import { BasicSidebarItem } from './BasicSidebarItem'
-import { CompactSidebarItem } from './CompactSidebarItem'
+import { SidebarItemBasic } from './SidebarItemBasic'
+import { SidebarItemCompact } from './SidebarItemCompact'
 import { SidebarItemAccordion } from './SidebarItemAccordion'
 import { Props } from './types'
 
@@ -27,10 +27,10 @@ export const SidebarItem: OverridableComponent<Props> = memo(
 
     const hasMenu = menu != null
 
-    let SidebarItemImpl = BasicSidebarItem
+    let SidebarItemImpl = SidebarItemBasic
 
     if (hasMenu && compact) {
-      SidebarItemImpl = CompactSidebarItem
+      SidebarItemImpl = SidebarItemCompact
     } else if (hasMenu && collapsible) {
       SidebarItemImpl = SidebarItemAccordion
     }
