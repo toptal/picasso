@@ -17,10 +17,10 @@ const withPicasso = Story => (
   </Picasso>
 )
 
-const withPicassoV5 = (Story, context) => {
+const withPicassoV5 = Story => {
   return (
-    <PicassoV5>
-      <Story {...context} />
+    <PicassoV5 loadFonts={loadFonts} fixViewport={false} loadFavicon={false}>
+      <Story />
     </PicassoV5>
   )
 }

@@ -149,7 +149,9 @@ const getOriginalSourceCode = ({
 
 const CodeExample = (props: Props) => {
   const { permanentLink, showEditCode, src } = props
-  const isMuiV5 = ['Switch'].some(name => src.startsWith(name))
+  const isMuiV5 = ['Switch'].some(name => src.includes(name))
+
+  console.log(isMuiV5)
 
   const classes = useStyles()
   const [sourceCode, setSourceCode] = useState(getOriginalSourceCode(props))
