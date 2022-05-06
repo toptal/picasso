@@ -182,7 +182,7 @@ const skills = [
 
 const DisabledStateExample = () => {
   return (
-    <TestingPicasso>
+    <TestingPicasso muiV5>
       <Form onSubmit={noop}>
         <Form.Input
           disabled

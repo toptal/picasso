@@ -10,15 +10,23 @@ export type Props = TextLabelProps & {
 export const TestingPicasso = ({ children, titleCase, muiV5 }: Props) => {
   if (muiV5) {
     return (
-      <PicassoV5
+      <Picasso
         loadFavicon={false}
         loadFonts={false}
         fixViewport={false}
         titleCase={titleCase}
         disableTransitions
       >
-        {children}
-      </PicassoV5>
+        <PicassoV5
+          loadFavicon={false}
+          loadFonts={false}
+          fixViewport={false}
+          titleCase={titleCase}
+          disableTransitions
+        >
+          {children}
+        </PicassoV5>
+      </Picasso>
     )
   }
 
