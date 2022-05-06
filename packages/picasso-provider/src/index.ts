@@ -1,4 +1,4 @@
-export { default, PicassoV5 } from './Picasso'
+export { default } from './Picasso'
 
 export {
   useScreenSize,

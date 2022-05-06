@@ -1,7 +1,7 @@
 import React from 'react'
 import 'happo-plugin-storybook/register'
 
-import Picasso, { PicassoV5 } from '@toptal/picasso-provider'
+import Picasso from '@toptal/picasso-provider'
 
 export const parameters = {
   layout: 'padded',
@@ -17,12 +17,4 @@ const withPicasso = Story => (
   </Picasso>
 )
 
-const withPicassoV5 = Story => {
-  return (
-    <PicassoV5 loadFonts={loadFonts} fixViewport={false} loadFavicon={false}>
-      <Story />
-    </PicassoV5>
-  )
-}
-
-export const decorators = [withPicasso, withPicassoV5]
+export const decorators = [withPicasso]

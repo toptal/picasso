@@ -18,9 +18,6 @@ exports[`Switch behaves correctly when interacting 1`] = `
       <span
         class="MuiSwitch-thumb css-jsexje-MuiSwitch"
       />
-      <span
-        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple"
-      />
     </span>
     <span
       class="MuiSwitch-track css-1yjjitx-MuiSwitch"
@@ -56,9 +53,6 @@ exports[`Switch renders default Switch without label 1`] = `
         />
         <span
           class="MuiSwitch-thumb css-jsexje-MuiSwitch"
-        />
-        <span
-          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple"
         />
       </span>
       <span
