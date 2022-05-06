@@ -73,13 +73,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
         >
           {icon}
         </Container>
-        <Typography
-          size='medium'
-          as='div'
-          weight='regular'
-          color='black'
-          className={className}
-        >
+        <Typography size='medium' as='div' weight='regular' color='black'>
           {children}
         </Typography>
       </Container>
