@@ -1,6 +1,6 @@
 # Changesets guidelines
 
-The same as commits, we write changeset in `preset simple`.
+The same as commits, we write changeset in `present simple`.
 
 ## Version bump
 `patch`
