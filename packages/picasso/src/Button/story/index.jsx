@@ -23,80 +23,6 @@ page
   .addComponentDocs({
     component: Button,
     additionalDocs: {
-      children: {
-        name: 'children',
-        type: 'ReactNode',
-        description: 'Content of Button component',
-        defaultValue: 'null'
-      },
-      className: {
-        name: 'className',
-        type: 'string',
-        description: 'Classnames applied to root element'
-      },
-      style: {
-        name: 'style',
-        type: 'CSSProperties',
-        description: 'Style applied to root element'
-      },
-      title: {
-        name: 'title',
-        type: 'string',
-        description: 'HTML title of Button component'
-      },
-      onClick: {
-        name: 'onClick',
-        type: {
-          name: 'function',
-          description:
-            '(event: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void'
-        },
-        description: 'Callback invoked when component is clicked'
-      },
-      size: {
-        name: 'size',
-        type: {
-          name: 'enum',
-          enums: ['medium', 'large', 'small']
-        },
-        defaultValue: 'medium',
-        description: 'A button can have different sizes'
-      },
-      icon: {
-        name: 'icon',
-        type: 'ReactElement',
-        description: "Add an `<Icon />` along Button's children"
-      },
-      active: {
-        name: 'active',
-        type: 'boolean',
-        description: 'Show button in the active state (left mouse button down)',
-        defaultValue: 'false'
-      },
-      disabled: {
-        name: 'disabled',
-        type: 'boolean',
-        description: 'Disables button',
-        defaultValue: 'false'
-      },
-      fullWidth: {
-        name: 'fullWidth',
-        type: 'boolean',
-        description: 'Take the full width of a container',
-        defaultValue: 'false'
-      },
-      hovered: {
-        name: 'hovered',
-        type: 'boolean',
-        description: 'Set hovered style for the button',
-        defaultValue: 'false'
-      },
-      circular: {
-        name: 'circular',
-        type: 'boolean',
-        description: 'Circular style of Button component',
-        defaultValue: 'false'
-      },
       as: {
         name: 'as',
         type: {
@@ -128,52 +54,6 @@ page
         description:
           'The component used for the root node. Either a string to use a DOM element or a component.',
         defaultValue: 'button'
-      },
-      iconPosition: {
-        name: 'iconPosition',
-        description: 'Icon can be positioned on the left or right',
-        type: {
-          name: 'enum',
-          enums: ['left', 'right']
-        },
-        defaultValue: 'left'
-      },
-      loading: {
-        name: 'loading',
-        type: 'boolean',
-        description: 'Shows a loading indicator and disables click events',
-        defaultValue: 'false'
-      },
-      variant: {
-        name: 'variant',
-        defaultValue: 'primary',
-        description: 'The variant to use',
-        type: {
-          name: 'enum',
-          enums: ['primary', 'positive', 'negative', 'secondary', 'transparent']
-        }
-      },
-      value: {
-        name: 'value',
-        description: 'HTML Value of Button component',
-        type: {
-          name: 'enum',
-          enums: ['string', 'number']
-        }
-      },
-      type: {
-        name: 'type',
-        description: 'HTML type of Button component',
-        type: {
-          name: 'enum',
-          enums: ['button', 'reset', 'submit']
-        },
-        defaultValue: 'button'
-      },
-      titleCase: {
-        name: 'titleCase',
-        description: 'Defines if the text should be transformed to title case',
-        type: 'boolean'
       }
     },
     name: 'Button'
