@@ -137,8 +137,7 @@ const getOriginalSourceCode = ({
 }
 
 const CodeExample = (props: Props) => {
-  const { permanentLink, showEditCode, src } = props
-  const isMuiV5 = ['Switch'].some(name => src.includes(name))
+  const { permanentLink, showEditCode } = props
 
   const classes = useStyles()
   const [sourceCode, setSourceCode] = useState(getOriginalSourceCode(props))
@@ -166,13 +165,11 @@ const CodeExample = (props: Props) => {
    * only actual component without source code editor
    */
   if (TEST_ENV === 'visual') {
-    const renderInTestPicasso = (element: ReactNode) => {
-      return (
-        <Picasso loadFonts={false} fixViewport={false} loadFavicon={false}>
-          <Purifier>{element}</Purifier>
-        </Picasso>
-      )
-    }
+    const renderInTestPicasso = (element: ReactNode) => (
+      <Picasso loadFonts={false} fixViewport={false} loadFavicon={false}>
+        <Purifier>{element}</Purifier>
+      </Picasso>
+    )
 
     return (
       <div className={classes.componentRenderer}>

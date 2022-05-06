@@ -11,9 +11,9 @@ export const parameters = {
 }
 
 const loadFonts = TEST_ENV !== 'visual'
-const withPicasso = Story => (
+const withPicasso = story => (
   <Picasso loadFonts={loadFonts} fixViewport={false} loadFavicon={false}>
-    <Story />
+    {story()}
   </Picasso>
 )
 
