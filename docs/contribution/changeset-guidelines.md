@@ -1,5 +1,7 @@
 # Changesets guidelines
 
+The same as commits, we write changeset in `preset simple`.
+
 ## Version bump
 `patch`
 
