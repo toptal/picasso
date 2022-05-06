@@ -77,7 +77,7 @@ pipeline {
 
           sshagent(credentials: ['e707ac4d-9c1a-43d1-a139-e3fd8c9ef412']) { //provbot (jenkins/provbot)
             sh """
-                rsync -avz --delete -e ssh '${WORKSPACE}/deploy-docs/' 'docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch}' && \\
+                rsync -avz --delete -e ssh '${WORKSPACE}/deploy-docs/' 'docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch}'
                 rm -rf ./build
                 rm -rf '${WORKSPACE}/deploy-docs'
             """
