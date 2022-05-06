@@ -6,7 +6,7 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { Candidates16 } from '../Icon'
 import PageSidebar from '../PageSidebar'
-import { Props } from './SidebarItem'
+import { Props } from './types'
 import {
   SubMenuContextProvider,
   useSubMenuContext

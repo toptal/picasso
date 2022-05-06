@@ -1,61 +1,24 @@
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { OverridableComponent } from '@toptal/picasso-shared'
+import cx from 'classnames'
 import React, {
-  forwardRef,
-  ReactElement,
-  ElementType,
   ChangeEvent,
+  forwardRef,
   memo,
+  ReactElement,
   useCallback
 } from 'react'
-import { Theme, makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
-import { MenuItemProps } from '@material-ui/core/MenuItem'
-import {
-  BaseProps,
-  TextLabelProps,
-  OverridableComponent
-} from '@toptal/picasso-shared'
 
 import Accordion from '../Accordion'
 import Container from '../Container'
 import Dropdown from '../Dropdown'
-import MenuItem, { MenuItemAttributes } from '../MenuItem'
 import { ArrowDownMinor16 } from '../Icon'
-import styles from './styles'
-import { VariantType } from '../PageSidebar/types'
-import noop from '../utils/noop'
-import { BadgeProps } from '../Badge'
+import MenuItem from '../MenuItem'
 import SidebarItemContent from '../SidebarItemContent'
+import noop from '../utils/noop'
+import styles from './styles'
 import { SubMenuContextProvider } from './SubMenuContextProvider'
-
-export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
-  /** Pass icon to be used as part of item */
-  icon?: ReactElement
-  /** Highlights the item as selected */
-  selected?: boolean
-  /** Whether to render disabled item */
-  disabled?: boolean
-  /** If item has menu defines can menu be collapsed */
-  collapsible?: boolean
-  /** Renders nested sidebar menu */
-  menu?: ReactElement
-  /** Component name to render the menu item as */
-  as?: ElementType<MenuItemProps>
-  /** Definition of the embedded badge  */
-  badge?: Omit<BadgeProps, 'size' | 'children'>
-  variant?: VariantType
-  isExpanded?: boolean
-  expand?: (index: number | null) => void
-  index?: number | null
-  /** Callback when item is clicked */
-  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
-  /** Callback when item is hovered */
-  onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
-  /** Should it be shown as a compact variant. It becomes a single icon, content becomes a tooltip and badges become overlaid */
-  compact?: boolean
-  testIds?: {
-    content?: string
-  }
-}
+import { Props } from './types'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItem'
