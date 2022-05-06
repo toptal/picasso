@@ -27,11 +27,7 @@ export const SidebarItemCompact = forwardRef<HTMLElement, Props>(
     return (
       <Dropdown placement='right-start' content={subMenu}>
         <Container className={classes.collapsibleWrapper}>
-          <SidebarItemHeader
-            {...props}
-            className={classes.collapsibleWrapper}
-            ref={ref}
-          />
+          <SidebarItemHeader {...props} ref={ref} />
         </Container>
       </Dropdown>
     )
