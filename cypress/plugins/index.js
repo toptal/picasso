@@ -24,7 +24,10 @@ module.exports = (on, config) => {
   // add React preset to be able to transpile JSX
   babelLoader.options.presets.push(require.resolve('@babel/preset-react'))
   // add istanbul plugin for instrumenting code
-  babelLoader.options.plugins = [require.resolve('babel-plugin-istanbul')]
+  babelLoader.options.plugins = [
+    ...(babelLoader.options.plugins ?? []),
+    require.resolve('babel-plugin-istanbul')
+  ]
 
   webpackConfig.resolve = {
     alias: {
