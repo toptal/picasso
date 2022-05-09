@@ -31,7 +31,7 @@ page
         type: 'string',
         description: 'Counter title'
       },
-      color: {
+      variant: {
         name: 'variant',
         type: {
           name: 'enum',

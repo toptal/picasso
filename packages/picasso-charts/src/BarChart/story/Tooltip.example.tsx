@@ -26,12 +26,14 @@ const CHART_DATA = [
 ]
 
 const Example = () => (
-  <BarChart
-    data={CHART_DATA}
-    getBarColor={() => palette.blue.main}
-    width={720}
-    tooltip
-  />
+  <div style={{ width: 720 }}>
+    <BarChart
+      data={CHART_DATA}
+      getBarColor={() => palette.blue.main}
+      width='100%'
+      tooltip
+    />
+  </div>
 )
 
 export default Example

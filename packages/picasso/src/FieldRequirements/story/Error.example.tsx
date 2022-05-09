@@ -25,7 +25,7 @@ const Example = () => {
   return (
     <Container>
       <Input
-        error
+        status='error'
         value={value}
         onChange={event => setValue(event.target.value)}
         onFocus={() => setOpen(true)}

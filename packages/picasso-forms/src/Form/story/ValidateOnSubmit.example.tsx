@@ -26,14 +26,14 @@ const FormContent = () => {
           <Form.Input
             enableReset
             required
-            name='name.first'
+            name='validateOnSubmit.first'
             label='Your first name'
             placeholder='e.g. Bruce'
           />
           <Form.Input
             enableReset
             required
-            name='name.last'
+            name='validateOnSubmit.last'
             label='Your last name'
             placeholder='e.g. Wayne'
           />

@@ -10,7 +10,7 @@ const Example = () => (
       <Typography underline='dashed'>dashed</Typography>
     </Container>
     <Container bottom='small'>
-      <Typography>
+      <Typography as='div'>
         This is how you can highlight text by making it{' '}
         <Typography inline weight='semibold'>
           bold
