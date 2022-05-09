@@ -11,7 +11,10 @@ import { BaseProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import { useSidebarContext } from '../PageSidebar'
-import { useSubMenuContext, SidebarItemProps } from '../SidebarItem'
+import SidebarItem, {
+  useSubMenuContext,
+  SidebarItemProps
+} from '../SidebarItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
@@ -54,31 +57,31 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
     }, [parentSidebarItemIndex, setExpandedItemKey, children])
 
     const items = React.Children.map(children, (child, index) => {
-      const sidebarItem = child as ReactElement
-      const compact = isSidebarCollapsed && !isSubMenu
+      if (React.isValidElement(child) && child.type === SidebarItem) {
+        const compact = isSidebarCollapsed && !isSubMenu
+        const isExpanded = expandedItemKey === index
 
-      const itemProps: Partial<SidebarItemProps> = {
-        isSubMenu,
-        compact,
-        variant
+        const itemProps: Partial<SidebarItemProps> = {
+          isSubMenu,
+          compact,
+          variant
+        }
+
+        const expandibleProps: Partial<SidebarItemProps> = {
+          isExpanded,
+          expand: expandSidebarItem,
+          index
+        }
+
+        const newProps: Partial<SidebarItemProps> = {
+          ...itemProps,
+          ...(child.props.collapsible ? expandibleProps : {})
+        }
+
+        return React.cloneElement(child, newProps)
       }
 
-      if (!sidebarItem.props.collapsible) {
-        return React.cloneElement(sidebarItem, itemProps)
-      }
-
-      const isExpanded = expandedItemKey === index
-
-      const expandibleProps: Partial<SidebarItemProps> = {
-        isExpanded,
-        expand: expandSidebarItem,
-        index
-      }
-
-      return React.cloneElement(sidebarItem, {
-        ...itemProps,
-        ...expandibleProps
-      })
+      return child
     })
 
     return (
