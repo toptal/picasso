@@ -1,5 +1,15 @@
 # Change Log
 
+## 22.4.2
+
+### Patch Changes
+
+- [#2741](https://github.com/toptal/picasso/pull/2741) [`deed54dd`](https://github.com/toptal/picasso/commit/deed54dd5906689df45931d5bc146172cbddc3f6) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### DatePicker
+
+  - Update to latest design
+
 ## 22.4.1
 
 ### Patch Changes
