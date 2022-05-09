@@ -1,15 +1,17 @@
+import { rem } from '@toptal/picasso-shared'
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette, shadows }: Theme) =>
+export default ({ palette, shadows, sizes }: Theme) =>
   createStyles({
     root: {
-      padding: '1.875em',
+      padding: rem('24px'),
       color: palette.grey.darker,
       display: 'flex',
       flexDirection: 'column',
       flexBasis: '20.5rem',
       maxWidth: '20.5rem',
-      boxShadow: shadows[2],
+      boxShadow: shadows[5],
+      borderRadius: sizes.borderRadius.small,
       backgroundColor: palette.common.white
     }
   })
