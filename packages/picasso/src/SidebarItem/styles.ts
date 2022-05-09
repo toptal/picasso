@@ -70,6 +70,9 @@ export default ({ palette, sizes }: Theme) =>
       padding: '0 0 0 2.875rem',
       marginRight: '1rem'
     },
+    nestedMenuNoMargin: {
+      margin: 0
+    },
     content: {
       // to cover text overflow in the sub-menu header item
       maxWidth: '100%'

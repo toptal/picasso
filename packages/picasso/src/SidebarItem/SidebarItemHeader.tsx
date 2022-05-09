@@ -23,9 +23,10 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
       variant = 'light',
       onClick,
       collapsible,
-      icon,
       // these props are being destructured only for the purpose of excluding them from `...rest`
       /* eslint-disable @typescript-eslint/no-unused-vars */
+      icon,
+      isSubMenu,
       badge,
       testIds,
       isExpanded,
@@ -35,12 +36,11 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
       ...rest
     } = props
 
-    const { isSubMenu } = useSubMenuContext()
-
     const classes = useStyles()
 
+    const { extraClasses } = useSubMenuContext()
+
     const hasMenu = menu != null
-    const hasIcon = icon != null
 
     const handleMenuItemClick = useCallback(
       (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -64,10 +64,9 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
           {
             [classes.compact]: compact,
             [classes.selected]: !hasMenu && selected,
-            [classes.collapsible]: hasMenu && collapsible,
-            [classes.nestedMenu]: isSubMenu,
-            [classes.nestedMenuWithIcon]: isSubMenu && hasIcon
+            [classes.collapsible]: hasMenu && collapsible
           },
+          extraClasses.header,
           className
         )}
         onClick={handleMenuItemClick}

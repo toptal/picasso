@@ -11,7 +11,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import { useSidebarContext } from '../PageSidebar'
-import { useSubMenuContext } from '../SidebarItem'
+import { useSubMenuContext, SidebarItemProps } from '../SidebarItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
@@ -57,21 +57,27 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
       const sidebarItem = child as ReactElement
       const compact = isSidebarCollapsed && !isSubMenu
 
+      const itemProps: Partial<SidebarItemProps> = {
+        isSubMenu,
+        compact,
+        variant
+      }
+
       if (!sidebarItem.props.collapsible) {
-        return React.cloneElement(sidebarItem, {
-          variant,
-          compact
-        })
+        return React.cloneElement(sidebarItem, itemProps)
       }
 
       const isExpanded = expandedItemKey === index
 
-      return React.cloneElement(sidebarItem, {
-        variant,
+      const expandibleProps: Partial<SidebarItemProps> = {
         isExpanded,
         expand: expandSidebarItem,
-        compact,
         index
+      }
+
+      return React.cloneElement(sidebarItem, {
+        ...itemProps,
+        ...expandibleProps
       })
     })
 

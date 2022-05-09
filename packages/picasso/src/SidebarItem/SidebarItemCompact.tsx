@@ -19,7 +19,10 @@ export const SidebarItemCompact = forwardRef<HTMLElement, Props>(
     const classes = useStyles()
 
     const subMenu = (
-      <SubMenuContextProvider parentSidebarItemIndex={index}>
+      <SubMenuContextProvider
+        extraClasses={{ header: classes.nestedMenuNoMargin }}
+        parentSidebarItemIndex={index}
+      >
         {menu}
       </SubMenuContextProvider>
     )

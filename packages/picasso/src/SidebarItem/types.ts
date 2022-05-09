@@ -21,16 +21,17 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   as?: ElementType<MenuItemProps>
   /** Definition of the embedded badge  */
   badge?: Omit<BadgeProps, 'size' | 'children'>
-  variant?: VariantType
-  isExpanded?: boolean
-  expand?: (index: number | null) => void
-  index?: number | null
   /** Callback when item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Callback when item is hovered */
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Should it be shown as a compact variant. It becomes a single icon, content becomes a tooltip and badges become overlaid */
   compact?: boolean
+  variant?: VariantType
+  isExpanded?: boolean
+  expand?: (index: number | null) => void
+  index?: number | null
+  isSubMenu?: boolean
   testIds?: {
     content?: string
   }
