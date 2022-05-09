@@ -27,3 +27,4 @@ packages/picasso-codemod/src/v18.0.0/picasso-lab/__testfixtures__/basic.input.ts
 packages/picasso-codemod/src/v18.0.0/picasso-lab/__testfixtures__/basic.output.tsx
 packages/picasso-codemod/src/v20.0.0/replace-error/__testfixtures__/as-variable.input.tsx
 packages/picasso-codemod/src/v20.0.0/replace-error/__testfixtures__/as-variable.output.tsx
+packages/picasso-codemod/src/v20.0.0/overlay-badge/__testfixtures__/size-default.output.tsx

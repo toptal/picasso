@@ -11,57 +11,60 @@ exports[`NonNativeSelectOptions renders 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoScrollMenu-scrollView"
         tabindex="0"
       >
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          data-highlighted="false"
-          role="option"
-          tabindex="-1"
-          value="1"
+        <div
+          class="PicassoScrollMenu-scrollView"
         >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            data-highlighted="false"
+            role="option"
+            tabindex="-1"
+            value="1"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            />
-          </div>
-        </li>
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          data-highlighted="false"
-          role="option"
-          tabindex="-1"
-          value="2"
-        >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            >
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              />
+            </div>
+          </li>
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            data-highlighted="false"
+            role="option"
+            tabindex="-1"
+            value="2"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            />
-          </div>
-        </li>
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          data-highlighted="false"
-          role="option"
-          tabindex="-1"
-          value="3"
-        >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            >
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              />
+            </div>
+          </li>
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            data-highlighted="false"
+            role="option"
+            tabindex="-1"
+            value="3"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            />
-          </div>
-        </li>
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            >
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              />
+            </div>
+          </li>
+        </div>
       </div>
     </ul>
   </div>
@@ -80,23 +83,26 @@ exports[`NonNativeSelectOptions renders no option 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoScrollMenu-scrollView"
         tabindex="0"
       >
-        <li
-          aria-disabled="true"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoMenuItem-disabled MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
-          role="menuitem"
-          tabindex="-1"
+        <div
+          class="PicassoScrollMenu-scrollView"
         >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          <li
+            aria-disabled="true"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoMenuItem-disabled MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
+            role="menuitem"
+            tabindex="-1"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            />
-          </div>
-        </li>
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            >
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              />
+            </div>
+          </li>
+        </div>
       </div>
     </ul>
   </div>
@@ -114,129 +120,132 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoScrollMenu-scrollView"
         tabindex="0"
       >
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-menuGroup PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          role="option"
-          tabindex="-1"
+        <div
+          class="PicassoScrollMenu-scrollView"
         >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-menuGroup PicassoMenuItem-nonSelectable MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            role="option"
+            tabindex="-1"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
             >
-              <p
-                class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
               >
-                Group 1
-              </p>
+                <p
+                  class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+                >
+                  Group 1
+                </p>
+              </div>
             </div>
-          </div>
-        </li>
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          data-highlighted="false"
-          role="option"
-          tabindex="-1"
-          value="1"
-        >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          </li>
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            data-highlighted="false"
+            role="option"
+            tabindex="-1"
+            value="1"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            />
-          </div>
-        </li>
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          data-highlighted="false"
-          role="option"
-          tabindex="-1"
-          value="2"
-        >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
-          >
-            <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            />
-          </div>
-        </li>
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          data-highlighted="false"
-          role="option"
-          tabindex="-1"
-          value="3"
-        >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
-          >
-            <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            />
-          </div>
-        </li>
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-menuGroup PicassoMenuItem-nonSelectable MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          role="option"
-          tabindex="-1"
-        >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
-          >
-            <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
             >
-              <p
-                class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
-              >
-                Group 2
-              </p>
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              />
             </div>
-          </div>
-        </li>
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          data-highlighted="false"
-          role="option"
-          tabindex="-1"
-          value="4"
-        >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          </li>
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            data-highlighted="false"
+            role="option"
+            tabindex="-1"
+            value="2"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            />
-          </div>
-        </li>
-        <li
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-          data-highlighted="false"
-          role="option"
-          tabindex="-1"
-          value="5"
-        >
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            >
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              />
+            </div>
+          </li>
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            data-highlighted="false"
+            role="option"
+            tabindex="-1"
+            value="3"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-            />
-          </div>
-        </li>
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            >
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              />
+            </div>
+          </li>
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-menuGroup PicassoMenuItem-nonSelectable MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            role="option"
+            tabindex="-1"
+          >
+            <div
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            >
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              >
+                <p
+                  class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+                >
+                  Group 2
+                </p>
+              </div>
+            </div>
+          </li>
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            data-highlighted="false"
+            role="option"
+            tabindex="-1"
+            value="4"
+          >
+            <div
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            >
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              />
+            </div>
+          </li>
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            data-highlighted="false"
+            role="option"
+            tabindex="-1"
+            value="5"
+          >
+            <div
+              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            >
+              <div
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              />
+            </div>
+          </li>
+        </div>
       </div>
     </ul>
   </div>

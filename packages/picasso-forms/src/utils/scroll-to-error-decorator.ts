@@ -32,50 +32,49 @@ const getErrorFieldWithRetries = async () => {
 
 let state: { errors?: object; submitErrors?: object } = {}
 
-export default ({ disableScrollOnError }: ScrollToErrorProps = {}) => <T>(
-  form: FormApi<T>
-) => {
-  const originalSubmit = form.submit
+export default ({ disableScrollOnError }: ScrollToErrorProps = {}) =>
+  <T>(form: FormApi<T>) => {
+    const originalSubmit = form.submit
 
-  const unsubscribe = form.subscribe(
-    nextState => {
-      state = nextState
-    },
-    { errors: true, submitErrors: true }
-  )
+    const unsubscribe = form.subscribe(
+      nextState => {
+        state = nextState
+      },
+      { errors: true, submitErrors: true }
+    )
 
-  const scrollOnErrors = async () => {
-    const { errors = {}, submitErrors = {} } = state
+    const scrollOnErrors = async () => {
+      const { errors = {}, submitErrors = {} } = state
 
-    if (Object.keys(errors).length || Object.keys(submitErrors).length) {
-      const field = await getErrorFieldWithRetries()
+      if (Object.keys(errors).length || Object.keys(submitErrors).length) {
+        const field = await getErrorFieldWithRetries()
 
-      if (field) {
-        scrollTo(field)
+        if (field) {
+          scrollTo(field)
+        }
       }
     }
-  }
 
-  // Rewrite submit function
-  form.submit = () => {
-    const result = originalSubmit.call(form)
+    // Rewrite submit function
+    form.submit = () => {
+      const result = originalSubmit.call(form)
 
-    if (disableScrollOnError) {
+      if (disableScrollOnError) {
+        return result
+      }
+
+      if (result && typeof result.then === 'function') {
+        result.then(scrollOnErrors).catch(() => {})
+      } else {
+        scrollOnErrors()
+      }
+
       return result
     }
 
-    if (result && typeof result.then === 'function') {
-      result.then(scrollOnErrors).catch(() => {})
-    } else {
-      scrollOnErrors()
+    return () => {
+      state = {}
+      unsubscribe()
+      form.submit = originalSubmit
     }
-
-    return result
   }
-
-  return () => {
-    state = {}
-    unsubscribe()
-    form.submit = originalSubmit
-  }
-}

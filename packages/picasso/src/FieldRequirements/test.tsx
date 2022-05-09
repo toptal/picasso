@@ -5,7 +5,7 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import FieldRequirements, { Props } from './FieldRequirements'
 import { FieldRequirement } from './types'
 
-const renderFieldRequirements = function<TInputValue>(
+const renderFieldRequirements = function <TInputValue>(
   children: ReactNode,
   props: OmitInternalProps<Props<TInputValue>>
 ) {

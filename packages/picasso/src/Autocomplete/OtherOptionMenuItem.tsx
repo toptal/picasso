@@ -17,7 +17,6 @@ const OtherOptionMenuItem = ({
 } & JssProps) => {
   return (
     <Menu.Item
-      size='medium'
       key='other-option'
       className={`${classes.option} ${classes.otherOption}`}
       {...rest}

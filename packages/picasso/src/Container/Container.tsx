@@ -130,9 +130,8 @@ export const Container = documentable(
 
               [classes[`${align}TextAlign`]]: typeof align === 'string',
 
-              [classes[
-                `${kebabToCamelCase(alignItems || '')}AlignItems`
-              ]]: alignItems,
+              [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
+                alignItems,
 
               [classes[
                 `${kebabToCamelCase(justifyContent || '')}JustifyContent`

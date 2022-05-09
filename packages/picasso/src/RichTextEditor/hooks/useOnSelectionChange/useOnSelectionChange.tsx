@@ -12,9 +12,8 @@ type Props = {
 const useOnSelectionChange = ({ dispatch }: Props) => {
   const handleSelectionChange = useCallback(
     (editorFormat: EditorFormatType) => {
-      const { bold, italic, header, list } = getToolbarFormatFromEditorFormat(
-        editorFormat
-      )
+      const { bold, italic, header, list } =
+        getToolbarFormatFromEditorFormat(editorFormat)
 
       toolbarActions.setBold(dispatch)(bold)
       toolbarActions.setItalic(dispatch)(italic)

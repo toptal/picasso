@@ -10,7 +10,7 @@ export default ({ palette, screens, zIndex, transitions }: Theme) =>
       height: '100%',
       width: '14.75rem',
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
-      padding: '1rem 0',
+      padding: '1rem 0 0.5rem',
       fontSize: '1rem',
       position: 'relative',
       transition: `width ${transitions.duration.enteringScreen}ms ease-in-out`,

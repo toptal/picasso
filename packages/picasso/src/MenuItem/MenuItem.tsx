@@ -9,14 +9,12 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
 import MUIMenuItem from '@material-ui/core/MenuItem'
 import {
   useTitleCase,
   BaseProps,
   ButtonOrAnchorProps,
   TextLabelProps,
-  SizeType,
   OverridableComponent
 } from '@toptal/picasso-shared'
 
@@ -52,8 +50,6 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   value?: string | Readonly<string[]> | number
   /** Variant of colors */
   variant?: VariantType
-  /** Component size */
-  size?: SizeType<'small' | 'medium'>
   /** Disables changing colors on hover/focus */
   nonSelectable?: boolean
   /** The main content of the item */
@@ -89,7 +85,6 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     style,
     value,
     variant = 'light',
-    size,
     nonSelectable,
     onClick,
     onMouseEnter,
@@ -115,9 +110,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
         // Link component styles, this is the only difference between them now
         component={isLink ? 'a' : as}
         classes={{
-          root: cx({
-            [classes[`gutters${size && capitalize(size)}`]]: size
-          }),
+          gutters: classes.gutters,
           selected: classes.selected
         }}
         className={cx(classes.root, classes[variant], className, {
@@ -152,7 +145,6 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
             {typeof children === 'string' ? (
               <span
                 className={cx(classes.stringContent, {
-                  [classes[`stringContent${size && capitalize(size)}`]]: size,
                   [classes.stringContentSemibold]: checkmarked
                 })}
                 style={style}

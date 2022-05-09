@@ -9,13 +9,14 @@ exports[`Calendar renders 1`] = `
       tabindex="0"
     >
       <div
-        class="PicassoCalendar-root"
+        class="PicassoCalendarContainer-root"
       >
         <div
-          class="PicassoCalendar-actions"
+          class="PicassoContainer-bottommediumMargin PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
         >
           <button
-            class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+            aria-label="Previous month"
+            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
             data-component-type="button"
             tabindex="0"
             title="Previous month"
@@ -25,12 +26,12 @@ exports[`Calendar renders 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               <svg
-                class="PicassoSvgBackMinor16-root"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
+                class="PicassoSvgBackMinor24-root PicassoButton-icon"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
                 <path
-                  d="m9.997 3.29.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4Z"
+                  d="m14.997 5.29.707.707-6 6 6 6-.707.707-6.707-6.707.707-.707 6-6Z"
                 />
               </svg>
             </span>
@@ -41,7 +42,8 @@ exports[`Calendar renders 1`] = `
             February 2019
           </h3>
           <button
-            class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+            aria-label="Previous month"
+            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
             data-component-type="button"
             tabindex="0"
             title="Next month"
@@ -51,12 +53,12 @@ exports[`Calendar renders 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               <svg
-                class="PicassoSvgChevronMinor16-root"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
+                class="PicassoSvgChevronMinor24-root PicassoButton-icon"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
                 <path
-                  d="m5.997 3.29 4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707Z"
+                  d="m8.997 5.29 6.707 6.707-.707.707-6 6-.707-.707 6-6-6-6 .707-.707Z"
                 />
               </svg>
             </span>

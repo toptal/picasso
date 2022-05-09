@@ -12,17 +12,17 @@ exports[`Alert renders 1`] = `
         class="PicassoContainer-rightxsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoAlertInline-iconWrapper"
       >
         <svg
-          class="PicassoSvgExclamation16-root PicassoSvgExclamation16-yellow"
+          class="PicassoSvgExclamationSolid16-root PicassoSvgExclamationSolid16-yellow"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
           <path
-            d="M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13ZM7 3h1v6H7V3Zm0 8h1v1H7v-1Z"
+            d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm0 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0-8a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1Z"
           />
         </svg>
       </div>
       <div
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black PicassoAlertInline-content MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-yellow PicassoTypography-semibold MuiTypography-body1"
       >
         test example string
       </div>

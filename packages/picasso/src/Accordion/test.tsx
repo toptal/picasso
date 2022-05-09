@@ -32,12 +32,8 @@ const renderAccordion = (props?: Partial<OmitInternalProps<Props>>) =>
 
 describe('Accordion', () => {
   it('renders collapsed by default', () => {
-    const {
-      container,
-      queryByTestId,
-      getByText,
-      getByTestId
-    } = renderAccordion()
+    const { container, queryByTestId, getByText, getByTestId } =
+      renderAccordion()
 
     expect(queryByTestId('empty-accordion-summary')).toBeNull()
 

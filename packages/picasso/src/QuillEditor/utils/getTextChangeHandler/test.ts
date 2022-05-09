@@ -8,11 +8,11 @@ const mockDelta = {} as Delta
 
 describe('getTextChangeHandler', () => {
   it('does nothing when silent event', () => {
-    const quill = ({
+    const quill = {
       root: {
         innerHTML: '<p class="foo">bar</p>'
       }
-    } as unknown) as Quill
+    } as unknown as Quill
     const handleTextChange = jest.fn()
     const handler = getTextChangeHandler(quill, handleTextChange)
 
@@ -22,12 +22,12 @@ describe('getTextChangeHandler', () => {
   })
 
   it('returns cleaned html', () => {
-    const quill = ({
+    const quill = {
       root: {
         innerHTML: '<p class="foo">bar</p>'
       },
       getLength: jest.fn(() => 4)
-    } as unknown) as Quill
+    } as unknown as Quill
     const handleTextChange = jest.fn()
     const handler = getTextChangeHandler(quill, handleTextChange)
 
@@ -39,12 +39,12 @@ describe('getTextChangeHandler', () => {
 
   describe('when content is removed', () => {
     it('returns empty string', () => {
-      const quill = ({
+      const quill = {
         root: {
           innerHTML: '<p><br></p>'
         },
         getLength: jest.fn(() => 1)
-      } as unknown) as Quill
+      } as unknown as Quill
       const handleTextChange = jest.fn()
       const handler = getTextChangeHandler(quill, handleTextChange)
 

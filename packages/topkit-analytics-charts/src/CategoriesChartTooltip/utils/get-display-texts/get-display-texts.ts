@@ -37,10 +37,8 @@ const getDisplayTexts = ({
   tooltips,
   currentPayload
 }: GetDisplayTextsParams) => {
-  const [
-    { values: originalTeamValues },
-    { values: originalUserValues }
-  ] = currentData.values
+  const [{ values: originalTeamValues }, { values: originalUserValues }] =
+    currentData.values
 
   return {
     teamTexts: getText({

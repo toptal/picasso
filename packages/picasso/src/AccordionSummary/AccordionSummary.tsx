@@ -15,6 +15,6 @@ export interface Props extends StandardProps, ButtonOrAnchorProps {
 // because MUI ExpansionPanel use type check to set Summary in the
 // correct place of the markdown
 // https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ExpansionPanel/ExpansionPanel.js#L144
-export default withStyles(styles)(MUIAccordionSummary) as FunctionComponent<
-  Props
->
+export default withStyles(styles)(
+  MUIAccordionSummary
+) as FunctionComponent<Props>

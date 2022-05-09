@@ -1,5 +1,40 @@
 # Change Log
 
+## 43.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`c3392de3`](https://github.com/toptal/picasso/commit/c3392de3498af2cfd630905d5342cd0bc96f4635)]:
+  - @toptal/picasso@23.0.0
+
+## 42.2.3
+
+### Patch Changes
+
+- [#2723](https://github.com/toptal/picasso/pull/2723) [`8d6dd96e`](https://github.com/toptal/picasso/commit/8d6dd96e00161b588e786fd9827e2ad35ff147a0) Thanks [@pudek357](https://github.com/pudek357)! - ---
+
+  ### Select
+
+  - Pass proper 'name' to 'FieldLabel'
+
+## 42.2.2
+
+### Patch Changes
+
+- [#2715](https://github.com/toptal/picasso/pull/2715) [`a365d67d`](https://github.com/toptal/picasso/commit/a365d67d8d27e2f861a4f7d89e31ef4614e41706) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  - Applied prettier formatting to the whole codebase
+
+## 42.2.1
+
+### Patch Changes
+
+- [#2698](https://github.com/toptal/picasso/pull/2698) [`2f85d8fb`](https://github.com/toptal/picasso/commit/2f85d8fb854c409f474217ca41db3dda0a9bfe84) Thanks [@pudek357](https://github.com/pudek357)! - ---
+
+  ### Field
+
+  - Make autofill work for controlled input in Firefox
+
 ## 42.2.0
 
 ### Minor Changes

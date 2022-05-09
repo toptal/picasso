@@ -8,9 +8,10 @@ import isRelatedTargetInsidePopper from '../../../utils/is-related-target-inside
 jest.mock('../../../utils/focus-ref', () => jest.fn())
 jest.mock('../../../utils/is-related-target-inside-popper', () => jest.fn())
 
-const mockedIsRelatedTargetInsidePopper = isRelatedTargetInsidePopper as jest.MockedFunction<
-  typeof isRelatedTargetInsidePopper
->
+const mockedIsRelatedTargetInsidePopper =
+  isRelatedTargetInsidePopper as jest.MockedFunction<
+    typeof isRelatedTargetInsidePopper
+  >
 const mockedFocusRef = focusRef as jest.MockedFunction<typeof focusRef>
 
 describe('useSearchBlurHandler', () => {

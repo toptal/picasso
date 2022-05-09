@@ -9,7 +9,9 @@ export default () =>
       height: '100%',
       position: 'absolute',
       left: 0,
-      top: 0
+      top: 0,
+      /* Required to prevent image blur on downscale */
+      imageRendering: '-webkit-optimize-contrast'
     },
     logoContainer: {
       display: 'flex',

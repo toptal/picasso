@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "22.3.1",
+  "version": "23.0.0",
   "description": "Toptal UI components library",
   "publishConfig": {
     "access": "public",
@@ -31,8 +31,8 @@
     "typescript": "4.6.x"
   },
   "dependencies": {
-    "@toptal/picasso-provider": "^1.1.0",
-    "@toptal/picasso-shared": "^8.1.0",
+    "@toptal/picasso-provider": "^1.1.1",
+    "@toptal/picasso-shared": "^8.2.0",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.3.1",
     "d3": "^6.7.0",

@@ -4,9 +4,10 @@ import { getUseSelectPropsMock } from '../mocks'
 import useBlurHandler from './use-blur-handler'
 import isRelatedTargetInsidePopper from '../../../utils/is-related-target-inside-popper'
 
-const mockedIsRelatedTargetInsidePopper = isRelatedTargetInsidePopper as jest.MockedFunction<
-  typeof isRelatedTargetInsidePopper
->
+const mockedIsRelatedTargetInsidePopper =
+  isRelatedTargetInsidePopper as jest.MockedFunction<
+    typeof isRelatedTargetInsidePopper
+  >
 
 jest.mock('../../../utils/is-related-target-inside-popper', () => jest.fn())
 

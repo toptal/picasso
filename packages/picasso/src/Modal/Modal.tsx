@@ -93,9 +93,9 @@ const isFocusInsideTooltip = () => {
     return false
   }
 
-  const tooltipContainsFocusedElement = Array.from(
-    tooltipContainers
-  ).some(container => container.contains(document.activeElement))
+  const tooltipContainsFocusedElement = Array.from(tooltipContainers).some(
+    container => container.contains(document.activeElement)
+  )
 
   if (tooltipContainsFocusedElement) {
     return true

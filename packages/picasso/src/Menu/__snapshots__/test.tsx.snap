@@ -12,7 +12,7 @@ exports[`Menu renders 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
@@ -32,7 +32,7 @@ exports[`Menu renders 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >

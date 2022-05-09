@@ -27,6 +27,7 @@ import NonNativeSelectOptions from '../NonNativeSelectOptions'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
 import NonNativeSelectLimitFooter from '../NonNativeSelectLimitFooter'
+import InputAdornment from '../InputAdornment'
 
 const useStyles = makeStyles<Theme>(styles)
 
@@ -52,6 +53,7 @@ export const NonNativeSelect = documentable(
         renderOption = defaultRenderOption,
         placeholder,
         disabled,
+        disablePortal,
         error,
         status,
         multiple,
@@ -101,34 +103,36 @@ export const NonNativeSelect = documentable(
         selection,
         filteredOptions
       } = selectState
-      const {
-        getItemProps,
-        getRootProps,
-        getInputProps,
-        getSearchInputProps
-      } = useSelectProps({
-        selectRef,
-        popperRef,
-        searchInputRef,
-        selectProps: props,
-        selectState
-      })
+      const { getItemProps, getRootProps, getInputProps, getSearchInputProps } =
+        useSelectProps({
+          selectRef,
+          popperRef,
+          searchInputRef,
+          selectProps: props,
+          selectState
+        })
 
       const searchInput = showSearch ? (
         <MenuItem
           as='div'
-          size={size === 'large' ? 'medium' : size}
           nonSelectable
+          disableGutters
+          className={classes.searchInputGutters}
         >
           <OutlinedInput
             inputRef={searchInputRef}
             className={classes.searchOutlinedInput}
-            startAdornment={<Search16 className={classes.searchInputIcon} />}
+            startAdornment={
+              <InputAdornment position='start' disablePointerEvents>
+                <Search16 />
+              </InputAdornment>
+            }
             placeholder={searchPlaceholder}
-            size={size}
+            size={size === 'large' ? 'medium' : size}
             value={filterOptionsValue}
             testIds={testIds}
             aria-autocomplete='list'
+            data-testid={testIds?.searchInput}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getSearchInputProps()}
           />
@@ -191,6 +195,7 @@ export const NonNativeSelect = documentable(
               open
               anchorEl={inputWrapperRef.current}
               container={popperContainer}
+              disablePortal={disablePortal}
             >
               {loading ? (
                 <NonNativeSelectLoader data-testid={testIds?.loader} />
@@ -204,7 +209,6 @@ export const NonNativeSelect = documentable(
                   onBlur={rootProps.onBlur}
                   selection={selection}
                   filterOptionsValue={filterOptionsValue}
-                  size={size}
                   multiple={multiple}
                   noOptionsText={noOptionsText}
                   fixedHeader={searchInput}

@@ -8,119 +8,122 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
   tabindex="-1"
 >
   <div
-    class="PicassoScrollMenu-scrollView"
     tabindex="0"
   >
-    <li
-      aria-disabled="false"
-      aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
-      data-test-id="menu-item-0"
-      role="option"
-      tabindex="-1"
+    <div
+      class="PicassoScrollMenu-scrollView"
     >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      <li
+        aria-disabled="false"
+        aria-selected="true"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+        data-test-id="menu-item-0"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            Belarus
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Belarus
+            </span>
+          </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-1"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-1"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            Croatia
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Croatia
+            </span>
+          </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-2"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-2"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            Lithuania
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Lithuania
+            </span>
+          </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-3"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-3"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            Slovakia
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Slovakia
+            </span>
+          </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-4"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-4"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            Ukraine
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Ukraine
+            </span>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </div>
   </div>
 </ul>
 `;
@@ -137,7 +140,7 @@ exports[`Autocomplete dynamic behavior renders custom other options text and cal
 <li
   aria-disabled="false"
   aria-selected="false"
-  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option PicassoAutocomplete-otherOption MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option PicassoAutocomplete-otherOption MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
   data-testid="other-option"
   role="option"
   tabindex="-1"
@@ -167,7 +170,7 @@ exports[`Autocomplete dynamic behavior renders other option with default text 1`
 <li
   aria-disabled="false"
   aria-selected="false"
-  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option PicassoAutocomplete-otherOption MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option PicassoAutocomplete-otherOption MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
   data-testid="other-option"
   role="option"
   tabindex="-1"
@@ -310,119 +313,122 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
   tabindex="-1"
 >
   <div
-    class="PicassoScrollMenu-scrollView"
     tabindex="0"
   >
-    <li
-      aria-disabled="false"
-      aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
-      data-test-id="menu-item-0"
-      role="option"
-      tabindex="-1"
+    <div
+      class="PicassoScrollMenu-scrollView"
     >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      <li
+        aria-disabled="false"
+        aria-selected="true"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+        data-test-id="menu-item-0"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            BelarusBY
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              BelarusBY
+            </span>
+          </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-1"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-1"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            CroatiaHR
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              CroatiaHR
+            </span>
+          </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-2"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-2"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            LithuaniaLU
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              LithuaniaLU
+            </span>
+          </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-3"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-3"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            SlovakiaSK
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              SlovakiaSK
+            </span>
+          </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-4"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-4"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            UkraineUA
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              UkraineUA
+            </span>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </div>
   </div>
 </ul>
 `;
@@ -435,119 +441,122 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
   tabindex="-1"
 >
   <div
-    class="PicassoScrollMenu-scrollView"
     tabindex="0"
   >
-    <li
-      aria-disabled="false"
-      aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
-      data-test-id="menu-item-0"
-      role="option"
-      tabindex="-1"
+    <div
+      class="PicassoScrollMenu-scrollView"
     >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      <li
+        aria-disabled="false"
+        aria-selected="true"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+        data-test-id="menu-item-0"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            data-testid="custom-option"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            BY
+            <div
+              data-testid="custom-option"
+            >
+              BY
+            </div>
           </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-1"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-1"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            data-testid="custom-option"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            HR
+            <div
+              data-testid="custom-option"
+            >
+              HR
+            </div>
           </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-2"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-2"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            data-testid="custom-option"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            LU
+            <div
+              data-testid="custom-option"
+            >
+              LU
+            </div>
           </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-3"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-3"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            data-testid="custom-option"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            SK
+            <div
+              data-testid="custom-option"
+            >
+              SK
+            </div>
           </div>
         </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      data-test-id="menu-item-4"
-      role="option"
-      tabindex="-1"
-    >
-      <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      </li>
+      <li
+        aria-disabled="false"
+        aria-selected="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        data-test-id="menu-item-4"
+        role="option"
+        tabindex="-1"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            data-testid="custom-option"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            UA
+            <div
+              data-testid="custom-option"
+            >
+              UA
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </div>
   </div>
 </ul>
 `;

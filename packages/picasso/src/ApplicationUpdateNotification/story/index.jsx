@@ -6,12 +6,10 @@ const page = PicassoBook.section('Widgets').createPage(
   null
 )
 
-page
-  .createTabChapter('Props')
-  .addComponentDocs({
-    component: ApplicationUpdateNotification,
-    name: 'ApplicationUpdateNotification'
-  })
+page.createTabChapter('Props').addComponentDocs({
+  component: ApplicationUpdateNotification,
+  name: 'ApplicationUpdateNotification'
+})
 
 page
   .createChapter()

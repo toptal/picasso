@@ -1,7 +1,11 @@
 import React, { ReactElement, MouseEvent, forwardRef, ElementType } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, ButtonOrAnchorProps, OverridableComponent } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  ButtonOrAnchorProps,
+  OverridableComponent
+} from '@toptal/picasso-shared'
 
 import Button, { IconPositionType } from '../Button'
 import styles from './styles'
@@ -40,72 +44,73 @@ const useStyles = makeStyles<Theme>(styles, {
 
 const loaderIcon = <Loader size='small' variant='inherit' />
 
-export const ButtonAction: OverridableComponent<Props> = forwardRef<HTMLButtonElement, Props>(
-  function ButtonAction(props, ref) {
-    const {
-      className,
-      active,
-      focused,
-      hovered,
-      disabled,
-      loading,
-      icon,
-      iconPosition,
-      onClick,
-      ...rest
-    } = props
-    const classes = useStyles()
+export const ButtonAction: OverridableComponent<Props> = forwardRef<
+  HTMLButtonElement,
+  Props
+>(function ButtonAction(props, ref) {
+  const {
+    className,
+    active,
+    focused,
+    hovered,
+    disabled,
+    loading,
+    icon,
+    iconPosition,
+    onClick,
+    ...rest
+  } = props
+  const classes = useStyles()
 
-    const {
-      root: rootClass,
-      content,
-      icon: iconClassName,
-      iconLeft,
-      iconRight,
-      small
-    } = classes
+  const {
+    root: rootClass,
+    content,
+    icon: iconClassName,
+    iconLeft,
+    iconRight,
+    small
+  } = classes
 
-    const rootClassName = cx(
-      {
-        [classes.active]: active,
-        [classes.focused]: focused,
-        [classes.hovered]: hovered,
-        [classes.disabled]: disabled,
-        [classes.loading]: loading,
-        [classes.iconless]: !icon
-      },
-      rootClass
-    )
+  const rootClassName = cx(
+    {
+      [classes.active]: active,
+      [classes.focused]: focused,
+      [classes.hovered]: hovered,
+      [classes.disabled]: disabled,
+      [classes.loading]: loading,
+      [classes.iconless]: !icon
+    },
+    rootClass
+  )
 
-    const usedIcon = loading ? loaderIcon : icon
-    const usedIconPosition = icon ? iconPosition : 'right'
+  const usedIcon = loading ? loaderIcon : icon
+  const usedIconPosition = icon ? iconPosition : 'right'
 
-    return (
-      <Button
-        {...rest}
-        ref={ref}
-        icon={usedIcon}
-        iconPosition={usedIconPosition}
-        onClick={loading ? undefined : onClick}
-        variant='secondary'
-        classes={{
-          root: rootClassName,
-          content,
-          icon: iconClassName,
-          iconLeft,
-          iconRight,
-          small
-        }}
-        className={className}
-        size='small'
-        active={active}
-        hovered={hovered}
-        focused={focused}
-        disabled={disabled}
-      />
-    )
-  }
-)
+  return (
+    <Button
+      {...rest}
+      ref={ref}
+      icon={usedIcon}
+      iconPosition={usedIconPosition}
+      onClick={loading ? undefined : onClick}
+      variant='secondary'
+      classes={{
+        root: rootClassName,
+        content,
+        icon: iconClassName,
+        iconLeft,
+        iconRight,
+        small
+      }}
+      className={className}
+      size='small'
+      active={active}
+      hovered={hovered}
+      focused={focused}
+      disabled={disabled}
+    />
+  )
+})
 
 ButtonAction.defaultProps = {
   iconPosition: 'left'

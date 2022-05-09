@@ -30,6 +30,8 @@ export interface SelectProps<
     > {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
+  /** Whether to render select options in portal. Should be disabled in Modals */
+  disablePortal?: boolean
   /** @deprecated Indicate whether `Select` is in error state */
   error?: boolean
   /** Indicate whether `Select` is in `error` or `default` state */
@@ -94,6 +96,7 @@ export interface SelectProps<
     noOptions?: string
     loader?: string
     limitFooter?: string
+    searchInput?: string
   }
 }
 

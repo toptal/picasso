@@ -1,17 +1,10 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { alpha, rem } from '@toptal/picasso-shared'
 
-export default ({ palette, shadows }: Theme) =>
+export default ({ palette, sizes }: Theme) =>
   createStyles({
     root: {
-      padding: '1.875em',
-      color: palette.grey.darker,
-      display: 'flex',
-      flexDirection: 'column',
-      flexBasis: '20.5rem',
-      maxWidth: '20.5rem',
-      boxShadow: shadows[2],
-      backgroundColor: palette.common.white
+      display: 'none'
     },
     month: {},
     week: {
@@ -32,14 +25,17 @@ export default ({ palette, shadows }: Theme) =>
       margin: 0,
       padding: 0,
       border: 'none',
-      outline: 0
+      outline: 0,
+      borderRadius: sizes.borderRadius.small
     },
     weekDays: {
       display: 'flex',
       textAlign: 'center',
-      fontSize: '0.75em',
+      fontSize: rem('12px'),
+      lineHeight: rem('18px'),
       textTransform: 'uppercase',
       color: palette.grey.main2,
+      paddingTop: rem('3px'),
       paddingBottom: rem('11px')
     },
     weekDay: {

@@ -1,11 +1,10 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import cx from 'classnames'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, ColorType } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core'
 
 import Container, { VariantType as ContainerVariants } from '../Container'
 import Typography from '../Typography'
-import { Exclamation16, Done16, Info16 } from '../Icon'
+import { ExclamationSolid16, DoneSolid16, InfoSolid16 } from '../Icon'
 import styles from './styles'
 
 export type VariantType = Extract<
@@ -18,23 +17,13 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
   /** Style variant of Alert */
   variant?: VariantType
-  iconPadding?: SizeType<'xsmall' | 'small'> // undocumented prop, only for internal usage
 }
 
-export const renderAlertIcon = (variant?: VariantType) => {
-  switch (variant) {
-    case 'red':
-      return <Exclamation16 color='red' />
-
-    case 'green':
-      return <Done16 color='green' />
-
-    case 'blue':
-      return <Info16 color='light-blue' />
-
-    case 'yellow':
-      return <Exclamation16 color='yellow' />
-  }
+const icons = {
+  red: <ExclamationSolid16 color='red' />,
+  green: <DoneSolid16 color='dark-green' />,
+  blue: <InfoSolid16 color='light-blue' />,
+  yellow: <ExclamationSolid16 color='yellow' />
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -46,23 +35,32 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   ref
 ) {
   const classes = useStyles()
-  const { variant, children, className, iconPadding } = props
+  const { variant, children, className } = props
+  const icon = icons[variant!]
+
+  let typographyColor = variant as ColorType
+
+  // to comply with the designs
+  if (variant === 'blue') {
+    typographyColor = 'light-blue'
+  }
 
   return (
     <Container inline flex ref={ref} className={classes.root}>
       <Container
-        right={iconPadding}
+        right='xsmall'
         flex
         alignItems='center'
         className={classes.iconWrapper}
       >
-        {renderAlertIcon(variant)}
+        {icon}
       </Container>
       <Typography
-        size='medium'
+        size='small'
         as='div'
-        color='black'
-        className={cx(className, classes.content)}
+        weight='semibold'
+        color={typographyColor}
+        className={className}
       >
         {children}
       </Typography>
@@ -71,8 +69,7 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
 })
 
 AlertInline.defaultProps = {
-  variant: 'yellow',
-  iconPadding: 'xsmall'
+  variant: 'yellow'
 }
 
 AlertInline.displayName = 'AlertInline'

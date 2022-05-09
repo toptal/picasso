@@ -102,12 +102,8 @@ class Chapter extends Base {
       return this
     }
 
-    const {
-      component,
-      name,
-      description,
-      additionalDocs
-    } = componentDocumentation
+    const { component, name, description, additionalDocs } =
+      componentDocumentation
 
     if (!component.__docgenInfo && !additionalDocs) {
       return this
@@ -163,12 +159,15 @@ class Chapter extends Base {
       )
     }
 
-    const sectionLinkId = normalize(sectionId)
+    const childSection = (this.options as any).title
+    const anchor = childSection
+      ? normalize(`${childSection}-${sectionId}`)
+      : normalize(sectionId)
     const permanentLink = generateUrl({
       host: getHost(),
       kind: this.page.section,
       type: this.page.title,
-      section: sectionId
+      section: anchor
     })
 
     const render = () => (
@@ -176,7 +175,7 @@ class Chapter extends Base {
         <div
           className='chapter-container'
           style={{ display: TEST_ENV === 'visual' ? 'inline-block' : 'block' }}
-          id={sectionLinkId}
+          id={anchor}
         >
           <CodeExample
             src={source}

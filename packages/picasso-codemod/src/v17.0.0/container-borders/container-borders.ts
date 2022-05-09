@@ -32,11 +32,12 @@ const transform: Transform = (file, api) => {
       )
     })
     .map(path => {
-      path.node.openingElement.attributes = path.node.openingElement.attributes?.filter(
-        attribute =>
-          attribute.type === 'JSXAttribute' &&
-          attribute.name.name !== 'bordered'
-      )
+      path.node.openingElement.attributes =
+        path.node.openingElement.attributes?.filter(
+          attribute =>
+            attribute.type === 'JSXAttribute' &&
+            attribute.name.name !== 'bordered'
+        )
 
       return path
     })

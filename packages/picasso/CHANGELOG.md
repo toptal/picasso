@@ -1,5 +1,92 @@
 # Change Log
 
+## 23.0.0
+
+### Major Changes
+
+- [#2714](https://github.com/toptal/picasso/pull/2714) [`c3392de3`](https://github.com/toptal/picasso/commit/c3392de3498af2cfd630905d5342cd0bc96f4635) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  ### MenuItem
+
+  - remove the size prop completely
+  - change gutters size and add a small radius
+
+## 22.4.2
+
+### Patch Changes
+
+- [#2741](https://github.com/toptal/picasso/pull/2741) [`deed54dd`](https://github.com/toptal/picasso/commit/deed54dd5906689df45931d5bc146172cbddc3f6) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### DatePicker
+
+  - Update to latest design
+
+## 22.4.1
+
+### Patch Changes
+
+- [#2732](https://github.com/toptal/picasso/pull/2732) [`93527039`](https://github.com/toptal/picasso/commit/93527039cbc64d47b9ef9dd46ea3be95ae01fe37) Thanks [@vshyrokov](https://github.com/vshyrokov)! - ---
+
+  ### Alert
+
+  - Remove duplicated className
+
+## 22.4.0
+
+### Minor Changes
+
+- [#2699](https://github.com/toptal/picasso/pull/2699) [`cfd5ad5c`](https://github.com/toptal/picasso/commit/cfd5ad5c4bea8a5ee10e98ecf6d211c9cb73efe3) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Select
+
+  - introduce new prop `disablePortal` to allow using search input inside Drawer
+
+- [#2701](https://github.com/toptal/picasso/pull/2701) [`7d7a17b2`](https://github.com/toptal/picasso/commit/7d7a17b2748364a7880691cfec7b84162380ae11) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  ### AlertInline
+
+  - Updated styles to be compliant with BASE design
+
+  ### Icons
+
+  - Add `DoneSolid16`, `DoneSolid24` icons
+  - Add `InfoSolid16`, `InfoSolid24` icons
+  - Add `darkGreen` color
+
+  ### Typography
+
+  - Add `lightBlue` color
+
+- [#2689](https://github.com/toptal/picasso/pull/2689) [`9a8e2549`](https://github.com/toptal/picasso/commit/9a8e25490123793ee614edb52a59fddf2fe7b423) Thanks [@vshyrokov](https://github.com/vshyrokov)! - ---
+  ### Calendar
+  - Added custom day, month and container renderers
+
+### Patch Changes
+
+- [#2712](https://github.com/toptal/picasso/pull/2712) [`0ebe078c`](https://github.com/toptal/picasso/commit/0ebe078cd88d4201e677539f308551e95b4f2adc) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Select
+
+  - Enable search input to be focused by click
+
+- [#2715](https://github.com/toptal/picasso/pull/2715) [`a365d67d`](https://github.com/toptal/picasso/commit/a365d67d8d27e2f861a4f7d89e31ef4614e41706) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  - Applied prettier formatting to the whole codebase
+
+- Updated dependencies [[`a365d67d`](https://github.com/toptal/picasso/commit/a365d67d8d27e2f861a4f7d89e31ef4614e41706), [`7d7a17b2`](https://github.com/toptal/picasso/commit/7d7a17b2748364a7880691cfec7b84162380ae11)]:
+  - @toptal/picasso-provider@1.1.1
+  - @toptal/picasso-shared@8.2.0
+
+## 22.3.2
+
+### Patch Changes
+
+- [#2693](https://github.com/toptal/picasso/pull/2693) [`fc11cd9a`](https://github.com/toptal/picasso/commit/fc11cd9a466f2b965e1ccd786a8b9eda565b1a53) Thanks [@xandmore](https://github.com/xandmore)! - ---
+
+  ### Avatar
+
+  - Applied `image-rendering` css property for `<AvatarImage />`, preventing blur on downscaled images
+
 ## 22.3.1
 
 ### Patch Changes
