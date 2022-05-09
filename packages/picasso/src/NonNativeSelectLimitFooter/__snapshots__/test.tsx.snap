@@ -7,7 +7,7 @@ exports[`NonNativeSelectLimitFooter renders footer when overflow 1`] = `
   >
     <li
       aria-disabled="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root PicassoMenuItem-disabled MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root PicassoMenuItem-disabled MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
       role="menuitem"
       tabindex="-1"
     >

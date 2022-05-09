@@ -15,10 +15,12 @@ PicassoProvider.override(({ shadows }: Theme) => ({
   }
 }))
 
-export default () =>
+export default ({ sizes }: Theme) =>
   createStyles({
     root: {
-      outline: 0
+      outline: 0,
+      padding: '0.5rem 0',
+      borderRadius: sizes.borderRadius.small
     },
     backButtonIcon: {
       verticalAlign: 'middle',

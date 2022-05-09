@@ -36,7 +36,6 @@ const renderNonNativeSelectOptions = ({
     display: jest.fn()
   },
   multiple,
-  size,
   noOptionsText,
   renderOption,
   highlightedIndex = null,
@@ -52,7 +51,6 @@ const renderNonNativeSelectOptions = ({
       options={options}
       selection={selection}
       multiple={multiple}
-      size={size}
       noOptionsText={noOptionsText}
       renderOption={renderOption}
       highlightedIndex={highlightedIndex}

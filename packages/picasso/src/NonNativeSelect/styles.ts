@@ -44,6 +44,9 @@ export default ({ palette }: Theme) =>
     searchOutlinedInput: {
       width: '100%'
     },
+    searchInputGutters: {
+      padding: '0.375rem 0.5rem 0.5rem 0.5rem'
+    },
     nativeInput: {
       padding: 0
     },

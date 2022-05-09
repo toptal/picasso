@@ -95,24 +95,14 @@ export default ({ typography, palette, shadows }: Theme) =>
     nonSelectable: {},
     stringContent: {
       flex: 1,
-      fontSize: '0.8125em'
-    },
-    stringContentSmall: {
-      fontSize: '0.75rem',
-      lineHeight: '1.125rem'
-    },
-    stringContentMedium: {
       fontSize: '0.875rem',
       lineHeight: '1.25rem'
     },
     stringContentSemibold: {
       fontWeight: typography.fontWeights.semibold
     },
-    guttersSmall: {
-      padding: '0.1875rem 0.5rem'
-    },
-    guttersMedium: {
-      padding: '0.375rem 0.5rem'
+    gutters: {
+      padding: '0.375rem 1rem'
     },
     iconContainer: {
       width: '1rem'
