@@ -4,6 +4,7 @@ import { render } from '@toptal/picasso/test-utils'
 import Logo from '../Logo'
 import SidebarLogo, { Props } from './SidebarLogo'
 import { SidebarContextProvider } from '../PageSidebar'
+import { noop } from '../utils'
 
 const TestSidebarLogo = ({ children }: Props) => (
   <SidebarLogo>{children}</SidebarLogo>
@@ -15,7 +16,12 @@ const renderSidebarLogoWithContext = ({
   isCollapsed: boolean
 }) => {
   return render(
-    <SidebarContextProvider isCollapsed={isCollapsed} isHovered={false}>
+    <SidebarContextProvider
+      expandedItemKey={null}
+      setExpandedItemKey={noop}
+      isCollapsed={isCollapsed}
+      isHovered={false}
+    >
       <SidebarLogo
         collapsedLogo={<Logo emblem data-testid='collapse-logo' />}
         fullLogo={<Logo data-testid='full-logo' />}

@@ -2,7 +2,13 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { useSidebar } from '@toptal/picasso-provider'
 import { BaseProps, StandardProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import React, { forwardRef, ReactNode, useCallback, useState } from 'react'
+import React, {
+  forwardRef,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState
+} from 'react'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -11,7 +17,7 @@ import { BackMinor16, ChevronRight16, Close16, Overview16 } from '../Icon'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
 import SidebarMenu from '../SidebarMenu'
-import { noop, useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
+import { noop, useBreakpoint } from '../utils'
 import { SidebarContextProvider } from './SidebarContextProvider'
 import styles from './styles'
 import { VariantType } from './types'
@@ -91,8 +97,16 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const { setHasSidebar } = useSidebar()
   const [isCollapsed, setIsCollapsed] = useState(!!defaultCollapsed)
   const [isHovered, setIsHovered] = useState(false)
+  const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
 
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
+    // Clear expanded submenu on sidebar collapse
+    if (isCollapsed) {
+      setExpandedItemKey(null)
+    }
+  }, [isCollapsed])
+
+  useEffect(() => {
     setHasSidebar(true)
 
     return function cleanup() {
@@ -136,6 +150,8 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         isCollapsed={isCollapsed}
         isHovered={isHovered}
         variant={variant}
+        expandedItemKey={expandedItemKey}
+        setExpandedItemKey={setExpandedItemKey}
       >
         {children}
       </SidebarContextProvider>

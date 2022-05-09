@@ -2,10 +2,15 @@ import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
+import { renderHook } from '@testing-library/react-hooks'
 
 import { Candidates16 } from '../Icon'
 import PageSidebar from '../PageSidebar'
-import { Props } from './SidebarItem'
+import { Props } from './types'
+import {
+  SubMenuContextProvider,
+  useSubMenuContext
+} from './SubMenuContextProvider'
 
 jest.mock('ap-style-title-case')
 
@@ -180,5 +185,25 @@ describe('SidebarItem', () => {
     )
 
     expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)
+  })
+})
+
+describe('SubMenuContextProvider', () => {
+  describe('when no provider available', () => {
+    it('returns `isSubMenu` as false', () => {
+      const { result } = renderHook(() => useSubMenuContext())
+
+      expect(result.current.isSubMenu).toBe(false)
+    })
+  })
+
+  describe('when a provider available', () => {
+    it('returns `isSubMenu` as true', () => {
+      const { result } = renderHook(() => useSubMenuContext(), {
+        wrapper: SubMenuContextProvider
+      })
+
+      expect(result.current.isSubMenu).toBe(true)
+    })
   })
 })

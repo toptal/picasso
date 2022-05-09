@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useState } from 'react'
+import React, { ReactNode, useContext } from 'react'
 
 import { noop } from '../utils'
 import { SidebarContextProps, VariantType } from './types'
@@ -14,6 +14,8 @@ export interface Props {
   variant?: VariantType
   isCollapsed: boolean
   isHovered: boolean
+  expandedItemKey: number | null
+  setExpandedItemKey: (expanded: number | null) => void
   children?: ReactNode
 }
 
@@ -21,10 +23,10 @@ export const SidebarContextProvider = ({
   children,
   isCollapsed,
   variant,
+  expandedItemKey,
+  setExpandedItemKey,
   isHovered
 }: Props) => {
-  const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
-
   return (
     <SidebarContext.Provider
       value={{
