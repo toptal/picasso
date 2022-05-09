@@ -1,7 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { alpha, rem } from '@toptal/picasso-shared'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, sizes }: Theme) =>
   createStyles({
     root: {
       display: 'none'
@@ -25,7 +25,8 @@ export default ({ palette }: Theme) =>
       margin: 0,
       padding: 0,
       border: 'none',
-      outline: 0
+      outline: 0,
+      borderRadius: sizes.borderRadius.small
     },
     weekDays: {
       display: 'flex',
