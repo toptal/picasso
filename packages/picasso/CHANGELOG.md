@@ -1,5 +1,16 @@
 # Change Log
 
+## 23.0.0
+
+### Major Changes
+
+- [#2714](https://github.com/toptal/picasso/pull/2714) [`c3392de3`](https://github.com/toptal/picasso/commit/c3392de3498af2cfd630905d5342cd0bc96f4635) Thanks [@separatio](https://github.com/separatio)! - ---
+
+  ### MenuItem
+
+  - remove the size prop completely
+  - change gutters size and add a small radius
+
 ## 22.4.2
 
 ### Patch Changes
