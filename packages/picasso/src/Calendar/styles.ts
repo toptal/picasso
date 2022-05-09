@@ -30,8 +30,8 @@ export default ({ palette }: Theme) =>
     weekDays: {
       display: 'flex',
       textAlign: 'center',
-      fontSize: '0.75rem',
-      lineHeight: '1.5',
+      fontSize: rem('12px'),
+      lineHeight: rem('18px'),
       textTransform: 'uppercase',
       color: palette.grey.main2,
       paddingTop: rem('3px'),
