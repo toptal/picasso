@@ -49,13 +49,11 @@ export interface Props
     ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
-  /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
   /** Disables button */
   disabled?: boolean
   /** Content of Button component */
   children: ReactNode
-  // TODO: should it be exposed?
   focused?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
