@@ -14,13 +14,13 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const SidebarItemCompact = forwardRef<HTMLElement, Props>(
   function CompactSidebarItem(props: Props, ref) {
-    const { menu, index } = props
+    const { menu, index, compact, icon } = props
 
     const classes = useStyles()
 
     const subMenu = (
       <SubMenuContextProvider
-        extraClasses={{ header: classes.nestedMenuNoMargin }}
+        parentMenu={{ compact, icon }}
         parentSidebarItemIndex={index}
       >
         {menu}

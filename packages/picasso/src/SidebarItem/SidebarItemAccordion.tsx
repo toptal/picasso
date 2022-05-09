@@ -15,11 +15,18 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
   function SidebarItemAccordion(props: Props, ref) {
-    const { expand, index, menu, disabled, variant, isExpanded, icon } = props
+    const {
+      expand,
+      index,
+      menu,
+      disabled,
+      variant,
+      isExpanded,
+      icon,
+      compact
+    } = props
 
     const classes = useStyles()
-
-    const hasIcon = icon != null
 
     const handleAccordionChange = useCallback(
       (event: ChangeEvent<{}>, isAccordionExpanded: boolean) => {
@@ -34,9 +41,7 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
 
     const content = (
       <SubMenuContextProvider
-        extraClasses={{
-          header: hasIcon ? classes.nestedMenuWithIcon : classes.nestedMenu
-        }}
+        parentMenu={{ icon, compact }}
         parentSidebarItemIndex={index}
       >
         {menu}

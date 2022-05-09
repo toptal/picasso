@@ -3,30 +3,30 @@ import React, { createContext, useContext, ReactNode } from 'react'
 export interface ContextProps {
   parentSidebarItemIndex?: number | null
   isSubMenu: boolean
-  extraClasses: { header?: string }
+  parentMenu: { icon?: ReactNode; compact?: boolean } | null
 }
 
 const Context = createContext<ContextProps>({
   isSubMenu: false,
-  extraClasses: {}
+  parentMenu: null
 })
 
 export interface Props {
   children?: ReactNode
   parentSidebarItemIndex?: number | null
-  extraClasses?: ContextProps['extraClasses']
+  parentMenu: ContextProps['parentMenu']
 }
 
 export const SubMenuContextProvider = ({
   children,
-  extraClasses = {},
+  parentMenu,
   parentSidebarItemIndex
 }: Props) => (
   <Context.Provider
     value={{
       isSubMenu: true,
       parentSidebarItemIndex,
-      extraClasses
+      parentMenu
     }}
   >
     {children}

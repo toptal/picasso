@@ -38,7 +38,7 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
 
     const classes = useStyles()
 
-    const { extraClasses } = useSubMenuContext()
+    const { parentMenu } = useSubMenuContext()
 
     const hasMenu = menu != null
 
@@ -50,6 +50,10 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
       },
       [hasMenu, onClick]
     )
+
+    const subMenuClass =
+      parentMenu &&
+      (parentMenu.icon ? classes.nestedMenuWithIcon : classes.nestedMenu)
 
     return (
       <MenuItem
@@ -66,7 +70,7 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
             [classes.selected]: !hasMenu && selected,
             [classes.collapsible]: hasMenu && collapsible
           },
-          extraClasses.header,
+          parentMenu?.compact ? classes.nestedMenuNoMargin : subMenuClass,
           className
         )}
         onClick={handleMenuItemClick}
