@@ -6,6 +6,7 @@ import MenuItem from '../MenuItem'
 import SidebarItemContent from '../SidebarItemContent'
 import styles from './styles'
 import { Props } from './types'
+import { useSubMenuContext } from './SubMenuContextProvider'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItemHeader'
@@ -22,11 +23,11 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
       variant = 'light',
       onClick,
       collapsible,
+      icon,
       // these props are being destructured only for the purpose of excluding them from `...rest`
       /* eslint-disable @typescript-eslint/no-unused-vars */
       badge,
       testIds,
-      icon,
       isExpanded,
       expand,
       index,
@@ -34,9 +35,12 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
       ...rest
     } = props
 
+    const { isSubMenu } = useSubMenuContext()
+
     const classes = useStyles()
 
     const hasMenu = menu != null
+    const hasIcon = icon != null
 
     const handleMenuItemClick = useCallback(
       (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -60,7 +64,9 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
           {
             [classes.compact]: compact,
             [classes.selected]: !hasMenu && selected,
-            [classes.collapsible]: hasMenu && collapsible
+            [classes.collapsible]: hasMenu && collapsible,
+            [classes.nestedMenu]: isSubMenu,
+            [classes.nestedMenuWithIcon]: isSubMenu && hasIcon
           },
           className
         )}

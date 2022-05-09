@@ -15,11 +15,9 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
   function SidebarItemAccordion(props: Props, ref) {
-    const { expand, index, icon, menu, disabled, variant, isExpanded } = props
+    const { expand, index, menu, disabled, variant, isExpanded } = props
 
     const classes = useStyles()
-
-    const hasIcon = icon != null
 
     const handleAccordionChange = useCallback(
       (event: ChangeEvent<{}>, isAccordionExpanded: boolean) => {
@@ -43,7 +41,6 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
         onChange={handleAccordionChange}
         classes={{
           summary: classes.collapsibleWrapper,
-          details: hasIcon ? classes.nestedMenuWithIcon : classes.nestedMenu,
           content: classes.content
         }}
         content={content}
