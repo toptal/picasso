@@ -50,7 +50,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: toptal/davinci-github-actions
-          ref: v1
+          ref: v2
           token: ${{ env.GITHUB_TOKEN }}
           path: ./.github/actions/
 
@@ -71,9 +71,9 @@ jobs:
 
       - name: Trigger alpha package
         id: alpha-package
-        uses: ./.github/actions/build-alpha-package
+        uses: ./.github/actions/build-publish-alpha-package
         with:
-          npm_token: ${{ env.NPM_TOKEN }}
+          npm-token: ${{ env.NPM_TOKEN }}
           branch: ${{ steps.get-branch.outputs.branch }}
 
       - name: Alpha package — Handle success
