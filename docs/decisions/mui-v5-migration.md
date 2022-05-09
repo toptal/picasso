@@ -14,14 +14,13 @@ Migrate Picasso to use MUI v5 with minimal breaking changes
 Since migration requires many changes, we want to do it gradually.
 
 - create feature branch
-- create new version of `Picasso` root component (e.g: `PicassoV5`) for new styled engine, theming and style overrides
-- configure storybook to use `PicassoV5` with migrated components while running storybook visual tests
+- combine both MUI v4 and v5 styles and theme providers inside our `Picasso` root component
 - migrate all components
-- replace old Picasso root with `PicassoV5`
+- cleanup `Picasso` root from v4 providers
 - remove MUIv4 packages
 - migrate Picasso to use `tss-react` or `styled`
 
-A PoC with `PicassoV5` and a sample component migration should be prepared before continuing.
+A PoC created to test the idea: https://github.com/toptal/picasso/pull/2730
 
 ## Alternatives
 
@@ -52,7 +51,7 @@ _Cons:_
 
 ### feature branch vs creating v5 folder for each component
 
-we can create e.g. `button-v5` folder with all files copied from `button` and do the changes on it
+We can create e.g. `button-v5` folder with all files copied from `button` and do the changes on it
 
 _Pros:_
 
@@ -64,3 +63,15 @@ _Cons:_
 - folders count will be doubled
 
 **We propose to use feature branch**
+
+### two separated Picasso roots vs combine v4 and v5 in one Picasso root
+
+_Pros:_
+
+- one combined root will solve the problem about migrating complex components which renders multiple components inside
+
+_Cons:_
+
+- none 
+
+**We propose to use one combined Picasso root**
