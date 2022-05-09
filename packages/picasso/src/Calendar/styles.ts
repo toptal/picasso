@@ -3,6 +3,9 @@ import { alpha, rem } from '@toptal/picasso-shared'
 
 export default ({ palette }: Theme) =>
   createStyles({
+    root: {
+      display: 'none'
+    },
     month: {},
     week: {
       display: 'flex'
@@ -27,9 +30,11 @@ export default ({ palette }: Theme) =>
     weekDays: {
       display: 'flex',
       textAlign: 'center',
-      fontSize: '0.75em',
+      fontSize: '0.75rem',
+      lineHeight: '1.5',
       textTransform: 'uppercase',
       color: palette.grey.main2,
+      paddingTop: rem('3px'),
       paddingBottom: rem('11px')
     },
     weekDay: {

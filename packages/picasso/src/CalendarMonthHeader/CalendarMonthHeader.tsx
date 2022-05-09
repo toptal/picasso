@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 
 import Button from '../Button'
 import Typography from '../Typography'
-import { BackMinor16, ChevronMinor16 } from '../Icon'
+import { ChevronMinor24, BackMinor24 } from '../Icon'
 import { MonthHeaderProps } from '../Calendar/types'
 import Container from '../Container'
 
@@ -12,25 +12,24 @@ const CalendarMonthHeader = ({
   activeMonth: headerActiveMonth
 }: MonthHeaderProps) => (
   <Container flex justifyContent='space-between' bottom='medium'>
-    <Button
+    <Button.Circular
       title='Previous month'
-      variant='secondary'
-      size='small'
+      aria-label='Previous month'
+      variant='flat'
+      icon={<BackMinor24 />}
       onClick={() => switchMonth(-1)}
-    >
-      <BackMinor16 />
-    </Button>
+    />
+
     <Typography variant='heading' size='medium'>
       {format(headerActiveMonth, 'MMMM y')}
     </Typography>
-    <Button
+    <Button.Circular
       title='Next month'
-      variant='secondary'
-      size='small'
+      aria-label='Previous month'
+      variant='flat'
+      icon={<ChevronMinor24 />}
       onClick={() => switchMonth(1)}
-    >
-      <ChevronMinor16 />
-    </Button>
+    />
   </Container>
 )
 

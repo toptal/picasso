@@ -99,6 +99,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   return (
     <div ref={ref} {...rest} tabIndex={0}>
       <SimpleReactCalendar
+        className={classes.root}
         selected={getNormalizedValue(value)}
         onSelect={handleChange}
         customRender={renderRoot}
