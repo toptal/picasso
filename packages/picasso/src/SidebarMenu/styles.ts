@@ -6,11 +6,15 @@ export default () =>
       flex: 0,
       boxShadow: 'none',
       order: 1,
+      padding: 0,
       '& &': {
         flex: 1
       },
       // to cover text overflow in the sub-menu items
       maxWidth: '100%'
+    },
+    compactParent: {
+      padding: '8px'
     },
     bottom: {
       order: 99

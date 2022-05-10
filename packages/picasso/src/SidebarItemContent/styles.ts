@@ -12,6 +12,10 @@ export default () =>
     hiddenContent: {
       visibility: 'hidden'
     },
+    iconWrapper: {
+      width: '1rem',
+      height: '1rem'
+    },
     staticBadge: {
       marginLeft: '0.5em'
     }
