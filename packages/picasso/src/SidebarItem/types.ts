@@ -34,5 +34,6 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   isSubMenu?: boolean
   testIds?: {
     content?: string
+    header?: string
   }
 }

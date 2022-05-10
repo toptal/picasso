@@ -23,12 +23,12 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
       variant = 'light',
       onClick,
       collapsible,
+      testIds,
       // these props are being destructured only for the purpose of excluding them from `...rest`
       /* eslint-disable @typescript-eslint/no-unused-vars */
       icon,
       isSubMenu,
       badge,
-      testIds,
       isExpanded,
       expand,
       index,
@@ -78,6 +78,7 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
         disabled={disabled}
         variant={variant}
         nonSelectable
+        data-testid={testIds?.header}
       >
         <SidebarItemContent {...props} />
       </MenuItem>

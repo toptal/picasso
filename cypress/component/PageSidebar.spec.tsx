@@ -9,35 +9,86 @@ import {
   Overview16,
   Page,
   PageSidebarProps,
+  Referral16,
   Team16,
   Typography
 } from '@toptal/picasso'
+
+enum TestIds {
+  SIDEBAR_COLLAPSE_BUTTON = 'sidebar-collapse-button',
+  SIDEBAR_CONTAINER = 'sidebar-container',
+
+  ITEM_ICON = 'sidebar-item-icon',
+  ITEM_TEXT_CONTENT = 'sidebar-item-content',
+
+  BASIC_MENU_INNER_MENU = 'basic-menu-inner-menu',
+
+  COLLAPSIBLE_MENU_HEADER = 'collapsible-header',
+  COLLAPSIBLE_MENU_INNER_MENU = 'collapsible-inner-menu'
+}
+
+const byTestId = (testId: string) => `[data=${testId}]`
 
 const SidebarExample = (props: PageSidebarProps) => {
   return (
     <Page.Sidebar
       {...props}
       testIds={{
-        collapseButton: 'collapse-button',
-        container: 'container'
+        collapseButton: TestIds.SIDEBAR_COLLAPSE_BUTTON,
+        container: TestIds.SIDEBAR_CONTAINER
       }}
     >
-      <Page.Sidebar.Logo collapsedLogo={<Logo emblem />} fullLogo={<Logo />} />
+      <Page.Sidebar.Logo
+        collapsedLogo={
+          <Logo
+            emblem
+            variant={props.variant === 'dark' ? 'rhite' : 'default'}
+          />
+        }
+        fullLogo={<Logo />}
+      />
       <Page.Sidebar.Menu>
         <Page.Sidebar.Item
-          icon={<Overview16 data-testid='sidebar-item-icon' />}
+          icon={<Overview16 data-testid={TestIds.ITEM_ICON} />}
           selected
         >
-          <span data-testid='sidebar-item-text-content'>Overview</span>
+          <span data-testid={TestIds.ITEM_TEXT_CONTENT}>Overview</span>
         </Page.Sidebar.Item>
         <Page.Sidebar.Item
           icon={<Team16 />}
           badge={{
             content: 5
           }}
-          selected
         >
           Team
+        </Page.Sidebar.Item>
+        <Page.Sidebar.Item
+          icon={<Referral16 />}
+          menu={
+            <Page.Sidebar.Menu data-testid={TestIds.BASIC_MENU_INNER_MENU}>
+              <Page.Sidebar.Item>Foo </Page.Sidebar.Item>
+              <Page.Sidebar.Item>Bar </Page.Sidebar.Item>
+            </Page.Sidebar.Menu>
+          }
+          badge={{
+            content: 10
+          }}
+        >
+          Referral
+        </Page.Sidebar.Item>
+        <Page.Sidebar.Item
+          icon={<Referral16 />}
+          testIds={{ header: TestIds.COLLAPSIBLE_MENU_HEADER }}
+          menu={
+            <Page.Sidebar.Menu
+              data-testid={TestIds.COLLAPSIBLE_MENU_INNER_MENU}
+            >
+              <Page.Sidebar.Item>Foo </Page.Sidebar.Item>
+              <Page.Sidebar.Item>Bar </Page.Sidebar.Item>
+            </Page.Sidebar.Menu>
+          }
+        >
+          Collapsible
         </Page.Sidebar.Item>
       </Page.Sidebar.Menu>
 
@@ -109,14 +160,31 @@ describe('Sidebar', () => {
     it('hides and shows the sidebar items text', () => {
       mount(<DefaultExample collapsible />)
 
-      cy.get('[data-testid="collapse-button"]')
+      // Default view
+      cy.get(byTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON))
         .as('collapseButton')
         .should('not.be.visible')
 
-      cy.get('[data-testid="container"]')
+      cy.get(byTestId(TestIds.BASIC_MENU_INNER_MENU)).should('be.visible')
+
+      cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_INNER_MENU)).should(
+        'not.be.visible'
+      )
+
+      cy.get('body').happoScreenshot()
+
+      // Expand collapsible Menu
+      cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_HEADER)).realClick()
+
+      cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_INNER_MENU)).should('be.visible')
+
+      cy.get('body').happoScreenshot()
+
+      // Collapse sidebar
+      cy.get(byTestId(TestIds.SIDEBAR_CONTAINER))
         .as('container')
         .realHover()
-        .find('[data-testid="collapse-button"]')
+        .find(byTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON))
         .realClick()
 
       cy.get('@collapseButton').should('not.be.visible')
@@ -124,9 +192,15 @@ describe('Sidebar', () => {
 
       cy.get('body').happoScreenshot()
 
+      // Open collapsible Menu as dropdown
+      cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_HEADER)).realClick()
+
+      cy.get('body').happoScreenshot()
+
+      // Expand collapsed sidebar
       cy.get('@container')
         .realHover()
-        .find('[data-testid="collapse-button"]')
+        .find(byTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON))
         .realClick()
 
       cy.get('body').happoScreenshot()
