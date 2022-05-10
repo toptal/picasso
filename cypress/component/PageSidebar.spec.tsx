@@ -173,7 +173,7 @@ describe('Sidebar', () => {
       // Expand collapsible Menu
       cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_HEADER)).realClick()
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({ variant: 'expanded accordion menu' })
 
       // Collapse sidebar
       cy.get(byTestId(TestIds.SIDEBAR_CONTAINER))
@@ -185,12 +185,12 @@ describe('Sidebar', () => {
       cy.get('@collapseButton').should('not.be.visible')
       cy.get('@container').realHover()
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({ variant: 'collapsed sidebar default' })
 
       // Open collapsible Menu as dropdown
       cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_HEADER)).realClick()
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({ variant: 'open dropdown menu' })
 
       // Expand collapsed sidebar
       cy.get('@container')
@@ -198,7 +198,7 @@ describe('Sidebar', () => {
         .find(byTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON))
         .realClick()
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({ variant: 'expand sidebar' })
     })
   })
 })
