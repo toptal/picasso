@@ -18,6 +18,7 @@ import React, {
 import { Helmet } from 'react-helmet'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
+import { isBrowser } from '@toptal/shared'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
@@ -112,6 +113,10 @@ const PicassoGlobalStylesProvider = (
 
 const Viewport = () => {
   const [warned, setWarned] = useState(false)
+
+  if (!isBrowser()) {
+    return null
+  }
 
   const content = 'width=device-width, user-scalable=no'
   const nonPicassoViewportTags = document.querySelectorAll(
