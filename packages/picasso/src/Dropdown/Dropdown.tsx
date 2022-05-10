@@ -223,7 +223,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
         {typeof children === 'function' ? children({ isOpen }) : children}
       </div>
 
-      {anchorEl && isOpen && (
+      {anchorEl && ((!disablePortal && isOpen) || disablePortal) && (
         <Popper
           className={classes.popper}
           anchorEl={anchorEl}
