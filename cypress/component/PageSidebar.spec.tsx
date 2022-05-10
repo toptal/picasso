@@ -27,7 +27,7 @@ enum TestIds {
   COLLAPSIBLE_MENU_INNER_MENU = 'collapsible-inner-menu'
 }
 
-const byTestId = (testId: string) => `[data=${testId}]`
+const byTestId = (testId: string) => `[data-testid=${testId}]`
 
 const SidebarExample = (props: PageSidebarProps) => {
   return (
