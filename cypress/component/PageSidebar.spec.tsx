@@ -167,16 +167,10 @@ describe('Sidebar', () => {
 
       cy.get(byTestId(TestIds.BASIC_MENU_INNER_MENU)).should('be.visible')
 
-      cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_INNER_MENU)).should(
-        'not.be.visible'
-      )
-
       cy.get('body').happoScreenshot()
 
       // Expand collapsible Menu
       cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_HEADER)).realClick()
-
-      cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_INNER_MENU)).should('be.visible')
 
       cy.get('body').happoScreenshot()
 
