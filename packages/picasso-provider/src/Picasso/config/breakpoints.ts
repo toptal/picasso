@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { BreakpointValues } from '@material-ui/core/styles/createBreakpoints'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { isBrowser } from '@toptal/shared'
 
 type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'
 
@@ -101,11 +102,15 @@ export const isScreenSize = (
 }
 
 export const useScreenSize = () => {
-  const [size, setSize] = useState(window.innerWidth)
+  const [size, setSize] = useState(isBrowser() ? window.innerWidth : 0)
 
   const updateSize = () => setSize(window.innerWidth)
 
   useEffect(() => {
+    if (!isBrowser()) {
+      return
+    }
+
     window.addEventListener('resize', updateSize)
 
     return () => {
