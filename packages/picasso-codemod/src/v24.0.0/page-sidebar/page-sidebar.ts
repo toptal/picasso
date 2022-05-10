@@ -1,13 +1,7 @@
-import core, {
-  Transform,
-  JSCodeshift,
-  Collection,
-  ImportDeclaration
-} from 'jscodeshift'
+import core, { Transform, Collection } from 'jscodeshift'
 
 import {
   addImportMember,
-  findComponents,
   findSpecifierForImport,
   isImportFor,
   isSpecifierFor

@@ -42,7 +42,7 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 ## Included Scripts
 
 
-### v22.0.0
+### v24.0.0
 
 Replaces imports and components from `Sidebar` to `Page.Sidebar`
 
@@ -67,7 +67,7 @@ Replaces imports and components from `Sidebar` to `Page.Sidebar`
 <summary>Command</summary>
 
 ```sh
-npx @toptal/picasso-codemod v22.0.0/page-sidebar
+npx @toptal/picasso-codemod v24.0.0/page-sidebar
 ```
 
 </details>
