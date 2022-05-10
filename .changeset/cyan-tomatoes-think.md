@@ -8,6 +8,7 @@
 
 - Renamed to PageSidebar
 - No longer is exported from Picasso, the only way to use it now it's as `Page.Sidebar`
+- Now has a collapsible property that allows one to collapse the sidebar on the side
 
 
 ### SidebarItem
