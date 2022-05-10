@@ -5,7 +5,7 @@ const StepsExample = () => (
   <PageHead>
     <PageHead.Main>
       <Stepper
-        steps={['Label-1', 'Label-2', 'Label-3', 'Label-4', 'Label-5']}
+        steps={['Availability', 'Details', 'Feedback', 'Position', 'Skills']}
       />
     </PageHead.Main>
   </PageHead>
