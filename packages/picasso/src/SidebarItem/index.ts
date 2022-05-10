@@ -7,7 +7,9 @@ export type SidebarItemProps = OmitInternalProps<Props>
 
 export {
   SubMenuContextProvider,
-  useSubMenuContext,
+  useSubMenuContext
+} from './SubMenuContextProvider'
+export type {
   ContextProps as SubMenuContextProps,
   Props as SubMenuContextProviderProps
 } from './SubMenuContextProvider'

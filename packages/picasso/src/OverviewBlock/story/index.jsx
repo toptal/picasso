@@ -12,7 +12,18 @@ page
   .createTabChapter('Props')
   .addComponentDocs({
     component: OverviewBlock,
-    name: 'OverviewBlock'
+    name: 'OverviewBlock',
+    additionalDocs: {
+      as: {
+        name: 'as',
+        type: {
+          name: 'ElementType'
+        },
+        description:
+          'Component used for the root node. Either a string to use a DOM element or a component.',
+        defaultValue: 'button'
+      }
+    }
   })
   .addComponentDocs(overviewBlockGroupStory.componentDocs)
   .addComponentDocs(overviewBlockRowStory.componentDocs)
