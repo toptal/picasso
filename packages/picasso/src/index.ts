@@ -94,8 +94,7 @@ export type {
   Option as SelectOption,
   ValueType as SelectValueType
 } from './Select'
-export { default as Sidebar } from './Sidebar'
-export type { SidebarProps } from './Sidebar'
+export type { PageSidebarProps } from './PageSidebar'
 export { default as Slider } from './Slider'
 export type { SliderProps } from './Slider'
 export { default as ShowMore } from './ShowMore'

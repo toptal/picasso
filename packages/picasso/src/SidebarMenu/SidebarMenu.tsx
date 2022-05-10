@@ -1,6 +1,5 @@
 import React, {
   forwardRef,
-  useContext,
   ReactElement,
   useCallback,
   useEffect,
@@ -11,9 +10,11 @@ import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
-import { SidebarContext } from '../Sidebar'
-import { SidebarContextProps } from '../Sidebar/types'
-import * as SidebarItem from '../SidebarItem'
+import { useSidebarContext } from '../PageSidebar'
+import SidebarItem, {
+  useSubMenuContext,
+  SidebarItemProps
+} from '../SidebarItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
@@ -28,17 +29,20 @@ const useStyles = makeStyles<Theme>(styles, {
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
   function SidebarMenu(props, ref) {
     const { bottom, style, className, children, ...rest } = props
-    const { parentSidebarItemIndex } = useContext(SidebarItem.SubMenuContext)
+    const { parentSidebarItemIndex, isSubMenu } = useSubMenuContext()
 
     const classes = useStyles()
 
-    const { variant, expandedItemKey, setExpandedItemKey } =
-      useContext<SidebarContextProps>(SidebarContext)
+    const {
+      variant,
+      expandedItemKey,
+      setExpandedItemKey,
+      isCollapsed: isSidebarCollapsed
+    } = useSidebarContext()
 
-    const expandSidebarItem = useCallback(
-      index => setExpandedItemKey(index),
-      [setExpandedItemKey]
-    )
+    const expandSidebarItem = useCallback(setExpandedItemKey, [
+      setExpandedItemKey
+    ])
 
     useEffect(() => {
       const hasSelectedItem = React.Children.map(children, child => {
@@ -53,20 +57,31 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
     }, [parentSidebarItemIndex, setExpandedItemKey, children])
 
     const items = React.Children.map(children, (child, index) => {
-      const sidebarItem = child as ReactElement
+      if (React.isValidElement(child) && child.type === SidebarItem) {
+        const compact = isSidebarCollapsed && !isSubMenu
+        const isExpanded = expandedItemKey === index
 
-      if (!sidebarItem.props.collapsible) {
-        return React.cloneElement(sidebarItem, { variant })
+        const itemProps: Partial<SidebarItemProps> = {
+          isSubMenu,
+          compact,
+          variant
+        }
+
+        const expandibleProps: Partial<SidebarItemProps> = {
+          isExpanded,
+          expand: expandSidebarItem,
+          index
+        }
+
+        const newProps: Partial<SidebarItemProps> = {
+          ...itemProps,
+          ...(child.props.collapsible ? expandibleProps : {})
+        }
+
+        return React.cloneElement(child, newProps)
       }
 
-      const isExpanded = expandedItemKey === index
-
-      return React.cloneElement(sidebarItem, {
-        variant,
-        isExpanded,
-        expand: expandSidebarItem,
-        index
-      })
+      return child
     })
 
     return (

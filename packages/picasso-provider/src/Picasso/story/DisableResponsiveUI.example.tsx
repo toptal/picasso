@@ -2,14 +2,7 @@ import React from 'react'
 // In actual application you can simply do
 // import Picasso from '@toptal/picasso-provider'
 import { default as Picasso } from '@toptal/picasso-provider'
-import {
-  Grid,
-  Page,
-  Container,
-  Menu,
-  Typography,
-  Sidebar
-} from '@toptal/picasso'
+import { Grid, Page, Container, Menu, Typography } from '@toptal/picasso'
 
 const Example = () => (
   <div style={{ height: '30rem' }}>
@@ -29,13 +22,13 @@ const Example = () => (
 const handleClick = () => window.alert('Item clicked')
 
 const SidebarMenu = () => (
-  <Sidebar>
-    <Sidebar.Menu>
-      <Sidebar.Item>Home</Sidebar.Item>
-      <Sidebar.Item>Contacts</Sidebar.Item>
-      <Sidebar.Item>Team</Sidebar.Item>
-    </Sidebar.Menu>
-  </Sidebar>
+  <Page.Sidebar>
+    <Page.Sidebar.Menu>
+      <Page.Sidebar.Item>Home</Page.Sidebar.Item>
+      <Page.Sidebar.Item>Contacts</Page.Sidebar.Item>
+      <Page.Sidebar.Item>Team</Page.Sidebar.Item>
+    </Page.Sidebar.Menu>
+  </Page.Sidebar>
 )
 
 const RightContent = () => (

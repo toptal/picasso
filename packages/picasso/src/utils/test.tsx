@@ -16,6 +16,7 @@ import {
   disableUnsupportedProps,
   sum,
   htmlToHast,
+  getReactNodeTextContent,
   isBrowser
 } from '@toptal/picasso/utils'
 import { render, act } from '@toptal/picasso/test-utils'
@@ -342,6 +343,66 @@ describe('htmlToHast', () => {
           }
         ]
       })
+    })
+  })
+})
+
+describe('getRectNodeTextContent', () => {
+  describe('when getting text from string node', () => {
+    it.each(['foo', ''])(
+      "returns its content original content, value: '%s'",
+      txt => {
+        expect(getReactNodeTextContent(txt)).toBe(txt)
+      }
+    )
+
+    it('strips spaces from start and end of the text', () => {
+      expect(getReactNodeTextContent('  foo   ')).toBe('foo')
+    })
+  })
+
+  describe('when getting text from a number node', () => {
+    it.each([42, -12, Infinity, NaN, -0])(
+      'returns its content original content, value: %s',
+      num => {
+        expect(getReactNodeTextContent(num)).toBe(String(num))
+      }
+    )
+  })
+
+  describe('when getting text from a array node', () => {
+    it('returns the contents of its elements joined by space', () => {
+      expect(getReactNodeTextContent(['foo', <div>bar</div>, 45])).toBe(
+        'foo bar 45'
+      )
+    })
+  })
+
+  describe('when getting text from non printable nodes in react', () => {
+    it.each([null, undefined, true, false])(
+      'returns an empty string, value: "%s"',
+      nonOp => {
+        expect(getReactNodeTextContent(nonOp)).toBe('')
+      }
+    )
+  })
+
+  describe('when getting text from a complex node', () => {
+    it("returns it's children content recursively", () => {
+      expect(
+        getReactNodeTextContent(
+          <div>
+            <h1>Title</h1>
+            <caption>
+              <span>Subtitle</span>
+            </caption>
+            <p>
+              <img />
+              Amet quidem quod doloribus dignissimos
+            </p>
+          </div>
+        )
+      ).toBe('Title Subtitle Amet quidem quod doloribus dignissimos')
     })
   })
 })

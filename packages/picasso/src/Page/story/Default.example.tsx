@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Container, Menu, Typography, Sidebar } from '@toptal/picasso'
+import { Page, Container, Menu, Typography } from '@toptal/picasso'
 import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
 
 const Example = () => (
@@ -20,15 +20,15 @@ const Example = () => (
 const handleClick = () => window.alert('Item clicked')
 
 const SidebarMenu = () => (
-  <Sidebar>
-    <Sidebar.Menu>
-      <Sidebar.Item selected icon={<PortfolioDesigner16 />}>
+  <Page.Sidebar>
+    <Page.Sidebar.Menu>
+      <Page.Sidebar.Item selected icon={<PortfolioDesigner16 />}>
         Home
-      </Sidebar.Item>
-      <Sidebar.Item icon={<Profile16 />}>Contacts</Sidebar.Item>
-      <Sidebar.Item icon={<Globe16 />}>Team</Sidebar.Item>
-    </Sidebar.Menu>
-  </Sidebar>
+      </Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Profile16 />}>Contacts</Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Globe16 />}>Team</Page.Sidebar.Item>
+    </Page.Sidebar.Menu>
+  </Page.Sidebar>
 )
 
 const RightContent = () => (
