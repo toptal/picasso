@@ -34,6 +34,8 @@ export interface Props extends BaseProps {
   placement?: PopperPlacementType
   /** Options provided to the popper.js instance */
   popperOptions?: PopperOptions
+  /** Always keep Popper's children in the DOM */
+  keepMounted?: boolean
   /**
    * A node, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
@@ -120,6 +122,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
     className,
     container,
     popperOptions = {},
+    keepMounted,
     autoWidth,
     width,
     enableCompactMode,
@@ -163,6 +166,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
       popperRef={ref}
       popperOptions={memoizedPopperOptions}
       disablePortal={disablePortal}
+      keepMounted={keepMounted}
       style={{
         ...style,
         ...anchorElWidthStyle
