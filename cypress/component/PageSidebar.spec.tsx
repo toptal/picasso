@@ -79,6 +79,7 @@ const SidebarExample = (props: PageSidebarProps) => {
         <Page.Sidebar.Item
           icon={<Referral16 />}
           testIds={{ header: TestIds.COLLAPSIBLE_MENU_HEADER }}
+          collapsible
           menu={
             <Page.Sidebar.Menu
               data-testid={TestIds.COLLAPSIBLE_MENU_INNER_MENU}

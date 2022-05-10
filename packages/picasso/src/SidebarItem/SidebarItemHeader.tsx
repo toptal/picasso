@@ -68,7 +68,7 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
           {
             [classes.compact]: compact,
             [classes.selected]: !hasMenu && selected,
-            [classes.collapsible]: hasMenu && collapsible
+            [classes.collapsible]: hasMenu && (collapsible || compact)
           },
           parentMenu?.compact ? classes.nestedMenuNoMargin : subMenuClass,
           className

@@ -37,7 +37,16 @@ const Example = () => (
         <Page.Sidebar.Item icon={<Billing16 />} disabled>
           Billing
         </Page.Sidebar.Item>
-        <Page.Sidebar.Item badge={{ content: 5 }} icon={<LegalInfo16 />}>
+        <Page.Sidebar.Item
+          badge={{ content: 5 }}
+          icon={<LegalInfo16 />}
+          menu={
+            <Page.Sidebar.Menu>
+              <Page.Sidebar.Item>Terms and Conditions</Page.Sidebar.Item>
+              <Page.Sidebar.Item>Support</Page.Sidebar.Item>
+            </Page.Sidebar.Menu>
+          }
+        >
           <Typography size='medium' color='inherit'>
             Legal Info
           </Typography>
