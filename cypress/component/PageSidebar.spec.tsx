@@ -42,7 +42,7 @@ const SidebarExample = (props: PageSidebarProps) => {
         collapsedLogo={
           <Logo
             emblem
-            variant={props.variant === 'dark' ? 'rhite' : 'default'}
+            variant={props.variant === 'dark' ? 'white' : 'default'}
           />
         }
         fullLogo={<Logo />}
