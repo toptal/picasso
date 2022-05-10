@@ -1,5 +1,27 @@
 # Change Log
 
+## 24.0.0
+
+### Major Changes
+
+- [#2747](https://github.com/toptal/picasso/pull/2747) [`2c452cb0`](https://github.com/toptal/picasso/commit/2c452cb0a781613eb4d38be09ffa49423381b39e) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Sidebar
+
+  - Renamed to PageSidebar
+  - No longer is exported from Picasso, the only way to use it now it's as `Page.Sidebar`
+  - Now has a collapsible property that allows one to collapse the sidebar on the side
+
+  ### SidebarItem
+
+  - Add an special property `badge` for controlling badges on Menu items, it becomes an overlay when the sidebar is collapsed
+  - Add tooltips for Menu items when collapsed
+  - Change sub-menus to a dropdown when in compact mode
+
+  ### SidebarContext
+
+  - Removed direct access to `SidebarContext.Provider` and `SidebarContext.Consumer`. Now you need to use the new component `SidebarContextProvider` and the new hook `useSidebarContext` and their respective places
+
 ## 23.0.0
 
 ### Major Changes

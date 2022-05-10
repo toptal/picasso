@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.3.0
+
+### Minor Changes
+
+- [#2747](https://github.com/toptal/picasso/pull/2747) [`2c452cb0`](https://github.com/toptal/picasso/commit/2c452cb0a781613eb4d38be09ffa49423381b39e) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Codemods
+
+  - Add a new codemod for refactoring imports for `Sidebar` to `Page.Sidebar`
+
 ## 5.2.1
 
 ### Patch Changes
