@@ -229,7 +229,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
       {anchorEl && ((!keepMounted && isOpen) || keepMounted) && (
         <Popper
           className={classes.popper}
-          anchorEl={anchorEl ?? null}
+          anchorEl={anchorEl}
           popperOptions={{
             onCreate: focus,
             /*
@@ -245,14 +245,14 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           disablePortal={disablePortal}
           keepMounted={keepMounted}
           autoWidth={false}
-          open={isOpen}
+          open
           enableCompactMode
           container={popperContainer}
         >
           <ClickAwayListener onClickAway={handleClickAway}>
             {/* TODO: Remove this extra markup and put the onClick handler on `Paper` element */}
             {/* as soon as https://github.com/mui-org/material-ui/issues/22156 gets fixed */}
-            <div data-testid='dropdown-wrapper' onClick={close}>
+            <div onClick={close}>
               <Grow in={isOpen} appear>
                 <Paper
                   className={cx(classes.content, {
