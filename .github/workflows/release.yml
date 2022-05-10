@@ -178,6 +178,6 @@ jobs:
         uses: slackapi/slack-github-action@v1.14.0
         with:
           channel-id: '-frontend-exp-team-notifications'
-          slack-message: "A new PR was merged to Picasso."
+          slack-message: "A new PR was merged to Picasso :parrotspin:"
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
