@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Page, Container, Typography, Sidebar } from '@toptal/picasso'
+import { Page, Container, Typography } from '@toptal/picasso'
 import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
 import { palette } from '@toptal/picasso/utils'
 
@@ -25,13 +25,13 @@ const Example = () => (
 )
 
 const SidebarMenu = () => (
-  <Sidebar>
-    <Sidebar.Menu>
-      <Sidebar.Item icon={<PortfolioDesigner16 />}>Home</Sidebar.Item>
-      <Sidebar.Item icon={<Profile16 />}>Contacts</Sidebar.Item>
-      <Sidebar.Item icon={<Globe16 />}>Team</Sidebar.Item>
-    </Sidebar.Menu>
-  </Sidebar>
+  <Page.Sidebar>
+    <Page.Sidebar.Menu>
+      <Page.Sidebar.Item icon={<PortfolioDesigner16 />}>Home</Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Profile16 />}>Contacts</Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Globe16 />}>Team</Page.Sidebar.Item>
+    </Page.Sidebar.Menu>
+  </Page.Sidebar>
 )
 
 const SidebarTips = () => (

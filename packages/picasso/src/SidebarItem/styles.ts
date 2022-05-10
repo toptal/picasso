@@ -6,16 +6,8 @@ export default ({ palette, sizes }: Theme) =>
       height: '2.75em',
       padding: '0 1rem',
       margin: '0 1rem',
-      fontSize: '1rem',
-      '$nestedMenu &': {
-        padding: '0 0 0 2rem',
-        marginRight: '1rem'
-      },
-
-      '$nestedMenuWithIcon &': {
-        padding: '0 0 0 2.875rem',
-        marginRight: '1rem'
-      }
+      whiteSpace: 'nowrap',
+      fontSize: '1rem'
     },
     roundedBorder: {
       borderRadius: sizes.borderRadius.small
@@ -66,16 +58,21 @@ export default ({ palette, sizes }: Theme) =>
       }
     },
     selected: {},
-    label: {},
-    withIcon: {
-      marginLeft: '0.875em'
-    },
     collapsibleWrapper: {
       padding: '0 0 0 1rem',
       margin: '0 1rem'
     },
-    nestedMenu: {},
-    nestedMenuWithIcon: {},
+    nestedMenu: {
+      padding: '0 0 0 2rem',
+      marginRight: '1rem'
+    },
+    nestedMenuWithIcon: {
+      padding: '0 0 0 2.875rem',
+      marginRight: '1rem'
+    },
+    nestedMenuNoMargin: {
+      margin: 0
+    },
     content: {
       // to cover text overflow in the sub-menu header item
       maxWidth: '100%'
@@ -91,6 +88,9 @@ export default ({ palette, sizes }: Theme) =>
     },
     expandIconDisabled: {
       color: palette.grey.main
+    },
+    compact: {
+      overflow: 'visible'
     },
     noWrap: {
       flex: 1,
