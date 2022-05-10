@@ -142,6 +142,7 @@ jobs:
           job_timeout: '3600'
 
       - name: Trigger deployment job
+        id: trigger-deploy
         uses: toptal/jenkins-job-trigger-action@1.0.0
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs
@@ -161,7 +162,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.14.0
         with:
           channel-id: '-frontend-exp-team-notifications'
-          slack-message: ":x: <!here> Current master version of Picasso is broken."
+          slack-message: ":x: <!here> Current master version of Picasso is <${{ steps.trigger-deploy.outputs.jenkins_job_url }}|broken>."
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
       - name: Send a Slack notification on success release
