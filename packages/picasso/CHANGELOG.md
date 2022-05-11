@@ -1,5 +1,15 @@
 # Change Log
 
+## 24.1.0
+
+### Minor Changes
+
+- [#2752](https://github.com/toptal/picasso/pull/2752) [`db28ce62`](https://github.com/toptal/picasso/commit/db28ce62875388f82b00171b0edf7f6bfacfc165) Thanks [@pudek357](https://github.com/pudek357)! - ---
+
+  ### Dropdown
+
+  - Add `keepMounted` prop
+
 ## 24.0.0
 
 ### Major Changes
