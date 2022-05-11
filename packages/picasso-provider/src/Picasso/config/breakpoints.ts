@@ -2,7 +2,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import { BreakpointValues } from '@material-ui/core/styles/createBreakpoints'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { isBrowser } from '@toptal/picasso-shared/utils'
+
+import { isBrowser } from '../../utils'
 
 type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'
 

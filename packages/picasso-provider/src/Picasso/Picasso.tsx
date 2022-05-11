@@ -18,7 +18,6 @@ import React, {
 import { Helmet } from 'react-helmet'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
-import { isBrowser } from '@toptal/picasso-shared/utils'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
@@ -30,6 +29,7 @@ import { generateRandomStringOrGetEmptyInTest } from './utils'
 import { RootContext } from './RootContext'
 import { PicassoBreakpoints } from './config'
 import PicassoProvider from './PicassoProvider'
+import { isBrowser } from '../utils'
 
 interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   children?: ReactNode
