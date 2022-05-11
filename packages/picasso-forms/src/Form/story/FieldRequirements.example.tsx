@@ -21,10 +21,14 @@ const Example = () => {
         confirmPassword: ''
       }}
     >
-      <Form.PasswordInput label='Password' name='password' required />
+      <Form.PasswordInput
+        label='Password'
+        name='fieldRequirements.password'
+        required
+      />
       <Form.PasswordInput
         label='Confirm password'
-        name='confirmPassword'
+        name='fieldRequirements.confirmPassword'
         hideRequirements
         required
         validate={(confirmPassword, allValues) => {

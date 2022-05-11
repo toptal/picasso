@@ -29,7 +29,7 @@ const Example = () => {
       }}
     >
       <Form.FileInput
-        name='attachments'
+        name='fileInput.attachments'
         hint={`Max file size: ${MAX_SIZE}MB.`}
       />
       <Container top='small'>

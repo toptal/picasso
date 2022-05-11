@@ -34,7 +34,7 @@ type ColorSchema = {
 
 export type Props = BaseProps &
   TextLabelProps &
-  HTMLAttributes<HTMLButtonElement> & {
+  Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> & {
     /** Counter value  */
     value: ReactNode
     /** Counter title  */

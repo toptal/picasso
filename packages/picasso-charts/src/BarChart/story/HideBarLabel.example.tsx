@@ -28,13 +28,15 @@ const COLORS_MAPPING: Record<string, string> = {
 }
 
 const Example = () => (
-  <BarChart
-    data={CHART_DATA}
-    getBarColor={({ dataKey }) => COLORS_MAPPING[dataKey]}
-    width={720}
-    tooltip
-    showBarLabel={false}
-  />
+  <div style={{ width: 720 }}>
+    <BarChart
+      data={CHART_DATA}
+      getBarColor={({ dataKey }) => COLORS_MAPPING[dataKey]}
+      width='100%'
+      tooltip
+      showBarLabel={false}
+    />
+  </div>
 )
 
 export default Example
