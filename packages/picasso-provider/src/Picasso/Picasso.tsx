@@ -18,7 +18,7 @@ import React, {
 import { Helmet } from 'react-helmet'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
-import { isBrowser } from '@toptal/shared'
+import { isBrowser } from '@toptal/picasso-shared/utils'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
