@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Page, Container, Menu, Typography } from '@toptal/picasso'
-import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
+import {
+  Globe16,
+  Profile16,
+  PortfolioDesigner16,
+  Referral16
+} from '@toptal/picasso/Icon'
+import { noop } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div style={{ height: '30rem' }}>
@@ -19,17 +25,52 @@ const Example = () => (
 
 const handleClick = () => window.alert('Item clicked')
 
-const SidebarMenu = () => (
-  <Page.Sidebar>
+const SidebarMenu = () => {
+  const [[selectedItem, selectedSubItem], setSelectedItems] = useState<
+    [string?, string?]
+  >(['home'])
+
+  const item = (id: string, subItemId?: string) => ({
+    onClick: () => setSelectedItems([id, subItemId]),
+    selected:
+      selectedItem === id && (!subItemId || subItemId === selectedSubItem)
+  })
+
+  const subMenu = (
     <Page.Sidebar.Menu>
-      <Page.Sidebar.Item selected icon={<PortfolioDesigner16 />}>
-        Home
+      <Page.Sidebar.Item {...item('ref', 'active')} badge={{ content: 2 }}>
+        Active
       </Page.Sidebar.Item>
-      <Page.Sidebar.Item icon={<Profile16 />}>Contacts</Page.Sidebar.Item>
-      <Page.Sidebar.Item icon={<Globe16 />}>Team</Page.Sidebar.Item>
+      <Page.Sidebar.Item {...item('ref', 'history')}>History</Page.Sidebar.Item>
     </Page.Sidebar.Menu>
-  </Page.Sidebar>
-)
+  )
+
+  return (
+    <Page.Sidebar collapsible>
+      <Page.Sidebar.Menu>
+        <Page.Sidebar.Item {...item('home')} icon={<PortfolioDesigner16 />}>
+          Home
+        </Page.Sidebar.Item>
+        <Page.Sidebar.Item {...item('contact')} icon={<Profile16 />}>
+          Contacts
+        </Page.Sidebar.Item>
+        <Page.Sidebar.Item {...item('team')} icon={<Globe16 />}>
+          Team
+        </Page.Sidebar.Item>
+        <Page.Sidebar.Item
+          collapsible
+          badge={{ content: 2 }}
+          menu={subMenu}
+          {...item('ref')}
+          onClick={noop}
+          icon={<Referral16 />}
+        >
+          Referrals
+        </Page.Sidebar.Item>
+      </Page.Sidebar.Menu>
+    </Page.Sidebar>
+  )
+}
 
 const RightContent = () => (
   <Page.TopBarMenu

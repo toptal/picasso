@@ -45,8 +45,8 @@ export default ({ palette, sizes }: Theme) =>
       '&$light': {
         '&, &:hover, &:focus': {
           margin: 0,
-          padding: '6px 16px',
-          borderRadius: '4px',
+          padding: '0.375em 1em',
+          borderRadius: sizes.borderRadius.small,
           '&$selected': {
             backgroundColor: palette.grey.lighter
           }
