@@ -108,10 +108,6 @@ export const useScreenSize = () => {
   const updateSize = () => setSize(window.innerWidth)
 
   useEffect(() => {
-    if (!isBrowser()) {
-      return
-    }
-
     window.addEventListener('resize', updateSize)
 
     return () => {
