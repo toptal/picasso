@@ -228,7 +228,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
       {(isOpen || keepMounted) && (
         <Popper
-          className={cx({ [classes.popper]: isOpen })}
+          className={classes.popper}
           anchorEl={anchorEl ?? null}
           popperOptions={{
             onCreate: focus,
@@ -245,7 +245,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           disablePortal={disablePortal}
           keepMounted={keepMounted}
           autoWidth={false}
-          open
+          open={isOpen}
           enableCompactMode
           container={popperContainer}
         >
