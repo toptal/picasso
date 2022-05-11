@@ -14,7 +14,7 @@ export default () =>
       maxWidth: '100%'
     },
     compactParent: {
-      padding: '8px'
+      padding: '0.5em'
     },
     bottom: {
       order: 99
