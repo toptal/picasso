@@ -48,6 +48,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Disable the portal behavior. The children stay within it's parent DOM hierarchy. */
   disablePortal?: boolean
   popperOptions?: PopperOptions
+  /** Always keep Popper's children in the DOM */
+  keepMounted?: boolean
   /** Callback invoked when component is opened */
   onOpen?: () => void
   /** Callback invoked when component is closed */
@@ -95,6 +97,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     disableAutoFocus,
     disablePortal,
     popperOptions,
+    keepMounted,
     onOpen = noop,
     popperContainer,
     onClose = noop,
@@ -223,10 +226,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
         {typeof children === 'function' ? children({ isOpen }) : children}
       </div>
 
-      {anchorEl && isOpen && (
+      {(isOpen || keepMounted) && (
         <Popper
           className={classes.popper}
-          anchorEl={anchorEl}
+          anchorEl={anchorEl ?? null}
           popperOptions={{
             onCreate: focus,
             /*
@@ -240,8 +243,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           placement={placement}
           style={paperMargins}
           disablePortal={disablePortal}
+          keepMounted={keepMounted}
           autoWidth={false}
-          open
+          open={isOpen}
           enableCompactMode
           container={popperContainer}
         >
@@ -274,6 +278,7 @@ Dropdown.defaultProps = {
   disableAutoClose: false,
   disableAutoFocus: true,
   disablePortal: false,
+  keepMounted: false,
   onClose: noop,
   onOpen: noop,
   placement: 'bottom-end',
