@@ -135,6 +135,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   const picassoRootContainer = usePicassoRoot()
   const rootRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
   const modalId = useRef(generateKey())
+  const inBrowser = isBrowser()
 
   useEffect(() => {
     const handleDocumentFocus = () => {
@@ -169,7 +170,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   }, [open, rootRef])
 
   const bodyOverflow = useRef<string>(
-    isBrowser() ? document.body.style.overflow : 'inherit'
+    inBrowser ? document.body.style.overflow : 'inherit'
   )
 
   useEffect(() => {
@@ -184,7 +185,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       document.body.style.overflow = 'hidden'
 
       defaultManager.add(currentModal)
-    } else if (isBrowser()) {
+    } else if (inBrowser) {
       resetBodyOverflow()
 
       defaultManager.remove(currentModal)
