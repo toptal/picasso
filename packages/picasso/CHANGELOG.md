@@ -1,5 +1,22 @@
 # Change Log
 
+## 24.2.0
+
+### Minor Changes
+
+- [#2754](https://github.com/toptal/picasso/pull/2754) [`6c3226e9`](https://github.com/toptal/picasso/commit/6c3226e9348065a243cce14477ae1c115189525d) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### PageSidebar
+
+  - Update dropdown menus with new adjustments made to BASE
+
+### Patch Changes
+
+- [#2753](https://github.com/toptal/picasso/pull/2753) [`c49d9073`](https://github.com/toptal/picasso/commit/c49d90735837b121c34da9681958a31b9dfcce6a) Thanks [@konstrybakov](https://github.com/konstrybakov)! - SSR compatibility updates
+
+- Updated dependencies [[`c49d9073`](https://github.com/toptal/picasso/commit/c49d90735837b121c34da9681958a31b9dfcce6a)]:
+  - @toptal/picasso-provider@1.1.2
+
 ## 24.1.0
 
 ### Minor Changes
