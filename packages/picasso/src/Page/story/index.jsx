@@ -34,11 +34,6 @@ page
       'Page has centered content and restricted width of 1200px or 75rem',
     waitUntilImagesLoaded: true
   })
-  .addExample('Page/story/Sidebar.example.tsx', {
-    title: 'Sidebar',
-    description: 'Page with complex sidebar',
-    waitUntilImagesLoaded: true
-  })
   .addExample('Page/story/WideWidth.example.tsx', {
     title: 'Wide width',
     description:
