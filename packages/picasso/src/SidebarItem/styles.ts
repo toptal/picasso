@@ -72,6 +72,9 @@ export default ({ palette, sizes }: Theme) =>
     expandIcon: {
       fontSize: '1em'
     },
+    compactDropdown: {
+      marginLeft: '0.5em'
+    },
     lightExpandIcon: {
       color: palette.grey.dark
     },
