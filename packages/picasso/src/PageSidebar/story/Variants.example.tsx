@@ -17,7 +17,7 @@ import {
 const ExampleSidebar = ({ variant }: { variant: 'light' | 'dark' }) => (
   <Page.Sidebar variant={variant}>
     <Page.Sidebar.Logo>
-      <Logo />
+      <Logo variant={variant === 'dark' ? 'white' : undefined} />
     </Page.Sidebar.Logo>
     <Page.Sidebar.Menu>
       <Page.Sidebar.Item icon={<Overview16 />} selected>
