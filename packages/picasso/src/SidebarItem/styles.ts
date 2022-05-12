@@ -7,57 +7,52 @@ export default ({ palette, sizes }: Theme) =>
       padding: '0 1rem',
       margin: '0 1rem',
       whiteSpace: 'nowrap',
+      borderRadius: sizes.borderRadius.small,
       fontSize: '1rem'
-    },
-    roundedBorder: {
-      borderRadius: sizes.borderRadius.small
     },
     light: {
       color: palette.grey.dark,
-
       '&:hover': {
-        color: palette.blue.main,
-        '&$selected': {
-          color: palette.blue.main,
-          backgroundColor: palette.grey.light
-        }
+        color: palette.blue.main
       },
-
-      '&$selected': {
-        color: palette.blue.main,
-        backgroundColor: palette.grey.light
-      },
-
       '&:focus': {
-        color: palette.blue.main,
-        '&$selected': {
-          color: palette.blue.main,
-          backgroundColor: palette.grey.light
-        }
+        color: palette.blue.main
       }
     },
     dark: {
       '&:hover': {
-        color: palette.common.white,
-        '&$selected': {
-          color: palette.common.white,
-          backgroundColor: palette.grey.dark
+        color: palette.common.white
+      },
+      '&:focus': {
+        color: palette.common.white
+      }
+    },
+    selected: {
+      '&$light': {
+        '&, &:hover, &:focus': {
+          color: palette.blue.main,
+          backgroundColor: palette.grey.light
         }
       },
-      '&$selected': {
-        color: palette.common.white,
-        backgroundColor: palette.grey.dark
-      },
-
-      '&:focus': {
-        color: palette.common.white,
-        '&$selected': {
+      '&$dark': {
+        '&, &:hover, &:focus': {
           color: palette.common.white,
           backgroundColor: palette.grey.dark
         }
       }
     },
-    selected: {},
+    parentCompact: {
+      '&$light': {
+        '&, &:hover, &:focus': {
+          margin: 0,
+          padding: '0.375em 1em',
+          borderRadius: sizes.borderRadius.small,
+          '&$selected': {
+            backgroundColor: palette.grey.lighter
+          }
+        }
+      }
+    },
     collapsibleWrapper: {
       padding: '0 0 0 1rem',
       margin: '0 1rem'
@@ -70,15 +65,15 @@ export default ({ palette, sizes }: Theme) =>
       padding: '0 0 0 2.875rem',
       marginRight: '1rem'
     },
-    nestedMenuNoMargin: {
-      margin: 0
-    },
     content: {
       // to cover text overflow in the sub-menu header item
       maxWidth: '100%'
     },
     expandIcon: {
       fontSize: '1em'
+    },
+    compactDropdown: {
+      marginLeft: '0.5em'
     },
     lightExpandIcon: {
       color: palette.grey.dark
@@ -90,6 +85,7 @@ export default ({ palette, sizes }: Theme) =>
       color: palette.grey.main
     },
     compact: {
+      padding: 0,
       overflow: 'visible'
     },
     noWrap: {

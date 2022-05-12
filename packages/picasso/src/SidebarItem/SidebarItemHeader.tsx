@@ -55,6 +55,8 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
       parentMenu &&
       (parentMenu.icon ? classes.nestedMenuWithIcon : classes.nestedMenu)
 
+    const shouldShowSelected = (compact || !hasMenu) && selected
+
     return (
       <MenuItem
         {...rest}
@@ -63,18 +65,18 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
         className={cx(
           classes.root,
           classes.noWrap,
-          classes.roundedBorder,
           classes[variant],
+          subMenuClass,
           {
             [classes.compact]: compact,
-            [classes.selected]: !hasMenu && selected,
+            [classes.selected]: shouldShowSelected,
+            [classes.parentCompact]: parentMenu?.compact,
             [classes.collapsible]: hasMenu && (collapsible || compact)
           },
-          parentMenu?.compact ? classes.nestedMenuNoMargin : subMenuClass,
           className
         )}
         onClick={handleMenuItemClick}
-        selected={!hasMenu && selected}
+        selected={shouldShowSelected}
         disabled={disabled}
         variant={variant}
         nonSelectable

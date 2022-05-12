@@ -74,6 +74,7 @@ export default ({ palette, screens, zIndex, transitions }: Theme) =>
       backgroundColor: palette.common.white,
       borderRadius: '50%',
       boxShadow: COLLAPSE_BUTTON_SHADOW,
+      zIndex: 100,
 
       '&:hover': {
         color: palette.common.white,

@@ -68,13 +68,19 @@ const CompactItemContent = (props: Props) => {
     )
 
   return (
-    <Container className={classes.noWrap} inline flex alignItems='center'>
+    <Container
+      className={classes.noWrap}
+      inline
+      flex
+      alignItems='center'
+      padded='small'
+    >
       <Tooltip
         compact
         placement='right'
         content={getReactNodeTextContent(children)}
       >
-        <div>{wrappedIcon}</div>
+        <div className={classes.iconWrapper}>{wrappedIcon}</div>
       </Tooltip>
     </Container>
   )

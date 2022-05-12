@@ -1,20 +1,16 @@
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { BaseProps } from '@toptal/picasso-shared'
+import cx from 'classnames'
 import React, {
   forwardRef,
-  ReactElement,
+  HTMLAttributes,
   useCallback,
-  useEffect,
-  HTMLAttributes
+  useEffect
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import { useSidebarContext } from '../PageSidebar'
-import SidebarItem, {
-  useSubMenuContext,
-  SidebarItemProps
-} from '../SidebarItem'
+import { SidebarItemProps, useSubMenuContext } from '../SidebarItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
@@ -29,7 +25,8 @@ const useStyles = makeStyles<Theme>(styles, {
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
   function SidebarMenu(props, ref) {
     const { bottom, style, className, children, ...rest } = props
-    const { parentSidebarItemIndex, isSubMenu } = useSubMenuContext()
+    const { parentSidebarItemIndex, isSubMenu, parentMenu } =
+      useSubMenuContext()
 
     const classes = useStyles()
 
@@ -45,11 +42,9 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
     ])
 
     useEffect(() => {
-      const hasSelectedItem = React.Children.map(children, child => {
-        const sidebarItem = child as ReactElement
-
-        return sidebarItem.props.selected
-      })?.some(selected => Boolean(selected) === true)
+      const hasSelectedItem = React.Children.toArray(children).some(
+        child => React.isValidElement(child) && child.props.selected
+      )
 
       if (hasSelectedItem && parentSidebarItemIndex !== undefined) {
         setExpandedItemKey(parentSidebarItemIndex)
@@ -57,20 +52,17 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
     }, [parentSidebarItemIndex, setExpandedItemKey, children])
 
     const items = React.Children.map(children, (child, index) => {
-      if (React.isValidElement(child) && child.type === SidebarItem) {
-        const compact = isSidebarCollapsed && !isSubMenu
-        const isExpanded = expandedItemKey === index
-
+      if (React.isValidElement(child)) {
         const itemProps: Partial<SidebarItemProps> = {
+          variant,
           isSubMenu,
-          compact,
-          variant
+          compact: isSidebarCollapsed && !isSubMenu
         }
 
         const expandibleProps: Partial<SidebarItemProps> = {
-          isExpanded,
+          index,
           expand: expandSidebarItem,
-          index
+          isExpanded: expandedItemKey === index
         }
 
         const newProps: Partial<SidebarItemProps> = {
@@ -90,7 +82,14 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         allowNestedNavigation={false}
         ref={ref}
         style={style}
-        className={cx(classes.root, { [classes.bottom]: bottom }, className)}
+        className={cx(
+          classes.root,
+          {
+            [classes.bottom]: bottom,
+            [classes.compactParent]: parentMenu?.compact
+          },
+          className
+        )}
       >
         {items}
       </Menu>

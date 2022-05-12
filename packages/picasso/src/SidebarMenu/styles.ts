@@ -12,6 +12,9 @@ export default () =>
       // to cover text overflow in the sub-menu items
       maxWidth: '100%'
     },
+    compactParent: {
+      padding: '0.5em'
+    },
     bottom: {
       order: 99
     }

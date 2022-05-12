@@ -3,10 +3,10 @@ import React, { forwardRef } from 'react'
 
 import Container from '../Container'
 import Dropdown from '../Dropdown'
-import styles from './styles'
+import { SidebarItemHeader } from './SidebarItemHeader'
 import { SubMenuContextProvider } from './SubMenuContextProvider'
 import { Props } from './types'
-import { SidebarItemHeader } from './SidebarItemHeader'
+import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItemCompact'
@@ -28,11 +28,15 @@ export const SidebarItemCompact = forwardRef<HTMLElement, Props>(
     )
 
     return (
-      <Dropdown placement='right-start' content={subMenu}>
-        <Container className={classes.collapsibleWrapper}>
+      <Container left='small' right='small'>
+        <Dropdown
+          classes={{ popper: classes.compactDropdown }}
+          placement='right-start'
+          content={subMenu}
+        >
           <SidebarItemHeader {...props} ref={ref} />
-        </Container>
-      </Dropdown>
+        </Dropdown>
+      </Container>
     )
   }
 )
