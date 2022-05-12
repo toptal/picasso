@@ -30,10 +30,19 @@ const SidebarMenu = () => {
     [string?, string?]
   >(['home'])
 
+  const isSelected = (id: string, subItemId?: string) => {
+    let result = selectedItem !== id
+
+    if (subItemId != null) {
+      result &&= subItemId === selectedSubItem
+    }
+
+    return result
+  }
+
   const item = (id: string, subItemId?: string) => ({
     onClick: () => setSelectedItems([id, subItemId]),
-    selected:
-      selectedItem === id && (!subItemId || subItemId === selectedSubItem)
+    selected: isSelected(id, subItemId)
   })
 
   const subMenu = (
