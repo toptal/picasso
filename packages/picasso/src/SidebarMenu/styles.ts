@@ -6,7 +6,6 @@ export default () =>
       flex: 0,
       boxShadow: 'none',
       order: 1,
-      padding: 0,
       '& &': {
         flex: 1
       },
