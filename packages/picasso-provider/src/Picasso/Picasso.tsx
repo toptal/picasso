@@ -29,6 +29,7 @@ import { generateRandomStringOrGetEmptyInTest } from './utils'
 import { RootContext } from './RootContext'
 import { PicassoBreakpoints } from './config'
 import PicassoProvider from './PicassoProvider'
+import { isBrowser } from '../utils'
 
 interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   children?: ReactNode
@@ -112,6 +113,10 @@ const PicassoGlobalStylesProvider = (
 
 const Viewport = () => {
   const [warned, setWarned] = useState(false)
+
+  if (!isBrowser()) {
+    return null
+  }
 
   const content = 'width=device-width, user-scalable=no'
   const nonPicassoViewportTags = document.querySelectorAll(

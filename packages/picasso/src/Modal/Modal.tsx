@@ -12,7 +12,8 @@ import cx from 'classnames'
 import {
   StandardProps,
   SizeType,
-  TransitionProps
+  TransitionProps,
+  isBrowser
 } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 
@@ -167,7 +168,9 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     }
   }, [open, rootRef])
 
-  const bodyOverflow = useRef<string>(document.body.style.overflow)
+  const bodyOverflow = useRef<string>(
+    isBrowser() ? document.body.style.overflow : 'inherit'
+  )
 
   useEffect(() => {
     const resetBodyOverflow = () => {

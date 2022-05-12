@@ -1,17 +1,13 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const ssrPage = PicassoBook.section('Tutorials').createPage(
-  'How to use server side rendering',
-  '⚠️ Experimental support, some components and features might not work as expected.'
+  'How to use server side rendering'
 )
 
 const generalUsage = ssrPage.createChapter()
 
 generalUsage.addTextSection(
-  `The basic components of Picasso are ready to be used on the
-  server side. However, comparing to usage of Picasso on client
-  side, on server side we need to follow some rules (in the future
-  most likely they will be reworked):`
+  `In order to use Picasso with an app rendered on server there are some rules that have to be followed:`
 )
 
 generalUsage.addTextSection(
@@ -20,6 +16,10 @@ We need to disable client side features for Picasso root:
 
 1. Remove favicon, font, viewport meta tag
 2. Disable Picasso class name prefix (to avoid generating different className prefix on server and client)
+
+Not doing so will not break the app. However, the performance might degrade and there might be unpredictable results.
+
+Try handling these features in your SSR framework of choice.
 
 Example:
 
@@ -65,10 +65,10 @@ generalUsage.addTextSection(
   import Picasso, { getServersideStylesheets } from '@toptal/picasso-provider'
   import ReactDOMServer from 'react-dom/server'
   import App from './App'
-  
+
   function handleRender(req, res) {
     const sheets = getServersideStylesheets()
-  
+
     // Render the component to a string
     const html = ReactDOMServer.renderToString(
       sheets.collect(
@@ -81,10 +81,10 @@ generalUsage.addTextSection(
         </Picasso>,
       ),
     )
-  
+
     // Grab the CSS from the sheets.
     const css = sheets.toString()
-  
+
     // Send the rendered page back to the client.
     res.send(renderFullPage(html, css))
   }
@@ -93,19 +93,28 @@ generalUsage.addTextSection(
 
 generalUsage.addTextSection(
   `
-Import components directly to avoid including components from Picasso
-which might use browser-specific methods and not work yet on the server side.
-
-When importing from \`@toptal/picasso\`, processor might include
-such components to the bundle (ex. Next.js).
+RichTextEditor component uses the [Quill](https://github.com/quilljs/quill) package. This package is not SSR compatible.
+In some SSR dev environments this package might cause your application to crash. A temporary work-around for this might be to stub that package in your Webpack config.
 
 ~~~tsx
-import { Button } from '@toptal/picasso' // DOESN'T WORK
-import Button from '@toptal/picasso/Button' // <--- WORKS
+// /stub/quill.js
+module.exports = { import: () => null }
+
+// webpack.js
+const disableQuillForDevelopment = config => { // config is a Webpack config
+  if (process.env.NODE_ENV !== 'development') {
+    return
+  }
+
+  const QUILL_STUB_PATH = path.join(__dirname, '/stub/quill')
+
+  config.resolve.alias.quill = QUILL_STUB_PATH
+  config.resolve.alias['quill-paste-smart'] = QUILL_STUB_PATH
+}
 ~~~
 `,
   {
-    title: 'Use direct imports for Picasso components (temporary solution)'
+    title: 'Avoid using RichTextEditor component'
   }
 )
 
@@ -244,9 +253,11 @@ module.exports = withTM({
   experimental: { esmExternals: true }
 })
 ~~~
+
+Stub quill package as instructed above
     `,
   {
-    title: '5: Transpile Picasso modules'
+    title: '5: Transpile Picasso modules and stub Quill package'
   }
 )
 
