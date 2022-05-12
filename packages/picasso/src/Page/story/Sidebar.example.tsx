@@ -31,9 +31,9 @@ const SidebarMenu = () => {
   >(['home'])
 
   const isSelected = (id: string, subItemId?: string) => {
-    let result = selectedItem !== id
+    let result = selectedItem === id
 
-    if (subItemId != null) {
+    if (selectedSubItem != null) {
       result &&= subItemId === selectedSubItem
     }
 
