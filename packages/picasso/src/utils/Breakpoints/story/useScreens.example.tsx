@@ -8,7 +8,7 @@ const Example = () => {
 
   return (
     <>
-      <Typography>
+      <Typography as='span'>
         The button below will use:
         <ul>
           <li>

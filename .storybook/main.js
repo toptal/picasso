@@ -20,7 +20,6 @@ module.exports = {
     // no "/register" because https://github.com/storybookjs/storybook/issues/11929#issuecomment-672998494
     '@storybook/addon-a11y',
 
-    './addons/menu-expand/register',
     './addons/anchor-link-handler/register',
     './addons/document-title/register'
   ],

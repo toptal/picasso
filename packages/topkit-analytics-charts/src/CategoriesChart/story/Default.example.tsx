@@ -223,12 +223,14 @@ const CHART_TOOLTIPS = {
 }
 
 const Example = () => (
-  <CategoriesChart
-    data={CHART_DATA}
-    labels={CHART_LABELS}
-    tooltips={CHART_TOOLTIPS}
-    width={720}
-  />
+  <div style={{ width: 720 }}>
+    <CategoriesChart
+      data={CHART_DATA}
+      labels={CHART_LABELS}
+      tooltips={CHART_TOOLTIPS}
+      width='100%'
+    />
+  </div>
 )
 
 export default Example

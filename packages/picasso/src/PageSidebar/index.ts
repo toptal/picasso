@@ -7,6 +7,6 @@ export type PageSidebarProps = OmitInternalProps<Props>
 
 export {
   SidebarContextProvider,
-  useSidebarContext,
-  Props as SidebarContextProviderProps
+  useSidebarContext
 } from './SidebarContextProvider'
+export type { Props as SidebarContextProviderProps } from './SidebarContextProvider'

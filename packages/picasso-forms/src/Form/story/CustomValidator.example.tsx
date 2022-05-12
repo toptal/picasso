@@ -24,14 +24,14 @@ const CustomValidatorExample = () => (
   <Form onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}>
     <Form.Input
       required
-      name='userName'
+      name='customValidator.userName'
       label='First name'
       placeholder='e.g. Bruce'
     />
     <Form.NumberInput
       required
       validate={minMaxValidator}
-      name='userAge'
+      name='customValidator.userAge'
       label="What's your age?"
       placeholder='e.g. 25'
     />

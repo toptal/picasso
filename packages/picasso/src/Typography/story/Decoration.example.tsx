@@ -12,15 +12,15 @@ const Example = () => (
     <Container bottom='small'>
       <Typography>
         This is how you can highlight text by making it{' '}
-        <Typography inline weight='semibold'>
+        <Typography as='span' inline weight='semibold'>
           bold
         </Typography>
         , or by{' '}
-        <Typography inline color='green'>
+        <Typography as='span' inline color='green'>
           changing
         </Typography>{' '}
         its{' '}
-        <Typography inline color='red'>
+        <Typography as='span' inline color='red'>
           color
         </Typography>
         .

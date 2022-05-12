@@ -61,7 +61,7 @@ const Example = () => {
           set('')
         }}
         required
-        name='firstName'
+        name='titleCase.firstName'
         label='First name'
         placeholder='e.g. Bruce'
       />
@@ -69,25 +69,37 @@ const Example = () => {
         titleCase
         enableReset
         required
-        name='age'
+        name='titleCase.age'
         label="What's your age?"
         placeholder='e.g. 25'
       />
-      <Form.RadioGroup titleCase name='gender' label='Select gender'>
+      <Form.RadioGroup titleCase name='titleCase.gender' label='Select gender'>
         <Form.Radio label='Male' value='male' />
         <Form.Radio label='Female' value='female' />
       </Form.RadioGroup>
-      <Form.DatePicker titleCase name='dateOfBirth' label='Date of birth' />
-      <Form.TimePicker titleCase name='timeOfBirth' label='Time of birth' />
+      <Form.DatePicker
+        titleCase
+        name='titleCase.dateOfBirth'
+        label='Date of birth'
+      />
+      <Form.TimePicker
+        titleCase
+        name='titleCase.timeOfBirth'
+        label='Time of birth'
+      />
       <Form.TagSelector
         titleCase
-        name='skills'
+        name='titleCase.skills'
         label='Your skills'
         inputValue={skillInputValue}
         options={skillOptions}
         onInputChange={setSkillInputValue}
       />
-      <Form.CheckboxGroup titleCase name='hobbies' label='Your hobbies'>
+      <Form.CheckboxGroup
+        titleCase
+        name='titleCase.hobbies'
+        label='Your hobbies'
+      >
         <Form.Checkbox label='Skiing' value='skiing' />
         <Form.Checkbox titleCase label='Free diving' value='freeDiving' />
         <Form.Checkbox label='Dancing' value='dancing' />
@@ -96,7 +108,7 @@ const Example = () => {
         titleCase
         enableReset
         required
-        name='businessType'
+        name='titleCase.businessType'
         label='Business type'
         width='auto'
         options={[
@@ -106,7 +118,7 @@ const Example = () => {
       />
       <Form.Autocomplete
         titleCase
-        name='current_country'
+        name='titleCase.current_country'
         label='Current country'
         placeholder='Start typing country...'
         width='auto'
@@ -130,31 +142,31 @@ const Example = () => {
         getDisplayValue={getAutocompleteDisplayValue}
       />
       <Form.Rating.Stars
-        name='rating1'
+        name='titleCase.rating'
         label='How much do you love Picasso?'
         required
       />
       <Form.Rating.Thumbs
-        name='thumbs1'
+        name='titleCase.thumbs'
         label='Would you recommend picasso?'
         required
       />
       <Form.FileInput
         titleCase
         required
-        name='avatar'
+        name='titleCase.avatar'
         label='Your avatar'
         status='No file selected.'
       />
       <Form.Checkbox
         titleCase
         required
-        name='legal'
+        name='titleCase.legal'
         label='I confirm that I have legal permission from the client to feature this project.'
       />
       <Form.Switch
         titleCase
-        name='publicProfile'
+        name='titleCase.publicProfile'
         label='Public profile'
         width='auto'
       />

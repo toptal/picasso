@@ -27,7 +27,7 @@ const Example = () => {
     >
       <Form.Dropzone
         required
-        name='attachments'
+        name='dropzone.attachments'
         dropzoneHint={`Max file size: ${MAX_SIZE}MB.`}
         hint='These documents will be used to analyze and identify your potential.'
       />

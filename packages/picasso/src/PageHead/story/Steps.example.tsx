@@ -4,7 +4,9 @@ import { PageHead, Stepper } from '@toptal/picasso'
 const StepsExample = () => (
   <PageHead>
     <PageHead.Main>
-      <Stepper steps={['Label', 'Label', 'Label', 'Label', 'Label']} />
+      <Stepper
+        steps={['Availability', 'Details', 'Feedback', 'Position', 'Skills']}
+      />
     </PageHead.Main>
   </PageHead>
 )

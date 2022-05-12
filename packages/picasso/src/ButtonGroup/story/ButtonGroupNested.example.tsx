@@ -5,11 +5,15 @@ const Example = () => (
   <div>
     <Button.Group>
       <Tooltip content='First...'>
-        <Button.Group.Item>First</Button.Group.Item>
+        <span>
+          <Button.Group.Item>First</Button.Group.Item>
+        </span>
       </Tooltip>
       <Button.Group.Item>Second</Button.Group.Item>
       <Tooltip content='Third...'>
-        <Button.Group.Item>Third</Button.Group.Item>
+        <span>
+          <Button.Group.Item>Third</Button.Group.Item>
+        </span>
       </Tooltip>
       <Dropdown
         content={
@@ -21,10 +25,12 @@ const Example = () => (
         }
       >
         <Tooltip content='Forth...'>
-          <Button.Group.Item>
-            Fourth
-            <Dropdown.Arrow />
-          </Button.Group.Item>
+          <span>
+            <Button.Group.Item>
+              Fourth
+              <Dropdown.Arrow />
+            </Button.Group.Item>
+          </span>
         </Tooltip>
       </Dropdown>
       <Button.Group.Item>Fifth</Button.Group.Item>
