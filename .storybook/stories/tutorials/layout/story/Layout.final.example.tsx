@@ -4,7 +4,6 @@ import {
   Container,
   Typography,
   Table,
-  Sidebar,
   Helpbox,
   PageHead
 } from '@toptal/picasso'
