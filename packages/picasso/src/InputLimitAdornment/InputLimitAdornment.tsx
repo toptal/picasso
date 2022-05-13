@@ -4,31 +4,35 @@ import cx from 'classnames'
 
 import styles from './styles'
 import InputAdornment from '../InputAdornment'
-import { InputProps } from '../Input'
 
-export interface Props
-  extends Pick<InputProps, 'multiline' | 'limit' | 'testIds'> {
-  counter: NonNullable<InputProps['counter']>
+type CounterType = 'remaining' | 'entered'
+
+export interface Props {
   charsLength: number
+  limit?: number
+  multiline?: boolean
+  counter: CounterType
+  testIds?: {
+    inputAdornment?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoInputLimitAdornment'
 })
 
-const hasRemainingCounter = ({
-  counter,
-  limit
-}: Pick<Props, 'counter' | 'limit'>) =>
-  Boolean(counter === 'remaining' && limit)
+const hasRemainingCounter = (
+  counter: Props['counter'],
+  limit: Props['limit']
+) => Boolean(counter === 'remaining' && limit)
 
-const getCharsTillLimit = ({
-  charsLength,
-  limit,
-  counter
-}: Pick<Props, 'charsLength' | 'limit' | 'counter'>) =>
+const getCharsTillLimit = (
+  charsLength: Props['charsLength'],
+  limit: Props['limit'],
+  counter: Props['counter']
+) =>
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  hasRemainingCounter({ counter, limit }) ? limit! - charsLength : charsLength
+  hasRemainingCounter(counter, limit) ? limit! - charsLength : charsLength
 
 const getMultilineLabel = ({
   multiline,
@@ -42,7 +46,7 @@ const getMultilineLabel = ({
     return null
   }
 
-  if (hasRemainingCounter({ counter, limit })) {
+  if (hasRemainingCounter(counter, limit)) {
     return charsTillLimit >= 0 ? 'characters left' : 'over the limit'
   }
 
@@ -53,11 +57,7 @@ const InputLimitAdornment = (props: Props) => {
   const classes = useStyles()
   const { multiline, charsLength, counter, limit, testIds } = props
 
-  const charsTillLimit = getCharsTillLimit({
-    counter,
-    limit,
-    charsLength
-  })
+  const charsTillLimit = getCharsTillLimit(charsLength, limit, counter)
   const multilineLabel = getMultilineLabel({
     multiline,
     counter,

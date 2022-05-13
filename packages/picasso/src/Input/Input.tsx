@@ -15,11 +15,12 @@ import { disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import InputLimitAdornment from '../InputLimitAdornment'
-import InputIconAdornment from '../InputIconAdornment'
-
-type IconPosition = 'start' | 'end'
-type CounterType = 'remaining' | 'entered'
+import InputLimitAdornment, {
+  InputLimitAdornmentProps
+} from '../InputLimitAdornment'
+import InputIconAdornment, {
+  InputIconAdornmentProps
+} from '../InputIconAdornment'
 
 export interface Props
   extends BaseProps,
@@ -46,9 +47,9 @@ export interface Props
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Whether icon should be placed at the beginning or end of the `Input` */
-  iconPosition?: IconPosition
+  iconPosition?: InputIconAdornmentProps['position']
   /** Specify icon which should be rendered inside Input */
-  icon?: ReactNode
+  icon?: InputIconAdornmentProps['icon']
   inputProps?: BaseInputProps
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
@@ -73,9 +74,9 @@ export interface Props
     >
   ) => void
   /** Adds a counter of characters (ignored in combination with `counter: entered`) */
-  limit?: number
+  limit?: InputLimitAdornmentProps['limit']
   /** Type of the counter of characters */
-  counter?: CounterType
+  counter?: InputLimitAdornmentProps['counter']
   /** Component size */
   size?: SizeType<'small' | 'medium' | 'large'>
   /** Whether to render reset icon when there is a value in the input */

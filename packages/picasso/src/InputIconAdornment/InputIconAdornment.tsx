@@ -1,12 +1,15 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import styles from './styles'
 import InputAdornment from '../InputAdornment'
-import { InputProps } from '../Input'
 
-export interface Props extends Pick<InputProps, 'disabled' | 'icon'> {
-  position: NonNullable<InputProps['iconPosition']>
+type IconPosition = 'start' | 'end'
+
+export interface Props {
+  position: IconPosition
+  disabled?: boolean
+  icon?: ReactNode
 }
 
 const useStyles = makeStyles<Theme>(styles, {
