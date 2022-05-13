@@ -1,16 +1,16 @@
 import React from 'react'
-import { Page, PageHead, Sidebar } from '@toptal/picasso'
+import { Page, PageHead } from '@toptal/picasso'
 import { Globe16, PortfolioDesigner16, Profile16 } from '@toptal/picasso/Icon'
 import { Section } from '@toptal/picasso'
 
 const SidebarMenu = () => (
-  <Sidebar>
-    <Sidebar.Menu>
-      <Sidebar.Item icon={<PortfolioDesigner16 />}>Home</Sidebar.Item>
-      <Sidebar.Item icon={<Profile16 />}>Contacts</Sidebar.Item>
-      <Sidebar.Item icon={<Globe16 />}>Team</Sidebar.Item>
-    </Sidebar.Menu>
-  </Sidebar>
+  <Page.Sidebar>
+    <Page.Sidebar.Menu>
+      <Page.Sidebar.Item icon={<PortfolioDesigner16 />}>Home</Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Profile16 />}>Contacts</Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Globe16 />}>Team</Page.Sidebar.Item>
+    </Page.Sidebar.Menu>
+  </Page.Sidebar>
 )
 
 const MainContent = () => (
