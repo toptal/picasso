@@ -16,3 +16,7 @@ Cypress.Commands.add('isWithinViewport', { prevSubject: true }, subject => {
 
   return subject
 })
+
+Cypress.Commands.add('getByTestId', (testId, options) => {
+  return cy.get(`[data-testid=${testId}]`, options)
+})
