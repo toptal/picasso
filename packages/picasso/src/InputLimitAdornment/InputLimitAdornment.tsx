@@ -9,7 +9,7 @@ type CounterType = 'remaining' | 'entered'
 
 export interface Props {
   charsLength: number
-  limit?: number
+  limit: number
   multiline?: boolean
   counter: CounterType
   testIds?: {
@@ -21,32 +21,26 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoInputLimitAdornment'
 })
 
-const hasRemainingCounter = (
-  counter: Props['counter'],
-  limit: Props['limit']
-) => Boolean(counter === 'remaining' && limit)
+const hasRemainingCounter = (counter: CounterType) => counter === 'remaining'
 
 const getCharsTillLimit = (
-  charsLength: Props['charsLength'],
-  limit: Props['limit'],
-  counter: Props['counter']
-) =>
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  hasRemainingCounter(counter, limit) ? limit! - charsLength : charsLength
+  charsLength: number,
+  counter: CounterType,
+  limit: number
+) => (hasRemainingCounter(counter) ? limit - charsLength : charsLength)
 
 const getMultilineLabel = ({
   multiline,
   charsTillLimit,
-  counter,
-  limit
-}: Pick<Props, 'multiline' | 'counter' | 'limit'> & {
+  counter
+}: Pick<Props, 'multiline' | 'counter'> & {
   charsTillLimit: number
 }) => {
   if (!multiline) {
     return null
   }
 
-  if (hasRemainingCounter(counter, limit)) {
+  if (hasRemainingCounter(counter)) {
     return charsTillLimit >= 0 ? 'characters left' : 'over the limit'
   }
 
@@ -57,12 +51,11 @@ const InputLimitAdornment = (props: Props) => {
   const classes = useStyles()
   const { multiline, charsLength, counter, limit, testIds } = props
 
-  const charsTillLimit = getCharsTillLimit(charsLength, limit, counter)
+  const charsTillLimit = getCharsTillLimit(charsLength, counter, limit)
   const multilineLabel = getMultilineLabel({
     multiline,
-    counter,
-    limit,
-    charsTillLimit
+    charsTillLimit,
+    counter
   })
 
   return (

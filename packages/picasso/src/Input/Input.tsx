@@ -156,7 +156,8 @@ const EndAdornment = (props: EndAdornmentProps) => {
         multiline={multiline}
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         counter={counter!}
-        limit={limit}
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        limit={limit!}
         testIds={testIds}
       />
     )
