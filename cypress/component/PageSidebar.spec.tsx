@@ -24,10 +24,10 @@ enum TestIds {
   BASIC_MENU_INNER_MENU = 'basic-menu-inner-menu',
 
   COLLAPSIBLE_MENU_HEADER = 'collapsible-header',
-  COLLAPSIBLE_MENU_INNER_MENU = 'collapsible-inner-menu'
-}
+  COLLAPSIBLE_MENU_INNER_MENU = 'collapsible-inner-menu',
 
-const byTestId = (testId: string) => `[data-testid=${testId}]`
+  CONTENT_OUTSIDE = 'content-outside'
+}
 
 const SidebarExample = (props: PageSidebarProps) => {
   return (
@@ -105,15 +105,23 @@ const SidebarExample = (props: PageSidebarProps) => {
 const DefaultExample = (props: PageSidebarProps) => {
   return (
     <TestingPicasso>
-      <div
-        style={{
-          height: '58rem',
-          maxHeight: '58rem',
-          overflowY: 'scroll'
-        }}
-      >
-        <SidebarExample {...props} />
-      </div>
+      <Page>
+        <Page.Content>
+          <div
+            style={{
+              height: '58rem',
+              maxHeight: '58rem'
+            }}
+          >
+            <SidebarExample {...props} />
+          </div>
+          <Page.Article>
+            <div data-testid={TestIds.CONTENT_OUTSIDE}>
+              Content outside of sidebar
+            </div>
+          </Page.Article>
+        </Page.Content>
+      </Page>
     </TestingPicasso>
   )
 }
@@ -161,25 +169,28 @@ describe('Sidebar', () => {
     it('hides and shows the sidebar items text', () => {
       mount(<DefaultExample collapsible />)
 
+      // Make sure the sidebar is not hovered
+      cy.getByTestId(TestIds.CONTENT_OUTSIDE).realHover()
+
       // Default view
-      cy.get(byTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON))
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
         .as('collapseButton')
         .should('not.be.visible')
 
-      cy.get(byTestId(TestIds.BASIC_MENU_INNER_MENU)).should('be.visible')
+      cy.getByTestId(TestIds.BASIC_MENU_INNER_MENU).should('be.visible')
 
       cy.get('body').happoScreenshot()
 
       // Expand collapsible Menu
-      cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_HEADER)).realClick()
+      cy.getByTestId(TestIds.COLLAPSIBLE_MENU_HEADER).realClick()
 
       cy.get('body').happoScreenshot({ variant: 'expanded accordion menu' })
 
       // Collapse sidebar
-      cy.get(byTestId(TestIds.SIDEBAR_CONTAINER))
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER)
         .as('container')
         .realHover()
-        .find(byTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON))
+        .findByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
         .realClick()
 
       cy.get('@collapseButton').should('not.be.visible')
@@ -188,14 +199,14 @@ describe('Sidebar', () => {
       cy.get('body').happoScreenshot({ variant: 'collapsed sidebar default' })
 
       // Open collapsible Menu as dropdown
-      cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_HEADER)).realClick()
+      cy.getByTestId(TestIds.COLLAPSIBLE_MENU_HEADER).realClick()
 
       cy.get('body').happoScreenshot({ variant: 'open dropdown menu' })
 
       // Expand collapsed sidebar
       cy.get('@container')
         .realHover()
-        .find(byTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON))
+        .findByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
         .realClick()
 
       cy.get('body').happoScreenshot({ variant: 'expand sidebar' })
