@@ -48,6 +48,12 @@ const transform: Transform = (file, api) => {
     root
       .findJSXElements(specifier)
       .find(j.JSXAttribute, isVariantAttribute)
+      // filter only specifiered components and exclude children components
+      .filter(
+        path =>
+          path.parentPath.parentPath.value.type === 'JSXOpeningElement' &&
+          path.parentPath.parentPath.value.name.name === specifier
+      )
       .remove()
   })
 

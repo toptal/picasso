@@ -74,6 +74,27 @@ npx @toptal/picasso-codemod v24.0.0/page-sidebar
 
 ### v20.0.0
 
+#### `remove-tooltip-variant`
+
+Removes tooltip variant
+
+```diff
+-<Tooltip open variant='dark' />
++<Tooltip open />
+
+-<Tooltip open variant='light' />
++<Tooltip open />
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx @toptal/picasso-codemod v20.0.0/remove-tooltip-variant
+```
+
+</details>
+
 #### `replace-error`
 
 Replaces `error` prop with `status` prop for input components that supports `error` prop: `Input`, `NumberInput`, `Autocomplete`, `PasswordInput`, `DatePicker`, `TimePicker`, `Select` and `TagSelector`
