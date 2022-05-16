@@ -10,7 +10,7 @@ import React, {
   useState
 } from 'react'
 
-import Button from '../Button'
+import ButtonCircular from '../ButtonCircular'
 import Container from '../Container'
 import Dropdown from '../Dropdown'
 import { BackMinor16, ChevronRight16, Close16, Overview16 } from '../Icon'
@@ -52,7 +52,7 @@ const SmallScreenSidebarWrapper = ({
       onOpen={handleShowSidebar}
       onClose={handleHideSidebar}
     >
-      <Button.Circular
+      <ButtonCircular
         icon={showSidebar ? <Close16 /> : <Overview16 />}
         variant='transparent'
       />
@@ -135,7 +135,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     >
       <div className={classes.spacer} />
       {collapsible && (
-        <Button.Circular
+        <ButtonCircular
           className={cx(classes.collapseButton, {
             [classes.buttonVisible]: isHovered
           })}

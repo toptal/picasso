@@ -5,7 +5,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import Container from '../Container'
 import Typography from '../Typography'
 import Tooltip from '../Tooltip'
-import Button from '../Button'
+import ButtonCircular from '../ButtonCircular'
 import Loader from '../Loader'
 import ProgressBar from '../ProgressBar'
 import { Attachment16, Trash16, CloseMinor16 } from '../Icon'
@@ -91,13 +91,13 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
           placement='top'
           content={error ? 'Dismiss' : 'Remove File'}
         >
-          <Button.Circular
+          <ButtonCircular
             variant='flat'
             onClick={handleRemove}
             disabled={disabled}
           >
             {error ? <CloseMinor16 color='red' /> : <Trash16 color='red' />}
-          </Button.Circular>
+          </ButtonCircular>
         </Tooltip>
       )}
     </>

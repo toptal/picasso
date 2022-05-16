@@ -5,7 +5,7 @@ import { Collapse } from '@material-ui/core'
 import { SizeType, BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import Button from '../Button'
+import ButtonCircular from '../ButtonCircular'
 import Container from '../Container'
 import Typography from '../Typography'
 import { isString } from '../utils'
@@ -96,7 +96,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
 
   const renderCollapse = () =>
     collapsible ? (
-      <Button.Circular
+      <ButtonCircular
         onClick={toggleCollapse}
         data-testid={testIds?.collapse}
         variant='flat'
