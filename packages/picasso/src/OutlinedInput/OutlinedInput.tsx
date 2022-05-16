@@ -14,7 +14,7 @@ import capitalize from '@material-ui/core/utils/capitalize'
 import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
-import Button from '../Button'
+import ButtonCircular from '../ButtonCircular'
 import { CheckMinor24, CloseMinor16 } from '../Icon'
 import styles from './styles'
 import noop from '../utils/noop'
@@ -103,7 +103,7 @@ const ResetButton = ({
       [classes.resetButtonDirty]: hasValue
     })}
   >
-    <Button.Circular
+    <ButtonCircular
       tabIndex={-1}
       icon={<CloseMinor16 />}
       variant='flat'

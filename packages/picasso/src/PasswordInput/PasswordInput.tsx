@@ -8,7 +8,7 @@ import InputAdornment from '../InputAdornment'
 import styles from './styles'
 import SvgEye16 from '../Icon/Eye16'
 import SvgEyeHidden16 from '../Icon/EyeHidden16'
-import Button from '../Button'
+import ButtonCircular from '../ButtonCircular'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 export interface Props
@@ -67,7 +67,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
 
     const endAdornment = (
       <InputAdornment position='end'>
-        <Button.Circular
+        <ButtonCircular
           className={classes.toggle}
           variant='flat'
           icon={showPassword ? <SvgEye16 /> : <SvgEyeHidden16 />}

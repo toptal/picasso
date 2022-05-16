@@ -7,7 +7,7 @@ import React, { ReactNode } from 'react'
 
 import { CloseMinor16 } from '../Icon'
 import styles from './styles'
-import Button from '../Button'
+import ButtonCircular from '../ButtonCircular'
 import Container from '../Container'
 import DrawerTitle from '../DrawerTitle'
 import { useIsomorphicLayoutEffect } from '../utils'
@@ -84,7 +84,7 @@ export const Drawer = (props: Props) => {
         <Container flex className={classes.content}>
           {children}
         </Container>
-        <Button.Circular
+        <ButtonCircular
           variant='flat'
           icon={<CloseMinor16 />}
           onClick={handleOnClose}

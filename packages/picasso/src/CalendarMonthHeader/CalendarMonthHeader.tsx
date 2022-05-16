@@ -1,7 +1,7 @@
 import React from 'react'
 import { format } from 'date-fns'
 
-import Button from '../Button'
+import ButtonCircular from '../ButtonCircular'
 import Typography from '../Typography'
 import { ChevronMinor24, BackMinor24 } from '../Icon'
 import { MonthHeaderProps } from '../Calendar/types'
@@ -12,7 +12,7 @@ const CalendarMonthHeader = ({
   activeMonth: headerActiveMonth
 }: MonthHeaderProps) => (
   <Container flex justifyContent='space-between' bottom='medium'>
-    <Button.Circular
+    <ButtonCircular
       title='Previous month'
       aria-label='Previous month'
       variant='flat'
@@ -23,7 +23,7 @@ const CalendarMonthHeader = ({
     <Typography variant='heading' size='medium'>
       {format(headerActiveMonth, 'MMMM y')}
     </Typography>
-    <Button.Circular
+    <ButtonCircular
       title='Next month'
       aria-label='Previous month'
       variant='flat'
