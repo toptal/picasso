@@ -9,7 +9,7 @@
   "scripts": {
     "build:package": "lerna run build:package --stream --parallel",
     "build:storybook": "build-storybook -c .storybook -o build/storybook --quiet",
-    "circularity": "madge --circular packages",
+    "circularity": "madge --circular packages/*/src",
     "generate:component": "davinci code new component",
     "generate:example": "davinci code new example",
     "generate:icons": "./bin/generate-icons",
