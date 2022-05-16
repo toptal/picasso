@@ -27,8 +27,6 @@ enum TestIds {
   COLLAPSIBLE_MENU_INNER_MENU = 'collapsible-inner-menu'
 }
 
-const byTestId = (testId: string) => `[data-testid=${testId}]`
-
 const SidebarExample = (props: PageSidebarProps) => {
   return (
     <Page.Sidebar
@@ -161,26 +159,26 @@ describe('Sidebar', () => {
     it('hides and shows the sidebar items text', () => {
       mount(<DefaultExample collapsible />)
 
+      // Make sure the sidebar is not hovered
+      cy.get('body').trigger('mousemove', { clientX: 0, clientY: 0 })
+
       // Default view
-      cy.get(byTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON))
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
         .as('collapseButton')
         .should('not.be.visible')
 
-      cy.get(byTestId(TestIds.BASIC_MENU_INNER_MENU)).should('be.visible')
+      cy.getByTestId(TestIds.BASIC_MENU_INNER_MENU).should('be.visible')
 
       cy.get('body').happoScreenshot()
 
       // Expand collapsible Menu
-      cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_HEADER)).realClick()
+      cy.getByTestId(TestIds.COLLAPSIBLE_MENU_HEADER).realClick()
 
       cy.get('body').happoScreenshot({ variant: 'expanded accordion menu' })
 
       // Collapse sidebar
-      cy.get(byTestId(TestIds.SIDEBAR_CONTAINER))
-        .as('container')
-        .realHover()
-        .find(byTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON))
-        .realClick()
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER).as('container').realHover()
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON).realClick()
 
       cy.get('@collapseButton').should('not.be.visible')
       cy.get('@container').realHover()
@@ -188,15 +186,13 @@ describe('Sidebar', () => {
       cy.get('body').happoScreenshot({ variant: 'collapsed sidebar default' })
 
       // Open collapsible Menu as dropdown
-      cy.get(byTestId(TestIds.COLLAPSIBLE_MENU_HEADER)).realClick()
+      cy.getByTestId(TestIds.COLLAPSIBLE_MENU_HEADER).realClick()
 
       cy.get('body').happoScreenshot({ variant: 'open dropdown menu' })
 
       // Expand collapsed sidebar
-      cy.get('@container')
-        .realHover()
-        .find(byTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON))
-        .realClick()
+      cy.get('@container').realHover()
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON).realClick()
 
       cy.get('body').happoScreenshot({ variant: 'expand sidebar' })
     })
