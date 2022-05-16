@@ -5,7 +5,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import Container, { VariantType as ContainerVariants } from '../Container'
 import AlertInline from '../AlertInline'
 import Typography from '../Typography'
-import Button from '../Button'
+import ButtonCircular from '../ButtonCircular'
 import { CloseMinor16, Exclamation16, Done16, Info16 } from '../Icon'
 import styles from './styles'
 
@@ -25,7 +25,7 @@ export interface Props extends BaseProps {
 
 const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
   <Container left='small'>
-    <Button.Circular
+    <ButtonCircular
       variant='transparent'
       onClick={onClose}
       title='Close alert'

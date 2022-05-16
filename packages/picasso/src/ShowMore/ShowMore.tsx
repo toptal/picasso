@@ -7,7 +7,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import ChevronRightIcon16 from '../Icon/ChevronRight16'
 import Typography from '../Typography'
 import styles from './styles'
-import Button from '../Button'
+import ButtonAction from '../ButtonAction'
 import { replaceLineBreaksWithTags } from './utils'
 
 export interface Props extends BaseProps {
@@ -77,7 +77,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         {isContentVisible && <Truncate lines={lines}>{content}</Truncate>}
       </Typography>
       {!disableToggle && (
-        <Button.Action
+        <ButtonAction
           onClick={() => {
             setShownMore(!shownMore)
             onToggle()
@@ -96,7 +96,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
           data-testid={testIds?.toggleButton}
         >
           {shownMore ? lessText : moreText}
-        </Button.Action>
+        </ButtonAction>
       )}
     </>
   )

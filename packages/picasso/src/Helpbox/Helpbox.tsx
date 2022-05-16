@@ -8,7 +8,7 @@ import HelpboxTitle from '../HelpboxTitle'
 import HelpboxContent from '../HelpboxContent'
 import HelpboxActions from '../HelpboxActions'
 import { CloseMinor16 } from '../Icon'
-import Button from '../Button'
+import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
 import HelpboxContext from './HelpboxContext'
 
@@ -48,7 +48,7 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
         {children}
       </HelpboxContext.Provider>
       {onClose && (
-        <Button.Circular
+        <ButtonCircular
           className={classes.closeButton}
           onClick={onClose}
           icon={<CloseMinor16 color='dark-grey' />}

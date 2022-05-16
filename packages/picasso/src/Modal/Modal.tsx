@@ -23,7 +23,7 @@ import { ModalManager } from '../utils/Modal'
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
-import Button from '../Button'
+import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
 import ModalContext from './ModalContext'
 
@@ -229,14 +229,14 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       <ModalContext.Provider value>{children}</ModalContext.Provider>
 
       {onClose && (
-        <Button.Circular
+        <ButtonCircular
           variant='flat'
           className={classes.closeButton}
           onClick={onClose}
           data-testid={testIds?.closeButton}
         >
           <CloseMinor16 />
-        </Button.Circular>
+        </ButtonCircular>
       )}
     </Dialog>
   )

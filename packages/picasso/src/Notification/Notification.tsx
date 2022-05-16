@@ -20,7 +20,7 @@ import {
   Info24
 } from '../Icon'
 import Container from '../Container'
-import Button from '../Button'
+import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
 import Typography from '../Typography'
 import NotificationActions from '../NotificationActions'
@@ -55,7 +55,7 @@ const renderNotificationCloseButton = ({
   classes,
   testIds
 }: PrivateProps) => (
-  <Button.Circular
+  <ButtonCircular
     data-testid={testIds?.closeButton}
     onClick={onClose}
     className={classes?.close}
