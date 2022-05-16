@@ -59,6 +59,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
       badgeContent={content}
       max={max || thresholds[size]}
       className={className}
+      showZero
       classes={{
         badge: cx(classes.root, classes[variant], classes[size], {
           [classes.static]: !hasChildren

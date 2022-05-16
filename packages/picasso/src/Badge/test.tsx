@@ -91,5 +91,13 @@ describe('Badge', () => {
 
       expect(getByText('150')).toBeVisible()
     })
+
+    it('should show the badge if the content is 0', () => {
+      const { getByText } = renderBadge({
+        content: 0
+      })
+
+      expect(getByText('0')).toBeVisible()
+    })
   })
 })
