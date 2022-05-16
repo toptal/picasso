@@ -109,7 +109,7 @@
     "lerna": "^4.0.0",
     "puppeteer": "1.19.0",
     "raw-loader": "^4.0.2",
-    "react": "^18.0.0",
+    "react": "^18.1.0",
     "react-ace": "^9.1.1",
     "react-deprecate": "^0.1.0",
     "react-docgen-typescript-loader": "^3.7.2",
@@ -118,7 +118,7 @@
     "react-router-dom": "^5.2.0",
     "react-source-render": "^3.0.0-5",
     "react-storybook-addon-chapters": "^3.1.7",
-    "react-test-renderer": "^18.0.0",
+    "react-test-renderer": "^18.1.0",
     "remark-gfm": "^3.0.1",
     "syncpack": "^5.8.15",
     "thread-loader": "^3.0.1",
@@ -154,8 +154,8 @@
     "semver-regex": "^3.1.3",
     "node-fetch": "^2.6.7",
     "async": "^3.2.3",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-test-renderer": "^18.0.0"
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-test-renderer": "^18.1.0"
   }
 }
