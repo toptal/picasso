@@ -1,11 +1,9 @@
 import React, { forwardRef, useRef } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core/styles'
 
+import QuillEditorOutput from '../QuillEditorOutput'
 import { useCombinedRefs } from '../utils'
-import Typography from '../Typography'
 import useQuillInstance from './hooks/useQuillInstance'
-import styles from './styles'
 import {
   useFocus,
   useSubscribeToQuillEvents,
@@ -36,10 +34,6 @@ export type Props = BaseProps & {
   onTextLengthChange: TextLengthChangeHandler
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'QuillEditor'
-})
-
 const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   {
     defaultValue,
@@ -55,7 +49,6 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   },
   ref
 ) {
-  const classes = useStyles()
   const quill = useQuillInstance({ id, placeholder })
   const editorRef = useCombinedRefs<HTMLDivElement>(
     ref,
@@ -77,18 +70,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   })
   useDefaultValue({ defaultValue, quill })
 
-  return (
-    <Typography
-      as='div'
-      variant='body'
-      color='dark-grey'
-      size='medium'
-      className={classes.root}
-      data-testid={dataTestId}
-      id={id}
-      ref={editorRef}
-    />
-  )
+  return <QuillEditorOutput ref={editorRef} data-testid={dataTestId} id={id} />
 })
 
 QuillEditor.defaultProps = {
