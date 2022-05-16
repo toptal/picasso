@@ -13672,10 +13672,10 @@ happo-plugin-storybook@^2.10.3:
     archiver "^3.0.0"
     rimraf "^2.6.3"
 
-happo.io@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/happo.io/-/happo.io-7.0.2.tgz#10186de3387f66a98b9e5216f0a307937d9f0dff"
-  integrity sha512-VV3XyRhys4Rxn+ZrBbEW7+pqp9xevURCcD9urq3OaZA1RziPfjzIRz0cnZwKlSrafFAR/tAOOTdBAkFR0zggfg==
+happo.io@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/happo.io/-/happo.io-7.2.1.tgz#8bd8392d1bee6a1b611b53dbdd060d374c339c50"
+  integrity sha512-VIcEmAJ0U6/ThVT5PbSiW07PWkuv7CrGLoiau4xH9fqNmVW9dcAAbZ2yShmMGBD8uYIugFFxIGL3ZScl9Cxz3Q==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     "@babel/preset-react" "^7.12.1"
