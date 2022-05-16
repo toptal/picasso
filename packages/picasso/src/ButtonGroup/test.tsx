@@ -1,16 +1,16 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import Button from '../Button'
+import ButtonGroup from '../ButtonGroup'
 
 describe('ButtonGroup', () => {
   it('render', () => {
     const { container } = render(
-      <Button.Group>
-        <Button.Group.Item>One</Button.Group.Item>
-        <Button.Group.Item active>Two</Button.Group.Item>
-        <Button.Group.Item>Three</Button.Group.Item>
-      </Button.Group>
+      <ButtonGroup>
+        <ButtonGroup.Item>One</ButtonGroup.Item>
+        <ButtonGroup.Item active>Two</ButtonGroup.Item>
+        <ButtonGroup.Item>Three</ButtonGroup.Item>
+      </ButtonGroup>
     )
 
     expect(container).toMatchSnapshot()
