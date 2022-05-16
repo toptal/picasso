@@ -16,6 +16,10 @@ const Example = () => {
         <Form.Label>Success</Form.Label>
         <Input value='Ukraine' status='success' />
       </Form.Field>
+      <Form.Field>
+        <Form.Label>Success</Form.Label>
+        <Input value='Ukraine' multiline rows={4} status='success' limit={4} />
+      </Form.Field>
     </Form>
   )
 }

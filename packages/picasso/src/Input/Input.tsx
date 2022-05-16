@@ -21,6 +21,7 @@ import InputLimitAdornment, {
 import InputIconAdornment, {
   InputIconAdornmentProps
 } from '../InputIconAdornment'
+import InputMultilineAdornment from '../InputMultilineAdornment'
 
 export interface Props
   extends BaseProps,
@@ -104,6 +105,7 @@ type EndAdornmentProps = Pick<
   | 'multiline'
   | 'limit'
   | 'counter'
+  | 'status'
   | 'testIds'
 > & { charsLength?: number }
 
@@ -142,14 +144,17 @@ const EndAdornment = (props: EndAdornmentProps) => {
     multiline,
     charsLength,
     testIds,
-    counter
+    counter,
+    status
   } = props
 
   if (icon && iconPosition === 'end') {
     return <InputIconAdornment disabled={disabled} position='end' icon={icon} />
   }
 
-  if (charsLength && hasCounter({ counter, limit })) {
+  const showCounter = !!charsLength && hasCounter({ counter, limit })
+
+  if (!multiline && showCounter) {
     return (
       <InputLimitAdornment
         charsLength={charsLength}
@@ -158,6 +163,19 @@ const EndAdornment = (props: EndAdornmentProps) => {
         counter={counter!}
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         limit={limit!}
+        testIds={testIds}
+      />
+    )
+  }
+
+  if (multiline && (status === 'success' || showCounter)) {
+    return (
+      <InputMultilineAdornment
+        charsLength={charsLength}
+        multiline={multiline}
+        counter={counter}
+        limit={limit}
+        status={status}
         testIds={testIds}
       />
     )
@@ -290,6 +308,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             charsLength={charsLength}
             multiline={multiline}
             counter={counter}
+            status={status}
             testIds={testIds}
           />
         )

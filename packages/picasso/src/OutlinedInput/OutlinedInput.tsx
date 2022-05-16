@@ -182,7 +182,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
           testIds={testIds}
         />
       )}
-      {status === 'success' && (
+      {!multiline && status === 'success' && (
         <ValidIconAdornment data-testid={testIds?.validIcon} />
       )}
       {userDefinedEndAdornment}

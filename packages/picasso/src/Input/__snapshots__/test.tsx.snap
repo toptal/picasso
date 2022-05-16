@@ -258,30 +258,38 @@ exports[`Input shows counter for regular input 1`] = `
 
 exports[`Input shows excess chars for multiline input with exceeded limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root makeStyles-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
-  <span
-    class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"
+  <div
+    class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   >
-    1
-     
-    over the limit
-  </span>
+    <span
+      class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"
+    >
+      1
+       
+      over the limit
+    </span>
+  </div>
 </div>
 `;
 
 exports[`Input shows remaining chars for for multiline input with limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root makeStyles-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
-  <span
-    class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"
+  <div
+    class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   >
-    0
-     
-    characters left
-  </span>
+    <span
+      class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"
+    >
+      0
+       
+      characters left
+    </span>
+  </div>
 </div>
 `;
