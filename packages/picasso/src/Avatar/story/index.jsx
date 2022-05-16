@@ -1,6 +1,6 @@
 import { Avatar } from '../Avatar'
 import PicassoBook from '~/.storybook/components/PicassoBook'
-import AvatarGroupStory from '../AvatarGroup/story'
+import AvatarGroupStory from '../../AvatarGroup/story'
 
 const page = PicassoBook.section('Components').createPage(
   'Avatar',
