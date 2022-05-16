@@ -1,19 +1,13 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import styles from './styles'
 import InputAdornment from '../InputAdornment'
 import { Status } from '../OutlinedInput'
-import InputLimitAdornment from '../InputLimitAdornment'
-import { CheckMinor24 } from '../Icon'
-
-type CounterType = 'remaining' | 'entered'
+import InputValidIconAdornment from '../InputValidIconAdornment'
 
 export interface Props {
-  charsLength?: number
-  limit?: number
-  multiline?: boolean
-  counter?: CounterType
+  children: ReactNode
   status?: Status
   testIds?: {
     inputAdornment?: string
@@ -23,9 +17,8 @@ export interface Props {
 const useStyles = makeStyles<Theme>(styles)
 
 const InputMultilineAdornment = (props: Props) => {
-  const { charsLength, limit, multiline, counter, status, testIds } = props
+  const { children, status, testIds } = props
   const classes = useStyles()
-  const showCounter = !!charsLength && !!limit && !!counter
 
   return (
     <InputAdornment
@@ -34,19 +27,10 @@ const InputMultilineAdornment = (props: Props) => {
       className={classes.multilineAdornment}
       disablePointerEvents
     >
-      {status === 'success' && (
-        <span className={classes.multilineStatusCheckMark}>
-          <CheckMinor24 color='green' />
-        </span>
-      )}
-      {showCounter && (
-        <InputLimitAdornment
-          charsLength={charsLength}
-          counter={counter}
-          limit={limit}
-          multiline={multiline}
-        />
-      )}
+      <>
+        {children}
+        {status === 'success' && <InputValidIconAdornment />}
+      </>
     </InputAdornment>
   )
 }

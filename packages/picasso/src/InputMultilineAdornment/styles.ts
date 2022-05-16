@@ -7,7 +7,6 @@ export default ({ palette }: Theme) =>
       bottom: 0,
       width: 'calc(100% - 1.25rem)',
       height: '1.25rem',
-      flexDirection: 'row-reverse',
       justifyContent: 'space-between',
       margin: 0,
       padding: '0.25rem 0',

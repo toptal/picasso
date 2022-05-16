@@ -123,6 +123,14 @@ const hasEnteredCounter = ({ counter }: Pick<Props, 'counter'>) =>
 const hasCounter = ({ counter, limit }: Pick<Props, 'counter' | 'limit'>) =>
   hasRemainingCounter({ counter, limit }) || hasEnteredCounter({ counter })
 
+const hasMultilineAdornment = ({
+  multiline,
+  status,
+  counter,
+  limit
+}: Pick<Props, 'multiline' | 'status' | 'counter' | 'limit'>) =>
+  multiline && (status === 'success' || hasCounter({ counter, limit }))
+
 const StartAdornment = ({
   icon,
   iconPosition,
@@ -168,16 +176,20 @@ const EndAdornment = (props: EndAdornmentProps) => {
     )
   }
 
-  if (multiline && (status === 'success' || showCounter)) {
+  if (hasMultilineAdornment({ multiline, status, counter, limit })) {
     return (
-      <InputMultilineAdornment
-        charsLength={charsLength}
-        multiline={multiline}
-        counter={counter}
-        limit={limit}
-        status={status}
-        testIds={testIds}
-      />
+      <InputMultilineAdornment status={status} testIds={testIds}>
+        {showCounter && (
+          <InputLimitAdornment
+            charsLength={charsLength}
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            counter={counter!}
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            limit={limit!}
+            multiline={multiline}
+          />
+        )}
+      </InputMultilineAdornment>
     )
   }
 
@@ -262,8 +274,12 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       classes={{
         root: cx(classes.root, {
           [classes.rootMultiline]: multiline,
-          [classes.rootMultilineLimiter]:
-            multiline && hasCounter({ counter, limit })
+          [classes.rootMultilineLimiter]: hasMultilineAdornment({
+            multiline,
+            status,
+            limit,
+            counter
+          })
         }),
         input: cx(classes.input, {
           [classes.inputMultilineResizable]: multiline && multilineResizable

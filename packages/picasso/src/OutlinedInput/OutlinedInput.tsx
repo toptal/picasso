@@ -15,10 +15,11 @@ import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
 import ButtonCircular from '../ButtonCircular'
-import { CheckMinor24, CloseMinor16 } from '../Icon'
+import { CloseMinor16 } from '../Icon'
 import styles from './styles'
 import noop from '../utils/noop'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import InputValidIconAdornment from '../InputValidIconAdornment'
 
 type ValueType =
   | (string | number | boolean | object)[]
@@ -119,16 +120,6 @@ const ResetButton = ({
   </InputAdornment>
 )
 
-const ValidIconAdornment = ({
-  'data-testid': dataTestId
-}: {
-  'data-testid'?: string
-}) => (
-  <InputAdornment position='end'>
-    <CheckMinor24 color='green' data-testid={dataTestId} />
-  </InputAdornment>
-)
-
 const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   props,
   ref
@@ -183,7 +174,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
         />
       )}
       {!multiline && status === 'success' && (
-        <ValidIconAdornment data-testid={testIds?.validIcon} />
+        <InputValidIconAdornment data-testid={testIds?.validIcon} />
       )}
       {userDefinedEndAdornment}
     </>
