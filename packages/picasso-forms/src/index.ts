@@ -40,7 +40,7 @@ export {
 } from 'react-final-form-listeners'
 
 // Picasso Forms exports
-export { default as Form } from './Form'
+export { FormCompound as Form } from './FormCompound'
 export { default as FieldWrapper } from './FieldWrapper'
 export type { FieldProps } from './Field'
 export type { FormConfigProps, RequiredVariant } from './FormConfig'

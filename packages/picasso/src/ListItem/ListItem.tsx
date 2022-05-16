@@ -6,12 +6,11 @@ import cx from 'classnames'
 import Container from '../Container'
 import Typography from '../Typography'
 import { Bullet16 } from '../Icon'
-import { ListVariant } from '../List/List'
 import styles from './styles'
 
 export type Props = BaseProps & {
   children: ReactNode
-  variant?: ListVariant
+  variant?: 'ordered' | 'unordered'
   index?: number
   /** Add a custom `<Icon />` to set a custom bullet in ordered lists */
   icon?: ReactNode
@@ -23,7 +22,7 @@ const Index = ({ children }: { children: ReactNode }) => (
 )
 
 const getBulletOrNumber = (
-  variant: ListVariant,
+  variant: 'ordered' | 'unordered',
   index: number,
   icon?: ReactNode
 ): ReactNode => {

@@ -3,16 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import PageHelmet from '../PageHelmet'
-import PageTopBar from '../PageTopBar'
-import PageTopBarMenu from '../PageTopBarMenu'
-import PageFooter from '../PageFooter'
-import PageContent from '../PageContent'
-import PageBanner from '../PageBanner'
-import PageAutocomplete from '../PageAutocomplete'
-import PageArticle from '../PageArticle'
 import { PageContextProps, ViewportWidthType } from './types'
-import PageSidebar from '../PageSidebar'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -56,14 +47,4 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
 
 Page.displayName = 'Page'
 
-export default Object.assign(Page, {
-  TopBar: PageTopBar,
-  TopBarMenu: PageTopBarMenu,
-  Content: PageContent,
-  Footer: PageFooter,
-  Sidebar: PageSidebar,
-  Banner: PageBanner,
-  Helmet: PageHelmet,
-  Autocomplete: PageAutocomplete,
-  Article: PageArticle
-})
+export default Page

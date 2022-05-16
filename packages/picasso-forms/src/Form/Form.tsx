@@ -4,33 +4,9 @@ import {
   FormProps as FinalFormProps
 } from 'react-final-form'
 import { FormApi, SubmissionErrors, getIn, setIn, AnyObject } from 'final-form'
-import {
-  Form as PicassoForm,
-  Container,
-  FieldRequirements
-} from '@toptal/picasso'
+import { Form as PicassoForm, Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
-import Autocomplete from '../Autocomplete'
-import Input from '../Input'
-import Select from '../Select'
-import Radio from '../Radio'
-import ButtonRadio from '../ButtonRadio'
-import RadioGroup from '../RadioGroup'
-import Checkbox from '../Checkbox'
-import ButtonCheckbox from '../ButtonCheckbox'
-import CheckboxGroup from '../CheckboxGroup'
-import NumberInput from '../NumberInput'
-import FileInput from '../FileInput'
-import DatePicker from '../DatePicker'
-import TimePicker from '../TimePicker'
-import TagSelector from '../TagSelector'
-import SubmitButton from '../SubmitButton'
-import Switch from '../Switch'
-import Rating from '../Rating'
-import Dropzone from '../Dropzone'
-import RichTextEditor from '../RichTextEditor'
-import { FormConfigContext } from '../FormConfig'
 import { createScrollToErrorDecorator } from '../utils'
 import {
   FormContext,
@@ -38,7 +14,6 @@ import {
   FormContextProps,
   createFormContext
 } from './FormContext'
-import PasswordInput from '../PasswordInput'
 
 export type Props<T = AnyObject> = FinalFormProps<T> & {
   disableScrollOnError?: boolean
@@ -170,28 +145,5 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
 Form.defaultProps = {}
 
 Form.displayName = 'Form'
-
-Form.Autocomplete = Autocomplete
-Form.Input = Input
-Form.Select = Select
-Form.Radio = Radio
-Form.ButtonRadio = ButtonRadio
-Form.RadioGroup = RadioGroup
-Form.Checkbox = Checkbox
-Form.ButtonCheckbox = ButtonCheckbox
-Form.CheckboxGroup = CheckboxGroup
-Form.NumberInput = NumberInput
-Form.FileInput = FileInput
-Form.DatePicker = DatePicker
-Form.TimePicker = TimePicker
-Form.TagSelector = TagSelector
-Form.SubmitButton = SubmitButton
-Form.ConfigProvider = FormConfigContext.Provider
-Form.Switch = Switch
-Form.Rating = Rating
-Form.Dropzone = Dropzone
-Form.PasswordInput = PasswordInput
-Form.FieldRequirements = FieldRequirements
-Form.RichTextEditor = RichTextEditor
 
 export default Form
