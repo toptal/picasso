@@ -1,6 +1,5 @@
+import { SizeType } from '@toptal/picasso-shared'
 import { createStyles, Theme } from '@material-ui/core/styles'
-
-import { Props } from './AvatarWrapper'
 
 const SETTINGS = {
   xxsmall: {
@@ -34,7 +33,13 @@ export default ({ palette }: Theme) =>
       flexShrink: 0,
       flexGrow: 0
     },
-    size: ({ size, variant }: Props) => {
+    size: ({
+      size,
+      variant
+    }: {
+      size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+      variant: 'square' | 'portrait' | 'landscape'
+    }) => {
       const { dimensions } = SETTINGS[size]
       const ratio = size === 'large' ? 3 / 4 : 2 / 3
       const widthRatio = variant === 'portrait' ? ratio : 1
@@ -46,7 +51,11 @@ export default ({ palette }: Theme) =>
       }
     },
 
-    corner: ({ size }: Props) => {
+    corner: ({
+      size
+    }: {
+      size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+    }) => {
       const { cornerSize } = SETTINGS[size]
       const clipPath = `polygon(0 0, 100% 0, 100% 100%, ${cornerSize} 100%, 0 calc(100% - ${cornerSize}))`
 

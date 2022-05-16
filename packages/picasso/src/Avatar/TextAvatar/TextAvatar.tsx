@@ -3,14 +3,13 @@ import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
-import { Typography } from '../..'
+import Typography from '../../Typography'
 import styles from './styles'
-import type { AvatarSizeType } from '../Avatar'
 
 interface Props extends BaseProps {
   children: ReactNode
   fontSize?: SizeType<'small' | 'large'>
-  size: AvatarSizeType
+  size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
 }
 
 const useStyles = makeStyles<Theme>(styles, {
