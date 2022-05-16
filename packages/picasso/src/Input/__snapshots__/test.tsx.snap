@@ -204,7 +204,7 @@ exports[`Input shows counter for multiline input 1`] = `
         rows="4"
       />
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root makeStyles-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
       />
       <fieldset
         aria-hidden="true"
@@ -261,7 +261,7 @@ exports[`Input shows counter for regular input 1`] = `
 
 exports[`Input shows excess chars for multiline input with exceeded limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root makeStyles-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
   <div
@@ -280,7 +280,7 @@ exports[`Input shows excess chars for multiline input with exceeded limit 1`] = 
 
 exports[`Input shows remaining chars for for multiline input with limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root makeStyles-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
   <div
