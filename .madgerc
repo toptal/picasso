@@ -1,4 +1,5 @@
 {
   "fileExtensions": ["js", "ts", "jsx", "tsx"],
-  "tsConfig": "./tsconfig.json"
+  "tsConfig": "./tsconfig.json",
+  "excludeRegExp": ["dist-package"]
 }
