@@ -1,5 +1,15 @@
 # Change Log
 
+## 25.0.0
+
+### Major Changes
+
+- [#2765](https://github.com/toptal/picasso/pull/2765) [`34fa989f`](https://github.com/toptal/picasso/commit/34fa989f7514ffb50fc1cc6425c92499c1812fe5) Thanks [@sashuk](https://github.com/sashuk)! - ---
+
+  ### Badge
+
+  - badge is not hidden when the content is zero
+
 ## 24.2.0
 
 ### Minor Changes
