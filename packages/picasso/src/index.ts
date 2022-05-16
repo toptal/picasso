@@ -13,7 +13,7 @@ export type {
 } from './Autocomplete'
 export { default as Avatar } from './Avatar'
 export type { AvatarProps } from './Avatar'
-export { default as Button } from './Button'
+export { ButtonCompound as Button } from './ButtonCompound'
 export type { ButtonProps, VariantType as ButtonVariantType } from './Button'
 export type { ButtonCheckboxProps } from './ButtonCheckbox'
 export type { ButtonRadioProps } from './ButtonRadio'
@@ -87,7 +87,10 @@ export { default as Radio } from './Radio'
 export type { RadioProps } from './Radio'
 export type { RadioGroupProps } from './RadioGroup'
 export { default as RichTextEditor } from './RichTextEditor'
-export type { RichTextEditorProps, RichTextEditorChangeHandler } from './RichTextEditor'
+export type {
+  RichTextEditorProps,
+  RichTextEditorChangeHandler
+} from './RichTextEditor'
 export { default as Select } from './Select'
 export type {
   SelectProps,
