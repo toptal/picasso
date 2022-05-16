@@ -7,8 +7,6 @@ import Container from '../Container'
 import RatingIcon from '../RatingIcon'
 import styles from './styles'
 
-export type RatingSize = SizeType<'small' | 'large'>
-
 export interface Props extends BaseProps {
   /** Value of the name attribute of the rating input */
   name: string
@@ -23,7 +21,7 @@ export interface Props extends BaseProps {
   /** Flag to allow or disable interactions with the component */
   interactive?: boolean
   /** Size variant */
-  size?: RatingSize
+  size?: SizeType<'small' | 'large'>
 }
 
 const useStyles = makeStyles(styles, {

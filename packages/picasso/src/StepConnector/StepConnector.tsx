@@ -1,11 +1,10 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import { DirectionType } from '../Stepper'
 import { ChevronRight16 as ChevronRightIcon } from '../Icon'
 import styles from './styles'
 
-export type Props = { direction: DirectionType }
+export type Props = { direction: 'vertical' | 'horizontal' }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoStepConnector'
