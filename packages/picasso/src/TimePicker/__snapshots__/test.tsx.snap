@@ -20,7 +20,7 @@ exports[`TimePicker renders 1`] = `
         class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
       >
         <svg
-          class="PicassoSvgTime16-root PicassoTimePicker-icon PicassoInput-icon"
+          class="PicassoSvgTime16-root PicassoTimePicker-icon PicassoInputIconAdornment-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
