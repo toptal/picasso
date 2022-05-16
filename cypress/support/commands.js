@@ -20,11 +20,3 @@ Cypress.Commands.add('isWithinViewport', { prevSubject: true }, subject => {
 Cypress.Commands.add('getByTestId', (testId, options) => {
   return cy.get(`[data-testid=${testId}]`, options)
 })
-
-Cypress.Commands.add(
-  'findByTestId',
-  { prevSubject: true },
-  (subject, testId) => {
-    return subject.find(`[data-testid=${testId}]`)
-  }
-)
