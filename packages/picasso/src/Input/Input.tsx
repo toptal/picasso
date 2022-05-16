@@ -1,7 +1,6 @@
 /* eslint-disable max-lines */
 import React, {
   ReactNode,
-  ReactElement,
   ChangeEvent,
   InputHTMLAttributes,
   MouseEvent,
@@ -11,15 +10,17 @@ import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
-import InputAdornment from '../InputAdornment'
 import OutlinedInput, { BaseInputProps, Status } from '../OutlinedInput'
 import { disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-
-type IconPosition = 'start' | 'end'
-type CounterType = 'remaining' | 'entered'
+import InputLimitAdornment, {
+  InputLimitAdornmentProps
+} from '../InputLimitAdornment'
+import InputIconAdornment, {
+  InputIconAdornmentProps
+} from '../InputIconAdornment'
 
 export interface Props
   extends BaseProps,
@@ -46,9 +47,9 @@ export interface Props
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Whether icon should be placed at the beginning or end of the `Input` */
-  iconPosition?: IconPosition
+  iconPosition?: InputIconAdornmentProps['position']
   /** Specify icon which should be rendered inside Input */
-  icon?: ReactNode
+  icon?: InputIconAdornmentProps['icon']
   inputProps?: BaseInputProps
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
@@ -73,9 +74,9 @@ export interface Props
     >
   ) => void
   /** Adds a counter of characters (ignored in combination with `counter: entered`) */
-  limit?: number
+  limit?: InputLimitAdornmentProps['limit']
   /** Type of the counter of characters */
-  counter?: CounterType
+  counter?: InputLimitAdornmentProps['counter']
   /** Component size */
   size?: SizeType<'small' | 'medium' | 'large'>
   /** Whether to render reset icon when there is a value in the input */
@@ -91,15 +92,6 @@ export interface Props
     resetButton?: string
     validIcon?: string
   }
-}
-
-type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit' | 'testIds'> & {
-  counter: NonNullable<Props['counter']>
-  charsLength: number
-}
-
-type IconAdornmentProps = Pick<Props, 'disabled' | 'icon'> & {
-  position: Props['iconPosition']
 }
 
 type StartAdornmentProps = Pick<Props, 'icon' | 'iconPosition' | 'disabled'>
@@ -129,89 +121,6 @@ const hasEnteredCounter = ({ counter }: Pick<Props, 'counter'>) =>
 const hasCounter = ({ counter, limit }: Pick<Props, 'counter' | 'limit'>) =>
   hasRemainingCounter({ counter, limit }) || hasEnteredCounter({ counter })
 
-const getCharsTillLimit = ({
-  charsLength,
-  limit,
-  counter
-}: Pick<LimitAdornmentProps, 'charsLength' | 'limit' | 'counter'>) =>
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  hasRemainingCounter({ counter, limit }) ? limit! - charsLength : charsLength
-
-const getMultilineLabel = ({
-  multiline,
-  charsTillLimit,
-  counter,
-  limit
-}: Pick<LimitAdornmentProps, 'multiline' | 'counter' | 'limit'> & {
-  charsTillLimit: number
-}) => {
-  if (!multiline) {
-    return null
-  }
-
-  if (hasRemainingCounter({ counter, limit })) {
-    return charsTillLimit >= 0 ? 'characters left' : 'over the limit'
-  }
-
-  return 'characters entered'
-}
-
-const LimitAdornment = (props: LimitAdornmentProps) => {
-  const classes = useStyles()
-  const { multiline, charsLength, counter, limit, testIds } = props
-
-  const charsTillLimit = getCharsTillLimit({
-    counter,
-    limit,
-    charsLength
-  })
-  const multilineLabel = getMultilineLabel({
-    multiline,
-    counter,
-    limit,
-    charsTillLimit
-  })
-
-  return (
-    <InputAdornment
-      data-testid={testIds?.inputAdornment}
-      position='end'
-      className={cx({
-        [classes.limiterMultiline]: multiline
-      })}
-      disablePointerEvents
-    >
-      <span
-        className={cx(classes.limiterLabel, {
-          [classes.limiterLabelError]: charsTillLimit <= 0
-        })}
-      >
-        {multiline ? Math.abs(charsTillLimit) : charsTillLimit} {multilineLabel}
-      </span>
-    </InputAdornment>
-  )
-}
-
-const IconAdornment = (props: IconAdornmentProps) => {
-  const { position, disabled, icon } = props
-  const classes = useStyles()
-  const styledIcon = React.cloneElement(icon as ReactElement, {
-    className: classes.icon,
-    role: 'presentation'
-  })
-
-  return (
-    <InputAdornment
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      position={position!}
-      disabled={disabled}
-      disablePointerEvents
-    >
-      {styledIcon}
-    </InputAdornment>
-  )
-}
-
 const StartAdornment = ({
   icon,
   iconPosition,
@@ -221,7 +130,7 @@ const StartAdornment = ({
     return null
   }
 
-  return <IconAdornment disabled={disabled} position='start' icon={icon} />
+  return <InputIconAdornment disabled={disabled} position='start' icon={icon} />
 }
 
 const EndAdornment = (props: EndAdornmentProps) => {
@@ -237,17 +146,18 @@ const EndAdornment = (props: EndAdornmentProps) => {
   } = props
 
   if (icon && iconPosition === 'end') {
-    return <IconAdornment disabled={disabled} position='end' icon={icon} />
+    return <InputIconAdornment disabled={disabled} position='end' icon={icon} />
   }
 
   if (charsLength && hasCounter({ counter, limit })) {
     return (
-      <LimitAdornment
+      <InputLimitAdornment
         charsLength={charsLength}
         multiline={multiline}
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         counter={counter!}
-        limit={limit}
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        limit={limit!}
         testIds={testIds}
       />
     )
