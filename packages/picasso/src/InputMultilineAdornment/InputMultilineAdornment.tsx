@@ -14,7 +14,9 @@ export interface Props {
   }
 }
 
-const useStyles = makeStyles<Theme>(styles)
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoInputMultilineAdornment'
+})
 
 const InputMultilineAdornment = (props: Props) => {
   const { children, status, testIds } = props
@@ -27,10 +29,8 @@ const InputMultilineAdornment = (props: Props) => {
       className={classes.multilineAdornment}
       disablePointerEvents
     >
-      <>
-        {children}
-        {status === 'success' && <InputValidIconAdornment />}
-      </>
+      {children}
+      {status === 'success' && <InputValidIconAdornment />}
     </InputAdornment>
   )
 }
