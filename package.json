@@ -9,7 +9,7 @@
   "scripts": {
     "build:package": "lerna run build:package --stream --parallel",
     "build:storybook": "build-storybook -c .storybook -o build/storybook --quiet",
-    "commit": "git-cz",
+    "circularity": "madge --circular packages/*/src",
     "generate:component": "davinci code new component",
     "generate:example": "davinci code new example",
     "generate:icons": "./bin/generate-icons",
@@ -107,6 +107,7 @@
     "jest-puppeteer": "^6.1.0",
     "jsdom": "^16.5.0",
     "lerna": "^4.0.0",
+    "madge": "^5.0.1",
     "puppeteer": "1.19.0",
     "raw-loader": "^4.0.2",
     "react": "^18.0.0",
