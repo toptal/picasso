@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import Form from '../Form'
+import { FormCompound as Form } from '../FormCompound'
 import FieldLabel from './FieldLabel'
 
 describe('FieldLabel', () => {

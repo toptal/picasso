@@ -3,7 +3,7 @@ import { act, render, fireEvent } from '@toptal/picasso/test-utils'
 import { noop } from '@toptal/picasso/utils'
 import React from 'react'
 
-import Form from '../Form'
+import { FormCompound as Form } from '../FormCompound'
 import FieldWrapper from './FieldWrapper'
 
 const renderFieldWrapper = () =>

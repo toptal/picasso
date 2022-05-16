@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
 import { FormConfigProps } from '../FormConfig'
-import Form from '../Form'
+import { FormCompound as Form } from '../FormCompound'
 import { Props as RadioGroupProps } from '../RadioGroup'
 
 const renderFormRadio = (

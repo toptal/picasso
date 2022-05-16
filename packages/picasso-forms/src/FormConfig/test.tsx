@@ -1,7 +1,7 @@
 import React from 'react'
 import { screen, render, fireEvent } from '@toptal/picasso/test-utils'
 
-import Form from '../Form'
+import { FormCompound as Form } from '../FormCompound'
 import { FormConfigProps } from './FormConfig'
 
 const TEXT_INPUT_LABEL = 'Test text field'

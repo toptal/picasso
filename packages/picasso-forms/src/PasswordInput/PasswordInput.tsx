@@ -1,12 +1,11 @@
 import React, { useState, ReactNode, useCallback } from 'react'
-import { PasswordInputProps } from '@toptal/picasso'
+import { PasswordInputProps, FieldRequirements } from '@toptal/picasso'
 import { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'
 import { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import passwordValidators from './validators'
-import Form from '../Form'
 import InputField from '../InputField'
 import FieldRenderer from './FieldRenderer'
 
@@ -52,7 +51,7 @@ export const PasswordInput = ({
     value?: string
     error?: boolean
   }) => ReactNode = ({ value, error }) => (
-    <Form.FieldRequirements<string>
+    <FieldRequirements<string>
       value={value}
       open={showContent}
       error={error}
