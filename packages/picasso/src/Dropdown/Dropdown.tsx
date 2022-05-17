@@ -156,7 +156,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   }
 
   const forceClose = () => {
-    setAnchorEl(undefined)
+    if (!keepMounted) {
+      setAnchorEl(undefined)
+    }
     setIsOpen(false)
     onClose()
   }
@@ -226,10 +228,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
         {typeof children === 'function' ? children({ isOpen }) : children}
       </div>
 
-      {(isOpen || keepMounted) && (
+      {(isOpen || keepMounted) && anchorEl && (
         <Popper
           className={classes.popper}
-          anchorEl={anchorEl ?? null}
+          anchorEl={anchorEl}
           popperOptions={{
             onCreate: focus,
             /*
