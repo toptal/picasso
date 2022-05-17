@@ -24,12 +24,11 @@ describe('Dropzone', () => {
       </TestingPicasso>
     )
     cy.contains('Max file size').should('be.visible')
-    // TODO: https://toptal-core.atlassian.net/browse/FX-2276
-    // cy.get('body').happoScreenshot()
+
+    cy.get('body').happoScreenshot()
   })
 
-  // TODO: https://toptal-core.atlassian.net/browse/FX-2276
-  it.skip('renders with error', () => {
+  it('renders with error', () => {
     mount(
       <TestingPicasso>
         {renderDropzone({
