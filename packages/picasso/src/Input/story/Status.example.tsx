@@ -17,7 +17,7 @@ const Example = () => {
         <Input value='Ukraine' status='success' />
       </Form.Field>
       <Form.Field>
-        <Form.Label>Success</Form.Label>
+        <Form.Label>Multiline Success</Form.Label>
         <Input value='Ukraine' multiline rows={4} status='success' />
       </Form.Field>
     </Form>

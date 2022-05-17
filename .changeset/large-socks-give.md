@@ -4,4 +4,4 @@
 
 ### Input
 
-- improve success state of multiline input
+- show success icon at the bottom of multiline input
