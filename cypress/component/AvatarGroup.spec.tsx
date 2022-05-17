@@ -33,8 +33,7 @@ const renderExample = ({ size }: Props) => (
 
 describe('AvatarGroup', () => {
   SIZES.forEach(size =>
-    // TODO: https://toptal-core.atlassian.net/browse/FX-2274
-    it.skip(`renders in ${size} size`, () => {
+    it(`renders in ${size} size`, () => {
       mount(renderExample({ size }))
 
       cy.get('body').happoScreenshot()
