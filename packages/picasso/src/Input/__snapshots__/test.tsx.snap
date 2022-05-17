@@ -203,6 +203,9 @@ exports[`Input shows counter for multiline input 1`] = `
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         rows="4"
       />
+      <div
+        class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+      />
       <fieldset
         aria-hidden="true"
         class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
@@ -258,30 +261,38 @@ exports[`Input shows counter for regular input 1`] = `
 
 exports[`Input shows excess chars for multiline input with exceeded limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
-  <span
-    class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"
+  <div
+    class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   >
-    1
-     
-    over the limit
-  </span>
+    <span
+      class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"
+    >
+      1
+       
+      over the limit
+    </span>
+  </div>
 </div>
 `;
 
 exports[`Input shows remaining chars for for multiline input with limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
-  <span
-    class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"
+  <div
+    class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   >
-    0
-     
-    characters left
-  </span>
+    <span
+      class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"
+    >
+      0
+       
+      characters left
+    </span>
+  </div>
 </div>
 `;

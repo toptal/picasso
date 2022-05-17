@@ -11,13 +11,7 @@ export default ({ palette }: Theme) =>
       color: palette.red.main
     },
     limiterMultiline: {
-      position: 'absolute',
-      bottom: 0,
-      width: 'calc(100% - 1.25rem)',
-      height: '1.25rem',
-      justifyContent: 'flex-start',
-      margin: 0,
-      padding: '0.25rem 0',
-      borderTop: `1px solid ${palette.grey.lighter2}`
+      justifyContent: 'unset',
+      marginLeft: 'unset'
     }
   })
