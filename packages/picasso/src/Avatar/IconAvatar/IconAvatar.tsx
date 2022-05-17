@@ -1,14 +1,13 @@
 import React from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
-import type { AvatarSizeType } from '../Avatar'
-import { Profile16 } from '../..'
+import { Profile16 } from '../../Icon'
 import styles from './styles'
 
 interface Props extends BaseProps {
-  size: AvatarSizeType
+  size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
 }
 
 const useStyles = makeStyles<Theme>(styles, {

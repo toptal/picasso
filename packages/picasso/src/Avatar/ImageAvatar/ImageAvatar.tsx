@@ -1,22 +1,21 @@
 import React from 'react'
 import cx from 'classnames'
-import { JssProps, BaseProps } from '@toptal/picasso-shared'
+import { JssProps, BaseProps, SizeType } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Image from '../../Image'
 import Logo from '../../Logo'
-import type { AvatarSizeType } from '../Avatar'
 import styles from './styles'
 
 export interface Props extends BaseProps {
-  size: AvatarSizeType
+  size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
   src: string
   alt?: string
   name?: string
 }
 
 type LogoProps = {
-  size: AvatarSizeType
+  size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
 } & JssProps
 
 const useStyles = makeStyles<Theme, Props>(styles, {

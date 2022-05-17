@@ -1,12 +1,12 @@
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import React, { useMemo } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import { Container } from '../..'
-import Avatar, { AvatarSizeType } from '../Avatar'
-import AvatarWrapper from '../AvatarWrapper/AvatarWrapper'
-import TextAvatar from '../TextAvatar/TextAvatar'
+import { Container } from '../Container'
+import Avatar from '../Avatar'
+import AvatarWrapper from '../Avatar/AvatarWrapper/AvatarWrapper'
+import TextAvatar from '../Avatar/TextAvatar/TextAvatar'
 import styles from './styles'
 
 type ItemType = {
@@ -22,7 +22,7 @@ export interface Props extends Omit<BaseProps, 'data-testid'> {
   /** Limit how many avatars can be rendered */
   limit?: number
   /** Size */
-  size?: AvatarSizeType
+  size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
   /** data-testid to all parts of component */
   testIds?: {
     container?: string

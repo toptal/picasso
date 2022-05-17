@@ -1,15 +1,14 @@
 import React, { ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import styles from './styles'
-import { AvatarSizeType, VariantType } from '../Avatar'
 
 export interface Props extends BaseProps {
   children: ReactNode
-  size: AvatarSizeType
-  variant: VariantType
+  size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+  variant: 'square' | 'portrait' | 'landscape'
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {

@@ -11,7 +11,7 @@ export type {
   AutocompleteProps,
   Item as AutocompleteItem
 } from './Autocomplete'
-export { default as Avatar } from './Avatar'
+export { AvatarCompound as Avatar } from './AvatarCompound'
 export type { AvatarProps } from './Avatar'
 export { ButtonCompound as Button } from './ButtonCompound'
 export type { ButtonProps, VariantType as ButtonVariantType } from './Button'
