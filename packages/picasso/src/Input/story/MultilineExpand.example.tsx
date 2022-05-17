@@ -31,6 +31,21 @@ const Example = () => {
           />
         </Container>
       </Container>
+      <Container padded='small'>
+        <Typography variant='heading' size='small'>
+          With auto-expand (up to 5 rows), manual resize and status bar
+        </Typography>
+        <Container right='small'>
+          <Input
+            multiline
+            multilineResizable
+            rows={2}
+            rowsMax={5}
+            status='success'
+            placeholder='With auto-expand and manual resize...'
+          />
+        </Container>
+      </Container>
     </Container>
   )
 }
