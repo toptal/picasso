@@ -1,4 +1,4 @@
-import { Option, OptionGroups } from '../../../Select'
+import { Option, OptionGroups } from '../../types'
 import flattenOptions from './flatten-options'
 
 describe('flattenOptions', () => {

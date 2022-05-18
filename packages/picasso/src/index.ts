@@ -92,11 +92,11 @@ export type {
   RichTextEditorChangeHandler
 } from './RichTextEditor'
 export { default as Select } from './Select'
+export type { SelectProps } from './Select'
 export type {
-  SelectProps,
   Option as SelectOption,
   ValueType as SelectValueType
-} from './Select'
+} from './SelectBase'
 export type { PageSidebarProps } from './PageSidebar'
 export { default as Slider } from './Slider'
 export type { SliderProps } from './Slider'

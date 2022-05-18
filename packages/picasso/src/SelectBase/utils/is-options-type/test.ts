@@ -1,4 +1,4 @@
-import { Option, OptionGroups } from '../../../Select'
+import { Option, OptionGroups } from '../../types'
 import isOptionsType from './is-options-type'
 
 describe('isOptionsType', () => {

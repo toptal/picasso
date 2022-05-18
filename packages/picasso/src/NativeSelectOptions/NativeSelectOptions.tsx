@@ -6,7 +6,7 @@ import {
   OptionGroups,
   ItemProps,
   Selection
-} from '../Select'
+} from '../SelectBase'
 
 export interface Props {
   options: Option[] | OptionGroups

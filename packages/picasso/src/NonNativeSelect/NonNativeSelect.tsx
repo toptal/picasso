@@ -22,7 +22,7 @@ import {
   DEFAULT_LIMIT,
   DEFAULT_SEARCH_THRESHOLD,
   countOptions
-} from '../Select'
+} from '../SelectBase'
 import NonNativeSelectOptions from '../NonNativeSelectOptions'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'

@@ -1,5 +1,2 @@
-export type { SelectProps as Props } from './types'
+export type { SelectProps } from '../SelectBase'
 export { default } from './Select'
-export * from './types'
-export * from './utils'
-export { useAdornments, useSelectState, useSelectProps } from './hooks'

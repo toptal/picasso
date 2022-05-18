@@ -1,5 +1,5 @@
 import limitOptions from './limit-options'
-import { Option, OptionGroups } from '../../../Select'
+import { Option, OptionGroups } from '../../types'
 
 describe('limitOptions', () => {
   const simpleOptions: Option[] = [
