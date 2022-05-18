@@ -1,10 +1,8 @@
 import { createContext } from 'react'
 
-import { TableSpacing, TableVariant } from './Table'
-
 export interface TableConfig {
-  spacing: TableSpacing
-  variant: TableVariant
+  spacing: 'compact' | 'narrow' | 'regular'
+  variant: 'clear' | 'bordered' | 'striped'
 }
 
 const TableContext = createContext<TableConfig>({

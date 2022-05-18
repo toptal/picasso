@@ -1,7 +1,7 @@
 import cx from 'classnames'
+import { SizeType, ColorType } from '@toptal/picasso-shared'
 
-import { Props } from '../../Typography'
-import { kebabToCamelCase } from '../../../utils'
+import kebabToCamelCase from '../../../utils/kebab-to-camel-case'
 
 const getTypographyClassName = (
   classes: Record<string, string>,
@@ -13,16 +13,17 @@ const getTypographyClassName = (
     underline,
     invert,
     lineThrough
-  }: Pick<
-    Props,
-    | 'variant'
-    | 'size'
-    | 'color'
-    | 'weight'
-    | 'underline'
-    | 'invert'
-    | 'lineThrough'
-  >
+  }: {
+    variant: 'heading' | 'body'
+    size:
+      | SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
+      | 'inherit'
+    color?: ColorType
+    weight?: 'regular' | 'semibold' | 'inherit'
+    underline?: 'solid' | 'dashed'
+    invert?: boolean
+    lineThrough?: boolean
+  }
 ) => {
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
   const colorClassName = kebabToCamelCase(`${color}`)

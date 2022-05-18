@@ -1,6 +1,6 @@
 import { ChartDataPoint, HighlightConfig } from '@toptal/picasso-charts'
 
-import { Highlight } from './../../AnalyticsChart'
+import { Highlight } from './../../AnalyticsChart/types'
 
 const HIGHLIGHT_LENGTH = 1
 

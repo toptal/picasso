@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { Props as FieldProps, ValueType, IFormComponentProps } from '../Field'
+import { Props as FieldProps } from '../Field'
+import { ValueType, IFormComponentProps } from '../FieldBase'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 

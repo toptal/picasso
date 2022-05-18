@@ -1,6 +1,6 @@
 import { OrderedChartDataPoint } from '@toptal/picasso-charts'
 
-import { ChartGranularity } from '../../AnalyticsChart'
+import { ChartGranularity } from '../../AnalyticsChart/types'
 
 const getXAxisTicks = (
   orderedData: OrderedChartDataPoint[],
