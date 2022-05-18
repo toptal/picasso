@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from 'react'
 import { mount } from '@cypress/react'
 import {
   Select,
+  SelectValueType,
   Form,
   Container,
   SelectProps,
@@ -10,7 +11,6 @@ import {
 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop, palette } from '@toptal/picasso/utils'
-import { ValueType } from '@toptal/picasso/Select'
 
 const TestSelect = ({
   onChange = noop,
@@ -58,10 +58,13 @@ const TestSelect = ({
 const TestUncontrolledSelect = (
   props: Omit<Partial<SelectProps>, 'value' | 'onChange'> = {}
 ) => {
-  const [value, setValue] = useState<ValueType | ValueType[]>()
+  const [value, setValue] = useState<SelectValueType | SelectValueType[]>()
 
   const handleChange = (
-    event: ChangeEvent<{ name?: string; value: ValueType | ValueType[] }>
+    event: ChangeEvent<{
+      name?: string
+      value: SelectValueType | SelectValueType[]
+    }>
   ) => {
     setValue(event.target.value)
   }
