@@ -29,7 +29,8 @@ import {
   ChartDataPoint,
   Domain,
   LineConfig,
-  OrderedChartDataPoint
+  OrderedChartDataPoint,
+  HighlightConfig
 } from '../types'
 
 const {
@@ -47,12 +48,6 @@ type RechartsOnMouseMove = CoordinatePayload | null
 
 export type ReferenceLineType = {
   y: number
-  color: string
-}
-
-export type HighlightConfig = {
-  from: number
-  to: number
   color: string
 }
 
