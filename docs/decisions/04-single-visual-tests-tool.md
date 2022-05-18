@@ -1,4 +1,4 @@
-# Visual tests strategy
+# Single Visual Tests tool
 
 ## Problem
 
