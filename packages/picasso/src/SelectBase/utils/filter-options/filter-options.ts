@@ -1,6 +1,6 @@
-import { Option, OptionGroups } from '../../types'
-import { isOptionsType } from '../../utils'
 import { isSubstring } from '../../../utils'
+import { Option, OptionGroups } from '../../types'
+import isOptionsType from '../../utils/is-options-type'
 
 interface Props {
   options: Option[] | OptionGroups

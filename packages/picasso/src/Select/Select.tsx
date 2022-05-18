@@ -7,13 +7,14 @@ import disableUnsupportedProps, {
 } from '../utils/disable-unsupported-props'
 import noop from '../utils/noop'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import { SelectProps, ValueType } from './types'
 import {
+  SelectProps,
+  ValueType,
   DEFAULT_LIMIT,
   DEFAULT_SEARCH_THRESHOLD,
   getOptionText,
   renderOption
-} from './utils'
+} from '../SelectBase'
 
 const purifyProps = (
   props: SelectProps<any, any>

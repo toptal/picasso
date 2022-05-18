@@ -14,7 +14,7 @@ import {
   OptionGroups,
   SelectProps,
   Selection
-} from '../Select'
+} from '../SelectBase'
 import Typography from '../Typography'
 import styles from './styles'
 
