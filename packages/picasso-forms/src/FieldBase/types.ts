@@ -13,3 +13,7 @@ export type ValueType =
   | DateOrDateRangeType
   | Item
   | Item[]
+
+export interface IFormComponentProps {
+  value?: ValueType
+}

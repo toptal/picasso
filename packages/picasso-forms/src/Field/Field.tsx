@@ -10,7 +10,7 @@ import { detect } from 'detect-browser'
 
 import { useFormConfig } from '../FormConfig'
 import { validators, useFieldValidation } from '../utils'
-import { ValueType } from './types'
+import { ValueType, IFormComponentProps } from '../FieldBase'
 
 const { composeValidators, required: requiredValidator } = validators
 
@@ -20,10 +20,6 @@ export type FieldProps<TInputValue> = FinalFieldProps<
   HTMLInputElement
 > &
   TextLabelProps
-
-export interface IFormComponentProps {
-  value?: ValueType
-}
 
 export type Props<
   TWrappedComponentProps extends IFormComponentProps,
