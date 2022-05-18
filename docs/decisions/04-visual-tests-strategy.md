@@ -17,7 +17,7 @@ The reasons for this are:
 - supporting two different plugins (Storybook and Happo) brings additional complexity and maintenance effort
 
 Considering this move, we will gain:
-- control which visual tests we add
+- control over which visual tests we add
 - better control over component state
 - a more transparent way on seeing what is tested and what is not covered with visual tests
 
