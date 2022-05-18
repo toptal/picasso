@@ -6,8 +6,7 @@ import Container from '../Container'
 import Select from '../Select'
 import styles from './styles'
 import TextEditorButton from '../RichTextEditorButton'
-import { ButtonHandlerType, SelectOnChangeHandler } from './types'
-import { FormatType } from '../RichTextEditor'
+import { ButtonHandlerType, SelectOnChangeHandler, FormatType } from './types'
 
 type Props = {
   disabled: boolean
