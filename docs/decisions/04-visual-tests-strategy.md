@@ -11,7 +11,7 @@ Two different frameworks for visual testing are currently supported in Picasso:
 Move all visual tests to Cypress with Happo.
 
 The reasons for this are:
-- Picass will support only one provider (Happo) and framework (Cypress) for visual tests
+- Picasso will support only one provider (Happo) and framework (Cypress) for visual tests
 - PRs will have only one visual tests check
 - Storybook's purpose in Picasso is not for doing visual tests
 - supporting two different plugins (Storybook and Happo) brings additional complexity and maintenance effort
