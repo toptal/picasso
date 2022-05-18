@@ -1,5 +1,13 @@
 # Change Log
 
+## 25.1.0
+
+### Minor Changes
+
+- [#2758](https://github.com/toptal/picasso/pull/2758) [`846d3180`](https://github.com/toptal/picasso/commit/846d3180f3285593a1d77cd824711b2b1e84e2ea) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ### Input
+
+  - show success icon at the bottom of multiline input
+
 ## 25.0.0
 
 ### Major Changes
