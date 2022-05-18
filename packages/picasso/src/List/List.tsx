@@ -6,12 +6,10 @@ import cx from 'classnames'
 import ListItem from '../ListItem'
 import styles from './styles'
 
-export type ListVariant = 'ordered' | 'unordered'
-
 export type Props = BaseProps & {
   children: ReactNode
   /** The variant to use */
-  variant: ListVariant
+  variant: 'ordered' | 'unordered'
   /** Specifies the start value of the first list item in an ordered list */
   start?: number
 }

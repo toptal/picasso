@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, RenderResult } from '@toptal/picasso/test-utils'
 
-import Table from '../Table'
+import { TableCompound as Table } from '../TableCompound'
 
 const renderTableSectionHead = () => {
   return render(

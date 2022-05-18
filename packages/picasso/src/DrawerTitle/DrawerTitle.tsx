@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import styles from './styles'
 import Typography from '../Typography'
 import Container from '../Container'
-import { DrawerProps } from '../Drawer'
 
-export interface Props extends BaseProps, Pick<DrawerProps, 'title'> {}
+export interface Props extends BaseProps {
+  title?: ReactNode
+}
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoDrawerTitle' })
 

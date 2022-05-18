@@ -2,7 +2,8 @@ import React from 'react'
 import { render, PicassoConfig } from '@toptal/picasso/test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Table, { TableProps } from '../Table'
+import { TableProps } from '../Table'
+import { TableCompound as Table } from '../TableCompound'
 import TableContext from './TableContext'
 import { TableCellProps } from '../TableCell'
 

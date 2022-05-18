@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import Table, { TableConfig, TableContext } from '../Table'
+import { TableConfig, TableContext } from '../Table'
+import { TableCompound as Table } from '../TableCompound'
 import { Props } from './TableCell'
 
 const renderTableCell = (

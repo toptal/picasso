@@ -8,13 +8,6 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITable from '@material-ui/core/Table'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import TableCell from '../TableCell'
-import TableBody from '../TableBody'
-import TableRow from '../TableRow'
-import TableHead from '../TableHead'
-import TableSectionHead from '../TableSectionHead'
-import TableFooter from '../TableFooter'
-import TableExpandableRow from '../TableExpandableRow'
 import TableContext from './TableContext'
 import styles from './styles'
 
@@ -75,12 +68,4 @@ Table.defaultProps = {
 
 Table.displayName = 'Table'
 
-export default Object.assign(Table, {
-  Cell: TableCell,
-  Body: TableBody,
-  Head: TableHead,
-  SectionHead: TableSectionHead,
-  Row: TableRow,
-  ExpandableRow: TableExpandableRow,
-  Footer: TableFooter
-})
+export default Table

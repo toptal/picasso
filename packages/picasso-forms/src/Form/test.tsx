@@ -3,7 +3,8 @@ import { fireEvent, render, waitFor, act } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { Button } from '@toptal/picasso'
 
-import Form, { Props } from './Form'
+import { Props } from './Form'
+import { FormCompound as Form } from '../FormCompound'
 import { scrollTo } from '../utils/scroll-to'
 
 jest.mock('../utils', () => {

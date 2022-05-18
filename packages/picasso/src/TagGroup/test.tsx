@@ -2,15 +2,16 @@ import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
 import Tag from '../Tag'
+import TagGroup from './TagGroup'
 
 const renderTagGroup = () =>
   render(
-    <Tag.Group>
+    <TagGroup>
       <Tag>Angular JS</Tag>
       <Tag>React JS</Tag>
       <Tag>Ember JS</Tag>
       <Tag>Vue JS</Tag>
-    </Tag.Group>
+    </TagGroup>
   )
 
 describe('TagGroup', () => {

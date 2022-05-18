@@ -4,7 +4,9 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import Tag, { Props } from './Tag'
-import { Link, Settings16 } from '..'
+import TagConnection from '../TagConnection'
+import { Settings16 } from '../Icon'
+import Link from '../Link'
 
 jest.mock('ap-style-title-case')
 
@@ -103,7 +105,7 @@ describe('Tag', () => {
 
   it('renders with adornment', () => {
     const { container } = renderTag('foobar', {
-      endAdornment: <Tag.Connection>0</Tag.Connection>
+      endAdornment: <TagConnection>0</TagConnection>
     })
 
     expect(container).toMatchSnapshot()
@@ -111,7 +113,7 @@ describe('Tag', () => {
 
   it('renders with connection and icon', () => {
     const { container } = renderTag('foobar', {
-      endAdornment: <Tag.Connection>0</Tag.Connection>,
+      endAdornment: <TagConnection>0</TagConnection>,
       icon: <Settings16 />
     })
 
