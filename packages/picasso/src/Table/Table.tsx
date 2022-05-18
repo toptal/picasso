@@ -11,18 +11,15 @@ import { BaseProps } from '@toptal/picasso-shared'
 import TableContext from './TableContext'
 import styles from './styles'
 
-export type TableSpacing = 'compact' | 'narrow' | 'regular'
-export type TableVariant = 'clear' | 'bordered' | 'striped'
-
 export interface Props
   extends BaseProps,
     TableHTMLAttributes<HTMLTableElement> {
   /** Children components (`Table.Head`, `Table.Body`, `Table.Footer`) */
   children: ReactNode
   /** Inner spacing */
-  spacing?: TableSpacing
+  spacing?: 'compact' | 'narrow' | 'regular'
   /** Appearance variant */
-  variant?: TableVariant
+  variant?: 'clear' | 'bordered' | 'striped'
 }
 
 const useStyles = makeStyles<Theme>(styles, {

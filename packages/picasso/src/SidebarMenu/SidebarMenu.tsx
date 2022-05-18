@@ -9,7 +9,7 @@ import React, {
 } from 'react'
 
 import Menu from '../Menu'
-import { useSidebarContext } from '../PageSidebar'
+import { useSidebarContext } from '../PageSidebar/SidebarContextProvider'
 import { SidebarItemProps, useSubMenuContext } from '../SidebarItem'
 import styles from './styles'
 

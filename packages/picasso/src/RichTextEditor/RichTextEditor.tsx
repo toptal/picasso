@@ -22,12 +22,7 @@ import {
 import { ASTType } from '../RichText'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import { Status } from '../OutlinedInput'
-
-export type CounterMessageSetter = (
-  limit: number,
-  currLength: number,
-  isError: boolean
-) => string
+import { CounterMessageSetter } from './types'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */

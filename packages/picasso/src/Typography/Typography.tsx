@@ -1,4 +1,5 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { PropTypes } from '@material-ui/core'
 import MUITypography from '@material-ui/core/Typography'
@@ -11,8 +12,8 @@ import {
 
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
+import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import toMuiVariant from './utils/to-mui-variant'
-import getTypographyClassName from './utils/get-typography-class-name'
 
 export interface Props
   extends StandardProps,
@@ -49,6 +50,48 @@ export interface Props
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoTypography'
 })
+
+const getTypographyClassName = (
+  classes: Record<string, string>,
+  {
+    variant,
+    size,
+    color,
+    weight,
+    underline,
+    invert,
+    lineThrough
+  }: Pick<
+    Props,
+    | 'variant'
+    | 'size'
+    | 'color'
+    | 'weight'
+    | 'underline'
+    | 'invert'
+    | 'lineThrough'
+  >
+) => {
+  const variantClassName = kebabToCamelCase(`${variant}-${size}`)
+  const colorClassName = kebabToCamelCase(`${color}`)
+
+  const weightVariantClass = weight ? classes[weight] : undefined
+  const weightClass =
+    weight === 'inherit' ? classes.inheritWeight : weightVariantClass
+
+  const underlineClass = underline ? classes[underline] : undefined
+
+  return cx(
+    classes[variantClassName],
+    classes[colorClassName],
+    weightClass,
+    underlineClass,
+    {
+      [classes.invert]: invert,
+      [classes.lineThrough]: lineThrough
+    }
+  )
+}
 
 export const Typography = forwardRef<HTMLElement, Props>(function Typography(
   props,

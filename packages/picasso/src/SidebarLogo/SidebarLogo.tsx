@@ -5,7 +5,7 @@ import cx from 'classnames'
 
 import Container from '../Container'
 import styles from './styles'
-import { useSidebarContext } from '../PageSidebar'
+import { useSidebarContext } from '../PageSidebar/SidebarContextProvider'
 
 export interface Props
   extends BaseProps,
