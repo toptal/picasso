@@ -76,6 +76,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn davinci ci danger
 
+      - name: Circularity Check
+        run: yarn circularity
+
       - name: Lint
         run: yarn lint
 
