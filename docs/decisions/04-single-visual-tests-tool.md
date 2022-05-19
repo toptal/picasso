@@ -26,44 +26,44 @@ The options are:
 
 ## Proposal
 
-Move all visual tests to Cypress with Happo.
+Replace the Puppeteer stack with the Happo provider plugin for Storybook, while **keeping** Cypress tests.
+This was a team-level decision in FX via polling: https://toptal-core.slack.com/archives/GG3F4AS4T/p1652967032843459
 
-The benefits are:
-- Picasso will support only one provider (Happo) and framework (Cypress) for visual tests
-- PRs will have only one visual tests check
-- only one plugin and configuration will need maintenance
-- visual tests on the end result of integration testing between multiple components (ex: collapsed sidebar with opened sub-menu)
-- accurate knowledge and reporting on what is being tested as part of the visual testing stack
-
-Note: Storybook's main purpose in Picasso is to showcase examples to end users, not testing.
-
-### Drawbacks and limitations
-
-There are two drawbacks present to the above proposal:
-- it will take some time to migrate tests to Cypress
-- manual intervention in adding visual tests later
-- the Puppeteer stack (and tests) can't be removed immediately
-
-## Alternatives
-
-Replace the Puppeteer stack with the Happo provider plugin for Storybook
-
-There are some advantages if we don't drop Storybook visual tests:
+#### Advantages:
 - the Puppeteer based stack would be removed fast, while maintaining visual tests coverage via Storybook
 - there will be no overhead in trying to migrate visual tests over to Cypress
 
-Another important point which is neither an advantage or disadvantage is that evaluation on what exactly Cypress visual tests are covering is needed.
+#### Disadvantages:
+- supporting and maintaining two Happo configurations for visual tests (for Storybook and Cypress plugins)
 
-Furthermore, there are two options on how to proceed:
-1. drop Cypress visual tests
-- this is the easy way out, but gives us less control, reporting and visibility over what's covered (there are currently skipped visual tests for some examples in Storybook)
-- introduction of test runner for Storybook in order to compensate the loss of Cypress visual tests: https://storybook.js.org/docs/react/writing-tests/test-runner
-- some work would be needed to migrate Cypress visual tests to Storybook
-2. keep Cypress visual tests
-- it requires supporting and maintaining two Happo configurations for visual tests
-- maintenance over Cypress visual tests is still needed, as they are covering different areas
+#### Points that remain the same when comparing to current approach
+- maintenance and development for Cypress visual tests is still needed, as they are covering different areas
 - daily developer decisions on what will be tested in Storybook vs. what will be tested in Cypress is needed, making test development harder
 - some examples will be ignored from visual testing in Storybook due to duplication in Cypress
+
+## Alternatives
+
+1. Replace the Puppeteer stack with the Happo provider plugin for Storybook, while **removing** Cypress tests.
+- The benefits are:
+  - easy way out with the least effort
+
+- The downsides are:
+  - less control, reporting and visibility over what's covered (there are currently skipped visual tests for some examples in Storybook)
+  - introduction of test runner for Storybook in order to compensate the loss of Cypress visual tests: https://storybook.js.org/docs/react/writing-tests/test-runner
+  - some work would be needed to migrate Cypress visual tests to Storybook
+
+2. Move all visual tests to Cypress with Happo.
+- The benefits are:
+  - Picasso will support only one provider (Happo) and framework (Cypress) for visual tests
+  - PRs will have only one visual tests check
+  - only one plugin and configuration will need maintenance
+  - visual tests on the end result of integration testing between multiple components (ex: collapsed sidebar with opened sub-menu)
+  - accurate knowledge and reporting on what is being tested as part of the visual testing stack
+
+- The downsides are:
+  - it will take some time to migrate tests to Cypress
+  - manual intervention in adding visual tests later
+  - the Puppeteer stack (and tests) can't be removed immediately
 
 ## Research data
 
