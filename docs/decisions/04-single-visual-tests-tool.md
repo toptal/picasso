@@ -8,8 +8,9 @@ Two different frameworks for visual testing are currently supported in Picasso:
 
 The Puppeteer based stack has some downsides:
 - screenshots are hard to update
-- diffs inspection is not straightforward
+- diffs inspection is not straightforward on local machines
 - execution is slow
+- together with Happo, we have 2 remote places where we inspect screenshot changes: Github (created via `jest-image-snapshot`, committed in PRs) and Happo
 
 ## Goal
 
