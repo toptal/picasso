@@ -3,7 +3,7 @@ import { render, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Select from './Select'
-import { SelectProps } from './types'
+import { SelectProps } from './'
 
 jest.mock('../NonNativeSelect', () => ({
   __esModule: true,

@@ -14,7 +14,7 @@ import {
   useSelectProps,
   SelectProps,
   renderOption as defaultRenderOption
-} from '../Select'
+} from '../SelectBase'
 import NativeSelectOptions from '../NativeSelectOptions'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
