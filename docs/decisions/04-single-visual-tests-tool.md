@@ -36,7 +36,6 @@ The benefits are:
 
 Note: Storybook's main purpose in Picasso is to showcase examples to end users, not testing.
 
-
 ### Drawbacks and limitations
 
 There are two drawbacks present to the above proposal:
