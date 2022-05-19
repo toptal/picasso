@@ -6,15 +6,15 @@ import Typography from '../Typography'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'QuillEditor'
+  name: 'QuillEditorView'
 })
 
-type QuillEditorOutputProps = BaseProps & {
+type QuillEditorViewProps = BaseProps & {
   id?: string
 }
 
-const QuillEditorOutput = forwardRef<HTMLDivElement, QuillEditorOutputProps>(
-  function QuillEditorOutput({ id, 'data-testid': dataTestId }, ref) {
+const QuillEditorView = forwardRef<HTMLDivElement, QuillEditorViewProps>(
+  function QuillEditorView({ id, 'data-testid': dataTestId }, ref) {
     const classes = useStyles()
 
     return (
@@ -32,4 +32,4 @@ const QuillEditorOutput = forwardRef<HTMLDivElement, QuillEditorOutputProps>(
   }
 )
 
-export default QuillEditorOutput
+export default QuillEditorView

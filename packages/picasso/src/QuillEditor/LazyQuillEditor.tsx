@@ -1,6 +1,6 @@
 import React, { forwardRef, lazy, Suspense } from 'react'
 
-import QuillEditorOutput from '../QuillEditorOutput'
+import QuillEditorView from '../QuillEditorView'
 import type { Props } from './QuillEditor'
 
 const QuillEditor = lazy(() => import('./QuillEditor'))
@@ -8,7 +8,7 @@ const QuillEditor = lazy(() => import('./QuillEditor'))
 const LazyQuillEditor = forwardRef<HTMLDivElement, Props>(
   function LazyQuillEditor(props, ref) {
     return (
-      <Suspense fallback={<QuillEditorOutput />}>
+      <Suspense fallback={<QuillEditorView />}>
         <QuillEditor {...props} ref={ref} />
       </Suspense>
     )

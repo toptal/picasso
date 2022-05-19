@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import QuillEditorOutput from '../QuillEditorOutput'
+import QuillEditorView from '../QuillEditorView'
 import { useCombinedRefs } from '../utils'
 import useQuillInstance from './hooks/useQuillInstance'
 import {
@@ -70,7 +70,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   })
   useDefaultValue({ defaultValue, quill })
 
-  return <QuillEditorOutput ref={editorRef} data-testid={dataTestId} id={id} />
+  return <QuillEditorView ref={editorRef} data-testid={dataTestId} id={id} />
 })
 
 QuillEditor.defaultProps = {
