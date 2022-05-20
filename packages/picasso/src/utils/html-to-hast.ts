@@ -12,7 +12,7 @@ export const hastSanitizeSchema: Schema = {
   attributes: {
     '*': []
   },
-  tagNames: ['h3', 'p', 'br', 'strong', 'em', 'ul', 'ol', 'li'],
+  tagNames: ['h3', 'p', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'a'],
   strip: ['script']
 }
 

@@ -17,6 +17,13 @@ const Example = () => {
       <Grid.Item small={12} large={6}>
         <RichText value={htmlToHast(html)} />
       </Grid.Item>
+      <Grid.Item small={12} large={12}>
+        <RichText
+          value={htmlToHast(
+            '<body><p>Some text with <a href="#test">link</a></p></body>'
+          )}
+        />
+      </Grid.Item>
     </Grid>
   )
 }
