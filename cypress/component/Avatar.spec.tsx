@@ -3,20 +3,25 @@ import { Container, Avatar, AvatarProps } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-type Props = Pick<AvatarProps, 'variant' | 'size'>
+type Props = Pick<AvatarProps, 'variant' | 'size' | 'src'>
 
-const src = './jacqueline-with-flowers-1954-square.jpg'
 const name = 'Jacqueline Roque'
 const alt = 'Jacqueline Roque, Pablo Picasso, 1954'
 
 const SIZES = ['xxsmall', 'xsmall', 'small', 'medium', 'large'] as const
 const VARIANTS = ['square', 'portrait', 'landscape'] as const
 
-const renderExample = ({ size, variant }: Props) => (
+const renderExample = ({ size, variant, src }: Props) => (
   <TestingPicasso>
     {/* With image */}
     <Container inline>
-      <Avatar src={src} alt={alt} name={name} size={size} variant={variant} />
+      <Avatar
+        src={`data:image/jpeg;base64,${src}`}
+        alt={alt}
+        name={name}
+        size={size}
+        variant={variant}
+      />
     </Container>
 
     {/* With initials */}
@@ -34,9 +39,12 @@ const renderExample = ({ size, variant }: Props) => (
 const createSizeTests = (variant: Props['variant']) => {
   describe(`${variant} variant`, () => {
     SIZES.forEach(size =>
-      // TODO: https://toptal-core.atlassian.net/browse/FX-2274
-      it.skip(`renders in ${size} size`, () => {
-        mount(renderExample({ size, variant }))
+      it(`renders in ${size} size`, () => {
+        /* eslint-disable max-nested-callbacks */
+        /* eslint-disable promise/catch-or-return */
+        cy.fixture('pablo.jpg').then(file =>
+          mount(renderExample({ size, variant, src: file }))
+        )
 
         cy.get('body').happoScreenshot()
       })
