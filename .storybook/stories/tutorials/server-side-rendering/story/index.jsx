@@ -253,11 +253,9 @@ module.exports = withTM({
   experimental: { esmExternals: true }
 })
 ~~~
-
-Stub quill package as instructed above
     `,
   {
-    title: '5: Transpile Picasso modules and stub Quill package'
+    title: '5: Transpile Picasso modules'
   }
 )
 
