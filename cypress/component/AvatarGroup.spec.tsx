@@ -1,40 +1,37 @@
 import React from 'react'
-import { Container, Avatar, AvatarProps } from '@toptal/picasso'
+import { Container, Avatar } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-type Props = Pick<AvatarProps, 'variant' | 'size'>
-
-const person = {
-  src: 'https://picasso.toptal.net/jacqueline-with-flowers-1954-square.jpg',
-  name: 'Jacqueline Roque',
-  alt: 'Jacqueline Roque, Pablo Picasso, 1954'
-}
-
 const generatePeople = (
-  count: number
+  count: number,
+  person: { name: string; alt: string; src: string }
 ): { alt: string; src: string; name: string }[] => Array(count).fill(person)
 
 const SIZES = ['xxsmall', 'xsmall', 'small', 'medium', 'large'] as const
 
-const ppl5 = generatePeople(5)
-const ppl6 = generatePeople(6)
-const ppl3 = generatePeople(3)
-
-const renderExample = ({ size }: Props) => (
-  <TestingPicasso>
-    <Container flex direction='column' gap='large'>
-      <Avatar.Group size={size} items={ppl5} />
-      <Avatar.Group size={size} items={ppl6} />
-      <Avatar.Group size={size} items={ppl3} />
-    </Container>
-  </TestingPicasso>
-)
-
 describe('AvatarGroup', () => {
   SIZES.forEach(size =>
     it(`renders in ${size} size`, () => {
-      mount(renderExample({ size }))
+      /* eslint-disable max-nested-callbacks */
+      /* eslint-disable promise/catch-or-return */
+      cy.fixture('pablo.jpg').then(file => {
+        const person = {
+          name: 'Jacqueline Roque',
+          alt: 'Jacqueline Roque, Pablo Picasso, 1954',
+          src: `data:image/jpeg;base64,${file}`
+        }
+
+        return mount(
+          <TestingPicasso>
+            <Container flex direction='column' gap='large'>
+              <Avatar.Group size={size} items={generatePeople(5, person)} />
+              <Avatar.Group size={size} items={generatePeople(6, person)} />
+              <Avatar.Group size={size} items={generatePeople(3, person)} />
+            </Container>
+          </TestingPicasso>
+        )
+      })
 
       cy.get('body').happoScreenshot()
     })
