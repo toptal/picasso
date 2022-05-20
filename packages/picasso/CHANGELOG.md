@@ -1,5 +1,11 @@
 # Change Log
 
+## 25.1.1
+
+### Patch Changes
+
+- [#2793](https://github.com/toptal/picasso/pull/2793) [`9aa6250e`](https://github.com/toptal/picasso/commit/9aa6250eef419aa4cf873390fd573882854fa162) Thanks [@denieler](https://github.com/denieler)! - Fix file circularity issues
+
 ## 25.1.0
 
 ### Minor Changes

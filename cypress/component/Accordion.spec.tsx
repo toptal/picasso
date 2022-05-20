@@ -85,11 +85,6 @@ const AccordionCustomSummary = () => {
   )
 }
 
-const toggleAccordion = () => cy.get('[data-testid=trigger]').click()
-const getAccordionContent = () => cy.get('[data-testid=content]')
-const clickStartInterviewOnboarding = () =>
-  cy.get('[data-testid="start-onboarding"]').click()
-
 describe('Accordion', () => {
   it('renders', () => {
     mount(
@@ -103,7 +98,6 @@ describe('Accordion', () => {
     mount(
       <TestingPicasso>
         <TestAccordion disabled />
-        <TestAccordion expandIcon={<Check16 />} />
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
@@ -123,9 +117,6 @@ describe('Accordion', () => {
       <TestingPicasso>
         <TestAccordion defaultExpanded />
         <TestAccordion expanded />
-        <TestAccordion expanded={false} />
-        <TestAccordion disabled />
-        <TestAccordion expandIcon={<Check16 />} />
       </TestingPicasso>
     )
     cy.get('body').happoScreenshot()
@@ -139,11 +130,9 @@ describe('Accordion', () => {
     cy.get('body').happoScreenshot()
   })
 
-  // TODO: https://toptal-core.atlassian.net/browse/FX-2272
-  it.skip('renders custom expand icon', () => {
+  it('renders custom expand icon', () => {
     mount(
       <TestingPicasso>
-        <TestAccordion disabled />
         <TestAccordion expandIcon={<Check16 />} />
       </TestingPicasso>
     )
@@ -153,25 +142,22 @@ describe('Accordion', () => {
 describe('Accordion with custom summary', () => {
   it('closes and opens', () => {
     mount(<AccordionCustomSummary />)
-    toggleAccordion()
-    getAccordionContent().should('not.be.visible')
+    cy.getByTestId('trigger').click()
+    cy.getByTestId('content').should('not.be.visible')
 
-    cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
+    cy.getByTestId('accordion-custom-summary').happoScreenshot()
 
-    toggleAccordion()
-    getAccordionContent().should('be.visible')
+    cy.getByTestId('trigger').click()
+    cy.getByTestId('content').should('be.visible')
 
-    cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
+    cy.getByTestId('accordion-custom-summary').happoScreenshot()
   })
 
   it('interacts with accordion content', () => {
     mount(<AccordionCustomSummary />)
 
-    clickStartInterviewOnboarding()
-
-    // TODO: https://toptal-core.atlassian.net/browse/FX-2272
-    // cy.get('[data-testid=accordion-custom-summary]').happoScreenshot()
-
+    cy.getByTestId('start-onboarding').click()
+    cy.getByTestId('content').should('be.visible')
     cy.on('window:alert', text => {
       expect(text).equal('Onboarding started')
     })
