@@ -163,7 +163,7 @@ const ModalTooltipExample = () => {
 
 const LinkTooltipExample = () => {
   const tooltipContent = (
-    <Link href='#link' color='white' data-testid={testIds.tooltipContent}>
+    <Link href='#link' data-testid={testIds.tooltipContent}>
       Link
     </Link>
   )
