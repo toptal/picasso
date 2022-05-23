@@ -122,7 +122,7 @@ const testIds = {
 }
 
 const TestAutocomplete = (props: Partial<AutocompleteProps>) => (
-  <Autocomplete value='' options={OPTIONS} {...props} />
+  <Autocomplete value='' options={OPTIONS} testIds={testIds} {...props} />
 )
 
 describe('Autocomplete', () => {
@@ -136,21 +136,20 @@ describe('Autocomplete', () => {
     cy.get('body').happoScreenshot()
   })
 
-  // TODO: https://toptal-core.atlassian.net/browse/FX-2273
-  it.skip('renders a list of options when clicked', () => {
+  it('renders a list of options when clicked', () => {
     mount(
       <TestingPicasso>
         <TestAutocomplete />
       </TestingPicasso>
     )
 
-    cy.get('[data-testid=autocomplete]').click()
+    cy.getByTestId(testIds.input).click()
+    cy.getByRole('menu').should('be.visible')
 
     cy.get('body').happoScreenshot()
   })
 
-  // TODO: https://toptal-core.atlassian.net/browse/FX-2273
-  it.skip('renders a list of options with descriptions when clicked', () => {
+  it('renders a list of options with descriptions when clicked', () => {
     mount(
       <TestingPicasso>
         <TestAutocomplete
@@ -165,7 +164,8 @@ describe('Autocomplete', () => {
       </TestingPicasso>
     )
 
-    cy.get('[data-testid=autocomplete]').click()
+    cy.getByTestId(testIds.input).click()
+    cy.getByRole('menu').should('be.visible')
 
     cy.get('body').happoScreenshot()
   })
@@ -191,7 +191,7 @@ describe('Autocomplete', () => {
     // Cypress does not go well with :hover CSS selectors
     // It can fire mouse events via JS, but can't simulate browser cursor behaviour
     // To fix this issue we're using a force method to show the button so the screenshot is correct
-    cy.get(`[data-testid="${testIds.resetButton}"]`).invoke(
+    cy.getByTestId(testIds.resetButton).invoke(
       'attr',
       'style',
       'visibility: visible'
@@ -242,8 +242,7 @@ describe('Autocomplete', () => {
     cy.get('body').happoScreenshot()
   })
 
-  // TODO: https://toptal-core.atlassian.net/browse/FX-2273
-  it.skip('renders loading and error states', () => {
+  it('renders loading and error states', () => {
     mount(
       <TestingPicasso>
         <TestAutocomplete status='error' />
@@ -271,28 +270,28 @@ describe('Autocomplete', () => {
     cy.get('body').happoScreenshot()
   })
 
-  // TODO: https://toptal-core.atlassian.net/browse/FX-2273
-  it.skip('renders in different menu widths', () => {
+  it('renders in different menu widths', () => {
     mount(
       <TestingPicasso>
         <TestAutocomplete menuWidth='200px' />
       </TestingPicasso>
     )
 
-    cy.get('[data-testid=autocomplete]').click()
+    cy.getByTestId(testIds.input).click()
+    cy.getByRole('menu').should('be.visible')
 
     cy.get('body').happoScreenshot()
   })
 
-  // TODO: https://toptal-core.atlassian.net/browse/FX-2273
-  it.skip('renders other option', () => {
+  it('renders other option', () => {
     mount(
       <TestingPicasso>
         <TestAutocomplete showOtherOption options={[]} value='picasso' />
       </TestingPicasso>
     )
 
-    cy.get('[data-testid=autocomplete]').click()
+    cy.getByTestId(testIds.input).click()
+    cy.getByRole('menu').should('be.visible')
 
     cy.get('body').happoScreenshot()
   })
@@ -309,20 +308,21 @@ describe('Autocomplete', () => {
       </TestingPicasso>
     )
 
-    cy.get('[data-testid=autocomplete]').click()
+    cy.getByTestId(testIds.input).click()
+    cy.getByRole('menu').should('be.visible')
 
     cy.get('body').happoScreenshot()
   })
 
-  // TODO: https://toptal-core.atlassian.net/browse/FX-2273
-  it.skip('renders powered by google', () => {
+  it('renders powered by google', () => {
     mount(
       <TestingPicasso>
         <TestAutocomplete poweredByGoogle options={[{ text: 'Belarus' }]} />
       </TestingPicasso>
     )
 
-    cy.get('[data-testid=autocomplete]').click()
+    cy.getByTestId(testIds.input).click()
+    cy.getByRole('menu').should('be.visible')
 
     cy.get('body').happoScreenshot()
   })
@@ -332,19 +332,19 @@ describe('Autocomplete', () => {
 
     openAutocompleteWithTab()
 
-    cy.get('[role=menu]').should('not.exist')
+    cy.getByRole('menu').should('not.exist')
 
     cy.clock()
-    cy.get('[data-testid=autocomplete]').type('Mon')
+    cy.getByTestId(testIds.input).type('Mon')
     cy.tick(1500)
     cy.clock().invoke('restore')
 
-    cy.get('[role=menu]').should('be.visible')
+    cy.getByRole('menu').should('be.visible')
 
-    cy.get('[data-testid=autocomplete]').blur()
+    cy.getByTestId(testIds.input).blur()
     openAutocompleteWithTab()
 
-    cy.get('[role=menu]').should('not.exist')
+    cy.getByRole('menu').should('not.exist')
   })
 
   it('focuses Autocomplete with static options should NOT open options list', () => {
@@ -352,14 +352,14 @@ describe('Autocomplete', () => {
 
     openAutocompleteWithTab()
 
-    cy.get('[role=menu]').should('not.exist')
+    cy.getByRole('menu').should('not.exist')
 
-    cy.get('[data-testid=autocomplete]').type('Ukr')
-    cy.get('[role=menu]').should('be.visible')
+    cy.getByTestId(testIds.input).type('Ukr')
+    cy.getByRole('menu').should('be.visible')
 
-    cy.get('[data-testid=autocomplete]').blur()
+    cy.getByTestId(testIds.input).blur()
     openAutocompleteWithTab()
 
-    cy.get('[role=menu]').should('not.exist')
+    cy.getByRole('menu').should('not.exist')
   })
 })
