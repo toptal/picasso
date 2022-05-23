@@ -20,16 +20,22 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 const TOOLTIP_LONG_TEXT = 'Content '.repeat(10)
 
 const testIds = {
-  input: 'autocomplete'
+  autocompleteInput: 'autocomplete-input',
+  tooltipContent: 'tooltip-content',
+  tooltipTrigger: 'tooltip-trigger',
+  radioTrigger: 'radio-trigger',
+  dropdownTrigger: 'dropdown-trigger'
 }
 
 const BasicTooltipExample = () => {
-  const tooltipContent = <span data-testid='tooltip-content'>Content</span>
+  const tooltipContent = (
+    <span data-testid={testIds.tooltipContent}>Content</span>
+  )
 
   return (
     <TestingPicasso>
       <Tooltip content={tooltipContent}>
-        <Button data-testid='tooltip-trigger'>
+        <Button data-testid={testIds.tooltipTrigger}>
           <span style={{ padding: '20px' }}>Button</span>
         </Button>
       </Tooltip>
@@ -157,7 +163,7 @@ const ModalTooltipExample = () => {
 
 const LinkTooltipExample = () => {
   const tooltipContent = (
-    <Link href='#link' color='white' data-testid='tooltip-content'>
+    <Link href='#link' data-testid={testIds.tooltipContent}>
       Link
     </Link>
   )
@@ -165,31 +171,35 @@ const LinkTooltipExample = () => {
   return (
     <TestingPicasso>
       <Tooltip content={tooltipContent} interactive>
-        <Button data-testid='tooltip-trigger'>Button</Button>
+        <Button data-testid={testIds.tooltipTrigger}>Button</Button>
       </Tooltip>
     </TestingPicasso>
   )
 }
 
 const CheckboxTooltipExample = () => {
-  const tooltipContent = <span data-testid='tooltip-content'>Content</span>
+  const tooltipContent = (
+    <span data-testid={testIds.tooltipContent}>Content</span>
+  )
 
   return (
     <TestingPicasso>
       <Tooltip content={tooltipContent} interactive>
-        <Checkbox label='Checkbox' data-testid='tooltip-trigger' />
+        <Checkbox label='Checkbox' data-testid={testIds.tooltipTrigger} />
       </Tooltip>
     </TestingPicasso>
   )
 }
 
 const RadioTooltipExample = () => {
-  const tooltipContent = <span data-testid='tooltip-content'>Content</span>
+  const tooltipContent = (
+    <span data-testid={testIds.tooltipContent}>Content</span>
+  )
 
   return (
     <TestingPicasso>
       <Tooltip content={tooltipContent} interactive>
-        <Radio label='Radio' data-testid='trigger' />
+        <Radio label='Radio' data-testid={testIds.radioTrigger} />
       </Tooltip>
     </TestingPicasso>
   )
@@ -199,7 +209,7 @@ const AutocompleteTooltipExample = () => {
   const [value, setValue] = useState('')
 
   const tooltipContent = (
-    <Typography data-testid='tooltip-content'>Content</Typography>
+    <Typography data-testid={testIds.tooltipContent}>Content</Typography>
   )
 
   return (
@@ -216,7 +226,7 @@ const AutocompleteTooltipExample = () => {
           </Tooltip>
         )}
         onChange={setValue}
-        testIds={testIds}
+        testIds={{ input: testIds.autocompleteInput }}
       />
     </TestingPicasso>
   )
@@ -224,7 +234,7 @@ const AutocompleteTooltipExample = () => {
 
 const DropdownTooltipExample = () => {
   const tooltipContent = (
-    <Typography data-testid='tooltip-content'>Content</Typography>
+    <Typography data-testid={testIds.tooltipContent}>Content</Typography>
   )
 
   const dropdownContent = (
@@ -241,7 +251,7 @@ const DropdownTooltipExample = () => {
     <TestingPicasso>
       <Dropdown content={dropdownContent}>
         Open Dropdown
-        <Dropdown.Arrow data-testid='dropdown-trigger' />
+        <Dropdown.Arrow data-testid={testIds.dropdownTrigger} />
       </Dropdown>
     </TestingPicasso>
   )
@@ -285,14 +295,12 @@ describe('Tooltip', () => {
     cy.get('body').happoScreenshot()
   })
 
-  // TODO: https://toptal-core.atlassian.net/browse/FX-2277
-  it.skip('renders with different placements', () => {
+  it('renders with different placements', () => {
     mount(<PlacementTooltipExample />)
     cy.get('body').happoScreenshot()
   })
 
-  // https://toptal-core.atlassian.net/browse/FX-2277
-  it.skip('renders inside and outside of a modal', () => {
+  it('renders inside and outside of a modal', () => {
     mount(<ModalTooltipExample />)
     cy.get('body').happoScreenshot()
   })
@@ -300,70 +308,72 @@ describe('Tooltip', () => {
   it('renders on hover, and hides on click', () => {
     mount(<BasicTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
-    cy.get('[data-testid="tooltip-trigger"]').realHover({
+    cy.getByTestId(testIds.tooltipTrigger).realHover({
       position: { x: 0, y: -200 }
     })
-    cy.get('[data-testid="tooltip-content"]').should('not.exist')
-    cy.get('[data-testid="tooltip-trigger"]').realHover()
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
+    cy.getByTestId(testIds.tooltipTrigger).realHover()
 
-    cy.get('[data-testid="tooltip-content"]').should('be.visible')
+    cy.getByTestId(testIds.tooltipContent).should('be.visible')
 
-    cy.get('[data-testid="tooltip-trigger"]').click()
-    cy.get('[data-testid="tooltip-content"]').should('not.be.visible')
+    cy.getByTestId(testIds.tooltipTrigger).click()
+    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
   })
 
   it('renders on hover, and hides on click for Checkbox', () => {
     mount(<CheckboxTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
-    cy.get('[data-testid="tooltip-trigger"]')
+    cy.getByTestId(testIds.tooltipTrigger)
       .as('trigger')
       .realHover({
         position: { x: 0, y: -200 }
       })
-    cy.get('[data-testid="tooltip-content"]').should('not.exist')
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
     cy.get('@trigger').realHover()
-    cy.get('[data-testid="tooltip-content"]').should('exist')
+    cy.getByTestId(testIds.tooltipContent).should('exist')
     cy.get('body').happoScreenshot()
     cy.get('@trigger').click()
-    cy.get('[data-testid="tooltip-content"]').should('not.be.visible')
+    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
   })
 
   it('renders on hover, and hides on click for Radio', () => {
     mount(<RadioTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
-    cy.get('[data-testid="trigger"]').realHover({ position: { x: 0, y: -200 } })
-    cy.get('[data-testid="tooltip-content"]').should('not.exist')
-    cy.get('[data-testid="trigger"]').realHover()
-    cy.get('[data-testid="tooltip-content"]').should('be.visible')
+    cy.getByTestId(testIds.radioTrigger).realHover({
+      position: { x: 0, y: -200 }
+    })
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
+    cy.getByTestId(testIds.radioTrigger).realHover()
+    cy.getByTestId(testIds.tooltipContent).should('be.visible')
     cy.get('body').happoScreenshot()
-    cy.get('[data-testid="trigger"]').click()
-    cy.get('[data-testid="tooltip-content"]').should('not.be.visible')
+    cy.getByTestId(testIds.radioTrigger).click()
+    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
   })
 
   it('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
     mount(<BasicTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
-    cy.get('[data-testid="tooltip-trigger"]').realHover({
+    cy.getByTestId(testIds.tooltipTrigger).realHover({
       position: { x: 0, y: -200 }
     })
-    cy.get('[data-testid="tooltip-content"]').should('not.exist')
-    cy.get('[data-testid="tooltip-trigger"]').realHover()
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
+    cy.getByTestId(testIds.tooltipTrigger).realHover()
 
-    cy.get('[data-testid="tooltip-content"]').should('be.visible')
+    cy.getByTestId(testIds.tooltipContent).should('be.visible')
 
-    cy.get('[data-testid="tooltip-trigger"]').click()
-    cy.get('[data-testid="tooltip-trigger"]').realHover({ position: 'topLeft' })
-    cy.get('[data-testid="tooltip-trigger"]').realHover({
+    cy.getByTestId(testIds.tooltipTrigger).click()
+    cy.getByTestId(testIds.tooltipTrigger).realHover({ position: 'topLeft' })
+    cy.getByTestId(testIds.tooltipTrigger).realHover({
       position: 'bottomRight'
     })
 
-    cy.get('[data-testid="tooltip-content"]').should('not.be.visible')
+    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
   })
 
-  it.skip('renders interactive content', () => {
+  it('renders interactive content', () => {
     mount(<LinkTooltipExample />)
-    cy.get('[data-testid="tooltip-trigger"]').as('Trigger').realHover()
-    cy.get('[data-testid="tooltip-content"]').as('Content').should('be.visible')
+    cy.getByTestId(testIds.tooltipTrigger).as('Trigger').realHover()
+    cy.getByTestId(testIds.tooltipContent).as('Content').should('be.visible')
     cy.get('body').happoScreenshot()
 
     cy.get('@Content').click()
@@ -377,17 +387,16 @@ describe('Tooltip', () => {
   it('renders inside an autocomplete', () => {
     mount(<AutocompleteTooltipExample />)
 
-    cy.get('[data-testid="autocomplete"]').click()
-    cy.get('[data-testid="tooltip-content"]').should('exist')
+    cy.getByTestId(testIds.autocompleteInput).click()
+    cy.getByTestId(testIds.tooltipContent).should('exist')
     cy.get('body').happoScreenshot()
   })
 
   it('renders inside a dropdown', () => {
     mount(<DropdownTooltipExample />)
 
-    cy.get('[data-testid="dropdown-trigger"]').click()
-    cy.get('[data-testid="tooltip-content"]').should('be.visible')
-    // TODO: https://toptal-core.atlassian.net/browse/FX-2277
-    // cy.get('body').happoScreenshot()
+    cy.getByTestId(testIds.dropdownTrigger).click()
+    cy.getByTestId(testIds.tooltipContent).should('be.visible')
+    cy.get('body').happoScreenshot()
   })
 })
