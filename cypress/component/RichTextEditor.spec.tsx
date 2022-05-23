@@ -81,6 +81,9 @@ describe('RichTextEditor', () => {
   it('renders default editor', () => {
     mount(renderEditor(defaultProps))
 
+    // waits for lazy-loaded QuillEditor component
+    cy.get(editorSelector)
+
     cy.get('body').happoScreenshot()
   })
 
