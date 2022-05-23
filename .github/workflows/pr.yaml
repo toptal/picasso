@@ -71,22 +71,22 @@ jobs:
 
       - uses: ./.github/actions/yarn-install
 
-      - name: Danger
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn davinci ci danger
-
-      - name: Circularity Check
-        run: yarn circularity
-
-      - name: Lint
-        run: yarn lint
-
-      - name: Type Check
-        run: yarn typecheck
-
-      - name: Jest Tests
-        run: yarn test:unit:ci
+#      - name: Danger
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: yarn davinci ci danger
+#
+#      - name: Circularity Check
+#        run: yarn circularity
+#
+#      - name: Lint
+#        run: yarn lint
+#
+#      - name: Type Check
+#        run: yarn typecheck
+#
+#      - name: Jest Tests
+#        run: yarn test:unit:ci
 
       - name: Build packages
         run: yarn build:package
@@ -96,6 +96,8 @@ jobs:
         env:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+        with:
+          command:
 
   deploy-docs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
