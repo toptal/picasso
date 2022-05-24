@@ -16,8 +16,11 @@ describe('FileInput', () => {
   })
 
   it('can change label', () => {
-    const { container } = render(<TestFileInput buttonLabel='Upload File' />)
+    const { container, getByText } = render(
+      <TestFileInput buttonLabel='Upload File' />
+    )
 
     expect(container).toMatchSnapshot()
+    expect(getByText('Upload File')).toBeInTheDocument()
   })
 })
