@@ -90,7 +90,7 @@
     "cz-conventional-changelog": "3.2.0",
     "date-fns": "^2.9.0",
     "debounce": "^1.2.1",
-    "ejs": "^3.1.7",
+    "ejs": "^3.1.8",
     "escodegen": "^2.0.0",
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",
