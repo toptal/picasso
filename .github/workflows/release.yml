@@ -124,6 +124,7 @@ jobs:
 
       - name: Trigger build image job
         uses: toptal/jenkins-job-trigger-action@1.0.0
+        id: trigger-build
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
           JENKINS_USER: toptal-jenkins
@@ -157,14 +158,18 @@ jobs:
               "COMMIT_ID": "${{ github.sha }}"
             }
           job_timeout: '3600'
+
       - name: Send a Slack notification on failure
         if: ${{ failure() }}
         uses: slackapi/slack-github-action@v1.14.0
-        with:
-          channel-id: '-frontend-exp-team-notifications'
-          slack-message: ":x: <!here> Current master version of Picasso is <${{ steps.trigger-deploy.outputs.jenkins_job_url }}|broken>."
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+          FAILURE_URL: ${{ steps.trigger-deploy.outputs.jenkins_job_url || steps.trigger-build.outputs.jenkins_job_url }}
+          FALLBACK_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}?check_suite_focus=true
+        with:
+          channel-id: '-frontend-exp-team-notifications'
+          slack-message: ":x: <!here> Current master version of Picasso is <${{ env.FAILURE_URL || env.FALLBACK_URL }}|broken>."
+
       - name: Send a Slack notification on success release
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
         uses: slackapi/slack-github-action@v1.14.0
