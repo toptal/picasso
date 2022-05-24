@@ -107,7 +107,8 @@ const DefaultExample = (props: PageSidebarProps) => {
         style={{
           height: '58rem',
           maxHeight: '58rem',
-          overflowY: 'scroll'
+          overflowY: 'scroll',
+          marginTop: '24px'
         }}
       >
         <SidebarExample {...props} />
