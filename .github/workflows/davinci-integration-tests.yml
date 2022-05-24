@@ -1,0 +1,105 @@
+name: Integration Tests
+
+on:
+  workflow_call:
+    secrets:
+      TOPTAL_DEVBOT_TOKEN:
+        required: true
+      NPM_TOKEN:
+        required: true
+      HAPPO_API_KEY:
+        required: true
+      HAPPO_API_SECRET:
+        required: true
+
+env:
+  TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+  HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+  HAPPO_NONCE: ${{ github.run_id }}
+
+jobs:
+  build-packages:
+    name: Build packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          ref: v2
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          path: ./.github/actions/
+
+      - uses: ./.github/actions/yarn-install
+
+      - name: Build packages
+        run: yarn build:package
+
+      - name: Cache built packages
+        uses: actions/cache@v2
+        with:
+          path: 'packages/**/dist-package'
+          key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
+
+  integration-tests:
+    name: Run Integration Tests
+    runs-on: ubuntu-latest
+    needs: [ build-packages ]
+    strategy:
+      fail-fast: false
+      matrix:
+        index: [ 0, 1, 2 ]
+    env:
+      GROUP_INDEX: ${{ matrix.index }}
+      PARALLEL_GROUPS: ${{ strategy.job-total }}
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          ref: v2
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          path: ./.github/actions/
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+
+      - uses: ./.github/actions/yarn-install
+
+      - name: Get cached packages
+        uses: actions/cache@v2
+        with:
+          path: 'packages/**/dist-package'
+          key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
+
+      - name: Run integration tests
+        uses: ./.github/actions/integration-tests
+
+  finalize-integtation-tests:
+    name: Finalize Integration Tests
+    runs-on: ubuntu-latest
+    needs: [ integration-tests ]
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          ref: v2
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          path: ./.github/actions/
+
+      - uses: ./.github/actions/yarn-install
+
+      - name: Finalize Happo
+        run: npx happo-e2e finalize

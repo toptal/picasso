@@ -2,8 +2,14 @@ const path = require('path')
 const webpackPreprocessor = require('@cypress/webpack-preprocessor')
 const { startDevServer } = require('@cypress/webpack-dev-server')
 const happoTask = require('happo-cypress/task')
+// eslint-disable-next-line import/no-extraneous-dependencies
+const plugins = require('@toptal/davinci-qa/src/configs/cypress/plugins')
 
 module.exports = (on, config) => {
+  plugins(on, config)
+
+  happoTask.register(on)
+
   const webpackConfig = webpackPreprocessor.defaultOptions.webpackOptions
 
   const rule = webpackConfig.module.rules[0]
@@ -17,6 +23,11 @@ module.exports = (on, config) => {
   babelLoader.options.presets.push(require.resolve('@babel/preset-typescript'))
   // add React preset to be able to transpile JSX
   babelLoader.options.presets.push(require.resolve('@babel/preset-react'))
+  // add istanbul plugin for instrumenting code
+  babelLoader.options.plugins = [
+    ...(babelLoader.options.plugins ?? []),
+    require.resolve('babel-plugin-istanbul')
+  ]
 
   webpackConfig.resolve = {
     alias: {
@@ -53,11 +64,7 @@ module.exports = (on, config) => {
     use: ['style-loader', 'css-loader']
   })
 
-  happoTask.register(on)
-
-  on('dev-server:start', options =>
-    startDevServer({ options, webpackConfig: webpackConfig })
-  )
+  on('dev-server:start', options => startDevServer({ options, webpackConfig }))
 
   return config
 }

@@ -52,12 +52,3 @@ jobs:
         run: |
           yarn policies set-version
           yarn install --frozen-lockfile --ignore-optional --offline
-
-      - name: Build packages
-        run: yarn build:package
-
-      - name: Cypress Tests
-        run: yarn test:integration:ci
-        env:
-          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
