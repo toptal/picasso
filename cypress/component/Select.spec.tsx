@@ -177,7 +177,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it.skip('renders open', () => {
+  it('renders open', () => {
     mount(
       <TestingPicasso>
         <TestSelect />
@@ -285,7 +285,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it.skip('renders with custom menu width', () => {
+  it('renders with custom menu width', () => {
     mount(
       <TestingPicasso>
         <TestSelect placeholder='ID' width='shrink' menuWidth='200px' />
@@ -328,7 +328,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it.skip('renders options with description', () => {
+  it('renders options with description', () => {
     mount(
       <TestingPicasso>
         <TestSelect
@@ -380,7 +380,7 @@ describe('Select', () => {
     cy.get('body').happoScreenshot()
   })
 
-  it.skip('highlights grouped options via keys correctly', () => {
+  it('highlights grouped options via keys correctly', () => {
     mount(
       <TestingPicasso>
         <TestSelect options={OPTION_GROUPS} />
@@ -393,7 +393,7 @@ describe('Select', () => {
     getOption(7).should('have.attr', 'data-highlighted').and('match', /true/)
   })
 
-  it.skip('picks an option from group via keys correctly', () => {
+  it('picks an option from group via keys correctly', () => {
     mount(
       <TestingPicasso>
         <TestUncontrolledSelect options={OPTION_GROUPS} multiple />
@@ -410,7 +410,7 @@ describe('Select', () => {
     getOption(8).should('have.attr', 'aria-selected').and('match', /true/)
   })
 
-  it.skip('highlights limited options correctly', () => {
+  it('highlights limited options correctly', () => {
     mount(
       <TestingPicasso>
         <TestSelect options={OPTION_GROUPS} limit={1} />
