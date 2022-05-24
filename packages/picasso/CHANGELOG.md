@@ -1,5 +1,16 @@
 # Change Log
 
+## 25.2.0
+
+### Minor Changes
+
+- [#2776](https://github.com/toptal/picasso/pull/2776) [`18e33252`](https://github.com/toptal/picasso/commit/18e3325295032e5eff6dd5c6ba052f5cd8d55778) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### RichTextEditor
+
+  - quill editor is lazy-loaded using React.lazy and React.Suspense
+  - [quill](https://www.npmjs.com/package/quill) is no longer part of main bundle
+
 ## 25.1.1
 
 ### Patch Changes
