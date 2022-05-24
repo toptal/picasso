@@ -7,7 +7,7 @@ updates:
     time: "07:00"
   pull-request-branch-name:
     separator: "-"
-  open-pull-requests-limit: 4
+  open-pull-requests-limit: 3
   labels:
     - no-jira
   versioning-strategy: increase
