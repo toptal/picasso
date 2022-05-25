@@ -43,7 +43,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     accept,
     disabled,
     value,
-    buttonLabel: label,
+    buttonLabel,
     hint,
     maxFiles = 1,
     onChange,
@@ -72,7 +72,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
         disabled={Boolean(disabled || preventAddingNewFiles)}
         onClick={() => inputRef.current && inputRef.current.click()}
       >
-        {label}
+        {buttonLabel}
       </Button>
 
       <input

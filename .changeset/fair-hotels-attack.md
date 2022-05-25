@@ -6,4 +6,4 @@
 
 ### FileInput
 
-feat: add new `buttonLabel` prop to `FileInput`
+- add new `buttonLabel` prop to customize default text
