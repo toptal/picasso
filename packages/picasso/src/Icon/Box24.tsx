@@ -45,7 +45,8 @@ const SvgBox24 = forwardRef(function SvgBox24(
 
   return (
     <svg
-      viewBox='0 0 24 24'
+      viewBox='0 0 22 24'
+      fill='none'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}

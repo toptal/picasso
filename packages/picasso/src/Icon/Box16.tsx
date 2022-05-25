@@ -45,7 +45,7 @@ const SvgBox16 = forwardRef(function SvgBox16(
 
   return (
     <svg
-      viewBox='0 0 16 16'
+      viewBox='0 0 15 16'
       fill='none'
       className={cx(...classNames)}
       style={svgStyle}
