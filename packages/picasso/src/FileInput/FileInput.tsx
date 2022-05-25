@@ -15,6 +15,8 @@ export interface Props extends BaseProps {
   accept?: string
   /** If true, the 'FileInput' will be disabled */
   disabled?: boolean
+  /** The text of the select file button */
+  buttonLabel?: string
   /** The text of the hint */
   hint?: string
   /** Maximum number of files allowed. When the value is null, unlimited files can be added and multiple files can be selected on the file selection dialog */
@@ -41,6 +43,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     accept,
     disabled,
     value,
+    buttonLabel,
     hint,
     maxFiles = 1,
     onChange,
@@ -69,7 +72,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
         disabled={Boolean(disabled || preventAddingNewFiles)}
         onClick={() => inputRef.current && inputRef.current.click()}
       >
-        Choose File
+        {buttonLabel}
       </Button>
 
       <input
@@ -91,7 +94,8 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
 })
 
 FileInput.defaultProps = {
-  maxFiles: 1
+  maxFiles: 1,
+  buttonLabel: 'Choose File'
 }
 
 FileInput.displayName = 'FileInput'
