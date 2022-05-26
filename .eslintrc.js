@@ -30,7 +30,14 @@ const generateConfig = () =>
 module.exports = {
   extends: './node_modules/@toptal/davinci-syntax/src/configs/.eslintrc',
   rules: {
-    '@toptal/davinci/no-private-package-imports': 'off'
+    '@toptal/davinci/no-private-package-imports': 'off',
+    '@toptal/davinci/no-package-self-imports': [
+      'error',
+      {
+        excludeFiles: ['**/*.example.jsx', '**/*.example.tsx'],
+        excludePaths: ['@toptal/picasso/test-utils']
+      }
+    ]
   },
   ignorePatterns: ['*.output.tsx', '*.input.tsx'],
   overrides: [
