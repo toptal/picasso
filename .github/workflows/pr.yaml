@@ -90,7 +90,7 @@ jobs:
       - name: Visual Tests
         run: yarn run happo:ci
         env:
-          HAPPO_PROJECT: default
+          HAPPO_PROJECT: Picasso/Storybook
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
 
