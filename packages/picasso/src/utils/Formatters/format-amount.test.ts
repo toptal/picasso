@@ -9,7 +9,9 @@ describe('formatAmount', () => {
 
   describe('when `locale` is `fr-FR`', () => {
     it('formats `fr-FR` locale', () => {
-      expect(formatAmount({ amount: 1500, locale: 'fr-FR' })).toBe('$1,500.00')
+      expect(formatAmount({ amount: 1500, locale: 'fr-FR' })).toBe(
+        '1 500,00 $US'
+      )
     })
   })
 
