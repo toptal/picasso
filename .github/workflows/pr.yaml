@@ -87,6 +87,13 @@ jobs:
       - name: Jest Tests
         run: yarn test:unit:ci
 
+      - name: Visual Tests
+        run: yarn run happo:ci
+        env:
+          HAPPO_PROJECT: default
+          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+
   integration-tests:
     name: Integration Tests
     uses: ./.github/workflows/davinci-integration-tests.yml
