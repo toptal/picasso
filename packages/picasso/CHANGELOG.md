@@ -1,5 +1,25 @@
 # Change Log
 
+## 25.3.0
+
+### Minor Changes
+
+- [#2801](https://github.com/toptal/picasso/pull/2801) [`73279a39`](https://github.com/toptal/picasso/commit/73279a3947f9dd9c644218b0c0388242ac0181bc) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### FileInput
+
+  - add new `buttonLabel` prop to customize default text
+
+- [#2809](https://github.com/toptal/picasso/pull/2809) [`f9751dff`](https://github.com/toptal/picasso/commit/f9751dff012635d1d2798d48a0ad1553d3ce1ca9) Thanks [@OKendigelian](https://github.com/OKendigelian)! - Add Cube icon
+
+### Patch Changes
+
+- [#2806](https://github.com/toptal/picasso/pull/2806) [`81a56673`](https://github.com/toptal/picasso/commit/81a56673a16f0290564d7205f414efebbfd9f7ce) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+  - Fix format of peerDependency for `react` and `react-dom`
+- Updated dependencies [[`81a56673`](https://github.com/toptal/picasso/commit/81a56673a16f0290564d7205f414efebbfd9f7ce)]:
+  - @toptal/picasso-provider@1.1.3
+  - @toptal/picasso-shared@8.2.1
+
 ## 25.2.0
 
 ### Minor Changes
