@@ -88,7 +88,7 @@ jobs:
         run: yarn test:unit:ci
 
       - name: Visual Tests
-        run: yarn run happo:ci
+        run: yarn happo:ci
         env:
           HAPPO_PROJECT: Picasso/Storybook
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
