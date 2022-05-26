@@ -17,6 +17,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   trigger-happo:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
