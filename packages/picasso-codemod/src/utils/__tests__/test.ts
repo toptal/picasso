@@ -43,7 +43,7 @@ describe('find-specifier-for-import', () => {
 
       const specifier = findSpecifierForImport(BAR_PACKAGE_MEMBER, root)
 
-      expect(specifier).not.toBeUndefined()
+      expect(specifier).toBeDefined()
       expect(specifier?.imported.name).toBe('Bar')
       expect(specifier?.local?.name).toBe('PicassoBar')
     })

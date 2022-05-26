@@ -1,7 +1,9 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
-import { PicassoProvider } from '@toptal/picasso-provider'
-import { breakpoints } from '@toptal/picasso/utils'
+import {
+  PicassoProvider,
+  breakpointsList as breakpoints
+} from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({
   MuiStepLabel: {

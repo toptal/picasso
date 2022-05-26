@@ -1,3 +1,6 @@
+import { render, act } from '@toptal/picasso/test-utils'
+import React, { createRef, Ref, useEffect } from 'react'
+
 import {
   capitalize,
   getNameInitials,
@@ -18,10 +21,7 @@ import {
   htmlToHast,
   getReactNodeTextContent,
   isBrowser
-} from '@toptal/picasso/utils'
-import { render, act } from '@toptal/picasso/test-utils'
-import React, { createRef, Ref, useEffect } from 'react'
-
+} from './index'
 import unsafeErrorLog from './unsafe-error-log'
 
 jest.mock('./unsafe-error-log')

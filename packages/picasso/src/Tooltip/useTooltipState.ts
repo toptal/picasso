@@ -1,5 +1,6 @@
 import { MutableRefObject, useRef, useState } from 'react'
-import { isPointerDevice } from '@toptal/picasso/utils'
+
+import isPointerDevice from '../utils/is-pointer-device'
 
 interface UseTooltipStateOptions {
   externalOpen?: boolean
