@@ -1,5 +1,14 @@
 # Change Log
 
+## 8.2.1
+
+### Patch Changes
+
+- [#2806](https://github.com/toptal/picasso/pull/2806) [`81a56673`](https://github.com/toptal/picasso/commit/81a56673a16f0290564d7205f414efebbfd9f7ce) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+  - Fix format of peerDependency for `react` and `react-dom`
+- Updated dependencies [[`81a56673`](https://github.com/toptal/picasso/commit/81a56673a16f0290564d7205f414efebbfd9f7ce)]:
+  - @toptal/picasso-provider@1.1.3
+
 ## 8.2.0
 
 ### Minor Changes
