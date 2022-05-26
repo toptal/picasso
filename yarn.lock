@@ -1452,14 +1452,6 @@
     "@commitlint/types" "^16.2.1"
     ajv "^6.12.6"
 
-"@commitlint/config-validator@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/config-validator/-/config-validator-17.0.0.tgz#49ab09f3ca0ac3449e79ea389cb4942423162ac0"
-  integrity sha512-78IQjoZWR4kDHp/U5y17euEWzswJpPkA9TDL5F6oZZZaLIEreWzrDZD5PWtM8MsSRl/K2LDU/UrzYju2bKLMpA==
-  dependencies:
-    "@commitlint/types" "^17.0.0"
-    ajv "^6.12.6"
-
 "@commitlint/ensure@^16.2.1":
   version "16.2.1"
   resolved "https://registry.yarnpkg.com/@commitlint/ensure/-/ensure-16.2.1.tgz#0fc538173f95c1eb2694eeedb79cab478347f16f"
@@ -1472,11 +1464,6 @@
   version "16.2.1"
   resolved "https://registry.yarnpkg.com/@commitlint/execute-rule/-/execute-rule-16.2.1.tgz#60be73be4b9af97a41546e7ce59fdd33787c65f8"
   integrity sha512-oSls82fmUTLM6cl5V3epdVo4gHhbmBFvCvQGHBRdQ50H/690Uq1Dyd7hXMuKITCIdcnr9umyDkr8r5C6HZDF3g==
-
-"@commitlint/execute-rule@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/execute-rule/-/execute-rule-17.0.0.tgz#186e9261fd36733922ae617497888c4bdb6e5c92"
-  integrity sha512-nVjL/w/zuqjCqSJm8UfpNaw66V9WzuJtQvEnCrK4jDw6qKTmZB+1JQ8m6BQVZbNBcwfYdDNKnhIhqI0Rk7lgpQ==
 
 "@commitlint/format@^16.2.1":
   version "16.2.1"
@@ -1504,24 +1491,7 @@
     "@commitlint/rules" "^16.2.4"
     "@commitlint/types" "^16.2.1"
 
-"@commitlint/load@>6.1.1":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-17.0.0.tgz#0bbefe6d8b99276714c5ea8ef32de2bd2f082698"
-  integrity sha512-XaiHF4yWQOPAI0O6wXvk+NYLtJn/Xb7jgZEeKd4C1ZWd7vR7u8z5h0PkWxSr0uLZGQsElGxv3fiZ32C5+q6M8w==
-  dependencies:
-    "@commitlint/config-validator" "^17.0.0"
-    "@commitlint/execute-rule" "^17.0.0"
-    "@commitlint/resolve-extends" "^17.0.0"
-    "@commitlint/types" "^17.0.0"
-    "@types/node" ">=12"
-    chalk "^4.1.0"
-    cosmiconfig "^7.0.0"
-    cosmiconfig-typescript-loader "^2.0.0"
-    lodash "^4.17.19"
-    resolve-from "^5.0.0"
-    typescript "^4.6.4"
-
-"@commitlint/load@^16.3.0":
+"@commitlint/load@>6.1.1", "@commitlint/load@^16.3.0":
   version "16.3.0"
   resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-16.3.0.tgz#e674ccc9edefd64a2d8b82d175de81ec3bb70eca"
   integrity sha512-3tykjV/iwbkv2FU9DG+NZ/JqmP0Nm3b7aDwgCNQhhKV5P74JAuByULkafnhn+zsFGypG1qMtI5u+BZoa9APm0A==
@@ -1574,18 +1544,6 @@
     resolve-from "^5.0.0"
     resolve-global "^1.0.0"
 
-"@commitlint/resolve-extends@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/resolve-extends/-/resolve-extends-17.0.0.tgz#3a40ee08184b984acf475ebc962641f435e3a639"
-  integrity sha512-wi60WiJmwaQ7lzMXK8Vbc18Hq9tE2j/6iv2AFfPUGV7fvfY6Sf1iNKuUHirSqR0fquUyufIXe4y/K9A6LVIIvw==
-  dependencies:
-    "@commitlint/config-validator" "^17.0.0"
-    "@commitlint/types" "^17.0.0"
-    import-fresh "^3.0.0"
-    lodash "^4.17.19"
-    resolve-from "^5.0.0"
-    resolve-global "^1.0.0"
-
 "@commitlint/rules@^16.2.4":
   version "16.2.4"
   resolved "https://registry.yarnpkg.com/@commitlint/rules/-/rules-16.2.4.tgz#c2fbbf20d9d0e8fcf25690c88a27750d4a3e867b"
@@ -1615,13 +1573,6 @@
   integrity sha512-7/z7pA7BM0i8XvMSBynO7xsB3mVQPUZbVn6zMIlp/a091XJ3qAXRXc+HwLYhiIdzzS5fuxxNIHZMGHVD4HJxdA==
   dependencies:
     chalk "^4.0.0"
-
-"@commitlint/types@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-17.0.0.tgz#3b4604c1a0f06c340ce976e6c6903d4f56e3e690"
-  integrity sha512-hBAw6U+SkAT5h47zDMeOu3HSiD0SODw4Aq7rRNh1ceUmL7GyLKYhPbUvlRWqZ65XjBLPHZhFyQlRaPNz8qvUyQ==
-  dependencies:
-    chalk "^4.1.0"
 
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
@@ -25592,7 +25543,7 @@ typescript@^3.9.10, typescript@^3.9.5, typescript@^3.9.7:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.10.tgz#70f3910ac7a51ed6bef79da7800690b19bf778b8"
   integrity sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==
 
-typescript@^4.4.3, typescript@^4.6.3, typescript@^4.6.4:
+typescript@^4.4.3, typescript@^4.6.3:
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.2.tgz#1f9aa2ceb9af87cca227813b4310fff0b51593c4"
   integrity sha512-Mamb1iX2FDUpcTRzltPxgWMKy3fhg0TN378ylbktPGPK/99KbDtMQ4W1hwgsbPAsG3a0xKa1vmw4VKZQbkvz5A==
