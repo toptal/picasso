@@ -3,7 +3,7 @@
 In order to maintain good strict [semver](https://semver.org/) versioning of `Picasso` our commit convention follows [conventionalcommits.org](https://www.conventionalcommits.org) workflow. This helps us to automatically determine version change by automatic analysis of git commits between two given releases.
 
 ## PR workflow
-Every PR’s is checked against several automatic jobs which are always automatically run on every push. You don’t need to trigger any special phrase as running all jobs takes ~4minutes we currently run all on every commit. 
+Every PR’s is checked against several automatic jobs which are always automatically run on every push. You don’t need to trigger any special phrase as running all jobs takes ~4minutes we currently run all on every commit.
 
 ### Temploys
 
@@ -18,19 +18,19 @@ To make reviews easier we have automatic "temploy" like deployment for every com
 * Deploy docs - This job will deploy live preview of your changes
 
 ## CI Release workflow and commit messages
-Automatic analysis is run by NPM package [semantic-release](https://semantic-release.gitbook.io) which does all the work under the cover. The main script which runs from the CI job [./bin/release](https://github.com/toptal/picasso/blob/master/bin/release) is checking all commits pushed to the `master` branch since the last release published to GitHub. Based on those commits it automatically bumps the version. 
+Automatic analysis is run by NPM package [semantic-release](https://semantic-release.gitbook.io) which does all the work under the cover. The main script which runs from the CI job [./bin/release](https://github.com/toptal/picasso/blob/master/bin/release) is checking all commits pushed to the `master` branch since the last release published to GitHub. Based on those commits it automatically bumps the version.
 
 ### Commit messages patterns
-Commits messages need to follow patterns to let `semantic-release` correctly check which version needs to be published. 
+Commits messages need to follow patterns to let `semantic-release` correctly check which version needs to be published.
 
 #### General commit message pattern
 `type(scope?): description`
 
 * `type` - Possible values are `feat | fix | chore | refactor | style | ci`
 * `scope` - Any scope to which `type` applies, usually we either omit scope or use the component name.
-* `description` - Description of changes, needs to start with **lowercase** character to pass checks. 
+* `description` - Description of changes, needs to start with **lowercase** character to pass checks.
 
-Let’s assume that we are fixing expected behavior inside `Button` component and we are not in any way changing API of components which could lead to non-backward compatible issues. 
+Let’s assume that we are fixing expected behavior inside `Button` component and we are not in any way changing API of components which could lead to non-backward compatible issues.
 Commit message could be following:
 `fix(button): fix onChange handler incorrect execution`
 
@@ -38,10 +38,7 @@ Commit message could be following:
 💡 ***TIP:*** Those rules are also enforced to titles of all PR's
 
 #### Introducing breaking changes
-We try to always provide backward compatible changes to component’s API but if it’s necessary we might introduce a breaking change, we can do it by adding magic constant `BREAKING CHANGE` somewhere to commit description. This keyword will trigger `major` version bump to `Picasso` version. 
-
-#### Using CLI to generate commit messages
-In order to simplify generating correct commit message, `Picasso` has installed `git` helper to `prepare-commit-msg` with nice terminal prompt. This command invokes [commitizen/cz-cli](https://github.com/commitizen/cz-cli) prompt utility which will ask you several questions and generate the correct commit message. You can create commits with running `yarn commit` instead of `git commit` and go through the asked questions.
+We try to always provide backward compatible changes to component’s API but if it’s necessary we might introduce a breaking change, we can do it by adding magic constant `BREAKING CHANGE` somewhere to commit description. This keyword will trigger `major` version bump to `Picasso` version.
 
 #### Version determination
 To better illustrate how versions are bumped let’s assume that the current version of `Picasso` is `0.1.0`.
@@ -54,11 +51,11 @@ If we create `feat` commit type, change we will be following:
 
 `0.1.0 -> 0.2.0`
 
-If we will create `BREAKING CHANGE` commit type, the change will be following: 
+If we will create `BREAKING CHANGE` commit type, the change will be following:
 
 `0.1.0 -> 1.0.0`
 
-More about default rules could be found here  [semantic-release/lib/default-release-rules.js](https://github.com/semantic-release/commit-analyzer/blob/master/lib/default-release-rules.js) 
+More about default rules could be found here  [semantic-release/lib/default-release-rules.js](https://github.com/semantic-release/commit-analyzer/blob/master/lib/default-release-rules.js)
 
 #### CI Jobs schema
 ![ci-schema](https://user-images.githubusercontent.com/324488/57615639-7c1a3e80-757c-11e9-8edb-3b358a42949a.png)
