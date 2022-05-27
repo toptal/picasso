@@ -221,6 +221,10 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       <SelectOptions
         data-testid={testIds?.scrollMenu}
         selectedIndex={highlightedIndex}
+        fixedFooter={
+          optionsLength > 0 &&
+          poweredByGoogle && <PoweredByGoogle classes={classes} />
+        }
       >
         {options?.map((option, index) => (
           <Menu.Item
@@ -251,7 +255,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             {noOptionsText}
           </NoOptionsMenuItem>
         )}
-        {optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />}
       </SelectOptions>
     )
 
