@@ -1,5 +1,15 @@
 # Change Log
 
+## 25.3.1
+
+### Patch Changes
+
+- [#2812](https://github.com/toptal/picasso/pull/2812) [`56149a1a`](https://github.com/toptal/picasso/commit/56149a1a5be67e10dbdb458465dd284c0db2dcf3) Thanks [@mupkoo](https://github.com/mupkoo)! - ---
+
+  ### Autocomplete
+
+  - Improve the look of `PoweredByGoogle` label
+
 ## 25.3.0
 
 ### Minor Changes
