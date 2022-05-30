@@ -23,7 +23,8 @@ with list of candidates in a pipeline.
 `
   )
   .addExample('tutorials/spacings/story/Spacings.final.example.tsx', {
-    title: 'End result'
+    title: 'End result',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Tutorial */
@@ -49,7 +50,8 @@ use of size types: \`xsmall, small, medium and large\` to get standard spacings.
     }
   )
   .addExample('tutorials/spacings/story/Spacings.1.example.tsx', {
-    id: 'spacings-1'
+    id: 'spacings-1',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Second step */
@@ -71,7 +73,8 @@ is a basic building block along with \`Grid\`.
     }
   )
   .addExample('tutorials/spacings/story/Spacings.2.example.tsx', {
-    id: 'spacings-2'
+    id: 'spacings-2',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Third step */
@@ -98,5 +101,6 @@ And that's it, we have implemented a simple job position card.
     }
   )
   .addExample('tutorials/spacings/story/Spacings.final.example.tsx', {
-    id: 'spacings-3'
+    id: 'spacings-3',
+    takeScreenshot: false
   }) // picasso-skip-visuals

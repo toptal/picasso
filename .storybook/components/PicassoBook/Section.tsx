@@ -9,7 +9,7 @@ const decorator = (story: () => ReactNode) => (
 )
 
 const DEFAULT_CONFIG = {
-  takeScreenshot: false
+  takeScreenshot: true
 }
 
 const DEFAULT_OPTIONS = {

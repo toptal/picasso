@@ -18,8 +18,14 @@ page
 
 page
   .createChapter()
-  .addExample('Timeline/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('Timeline/story/Dates.example.tsx', 'Dates') // picasso-skip-visuals
+  .addExample('Timeline/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Timeline/story/Dates.example.tsx', {
+    title: 'Dates',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample('Timeline/story/TrimLastConnector.example.tsx', {
     title: 'Trim last connector',
     description:

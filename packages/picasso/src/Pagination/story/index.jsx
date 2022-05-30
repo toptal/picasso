@@ -27,7 +27,19 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Pagination/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('Pagination/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
-  .addExample('Pagination/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
-  .addExample('Pagination/story/Ellipsis.example.tsx', 'Ellipsis') // picasso-skip-visuals
+  .addExample('Pagination/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Pagination/story/Disabled.example.tsx', {
+    title: 'Disabled',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Pagination/story/Variants.example.tsx', {
+    title: 'Variants',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Pagination/story/Ellipsis.example.tsx', {
+    title: 'Ellipsis',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

@@ -30,19 +30,24 @@ page
 To show the 'Modal' component you should use 'useModal' hook. And if you need
 any additional logic inside the 'Modal' component you should create a wrapper 
 component and manage the internal state there.
-`
+`,
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Modal/story/Sizes.example.tsx', {
-    title: 'Sizes'
+    title: 'Sizes',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Modal/story/MaxHeight.example.tsx', {
-    title: 'Max Height'
+    title: 'Max Height',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Modal/story/Tooltips.example.tsx', {
     // TODO title should be 1-2 words, title -> descripion
-    title: 'Two tooltips on the page'
+    title: 'Two tooltips on the page',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Modal/story/Alignment.example.tsx', {
     title: 'Alignment',
-    description: 'Demonstrate how `align` prop works'
+    description: 'Demonstrate how `align` prop works',
+    takeScreenshot: false
   }) // picasso-skip-visuals

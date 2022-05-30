@@ -5,9 +5,18 @@ const chapter = PicassoBook.connectToPage(
   page =>
     page
       .createChapter('Avatar Group')
-      .addExample('AvatarGroup/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-      .addExample('AvatarGroup/story/Limit.example.tsx', 'Limit') // picasso-skip-visuals
-      .addExample('AvatarGroup/story/Sizes.example.tsx', 'Sizes') // picasso-skip-visuals
+      .addExample('AvatarGroup/story/Default.example.tsx', {
+        title: 'Default',
+        takeScreenshot: false
+      }) // picasso-skip-visuals
+      .addExample('AvatarGroup/story/Limit.example.tsx', {
+        title: 'Limit',
+        takeScreenshot: false
+      }) // picasso-skip-visuals
+      .addExample('AvatarGroup/story/Sizes.example.tsx', {
+        title: 'Sizes',
+        takeScreenshot: false
+      }) // picasso-skip-visuals
 )
 
 const componentDocs = { component: AvatarGroup, name: 'Avatar.Group' }

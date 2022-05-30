@@ -77,10 +77,31 @@ onDrop will provide you with an array of File objects which you can then process
 
 page
   .createChapter()
-  .addExample('Dropzone/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('Dropzone/story/Uploader.example.tsx', 'With upload') // picasso-skip-visuals
-  .addExample('Dropzone/story/Uploading.example.tsx', 'Uploading') // picasso-skip-visuals
-  .addExample('Dropzone/story/Disabled.example.tsx', 'Completed') // picasso-skip-visuals
-  .addExample('Dropzone/story/Multiple.example.tsx', 'Completed Multiple files') // picasso-skip-visuals
-  .addExample('Dropzone/story/Error.example.tsx', 'Upload Failed') // picasso-skip-visuals
-  .addExample('Dropzone/story/SingleFile.example.tsx', 'Single File') // picasso-skip-visuals
+  .addExample('Dropzone/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Dropzone/story/Uploader.example.tsx', {
+    title: 'With upload',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Dropzone/story/Uploading.example.tsx', {
+    title: 'Uploading',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Dropzone/story/Disabled.example.tsx', {
+    title: 'Completed',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Dropzone/story/Multiple.example.tsx', {
+    title: 'Completed Multiple files',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Dropzone/story/Error.example.tsx', {
+    title: 'Upload Failed',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Dropzone/story/SingleFile.example.tsx', {
+    title: 'Single File',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

@@ -24,11 +24,11 @@ page
 
 page
   .createChapter()
-  .addExample(
-    'RichText/story/Default.example.tsx',
-    'AST from BE for normal view'
-  ) // picasso-skip-visuals
-  .addExample(
-    'RichText/story/HTML.example.tsx',
-    'HTML from FE for live-editing preview'
-  ) // picasso-skip-visuals
+  .addExample('RichText/story/Default.example.tsx', {
+    title: 'AST from BE for normal view',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('RichText/story/HTML.example.tsx', {
+    title: 'HTML from FE for live-editing preview',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

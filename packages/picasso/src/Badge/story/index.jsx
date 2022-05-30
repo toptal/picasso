@@ -19,6 +19,15 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Badge/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
-  .addExample('Badge/story/Sizes.example.tsx', 'Sizes') // picasso-skip-visuals
-  .addExample('Badge/story/Overlay.example.tsx', 'Overlay') // picasso-skip-visuals
+  .addExample('Badge/story/Variants.example.tsx', {
+    title: 'Variants',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Badge/story/Sizes.example.tsx', {
+    title: 'Sizes',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Badge/story/Overlay.example.tsx', {
+    title: 'Overlay',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

@@ -11,5 +11,11 @@ page
   .addComponentDocs({ component: TimePicker, name: 'TimePicker' })
 page
   .createChapter()
-  .addExample('TimePicker/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('TimePicker/story/Status.example.tsx', 'Status') // picasso-skip-visuals
+  .addExample('TimePicker/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('TimePicker/story/Status.example.tsx', {
+    title: 'Status',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

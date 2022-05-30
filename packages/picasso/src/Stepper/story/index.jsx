@@ -20,5 +20,11 @@ page
 
 page
   .createChapter()
-  .addExample('Stepper/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('Stepper/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
+  .addExample('Stepper/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Stepper/story/Variants.example.tsx', {
+    title: 'Variants',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

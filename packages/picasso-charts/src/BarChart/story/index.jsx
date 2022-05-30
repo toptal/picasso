@@ -14,7 +14,8 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('BarChart/story/Default.example.tsx', {
-    title: 'Default'
+    title: 'Default',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('BarChart/story/Tooltip.example.tsx', {
     title: 'Tooltip',
@@ -39,5 +40,6 @@ page
   .addExample('BarChart/story/HideBarLabel.example.tsx', {
     title: 'Hide bar label',
     description:
-      'You can hide label of each bar via `showBarLabel` prop being set to `false`.'
+      'You can hide label of each bar via `showBarLabel` prop being set to `false`.',
+    takeScreenshot: false
   }) // picasso-skip-visuals

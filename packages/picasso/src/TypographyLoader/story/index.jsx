@@ -12,7 +12,8 @@ const chapter = PicassoBook.connectToPage(
       .createChapter('SkeletonLoader.Typography')
       .addExample('TypographyLoader/story/Default.example.tsx', {
         id: 'TypographyLoader',
-        waitUntilImagesLoaded: true
+        waitUntilImagesLoaded: true,
+        takeScreenshot: false
       }) // picasso-skip-visuals
 )
 

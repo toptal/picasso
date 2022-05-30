@@ -21,7 +21,8 @@ We will focus on using \`Form\`, \`Form.Field\`, input components \`Input\`, \`S
 `
   )
   .addExample('tutorials/forms/story/Forms.final.example.tsx', {
-    title: 'End result'
+    title: 'End result',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Tutorial */
@@ -46,7 +47,8 @@ Let's add one form text field just to be able to test responsivness of our form.
     }
   )
   .addExample('tutorials/forms/story/Forms.1.example.tsx', {
-    id: 'forms-1'
+    id: 'forms-1',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Second step */
@@ -66,7 +68,8 @@ additional details.
     }
   )
   .addExample('tutorials/forms/story/Forms.2.example.tsx', {
-    id: 'forms-2'
+    id: 'forms-2',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Third step */
@@ -84,7 +87,8 @@ spacings and grid columns.
     }
   )
   .addExample('tutorials/forms/story/Forms.3.example.tsx', {
-    id: 'forms-3'
+    id: 'forms-3',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Fourth step */
@@ -101,7 +105,8 @@ If you'd like to focus \`Input\` by click on label, you need to specify \`id\` a
     }
   )
   .addExample('tutorials/forms/story/Forms.4.example.tsx', {
-    id: 'forms-4'
+    id: 'forms-4',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Third step */
@@ -119,5 +124,6 @@ And that's it, we have implemented simple form layout.
     }
   )
   .addExample('tutorials/forms/story/Forms.final.example.tsx', {
-    id: 'forms-5'
+    id: 'forms-5',
+    takeScreenshot: false
   }) // picasso-skip-visuals

@@ -20,4 +20,7 @@ page
   .addComponentDocs(noteSubtitleStory.componentDocs)
   .addComponentDocs(noteContentStory.componentDocs)
 
-page.createChapter().addExample('Note/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+page.createChapter().addExample('Note/story/Default.example.tsx', {
+  title: 'Default',
+  takeScreenshot: false
+}) // picasso-skip-visuals

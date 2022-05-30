@@ -38,7 +38,8 @@ page
 
       await testPage.click('[data-testid="input"]')
       await makeScreenshot()
-    }
+    },
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Input/story/WithIcon.example.tsx', 'With icon')
   .addExample('Input/story/Sizes.example.tsx', 'Sizes')
@@ -53,5 +54,11 @@ page
     'AutoComplete defined as email'
   )
   .addExample('Input/story/WithLimit.example.tsx', 'With Limit')
-  .addExample('Input/story/ResetButton.example.tsx', 'With reset button') // picasso-skip-visuals
-  .addExample('Input/story/Refs.example.tsx', 'Refs') // picasso-skip-visuals
+  .addExample('Input/story/ResetButton.example.tsx', {
+    title: 'With reset button',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Input/story/Refs.example.tsx', {
+    title: 'Refs',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

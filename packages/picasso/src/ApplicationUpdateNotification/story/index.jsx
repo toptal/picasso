@@ -14,8 +14,10 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('ApplicationUpdateNotification/story/Default.example.tsx', {
-    title: 'Default'
+    title: 'Default',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('ApplicationUpdateNotification/story/InAction.example.tsx', {
-    title: 'In Action'
+    title: 'In Action',
+    takeScreenshot: false
   }) // picasso-skip-visuals
