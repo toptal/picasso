@@ -12,5 +12,11 @@ page
 
 page
   .createChapter()
-  .addExample('FieldRequirements/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('FieldRequirements/story/Error.example.tsx', 'Error') // picasso-skip-visuals
+  .addExample('FieldRequirements/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('FieldRequirements/story/Error.example.tsx', {
+    title: 'Error',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

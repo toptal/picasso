@@ -12,6 +12,15 @@ page
 
 page
   .createChapter()
-  .addExample('PasswordInput/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('PasswordInput/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
-  .addExample('PasswordInput/story/Status.example.tsx', 'Status') // picasso-skip-visuals
+  .addExample('PasswordInput/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('PasswordInput/story/Disabled.example.tsx', {
+    title: 'Disabled',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('PasswordInput/story/Status.example.tsx', {
+    title: 'Status',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

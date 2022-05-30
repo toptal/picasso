@@ -44,52 +44,77 @@ if needed.
 \`\`\`
     `
   )
-  .addExample('Autocomplete/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('Autocomplete/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
+  .addExample('Autocomplete/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/Disabled.example.tsx', {
+    title: 'Disabled',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample('Autocomplete/story/OtherOption.example.tsx', {
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
       you can set \`showOtherOption={true}\` prop to allow also this new item to appear in the suggestions list. Also,
       you can decorate this option with the prefix text by using \`otherOptionText\` or fully customize it with \`renderOtherOption\` and handle selection with
-      \`onOtherOptionSelect\` event handler.`
+      \`onOtherOptionSelect\` event handler.`,
+    takeScreenshot: false
   }) // picasso-skip-visuals
-  .addExample(
-    'Autocomplete/story/InitialSetValue.example.tsx',
-    'Initially set value'
-  ) // picasso-skip-visuals
-  .addExample(
-    'Autocomplete/story/Controlled.example.tsx',
-    'Controlled selection'
-  ) // picasso-skip-visuals
-  .addExample('Autocomplete/story/FullWidth.example.tsx', 'Full width') // picasso-skip-visuals
-  .addExample('Autocomplete/story/MenuWidth.example.tsx', 'Menu width') // picasso-skip-visuals
-  .addExample('Autocomplete/story/Loading.example.tsx', 'Loading') // picasso-skip-visuals
-  .addExample('Autocomplete/story/Status.example.tsx', 'Status') // picasso-skip-visuals
-  .addExample('Autocomplete/story/WithIcons.example.tsx', 'With Icon') // picasso-skip-visuals
-  .addExample(
-    'Autocomplete/story/WithDescription.example.tsx',
-    'With Description'
-  ) // picasso-skip-visuals
-  .addExample(
-    'Autocomplete/story/CustomOptionRenderer.example.tsx',
-    'Custom options rendering'
-  ) // picasso-skip-visuals
+  .addExample('Autocomplete/story/InitialSetValue.example.tsx', {
+    title: 'Initially set value',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/Controlled.example.tsx', {
+    title: 'Controlled selection',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/FullWidth.example.tsx', {
+    title: 'Full width',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/MenuWidth.example.tsx', {
+    title: 'Menu width',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/Loading.example.tsx', {
+    title: 'Loading',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/Status.example.tsx', {
+    title: 'Status',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/WithIcons.example.tsx', {
+    title: 'With Icon',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/WithDescription.example.tsx', {
+    title: 'With Description',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/CustomOptionRenderer.example.tsx', {
+    title: 'Custom options rendering',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample('Autocomplete/story/DynamicOptions.example.tsx', {
     title: 'Dynamic options',
     description: `If you need to obtain the list of options dynamically from a server.
 It is good practice to set debouncing and a minimum number of chars to limit the number of requests you send to the server.
-Start typing "Mongolia" letter by letter to see this example in action.`
+Start typing "Mongolia" letter by letter to see this example in action.`,
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Autocomplete/story/Autofill.example.tsx', {
     title: 'Form auto filling',
     description: `This example shows how to use component inside the form with several fields
 when it makes sense to have autofill enabled.
-    `
+    `,
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Autocomplete/story/PoweredByGoogle.example.tsx', {
     title: 'Powered By Google label',
     description:
       'There are situations when we use options in the Autocomplete component from the Google API and ' +
       'to meet their requirements https://developers.google.com/places/web-service/policies in such cases ' +
-      'we have to show the "Powered By Google" label.'
+      'we have to show the "Powered By Google" label.',
+    takeScreenshot: false
   }) // picasso-skip-visuals

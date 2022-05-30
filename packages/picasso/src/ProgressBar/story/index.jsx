@@ -16,9 +16,15 @@ page
 
 page
   .createChapter()
-  .addExample('ProgressBar/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('ProgressBar/story/WithPercentage.example.tsx', 'With Percentage') // picasso-skip-visuals
-  .addExample(
-    'ProgressBar/story/AnimatingProgressChange.example.tsx',
-    'Animating Progress Change'
-  ) // picasso-skip-visuals
+  .addExample('ProgressBar/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('ProgressBar/story/WithPercentage.example.tsx', {
+    title: 'With Percentage',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('ProgressBar/story/AnimatingProgressChange.example.tsx', {
+    title: 'Animating Progress Change',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

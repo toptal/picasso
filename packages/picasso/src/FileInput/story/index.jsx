@@ -23,7 +23,10 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('FileInput/story/Default.example.tsx', 'Default')
-  .addExample('FileInput/story/CustomButtonLabel.example.tsx', 'Custom label') // picasso-skip-visuals
+  .addExample('FileInput/story/CustomButtonLabel.example.tsx', {
+    title: 'Custom label',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample('FileInput/story/InitialValue.example.tsx', 'Initial value')
   .addExample(
     'FileInput/story/LimitedFileCount.example.tsx',
@@ -43,5 +46,6 @@ page
   })
   .addExample('FileInput/story/FileList.example.tsx', {
     title: 'FileList',
-    description: 'List of files'
+    description: 'List of files',
+    takeScreenshot: false
   }) // picasso-skip-visuals

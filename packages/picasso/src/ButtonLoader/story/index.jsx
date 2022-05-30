@@ -12,7 +12,8 @@ const chapter = PicassoBook.connectToPage(
       .createChapter('SkeletonLoader.Button')
       .addExample('ButtonLoader/story/Default.example.tsx', {
         id: 'ButtonLoader',
-        waitUntilImagesLoaded: true
+        waitUntilImagesLoaded: true,
+        takeScreenshot: false
       }) // picasso-skip-visuals
 )
 

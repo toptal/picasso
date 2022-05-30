@@ -13,8 +13,6 @@ class TabChapter extends Chapter {
   }
 
   toStoryBook() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const { title, info, hideOnCompactLayout = true } = this.options
 
     const tabs = this.collection.map(section => {
@@ -39,7 +37,8 @@ class TabChapter extends Chapter {
         decorator: (story: () => ReactNode) => (
           <div className='tab-chapter-container'>{story()}</div>
         )
-      }
+      },
+      takeScreenshot: false
     })
 
     return {

@@ -23,23 +23,28 @@ page
   .addExample('Accordion/story/Default.example.tsx', {
     title: 'Default',
     description:
-      'Accordion is uncontrolled until the `expanded` prop is specified.'
+      'Accordion is uncontrolled until the `expanded` prop is specified.',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Accordion/story/Disabled.example.tsx', {
     title: 'Disabled',
     description:
-      'Accordion ignores pointer events when the `disabled` prop is truthy.'
+      'Accordion ignores pointer events when the `disabled` prop is truthy.',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Accordion/story/BorderedGroups.example.tsx', {
     title: 'Borders and Groups',
-    description: 'Accordions have configurable borders and can be grouped'
+    description: 'Accordions have configurable borders and can be grouped',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Accordion/story/Controlled.example.tsx', {
     title: 'Controlled',
-    description: 'Accordion can be controlled via the `expanded` prop.'
+    description: 'Accordion can be controlled via the `expanded` prop.',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Accordion/story/CustomSummary.example.tsx', {
     title: 'Custom Summary',
     description:
-      "Accordion's summary is customizable. It either can be passed as `children` or be an external custom component."
+      "Accordion's summary is customizable. It either can be passed as `children` or be an external custom component.",
+    takeScreenshot: false
   }) // picasso-skip-visuals

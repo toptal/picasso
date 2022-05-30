@@ -11,8 +11,17 @@ page
 
 page
   .createChapter()
-  .addExample('Menu/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('Menu/story/Nested.example.tsx', 'Nested') // picasso-skip-visuals
-  .addExample('Menu/story/Dropdown.example.tsx', 'Dropdown') // picasso-skip-visuals
+  .addExample('Menu/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Menu/story/Nested.example.tsx', {
+    title: 'Nested',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Menu/story/Dropdown.example.tsx', {
+    title: 'Dropdown',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
 
 page.connect(menuItemStory.chapter)

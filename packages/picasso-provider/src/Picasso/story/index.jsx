@@ -28,11 +28,11 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('Picasso/story/Default.example.tsx', 'Default')
-  .addExample(
-    'Picasso/story/DisableResponsiveUI.example.tsx',
-    'Responsive Disabled'
-  ) // picasso-skip-visuals
-  .addExample(
-    'Picasso/story/DisableClassNamePrefix.example.tsx',
-    'ClassNames Prefix Disabled'
-  ) // picasso-skip-visuals
+  .addExample('Picasso/story/DisableResponsiveUI.example.tsx', {
+    title: 'Responsive Disabled',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Picasso/story/DisableClassNamePrefix.example.tsx', {
+    title: 'ClassNames Prefix Disabled',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

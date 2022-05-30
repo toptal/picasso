@@ -42,23 +42,41 @@ page
 
 page
   .createChapter()
-  .addExample('Table/story/Default.example.tsx', 'Plain table') // picasso-skip-visuals
-  .addExample('Table/story/Variants.example.tsx', 'Appearance variants') // picasso-skip-visuals
-  .addExample('Table/story/Spacings.example.tsx', 'Inner spacing') // picasso-skip-visuals
-  .addExample('Table/story/Alignments.example.tsx', 'Cell alignments') // picasso-skip-visuals
-  .addExample('Table/story/Select.example.tsx', 'Selectable table') // picasso-skip-visuals
-  .addExample(
-    'Table/story/SectionHeader.example.tsx',
-    'Table with section header'
-  ) // picasso-skip-visuals
-  .addExample(
-    'Table/story/MultipleSectionHeader.example.tsx',
-    'Table with multiple sections'
-  ) // picasso-skip-visuals
-  .addExample('Table/story/ExpandableRows.example.tsx', 'Expandable rows') // picasso-skip-visuals
-  .addExample(
-    'Table/story/ExpandableRowsDefaultExpanded.example.tsx',
-    'Expandable rows, expanded by default'
-  ) // picasso-skip-visuals
+  .addExample('Table/story/Default.example.tsx', {
+    title: 'Plain table',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Table/story/Variants.example.tsx', {
+    title: 'Appearance variants',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Table/story/Spacings.example.tsx', {
+    title: 'Inner spacing',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Table/story/Alignments.example.tsx', {
+    title: 'Cell alignments',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Table/story/Select.example.tsx', {
+    title: 'Selectable table',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Table/story/SectionHeader.example.tsx', {
+    title: 'Table with section header',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Table/story/MultipleSectionHeader.example.tsx', {
+    title: 'Table with multiple sections',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Table/story/ExpandableRows.example.tsx', {
+    title: 'Expandable rows',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Table/story/ExpandableRowsDefaultExpanded.example.tsx', {
+    title: 'Expandable rows, expanded by default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
 
 page.connect(tableCellStory.chapter)

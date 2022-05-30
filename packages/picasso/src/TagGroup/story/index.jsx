@@ -8,7 +8,10 @@ export const chapter = PicassoBook.connectToPage(
         'Group of tags',
         'You can combine different variants and styles of the Tags by using <Tag.Group /> component'
       )
-      .addExample('TagGroup/story/TagGroup.example.tsx', 'Tag group') // picasso-skip-visuals
+      .addExample('TagGroup/story/TagGroup.example.tsx', {
+        title: 'Tag group',
+        takeScreenshot: false
+      }) // picasso-skip-visuals
 )
 
 const componentDocs = PicassoBook.createComponentDocs(TagGroup, 'Tag.Group')

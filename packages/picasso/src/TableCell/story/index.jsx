@@ -11,7 +11,10 @@ const chapter = PicassoBook.connectToPage(
   page =>
     page
       .createChapter('Table.Cell', 'Cell for table content')
-      .addExample('TableCell/story/Alignments.example.tsx', 'Alignments') // picasso-skip-visuals
+      .addExample('TableCell/story/Alignments.example.tsx', {
+        title: 'Alignments',
+        takeScreenshot: false
+      }) // picasso-skip-visuals
 )
 
 export default {

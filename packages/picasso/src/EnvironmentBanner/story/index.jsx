@@ -20,5 +20,6 @@ page
   .createChapter()
   .addExample('EnvironmentBanner/story/Variants.example.tsx', {
     title: 'Variants',
-    description: 'Click to make them disappear'
+    description: 'Click to make them disappear',
+    takeScreenshot: false
   }) // picasso-skip-visuals

@@ -18,38 +18,59 @@ page
 
 page
   .createChapter()
-  .addExample('DatePicker/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('DatePicker/story/Range.example.tsx', 'Range Mode') // picasso-skip-visuals
+  .addExample('DatePicker/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('DatePicker/story/Range.example.tsx', {
+    title: 'Range Mode',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample('DatePicker/story/WithOnBlurHandler.example.tsx', {
     title: 'With onBlur handler',
-    description: 'Fire onBlur handler on click outside or navigate with tab'
+    description: 'Fire onBlur handler on click outside or navigate with tab',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('DatePicker/story/WithNoHideOnSelect.example.tsx', {
     title: 'With no hideOnSelect',
-    description: 'Do not hide calendar on date select'
+    description: 'Do not hide calendar on date select',
+    takeScreenshot: false
   }) // picasso-skip-visuals
-  .addExample(
-    'DatePicker/story/WithResetButton.example.tsx',
-    'With reset button'
-  ) // picasso-skip-visuals
-  .addExample(
-    'DatePicker/story/WithInitialValue.example.tsx',
-    'With initial value specified'
-  ) // picasso-skip-visuals
-  .addExample('DatePicker/story/WithInputProps.example.tsx', 'With Input Props') // picasso-skip-visuals
-  .addExample('DatePicker/story/Autocomplete.example.tsx', 'Autocomplete') // picasso-skip-visuals
-  .addExample('DatePicker/story/Status.example.tsx', 'Status') // picasso-skip-visuals
-  .addExample(
-    'DatePicker/story/WithSelectionLimits.example.tsx',
-    'With Selection Limits'
-  ) // picasso-skip-visuals
-  .addExample(
-    'DatePicker/story/WithCustomDayRendering.example.tsx',
-    'With Custom Day rendering'
-  ) // picasso-skip-visuals
-  .addExample('DatePicker/story/WithTimezone.example.tsx', 'With Timezone') // picasso-skip-visuals
+  .addExample('DatePicker/story/WithResetButton.example.tsx', {
+    title: 'With reset button',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('DatePicker/story/WithInitialValue.example.tsx', {
+    title: 'With initial value specified',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('DatePicker/story/WithInputProps.example.tsx', {
+    title: 'With Input Props',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('DatePicker/story/Autocomplete.example.tsx', {
+    title: 'Autocomplete',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('DatePicker/story/Status.example.tsx', {
+    title: 'Status',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('DatePicker/story/WithSelectionLimits.example.tsx', {
+    title: 'With Selection Limits',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('DatePicker/story/WithCustomDayRendering.example.tsx', {
+    title: 'With Custom Day rendering',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('DatePicker/story/WithTimezone.example.tsx', {
+    title: 'With Timezone',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample('DatePicker/story/WithInputCustomValueParser.example.tsx', {
     title: "With DatePicker's Input custom value parser",
     description:
-      'Type any year value like `2015` to get a random date within this year'
+      'Type any year value like `2015` to get a random date within this year',
+    takeScreenshot: false
   }) // picasso-skip-visuals
