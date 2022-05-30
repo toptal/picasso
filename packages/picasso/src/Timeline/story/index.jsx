@@ -29,5 +29,6 @@ page
   .addExample('Timeline/story/TrimLastConnector.example.tsx', {
     title: 'Trim last connector',
     description:
-      'You can trim last connector by passing `hasConnector={false}` to the `Timeline.Row` component. It can be useful in situation when you sort date points in the ascending order.'
+      'You can trim last connector by passing `hasConnector={false}` to the `Timeline.Row` component. It can be useful in situation when you sort date points in the ascending order.',
+    takeScreenshot: false
   }) // picasso-skip-visuals
