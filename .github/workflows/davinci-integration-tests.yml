@@ -15,6 +15,7 @@ on:
 env:
   TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  HAPPO_PROJECT: picasso
   HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
   HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
   HAPPO_NONCE: ${{ github.run_id }}
