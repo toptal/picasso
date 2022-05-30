@@ -19,7 +19,8 @@ page
       title: 'Form Spy',
       description: `
             Sometimes you might want to perform a conditional action based on the value of another field in the form or its overall state.
-            For smaller forms, you can just directly work with values, but with a larger form you can avoid prop drilling with FormSpy.`
+            For smaller forms, you can just directly work with values, but with a larger form you can avoid prop drilling with FormSpy.`,
+      takeScreenshot: false
     },
     'picasso-form'
   ) // picasso-skip-visuals
@@ -31,7 +32,8 @@ page
             By default final-form converts all values to strings.
             If want to pass a boolean or a number value to a field, 
             you should pass it serialized and deserialize it later.
-            `
+            `,
+      takeScreenshot: false
     },
     'picasso-form'
   ) // picasso-skip-visuals

@@ -48,7 +48,8 @@ page
   )
   .addExample('Icon/story/List.example.tsx', {
     title: 'List of all icons',
-    showEditCode: false
+    showEditCode: false,
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('Icon/story/Default.example.tsx', 'Default')
   .addExample('Icon/story/Scale.example.tsx', {

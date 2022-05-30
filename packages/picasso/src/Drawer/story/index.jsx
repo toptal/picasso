@@ -74,7 +74,7 @@ page
       }
     }
   })
-  .addExample(
-    'Drawer/story/DrawerAndNotification.example.tsx',
-    'With notification'
-  ) // picasso-skip-visuals
+  .addExample('Drawer/story/DrawerAndNotification.example.tsx', {
+    title: 'With notification',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

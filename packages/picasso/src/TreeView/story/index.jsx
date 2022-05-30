@@ -15,12 +15,14 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('TreeView/story/Default.example.tsx', {
-    title: 'Default'
+    title: 'Default',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('TreeView/story/Selected.example.tsx', {
     title: 'With selected node',
     description:
-      "To set the particular node selected, you need to set `node`'s attribute *selected* to `true`. Also there is additional attribute `selectedOffset` for adding an scroll offset for particular node"
+      "To set the particular node selected, you need to set `node`'s attribute *selected* to `true`. Also there is additional attribute `selectedOffset` for adding an scroll offset for particular node",
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('TreeView/story/Modal.example.tsx', {
     title: 'With Modal',
@@ -33,18 +35,22 @@ page
     }
   })
   .addExample('TreeView/story/CustomZoom.example.tsx', {
-    title: 'Custom Zoom'
+    title: 'Custom Zoom',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('TreeView/story/AvatarSize.example.tsx', {
-    title: 'Avatar Size'
+    title: 'Avatar Size',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('TreeView/story/Horizontal.example.tsx', {
-    title: 'Horizontal Direction'
+    title: 'Horizontal Direction',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('TreeView/story/Compact.example.tsx', {
     title: 'Compact tree',
     description:
-      'Example of a compact tree - one with only single node on each depth that has children'
+      'Example of a compact tree - one with only single node on each depth that has children',
+    takeScreenshot: false
   }) // picasso-skip-visuals
   .addExample('TreeView/story/TreeNodeAvatar.example.tsx', {
     title: 'TreeNodeAvatar',

@@ -55,7 +55,8 @@ To make it possible a utility function \`getServersideStylesheets\` was introduc
     'tutorials/server-side-rendering/story/ServerSideUtils.example.tsx',
     {
       id: 'server-side-utils',
-      showEditCode: false
+      showEditCode: false,
+      takeScreenshot: false
     }
   ) // picasso-skip-visuals
 generalUsage.addTextSection(

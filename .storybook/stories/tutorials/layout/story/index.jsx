@@ -54,7 +54,8 @@ content in \`Page.Content\`.
     }
   )
   .addExample('tutorials/layout/story/Layout.1.example.tsx', {
-    id: 'layout-1'
+    id: 'layout-1',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Second step */
@@ -71,7 +72,8 @@ For demonstration purposes, it's been added additional padding for Sidebar and t
     }
   )
   .addExample('tutorials/layout/story/Layout.2.example.tsx', {
-    id: 'layout-2'
+    id: 'layout-2',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Third step */
@@ -86,7 +88,8 @@ which is a part of Picasso librabry. It should fill all available height of the 
     }
   )
   .addExample('tutorials/layout/story/Layout.3.example.tsx', {
-    id: 'layout-3'
+    id: 'layout-3',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Forth step */
@@ -105,7 +108,8 @@ around the page and we need to make \`MainContent\` grow and fill all available 
     }
   )
   .addExample('tutorials/layout/story/Layout.4.example.tsx', {
-    id: 'layout-4'
+    id: 'layout-4',
+    takeScreenshot: false
   }) // picasso-skip-visuals
 
 /** Fifth step */
@@ -128,5 +132,6 @@ And that's it, we have implemented our goal.
     }
   )
   .addExample('tutorials/layout/story/Layout.final.example.tsx', {
-    id: 'layout-5'
+    id: 'layout-5',
+    takeScreenshot: false
   }) // picasso-skip-visuals

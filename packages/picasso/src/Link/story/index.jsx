@@ -111,17 +111,31 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Link/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('Link/story/Action.example.tsx', 'Action') // picasso-skip-visuals
+  .addExample('Link/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Link/story/Action.example.tsx', {
+    title: 'Action',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample('Link/story/FontSize.example.tsx', {
     title: 'Font size',
     description:
-      "You can modify Link's font size by wrapping it in `Typography`"
+      "You can modify Link's font size by wrapping it in `Typography`",
+    takeScreenshot: false
   }) // picasso-skip-visuals
-  .addExample('Link/story/Color.example.tsx', 'Color') // picasso-skip-visuals
-  .addExample('Link/story/Disabled.example.tsx', 'Disabled') // picasso-skip-visuals
+  .addExample('Link/story/Color.example.tsx', {
+    title: 'Color',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Link/story/Disabled.example.tsx', {
+    title: 'Disabled',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample('Link/story/Routing.example.tsx', {
     title: 'Routing',
     description:
-      'An example how to use `@toptal/picasso` Link with `react-router-dom` Link'
+      'An example how to use `@toptal/picasso` Link with `react-router-dom` Link',
+    takeScreenshot: false
   }) // picasso-skip-visuals

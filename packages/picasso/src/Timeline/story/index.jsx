@@ -18,10 +18,17 @@ page
 
 page
   .createChapter()
-  .addExample('Timeline/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('Timeline/story/Dates.example.tsx', 'Dates') // picasso-skip-visuals
+  .addExample('Timeline/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Timeline/story/Dates.example.tsx', {
+    title: 'Dates',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample('Timeline/story/TrimLastConnector.example.tsx', {
     title: 'Trim last connector',
     description:
-      'You can trim last connector by passing `hasConnector={false}` to the `Timeline.Row` component. It can be useful in situation when you sort date points in the ascending order.'
+      'You can trim last connector by passing `hasConnector={false}` to the `Timeline.Row` component. It can be useful in situation when you sort date points in the ascending order.',
+    takeScreenshot: false
   }) // picasso-skip-visuals

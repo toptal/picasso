@@ -12,11 +12,23 @@ page
 
 page
   .createChapter()
-  .addExample('PromptModal/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('PromptModal/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
-  .addExample('PromptModal/story/WithInput.example.tsx', 'With Input') // picasso-skip-visuals
-  .addExample(
-    'PromptModal/story/WithAutocomplete.example.tsx',
-    'With Autocomplete'
-  ) // picasso-skip-visuals
-  .addExample('PromptModal/story/ErrorHandling.example.tsx', 'Error handling') // picasso-skip-visuals
+  .addExample('PromptModal/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('PromptModal/story/Variants.example.tsx', {
+    title: 'Variants',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('PromptModal/story/WithInput.example.tsx', {
+    title: 'With Input',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('PromptModal/story/WithAutocomplete.example.tsx', {
+    title: 'With Autocomplete',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('PromptModal/story/ErrorHandling.example.tsx', {
+    title: 'Error handling',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

@@ -50,4 +50,7 @@ page
   })
   .addExample('Dropdown/story/CustomContent.example.tsx', 'Custom Content')
   .addExample('Dropdown/story/SmallArrow.example.tsx', 'Small Arrow Dropdown')
-  .addExample('Dropdown/story/LongMenuList.example.tsx', 'Long Menu List') // picasso-skip-visuals
+  .addExample('Dropdown/story/LongMenuList.example.tsx', {
+    title: 'Long Menu List',
+    takeScreenshot: false
+  }) // picasso-skip-visuals

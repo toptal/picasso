@@ -15,22 +15,25 @@ page
   .addExample('Slider/story/Default.example.tsx', 'Default')
   .addExample('Slider/story/InitialValue.example.tsx', 'Initial value')
   .addExample('Slider/story/Controlled.example.tsx', 'Controlled value')
-  .addExample(
-    'Slider/story/ControlledWithLabel.example.tsx',
-    'Controlled value with label'
-  ) // picasso-skip-visuals
-  .addExample(
-    'Slider/story/MinMaxValueLabel.example.tsx',
-    'Minimum and Maximum value with label'
-  ) // picasso-skip-visuals
+  .addExample('Slider/story/ControlledWithLabel.example.tsx', {
+    title: 'Controlled value with label',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
+  .addExample('Slider/story/MinMaxValueLabel.example.tsx', {
+    title: 'Minimum and Maximum value with label',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample('Slider/story/Tooltip.example.tsx', 'Tooltip')
   .addExample('Slider/story/Range.example.tsx', 'Range')
-  .addExample(
-    'Slider/story/RangeWithValueLabel.example.tsx',
-    'Range with value label'
-  ) // picasso-skip-visuals
+  .addExample('Slider/story/RangeWithValueLabel.example.tsx', {
+    title: 'Range with value label',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample('Slider/story/Marks.example.tsx', 'Marks')
-  .addExample('Slider/story/CustomTooltip.example.tsx', 'Custom Tooltip') // picasso-skip-visuals
+  .addExample('Slider/story/CustomTooltip.example.tsx', {
+    title: 'Custom Tooltip',
+    takeScreenshot: false
+  }) // picasso-skip-visuals
   .addExample(
     'Slider/story/HideThumb.example.tsx',
     'Hide thumb when value is null or undefined'
