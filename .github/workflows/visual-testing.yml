@@ -23,6 +23,11 @@ jobs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Storybook Tests
     runs-on: ubuntu-latest
+    env:
+      HAPPO_PROJECT: Picasso/Storybook
+      HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+      HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+      TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
     steps:
       - name: Checkout project
         uses: actions/checkout@v2
@@ -31,7 +36,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: toptal/davinci-github-actions
-          ref: v2
+          ref: v2.1.1
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           path: ./.github/actions/
 
@@ -42,7 +47,3 @@ jobs:
 
       - name: Happo Tests
         run: yarn happo:ci
-        env:
-          HAPPO_PROJECT: Picasso/Storybook
-          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
