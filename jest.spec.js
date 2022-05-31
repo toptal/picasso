@@ -15,6 +15,5 @@ module.exports = {
     '^@toptal/picasso-root/(.*)$': '<rootDir>/$1'
   },
 
-  resetMocks: false,
-  restoreMocks: false
+  resetMocks: false
 }
