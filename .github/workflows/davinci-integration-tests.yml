@@ -1,63 +1,39 @@
-name: Integration Tests
+name: Integration tests
 
 on:
-  workflow_call:
-    secrets:
-      TOPTAL_DEVBOT_TOKEN:
-        required: true
-      NPM_TOKEN:
-        required: true
-      HAPPO_API_KEY:
-        required: true
-      HAPPO_API_SECRET:
-        required: true
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [master, main]
 
+# Read more about customization: https://toptal-core.atlassian.net/l/c/91SzvPoU#Generated-IT-Workflow
 env:
-  TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  HAPPO_PROJECT: picasso
-  HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-  HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
-  HAPPO_NONCE: ${{ github.run_id }}
+  # In monorepo if you want to run integration tests only for
+  # specific subset of packages, define them in PARALLEL_MATRIX below
+#  PARALLEL_MATRIX: |
+#    [
+#      {
+#        "pkg": "@toptal/my-package",
+#        "location": "packages/my-package",
+#        "parallelGroups": 3
+#      }
+#    ]
+  PARALLEL_GROUPS: 2
+  PRINT_COVERAGE: true
+  COVERAGE_REPORT_DIR: coverage
+  COVERAGE_REPORTER: text-summary
+  COMMAND: test:integration:ci
+
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN_READ_ONLY }}
+  GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build-packages:
-    name: Build packages
+  create_matrix:
+    name: Create:Matrix
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Checkout davinci GHAs
-        uses: actions/checkout@v2
-        with:
-          repository: toptal/davinci-github-actions
-          ref: v2
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          path: ./.github/actions/
-
-      - uses: ./.github/actions/yarn-install
-
-      - name: Build packages
-        run: yarn build:package
-
-      - name: Cache built packages
-        uses: actions/cache@v2
-        with:
-          path: 'packages/**/dist-package'
-          key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
-
-  integration-tests:
-    name: Run Integration Tests
-    runs-on: ubuntu-latest
-    needs: [ build-packages ]
-    strategy:
-      fail-fast: false
-      matrix:
-        index: [ 0, 1, 2 ]
-    env:
-      GROUP_INDEX: ${{ matrix.index }}
-      PARALLEL_GROUPS: ${{ strategy.job-total }}
     steps:
       - name: Checkout project
         uses: actions/checkout@v2
@@ -66,41 +42,88 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: toptal/davinci-github-actions
-          ref: v2
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          ref: v2.0.4
+          token: ${{ env.GITHUB_TOKEN }}
           path: ./.github/actions/
+
+      - name: Run Matrix
+        id: set-matrix
+        uses: ./.github/actions/create-matrix
+        with:
+          parallel-groups: ${{ env.PARALLEL_GROUPS }}
+          parallel-matrix: ${{ env.PARALLEL_MATRIX }}
+
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      is-monorepo: ${{ steps.set-matrix.outputs.is-monorepo }}
+
+  integration_check:
+    name: Check:IntegrationTests
+    runs-on: ubuntu-latest
+    needs: [create_matrix]
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.create_matrix.outputs.matrix) }}
+    env:
+      GROUP_INDEX: ${{ matrix.index }}
+      GROUP_LOCATION: ${{ matrix.location }}
+      GROUP_PACKAGE: ${{ matrix.pkg }}
+      PARALLEL_GROUPS: ${{ matrix.total }}
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
 
       - name: Setup node
         uses: actions/setup-node@v2
 
-      - uses: ./.github/actions/yarn-install
-
-      - name: Get cached packages
-        uses: actions/cache@v2
-        with:
-          path: 'packages/**/dist-package'
-          key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
-
-      - name: Run integration tests
-        uses: ./.github/actions/integration-tests
-
-  finalize-integtation-tests:
-    name: Finalize Integration Tests
-    runs-on: ubuntu-latest
-    needs: [ integration-tests ]
-    steps:
-      - name: Checkout project
-        uses: actions/checkout@v2
+      - name: Set integration test command
+        id: set-command
+        run: |
+          echo "::set-output name=command::yarn${{ needs.create_matrix.outputs.is-monorepo == 'true' && format(' {0} {1}', 'workspace', env.GROUP_PACKAGE) || ''}} ${{ env.COMMAND }}"
 
       - name: Checkout davinci GHAs
         uses: actions/checkout@v2
         with:
           repository: toptal/davinci-github-actions
-          ref: v2
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          ref: v2.0.4
+          token: ${{ env.GITHUB_TOKEN }}
           path: ./.github/actions/
 
       - uses: ./.github/actions/yarn-install
 
-      - name: Finalize Happo
-        run: npx happo-e2e finalize
+      - uses: ./.github/actions/integration-tests
+        with:
+          command: ${{ steps.set-command.outputs.command }}
+
+      - name: Move coverage output to joint folder
+        if: ${{ env.PRINT_COVERAGE == 'true' }}
+        run: |
+          mkdir integration-coverage
+          mv $GROUP_LOCATION/$COVERAGE_REPORT_DIR/coverage-final.json integration-coverage/coverage.${GROUP_PACKAGE////-}.$GROUP_INDEX.json
+
+      - name: Upload Coverage
+        if: ${{ env.PRINT_COVERAGE == 'true' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: integration-coverage
+          path: integration-coverage
+
+  coverage_report:
+    name: Report:Coverage
+    runs-on: ubuntu-latest
+    needs: integration_check
+    steps:
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          ref: v2.0.4
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./.github/actions/
+
+      - name: Print Coverage
+        if: ${{ env.PRINT_COVERAGE == 'true' }}
+        uses: ./.github/actions/report-coverage
+        with:
+          name: integration-coverage
