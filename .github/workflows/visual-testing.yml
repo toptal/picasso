@@ -18,3 +18,31 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
       HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+
+  storybook-tests:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: Storybook Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Checkout davinci GHAs
+        uses: actions/checkout@v2
+        with:
+          repository: toptal/davinci-github-actions
+          ref: v2
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          path: ./.github/actions/
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+
+      - uses: ./.github/actions/yarn-install
+
+      - name: Happo Tests
+        run: yarn happo:ci
+        env:
+          HAPPO_PROJECT: Picasso/Storybook
+          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
