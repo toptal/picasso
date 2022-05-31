@@ -6,7 +6,7 @@ import getFormatChangeHandler from '../../utils/getFormatChangeHandler'
 
 const useSubscribeToTextEditorEvents = ({
   editorRef,
-  quill
+  quill,
 }: {
   editorRef: React.RefObject<HTMLDivElement>
   quill?: Quill

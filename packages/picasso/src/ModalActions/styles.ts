@@ -4,6 +4,6 @@ export default () =>
   createStyles({
     root: {
       margin: '0 2em 2em',
-      textAlign: 'right'
-    }
+      textAlign: 'right',
+    },
   })

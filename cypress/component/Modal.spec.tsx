@@ -6,7 +6,7 @@ import {
   Input,
   Select,
   Checkbox,
-  Button
+  Button,
 } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
@@ -28,12 +28,12 @@ const TestModalForm = (props: Partial<Omit<ModalProps, 'open'>>) => (
             options={[
               {
                 text: 'Alabama',
-                value: 'Alabama'
+                value: 'Alabama',
               },
               {
                 text: 'Utah',
-                value: 'Utah'
-              }
+                value: 'Utah',
+              },
             ]}
             value='Alabama'
           />

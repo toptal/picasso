@@ -14,7 +14,7 @@ const Example = () => {
           onClose: () => {
             console.log('Error notification closed!')
           },
-          autoHideDuration: 1000
+          autoHideDuration: 1000,
         })
       }}
     >

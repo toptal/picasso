@@ -16,28 +16,28 @@ export default ({ palette, sizes, transitions }: Theme) =>
       gap: '0.5rem',
       '&:hover, &$hovered, &:focus, &$focused, &$dragActive': {
         borderColor: palette.blue.main,
-        cursor: 'pointer'
+        cursor: 'pointer',
       },
       '&$disabled': {
         backgroundColor: palette.grey.lighter,
         '&:hover': {
           cursor: 'no-drop',
-          borderColor: palette.grey.light2
-        }
-      }
+          borderColor: palette.grey.light2,
+        },
+      },
     },
     hint: {
       margin: 0,
       '& > *': {
-        lineHeight: '1rem'
-      }
+        lineHeight: '1rem',
+      },
     },
     completed: {},
     error: {
-      margin: 0
+      margin: 0,
     },
     dragActive: {},
     hovered: {},
     disabled: {},
-    focused: {}
+    focused: {},
   })

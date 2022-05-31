@@ -21,21 +21,21 @@ page.createTabChapter('Props').addComponentDocs({
     children: {
       name: 'children',
       type: 'ReactNode',
-      description: 'Content of the component'
+      description: 'Content of the component',
     },
     href: {
       name: 'href',
       type: 'string',
-      description: 'Destination the link points to'
+      description: 'Destination the link points to',
     },
     onClick: {
       name: 'onClick',
       type: {
         name: 'function',
         description:
-          '(event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void'
+          '(event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void',
       },
-      description: 'Callback invoked when component is clicked'
+      description: 'Callback invoked when component is clicked',
     },
     as: {
       name: 'as',
@@ -61,81 +61,81 @@ page.createTabChapter('Props').addComponentDocs({
           '"blockquote"',
           '"body"',
           '"br"',
-          '... 157 more ...'
-        ]
+          '... 157 more ...',
+        ],
       },
       defaultValue: 'a',
       description:
-        'The component used for the root node.\nEither a string to use a DOM element or a component.'
+        'The component used for the root node.\nEither a string to use a DOM element or a component.',
     },
     variant: {
       name: 'variant',
       type: {
         name: 'enum',
-        enums: ['"default"', '"action"']
+        enums: ['"default"', '"action"'],
       },
       defaultValue: 'default',
-      description: "Either it's a regular link or an _action_."
+      description: "Either it's a regular link or an _action_.",
     },
     color: {
       name: 'color',
       type: {
         name: 'enum',
-        enums: ['"blue"', '"white"']
+        enums: ['"blue"', '"white"'],
       },
       defaultValue: 'blue',
-      description: 'Controls color of the link'
+      description: 'Controls color of the link',
     },
     className: {
       name: 'className',
       type: 'string',
-      description: 'Classnames applied to root element'
+      description: 'Classnames applied to root element',
     },
     style: {
       name: 'style',
       type: 'CSSProperties',
-      description: 'Style applied to root element'
+      description: 'Style applied to root element',
     },
     size: {
       name: 'size',
       type: {
         name: 'enum',
-        enums: ['"default"', '"inherit"']
+        enums: ['"default"', '"inherit"'],
       },
       defaultValue: 'default',
       description:
-        'Controls font size of Link, whenever you are using Link inside another text with a different font size you should inherit parents font size.'
-    }
-  }
+        'Controls font size of Link, whenever you are using Link inside another text with a different font size you should inherit parents font size.',
+    },
+  },
 })
 
 page
   .createChapter()
   .addExample('Link/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Link/story/Action.example.tsx', {
     title: 'Action',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Link/story/FontSize.example.tsx', {
     title: 'Font size',
     description:
       "You can modify Link's font size by wrapping it in `Typography`",
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Link/story/Color.example.tsx', {
     title: 'Color',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Link/story/Disabled.example.tsx', {
     title: 'Disabled',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Link/story/Routing.example.tsx', {
     title: 'Routing',
     description:
       'An example how to use `@toptal/picasso` Link with `react-router-dom` Link',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

@@ -27,14 +27,14 @@ module.exports = {
       return Promise.resolve({
         component: argvComponent,
         example: argvExampleName,
-        package: argvPackage
+        package: argvPackage,
       })
     }
     if (inputsAsArgs) {
       return Promise.resolve({
         component: args.component,
         example: args.example,
-        package: args.package
+        package: args.package,
       })
     }
 
@@ -42,19 +42,19 @@ module.exports = {
       {
         type: 'input',
         name: 'component',
-        message: "What's the component name?"
+        message: "What's the component name?",
       },
       {
         type: 'input',
         name: 'example',
-        message: "What's the example name?"
+        message: "What's the example name?",
       },
       {
         type: 'select',
         name: 'package',
         message: `To what package would you like to add component?`,
-        choices: AVAILABLE_PACKAGES
-      }
+        choices: AVAILABLE_PACKAGES,
+      },
     ])
-  }
+  },
 }

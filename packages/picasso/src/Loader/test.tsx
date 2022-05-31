@@ -18,7 +18,7 @@ describe('Loader', () => {
   it('props combo', () => {
     const { container } = renderLoader('Testing', {
       inline: true,
-      size: 'large'
+      size: 'large',
     })
 
     expect(container).toMatchSnapshot()

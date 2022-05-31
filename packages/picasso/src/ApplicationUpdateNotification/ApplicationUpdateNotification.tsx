@@ -25,7 +25,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'ApplicationUpdateNotification'
+  name: 'ApplicationUpdateNotification',
 })
 
 export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
@@ -84,7 +84,7 @@ export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
         {...rest}
         classes={{
           root: cx([classes.root, classes.positionRelative]),
-          message: classes.message
+          message: classes.message,
         }}
         message={notification}
         ref={ref}
@@ -104,7 +104,7 @@ ApplicationUpdateNotification.defaultProps = {
   description:
     'IMPORTANT: On reload, any unsaved data (e.g., filled-out forms) will be lost.',
   onReloadClick: () => {},
-  onClose: () => {}
+  onClose: () => {},
 }
 
 ApplicationUpdateNotification.displayName = 'ApplicationUpdateNotification'

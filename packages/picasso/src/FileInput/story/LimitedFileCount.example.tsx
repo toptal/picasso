@@ -12,7 +12,7 @@ const useFiles = (initialFiles?: FileUpload[]) => {
     }
     setFiles([
       ...files,
-      ...Array.from(event.target.files).map(file => ({ file }))
+      ...Array.from(event.target.files).map(file => ({ file })),
     ])
   }
 
@@ -25,7 +25,7 @@ const useFiles = (initialFiles?: FileUpload[]) => {
   return {
     files,
     addFiles,
-    removeFile
+    removeFile,
   }
 }
 

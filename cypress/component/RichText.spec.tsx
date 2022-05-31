@@ -10,7 +10,7 @@ const ast: ASTType = {
       type: 'element',
       tagName: 'h3',
       properties: {},
-      children: [{ type: 'text', value: 'Position Description' }]
+      children: [{ type: 'text', value: 'Position Description' }],
     },
     {
       type: 'element',
@@ -20,7 +20,7 @@ const ast: ASTType = {
         {
           type: 'text',
           value:
-            'We’re looking for hardworking, self-starting Designers for our '
+            'We’re looking for hardworking, self-starting Designers for our ',
         },
         {
           type: 'element',
@@ -32,15 +32,15 @@ const ast: ASTType = {
               type: 'element',
               tagName: 'em',
               properties: {},
-              children: [{ type: 'text', value: 'Design' }]
-            }
-          ]
+              children: [{ type: 'text', value: 'Design' }],
+            },
+          ],
         },
         {
           type: 'text',
-          value: ' team to help us define how talent interacts with Toptal.'
-        }
-      ]
+          value: ' team to help us define how talent interacts with Toptal.',
+        },
+      ],
     },
     {
       type: 'element',
@@ -50,15 +50,15 @@ const ast: ASTType = {
         {
           type: 'text',
           value:
-            'You’ll build beautiful and inspiring design experiences that help users discover and connect with resources they need in truly innovative ways.'
-        }
-      ]
+            'You’ll build beautiful and inspiring design experiences that help users discover and connect with resources they need in truly innovative ways.',
+        },
+      ],
     },
     {
       type: 'element',
       tagName: 'h3',
       properties: {},
-      children: [{ type: 'text', value: 'Requirements' }]
+      children: [{ type: 'text', value: 'Requirements' }],
     },
     {
       type: 'element',
@@ -73,23 +73,23 @@ const ast: ASTType = {
             {
               type: 'text',
               value:
-                'Collaborate with PMs and other designers to ship your first product features.'
-            }
-          ]
+                'Collaborate with PMs and other designers to ship your first product features.',
+            },
+          ],
         },
         {
           type: 'element',
           tagName: 'li',
           properties: {},
-          children: [{ type: 'text', value: 'Learn about our design system.' }]
-        }
-      ]
+          children: [{ type: 'text', value: 'Learn about our design system.' }],
+        },
+      ],
     },
     {
       type: 'element',
       tagName: 'h3',
       properties: {},
-      children: [{ type: 'text', value: 'Requirements' }]
+      children: [{ type: 'text', value: 'Requirements' }],
     },
 
     {
@@ -105,9 +105,9 @@ const ast: ASTType = {
             {
               type: 'text',
               value:
-                'Proficiency with various design and prototyping tools (such as Sketch, Abstract, Marvel, Principle, Figma), as well as knowledge of HTML and CSS.'
-            }
-          ]
+                'Proficiency with various design and prototyping tools (such as Sketch, Abstract, Marvel, Principle, Figma), as well as knowledge of HTML and CSS.',
+            },
+          ],
         },
         {
           type: 'element',
@@ -117,13 +117,13 @@ const ast: ASTType = {
             {
               type: 'text',
               value:
-                'An understanding that phenomenal experiences come from collaborative decision-making with front-end developers, engineers, researchers, content strategists, and other disciplines.'
-            }
-          ]
-        }
-      ]
-    }
-  ]
+                'An understanding that phenomenal experiences come from collaborative decision-making with front-end developers, engineers, researchers, content strategists, and other disciplines.',
+            },
+          ],
+        },
+      ],
+    },
+  ],
 }
 
 const style = { maxWidth: '500px' }

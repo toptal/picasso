@@ -8,25 +8,25 @@ export const createOutlineCommons = ({ palette }: Theme) => ({
   backgroundColor: palette.common.white,
 
   '&:hover, &$hovered': {
-    borderColor: palette.common.black
+    borderColor: palette.common.black,
   },
 
   // when we use <Button as={Link} />
   '&&&:visited': {
-    color: palette.common.black
+    color: palette.common.black,
   },
 
   '&$disabled': {
     color: palette.grey.main,
     borderColor: palette.grey.main,
-    backgroundColor: palette.common.white
-  }
+    backgroundColor: palette.common.white,
+  },
 })
 
 export const activeGroup = ({ palette }: Theme) => ({
   backgroundColor: palette.grey.dark,
   borderColor: palette.grey.dark,
-  color: palette.common.white
+  color: palette.common.white,
 })
 
 export const createVariant = (mainColor: string, { palette }: Theme) => ({
@@ -35,20 +35,20 @@ export const createVariant = (mainColor: string, { palette }: Theme) => ({
   backgroundColor: mainColor,
 
   '&:hover, &$hovered': {
-    backgroundColor: mix(mainColor, palette.common.white, 0.152)
+    backgroundColor: mix(mainColor, palette.common.white, 0.152),
   },
 
   '&:active, &$active': {
-    backgroundColor: mix(mainColor, palette.common.black, 0.172)
+    backgroundColor: mix(mainColor, palette.common.black, 0.172),
   },
 
   // when we use <Button as={Link} />
   '&&&:visited': {
-    color: palette.common.white
+    color: palette.common.white,
   },
   '&$disabled': {
-    backgroundColor: palette.grey.light2
-  }
+    backgroundColor: palette.grey.light2,
+  },
 })
 
 export default (theme: Theme) => {
@@ -68,23 +68,23 @@ export default (theme: Theme) => {
       flexShrink: 0,
 
       '&$focusVisible, &$focused': {
-        ...outline(palette.primary.main)
+        ...outline(palette.primary.main),
       },
 
       '&+&': {
-        marginLeft: '1rem'
-      }
+        marginLeft: '1rem',
+      },
     },
     content: {
       lineHeight: '1.5em',
       fontWeight: typography.fontWeights.semibold,
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
     },
     loader: {
       position: 'absolute',
       left: '50%',
       top: '50%',
-      transform: 'translate(-50%, -50%)'
+      transform: 'translate(-50%, -50%)',
     },
 
     // sizes
@@ -95,16 +95,16 @@ export default (theme: Theme) => {
 
       '& $content': {
         fontSize: typography.buttons.fontSizeSmall,
-        lineHeight: typography.buttons.lineHeightSmall
+        lineHeight: typography.buttons.lineHeightSmall,
       },
 
       '& $iconLeft': {
-        marginLeft: '-0.125em'
+        marginLeft: '-0.125em',
       },
 
       '& $iconRight': {
-        marginRight: '-0.125em'
-      }
+        marginRight: '-0.125em',
+      },
     },
     medium: {
       minWidth: '4em',
@@ -113,16 +113,16 @@ export default (theme: Theme) => {
 
       '& $content': {
         fontSize: typography.buttons.fontSizeMedium,
-        lineHeight: typography.buttons.lineHeightMedium
+        lineHeight: typography.buttons.lineHeightMedium,
       },
 
       '& $iconLeft': {
-        marginLeft: '-0.25em'
+        marginLeft: '-0.25em',
       },
 
       '& $iconRight': {
-        marginRight: '-0.25em'
-      }
+        marginRight: '-0.25em',
+      },
     },
     large: {
       minWidth: '6em',
@@ -131,16 +131,16 @@ export default (theme: Theme) => {
 
       '& $content': {
         fontSize: typography.buttons.fontSizeLarge,
-        lineHeight: typography.buttons.lineHeightLarge
+        lineHeight: typography.buttons.lineHeightLarge,
       },
 
       '& $iconLeft': {
-        marginLeft: '-0.5em'
+        marginLeft: '-0.5em',
       },
 
       '& $iconRight': {
-        marginRight: '-0.5em'
-      }
+        marginRight: '-0.5em',
+      },
     },
 
     // variants
@@ -152,8 +152,8 @@ export default (theme: Theme) => {
       ...createOutlineCommons(theme),
       '&:active, &$active': {
         backgroundColor: palette.grey.lighter2,
-        borderColor: palette.common.black
-      }
+        borderColor: palette.common.black,
+      },
     },
 
     transparent: {
@@ -162,37 +162,37 @@ export default (theme: Theme) => {
 
       // when we use <Button as={Link} />
       '&&&:visited': {
-        color: palette.common.white
+        color: palette.common.white,
       },
 
       '&$focusVisible, &$focused': {
-        ...outline(palette.common.white)
+        ...outline(palette.common.white),
       },
 
       '&:hover, &$hovered': {
-        borderColor: palette.common.white
+        borderColor: palette.common.white,
       },
 
       '&:active, &$active': {
         backgroundColor: alpha(palette.common.white, 0.16),
-        borderColor: palette.common.white
+        borderColor: palette.common.white,
       },
 
       '&$disabled': {
         color: alpha(palette.common.white, 0.32),
         borderColor: alpha(palette.common.white, 0.32),
-        backgroundColor: 'initial'
-      }
+        backgroundColor: 'initial',
+      },
     },
 
     // Other props
     fullWidth: {
-      width: '100%'
+      width: '100%',
     },
     hovered: {},
     focused: {},
     active: {
-      boxShadow: 'none'
+      boxShadow: 'none',
     },
     disabled: {},
     focusVisible: {},
@@ -200,16 +200,16 @@ export default (theme: Theme) => {
     // Child elements
     icon: {
       fontSize: '1.2em !important',
-      flex: '1 1 0%' // IE11 fix
+      flex: '1 1 0%', // IE11 fix
     },
     iconLeft: {
-      marginRight: ICON_SPACING
+      marginRight: ICON_SPACING,
     },
     iconRight: {
-      marginLeft: ICON_SPACING
+      marginLeft: ICON_SPACING,
     },
     hidden: {
-      opacity: 0
-    }
+      opacity: 0,
+    },
   })
 }

@@ -20,9 +20,9 @@ page.createTabChapter('Props').addComponentDocs({
   name: 'Picasso',
   additionalDocs: {
     RootComponent: {
-      defaultValue: 'PicassoRootNode'
-    }
-  }
+      defaultValue: 'PicassoRootNode',
+    },
+  },
 })
 
 page
@@ -30,9 +30,9 @@ page
   .addExample('Picasso/story/Default.example.tsx', 'Default')
   .addExample('Picasso/story/DisableResponsiveUI.example.tsx', {
     title: 'Responsive Disabled',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Picasso/story/DisableClassNamePrefix.example.tsx', {
     title: 'ClassNames Prefix Disabled',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

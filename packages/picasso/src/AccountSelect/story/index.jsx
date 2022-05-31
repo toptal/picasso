@@ -18,19 +18,19 @@ page.createTabChapter('Props').addComponentDocs({
   position: string\n
   avatar?: string\n
 }
-        `
-      }
-    }
-  }
+        `,
+      },
+    },
+  },
 })
 
 page
   .createChapter()
   .addExample('AccountSelect/story/Default.example.tsx', {
     title: 'Default',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
   .addExample('AccountSelect/story/Page.example.tsx', {
     title: 'Select Account Page',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })

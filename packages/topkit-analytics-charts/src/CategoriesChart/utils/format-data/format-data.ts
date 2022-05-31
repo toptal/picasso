@@ -14,8 +14,8 @@ const formatData = (data: DataItem[], labels: LabelMap) => {
       label: labels[id],
       value: {
         team: sumTeam,
-        user: sumUser
-      }
+        user: sumUser,
+      },
     }
   })
 }

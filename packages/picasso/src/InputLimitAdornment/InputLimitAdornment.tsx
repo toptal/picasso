@@ -18,7 +18,7 @@ export interface Props {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoInputLimitAdornment'
+  name: 'PicassoInputLimitAdornment',
 })
 
 const hasRemainingCounter = (counter: CounterType) => counter === 'remaining'
@@ -32,7 +32,7 @@ const getCharsTillLimit = (
 const getMultilineLabel = ({
   multiline,
   charsTillLimit,
-  counter
+  counter,
 }: Pick<Props, 'multiline' | 'counter'> & {
   charsTillLimit: number
 }) => {
@@ -55,7 +55,7 @@ const InputLimitAdornment = (props: Props) => {
   const multilineLabel = getMultilineLabel({
     multiline,
     charsTillLimit,
-    counter
+    counter,
   })
 
   return (
@@ -63,13 +63,13 @@ const InputLimitAdornment = (props: Props) => {
       data-testid={testIds?.inputAdornment}
       position='end'
       className={cx({
-        [classes.limiterMultiline]: multiline
+        [classes.limiterMultiline]: multiline,
       })}
       disablePointerEvents
     >
       <span
         className={cx(classes.limiterLabel, {
-          [classes.limiterLabelError]: charsTillLimit <= 0
+          [classes.limiterLabelError]: charsTillLimit <= 0,
         })}
       >
         {multiline ? Math.abs(charsTillLimit) : charsTillLimit} {multilineLabel}

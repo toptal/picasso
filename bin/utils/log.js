@@ -6,5 +6,5 @@ const log = function (text, color = 'blue') {
 }
 
 module.exports = {
-  log
+  log,
 }

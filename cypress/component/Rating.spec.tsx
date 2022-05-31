@@ -5,7 +5,7 @@ import {
   Pin16,
   PinSolid16,
   Rating,
-  RatingStarsProps
+  RatingStarsProps,
 } from '@toptal/picasso'
 import RatingIcon from '@toptal/picasso/RatingIcon'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
@@ -13,7 +13,7 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 const defaultProps: RatingStarsProps = {
   name: 'rating',
   value: 1,
-  size: 'small'
+  size: 'small',
 }
 
 const renderRating = (props = defaultProps) => (
@@ -41,7 +41,7 @@ describe('Rating.Stars', () => {
             size='small'
             hovered={value === defaultProps.value}
           />
-        )
+        ),
       })
     )
 
@@ -66,7 +66,7 @@ describe('Rating.Stars', () => {
             size={size}
             hovered={value === defaultProps.value}
           />
-        )
+        ),
       })
     )
 
@@ -84,7 +84,8 @@ describe('Rating.Stars', () => {
       renderRating({
         ...defaultProps,
         value: customValue,
-        renderItem: value => (value <= customValue ? <PinSolid16 /> : <Pin16 />)
+        renderItem: value =>
+          value <= customValue ? <PinSolid16 /> : <Pin16 />,
       })
     )
 

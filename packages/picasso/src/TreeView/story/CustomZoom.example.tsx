@@ -7,7 +7,7 @@ import {
   TreeNodeAvatar,
   Button,
   Container,
-  UserBadge
+  UserBadge,
 } from '@toptal/picasso'
 import { HierarchyPointNode } from 'd3-hierarchy'
 import styled from 'styled-components'
@@ -33,9 +33,9 @@ const createTreeNode = (
     selected: false,
     children: [],
     info: {
-      name: 'NODE+NAME+1'
+      name: 'NODE+NAME+1',
     },
-    ...override
+    ...override,
   }
 }
 
@@ -44,94 +44,94 @@ const createTree = (): TreeNodeInterface => {
     id: '1',
     selected: true,
     info: {
-      name: 'NODE+1'
+      name: 'NODE+1',
     },
     children: [
       createTreeNode({
         id: '2',
         info: {
-          name: 'NODE+2'
+          name: 'NODE+2',
         },
         children: [
           createTreeNode({
             id: '3',
             info: {
-              name: 'NODE+3'
+              name: 'NODE+3',
             },
             children: [
               createTreeNode({
                 id: '3.1',
                 info: {
-                  name: 'NODE+3.1'
+                  name: 'NODE+3.1',
                 },
                 children: [
                   createTreeNode({
                     id: '3.1.1',
                     info: {
-                      name: 'NODE+3.1.1'
-                    }
+                      name: 'NODE+3.1.1',
+                    },
                   }),
                   createTreeNode({
                     id: '3.1.2',
                     info: {
-                      name: 'NODE+3.1.2'
-                    }
-                  })
-                ]
+                      name: 'NODE+3.1.2',
+                    },
+                  }),
+                ],
               }),
               createTreeNode({
                 id: '3.2',
                 info: {
-                  name: 'NODE+3.2'
+                  name: 'NODE+3.2',
                 },
                 children: [
                   createTreeNode({
                     id: '3.2.1',
                     info: {
-                      name: 'NODE+3.2.1'
-                    }
+                      name: 'NODE+3.2.1',
+                    },
                   }),
                   createTreeNode({
                     id: '3.2.2',
                     info: {
-                      name: 'NODE+3.2.2'
-                    }
-                  })
-                ]
-              })
-            ]
-          })
-        ]
+                      name: 'NODE+3.2.2',
+                    },
+                  }),
+                ],
+              }),
+            ],
+          }),
+        ],
       }),
       createTreeNode({
         id: '4',
         info: {
-          name: 'NODE+4'
+          name: 'NODE+4',
         },
         children: [
           createTreeNode({
             id: '4.1',
             info: {
-              name: 'NODE+4.1'
+              name: 'NODE+4.1',
             },
             children: [
               createTreeNode({
                 id: '4.1.1',
                 info: {
-                  name: 'NODE+4.1.1'
-                }
+                  name: 'NODE+4.1.1',
+                },
               }),
               createTreeNode({
                 id: '4.1.2',
                 info: {
-                  name: 'NODE+4.1.2'
-                }
-              })
-            ]
-          })
-        ]
-      })
-    ]
+                  name: 'NODE+4.1.2',
+                },
+              }),
+            ],
+          }),
+        ],
+      }),
+    ],
   })
 }
 

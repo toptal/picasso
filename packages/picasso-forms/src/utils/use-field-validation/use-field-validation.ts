@@ -43,7 +43,7 @@ const useFieldValidation = <T extends ValueType>({
   name,
   meta,
   validators,
-  shouldValidateOnSubmit
+  shouldValidateOnSubmit,
 }: Props<T>) => {
   const { setValidators, clearValidators } = useFormContext()
 

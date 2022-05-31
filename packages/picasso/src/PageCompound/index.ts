@@ -18,5 +18,5 @@ export const PageCompound = Object.assign(Page, {
   Banner: PageBanner,
   Helmet: PageHelmet,
   Autocomplete: PageAutocomplete,
-  Article: PageArticle
+  Article: PageArticle,
 })

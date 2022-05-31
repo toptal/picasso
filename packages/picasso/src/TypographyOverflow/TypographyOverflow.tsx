@@ -23,7 +23,7 @@ export interface Props extends BaseProps, TypographyProps {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'TypographyOverflow'
+  name: 'TypographyOverflow',
 })
 
 export const TypographyOverflow = (props: Props) => {
@@ -144,7 +144,7 @@ export const TypographyOverflow = (props: Props) => {
 TypographyOverflow.displayName = 'TypographyOverflow'
 
 TypographyOverflow.defaultProps = {
-  noWrap: true
+  noWrap: true,
 }
 
 export default TypographyOverflow

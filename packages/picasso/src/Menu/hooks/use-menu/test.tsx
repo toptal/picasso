@@ -23,18 +23,18 @@ describe('useMenu', () => {
   beforeEach(() => {
     mockedUseSlideMenu.mockReturnValue({
       context: {
-        variant: 'slide'
+        variant: 'slide',
       },
       innerMenu: undefined,
-      hasBackButton: true
+      hasBackButton: true,
     })
 
     mockedUseDrilldownMenu.mockReturnValue({
       context: {
-        variant: 'drilldown'
+        variant: 'drilldown',
       },
       innerMenu: undefined,
-      hasBackButton: false
+      hasBackButton: false,
     })
   })
 

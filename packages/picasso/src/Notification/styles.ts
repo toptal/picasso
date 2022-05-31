@@ -13,16 +13,16 @@ PicassoProvider.override(({ layout }: Theme) => ({
       margin: '0 auto',
 
       '& > div': {
-        width: '100%'
-      }
-    }
-  }
+        width: '100%',
+      },
+    },
+  },
 }))
 
 export default ({
   palette: { red, green, yellow, common, text },
   shadows,
-  sizes: { borderRadius }
+  sizes: { borderRadius },
 }: Theme) =>
   createStyles({
     notification: {
@@ -33,27 +33,27 @@ export default ({
       position: 'relative',
       width: '100%',
       boxShadow: 'none',
-      padding: '1.5em 2.5em 1.5625em 1.5em'
+      padding: '1.5em 2.5em 1.5625em 1.5em',
     },
     notificationShadow: {
-      boxShadow: shadows[3]
+      boxShadow: shadows[3],
     },
     roundedBorders: {
-      borderRadius: borderRadius.small
+      borderRadius: borderRadius.small,
     },
     notificationRed: {
-      background: red.lighter
+      background: red.lighter,
     },
     notificationGreen: {
-      background: green.lighter
+      background: green.lighter,
     },
     notificationWhite: {
       background: common.white,
-      padding: '1.5625em 1.5em 1.5em'
+      padding: '1.5625em 1.5em 1.5em',
     },
     notificationYellow: {
       background: yellow.lighter,
-      padding: `1.5em ${rem('130px')}`
+      padding: `1.5em ${rem('130px')}`,
     },
 
     // Content
@@ -61,10 +61,10 @@ export default ({
       color: common.black,
       overflowWrap: 'break-word',
       minWidth: 0,
-      marginTop: '1px'
+      marginTop: '1px',
     },
     contentYellow: {
-      marginTop: 0
+      marginTop: 0,
     },
 
     // Content Icon
@@ -72,13 +72,13 @@ export default ({
       flexBasis: '1.5em',
       marginRight: '1em',
       minWidth: '1.5em',
-      height: '1.5em'
+      height: '1.5em',
     },
     iconWrapperYellow: {
       flexBasis: 'unset',
       minWidth: '1em',
       height: '1em',
-      marginTop: '2px'
+      marginTop: '2px',
     },
 
     close: {
@@ -91,10 +91,10 @@ export default ({
       height: '1em',
 
       '&:hover': {
-        background: 'transparent'
-      }
+        background: 'transparent',
+      },
     },
     closeIcon: {
-      fill: text.primary
-    }
+      fill: text.primary,
+    },
   })

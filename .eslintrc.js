@@ -2,7 +2,7 @@ const forbiddenImports = {
   picasso: ['picasso', 'picasso-forms', 'picasso-charts'],
   'picasso-charts': ['picasso-charts'],
   'picasso-forms': ['picasso-forms'],
-  'picasso-provider': ['picasso-provider', 'picasso-shared']
+  'picasso-provider': ['picasso-provider', 'picasso-shared'],
 }
 
 const generateConfig = () =>
@@ -19,10 +19,10 @@ const generateConfig = () =>
               name: 'react',
               importNames: ['useLayoutEffect'],
               message:
-                '`useLayoutEffect` causes a warning in SSR. Use `useIsomorphicLayoutEffect` from `@toptal/picasso-shared`'
-            }
-          ]
-        }
+                '`useLayoutEffect` causes a warning in SSR. Use `useIsomorphicLayoutEffect` from `@toptal/picasso-shared`',
+            },
+          ],
+        },
       }
     }
   )
@@ -35,9 +35,9 @@ module.exports = {
       'error',
       {
         excludeFiles: ['**/*.example.jsx', '**/*.example.tsx'],
-        excludePaths: ['@toptal/picasso/test-utils']
-      }
-    ]
+        excludePaths: ['@toptal/picasso/test-utils'],
+      },
+    ],
   },
   ignorePatterns: ['*.output.tsx', '*.input.tsx'],
   overrides: [
@@ -49,8 +49,8 @@ module.exports = {
         'import/no-named-default': 'off',
         'no-console': 'off',
         'no-inline-styles/no-inline-styles': 'off',
-        '@toptal/davinci/no-private-package-imports': 'error'
-      }
+        '@toptal/davinci/no-private-package-imports': 'error',
+      },
     },
     // tests
     {
@@ -58,8 +58,8 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-explicit-any': 'off',
         'no-inline-styles/no-inline-styles': 'off',
-        'max-lines': 'off'
-      }
+        'max-lines': 'off',
+      },
     },
     // codemod fixtures
     {
@@ -68,18 +68,18 @@ module.exports = {
         'id-length': [
           'error',
           {
-            exceptions: ['e', '_', 'j']
-          }
-        ]
-      }
+            exceptions: ['e', '_', 'j'],
+          },
+        ],
+      },
     },
     // Generated files
     {
       files: ['packages/picasso/src/Icon/index.ts'],
       rules: {
-        'max-lines': 'off'
-      }
+        'max-lines': 'off',
+      },
     },
-    ...generateConfig()
-  ]
+    ...generateConfig(),
+  ],
 }

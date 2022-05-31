@@ -5,7 +5,7 @@ import React, {
   ReactElement,
   isValidElement,
   ReactNode,
-  FC
+  FC,
 } from 'react'
 
 import { ASTType } from '../../types'
@@ -54,7 +54,7 @@ const componentMap: Record<string, FC> = {
   h3: H3,
   li: Li,
   ol: Ol,
-  ul: Ul
+  ul: Ul,
 } as const
 
 const picassoMapper = (child: ReactNode): ReactNode => {

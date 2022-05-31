@@ -16,7 +16,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoEnvironmentBanner'
+  name: 'PicassoEnvironmentBanner',
 })
 
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
@@ -43,7 +43,7 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
         className={cx(classes.root, {
           [classes.rootDevelopment]: resolvedEnvironment === 'development',
           [classes.rootTemploy]: resolvedEnvironment === 'temploy',
-          [classes.rootStaging]: resolvedEnvironment === 'staging'
+          [classes.rootStaging]: resolvedEnvironment === 'staging',
         })}
       >
         <div
@@ -51,7 +51,7 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
           className={cx(classes.label, {
             [classes.labelDevelopment]: resolvedEnvironment === 'development',
             [classes.labelTemploy]: resolvedEnvironment === 'temploy',
-            [classes.labelStaging]: resolvedEnvironment === 'staging'
+            [classes.labelStaging]: resolvedEnvironment === 'staging',
           })}
         >
           {`${productName} ${resolvedEnvironment}`}

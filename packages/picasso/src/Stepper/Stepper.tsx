@@ -70,7 +70,7 @@ Stepper.defaultProps = {
   active: 0,
   hideLabels: false,
   direction: 'horizontal',
-  steps: []
+  steps: [],
 }
 
 Stepper.displayName = 'Stepper'

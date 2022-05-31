@@ -12,6 +12,6 @@ export default ({ palette, shadows, sizes }: Theme) =>
       maxWidth: '20.5rem',
       boxShadow: shadows[5],
       borderRadius: sizes.borderRadius.small,
-      backgroundColor: palette.common.white
-    }
+      backgroundColor: palette.common.white,
+    },
   })

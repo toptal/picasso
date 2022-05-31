@@ -29,7 +29,7 @@ const typography = {
     thin: 100,
     light: 300,
     regular: 400,
-    semibold: 600
+    semibold: 600,
   },
   inputSize: '18px',
   buttons: {
@@ -38,8 +38,8 @@ const typography = {
     fontSizeMedium: '13px',
     lineHeightMedium: '16px',
     fontSizeLarge: '15px',
-    lineHeightLarge: '18px'
-  }
+    lineHeightLarge: '18px',
+  },
 }
 
 export default typography

@@ -35,7 +35,7 @@ const OPTIONS = [
   { value: 9, text: 'September' },
   { value: 10, text: 'October' },
   { value: 11, text: 'November' },
-  { value: 12, text: 'December' }
+  { value: 12, text: 'December' },
 ]
 
 const getFilteredOptions = (from: number, to: number) => {
@@ -72,7 +72,7 @@ export const MonthSelect = documentable(
 
 MonthSelect.defaultProps = {
   from: 1,
-  to: 12
+  to: 12,
 }
 
 MonthSelect.displayName = 'MonthSelect'

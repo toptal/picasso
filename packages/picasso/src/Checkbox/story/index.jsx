@@ -13,7 +13,7 @@ page
   .createChapter()
   .addExample('Checkbox/story/Uncontrolled.example.tsx', {
     title: 'Uncontrolled',
-    description: 'Can control its state by itself'
+    description: 'Can control its state by itself',
   })
   .addExample('Checkbox/story/Controlled.example.tsx', {
     title: 'Controlled',
@@ -35,7 +35,7 @@ page
       // Checked focused
       await testPage.keyboard.press('Tab')
       await makeScreenshot()
-    }
+    },
   })
   .addExample(
     'Checkbox/story/CheckboxGroupVertical.example.tsx',
@@ -51,7 +51,7 @@ page
   )
   .addExample('Checkbox/story/Disabled.example.tsx', 'Disabled')
   .addExample('Checkbox/story/Indeterminate.example.tsx', {
-    title: 'Indeterminate'
+    title: 'Indeterminate',
   })
   .addExample('Checkbox/story/Required.example.tsx', 'Required')
   .addExample('Checkbox/story/CustomLabel.example.tsx', 'Custom label')

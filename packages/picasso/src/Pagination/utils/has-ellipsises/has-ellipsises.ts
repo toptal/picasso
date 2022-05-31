@@ -7,7 +7,7 @@ interface Args {
 const hasEllipses = ({
   activePage,
   totalPages,
-  siblingCount
+  siblingCount,
 }: Args): [boolean, boolean] => {
   const rightmostSibling = activePage + siblingCount
 

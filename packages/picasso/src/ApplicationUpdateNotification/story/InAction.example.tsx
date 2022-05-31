@@ -13,7 +13,7 @@ const Example = () => {
         showCustom(
           createElement(ApplicationUpdateNotification, {
             onReloadClick: () => console.log('reload click'),
-            onClose: () => console.log('close click')
+            onClose: () => console.log('close click'),
           }),
           { persist: true }
         )

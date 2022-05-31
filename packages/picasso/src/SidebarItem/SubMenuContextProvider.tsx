@@ -8,7 +8,7 @@ export interface ContextProps {
 
 const Context = createContext<ContextProps>({
   isSubMenu: false,
-  parentMenu: null
+  parentMenu: null,
 })
 
 export interface Props {
@@ -20,13 +20,13 @@ export interface Props {
 export const SubMenuContextProvider = ({
   children,
   parentMenu,
-  parentSidebarItemIndex
+  parentSidebarItemIndex,
 }: Props) => (
   <Context.Provider
     value={{
       isSubMenu: true,
       parentSidebarItemIndex,
-      parentMenu
+      parentMenu,
     }}
   >
     {children}

@@ -3,7 +3,7 @@ import React, {
   ReactNode,
   HTMLAttributes,
   useRef,
-  useEffect
+  useEffect,
 } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -17,7 +17,7 @@ import styles from './styles'
 const MAX_COL_SPAN = 100
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTableExpandableRow'
+  name: 'PicassoTableExpandableRow',
 })
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
@@ -74,7 +74,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
         {expanded && (
           <TableRow
             className={cx(className, {
-              [classes.stripeEven]: stripeEven
+              [classes.stripeEven]: stripeEven,
             })}
             style={style}
           >
@@ -92,7 +92,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
 
 TableExpandableRow.defaultProps = {
   expanded: false,
-  stripeEven: false
+  stripeEven: false,
 }
 
 TableExpandableRow.displayName = 'TableExpandableRow'

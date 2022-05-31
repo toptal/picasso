@@ -18,5 +18,5 @@ page
 
 page.createChapter().addExample('Quote/story/Default.example.tsx', {
   title: 'Default',
-  takeScreenshot: true
+  takeScreenshot: true,
 })

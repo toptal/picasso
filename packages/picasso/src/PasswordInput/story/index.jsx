@@ -14,13 +14,13 @@ page
   .createChapter()
   .addExample('PasswordInput/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('PasswordInput/story/Disabled.example.tsx', {
     title: 'Disabled',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('PasswordInput/story/Status.example.tsx', {
     title: 'Status',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

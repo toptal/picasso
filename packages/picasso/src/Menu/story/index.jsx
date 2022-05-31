@@ -13,15 +13,15 @@ page
   .createChapter()
   .addExample('Menu/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Menu/story/Nested.example.tsx', {
     title: 'Nested',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Menu/story/Dropdown.example.tsx', {
     title: 'Dropdown',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
 
 page.connect(menuItemStory.chapter)

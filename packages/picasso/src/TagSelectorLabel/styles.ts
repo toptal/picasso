@@ -7,6 +7,6 @@ export default () =>
   createStyles({
     label: {
       marginRight: rem('8px'),
-      marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE
-    }
+      marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE,
+    },
   })

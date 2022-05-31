@@ -8,7 +8,7 @@ const getMultipleSelection = (selectedOptions: Option[]): Selection => {
     isOptionSelected: option =>
       selectedOptions.some(
         selectedOption => option.value === String(selectedOption.value)
-      )
+      ),
   }
 }
 

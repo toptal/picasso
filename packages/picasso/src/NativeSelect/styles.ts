@@ -11,45 +11,45 @@ export default ({ palette }: Theme) =>
       position: 'relative',
       display: 'inline-flex',
       fontSize: '1rem',
-      cursor: 'pointer'
+      cursor: 'pointer',
     },
     rootFull: {
-      width: '100%'
+      width: '100%',
     },
     rootShrink: {
-      width: 'auto'
+      width: 'auto',
     },
     rootAuto: {},
     rootDisabled: {
-      cursor: 'default'
+      cursor: 'default',
     },
     select: {
       width: '100%',
       padding: '0.5rem',
 
       '&:focus': {
-        backgroundColor: 'inherit'
-      }
+        backgroundColor: 'inherit',
+      },
     },
     nativeInput: {
       padding: 0,
-      backgroundColor: palette.common.white
+      backgroundColor: palette.common.white,
     },
     placeholder: {
-      color: palette.grey.main2
+      color: palette.grey.main2,
     },
     startAdornment: {
       position: 'absolute',
-      left: '0.625rem'
+      left: '0.625rem',
     },
     endAdornment: {
       position: 'absolute',
-      right: '1.625rem'
+      right: '1.625rem',
     },
     startAdornmentPadding: {
-      paddingLeft: '2.5625rem'
+      paddingLeft: '2.5625rem',
     },
     endAdornmentPadding: {
-      paddingRight: '3.5625rem'
-    }
+      paddingRight: '3.5625rem',
+    },
   })

@@ -23,7 +23,7 @@ const renderTag = (
     endAdornment,
     icon,
     as,
-    href
+    href,
   } = props
 
   return render(
@@ -105,7 +105,7 @@ describe('Tag', () => {
 
   it('renders with adornment', () => {
     const { container } = renderTag('foobar', {
-      endAdornment: <TagConnection>0</TagConnection>
+      endAdornment: <TagConnection>0</TagConnection>,
     })
 
     expect(container).toMatchSnapshot()
@@ -114,7 +114,7 @@ describe('Tag', () => {
   it('renders with connection and icon', () => {
     const { container } = renderTag('foobar', {
       endAdornment: <TagConnection>0</TagConnection>,
-      icon: <Settings16 />
+      icon: <Settings16 />,
     })
 
     expect(container).toMatchSnapshot()
@@ -124,7 +124,7 @@ describe('Tag', () => {
     const href = 'test-href'
     const { getByTestId } = renderTag('foobar', {
       as: Link,
-      href
+      href,
     })
 
     expect(getByTestId('tag')).toHaveAttribute('href', href)

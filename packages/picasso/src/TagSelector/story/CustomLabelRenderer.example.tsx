@@ -16,33 +16,33 @@ const allOptions: Country[] = [
     capital: 'Minsk',
     code: 'BE',
     required: true,
-    href: 'https://en.wikipedia.org/wiki/Belarus'
+    href: 'https://en.wikipedia.org/wiki/Belarus',
   },
   {
     country: 'Croatia',
     capital: 'Zagreb',
     code: 'HR',
-    href: 'https://en.wikipedia.org/wiki/Croatia'
+    href: 'https://en.wikipedia.org/wiki/Croatia',
   },
   {
     country: 'Lithuania',
     capital: 'Vilnius',
     code: 'LU',
     href: 'https://en.wikipedia.org/wiki/Lithuania',
-    required: true
+    required: true,
   },
   {
     country: 'Slovakia',
     capital: 'Bratislava',
     code: 'SK',
-    href: 'https://en.wikipedia.org/wiki/Slovakia'
+    href: 'https://en.wikipedia.org/wiki/Slovakia',
   },
   {
     country: 'Ukraine',
     capital: 'Kyiv',
     code: 'UA',
-    href: 'https://en.wikipedia.org/wiki/Ukraine'
-  }
+    href: 'https://en.wikipedia.org/wiki/Ukraine',
+  },
 ]
 
 const EMPTY_INPUT_VALUE = ''

@@ -5,7 +5,7 @@ import useSelectState, { Props } from './use-select-state'
 const DEFAULT_OPTIONS = [
   { text: 'One', value: '1' },
   { text: 'Two', value: '2' },
-  { text: 'Three', value: '3' }
+  { text: 'Three', value: '3' },
 ]
 
 const defaultGetDisplayValue = jest
@@ -24,10 +24,10 @@ const renderUseSelectState = (initialProps: Partial<Props> = {}) =>
         options,
         getDisplayValue: getDisplayValue,
         searchThreshold,
-        ...rest
+        ...rest,
       }),
     {
-      initialProps
+      initialProps,
     }
   )
 
@@ -52,7 +52,7 @@ describe('useSelectState', () => {
 
   it('returns state with value', () => {
     const { result } = renderUseSelectState({
-      value: DEFAULT_OPTIONS[0].value
+      value: DEFAULT_OPTIONS[0].value,
     })
 
     expect(result.current.selectedOptions).toEqual([DEFAULT_OPTIONS[0]])
@@ -69,12 +69,12 @@ describe('useSelectState', () => {
   it('returns multiple state with value', () => {
     const { result } = renderUseSelectState({
       value: [DEFAULT_OPTIONS[0].value, DEFAULT_OPTIONS[1].value],
-      multiple: true
+      multiple: true,
     })
 
     expect(result.current.selectedOptions).toEqual([
       DEFAULT_OPTIONS[0],
-      DEFAULT_OPTIONS[1]
+      DEFAULT_OPTIONS[1],
     ])
     expect(result.current.isOpen).toBe(false)
     expect(result.current.canOpen).toBe(true)
@@ -97,7 +97,7 @@ describe('useSelectState', () => {
   it('forces search when threshold is higher than max number of elements to show', () => {
     const { result } = renderUseSelectState({
       searchThreshold: 3,
-      limit: 2
+      limit: 2,
     })
 
     expect(result.current.showSearch).toBe(true)

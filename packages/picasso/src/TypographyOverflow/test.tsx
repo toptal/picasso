@@ -4,7 +4,7 @@ import { fireEvent, render, waitFor } from '@toptal/picasso/test-utils'
 import TypographyOverflow from '.'
 jest.mock('../utils/is-overflown', () => ({
   __esModule: true,
-  default: jest.fn(() => true)
+  default: jest.fn(() => true),
 }))
 
 describe('TypographyOverflow', () => {

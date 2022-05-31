@@ -14,9 +14,9 @@ const useEnterOrSpaceKeyDownHandler = <
     filteredOptions,
     highlightedIndex,
     closeOnEnter,
-    close
+    close,
   },
-  handleSelect
+  handleSelect,
 }: UseSelectProps<T, M> & {
   handleSelect: ReturnType<typeof useSelectHandler>
 }) =>
@@ -49,7 +49,7 @@ const useEnterOrSpaceKeyDownHandler = <
       closeOnEnter,
       handleSelect,
       open,
-      close
+      close,
     ]
   )
 

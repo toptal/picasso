@@ -34,7 +34,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoNumberInput'
+  name: 'PicassoNumberInput',
 })
 
 export const NumberInput = forwardRef<HTMLInputElement, Props>(
@@ -63,7 +63,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       name: 'error',
       componentName: 'NumberInput',
       description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
     const classes = useStyles(props)
@@ -95,13 +95,13 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       <OutlinedInput
         classes={{
           root: classes.root,
-          input: classes.input
+          input: classes.input,
         }}
         inputProps={{
           ...rest,
           step,
           min,
-          max
+          max,
         }}
         width={width}
         onResetClick={onResetClick}
@@ -129,7 +129,7 @@ NumberInput.defaultProps = {
   max: Infinity,
   hideControls: false,
   size: 'medium',
-  status: 'default'
+  status: 'default',
 }
 
 NumberInput.displayName = 'NumberInput'

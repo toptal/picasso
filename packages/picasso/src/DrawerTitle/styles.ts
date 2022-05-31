@@ -4,9 +4,9 @@ export default ({ palette }: Theme) =>
   createStyles({
     header: {
       borderBottom: `1px solid ${palette.grey.lighter}`,
-      padding: '1rem 1.5rem'
+      padding: '1rem 1.5rem',
     },
     title: {
-      flexGrow: 1
-    }
+      flexGrow: 1,
+    },
   })

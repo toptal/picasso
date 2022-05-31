@@ -3,7 +3,7 @@ import { createStyles } from '@material-ui/core/styles'
 export default () =>
   createStyles({
     root: {
-      position: 'relative'
+      position: 'relative',
     },
     closeButton: {
       position: 'absolute',
@@ -14,7 +14,7 @@ export default () =>
       padding: 0,
 
       '&:hover': {
-        background: 'transparent'
-      }
-    }
+        background: 'transparent',
+      },
+    },
   })

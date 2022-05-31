@@ -7,7 +7,7 @@ import { useDrawer, usePageTopBar } from '../RootContext'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoNotificationsProvider'
+  name: 'PicassoNotificationsProvider',
 })
 
 const MAX_NOTIFICATION_MESSAGES = 5
@@ -33,10 +33,10 @@ const NotificationsProvider = ({ children, container }: Props) => {
       domRoot={container}
       classes={{
         containerAnchorOriginTopRight: cx(containerAnchorOriginTop, {
-          [classes.marginWithDrawer]: hasDrawer
+          [classes.marginWithDrawer]: hasDrawer,
         }),
         containerAnchorOriginTopLeft: containerAnchorOriginTop,
-        containerAnchorOriginTopCenter: containerAnchorOriginTop
+        containerAnchorOriginTopCenter: containerAnchorOriginTop,
       }}
     >
       {children}

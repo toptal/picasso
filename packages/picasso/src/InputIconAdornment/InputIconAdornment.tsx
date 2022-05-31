@@ -13,7 +13,7 @@ export interface Props {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoInputIconAdornment'
+  name: 'PicassoInputIconAdornment',
 })
 
 const InputIconAdornment = (props: Props) => {
@@ -21,7 +21,7 @@ const InputIconAdornment = (props: Props) => {
   const classes = useStyles()
   const styledIcon = React.cloneElement(icon as ReactElement, {
     className: classes.icon,
-    role: 'presentation'
+    role: 'presentation',
   })
 
   return (

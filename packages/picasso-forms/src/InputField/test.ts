@@ -7,7 +7,7 @@ describe('getInputStatus', () => {
     it('returns "error"', () => {
       const meta: FieldMetaState<string> = {
         error: 'Some error message',
-        touched: true
+        touched: true,
       }
 
       expect(getInputStatus(meta, { showValidState: false })).toBe('error')
@@ -18,7 +18,7 @@ describe('getInputStatus', () => {
     it('returns "error"', () => {
       const meta: FieldMetaState<string> = {
         touched: true,
-        submitError: 'Some error message'
+        submitError: 'Some error message',
       }
 
       expect(getInputStatus(meta, { showValidState: false })).toBe('error')
@@ -28,7 +28,7 @@ describe('getInputStatus', () => {
   describe('when field has not been touched', () => {
     it('returns "default"', () => {
       const meta: FieldMetaState<string> = {
-        touched: false
+        touched: false,
       }
 
       expect(getInputStatus(meta, { showValidState: false })).toBe('default')
@@ -40,7 +40,7 @@ describe('getInputStatus', () => {
       const meta: FieldMetaState<string> = {
         touched: true,
         submitError: 'Some error message',
-        dirtySinceLastSubmit: true
+        dirtySinceLastSubmit: true,
       }
 
       expect(getInputStatus(meta, { showValidState: false })).toBe('default')
@@ -54,7 +54,7 @@ describe('getInputStatus', () => {
         touched: true,
         submitError: undefined,
         dirtySinceLastSubmit: false,
-        modifiedSinceLastSubmit: false
+        modifiedSinceLastSubmit: false,
       }
 
       expect(getInputStatus(meta, { showValidState: true })).toBe('success')
@@ -66,7 +66,7 @@ describe('getInputStatus', () => {
         touched: true,
         submitError: undefined,
         dirtySinceLastSubmit: false,
-        modifiedSinceLastSubmit: false
+        modifiedSinceLastSubmit: false,
       }
 
       expect(getInputStatus(meta, { showValidState: false })).toBe('default')
@@ -77,7 +77,7 @@ describe('getInputStatus', () => {
     it('returns "default"', () => {
       const meta: FieldMetaState<string> = {
         modifiedSinceLastSubmit: true,
-        submitError: 'Some error message'
+        submitError: 'Some error message',
       }
 
       expect(getInputStatus(meta, { validateOnSubmit: true })).toBe('default')

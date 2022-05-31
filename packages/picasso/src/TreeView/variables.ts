@@ -14,6 +14,6 @@ export const TreeViewPropsDefaults = {
   nodeHeight: DEFAULT_HEIGHT,
   directionProps: {
     direction: 'vertical' as DirectionsType,
-    variant: 'normal' as TreeViewVariant
-  }
+    variant: 'normal' as TreeViewVariant,
+  },
 }

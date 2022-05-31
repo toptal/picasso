@@ -7,7 +7,7 @@ import {
   useAutocomplete,
   getNextWrappingIndex,
   normalizeInitialIndex,
-  Props
+  Props,
 } from './use-autocomplete'
 
 const TEST_OPTIONS = [
@@ -15,7 +15,7 @@ const TEST_OPTIONS = [
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
   { text: 'Slovakia', value: 'SK' },
-  { text: 'Ukraine', value: 'UA' }
+  { text: 'Ukraine', value: 'UA' },
   // { text: 'Bulgaria', value: 'BG' },
   // { text: 'Kyrgyzstan', value: 'KG' },
   // { text: 'Russia', value: 'RU' },
@@ -24,7 +24,7 @@ const TEST_OPTIONS = [
 ]
 
 const MOCKED_EVENT = {
-  target: { value: '' }
+  target: { value: '' },
 } as any
 
 const defaultGetDisplayValue = jest
@@ -42,7 +42,7 @@ const renderUseAutocomplete = ({
       value,
       options,
       getDisplayValue,
-      ...rest
+      ...rest,
     })
   )
 
@@ -64,7 +64,7 @@ describe('useAutocomplete', () => {
     const { result } = renderUseAutocomplete({
       onFocus,
       onBlur,
-      enableReset: true
+      enableReset: true,
     })
 
     const input = result.current.getInputProps()
@@ -102,13 +102,13 @@ describe('useAutocomplete', () => {
     const onSelect = jest.fn()
     const { result } = renderUseAutocomplete({
       getDisplayValue,
-      onSelect
+      onSelect,
     })
 
     result.current
       .getItemProps(0, {
         text: 'Ukraine',
-        value: 'UA'
+        value: 'UA',
       })
       .onClick(MOCKED_EVENT)
 
@@ -144,7 +144,7 @@ describe('useAutocomplete', () => {
   it('shows other options if value is set', () => {
     const { result } = renderUseAutocomplete({
       value: 'Picasso',
-      showOtherOption: true
+      showOtherOption: true,
     })
 
     expect(result.current.shouldShowOtherOption).toBe(true)
@@ -165,7 +165,7 @@ describe('useAutocomplete', () => {
 
     const firstItemProps = result.current.getItemProps(0, {
       text: 'Ukraine',
-      value: 'UA'
+      value: 'UA',
     })
 
     expect(firstItemProps.role).toBe('option')
@@ -180,7 +180,7 @@ describe('useAutocomplete', () => {
 
     const secondItemProps = result.current.getItemProps(1, {
       text: 'Ukraine',
-      value: 'UA'
+      value: 'UA',
     })
 
     expect(secondItemProps.role).toBe('option')
@@ -223,7 +223,7 @@ describe('useAutocomplete', () => {
     expect(stopPropagation).toHaveBeenCalledTimes(1)
     expect(onChange).toHaveBeenCalledTimes(1)
     expect(onChange).toHaveBeenCalledWith('', {
-      isSelected: false
+      isSelected: false,
     })
   })
 
@@ -262,7 +262,7 @@ describe('useAutocomplete', () => {
 
     const itemProps = result.current.getItemProps(0, {
       text: 'Ukraine',
-      value: 'UA'
+      value: 'UA',
     })
 
     act(() => {
@@ -364,7 +364,7 @@ describe('useAutocomplete', () => {
       const onChange = jest.fn()
 
       const { result } = renderUseAutocomplete({
-        onChange
+        onChange,
       })
 
       expect(result.current.isOpen).toBe(false)
@@ -380,7 +380,7 @@ describe('useAutocomplete', () => {
       act(() => {
         input.onKeyDown({
           key: 'Backspace',
-          preventDefault: jest.fn()
+          preventDefault: jest.fn(),
         } as any)
       })
 
@@ -391,7 +391,7 @@ describe('useAutocomplete', () => {
       const onChange = jest.fn()
       const { result } = renderUseAutocomplete({
         value: 'Not empty',
-        onChange
+        onChange,
       })
 
       act(() => {
@@ -403,7 +403,7 @@ describe('useAutocomplete', () => {
       act(() => {
         result.current.getInputProps().onKeyDown({
           key: 'Backspace',
-          preventDefault: jest.fn()
+          preventDefault: jest.fn(),
         } as any)
       })
 

@@ -2,7 +2,7 @@ import React, {
   forwardRef,
   ReactNode,
   ElementType,
-  AnchorHTMLAttributes
+  AnchorHTMLAttributes,
 } from 'react'
 import MUILink from '@material-ui/core/Link'
 import { Theme, makeStyles } from '@material-ui/core/styles'
@@ -100,7 +100,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
         [classes.blue]: color === 'blue',
         [classes.visited]: visited,
         [classes.disabled]: disabled,
-        [classes.noUnderline]: noUnderline
+        [classes.noUnderline]: noUnderline,
       })}
       style={style}
       component={as}
@@ -116,7 +116,7 @@ Link.defaultProps = {
   as: 'a',
   color: 'blue',
   variant: 'anchor',
-  noUnderline: false
+  noUnderline: false,
 }
 
 Link.displayName = 'Link'

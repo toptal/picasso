@@ -5,26 +5,26 @@ PicassoProvider.override(() => ({
   MuiListItem: {
     root: {
       '&$focusVisible': {
-        backgroundColor: 'unset !important'
-      }
-    }
-  }
+        backgroundColor: 'unset !important',
+      },
+    },
+  },
 }))
 
 export default () =>
   createStyles({
     listContainer: {
       lineHeight: '1.375em',
-      marginBottom: '0.5em'
+      marginBottom: '0.5em',
     },
     ordered: {
       minWidth: '1.25em',
-      marginRight: '0.75em'
+      marginRight: '0.75em',
     },
     unordered: {
-      minWidth: '1rem'
+      minWidth: '1rem',
     },
     lastElement: {
-      marginBottom: 0
-    }
+      marginBottom: 0,
+    },
   })

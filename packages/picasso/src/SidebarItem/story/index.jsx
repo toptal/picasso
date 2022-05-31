@@ -9,38 +9,38 @@ const componentDocs = PicassoBook.createComponentDocs(
     icon: {
       name: 'icon',
       type: 'ReactElement',
-      description: 'Pass icon to be used as part of item'
+      description: 'Pass icon to be used as part of item',
     },
     selected: {
       name: 'selected',
       defaultValue: 'false',
       type: 'boolean',
-      description: 'Highlights the item as selected'
+      description: 'Highlights the item as selected',
     },
     disabled: {
       name: 'disabled',
       type: 'boolean',
-      description: 'Whether to render disabled item'
+      description: 'Whether to render disabled item',
     },
     collapsible: {
       name: 'collapsible',
       defaultValue: 'false',
       type: 'boolean',
-      description: 'If item has menu defines can menu be collapsed'
+      description: 'If item has menu defines can menu be collapsed',
     },
     menu: {
       name: 'menu',
       type: 'ReactElement',
-      description: 'Renders nested sidebar menu'
+      description: 'Renders nested sidebar menu',
     },
     onClick: {
       name: 'onClick',
       type: {
         name: 'function',
         description:
-          '(event: React.MouseEvent<HTMLElement, MouseEvent>) => void'
+          '(event: React.MouseEvent<HTMLElement, MouseEvent>) => void',
       },
-      description: 'Callback when item is clicked'
+      description: 'Callback when item is clicked',
     },
     as: {
       name: 'as',
@@ -67,21 +67,21 @@ const componentDocs = PicassoBook.createComponentDocs(
           '"dt"',
           '"em"',
           '"figcaption"',
-          '... 95 more ...'
-        ]
+          '... 95 more ...',
+        ],
       },
-      description: 'Component name to render the menu item as'
+      description: 'Component name to render the menu item as',
     },
     className: {
       name: 'className',
       type: 'string',
-      description: 'Classnames applied to root element'
+      description: 'Classnames applied to root element',
     },
     style: {
       name: 'style',
       type: 'CSSProperties',
-      description: 'Style applied to root element'
-    }
+      description: 'Style applied to root element',
+    },
   }
 )
 
@@ -92,7 +92,7 @@ const chapter = PicassoBook.connectToPage(page =>
       title: 'As a Link',
       description: `
 Most of the time you would use Sidebar.Item as a router Link. This is how to do it.
-`
+`,
     })
     .addExample('SidebarItem/story/Icons.example.tsx', 'Icons')
     .addExample('SidebarItem/story/Collapsible.example.tsx', {
@@ -103,17 +103,17 @@ Most of the time you would use Sidebar.Item as a router Link. This is how to do 
         await testPage.click('[test-id="Referrals"]')
         await testPage.waitForSelector('[role="region"]')
         await makeScreenshot()
-      }
+      },
     })
     .addExample('SidebarItem/story/DefaultExpanded.example.tsx', {
       title: 'Expanded by default',
       description:
-        'When a nested Sidebar.Item is selected, it automatically expands the menu.'
+        'When a nested Sidebar.Item is selected, it automatically expands the menu.',
     })
     .addExample('SidebarItem/story/Disabled.example.tsx', 'Disabled')
 )
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

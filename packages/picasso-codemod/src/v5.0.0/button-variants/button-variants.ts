@@ -3,7 +3,7 @@ import { Transform, JSXAttribute, JSXIdentifier } from 'jscodeshift'
 const transparentToButtonAction = [
   'transparent-white',
   'transparent-blue',
-  'transparent-green'
+  'transparent-green',
 ]
 
 const variantTransforms: Record<string, string> = {
@@ -15,7 +15,7 @@ const variantTransforms: Record<string, string> = {
   'secondary-green': 'secondary',
   flat: 'secondary',
   'flat-white': 'transparent',
-  'secondary-white': 'transparent'
+  'secondary-white': 'transparent',
 }
 
 const transform: Transform = (file, api) => {
@@ -29,8 +29,8 @@ const transform: Transform = (file, api) => {
     .find(j.JSXAttribute, {
       name: {
         type: 'JSXIdentifier',
-        name: 'circular'
-      }
+        name: 'circular',
+      },
     })
     .forEach(nodePath => {
       const { openingElement, closingElement } = nodePath.parent.parent.node
@@ -61,8 +61,8 @@ const transform: Transform = (file, api) => {
   buttons
     .find(j.JSXAttribute, {
       name: {
-        name: 'variant'
-      }
+        name: 'variant',
+      },
     })
     .filter(
       nodePath =>
@@ -89,8 +89,8 @@ const transform: Transform = (file, api) => {
     .find(j.JSXAttribute, {
       name: {
         type: 'JSXIdentifier',
-        name: 'variant'
-      }
+        name: 'variant',
+      },
     })
     .filter(
       nodePath =>

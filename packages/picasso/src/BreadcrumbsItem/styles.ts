@@ -4,6 +4,6 @@ export default () =>
   createStyles({
     root: {
       fontSize: '14px',
-      fontWeight: 'bold'
-    }
+      fontWeight: 'bold',
+    },
   })

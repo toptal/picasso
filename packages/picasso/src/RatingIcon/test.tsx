@@ -6,7 +6,7 @@ import RatingIcon, { Props } from './RatingIcon'
 const defaultProps: Props = {
   active: true,
   interactive: true,
-  size: 'small'
+  size: 'small',
 }
 
 const renderRatingIcon = (props = defaultProps) =>

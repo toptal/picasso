@@ -9,43 +9,43 @@ import { palette } from '@toptal/picasso/utils'
 const CHART_DATA_DEFAULT = [
   {
     name: 'Apple',
-    value: { 'engineers hired': 500 }
+    value: { 'engineers hired': 500 },
   },
   {
     name: 'Google',
-    value: { 'engineers hired': 700 }
+    value: { 'engineers hired': 700 },
   },
   {
     name: 'Facebook',
-    value: { 'engineers hired': 600 }
+    value: { 'engineers hired': 600 },
   },
   {
     name: 'Amazon',
-    value: { 'engineers hired': 400 }
+    value: { 'engineers hired': 400 },
   },
   {
     name: 'Toptal',
-    value: { 'engineers hired': 1000 }
-  }
+    value: { 'engineers hired': 1000 },
+  },
 ]
 
 const CHART_DATA_CUSTOM_TOOLTIP = [
   {
     name: 'Berlin',
-    value: { infected: 4000, recovered: 2400 }
+    value: { infected: 4000, recovered: 2400 },
   },
   {
     name: 'Milan',
-    value: { infected: 3000, recovered: 1398 }
+    value: { infected: 3000, recovered: 1398 },
   },
   {
     name: 'Moscow',
-    value: { infected: 2000, recovered: 9800 }
+    value: { infected: 2000, recovered: 9800 },
   },
   {
     name: 'Los-Angeles',
-    value: { infected: 2780, recovered: 3908 }
-  }
+    value: { infected: 2780, recovered: 3908 },
+  },
 ]
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -130,11 +130,11 @@ describe('BarChart', () => {
         data={CHART_DATA_CUSTOM_TOOLTIP}
         fillSchema={{
           infected: palette.red.main,
-          recovered: palette.green.main
+          recovered: palette.green.main,
         }}
         labelColorSchema={{
           infected: palette.red.main,
-          recovered: palette.green.main
+          recovered: palette.green.main,
         }}
         tooltip
         customTooltip={<CustomTooltip />}

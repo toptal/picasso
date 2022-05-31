@@ -9,5 +9,5 @@ module.exports = {
   copyPackageJson,
   copyReadme,
   copyLicense,
-  safeExec
+  safeExec,
 }

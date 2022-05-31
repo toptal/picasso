@@ -18,7 +18,7 @@ type Props = BaseProps & {
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
   name: 'TextEditorButton',
-  index: 10
+  index: 10,
 })
 
 const RichTextEditorButton = (props: Props) => {
@@ -34,7 +34,7 @@ const RichTextEditorButton = (props: Props) => {
       className={cx(
         classes.button,
         {
-          [classes.activeButton]: active
+          [classes.activeButton]: active,
         },
         className
       )}
@@ -47,7 +47,7 @@ const RichTextEditorButton = (props: Props) => {
 RichTextEditorButton.defaultProps = {
   active: false,
   disabled: false,
-  onClick: () => {}
+  onClick: () => {},
 }
 
 RichTextEditorButton.displayName = 'RichTextEditorButton'

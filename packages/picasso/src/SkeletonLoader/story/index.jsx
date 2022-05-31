@@ -21,7 +21,7 @@ page.createChapter().addExample('SkeletonLoader/story/Default.example.tsx', {
     Below is a simple example demonstrating how. If you make a reusable skeleton loader - export it to topkit.
     `,
   waitUntilImagesLoaded: true,
-  takeScreenshot: false
+  takeScreenshot: false,
 }) // picasso-skip-visuals
 
 page.connect(headerLoaderStory.chapter)

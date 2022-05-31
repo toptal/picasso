@@ -27,8 +27,8 @@ const CHART_DATA = [
       '2020-11-07': 2.0,
       '2020-11-08': 0.0,
       '2020-11-09': 0.0,
-      '2020-11-10': 0.0
-    }
+      '2020-11-10': 0.0,
+    },
   },
   {
     id: 'team',
@@ -54,9 +54,9 @@ const CHART_DATA = [
       '2020-11-07': 1.6,
       '2020-11-08': 2,
       '2020-11-09': 2,
-      '2020-11-10': 3.1
-    }
-  }
+      '2020-11-10': 3.1,
+    },
+  },
 ]
 
 const Example = () => (
@@ -64,7 +64,7 @@ const Example = () => (
     data={CHART_DATA}
     lineConfig={{
       role: { color: palette.yellow.main },
-      team: { color: palette.blue.main }
+      team: { color: palette.blue.main },
     }}
   />
 )

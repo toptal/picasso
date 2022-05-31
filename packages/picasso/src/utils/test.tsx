@@ -20,7 +20,7 @@ import {
   sum,
   htmlToHast,
   getReactNodeTextContent,
-  isBrowser
+  isBrowser,
 } from './index'
 import unsafeErrorLog from './unsafe-error-log'
 
@@ -228,10 +228,10 @@ describe('useWidthOf', () => {
       right: 110,
       bottom: 30,
       width: 100,
-      height: 20
+      height: 20,
     }
     const element = {
-      getBoundingClientRect: () => rect
+      getBoundingClientRect: () => rect,
     } as ReferenceObject
 
     const { queryByText } = render(<TestUseWidthOf element={element} />)
@@ -250,11 +250,11 @@ const TestDisableUnsupportedProps = (props: {
     props,
     {
       featureProps: {
-        type: 'text'
+        type: 'text',
       },
       unsupportedProps: {
-        max: ''
-      }
+        max: '',
+      },
     }
   )
 
@@ -333,15 +333,15 @@ describe('htmlToHast', () => {
             type: 'element',
             tagName: 'h3',
             properties: {},
-            children: [{ type: 'text', value: 'heading' }]
+            children: [{ type: 'text', value: 'heading' }],
           },
           {
             type: 'element',
             tagName: 'p',
             properties: {},
-            children: [{ type: 'text', value: 'normal' }]
-          }
-        ]
+            children: [{ type: 'text', value: 'normal' }],
+          },
+        ],
       })
     })
   })

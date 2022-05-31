@@ -35,7 +35,7 @@ const transformPicassoForms = (root, j) => {
     els
       .find(j.JSXMemberExpression, {
         object: { name: 'Form' },
-        property: { name: 'Rating' }
+        property: { name: 'Rating' },
       })
       .replaceWith(() =>
         j.jsxMemberExpression(

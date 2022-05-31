@@ -20,9 +20,9 @@ page
     additionalDocs: {
       delay: {
         type: 'enum',
-        enums: ['short', 'long']
-      }
-    }
+        enums: ['short', 'long'],
+      },
+    },
   })
   .addTextSection(
     `
@@ -34,43 +34,43 @@ page
   .createChapter()
   .addExample('Tooltip/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Tooltip/story/Placement.example.tsx', {
     title: 'Placement',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Tooltip/story/Trigger.example.tsx', {
     title: 'Trigger',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Tooltip/story/Interactive.example.tsx', {
     title: 'Interactive',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Tooltip/story/ControlListeners.example.tsx', {
     title: 'Control Listeners',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Tooltip/story/DisabledElement.example.tsx', {
     title: 'Tooltip on disabled element',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Tooltip/story/Delay.example.tsx', {
     title: 'Delay',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Tooltip/story/Compact.example.tsx', {
     title: 'Compact',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Tooltip/story/MaxWidth.example.tsx', {
     title: 'Max Width',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Tooltip/story/FollowCursor.example.tsx', {
     title: 'Follow Cursor',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Tooltip/story/Dropdown.example.tsx', {
     title: 'Inside of a Dropdown',
@@ -79,5 +79,5 @@ page
 
       await makeScreenshot({ isFullScreen: true })
     },
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

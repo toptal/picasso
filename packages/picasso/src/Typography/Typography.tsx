@@ -6,7 +6,7 @@ import {
   StandardProps,
   ColorType,
   TextLabelProps,
-  SizeType
+  SizeType,
 } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -47,7 +47,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoTypography'
+  name: 'PicassoTypography',
 })
 
 export const Typography = forwardRef<HTMLElement, Props>(function Typography(
@@ -88,8 +88,8 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
           weight,
           underline,
           invert,
-          lineThrough
-        })
+          lineThrough,
+        }),
       }}
       style={style}
       variant={toMuiVariant(variant, size)}
@@ -107,7 +107,7 @@ Typography.defaultProps = {
   inline: false,
   noWrap: false,
   size: 'inherit',
-  variant: 'body'
+  variant: 'body',
 }
 
 Typography.displayName = 'Typography'

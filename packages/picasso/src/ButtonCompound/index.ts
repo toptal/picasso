@@ -12,5 +12,5 @@ export const ButtonCompound = Object.assign(Button, {
   Action,
   Split,
   Checkbox,
-  Radio
+  Radio,
 })

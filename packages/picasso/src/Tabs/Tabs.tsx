@@ -22,7 +22,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'Tabs'
+  name: 'Tabs',
 })
 
 // eslint-disable-next-line react/display-name
@@ -54,5 +54,5 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
 Tabs.displayName = 'Tabs'
 
 export default Object.assign(Tabs, {
-  Tab
+  Tab,
 })

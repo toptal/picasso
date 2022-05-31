@@ -3,7 +3,7 @@ import {
   TagSelector,
   AutocompleteItem,
   Typography,
-  Container
+  Container,
 } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
@@ -18,7 +18,7 @@ const allOptions: Country[] = [
   { country: 'Croatia', capital: 'Zagreb', code: 'HR' },
   { country: 'Lithuania', capital: 'Vilnius', code: 'LU' },
   { country: 'Slovakia', capital: 'Bratislava', code: 'SK' },
-  { country: 'Ukraine', capital: 'Kyiv', code: 'UA' }
+  { country: 'Ukraine', capital: 'Kyiv', code: 'UA' },
 ]
 
 const EMPTY_INPUT_VALUE = ''
@@ -69,8 +69,8 @@ const TagSelectorCustomOptionRendererExample = () => {
             {
               country: newValue,
               code: newValue.substring(0, 2).toUpperCase(),
-              capital: 'Unknown'
-            }
+              capital: 'Unknown',
+            },
           ])
         }}
       />

@@ -6,7 +6,7 @@ const allOptions = [
   { text: 'Croatia' },
   { text: 'Lithuania' },
   { text: 'Slovakia' },
-  { text: 'United Kingdom of Great Britain and Ireland' }
+  { text: 'United Kingdom of Great Britain and Ireland' },
 ]
 
 const Example = () => (

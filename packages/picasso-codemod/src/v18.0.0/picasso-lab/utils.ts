@@ -82,5 +82,5 @@ export {
   warnUsersAbout,
   getSpecifierName,
   getUnsolvableImportDeclarations,
-  getUnsolvableIdentifierNames
+  getUnsolvableIdentifierNames,
 }

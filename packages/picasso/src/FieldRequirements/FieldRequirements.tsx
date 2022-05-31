@@ -5,7 +5,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import FieldRequirementItem, {
-  FieldRequirementItemStatus
+  FieldRequirementItemStatus,
 } from './FieldRequirementItem'
 import Typography from '../Typography'
 import { FieldRequirement } from './types'
@@ -44,7 +44,7 @@ export const FieldRequirements = function <TValueType>({
   requirements,
   className,
   style,
-  testIds
+  testIds,
 }: Props<TValueType>) {
   const classes = useStyles()
 
@@ -99,7 +99,7 @@ export const FieldRequirements = function <TValueType>({
 FieldRequirements.defaultProps = {
   open: false,
   timeout: ANIMATION_TIMEOUT,
-  value: ''
+  value: '',
 }
 
 FieldRequirements.displayName = 'FieldRequirements'

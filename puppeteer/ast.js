@@ -38,13 +38,13 @@ const getCodeExampleOptions = node => {
       return {
         ...acc,
         // eslint-disable-next-line no-new-func
-        [prop.key.name]: new Function(functionBody).call()
+        [prop.key.name]: new Function(functionBody).call(),
       }
     }
 
     return {
       ...acc,
-      [prop.key.name]: prop.value.value
+      [prop.key.name]: prop.value.value,
     }
   }, {})
 }
@@ -95,5 +95,5 @@ module.exports = {
   isCodeExampleExpression,
   getCodeExampleName,
   getCodeExampleOptions,
-  isNodeSkipped
+  isNodeSkipped,
 }

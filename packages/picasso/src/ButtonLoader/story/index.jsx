@@ -13,11 +13,11 @@ const chapter = PicassoBook.connectToPage(
       .addExample('ButtonLoader/story/Default.example.tsx', {
         id: 'ButtonLoader',
         waitUntilImagesLoaded: true,
-        takeScreenshot: false
+        takeScreenshot: false,
       }) // picasso-skip-visuals
 )
 
 export default {
   componentDocs,
-  chapter
+  chapter,
 }

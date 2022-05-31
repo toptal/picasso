@@ -22,5 +22,5 @@ page
 
 page.createChapter().addExample('Note/story/Default.example.tsx', {
   title: 'Default',
-  takeScreenshot: false
+  takeScreenshot: false,
 }) // picasso-skip-visuals

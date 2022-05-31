@@ -28,34 +28,34 @@ page.createTabChapter('Props').addComponentDocs({
               values: Value[]
             }
           ]
-        }`
+        }`,
         },
         description: 'A record of kipper data to be rendered as a bar chart',
-        required: true
+        required: true,
       },
       labels: {
         name: 'labels',
         type: {
           name: '{}',
-          description: `Record<string, string>`
+          description: `Record<string, string>`,
         },
         description: 'A record of labels from kipper data',
-        required: true
+        required: true,
       },
       tooltips: {
         name: 'tooltips',
         type: {
           name: '{}',
-          description: 'Record<string, Record<string, Record<string, string>>>'
+          description: 'Record<string, Record<string, Record<string, string>>>',
         },
         description: 'A record of tooltips data from kipper data',
-        required: true
-      }
+        required: true,
+      },
     }
-  )
+  ),
 })
 
 page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
   title: 'Default',
-  delay: 500
+  delay: 500,
 })

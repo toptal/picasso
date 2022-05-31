@@ -4068,17 +4068,17 @@
     lodash "^4.17.4"
     read-pkg-up "^7.0.0"
 
-"@sentry/cli@^1.68.0":
-  version "1.71.0"
-  resolved "https://registry.yarnpkg.com/@sentry/cli/-/cli-1.71.0.tgz#1e33e05d7651b68f501764ab24dce3d5932b195d"
-  integrity sha512-Z8TzH7PkiRfjWSzjXOfPWWp6wxjr+n39Jdrt26OcInVQZM1sx/gZULrDiQZ1L2dy9Fe9AR4SF4nt2/7h2GmLQQ==
+"@sentry/cli@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@sentry/cli/-/cli-2.1.0.tgz#f00805563d2c830a9755acf94cd4758a754ebbe9"
+  integrity sha512-RTT8rD2Z1UoGHLsLdvwztDoP8zWR9TZk6JHDuRZAZbvgCPjlFOUENkRgM9hOOp+nYI/oUy6ZMi/NDe8lVeiLHA==
   dependencies:
     https-proxy-agent "^5.0.0"
-    mkdirp "^0.5.5"
-    node-fetch "^2.6.0"
-    npmlog "^4.1.2"
+    node-fetch "^2.6.7"
+    npmlog "^6.0.1"
     progress "^2.0.3"
     proxy-from-env "^1.1.0"
+    which "^2.0.2"
 
 "@sideway/address@^4.1.3":
   version "4.1.4"
@@ -5200,35 +5200,35 @@
   resolved "https://registry.yarnpkg.com/@toptal/browserslist-config/-/browserslist-config-1.2.0.tgz#37c24c5897a0239bf79dcf8cfe062bd6e379db70"
   integrity sha512-eelB1Rg9HyOv8e0PdKnlBExOV0N0aj+EbQw0Ybvh8XoL0wUQGSQ3U8/dAIaVLD2+TYiCUQdwaXT3DexHnCD7IQ==
 
-"@toptal/davinci-bootstrap@3.1.21":
-  version "3.1.21"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-3.1.21.tgz#e0638dd2e2df2d0f27b537a01f60c33ab87dc333"
-  integrity sha512-FSIL/6y1LQKysAelRmKIXySbAp8Hx98ET6DxNj+x9VPNqML/nXRzkWfv3g1fWCrbt/hs9pOHVDUFR1m7qYGGVg==
+"@toptal/davinci-bootstrap@3.1.22-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5":
+  version "3.1.22-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-3.1.22-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14.tgz#35442b7d9bae6868e7778c987917629942777419"
+  integrity sha512-QSMZcNcqZLiskB0rX5kV7apsr7bK/pWI24my+5uJC9QYxKQ44mPJTNmhxgZ4PUOgXsUfdxNDXlGV1b/wR7sijw==
   dependencies:
-    "@toptal/davinci-cli-shared" "1.5.1"
-    "@toptal/davinci-skeleton" "7.0.0"
-    "@toptal/davinci-skeleton-lib" "0.1.1"
-    "@toptal/davinci-skeleton-sub-app" "1.2.0"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125+c13758f5"
+    "@toptal/davinci-skeleton" "7.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5"
+    "@toptal/davinci-skeleton-lib" "0.1.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.377+c13758f5"
+    "@toptal/davinci-skeleton-sub-app" "1.2.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.83+c13758f5"
     find-yarn-workspace-root "^2.0.0"
     fs-extra "^9.0.1"
     lodash.kebabcase "^4.1.1"
     ora "^5.4.1"
 
-"@toptal/davinci-ci@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-ci/-/davinci-ci-2.0.0.tgz#3b32242caef213c6acabfa0935a1b955cf54d2da"
-  integrity sha512-0Zq1r0mJS0aZNiaqYHqz1nDU9G8m5q/DDRJlSpyAjgYsQcSSemcxOVz9vG0k0o4ObJ43iWJnDmQZTHvPq5JILA==
+"@toptal/davinci-ci@2.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5":
+  version "2.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-ci/-/davinci-ci-2.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14.tgz#6cdeaaf982ff8688d7b1f50a532c29234df15fa7"
+  integrity sha512-dmb2iDVqgL52cjOhEr6e6Jpq5mFuDSOnR8iLvURvl3iVO+5Muk05u9L5H3WtglOUSQSSlB+vKsmsvFqevc7U/A==
   dependencies:
     "@commitlint/cli" "^16.2.4"
     "@commitlint/config-conventional" "^16.0.0"
-    "@toptal/davinci-cli-shared" "1.5.1"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125+c13758f5"
     danger "^11.0.5"
     markdown-table "^2.0.0"
 
-"@toptal/davinci-cli-shared@1.5.1", "@toptal/davinci-cli-shared@^1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-1.5.1.tgz#a41c5a80c64b73ad4d0bbf28788b345c7d698084"
-  integrity sha512-DICvvBoY1tYJ8QfN5hAHll39vlx/1SenC3Bgkq/nEEm850kfUum+0TEXzQvSiGt06amoFfqjM+0TBLr96ummaA==
+"@toptal/davinci-cli-shared@1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125+c13758f5":
+  version "1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125.tgz#a2bd118a13261b18e2cc16368ec2a2e908a8c8fe"
+  integrity sha512-CnI6juw+7ls31UFD09vQm04gG/SL9uj0KsMwCC124FMiYC4dcAIc6MQHMKA88ZgXxsK5n1zBfwsrToxAD60yng==
   dependencies:
     chalk "^4.1.2"
     execa "^5.1.1"
@@ -5236,33 +5236,33 @@
     js-yaml "^4.1.0"
     vorpal "^1.12.0"
 
-"@toptal/davinci-cloudflare-requests-handler@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.1.tgz#a220538c1bf21cf4ab2e12a6888a47c06a098d07"
-  integrity sha512-gKQYU2NxZJ8VLGETCDzlrOayfuELtxoRKFWPCNW7OXfgfNQlOmtoZVy127ZedEZ3K2gn9mPQdEBGH6SOFSKEIw==
+"@toptal/davinci-cloudflare-requests-handler@0.1.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.250+c13758f5":
+  version "0.1.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.250"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.250.tgz#3a96839e0f3feee4eae858209e61aa50944b3b63"
+  integrity sha512-4qdl4oQipCUgTaSQHGip697qlOzKmwosjx0owAcrm8lFVkscpOCkEvIqSP/qLRidMVgYvKJLfdZH83ghUVkrTw==
 
-"@toptal/davinci-code@1.5.3":
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-1.5.3.tgz#41df823d971ea6e567de22346b4aef00510c1cfb"
-  integrity sha512-VpOnnwChXGPayjQoCHmZhnyom/cO43IncqY/WArPR8U6oaGHLqyWAXXxLAIYh7LV/rIAC4/B7TshJ77RT6iIaQ==
+"@toptal/davinci-code@1.5.4-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.118+c13758f5":
+  version "1.5.4-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.118"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-1.5.4-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.118.tgz#da1a25e9fa4f62b2b2c37b2b614a476cea6da764"
+  integrity sha512-xm3Mw6QzGQbgzHZo7Mseqg0LnqcB/XCYqmWx+1+AxXKnEkv3LUI66471Qg6tnMr2DMoKXikWhxMyJkwju2dDFw==
   dependencies:
-    "@toptal/davinci-cli-shared" "1.5.1"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125+c13758f5"
     hygen "^6.1.0"
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-dir-lint@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-dir-lint/-/davinci-dir-lint-0.1.0.tgz#08f1c27e1b3b992f134ce2bd6e25d8161646e689"
-  integrity sha512-NFOVPC90rqBelLm19jdno7Ooq2yodCjWQvG8BnG0rOoSa5NEsqeNQcRBef4/davDZ47lQB3U2+a3q6DEeTz7Yg==
+"@toptal/davinci-dir-lint@0.1.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.76+c13758f5":
+  version "0.1.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.76"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-dir-lint/-/davinci-dir-lint-0.1.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.76.tgz#076be61e0336e213a49a463d8e67a1354b1bc7ff"
+  integrity sha512-XacNWocqIOhFJLzXbv99ao9PYZdNFgsgzUPAuOgYuo6j/kPA6cJXVMCbwYPLFneSRvwwo5NKo9MKe4BkuIFEJg==
   dependencies:
     globby "^11.0.1"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-engine@7.3.0":
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-7.3.0.tgz#3295dd9e8d511d025da0b76a9210862e43acddff"
-  integrity sha512-Rh2eNZVDFUtkDxr0PHDrVMxg6jA+g72RvOAqr20CC5NqGpbEga/63UqY8DaCJmO58cqn86cJEG4VEqsZQ201Vg==
+"@toptal/davinci-engine@7.3.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.8+c13758f5":
+  version "7.3.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.8"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-7.3.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.8.tgz#02ab8469662d3143847bf7dc40fd0c39cbef5fd5"
+  integrity sha512-M4pWStbRNRtSz9Tlw5GZWiRhJrWiBy2sutp+SHdkmt12bqPqO5/YhahoOoMuwXbrD14lUxkoNDJsG/VfW4SgYA==
   dependencies:
     "@babel/cli" "^7.17.10"
     "@babel/core" "^7.18.0"
@@ -5281,12 +5281,12 @@
     "@semantic-release/github" "^8.0.2"
     "@semantic-release/npm" "^7.1.3"
     "@semantic-release/release-notes-generator" "^10.0.3"
-    "@sentry/cli" "^1.68.0"
+    "@sentry/cli" "^2.1.0"
     "@size-limit/file" "^7.0.8"
     "@svgr/webpack" "^6.1.2"
-    "@toptal/davinci-cli-shared" "1.5.1"
-    "@toptal/davinci-cloudflare-requests-handler" "0.1.1"
-    "@toptal/davinci-monorepo" "6.5.0"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125+c13758f5"
+    "@toptal/davinci-cloudflare-requests-handler" "0.1.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.250+c13758f5"
+    "@toptal/davinci-monorepo" "6.5.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.115+c13758f5"
     babel-loader "^8.2.2"
     babel-plugin-graphql-tag "^3.3.0"
     babel-plugin-module-resolver "^4.1.0"
@@ -5329,10 +5329,10 @@
     webpackbar "^4.0.0"
     workbox-webpack-plugin "^6.4.2"
 
-"@toptal/davinci-graphql-codegen@0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-graphql-codegen/-/davinci-graphql-codegen-0.2.4.tgz#afefdb83aa25895d6f6cb68f45cccc5f1f87af41"
-  integrity sha512-CFgDOfwsnceC+m2ofuhM8x+8M0LY/QJ/f1Ma6fKKWk0YOG4twvOexIM0Aa18nbgKZR5HRaKYxE/iY/zRxqOlpg==
+"@toptal/davinci-graphql-codegen@0.2.5-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.8+c13758f5":
+  version "0.2.5-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.8"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-graphql-codegen/-/davinci-graphql-codegen-0.2.5-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.8.tgz#75ba1f3fd96221e3e7d5b12eeaf62dd04d616600"
+  integrity sha512-sY5iQWewosgAEdMHh8f7lZIFSLSo5Oae0FXijaIsqgAMhwl0Vv070cTcJYzmRWvao769v3PWITb3mwYGFtVS9g==
   dependencies:
     "@google-cloud/storage" "^6.0.0"
     "@graphql-codegen/add" "^3.1.0"
@@ -5344,24 +5344,24 @@
     "@graphql-codegen/typescript-operations" "^2.3.5"
     "@graphql-codegen/typescript-resolvers" "^2.2.1"
     "@graphql-typed-document-node/core" "^3.1.0"
-    "@toptal/davinci-cli-shared" "^1.5.1"
-    "@toptal/davinci-monorepo" "6.5.0"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125+c13758f5"
+    "@toptal/davinci-monorepo" "6.5.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.115+c13758f5"
     chalk "^4.1.2"
     graphql "^15.7.1"
 
-"@toptal/davinci-monorepo@6.5.0":
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-monorepo/-/davinci-monorepo-6.5.0.tgz#29ed66fc3b459e482a3fd8a1caf441d3d01007ce"
-  integrity sha512-r0iakmj1opXvdu7E92hZc1EZLNqvzPSbXSdIH/LNgPVxYY0PP1uJjt/i7r7n/qsvXrN9DUrENoJzvYYLBjHnMA==
+"@toptal/davinci-monorepo@6.5.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.115+c13758f5":
+  version "6.5.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.115"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-monorepo/-/davinci-monorepo-6.5.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.115.tgz#13b8016424d921f8d15f8259ecfe8f5d1cf699c4"
+  integrity sha512-+CFQeCAcNN4WuSpOpvZuFyr9udlPa0etTpwzeJEEkwZzStCEKKwG9yIGWV1krEGl+dL/dLA2L5O5SHDAP1jqVQ==
   dependencies:
-    "@toptal/davinci-cli-shared" "1.5.1"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125+c13758f5"
     execa "^5.1.1"
-    glob "^7.1.7"
+    glob "^8.0.3"
 
-"@toptal/davinci-qa@8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-8.0.0.tgz#c9ecfab47be0993ddafc5bfb75d749e7f3f4b9f3"
-  integrity sha512-5ZXiWRyjBdystaFKf9VjxCJMKVxfkTIx4XuUWzkPoZ5iCnTRsBRMxjU9ByNwUu7D1yq23tYpr4m+XPlJeQDw5Q==
+"@toptal/davinci-qa@8.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5":
+  version "8.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-8.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14.tgz#5f1b4252365c553beb50755b42138afc1a525391"
+  integrity sha512-TIL8kDL4VgR+tLMv52nUIMOOXhiMq4bbDkBIIgIPDtcsJZE0nl+BZlllas+Rze0BaUMLVEzkzc/yYD2QoHvPrw==
   dependencies:
     "@babel/core" "^7.18.0"
     "@babel/preset-env" "^7.18.0"
@@ -5372,7 +5372,7 @@
     "@cypress/webpack-preprocessor" "^5.7.0"
     "@testing-library/jest-dom" "^5.14.1"
     "@testing-library/react" "^12.1.2"
-    "@toptal/davinci-cli-shared" "1.5.1"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125+c13758f5"
     "@types/jest" "^27.4.1"
     babel-jest "^27.5.1"
     cypress "^9.4.1"
@@ -5388,36 +5388,36 @@
     matchmedia-polyfill "^0.3.2"
     semver "^7.3.2"
 
-"@toptal/davinci-skeleton-lib@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton-lib/-/davinci-skeleton-lib-0.1.1.tgz#db38430f51443c05f4e058820986924b0fc0bf48"
-  integrity sha512-XTEfsVmKyzwNACjIcuNITs4xHXQzB95Zfc0dYRX4r7IPK7CL2rmOOkaAaxqvF9g56V+4nZ2/oyAw1GP1nQtb+A==
+"@toptal/davinci-skeleton-lib@0.1.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.377+c13758f5":
+  version "0.1.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.377"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton-lib/-/davinci-skeleton-lib-0.1.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.377.tgz#2dd115b03304d8defd6ef8330d080a4fae44930a"
+  integrity sha512-QrGg/s1nc4mZL6gJjfIH02w27Zzq5jU9LOMFOAzWVBIBZ5W2ziwl1DgGPY+7U+jxWBOPqlNEmxpzbCuSHoAO8A==
 
-"@toptal/davinci-skeleton-sub-app@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton-sub-app/-/davinci-skeleton-sub-app-1.2.0.tgz#d6710691f9d2a586c78a42e3a9aad6058414569b"
-  integrity sha512-h9aXK3NUOIf/ohaDvJIx/9zXMp0Cio5c5WMIq6IZttW/kOctisywvvVPE0paZBz0OvzNAyatS7rQyUc4rlp7Qw==
+"@toptal/davinci-skeleton-sub-app@1.2.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.83+c13758f5":
+  version "1.2.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.83"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton-sub-app/-/davinci-skeleton-sub-app-1.2.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.83.tgz#12020ddf5e19ffc25280ef1d1854aa617905fd01"
+  integrity sha512-hCdZBZkTPe82xxAofrzBvNfn6pnanOtObNAToGc+EylYgd4+KxjvuPF6ukUNPKCPZuK9HqgtcWNdmYrwASkssA==
 
-"@toptal/davinci-skeleton@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-7.0.0.tgz#b40509c3e4be77e8b257c4b74ec3c67354d35d98"
-  integrity sha512-dNUGFrJt8kvPtqozoT7M5tleQCmX57k9rXfknxc6j75IVep+nNDwdKenq9Y2JnldyX2mFnKbQim1OPRrWP3flQ==
+"@toptal/davinci-skeleton@7.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5":
+  version "7.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-7.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14.tgz#47bc8773e14bec1f7b4dcfa556fa75d714b5a41e"
+  integrity sha512-zHjIlgvM+Ix8CGO+Qh/2OgK+ZlmkNDuc4L/8cILcQ/sqBnrjOpr+VI0S1a82+4zn/TrMfj+6vS46sFj73R4+rA==
 
-"@toptal/davinci-syntax@13.2.2":
-  version "13.2.2"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-13.2.2.tgz#70b164d41a220a99c1432e05c04c639285c68c00"
-  integrity sha512-sMcmjhFzOcjL+XQ2EyS183ZVbZNctX8fmgfRwIltZuZPMGhNCk0fdo2SWW7X7c7FKhfyp8BJbzN9iQWdPaLgaQ==
+"@toptal/davinci-syntax@13.2.3-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5":
+  version "13.2.3-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-13.2.3-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14.tgz#762cfbfe0c76e4fe1dec2d0b8081929d3b3a6ec6"
+  integrity sha512-SBwsRTWecNXexxnXNtJfOMn6j1EnmT0jxiTR73NLygH9T9ZMry9knDAyRzXoodzTN78W295hNU4bYjNLmF2Qwg==
   dependencies:
     "@stylelint/postcss-css-in-js" "^0.37.2"
-    "@toptal/davinci-cli-shared" "1.5.1"
-    "@toptal/davinci-dir-lint" "^0.1.0"
-    "@toptal/eslint-plugin-davinci" "5.2.0"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125+c13758f5"
+    "@toptal/davinci-dir-lint" "0.1.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.76+c13758f5"
+    "@toptal/eslint-plugin-davinci" "5.2.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5"
     "@typescript-eslint/eslint-plugin" "^5.19.0"
-    "@typescript-eslint/parser" "^5.19.0"
+    "@typescript-eslint/parser" "^5.26.0"
     eslint "^8.13.0"
     eslint-config-prettier "^8.5.0"
     eslint-config-prettier-standard "^4.0.1"
-    eslint-config-standard "^16.0.3"
+    eslint-config-standard "^17.0.0"
     eslint-config-standard-jsx "^10.0.0"
     eslint-plugin-cypress "^2.12.1"
     eslint-plugin-import "^2.26.0"
@@ -5432,7 +5432,7 @@
     eslint-plugin-todo-plz "^1.2.1"
     eslint-plugin-unused-imports "2.0.0"
     husky "^7.0.4"
-    lint-staged "^12.4.1"
+    lint-staged "^12.4.3"
     postcss-syntax "^0.36.2"
     prettier "^2.6.2"
     prettier-config-standard "^5.0.0"
@@ -5441,38 +5441,38 @@
     stylelint-config-styled-components "^0.1.1"
     stylelint-processor-styled-components "^1.10.0"
 
-"@toptal/davinci-workflow@1.8.2":
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-workflow/-/davinci-workflow-1.8.2.tgz#c1a2b7c21155346679f84fb66d99025688771481"
-  integrity sha512-BPPvBOy/a5QwHVXau/k956PfJTFnSN/j0e/eefVopjH7y8SCxqWvhE123VXBq0jxX6V/tdMNJXIOs9UM58q5Lg==
+"@toptal/davinci-workflow@1.8.3-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5":
+  version "1.8.3-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-workflow/-/davinci-workflow-1.8.3-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14.tgz#872f950f667e8932e7f6cfe8013c1de82ffa6c9b"
+  integrity sha512-k24kTLT0wiYPRg6WrmRnfXteSs2IOFPAkpH4ar96osrPqh8fpMR8dvPlnhIJ1nPcklsvW8Ptrr5PevDs1TH88A==
   dependencies:
-    "@toptal/davinci-cli-shared" "1.5.1"
-    "@toptal/davinci-skeleton" "7.0.0"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125+c13758f5"
+    "@toptal/davinci-skeleton" "7.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5"
     chalk "^4.1.2"
     fs-extra "^9.0.1"
     lodash.kebabcase "^4.1.1"
     ora "^5.4.1"
 
-"@toptal/davinci@^15.1.0":
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-15.1.0.tgz#2f8c0be02350b90f8884883907d4c29ecf5a5618"
-  integrity sha512-RES1ekejdcJo9LCdrLAWgJz6KUeFUN4JJeSCIcZxnemTsH0HiGPYu3Eus1luIy1NnDyiUnDVFEYr3gR7omIEqw==
+"@toptal/davinci@15.1.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.8":
+  version "15.1.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.8"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-15.1.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.8.tgz#c90c575a0eb5993aace536677b4c33e37b36dcb1"
+  integrity sha512-rTvyxoNG+gSaFz1UMfm9CJ9k1zpW904A+s8b+vhLtMfDPpCGag4lod7IAiCGylWgCu4QfJoD7/nUmjxE6WdHKg==
   dependencies:
-    "@toptal/davinci-bootstrap" "3.1.21"
-    "@toptal/davinci-ci" "2.0.0"
-    "@toptal/davinci-cli-shared" "1.5.1"
-    "@toptal/davinci-code" "1.5.3"
-    "@toptal/davinci-engine" "7.3.0"
-    "@toptal/davinci-graphql-codegen" "0.2.4"
-    "@toptal/davinci-monorepo" "6.5.0"
-    "@toptal/davinci-qa" "8.0.0"
-    "@toptal/davinci-syntax" "13.2.2"
-    "@toptal/davinci-workflow" "1.8.2"
+    "@toptal/davinci-bootstrap" "3.1.22-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5"
+    "@toptal/davinci-ci" "2.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5"
+    "@toptal/davinci-cli-shared" "1.5.2-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.125+c13758f5"
+    "@toptal/davinci-code" "1.5.4-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.118+c13758f5"
+    "@toptal/davinci-engine" "7.3.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.8+c13758f5"
+    "@toptal/davinci-graphql-codegen" "0.2.5-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.8+c13758f5"
+    "@toptal/davinci-monorepo" "6.5.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.115+c13758f5"
+    "@toptal/davinci-qa" "8.0.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5"
+    "@toptal/davinci-syntax" "13.2.3-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5"
+    "@toptal/davinci-workflow" "1.8.3-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5"
 
-"@toptal/eslint-plugin-davinci@5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@toptal/eslint-plugin-davinci/-/eslint-plugin-davinci-5.2.0.tgz#8bc8ac0ba7f1d9f8b99504f16bf726cfcbb6bcb8"
-  integrity sha512-nBjAIKZUc17NXXcjJs/qCqTqovsbplS2IS7lOl8oWsPR5efnJ9BMpdEFK+D+y+B9/1GJXx68ywze/zR27EXpkg==
+"@toptal/eslint-plugin-davinci@5.2.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14+c13758f5":
+  version "5.2.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14"
+  resolved "https://registry.yarnpkg.com/@toptal/eslint-plugin-davinci/-/eslint-plugin-davinci-5.2.1-alpha-fx-2815-update-rules-in-davinci-syntax-acourding-to-decision-made-in-rfc-25.14.tgz#52ba76eadc7ca202c49eeb92baa9bbb4fa909ca4"
+  integrity sha512-To35aklNKRW4/8ptIGph75TVlHk8QCiCG7zQRQHjV/6euUN2hdp3yK0SNthV7KqNZbMkM8Iz9vFhZHxEnmdTpg==
   dependencies:
     eslint "^8.13.0"
     eslint-plugin-sort-keys-fix "^1.1.2"
@@ -6449,15 +6449,15 @@
     semver "^7.3.5"
     tsutils "^3.21.0"
 
-"@typescript-eslint/parser@^5.19.0":
-  version "5.19.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.19.0.tgz#05e587c1492868929b931afa0cb5579b0f728e75"
-  integrity sha512-yhktJjMCJX8BSBczh1F/uY8wGRYrBeyn84kH6oyqdIJwTGKmzX5Qiq49LRQ0Jh0LXnWijEziSo6BRqny8nqLVQ==
+"@typescript-eslint/parser@^5.26.0":
+  version "5.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.27.0.tgz#62bb091ed5cf9c7e126e80021bb563dcf36b6b12"
+  integrity sha512-8oGjQF46c52l7fMiPPvX4It3u3V3JipssqDfHQ2hcR0AeR8Zge+OYyKUCm5b70X72N1qXt0qgHenwN6Gc2SXZA==
   dependencies:
-    "@typescript-eslint/scope-manager" "5.19.0"
-    "@typescript-eslint/types" "5.19.0"
-    "@typescript-eslint/typescript-estree" "5.19.0"
-    debug "^4.3.2"
+    "@typescript-eslint/scope-manager" "5.27.0"
+    "@typescript-eslint/types" "5.27.0"
+    "@typescript-eslint/typescript-estree" "5.27.0"
+    debug "^4.3.4"
 
 "@typescript-eslint/scope-manager@5.19.0":
   version "5.19.0"
@@ -6466,6 +6466,14 @@
   dependencies:
     "@typescript-eslint/types" "5.19.0"
     "@typescript-eslint/visitor-keys" "5.19.0"
+
+"@typescript-eslint/scope-manager@5.27.0":
+  version "5.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.27.0.tgz#a272178f613050ed62f51f69aae1e19e870a8bbb"
+  integrity sha512-VnykheBQ/sHd1Vt0LJ1JLrMH1GzHO+SzX6VTXuStISIsvRiurue/eRkTqSrG0CexHQgKG8shyJfR4o5VYioB9g==
+  dependencies:
+    "@typescript-eslint/types" "5.27.0"
+    "@typescript-eslint/visitor-keys" "5.27.0"
 
 "@typescript-eslint/type-utils@5.19.0":
   version "5.19.0"
@@ -6486,6 +6494,11 @@
   resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.19.0.tgz#12d3d600d754259da771806ee8b2c842d3be8d12"
   integrity sha512-zR1ithF4Iyq1wLwkDcT+qFnhs8L5VUtjgac212ftiOP/ZZUOCuuF2DeGiZZGQXGoHA50OreZqLH5NjDcDqn34w==
 
+"@typescript-eslint/types@5.27.0":
+  version "5.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.27.0.tgz#c3f44b9dda6177a9554f94a74745ca495ba9c001"
+  integrity sha512-lY6C7oGm9a/GWhmUDOs3xAVRz4ty/XKlQ2fOLr8GAIryGn0+UBOoJDWyHer3UgrHkenorwvBnphhP+zPmzmw0A==
+
 "@typescript-eslint/typescript-estree@5.19.0":
   version "5.19.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.19.0.tgz#fc987b8f62883f9ea6a5b488bdbcd20d33c0025f"
@@ -6497,6 +6510,19 @@
     globby "^11.0.4"
     is-glob "^4.0.3"
     semver "^7.3.5"
+    tsutils "^3.21.0"
+
+"@typescript-eslint/typescript-estree@5.27.0":
+  version "5.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.27.0.tgz#7965f5b553c634c5354a47dcce0b40b94611e995"
+  integrity sha512-QywPMFvgZ+MHSLRofLI7BDL+UczFFHyj0vF5ibeChDAJgdTV8k4xgEwF0geFhVlPc1p8r70eYewzpo6ps+9LJQ==
+  dependencies:
+    "@typescript-eslint/types" "5.27.0"
+    "@typescript-eslint/visitor-keys" "5.27.0"
+    debug "^4.3.4"
+    globby "^11.1.0"
+    is-glob "^4.0.3"
+    semver "^7.3.7"
     tsutils "^3.21.0"
 
 "@typescript-eslint/typescript-estree@^4.33.0":
@@ -6539,6 +6565,14 @@
   dependencies:
     "@typescript-eslint/types" "5.19.0"
     eslint-visitor-keys "^3.0.0"
+
+"@typescript-eslint/visitor-keys@5.27.0":
+  version "5.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.27.0.tgz#97aa9a5d2f3df8215e6d3b77f9d214a24db269bd"
+  integrity sha512-46cYrteA2MrIAjv9ai44OQDUoCZyHeGIc4lsjCUX2WT6r4C+kidz1bNiR4017wHOPUythYeH+Sc7/cFP97KEAA==
+  dependencies:
+    "@typescript-eslint/types" "5.27.0"
+    eslint-visitor-keys "^3.3.0"
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
@@ -8037,7 +8071,7 @@ braces@^2.3.1, braces@^2.3.2:
     split-string "^3.0.2"
     to-regex "^3.0.1"
 
-braces@^3.0.1, braces@~3.0.2:
+braces@^3.0.1, braces@^3.0.2, braces@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/braces/-/braces-3.0.2.tgz#3454e1a462ee8d599e236df336cd9ea4f8afe107"
   integrity sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==
@@ -9261,15 +9295,15 @@ commander@^7.2.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-7.2.0.tgz#a36cb57d0b501ce108e4d20559a150a391d97ab7"
   integrity sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==
 
-commander@^8.1.0, commander@^8.2.0, commander@^8.3.0:
+commander@^8.1.0, commander@^8.2.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
   integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
 
-commander@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-9.0.0.tgz#86d58f24ee98126568936bd1d3574e0308a99a40"
-  integrity sha512-JJfP2saEKbQqvW+FI93OYUB4ByV5cizMpFMiiJI8xDbBvQvSkIk0VvQdn1CZ8mqAO8Loq2h0gYTYtDFUZUeERw==
+commander@^9.0.0, commander@^9.3.0:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.3.0.tgz#f619114a5a2d2054e0d9ff1b31d5ccf89255e26b"
+  integrity sha512-hv95iU5uXPbK83mjrJKuZyFM/LBAoCV/XhVGkS5Je6tl7sxr6A0ITMw5WoRV46/UaJ46Nllm3Xt7IaJhXTIkzw==
 
 common-ancestor-path@^1.0.1:
   version "1.0.1"
@@ -10464,10 +10498,10 @@ debug@3.1.0:
   dependencies:
     ms "2.0.0"
 
-debug@4, debug@4.3.3, debug@^4.0.0, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.3:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.3.tgz#04266e0b70a98d4462e6e288e38259213332b664"
-  integrity sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==
+debug@4, debug@^4.0.0, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.3, debug@^4.3.4:
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
+  integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
 
@@ -10477,6 +10511,13 @@ debug@4.1.1:
   integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
   dependencies:
     ms "^2.1.1"
+
+debug@4.3.3:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.3.tgz#04266e0b70a98d4462e6e288e38259213332b664"
+  integrity sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==
+  dependencies:
+    ms "2.1.2"
 
 debug@^3.0.0, debug@^3.1.0, debug@^3.1.1, debug@^3.2.7:
   version "3.2.7"
@@ -11521,10 +11562,10 @@ eslint-config-standard-jsx@^10.0.0:
   resolved "https://registry.yarnpkg.com/eslint-config-standard-jsx/-/eslint-config-standard-jsx-10.0.0.tgz#dc24992661325a2e480e2c3091d669f19034e18d"
   integrity sha512-hLeA2f5e06W1xyr/93/QJulN/rLbUVUmqTlexv9PRKHFwEC9ffJcH2LvJhMoEqYQBEYafedgGZXH2W8NUpt5lA==
 
-eslint-config-standard@^16.0.3:
-  version "16.0.3"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-16.0.3.tgz#6c8761e544e96c531ff92642eeb87842b8488516"
-  integrity sha512-x4fmJL5hGqNJKGHSjnLdgA6U6h1YW/G2dW9fA+cyVur4SK6lyue8+UgNKWlZtUDTXvgKDD/Oa3GQjmB5kjtVvg==
+eslint-config-standard@^17.0.0:
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-17.0.0.tgz#fd5b6cf1dcf6ba8d29f200c461de2e19069888cf"
+  integrity sha512-/2ks1GKyqSOkH7JFvXJicu0iMpoojkwB+f5Du/1SC0PtBL+s8v30k9njRZ21pm2drKYm2342jFnGWzttxPmZVg==
 
 eslint-import-resolver-node@^0.3.6:
   version "0.3.6"
@@ -16780,34 +16821,34 @@ libnpmversion@^3.0.1:
     proc-log "^2.0.0"
     semver "^7.3.7"
 
-lilconfig@2.0.4, lilconfig@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.0.4.tgz#f4507d043d7058b380b6a8f5cb7bcd4b34cee082"
-  integrity sha512-bfTIN7lEsiooCocSISTWXkiWJkRqtL9wYtYy+8EK3Y41qh3mpwPU0ycTOgjdY9ErwXCc8QyrQp82bdL0Xkm9yA==
+lilconfig@2.0.5, lilconfig@^2.0.4:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.0.5.tgz#19e57fd06ccc3848fd1891655b5a447092225b25"
+  integrity sha512-xaYmXZtTHPAw5m+xLN8ab9C+3a8YmV3asNSPOATITbtwrfbwaLJj8h66H1WMIpALCkqsIzK3h7oQ+PdX+LQ9Eg==
 
 lines-and-columns@^1.1.6:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-lint-staged@^12.4.1:
-  version "12.4.2"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-12.4.2.tgz#380a5ec5a7a23caa9420972b0f98c8192afddecd"
-  integrity sha512-JAJGIzY/OioIUtrRePr8go6qUxij//mL+RGGoFKU3VWQRtIHgWoHizSqH0QVn2OwrbXS9Q6CICQjfj+E5qvrXg==
+lint-staged@^12.4.3:
+  version "12.4.3"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-12.4.3.tgz#914fa468458364e14cc952145db552d87c8847b6"
+  integrity sha512-eH6SKOmdm/ZwCRMTZAmM3q3dPkpq6vco/BfrOw8iGun4Xs/thYegPD/MLIwKO+iPkzibkLJuQcRhRLXKvaKreg==
   dependencies:
     cli-truncate "^3.1.0"
     colorette "^2.0.16"
-    commander "^8.3.0"
-    debug "^4.3.3"
+    commander "^9.3.0"
+    debug "^4.3.4"
     execa "^5.1.1"
-    lilconfig "2.0.4"
-    listr2 "^4.0.1"
-    micromatch "^4.0.4"
+    lilconfig "2.0.5"
+    listr2 "^4.0.5"
+    micromatch "^4.0.5"
     normalize-path "^3.0.0"
-    object-inspect "^1.12.0"
+    object-inspect "^1.12.2"
     pidtree "^0.5.0"
     string-argv "^0.3.1"
-    supports-color "^9.2.1"
+    supports-color "^9.2.2"
     yaml "^1.10.2"
 
 listr-silent-renderer@^1.1.1:
@@ -16850,7 +16891,7 @@ listr2@^3.8.3:
     through "^2.3.8"
     wrap-ansi "^7.0.0"
 
-listr2@^4.0.1:
+listr2@^4.0.5:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/listr2/-/listr2-4.0.5.tgz#9dcc50221583e8b4c71c43f9c7dfd0ef546b75d5"
   integrity sha512-juGHV1doQdpNT3GSTs9IUN43QJb7KHdF9uqg7Vufs/tG9VTzpFphqF4pm/ICdAABGQxsyNn9CiYA3StkI6jpwA==
@@ -18166,13 +18207,13 @@ micromatch@^3.1.10, micromatch@^3.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-micromatch@^4.0.0, micromatch@^4.0.2, micromatch@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.4.tgz#896d519dfe9db25fce94ceb7a500919bf881ebf9"
-  integrity sha512-pRmzw/XUcwXGpD9aI9q/0XOwLNygjETJ8y0ao0wdqprrzDa4YnxLcz7fQRZr8voh8V10kGhABbNcHVk5wHgWwg==
+micromatch@^4.0.0, micromatch@^4.0.2, micromatch@^4.0.4, micromatch@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.5.tgz#bc8999a7cbbf77cdc89f132f6e467051b49090c6"
+  integrity sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==
   dependencies:
-    braces "^3.0.1"
-    picomatch "^2.2.3"
+    braces "^3.0.2"
+    picomatch "^2.3.1"
 
 miller-rabin@^4.0.0:
   version "4.0.1"
@@ -19289,7 +19330,7 @@ npmlog@^5.0.1:
     gauge "^3.0.0"
     set-blocking "^2.0.0"
 
-npmlog@^6.0.0, npmlog@^6.0.2:
+npmlog@^6.0.0, npmlog@^6.0.1, npmlog@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/npmlog/-/npmlog-6.0.2.tgz#c8166017a42f2dea92d6453168dd865186a70830"
   integrity sha512-/vBvz5Jfr9dT/aFWd0FIRf+T/Q2WBsLENygUaFUqstqsycmZAP/t5BvFJTK0viFmSUxiUKTUplWy5vt+rvKIxg==
@@ -19377,10 +19418,10 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
-object-inspect@^1.12.0, object-inspect@^1.9.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.12.0.tgz#6e2c120e868fd1fd18cb4f18c31741d0d6e776f0"
-  integrity sha512-Ho2z80bVIvJloH+YzRmpZVQe87+qASmBUKZDWgx9cu+KDrX2ZDH/3tMy+gXbZETVGs2M8YdxObOh7XAtim9Y0g==
+object-inspect@^1.12.0, object-inspect@^1.12.2, object-inspect@^1.9.0:
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.12.2.tgz#c0641f26394532f28ab8d796ab954e43c009a8ea"
+  integrity sha512-z+cPxW0QGUp0mcqcsgQyLVRDoXFQbXOwBaqyF7VIgI4TWNQsDHrBpUQslRmIfAoYWdYzs6UlKJtB2XJpTaNSpQ==
 
 object-is@^1.0.1:
   version "1.1.3"
@@ -20215,7 +20256,7 @@ picocolors@^1.0.0:
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
   integrity sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==
 
-picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.2.3, picomatch@^2.3.0:
+picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.2.3, picomatch@^2.3.0, picomatch@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
@@ -23994,7 +24035,7 @@ supports-color@^8.0.0, supports-color@^8.1.1:
   dependencies:
     has-flag "^4.0.0"
 
-supports-color@^9.2.1:
+supports-color@^9.2.2:
   version "9.2.2"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-9.2.2.tgz#502acaf82f2b7ee78eb7c83dcac0f89694e5a7bb"
   integrity sha512-XC6g/Kgux+rJXmwokjm9ECpD6k/smUoS5LKlUCcsYr4IY3rW0XyAympon2RmxGrlnZURMpg5T18gWDP9CsHXFA==

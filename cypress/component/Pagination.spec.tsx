@@ -7,7 +7,7 @@ const PaginationExample = ({
   activePage: defaultActivePage = 1,
   totalPages = 1,
   siblingCount,
-  variant
+  variant,
 }: Partial<PaginationProps>) => {
   const [activePage, setActivePage] = useState(defaultActivePage)
 

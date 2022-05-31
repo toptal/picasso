@@ -4,7 +4,7 @@ import {
   DEFAULT_VERTICAL_MARGIN_V,
   DEFAULT_VERTICAL_MARGIN_H,
   DEFAULT_HORIZONTAL_MARGIN_H,
-  DEFAULT_HORIZONTAL_MARGIN_V
+  DEFAULT_HORIZONTAL_MARGIN_V,
 } from './variables'
 import { DirectionsType } from './types'
 
@@ -21,7 +21,7 @@ export const useFinalMargins = (
 
 const defaultMargins = {
   horizontal: [DEFAULT_VERTICAL_MARGIN_H, DEFAULT_HORIZONTAL_MARGIN_H],
-  vertical: [DEFAULT_VERTICAL_MARGIN_V, DEFAULT_HORIZONTAL_MARGIN_V]
+  vertical: [DEFAULT_VERTICAL_MARGIN_V, DEFAULT_HORIZONTAL_MARGIN_V],
 }
 
 const getFinalMargins = (

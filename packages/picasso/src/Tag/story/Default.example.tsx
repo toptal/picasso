@@ -4,7 +4,7 @@ import {
   Settings16,
   Container,
   Typography,
-  Tooltip
+  Tooltip,
 } from '@toptal/picasso'
 
 const handleDelete = () => {

@@ -6,7 +6,7 @@ const Example = () => (
     style={{
       display: 'grid',
       gap: '4rem',
-      gridTemplateColumns: 'repeat(auto-fit, 350px)'
+      gridTemplateColumns: 'repeat(auto-fit, 350px)',
     }}
   >
     <Form style={{ maxWidth: '350px' }}>

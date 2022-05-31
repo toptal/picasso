@@ -27,7 +27,7 @@ page
 
       await testPage.click('[role="combobox"]')
       await makeScreenshot({
-        isFullScreen: true
+        isFullScreen: true,
       })
       await testPage.keyboard.press('ArrowDown')
       await testPage.keyboard.press('Enter')
@@ -41,9 +41,9 @@ page
       await testPage.type('input', 'test')
       await testPage.waitFor(50)
       await makeScreenshot({
-        isFullScreen: true
+        isFullScreen: true,
       })
-    }
+    },
   })
   .addExample('TagSelector/story/OtherOption.example.tsx', {
     title: 'Other option',
@@ -53,13 +53,13 @@ page
       await testPage.type('input', 'test')
       await testPage.waitFor(50)
       await makeScreenshot({
-        isFullScreen: true
+        isFullScreen: true,
       })
 
       await testPage.click('[role="option"]')
       await testPage.waitFor(50)
       await makeScreenshot()
-    }
+    },
   })
   .addExample(
     'TagSelector/story/InitialSetValue.example.tsx',
@@ -78,5 +78,5 @@ page
   .addExample('TagSelector/story/FullWidth.example.tsx', 'Full width')
   .addExample('TagSelector/story/Status.example.tsx', {
     title: 'Status',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

@@ -7,11 +7,11 @@ export const chapter = PicassoBook.connectToPage(
       .createChapter('Rectangular tags', 'Reactangular variant of Tags.')
       .addExample('TagRectangular/story/Variants.example.tsx', {
         title: 'Variants',
-        takeScreenshot: false
+        takeScreenshot: false,
       }) // picasso-skip-visuals
       .addExample('TagRectangular/story/Indicators.example.tsx', {
         title: 'Indicators',
-        takeScreenshot: false
+        takeScreenshot: false,
       }) // picasso-skip-visuals
 )
 
@@ -22,5 +22,5 @@ const componentDocs = PicassoBook.createComponentDocs(
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

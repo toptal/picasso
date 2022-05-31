@@ -8,16 +8,16 @@ const page = PicassoBook.section('Widgets').createPage(
 
 page.createTabChapter('Props').addComponentDocs({
   component: ApplicationUpdateNotification,
-  name: 'ApplicationUpdateNotification'
+  name: 'ApplicationUpdateNotification',
 })
 
 page
   .createChapter()
   .addExample('ApplicationUpdateNotification/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('ApplicationUpdateNotification/story/InAction.example.tsx', {
     title: 'In Action',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

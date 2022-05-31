@@ -13,7 +13,7 @@ interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTextAvatar'
+  name: 'PicassoTextAvatar',
 })
 
 const TextAvatar = ({
@@ -22,7 +22,7 @@ const TextAvatar = ({
   style,
   'data-testid': dataTestID,
   fontSize,
-  size
+  size,
 }: Props) => {
   const classes = useStyles()
 
@@ -45,7 +45,7 @@ const TextAvatar = ({
 }
 
 TextAvatar.defaultProps = {
-  size: 'large'
+  size: 'large',
 }
 
 export default TextAvatar

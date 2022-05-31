@@ -9,7 +9,7 @@ const NumberInputExample = ({ status }: Partial<NumberInputProps>) => (
       value='10'
       status={status}
       testIds={{
-        validIcon: 'valid-icon'
+        validIcon: 'valid-icon',
       }}
     />
   </TestingPicasso>

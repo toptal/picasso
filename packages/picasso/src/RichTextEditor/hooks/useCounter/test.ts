@@ -10,7 +10,7 @@ describe('useCounter', () => {
   it('returns empty message when minLength and maxLength are undefined', () => {
     const hookOptions = {
       minLengthMessage,
-      maxLengthMessage
+      maxLengthMessage,
     }
 
     const { result } = renderHook(() => useCounter(hookOptions))
@@ -23,7 +23,7 @@ describe('useCounter', () => {
   it('returns default message when only minLength is provided', () => {
     const hookOptions = {
       minLength: 4,
-      minLengthMessage
+      minLengthMessage,
     }
 
     const { result } = renderHook(() => useCounter(hookOptions))
@@ -36,7 +36,7 @@ describe('useCounter', () => {
   it('returns default message when only maxLength is provided', () => {
     const hookOptions = {
       maxLength: 4,
-      maxLengthMessage
+      maxLengthMessage,
     }
 
     const { result } = renderHook(() => useCounter(hookOptions))
@@ -51,7 +51,7 @@ describe('useCounter', () => {
       minLength: 4,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       minLengthMessage: (_minLength: number, _currLength: number) =>
-        'custom message'
+        'custom message',
     }
 
     const { result } = renderHook(() => useCounter(hookOptions))
@@ -65,7 +65,7 @@ describe('useCounter', () => {
     const hookOptions = {
       maxLength: 8,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      maxLengthMessage: () => 'custom message'
+      maxLengthMessage: () => 'custom message',
     }
 
     const { result } = renderHook(() => useCounter(hookOptions))
@@ -80,7 +80,7 @@ describe('useCounter', () => {
       minLength: 4,
       maxLength: 8,
       minLengthMessage: jest.fn(),
-      maxLengthMessage: jest.fn()
+      maxLengthMessage: jest.fn(),
     }
 
     const { result } = renderHook(() => useCounter(hookOptions))

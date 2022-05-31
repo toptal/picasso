@@ -13,7 +13,7 @@ const ESPRIMA_OPTIONS = {
   loc: true,
   comment: true,
   attachComment: true,
-  jsx: true
+  jsx: true,
 }
 
 class Storyshots extends JestPuppeteer {
@@ -37,7 +37,7 @@ class Storyshots extends JestPuppeteer {
     const program = Storyshots.parseSourceCode(sourceCode)
     const output = {
       ...Storyshots.walk(program),
-      file
+      file,
     }
 
     return output
@@ -50,7 +50,7 @@ class Storyshots extends JestPuppeteer {
   static walk(program) {
     const output = {
       name: '',
-      tests: []
+      tests: [],
     }
 
     walk(program, node => Storyshots.visitor(node, output, program))
@@ -82,7 +82,7 @@ class Storyshots extends JestPuppeteer {
       if (!ast.isNodeSkipped(node, program)) {
         output.tests.push({
           exampleFilename: ast.getCodeExampleName(node),
-          options: ast.getCodeExampleOptions(node)
+          options: ast.getCodeExampleOptions(node),
         })
       }
     }

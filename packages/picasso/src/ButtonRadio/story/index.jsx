@@ -7,11 +7,11 @@ const chapter = PicassoBook.connectToPage(
       .createChapter('Radio Button', 'Radio Style Button.')
       .addExample('ButtonRadio/story/Default.example.tsx', {
         title: 'Default',
-        takeScreenshot: false
+        takeScreenshot: false,
       }) // picasso-skip-visuals
       .addExample('ButtonRadio/story/States.example.tsx', {
         title: 'States',
-        takeScreenshot: false
+        takeScreenshot: false,
       }) // picasso-skip-visuals
 )
 
@@ -22,5 +22,5 @@ const componentDocs = PicassoBook.createComponentDocs(
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

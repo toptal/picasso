@@ -13,8 +13,11 @@ const findComponents = (
 
     return root.find(j.JSXElement, {
       openingElement: {
-        name: { object: { name: objectName }, property: { name: propertyName } }
-      }
+        name: {
+          object: { name: objectName },
+          property: { name: propertyName },
+        },
+      },
     })
   }
 

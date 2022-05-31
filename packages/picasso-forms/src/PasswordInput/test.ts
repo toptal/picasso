@@ -5,7 +5,7 @@ const {
   atLeastOneUpperCaseCharacter,
   atLeastOneLowerCaseCharacter,
   atLeastOneNumber,
-  atLeastOneSpecialCharacter
+  atLeastOneSpecialCharacter,
 } = passwordValidators
 
 describe('PasswordInput field requirements', () => {

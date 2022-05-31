@@ -4,17 +4,17 @@ export default ({ palette, spacing, sizes: { input } }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
-      width: input.width
+      width: input.width,
     },
     description: {
-      marginTop: '0.4rem'
+      marginTop: '0.4rem',
     },
     fieldRequirementItem: {
       display: 'flex',
       alignItems: 'center',
-      color: palette.grey.main2
+      color: palette.grey.main2,
     },
     fieldRequirementItemMessage: {
-      marginLeft: spacing(1)
-    }
+      marginLeft: spacing(1),
+    },
   })

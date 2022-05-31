@@ -9,7 +9,7 @@ export interface Props {
 const NativeSelectPlaceholder = ({
   emptySelectValue,
   disabled,
-  children
+  children,
 }: Props) => (
   <option disabled={disabled} value={emptySelectValue}>
     {children}

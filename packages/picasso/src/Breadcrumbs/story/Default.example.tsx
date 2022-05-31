@@ -5,7 +5,7 @@ import {
   Route,
   Switch,
   Redirect,
-  useLocation
+  useLocation,
 } from 'react-router-dom'
 import { Container, Logo, Link, Breadcrumbs } from '@toptal/picasso'
 
@@ -20,7 +20,7 @@ const Toptal = () => (
 const items = [
   { text: 'USA', to: '/usa' },
   { text: 'Software', to: '/usa/software' },
-  { text: 'Toptal', to: '/usa/software/toptal' }
+  { text: 'Toptal', to: '/usa/software/toptal' },
 ]
 
 const ExampleLink: typeof Link = props => (

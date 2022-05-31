@@ -11,7 +11,7 @@ import styles from './styles'
 import PaginationButton from '../PaginationButton'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPagination'
+  name: 'PicassoPagination',
 })
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -112,7 +112,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
 Pagination.defaultProps = {
   disabled: false,
   siblingCount: 2,
-  variant: 'default'
+  variant: 'default',
 }
 
 Pagination.displayName = 'Pagination'

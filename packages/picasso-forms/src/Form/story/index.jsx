@@ -13,119 +13,119 @@ page
       disableScrollOnError: {
         name: 'disableScrollOnError',
         type: {
-          name: 'boolean'
+          name: 'boolean',
         },
         description: `Whether to scroll to the failed field on the form error.`,
-        defaultValue: 'false'
+        defaultValue: 'false',
       },
       autoComplete: {
         name: 'autoComplete',
         type: {
           name: 'string',
-          enums: ['on', 'off']
+          enums: ['on', 'off'],
         },
         description: `HTML Form autocomplete attribute.\n
 The autocomplete attribute specifies whether a form should have autocomplete 'on' or 'off'.
 When autocomplete is 'on', the browser automatically complete values based on values that the user has entered before.\n
-Tip: It is possible to have autocomplete 'on' for the form, and 'off' for specific input fields, or vice versa.`
+Tip: It is possible to have autocomplete 'on' for the form, and 'off' for specific input fields, or vice versa.`,
       },
       debug: {
         name: 'debug',
         type: {
           name: 'function',
           description:
-            '(state: FormState, fieldStates: { [string]: FieldState }) => void'
+            '(state: FormState, fieldStates: { [string]: FieldState }) => void',
         },
         description:
-          'A callback for debugging that receives the form state and the states of all the fields'
+          'A callback for debugging that receives the form state and the states of all the fields',
       },
       decorators: {
         name: 'decorators',
         type: 'Decorator[]',
-        description: 'An array of decorators to apply to the form'
+        description: 'An array of decorators to apply to the form',
       },
       initialValues: {
         name: 'initialValues',
         type: 'FormValues | Object',
-        description: 'The initial values of the form'
+        description: 'The initial values of the form',
       },
       initialValuesEqual: {
         name: 'initialValuesEqual',
         type: {
           name: 'function',
-          description: '(Object | undefined, Object | undefined) => boolean'
+          description: '(Object | undefined, Object | undefined) => boolean',
         },
         description:
-          'A predicate to determine whether or not the initialValues prop has changed'
+          'A predicate to determine whether or not the initialValues prop has changed',
       },
       keepDirtyOnReinitialize: {
         name: 'keepDirtyOnReinitialize',
         type: 'boolean',
         description:
-          'If true, only pristine values will be overwritten when initialize(newValues) is called'
+          'If true, only pristine values will be overwritten when initialize(newValues) is called',
       },
       mutators: {
         name: 'mutators',
         type: {
           name: 'object',
-          description: '{ [string]: Mutator }'
+          description: '{ [string]: Mutator }',
         },
-        description: 'Named mutator functions'
+        description: 'Named mutator functions',
       },
       onSubmit: {
         name: 'onSubmit',
         type: {
           name: 'function',
           description:
-            '(values: FormValues, form: FormApi, callback: ?(errors: ?Object) => void) => ?Object | Promise<?Object> | void'
+            '(values: FormValues, form: FormApi, callback: ?(errors: ?Object) => void) => ?Object | Promise<?Object> | void',
         },
         description: 'Function to call when the form is submitted',
-        required: true
+        required: true,
       },
       subscription: {
         name: 'subscription',
         type: {
           name: 'object',
-          description: '{ [string]: boolean }'
+          description: '{ [string]: boolean }',
         },
         description:
-          'An object of the parts of FormState (final-form) to subscribe to'
+          'An object of the parts of FormState (final-form) to subscribe to',
       },
       validate: {
         name: 'validate',
         type: {
           name: 'function',
-          description: '(values: FormValues) => Object | Promise<Object>'
+          description: '(values: FormValues) => Object | Promise<Object>',
         },
         description:
-          'A whole-record validation function that takes all the values of the form and returns any validation errors'
+          'A whole-record validation function that takes all the values of the form and returns any validation errors',
       },
       validateOnBlur: {
         name: 'validateOnBlur',
         type: 'boolean',
         description:
           'If true, validation will happen on blur. If false, validation will happen on change',
-        defaultValue: 'false'
+        defaultValue: 'false',
       },
       successSubmitMessage: {
         name: 'successSubmitMessage',
         type: 'ReactNode',
         description:
-          'Message to display in a tooltip when form submitted successfully'
+          'Message to display in a tooltip when form submitted successfully',
       },
       failedSubmitMessage: {
         name: 'failedSubmitMessage',
         type: 'ReactNode',
         description:
-          'Message to display in a tooltip when form submission failed'
+          'Message to display in a tooltip when form submission failed',
       },
       scrollOffsetTop: {
         name: 'scrollOffsetTop',
         type: 'number',
         description:
-          'Offset from the viewport for inputs to focus on, defaults to the center of the window (deprecated, will not have any effect)'
-      }
-    }
+          'Offset from the viewport for inputs to focus on, defaults to the center of the window (deprecated, will not have any effect)',
+      },
+    },
   })
   .addComponentDocs(fieldWrapperStory.componentDocs)
 
@@ -144,7 +144,7 @@ provides inside all the necessary input components types.
       description: `
 A general look of the form includes the examples of all the input
 types supported by picasso-forms.
-`
+`,
     },
     'picasso-form'
   )
@@ -156,7 +156,7 @@ types supported by picasso-forms.
 We have a 'required' validator included by default to each input type,
 however, you may need custom validators for more complex types of fields.
 `,
-      takeScreenshot: false
+      takeScreenshot: false,
     },
     'picasso-form'
   ) // picasso-skip-visuals
@@ -173,7 +173,7 @@ however, you may need custom validators for more complex types of fields.
       However, sometimes you may need to be able to modify the form input
       value.
       `,
-      takeScreenshot: false
+      takeScreenshot: false,
     },
     'picasso-form'
   ) // picasso-skip-visuals
@@ -186,7 +186,7 @@ however, you may need custom validators for more complex types of fields.
         backend communication and display the process of submission and
         the results. The form-level results are represented by notifications.
         `,
-      takeScreenshot: false
+      takeScreenshot: false,
     },
     'picasso-form'
   ) // picasso-skip-visuals
@@ -201,44 +201,44 @@ however, you may need custom validators for more complex types of fields.
       description: `
             All fields should not show any validation error messages until submission is made.
             `,
-      takeScreenshot: false
+      takeScreenshot: false,
     },
     'picasso-form'
   ) // picasso-skip-visuals
   .addExample('Form/story/FileInput.example.tsx', {
     title: 'File input on a Form',
     description: 'Showcase how to upload files on the form submission',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Form/story/Dropzone.example.tsx', {
     title: 'Dropzone on a Form',
     description:
       'Showcase how to upload files on the form submission using dropzone',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Form/story/TitleCase.example.tsx', {
     title: 'Title case',
     description: "Display the field's label in title case.",
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Form/story/NoScrolling.example.tsx', {
     title: 'No scrolling case',
     description: "Showcase Form's behavior on form submission error.",
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Form/story/RichTextEditor.example.tsx', {
     title: 'Rich text editor',
     description: 'Showcase how to use RichTextEditor in the form.',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Form/story/FieldRequirements.example.tsx', {
     title: 'Field requirements',
     description: 'Showcase how to display field requirements.',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Form/story/Status.example.tsx', {
     title: 'Form Level Status Configuration',
     description:
       'Showcase how to enable success status via form configuration.',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

@@ -19,7 +19,7 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
   const handleDrop = ({
     acceptedFiles,
     value = [],
-    finalFormOnChange
+    finalFormOnChange,
   }: {
     acceptedFiles: File[]
     value?: FileUpload[]
@@ -31,7 +31,7 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
 
     const newFiles = Array.from(acceptedFiles).map(file => ({
       file,
-      uploading: false
+      uploading: false,
     }))
 
     finalFormOnChange([...value, ...newFiles])
@@ -40,7 +40,7 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
   const handleRemove = ({
     fileIndex,
     value = [],
-    finalFormOnChange
+    finalFormOnChange,
   }: {
     fileIndex: number
     value?: FileUpload[]
@@ -72,14 +72,14 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
             handleDrop({
               acceptedFiles,
               value: inputProps.value,
-              finalFormOnChange: inputProps.onChange
+              finalFormOnChange: inputProps.onChange,
             })
           }}
           onRemove={(_fileName: string, index: number) => {
             handleRemove({
               fileIndex: index,
               value: inputProps.value,
-              finalFormOnChange: inputProps.onChange
+              finalFormOnChange: inputProps.onChange,
             })
           }}
         />

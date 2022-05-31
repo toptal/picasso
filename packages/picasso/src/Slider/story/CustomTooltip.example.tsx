@@ -4,7 +4,7 @@ import { Container, Slider, Tooltip } from '@toptal/picasso'
 const BottomTooltip = ({
   children,
   open,
-  value
+  value,
 }: {
   children: ReactNode
   open: boolean

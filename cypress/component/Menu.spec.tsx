@@ -4,7 +4,7 @@ import { Container, Menu, MenuProps } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const testIds = {
-  menuItem: 'menu-back'
+  menuItem: 'menu-back',
 }
 
 const MenuExample = (props: MenuProps) => {

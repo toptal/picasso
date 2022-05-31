@@ -2,7 +2,7 @@ import React from 'react'
 
 import Radio from '../Radio'
 import ButtonControlLabel, {
-  ButtonControlLabelProps
+  ButtonControlLabelProps,
 } from '../ButtonControlLabel'
 
 export interface Props extends Omit<ButtonControlLabelProps, 'control'> {

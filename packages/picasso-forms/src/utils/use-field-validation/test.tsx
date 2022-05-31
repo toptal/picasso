@@ -7,7 +7,7 @@ describe('getFieldError', () => {
     it('returns the error message', () => {
       const meta: FieldMetaState<string> = {
         error: 'Some error message',
-        touched: true
+        touched: true,
       }
 
       expect(getFieldError(meta)).toBe('Some error message')
@@ -19,7 +19,7 @@ describe('getFieldError', () => {
       const meta: FieldMetaState<string> = {
         error: undefined,
         touched: true,
-        submitError: 'Some error message'
+        submitError: 'Some error message',
       }
 
       expect(getFieldError(meta)).toBe('Some error message')
@@ -29,7 +29,7 @@ describe('getFieldError', () => {
   describe('when field has no error and no submit error and touched', () => {
     it('returns null', () => {
       const meta: FieldMetaState<string> = {
-        touched: true
+        touched: true,
       }
 
       expect(getFieldError(meta)).toBeNull()
@@ -40,7 +40,7 @@ describe('getFieldError', () => {
     it('returns null', () => {
       const meta: FieldMetaState<string> = {
         touched: false,
-        error: 'Some error message'
+        error: 'Some error message',
       }
 
       expect(getFieldError(meta)).toBeNull()
@@ -52,7 +52,7 @@ describe('getFieldError', () => {
       const meta: FieldMetaState<string> = {
         touched: true,
         submitError: 'Some error message',
-        dirtySinceLastSubmit: true
+        dirtySinceLastSubmit: true,
       }
 
       expect(getFieldError(meta)).toBeNull()
@@ -64,7 +64,7 @@ describe('getFieldError', () => {
       const shouldValidateOnSubmit = true
       const meta: FieldMetaState<string> = {
         modifiedSinceLastSubmit: true,
-        submitError: 'Some error message'
+        submitError: 'Some error message',
       }
 
       expect(getFieldError(meta, shouldValidateOnSubmit)).toBeNull()

@@ -16,7 +16,7 @@ const chapter = PicassoBook.connectToPage(page =>
 
         await testPage.addStyleTag({ content: changeBackgroundStyle })
         await makeScreenshot()
-      }
+      },
     })
 )
 
@@ -27,5 +27,5 @@ const componentDocs = PicassoBook.createComponentDocs(
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

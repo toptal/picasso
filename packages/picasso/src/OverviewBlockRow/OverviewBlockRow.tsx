@@ -7,7 +7,7 @@ import styles from './styles'
 type Props = HTMLAttributes<HTMLDivElement>
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoOverviewBlockRow'
+  name: 'PicassoOverviewBlockRow',
 })
 
 const OverviewBlockRow = (props: Props) => {

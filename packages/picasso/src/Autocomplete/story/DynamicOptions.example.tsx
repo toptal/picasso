@@ -17,7 +17,7 @@ const remoteOptions = [
   { text: 'Spain' },
   { text: 'Sweden' },
   { text: 'Switzerland' },
-  { text: 'Ukraine' }
+  { text: 'Ukraine' },
 ]
 
 const MIN_CHARS = 2

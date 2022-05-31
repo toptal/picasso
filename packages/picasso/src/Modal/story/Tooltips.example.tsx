@@ -5,7 +5,7 @@ import { useModal } from '@toptal/picasso/utils'
 const initialDate = new Date(2020, 10, 10)
 const ModalDialog = ({
   open,
-  onClose
+  onClose,
 }: {
   open: boolean
   onClose: () => void

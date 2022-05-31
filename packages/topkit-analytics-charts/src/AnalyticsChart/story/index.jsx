@@ -8,7 +8,7 @@ const page = PicassoBook.section('Picasso Charts').createPage(
 
 page.createTabChapter('Props').addComponentDocs({
   component: AnalyticsChart,
-  name: 'AnalyticsChart'
+  name: 'AnalyticsChart',
 })
 
 page
@@ -18,7 +18,7 @@ page
   .addExample('AnalyticsChart/story/NullValues.example.tsx', {
     title: 'Null values',
     description:
-      'You can provide `null` values as part of chart dataset. Those values will be indicated by "empty" dots on the chart. Additionally this information will be passed to custom tooltip component in case you will need it there.'
+      'You can provide `null` values as part of chart dataset. Those values will be indicated by "empty" dots on the chart. Additionally this information will be passed to custom tooltip component in case you will need it there.',
   })
   .addExample('AnalyticsChart/story/Highlights.example.tsx', 'Highlights')
   .addExample(

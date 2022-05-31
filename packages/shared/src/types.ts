@@ -3,7 +3,7 @@ import {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   ElementType,
-  ComponentPropsWithRef
+  ComponentPropsWithRef,
 } from 'react'
 
 import { Classes } from './styles'
@@ -73,7 +73,7 @@ export enum SpacingEnum {
   small = 1,
   medium = 1.5,
   large = 2,
-  xlarge = 2.5
+  xlarge = 2.5,
 }
 
 export const spacingToRem = (spacing: SpacingType) =>

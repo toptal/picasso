@@ -11,7 +11,7 @@ describe('Icon', () => {
         <Container
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(213px, 1fr))'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(213px, 1fr))',
           }}
         >
           {Object.entries(icons).map(([iconName, IconComponent]) => {

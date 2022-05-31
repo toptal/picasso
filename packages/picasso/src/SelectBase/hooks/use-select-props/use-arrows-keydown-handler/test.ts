@@ -12,16 +12,16 @@ describe('useArrowsKeydownHandler', () => {
     props.selectState.filteredOptions = [
       {
         text: 'One',
-        value: '1'
+        value: '1',
       },
       {
         text: 'Two',
-        value: '2'
+        value: '2',
       },
       {
         text: 'Three',
-        value: '3'
-      }
+        value: '3',
+      },
     ]
 
     const { result } = renderHook(() => useArrowsKeydownHandler(props))
@@ -43,21 +43,21 @@ describe('useArrowsKeydownHandler', () => {
       {
         text: 'One',
         value: '1',
-        disabled: true
+        disabled: true,
       },
       {
         text: 'Two',
-        value: '2'
+        value: '2',
       },
       {
         text: 'Three',
         value: '3',
-        disabled: true
+        disabled: true,
       },
       {
         text: 'Three',
-        value: '4'
-      }
+        value: '4',
+      },
     ]
 
     const { result } = renderHook(() => useArrowsKeydownHandler(props))

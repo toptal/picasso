@@ -6,16 +6,16 @@ export default ({ shadows }: Theme) =>
       borderRadius: '0.25rem',
       fontSize: '0.875em',
       padding: '0.5rem 0',
-      boxShadow: shadows[5]
+      boxShadow: shadows[5],
     },
     withHeader: {
       paddingTop: '0.125rem',
 
       '& > div:first-child': {
-        paddingBottom: '0.5rem'
-      }
+        paddingBottom: '0.5rem',
+      },
     },
     withFooter: {
-      paddingBottom: 0
-    }
+      paddingBottom: 0,
+    },
   })

@@ -12,8 +12,8 @@ const RAW_CHART_DATA = [
       '2020-10-22': 1.7,
       '2020-10-23': 2,
       '2020-10-24': 1.5,
-      '2020-10-25': 1.3
-    }
+      '2020-10-25': 1.3,
+    },
   },
   {
     id: 'team',
@@ -23,9 +23,9 @@ const RAW_CHART_DATA = [
       '2020-10-22': 1.7,
       '2020-10-23': 2,
       '2020-10-24': 1.5,
-      '2020-10-25': 1.3
-    }
-  }
+      '2020-10-25': 1.3,
+    },
+  },
 ]
 const X_AXIS_KEY = 'x'
 
@@ -37,7 +37,7 @@ describe('toChartFormat', () => {
       { x: '2020-10-22', projects: 1.7, team: 1.7 },
       { x: '2020-10-23', projects: 2, team: 2 },
       { x: '2020-10-24', projects: 1.5, team: 1.5 },
-      { x: '2020-10-25', projects: 1.3, team: 1.3 }
+      { x: '2020-10-25', projects: 1.3, team: 1.3 },
     ]
     const convertedChartData = toChartFormat(
       RAW_CHART_DATA,
@@ -56,7 +56,7 @@ describe('toChartFormat', () => {
       { x: 'Oct 22', projects: 1.7, team: 1.7 },
       { x: 'Oct 23', projects: 2, team: 2 },
       { x: 'Oct 24', projects: 1.5, team: 1.5 },
-      { x: 'Oct 25', projects: 1.3, team: 1.3 }
+      { x: 'Oct 25', projects: 1.3, team: 1.3 },
     ]
     const convertedChartData = toChartFormat(
       RAW_CHART_DATA,
@@ -78,8 +78,8 @@ describe('toChartFormat', () => {
           '2020-10-22': null,
           '2020-10-23': 2,
           '2020-10-24': 1.5,
-          '2020-10-25': 1.3
-        }
+          '2020-10-25': 1.3,
+        },
       },
       {
         id: 'team',
@@ -89,9 +89,9 @@ describe('toChartFormat', () => {
           '2020-10-22': null,
           '2020-10-23': 2,
           '2020-10-24': null,
-          '2020-10-25': 1.3
-        }
-      }
+          '2020-10-25': 1.3,
+        },
+      },
     ]
 
     const EXPECTED_CHART_DATA = [
@@ -102,11 +102,11 @@ describe('toChartFormat', () => {
         projects: 0,
         team: 0,
         projectsIsEmpty: true,
-        teamIsEmpty: true
+        teamIsEmpty: true,
       },
       { x: '2020-10-23', projects: 2, team: 2 },
       { x: '2020-10-24', projects: 1.5, team: 0, teamIsEmpty: true },
-      { x: '2020-10-25', projects: 1.3, team: 1.3 }
+      { x: '2020-10-25', projects: 1.3, team: 1.3 },
     ]
 
     const convertedChartData = toChartFormat(
@@ -128,9 +128,9 @@ describe('toChartFormat', () => {
           '2020-10-22': 1.7,
           '2020-10-23': 2,
           '2020-10-24': 1.5,
-          '2020-10-25': 1.3
+          '2020-10-25': 1.3,
         },
-        color: 'red'
+        color: 'red',
       },
       {
         data: {
@@ -139,10 +139,10 @@ describe('toChartFormat', () => {
           '2020-10-22': 1.7,
           '2020-10-23': 2,
           '2020-10-24': 1.5,
-          '2020-10-25': 1.3
+          '2020-10-25': 1.3,
         },
-        color: 'blue'
-      }
+        color: 'blue',
+      },
     ]
     const EXPECTED_CHART_DATA = [
       {
@@ -150,43 +150,43 @@ describe('toChartFormat', () => {
         [generateReferenceKey(0)]: 1.7,
         [generateReferenceKey(1)]: 1.7,
         projects: 1.7,
-        team: 1.7
+        team: 1.7,
       },
       {
         x: '2020-10-21',
         [generateReferenceKey(0)]: 2,
         [generateReferenceKey(1)]: 2,
         projects: 2,
-        team: 2
+        team: 2,
       },
       {
         x: '2020-10-22',
         [generateReferenceKey(0)]: 1.7,
         [generateReferenceKey(1)]: 1.7,
         projects: 1.7,
-        team: 1.7
+        team: 1.7,
       },
       {
         x: '2020-10-23',
         [generateReferenceKey(0)]: 2,
         [generateReferenceKey(1)]: 2,
         projects: 2,
-        team: 2
+        team: 2,
       },
       {
         x: '2020-10-24',
         [generateReferenceKey(0)]: 1.5,
         [generateReferenceKey(1)]: 1.5,
         projects: 1.5,
-        team: 1.5
+        team: 1.5,
       },
       {
         x: '2020-10-25',
         [generateReferenceKey(0)]: 1.3,
         [generateReferenceKey(1)]: 1.3,
         projects: 1.3,
-        team: 1.3
-      }
+        team: 1.3,
+      },
     ]
     const convertedChartData = toChartFormat(
       RAW_CHART_DATA,

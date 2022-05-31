@@ -31,7 +31,7 @@ const generateOptions = (from: number, to: number) => {
 
     return {
       value,
-      text: value.toString()
+      text: value.toString(),
     }
   })
 }

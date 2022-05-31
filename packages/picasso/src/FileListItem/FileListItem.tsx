@@ -23,7 +23,7 @@ export interface Props {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'FileListItem'
+  name: 'FileListItem',
 })
 
 const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
@@ -31,7 +31,7 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
     uploading,
     progress,
     error,
-    file: { name }
+    file: { name },
   } = file
 
   const classes = useStyles()

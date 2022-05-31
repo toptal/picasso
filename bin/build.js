@@ -10,7 +10,7 @@ const {
   copyPackageJson,
   copyReadme,
   copyLicense,
-  safeExec
+  safeExec,
 } = require('./utils')
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 
@@ -30,7 +30,7 @@ const compile = function (tsConfig, packageJson, packageRootDir) {
     log(`Removing: ${tsConfig.compilerOptions.outDir}`, 'green')
     fs.rmSync(tsConfig.compilerOptions.outDir, {
       recursive: true,
-      force: true
+      force: true,
     })
   }
 

@@ -7,7 +7,7 @@ import {
   SetItalicActionType,
   SetListActionType,
   SetDisabled,
-  ResetFormatType
+  ResetFormatType,
 } from './types'
 
 const setBold =
@@ -42,7 +42,7 @@ const actions = {
   setHeader,
   setList,
   setDisabled,
-  resetFormat
+  resetFormat,
 }
 
 export default actions

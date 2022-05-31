@@ -72,7 +72,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
     onDrop,
     onDropAccepted,
     onDropRejected,
-    validator
+    validator,
   } = props
 
   const isDisabled = Boolean(
@@ -88,7 +88,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
     onDrop,
     onDropAccepted,
     onDropRejected,
-    validator
+    validator,
   })
 
   const classes = useStyles()
@@ -105,8 +105,8 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
             [classes.dragActive]: isDragActive,
             [classes.hovered]: hovered,
             [classes.disabled]: isDisabled,
-            [classes.focused]: focused
-          })
+            [classes.focused]: focused,
+          }),
         })}
       >
         <input {...getInputProps({ className: classes.nativeInput })} />
@@ -142,7 +142,7 @@ Dropzone.defaultProps = {
   disabled: false,
   maxSize: Infinity,
   minSize: 0,
-  multiple: true
+  multiple: true,
 }
 
 export default Dropzone

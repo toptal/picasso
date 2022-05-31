@@ -24,5 +24,5 @@ export default {
   atLeastOneUpperCaseCharacter,
   atLeastOneLowerCaseCharacter,
   atLeastOneNumber,
-  atLeastOneSpecialCharacter
+  atLeastOneSpecialCharacter,
 }

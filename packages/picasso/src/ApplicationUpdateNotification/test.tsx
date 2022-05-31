@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import ApplicationUpdateNotification, {
-  Props
+  Props,
 } from './ApplicationUpdateNotification'
 
 const renderApplicationUpdateNotification = (
@@ -25,8 +25,8 @@ describe('ApplicationUpdateNotification', () => {
     renderApplicationUpdateNotification({
       onClose: onCloseMock,
       testIds: {
-        updateLaterButton: updateLaterButtonTestId
-      }
+        updateLaterButton: updateLaterButtonTestId,
+      },
     })
 
     screen.getByTestId(updateLaterButtonTestId).click()
@@ -40,8 +40,8 @@ describe('ApplicationUpdateNotification', () => {
     renderApplicationUpdateNotification({
       onReloadClick: onReloadClickMock,
       testIds: {
-        reloadNowButton: reloadNowButtonTestId
-      }
+        reloadNowButton: reloadNowButtonTestId,
+      },
     })
 
     screen.getByTestId(reloadNowButtonTestId).click()

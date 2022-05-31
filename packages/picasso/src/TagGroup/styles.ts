@@ -5,7 +5,7 @@ export default () => ({
 
     '& > *': {
       marginRight: '0.5em',
-      marginBottom: '0.5em'
-    }
-  }
+      marginBottom: '0.5em',
+    },
+  },
 })

@@ -18,13 +18,13 @@ page
   .createChapter()
   .addExample('ProgressBar/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('ProgressBar/story/WithPercentage.example.tsx', {
     title: 'With Percentage',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('ProgressBar/story/AnimatingProgressChange.example.tsx', {
     title: 'Animating Progress Change',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

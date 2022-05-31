@@ -14,7 +14,7 @@ export interface Props extends StandardProps {
   base?: number
 }
 const useStyles = makeStyles(styles, {
-  name: 'PicassoSvgTriangleLeftMinorSolid16'
+  name: 'PicassoSvgTriangleLeftMinorSolid16',
 })
 const SvgTriangleLeftMinorSolid16 = forwardRef(
   function SvgTriangleLeftMinorSolid16(props: Props, ref: Ref<SVGSVGElement>) {
@@ -24,7 +24,7 @@ const SvgTriangleLeftMinorSolid16 = forwardRef(
       color,
       scale,
       base,
-      'data-testid': testId
+      'data-testid': testId,
     } = props
     const classes: Record<string, string> = useStyles(props)
     const classNames = [classes.root, className]
@@ -38,7 +38,7 @@ const SvgTriangleLeftMinorSolid16 = forwardRef(
     const svgStyle = {
       minWidth: `${scaledSize}px`,
       minHeight: `${scaledSize}px`,
-      ...style
+      ...style,
     }
 
     return (

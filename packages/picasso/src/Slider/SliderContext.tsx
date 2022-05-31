@@ -4,7 +4,7 @@ import React, {
   useCallback,
   useContext,
   useMemo,
-  useState
+  useState,
 } from 'react'
 
 import { noop } from '../utils'
@@ -18,7 +18,7 @@ const SliderContext = createContext<{
   hasTooltipOverlow: boolean
 }>({
   registerValueLabel: noop,
-  hasTooltipOverlow: false
+  hasTooltipOverlow: false,
 })
 
 interface ProviderProps {
@@ -30,7 +30,7 @@ type ValueLabel = { tooltipWidth: number; thumb: HTMLElement }
 const SliderContextProvider = ({ children }: ProviderProps) => {
   const [valueLabels, setValueLabels] = useState<(ValueLabel | null)[]>([
     null,
-    null
+    null,
   ])
   const [hasTooltipOverlow, setHasTooltipOverflow] = useState(false)
 
@@ -64,7 +64,7 @@ const SliderContextProvider = ({ children }: ProviderProps) => {
   const contextValue = useMemo(
     () => ({
       registerValueLabel,
-      hasTooltipOverlow
+      hasTooltipOverlow,
     }),
     [registerValueLabel, hasTooltipOverlow]
   )

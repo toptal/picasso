@@ -5,7 +5,7 @@ import {
   TreeNodeAvatar,
   Button,
   Container,
-  UserBadge
+  UserBadge,
 } from '@toptal/picasso'
 import { HierarchyPointNode } from 'd3-hierarchy'
 import styled from 'styled-components'
@@ -36,13 +36,13 @@ interface DataItem {
 const data: DataItem = {
   content: {
     name: 'Name Surname 1',
-    type: 'card'
+    type: 'card',
   },
   children: [
     {
       content: {
         name: 'Name Surname 2',
-        type: 'card'
+        type: 'card',
       },
       children: [
         {
@@ -51,28 +51,28 @@ const data: DataItem = {
             type: 'group',
             members: [
               {
-                name: 'Name Surname 4'
+                name: 'Name Surname 4',
               },
               {
-                name: 'Name Surname 5'
+                name: 'Name Surname 5',
               },
               {
-                name: 'Name Surname 6'
+                name: 'Name Surname 6',
               },
               {
-                name: 'Name Surname 7'
+                name: 'Name Surname 7',
               },
               {
-                name: 'Name Surname 8'
-              }
-            ]
+                name: 'Name Surname 8',
+              },
+            ],
           },
-          children: []
+          children: [],
         },
         {
           content: {
             name: 'Name Surname 9',
-            type: 'card'
+            type: 'card',
           },
           children: [
             {
@@ -81,32 +81,32 @@ const data: DataItem = {
                 type: 'group',
                 members: [
                   {
-                    name: 'Name Surname 11'
+                    name: 'Name Surname 11',
                   },
                   {
-                    name: 'Name Surname 12'
+                    name: 'Name Surname 12',
                   },
                   {
-                    name: 'Name Surname 13'
+                    name: 'Name Surname 13',
                   },
                   {
-                    name: 'Name Surname 14'
+                    name: 'Name Surname 14',
                   },
                   {
-                    name: 'Name Surname 15'
-                  }
-                ]
+                    name: 'Name Surname 15',
+                  },
+                ],
               },
-              children: []
-            }
-          ]
-        }
-      ]
+              children: [],
+            },
+          ],
+        },
+      ],
     },
     {
       content: {
         name: 'Name Surname 16',
-        type: 'card'
+        type: 'card',
       },
       children: [
         {
@@ -115,47 +115,47 @@ const data: DataItem = {
             type: 'group',
             members: [
               {
-                name: 'Name Surname 18'
+                name: 'Name Surname 18',
               },
               {
-                name: 'Name Surname 19'
+                name: 'Name Surname 19',
               },
               {
-                name: 'Name Surname 20'
+                name: 'Name Surname 20',
               },
               {
-                name: 'Name Surname 21'
+                name: 'Name Surname 21',
               },
               {
-                name: 'Name Surname 22'
+                name: 'Name Surname 22',
               },
               {
-                name: 'Name Surname 23'
+                name: 'Name Surname 23',
               },
               {
-                name: 'Name Surname 24'
+                name: 'Name Surname 24',
               },
               {
-                name: 'Name Surname 25'
+                name: 'Name Surname 25',
               },
               {
-                name: 'Name Surname 26'
+                name: 'Name Surname 26',
               },
               {
-                name: 'Name Surname 27'
+                name: 'Name Surname 27',
               },
               { name: 'Name Surname 28' },
               { name: 'Name Surname 29' },
               { name: 'Name Surname 30' },
               { name: 'Name Surname 31' },
-              { name: 'Name Surname 32' }
-            ]
+              { name: 'Name Surname 32' },
+            ],
           },
-          children: []
-        }
-      ]
-    }
-  ]
+          children: [],
+        },
+      ],
+    },
+  ],
 }
 
 const convertToNode = (
@@ -168,16 +168,16 @@ const convertToNode = (
     selectedOffset:
       data.content.type === 'group'
         ? {
-            y: 150
+            y: 150,
           }
         : undefined,
     disabled: false,
     info: {
       name: data.content.name,
       type: data.content.type,
-      members: data.content.members
+      members: data.content.members,
     },
-    children: data.children.map(child => convertToNode(child, selectedId))
+    children: data.children.map(child => convertToNode(child, selectedId)),
   }
 }
 

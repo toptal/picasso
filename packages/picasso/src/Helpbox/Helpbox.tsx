@@ -22,7 +22,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoHelpbox'
+  name: 'PicassoHelpbox',
 })
 
 // eslint-disable-next-line react/display-name
@@ -63,5 +63,5 @@ Helpbox.displayName = 'Helpbox'
 export default Object.assign(Helpbox, {
   Title: HelpboxTitle,
   Content: HelpboxContent,
-  Actions: HelpboxActions
+  Actions: HelpboxActions,
 })

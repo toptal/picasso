@@ -32,7 +32,7 @@ const screenshotDOMElement = async ({
   isFullScreen,
   padding,
   dimensions,
-  selector = '#root .chapter-container'
+  selector = '#root .chapter-container',
 }: Options) => {
   if (isFullScreen) {
     return page.screenshot()
@@ -51,7 +51,7 @@ const screenshotDOMElement = async ({
         x: componentRect.left,
         y: componentRect.top,
         width: componentRect.width,
-        height: componentRect.height
+        height: componentRect.height,
       }
     },
     selector
@@ -59,7 +59,7 @@ const screenshotDOMElement = async ({
 
   const clipDimensions = {
     ...componentDimensions,
-    ...dimensions
+    ...dimensions,
   }
 
   const clipPadding = padding || PADDING_AROUND_COMPONENT
@@ -69,8 +69,8 @@ const screenshotDOMElement = async ({
       x: clipDimensions.x - clipPadding,
       y: clipDimensions.y - clipPadding,
       width: clipDimensions.width + clipPadding * 2,
-      height: clipDimensions.height + clipPadding * 2
-    }
+      height: clipDimensions.height + clipPadding * 2,
+    },
   })
 }
 
@@ -86,7 +86,7 @@ export const assertVisuals = (
   options: Options = {
     delay: 0,
     waitUntilImagesLoaded: false,
-    effect: undefined
+    effect: undefined,
   }
 ) => {
   return async () => {
@@ -94,7 +94,7 @@ export const assertVisuals = (
       delay = 0,
       waitUntilImagesLoaded,
       effect,
-      customSnapshotIdentifier
+      customSnapshotIdentifier,
     } = options
     const host = `file:///${join(__dirname, '/../build/storybook/')}`
     const url = generateIframeUrl({ host, kind, type })
@@ -114,7 +114,7 @@ export const assertVisuals = (
         await matchScreenshot({
           ...options,
           ...effectOptions,
-          customSnapshotIdentifier: `${customSnapshotIdentifier}-effect-${++effectSnapshotId}`
+          customSnapshotIdentifier: `${customSnapshotIdentifier}-effect-${++effectSnapshotId}`,
         })
       }
 

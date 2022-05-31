@@ -14,5 +14,5 @@ export const TableCompound = Object.assign(Table, {
   SectionHead: TableSectionHead,
   Row: TableRow,
   ExpandableRow: TableExpandableRow,
-  Footer: TableFooter
+  Footer: TableFooter,
 })

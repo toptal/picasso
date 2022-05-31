@@ -38,11 +38,11 @@ const icons = {
   red: <Exclamation16 color='red' />,
   green: <Done16 color='dark-green' />,
   blue: <Info16 color='light-blue' />,
-  yellow: <Exclamation16 color='yellow' />
+  yellow: <Exclamation16 color='yellow' />,
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAlert'
+  name: 'PicassoAlert',
 })
 
 export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
@@ -83,11 +83,11 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
 })
 
 Alert.defaultProps = {
-  variant: 'yellow'
+  variant: 'yellow',
 }
 
 Alert.displayName = 'Alert'
 
 export default Object.assign(Alert, {
-  Inline: AlertInline
+  Inline: AlertInline,
 })

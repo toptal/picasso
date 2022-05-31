@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   TagSelector as PicassoTagSelector,
-  TagSelectorProps
+  TagSelectorProps,
 } from '@toptal/picasso'
 
 import { FieldProps } from '../Field'
@@ -35,7 +35,7 @@ export const TagSelector = (props: Props) => {
 }
 
 TagSelector.defaultProps = {
-  initialValue: []
+  initialValue: [],
 }
 
 TagSelector.displayName = 'TagSelector'

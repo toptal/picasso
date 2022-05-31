@@ -3,7 +3,7 @@ import React, {
   ElementType,
   HTMLAttributes,
   MouseEvent,
-  ReactNode
+  ReactNode,
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -12,7 +12,7 @@ import {
   ColorType,
   BaseProps,
   TextLabelProps,
-  useTitleCase
+  useTitleCase,
 } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -48,7 +48,7 @@ export type Props = BaseProps &
   }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoOverviewBlock'
+  name: 'PicassoOverviewBlock',
 })
 
 export const OverviewBlock: OverridableComponent<Props> = forwardRef<
@@ -70,7 +70,7 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
 
   const color: ColorSchema = {
     value: 'black',
-    label: 'dark-grey'
+    label: 'dark-grey',
   }
 
   if (variant) {
@@ -115,12 +115,12 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
 })
 
 OverviewBlock.defaultProps = {
-  as: 'button'
+  as: 'button',
 }
 
 OverviewBlock.displayName = 'OverviewBlock'
 
 export default Object.assign(OverviewBlock, {
   Group: OverviewBlockGroup,
-  Row: OverviewBlockRow
+  Row: OverviewBlockRow,
 })

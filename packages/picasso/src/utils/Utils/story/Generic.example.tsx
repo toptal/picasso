@@ -5,7 +5,7 @@ const data = {
   noop: `A function that does nothing, a replacement for () => {}`,
   isBoolean: `Checks if the provided value is a boolean`,
   isNumber: `Checks if the provided value is a number`,
-  isString: `Checks if the provided value is a string`
+  isString: `Checks if the provided value is a string`,
 }
 
 const Example = () => (

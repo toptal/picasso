@@ -18,7 +18,7 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoList' })
 
 const Tags = {
   unordered: 'ul',
-  ordered: 'ol'
+  ordered: 'ol',
 } as const
 
 export const List = (props: Props) => {
@@ -35,7 +35,7 @@ export const List = (props: Props) => {
     return React.cloneElement(child, {
       variant,
       isLastElement: totalChildElements === index + 1,
-      index: index + start - 1
+      index: index + start - 1,
     })
   })
 
@@ -53,7 +53,7 @@ export const List = (props: Props) => {
 
 List.defaultProps = {
   variant: 'unordered',
-  start: 1
+  start: 1,
 }
 
 List.Item = ListItem

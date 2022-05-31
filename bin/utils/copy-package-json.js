@@ -24,5 +24,5 @@ const copyPackageJson = packageRootDir => {
 }
 
 module.exports = {
-  copyPackageJson
+  copyPackageJson,
 }

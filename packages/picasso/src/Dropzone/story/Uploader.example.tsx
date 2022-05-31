@@ -4,7 +4,7 @@ import {
   DropzoneErrorCode,
   DropzoneFileUpload,
   DropzoneFileError,
-  DropzoneFileRejection
+  DropzoneFileRejection,
 } from '@toptal/picasso'
 
 const MAX_SIZE = 600 * 1000
@@ -14,8 +14,8 @@ const customSizeValidator = (file: File): DropzoneFileError[] | null => {
     return [
       {
         code: DropzoneErrorCode.FileTooLarge,
-        message: `File size exceeds the ${MAX_SIZE / 1000 / 1000}MB.`
-      }
+        message: `File size exceeds the ${MAX_SIZE / 1000 / 1000}MB.`,
+      },
     ]
   }
 
@@ -46,7 +46,7 @@ const useFiles = ({ maxFiles }: { maxFiles: number }) => {
       const previousFiles = files
       const newFiles = acceptedFiles.map(file => ({
         file,
-        uploading: true
+        uploading: true,
       }))
 
       setFiles([...previousFiles, ...newFiles])
@@ -55,13 +55,13 @@ const useFiles = ({ maxFiles }: { maxFiles: number }) => {
         if (progress === 100) {
           setFiles([
             ...previousFiles,
-            ...newFiles.map(file => ({ ...file, uploading: false }))
+            ...newFiles.map(file => ({ ...file, uploading: false })),
           ])
           clearInterval(interval)
         } else {
           setFiles([
             ...previousFiles,
-            ...newFiles.map(file => ({ ...file, progress }))
+            ...newFiles.map(file => ({ ...file, progress })),
           ])
           progress += 10
         }
@@ -91,12 +91,12 @@ const useFiles = ({ maxFiles }: { maxFiles: number }) => {
     addFiles,
     removeFile,
     errorMessages,
-    disabled
+    disabled,
   }
 }
 const Example = () => {
   const { files, addFiles, removeFile, errorMessages, disabled } = useFiles({
-    maxFiles: 2
+    maxFiles: 2,
   })
 
   return (

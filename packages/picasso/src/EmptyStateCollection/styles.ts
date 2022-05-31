@@ -5,6 +5,6 @@ export default () =>
     icon: {
       flexBasis: '1rem',
       minWidth: '1rem',
-      height: '1rem'
-    }
+      height: '1rem',
+    },
   })

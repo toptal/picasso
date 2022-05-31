@@ -9,7 +9,7 @@ import React, {
   ComponentType,
   useRef,
   FocusEventHandler,
-  MouseEvent
+  MouseEvent,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
@@ -121,7 +121,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAutocomplete'
+  name: 'PicassoAutocomplete',
 })
 
 const getItemText = (item: Item | null) =>
@@ -172,7 +172,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       name: 'error',
       componentName: 'Autocomplete',
       description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
     const classes = useStyles()
@@ -199,7 +199,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       shouldShowOtherOption,
       getItemProps,
       getOtherItemProps,
-      getInputProps
+      getInputProps,
     } = useAutocomplete({
       value,
       disabled,
@@ -212,7 +212,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onFocus,
       onBlur,
       enableReset,
-      showOtherOption
+      showOtherOption,
     })
 
     const optionsLength = options ? options.length : 0
@@ -348,7 +348,7 @@ Autocomplete.defaultProps = {
   enableReset: true,
   poweredByGoogle: false,
   disabled: false,
-  status: 'default'
+  status: 'default',
 }
 
 Autocomplete.displayName = 'Autocomplete'

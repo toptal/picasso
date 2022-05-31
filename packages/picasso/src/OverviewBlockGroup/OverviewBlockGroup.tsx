@@ -45,7 +45,7 @@ OverviewBlockGroup.displayName = 'OverviewBlockGroup'
 
 OverviewBlockGroup.defaultProps = {
   align: 'default',
-  blockWidth: 'regular'
+  blockWidth: 'regular',
 }
 
 export default OverviewBlockGroup

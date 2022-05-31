@@ -15,19 +15,19 @@ page
         defaultValue: 'unordered',
         type: {
           name: 'enum',
-          enums: ['ordered', 'unordered']
-        }
+          enums: ['ordered', 'unordered'],
+        },
       },
       start: {
         name: 'start',
         defaultValue: '1',
         type: {
-          name: 'number'
+          name: 'number',
         },
         description:
-          'Specifies the start value of the first list item in an ordered list'
-      }
-    }
+          'Specifies the start value of the first list item in an ordered list',
+      },
+    },
   })
   .addComponentDocs(listItemStory.componentDocs)
 
@@ -35,17 +35,17 @@ page
   .createChapter()
   .addExample('List/story/Ordered.example.tsx', {
     title: 'Ordered',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('List/story/OrderedWithStart.example.tsx', {
     title: 'Ordered with custom start',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('List/story/Unordered.example.tsx', {
     title: 'Unordered',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('List/story/Custom.example.tsx', {
     title: 'Custom',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

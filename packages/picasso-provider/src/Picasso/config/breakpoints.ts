@@ -18,8 +18,8 @@ class BreakpointProvider {
       sm: 576,
       md: 768,
       lg: 992,
-      xl: 1920
-    }
+      xl: 1920,
+    },
   }
 
   mediaQueries: {
@@ -33,7 +33,7 @@ class BreakpointProvider {
       small: `(max-width: ${sm}px)`,
       medium: `(min-width: ${sm}px) and (max-width: ${md}px)`,
       large: `(min-width: ${md}px) and (max-width: ${lg}px)`,
-      'extra-large': `(min-width: ${lg}px)`
+      'extra-large': `(min-width: ${lg}px)`,
     }
   }
 
@@ -52,7 +52,7 @@ export const breakpointsList: BreakpointsList = {
   small: PicassoBreakpoints.breakpoints.values.sm,
   medium: PicassoBreakpoints.breakpoints.values.md,
   large: PicassoBreakpoints.breakpoints.values.lg,
-  'extra-large': PicassoBreakpoints.breakpoints.values.xl
+  'extra-large': PicassoBreakpoints.breakpoints.values.xl,
 }
 
 export const screens = (...sizes: BreakpointKeys[]) => {
@@ -121,7 +121,7 @@ export const useScreenSize = () => {
 export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) => {
   const mediaQueryString = screens(...([] as BreakpointKeys[]).concat(sizes))
   const mediaQuery = useMediaQuery(mediaQueryString, {
-    noSsr: true
+    noSsr: true,
   })
 
   if (!mediaQueryString) {

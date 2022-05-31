@@ -14,7 +14,7 @@ const useSearchKeyDownHandler = <
   selectProps: { onKeyDown },
   handleArrowsKeyDown,
   handleEnterOrSpaceKeyDown,
-  handleEscapeKeyDown
+  handleEscapeKeyDown,
 }: UseSelectProps<T, M> & {
   handleArrowsKeyDown: ReturnType<typeof useArrowsKeyDownHandler>
   handleEnterOrSpaceKeyDown: ReturnType<typeof useEnterOrSpaceKeyDownHandler>
@@ -44,7 +44,7 @@ const useSearchKeyDownHandler = <
       onKeyDown,
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     ]
   )
 

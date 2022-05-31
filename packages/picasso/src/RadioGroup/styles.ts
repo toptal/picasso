@@ -4,7 +4,7 @@ export default () =>
   createStyles({
     grid: {
       marginTop: 0,
-      marginBottom: 0
+      marginBottom: 0,
     },
 
     gridItem: {
@@ -12,7 +12,7 @@ export default () =>
 
       '&&': {
         paddingTop: 0,
-        paddingBottom: 0
-      }
-    }
+        paddingBottom: 0,
+      },
+    },
   })

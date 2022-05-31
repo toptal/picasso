@@ -8,7 +8,7 @@ import {
   Bar,
   YAxis,
   ResponsiveContainer,
-  Cell
+  Cell,
 } from 'recharts'
 import { ticks as getD3Ticks } from 'd3-array'
 
@@ -26,7 +26,7 @@ const {
   BOTTOM_DOMAIN,
   NUMBER_OF_TICKS,
   TICK_WIDTH,
-  TICK_HEIGHT
+  TICK_HEIGHT,
 } = CHART_CONSTANTS
 
 export type BarChartDataItem<K extends string | number | symbol> = {
@@ -78,7 +78,7 @@ const StyleOverrides = () => (
           .recharts-yAxis .recharts-cartesian-axis-tick:first-child {
             display: none;
           }
-      `
+      `,
     }}
   />
 )
@@ -86,7 +86,7 @@ const StyleOverrides = () => (
 export const formatData = <K extends string>(data: Props<K>['data']) =>
   data.map(dataItem => ({
     ...dataItem.value,
-    ...dataItem
+    ...dataItem,
   }))
 
 const defaultGetBarColor = () => palette.blue.main
@@ -206,7 +206,7 @@ BarChart.defaultProps = {
   height: 200,
   width: 'auto',
   tooltip: false,
-  showBarLabel: true
+  showBarLabel: true,
 }
 
 export default BarChart

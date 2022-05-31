@@ -17,7 +17,7 @@ import {
   useOnTextFormat,
   useOnFocus,
   useToolbarHandlers,
-  useCounter
+  useCounter,
 } from './hooks'
 import { ASTType } from '../RichText'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
@@ -86,7 +86,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'RichTextEditor'
+  name: 'RichTextEditor',
 })
 
 export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
@@ -108,7 +108,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       maxLengthMessage,
       style,
       status,
-      testIds
+      testIds,
     } = props
 
     const classes = useStyles()
@@ -122,7 +122,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       name: 'error',
       componentName: 'RichTextEditor',
       description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
     const { handleSelectionChange } = useOnSelectionChange({ dispatch })
@@ -132,11 +132,11 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       handleItalic,
       handleHeader,
       handleOrdered,
-      handleUnordered
+      handleUnordered,
     } = useToolbarHandlers({
       editorRef,
       handleTextFormat,
-      format: state.toolbar.format
+      format: state.toolbar.format,
     })
 
     const { isEditorFocused, handleFocus, handleBlur } = useOnFocus({
@@ -146,7 +146,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       wrapperRef,
       onFocus,
       onBlur,
-      dispatch
+      dispatch,
     })
 
     const [defaultValueInHtml] = useState(() =>
@@ -157,7 +157,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       minLength,
       maxLength,
       minLengthMessage,
-      maxLengthMessage
+      maxLengthMessage,
     })
 
     return (
@@ -167,7 +167,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           {
             [classes.disabled]: disabled,
             [classes.focused]: isEditorFocused,
-            [classes.error]: status === 'error'
+            [classes.error]: status === 'error',
           },
           className
         )}
@@ -200,7 +200,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             boldButton: testIds?.boldButton,
             italicButton: testIds?.italicButton,
             unorderedListButton: testIds?.unorderedListButton,
-            orderedListButton: testIds?.orderedListButton
+            orderedListButton: testIds?.orderedListButton,
           }}
         />
         <QuillEditor
@@ -230,7 +230,7 @@ RichTextEditor.defaultProps = {
   onFocus: noop,
   onBlur: noop,
   disabled: false,
-  status: 'default'
+  status: 'default',
 }
 
 RichTextEditor.displayName = 'RichTextEditor'

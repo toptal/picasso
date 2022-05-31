@@ -8,7 +8,7 @@ import styles from './styles'
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {}
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoNotificationActions'
+  name: 'PicassoNotificationActions',
 })
 
 export const NotificationActions = forwardRef<HTMLDivElement, Props>(

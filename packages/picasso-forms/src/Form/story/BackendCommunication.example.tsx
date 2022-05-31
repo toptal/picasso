@@ -21,7 +21,7 @@ const BackendCommunicationExample = () => {
       style={{
         display: 'grid',
         gap: '2rem',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
       }}
     >
       <Form
@@ -126,14 +126,14 @@ const api = {
     console.log('Submit with Inline Errors. Form values:', values)
 
     return responseWithDelay({
-      inlineErrorName: 'Unknown first name'
+      inlineErrorName: 'Unknown first name',
     })
   },
   submitWithCustomNotificationError: (values: any) => {
     console.log('Submit with Custom Notification Errors. Form values:', values)
 
     return responseWithDelay('Custom Notification Message!')
-  }
+  },
 }
 
 export default BackendCommunicationExample

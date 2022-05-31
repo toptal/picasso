@@ -15,9 +15,9 @@ page.createTabChapter('Props').addComponentDocs({
       type: 'number | null',
       description:
         'Maximum number of files allowed. When the value is null, unlimited files can be added and multiple files can be selected on the file selection dialog',
-      defaultValue: 1
-    }
-  }
+      defaultValue: 1,
+    },
+  },
 })
 
 page
@@ -25,7 +25,7 @@ page
   .addExample('FileInput/story/Default.example.tsx', 'Default')
   .addExample('FileInput/story/CustomButtonLabel.example.tsx', {
     title: 'Custom label',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('FileInput/story/InitialValue.example.tsx', 'Initial value')
   .addExample(
@@ -42,10 +42,10 @@ page
   .addExample('FileInput/story/Uploader.example.tsx', {
     title: 'With Uploader',
     description:
-      'Showcase how to integrate FileInput with uploading logic. Randomly returns errors and allows only upload of image files'
+      'Showcase how to integrate FileInput with uploading logic. Randomly returns errors and allows only upload of image files',
   })
   .addExample('FileInput/story/FileList.example.tsx', {
     title: 'FileList',
     description: 'List of files',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

@@ -14,25 +14,25 @@ page
   .createChapter()
   .addExample('UserBadge/story/Default.example.tsx', {
     title: 'Default',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
   .addExample('UserBadge/story/Sizes.example.tsx', {
     title: 'Sizes',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
   .addExample('UserBadge/story/Alignment.example.tsx', {
     title: 'Alignment',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
   .addExample('UserBadge/story/Invert.example.tsx', {
     title: 'Invert',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
   .addExample('UserBadge/story/Custom.example.tsx', {
     title: 'Custom',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
   .addExample('UserBadge/story/Title.example.tsx', {
     title: 'With Title',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })

@@ -9,20 +9,20 @@ const componentDocs = PicassoBook.createComponentDocs(
     as: {
       name: 'as',
       type: {
-        name: 'enum'
+        name: 'enum',
       },
       defaultValue: 'button',
       description:
-        'The component used for the root node.\nEither a string to use a DOM element or a component.'
+        'The component used for the root node.\nEither a string to use a DOM element or a component.',
     },
     active: {
       name: 'active',
       type: 'boolean',
-      description: 'Whether the item is active'
-    }
+      description: 'Whether the item is active',
+    },
   }
 )
 
 export default {
-  componentDocs
+  componentDocs,
 }

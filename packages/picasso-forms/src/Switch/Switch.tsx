@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Switch as PicassoSwitch,
   SwitchProps,
-  Form as PicassoForm
+  Form as PicassoForm,
 } from '@toptal/picasso'
 
 import PicassoField, { FieldProps } from '../Field'

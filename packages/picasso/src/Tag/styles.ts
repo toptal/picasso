@@ -6,64 +6,64 @@ export default ({ palette, transitions }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
-      maxWidth: '100%'
+      maxWidth: '100%',
     },
     blue: {
       color: palette.blue.main,
-      borderColor: palette.blue.main
+      borderColor: palette.blue.main,
     },
     green: {
       color: palette.green.dark,
-      borderColor: palette.green.dark
+      borderColor: palette.green.dark,
     },
     yellow: {
       color: palette.yellow.main,
-      borderColor: palette.yellow.main
+      borderColor: palette.yellow.main,
     },
     red: {
       color: palette.red.main,
-      borderColor: palette.red.main
+      borderColor: palette.red.main,
     },
     disabled: {
       borderColor: palette.grey.lighter2,
       color: palette.grey.main,
-      pointerEvents: 'none'
+      pointerEvents: 'none',
     },
     innerLabel: {
       fontSize: '0.75rem',
       fontWeight: 600,
-      minWidth: 0
+      minWidth: 0,
     },
     deleteIcon: {
       width: 'auto',
-      height: 'auto'
+      height: 'auto',
     },
     clickable: {
       cursor: 'default',
       '&:hover, &:focus': {
         backgroundColor: palette.common.white,
-        cursor: 'default'
+        cursor: 'default',
       },
       '&$checkable:not($disabled)': {
         cursor: 'pointer',
         '&:hover, &$hovered': {
           borderColor: palette.grey.dark,
           backgroundColor: palette.common.white,
-          transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`
+          transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
         },
         '&:focus': {
-          backgroundColor: palette.common.white
+          backgroundColor: palette.common.white,
         },
         '&$green': {
           '&:hover, &$hovered': {
             borderColor: palette.red.main,
-            color: palette.red.main
-          }
-        }
-      }
+            color: palette.red.main,
+          },
+        },
+      },
     },
     label: {
-      gap: '0.5rem'
+      gap: '0.5rem',
     },
     hovered: {},
     // TagConnection styles
@@ -73,10 +73,10 @@ export default ({ palette, transitions }: Theme) =>
       gap: '5px',
       color: palette.grey.main2,
       '[aria-disabled="true"] &': {
-        color: 'inherit'
-      }
+        color: 'inherit',
+      },
     },
 
     // TagCheckable
-    checkable: {}
+    checkable: {},
   })

@@ -7,14 +7,14 @@ PicassoProvider.override(() => ({
       '&$expanded': {
         margin: 0,
         '&:before': {
-          opacity: 1
-        }
+          opacity: 1,
+        },
       },
       '&$disabled': {
-        backgroundColor: 'unset'
-      }
-    }
-  }
+        backgroundColor: 'unset',
+      },
+    },
+  },
 }))
 
 export default ({ palette, typography }: Theme) => {
@@ -26,79 +26,79 @@ export default ({ palette, typography }: Theme) => {
     content: '""',
     opacity: 1,
     backgroundColor: palette.grey.light2,
-    position: 'absolute'
+    position: 'absolute',
   }
 
   return createStyles({
     root: {
       background: 'transparent',
-      fontSize: '1rem'
+      fontSize: '1rem',
     },
     bordersAll: {
       '&:before, &:after': {
-        ...separatorStyles
+        ...separatorStyles,
       },
       '&:first-child:before': {
-        display: 'block'
+        display: 'block',
       },
       '& + $root:before': {
-        display: 'none'
-      }
+        display: 'none',
+      },
     },
     bordersMiddle: {
       '&:before': {
-        display: 'none'
+        display: 'none',
       },
       '&$root + $root:before': {
         ...separatorStyles,
         display: 'block',
-        transform: 'translateY(1px)'
-      }
+        transform: 'translateY(1px)',
+      },
     },
     bordersNone: {
       '&:before, &:after': {
-        display: 'none'
-      }
+        display: 'none',
+      },
     },
     summaryFontWeightInherit: {
-      fontWeight: 'inherit'
+      fontWeight: 'inherit',
     },
     expandIcon: {
       fontSize: '0.7em',
       color: palette.grey.dark,
-      transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms'
+      transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     },
     expandIconExpanded: {
-      transform: 'rotate(180deg)'
+      transform: 'rotate(180deg)',
     },
     expandIconAlignTop: {
       display: 'flex',
       alignItems: 'center',
       height: '1.5em',
-      alignSelf: 'flex-start'
+      alignSelf: 'flex-start',
     },
     summary: {
-      color: palette.common.black
+      color: palette.common.black,
     },
     details: {
-      padding: 0
+      padding: 0,
     },
     summaryWrapper: {
-      color: palette.common.black
+      color: palette.common.black,
     },
     detailsWrapper: {
       lineHeight: '1.5em',
       color: palette.grey.darker,
       fontSize: '0.875em',
       fontWeight: typography.fontWeights.regular,
-      marginBottom: '0.75em'
+      marginBottom: '0.75em',
     },
     content: {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      lineHeight: '1.5em'
-    }
+      lineHeight: '1.5em',
+    },
   })
 }

@@ -24,14 +24,14 @@ const api = {
     console.log('Submit with Inline Errors. Form values:', values)
 
     return responseWithDelay({
-      inlineErrorName: 'Unknown first name'
+      inlineErrorName: 'Unknown first name',
     })
   },
   submitWithCustomNotificationError: (values: any) => {
     console.log('Submit with Custom Notification Errors. Form values:', values)
 
     return responseWithDelay('Custom Notification Message!')
-  }
+  },
 }
 
 const FormExample = () => {
@@ -57,7 +57,7 @@ const FormExample = () => {
         style={{
           display: 'grid',
           gap: '2rem',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
         }}
       >
         <Form
@@ -171,13 +171,13 @@ const countries = [
   { value: 'Lithuania', text: 'Lithuania' },
   { value: 'Slovakia', text: 'Slovakia' },
   { value: 'Spain', text: 'Spain' },
-  { value: 'Ukraine', text: 'Ukraine' }
+  { value: 'Ukraine', text: 'Ukraine' },
 ]
 
 const skills = [
   { value: '0', text: 'HTML' },
   { value: '1', text: 'CSS' },
-  { value: '2', text: 'Javascript' }
+  { value: '2', text: 'Javascript' },
 ]
 
 const DisabledStateExample = () => {
@@ -236,7 +236,7 @@ const DisabledStateExample = () => {
           value={0}
           options={[
             { value: 0, text: 'Company' },
-            { value: 1, text: 'Individual' }
+            { value: 1, text: 'Individual' },
           ]}
         />
         <Form.Autocomplete

@@ -19,5 +19,5 @@ const componentDocs = PicassoBook.createComponentDocs(FormField, 'Form.Field')
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

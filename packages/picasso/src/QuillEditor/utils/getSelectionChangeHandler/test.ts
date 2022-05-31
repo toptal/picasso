@@ -9,7 +9,7 @@ describe('getSelectionChangeHandler', () => {
   it('does nothing when silent event', () => {
     const onSelectionChange = jest.fn()
     const quill = {
-      getFormat: jest.fn()
+      getFormat: jest.fn(),
     } as unknown as Quill
 
     const handler = getSelectionChangeHandler(quill, onSelectionChange)
@@ -22,7 +22,7 @@ describe('getSelectionChangeHandler', () => {
   it('does nothing when api event', () => {
     const onSelectionChange = jest.fn()
     const quill = {
-      getFormat: jest.fn()
+      getFormat: jest.fn(),
     } as unknown as Quill
 
     const handler = getSelectionChangeHandler(quill, onSelectionChange)
@@ -35,7 +35,7 @@ describe('getSelectionChangeHandler', () => {
   it('calls onSelectionChange with proper format when selection has been changed', () => {
     const onSelectionChange = jest.fn()
     const quill = {
-      getFormat: jest.fn().mockImplementation(() => ({ bold: true }))
+      getFormat: jest.fn().mockImplementation(() => ({ bold: true })),
     } as unknown as Quill
 
     const handler = getSelectionChangeHandler(quill, onSelectionChange)
@@ -44,14 +44,14 @@ describe('getSelectionChangeHandler', () => {
 
     expect(onSelectionChange).toHaveBeenCalledTimes(1)
     expect(onSelectionChange).toHaveBeenCalledWith({
-      bold: true
+      bold: true,
     })
   })
 
   it('does not call onSelectionChange when clicking outside of editor', () => {
     const onSelectionChange = jest.fn()
     const quill = {
-      getFormat: jest.fn()
+      getFormat: jest.fn(),
     } as unknown as Quill
 
     const handler = getSelectionChangeHandler(quill, onSelectionChange) as (

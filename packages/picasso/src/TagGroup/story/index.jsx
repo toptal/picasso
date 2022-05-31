@@ -10,7 +10,7 @@ export const chapter = PicassoBook.connectToPage(
       )
       .addExample('TagGroup/story/TagGroup.example.tsx', {
         title: 'Tag group',
-        takeScreenshot: false
+        takeScreenshot: false,
       }) // picasso-skip-visuals
 )
 
@@ -18,5 +18,5 @@ const componentDocs = PicassoBook.createComponentDocs(TagGroup, 'Tag.Group')
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

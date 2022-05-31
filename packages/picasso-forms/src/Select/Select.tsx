@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Select as PicassoSelect,
   SelectProps,
-  SelectValueType
+  SelectValueType,
 } from '@toptal/picasso'
 import { generateRandomStringOrGetEmptyInTest } from '@toptal/picasso/utils'
 

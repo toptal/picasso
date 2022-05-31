@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Autocomplete as PicassoAutocomplete,
-  AutocompleteProps
+  AutocompleteProps,
 } from '@toptal/picasso'
 
 import { FieldProps } from '../Field'

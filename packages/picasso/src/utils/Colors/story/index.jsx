@@ -12,9 +12,9 @@ page
   .createChapter()
   .addExample('utils/Colors/story/HowToUse.example.tsx', {
     title: 'How to use',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('utils/Colors/story/Default.example.tsx', {
     title: 'Colors',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

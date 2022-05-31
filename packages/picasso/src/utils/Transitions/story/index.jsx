@@ -7,5 +7,5 @@ page
   .addExample('utils/Transitions/Rotate180/story/Default.example.tsx', {
     title: 'Rotate180',
     description: 'Transition for 180 deg rotation',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

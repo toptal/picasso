@@ -46,7 +46,7 @@ describe('TableCell', () => {
       'data-testid': 'cell',
       rowSpan: 10,
       colSpan: 2,
-      style: { background: 'red' }
+      style: { background: 'red' },
     })
 
     const cell = getByTestId('cell')

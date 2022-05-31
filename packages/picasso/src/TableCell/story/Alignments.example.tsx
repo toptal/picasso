@@ -53,7 +53,7 @@ const data = [
     'Germany'
   ),
   createData('Leila Pena', 'Developer', 'Invision', 'Web developer', 'Poland'),
-  createData('Logan Burton', 'Developer', 'Microsoft', 'CTO', 'United States')
+  createData('Logan Burton', 'Developer', 'Microsoft', 'CTO', 'United States'),
 ]
 
 export default Example

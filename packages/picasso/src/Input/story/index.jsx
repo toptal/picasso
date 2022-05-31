@@ -15,9 +15,9 @@ page
     additionalDocs: {
       iconPosition: {
         type: 'enum',
-        enums: ['start', 'end']
-      }
-    }
+        enums: ['start', 'end'],
+      },
+    },
   })
   .addExample('Input/story/Default.example.tsx', {
     title: 'Default',
@@ -27,7 +27,7 @@ page
 
       await testPage.click('[data-testid="input"]')
       await makeScreenshot()
-    }
+    },
   })
   .addExample('Input/story/Disabled.example.tsx', 'Disabled')
   .addExample('Input/story/Status.example.tsx', {
@@ -39,7 +39,7 @@ page
       await testPage.click('[data-testid="input"]')
       await makeScreenshot()
     },
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Input/story/WithIcon.example.tsx', 'With icon')
   .addExample('Input/story/Sizes.example.tsx', 'Sizes')
@@ -56,9 +56,9 @@ page
   .addExample('Input/story/WithLimit.example.tsx', 'With Limit')
   .addExample('Input/story/ResetButton.example.tsx', {
     title: 'With reset button',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Input/story/Refs.example.tsx', {
     title: 'Refs',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

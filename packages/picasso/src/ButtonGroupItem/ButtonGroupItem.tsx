@@ -6,7 +6,7 @@ import Button, { ButtonProps } from '../Button'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonGroupItem'
+  name: 'PicassoButtonGroupItem',
 })
 
 export interface Props extends ButtonProps {}
@@ -18,7 +18,7 @@ const ButtonGroupItem = (props: Props) => {
     <Button
       {...props}
       className={cx(props.className, classes.root, classes.group, {
-        [classes.active]: props.active
+        [classes.active]: props.active,
       })}
       variant='secondary'
     />

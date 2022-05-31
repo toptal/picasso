@@ -11,7 +11,7 @@ describe('getEditorChangeHandler', () => {
     describe('when source is silent', () => {
       it('does nothing', () => {
         const quill = {
-          getFormat: jest.fn(() => ({}))
+          getFormat: jest.fn(() => ({})),
         } as unknown as Quill
         const onSelectionChange = jest.fn()
 
@@ -26,7 +26,7 @@ describe('getEditorChangeHandler', () => {
     describe('when source is api', () => {
       it('calls the callback with quill format', () => {
         const quill = {
-          getFormat: jest.fn(() => ({}))
+          getFormat: jest.fn(() => ({})),
         } as unknown as Quill
         const onSelectionChange = jest.fn()
 
@@ -42,7 +42,7 @@ describe('getEditorChangeHandler', () => {
       describe('when quill removes header format', () => {
         it('calls the callback with quill format', () => {
           const quill = {
-            getFormat: jest.fn(() => ({}))
+            getFormat: jest.fn(() => ({})),
           } as unknown as Quill
           const onSelectionChange = jest.fn()
 
@@ -64,7 +64,7 @@ describe('getEditorChangeHandler', () => {
       describe('when it is usual text change', () => {
         it('does nothing', () => {
           const quill = {
-            getFormat: jest.fn(() => ({}))
+            getFormat: jest.fn(() => ({})),
           } as unknown as Quill
           const onSelectionChange = jest.fn()
 

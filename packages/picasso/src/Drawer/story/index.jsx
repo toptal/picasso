@@ -14,7 +14,7 @@ const page = PicassoBook.section('Components').createPage(
 
 page.createTabChapter('Props').addComponentDocs({
   component: Drawer,
-  name: 'Drawer'
+  name: 'Drawer',
 })
 
 page
@@ -26,9 +26,9 @@ page
 
       await makeScreenshot({
         isFullScreen: true,
-        selector: '[data-testid="content"]'
+        selector: '[data-testid="content"]',
       })
-    }
+    },
   })
   .addExample('Drawer/story/WithoutTitle.example.tsx', {
     title: 'Without Title',
@@ -36,9 +36,9 @@ page
       await testPage.click('[data-testid="trigger"]')
 
       await makeScreenshot({
-        isFullScreen: true
+        isFullScreen: true,
       })
-    }
+    },
   })
   .addExample('Drawer/story/CustomTitle.example.tsx', {
     title: 'Custom Title',
@@ -46,9 +46,9 @@ page
       await testPage.click('[data-testid="trigger"]')
 
       await makeScreenshot({
-        isFullScreen: true
+        isFullScreen: true,
       })
-    }
+    },
   })
   .addExample('Drawer/story/Widths.example.tsx', {
     title: 'Width',
@@ -61,20 +61,20 @@ page
 
         await testPage.click(buttonSelector)
         await testPage.waitFor(contentSelector, {
-          visible: true
+          visible: true,
         })
         await makeScreenshot({
           isFullScreen: true,
-          selector: contentSelector
+          selector: contentSelector,
         })
         await testPage.click('[role="presentation"] button')
         await testPage.waitFor(contentSelector, {
-          hidden: true
+          hidden: true,
         })
       }
-    }
+    },
   })
   .addExample('Drawer/story/DrawerAndNotification.example.tsx', {
     title: 'With notification',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

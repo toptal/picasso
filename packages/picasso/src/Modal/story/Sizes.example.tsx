@@ -7,25 +7,25 @@ import {
   Checkbox,
   Form,
   Container,
-  ModalProps
+  ModalProps,
 } from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
 
 const STATES = [
   {
     text: 'Alabama',
-    value: 'Alabama'
+    value: 'Alabama',
   },
   {
     text: 'Utah',
-    value: 'Utah'
-  }
+    value: 'Utah',
+  },
 ]
 
 const ModalDialog = ({
   open,
   onClose,
-  size
+  size,
 }: {
   open: boolean
   onClose: () => void
@@ -62,22 +62,22 @@ const Example = () => {
   const {
     showModal: showModalSmall,
     hideModal: hideModalSmall,
-    isOpen: isOpenSmall
+    isOpen: isOpenSmall,
   } = useModal()
   const {
     showModal: showModalMedium,
     hideModal: hideModalMedium,
-    isOpen: isOpenMedium
+    isOpen: isOpenMedium,
   } = useModal()
   const {
     showModal: showModalLarge,
     hideModal: hideModalLarge,
-    isOpen: isOpenLarge
+    isOpen: isOpenLarge,
   } = useModal()
   const {
     showModal: showModalFullscreen,
     hideModal: hideModalFullscreen,
-    isOpen: isOpenFullscreen
+    isOpen: isOpenFullscreen,
   } = useModal()
 
   return (

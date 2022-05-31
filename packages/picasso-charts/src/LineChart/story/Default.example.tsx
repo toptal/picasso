@@ -6,13 +6,13 @@ const HIGHLIGHTS = [
   {
     from: 6,
     to: 8,
-    color: palette.yellow.main
+    color: palette.yellow.main,
   },
   {
     from: 12,
     to: 13,
-    color: palette.yellow.main
-  }
+    color: palette.yellow.main,
+  },
 ]
 
 const CHART_DATA = [
@@ -37,7 +37,7 @@ const CHART_DATA = [
   { x: 'Nov 07', talents: 1.6 },
   { x: 'Nov 08', talents: 2 },
   { x: 'Nov 09', talents: 2 },
-  { x: 'Nov 10', talents: 3.1 }
+  { x: 'Nov 10', talents: 3.1 },
 ]
 
 const Example = () => (
@@ -45,7 +45,7 @@ const Example = () => (
     data={CHART_DATA}
     highlights={HIGHLIGHTS}
     lineConfig={{
-      talents: { color: palette.blue.main }
+      talents: { color: palette.blue.main },
     }}
   />
 )

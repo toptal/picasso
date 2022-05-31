@@ -51,5 +51,5 @@ module.exports = {
   createHumanName,
   parseHumanName,
   lastCommitHash,
-  assignOutputDir: assignOutputDir()
+  assignOutputDir: assignOutputDir(),
 }

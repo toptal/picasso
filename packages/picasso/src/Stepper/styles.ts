@@ -4,20 +4,20 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 PicassoProvider.override(() => ({
   MuiStepper: {
     root: {
-      padding: 0
-    }
-  }
+      padding: 0,
+    },
+  },
 }))
 
 export default () =>
   createStyles({
     root: {
       fontSize: '1rem',
-      background: 'inherit'
+      background: 'inherit',
     },
     fullWidth: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between'
-    }
+      justifyContent: 'space-between',
+    },
   })

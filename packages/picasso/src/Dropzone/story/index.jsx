@@ -18,41 +18,41 @@ page.createTabChapter('Props').addComponentDocs({
       name: 'accept',
       type: 'string | string[]',
       description:
-        'Set accepted file types. See https://github.com/okonet/attr-accept for more information. Keep in mind that mime type determination is not reliable across platforms. CSV files, for example, are reported as text/plain under macOS but as application/vnd.ms-excel under Windows. In some cases there might not be a mime type set at all. See: https://github.com/react-dropzone/react-dropzone/issues/276'
+        'Set accepted file types. See https://github.com/okonet/attr-accept for more information. Keep in mind that mime type determination is not reliable across platforms. CSV files, for example, are reported as text/plain under macOS but as application/vnd.ms-excel under Windows. In some cases there might not be a mime type set at all. See: https://github.com/react-dropzone/react-dropzone/issues/276',
     },
     onDropAccepted: {
       name: 'onDropAccepted',
       type: {
         name: 'function',
-        description: '(files: File[], event) => void'
+        description: '(files: File[], event) => void',
       },
       description:
-        'Callback for when the drop event occurs. Note that if no files are accepted, this callback is not invoked.'
+        'Callback for when the drop event occurs. Note that if no files are accepted, this callback is not invoked.',
     },
     onDropRejected: {
       name: 'onDropRejected',
       type: {
         name: 'function',
-        description: '(fileRejections: FileRejection[], event) => void'
+        description: '(fileRejections: FileRejection[], event) => void',
       },
       description:
-        'Callback for when the drop event occurs. Note that if no files are rejected, this callback is not invoked.'
+        'Callback for when the drop event occurs. Note that if no files are rejected, this callback is not invoked.',
     },
     validator: {
       name: 'validator',
       type: {
         name: 'function',
-        description: '(file:File) => FileError | FileError[] | null'
+        description: '(file:File) => FileError | FileError[] | null',
       },
       description: 'Custom validation function',
-      defaultvalue: 'null'
+      defaultvalue: 'null',
     },
     onDrop: {
       name: 'onDrop',
       type: {
         name: 'function',
         description:
-          '(acceptedFiles: File[], fileRejections: FileRejection[], event:DragEvent | Event) => void'
+          '(acceptedFiles: File[], fileRejections: FileRejection[], event:DragEvent | Event) => void',
       },
       description: `
 Callback for when the drop event occurs. Note that this callback is invoked after the getFilesFromEvent callback is done.
@@ -70,38 +70,38 @@ onDrop will provide you with an array of File objects which you can then process
         })
         req.end(callback)
       }
-      `
-    }
-  }
+      `,
+    },
+  },
 })
 
 page
   .createChapter()
   .addExample('Dropzone/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Dropzone/story/Uploader.example.tsx', {
     title: 'With upload',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Dropzone/story/Uploading.example.tsx', {
     title: 'Uploading',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Dropzone/story/Disabled.example.tsx', {
     title: 'Completed',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Dropzone/story/Multiple.example.tsx', {
     title: 'Completed Multiple files',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Dropzone/story/Error.example.tsx', {
     title: 'Upload Failed',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('Dropzone/story/SingleFile.example.tsx', {
     title: 'Single File',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

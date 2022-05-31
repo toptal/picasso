@@ -17,13 +17,13 @@ page
       as: {
         name: 'as',
         type: {
-          name: 'ElementType'
+          name: 'ElementType',
         },
         description:
           'Component used for the root node. Either a string to use a DOM element or a component.',
-        defaultValue: 'button'
-      }
-    }
+        defaultValue: 'button',
+      },
+    },
   })
   .addComponentDocs(overviewBlockGroupStory.componentDocs)
   .addComponentDocs(overviewBlockRowStory.componentDocs)

@@ -2,17 +2,17 @@ import getXAxisTicks from './get-x-axis-ticks'
 
 const ORDERED_DATA = [
   {
-    order: 0
+    order: 0,
   },
   {
-    order: 1
+    order: 1,
   },
   {
-    order: 2
+    order: 2,
   },
   {
-    order: 3
-  }
+    order: 3,
+  },
 ]
 
 describe('getXAxisTicks', () => {

@@ -17,7 +17,7 @@ page
   .createTabChapter('Props')
   .addComponentDocs({
     component: Alert,
-    name: 'Alert'
+    name: 'Alert',
   })
   .addComponentDocs(alertInlineStory.componentDocs)
 

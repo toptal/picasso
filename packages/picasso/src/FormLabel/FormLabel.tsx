@@ -5,7 +5,7 @@ import {
   useTitleCase,
   BaseProps,
   TextLabelProps,
-  SizeType
+  SizeType,
 } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -68,7 +68,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
         classes.root,
         {
           [classes.disabled]: disabled,
-          [classes.inline]: isInline
+          [classes.inline]: isInline,
         },
         className
       )}
@@ -89,7 +89,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
 FormLabel.defaultProps = {
   as: 'label',
   inline: false,
-  size: 'medium'
+  size: 'medium',
 }
 
 FormLabel.displayName = 'FormLabel'

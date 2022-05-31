@@ -13,11 +13,11 @@ const chapter = PicassoBook.connectToPage(
       .addExample('TypographyLoader/story/Default.example.tsx', {
         id: 'TypographyLoader',
         waitUntilImagesLoaded: true,
-        takeScreenshot: false
+        takeScreenshot: false,
       }) // picasso-skip-visuals
 )
 
 export default {
   componentDocs,
-  chapter
+  chapter,
 }

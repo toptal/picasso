@@ -10,14 +10,14 @@ import styles from './styles'
 jest.mock('@material-ui/core/Popper', () => jest.fn(() => null))
 jest.mock('@toptal/picasso-provider', () => ({
   useBreakpoint: () => true,
-  usePicassoRoot: jest.fn()
+  usePicassoRoot: jest.fn(),
 }))
 jest.mock('@material-ui/core/styles', () => ({
-  makeStyles: jest.fn(() => () => ({ root: 'TEST_CLASS_NAME+1' }))
+  makeStyles: jest.fn(() => () => ({ root: 'TEST_CLASS_NAME+1' })),
 }))
 jest.mock('../utils/use-width-of', () => ({
   __esModule: true,
-  default: () => '300px'
+  default: () => '300px',
 }))
 
 const mockedUsePicassoRoot = usePicassoRoot as jest.Mock<
@@ -46,9 +46,9 @@ const defaultPopperProps = {
   placement,
   popperRef: null,
   style: {
-    width: '300px'
+    width: '300px',
   },
-  popperOptions: getPopperOptions({})
+  popperOptions: getPopperOptions({}),
 }
 
 const renderComponent = (props: Partial<Props> = {}) => {
@@ -65,7 +65,7 @@ const renderComponent = (props: Partial<Props> = {}) => {
       </Popper>
     </div>,
     {
-      container: document.body.appendChild(rootDiv)
+      container: document.body.appendChild(rootDiv),
     }
   )
 }
@@ -79,7 +79,7 @@ describe('Popper', () => {
   it('creates useStyle hook properly', () => {
     expect(mockedMakeStyles).toHaveBeenCalledTimes(1)
     expect(mockedMakeStyles).toHaveBeenCalledWith(styles, {
-      name: 'PicassoPopper'
+      name: 'PicassoPopper',
     })
   })
 
@@ -88,14 +88,14 @@ describe('Popper', () => {
       const container = document.createElement('div')
 
       renderComponent({
-        container
+        container,
       })
 
       expect(mockedMUIPopper).toHaveBeenCalledTimes(1)
       expect(mockedMUIPopper).toHaveBeenCalledWith(
         {
           ...defaultPopperProps,
-          container
+          container,
         },
         {}
       )
@@ -105,14 +105,14 @@ describe('Popper', () => {
   describe('when container prop is NOT passed', () => {
     it('calls MUIPopper with default root container', () => {
       renderComponent({
-        container: undefined
+        container: undefined,
       })
 
       expect(mockedMUIPopper).toHaveBeenCalledTimes(1)
       expect(mockedMUIPopper).toHaveBeenCalledWith(
         {
           ...defaultPopperProps,
-          container: rootDiv
+          container: rootDiv,
         },
         {}
       )
@@ -122,7 +122,7 @@ describe('Popper', () => {
   describe('when custom width prop is passed', () => {
     it('calls MUIPopper with custom width style', () => {
       renderComponent({
-        width: '400px'
+        width: '400px',
       })
 
       expect(mockedMUIPopper).toHaveBeenCalledTimes(1)
@@ -130,8 +130,8 @@ describe('Popper', () => {
         {
           ...defaultPopperProps,
           style: {
-            width: '400px'
-          }
+            width: '400px',
+          },
         },
         {}
       )
@@ -143,14 +143,14 @@ describe('Popper', () => {
       it('calls MUIPopper without assigning width style', () => {
         renderComponent({
           width: undefined,
-          autoWidth: false
+          autoWidth: false,
         })
 
         expect(mockedMUIPopper).toHaveBeenCalledTimes(1)
         expect(mockedMUIPopper).toHaveBeenCalledWith(
           {
             ...defaultPopperProps,
-            style: {}
+            style: {},
           },
           {}
         )

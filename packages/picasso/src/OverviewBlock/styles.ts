@@ -12,33 +12,33 @@ export default ({ palette, sizes }: Theme) =>
       border: 'none',
       textDecoration: 'none',
       '&:not(:first-child)': {
-        borderLeft: `${sizes.borderWidth} solid ${palette.grey.light2}`
-      }
+        borderLeft: `${sizes.borderWidth} solid ${palette.grey.light2}`,
+      },
     },
     clickable: {
       cursor: 'pointer',
       outline: 'none',
       '&:hover': {
-        backgroundColor: palette.blue.lighter
-      }
+        backgroundColor: palette.blue.lighter,
+      },
     },
     disableOutline: {
-      outline: 'none'
+      outline: 'none',
     },
 
     defaultAlign: {
-      alignItems: 'flex-start'
+      alignItems: 'flex-start',
     },
     centerAlign: {
-      alignItems: 'center'
+      alignItems: 'center',
     },
     narrowWidth: {
-      padding: '0.75rem 1rem'
+      padding: '0.75rem 1rem',
     },
     regularWidth: {
-      padding: '0.75rem 1.5rem'
+      padding: '0.75rem 1.5rem',
     },
     wideWidth: {
-      padding: '0.75rem 2rem'
-    }
+      padding: '0.75rem 2rem',
+    },
   })

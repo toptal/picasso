@@ -3,7 +3,7 @@ import React, {
   useCallback,
   useContext,
   useMemo,
-  useState
+  useState,
 } from 'react'
 
 import MenuContext, { MenuContextProps } from '../../MenuContext'
@@ -61,7 +61,7 @@ const useSlideMenu = () => {
       variant: 'slide',
       onItemUpdate: onItemUpdate ?? handleItemUpdate,
       onItemClick: onItemClick ?? handleItemClick,
-      onBackClick: onBackClick ?? handleBackClick
+      onBackClick: onBackClick ?? handleBackClick,
     }),
     [
       onItemUpdate,
@@ -69,14 +69,14 @@ const useSlideMenu = () => {
       onBackClick,
       handleItemUpdate,
       handleItemClick,
-      handleBackClick
+      handleBackClick,
     ]
   )
 
   return {
     context,
     innerMenu: lastMenu,
-    hasBackButton: Boolean(onBackClick)
+    hasBackButton: Boolean(onBackClick),
   }
 }
 

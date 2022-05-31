@@ -10,7 +10,7 @@ type TreeViewContextValue = {
 
 const treeContextValue: TreeViewContextValue = {
   state: {},
-  updateState: () => {}
+  updateState: () => {},
 }
 
 export const TreeViewContext =
@@ -22,7 +22,7 @@ export const TreeViewContainer = ({ children }: { children: ReactNode }) => {
   const updateState = (newState: Partial<TreeViewContextProps>) => {
     setState({
       ...state,
-      ...newState
+      ...newState,
     })
   }
 
@@ -60,9 +60,9 @@ export const TreeViewContainer = ({ children }: { children: ReactNode }) => {
       value={{
         state: {
           ...state,
-          zoomHandler
+          zoomHandler,
         },
-        updateState
+        updateState,
       }}
     >
       {children}

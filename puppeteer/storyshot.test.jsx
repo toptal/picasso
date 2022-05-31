@@ -7,7 +7,7 @@ const config = require('./config')
 const {
   createSnapshotName,
   createHumanName,
-  assignOutputDir
+  assignOutputDir,
 } = require('./utils')
 
 const stories = global.__STORYSHOTS__
@@ -30,7 +30,7 @@ stories.forEach(story => {
           customSnapshotsDir: snapShotDir(story.file),
           customSnapshotIdentifier: `${createSnapshotName(humanName)}`,
           customDiffDir: outputPath,
-          ...options
+          ...options,
         })
       )
     })

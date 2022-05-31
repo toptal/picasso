@@ -19,5 +19,5 @@ page
   .addExample('Loader/story/Variants.example.tsx', 'Variants')
   .addExample('Loader/story/ControlledValue.example.tsx', {
     title: 'Controlled value',
-    description: 'Loader with determined or static values'
+    description: 'Loader with determined or static values',
   })

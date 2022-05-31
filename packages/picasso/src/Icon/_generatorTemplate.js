@@ -10,10 +10,10 @@ const decorateWithClassNameProp = svgElement => {
       types.jsxIdentifier('className'),
       types.jsxExpressionContainer(
         types.callExpression(types.identifier('cx'), [
-          types.identifier('...classNames')
+          types.identifier('...classNames'),
         ])
       )
-    )
+    ),
   ]
 }
 
@@ -26,7 +26,7 @@ const decorateWithIdentifierProp = (svgElement, propName, identifierName) => {
     types.jsxAttribute(
       types.jsxIdentifier(propName),
       types.jsxExpressionContainer(types.identifier(identifierName))
-    )
+    ),
   ]
 }
 

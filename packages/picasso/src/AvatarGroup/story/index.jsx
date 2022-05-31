@@ -7,15 +7,15 @@ const chapter = PicassoBook.connectToPage(
       .createChapter('Avatar Group')
       .addExample('AvatarGroup/story/Default.example.tsx', {
         title: 'Default',
-        takeScreenshot: false
+        takeScreenshot: false,
       }) // picasso-skip-visuals
       .addExample('AvatarGroup/story/Limit.example.tsx', {
         title: 'Limit',
-        takeScreenshot: false
+        takeScreenshot: false,
       }) // picasso-skip-visuals
       .addExample('AvatarGroup/story/Sizes.example.tsx', {
         title: 'Sizes',
-        takeScreenshot: false
+        takeScreenshot: false,
       }) // picasso-skip-visuals
 )
 
@@ -23,5 +23,5 @@ const componentDocs = { component: AvatarGroup, name: 'Avatar.Group' }
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

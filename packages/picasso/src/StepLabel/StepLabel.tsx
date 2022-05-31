@@ -39,9 +39,9 @@ export const StepLabel = (props: Props) => {
       {...rest}
       classes={{
         labelContainer: cx({
-          [classes.root]: !hideLabel || active
+          [classes.root]: !hideLabel || active,
         }),
-        label: cx({ [classes.hidden]: hideLabel && !active })
+        label: cx({ [classes.hidden]: hideLabel && !active }),
       }}
       className={className}
       icon={<StepIcon active={active} completed={completed} />}
@@ -55,7 +55,7 @@ export const StepLabel = (props: Props) => {
 }
 
 StepLabel.defaultProps = {
-  hideLabel: false
+  hideLabel: false,
 }
 
 StepLabel.displayName = 'StepLabel'

@@ -5,7 +5,7 @@ PicassoProvider.override(({ palette, typography }: Theme) => ({
   MuiFormControlLabel: {
     root: {
       marginLeft: 0,
-      marginRight: 0
+      marginRight: 0,
     },
     label: {
       display: 'inline-flex',
@@ -19,10 +19,10 @@ PicassoProvider.override(({ palette, typography }: Theme) => ({
       userSelect: 'none',
 
       '&$disabled': {
-        pointerEvents: 'auto'
-      }
-    }
-  }
+        pointerEvents: 'auto',
+      },
+    },
+  },
 }))
 
 export default () =>
@@ -37,15 +37,15 @@ export default () =>
       verticalAlign: 'middle',
       WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
-        cursor: 'default'
+        cursor: 'default',
       },
       marginLeft: 0,
-      marginRight: 0
+      marginRight: 0,
     },
     label: {
       '&$disabled': {
-        pointerEvents: 'auto'
-      }
+        pointerEvents: 'auto',
+      },
     },
-    disabled: {}
+    disabled: {},
   })

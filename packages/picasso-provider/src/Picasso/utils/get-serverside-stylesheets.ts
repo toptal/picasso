@@ -4,11 +4,11 @@ const getServersideStylesheets = (
   generateClassNameSeed = ''
 ): ServerStyleSheets => {
   const generateClassName = createGenerateClassName({
-    seed: generateClassNameSeed
+    seed: generateClassNameSeed,
   })
 
   const sheets = new ServerStyleSheets({
-    serverGenerateClassName: generateClassName
+    serverGenerateClassName: generateClassName,
   })
 
   return sheets

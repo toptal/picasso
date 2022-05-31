@@ -4,6 +4,6 @@ export default () =>
   createStyles({
     image: {
       width: '8rem',
-      height: '8rem'
-    }
+      height: '8rem',
+    },
   })

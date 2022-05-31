@@ -7,7 +7,7 @@ const chapter = PicassoBook.connectToPage(
       .createChapter('Menu.Item', 'An Item component')
       .addExample('MenuItem/story/Router.example.tsx', {
         title: 'Usage with react-router',
-        takeScreenshot: false
+        takeScreenshot: false,
       }) // picasso-skip-visuals
 )
 
@@ -15,5 +15,5 @@ const componentDocs = PicassoBook.createComponentDocs(MenuItem, 'Menu.Item')
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

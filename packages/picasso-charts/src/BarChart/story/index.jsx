@@ -8,14 +8,14 @@ const page = PicassoBook.section('Picasso Charts').createPage(
 
 page.createTabChapter('Props').addComponentDocs({
   component: BarChart,
-  name: 'BarChart'
+  name: 'BarChart',
 })
 
 page
   .createChapter()
   .addExample('BarChart/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals
   .addExample('BarChart/story/Tooltip.example.tsx', {
     title: 'Tooltip',
@@ -25,7 +25,7 @@ page
       await testPage.mouse.move(100, 100)
       await makeScreenshot()
     },
-    delay: 500
+    delay: 500,
   })
   .addExample('BarChart/story/Customized.example.tsx', {
     title: 'Customized',
@@ -35,11 +35,11 @@ page
       await testPage.mouse.move(100, 100)
       await makeScreenshot()
     },
-    delay: 500
+    delay: 500,
   })
   .addExample('BarChart/story/HideBarLabel.example.tsx', {
     title: 'Hide bar label',
     description:
       'You can hide label of each bar via `showBarLabel` prop being set to `false`.',
-    takeScreenshot: false
+    takeScreenshot: false,
   }) // picasso-skip-visuals

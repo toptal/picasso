@@ -31,7 +31,7 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoBadge' })
 const thresholds: Record<SizeType, number> = {
   small: 9,
   medium: 99,
-  large: 99
+  large: 99,
 }
 
 export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
@@ -43,7 +43,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
     content,
     className,
     max,
-    'data-testid': testId
+    'data-testid': testId,
   },
   ref
 ) {
@@ -62,8 +62,8 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
       showZero
       classes={{
         badge: cx(classes.root, classes[variant], classes[size], {
-          [classes.static]: !hasChildren
-        })
+          [classes.static]: !hasChildren,
+        }),
       }}
     >
       {children}
@@ -73,7 +73,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
 
 Badge.defaultProps = {
   variant: 'white',
-  size: 'large'
+  size: 'large',
 }
 
 Badge.displayName = 'Badge'

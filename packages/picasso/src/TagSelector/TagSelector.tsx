@@ -5,7 +5,7 @@ import React, {
   InputHTMLAttributes,
   ReactNode,
   FocusEventHandler,
-  Fragment
+  Fragment,
 } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
@@ -127,7 +127,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       name: 'error',
       componentName: 'TagSelector',
       description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
     const handleDelete = (value: Item) => {
@@ -192,7 +192,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
           disabled,
           item,
           displayValue,
-          onDelete: handleItemDelete
+          onDelete: handleItemDelete,
         })
       }
 
@@ -251,11 +251,11 @@ TagSelector.defaultProps = {
   noOptionsText: 'No matches found',
   placeholder: '',
   showOtherOption: false,
-  status: 'default'
+  status: 'default',
 }
 
 TagSelector.displayName = 'TagSelector'
 
 export default Object.assign(TagSelector, {
-  Label: TagSelectorLabel
+  Label: TagSelectorLabel,
 })

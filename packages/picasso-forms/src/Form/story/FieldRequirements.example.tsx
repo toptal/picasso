@@ -18,7 +18,7 @@ const Example = () => {
       onSubmit={handleSubmit}
       initialValues={{
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
       }}
     >
       <Form.PasswordInput

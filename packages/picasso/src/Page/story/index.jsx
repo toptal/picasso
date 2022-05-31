@@ -32,26 +32,26 @@ page
     title: 'Default',
     description:
       'Page has centered content and restricted width of 1200px or 75rem',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
   .addExample('Page/story/WideWidth.example.tsx', {
     title: 'Wide width',
     description:
       'Page has centered content and restricted width of 1440px or 90rem',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
   .addExample('Page/story/FullWidth.example.tsx', {
     title: 'Full width',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
   .addExample('Page/story/Scroll.example.tsx', 'Scroll with overflow')
   .addExample('Page/story/WithBanner.example.tsx', {
     title: 'With Banner',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
   .addExample('Page/story/WithCompoundBanner.example.tsx', {
     title: 'With Compound Banner',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
 
 page.connect(pageTopBarStory.chapter)

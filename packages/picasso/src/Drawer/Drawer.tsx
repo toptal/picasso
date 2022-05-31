@@ -102,7 +102,7 @@ Drawer.defaultProps = {
   anchor: 'right',
   disablePortal: false,
   onClose: () => {},
-  width: 'regular'
+  width: 'regular',
 }
 
 export default Drawer

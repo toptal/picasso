@@ -28,8 +28,8 @@ const OPTIONS = [
   { value: 1, text: 'option 1' },
   {
     value: 2,
-    text: 'option 2'
-  }
+    text: 'option 2',
+  },
 ]
 
 export default Example

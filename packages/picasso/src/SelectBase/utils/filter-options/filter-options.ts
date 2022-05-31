@@ -11,7 +11,7 @@ interface Props {
 const filterOptions = ({
   options,
   filterOptionsValue,
-  getDisplayValue
+  getDisplayValue,
 }: Props): Option[] | OptionGroups => {
   if (isOptionsType(options)) {
     return filterFlatOptions({ options, filterOptionsValue, getDisplayValue })
@@ -21,7 +21,7 @@ const filterOptions = ({
     const filteredFlatOptions = filterFlatOptions({
       options: options[group],
       filterOptionsValue,
-      getDisplayValue
+      getDisplayValue,
     })
 
     if (filteredFlatOptions.length > 0) {
@@ -35,7 +35,7 @@ const filterOptions = ({
 const filterFlatOptions = ({
   options,
   filterOptionsValue,
-  getDisplayValue
+  getDisplayValue,
 }: Props & { options: Option[] }): Option[] =>
   options.filter(option =>
     isSubstring(filterOptionsValue, getDisplayValue(option))

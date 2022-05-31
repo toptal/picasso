@@ -3,7 +3,7 @@ import React, {
   ReactNode,
   ReactElement,
   ChangeEvent,
-  HTMLAttributes
+  HTMLAttributes,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip, { TooltipProps } from '@material-ui/core/Tooltip'
@@ -26,7 +26,7 @@ export type PlacementType = TooltipProps['placement']
 
 const delayDurations: { [k in DelayType]: number } = {
   short: 200,
-  long: 500
+  long: 500,
 }
 
 const getDelayDuration = (delay: DelayType, isTouchDevice: boolean) => {
@@ -106,7 +106,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
 
   const followCursorTooltipData = useTooltipFollowCursor({
     followCursor,
-    tooltipState
+    tooltipState,
   })
 
   const { children, handleOpen, handleClose } = useTooltipHandlers({
@@ -117,7 +117,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     onClose,
     onMouseOver: followCursorTooltipData?.handleMouseOver,
     onMouseMove: followCursorTooltipData?.handleMouseMove,
-    onClick: followCursorTooltipData?.handleClick
+    onClick: followCursorTooltipData?.handleClick,
   })
 
   const title = (
@@ -139,27 +139,27 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
           modifiers: {
             preventOverflow: {
               enabled: preventOverflow,
-              boundariesElement: 'window'
+              boundariesElement: 'window',
             },
             hide: {
-              enabled: preventOverflow
-            }
-          }
+              enabled: preventOverflow,
+            },
+          },
         },
-        ...(followCursor && followCursorTooltipData?.followCursorPopperProps)
+        ...(followCursor && followCursorTooltipData?.followCursorPopperProps),
       }}
       TransitionProps={{
         // passing undefined onExiting or onExited changes Tooltip behavior
         ...(onTransitionExiting && { onExiting: onTransitionExiting }),
-        ...(onTransitionExited && { onExiting: onTransitionExited })
+        ...(onTransitionExited && { onExiting: onTransitionExited }),
       }}
       classes={{
         arrow: classes.arrow,
         tooltip: cx(classes.tooltip, {
           [classes.light]: !compact,
           [classes.compact]: compact,
-          [classes.noMaxWidth]: maxWidth === 'none'
-        })
+          [classes.noMaxWidth]: maxWidth === 'none',
+        }),
       }}
       className={className}
       style={style}
@@ -185,7 +185,7 @@ Tooltip.defaultProps = {
   placement: 'top',
   disablePortal: false,
   maxWidth: 'default',
-  delay: 'short'
+  delay: 'short',
 }
 
 export default Tooltip
