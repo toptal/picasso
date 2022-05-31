@@ -1,6 +1,6 @@
 import core, { Collection, Program } from 'jscodeshift'
 
-import { isSpecifierFor } from '.'
+import { isSpecifierFor } from './is-specifier-for'
 import { PackageMember } from './types'
 
 /**
