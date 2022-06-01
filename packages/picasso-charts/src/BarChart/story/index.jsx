@@ -27,7 +27,7 @@ page
     },
     delay: 500,
     takeScreenshot: false
-  })
+  }) // skipped for animations
   .addExample('BarChart/story/Customized.example.tsx', {
     title: 'Customized',
     description:
@@ -38,7 +38,7 @@ page
     },
     delay: 500,
     takeScreenshot: false
-  })
+  }) // skipped for animations
   .addExample('BarChart/story/HideBarLabel.example.tsx', {
     title: 'Hide bar label',
     description:
