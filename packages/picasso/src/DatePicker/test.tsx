@@ -278,9 +278,13 @@ describe('DatePicker', () => {
 
     describe('should work with `parseInputValue`', () => {
       describe('when parser returns parsed date', () => {
-        const parseInputValue: DatePickerInputCustomValueParser = jest
-          .fn()
-          .mockImplementation(() => new Date(2021, 0, 1))
+        let parseInputValue: DatePickerInputCustomValueParser
+
+        beforeEach(() => {
+          parseInputValue = jest
+            .fn()
+            .mockImplementation(() => new Date(2021, 0, 1))
+        })
 
         it('calls `onChange` handler with the parsed date', async () => {
           const handleChange = jest.fn()

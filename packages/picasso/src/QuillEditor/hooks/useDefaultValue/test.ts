@@ -3,21 +3,28 @@ import Quill from 'quill'
 import Delta from 'quill-delta'
 
 import useDefaultValue from './useDefaultValue'
-const deltaMock = {
-  ops: [
-    { insert: 'Gandalf', attributes: { bold: true } },
-    { insert: ' the ' },
-    { insert: 'Grey', attributes: { italic: true } }
-  ]
-} as Delta
-const quillMock = {
-  clipboard: {
-    convert: jest.fn((): Delta => deltaMock)
-  },
-  setContents: jest.fn()
-} as unknown as Quill
 
 describe('useDefaultValue', () => {
+  let deltaMock: Delta
+  let quillMock: Quill
+
+  beforeEach(() => {
+    deltaMock = {
+      ops: [
+        { insert: 'Gandalf', attributes: { bold: true } },
+        { insert: ' the ' },
+        { insert: 'Grey', attributes: { italic: true } }
+      ]
+    } as Delta
+
+    quillMock = {
+      clipboard: {
+        convert: jest.fn((): Delta => deltaMock)
+      },
+      setContents: jest.fn()
+    } as unknown as Quill
+  })
+
   it('does nothing without defaultValue', () => {
     const quill = quillMock
     const defaultValue = ''

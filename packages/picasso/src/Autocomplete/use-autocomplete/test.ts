@@ -3,6 +3,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { waitFor } from '@toptal/picasso/test-utils'
 
+import { Item } from '../types'
 import {
   useAutocomplete,
   getNextWrappingIndex,
@@ -27,9 +28,7 @@ const MOCKED_EVENT = {
   target: { value: '' }
 } as any
 
-const defaultGetDisplayValue = jest
-  .fn()
-  .mockImplementation(option => option?.text ?? '')
+const defaultGetDisplayValue = (option: Item | null) => option?.text ?? ''
 
 const renderUseAutocomplete = ({
   value = '',
@@ -47,9 +46,6 @@ const renderUseAutocomplete = ({
   )
 
 describe('useAutocomplete', () => {
-  beforeEach(() => {
-    defaultGetDisplayValue.mockClear()
-  })
   it('works', () => {
     const { result } = renderUseAutocomplete()
 
