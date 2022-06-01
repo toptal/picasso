@@ -92,7 +92,16 @@ class Page extends Base {
 
       const stories = storiesOf(storyName, module)
       chapter.sections.forEach(section => {
-        const parameters = { happo: section.takeScreenshot }
+        const parameters = {
+          happo: section.takeScreenshot
+        }
+
+        if (section.delay && section.takeScreenshot) {
+          parameters.happo = {
+            delay: section.delay
+          }
+        }
+
         stories.add(section.title || section.id, section.sectionFn, parameters)
       })
     })
