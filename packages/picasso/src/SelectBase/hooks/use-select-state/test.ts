@@ -29,9 +29,11 @@ jest.mock('../../utils')
 const mockedUseHighlightedIndex = useHighlightedIndex as jest.Mock<
   ReturnType<typeof useHighlightedIndex>
 >
+
 const mockedGetMultipleSelection = getMultipleSelection as jest.Mock<
   ReturnType<typeof getMultipleSelection>
 >
+
 const mockedGetSingleSelection = getSingleSelection as jest.Mock<
   ReturnType<typeof getSingleSelection>
 >
@@ -120,16 +122,6 @@ describe('useSelectState', () => {
     mockedFilterOptions.mockImplementation(() => filteredOptions)
     mockedLimitOptions.mockImplementation(() => limitedOptions)
     mockedFlattenOptions.mockImplementation(() => flattenedOptions)
-  })
-
-  afterEach(() => {
-    mockedUseHighlightedIndex.mockReset()
-    mockedGetMultipleSelection.mockReset()
-    mockedGetSingleSelection.mockReset()
-    mockedGetSelectedOptions.mockReset()
-    mockedFilterOptions.mockReset()
-    mockedLimitOptions.mockReset()
-    mockedFlattenOptions.mockReset()
   })
 
   describe('when multiple selection is off', () => {
