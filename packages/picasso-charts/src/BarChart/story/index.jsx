@@ -25,7 +25,8 @@ page
       await testPage.mouse.move(100, 100)
       await makeScreenshot()
     },
-    delay: 500
+    delay: 500,
+    takeScreenshot: false
   })
   .addExample('BarChart/story/Customized.example.tsx', {
     title: 'Customized',
@@ -35,7 +36,8 @@ page
       await testPage.mouse.move(100, 100)
       await makeScreenshot()
     },
-    delay: 500
+    delay: 500,
+    takeScreenshot: false
   })
   .addExample('BarChart/story/HideBarLabel.example.tsx', {
     title: 'Hide bar label',
