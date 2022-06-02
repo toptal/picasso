@@ -18,7 +18,7 @@ page
     easily create media queries based on the given breakpoints
   `,
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('utils/Breakpoints/story/Breakpoints.example.tsx', {
     title: 'Breakpoints',
     description: `
@@ -26,7 +26,7 @@ page
   `,
     showEditCode: false,
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('utils/Breakpoints/story/useBreakpoint.example.tsx', {
     title: 'useBreakpoint',
     description: `
@@ -34,7 +34,7 @@ page
   `,
     showEditCode: false,
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('utils/Breakpoints/story/useScreens.example.tsx', {
     title: 'useScreens',
     description: `
@@ -42,4 +42,4 @@ page
   `,
     showEditCode: true,
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

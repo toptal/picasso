@@ -21,14 +21,14 @@ page
   .addExample('PageSidebar/story/Default.example.tsx', {
     title: 'Default',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('PageSidebar/story/Variants.example.tsx', {
     title: 'Variants',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('PageSidebar/story/Collapsible.example.tsx', {
     title: 'Collapsible',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
 
 page.connect(sidebarItemStory.chapter)

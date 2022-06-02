@@ -80,28 +80,28 @@ page
   .addExample('Dropzone/story/Default.example.tsx', {
     title: 'Default',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Dropzone/story/Uploader.example.tsx', {
     title: 'With upload',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Dropzone/story/Uploading.example.tsx', {
     title: 'Uploading',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Dropzone/story/Disabled.example.tsx', {
     title: 'Completed',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Dropzone/story/Multiple.example.tsx', {
     title: 'Completed Multiple files',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Dropzone/story/Error.example.tsx', {
     title: 'Upload Failed',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Dropzone/story/SingleFile.example.tsx', {
     title: 'Single File',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

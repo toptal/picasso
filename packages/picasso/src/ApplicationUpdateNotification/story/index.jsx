@@ -16,8 +16,8 @@ page
   .addExample('ApplicationUpdateNotification/story/Default.example.tsx', {
     title: 'Default',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('ApplicationUpdateNotification/story/InAction.example.tsx', {
     title: 'In Action',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

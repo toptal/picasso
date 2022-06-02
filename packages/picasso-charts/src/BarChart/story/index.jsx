@@ -16,7 +16,7 @@ page
   .addExample('BarChart/story/Default.example.tsx', {
     title: 'Default',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('BarChart/story/Tooltip.example.tsx', {
     title: 'Tooltip',
     description:
@@ -44,4 +44,4 @@ page
     description:
       'You can hide label of each bar via `showBarLabel` prop being set to `false`.',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

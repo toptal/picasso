@@ -19,20 +19,20 @@ page
   .addExample('RichTextEditor/story/Default.example.tsx', {
     title: 'Default',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('RichTextEditor/story/DefaultValue.example.tsx', {
     title: 'Default value',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('RichTextEditor/story/Disabled.example.tsx', {
     title: 'Disabled',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('RichTextEditor/story/Limit.example.tsx', {
     title: 'Limit Length',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('RichTextEditor/story/Status.example.tsx', {
     title: 'Status',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

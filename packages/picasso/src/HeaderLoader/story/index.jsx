@@ -6,15 +6,14 @@ const componentDocs = PicassoBook.createComponentDocs(
   'SkeletonLoader.Header'
 )
 
-const chapter = PicassoBook.connectToPage(
-  page =>
-    page
-      .createChapter('SkeletonLoader.Header')
-      .addExample('HeaderLoader/story/Default.example.tsx', {
-        id: 'HeaderLoader',
-        waitUntilImagesLoaded: true,
-        takeScreenshot: false
-      }) // picasso-skip-visuals
+const chapter = PicassoBook.connectToPage(page =>
+  page
+    .createChapter('SkeletonLoader.Header')
+    .addExample('HeaderLoader/story/Default.example.tsx', {
+      id: 'HeaderLoader',
+      waitUntilImagesLoaded: true,
+      takeScreenshot: false
+    })
 )
 
 export default {

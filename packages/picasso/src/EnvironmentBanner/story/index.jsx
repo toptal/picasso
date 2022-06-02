@@ -22,4 +22,4 @@ page
     title: 'Variants',
     description: 'Click to make them disappear',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

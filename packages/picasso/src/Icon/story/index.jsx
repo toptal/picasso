@@ -50,7 +50,7 @@ page
     title: 'List of all icons',
     showEditCode: false,
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Icon/story/Default.example.tsx', 'Default')
   .addExample('Icon/story/Scale.example.tsx', {
     title: 'Scale',

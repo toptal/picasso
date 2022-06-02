@@ -77,4 +77,4 @@ page
   .addExample('Drawer/story/DrawerAndNotification.example.tsx', {
     title: 'With notification',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
