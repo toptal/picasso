@@ -35,27 +35,7 @@ describe('FileInput', () => {
       />
     )
 
-    expect(container).toMatchInlineSnapshot(`
-      <div>
-        <div
-          class="Picasso-root"
-        >
-          <div
-            class="FileInputContent-root"
-          >
-            <button
-              data-testid="custom-button"
-            >
-              Choose File
-            </button>
-            <input
-              class="FileInputContent-nativeInput"
-              type="file"
-            />
-          </div>
-        </div>
-      </div>
-    `)
+    expect(container).toMatchSnapshot()
     expect(getByTestId('custom-button')).toBeInTheDocument()
   })
 })

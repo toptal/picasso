@@ -29,6 +29,28 @@ exports[`FileInput can change label 1`] = `
 </div>
 `;
 
+exports[`FileInput can render custom button 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="FileInputContent-root"
+    >
+      <button
+        data-testid="custom-button"
+      >
+        Choose File
+      </button>
+      <input
+        class="FileInputContent-nativeInput"
+        type="file"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`FileInput renders 1`] = `
 <div>
   <div
