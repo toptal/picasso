@@ -1,6 +1,7 @@
 import React from 'react'
 import { DataItem, CategoriesChart } from '@toptal/topkit-analytics-charts'
 import { mount } from '@cypress/react'
+import { TestingPicasso } from '@toptal/picasso/src/test-utils'
 
 const CHART_DATA: DataItem[] = [
   {
@@ -224,14 +225,16 @@ const CHART_TOOLTIPS = {
 }
 
 const TestCategoriesChart = () => (
-  <div style={{ width: 720 }}>
-    <CategoriesChart
-      data={CHART_DATA}
-      labels={CHART_LABELS}
-      tooltips={CHART_TOOLTIPS}
-      width='100%'
-    />
-  </div>
+  <TestingPicasso>
+    <div style={{ width: 720 }}>
+      <CategoriesChart
+        data={CHART_DATA}
+        labels={CHART_LABELS}
+        tooltips={CHART_TOOLTIPS}
+        width='100%'
+      />
+    </div>
+  </TestingPicasso>
 )
 
 describe('CategoriesChart', () => {
