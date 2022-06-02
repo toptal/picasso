@@ -27,7 +27,6 @@ export interface SectionConfigType {
   options?: any
   sectionFn: () => ReactNode
   takeScreenshot?: boolean
-  delay?: number
 }
 
 class Section extends Base {

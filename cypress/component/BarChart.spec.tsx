@@ -108,6 +108,8 @@ describe('BarChart', () => {
   it('shows default tooltip on hover', () => {
     mount(<TestBarChart />)
 
+    cy.get('body').happoScreenshot()
+
     hoverOverBar('Apple')
     assertTooltipContent('Appleengineers hired : 500')
 
@@ -140,6 +142,8 @@ describe('BarChart', () => {
         customTooltip={<CustomTooltip />}
       />
     )
+
+    cy.get('body').happoScreenshot()
 
     hoverOverBar('Berlin')
     assertCustomTooltipContent('Infected: 4000Recovered: 2400')

@@ -44,7 +44,6 @@ type Options = {
   extra?: string
   description?: string
   takeScreenshot?: boolean
-  delay?: number
 } & Record<string, string | boolean>
 
 class Chapter extends Base {
