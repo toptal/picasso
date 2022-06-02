@@ -1,7 +1,7 @@
 import React from 'react'
 import { DataItem, CategoriesChart } from '@toptal/topkit-analytics-charts'
 import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/src/test-utils'
+import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const CHART_DATA: DataItem[] = [
   {
