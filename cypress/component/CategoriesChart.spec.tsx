@@ -232,6 +232,7 @@ const TestCategoriesChart = () => (
         labels={CHART_LABELS}
         tooltips={CHART_TOOLTIPS}
         width='100%'
+        isAnimationActive={false}
       />
     </div>
   </TestingPicasso>
