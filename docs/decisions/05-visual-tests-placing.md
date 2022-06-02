@@ -2,7 +2,7 @@
 
 ## Problem
 
-Following the `docs/decisions/04-single-visual-tests-tool.md` decision, it should be clarified which tests belong to Storybook and which belong to Cypress Component Testing.
+Following the [Single Visual Tests tool](./04-single-visual-tests-tool.md) decision, it should be clarified which tests belong to Storybook and which belong to Cypress Component Testing.
 
 ## Goal
 
