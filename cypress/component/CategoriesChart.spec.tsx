@@ -1,5 +1,5 @@
 import React from 'react'
-import { DataItem, CategoriesChart } from '@topkit/analytics-charts'
+import { DataItem, CategoriesChart } from '@toptal/topkit-analytics-charts'
 import { mount } from '@cypress/react'
 
 const CHART_DATA: DataItem[] = [
