@@ -23,4 +23,39 @@ describe('FileInput', () => {
     expect(container).toMatchSnapshot()
     expect(getByText('Upload File')).toBeInTheDocument()
   })
+
+  it('can render custom button', () => {
+    const { container, getByTestId } = render(
+      <TestFileInput
+        renderButton={({ label, ...props }) => (
+          <button data-testid='custom-button' {...props}>
+            {label}
+          </button>
+        )}
+      />
+    )
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div
+          class="Picasso-root"
+        >
+          <div
+            class="FileInputContent-root"
+          >
+            <button
+              data-testid="custom-button"
+            >
+              Choose File
+            </button>
+            <input
+              class="FileInputContent-nativeInput"
+              type="file"
+            />
+          </div>
+        </div>
+      </div>
+    `)
+    expect(getByTestId('custom-button')).toBeInTheDocument()
+  })
 })

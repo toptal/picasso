@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, FocusEventHandler } from 'react'
+import React, { forwardRef, useRef, FocusEventHandler, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 
@@ -10,6 +10,13 @@ import { useCombinedRefs } from '../utils'
 import { FileUpload } from './types'
 import styles from './styles'
 
+type RenderButtonParameters = {
+  label: string
+  onClick: () => void
+  disabled: boolean
+}
+type RenderButtonCallback = (params: RenderButtonParameters) => ReactNode
+
 export interface Props extends BaseProps {
   /** A string that defines the file types the file input should accept */
   accept?: string
@@ -17,6 +24,8 @@ export interface Props extends BaseProps {
   disabled?: boolean
   /** The text of the select file button */
   buttonLabel?: string
+  /** Callback responsible for rendering the select file button */
+  renderButton?: RenderButtonCallback
   /** The text of the hint */
   hint?: string
   /** Maximum number of files allowed. When the value is null, unlimited files can be added and multiple files can be selected on the file selection dialog */
@@ -44,6 +53,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     disabled,
     value,
     buttonLabel,
+    renderButton,
     hint,
     maxFiles = 1,
     onChange,
@@ -64,16 +74,28 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     useRef<HTMLInputElement>(null)
   )
 
+  const renderButtonOrDefault = (params: RenderButtonParameters) => {
+    const { label, ...rest } = params
+
+    if (renderButton) {
+      return renderButton(params)
+    }
+
+    return (
+      <Button size='small' variant='secondary' {...rest}>
+        {label}
+      </Button>
+    )
+  }
+
   return (
     <Container onFocus={onFocus} onBlur={onBlur} className={classes.root}>
-      <Button
-        size='small'
-        variant='secondary'
-        disabled={Boolean(disabled || preventAddingNewFiles)}
-        onClick={() => inputRef.current && inputRef.current.click()}
-      >
-        {buttonLabel}
-      </Button>
+      {renderButtonOrDefault({
+        onClick: () => inputRef.current && inputRef.current.click(),
+        disabled: Boolean(disabled || preventAddingNewFiles),
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        label: buttonLabel!
+      })}
 
       <input
         type='file'

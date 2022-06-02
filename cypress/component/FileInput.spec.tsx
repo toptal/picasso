@@ -33,4 +33,16 @@ describe('FileInput', () => {
 
     cy.get('body').happoScreenshot()
   })
+
+  it('renders with custom button', () => {
+    mount(
+      <TestFileInput
+        renderButton={({ label, ...props }) => (
+          <button {...props}>{label}</button>
+        )}
+      />
+    )
+
+    cy.get('body').happoScreenshot()
+  })
 })
