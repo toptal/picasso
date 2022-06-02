@@ -47,11 +47,11 @@ if needed.
   .addExample('Autocomplete/story/Default.example.tsx', {
     title: 'Default',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/Disabled.example.tsx', {
     title: 'Disabled',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/OtherOption.example.tsx', {
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
@@ -59,57 +59,57 @@ if needed.
       you can decorate this option with the prefix text by using \`otherOptionText\` or fully customize it with \`renderOtherOption\` and handle selection with
       \`onOtherOptionSelect\` event handler.`,
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/InitialSetValue.example.tsx', {
     title: 'Initially set value',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/Controlled.example.tsx', {
     title: 'Controlled selection',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/FullWidth.example.tsx', {
     title: 'Full width',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/MenuWidth.example.tsx', {
     title: 'Menu width',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/Loading.example.tsx', {
     title: 'Loading',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/Status.example.tsx', {
     title: 'Status',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/WithIcons.example.tsx', {
     title: 'With Icon',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/WithDescription.example.tsx', {
     title: 'With Description',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/CustomOptionRenderer.example.tsx', {
     title: 'Custom options rendering',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/DynamicOptions.example.tsx', {
     title: 'Dynamic options',
     description: `If you need to obtain the list of options dynamically from a server.
 It is good practice to set debouncing and a minimum number of chars to limit the number of requests you send to the server.
 Start typing "Mongolia" letter by letter to see this example in action.`,
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/Autofill.example.tsx', {
     title: 'Form auto filling',
     description: `This example shows how to use component inside the form with several fields
 when it makes sense to have autofill enabled.
     `,
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Autocomplete/story/PoweredByGoogle.example.tsx', {
     title: 'Powered By Google label',
     description:
@@ -117,4 +117,4 @@ when it makes sense to have autofill enabled.
       'to meet their requirements https://developers.google.com/places/web-service/policies in such cases ' +
       'we have to show the "Powered By Google" label.',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

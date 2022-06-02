@@ -8,4 +8,4 @@ page
     title: 'Rotate180',
     description: 'Transition for 180 deg rotation',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

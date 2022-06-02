@@ -6,15 +6,14 @@ const componentDocs = PicassoBook.createComponentDocs(
   'SkeletonLoader.Typography'
 )
 
-const chapter = PicassoBook.connectToPage(
-  page =>
-    page
-      .createChapter('SkeletonLoader.Typography')
-      .addExample('TypographyLoader/story/Default.example.tsx', {
-        id: 'TypographyLoader',
-        waitUntilImagesLoaded: true,
-        takeScreenshot: false
-      }) // picasso-skip-visuals
+const chapter = PicassoBook.connectToPage(page =>
+  page
+    .createChapter('SkeletonLoader.Typography')
+    .addExample('TypographyLoader/story/Default.example.tsx', {
+      id: 'TypographyLoader',
+      waitUntilImagesLoaded: true,
+      takeScreenshot: false
+    })
 )
 
 export default {

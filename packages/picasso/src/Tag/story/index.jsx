@@ -50,15 +50,15 @@ page
   .addExample('Tag/story/Default.example.tsx', {
     title: 'Default',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tag/story/Variants.example.tsx', {
     title: 'Variants',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tag/story/Checkable.example.tsx', {
     title: 'Checkable',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
 
 page.connect(tagGroupStory.chapter)
 page.connect(tagRectangularStory.chapter)

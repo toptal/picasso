@@ -16,4 +16,4 @@ page
   .addExample('MonthSelect/story/Filter.example.tsx', {
     title: 'Filter months and years',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

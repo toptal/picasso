@@ -15,17 +15,17 @@ page
   .addExample('Typography/story/Default.example.tsx', {
     title: 'Normal text',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Typography/story/Headings.example.tsx', {
     title: 'Headings',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Typography/story/Types.example.tsx', {
     title: 'Types',
     description:
       'Long-form text uses a 1.5 ratio to calculate line-height values.',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Typography/story/InheritSize.example.tsx', {
     title: 'Inherit size',
     description: `
@@ -33,19 +33,19 @@ page
       from the container where the Topography is nested.
     `,
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Typography/story/Alignment.example.tsx', {
     title: 'Alignment',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Typography/story/Weights.example.tsx', {
     title: 'Weights',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Typography/story/Colors.example.tsx', {
     title: 'Colors',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Typography/story/As.example.tsx', {
     title: 'Augment as another HTML element',
     description: `
@@ -54,12 +54,12 @@ page
       use 'as' property.
     `,
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Typography/story/Decoration.example.tsx', {
     title: 'Decoration',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Typography/story/LineThrough.example.tsx', {
     title: 'Line through',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

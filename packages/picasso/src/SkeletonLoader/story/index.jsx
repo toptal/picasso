@@ -22,7 +22,7 @@ page.createChapter().addExample('SkeletonLoader/story/Default.example.tsx', {
     `,
   waitUntilImagesLoaded: true,
   takeScreenshot: false
-}) // picasso-skip-visuals
+})
 
 page.connect(headerLoaderStory.chapter)
 page.connect(typographyLoaderStory.chapter)

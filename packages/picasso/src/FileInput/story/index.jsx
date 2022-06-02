@@ -26,7 +26,7 @@ page
   .addExample('FileInput/story/CustomButtonLabel.example.tsx', {
     title: 'Custom label',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('FileInput/story/InitialValue.example.tsx', 'Initial value')
   .addExample(
     'FileInput/story/LimitedFileCount.example.tsx',
@@ -48,4 +48,4 @@ page
     title: 'FileList',
     description: 'List of files',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

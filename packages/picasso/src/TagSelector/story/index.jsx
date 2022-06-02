@@ -79,4 +79,4 @@ page
   .addExample('TagSelector/story/Status.example.tsx', {
     title: 'Status',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

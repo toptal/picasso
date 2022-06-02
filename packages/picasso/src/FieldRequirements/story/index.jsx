@@ -15,8 +15,8 @@ page
   .addExample('FieldRequirements/story/Default.example.tsx', {
     title: 'Default',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('FieldRequirements/story/Error.example.tsx', {
     title: 'Error',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
