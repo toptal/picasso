@@ -33,6 +33,7 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 | **generate:component**    | Generate a new component template                                              |
 | **generate:example**      | Generate a new component component code example                                |
 | **generate:icons**        | [Generate JSX icon components from svgs](#add-icon)                            |
+| **happo**                 | Run happo locally and generate report on happo.io                              |
 | **lint**                  | Lint all files                                                                 |
 | **start**                 | Start storybook instance and inspect components                                |
 | **test**                  | Run jest and cypress tests                                                     |
@@ -41,8 +42,6 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 | **test:unit**             | Run unit tests                                                                 |
 | **test:unit -u**          | Update jest snapshots                                                          |
 | **test:unit:watch**       | Run unit tests in watch mode                                                   |
-| **test:visual**           | Run [visual regression tests](./docs/contribution/visual-testing.md) in Docker |
-| **test:visual -u**        | Update visual regression snapshots in docker                                   |
 | **typecheck**             | Validate typescript compilation                                                |
 
 ## Icons

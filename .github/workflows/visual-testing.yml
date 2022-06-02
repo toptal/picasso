@@ -46,4 +46,4 @@ jobs:
       - uses: ./.github/actions/yarn-install
 
       - name: Happo Tests
-        run: yarn happo:ci
+        run: yarn happo:storybook

@@ -3,8 +3,6 @@ FROM node:14-alpine
 ENV PATH="${PATH}:/app/node_modules/.bin" \
   # Defines version of dependencies for apk add
   APK_BRANCH=3.10 \
-  # Replace when puppetter is replaced with puppeteer-core
-  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
   # Installs Chromium (77) package.
   CHROME_BIN=/usr/bin/chromium-browser \
   # We don't pass real value here, workaround to bypass npm check on from .npmrc
