@@ -4,9 +4,6 @@ yarn-error.log
 dist-package/
 build/
 
-# Ignore visual regression tests diff output
-__diff_output__
-
 .envrc
 .DS_Store
 

@@ -22,7 +22,7 @@ Describe the changes and motivations for the pull request.
 - [ ] Create `examples` for component
 - [ ] Ensure that deployed demo has expected results and good examples
 - [ ] Ensure that tests pass by running `yarn test`
-- [ ] Ensure that visuals tests pass by running `yarn test:visual`. If not - check the documentation [how to fix visual tests](https://github.com/toptal/picasso/blob/master/docs/contribution/visual-testing.md#fixing-broken-visual-tests-inside-a-pr)
+- [ ] Ensure that visuals tests pass on happo job. If not - approve them on [happo.io](https://happo.io)
 - [ ] Ensure the changed/created components have not caused accessibility issues. [How to use accessibility plugin in storybook](https://github.com/toptal/picasso/blob/master/docs/contribution/accessibility.md).
 - [ ] Self reviewed
 - [ ] Covered with tests
@@ -40,7 +40,6 @@ List of available commands:
 
 - `@toptal-bot run all` - Run whole pipeline
 - `@toptal-bot run build` - Check build
-- `@toptal-bot run visual` - Run visual tests
 - `@toptal-bot run deploy:documentation` - Deploy documentation
 - `@toptal-bot run package:alpha-release` - Release alpha version
 
