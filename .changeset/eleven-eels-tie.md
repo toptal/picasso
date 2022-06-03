@@ -5,4 +5,4 @@
 ---
 ### CategoriesChart
 
-- added `isAnimationActive` prop to disable animations for the chart
+- Add `isAnimationActive` prop to disable animations for the chart
