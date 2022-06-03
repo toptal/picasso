@@ -1,5 +1,19 @@
 # Change Log
 
+## 25.3.2
+
+### Patch Changes
+
+- [#2840](https://github.com/toptal/picasso/pull/2840) [`38e61c28`](https://github.com/toptal/picasso/commit/38e61c286d48d33f7e4e1080d2f0b48747950e67) Thanks [@vvmarulin](https://github.com/vvmarulin)! - ---
+
+  # Notification
+
+  Fix overflow of notifications on the small screens
+
+- Updated dependencies [[`38e61c28`](https://github.com/toptal/picasso/commit/38e61c286d48d33f7e4e1080d2f0b48747950e67), [`38e61c28`](https://github.com/toptal/picasso/commit/38e61c286d48d33f7e4e1080d2f0b48747950e67)]:
+  - @toptal/picasso-provider@1.1.4
+  - @toptal/picasso-shared@8.2.2
+
 ## 25.3.1
 
 ### Patch Changes
