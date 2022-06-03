@@ -33,7 +33,8 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 | **generate:component**    | Generate a new component template                                              |
 | **generate:example**      | Generate a new component component code example                                |
 | **generate:icons**        | [Generate JSX icon components from svgs](#add-icon)                            |
-| **happo**                 | Run happo locally and generate report on happo.io                              |
+| **happo**                 | Run Happo locally and generate report on happo.io                              |
+| **happo:storybook**       | Run Happo for Storybook on CI                                                  |
 | **lint**                  | Lint all files                                                                 |
 | **start**                 | Start storybook instance and inspect components                                |
 | **test**                  | Run jest and cypress tests                                                     |

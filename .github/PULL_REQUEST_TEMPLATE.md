@@ -21,7 +21,7 @@ Describe the changes and motivations for the pull request.
 - [ ] Annotate all `props` in component with documentation
 - [ ] Create `examples` for component
 - [ ] Ensure that deployed demo has expected results and good examples
-- [ ] Ensure that tests pass by running `yarn test`
+- [ ] Ensure that all PR checks are green
 - [ ] Ensure the changed/created components have not caused accessibility issues. [How to use accessibility plugin in storybook](https://github.com/toptal/picasso/blob/master/docs/contribution/accessibility.md).
 - [ ] Self reviewed
 - [ ] Covered with tests

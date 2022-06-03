@@ -47,40 +47,6 @@ pipeline {
         success 'Checkout finished'
       }
     }//stage
-
-    stage('Run visual tests') {
-      steps {
-        info 'Run visual tests...'
-        script {
-          ghHelper.notifyPR('Visual Tests', 'PENDING', 'running', "${COMMIT_ID}", "${BUILD_URL}", repoName)
-
-          def DIR = pwd() // can't be replaced with ${PWD}, because it's pointing to the jenkins_root folder
-          sh """
-            mkdir -p ${DIR}/__diff_output__
-
-            docker run --rm \
-            -v ${DIR}/__diff_output__:/app/__diff_output__ \
-            gcr.io/toptal-hub/${repoName}:${COMMIT_ID} \
-            yarn run test:visual:ci
-          """
-        }
-      } //steps
-
-      post {
-        success {
-          success "Visual Tests"
-          script {
-            ghHelper.notifyPR('Visual Tests', 'SUCCESS', 'Success', "${COMMIT_ID}", "${BUILD_URL}/Visual_20Regression_20Tests/", repoName)
-          }
-        }
-        failure {
-          err "Visual Tests"
-          script {
-            ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${COMMIT_ID}","${BUILD_URL}/Visual_20Regression_20Tests/", repoName)
-          }
-        }
-      } //post
-    }//stage
   }//stages
 
   post {
