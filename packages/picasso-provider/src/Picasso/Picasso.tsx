@@ -169,6 +169,12 @@ interface PicassoProps extends TextLabelProps {
   disableTransitions?: boolean
   /** Disables unique prefix for styles class names */
   disableClassNamePrefix?: boolean
+  /**
+   * By default, the styles are injected last in the <head> element of the page.
+   * As a result, they gain more specificity than any other style sheet.
+   * If you want to override Picasso's styles, set this prop.
+   */
+  injectFirst?: boolean
 }
 
 const Picasso = ({
@@ -184,7 +190,8 @@ const Picasso = ({
   titleCase,
   theme,
   disableTransitions,
-  disableClassNamePrefix
+  disableClassNamePrefix,
+  injectFirst
 }: PicassoProps) => {
   if (theme) {
     PicassoProvider.extendTheme(theme)
@@ -202,7 +209,10 @@ const Picasso = ({
   })
 
   return (
-    <StylesProvider generateClassName={generateClassName}>
+    <StylesProvider
+      generateClassName={generateClassName}
+      injectFirst={injectFirst}
+    >
       <MuiThemeProvider theme={PicassoProvider.theme}>
         <PicassoGlobalStylesProvider
           RootComponent={RootComponent}
