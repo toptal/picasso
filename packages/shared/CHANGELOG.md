@@ -1,5 +1,14 @@
 # Change Log
 
+## 8.2.2
+
+### Patch Changes
+
+- [#2840](https://github.com/toptal/picasso/pull/2840) [`38e61c28`](https://github.com/toptal/picasso/commit/38e61c286d48d33f7e4e1080d2f0b48747950e67) Thanks [@vvmarulin](https://github.com/vvmarulin)! - Upgrade `notistack` to version `1.0.6`
+
+- Updated dependencies [[`38e61c28`](https://github.com/toptal/picasso/commit/38e61c286d48d33f7e4e1080d2f0b48747950e67)]:
+  - @toptal/picasso-provider@1.1.4
+
 ## 8.2.1
 
 ### Patch Changes
