@@ -31,8 +31,8 @@ page
   .addExample('Picasso/story/DisableResponsiveUI.example.tsx', {
     title: 'Responsive Disabled',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Picasso/story/DisableClassNamePrefix.example.tsx', {
     title: 'ClassNames Prefix Disabled',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

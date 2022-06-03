@@ -58,7 +58,7 @@ To make it possible a utility function \`getServersideStylesheets\` was introduc
       showEditCode: false,
       takeScreenshot: false
     }
-  ) // picasso-skip-visuals
+  )
 generalUsage.addTextSection(
   `Example:
 

@@ -159,7 +159,7 @@ however, you may need custom validators for more complex types of fields.
       takeScreenshot: false
     },
     'picasso-form'
-  ) // picasso-skip-visuals
+  )
   .addExample(
     'Form/story/ParseInput.example.tsx',
     {
@@ -176,7 +176,7 @@ however, you may need custom validators for more complex types of fields.
       takeScreenshot: false
     },
     'picasso-form'
-  ) // picasso-skip-visuals
+  )
   .addExample(
     'Form/story/BackendCommunication.example.tsx',
     {
@@ -189,7 +189,7 @@ however, you may need custom validators for more complex types of fields.
       takeScreenshot: false
     },
     'picasso-form'
-  ) // picasso-skip-visuals
+  )
   .addExample(
     'Form/story/CustomFormLevelConfiguration.example.tsx',
     'Form Level Configurations'
@@ -204,41 +204,41 @@ however, you may need custom validators for more complex types of fields.
       takeScreenshot: false
     },
     'picasso-form'
-  ) // picasso-skip-visuals
+  )
   .addExample('Form/story/FileInput.example.tsx', {
     title: 'File input on a Form',
     description: 'Showcase how to upload files on the form submission',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Form/story/Dropzone.example.tsx', {
     title: 'Dropzone on a Form',
     description:
       'Showcase how to upload files on the form submission using dropzone',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Form/story/TitleCase.example.tsx', {
     title: 'Title case',
     description: "Display the field's label in title case.",
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Form/story/NoScrolling.example.tsx', {
     title: 'No scrolling case',
     description: "Showcase Form's behavior on form submission error.",
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Form/story/RichTextEditor.example.tsx', {
     title: 'Rich text editor',
     description: 'Showcase how to use RichTextEditor in the form.',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Form/story/FieldRequirements.example.tsx', {
     title: 'Field requirements',
     description: 'Showcase how to display field requirements.',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Form/story/Status.example.tsx', {
     title: 'Form Level Status Configuration',
     description:
       'Showcase how to enable success status via form configuration.',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

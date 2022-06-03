@@ -23,7 +23,7 @@ page
       takeScreenshot: false
     },
     'picasso-form'
-  ) // picasso-skip-visuals
+  )
   .addExample(
     'story/Deserialization.example.tsx',
     {
@@ -36,4 +36,4 @@ page
       takeScreenshot: false
     },
     'picasso-form'
-  ) // picasso-skip-visuals
+  )

@@ -18,22 +18,22 @@ page
   .addExample('Slider/story/ControlledWithLabel.example.tsx', {
     title: 'Controlled value with label',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Slider/story/MinMaxValueLabel.example.tsx', {
     title: 'Minimum and Maximum value with label',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Slider/story/Tooltip.example.tsx', 'Tooltip')
   .addExample('Slider/story/Range.example.tsx', 'Range')
   .addExample('Slider/story/RangeWithValueLabel.example.tsx', {
     title: 'Range with value label',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Slider/story/Marks.example.tsx', 'Marks')
   .addExample('Slider/story/CustomTooltip.example.tsx', {
     title: 'Custom Tooltip',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample(
     'Slider/story/HideThumb.example.tsx',
     'Hide thumb when value is null or undefined'

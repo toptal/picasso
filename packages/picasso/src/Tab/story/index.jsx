@@ -9,15 +9,15 @@ const chapter = PicassoBook.connectToPage(page => {
     .addExample('Tab/story/Disabled.example.tsx', {
       title: 'Disabled tab',
       takeScreenshot: false
-    }) // picasso-skip-visuals
+    })
     .addExample('Tab/story/CustomValue.example.tsx', {
       title: 'Using custom value',
       takeScreenshot: false
-    }) // picasso-skip-visuals
+    })
     .addExample('Tab/story/Icon.example.tsx', {
       title: 'With Icon',
       takeScreenshot: false
-    }) // picasso-skip-visuals
+    })
 })
 
 export default {

@@ -53,4 +53,4 @@ page
   .addExample('Dropdown/story/LongMenuList.example.tsx', {
     title: 'Long Menu List',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

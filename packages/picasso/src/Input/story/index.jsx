@@ -40,7 +40,7 @@ page
       await makeScreenshot()
     },
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Input/story/WithIcon.example.tsx', 'With icon')
   .addExample('Input/story/Sizes.example.tsx', 'Sizes')
   .addExample('Input/story/FullWidth.example.tsx', 'Full width')
@@ -57,8 +57,8 @@ page
   .addExample('Input/story/ResetButton.example.tsx', {
     title: 'With reset button',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Input/story/Refs.example.tsx', {
     title: 'Refs',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

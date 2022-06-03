@@ -25,20 +25,20 @@ page.createTabChapter('Props').addComponentDocs({
 page.createChapter().addExample('Section/story/Default.example.tsx', {
   title: 'Default',
   takeScreenshot: false
-}) // picasso-skip-visuals
+})
 page.createChapter().addExample('Section/story/Actions.example.tsx', {
   title: 'With Actions',
   takeScreenshot: false
-}) // picasso-skip-visuals
+})
 page.createChapter().addExample('Section/story/Collapsible.example.tsx', {
   title: 'Collapsible',
   takeScreenshot: false
-}) // picasso-skip-visuals
+})
 page.createChapter().addExample('Section/story/Variant.example.tsx', {
   title: 'Variant',
   takeScreenshot: false
-}) // picasso-skip-visuals
+})
 page.createChapter().addExample('Section/story/TitleSize.example.tsx', {
   title: 'Title Size',
   takeScreenshot: false
-}) // picasso-skip-visuals
+})

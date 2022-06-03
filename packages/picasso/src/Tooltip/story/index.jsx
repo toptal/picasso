@@ -35,43 +35,43 @@ page
   .addExample('Tooltip/story/Default.example.tsx', {
     title: 'Default',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tooltip/story/Placement.example.tsx', {
     title: 'Placement',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tooltip/story/Trigger.example.tsx', {
     title: 'Trigger',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tooltip/story/Interactive.example.tsx', {
     title: 'Interactive',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tooltip/story/ControlListeners.example.tsx', {
     title: 'Control Listeners',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tooltip/story/DisabledElement.example.tsx', {
     title: 'Tooltip on disabled element',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tooltip/story/Delay.example.tsx', {
     title: 'Delay',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tooltip/story/Compact.example.tsx', {
     title: 'Compact',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tooltip/story/MaxWidth.example.tsx', {
     title: 'Max Width',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tooltip/story/FollowCursor.example.tsx', {
     title: 'Follow Cursor',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tooltip/story/Dropdown.example.tsx', {
     title: 'Inside of a Dropdown',
     effect: async (testPage, makeScreenshot) => {
@@ -80,4 +80,4 @@ page
       await makeScreenshot({ isFullScreen: true })
     },
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })

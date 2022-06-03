@@ -53,7 +53,7 @@ We try to have everything inside `Picasso` synced with latest design proposal ca
 
 1. Read [CONTRIBUTING.md](./CONTRIBUTING.md)
 2. Open a PR with your first contribution
-3. Make sure test pass by running `yarn test` and `yarn test:visual`
+3. Make sure test pass by running `yarn test`
 
    - [Fixing broken visual tests](./docs/contribution/visual-testing.md#fixing-broken-visual-tests-inside-a-pr)
    - [Project commands](./README.md#project-commands)

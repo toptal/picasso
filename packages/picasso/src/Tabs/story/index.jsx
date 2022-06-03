@@ -23,9 +23,9 @@ page
   .addExample('Tabs/story/Default.example.tsx', {
     title: 'Default',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('Tabs/story/ScrollButtons.example.tsx', {
     title: 'Scroll buttons',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
 page.connect(tabStory.chapter)

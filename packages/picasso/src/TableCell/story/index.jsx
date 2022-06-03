@@ -7,14 +7,13 @@ const componentDocs = PicassoBook.createComponentDocs(
   'Cell for table content'
 )
 
-const chapter = PicassoBook.connectToPage(
-  page =>
-    page
-      .createChapter('Table.Cell', 'Cell for table content')
-      .addExample('TableCell/story/Alignments.example.tsx', {
-        title: 'Alignments',
-        takeScreenshot: false
-      }) // picasso-skip-visuals
+const chapter = PicassoBook.connectToPage(page =>
+  page
+    .createChapter('Table.Cell', 'Cell for table content')
+    .addExample('TableCell/story/Alignments.example.tsx', {
+      title: 'Alignments',
+      takeScreenshot: false
+    })
 )
 
 export default {

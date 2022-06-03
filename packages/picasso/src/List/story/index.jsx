@@ -36,16 +36,16 @@ page
   .addExample('List/story/Ordered.example.tsx', {
     title: 'Ordered',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('List/story/OrderedWithStart.example.tsx', {
     title: 'Ordered with custom start',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('List/story/Unordered.example.tsx', {
     title: 'Unordered',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
   .addExample('List/story/Custom.example.tsx', {
     title: 'Custom',
     takeScreenshot: false
-  }) // picasso-skip-visuals
+  })
