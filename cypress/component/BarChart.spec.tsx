@@ -9,7 +9,7 @@ import { palette } from '@toptal/picasso/utils'
 import {
   CHART_DATA_CUSTOM_TOOLTIP,
   CHART_DATA_DEFAULT
-} from '../test-data/BarChart.data.json'
+} from '../test-data/BarChart.data'
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length > 0) {

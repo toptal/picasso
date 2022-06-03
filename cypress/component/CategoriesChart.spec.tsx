@@ -7,7 +7,7 @@ import {
   CHART_DATA,
   CHART_LABELS,
   CHART_TOOLTIPS
-} from '../test-data/CategoriesChart.data.json'
+} from '../test-data/CategoriesChart.data'
 
 const TestCategoriesChart = () => (
   <TestingPicasso>

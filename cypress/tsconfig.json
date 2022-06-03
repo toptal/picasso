@@ -9,8 +9,7 @@
       "@types/happo-cypress",
       "cypress-real-events",
       "@cypress/skip-test"
-    ],
-    "resolveJsonModule": true
+    ]
   },
   "include": ["../node_modules/cypress", "./*/*.ts", "./*/*.tsx"]
 }
