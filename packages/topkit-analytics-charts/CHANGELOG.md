@@ -1,5 +1,15 @@
 # Change Log
 
+## 35.1.0
+
+### Minor Changes
+
+- [#2837](https://github.com/toptal/picasso/pull/2837) [`1e76d125`](https://github.com/toptal/picasso/commit/1e76d1259506dcd17b4ec1bc36b780e41ffdabf5) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### CategoriesChart
+
+  - Add `isAnimationActive` prop to disable animations for the chart
+
 ## 35.0.2
 
 ### Patch Changes
