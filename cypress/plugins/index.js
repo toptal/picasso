@@ -50,6 +50,10 @@ module.exports = (on, config) => {
       '@toptal/picasso-provider': path.resolve(
         __dirname,
         '../../packages/picasso-provider/dist-package'
+      ),
+      '@toptal/topkit-analytics-charts': path.resolve(
+        __dirname,
+        '../../packages/topkit-analytics-charts/dist-package'
       )
     }
   }

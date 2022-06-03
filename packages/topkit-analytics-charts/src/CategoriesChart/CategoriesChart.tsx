@@ -5,7 +5,10 @@ import { DataItem, LabelMap, TooltipMap } from './types'
 import { formatData, getColor } from './utils'
 import CategoriesChartTooltip from '../CategoriesChartTooltip'
 
-export type Props = Pick<BarChartProps<string>, 'width' | 'height'> & {
+export type Props = Pick<
+  BarChartProps<string>,
+  'width' | 'height' | 'isAnimationActive'
+> & {
   data: DataItem[]
   labels: LabelMap
   tooltips: TooltipMap

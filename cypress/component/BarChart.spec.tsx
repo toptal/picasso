@@ -6,47 +6,10 @@ import { BarChart } from '@toptal/picasso-charts'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { palette } from '@toptal/picasso/utils'
 
-const CHART_DATA_DEFAULT = [
-  {
-    name: 'Apple',
-    value: { 'engineers hired': 500 }
-  },
-  {
-    name: 'Google',
-    value: { 'engineers hired': 700 }
-  },
-  {
-    name: 'Facebook',
-    value: { 'engineers hired': 600 }
-  },
-  {
-    name: 'Amazon',
-    value: { 'engineers hired': 400 }
-  },
-  {
-    name: 'Toptal',
-    value: { 'engineers hired': 1000 }
-  }
-]
-
-const CHART_DATA_CUSTOM_TOOLTIP = [
-  {
-    name: 'Berlin',
-    value: { infected: 4000, recovered: 2400 }
-  },
-  {
-    name: 'Milan',
-    value: { infected: 3000, recovered: 1398 }
-  },
-  {
-    name: 'Moscow',
-    value: { infected: 2000, recovered: 9800 }
-  },
-  {
-    name: 'Los-Angeles',
-    value: { infected: 2780, recovered: 3908 }
-  }
-]
+import {
+  CHART_DATA_CUSTOM_TOOLTIP,
+  CHART_DATA_DEFAULT
+} from '../test-data/BarChart.data'
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length > 0) {
@@ -108,6 +71,8 @@ describe('BarChart', () => {
   it('shows default tooltip on hover', () => {
     mount(<TestBarChart />)
 
+    cy.get('body').happoScreenshot()
+
     hoverOverBar('Apple')
     assertTooltipContent('Appleengineers hired : 500')
 
@@ -140,6 +105,8 @@ describe('BarChart', () => {
         customTooltip={<CustomTooltip />}
       />
     )
+
+    cy.get('body').happoScreenshot()
 
     hoverOverBar('Berlin')
     assertCustomTooltipContent('Infected: 4000Recovered: 2400')
