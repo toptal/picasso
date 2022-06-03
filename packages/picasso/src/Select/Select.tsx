@@ -15,6 +15,7 @@ import {
   getOptionText,
   renderOption
 } from '../SelectBase'
+import { documentable, forwardRef } from '../utils'
 
 const purifyProps = (
   props: SelectProps<any, any>
@@ -32,26 +33,30 @@ const purifyProps = (
   return disableUnsupportedProps('Select', props, sizeOptions)
 }
 
-export const Select = <T extends ValueType, M extends boolean = false>({
-  native,
-  ...props
-}: SelectProps<T, M>) => {
-  usePropDeprecationWarning({
-    props,
-    name: 'error',
-    componentName: 'Select',
-    description:
-      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
-  })
+export const Select = documentable(
+  forwardRef(
+    <T extends ValueType, M extends boolean = false>(
+      { native, ...props }: SelectProps<T, M>,
+      ref: React.Ref<HTMLInputElement> | null
+    ) => {
+      usePropDeprecationWarning({
+        props,
+        name: 'error',
+        componentName: 'Select',
+        description:
+          'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+      })
 
-  return native ? (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <NativeSelect {...purifyProps(props)} />
-  ) : (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <NonNativeSelect {...purifyProps(props)} />
+      return native ? (
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        <NativeSelect {...purifyProps(props)} ref={ref} />
+      ) : (
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        <NonNativeSelect {...purifyProps(props)} ref={ref} />
+      )
+    }
   )
-}
+)
 
 Select.defaultProps = {
   disabled: false,

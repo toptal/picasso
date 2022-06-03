@@ -7,7 +7,7 @@ export type Component<T, P> = T & {
 
 /**
  * Wraps the exotic generic functional component type returned by the `forwardRef`.
- * This function adopts the type of the exotic compoennt to take `defaultProps` and
+ * This function adopts the type of the exotic component to take `defaultProps` and
  * `displayName`.
  *
  * @see forwardRef
