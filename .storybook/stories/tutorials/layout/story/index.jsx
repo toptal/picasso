@@ -21,7 +21,8 @@ header, footer, sidebar and main content.
 `
   )
   .addExample('tutorials/layout/story/Layout.final.example.tsx', {
-    title: 'End result'
+    title: 'End result',
+    takeScreenshot: false
   })
 
 /** Tutorial */
