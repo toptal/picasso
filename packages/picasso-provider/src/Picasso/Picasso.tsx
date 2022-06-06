@@ -240,6 +240,7 @@ Picasso.defaultProps = {
   responsive: true,
   reset: true,
   fixViewport: true,
+  injectFirst: undefined,
   RootComponent: PicassoRootNode
 }
 
