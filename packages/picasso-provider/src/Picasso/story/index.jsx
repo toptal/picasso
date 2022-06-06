@@ -27,7 +27,10 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Picasso/story/Default.example.tsx', 'Default')
+  .addExample('Picasso/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false
+  })
   .addExample('Picasso/story/DisableResponsiveUI.example.tsx', {
     title: 'Responsive Disabled',
     takeScreenshot: false
