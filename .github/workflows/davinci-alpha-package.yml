@@ -50,7 +50,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: toptal/davinci-github-actions
-          ref: v2.2.1
+          ref: fx-2842-fix-shell-injections
           token: ${{ env.GITHUB_TOKEN }}
           path: ./.github/actions/
 
