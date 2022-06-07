@@ -15,6 +15,7 @@ type RenderButtonParameters = {
   onClick: () => void
   disabled: boolean
 }
+
 type RenderButtonCallback = (params: RenderButtonParameters) => ReactNode
 
 export interface Props extends BaseProps {
@@ -43,6 +44,12 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'FileInputContent' })
+
+const defaultRenderButton: RenderButtonCallback = ({ label, ...rest }) => (
+  <Button size='small' variant='secondary' {...rest}>
+    {label}
+  </Button>
+)
 
 export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
   props,
@@ -74,24 +81,10 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     useRef<HTMLInputElement>(null)
   )
 
-  const renderButtonOrDefault = (params: RenderButtonParameters) => {
-    const { label, ...rest } = params
-
-    if (renderButton) {
-      return renderButton(params)
-    }
-
-    return (
-      <Button size='small' variant='secondary' {...rest}>
-        {label}
-      </Button>
-    )
-  }
-
   return (
     <Container onFocus={onFocus} onBlur={onBlur} className={classes.root}>
-      {renderButtonOrDefault({
-        onClick: () => inputRef.current && inputRef.current.click(),
+      {(renderButton || defaultRenderButton)({
+        onClick: () => inputRef.current?.click(),
         disabled: Boolean(disabled || preventAddingNewFiles),
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         label: buttonLabel!

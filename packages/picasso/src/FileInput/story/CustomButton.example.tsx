@@ -5,7 +5,11 @@ const Example = () => (
   <FileInput
     buttonLabel="I'm a custom button"
     renderButton={({ label, onClick, disabled }) => (
-      <button onClick={onClick} disabled={disabled}>
+      <button
+        onClick={onClick}
+        disabled={disabled}
+        style={{ cursor: 'pointer' }}
+      >
         {label}
       </button>
     )}
