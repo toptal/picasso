@@ -62,34 +62,17 @@ const assertCustomTooltipContent = (text: string) => {
 }
 
 describe('BarChart', () => {
-  it('renders default chart', () => {
+  it('renders default chart with default tooltip on hover', () => {
     mount(<TestBarChart />)
 
-    cy.get('body').happoScreenshot()
-  })
-
-  it('shows default tooltip on hover', () => {
-    mount(<TestBarChart />)
-
-    cy.get('body').happoScreenshot()
-
-    hoverOverBar('Apple')
+    hoverOverBar('Apple').get('body').happoScreenshot()
     assertTooltipContent('Appleengineers hired : 500')
 
     hoverOverBar('Google')
     assertTooltipContent('Googleengineers hired : 700')
-
-    hoverOverBar('Facebook')
-    assertTooltipContent('Facebookengineers hired : 600')
-
-    hoverOverBar('Amazon')
-    assertTooltipContent('Amazonengineers hired : 400')
-
-    hoverOverBar('Toptal')
-    assertTooltipContent('Toptalengineers hired : 1000')
   })
 
-  it('shows custom tooltip on hover', () => {
+  it('renders custom chart with custom tooltip on hover', () => {
     mount(
       <TestBarChart
         data={CHART_DATA_CUSTOM_TOOLTIP}
@@ -106,23 +89,15 @@ describe('BarChart', () => {
       />
     )
 
-    cy.get('body').happoScreenshot()
-
-    hoverOverBar('Berlin')
+    hoverOverBar('Berlin').get('body').happoScreenshot()
     assertCustomTooltipContent('Infected: 4000Recovered: 2400')
 
     hoverOverBar('Milan')
     assertCustomTooltipContent('Infected: 3000Recovered: 1398')
-
-    hoverOverBar('Moscow')
-    assertCustomTooltipContent('Infected: 2000Recovered: 9800')
-
-    hoverOverBar('Los-Angeles')
-    assertCustomTooltipContent('Infected: 2780Recovered: 3908')
   })
 
   it('hides label of each bar via passed `showBarLabel` prop being set to `false`', () => {
-    mount(<TestBarChart showBarLabel={false} />)
+    mount(<TestBarChart showBarLabel={false} tooltip={false} />)
 
     cy.get('body').happoScreenshot()
   })
