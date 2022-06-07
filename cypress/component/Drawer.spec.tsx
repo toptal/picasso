@@ -158,7 +158,6 @@ describe('Drawer', () => {
     )
 
     cy.getByTestId('open-drawer').click()
-    cy.getByTestId('drawer').should('be.visible')
     cy.getByTestId('open-modal').click()
 
     cy.get('body').happoScreenshot()
