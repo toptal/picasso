@@ -63,7 +63,7 @@ export const FileInput = (props: Props) => {
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             handleChange(event, inputProps.value, inputProps.onChange)
           }}
-          onRemove={(index: number) => {
+          onRemove={(_: string, index: number) => {
             handleRemove(index, inputProps.value, inputProps.onChange)
           }}
         />
