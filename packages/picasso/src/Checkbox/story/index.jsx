@@ -17,25 +17,7 @@ page
   })
   .addExample('Checkbox/story/Controlled.example.tsx', {
     title: 'Controlled',
-    description: 'Stateless checkbox, state should be controlled using prop',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.hover('#checkbox-unchecked')
-      await makeScreenshot()
-
-      await testPage.hover('#checkbox-checked')
-      await makeScreenshot()
-
-      // Move mouse out not to combine hover and focus
-      await testPage.mouse.move(0, 0)
-
-      // Unchecked focused
-      await testPage.keyboard.press('Tab')
-      await makeScreenshot()
-
-      // Checked focused
-      await testPage.keyboard.press('Tab')
-      await makeScreenshot()
-    }
+    description: 'Stateless checkbox, state should be controlled using prop'
   })
   .addExample(
     'Checkbox/story/CheckboxGroupVertical.example.tsx',
