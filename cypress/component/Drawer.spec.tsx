@@ -32,7 +32,7 @@ const TestDrawer = (props: Partial<DrawerProps>) => {
   )
 }
 
-const TestDrawerWithNotification = () => {
+const TestDrawerWithNotification = (props: Partial<DrawerProps>) => {
   const { showSuccess } = useNotifications()
   const [open, setOpen] = useState(false)
 
@@ -47,7 +47,7 @@ const TestDrawerWithNotification = () => {
         Show drawer
       </Button>
       <Drawer
-        width='medium'
+        {...props}
         title='My Operational Issues'
         open={open}
         onClose={() => setOpen(false)}
@@ -63,7 +63,7 @@ const TestDrawerWithNotification = () => {
   )
 }
 
-const TestDrawerBehindModal = () => {
+const TestDrawerBehindModal = (props: Partial<DrawerProps>) => {
   const [isDrawerOpen, setOpen] = useState(false)
   const { isOpen, showModal, hideModal } = useModal()
 
@@ -83,7 +83,7 @@ const TestDrawerBehindModal = () => {
         Show drawer
       </Button>
       <Drawer
-        width='ultra-wide'
+        {...props}
         title='My Operational Issues'
         open={isDrawerOpen}
         onClose={() => setOpen(false)}
@@ -120,7 +120,7 @@ describe('Drawer', () => {
   it('renders with regular width and title', () => {
     mount(
       <TestingPicasso>
-        <TestDrawer title='This is a regular Drawer' />
+        <TestDrawer width='regular' title='This is a regular Drawer' />
       </TestingPicasso>
     )
 
@@ -131,7 +131,7 @@ describe('Drawer', () => {
   it('renders with medium width and notification', () => {
     mount(
       <TestingPicasso>
-        <TestDrawerWithNotification />
+        <TestDrawerWithNotification width='medium' />
       </TestingPicasso>
     )
 
@@ -153,7 +153,7 @@ describe('Drawer', () => {
   it('renders with ultra-wide width behind Modal', () => {
     mount(
       <TestingPicasso>
-        <TestDrawerBehindModal />
+        <TestDrawerBehindModal width='ultra-wide' />
       </TestingPicasso>
     )
 
