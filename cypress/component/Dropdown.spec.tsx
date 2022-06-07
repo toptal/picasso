@@ -1,7 +1,102 @@
 import React from 'react'
-import { Dropdown, Menu, Button, Grid } from '@toptal/picasso'
+import {
+  Dropdown,
+  Menu,
+  Button,
+  Grid,
+  Container,
+  Typography,
+  Form,
+  Input,
+} from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { mount } from '@cypress/react'
+
+const LongListExample = () => (
+  <Container padded='medium' style={{ height: 900 }}>
+    <Grid direction='row'>
+      <Grid.Item>
+        <Dropdown content={menu}>
+          Display the menu with a scrollbar
+          <Dropdown.Arrow data-testid='content-overflow-scroll' />
+        </Dropdown>
+      </Grid.Item>
+      <Grid.Item>
+        <Dropdown contentOverflow='visible' content={menu}>
+          Display the menu without a scrollbar
+          <Dropdown.Arrow data-testid='content-overflow-visible' />
+        </Dropdown>
+      </Grid.Item>
+    </Grid>
+  </Container>
+)
+
+const CustomContentExample = () => (
+  <Container padded='medium'>
+    <Dropdown content={<ComplexContent />} disableAutoClose disablePortal>
+      <Button data-testid='trigger'>Open dropdown</Button>
+    </Dropdown>
+  </Container>
+)
+
+const ComplexContent = () => {
+  return (
+    <Container padded='medium'>
+      <Container bottom='small'>
+        <Typography variant='heading' size='medium'>
+          Talent
+        </Typography>
+      </Container>
+      <Form>
+        <Form.Field>
+          <Input autoFocus width='full' placeholder='Job title' />
+        </Form.Field>
+      </Form>
+    </Container>
+  )
+}
+
+const COMPONENT = 'Dropdown'
+
+describe('Dropdown', () => {
+  it('renders with long list', () => {
+    mount(
+      <TestingPicasso>
+        <LongListExample />
+      </TestingPicasso>
+    )
+
+    cy.getByTestId('content-overflow-scroll').click()
+
+    // scroll to bottom of menu
+    cy.getByTestId('menu').parent().scrollTo('bottom')
+
+    cy.get('body').happoScreenshot({
+      component: COMPONENT,
+      variant: 'long-list/after-clicked-with-scroll',
+    })
+
+    cy.getByTestId('content-overflow-visible').click()
+    cy.get('body').happoScreenshot({
+      component: COMPONENT,
+      variant: 'long-list/after-clicked-without-scroll',
+    })
+  })
+
+  it('renders with custom content', () => {
+    mount(
+      <TestingPicasso>
+        <CustomContentExample />
+      </TestingPicasso>
+    )
+
+    cy.getByTestId('trigger').realClick()
+    cy.get('body').happoScreenshot({
+      component: COMPONENT,
+      variant: 'custom-content/after-clicked',
+    })
+  })
+})
 
 const menuItems = [
   'Add Infraction',
@@ -32,7 +127,7 @@ const menuItems = [
 ]
 
 const menu = (
-  <Menu>
+  <Menu data-testid='menu'>
     {menuItems.map(itemName => (
       <Menu.Item onClick={() => {}} key={itemName}>
         {itemName}
@@ -40,38 +135,3 @@ const menu = (
     ))}
   </Menu>
 )
-
-const DropdownExample = () => (
-  <Grid direction='row'>
-    <Grid.Item>
-      <Dropdown content={menu}>
-        <Button data-testid='content-overflow-scroll'>
-          Display the menu with a scrollbar
-        </Button>
-      </Dropdown>
-    </Grid.Item>
-    <Grid.Item>
-      <Dropdown contentOverflow='visible' content={menu}>
-        <Button data-testid='content-overflow-visible'>
-          Display the menu without a scrollbar
-        </Button>
-      </Dropdown>
-    </Grid.Item>
-  </Grid>
-)
-
-describe('Dropdown', () => {
-  it('renders', () => {
-    mount(
-      <TestingPicasso>
-        <DropdownExample />
-      </TestingPicasso>
-    )
-    cy.get('[data-testid="content-overflow-scroll"]').click()
-    cy.get('body').happoScreenshot()
-
-    cy.get('[data-testid="content-overflow-visible"]').click()
-    // TODO: https://toptal-core.atlassian.net/browse/FX-2275
-    // cy.get('body').happoScreenshot()
-  })
-})
