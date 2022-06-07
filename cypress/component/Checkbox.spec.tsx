@@ -22,16 +22,15 @@ describe('Checkbox', () => {
   it('renders', () => {
     mount(<TestCheckbox />)
 
-    cy.getByTestId('checkbox-unchecked').realHover()
-    cy.get('body').happoScreenshot()
+    cy.getByTestId('checkbox-unchecked')
+      .realHover()
+      .get('body')
+      .happoScreenshot()
 
-    cy.getByTestId('checkbox-checked').realHover()
-    cy.get('body').happoScreenshot()
+    cy.getByTestId('checkbox-checked').realHover().get('body').happoScreenshot()
 
-    cy.getByTestId('checkbox-unchecked').realClick()
-    cy.get('body').happoScreenshot()
-
-    cy.getByTestId('checkbox-checked').realClick()
-    cy.get('body').happoScreenshot()
+    // our data-testid's are not being passed to the input
+    cy.get('input').first().focus().get('body').happoScreenshot()
+    cy.get('input').last().focus().get('body').happoScreenshot()
   })
 })
