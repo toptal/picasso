@@ -8,6 +8,7 @@ import React, {
   Fragment
 } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
+import { PopperOptions } from 'popper.js'
 
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
 import TagSelectorInput from '../TagSelectorInput'
@@ -87,6 +88,8 @@ export interface Props
   }) => ReactNode
   /** DOM element that wraps the Popper */
   popperContainer?: HTMLElement
+  /** Options provided to the popper.js instance */
+  popperOptions?: PopperOptions
   testIds?: {
     validIcon?: string
   }
@@ -116,6 +119,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       value: values = [],
       width,
       popperContainer,
+      popperOptions,
       error,
       status,
       testIds,
@@ -233,6 +237,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         enableReset={false}
         getKey={getKey}
         popperContainer={popperContainer}
+        popperOptions={popperOptions}
         testIds={testIds}
       />
     )
