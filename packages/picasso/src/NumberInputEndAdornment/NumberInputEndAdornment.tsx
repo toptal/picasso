@@ -40,6 +40,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 const nativeInputValueSetter = isBrowser()
   ? (
       Object.getOwnPropertyDescriptor(
+        // eslint-disable-next-line ssr-friendly/no-dom-globals-in-module-scope
         window.HTMLInputElement.prototype,
         'value'
       ) as PropertyDescriptor

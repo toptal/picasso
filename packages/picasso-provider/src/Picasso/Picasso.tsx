@@ -119,6 +119,7 @@ const Viewport = () => {
   }
 
   const content = 'width=device-width, user-scalable=no'
+  // eslint-disable-next-line ssr-friendly/no-dom-globals-in-react-fc
   const nonPicassoViewportTags = document.querySelectorAll(
     'meta[name="viewport"]:not([data-picasso="true"])'
   )

@@ -169,6 +169,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   }, [open, rootRef])
 
   const bodyOverflow = useRef<string>(
+    // eslint-disable-next-line ssr-friendly/no-dom-globals-in-react-fc
     isBrowser() ? document.body.style.overflow : 'inherit'
   )
 
@@ -179,7 +180,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     const currentModal = modalId.current
 
     if (open) {
-      // TODO: to be improved as part of https://toptal-core.atlassian.net/browse/FX-1069
+      // TODO: [FX-1069] to be improved as part of https://toptal-core.atlassian.net/browse/FX-1069
       bodyOverflow.current = document.body.style.overflow
       document.body.style.overflow = 'hidden'
 
