@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [#2852](https://github.com/toptal/picasso/pull/2852) [`053e386c`](https://github.com/toptal/picasso/commit/053e386c7268bc34f294adbaa3327470c80947f1) Thanks [@s0ber](https://github.com/s0ber)! - ---
+
+  ### Picasso
+
+  - allow injecting Picasso styles first inside head
+
 ## 1.1.4
 
 ### Patch Changes

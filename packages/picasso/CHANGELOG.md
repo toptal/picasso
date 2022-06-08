@@ -1,5 +1,18 @@
 # Change Log
 
+## 25.3.3
+
+### Patch Changes
+
+- [#2849](https://github.com/toptal/picasso/pull/2849) [`47f2013a`](https://github.com/toptal/picasso/commit/47f2013a4e76f360af5fc7009f90523a536de090) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### Select
+
+  - forward ref properly
+
+- Updated dependencies [[`053e386c`](https://github.com/toptal/picasso/commit/053e386c7268bc34f294adbaa3327470c80947f1)]:
+  - @toptal/picasso-provider@1.2.0
+
 ## 25.3.2
 
 ### Patch Changes
