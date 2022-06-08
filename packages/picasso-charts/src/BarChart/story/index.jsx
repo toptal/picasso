@@ -21,22 +21,12 @@ page
     title: 'Tooltip',
     description:
       'Bar chart has built-in tooltips support. You can enable them via `tooltip` prop.',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.mouse.move(100, 100)
-      await makeScreenshot()
-    },
-    delay: 500,
     takeScreenshot: false
   })
   .addExample('BarChart/story/Customized.example.tsx', {
     title: 'Customized',
     description:
       "You can customize chart's tooltip, height, width, fill and label colors.",
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.mouse.move(100, 100)
-      await makeScreenshot()
-    },
-    delay: 500,
     takeScreenshot: false
   })
   .addExample('BarChart/story/HideBarLabel.example.tsx', {
