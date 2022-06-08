@@ -11576,6 +11576,13 @@ eslint-plugin-sort-keys-fix@^1.1.2:
     natural-compare "^1.4.0"
     requireindex "~1.2.0"
 
+eslint-plugin-ssr-friendly@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ssr-friendly/-/eslint-plugin-ssr-friendly-1.0.6.tgz#eb7633ab7e51720ebac6dc590bcaf8e28aecd8c6"
+  integrity sha512-O1S/0Q8FYTl1c4vwIr0cg59u37mL5qe7sxpMzjdIo2v8l0LjCugU699trmkgOheQINTq7R9yhfCo6YaAb4tYUQ==
+  dependencies:
+    globals "^13.8.0"
+
 eslint-plugin-todo-plz@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-todo-plz/-/eslint-plugin-todo-plz-1.2.1.tgz#e93c162e2779919aea711f4af90ad375b1c21fc9"
@@ -13142,10 +13149,10 @@ globals@^11.1.0, globals@^11.12.0:
   resolved "https://registry.yarnpkg.com/globals/-/globals-11.12.0.tgz#ab8795338868a0babd8525758018c2a7eb95c42e"
   integrity sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==
 
-globals@^13.6.0, globals@^13.9.0:
-  version "13.12.0"
-  resolved "https://registry.yarnpkg.com/globals/-/globals-13.12.0.tgz#4d733760304230a0082ed96e21e5c565f898089e"
-  integrity sha512-uS8X6lSKN2JumVoXrbUz+uG4BYG+eiawqm3qFcT7ammfbUHeCBoJMlHcec/S3krSk73/AE/f0szYFmgAA3kYZg==
+globals@^13.6.0, globals@^13.8.0, globals@^13.9.0:
+  version "13.15.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-13.15.0.tgz#38113218c907d2f7e98658af246cef8b77e90bac"
+  integrity sha512-bpzcOlgDhMG070Av0Vy5Owklpv1I6+j96GhUI7Rh7IzDCKLzboflLrrfqMu8NquDbiR4EOQk7XzJwqVJxicxog==
   dependencies:
     type-fest "^0.20.2"
 

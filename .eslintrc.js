@@ -27,8 +27,23 @@ const generateConfig = () =>
     }
   )
 
+const ssrFriendlyRuleNames = [
+  'ssr-friendly/no-dom-globals-in-module-scope',
+  'ssr-friendly/no-dom-globals-in-constructor',
+  'ssr-friendly/no-dom-globals-in-react-cc-render',
+  'ssr-friendly/no-dom-globals-in-react-fc'
+]
+
+const generateSameSettingRules = (ruleNames, setting) => {
+  return Object.fromEntries(ruleNames.map(ruleName => [ruleName, setting]))
+}
+
 module.exports = {
-  extends: './node_modules/@toptal/davinci-syntax/src/configs/.eslintrc',
+  extends: [
+    './node_modules/@toptal/davinci-syntax/src/configs/.eslintrc',
+    'plugin:ssr-friendly/recommended'
+  ],
+  plugins: ['ssr-friendly'],
   rules: {
     '@toptal/davinci/no-private-package-imports': 'off',
     '@toptal/davinci/no-package-self-imports': [
@@ -37,7 +52,8 @@ module.exports = {
         excludeFiles: ['**/*.example.jsx', '**/*.example.tsx'],
         excludePaths: ['@toptal/picasso/test-utils']
       }
-    ]
+    ],
+    ...generateSameSettingRules(ssrFriendlyRuleNames, 'warn')
   },
   ignorePatterns: ['*.output.tsx', '*.input.tsx'],
   overrides: [
@@ -49,7 +65,8 @@ module.exports = {
         'import/no-named-default': 'off',
         'no-console': 'off',
         'no-inline-styles/no-inline-styles': 'off',
-        '@toptal/davinci/no-private-package-imports': 'error'
+        '@toptal/davinci/no-private-package-imports': 'error',
+        ...generateSameSettingRules(ssrFriendlyRuleNames, 'off')
       }
     },
     // tests
@@ -58,7 +75,8 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-explicit-any': 'off',
         'no-inline-styles/no-inline-styles': 'off',
-        'max-lines': 'off'
+        'max-lines': 'off',
+        ...generateSameSettingRules(ssrFriendlyRuleNames, 'off')
       }
     },
     // codemod fixtures
