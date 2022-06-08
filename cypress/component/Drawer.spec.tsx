@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import {
@@ -53,20 +53,17 @@ const TestDrawerWithNotification = (props: Partial<DrawerProps>) => {
 }
 
 const TestDrawerBehindModal = (props: Partial<DrawerProps>) => {
-  const container = document.getElementById('modal-container')
-
-  assert(container != null)
-
   const [isDrawerOpen, setOpen] = useState(false)
   const { isOpen, showModal, hideModal } = useModal()
+  const modalContainerRef = useRef<HTMLDivElement>(null)
 
   return (
     <div style={{ height: '660px' }}>
-      <div id='modal-container' />
+      <div ref={modalContainerRef} />
       <Modal
         open={isOpen}
         onClose={hideModal}
-        container={container ?? undefined}
+        container={modalContainerRef.current ?? undefined}
       >
         <Modal.Title>Modal Title</Modal.Title>
         <Modal.Content>Modal Content</Modal.Content>
