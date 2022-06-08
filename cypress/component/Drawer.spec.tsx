@@ -12,15 +12,17 @@ import {
 } from '@toptal/picasso'
 import { useModal, useNotifications } from '@toptal/picasso/utils'
 
-const TestDrawer = (props: Partial<DrawerProps>) => {
-  const [open, setOpen] = useState(false)
+const DrawerExample = (
+  props: Partial<DrawerProps> & { open: boolean; onOpen: () => void }
+) => {
+  const { onOpen } = props
 
   return (
     <div style={{ height: '660px' }}>
-      <Button data-testid='trigger' onClick={() => setOpen(!open)}>
+      <Button data-testid='trigger' onClick={onOpen}>
         Show drawer
       </Button>
-      <Drawer {...props} open={open}>
+      <Drawer {...props}>
         <Container padded='medium'>
           <List variant='ordered'>
             <List.Item>Add at least 10 skills</List.Item>
@@ -30,6 +32,12 @@ const TestDrawer = (props: Partial<DrawerProps>) => {
       </Drawer>
     </div>
   )
+}
+
+const TestDrawer = (props: Partial<DrawerProps>) => {
+  const [open, setOpen] = useState(false)
+
+  return <DrawerExample {...props} open={open} onOpen={() => setOpen(!open)} />
 }
 
 const TestDrawerWithNotification = (props: Partial<DrawerProps>) => {
@@ -41,29 +49,14 @@ const TestDrawerWithNotification = (props: Partial<DrawerProps>) => {
     showSuccess("That's one small step for a man, one giant leap for mankind.")
   }
 
-  return (
-    <div style={{ height: '660px' }}>
-      <Button data-testid='trigger' onClick={showDrawer}>
-        Show drawer
-      </Button>
-      <Drawer
-        {...props}
-        title='My Operational Issues'
-        open={open}
-        onClose={() => setOpen(false)}
-      >
-        <Container padded='medium'>
-          <List variant='ordered'>
-            <List.Item>Add at least 10 skills</List.Item>
-            <List.Item>Set your age</List.Item>
-          </List>
-        </Container>
-      </Drawer>
-    </div>
-  )
+  return <DrawerExample {...props} open={open} onOpen={showDrawer} />
 }
 
 const TestDrawerBehindModal = (props: Partial<DrawerProps>) => {
+  const container = document.getElementById('modal-container')
+
+  assert(container != null)
+
   const [isDrawerOpen, setOpen] = useState(false)
   const { isOpen, showModal, hideModal } = useModal()
 
@@ -73,8 +66,7 @@ const TestDrawerBehindModal = (props: Partial<DrawerProps>) => {
       <Modal
         open={isOpen}
         onClose={hideModal}
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        container={document.getElementById('modal-container')!}
+        container={container ?? undefined}
       >
         <Modal.Title>Modal Title</Modal.Title>
         <Modal.Content>Modal Content</Modal.Content>
