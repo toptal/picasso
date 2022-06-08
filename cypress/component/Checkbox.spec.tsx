@@ -22,12 +22,10 @@ describe('Checkbox', () => {
   it('renders', () => {
     mount(<TestCheckbox />)
 
-    cy.getByTestId('checkbox-unchecked')
-      .realHover()
-      .get('body')
-      .happoScreenshot()
-
-    cy.getByTestId('checkbox-checked').realHover().get('body').happoScreenshot()
+    // looks like happo doesn't work with hover pseudo-class properly
+    // these happo screenshots disabled for now until we get helped by happo side
+    // cy.getByTestId('checkbox-unchecked').realHover().get('body').happoScreenshot()
+    // cy.getByTestId('checkbox-checked').realHover().get('body').happoScreenshot()
 
     // our data-testid's are not being passed to the input
     cy.get('input').first().focus().get('body').happoScreenshot()
