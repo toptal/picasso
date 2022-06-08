@@ -15,6 +15,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
+import { PopperOptions } from 'popper.js'
 
 import Input, { InputProps } from '../Input'
 import Menu from '../Menu'
@@ -106,6 +107,8 @@ export interface Props
   enableReset?: boolean
   /** DOM element that wraps the Popper */
   popperContainer?: HTMLElement
+  /** Options provided to the popper.js instance */
+  popperOptions?: PopperOptions
   inputProps?: BaseInputProps
   /** Show the "Powered By Google" label */
   poweredByGoogle?: boolean
@@ -155,6 +158,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       otherOptionText = 'Other option: ',
       placeholder,
       popperContainer,
+      popperOptions,
       poweredByGoogle,
       renderOption,
       renderOtherOption,
@@ -320,6 +324,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               open={isOpen && !loading}
               anchorEl={inputWrapperRef.current}
               container={popperContainer}
+              popperOptions={popperOptions}
             >
               {optionsMenu}
             </Popper>
