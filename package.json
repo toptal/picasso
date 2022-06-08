@@ -89,7 +89,6 @@
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",
     "fs-extra": "^8.0.1",
-    "glob": "^8.0.3",
     "happo-cypress": "^3.0.1",
     "happo-e2e": "^1.1.0",
     "happo-plugin-storybook": "^2.10.3",
