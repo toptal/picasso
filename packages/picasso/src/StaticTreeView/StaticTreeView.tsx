@@ -6,7 +6,7 @@ import {
   useTree,
   TreeViewPropsDefaults,
   TreeViewSvg,
-  useFinalMargins
+  useFinalMargins,
 } from '../TreeView/shared'
 import { findExtremeNodes } from './utils/findExtremeNodes'
 
@@ -24,12 +24,12 @@ const StaticTreeView = (props: Props) => {
     data,
     renderNode,
     nodeWidth = StaticTreeView.defaultProps.nodeWidth,
-    nodeHeight = StaticTreeView.defaultProps.nodeHeight
+    nodeHeight = StaticTreeView.defaultProps.nodeHeight,
   } = props
 
   const {
     direction = StaticTreeView.defaultProps.directionProps.direction,
-    variant = StaticTreeView.defaultProps.directionProps.variant
+    variant = StaticTreeView.defaultProps.directionProps.variant,
   } = props.directionProps ?? StaticTreeView.defaultProps.directionProps
 
   const [verticalMargin, horizontalMargin] = useFinalMargins(
@@ -45,7 +45,7 @@ const StaticTreeView = (props: Props) => {
     horizontalMargin,
     nodeWidth,
     nodeHeight,
-    variant
+    variant,
   })
 
   const svgRef = useRef<SVGSVGElement>(null)
@@ -53,7 +53,7 @@ const StaticTreeView = (props: Props) => {
     width: 200,
     height: 400,
     topMostNodeY: 0,
-    leftMostNodeX: 0
+    leftMostNodeX: 0,
   })
 
   useIsomorphicLayoutEffect(() => {
@@ -65,7 +65,7 @@ const StaticTreeView = (props: Props) => {
         width: bbox.width,
         height: bbox.height,
         topMostNodeY: extremes?.topMostNode.y ?? 0,
-        leftMostNodeX: extremes?.leftMostNode.x ?? 0
+        leftMostNodeX: extremes?.leftMostNode.x ?? 0,
       })
     }
   }, [svgRef, nodes])
@@ -76,7 +76,7 @@ const StaticTreeView = (props: Props) => {
       gTransform:
         direction === 'horizontal'
           ? `translate(0, ${-1 * svgMeasurements.topMostNodeY})`
-          : `translate(${-1 * svgMeasurements.leftMostNodeX}, 0)`
+          : `translate(${-1 * svgMeasurements.leftMostNodeX}, 0)`,
     }
   }, [svgMeasurements, direction])
 
@@ -90,10 +90,10 @@ const StaticTreeView = (props: Props) => {
       horizontalMargin={horizontalMargin}
       renderNode={renderNode}
       svgProps={{
-        viewBox: transforms.svgViewBox
+        viewBox: transforms.svgViewBox,
       }}
       graphProps={{
-        transform: transforms.gTransform
+        transform: transforms.gTransform,
       }}
     />
   )

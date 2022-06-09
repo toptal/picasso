@@ -13,7 +13,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'Rotate180'
+  name: 'Rotate180',
 })
 
 export const Rotate180 = (props: Props) => {
@@ -22,10 +22,10 @@ export const Rotate180 = (props: Props) => {
 
   const childProps = {
     className: cx(className, classes.transition, {
-      [classes.rotate180]: on
+      [classes.rotate180]: on,
     }),
     style,
-    ...rest
+    ...rest,
   }
 
   return (

@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 import {
   PicassoProvider,
-  breakpointsList as breakpoints
+  breakpointsList as breakpoints,
 } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({
@@ -11,22 +11,22 @@ PicassoProvider.override(() => ({
       display: 'flex',
 
       '&$active': {
-        display: 'flex'
-      }
+        display: 'flex',
+      },
     },
     iconContainer: {
-      paddingRight: 0
-    }
-  }
+      paddingRight: 0,
+    },
+  },
 }))
 
 export default ({ palette, breakpoints: { down } }: Theme) =>
   createStyles({
     hidden: {
-      display: 'none'
+      display: 'none',
     },
     root: {
-      marginLeft: '0.5em'
+      marginLeft: '0.5em',
     },
     label: {
       fontSize: rem('11px'),
@@ -34,7 +34,7 @@ export default ({ palette, breakpoints: { down } }: Theme) =>
       lineHeight: '1em',
       color: palette.grey.dark,
       [down(breakpoints.small)]: {
-        display: 'none'
-      }
-    }
+        display: 'none',
+      },
+    },
   })

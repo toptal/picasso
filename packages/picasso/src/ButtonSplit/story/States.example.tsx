@@ -17,7 +17,7 @@ const Example = () => {
   const customStyles = { marginRight: '1em' }
 
   const renderStates = ({
-    variant = 'primary'
+    variant = 'primary',
   }: { variant?: ButtonSplitProps['variant'] } = {}) => {
     return (
       <>

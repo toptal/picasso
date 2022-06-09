@@ -4,7 +4,7 @@ export default ({ palette, screens, layout }: Theme) =>
   createStyles({
     root: {
       backgroundColor: palette.grey.darker,
-      width: '100%'
+      width: '100%',
     },
     content: {
       boxSizing: 'border-box',
@@ -18,25 +18,25 @@ export default ({ palette, screens, layout }: Theme) =>
       lineHeight: '1em',
 
       [screens('small', 'medium', 'large')]: {
-        flexDirection: 'column'
+        flexDirection: 'column',
       },
 
       [screens('small', 'medium')]: {
-        padding: `0.5rem ${layout.contentMobilePaddingHorizontal} 1.5rem`
-      }
+        padding: `0.5rem ${layout.contentMobilePaddingHorizontal} 1.5rem`,
+      },
     },
     centered: {},
     wide: {
-      maxWidth: layout.contentWidthWide
+      maxWidth: layout.contentWidthWide,
     },
     fullWidth: {
-      maxWidth: '100%'
+      maxWidth: '100%',
     },
     left: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: '1rem'
+      marginTop: '1rem',
     },
     right: {
       display: 'flex',
@@ -45,11 +45,11 @@ export default ({ palette, screens, layout }: Theme) =>
       marginTop: '1rem',
 
       [screens('small', 'medium', 'large')]: {
-        order: -1
+        order: -1,
       },
 
       [screens('small', 'medium')]: {
-        flexDirection: 'column'
-      }
-    }
+        flexDirection: 'column',
+      },
+    },
   })

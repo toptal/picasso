@@ -14,7 +14,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTableFooter'
+  name: 'PicassoTableFooter',
 })
 
 export const TableFooter = forwardRef<HTMLTableSectionElement, Props>(

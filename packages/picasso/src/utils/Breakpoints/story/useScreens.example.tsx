@@ -27,7 +27,7 @@ const Example = () => {
         variant={screens(
           {
             small: 'secondary',
-            large: 'positive'
+            large: 'positive',
           },
           'primary'
         )}
@@ -35,7 +35,7 @@ const Example = () => {
         {screenTexts(
           {
             small: 'small (secondary)',
-            large: 'large (positive)'
+            large: 'large (positive)',
           },
           'default (primary)'
         )}

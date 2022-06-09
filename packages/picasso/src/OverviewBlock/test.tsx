@@ -60,7 +60,7 @@ describe('overview-block', () => {
           as: Link,
           onClick: jest.fn(),
           to: '/',
-          'data-testid': 'overview-block'
+          'data-testid': 'overview-block',
         })
         const block = getByTestId('overview-block')
 
@@ -76,7 +76,7 @@ describe('overview-block', () => {
           value: 'abc dk9',
           label: 'abc ps0',
           onClick: jest.fn(),
-          'data-testid': 'overview-block'
+          'data-testid': 'overview-block',
         })
 
         expect(getByTestId('overview-block').nodeName).toBe('BUTTON')
@@ -89,7 +89,7 @@ describe('overview-block', () => {
       const { getByTestId } = renderOverviewBlock({
         value: 'abc dk9',
         label: 'abc ps0',
-        'data-testid': 'overview-block'
+        'data-testid': 'overview-block',
       })
 
       expect(getByTestId('overview-block').nodeName).toBe('DIV')
@@ -99,7 +99,7 @@ describe('overview-block', () => {
       const { getByTestId } = renderOverviewBlock({
         as: Link,
         to: '/',
-        'data-testid': 'overview-block'
+        'data-testid': 'overview-block',
       })
       const block = getByTestId('overview-block')
 

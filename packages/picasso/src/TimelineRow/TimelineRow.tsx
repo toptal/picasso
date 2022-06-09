@@ -23,7 +23,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTimelineRow'
+  name: 'PicassoTimelineRow',
 })
 
 const TimelineRow = ({
@@ -33,7 +33,7 @@ const TimelineRow = ({
   date,
   hasConnector,
   'data-testid': dataTestId,
-  testIds = {}
+  testIds = {},
 }: Props) => {
   const classes = useStyles()
 
@@ -46,7 +46,7 @@ const TimelineRow = ({
       <Container flex direction='column' alignItems='center' right='medium'>
         {typeof icon !== 'undefined' ? (
           React.cloneElement(icon, {
-            className: cx(icon.props.className, classes.icon)
+            className: cx(icon.props.className, classes.icon),
           })
         ) : (
           <div className={classes.dot} data-testid={testIds.dot} />
@@ -76,7 +76,7 @@ const TimelineRow = ({
 }
 
 TimelineRow.defaultProps = {
-  hasConnector: true
+  hasConnector: true,
 }
 
 TimelineRow.displayName = 'TimelineRow'

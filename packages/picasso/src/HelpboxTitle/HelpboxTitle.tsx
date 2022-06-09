@@ -12,7 +12,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoHelpboxTitle'
+  name: 'PicassoHelpboxTitle',
 })
 
 export const HelpboxTitle = forwardRef<HTMLDivElement, Props>(

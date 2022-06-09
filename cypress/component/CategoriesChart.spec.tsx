@@ -6,7 +6,7 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 import {
   CHART_DATA,
   CHART_LABELS,
-  CHART_TOOLTIPS
+  CHART_TOOLTIPS,
 } from '../test-data/CategoriesChart.data'
 
 const TestCategoriesChart = () => (

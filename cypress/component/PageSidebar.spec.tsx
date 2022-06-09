@@ -11,7 +11,7 @@ import {
   PageSidebarProps,
   Referral16,
   Team16,
-  Typography
+  Typography,
 } from '@toptal/picasso'
 
 enum TestIds {
@@ -24,7 +24,7 @@ enum TestIds {
   BASIC_MENU_INNER_MENU = 'basic-menu-inner-menu',
 
   COLLAPSIBLE_MENU_HEADER = 'collapsible-header',
-  COLLAPSIBLE_MENU_INNER_MENU = 'collapsible-inner-menu'
+  COLLAPSIBLE_MENU_INNER_MENU = 'collapsible-inner-menu',
 }
 
 const SidebarExample = (props: PageSidebarProps) => {
@@ -33,7 +33,7 @@ const SidebarExample = (props: PageSidebarProps) => {
       {...props}
       testIds={{
         collapseButton: TestIds.SIDEBAR_COLLAPSE_BUTTON,
-        container: TestIds.SIDEBAR_CONTAINER
+        container: TestIds.SIDEBAR_CONTAINER,
       }}
     >
       <Page.Sidebar.Logo
@@ -55,7 +55,7 @@ const SidebarExample = (props: PageSidebarProps) => {
         <Page.Sidebar.Item
           icon={<Team16 />}
           badge={{
-            content: 5
+            content: 5,
           }}
         >
           Team
@@ -69,7 +69,7 @@ const SidebarExample = (props: PageSidebarProps) => {
             </Page.Sidebar.Menu>
           }
           badge={{
-            content: 10
+            content: 10,
           }}
         >
           Referral
@@ -107,7 +107,7 @@ const DefaultExample = (props: PageSidebarProps) => {
         style={{
           height: '58rem',
           maxHeight: '58rem',
-          overflowY: 'scroll'
+          overflowY: 'scroll',
         }}
       >
         <SidebarExample {...props} />

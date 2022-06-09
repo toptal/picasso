@@ -5,7 +5,7 @@ import { useModal } from '@toptal/picasso/utils'
 const ModalDialog = ({
   open,
   onClose,
-  align = 'centered'
+  align = 'centered',
 }: {
   open: boolean
   onClose: () => void
@@ -34,7 +34,7 @@ const Example = () => {
   const {
     showModal: showTopAlignedModal,
     hideModal: hideTopAlignedModal,
-    isOpen: isTopAlignedModalOpen
+    isOpen: isTopAlignedModalOpen,
   } = useModal()
   const { showModal, hideModal, isOpen } = useModal()
 

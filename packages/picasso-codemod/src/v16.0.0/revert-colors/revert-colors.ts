@@ -3,7 +3,7 @@ import {
   JSXAttribute,
   JSXText,
   JSXIdentifier,
-  JSXMemberExpression
+  JSXMemberExpression,
 } from 'jscodeshift'
 
 const colorMap = {
@@ -12,7 +12,7 @@ const colorMap = {
   primary: 'blue',
   positive: 'green',
   light: 'light-grey',
-  dark: 'dark-grey'
+  dark: 'dark-grey',
 } as const
 
 const transform: Transform = (file, api) => {

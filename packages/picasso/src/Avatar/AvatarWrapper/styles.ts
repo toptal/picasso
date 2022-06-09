@@ -4,24 +4,24 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 const SETTINGS = {
   xxsmall: {
     dimensions: 2,
-    cornerSize: '0.5em'
+    cornerSize: '0.5em',
   },
   xsmall: {
     dimensions: 2.5,
-    cornerSize: '0.5em'
+    cornerSize: '0.5em',
   },
   small: {
     dimensions: 5,
-    cornerSize: '1em'
+    cornerSize: '1em',
   },
   medium: {
     dimensions: 7.5,
-    cornerSize: '1.5em'
+    cornerSize: '1.5em',
   },
   large: {
     dimensions: 10,
-    cornerSize: '1.5em'
-  }
+    cornerSize: '1.5em',
+  },
 } as const
 
 export default ({ palette }: Theme) =>
@@ -31,11 +31,11 @@ export default ({ palette }: Theme) =>
       backgroundColor: palette.grey.main,
       fontSize: '1rem',
       flexShrink: 0,
-      flexGrow: 0
+      flexGrow: 0,
     },
     size: ({
       size,
-      variant
+      variant,
     }: {
       size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
       variant: 'square' | 'portrait' | 'landscape'
@@ -47,12 +47,12 @@ export default ({ palette }: Theme) =>
 
       return {
         width: `${dimensions * widthRatio}em`,
-        height: `${dimensions * heightRatio}em`
+        height: `${dimensions * heightRatio}em`,
       }
     },
 
     corner: ({
-      size
+      size,
     }: {
       size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
     }) => {
@@ -63,7 +63,7 @@ export default ({ palette }: Theme) =>
         clipPath,
         // we can remove this prefix as soon as this issue will
         // be resolved - https://github.com/cssinjs/css-vendor/issues/74
-        '-webkit-clip-path': clipPath
+        '-webkit-clip-path': clipPath,
       }
-    }
+    },
   })

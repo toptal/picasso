@@ -16,7 +16,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPageContent'
+  name: 'PicassoPageContent',
 })
 
 export const PageContent = forwardRef<HTMLDivElement, Props>(
@@ -31,7 +31,7 @@ export const PageContent = forwardRef<HTMLDivElement, Props>(
       {
         [classes.fullWidth]: fullWidth || width === 'full',
         [classes.wide]: width === 'wide',
-        [classes.flex]: flex
+        [classes.flex]: flex,
       },
       classes.content
     )
@@ -54,7 +54,7 @@ export const PageContent = forwardRef<HTMLDivElement, Props>(
 )
 
 PageContent.defaultProps = {
-  flex: true
+  flex: true,
 }
 
 PageContent.displayName = 'PageContent'

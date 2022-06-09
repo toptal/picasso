@@ -22,7 +22,7 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
   scaleExtent,
   center,
   initialScale = 1,
-  transitionDuration
+  transitionDuration,
 }: UseZoomArguments<ZoomRefElement>): UseZoomResponse<ZoomRefElement> => {
   const [initialized, setInitialized] = useState(false)
   const zoom = useMemo(
@@ -69,6 +69,6 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
 
   return {
     zoom,
-    handleZoom
+    handleZoom,
   }
 }

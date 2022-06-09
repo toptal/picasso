@@ -13,7 +13,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoModalContent'
+  name: 'PicassoModalContent',
 })
 
 export const ModalContent = forwardRef<HTMLDivElement, Props>(

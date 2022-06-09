@@ -14,28 +14,28 @@ const page = PicassoBook.section('Components').createPage(
 
 page.createTabChapter('Props').addComponentDocs({
   component: Drawer,
-  name: 'Drawer'
+  name: 'Drawer',
 })
 
 page
   .createChapter()
   .addExample('Drawer/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Drawer/story/WithoutTitle.example.tsx', {
     title: 'Without Title',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Drawer/story/CustomTitle.example.tsx', {
     title: 'Custom Title',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Drawer/story/Widths.example.tsx', {
     title: 'Width',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Drawer/story/DrawerAndNotification.example.tsx', {
     title: 'With notification',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

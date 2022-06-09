@@ -5,7 +5,7 @@ import {
   Option,
   OptionGroups,
   ValueType,
-  UseSelectStateOutput
+  UseSelectStateOutput,
 } from '../../types'
 import {
   getMultipleSelection,
@@ -15,7 +15,7 @@ import {
   DEFAULT_LIMIT,
   filterOptions,
   flattenOptions,
-  limitOptions
+  limitOptions,
 } from '../../utils'
 import useHighlightedIndex from '../use-highlighted-index'
 
@@ -39,7 +39,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     multiple,
     value: valueProp,
     searchThreshold = DEFAULT_SEARCH_THRESHOLD,
-    limit = DEFAULT_LIMIT
+    limit = DEFAULT_LIMIT,
   } = props
 
   const flatOptions: Option[] = useMemo(
@@ -69,7 +69,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
       filterOptions({
         options,
         filterOptionsValue,
-        getDisplayValue
+        getDisplayValue,
       }),
     [options, filterOptionsValue, getDisplayValue]
   )
@@ -94,7 +94,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
   const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex({
     flatOptions: filteredLimitedFlatOptions,
     selection,
-    isOpen
+    isOpen,
   })
 
   useEffect(() => {
@@ -133,7 +133,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     displayValue,
     selection,
     emptySelectValue,
-    setFilterOptionsValue
+    setFilterOptionsValue,
   }
 }
 

@@ -34,7 +34,7 @@ const OPTIONS = [
   { value: '11', text: 'Option 11' },
   { value: '12', text: 'Option 12' },
   { value: '13', text: 'Option 13' },
-  { value: '14', text: 'Option 14' }
+  { value: '14', text: 'Option 14' },
 ]
 
 export default Example

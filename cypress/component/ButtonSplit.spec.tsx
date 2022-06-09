@@ -15,7 +15,7 @@ const menu = (
 
 const testIds = {
   menuButton: 'menu-button',
-  actionButton: 'actionButton'
+  actionButton: 'actionButton',
 }
 
 const getMenuButton = () => cy.get(`[data-testid=${testIds.menuButton}]`)

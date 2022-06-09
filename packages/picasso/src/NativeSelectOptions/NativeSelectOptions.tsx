@@ -5,7 +5,7 @@ import {
   Option,
   OptionGroups,
   ItemProps,
-  Selection
+  Selection,
 } from '../SelectBase'
 
 export interface Props {
@@ -19,7 +19,7 @@ const renderOptions = ({
   options,
   getItemProps,
   renderOption,
-  selection
+  selection,
 }: Pick<Props, 'getItemProps' | 'renderOption' | 'selection'> & {
   options: Option[]
 }) => {
@@ -47,7 +47,7 @@ const NativeSelectOptions = ({
   options,
   renderOption,
   getItemProps,
-  selection
+  selection,
 }: Props) => {
   if (isOptionsType(options)) {
     return renderOptions({ options, getItemProps, renderOption, selection })
@@ -61,7 +61,7 @@ const NativeSelectOptions = ({
             options: options[group],
             getItemProps,
             renderOption,
-            selection
+            selection,
           })}
         </optgroup>
       ))}

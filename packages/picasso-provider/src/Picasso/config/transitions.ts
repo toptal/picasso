@@ -1,5 +1,5 @@
 export default {
   duration: {
-    short: 350
-  }
+    short: 350,
+  },
 }

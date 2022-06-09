@@ -6,24 +6,24 @@ import {
   Checkbox,
   Select,
   Form,
-  DatePicker
+  DatePicker,
 } from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
 
 const STATES = [
   {
     text: 'Alabama',
-    value: 'Alabama'
+    value: 'Alabama',
   },
   {
     text: 'Utah',
-    value: 'Utah'
-  }
+    value: 'Utah',
+  },
 ]
 
 const ModalDialog = ({
   open,
-  onClose
+  onClose,
 }: {
   open: boolean
   onClose: () => void

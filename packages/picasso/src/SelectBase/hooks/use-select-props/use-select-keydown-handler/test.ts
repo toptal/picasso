@@ -21,7 +21,7 @@ describe('useSelectKeydownHandle', () => {
       ...getUseSelectPropsMock(),
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     }
 
     props.selectProps.onKeyDown = jest.fn()
@@ -46,7 +46,7 @@ describe('useSelectKeydownHandle', () => {
         ...getUseSelectPropsMock(),
         handleArrowsKeyDown,
         handleEnterOrSpaceKeyDown,
-        handleEscapeKeyDown
+        handleEscapeKeyDown,
       }
 
       props.selectProps.onKeyDown = jest.fn()
@@ -76,7 +76,7 @@ describe('useSelectKeydownHandle', () => {
     'PageUp',
     'Home',
     'F11',
-    ' '
+    ' ',
   ])('does not focus input if pressing `%s` key', character => {
     const handleArrowsKeyDown = jest.fn()
     const handleEnterOrSpaceKeyDown = jest.fn()
@@ -85,7 +85,7 @@ describe('useSelectKeydownHandle', () => {
       ...getUseSelectPropsMock(),
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     }
 
     props.selectProps.onKeyDown = jest.fn()
@@ -112,7 +112,7 @@ describe('useSelectKeydownHandle', () => {
       ...getUseSelectPropsMock(),
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     }
 
     props.selectState.isOpen = true
@@ -138,7 +138,7 @@ describe('useSelectKeydownHandle', () => {
       ...getUseSelectPropsMock(),
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     }
 
     props.selectProps.onKeyDown = jest.fn()
@@ -175,7 +175,7 @@ describe('useSelectKeydownHandle', () => {
       ...getUseSelectPropsMock(),
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     }
 
     props.selectProps.onKeyDown = jest.fn()
@@ -198,7 +198,7 @@ describe('useSelectKeydownHandle', () => {
       ...getUseSelectPropsMock(),
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     }
 
     props.selectProps.onKeyDown = jest.fn()

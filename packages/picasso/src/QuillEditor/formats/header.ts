@@ -16,7 +16,7 @@ class TypographyHeaderBlot extends QuillHeader {
       'class',
       getTypographyClassName(this.typographyClasses, {
         variant: 'heading',
-        size: 'medium'
+        size: 'medium',
       })
     )
 

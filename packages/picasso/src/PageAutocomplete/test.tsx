@@ -9,12 +9,12 @@ const testOptions = [
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
   { text: 'Slovakia', value: 'SK' },
-  { text: 'Ukraine', value: 'UA' }
+  { text: 'Ukraine', value: 'UA' },
 ]
 
 const testIds = {
   resetButton: 'reset-adornment',
-  input: 'autocomplete'
+  input: 'autocomplete',
 }
 
 const renderAutocomplete = (props: OmitInternalProps<Props>) =>
@@ -24,7 +24,7 @@ describe('PageAutocomplete', () => {
   it('renders', () => {
     const { container } = renderAutocomplete({
       options: testOptions,
-      value: ''
+      value: '',
     })
 
     expect(container).toMatchSnapshot()

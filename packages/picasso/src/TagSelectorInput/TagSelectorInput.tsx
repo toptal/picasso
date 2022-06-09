@@ -8,7 +8,7 @@ import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTagSelectorInput'
+  name: 'PicassoTagSelectorInput',
 })
 
 export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
@@ -48,7 +48,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       name: 'error',
       componentName: 'TagSelectorInput',
       description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
     const classes = useStyles()
@@ -56,7 +56,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
 
     if (endAdornment) {
       usedEndAdornment = React.cloneElement(endAdornment as ReactElement, {
-        className: classes.endAdornment
+        className: classes.endAdornment,
       })
     }
 
@@ -65,7 +65,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         inputRef={ref}
         style={style}
         className={cx(classes.inputBase, {
-          [classes.withEndAdornment]: Boolean(endAdornment)
+          [classes.withEndAdornment]: Boolean(endAdornment),
         })}
         id={id}
         name={name}
@@ -84,7 +84,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         // html attributes
         inputProps={{
           ...rest,
-          ...inputProps
+          ...inputProps,
         }}
         testIds={testIds}
         endAdornment={usedEndAdornment}
@@ -100,7 +100,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
 TagSelectorInput.defaultProps = {
   multiline: false,
   width: 'auto',
-  status: 'default'
+  status: 'default',
 }
 
 TagSelectorInput.displayName = 'TagSelectorInput'

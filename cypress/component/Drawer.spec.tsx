@@ -8,7 +8,7 @@ import {
   Container,
   List,
   DrawerProps,
-  Typography
+  Typography,
 } from '@toptal/picasso'
 import { useModal, useNotifications } from '@toptal/picasso/utils'
 

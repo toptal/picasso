@@ -3,12 +3,12 @@ import { createStyles } from '@material-ui/core/styles'
 export default () =>
   createStyles({
     radio: {
-      display: 'none'
+      display: 'none',
     },
     label: {
-      marginRight: '.125rem'
+      marginRight: '.125rem',
     },
     clickableLabel: {
-      cursor: 'pointer'
-    }
+      cursor: 'pointer',
+    },
   })

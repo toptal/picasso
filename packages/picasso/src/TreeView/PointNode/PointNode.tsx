@@ -28,7 +28,7 @@ export const PointNode = forwardRef<SVGGElement, Props>(
         if (dimensions.height !== height || dimensions.width !== width) {
           setDimensions({
             width,
-            height
+            height,
           })
         }
       }

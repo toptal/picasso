@@ -11,7 +11,7 @@ const TestSidebarLogo = ({ children }: Props) => (
 )
 
 const renderSidebarLogoWithContext = ({
-  isCollapsed
+  isCollapsed,
 }: {
   isCollapsed: boolean
 }) => {
@@ -46,7 +46,7 @@ describe('SidebarLogo', () => {
   describe('when sidebar is collapsed', () => {
     it('renders collapsed logo with children', () => {
       const { getByTestId, queryByTestId } = renderSidebarLogoWithContext({
-        isCollapsed: true
+        isCollapsed: true,
       })
 
       expect(getByTestId('collapse-logo')).toBeVisible()
@@ -59,7 +59,7 @@ describe('SidebarLogo', () => {
   describe('when sidebar is not collapsed', () => {
     it('renders full logo with children', () => {
       const { getByTestId, queryByTestId } = renderSidebarLogoWithContext({
-        isCollapsed: false
+        isCollapsed: false,
       })
 
       expect(queryByTestId('collapse-logo')).toBeNull()

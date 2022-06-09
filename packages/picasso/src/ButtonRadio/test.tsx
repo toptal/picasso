@@ -23,7 +23,7 @@ describe('ButtonRadio', () => {
     const { getByTestId } = renderButtonRadio({
       children: 'Click me!',
       onChange,
-      'data-testid': 'button'
+      'data-testid': 'button',
     })
 
     const anyChangeEvent = expect.anything()
@@ -40,7 +40,7 @@ describe('ButtonRadio', () => {
     const { getByTestId } = renderButtonRadio({
       children: 'Click me!',
       onChange,
-      testIds: { radio: 'radio' }
+      testIds: { radio: 'radio' },
     })
 
     fireEvent.click(getByTestId('radio'))
@@ -57,7 +57,7 @@ describe('ButtonRadio', () => {
       onChange,
       testIds: { radio: 'radio' },
       'data-testid': 'button',
-      disabled: true
+      disabled: true,
     })
 
     fireEvent.click(getByTestId('radio'))

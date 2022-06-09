@@ -6,26 +6,26 @@ export default ({ palette }: Theme) =>
       html: {
         boxSizing: 'initial',
         '-webkit-font-smoothing': 'antialiased',
-        '-moz-osx-font-smoothing': 'grayscale'
+        '-moz-osx-font-smoothing': 'grayscale',
       },
       '*, *::before, *::after': {
-        boxSizing: 'inherit'
+        boxSizing: 'inherit',
       },
       body: {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
         margin: 0,
-        backgroundColor: palette.common.white
+        backgroundColor: palette.common.white,
       },
       '@media print': {
         body: {
-          backgroundColor: palette.common.white
-        }
+          backgroundColor: palette.common.white,
+        },
       },
       '#root': {
         display: 'flex',
-        flex: 1
-      }
-    }
+        flex: 1,
+      },
+    },
   })

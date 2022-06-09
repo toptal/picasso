@@ -3,21 +3,21 @@ import { rem } from '@toptal/picasso-shared'
 
 const margins = {
   '& p': {
-    margin: '0.5rem 0'
+    margin: '0.5rem 0',
   },
   '& h3': {
-    margin: '1rem 0 0.5rem'
+    margin: '1rem 0 0.5rem',
   },
   '& p:first-child, & h3:first-child': {
-    margin: '0 0 0.5rem'
+    margin: '0 0 0.5rem',
   },
   '& li:not(:last-child)': {
-    margin: '0 0 0.5rem'
+    margin: '0 0 0.5rem',
   },
   '& ol, & ul': {
     padding: 0,
-    margin: '0.5rem 0'
-  }
+    margin: '0.5rem 0',
+  },
 }
 
 const listStyles = {
@@ -30,17 +30,17 @@ const listStyles = {
       position: 'absolute',
       left: 0,
       whiteSpace: 'nowrap',
-      width: '1rem'
-    }
+      width: '1rem',
+    },
   },
   '& ol li': {
     counterIncrement: 'list-0',
     '&:before': {
-      content: 'counter(list-0, decimal) "."'
-    }
+      content: 'counter(list-0, decimal) "."',
+    },
   },
   '& *:not(li)': {
-    counterReset: 'list-0'
+    counterReset: 'list-0',
   },
   '& ul li': {
     '&:before': {
@@ -50,9 +50,9 @@ const listStyles = {
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
       height: rem('22px'),
-      width: '1rem'
-    }
-  }
+      width: '1rem',
+    },
+  },
 }
 
 const horizontalPadding = '0.5em'
@@ -63,14 +63,14 @@ const placeholder = ({ palette }: Theme) => ({
     pointerEvents: 'none',
     position: 'absolute',
     left: horizontalPadding,
-    right: horizontalPadding
-  }
+    right: horizontalPadding,
+  },
 })
 
 const hidden = {
   '& .gl-hidden': {
-    display: 'none'
-  }
+    display: 'none',
+  },
 }
 
 const editor = {
@@ -82,11 +82,11 @@ const editor = {
     tabSize: '4',
     textAlign: 'left',
     whiteSpace: 'pre-wrap',
-    wordWrap: 'break-word'
+    wordWrap: 'break-word',
   },
   '& .ql-editor > *': {
-    cursor: 'text'
-  }
+    cursor: 'text',
+  },
 }
 
 const clipboard = {
@@ -95,15 +95,15 @@ const clipboard = {
     height: '1px',
     overflowY: 'hidden',
     position: 'absolute',
-    top: '50%'
-  }
+    top: '50%',
+  },
 }
 
 const quillSpecificStyles = (theme: Theme) => ({
   ...placeholder(theme),
   ...editor,
   ...hidden,
-  ...clipboard
+  ...clipboard,
 })
 
 export default (theme: Theme) => {
@@ -115,7 +115,7 @@ export default (theme: Theme) => {
       position: 'relative',
       ...listStyles,
       ...margins,
-      ...quillSpecificStyles(theme)
-    }
+      ...quillSpecificStyles(theme),
+    },
   })
 }

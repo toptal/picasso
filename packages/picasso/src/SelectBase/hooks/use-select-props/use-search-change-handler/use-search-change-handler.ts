@@ -4,7 +4,7 @@ import { ValueType, UseSelectProps } from '../../../types'
 
 const useSearchChangeHandler =
   <T extends ValueType, M extends boolean = false>({
-    selectState: { setFilterOptionsValue }
+    selectState: { setFilterOptionsValue },
   }: UseSelectProps<T, M>) =>
   (event: ChangeEvent<HTMLInputElement>) =>
     setFilterOptionsValue(event.target.value)

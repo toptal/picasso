@@ -12,7 +12,7 @@ const renderShowMore = (props: OmitInternalProps<Props>) => {
     onToggle,
     moreText,
     lessText,
-    disableToggle
+    disableToggle,
   } = props
 
   return render(
@@ -35,7 +35,7 @@ describe('when onToggle function is passed', () => {
     const { getByText } = renderShowMore({
       children:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
-      onToggle
+      onToggle,
     })
 
     const toggleText = getByText('Show more')
@@ -52,7 +52,7 @@ describe('ShowMore', () => {
   beforeEach(() => {
     api = renderShowMore({
       children:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?'
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
     })
   })
 
@@ -78,7 +78,7 @@ describe('ShowMore', () => {
       const { container } = renderShowMore({
         children:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
-        initialExpanded: true
+        initialExpanded: true,
       })
 
       expect(container).toMatchSnapshot()
@@ -89,7 +89,7 @@ describe('ShowMore', () => {
         const { container, getByText } = renderShowMore({
           children:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
-          initialExpanded: true
+          initialExpanded: true,
         })
         const toggleText = getByText('Show less')
 
@@ -105,7 +105,7 @@ describe('ShowMore', () => {
       const { container } = renderShowMore({
         children:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
-        disableToggle: true
+        disableToggle: true,
       })
 
       expect(container).toMatchSnapshot()
@@ -117,7 +117,7 @@ describe('ShowMore', () => {
       const { container } = renderShowMore({
         children:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
-        moreText: 'Display everything'
+        moreText: 'Display everything',
       })
 
       expect(container).toMatchSnapshot()
@@ -129,7 +129,7 @@ describe('ShowMore', () => {
       const { container } = renderShowMore({
         children:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?',
-        lessText: 'Hide overflow'
+        lessText: 'Hide overflow',
       })
 
       expect(container).toMatchSnapshot()

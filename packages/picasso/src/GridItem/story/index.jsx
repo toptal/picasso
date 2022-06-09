@@ -11,7 +11,7 @@ const chapter = PicassoBook.connectToPage(page =>
     .addExample('GridItem/story/Responsive.example.tsx', {
       title: 'Responsive',
       description:
-        'You can try to resize screen, to see how different grid widths are applied.'
+        'You can try to resize screen, to see how different grid widths are applied.',
     })
     .addExample('GridItem/story/SampleLayout.example.tsx', 'Sample Layout')
     .addExample('GridItem/story/CenteredLayout.example.tsx', 'Centered Layout')
@@ -21,5 +21,5 @@ const componentDocs = PicassoBook.createComponentDocs(GridItem, 'Grid.Item')
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

@@ -23,11 +23,11 @@ const icons = {
   red: <ExclamationSolid16 color='red' />,
   green: <DoneSolid16 color='dark-green' />,
   blue: <InfoSolid16 color='light-blue' />,
-  yellow: <ExclamationSolid16 color='yellow' />
+  yellow: <ExclamationSolid16 color='yellow' />,
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAlertInline'
+  name: 'PicassoAlertInline',
 })
 
 export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
@@ -69,7 +69,7 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
 })
 
 AlertInline.defaultProps = {
-  variant: 'yellow'
+  variant: 'yellow',
 }
 
 AlertInline.displayName = 'AlertInline'

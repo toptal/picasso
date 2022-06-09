@@ -15,5 +15,5 @@ page
   .addExample('MonthSelect/story/Default.example.tsx', 'Default')
   .addExample('MonthSelect/story/Filter.example.tsx', {
     title: 'Filter months and years',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

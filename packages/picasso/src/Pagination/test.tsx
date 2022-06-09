@@ -22,7 +22,7 @@ describe('Pagination', () => {
     const { container } = renderPagination({
       activePage: 5,
       totalPages: 20,
-      onPageChange: () => {}
+      onPageChange: () => {},
     })
 
     expect(container).toMatchSnapshot()
@@ -33,7 +33,7 @@ describe('Pagination', () => {
       activePage: 5,
       totalPages: 20,
       disabled: true,
-      onPageChange: () => {}
+      onPageChange: () => {},
     })
 
     expect(container).toMatchSnapshot()
@@ -43,7 +43,7 @@ describe('Pagination', () => {
     const { container } = renderPagination({
       activePage: 1,
       totalPages: 1,
-      onPageChange: () => {}
+      onPageChange: () => {},
     })
 
     expect(container).toMatchSnapshot()
@@ -53,7 +53,7 @@ describe('Pagination', () => {
     const { container } = renderPagination({
       activePage: 1,
       totalPages: 0,
-      onPageChange: () => {}
+      onPageChange: () => {},
     })
 
     expect(container).toMatchSnapshot()
@@ -64,7 +64,7 @@ describe('Pagination', () => {
     const { getByText } = renderPagination({
       activePage: 1,
       totalPages: 5,
-      onPageChange
+      onPageChange,
     })
 
     fireEvent.click(getByText('Prev'))
@@ -77,7 +77,7 @@ describe('Pagination', () => {
     const { getByText } = renderPagination({
       activePage: 5,
       totalPages: 5,
-      onPageChange
+      onPageChange,
     })
 
     fireEvent.click(getByText('Next'))

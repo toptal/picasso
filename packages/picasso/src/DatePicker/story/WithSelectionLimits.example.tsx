@@ -7,7 +7,7 @@ const WithSelectionLimitsExample = () => {
   const maxDate = new Date('2015-12-30')
   const disabledIntervals = [
     { start: new Date('2015-12-03'), end: new Date('2015-12-08') },
-    { start: new Date('2015-12-20'), end: new Date('2015-12-30') }
+    { start: new Date('2015-12-20'), end: new Date('2015-12-30') },
   ]
 
   return (

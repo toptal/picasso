@@ -31,14 +31,14 @@ module.exports = {
       {
         type: 'input',
         name: 'name',
-        message: "What's the component name?"
+        message: "What's the component name?",
       },
       {
         type: 'select',
         name: 'package',
         message: `To what package would you like to add component?`,
-        choices: AVAILABLE_PACKAGES
-      }
+        choices: AVAILABLE_PACKAGES,
+      },
     ])
-  }
+  },
 }

@@ -7,7 +7,7 @@ import {
   ChangeEvent,
   FocusEventHandler,
   useEffect,
-  useMemo
+  useMemo,
 } from 'react'
 
 import { Item, ChangedOptions } from '../types'
@@ -18,7 +18,7 @@ export const INITIAL_HIGHLIGHT_INDEX = 0
 export const normalizeInitialIndex = ({
   initialIndex,
   itemCount,
-  moveAmount
+  moveAmount,
 }: {
   initialIndex: number
   itemCount: number
@@ -55,7 +55,7 @@ export const getNextWrappingIndex = (
   const normalizedInitialIndex = normalizeInitialIndex({
     initialIndex,
     itemCount,
-    moveAmount
+    moveAmount,
   })
 
   const newIndex = normalizedInitialIndex + moveAmount
@@ -104,7 +104,7 @@ export const useAutocomplete = ({
   getDisplayValue,
   enableReset,
   showOtherOption,
-  disabled = false
+  disabled = false,
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number>(
@@ -167,7 +167,7 @@ export const useAutocomplete = ({
       // to the item so it can remain with the current activeElement
       // which is a more common use case.
       event.preventDefault()
-    }
+    },
   })
 
   const getItemProps = (index: number, item: Item) => ({
@@ -176,7 +176,7 @@ export const useAutocomplete = ({
       setOpen(false)
       handleChange(getDisplayValue(item), true)
       handleSelect(item, event)
-    }
+    },
   })
 
   const getOtherItemProps = (index: number, newValue: string) => ({
@@ -184,7 +184,7 @@ export const useAutocomplete = ({
     onClick: (event: MouseEvent) => {
       setOpen(false)
       onOtherOptionSelect(newValue, event)
-    }
+    },
   })
 
   const handleClick = () => {
@@ -290,7 +290,7 @@ export const useAutocomplete = ({
     ) => {
       event.stopPropagation()
       handleChange(getDisplayValue(null))
-    }
+    },
   })
 
   return {
@@ -299,6 +299,6 @@ export const useAutocomplete = ({
     getInputProps,
     isOpen,
     highlightedIndex,
-    shouldShowOtherOption
+    shouldShowOtherOption,
   }
 }

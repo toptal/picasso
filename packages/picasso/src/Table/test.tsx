@@ -12,7 +12,7 @@ jest.mock('ap-style-title-case')
 const DEFAULT_CELLS_PROPS: [TableCellProps, TableCellProps, TableCellProps] = [
   { children: 'Table test' },
   { children: 'Table test' },
-  { children: 'Table test' }
+  { children: 'Table test' },
 ]
 
 const renderTable = (
@@ -117,7 +117,7 @@ describe('Table', () => {
       it('should not transform table header text to title case', () => {
         const cellsProps = DEFAULT_CELLS_PROPS.map(cellProps => ({
           ...cellProps,
-          titleCase: false
+          titleCase: false,
         })) as typeof DEFAULT_CELLS_PROPS
 
         renderTable({ titleCase: true }, cellsProps)

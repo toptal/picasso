@@ -30,7 +30,7 @@ const Example = () => {
             onChange={handleChange}
             options={OPTIONS.map((option, index) => ({
               ...option,
-              disabled: index % 2 === 0
+              disabled: index % 2 === 0,
             }))}
             value={value}
             placeholder='Choose an option...'
@@ -45,7 +45,7 @@ const Example = () => {
             onChange={handleChange}
             options={OPTIONS.map((option, index) => ({
               ...option,
-              disabled: index % 2 !== 0
+              disabled: index % 2 !== 0,
             }))}
             value={value}
             placeholder='Choose an option...'
@@ -62,7 +62,7 @@ const OPTIONS = [
   { value: '1', text: 'Option 1' },
   { value: '2', text: 'Option 2' },
   { value: '3', text: 'Option 3' },
-  { value: '4', text: 'Option 4' }
+  { value: '4', text: 'Option 4' },
 ]
 
 export default Example

@@ -47,7 +47,7 @@ const Example = () => {
                   style={{
                     paddingBottom: '0.5rem',
                     minWidth: '9rem',
-                    height: '7rem'
+                    height: '7rem',
                   }}
                 >
                   <Grid alignItems='center' direction='column' spacing={8}>

@@ -7,12 +7,12 @@ export default ({ typography }: Theme) =>
       boxSizing: 'border-box',
 
       '& *': {
-        fontFamily: typography.fontFamily
+        fontFamily: typography.fontFamily,
       },
 
       // https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
       '& *, & *::before, & *::after': {
-        boxSizing: 'inherit'
-      }
-    }
+        boxSizing: 'inherit',
+      },
+    },
   })

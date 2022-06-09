@@ -22,10 +22,10 @@ page
   .createChapter()
   .addExample('Tabs/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Tabs/story/ScrollButtons.example.tsx', {
     title: 'Scroll buttons',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
 page.connect(tabStory.chapter)

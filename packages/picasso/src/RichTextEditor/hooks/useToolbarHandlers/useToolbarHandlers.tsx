@@ -3,11 +3,11 @@ import { useCallback } from 'react'
 import {
   TextFormatHandler,
   CUSTOM_QUILL_EDITOR_FORMAT_EVENT,
-  FormatType as EditorFormatType
+  FormatType as EditorFormatType,
 } from '../../../QuillEditor'
 import {
   SelectOnChangeHandler,
-  ButtonHandlerType
+  ButtonHandlerType,
 } from '../../../RichTextEditorToolbar'
 import { FormatType } from '../../store/toolbar'
 import { convertHeaderToEditorValue } from '../../utils/convertFormat'
@@ -22,7 +22,7 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
   const sendFormatEvent = useCallback(
     (detail: Partial<EditorFormatType>) => {
       const formatEvent = new CustomEvent(CUSTOM_QUILL_EDITOR_FORMAT_EVENT, {
-        detail
+        detail,
       })
 
       editorRef.current?.dispatchEvent(formatEvent)
@@ -36,7 +36,7 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
     sendFormatEvent({ bold })
     handleTextFormat({
       formatName: 'bold',
-      value: bold
+      value: bold,
     })
   }
 
@@ -46,7 +46,7 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
     sendFormatEvent({ italic })
     handleTextFormat({
       formatName: 'italic',
-      value: italic
+      value: italic,
     })
   }
 
@@ -56,7 +56,7 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
     sendFormatEvent({ list })
     handleTextFormat({
       formatName: 'list',
-      value: list
+      value: list,
     })
   }
 
@@ -66,7 +66,7 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
     sendFormatEvent({ list })
     handleTextFormat({
       formatName: 'list',
-      value: list
+      value: list,
     })
   }
 
@@ -78,7 +78,7 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
     )
     handleTextFormat({
       formatName: 'header',
-      value: header
+      value: header,
     })
   }
 
@@ -87,7 +87,7 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
     handleItalic,
     handleOrdered,
     handleUnordered,
-    handleHeader
+    handleHeader,
   }
 }
 

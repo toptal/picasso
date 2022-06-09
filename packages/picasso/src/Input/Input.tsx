@@ -4,7 +4,7 @@ import React, {
   ChangeEvent,
   InputHTMLAttributes,
   MouseEvent,
-  forwardRef
+  forwardRef,
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
@@ -16,10 +16,10 @@ import { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import InputLimitAdornment, {
-  InputLimitAdornmentProps
+  InputLimitAdornmentProps,
 } from '../InputLimitAdornment'
 import InputIconAdornment, {
-  InputIconAdornmentProps
+  InputIconAdornmentProps,
 } from '../InputIconAdornment'
 import InputMultilineAdornment from '../InputMultilineAdornment'
 
@@ -113,7 +113,7 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoInput' })
 
 const hasRemainingCounter = ({
   counter,
-  limit
+  limit,
 }: Pick<Props, 'counter' | 'limit'>) =>
   Boolean(counter === 'remaining' && limit)
 
@@ -127,14 +127,14 @@ const hasMultilineAdornment = ({
   multiline,
   status,
   counter,
-  limit
+  limit,
 }: Pick<Props, 'multiline' | 'status' | 'counter' | 'limit'>) =>
   multiline && (status === 'success' || hasCounter({ counter, limit }))
 
 const StartAdornment = ({
   icon,
   iconPosition,
-  disabled
+  disabled,
 }: StartAdornmentProps) => {
   if (!icon || iconPosition !== 'start') {
     return null
@@ -153,7 +153,7 @@ const EndAdornment = (props: EndAdornmentProps) => {
     charsLength,
     testIds,
     counter,
-    status
+    status,
   } = props
 
   if (icon && iconPosition === 'end') {
@@ -199,15 +199,15 @@ const EndAdornment = (props: EndAdornmentProps) => {
 const purifyProps = (props: Props) => {
   const sizeOptions: FeatureOptions<Props> = {
     featureProps: {
-      size: 'small'
+      size: 'small',
     },
     unsupportedProps: {
       multiline: false,
       icon: undefined,
       startAdornment: undefined,
       endAdornment: undefined,
-      limit: undefined
-    }
+      limit: undefined,
+    },
   }
 
   return disableUnsupportedProps('Input', props, sizeOptions)
@@ -258,7 +258,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     name: 'error',
     componentName: 'Input',
     description:
-      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
   })
 
   const charsLength = value ? value.length : 0
@@ -278,12 +278,12 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             multiline,
             status,
             limit,
-            counter
-          })
+            counter,
+          }),
         }),
         input: cx(classes.input, {
-          [classes.inputMultilineResizable]: multiline && multilineResizable
-        })
+          [classes.inputMultilineResizable]: multiline && multilineResizable,
+        }),
       }}
       id={id}
       name={name}
@@ -303,7 +303,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       // html attributes
       inputProps={{
         ...rest,
-        ...inputProps
+        ...inputProps,
       }}
       startAdornment={
         startAdornment || (
@@ -348,7 +348,7 @@ Input.defaultProps = {
   width: 'auto',
   onChange: () => {},
   onResetClick: () => {},
-  status: 'default'
+  status: 'default',
 }
 
 Input.displayName = 'Input'

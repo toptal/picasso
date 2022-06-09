@@ -5,7 +5,7 @@ const {
   HIGHLIGHT_BOTTOM_START_POINT,
   HIGHLIGHT_BOTTOM_FILL_OPACITY,
   HIGHLIGHT_TOP_HEIGHT_RATIO,
-  HIGHLIGHT_TOP_FILL_OPACITY
+  HIGHLIGHT_TOP_FILL_OPACITY,
 } = CHART_CONSTANTS
 
 const OFFSET = 0.5
@@ -29,7 +29,7 @@ const toRechartsHighlightFormat = (
         y1: HIGHLIGHT_BOTTOM_START_POINT,
         y2: topDomain,
         fillOpacity: HIGHLIGHT_BOTTOM_FILL_OPACITY,
-        fill: color
+        fill: color,
       },
       {
         x1,
@@ -37,8 +37,8 @@ const toRechartsHighlightFormat = (
         y1: topDomain - topDomain * HIGHLIGHT_TOP_HEIGHT_RATIO,
         y2: topDomain,
         fillOpacity: HIGHLIGHT_TOP_FILL_OPACITY,
-        fill: color
-      }
+        fill: color,
+      },
     ]
   })
 

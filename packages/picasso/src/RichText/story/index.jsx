@@ -26,9 +26,9 @@ page
   .createChapter()
   .addExample('RichText/story/Default.example.tsx', {
     title: 'AST from BE for normal view',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('RichText/story/HTML.example.tsx', {
     title: 'HTML from FE for live-editing preview',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

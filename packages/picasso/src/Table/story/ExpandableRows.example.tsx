@@ -8,7 +8,7 @@ import {
   UserBadge,
   Typography,
   Tag,
-  Container
+  Container,
 } from '@toptal/picasso'
 import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso/Icon'
 
@@ -74,7 +74,7 @@ const TableExpandableRowsExample = () => {
 
     setExpandedData({
       ...expandedData,
-      [id]: !expanded
+      [id]: !expanded,
     })
   }
 
@@ -135,7 +135,7 @@ const data: Data[] = [
     relatedTo: 'Passionate PHP Dev...',
     time: '2:19 PM',
     assignee: 'AD',
-    expanded: false
+    expanded: false,
   },
   {
     id: 1,
@@ -143,7 +143,7 @@ const data: Data[] = [
     relatedTo: 'Ardelia Conn',
     time: '3:27 PM',
     assignee: 'AD',
-    expanded: false
+    expanded: false,
   },
   {
     id: 2,
@@ -151,7 +151,7 @@ const data: Data[] = [
     relatedTo: 'Mariel Ankunding',
     time: '1:27 PM',
     assignee: 'AD',
-    expanded: false
+    expanded: false,
   },
   {
     id: 3,
@@ -159,8 +159,8 @@ const data: Data[] = [
     relatedTo: 'Hye Schmeler',
     time: '7:46 PM',
     assignee: 'AD',
-    expanded: false
-  }
+    expanded: false,
+  },
 ]
 
 export default TableExpandableRowsExample

@@ -4,27 +4,27 @@ export default ({ sizes: { input, borderWidth }, palette }: Theme) =>
   createStyles({
     root: {
       position: 'relative',
-      width: input.width
+      width: input.width,
     },
     rootFull: {
-      width: '100%'
+      width: '100%',
     },
     rootShrink: {
-      width: 'auto'
+      width: 'auto',
     },
     rootAuto: {},
     option: {
       paddingRight: '1rem',
-      paddingLeft: '1rem'
+      paddingLeft: '1rem',
     },
     otherOption: {
-      borderTop: `${borderWidth} solid ${palette.grey.light2}`
+      borderTop: `${borderWidth} solid ${palette.grey.light2}`,
     },
     stringContent: {
-      fontSize: '0.8125em'
+      fontSize: '0.8125em',
     },
     poweredByGoogle: {
       padding: '0.75rem 1rem',
-      borderTop: `${borderWidth} solid ${palette.grey.light}`
-    }
+      borderTop: `${borderWidth} solid ${palette.grey.light}`,
+    },
   })

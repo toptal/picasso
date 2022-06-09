@@ -11,7 +11,7 @@ const Example = () => {
   const MAX_SIZE = 2
   const initialAttachments = [
     { file: new File(['image.png'], 'image.png') },
-    { file: new File(['resume.pdf'], 'resume.pdf') }
+    { file: new File(['resume.pdf'], 'resume.pdf') },
   ]
 
   const handleSubmit = ({ attachments }: FormType) => {
@@ -25,7 +25,7 @@ const Example = () => {
       autoComplete='off'
       onSubmit={handleSubmit}
       initialValues={{
-        attachments: initialAttachments
+        attachments: initialAttachments,
       }}
     >
       <Form.FileInput

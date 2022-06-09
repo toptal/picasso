@@ -11,7 +11,7 @@ import {
   Button,
   Grid,
   Image,
-  SkeletonLoader
+  SkeletonLoader,
 } from '@toptal/picasso'
 
 const useGetData = (): [boolean, () => void] => {

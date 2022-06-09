@@ -14,17 +14,17 @@ page
   .createChapter()
   .addExample('Typography/story/Default.example.tsx', {
     title: 'Normal text',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Typography/story/Headings.example.tsx', {
     title: 'Headings',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Typography/story/Types.example.tsx', {
     title: 'Types',
     description:
       'Long-form text uses a 1.5 ratio to calculate line-height values.',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Typography/story/InheritSize.example.tsx', {
     title: 'Inherit size',
@@ -32,19 +32,19 @@ page
       In some cases, you may want to use the font size inherited
       from the container where the Topography is nested.
     `,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Typography/story/Alignment.example.tsx', {
     title: 'Alignment',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Typography/story/Weights.example.tsx', {
     title: 'Weights',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Typography/story/Colors.example.tsx', {
     title: 'Colors',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Typography/story/As.example.tsx', {
     title: 'Augment as another HTML element',
@@ -53,13 +53,13 @@ page
       HTML tag used for Typography. In this cases you can 
       use 'as' property.
     `,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Typography/story/Decoration.example.tsx', {
     title: 'Decoration',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Typography/story/LineThrough.example.tsx', {
     title: 'Line through',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

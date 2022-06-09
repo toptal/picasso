@@ -20,7 +20,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 export const PageContext = React.createContext<PageContextProps>({})
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'Page'
+  name: 'Page',
 })
 
 // eslint-disable-next-line react/display-name

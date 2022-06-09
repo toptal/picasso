@@ -9,7 +9,7 @@ export const chapter = PicassoBook.connectToPage(page =>
     )
     .addExample('TagGroup/story/TagGroup.example.tsx', {
       title: 'Tag group',
-      takeScreenshot: false
+      takeScreenshot: false,
     })
 )
 
@@ -17,5 +17,5 @@ const componentDocs = PicassoBook.createComponentDocs(TagGroup, 'Tag.Group')
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

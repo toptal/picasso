@@ -13,12 +13,12 @@ export interface FormatAmount {
 export const formatAmount = ({
   amount,
   currency = DEFAULT_CURRENCY,
-  locale = DEFAULT_LOCALE
+  locale = DEFAULT_LOCALE,
 }: FormatAmount) => {
   const transformedAmount = typeof amount === 'string' ? Number(amount) : amount
 
   return Intl.NumberFormat(locale, {
     style: 'currency',
-    currency
+    currency,
   }).format(transformedAmount)
 }

@@ -5,21 +5,21 @@ const accounts = [
   {
     id: '1',
     name: 'Phil Leif',
-    position: 'Account Owner at Stowaway Cosmetics'
+    position: 'Account Owner at Stowaway Cosmetics',
   },
   {
     id: '2',
     href: '#',
     name: 'Phil Leif',
-    position: 'Company Representative at Marketing Works'
+    position: 'Company Representative at Marketing Works',
   },
   {
     id: '3',
     href: '#',
     name: 'Phil Leif',
     position: 'Talent',
-    avatar: './jacqueline-with-flowers-1954-square.jpg'
-  }
+    avatar: './jacqueline-with-flowers-1954-square.jpg',
+  },
 ]
 
 const Example = () => (

@@ -15,14 +15,14 @@ PicassoProvider.override(({ palette }: Theme) => ({
         right: 0,
         height: 1,
         backgroundColor: palette.grey.main,
-        zIndex: 0
-      }
+        zIndex: 0,
+      },
     },
     indicator: {
       backgroundColor: palette.blue.main,
-      zIndex: 1
-    }
-  }
+      zIndex: 1,
+    },
+  },
 }))
 
 export default () => createStyles({})

@@ -8,7 +8,7 @@ export default ({ palette }: Theme) => {
 
   return createStyles({
     root: {
-      position: 'relative'
+      position: 'relative',
     },
     gradient: {
       position: 'absolute',
@@ -16,22 +16,22 @@ export default ({ palette }: Theme) => {
       height: '100%',
       zIndex: 2,
       '&$left': {
-        background: `linear-gradient(90deg, ${colorStops})`
+        background: `linear-gradient(90deg, ${colorStops})`,
       },
       '&$right': {
-        background: `linear-gradient(270deg, ${colorStops})`
-      }
+        background: `linear-gradient(270deg, ${colorStops})`,
+      },
     },
     button: {
       position: 'absolute',
       width: '1rem',
-      height: '100%'
+      height: '100%',
     },
     left: {
-      left: 0
+      left: 0,
     },
     right: {
-      right: 0
-    }
+      right: 0,
+    },
   })
 }

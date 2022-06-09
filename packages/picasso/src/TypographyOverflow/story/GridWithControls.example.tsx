@@ -6,14 +6,14 @@ const checkboxOptions = [
   { label: 'Legal', value: 'legal' },
   {
     label: 'VIP talent screening',
-    value: 'vip_talent_screening'
+    value: 'vip_talent_screening',
   },
   { label: 'English screening', value: 'engish_screening' },
   { label: 'Designer screening', value: 'designer_screening' },
   {
     label: 'Technical screening',
-    value: 'technical_screening'
-  }
+    value: 'technical_screening',
+  },
 ]
 
 const radioOptions = [
@@ -22,10 +22,10 @@ const radioOptions = [
   { label: 'Staff', value: 'staff' },
   {
     label: 'Accounts receivable',
-    value: 'accounts_receivable'
+    value: 'accounts_receivable',
   },
   { label: 'Accounts payable', value: 'accounts_payable' },
-  { label: 'Sourcing', value: 'sourcing' }
+  { label: 'Sourcing', value: 'sourcing' },
 ]
 
 const Example = () => {

@@ -4,12 +4,12 @@ export default () =>
   createStyles({
     singleLine: {
       display: 'block',
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
     },
     multiLine: {
       display: '-webkit-box',
       whiteSpace: 'initial',
-      wordBreak: 'break-word'
+      wordBreak: 'break-word',
     },
     wrapper: {
       '-webkit-box-orient': 'vertical',
@@ -24,6 +24,6 @@ export default () =>
        * So to be sure, that text container in slightly wider than parent,
        * we have to to add some super-minor space at the end.
        */
-      paddingRight: '0.9px'
-    }
+      paddingRight: '0.9px',
+    },
   })

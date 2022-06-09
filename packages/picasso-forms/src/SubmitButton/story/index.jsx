@@ -15,15 +15,15 @@ page.createTabChapter('Props').addComponentDocs({
       type: 'string',
       description: 'The button type to use',
       defaultValue: 'rectangular',
-      enums: ['rectangular', 'circular', 'action']
+      enums: ['rectangular', 'circular', 'action'],
     },
     variant: {
       name: 'variant',
       type: 'string',
       description:
-        'The variant to use. Depending on the "buttonType" property value, the "variant" property accepts circular or action button "variant" property values.'
-    }
-  }
+        'The variant to use. Depending on the "buttonType" property value, the "variant" property accepts circular or action button "variant" property values.',
+    },
+  },
 })
 
 page

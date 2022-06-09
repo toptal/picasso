@@ -3,7 +3,7 @@ import {
   render,
   fireEvent,
   waitFor,
-  RenderResult
+  RenderResult,
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
@@ -13,14 +13,14 @@ const testOptions = [
   { value: 'AF', text: 'Afghanistan' },
   { value: 'AI', text: 'Aland Islands' },
   { value: 'ALB', text: 'Albania' },
-  { value: 'ALG', text: 'Algeria' }
+  { value: 'ALG', text: 'Algeria' },
 ]
 
 const testProps = {
   loading: false,
   otherOptionLabel: 'Add new option: ',
   options: testOptions,
-  placeholder: 'Please select...'
+  placeholder: 'Please select...',
 }
 
 const renderTagSelector = (props: OmitInternalProps<Props>) => {
@@ -37,7 +37,7 @@ const selectOption = async (
   fireEvent.change(input, { target: { value: optionText } })
 
   const optionElement = await waitFor(() => getAllByText(optionText), {
-    container
+    container,
   })
 
   // add new option is duplicating all the options when typing
@@ -56,7 +56,7 @@ describe('TagSelector', () => {
     const { container } = renderTagSelector({
       ...testProps,
       disabled: true,
-      value: [testOptions[0]]
+      value: [testOptions[0]],
     })
 
     expect(container).toMatchSnapshot()
@@ -66,7 +66,7 @@ describe('TagSelector', () => {
     const onInputChange = jest.fn()
     const { getByPlaceholderText } = renderTagSelector({
       ...testProps,
-      onInputChange
+      onInputChange,
     })
     const input = getByPlaceholderText(testProps.placeholder)
 
@@ -81,7 +81,7 @@ describe('TagSelector', () => {
       otherOptionLabel: 'Add: ',
       options: testOptions,
       placeholder: 'Please select...',
-      value: [testOptions[0]]
+      value: [testOptions[0]],
     })
 
     expect(baseElement).toMatchSnapshot()
@@ -91,7 +91,7 @@ describe('TagSelector', () => {
     const onChange = jest.fn()
     const renderResult = renderTagSelector({
       ...testProps,
-      onChange
+      onChange,
     })
     const { getByPlaceholderText } = renderResult
 
@@ -107,9 +107,9 @@ describe('TagSelector', () => {
       const { getByTestId, rerender } = renderTagSelector({
         ...testProps,
         testIds: {
-          validIcon: 'valid-icon'
+          validIcon: 'valid-icon',
         },
-        status: 'success'
+        status: 'success',
       })
 
       const validIcon = getByTestId('valid-icon')

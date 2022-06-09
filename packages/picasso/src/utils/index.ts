@@ -5,7 +5,7 @@ import * as TransitionUtils from './Transitions'
 const colorUtils = {
   alpha,
   lighten,
-  darken
+  darken,
 }
 
 export { colorUtils }
@@ -19,7 +19,7 @@ export {
   shadows,
   colors as palette,
   generateRandomString,
-  generateRandomStringOrGetEmptyInTest
+  generateRandomStringOrGetEmptyInTest,
 } from '@toptal/picasso-provider'
 export { useIsomorphicLayoutEffect, isBrowser } from '@toptal/picasso-shared'
 

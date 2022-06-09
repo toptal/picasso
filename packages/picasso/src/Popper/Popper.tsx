@@ -65,13 +65,13 @@ const getPreventOverflowOptions = (isInsideModal: boolean) => {
   if (isInsideModal) {
     return {
       boundariesElement: 'scrollParent',
-      padding: 0
+      padding: 0,
     }
   }
 
   return {
     boundariesElement: 'viewport',
-    padding: 5
+    padding: 5,
   }
 }
 
@@ -85,20 +85,20 @@ export const getPopperOptions = (
     ...popperOptions.modifiers,
     flip: {
       enabled: true,
-      ...popperOptions.modifiers?.flip
+      ...popperOptions.modifiers?.flip,
     },
     preventOverflow: {
       enabled: true,
       ...getPreventOverflowOptions(isInsideModal),
-      ...popperOptions.modifiers?.preventOverflow
-    }
-  }
+      ...popperOptions.modifiers?.preventOverflow,
+    },
+  },
 })
 
 const useWidthStyle = ({
   anchorEl,
   autoWidth,
-  width
+  width,
 }: Pick<Props, 'anchorEl' | 'autoWidth' | 'width'>) => {
   const resolvedAnchorEl = getAnchorEl(anchorEl)
   const anchorElWidth = useWidthOf<ReferenceObject>(resolvedAnchorEl)
@@ -169,7 +169,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
       keepMounted={keepMounted}
       style={{
         ...style,
-        ...anchorElWidthStyle
+        ...anchorElWidthStyle,
       }}
       {...rest}
     >
@@ -183,7 +183,7 @@ Popper.defaultProps = {
   disablePortal: false,
   placement: 'bottom',
   popperOptions: {},
-  autoWidth: true
+  autoWidth: true,
 }
 
 Popper.displayName = 'Popper'

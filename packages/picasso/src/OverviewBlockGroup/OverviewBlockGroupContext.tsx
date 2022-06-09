@@ -9,7 +9,7 @@ interface OverviewBlockGroupSettings {
 
 const defaultSettings = {
   align: 'default' as const,
-  blockWidth: 'regular' as const
+  blockWidth: 'regular' as const,
 }
 
 export const OverviewBlockGroupContext =

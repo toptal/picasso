@@ -23,7 +23,7 @@ export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
     variant = 'default',
     style,
     className,
-    'data-testid': testId
+    'data-testid': testId,
   } = props
 
   const classes = useStyles()
@@ -43,7 +43,7 @@ export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
 })
 
 Logo.defaultProps = {
-  variant: 'default'
+  variant: 'default',
 }
 
 Logo.displayName = 'Logo'

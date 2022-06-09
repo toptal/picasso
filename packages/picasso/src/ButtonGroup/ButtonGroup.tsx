@@ -3,14 +3,14 @@ import React, {
   HTMLAttributes,
   forwardRef,
   useMemo,
-  ElementType
+  ElementType,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   BaseProps,
   addClassesToChildren,
-  Classes
+  Classes,
 } from '@toptal/picasso-shared'
 
 import Button from '../Button'
@@ -23,7 +23,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonGroup'
+  name: 'PicassoButtonGroup',
 })
 
 const getChildrenClassesConfig = (
@@ -35,9 +35,9 @@ const getChildrenClassesConfig = (
       root: classes.button,
       active: classes.active,
       focused: classes.focused,
-      hovered: classes.hovered
-    }
-  ]
+      hovered: classes.hovered,
+    },
+  ],
 ]
 
 export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
@@ -49,7 +49,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
         addClassesToChildren({
           children,
           classes,
-          config: getChildrenClassesConfig
+          config: getChildrenClassesConfig,
         }),
       [children, classes]
     )

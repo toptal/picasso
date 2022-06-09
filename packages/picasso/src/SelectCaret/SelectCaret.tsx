@@ -17,7 +17,7 @@ const SelectCaret = ({ disabled }: Props) => {
   return (
     <DropdownArrows16
       className={cx(classes.caret, {
-        [classes.caretDisabled]: disabled
+        [classes.caretDisabled]: disabled,
       })}
     />
   )

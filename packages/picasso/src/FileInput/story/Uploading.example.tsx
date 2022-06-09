@@ -15,8 +15,8 @@ const Example = () => (
           {
             file: new File(['image.png'], 'image.png'),
             progress: 42,
-            uploading: true
-          }
+            uploading: true,
+          },
         ]}
         hint='Max file size: 25MB'
       />
@@ -33,8 +33,8 @@ const Example = () => (
         value={[
           {
             file: new File(['image.png'], 'image.png'),
-            uploading: true
-          }
+            uploading: true,
+          },
         ]}
         hint='Max file size: 25MB'
       />

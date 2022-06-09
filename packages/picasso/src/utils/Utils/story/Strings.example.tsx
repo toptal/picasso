@@ -8,7 +8,7 @@ const data = {
   getNameInitials: `e.g. getNameInitials('John Doe') === 'JD'`,
   isSubstring: `e.g. isSubstring('test', 'a test string') === true`,
   generateRandomString: `e.g. 'qw8vd8'`,
-  generateRandomStringOrGetEmptyInTest: ``
+  generateRandomStringOrGetEmptyInTest: ``,
 }
 
 const Example = () => (

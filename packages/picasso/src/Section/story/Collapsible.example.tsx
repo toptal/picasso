@@ -73,7 +73,7 @@ const data = [
     talentType: 'Designer',
     company: 'Airbnb',
     role: 'UX lead',
-    country: 'United States'
+    country: 'United States',
   },
   {
     id: 1,
@@ -81,7 +81,7 @@ const data = [
     talentType: 'Designer',
     company: 'Facebook',
     role: 'Art director',
-    country: 'Spain'
+    country: 'Spain',
   },
   {
     id: 2,
@@ -89,7 +89,7 @@ const data = [
     talentType: 'Developer',
     company: 'Amazon',
     role: 'Ruby developer',
-    country: 'Germany'
+    country: 'Germany',
   },
   {
     id: 3,
@@ -97,7 +97,7 @@ const data = [
     talentType: 'Developer',
     company: 'Invision',
     role: 'Web developer',
-    country: 'Poland'
+    country: 'Poland',
   },
   {
     id: 4,
@@ -105,8 +105,8 @@ const data = [
     talentType: 'Developer',
     company: 'Microsoft',
     role: 'CTO',
-    country: 'United States'
-  }
+    country: 'United States',
+  },
 ]
 
 export default Example

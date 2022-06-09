@@ -3,7 +3,7 @@ import { rem } from '@toptal/picasso-shared'
 
 const baseCellStyles = {
   fontSize: rem('12px'),
-  borderBottom: 'none'
+  borderBottom: 'none',
 }
 
 const regularCellStyles = {
@@ -12,8 +12,8 @@ const regularCellStyles = {
   height: '2.5rem',
 
   '&:last-child': {
-    paddingRight: '1.5rem'
-  }
+    paddingRight: '1.5rem',
+  },
 }
 
 const compactCellStyles = {
@@ -22,18 +22,18 @@ const compactCellStyles = {
   height: '1.5rem',
 
   '&:last-child': {
-    paddingRight: '0.75rem'
-  }
+    paddingRight: '0.75rem',
+  },
 }
 
 const narrowCellStyles = {
   paddingLeft: '0.5rem',
-  paddingRight: '0.5rem'
+  paddingRight: '0.5rem',
 }
 
 export default () =>
   createStyles({
     root: regularCellStyles,
     compact: compactCellStyles,
-    narrow: narrowCellStyles
+    narrow: narrowCellStyles,
   })

@@ -15,16 +15,16 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles(styles, {
-  name: 'PicassoPageHead'
+  name: 'PicassoPageHead',
 })
 
 const useMainStyles = makeStyles(styles, {
-  name: 'PicassoPageHeadMain'
+  name: 'PicassoPageHeadMain',
 })
 
 const Title = ({
   titleCase,
-  children
+  children,
 }: TextLabelProps & { children: ReactNode }) => {
   return (
     <Typography variant='heading' size='large' titleCase={titleCase}>
@@ -71,7 +71,7 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
     <Container
       ref={ref}
       className={cx(classes.root, {
-        [classes.rightPadding]: props.rightPadding
+        [classes.rightPadding]: props.rightPadding,
       })}
     >
       {children}
@@ -80,7 +80,7 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
 })
 
 PageHead.defaultProps = {
-  rightPadding: false
+  rightPadding: false,
 }
 
 PageHead.displayName = 'PageHead'
@@ -89,5 +89,5 @@ export default Object.assign(PageHead, {
   Title,
   Tabs,
   Main,
-  Actions
+  Actions,
 })

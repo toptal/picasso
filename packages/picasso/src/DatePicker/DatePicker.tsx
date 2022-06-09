@@ -11,7 +11,7 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useState
+  useState,
 } from 'react'
 
 import { Calendar16 } from '../Icon'
@@ -23,12 +23,12 @@ import { noop } from '../utils'
 import Calendar, {
   DateOrDateRangeType,
   DateRangeType,
-  DayProps
+  DayProps,
 } from '../Calendar'
 import {
   DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
   DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
-  DEFAULT_POPPER_OPTIONS
+  DEFAULT_POPPER_OPTIONS,
 } from './constants'
 import styles from './styles'
 import { DatePickerValue, DatePickerInputCustomValueParser } from './types'
@@ -37,7 +37,7 @@ import {
   datePickerParseDateString,
   timezoneConvert,
   timezoneFormat,
-  getStartOfTheDayDate
+  getStartOfTheDayDate,
 } from './utils'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import { Status } from '../OutlinedInput'
@@ -45,7 +45,7 @@ import { Status } from '../OutlinedInput'
 const EMPTY_INPUT_VALUE = ''
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoDatePicker'
+  name: 'PicassoDatePicker',
 })
 
 export interface Props
@@ -146,7 +146,7 @@ export const DatePicker = (props: Props) => {
     name: 'error',
     componentName: 'DatePicker',
     description:
-      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
   })
 
   const inputProps = rest
@@ -273,7 +273,7 @@ export const DatePicker = (props: Props) => {
       dateFormat: editDateFormat,
       timezone,
       minDate: normalizedMinDate,
-      maxDate: normalizedMaxDate
+      maxDate: normalizedMaxDate,
     })
 
     if (parsedInputDate) {
@@ -428,7 +428,7 @@ DatePicker.defaultProps = {
   editDateFormat: 'MM-dd-yyyy',
   displayDateFormat: 'MMM d, yyyy',
   autoComplete: 'off',
-  status: 'default'
+  status: 'default',
 }
 
 DatePicker.displayName = 'DatePicker'

@@ -15,7 +15,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'FileList'
+  name: 'FileList',
 })
 
 export const FileList = forwardRef<HTMLDivElement, Props>(function FileList(
@@ -36,7 +36,7 @@ export const FileList = forwardRef<HTMLDivElement, Props>(function FileList(
     >
       {files.map((fileUpload, index) => {
         const {
-          file: { name, size, lastModified }
+          file: { name, size, lastModified },
         } = fileUpload
 
         return (

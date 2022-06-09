@@ -8,7 +8,7 @@ const page = PicassoBook.section('Components').createPage(
 
 page.createTabChapter('Props').addComponentDocs({
   component: TypographyOverflow,
-  name: 'TypographyOverflow'
+  name: 'TypographyOverflow',
 })
 
 page
@@ -23,7 +23,7 @@ page
       await testPage.hover('[data-testid="ellipsed-text-dynamic-width"]')
       await testPage.waitFor(200)
       await makeScreenshot()
-    }
+    },
   })
   .addExample('TypographyOverflow/story/Multiline.example.tsx', {
     title: 'Multiline',
@@ -39,7 +39,7 @@ page
       await testPage.hover('[data-testid="ellipsed-text-lines4"]')
       await testPage.waitFor(200)
       await makeScreenshot()
-    }
+    },
   })
   .addExample('TypographyOverflow/story/CheckboxLabel.example.tsx', {
     title: 'Checkbox label',
@@ -47,7 +47,7 @@ page
       await testPage.hover('[data-testid="ellipsed-text"]')
       await testPage.waitFor(600)
       await makeScreenshot()
-    }
+    },
   })
   .addExample('TypographyOverflow/story/CustomTooltip.example.tsx', {
     title: 'Custom tooltip content',
@@ -55,7 +55,7 @@ page
       await testPage.hover('[data-testid="ellipsed-text"]')
       await testPage.waitFor(200)
       await makeScreenshot()
-    }
+    },
   })
   .addExample('TypographyOverflow/story/TooltipVariants.example.tsx', {
     title: 'Light tooltip background',
@@ -67,7 +67,7 @@ page
       await testPage.hover('[data-testid="ellipsed-text-light"]')
       await testPage.waitFor(200)
       await makeScreenshot()
-    }
+    },
   })
   .addExample('TypographyOverflow/story/Delay.example.tsx', {
     title: 'Delay',
@@ -79,5 +79,5 @@ page
       await testPage.hover('[data-testid="long-delay-tooltip"]')
       await testPage.waitFor(500)
       await makeScreenshot()
-    }
+    },
   })

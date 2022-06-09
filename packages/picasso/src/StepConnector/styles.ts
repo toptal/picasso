@@ -5,9 +5,9 @@ export default ({ palette }: Theme) =>
     connectorIcon: {
       color: palette.grey.light2,
       fontSize: '0.5em',
-      margin: '0 0.5em'
+      margin: '0 0.5em',
     },
     divider: {
-      height: '1rem'
-    }
+      height: '1rem',
+    },
   })

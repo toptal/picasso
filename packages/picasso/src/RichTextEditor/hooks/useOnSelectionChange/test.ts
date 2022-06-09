@@ -15,26 +15,26 @@ describe('useOnSelectionChange', () => {
         bold: true,
         italic: false,
         header: 3,
-        list: 'ordered'
+        list: 'ordered',
       })
     )
 
     expect(dispatch).toHaveBeenCalledTimes(4)
     expect(dispatch).toHaveBeenCalledWith({
       type: actionTypes.bold,
-      payload: true
+      payload: true,
     })
     expect(dispatch).toHaveBeenCalledWith({
       type: actionTypes.italic,
-      payload: false
+      payload: false,
     })
     expect(dispatch).toHaveBeenCalledWith({
       type: actionTypes.header,
-      payload: '3'
+      payload: '3',
     })
     expect(dispatch).toHaveBeenCalledWith({
       type: actionTypes.list,
-      payload: 'ordered'
+      payload: 'ordered',
     })
   })
 })

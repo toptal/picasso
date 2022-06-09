@@ -11,8 +11,8 @@ const getDynamicNodes = (
       ref: createRef<SVGGElement>(),
       rect: {
         width: 0,
-        height: 0
-      }
+        height: 0,
+      },
     })
   })
 }
@@ -49,13 +49,13 @@ const updateNodesXorYPosition = (
 
       node.rect = {
         width,
-        height
+        height,
       }
 
       if (node.parent) {
         const positionDeltas = {
           horizontal: node.parent.x + node.parent.rect.width + horizontalMargin,
-          vertical: node.parent.y + node.parent.rect.height + verticalMargin
+          vertical: node.parent.y + node.parent.rect.height + verticalMargin,
         }
 
         if (direction === 'horizontal') {
@@ -107,7 +107,7 @@ export const useNodes = (
       }
 
       return Object.assign(node, {
-        data: foundNode.data
+        data: foundNode.data,
       })
     })
   }, [rootNode, initialNodes])

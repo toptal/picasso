@@ -7,13 +7,13 @@ export const hastSanitizeSchema: Schema = {
   allowComments: false,
   allowDoctypes: false,
   ancestors: {
-    li: ['ol', 'ul']
+    li: ['ol', 'ul'],
   },
   attributes: {
-    '*': []
+    '*': [],
   },
   tagNames: ['h3', 'p', 'br', 'strong', 'em', 'ul', 'ol', 'li'],
-  strip: ['script']
+  strip: ['script'],
 }
 
 const htmlToAst = (html: string) => {
@@ -25,7 +25,7 @@ const htmlToAst = (html: string) => {
 
   const ast: ASTType = {
     type: 'root',
-    children: domHast.children
+    children: domHast.children,
   }
 
   return ast

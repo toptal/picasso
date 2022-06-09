@@ -15,20 +15,20 @@ const BORDER_RADIUS = 4
 const BUTTON_SIZES = {
   small: 24,
   medium: 36,
-  large: 48
+  large: 48,
 }
 
 const BUTTON_HORIZONTAL_PADDINGS = {
   small: 36,
   medium: 52,
-  large: 58
+  large: 58,
 }
 
 export const ButtonLoader = ({
   style,
   className,
   size = 'medium',
-  circular = false
+  circular = false,
 }: Props) => {
   const borderRadius = circular ? '50%' : BORDER_RADIUS
   const height = BUTTON_SIZES[size]

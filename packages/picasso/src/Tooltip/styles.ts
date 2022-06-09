@@ -12,26 +12,26 @@ export default ({ palette, shadows, sizes: { borderRadius } }: Theme) =>
       boxShadow: shadows[4],
       padding: '1rem',
       borderRadius: borderRadius.small,
-      position: 'relative'
+      position: 'relative',
     },
     arrow: {
       color: palette.common.white,
       boxSizing: 'border-box',
       fontSize: '1rem',
       '&::before': {
-        boxShadow: ARROW_SHADOW
-      }
+        boxShadow: ARROW_SHADOW,
+      },
     },
     light: {
       color: palette.grey.darker,
-      backgroundColor: palette.common.white
+      backgroundColor: palette.common.white,
     },
     compact: {
       lineHeight: '1em',
       padding: `${rem('2px')} 0.5rem`,
-      margin: '0.25rem'
+      margin: '0.25rem',
     },
     noMaxWidth: {
-      maxWidth: 'none'
-    }
+      maxWidth: 'none',
+    },
   })

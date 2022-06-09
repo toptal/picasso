@@ -4,14 +4,14 @@ export default () =>
   createStyles({
     root: {
       paddingRight: 0,
-      cursor: 'text'
+      cursor: 'text',
     },
     input: {
       '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
         '-webkit-appearance': 'none',
         appearance: 'none',
-        margin: 0
+        margin: 0,
       },
-      '-moz-appearance': 'textfield'
-    }
+      '-moz-appearance': 'textfield',
+    },
   })

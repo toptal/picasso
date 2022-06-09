@@ -50,7 +50,7 @@ const LogoContainer = ({
   children,
   bgcolor,
   inline,
-  right
+  right,
 }: LogoContainerProps) => (
   <Container
     inline={inline}

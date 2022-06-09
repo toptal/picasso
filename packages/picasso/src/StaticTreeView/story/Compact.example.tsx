@@ -4,7 +4,7 @@ import {
   TreeNodeAvatar,
   Container,
   UserBadge,
-  StaticTreeView
+  StaticTreeView,
 } from '@toptal/picasso'
 import { HierarchyPointNode } from 'd3-hierarchy'
 import styled from 'styled-components'
@@ -30,9 +30,9 @@ const createTreeNode = (
     selected: false,
     children: [],
     info: {
-      name: 'NODE+NAME+1'
+      name: 'NODE+NAME+1',
     },
-    ...override
+    ...override,
   }
 }
 
@@ -48,13 +48,13 @@ const createTree = (): TreeNodeInterface => {
     id: getId(),
     selected: true,
     info: {
-      name: 'NODE-1'
+      name: 'NODE-1',
     },
     children: [
       createTreeNode({
         id: getId(),
         info: {
-          name: 'NODE-1-1'
+          name: 'NODE-1-1',
         },
         children: [
           ...Array(3)
@@ -63,15 +63,15 @@ const createTree = (): TreeNodeInterface => {
               createTreeNode({
                 id: getId(),
                 info: {
-                  name: `NODE-1-1-${index + 1}-before`
+                  name: `NODE-1-1-${index + 1}-before`,
                 },
-                children: []
+                children: [],
               })
             ),
           createTreeNode({
             id: getId(),
             info: {
-              name: 'NODE-1-1-N'
+              name: 'NODE-1-1-N',
             },
             children: Array(8)
               .fill(undefined)
@@ -79,11 +79,11 @@ const createTree = (): TreeNodeInterface => {
                 createTreeNode({
                   id: getId(),
                   info: {
-                    name: `NODE-1-1-1-${index + 1}`
+                    name: `NODE-1-1-1-${index + 1}`,
                   },
-                  children: []
+                  children: [],
                 })
-              )
+              ),
           }),
           ...Array(8)
             .fill(undefined)
@@ -91,14 +91,14 @@ const createTree = (): TreeNodeInterface => {
               createTreeNode({
                 id: getId(),
                 info: {
-                  name: `NODE-1-1-${index + 1}-after`
+                  name: `NODE-1-1-${index + 1}-after`,
                 },
-                children: []
+                children: [],
               })
-            )
-        ]
-      })
-    ]
+            ),
+        ],
+      }),
+    ],
   })
 }
 
@@ -127,7 +127,7 @@ const Example = () => (
           verticalMargin: 20,
           horizontalMargin: 200,
           direction: 'horizontal',
-          variant: 'compact'
+          variant: 'compact',
         }}
       />
     </Container>

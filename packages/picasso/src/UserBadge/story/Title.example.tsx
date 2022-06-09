@@ -4,7 +4,7 @@ import {
   Grid,
   Typography,
   Link,
-  TypographyOverflow
+  TypographyOverflow,
 } from '@toptal/picasso'
 
 const Example = () => (
@@ -47,7 +47,7 @@ const Example = () => (
                 size='xsmall'
                 invert={invert}
                 style={{
-                  marginLeft: '0.5em'
+                  marginLeft: '0.5em',
                 }}
               >
                 {title}

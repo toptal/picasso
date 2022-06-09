@@ -18,7 +18,7 @@ jest.mock('quill', () => {
 
   return {
     __esModule: true,
-    default: QuillMock
+    default: QuillMock,
   }
 })
 
@@ -38,7 +38,7 @@ describe('useQuillInstance', () => {
 
     render(<WrapperComponent />)
     const { result } = renderHook(() => useQuillInstance({ id }), {
-      wrapper: WrapperComponent
+      wrapper: WrapperComponent,
     })
 
     expect(result.current).toBeTruthy()

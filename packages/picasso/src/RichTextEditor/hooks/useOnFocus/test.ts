@@ -8,7 +8,7 @@ import useOnFocus from './useOnFocus'
 const emptyRef = { current: null }
 const mockEvent = {
   target: {},
-  relatedTarget: {}
+  relatedTarget: {},
 } as React.FocusEvent<HTMLDivElement>
 
 describe('useOnFocus', () => {
@@ -21,7 +21,7 @@ describe('useOnFocus', () => {
         wrapperRef: emptyRef,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
-        dispatch: jest.fn()
+        dispatch: jest.fn(),
       }
 
       const { result } = renderHook(() => useOnFocus(hookOptions))
@@ -42,14 +42,14 @@ describe('useOnFocus', () => {
         autoFocus: false,
         editorRef: { current: {} } as React.RefObject<HTMLDivElement>,
         toolbarRef: {
-          current: { contains: jest.fn().mockImplementation(() => true) }
+          current: { contains: jest.fn().mockImplementation(() => true) },
         } as unknown as React.RefObject<HTMLDivElement>,
         wrapperRef: {
-          current: { contains: jest.fn().mockImplementation(() => false) }
+          current: { contains: jest.fn().mockImplementation(() => false) },
         } as unknown as React.RefObject<HTMLDivElement>,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
-        dispatch: jest.fn()
+        dispatch: jest.fn(),
       }
 
       const { result } = renderHook(() => useOnFocus(hookOptions))
@@ -63,7 +63,7 @@ describe('useOnFocus', () => {
       expect(hookOptions.dispatch).toHaveBeenCalledTimes(1)
       expect(hookOptions.dispatch).toHaveBeenCalledWith({
         payload: false,
-        type: toolbarActionTypes.disabled
+        type: toolbarActionTypes.disabled,
       })
       expect(hookOptions.onFocus).not.toHaveBeenCalled()
       expect(hookOptions.onBlur).not.toHaveBeenCalled()
@@ -73,14 +73,14 @@ describe('useOnFocus', () => {
         autoFocus: false,
         editorRef: { current: {} } as React.RefObject<HTMLDivElement>,
         toolbarRef: {
-          current: { contains: jest.fn().mockImplementation(() => false) }
+          current: { contains: jest.fn().mockImplementation(() => false) },
         } as unknown as React.RefObject<HTMLDivElement>,
         wrapperRef: {
-          current: { contains: jest.fn().mockImplementation(() => false) }
+          current: { contains: jest.fn().mockImplementation(() => false) },
         } as unknown as React.RefObject<HTMLDivElement>,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
-        dispatch: jest.fn()
+        dispatch: jest.fn(),
       }
 
       const { result } = renderHook(() => useOnFocus(hookOptions))
@@ -94,7 +94,7 @@ describe('useOnFocus', () => {
       expect(hookOptions.dispatch).toHaveBeenCalledTimes(1)
       expect(hookOptions.dispatch).toHaveBeenCalledWith({
         payload: false,
-        type: toolbarActionTypes.disabled
+        type: toolbarActionTypes.disabled,
       })
       expect(hookOptions.onFocus).toHaveBeenCalledTimes(1)
       expect(hookOptions.onBlur).not.toHaveBeenCalled()
@@ -109,7 +109,7 @@ describe('useOnFocus', () => {
         wrapperRef: emptyRef,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
-        dispatch: jest.fn()
+        dispatch: jest.fn(),
       }
 
       const { result } = renderHook(() => useOnFocus(hookOptions))
@@ -129,17 +129,17 @@ describe('useOnFocus', () => {
       const hookOptions = {
         autoFocus: false,
         editorRef: {
-          contains: jest.fn().mockImplementation(() => false)
+          contains: jest.fn().mockImplementation(() => false),
         } as unknown as React.RefObject<HTMLDivElement>,
         toolbarRef: {
-          current: { contains: jest.fn().mockImplementation(() => true) }
+          current: { contains: jest.fn().mockImplementation(() => true) },
         } as unknown as React.RefObject<HTMLDivElement>,
         wrapperRef: {
-          current: { contains: jest.fn().mockImplementation(() => false) }
+          current: { contains: jest.fn().mockImplementation(() => false) },
         } as unknown as React.RefObject<HTMLDivElement>,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
-        dispatch: jest.fn()
+        dispatch: jest.fn(),
       }
 
       const { result } = renderHook(() => useOnFocus(hookOptions))
@@ -158,17 +158,17 @@ describe('useOnFocus', () => {
       const hookOptions = {
         autoFocus: false,
         editorRef: {
-          contains: jest.fn().mockImplementation(() => true)
+          contains: jest.fn().mockImplementation(() => true),
         } as unknown as React.RefObject<HTMLDivElement>,
         toolbarRef: {
-          current: { contains: jest.fn().mockImplementation(() => false) }
+          current: { contains: jest.fn().mockImplementation(() => false) },
         } as unknown as React.RefObject<HTMLDivElement>,
         wrapperRef: {
-          current: { contains: jest.fn().mockImplementation(() => false) }
+          current: { contains: jest.fn().mockImplementation(() => false) },
         } as unknown as React.RefObject<HTMLDivElement>,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
-        dispatch: jest.fn()
+        dispatch: jest.fn(),
       }
 
       const { result } = renderHook(() => useOnFocus(hookOptions))
@@ -187,17 +187,17 @@ describe('useOnFocus', () => {
       const hookOptions = {
         autoFocus: false,
         editorRef: {
-          current: { contains: jest.fn().mockImplementation(() => false) }
+          current: { contains: jest.fn().mockImplementation(() => false) },
         } as unknown as React.RefObject<HTMLDivElement>,
         toolbarRef: {
-          current: { contains: jest.fn().mockImplementation(() => false) }
+          current: { contains: jest.fn().mockImplementation(() => false) },
         } as unknown as React.RefObject<HTMLDivElement>,
         wrapperRef: {
-          current: { contains: jest.fn().mockImplementation(() => false) }
+          current: { contains: jest.fn().mockImplementation(() => false) },
         } as unknown as React.RefObject<HTMLDivElement>,
         onFocus: jest.fn(),
         onBlur: jest.fn(),
-        dispatch: jest.fn()
+        dispatch: jest.fn(),
       }
 
       const { result } = renderHook(() => useOnFocus(hookOptions))
@@ -211,10 +211,10 @@ describe('useOnFocus', () => {
       expect(hookOptions.dispatch).toHaveBeenCalledTimes(2)
       expect(hookOptions.dispatch).toHaveBeenCalledWith({
         payload: true,
-        type: toolbarActionTypes.disabled
+        type: toolbarActionTypes.disabled,
       })
       expect(hookOptions.dispatch).toHaveBeenCalledWith({
-        type: toolbarActionTypes.resetFormat
+        type: toolbarActionTypes.resetFormat,
       })
       expect(hookOptions.onBlur).toHaveBeenCalledTimes(1)
       expect(hookOptions.onFocus).not.toHaveBeenCalled()

@@ -20,15 +20,15 @@ page
   .createChapter()
   .addExample('PageSidebar/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('PageSidebar/story/Variants.example.tsx', {
     title: 'Variants',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('PageSidebar/story/Collapsible.example.tsx', {
     title: 'Collapsible',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
 
 page.connect(sidebarItemStory.chapter)

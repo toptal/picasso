@@ -5,9 +5,9 @@ import isRelatedTargetInsidePopper from './is-related-target-inside-popper'
 const getPopperRefMock = (containsReturnValue: boolean) => ({
   current: {
     popper: {
-      contains: jest.fn().mockReturnValue(containsReturnValue)
-    }
-  } as any
+      contains: jest.fn().mockReturnValue(containsReturnValue),
+    },
+  } as any,
 })
 
 describe('isRelatedTargetInsidePopper', () => {

@@ -7,7 +7,7 @@ export default () =>
       position: 'absolute',
       top: '50%',
       left: '50%',
-      transform: 'translate(-50%, -50%)'
+      transform: 'translate(-50%, -50%)',
     },
 
     xxsmall: { fontSize: '1em' },
@@ -17,9 +17,9 @@ export default () =>
     large: { fontSize: '5em' },
 
     smallFont: {
-      fontSize: '0.666666667em'
+      fontSize: '0.666666667em',
     },
     largeFont: {
-      fontSize: '1em'
-    }
+      fontSize: '1em',
+    },
   })

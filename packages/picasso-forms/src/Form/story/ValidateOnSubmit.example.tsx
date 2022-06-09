@@ -14,7 +14,7 @@ type FormType = {
 
 const FormContent = () => {
   const {
-    input: { value: hide }
+    input: { value: hide },
   } = useField('hide')
 
   return (
@@ -76,10 +76,10 @@ const api = {
 
     return responseWithDelay({
       name: {
-        first: 'Unknown first name'
-      }
+        first: 'Unknown first name',
+      },
     })
-  }
+  },
 }
 
 export default Example

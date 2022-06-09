@@ -10,36 +10,36 @@ const CHART_DATA: DataItem[] = [
         values: [
           {
             id: 'viable',
-            value: 252
+            value: 252,
           },
           {
             id: 'bad_leads',
-            value: 0
+            value: 0,
           },
           {
             id: 'rejected',
-            value: 11
-          }
-        ]
+            value: 11,
+          },
+        ],
       },
       {
         id: 'user',
         values: [
           {
             id: 'viable',
-            value: 595
+            value: 595,
           },
           {
             id: 'bad_leads',
-            value: 0
+            value: 0,
           },
           {
             id: 'rejected',
-            value: 24
-          }
-        ]
-      }
-    ]
+            value: 24,
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'contacted',
@@ -49,20 +49,20 @@ const CHART_DATA: DataItem[] = [
         values: [
           {
             id: 'contacted',
-            value: 189
-          }
-        ]
+            value: 189,
+          },
+        ],
       },
       {
         id: 'user',
         values: [
           {
             id: 'contacted',
-            value: 421
-          }
-        ]
-      }
-    ]
+            value: 421,
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'approved',
@@ -72,20 +72,20 @@ const CHART_DATA: DataItem[] = [
         values: [
           {
             id: 'approved',
-            value: 29
-          }
-        ]
+            value: 29,
+          },
+        ],
       },
       {
         id: 'user',
         values: [
           {
             id: 'approved',
-            value: 27
-          }
-        ]
-      }
-    ]
+            value: 27,
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'verified',
@@ -95,20 +95,20 @@ const CHART_DATA: DataItem[] = [
         values: [
           {
             id: 'verified',
-            value: 22
-          }
-        ]
+            value: 22,
+          },
+        ],
       },
       {
         id: 'user',
         values: [
           {
             id: 'verified',
-            value: 21
-          }
-        ]
-      }
-    ]
+            value: 21,
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'with_deposit',
@@ -118,20 +118,20 @@ const CHART_DATA: DataItem[] = [
         values: [
           {
             id: 'with_deposit',
-            value: 16
-          }
-        ]
+            value: 16,
+          },
+        ],
       },
       {
         id: 'user',
         values: [
           {
             id: 'with_deposit',
-            value: 17
-          }
-        ]
-      }
-    ]
+            value: 17,
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'with_active_engagement',
@@ -141,21 +141,21 @@ const CHART_DATA: DataItem[] = [
         values: [
           {
             id: 'with_active_engagement',
-            value: 7
-          }
-        ]
+            value: 7,
+          },
+        ],
       },
       {
         id: 'user',
         values: [
           {
             id: 'with_active_engagement',
-            value: 5
-          }
-        ]
-      }
-    ]
-  }
+            value: 5,
+          },
+        ],
+      },
+    ],
+  },
 ]
 
 const CHART_LABELS = {
@@ -164,7 +164,7 @@ const CHART_LABELS = {
   approved: 'Approved',
   verified: 'Verified',
   with_deposit: 'With a Deposit',
-  with_active_engagement: 'With an Active Engagement'
+  with_active_engagement: 'With an Active Engagement',
 }
 
 const CHART_TOOLTIPS = {
@@ -172,54 +172,54 @@ const CHART_TOOLTIPS = {
     team: {
       viable: 'Team Viable Average',
       bad_leads: 'Team Bad Leads (Unresponsive) Average',
-      rejected: 'Team Removed Average'
+      rejected: 'Team Removed Average',
     },
     user: {
       viable: 'Your Viable',
       bad_leads: 'Your Bad Leads (Unresponsive)',
-      rejected: 'Your Removed'
-    }
+      rejected: 'Your Removed',
+    },
   },
   contacted: {
     team: {
-      contacted: 'Team Contacted Average'
+      contacted: 'Team Contacted Average',
     },
     user: {
-      contacted: 'Your Contacted'
-    }
+      contacted: 'Your Contacted',
+    },
   },
   approved: {
     team: {
-      approved: 'Team Approved Average'
+      approved: 'Team Approved Average',
     },
     user: {
-      approved: 'Your Approved'
-    }
+      approved: 'Your Approved',
+    },
   },
   verified: {
     team: {
-      verified: 'Team Verified Average'
+      verified: 'Team Verified Average',
     },
     user: {
-      verified: 'Your Verified'
-    }
+      verified: 'Your Verified',
+    },
   },
   with_deposit: {
     team: {
-      with_deposit: 'Team With a Deposit Average'
+      with_deposit: 'Team With a Deposit Average',
     },
     user: {
-      with_deposit: 'Your With a Deposit'
-    }
+      with_deposit: 'Your With a Deposit',
+    },
   },
   with_active_engagement: {
     team: {
-      with_active_engagement: 'Team With an Active Engagement Average'
+      with_active_engagement: 'Team With an Active Engagement Average',
     },
     user: {
-      with_active_engagement: 'Your With an Active Engagement'
-    }
-  }
+      with_active_engagement: 'Your With an Active Engagement',
+    },
+  },
 }
 
 const Example = () => (

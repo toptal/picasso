@@ -45,7 +45,7 @@ describe('DatePicker', () => {
         parseInputValue={parseInputValue}
         value={new Date(2020, 0, 1)}
         testIds={{
-          input: 'date-picker-input'
+          input: 'date-picker-input',
         }}
       />
     )

@@ -13,7 +13,7 @@ import {
   Radio,
   Tooltip,
   TooltipProps,
-  Typography
+  Typography,
 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
@@ -24,7 +24,7 @@ const testIds = {
   tooltipContent: 'tooltip-content',
   tooltipTrigger: 'tooltip-trigger',
   radioTrigger: 'radio-trigger',
-  dropdownTrigger: 'dropdown-trigger'
+  dropdownTrigger: 'dropdown-trigger',
 }
 
 const BasicTooltipExample = () => {
@@ -309,7 +309,7 @@ describe('Tooltip', () => {
     mount(<BasicTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.getByTestId(testIds.tooltipTrigger).realHover({
-      position: { x: 0, y: -200 }
+      position: { x: 0, y: -200 },
     })
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
     cy.getByTestId(testIds.tooltipTrigger).realHover()
@@ -326,7 +326,7 @@ describe('Tooltip', () => {
     cy.getByTestId(testIds.tooltipTrigger)
       .as('trigger')
       .realHover({
-        position: { x: 0, y: -200 }
+        position: { x: 0, y: -200 },
       })
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
     cy.get('@trigger').realHover()
@@ -340,7 +340,7 @@ describe('Tooltip', () => {
     mount(<RadioTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.getByTestId(testIds.radioTrigger).realHover({
-      position: { x: 0, y: -200 }
+      position: { x: 0, y: -200 },
     })
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
     cy.getByTestId(testIds.radioTrigger).realHover()
@@ -354,7 +354,7 @@ describe('Tooltip', () => {
     mount(<BasicTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.getByTestId(testIds.tooltipTrigger).realHover({
-      position: { x: 0, y: -200 }
+      position: { x: 0, y: -200 },
     })
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
     cy.getByTestId(testIds.tooltipTrigger).realHover()
@@ -364,7 +364,7 @@ describe('Tooltip', () => {
     cy.getByTestId(testIds.tooltipTrigger).click()
     cy.getByTestId(testIds.tooltipTrigger).realHover({ position: 'topLeft' })
     cy.getByTestId(testIds.tooltipTrigger).realHover({
-      position: 'bottomRight'
+      position: 'bottomRight',
     })
 
     cy.getByTestId(testIds.tooltipContent).should('not.be.visible')

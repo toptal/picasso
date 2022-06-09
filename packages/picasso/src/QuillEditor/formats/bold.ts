@@ -15,7 +15,7 @@ class TypographyBoldBlot extends QuillBold {
       getTypographyClassName(this.typographyClasses, {
         variant: 'body',
         size: 'inherit',
-        weight: 'semibold'
+        weight: 'semibold',
       })
     )
 

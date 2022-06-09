@@ -2,7 +2,7 @@ import React, {
   ReactElement,
   HTMLAttributes,
   forwardRef,
-  FunctionComponent
+  FunctionComponent,
 } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -23,7 +23,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTableSectionHead'
+  name: 'PicassoTableSectionHead',
 })
 
 export const TableSectionHead: FunctionComponent<Props> = forwardRef<
@@ -49,7 +49,7 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
 })
 
 TableSectionHead.defaultProps = {
-  colSpan: MAX_COL_SPAN
+  colSpan: MAX_COL_SPAN,
 }
 
 TableSectionHead.displayName = 'TableSectionHead'

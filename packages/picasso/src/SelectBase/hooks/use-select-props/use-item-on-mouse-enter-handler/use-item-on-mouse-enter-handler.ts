@@ -6,7 +6,7 @@ const useItemOnMouseEnterHandler = <
   T extends ValueType,
   M extends boolean = false
 >({
-  selectState: { highlightedIndex, setHighlightedIndex }
+  selectState: { highlightedIndex, setHighlightedIndex },
 }: UseSelectProps<T, M>) =>
   useCallback(
     (index: number) => {

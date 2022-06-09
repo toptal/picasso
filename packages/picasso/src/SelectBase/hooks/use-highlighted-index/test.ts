@@ -8,7 +8,7 @@ const OPTIONS = [
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
   { text: 'Slovakia', value: 'SK' },
-  { text: 'Ukraine', value: 'UA' }
+  { text: 'Ukraine', value: 'UA' },
 ]
 
 const disableOptions = (options: Option[], indicies: number[]) =>
@@ -27,7 +27,7 @@ const setHighlightedIndex = (
 
 const renderUseHighlightedIndex = ({
   options,
-  selectedOptions = []
+  selectedOptions = [],
 }: {
   options: Option[]
   selectedOptions?: Option[]
@@ -43,11 +43,11 @@ const renderUseHighlightedIndex = ({
             selectedOptions?.some(
               selectedOption => selectedOption.value === option.value
             ),
-          display: () => ''
-        }
+          display: () => '',
+        },
       }),
     {
-      initialProps: { isOpen: true }
+      initialProps: { isOpen: true },
     }
   )
 
@@ -67,7 +67,7 @@ describe('useHighlightedIndex', () => {
 
     const { result, rerender } = renderUseHighlightedIndex({
       options: OPTIONS,
-      selectedOptions: [OPTIONS[SELECTED_OPTION_INDEX]]
+      selectedOptions: [OPTIONS[SELECTED_OPTION_INDEX]],
     })
 
     expect(getHighlightIndex(result)).toBe(SELECTED_OPTION_INDEX)
@@ -84,7 +84,7 @@ describe('useHighlightedIndex', () => {
   it('resets highlighted index when closed and multiple values', () => {
     const { result, rerender } = renderUseHighlightedIndex({
       options: OPTIONS,
-      selectedOptions: [OPTIONS[2], OPTIONS[3]]
+      selectedOptions: [OPTIONS[2], OPTIONS[3]],
     })
 
     expect(getHighlightIndex(result)).toBe(0)
@@ -106,8 +106,8 @@ describe('useHighlightedIndex', () => {
     const { result, rerender } = renderUseHighlightedIndex({
       options: disableOptions(OPTIONS, [
         FIRST_DISABLED_OPTION_INDEX,
-        SECOND_DISABLED_OPTION_INDEX
-      ])
+        SECOND_DISABLED_OPTION_INDEX,
+      ]),
     })
 
     expect(getHighlightIndex(result)).toBe(FIRST_ENABLED_OPTION_INDEX)
@@ -132,7 +132,7 @@ describe('useHighlightedIndex', () => {
     const options = disableOptions(OPTIONS, [DISABLED_OPTION_INDEX])
     const { result, rerender } = renderUseHighlightedIndex({
       options,
-      selectedOptions: [options[DISABLED_OPTION_INDEX]]
+      selectedOptions: [options[DISABLED_OPTION_INDEX]],
     })
 
     expect(getHighlightIndex(result)).toBe(FIRST_ENABLED_OPTION_INDEX)

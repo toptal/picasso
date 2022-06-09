@@ -4,6 +4,6 @@ export default () =>
   createStyles({
     root: {
       maxWidth: '100%',
-      overflowX: 'auto'
-    }
+      overflowX: 'auto',
+    },
   })

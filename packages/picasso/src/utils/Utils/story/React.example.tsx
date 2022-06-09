@@ -7,7 +7,7 @@ const data = {
   useCombinedRefs: `Combines multiple refs into one`,
   useWidthOf: `Calculates width of an element`,
   disableUnsupportedProps: `Removes props that are not supported for passed props values`,
-  ClickAwayListener: `Listen for click events that occur somewhere in the document, outside of the element itself`
+  ClickAwayListener: `Listen for click events that occur somewhere in the document, outside of the element itself`,
 }
 
 const Example = () => (

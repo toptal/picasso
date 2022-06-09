@@ -6,7 +6,7 @@ const options = [
   { text: 'Croatia', description: 'Population: 4M' },
   { text: 'Lithuania', description: 'Population: 3M' },
   { text: 'Slovakia', description: 'Population: 5.5M' },
-  { text: 'Ukraine', description: 'Population: 42M' }
+  { text: 'Ukraine', description: 'Population: 42M' },
 ]
 
 const Example = () => (

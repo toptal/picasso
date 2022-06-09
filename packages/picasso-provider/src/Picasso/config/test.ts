@@ -4,7 +4,7 @@ const SCREEN_SIZES = {
   small: 500,
   medium: 750,
   large: 990,
-  extraLarge: 1000
+  extraLarge: 1000,
 }
 
 describe('responsive breakpoint utils', () => {

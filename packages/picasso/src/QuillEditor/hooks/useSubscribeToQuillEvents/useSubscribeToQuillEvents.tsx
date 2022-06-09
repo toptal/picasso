@@ -2,7 +2,7 @@ import { useMemo, useEffect } from 'react'
 import Quill, {
   SelectionChangeHandler,
   TextChangeHandler,
-  EditorChangeHandler
+  EditorChangeHandler,
 } from 'quill'
 
 import getTextChangeHandler from '../../utils/getTextChangeHandler'
@@ -13,7 +13,7 @@ import getCleanupOnAllContentRemovalHandler from '../../utils/getCleanupOnAllCon
 import {
   SelectionHandler,
   ChangeHandler,
-  TextLengthChangeHandler
+  TextLengthChangeHandler,
 } from '../../types'
 
 type Props = {
@@ -27,7 +27,7 @@ const useSubscribeToQuillEvents = ({
   quill,
   onTextChange,
   onSelectionChange,
-  onTextLengthChange
+  onTextLengthChange,
 }: Props) => {
   const textLengthChangeHandler = useMemo(() => {
     if (!quill) {
@@ -93,7 +93,7 @@ const useSubscribeToQuillEvents = ({
     selectionChangeHandler,
     editorChangeHandler,
     textLengthChangeHandler,
-    cleanupOnAllContentRemovalHandler
+    cleanupOnAllContentRemovalHandler,
   ])
 }
 

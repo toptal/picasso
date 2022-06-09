@@ -11,14 +11,14 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       top: 0,
       left: 0,
       right: 0,
-      zIndex: zIndex.appBar
+      zIndex: zIndex.appBar,
     },
     light: {
       backgroundColor: palette.common.white,
-      boxShadow: `0 1px 0 0 ${palette.grey.lighter2}`
+      boxShadow: `0 1px 0 0 ${palette.grey.lighter2}`,
     },
     dark: {
-      backgroundColor: palette.blue.darker
+      backgroundColor: palette.blue.darker,
     },
     content: {
       boxSizing: 'border-box',
@@ -30,49 +30,49 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       padding: `0 ${layout.contentPaddingHorizontal}`,
       height: headerHeight.default,
       [screens('small', 'medium')]: {
-        height: headerHeight.smallAndMedium
-      }
+        height: headerHeight.smallAndMedium,
+      },
     },
     wrapper: {
       height: headerHeight.default,
       [screens('small', 'medium')]: {
-        height: headerHeight.smallAndMedium
-      }
+        height: headerHeight.smallAndMedium,
+      },
     },
     wide: {
-      maxWidth: layout.contentWidthWide
+      maxWidth: layout.contentWidthWide,
     },
     fullWidth: {
-      maxWidth: '100%'
+      maxWidth: '100%',
     },
     left: {
       display: 'flex',
-      alignItems: 'center'
+      alignItems: 'center',
     },
     right: {
       display: 'flex',
-      alignItems: 'center'
+      alignItems: 'center',
     },
     divider: {
       width: '1px',
       height: '1.5em',
       backgroundColor: palette.common.white,
-      opacity: 0.8
+      opacity: 0.8,
     },
     dividerBlue: {
-      backgroundColor: palette.blue.darker
+      backgroundColor: palette.blue.darker,
     },
     logoContainer: {
       [screens('small', 'medium')]: {
         lineHeight: '1em',
         position: 'absolute',
         left: '50%',
-        transform: 'translate(-50%, 0%)'
-      }
+        transform: 'translate(-50%, 0%)',
+      },
     },
     logo: {
       [screens('small', 'medium')]: {
-        fontSize: '1.5em'
-      }
-    }
+        fontSize: '1.5em',
+      },
+    },
   })

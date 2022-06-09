@@ -24,7 +24,7 @@ export const FileInput = (props: Props) => {
 
     const newFiles = Array.from(event.target.files).map(file => ({
       file,
-      uploading: false
+      uploading: false,
     }))
 
     finalFormOnChange([...value, ...newFiles])

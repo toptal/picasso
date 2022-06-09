@@ -3,7 +3,7 @@ import {
   BoldValue as EditorBoldValue,
   ItalicValue as EditorItalicValue,
   ListValue as EditorListValue,
-  HeaderValue as EditorHeaderValue
+  HeaderValue as EditorHeaderValue,
 } from '../../QuillEditor'
 import { FormatType as ToolbarFormatType, HeaderValue } from '../store/toolbar'
 
@@ -23,7 +23,7 @@ export const getToolbarFormatFromEditorFormat = (
     bold: convertBoldFromEditorValue(format.bold),
     italic: convertItalicFromEditorValue(format.italic),
     list: convertListFromEditorValue(format.list),
-    header: convertHeaderFromEditorValue(format.header)
+    header: convertHeaderFromEditorValue(format.header),
   }
 }
 

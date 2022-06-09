@@ -7,7 +7,7 @@ export type {
   AnyObject,
   FieldValidator,
   SubmissionErrors,
-  Config
+  Config,
 } from 'final-form'
 export { FORM_ERROR, setIn } from 'final-form'
 export {
@@ -16,7 +16,7 @@ export {
   useFormState,
   FormSpy,
   Form as FinalForm,
-  Field as FinalField
+  Field as FinalField,
 } from 'react-final-form'
 export type {
   FieldMetaState,
@@ -24,19 +24,19 @@ export type {
   FormRenderProps,
   FormSpyRenderProps,
   FormProps,
-  FieldInputProps
+  FieldInputProps,
 } from 'react-final-form'
 export { default as arrayMutators } from 'final-form-arrays'
 export { useFieldArray, FieldArray } from 'react-final-form-arrays'
 export type {
   FieldArrayProps,
-  FieldArrayRenderProps
+  FieldArrayRenderProps,
 } from 'react-final-form-arrays'
 export {
   OnChange,
   OnFocus,
   ExternallyChanged,
-  OnBlur
+  OnBlur,
 } from 'react-final-form-listeners'
 
 // Picasso Forms exports

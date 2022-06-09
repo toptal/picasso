@@ -17,7 +17,7 @@ page
     Picasso provides a function 'screens' to be able to 
     easily create media queries based on the given breakpoints
   `,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('utils/Breakpoints/story/Breakpoints.example.tsx', {
     title: 'Breakpoints',
@@ -25,7 +25,7 @@ page
     The list of breakpoint names and pixel-values we use while we design and do layouts
   `,
     showEditCode: false,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('utils/Breakpoints/story/useBreakpoint.example.tsx', {
     title: 'useBreakpoint',
@@ -33,7 +33,7 @@ page
     Provides programmatic way to check what screen size defined by breakpoints is active
   `,
     showEditCode: false,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('utils/Breakpoints/story/useScreens.example.tsx', {
     title: 'useScreens',
@@ -41,5 +41,5 @@ page
     Provides a programmatic way to switch between different values depending on screen size. The function returned by useScreens is memoized per screen size, so there are no performance penalties if re-rendering happens often.
   `,
     showEditCode: true,
-    takeScreenshot: false
+    takeScreenshot: false,
   })

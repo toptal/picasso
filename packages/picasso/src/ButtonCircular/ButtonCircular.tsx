@@ -4,7 +4,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   BaseProps,
   ButtonOrAnchorProps,
-  OverridableComponent
+  OverridableComponent,
 } from '@toptal/picasso-shared'
 
 import Button from '../Button'
@@ -41,7 +41,7 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoButtonCircular',
-  index: -1
+  index: -1,
 })
 
 export const ButtonCircular: OverridableComponent<Props> = forwardRef<
@@ -68,7 +68,7 @@ export const ButtonCircular: OverridableComponent<Props> = forwardRef<
       [classes.active]: active,
       [classes.focused]: focused,
       [classes.hovered]: hovered,
-      [classes.disabled]: disabled
+      [classes.disabled]: disabled,
     },
     variantClassName,
     rootClass
@@ -80,7 +80,7 @@ export const ButtonCircular: OverridableComponent<Props> = forwardRef<
       ref={ref}
       classes={{
         root: rootClassName,
-        focusVisible: focusVisibleClass
+        focusVisible: focusVisibleClass,
       }}
       className={className}
       size='small'
@@ -93,7 +93,7 @@ export const ButtonCircular: OverridableComponent<Props> = forwardRef<
 })
 
 ButtonCircular.defaultProps = {
-  variant: 'primary'
+  variant: 'primary',
 }
 
 ButtonCircular.displayName = 'ButtonCircular'

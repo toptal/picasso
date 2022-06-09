@@ -8,19 +8,19 @@ const chapter = PicassoBook.connectToPage(page => {
     .createChapter('Tabs.Tab')
     .addExample('Tab/story/Disabled.example.tsx', {
       title: 'Disabled tab',
-      takeScreenshot: false
+      takeScreenshot: false,
     })
     .addExample('Tab/story/CustomValue.example.tsx', {
       title: 'Using custom value',
-      takeScreenshot: false
+      takeScreenshot: false,
     })
     .addExample('Tab/story/Icon.example.tsx', {
       title: 'With Icon',
-      takeScreenshot: false
+      takeScreenshot: false,
     })
 })
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

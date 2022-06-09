@@ -5,13 +5,13 @@ import {
   Drag16,
   Bell16,
   Time16,
-  VideoOn16
+  VideoOn16,
 } from '@toptal/picasso/Icon'
 import { palette, Transitions } from '@toptal/picasso/utils'
 
 const Summary = ({
   onClick,
-  expanded
+  expanded,
 }: {
   onClick: () => void
   expanded: boolean
@@ -72,7 +72,7 @@ const InterviewCard = () => (
       style={{
         width: '1px',
         backgroundColor: palette.grey.light2,
-        margin: '1.5em 0'
+        margin: '1.5em 0',
       }}
     />
 

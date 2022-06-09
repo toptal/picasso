@@ -14,7 +14,7 @@ const limitOptions = ({ options, limit }: Props): Option[] | OptionGroups => {
   return Object.keys(options).reduce((result: OptionGroups, group) => {
     result[group] = limitFlatOptions({
       options: options[group],
-      limit
+      limit,
     })
 
     return result
@@ -23,7 +23,7 @@ const limitOptions = ({ options, limit }: Props): Option[] | OptionGroups => {
 
 const limitFlatOptions = ({
   options,
-  limit
+  limit,
 }: Props & { options: Option[] }): Option[] => options.slice(0, limit)
 
 export default limitOptions

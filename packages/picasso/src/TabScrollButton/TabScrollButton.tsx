@@ -18,7 +18,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles(styles, {
-  name: 'PicassoTabScrollButton'
+  name: 'PicassoTabScrollButton',
 })
 
 export const TabScrollButton = forwardRef<HTMLDivElement, Props>(
@@ -40,13 +40,13 @@ export const TabScrollButton = forwardRef<HTMLDivElement, Props>(
         <Container
           className={cx(classes.gradient, {
             [classes.left]: direction === 'left',
-            [classes.right]: direction === 'right'
+            [classes.right]: direction === 'right',
           })}
         >
           <ButtonBase
             className={cx(classes.button, {
               [classes.left]: direction === 'left',
-              [classes.right]: direction === 'right'
+              [classes.right]: direction === 'right',
             })}
             aria-label={`${direction} button`}
             data-testid={`tab-scroll-button-${direction}`}

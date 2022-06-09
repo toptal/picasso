@@ -4,7 +4,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   BaseProps,
   ButtonOrAnchorProps,
-  OverridableComponent
+  OverridableComponent,
 } from '@toptal/picasso-shared'
 
 import Button, { IconPositionType } from '../Button'
@@ -39,7 +39,7 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoButtonAction',
-  index: -1
+  index: -1,
 })
 
 const loaderIcon = <Loader size='small' variant='inherit' />
@@ -68,7 +68,7 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
     icon: iconClassName,
     iconLeft,
     iconRight,
-    small
+    small,
   } = classes
 
   const rootClassName = cx(
@@ -78,7 +78,7 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
       [classes.hovered]: hovered,
       [classes.disabled]: disabled,
       [classes.loading]: loading,
-      [classes.iconless]: !icon
+      [classes.iconless]: !icon,
     },
     rootClass
   )
@@ -100,7 +100,7 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
         icon: iconClassName,
         iconLeft,
         iconRight,
-        small
+        small,
       }}
       className={className}
       size='small'
@@ -113,7 +113,7 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
 })
 
 ButtonAction.defaultProps = {
-  iconPosition: 'left'
+  iconPosition: 'left',
 }
 
 ButtonAction.displayName = 'ButtonAction'

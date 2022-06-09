@@ -7,7 +7,7 @@ interface Args {
 const getSiblings = ({
   activePage,
   siblingCount,
-  totalPages
+  totalPages,
 }: Args): [number[], number[]] => {
   const rightSiblings: number[] = []
   const leftSiblings: number[] = []

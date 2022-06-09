@@ -1,7 +1,7 @@
 import React, { useMemo, ReactNode, useRef } from 'react'
 import {
   Form as FinalForm,
-  FormProps as FinalFormProps
+  FormProps as FinalFormProps,
 } from 'react-final-form'
 import { FormApi, SubmissionErrors, getIn, setIn, AnyObject } from 'final-form'
 import { Form as PicassoForm, Container } from '@toptal/picasso'
@@ -12,7 +12,7 @@ import {
   FormContext,
   Validators,
   FormContextProps,
-  createFormContext
+  createFormContext,
 } from './FormContext'
 
 export type Props<T = AnyObject> = FinalFormProps<T> & {
@@ -65,7 +65,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
   const scrollToErrorDecorator = useMemo(
     () =>
       createScrollToErrorDecorator({
-        disableScrollOnError
+        disableScrollOnError,
       }),
     [disableScrollOnError]
   )

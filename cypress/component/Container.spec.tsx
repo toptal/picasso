@@ -11,7 +11,7 @@ const colors: VariantType[] = [
   'white',
   'yellow',
   'blue',
-  'grey'
+  'grey',
 ]
 
 const borderableColors: VariantType[] = ['white', 'transparent']

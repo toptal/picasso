@@ -4,7 +4,7 @@ import { Container, TagSelector, Typography } from '@toptal/picasso'
 const value = [
   { value: 'AF', text: 'Afghanistan' },
   { value: 'AI', text: 'Aland Islands' },
-  { value: 'ALB', text: 'Albania' }
+  { value: 'ALB', text: 'Albania' },
 ]
 
 const Example = () => {

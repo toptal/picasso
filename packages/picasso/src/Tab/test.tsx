@@ -34,7 +34,7 @@ describe('Tab', () => {
   describe('Tab', () => {
     it('renders', () => {
       const { container } = renderTab({
-        label: 'Tab Label'
+        label: 'Tab Label',
       })
 
       expect(container).toMatchSnapshot()
@@ -43,7 +43,7 @@ describe('Tab', () => {
     it('disabled tab', () => {
       const { container } = renderTab({
         label: 'Tab Label',
-        disabled: true
+        disabled: true,
       })
 
       expect(container).toMatchSnapshot()
@@ -53,7 +53,7 @@ describe('Tab', () => {
       const Icon = () => <div id='Icon' />
       const { container } = renderTab({
         label: 'Tab Label',
-        icon: <Icon />
+        icon: <Icon />,
       })
 
       expect(container).toMatchSnapshot()

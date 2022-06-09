@@ -18,7 +18,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoHelpboxContent'
+  name: 'PicassoHelpboxContent',
 })
 
 export const HelpboxContent = forwardRef<HTMLElement, Props>(
@@ -45,7 +45,7 @@ export const HelpboxContent = forwardRef<HTMLElement, Props>(
 )
 
 HelpboxContent.defaultProps = {
-  width: 'full'
+  width: 'full',
 }
 
 HelpboxContent.displayName = 'HelpboxContent'

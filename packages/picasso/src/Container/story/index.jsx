@@ -28,6 +28,6 @@ Spacing is based on size enum that gets transformed into **rem** unit in followi
 - xlarge = 2.5rem
 
 For other custom  cases use **number** in rem units or **className** to define spacings.
-`
+`,
   })
   .addExample('Container/story/TextAlign.example.tsx', 'TextAlign')

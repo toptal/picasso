@@ -3,6 +3,6 @@ import { createStyles } from '@material-ui/core/styles'
 export default () =>
   createStyles({
     calendar: {
-      outline: 'none'
-    }
+      outline: 'none',
+    },
   })

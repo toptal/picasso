@@ -31,7 +31,7 @@ const CHART_DATA = [
   { x: '2020-11-16', test: 1.4 },
   { x: '2020-11-17', test: 1.5 },
   { x: '2020-11-18', test: 1.7 },
-  { x: '2020-11-19', test: 1.3 }
+  { x: '2020-11-19', test: 1.3 },
 ]
 
 describe('findTopDomain', () => {

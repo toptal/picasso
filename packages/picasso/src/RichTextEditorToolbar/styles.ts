@@ -5,7 +5,7 @@ export default ({ palette }: Theme) =>
     toolbar: {
       display: 'flex',
       borderBottom: `1px solid ${palette.grey.light2}`,
-      paddingBottom: '0.5em'
+      paddingBottom: '0.5em',
     },
     group: {
       display: 'flex',
@@ -21,10 +21,10 @@ export default ({ palette }: Theme) =>
         position: 'relative',
         marginLeft: '0.5em',
         marginRight: '0.5em',
-        backgroundColor: palette.grey.lighter2
-      }
+        backgroundColor: palette.grey.lighter2,
+      },
     },
     select: {
-      width: '7.125em'
-    }
+      width: '7.125em',
+    },
   })

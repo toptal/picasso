@@ -37,12 +37,12 @@ export interface Props
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoButtonSplit',
-  index: -1
+  index: -1,
 })
 
 const DropdownIcon = ({
   size,
-  className
+  className,
 }: {
   size: SizeType<'small' | 'medium' | 'large'>
   className?: string
@@ -84,12 +84,12 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
 
     const commonClasses = cx(classes.button, {
       [classes.primaryVariant]: variant === 'primary',
-      [classes.disabled]: disabled
+      [classes.disabled]: disabled,
     })
 
     const renderMenuButton = ({
       isOpen,
-      disabled
+      disabled,
     }: {
       isOpen: boolean
       disabled?: boolean
@@ -107,7 +107,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
         >
           <DropdownIcon
             className={cx({
-              [classes.rotated]: isOpen
+              [classes.rotated]: isOpen,
             })}
             size={size}
           />
@@ -137,7 +137,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
         <Dropdown
           content={menu}
           className={cx(classes.dropdown, {
-            [classes.disabled]: disabled
+            [classes.disabled]: disabled,
           })}
         >
           {({ isOpen }: { isOpen: boolean }) =>
@@ -151,7 +151,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
 
 ButtonSplit.defaultProps = {
   size: 'medium',
-  variant: 'primary'
+  variant: 'primary',
 }
 
 ButtonSplit.displayName = 'ButtonSplit'

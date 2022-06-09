@@ -27,9 +27,9 @@ const CHART_DATA = [
       '2020-11-07': 1.6,
       '2020-11-08': 2,
       '2020-11-09': 2,
-      '2020-11-10': 3.1
-    }
-  }
+      '2020-11-10': 3.1,
+    },
+  },
 ]
 
 const REFERENCE_LINE_DATA = {
@@ -55,7 +55,7 @@ const REFERENCE_LINE_DATA = {
     '2020-11-07': 3,
     '2020-11-08': 3,
     '2020-11-09': 3,
-    '2020-11-10': 3
+    '2020-11-10': 3,
   },
   green: {
     '2020-10-20': 1,
@@ -79,8 +79,8 @@ const REFERENCE_LINE_DATA = {
     '2020-11-07': 1,
     '2020-11-08': 1,
     '2020-11-09': 1,
-    '2020-11-10': 1
-  }
+    '2020-11-10': 1,
+  },
 }
 
 const Example = () => (
@@ -89,15 +89,15 @@ const Example = () => (
     referenceLines={[
       {
         data: REFERENCE_LINE_DATA.red,
-        color: palette.red.main
+        color: palette.red.main,
       },
       {
         data: REFERENCE_LINE_DATA.green,
-        color: palette.green.main
-      }
+        color: palette.green.main,
+      },
     ]}
     lineConfig={{
-      team: { color: palette.blue.main }
+      team: { color: palette.blue.main },
     }}
   />
 )

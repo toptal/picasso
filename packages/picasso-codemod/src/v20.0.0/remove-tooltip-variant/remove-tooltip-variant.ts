@@ -4,7 +4,7 @@ import {
   ImportNamespaceSpecifier,
   ImportSpecifier,
   JSXAttribute,
-  Transform
+  Transform,
 } from 'jscodeshift'
 
 import { isImportByPath } from '../../utils'

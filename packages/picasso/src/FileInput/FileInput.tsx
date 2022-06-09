@@ -49,7 +49,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     onChange,
     onRemove,
     onFocus,
-    onBlur
+    onBlur,
   } = props
 
   const classes = useStyles()
@@ -95,7 +95,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
 
 FileInput.defaultProps = {
   maxFiles: 1,
-  buttonLabel: 'Choose File'
+  buttonLabel: 'Choose File',
 }
 
 FileInput.displayName = 'FileInput'

@@ -46,7 +46,7 @@ export const PasswordInput = ({
 
   const renderFieldRequirements: ({
     value,
-    error
+    error,
   }: {
     value?: string
     error?: boolean
@@ -60,24 +60,24 @@ export const PasswordInput = ({
       requirements={[
         {
           message: 'At least 8 characters',
-          validator: passwordValidators.atLeastEightCharacters
+          validator: passwordValidators.atLeastEightCharacters,
         },
         {
           message: '1 number',
-          validator: passwordValidators.atLeastOneNumber
+          validator: passwordValidators.atLeastOneNumber,
         },
         {
           message: '1 uppercase character',
-          validator: passwordValidators.atLeastOneUpperCaseCharacter
+          validator: passwordValidators.atLeastOneUpperCaseCharacter,
         },
         {
           message: '1 special character',
-          validator: passwordValidators.atLeastOneSpecialCharacter
+          validator: passwordValidators.atLeastOneSpecialCharacter,
         },
         {
           message: '1 lowercase character',
-          validator: passwordValidators.atLeastOneLowerCaseCharacter
-        }
+          validator: passwordValidators.atLeastOneLowerCaseCharacter,
+        },
       ]}
     />
   )

@@ -30,7 +30,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPasswordInput'
+  name: 'PicassoPasswordInput',
 })
 
 export const PasswordInput = forwardRef<HTMLInputElement, Props>(
@@ -55,7 +55,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       name: 'error',
       componentName: 'PasswordInput',
       description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
     const [showPassword, setShowPassword] = useState(false)
@@ -83,11 +83,11 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
         style={style}
         className={cx(classes.root, className)}
         classes={{
-          input: classes.input
+          input: classes.input,
         }}
         inputProps={{
           ...rest,
-          'data-testid': testIds?.input
+          'data-testid': testIds?.input,
         }}
         width={width}
         status={error ? 'error' : status}
@@ -108,7 +108,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
 PasswordInput.defaultProps = {
   onChange: () => {},
   value: '',
-  status: 'default'
+  status: 'default',
 }
 
 PasswordInput.displayName = 'PasswordInput'

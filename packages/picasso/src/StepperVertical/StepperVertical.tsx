@@ -13,7 +13,7 @@ export const StepperVertical = forwardRef(function StepperVertical(
 
 StepperVertical.defaultProps = {
   active: 0,
-  steps: []
+  steps: [],
 }
 
 StepperVertical.displayName = 'StepperVertical'

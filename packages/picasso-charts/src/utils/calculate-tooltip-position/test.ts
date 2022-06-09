@@ -10,8 +10,8 @@ const tooltipUnrestricted: PositionTranslate = {
   offset: 0,
   viewbox: {
     x: 0,
-    y: 0
-  }
+    y: 0,
+  },
 }
 
 const tooltipRestricted: PositionTranslate = {
@@ -23,8 +23,8 @@ const tooltipRestricted: PositionTranslate = {
   offset: 0,
   viewbox: {
     x: 0,
-    y: 0
-  }
+    y: 0,
+  },
 }
 
 const tooltipRestrictedOutside: PositionTranslate = {
@@ -36,8 +36,8 @@ const tooltipRestrictedOutside: PositionTranslate = {
   offset: 0,
   viewbox: {
     x: 0,
-    y: 0
-  }
+    y: 0,
+  },
 }
 
 describe('calculateTooltipPosition', () => {

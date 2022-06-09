@@ -24,7 +24,7 @@ export const CategoriesChart = ({
 
   const getBarLabelColor = ({
     index,
-    dataKey
+    dataKey,
   }: {
     index?: number
     dataKey: string

@@ -19,7 +19,7 @@ describe('Dropzone', () => {
     mount(
       <TestingPicasso>
         {renderDropzone({
-          hint: 'Max file size: 25MB'
+          hint: 'Max file size: 25MB',
         })}
       </TestingPicasso>
     )
@@ -33,7 +33,7 @@ describe('Dropzone', () => {
       <TestingPicasso>
         {renderDropzone({
           errorMessages: ['File size exceeds the 25MB limit.'],
-          hint: 'Max file size: 25MB'
+          hint: 'Max file size: 25MB',
         })}
       </TestingPicasso>
     )
@@ -45,8 +45,8 @@ describe('Dropzone', () => {
       <TestingPicasso>
         {renderDropzone({
           value: [
-            { uploading: true, file: new File(['resume.pdf'], 'resume.pdf') }
-          ]
+            { uploading: true, file: new File(['resume.pdf'], 'resume.pdf') },
+          ],
         })}
       </TestingPicasso>
     )
@@ -72,9 +72,9 @@ describe('Dropzone', () => {
             {
               uploading: true,
               progress: 50,
-              file: new File(['resume.pdf'], 'resume.pdf')
-            }
-          ]
+              file: new File(['resume.pdf'], 'resume.pdf'),
+            },
+          ],
         })}
       </TestingPicasso>
     )
@@ -89,11 +89,11 @@ describe('Dropzone', () => {
             {
               uploading: false,
               progress: 100,
-              file: new File(['resume.pdf'], 'resume.pdf')
-            }
+              file: new File(['resume.pdf'], 'resume.pdf'),
+            },
           ],
           disabled: true,
-          onRemove: () => {}
+          onRemove: () => {},
         })}
       </TestingPicasso>
     )
@@ -108,16 +108,16 @@ describe('Dropzone', () => {
             {
               uploading: false,
               progress: 0,
-              file: new File(['resume.pdf'], 'resume.pdf')
+              file: new File(['resume.pdf'], 'resume.pdf'),
             },
             {
               uploading: false,
               progress: 0,
-              file: new File(['portfolio.pdf'], 'portfolio.pdf')
-            }
+              file: new File(['portfolio.pdf'], 'portfolio.pdf'),
+            },
           ],
           disabled: true,
-          onRemove: () => {}
+          onRemove: () => {},
         })}
       </TestingPicasso>
     )

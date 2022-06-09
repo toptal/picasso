@@ -15,7 +15,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPageFooter'
+  name: 'PicassoPageFooter',
 })
 
 export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
@@ -29,7 +29,7 @@ export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
   const contentClassnames = cx(
     {
       [classes.fullWidth]: fullWidth || width === 'full',
-      [classes.wide]: width === 'wide'
+      [classes.wide]: width === 'wide',
     },
     classes.content
   )
@@ -56,7 +56,7 @@ const CopyrightContent = () => (
 
 PageFooter.defaultProps = {
   rightContent: null,
-  copyrightContent: <CopyrightContent />
+  copyrightContent: <CopyrightContent />,
 }
 
 PageFooter.displayName = 'PageFooter'

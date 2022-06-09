@@ -3,7 +3,7 @@ import {
   render,
   fireEvent,
   waitFor,
-  waitForElementToBeRemoved
+  waitForElementToBeRemoved,
 } from '@toptal/picasso/test-utils'
 
 import Button from '../Button'

@@ -6,14 +6,14 @@ export default () =>
       fontSize: '1rem',
 
       '& + &': {
-        marginTop: '1em'
+        marginTop: '1em',
       },
       '& $error + $hint': {
-        marginTop: 0
-      }
+        marginTop: 0,
+      },
     },
 
     hint: {},
 
-    error: {}
+    error: {},
   })

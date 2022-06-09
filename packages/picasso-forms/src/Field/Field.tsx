@@ -2,7 +2,7 @@ import React, { ChangeEvent, FocusEvent, useMemo } from 'react'
 import {
   useField,
   FieldProps as FinalFieldProps,
-  FieldRenderProps
+  FieldRenderProps,
 } from 'react-final-form'
 import { Form as PicassoForm, OutlinedInputStatus } from '@toptal/picasso'
 import { TextLabelProps } from '@toptal/picasso-shared'
@@ -111,14 +111,14 @@ const Field = <
     parse,
     subscription,
     validateFields,
-    value
+    value,
   })
 
   const error = useFieldValidation({
     name,
     meta,
     validators,
-    shouldValidateOnSubmit
+    shouldValidateOnSubmit,
   })
 
   const childProps: Record<string, unknown> = {
@@ -139,7 +139,7 @@ const Field = <
           get() {
             return defaultValue ?? ''
           },
-          set() {}
+          set() {},
         })
       }
 
@@ -162,7 +162,7 @@ const Field = <
       if (rest.onFocus) {
         rest.onFocus(event)
       }
-    }
+    },
   }
 
   return (
@@ -172,7 +172,7 @@ const Field = <
       data-testid={dataTestId}
       fieldRequirements={renderFieldRequirements?.({
         value: input.value,
-        error: status === 'error'
+        error: status === 'error',
       })}
     >
       {label}

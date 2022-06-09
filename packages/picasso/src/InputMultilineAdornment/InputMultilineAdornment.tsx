@@ -15,7 +15,7 @@ export interface Props {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoInputMultilineAdornment'
+  name: 'PicassoInputMultilineAdornment',
 })
 
 const InputMultilineAdornment = (props: Props) => {

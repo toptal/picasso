@@ -54,7 +54,7 @@ describe('Stepper', () => {
     const { container } = renderStepper({
       steps,
       active: activeStep,
-      hideLabels: true
+      hideLabels: true,
     })
 
     expect(container).toMatchSnapshot()

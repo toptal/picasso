@@ -27,9 +27,9 @@ describe('useTextEditorState', () => {
             ...initialState.toolbar,
             format: {
               ...initialState.toolbar.format,
-              bold: true
-            }
-          }
+              bold: true,
+            },
+          },
         })
       })
       it('updates italic', () => {
@@ -44,9 +44,9 @@ describe('useTextEditorState', () => {
             ...initialState.toolbar,
             format: {
               ...initialState.toolbar.format,
-              italic: true
-            }
-          }
+              italic: true,
+            },
+          },
         })
       })
       it('updates header', () => {
@@ -61,9 +61,9 @@ describe('useTextEditorState', () => {
             ...initialState.toolbar,
             format: {
               ...initialState.toolbar.format,
-              header: '3'
-            }
-          }
+              header: '3',
+            },
+          },
         })
       })
       it('updates list', () => {
@@ -78,9 +78,9 @@ describe('useTextEditorState', () => {
             ...initialState.toolbar,
             format: {
               ...initialState.toolbar.format,
-              list: 'ordered'
-            }
-          }
+              list: 'ordered',
+            },
+          },
         })
       })
     })
@@ -94,8 +94,8 @@ describe('useTextEditorState', () => {
         ...initialState,
         toolbar: {
           ...initialState.toolbar,
-          disabled: true
-        }
+          disabled: true,
+        },
       })
     })
   })

@@ -15,7 +15,7 @@ interface Props extends BaseProps {
 export const NonNativeSelectLimitFooter = ({
   totalCount,
   limit,
-  'data-testid': dataTestId
+  'data-testid': dataTestId,
 }: Props) => {
   const classes = useStyles()
 

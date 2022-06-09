@@ -2,7 +2,7 @@ import React from 'react'
 import {
   fireEvent,
   render,
-  waitForElementToBeRemoved
+  waitForElementToBeRemoved,
 } from '@toptal/picasso/test-utils'
 
 import Section, { Props } from './Section'
@@ -21,7 +21,7 @@ const renderSection = ({
     title: DEFAULT_TITLE_TEST_ID,
     subtitle: DEFAULT_SUBTITLE_TEST_ID,
     actions: DEFAULT_ACTIONS_TEST_ID,
-    collapse: DEFAULT_COLLAPSE_TEST_ID
+    collapse: DEFAULT_COLLAPSE_TEST_ID,
   },
   children = <div data-testid={DEFAULT_CONTENT_TEST_ID} />,
   ...rest
@@ -37,7 +37,7 @@ describe('Section', () => {
     const { container, getByTestId } = renderSection({
       title: 'Title',
       subtitle: 'Subtitle',
-      actions: 'Actions'
+      actions: 'Actions',
     })
 
     const title = getByTestId(DEFAULT_TITLE_TEST_ID)
@@ -78,7 +78,7 @@ describe('Section', () => {
 
   it('renders collapsible initially collapsed', async () => {
     const { container, queryByTestId } = renderSection({
-      collapsible: true
+      collapsible: true,
     })
 
     expect(queryByTestId(DEFAULT_CONTENT_TEST_ID)).not.toBeInTheDocument()
@@ -89,7 +89,7 @@ describe('Section', () => {
   it('renders collapsible initially expanded', async () => {
     const { container, getByTestId } = renderSection({
       collapsible: true,
-      defaultCollapsed: false
+      defaultCollapsed: false,
     })
 
     expect(getByTestId(DEFAULT_CONTENT_TEST_ID)).toBeInTheDocument()
@@ -99,7 +99,7 @@ describe('Section', () => {
 
   it('collapses and expands', async () => {
     const { findByTestId, getByTestId, queryByTestId } = renderSection({
-      collapsible: true
+      collapsible: true,
     })
 
     expect(queryByTestId(DEFAULT_CONTENT_TEST_ID)).not.toBeInTheDocument()

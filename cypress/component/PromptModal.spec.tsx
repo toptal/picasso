@@ -24,8 +24,8 @@ describe('PromptModal', () => {
       targets: [
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        { name: 'chrome-small', browser: 'chrome', viewport: '400x800' }
-      ]
+        { name: 'chrome-small', browser: 'chrome', viewport: '400x800' },
+      ],
     })
   })
 })

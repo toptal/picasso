@@ -11,7 +11,7 @@ export {
   breakpointsList,
   useScreenSize,
   useBreakpoint,
-  useScreens
+  useScreens,
 } from './breakpoints'
 export { default as layout } from './layout'
 export { default as shadows } from './shadows'

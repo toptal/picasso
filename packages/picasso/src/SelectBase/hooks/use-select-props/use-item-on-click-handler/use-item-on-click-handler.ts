@@ -6,7 +6,7 @@ import useSelectHandler from '../use-select-handler'
 const useItemOnClick = <T extends ValueType, M extends boolean = false>({
   selectState: { close },
   selectProps: { multiple },
-  handleSelect
+  handleSelect,
 }: UseSelectProps<T, M> & {
   handleSelect: ReturnType<typeof useSelectHandler>
 }) =>

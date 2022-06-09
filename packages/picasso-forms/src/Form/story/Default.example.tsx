@@ -13,13 +13,13 @@ const countries = [
   { value: 'Lithuania', text: 'Lithuania' },
   { value: 'Slovakia', text: 'Slovakia' },
   { value: 'Spain', text: 'Spain' },
-  { value: 'Ukraine', text: 'Ukraine' }
+  { value: 'Ukraine', text: 'Ukraine' },
 ]
 
 const skills = [
   { value: 0, text: 'HTML' },
   { value: 1, text: 'CSS' },
-  { value: 2, text: 'Javascript' }
+  { value: 2, text: 'Javascript' },
 ]
 
 const EMPTY_INPUT_VALUE = ''
@@ -124,7 +124,7 @@ const Example = () => {
         width='auto'
         options={[
           { value: 0, text: 'Company' },
-          { value: 1, text: 'Individual' }
+          { value: 1, text: 'Individual' },
         ]}
       />
       <Form.Select

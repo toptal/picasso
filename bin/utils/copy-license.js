@@ -23,5 +23,5 @@ const copyLicense = packageDir => {
 }
 
 module.exports = {
-  copyLicense
+  copyLicense,
 }

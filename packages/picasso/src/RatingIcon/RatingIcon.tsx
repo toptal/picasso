@@ -14,12 +14,12 @@ export interface Props {
 }
 
 const useStyles = makeStyles(styles, {
-  name: 'PicassoRatingIcon'
+  name: 'PicassoRatingIcon',
 })
 
 const iconsBySize = {
   small: [Star16, StarSolid16],
-  large: [Star24, StarSolid24]
+  large: [Star24, StarSolid24],
 }
 
 const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
@@ -32,7 +32,7 @@ const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
   const iconColor = 'yellow'
   const iconClasses = cx({
     [classes.clickableIcon]: interactive,
-    [classes.hovered]: hovered
+    [classes.hovered]: hovered,
   })
   const [Icon, IconSolid] = iconsBySize[size] || iconsBySize.small
 
@@ -48,7 +48,7 @@ const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
 })
 
 RatingIcon.defaultProps = {
-  interactive: true
+  interactive: true,
 }
 
 RatingIcon.displayName = 'RatingIcon'

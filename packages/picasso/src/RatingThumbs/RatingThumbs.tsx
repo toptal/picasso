@@ -46,12 +46,12 @@ const useStyles = makeStyles<Theme>(styles)
 
 const enum ThumbsValue {
   POSITIVE = 'positive',
-  NEGATIVE = 'negative'
+  NEGATIVE = 'negative',
 }
 
 const componentsBySize = {
   small: [ThumbsUp16, ThumbsDown16],
-  large: [ThumbsUp24, ThumbsDown24]
+  large: [ThumbsUp24, ThumbsDown24],
 } as const
 
 let globalId = 0
@@ -85,7 +85,7 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
           <ThumbsUp
             className={classNames(classes.thumbs, {
               [classes.interactiveThumbs]: interactive,
-              [classes.thumbsPositive]: value === true
+              [classes.thumbsPositive]: value === true,
             })}
           />
 
@@ -106,7 +106,7 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
           <ThumbsDown
             className={classNames(classes.thumbs, {
               [classes.interactiveThumbs]: interactive,
-              [classes.thumbsNegative]: value === false
+              [classes.thumbsNegative]: value === false,
             })}
           />
 

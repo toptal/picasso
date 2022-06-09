@@ -2,7 +2,7 @@ import React, {
   ReactNode,
   HTMLAttributes,
   MouseEvent,
-  useCallback
+  useCallback,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIInputAdornment from '@material-ui/core/InputAdornment'
@@ -24,7 +24,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoInputAdornment'
+  name: 'PicassoInputAdornment',
 })
 
 const InputAdornment = (props: Props) => {
@@ -58,8 +58,8 @@ const InputAdornment = (props: Props) => {
       {...rest}
       classes={{
         root: cx(classes.root, {
-          [classes.rootDisabled]: disabled
-        })
+          [classes.rootDisabled]: disabled,
+        }),
       }}
       className={className}
       style={style}

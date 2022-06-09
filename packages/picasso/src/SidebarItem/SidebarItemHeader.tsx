@@ -9,7 +9,7 @@ import { Props } from './types'
 import { useSubMenuContext } from './SubMenuContextProvider'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarItemHeader'
+  name: 'PicassoSidebarItemHeader',
 })
 
 export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
@@ -71,7 +71,7 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
             [classes.compact]: compact,
             [classes.selected]: shouldShowSelected,
             [classes.parentCompact]: parentMenu?.compact,
-            [classes.collapsible]: hasMenu && (collapsible || compact)
+            [classes.collapsible]: hasMenu && (collapsible || compact),
           },
           className
         )}

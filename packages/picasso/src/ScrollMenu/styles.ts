@@ -3,14 +3,14 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 export default ({ palette, screens }: Theme) =>
   createStyles({
     menu: {
-      backgroundColor: palette.common.white
+      backgroundColor: palette.common.white,
     },
     scrollView: {
       maxHeight: '26.875rem', // ~8.5 lines of menu to show
       overflowY: 'auto',
 
       [screens('small', 'medium')]: {
-        maxHeight: '26.875rem' // ~8.5 lines of menu to show
+        maxHeight: '26.875rem', // ~8.5 lines of menu to show
       },
 
       // height under which maxHeight menu starts to overflow
@@ -19,8 +19,8 @@ export default ({ palette, screens }: Theme) =>
         maxHeight: 'calc(50vh - 4.8125rem)', // half of viewport minus header and anchor
 
         [screens('small', 'medium')]: {
-          maxHeight: 'calc(50vh - 4.3125rem)' // half of viewport minus header and anchor
-        }
-      }
-    }
+          maxHeight: 'calc(50vh - 4.3125rem)', // half of viewport minus header and anchor
+        },
+      },
+    },
   })

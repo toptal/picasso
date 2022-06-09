@@ -7,15 +7,15 @@ export default () =>
       boxShadow: 'none',
       order: 1,
       '& &': {
-        flex: 1
+        flex: 1,
       },
       // to cover text overflow in the sub-menu items
-      maxWidth: '100%'
+      maxWidth: '100%',
     },
     compactParent: {
-      padding: '0.5em'
+      padding: '0.5em',
     },
     bottom: {
-      order: 99
-    }
+      order: 99,
+    },
   })

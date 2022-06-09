@@ -22,7 +22,7 @@ const allOptions: Country[] = [
   { country: 'Croatia', capital: 'Zagreb', code: 'HR' },
   { country: 'Lithuania', capital: 'Vilnius', code: 'LU' },
   { country: 'Slovakia', capital: 'Bratislava', code: 'SK' },
-  { country: 'Ukraine', capital: 'Kyiv', code: 'UA' }
+  { country: 'Ukraine', capital: 'Kyiv', code: 'UA' },
 ]
 
 const getDisplayValue = (item: Item | null) =>

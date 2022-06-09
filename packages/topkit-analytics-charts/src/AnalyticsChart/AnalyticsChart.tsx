@@ -7,7 +7,7 @@ import {
   toLineConfigFormat,
   getXAxisTicks,
   getYAxisTicks,
-  formatYAxisTick
+  formatYAxisTick,
 } from './../utils'
 import { Point, Highlight, ReferenceLine, ChartGranularity } from './types'
 
@@ -75,7 +75,7 @@ export const AnalyticsChart = ({
 
 AnalyticsChart.defaultProps = {
   xAxisKey: 'x',
-  formatXAxisLabel: (label: string) => label
+  formatXAxisLabel: (label: string) => label,
 }
 
 AnalyticsChart.displayName = 'AnalyticsChart'

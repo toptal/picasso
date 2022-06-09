@@ -4,12 +4,12 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 PicassoProvider.override(({ palette }: Theme) => ({
   MuiCircularProgress: {
     colorPrimary: {
-      color: palette.grey.darker
-    }
-  }
+      color: palette.grey.darker,
+    },
+  },
 }))
 
 export default () =>
   createStyles({
-    root: {}
+    root: {},
   })

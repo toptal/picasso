@@ -13,15 +13,15 @@ page
   .createChapter()
   .addExample('Menu/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Menu/story/Nested.example.tsx', {
     title: 'Nested',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Menu/story/Dropdown.example.tsx', {
     title: 'Dropdown',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
 
 page.connect(menuItemStory.chapter)

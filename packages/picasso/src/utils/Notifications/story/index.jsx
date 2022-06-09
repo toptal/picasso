@@ -26,12 +26,12 @@ Each of them has this list of props:
       {
         name: 'content',
         type: 'string | ReactNode',
-        description: 'The content of notification message'
+        description: 'The content of notification message',
       },
       {
         name: 'icon',
         type: 'ReactElement',
-        description: 'The icon for the general notification'
+        description: 'The icon for the general notification',
       },
       {
         name: 'options',
@@ -44,10 +44,10 @@ Each of them has this list of props:
   autoHideDuration?: number\n
   persist?: boolean\n
 }
-          `
+          `,
         },
-        description: 'Options of the single notification.'
-      }
+        description: 'Options of the single notification.',
+      },
     ])
     .addExample('utils/Notifications/story/Default.example.tsx', {
       title: 'Default',
@@ -55,9 +55,9 @@ Each of them has this list of props:
         testPage.click('[data-testid="trigger"]')
         await testPage.waitFor(100)
         await makeScreenshot({
-          isFullScreen: true
+          isFullScreen: true,
         })
-      }
+      },
     })
     .addExample('utils/Notifications/story/Variants.example.tsx', {
       title: 'Variants',
@@ -69,9 +69,9 @@ Each of them has this list of props:
         await testPage.waitFor(100)
 
         await makeScreenshot({
-          isFullScreen: true
+          isFullScreen: true,
         })
-      }
+      },
     })
     .addExample('utils/Notifications/story/GeneralNotifications.example.tsx', {
       title: 'General Notifications',
@@ -79,9 +79,9 @@ Each of them has this list of props:
         testPage.click('[data-testid="trigger"]')
         await testPage.waitFor(100)
         await makeScreenshot({
-          isFullScreen: true
+          isFullScreen: true,
         })
-      }
+      },
     })
     .addExample('utils/Notifications/story/Options.example.tsx', {
       title: 'Options',
@@ -89,16 +89,16 @@ Each of them has this list of props:
         testPage.click('[data-testid="trigger"]')
         await testPage.waitFor(100)
         await makeScreenshot({
-          isFullScreen: true
+          isFullScreen: true,
         })
 
         await testPage.waitFor(1000)
 
         // by now notification should disappear
         await makeScreenshot({
-          isFullScreen: true
+          isFullScreen: true,
         })
-      }
+      },
     })
     .addExample('utils/Notifications/story/Custom.example.tsx', {
       title: 'Custom',
@@ -106,12 +106,12 @@ Each of them has this list of props:
         testPage.click('[data-testid="trigger"]')
         await testPage.waitFor(100)
         await makeScreenshot({
-          isFullScreen: true
+          isFullScreen: true,
         })
-      }
+      },
     })
 )
 
 export default {
-  chapter
+  chapter,
 }

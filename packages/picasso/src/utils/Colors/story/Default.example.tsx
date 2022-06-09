@@ -24,7 +24,7 @@ const Example = () => (
 
 const ColorGroup = ({
   colors,
-  colorGroupName
+  colorGroupName,
 }: {
   colors: [string, string][]
   colorGroupName: string
@@ -51,7 +51,7 @@ const ColorRectangle = ({ color }: { color: string }) => (
     style={{
       width: '7rem',
       height: '7rem',
-      backgroundColor: color
+      backgroundColor: color,
     }}
   />
 )

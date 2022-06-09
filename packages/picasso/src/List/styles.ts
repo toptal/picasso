@@ -6,9 +6,9 @@ export default ({ palette }: Theme) =>
       listStyle: 'none',
       padding: 0,
       margin: 0,
-      fontSize: '1rem'
+      fontSize: '1rem',
     },
     unordered: {
-      color: palette.text.primary
-    }
+      color: palette.text.primary,
+    },
   })

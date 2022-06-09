@@ -9,7 +9,7 @@ import { Props } from './types'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarItemCompact'
+  name: 'PicassoSidebarItemCompact',
 })
 
 export const SidebarItemCompact = forwardRef<HTMLElement, Props>(

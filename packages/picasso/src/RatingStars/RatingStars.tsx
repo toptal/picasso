@@ -25,7 +25,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles(styles, {
-  name: 'PicassoRating'
+  name: 'PicassoRating',
 })
 
 const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
@@ -82,7 +82,7 @@ const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
             key={itemId}
             htmlFor={shouldReset ? resetInputId : itemId}
             className={cx(classes.label, {
-              [classes.clickableLabel]: interactive
+              [classes.clickableLabel]: interactive,
             })}
           >
             {renderItem(itemValue, defaultIcon)}
@@ -117,7 +117,7 @@ const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
 RatingStars.defaultProps = {
   interactive: true,
   max: 5,
-  size: 'small'
+  size: 'small',
 }
 
 RatingStars.displayName = 'RatingStars'

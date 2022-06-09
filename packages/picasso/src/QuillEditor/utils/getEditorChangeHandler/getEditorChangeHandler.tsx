@@ -13,7 +13,7 @@ type TextChangeArgs = [Delta, Delta, Sources]
 const handleNewLineAfterBlock = ({
   quill,
   onSelectionChange,
-  latestDelta
+  latestDelta,
 }: {
   quill: Quill
   onSelectionChange: (format: FormatType) => void

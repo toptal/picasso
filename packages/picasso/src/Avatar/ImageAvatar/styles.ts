@@ -11,16 +11,16 @@ export default () =>
       left: 0,
       top: 0,
       /* Required to prevent image blur on downscale */
-      imageRendering: '-webkit-optimize-contrast'
+      imageRendering: '-webkit-optimize-contrast',
     },
     logoContainer: {
       display: 'flex',
       position: 'absolute',
       bottom: '1rem',
-      left: '1rem'
+      left: '1rem',
     },
     logo: {
       width: rem('17px'),
-      height: rem('24px')
-    }
+      height: rem('24px'),
+    },
   })

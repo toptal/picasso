@@ -6,7 +6,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoLabelGroup'
+  name: 'PicassoLabelGroup',
 })
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -30,7 +30,7 @@ export const TagGroup = forwardRef<HTMLDivElement, Props>(function TagGroup(
 })
 
 TagGroup.defaultProps = {
-  children: undefined
+  children: undefined,
 }
 
 TagGroup.displayName = 'TagGroup'

@@ -16,7 +16,7 @@ const useMenuItem = (props: Props) => {
 
   return {
     ...useSlideMenuItem({ key, menu, onClick }),
-    ...useDrilldownMenuItem({ key, menu, onMouseEnter })
+    ...useDrilldownMenuItem({ key, menu, onMouseEnter }),
   }
 }
 

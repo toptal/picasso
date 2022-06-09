@@ -9,7 +9,7 @@ const CHART_DATA = [
   { x: 'Oct 23', talents: 3 },
   { x: 'Oct 24', talents: 4.8 },
   { x: 'Oct 25', talents: 9.1 },
-  { x: 'Oct 26', talents: 10 }
+  { x: 'Oct 26', talents: 10 },
 ]
 
 const Example = () => (
@@ -17,7 +17,7 @@ const Example = () => (
     data={CHART_DATA}
     showBottomYAxisLabel
     lineConfig={{
-      talents: { color: palette.blue.main }
+      talents: { color: palette.blue.main },
     }}
   />
 )

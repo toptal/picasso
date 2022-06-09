@@ -16,7 +16,7 @@ describe('Avatar', () => {
   it('renders with initials', () => {
     const { getByTestId } = renderAvatar({
       name: 'Jacqueline Roque',
-      testIds: { text: 'foo' }
+      testIds: { text: 'foo' },
     })
 
     expect(getByTestId('foo')).toHaveTextContent('JR')
@@ -25,7 +25,7 @@ describe('Avatar', () => {
   it('renders with a long name', () => {
     const { getByTestId } = renderAvatar({
       name: 'Jacqueline Roque Bailey Armstrong',
-      testIds: { text: 'foo' }
+      testIds: { text: 'foo' },
     })
 
     expect(getByTestId('foo')).toHaveTextContent('JRB')
@@ -35,7 +35,7 @@ describe('Avatar', () => {
     const { getByAltText } = renderAvatar({
       alt: 'Photo alt text',
       src: 'http://example.png',
-      name: 'Jacqueline Roque'
+      name: 'Jacqueline Roque',
     })
 
     expect(getByAltText('Photo alt text')).toBeVisible()
@@ -55,7 +55,7 @@ describe('Avatar', () => {
 
   it('renders with a placeholder icon', () => {
     const { getByTestId } = renderAvatar({
-      testIds: { icon: 'photo-placeholder' }
+      testIds: { icon: 'photo-placeholder' },
     })
 
     expect(getByTestId('photo-placeholder')).toBeVisible()

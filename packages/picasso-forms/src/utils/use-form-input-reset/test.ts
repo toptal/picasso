@@ -9,7 +9,7 @@ describe('useFormInputReset', () => {
     const { result } = renderHook(() =>
       useFormInputReset({
         input: {} as never,
-        enableReset
+        enableReset,
       })
     )
 
@@ -20,14 +20,14 @@ describe('useFormInputReset', () => {
     const enableReset = true
     const onResetClick = undefined
     const input = {
-      onChange: jest.fn()
+      onChange: jest.fn(),
     }
 
     const { result } = renderHook(() =>
       useFormInputReset({
         input: input as never,
         enableReset,
-        onResetClick
+        onResetClick,
       })
     )
 
@@ -47,14 +47,14 @@ describe('useFormInputReset', () => {
     const resetValue = 'reset-value'
     const onResetClick = jest.fn(callback => callback(resetValue))
     const input = {
-      onChange: jest.fn()
+      onChange: jest.fn(),
     }
 
     const { result } = renderHook(() =>
       useFormInputReset({
         input: input as never,
         enableReset,
-        onResetClick
+        onResetClick,
       })
     )
 

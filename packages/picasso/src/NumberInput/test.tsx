@@ -69,7 +69,7 @@ describe('NumberInput', () => {
   describe('near max/min limits', () => {
     it('increase value near max limit', () => {
       const { getByDisplayValue, queryAllByRole } = renderNumberInput({
-        initialValue: '97'
+        initialValue: '97',
       })
 
       const input = getByDisplayValue('97') as HTMLInputElement
@@ -84,7 +84,7 @@ describe('NumberInput', () => {
 
     it('decrease value near min limit', () => {
       const { getByDisplayValue, queryAllByRole } = renderNumberInput({
-        initialValue: '-97'
+        initialValue: '-97',
       })
 
       const input = getByDisplayValue('-97') as HTMLInputElement
@@ -99,7 +99,7 @@ describe('NumberInput', () => {
 
     it('decrease value when it is closer than step to max', () => {
       const { getByDisplayValue, queryAllByRole } = renderNumberInput({
-        initialValue: '97'
+        initialValue: '97',
       })
 
       const input = getByDisplayValue('97') as HTMLInputElement
@@ -114,7 +114,7 @@ describe('NumberInput', () => {
 
     it('increase value when it is closer to min than step', () => {
       const { getByDisplayValue, queryAllByRole } = renderNumberInput({
-        initialValue: '-97'
+        initialValue: '-97',
       })
 
       const input = getByDisplayValue('-97') as HTMLInputElement
@@ -133,7 +133,7 @@ describe('NumberInput', () => {
       const testProps: NumberInputProps = {
         value: '10',
         status: 'success',
-        testIds: { validIcon: 'valid-icon' }
+        testIds: { validIcon: 'valid-icon' },
       }
 
       const { getByTestId, rerender } = renderNumberInput(testProps)

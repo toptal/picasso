@@ -3,7 +3,7 @@ import { mount } from '@cypress/react'
 import {
   FieldRequirement,
   FieldRequirements,
-  FieldRequirementsProps
+  FieldRequirementsProps,
 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
@@ -15,8 +15,8 @@ const requirements: FieldRequirement<string>[] = [
       root: 'requirement-1',
       defaultIcon: 'requirement-1-default-icon',
       successIcon: 'requirement-1-success-icon',
-      errorIcon: 'requirement-1-error-icon'
-    }
+      errorIcon: 'requirement-1-error-icon',
+    },
   },
   {
     message: '1 uppercase character',
@@ -25,9 +25,9 @@ const requirements: FieldRequirement<string>[] = [
       root: 'requirement-2',
       defaultIcon: 'requirement-2-default-icon',
       successIcon: 'requirement-2-success-icon',
-      errorIcon: 'requirement-2-error-icon'
-    }
-  }
+      errorIcon: 'requirement-2-error-icon',
+    },
+  },
 ]
 
 const FieldRequirementsExample = (
@@ -40,7 +40,7 @@ const FieldRequirementsExample = (
     testIds={{
       description: 'field-requirements-description',
       root: 'field-requirements-root',
-      gridContainer: 'field-requirements-grid-container'
+      gridContainer: 'field-requirements-grid-container',
     }}
     {...props}
   />

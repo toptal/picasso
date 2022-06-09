@@ -8,7 +8,7 @@ describe('findExtremeNodes', () => {
       { id: 2, x: -50, y: -300 },
       { id: 3, x: -500, y: 20 },
       { id: 4, x: 400, y: 100 },
-      { id: 5, x: 600, y: 800 }
+      { id: 5, x: 600, y: 800 },
     ])
 
     expect(extremes).toBeDefined()
@@ -30,7 +30,7 @@ describe('findExtremeNodes', () => {
         { id: 2, x: -50, y: -300 },
         { id: 3, x: -500, y: -500 },
         { id: 4, x: 400, y: 100 },
-        { id: 5, x: 600, y: 800 }
+        { id: 5, x: 600, y: 800 },
       ])
 
       expect(extremes).toBeDefined()

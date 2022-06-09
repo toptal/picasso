@@ -36,9 +36,9 @@ const CHART_DATA_DAY = [
       '2020-12-06': 2700,
       '2020-12-07': 2516.31,
       '2020-12-08': 1944.33,
-      '2020-12-09': 802.15
-    }
-  }
+      '2020-12-09': 802.15,
+    },
+  },
 ]
 
 const CHART_DATA_HOUR = [
@@ -68,9 +68,9 @@ const CHART_DATA_HOUR = [
       '2020-11-18 22:59:59': 20.5,
       '2020-11-18 23:59:59': null,
       '2020-11-19 00:59:59': null,
-      '2020-11-19 01:59:59': null
-    }
-  }
+      '2020-11-19 01:59:59': null,
+    },
+  },
 ]
 
 const Example = () => (
@@ -79,7 +79,7 @@ const Example = () => (
     <AnalyticsChart
       data={CHART_DATA_DAY}
       lineConfig={{
-        global: { color: palette.blue.main }
+        global: { color: palette.blue.main },
       }}
       granularity='day'
       unit='minutes'
@@ -91,7 +91,7 @@ const Example = () => (
     <AnalyticsChart
       data={CHART_DATA_HOUR}
       lineConfig={{
-        global: { color: palette.blue.main }
+        global: { color: palette.blue.main },
       }}
       granularity='hour'
       unit='minutes'

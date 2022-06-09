@@ -6,7 +6,7 @@ import Typography from '../Typography'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'QuillEditorView'
+  name: 'QuillEditorView',
 })
 
 type QuillEditorViewProps = BaseProps & {

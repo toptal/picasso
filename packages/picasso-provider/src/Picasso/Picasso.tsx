@@ -5,7 +5,7 @@ import {
   Theme,
   ThemeOptions,
   StylesProvider,
-  createGenerateClassName
+  createGenerateClassName,
 } from '@material-ui/core/styles'
 import React, {
   ReactNode,
@@ -13,7 +13,7 @@ import React, {
   useState,
   forwardRef,
   ForwardRefExoticComponent,
-  RefAttributes
+  RefAttributes,
 } from 'react'
 import { Helmet } from 'react-helmet'
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -45,7 +45,7 @@ interface PicassoRootNodeProps {
 }
 
 const useGlobalStyles = makeStyles<Theme>(globalStyles, {
-  name: 'Picasso'
+  name: 'Picasso',
 })
 
 // eslint-disable-next-line react/display-name
@@ -70,7 +70,7 @@ const PicassoGlobalStylesProvider = (
     RootComponent,
     environment,
     titleCase,
-    disableTransitions
+    disableTransitions,
   } = props
 
   const rootRef = useRef<HTMLDivElement>(null)
@@ -80,7 +80,7 @@ const PicassoGlobalStylesProvider = (
     setHasTopBar: (hasTopBar: boolean) => {
       setContextValue({
         ...contextValue,
-        hasTopBar
+        hasTopBar,
       })
     },
     environment,
@@ -89,17 +89,17 @@ const PicassoGlobalStylesProvider = (
     setHasDrawer: (hasDrawer: boolean) => {
       setContextValue({
         ...contextValue,
-        hasDrawer
+        hasDrawer,
       })
     },
     hasSidebar: false,
     setHasSidebar: (hasSidebar: boolean) => {
       setContextValue({
         ...contextValue,
-        hasSidebar
+        hasSidebar,
       })
     },
-    disableTransitions
+    disableTransitions,
   })
 
   return (
@@ -192,7 +192,7 @@ const Picasso = ({
   theme,
   disableTransitions,
   disableClassNamePrefix,
-  injectFirst
+  injectFirst,
 }: PicassoProps) => {
   if (theme) {
     PicassoProvider.extendTheme(theme)
@@ -206,7 +206,7 @@ const Picasso = ({
   const generateClassName = createGenerateClassName({
     // if there are multiples instances of Picasso
     // on the page we want each set of styles to be unique
-    seed: disableClassNamePrefix ? '' : generateRandomStringOrGetEmptyInTest()
+    seed: disableClassNamePrefix ? '' : generateRandomStringOrGetEmptyInTest(),
   })
 
   return (
@@ -242,7 +242,7 @@ Picasso.defaultProps = {
   reset: true,
   fixViewport: true,
   injectFirst: undefined,
-  RootComponent: PicassoRootNode
+  RootComponent: PicassoRootNode,
 }
 
 export default Picasso

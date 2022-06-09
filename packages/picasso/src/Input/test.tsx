@@ -7,7 +7,7 @@ import Search16 from '../Icon/Search16'
 
 const testIds = {
   inputAdornment: 'limit-adornment-multiline-label',
-  resetButton: 'reset-adornment'
+  resetButton: 'reset-adornment',
 }
 
 const renderInput = (props: OmitInternalProps<Props>) => {
@@ -24,7 +24,7 @@ describe('Input', () => {
   it('renders icon in the beginning', () => {
     const { container } = renderInput({
       icon: <Search16 />,
-      iconPosition: 'start'
+      iconPosition: 'start',
     })
 
     expect(container).toMatchSnapshot()
@@ -47,7 +47,7 @@ describe('Input', () => {
       multiline: true,
       limit: 1,
       value: 'A',
-      testIds: { inputAdornment: testIds.inputAdornment }
+      testIds: { inputAdornment: testIds.inputAdornment },
     })
 
     expect(getByTestId(testIds.inputAdornment)).toMatchSnapshot()
@@ -58,7 +58,7 @@ describe('Input', () => {
       multiline: true,
       limit: 1,
       value: 'AB',
-      testIds: { inputAdornment: testIds.inputAdornment }
+      testIds: { inputAdornment: testIds.inputAdornment },
     })
 
     expect(getByTestId(testIds.inputAdornment)).toMatchSnapshot()
@@ -70,7 +70,7 @@ describe('Input', () => {
       counter: 'entered',
       limit: 1,
       value: 'AB',
-      testIds: { inputAdornment: testIds.inputAdornment }
+      testIds: { inputAdornment: testIds.inputAdornment },
     })
 
     const inputText = getByTestId(testIds.inputAdornment).textContent
@@ -82,7 +82,7 @@ describe('Input', () => {
   it('is focused when autoFocus', () => {
     const { getByPlaceholderText } = renderInput({
       autoFocus: true,
-      placeholder: 'test input'
+      placeholder: 'test input',
     })
 
     const input = getByPlaceholderText('test input')
@@ -94,7 +94,7 @@ describe('Input', () => {
     const { container } = renderInput({
       enableReset: true,
       value: 'Some value',
-      testIds: { resetButton: testIds.resetButton }
+      testIds: { resetButton: testIds.resetButton },
     })
 
     expect(container).toMatchSnapshot()
@@ -105,7 +105,7 @@ describe('Input', () => {
       multiline: true,
       multilineResizable: true,
       rows: 4,
-      value: 'Some value'
+      value: 'Some value',
     })
 
     expect(container).toMatchSnapshot()
@@ -115,7 +115,7 @@ describe('Input', () => {
     const handleClick = jest.fn()
     const { getByTestId } = renderInput({
       onClick: handleClick,
-      'data-testid': 'input'
+      'data-testid': 'input',
     })
 
     const input = getByTestId('input')
@@ -135,7 +135,7 @@ describe('Input', () => {
       const testProps: Props = {
         value: 'Some value',
         status: 'success',
-        testIds: { validIcon: 'valid-icon' }
+        testIds: { validIcon: 'valid-icon' },
       }
 
       const { getByTestId, rerender } = renderInput(testProps)

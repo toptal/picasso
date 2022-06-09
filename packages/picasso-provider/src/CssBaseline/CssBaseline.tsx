@@ -5,7 +5,7 @@ import { CssBaselineProps } from '@material-ui/core/CssBaseline'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoCssBaseline'
+  name: 'PicassoCssBaseline',
 })
 
 const CssBaseline = ({ children }: CssBaselineProps) => {

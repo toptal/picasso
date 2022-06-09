@@ -5,7 +5,7 @@ describe('getSelectedOptions', () => {
     const options = [
       { text: 'One', value: '1' },
       { text: 'Two', value: '2' },
-      { text: 'Three', value: '3' }
+      { text: 'Three', value: '3' },
     ]
 
     expect(getSelectedOptions(options, [])).toEqual([])
@@ -13,7 +13,7 @@ describe('getSelectedOptions', () => {
     expect(getSelectedOptions(options, ['1'])).toEqual([options[0]])
     expect(getSelectedOptions(options, ['1', '2'])).toEqual([
       options[0],
-      options[1]
+      options[1],
     ])
   })
 
@@ -21,7 +21,7 @@ describe('getSelectedOptions', () => {
     const options = [
       { text: 'One', value: 1 },
       { text: 'Two', value: 2 },
-      { text: 'Three', value: '3' }
+      { text: 'Three', value: '3' },
     ]
 
     expect(getSelectedOptions(options, [])).toEqual([])
@@ -29,7 +29,7 @@ describe('getSelectedOptions', () => {
     expect(getSelectedOptions(options, [1])).toEqual([options[0]])
     expect(getSelectedOptions(options, [2, '3'])).toEqual([
       options[1],
-      options[2]
+      options[2],
     ])
   })
 })

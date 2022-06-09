@@ -6,7 +6,7 @@ import {
   ColorType,
   SizeType,
   TextLabelProps,
-  useTitleCase
+  useTitleCase,
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -44,19 +44,19 @@ const getTypographySettings = (
       return {
         color: 'dark-grey',
         size: 'xsmall',
-        weight: 'semibold'
+        weight: 'semibold',
       }
     case TableSection.FOOTER:
       return {
         color: 'black',
         size: 'small',
-        weight: 'semibold'
+        weight: 'semibold',
       }
     default:
       return {
         color: 'dark-grey',
         size: 'small',
-        weight: 'inherit'
+        weight: 'inherit',
       }
   }
 }
@@ -95,7 +95,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         classes={muiClasses}
         className={cx(className, {
           [compactClass]: spacing === 'compact',
-          [narrowClass]: spacing === 'narrow'
+          [narrowClass]: spacing === 'narrow',
         })}
         style={style}
         colSpan={colSpan}
@@ -110,7 +110,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
 )
 
 TableCell.defaultProps = {
-  align: 'inherit'
+  align: 'inherit',
 }
 
 TableCell.displayName = 'TableCell'

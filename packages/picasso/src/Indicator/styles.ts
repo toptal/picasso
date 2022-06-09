@@ -5,21 +5,21 @@ export default ({ palette }: Theme) =>
     root: {
       width: '0.5rem',
       height: '0.5rem',
-      borderRadius: '50%'
+      borderRadius: '50%',
     },
     red: {
-      background: palette.red.main
+      background: palette.red.main,
     },
     yellow: {
-      background: palette.yellow.main
+      background: palette.yellow.main,
     },
     blue: {
-      background: palette.blue.main
+      background: palette.blue.main,
     },
     green: {
-      background: palette.green.dark
+      background: palette.green.dark,
     },
     'light-grey': {
-      background: palette.grey.light2
-    }
+      background: palette.grey.light2,
+    },
   })

@@ -9,14 +9,14 @@ import {
   useSubscribeToQuillEvents,
   useDisabledEditor,
   useKeyBindings,
-  useSubscribeToTextEditorEvents
+  useSubscribeToTextEditorEvents,
 } from './hooks'
 import useDefaultValue from './hooks/useDefaultValue'
 import {
   TextFormatHandler,
   ChangeHandler,
   SelectionHandler,
-  TextLengthChangeHandler
+  TextLengthChangeHandler,
 } from './types'
 
 export type Props = BaseProps & {
@@ -45,7 +45,7 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     onTextLengthChange,
     onSelectionChange,
     onTextFormat,
-    onTextChange
+    onTextChange,
   },
   ref
 ) {
@@ -62,11 +62,11 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     quill,
     onTextChange,
     onSelectionChange,
-    onTextLengthChange
+    onTextLengthChange,
   })
   useSubscribeToTextEditorEvents({
     editorRef,
-    quill
+    quill,
   })
   useDefaultValue({ defaultValue, quill })
 
@@ -79,7 +79,7 @@ QuillEditor.defaultProps = {
   onSelectionChange: () => {},
   onTextFormat: () => {},
   onTextLengthChange: () => {},
-  onTextChange: () => {}
+  onTextChange: () => {},
 }
 
 QuillEditor.displayName = 'QuillEditor'

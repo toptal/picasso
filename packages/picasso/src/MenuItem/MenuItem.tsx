@@ -5,7 +5,7 @@ import React, {
   HTMLAttributes,
   ElementType,
   ReactElement,
-  useRef
+  useRef,
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
@@ -15,7 +15,7 @@ import {
   BaseProps,
   ButtonOrAnchorProps,
   TextLabelProps,
-  OverridableComponent
+  OverridableComponent,
 } from '@toptal/picasso-shared'
 
 import Container from '../Container'
@@ -63,7 +63,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoMenuItem'
+  name: 'PicassoMenuItem',
 })
 
 export const MenuItem: OverridableComponent<Props> = forwardRef<
@@ -97,7 +97,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
   const { isOpened, onItemClick, onItemMouseEnter, onAwayClick } = useMenuItem({
     menu,
     onClick,
-    onMouseEnter
+    onMouseEnter,
   })
   const isLink = as === Link && rest.href
 
@@ -111,11 +111,11 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
         component={isLink ? 'a' : as}
         classes={{
           gutters: classes.gutters,
-          selected: classes.selected
+          selected: classes.selected,
         }}
         className={cx(classes.root, classes[variant], className, {
           [classes.nonSelectable]: nonSelectable,
-          [classes.disabled]: disabled
+          [classes.disabled]: disabled,
         })}
         disabled={disabled}
         disableGutters={disableGutters}
@@ -145,7 +145,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
             {typeof children === 'string' ? (
               <span
                 className={cx(classes.stringContent, {
-                  [classes.stringContentSemibold]: checkmarked
+                  [classes.stringContentSemibold]: checkmarked,
                 })}
                 style={style}
               >
@@ -181,9 +181,9 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           popperOptions={{
             modifiers: {
               offset: {
-                offset: `-10px,6px`
-              }
-            }
+                offset: `-10px,6px`,
+              },
+            },
           }}
         >
           <ClickAwayListener onClickAway={onAwayClick}>
@@ -198,7 +198,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
 MenuItem.defaultProps = {
   as: 'li',
   variant: 'light',
-  nonSelectable: false
+  nonSelectable: false,
 }
 
 MenuItem.displayName = 'MenuItem'
