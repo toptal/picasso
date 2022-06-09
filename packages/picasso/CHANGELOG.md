@@ -1,5 +1,19 @@
 # Change Log
 
+## 25.4.0
+
+### Minor Changes
+
+- [#2868](https://github.com/toptal/picasso/pull/2868) [`0645f129`](https://github.com/toptal/picasso/commit/0645f129cbdd797d2f6254ecb4b0c218e913ef73) Thanks [@sanex3339](https://github.com/sanex3339)! - ---
+
+  ### Autocomplete
+
+  - allow passing popper options
+
+  ### TagSelector
+
+  - allow passing popper options
+
 ## 25.3.3
 
 ### Patch Changes
