@@ -22,16 +22,16 @@ export default () =>
         height: rem('24px'),
         paddingLeft: rem('4px'),
         paddingRight: 0,
-        marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE
-      }
+        marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE,
+      },
     },
     withEndAdornment: {
-      paddingRight: `calc(2*${END_ADORNMENT_PADDING} + ${END_ADORNMENT_HEIGHT})`
+      paddingRight: `calc(2*${END_ADORNMENT_PADDING} + ${END_ADORNMENT_HEIGHT})`,
     },
     endAdornment: {
       position: 'absolute',
       top: `calc(50% - 0.5 * ${END_ADORNMENT_HEIGHT})`,
       right: '0.625em',
-      height: END_ADORNMENT_HEIGHT
-    }
+      height: END_ADORNMENT_HEIGHT,
+    },
   })

@@ -19,7 +19,7 @@ type LogoProps = {
 } & JssProps
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoImageAvatar'
+  name: 'PicassoImageAvatar',
 })
 
 const AvatarLogo = ({ size, classes }: LogoProps) => {
@@ -48,7 +48,7 @@ const ImageAvatar = (props: Props) => {
     size,
     src,
     style,
-    'data-testid': dataTestId
+    'data-testid': dataTestId,
   } = props
   const classes = useStyles(props)
 

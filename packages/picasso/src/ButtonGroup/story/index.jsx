@@ -21,5 +21,5 @@ const componentDocs = PicassoBook.createComponentDocs(
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

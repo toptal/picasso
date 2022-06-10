@@ -10,8 +10,8 @@ PicassoProvider.override(({ screens }: Theme) => ({
         left: '0 !important',
         // screen height - header height
         maxHeight: 'calc(100vh - 2.5em)',
-        padding: 0
-      }
-    }
-  }
+        padding: 0,
+      },
+    },
+  },
 }))

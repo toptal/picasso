@@ -11,7 +11,7 @@ const textAlignVariants = [
   'left',
   'center',
   'right',
-  'justify'
+  'justify',
 ] as const
 
 const alignItemsVariants = [
@@ -19,7 +19,7 @@ const alignItemsVariants = [
   'flex-end',
   'center',
   'stretch',
-  'baseline'
+  'baseline',
 ] as const
 
 const justifyContentVariants = [
@@ -28,7 +28,7 @@ const justifyContentVariants = [
   'center',
   'space-between',
   'space-around',
-  'space-evenly'
+  'space-evenly',
 ] as const
 
 const directionVariants = ['top', 'left', 'bottom', 'right'] as const
@@ -38,7 +38,7 @@ const spacingVariants = [
   'small',
   'medium',
   'large',
-  'xlarge'
+  'xlarge',
 ] as const
 
 const containerVariants = [
@@ -48,7 +48,7 @@ const containerVariants = [
   'white',
   'yellow',
   'blue',
-  'grey'
+  'grey',
 ] as const
 
 export type VariantType = typeof containerVariants[number]
@@ -60,7 +60,7 @@ type MapOfClasses = Record<string, Record<string, string>>
 
 const paddings = spacingVariants.reduce((acc, variant) => {
   acc[`${variant}Padding`] = {
-    padding: spacingToRem(variant as SpacingType)
+    padding: spacingToRem(variant as SpacingType),
   }
 
   return acc
@@ -68,7 +68,7 @@ const paddings = spacingVariants.reduce((acc, variant) => {
 
 const gaps = spacingVariants.reduce((acc, variant) => {
   acc[`${variant}Gap`] = {
-    gap: spacingToRem(variant as SpacingType)
+    gap: spacingToRem(variant as SpacingType),
   }
 
   return acc
@@ -80,12 +80,12 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   }
 
   return {
-    backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter
+    backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter,
   }
 }
 
 const marginClassDef = (direction: Direction, spacing: Spacing) => ({
-  [`margin${capitalize(direction)}`]: spacingToRem(spacing)
+  [`margin${capitalize(direction)}`]: spacingToRem(spacing),
 })
 
 const marginClasses = (direction: Direction) => {
@@ -94,7 +94,7 @@ const marginClasses = (direction: Direction) => {
     [`${direction}${'small'}Margin`]: marginClassDef(direction, 'small'),
     [`${direction}${'medium'}Margin`]: marginClassDef(direction, 'medium'),
     [`${direction}${'large'}Margin`]: marginClassDef(direction, 'large'),
-    [`${direction}${'xlarge'}Margin`]: marginClassDef(direction, 'xlarge')
+    [`${direction}${'xlarge'}Margin`]: marginClassDef(direction, 'xlarge'),
   }
 }
 
@@ -102,14 +102,14 @@ const margins: MapOfClasses = {
   ...marginClasses('top'),
   ...marginClasses('left'),
   ...marginClasses('bottom'),
-  ...marginClasses('right')
+  ...marginClasses('right'),
 }
 
 const alignItems: MapOfClasses = {}
 
 alignItemsVariants.forEach(variant => {
   alignItems[`${kebabToCamelCase(variant)}AlignItems`] = {
-    alignItems: variant
+    alignItems: variant,
   }
 })
 
@@ -117,7 +117,7 @@ const textAlignItems: MapOfClasses = {}
 
 textAlignVariants.forEach(variant => {
   textAlignItems[`${variant}TextAlign`] = {
-    textAlign: variant
+    textAlign: variant,
   }
 })
 
@@ -125,38 +125,38 @@ const justifyContent: MapOfClasses = {}
 
 justifyContentVariants.forEach(variant => {
   justifyContent[`${kebabToCamelCase(variant)}JustifyContent`] = {
-    justifyContent: variant
+    justifyContent: variant,
   }
 })
 
 export default ({ palette, sizes: { borderRadius } }: Theme) =>
   createStyles({
     bordered: {
-      border: `1px solid ${palette.grey.lighter2}`
+      border: `1px solid ${palette.grey.lighter2}`,
     },
 
     rounded: {
-      borderRadius: borderRadius.medium
+      borderRadius: borderRadius.medium,
     },
 
     flex: {
       display: 'flex',
 
       '&$inline': {
-        display: 'inline-flex'
-      }
+        display: 'inline-flex',
+      },
     },
 
     column: {
-      flexDirection: 'column'
+      flexDirection: 'column',
     },
 
     inline: {
-      display: 'inline-block'
+      display: 'inline-block',
     },
 
     whiteVariant: {
-      backgroundColor: palette.common.white
+      backgroundColor: palette.common.white,
     },
 
     redVariant: colorVariant(palette.red),
@@ -174,5 +174,5 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
     ...alignItems,
     ...justifyContent,
     ...textAlignItems,
-    ...gaps
+    ...gaps,
   })

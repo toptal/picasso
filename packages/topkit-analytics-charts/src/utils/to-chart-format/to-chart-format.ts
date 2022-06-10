@@ -38,7 +38,7 @@ const toChartFormat = (
 
       const dataPoint: ChartDataPoint = {
         [xAxisKey]: label,
-        [id]: nonNullValue
+        [id]: nonNullValue,
       }
 
       // We indicate that value is empty for particular data set with the special flag.

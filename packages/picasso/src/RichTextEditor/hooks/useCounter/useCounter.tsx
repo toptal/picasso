@@ -39,7 +39,7 @@ const getInitialCounterMessage = ({
   minLength,
   maxLength,
   minLengthMessage = defaultMinLengthMessage,
-  maxLengthMessage = defaultMaxLengthMessage
+  maxLengthMessage = defaultMaxLengthMessage,
 }: Props) => {
   if (minLength) {
     return minLengthMessage(minLength, 0, true)
@@ -56,14 +56,14 @@ const useCounter = ({
   minLength,
   maxLength,
   minLengthMessage = defaultMinLengthMessage,
-  maxLengthMessage = defaultMaxLengthMessage
+  maxLengthMessage = defaultMaxLengthMessage,
 }: Props) => {
   const [message, setMesssage] = useState(() =>
     getInitialCounterMessage({
       minLength,
       maxLength,
       minLengthMessage,
-      maxLengthMessage
+      maxLengthMessage,
     })
   )
   const [isError, setIsError] = useState(!!minLength)
@@ -112,7 +112,7 @@ const useCounter = ({
   return {
     counterMessage: message,
     counterError: isError,
-    handleCounterMessage
+    handleCounterMessage,
   }
 }
 

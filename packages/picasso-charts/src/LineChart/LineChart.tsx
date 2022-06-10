@@ -12,7 +12,7 @@ import {
   Area,
   Line,
   ResponsiveContainer,
-  Tooltip
+  Tooltip,
 } from 'recharts'
 import { ticks as getD3Ticks } from 'd3-array'
 import { makeStyles, Theme } from '@material-ui/core'
@@ -30,7 +30,7 @@ import {
   Domain,
   LineConfig,
   OrderedChartDataPoint,
-  HighlightConfig
+  HighlightConfig,
 } from '../types'
 
 const {
@@ -41,7 +41,7 @@ const {
   AXIS_LINE,
   IS_ANIMATION_ACTIVE,
   Y_AXIS_WIDTH,
-  NUMBER_OF_TICKS
+  NUMBER_OF_TICKS,
 } = CHART_CONSTANTS
 
 type RechartsOnMouseMove = CoordinatePayload | null
@@ -80,7 +80,7 @@ const StyleOverrides = () => (
             font-size: 11px;
             fill: ${palette.grey.dark};
           }
-      `
+      `,
     }}
   />
 )
@@ -151,7 +151,7 @@ const generateLineGraphs = (
 const positionOverride = { x: 0, y: 0 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'LineChart'
+  name: 'LineChart',
 })
 
 const defaultGetYAxisTicks = (domain: Domain) =>
@@ -174,7 +174,7 @@ export const LineChart = (props: Props) => {
     children,
     getXAxisTicks = getChartTicks,
     getYAxisTicks = defaultGetYAxisTicks,
-    formatYAxisTick
+    formatYAxisTick,
   } = props
 
   const yKey = Object.keys(lines)[0]
@@ -225,7 +225,7 @@ export const LineChart = (props: Props) => {
           data={orderedData}
           onMouseMove={onMouseMovement}
           className={cx({
-            [classes.hideBottomYAxisLabel]: !showBottomYAxisLabel
+            [classes.hideBottomYAxisLabel]: !showBottomYAxisLabel,
           })}
         >
           <CartesianGrid stroke={palette.grey.lighter2} />
@@ -308,7 +308,7 @@ LineChart.defaultProps = {
   unit: 'd',
   tooltip: false,
   allowTooltipEscapeViewBox: false,
-  xAxisKey: 'x'
+  xAxisKey: 'x',
 }
 
 LineChart.displayName = 'LineChart'

@@ -10,18 +10,18 @@ export default ({ palette, sizes }: Theme) =>
       backgroundColor: palette.common.white,
       justifyContent: 'flex-start',
       '& > *': {
-        flex: '1 0'
+        flex: '1 0',
       },
       '&:not(:first-child)': {
         borderTop: 0,
         borderTopLeftRadius: 0,
-        borderTopRightRadius: 0
+        borderTopRightRadius: 0,
       },
       '&:not(:last-child)': {
         borderBottom: 0,
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
-        paddingBottom: 0
-      }
-    }
+        paddingBottom: 0,
+      },
+    },
   })

@@ -14,9 +14,9 @@ describe('useRichText', () => {
             type: 'element',
             tagName: 'h1',
             properties: {},
-            children: [{ type: 'text', value: 'foobar' }]
-          }
-        ]
+            children: [{ type: 'text', value: 'foobar' }],
+          },
+        ],
       } as unknown as ASTType
       const { result } = renderHook(() => useRichText(tree))
 
@@ -36,9 +36,9 @@ describe('useRichText', () => {
               type: 'element',
               tagName: tag,
               properties: {},
-              children: [{ type: 'text', value: 'foobar' }]
-            }
-          ]
+              children: [{ type: 'text', value: 'foobar' }],
+            },
+          ],
         }
 
         const { result } = renderHook(() => useRichText(tree))
@@ -60,15 +60,15 @@ describe('useRichText', () => {
           type: 'element',
           tagName: 'h3',
           properties: {},
-          children: [{ type: 'text', value: 'foo' }]
+          children: [{ type: 'text', value: 'foo' }],
         },
         {
           type: 'element',
           tagName: 'p',
           properties: {},
-          children: [{ type: 'text', value: 'bar' }]
-        }
-      ]
+          children: [{ type: 'text', value: 'bar' }],
+        },
+      ],
     }
 
     const { result } = renderHook(() => useRichText(tree))
@@ -96,17 +96,17 @@ describe('useRichText', () => {
               type: 'element',
               tagName: 'li',
               properties: {},
-              children: [{ type: 'text', value: 'foo' }]
+              children: [{ type: 'text', value: 'foo' }],
             },
             {
               type: 'element',
               tagName: 'li',
               properties: {},
-              children: [{ type: 'text', value: 'bar' }]
-            }
-          ]
-        }
-      ]
+              children: [{ type: 'text', value: 'bar' }],
+            },
+          ],
+        },
+      ],
     }
 
     const { result } = renderHook(() => useRichText(tree))
@@ -128,7 +128,7 @@ describe('useRichText', () => {
       const { result } = renderHook(() =>
         useRichText({
           type: 'root',
-          children: []
+          children: [],
         })
       )
 
@@ -145,15 +145,15 @@ describe('useRichText', () => {
             type: 'element',
             tagName: 'h3',
             properties: {},
-            children: [{ type: 'text', value: 'foobar' }]
+            children: [{ type: 'text', value: 'foobar' }],
           },
           {
             type: 'element',
             tagName: 'br',
             properties: {},
-            children: []
-          }
-        ]
+            children: [],
+          },
+        ],
       }
 
       const { result } = renderHook(() => useRichText(tree))
@@ -172,7 +172,7 @@ describe('useRichText', () => {
     it('returns null', () => {
       const { result } = renderHook(() =>
         useRichText({
-          type: 'root'
+          type: 'root',
         })
       )
 

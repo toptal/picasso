@@ -4,6 +4,6 @@ export default ({ palette }: Theme) =>
   createStyles({
     pointLink: {
       fill: 'none',
-      stroke: palette.grey.light2
-    }
+      stroke: palette.grey.light2,
+    },
   })

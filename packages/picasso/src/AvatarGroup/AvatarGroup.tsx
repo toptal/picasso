@@ -31,7 +31,7 @@ export interface Props extends Omit<BaseProps, 'data-testid'> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAvatarGroup'
+  name: 'PicassoAvatarGroup',
 })
 
 const AvatarGroup = ({
@@ -40,7 +40,7 @@ const AvatarGroup = ({
   testIds,
   items,
   limit,
-  size
+  size,
 }: Props) => {
   const classes = useStyles()
 
@@ -96,7 +96,7 @@ const AvatarGroup = ({
 
 AvatarGroup.defaultProps = {
   limit: 5,
-  size: 'xsmall'
+  size: 'xsmall',
 }
 
 export default AvatarGroup

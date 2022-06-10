@@ -12,7 +12,7 @@ import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import { Status } from '../OutlinedInput'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTimePicker'
+  name: 'PicassoTimePicker',
 })
 
 export interface Props
@@ -52,7 +52,7 @@ export const TimePicker = (props: Props) => {
     name: 'error',
     componentName: 'TimePicker',
     description:
-      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
   })
 
   const classes = useStyles()
@@ -65,7 +65,7 @@ export const TimePicker = (props: Props) => {
     startsWithTwo ? /[0-3]/ : /[0-9]/,
     ':',
     /[0-5]/,
-    /[0-9]/
+    /[0-9]/,
   ]
 
   const icon = <Time16 classes={{ root: classes.icon }} />
@@ -82,7 +82,7 @@ export const TimePicker = (props: Props) => {
         className={cx(classes.root, className)}
         inputProps={{
           className: classes.inputBase,
-          ...rest
+          ...rest,
         }}
         startAdornment={
           <InputMask
@@ -113,14 +113,14 @@ export const TimePicker = (props: Props) => {
       inputProps={{
         className: classes.inputBase,
         step: 60, // 1 min
-        ...rest
+        ...rest,
       }}
     />
   )
 }
 
 TimePicker.defaultProps = {
-  status: 'default'
+  status: 'default',
 }
 
 TimePicker.displayName = 'TimePicker'

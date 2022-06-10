@@ -5,7 +5,7 @@ import 'quill-paste-smart'
 import {
   useTypographyClasses,
   makeHeaderFormat,
-  makeBoldFormat
+  makeBoldFormat,
 } from '../../formats'
 
 export type EditorOptionsType = {
@@ -21,10 +21,10 @@ export const getModules = (): QuillOptionsStatic['modules'] => {
         // unsupported tags will be also removed on BE side, so before extending
         // make sure, that our API supports new type
         tags: ['b', 'strong', 'i', 'em', 'p', 'br', 'ul', 'ol', 'li', 'h3'],
-        attributes: []
+        attributes: [],
       },
       keepSelection: true,
-      substituteBlockElements: true
+      substituteBlockElements: true,
     },
     keyboard: {
       // we need to specify default bindings
@@ -36,16 +36,16 @@ export const getModules = (): QuillOptionsStatic['modules'] => {
           key: 'B',
           metaKey: true,
           ctrlKey: true,
-          handler: function () {}
+          handler: function () {},
         },
         italic: {
           key: 'I',
           metaKey: true,
           ctrlKey: true,
-          handler: function () {}
-        }
-      }
-    }
+          handler: function () {},
+        },
+      },
+    },
   }
 }
 
@@ -60,12 +60,12 @@ const formats: QuillOptionsStatic['formats'] = [
   'bold',
   'italic',
   'header',
-  'list'
+  'list',
 ]
 
 const useQuillInstance = ({
   id,
-  placeholder
+  placeholder,
 }: EditorOptionsType): Quill | undefined => {
   const [quill, setQuill] = useState<Quill>()
   const typographyClasses = useTypographyClasses()
@@ -78,7 +78,7 @@ const useQuillInstance = ({
       new Quill(`#${id}`, {
         modules: getModules(),
         formats,
-        placeholder
+        placeholder,
       })
     )
   }, [typographyClasses, id, placeholder])

@@ -40,7 +40,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSection'
+  name: 'PicassoSection',
 })
 
 export const Section = forwardRef<HTMLDivElement, Props>(function Section(
@@ -125,7 +125,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       className={cx(
         {
           [classes[variant]]: true,
-          [classes.collapsed]: variant === 'default' && collapsed
+          [classes.collapsed]: variant === 'default' && collapsed,
         },
         classes.root,
         className
@@ -141,7 +141,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
           data-testid={testIds?.header}
           className={cx({
             [classes[`${variant}Header`]]: true,
-            [classes[`${variant}CollapsedHeader`]]: collapsed
+            [classes[`${variant}CollapsedHeader`]]: collapsed,
           })}
         >
           {renderTitle()}
@@ -160,7 +160,7 @@ Section.displayName = 'Section'
 Section.defaultProps = {
   collapsible: false,
   defaultCollapsed: true,
-  titleSize: 'medium'
+  titleSize: 'medium',
 }
 
 export default Section

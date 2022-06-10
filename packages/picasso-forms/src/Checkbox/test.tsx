@@ -61,10 +61,10 @@ describe('Form.Checkbox', () => {
   it('required with asterisk single checkbox', () => {
     const { container } = renderCheckbox(
       {
-        required: true
+        required: true,
       },
       {
-        requiredVariant: 'asterisk'
+        requiredVariant: 'asterisk',
       }
     )
 

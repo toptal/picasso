@@ -14,7 +14,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoHelpboxActions'
+  name: 'PicassoHelpboxActions',
 })
 
 export const HelpboxActions = forwardRef<HTMLDivElement, Props>(
@@ -33,7 +33,7 @@ export const HelpboxActions = forwardRef<HTMLDivElement, Props>(
         className={cx(
           classes.root,
           {
-            [classes.rootCloseable]: closeable
+            [classes.rootCloseable]: closeable,
           },
           className
         )}

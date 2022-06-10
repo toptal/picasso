@@ -10,6 +10,6 @@ export default ({ palette }: Theme) =>
       justifyContent: 'space-between',
       margin: 0,
       padding: '0.25rem 0',
-      borderTop: `1px solid ${palette.grey.lighter2}`
-    }
+      borderTop: `1px solid ${palette.grey.lighter2}`,
+    },
   })

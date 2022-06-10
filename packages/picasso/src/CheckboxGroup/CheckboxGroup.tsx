@@ -24,7 +24,7 @@ export interface Props extends FormGroupProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoCheckboxGroup'
+  name: 'PicassoCheckboxGroup',
 })
 
 const CheckboxGroup = (props: Props) => {
@@ -67,7 +67,7 @@ const CheckboxGroup = (props: Props) => {
 }
 
 CheckboxGroup.defaultProps = {
-  horizontal: false
+  horizontal: false,
 }
 
 export default CheckboxGroup

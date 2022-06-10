@@ -39,7 +39,7 @@ describe('Switch', () => {
   it('renders disabled state', () => {
     const { getByTestId } = renderSwitch({
       disabled: true,
-      label: 'Disabled'
+      label: 'Disabled',
     })
 
     expect(getByTestId('switch')).toMatchSnapshot()

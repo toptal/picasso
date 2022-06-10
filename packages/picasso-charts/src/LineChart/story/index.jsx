@@ -8,7 +8,7 @@ const page = PicassoBook.section('Picasso Charts').createPage(
 
 page.createTabChapter('Props').addComponentDocs({
   component: LineChart,
-  name: 'LineChart'
+  name: 'LineChart',
 })
 
 page

@@ -8,7 +8,7 @@ const WithCustomDayRendering = () => {
   const minDate = new Date('2015-12-07')
 
   const disabledIntervals = [
-    { start: new Date('2015-12-20'), end: new Date('2015-12-30') }
+    { start: new Date('2015-12-20'), end: new Date('2015-12-30') },
   ]
 
   return (

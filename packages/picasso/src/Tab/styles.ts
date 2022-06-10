@@ -13,19 +13,19 @@ PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
       overflow: 'initial',
 
       [breakpoints.up('md')]: {
-        padding: undefined
+        padding: undefined,
       },
 
       color: palette.grey.dark,
 
       '&:not(:last-child)': {
-        marginRight: '2em'
+        marginRight: '2em',
       },
 
       [breakpoints.up('md')]: {
         minWidth: 'auto',
-        fontSize: '1rem'
-      }
+        fontSize: '1rem',
+      },
     },
     labelIcon: {
       minHeight: 0,
@@ -34,22 +34,22 @@ PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
       '& $wrapper > *:first-child': {
         position: 'absolute',
         right: 0,
-        marginBottom: 0
-      }
+        marginBottom: 0,
+      },
     },
     selected: {
-      color: palette.common.black
+      color: palette.common.black,
     },
     textColorInherit: {
       '&$disabled': {
-        color: palette.grey.main
-      }
+        color: palette.grey.main,
+      },
     },
     disabled: {},
     wrapper: {
-      width: 'auto'
-    }
-  }
+      width: 'auto',
+    },
+  },
 }))
 
 export default () => createStyles({})

@@ -13,7 +13,7 @@ const TestTypography = ({
   variant,
   size,
   titleCase,
-  children
+  children,
 }: OmitInternalProps<Props>) => {
   return (
     <Typography

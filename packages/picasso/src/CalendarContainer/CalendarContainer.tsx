@@ -5,7 +5,7 @@ import { CalendarProps } from '../Calendar/types'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoCalendarContainer'
+  name: 'PicassoCalendarContainer',
 })
 
 const CalendarContainer = ({ children }: CalendarProps) => {

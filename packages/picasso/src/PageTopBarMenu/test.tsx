@@ -9,7 +9,7 @@ import PageTopBarMenu, { Props } from './PageTopBarMenu'
 const TestPageTopBarMenu = ({
   children,
   name,
-  avatar
+  avatar,
 }: OmitInternalProps<Props>) => {
   return (
     <PageTopBarMenu name={name} avatar={avatar}>

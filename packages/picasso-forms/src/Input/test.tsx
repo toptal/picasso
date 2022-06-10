@@ -25,7 +25,7 @@ describe('Input', () => {
 
     const { getByPlaceholderText } = renderForm({
       onSubmit: () => {},
-      onFocus: handleFocus
+      onFocus: handleFocus,
     })
 
     fireEvent.focus(getByPlaceholderText('test input'))

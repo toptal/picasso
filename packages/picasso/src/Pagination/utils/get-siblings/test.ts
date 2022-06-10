@@ -24,14 +24,14 @@ describe('getSiblings', () => {
       getSiblings({ activePage: 24, totalPages: 52, siblingCount: 2 })
     ).toEqual([
       [22, 23],
-      [25, 26]
+      [25, 26],
     ])
 
     expect(
       getSiblings({ activePage: 5, totalPages: 10, siblingCount: 2 })
     ).toEqual([
       [3, 4],
-      [6, 7]
+      [6, 7],
     ])
   })
 })

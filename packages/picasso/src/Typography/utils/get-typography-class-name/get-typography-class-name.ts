@@ -12,7 +12,7 @@ const getTypographyClassName = (
     weight,
     underline,
     invert,
-    lineThrough
+    lineThrough,
   }: {
     variant: 'heading' | 'body'
     size:
@@ -41,7 +41,7 @@ const getTypographyClassName = (
     underlineClass,
     {
       [classes.invert]: invert,
-      [classes.lineThrough]: lineThrough
+      [classes.lineThrough]: lineThrough,
     }
   )
 }

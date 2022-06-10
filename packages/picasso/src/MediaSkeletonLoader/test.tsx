@@ -6,7 +6,7 @@ import {
   getAttributes,
   getAvatarAttributes,
   getIconAttributes,
-  getImageAttributes
+  getImageAttributes,
 } from './MediaSkeletonLoader'
 
 const DEFAULT_BORDER_RADIUS = '5px'
@@ -16,34 +16,34 @@ describe('getAvatarAttributes', () => {
     expect(getAvatarAttributes({})).toStrictEqual({
       width: 40,
       height: 40,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
   })
   it('supports all avatar size variants', () => {
     expect(getAvatarAttributes({ size: 'xxsmall' })).toStrictEqual({
       width: 32,
       height: 32,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
     expect(getAvatarAttributes({ size: 'xsmall' })).toStrictEqual({
       width: 40,
       height: 40,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
     expect(getAvatarAttributes({ size: 'small' })).toStrictEqual({
       width: 80,
       height: 80,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
     expect(getAvatarAttributes({ size: 'medium' })).toStrictEqual({
       width: 120,
       height: 120,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
     expect(getAvatarAttributes({ size: 'large' })).toStrictEqual({
       width: 160,
       height: 160,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
   })
 })
@@ -53,12 +53,12 @@ describe('getIconAttributes', () => {
     expect(getIconAttributes({ circle: false })).toStrictEqual({
       width: 16,
       height: 16,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
     expect(getIconAttributes({ circle: true })).toStrictEqual({
       width: 16,
       height: 16,
-      borderRadius: '50%'
+      borderRadius: '50%',
     })
   })
 
@@ -66,12 +66,12 @@ describe('getIconAttributes', () => {
     expect(getIconAttributes({ circle: false, size: 'medium' })).toStrictEqual({
       width: 16,
       height: 16,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
     expect(getIconAttributes({ circle: false, size: 'large' })).toStrictEqual({
       width: 24,
       height: 24,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
   })
 })
@@ -83,14 +83,14 @@ describe('getImageAttributes', () => {
     ).toStrictEqual({
       width: 1,
       height: 1,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
     expect(
       getImageAttributes({ circle: true, width: 1, height: 1 })
     ).toStrictEqual({
       width: 1,
       height: 1,
-      borderRadius: '50%'
+      borderRadius: '50%',
     })
   })
 
@@ -100,7 +100,7 @@ describe('getImageAttributes', () => {
     ).toStrictEqual({
       width: 24,
       height: 24,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
   })
 
@@ -110,7 +110,7 @@ describe('getImageAttributes', () => {
     ).toStrictEqual({
       width: 16,
       height: 16,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
   })
 })
@@ -120,7 +120,7 @@ describe('getAttributes', () => {
     expect(getAttributes({ variant: 'icon' })).toStrictEqual({
       width: 16,
       height: 16,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
   })
 
@@ -128,7 +128,7 @@ describe('getAttributes', () => {
     expect(getAttributes({ variant: 'avatar' })).toStrictEqual({
       width: 40,
       height: 40,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
   })
 
@@ -138,7 +138,7 @@ describe('getAttributes', () => {
     ).toStrictEqual({
       width: 24,
       height: 24,
-      borderRadius: DEFAULT_BORDER_RADIUS
+      borderRadius: DEFAULT_BORDER_RADIUS,
     })
   })
 })

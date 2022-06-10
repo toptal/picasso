@@ -6,11 +6,11 @@ const chapter = PicassoBook.connectToPage(page =>
     .createChapter('Split Button', 'Combine dropdown with menu and a button.')
     .addExample('ButtonSplit/story/Variants.example.tsx', {
       title: 'Variants',
-      takeScreenshot: false
+      takeScreenshot: false,
     })
     .addExample('ButtonSplit/story/Sizes.example.tsx', {
       title: 'Sizes',
-      takeScreenshot: false
+      takeScreenshot: false,
     })
     // happo makes snapshot of the DOM and replicates it on their machine to make a screenshot
     // so focused, active and other states of the button are lost
@@ -24,5 +24,5 @@ const componentDocs = PicassoBook.createComponentDocs(
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

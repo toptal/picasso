@@ -11,14 +11,14 @@ interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoIconAvatar'
+  name: 'PicassoIconAvatar',
 })
 
 const IconAvatar = ({
   size,
   'data-testid': dataTestId,
   className,
-  style
+  style,
 }: Props) => {
   const classes = useStyles()
 

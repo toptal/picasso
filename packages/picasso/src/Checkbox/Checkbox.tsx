@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   ButtonOrAnchorProps,
   BaseProps,
-  TextLabelProps
+  TextLabelProps,
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import React, { ComponentProps, forwardRef, ReactNode } from 'react'
@@ -61,7 +61,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
     const classes = useStyles()
     const rootClasses = {
       root: classes.root,
-      disabled: classes.disabled
+      disabled: classes.disabled,
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { color, ...checkboxAttributes } = rest
@@ -79,7 +79,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
           indeterminateIcon={<div className={classes.indeterminateIcon} />}
           classes={rootClasses}
           className={cx(className, {
-            [classes.withLabel]: Boolean(label)
+            [classes.withLabel]: Boolean(label),
           })}
           style={style}
           disabled={disabled}
@@ -98,7 +98,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
 
     const externalEventListeners = {
       onMouseLeave: rest.onMouseLeave,
-      onMouseOver: rest.onMouseOver
+      onMouseOver: rest.onMouseOver,
     } as ComponentProps<typeof FormControlLabel>
 
     return (
@@ -107,7 +107,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         ref={ref as React.ForwardedRef<HTMLLabelElement>}
         classes={{
           ...rootClasses,
-          label: classes.label
+          label: classes.label,
         }}
         control={muiCheckbox}
         requiredDecoration={requiredDecoration}
@@ -123,11 +123,11 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
 Checkbox.defaultProps = {
   disabled: false,
   indeterminate: false,
-  onChange: () => {}
+  onChange: () => {},
 }
 
 Checkbox.displayName = 'Checkbox'
 
 export default Object.assign(Checkbox, {
-  Group: CheckboxGroup
+  Group: CheckboxGroup,
 })

@@ -27,7 +27,7 @@ type Props = {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'RichTextEditorToolbar'
+  name: 'RichTextEditorToolbar',
 })
 
 export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
@@ -41,7 +41,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       onHeaderChange,
       onUnorderedClick,
       onOrderedClick,
-      testIds
+      testIds,
     } = props
 
     const classes = useStyles(props)
@@ -55,7 +55,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             value={format.header}
             options={[
               { value: '3', text: 'heading' },
-              { value: '', text: 'normal' }
+              { value: '', text: 'normal' },
             ]}
             size='small'
             menuWidth='123px'
@@ -107,13 +107,13 @@ RichTextEditorToolbar.defaultProps = {
     bold: false,
     italic: false,
     list: false,
-    header: ''
+    header: '',
   },
   onBoldClick: () => {},
   onItalicClick: () => {},
   onHeaderChange: () => {},
   onUnorderedClick: () => {},
-  onOrderedClick: () => {}
+  onOrderedClick: () => {},
 }
 
 RichTextEditorToolbar.displayName = 'RichTextEditorToolbar'

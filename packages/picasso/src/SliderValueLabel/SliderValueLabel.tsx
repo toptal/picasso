@@ -28,7 +28,7 @@ const SliderValueLabel = ({
   open,
   value,
   valueLabelDisplay,
-  index
+  index,
 }: Props) => {
   const thumbRef = useRef<HTMLDivElement>(null)
   const { registerValueLabel, hasTooltipOverlow } = useSliderContext()

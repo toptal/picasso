@@ -13,7 +13,7 @@ interface RenderTimelineArgs {
 const renderTimeline = ({
   hasIcons,
   hasDates,
-  trimLastConnector
+  trimLastConnector,
 }: RenderTimelineArgs = {}) => (
   <TestingPicasso>
     <div style={{ maxWidth: 500 }}>

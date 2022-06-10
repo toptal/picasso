@@ -4,7 +4,7 @@ import { Avatar, Container } from '@toptal/picasso'
 const person = {
   alt: 'Jacqueline Roque. Pablo Picasso, 1954',
   src: './jacqueline-with-flowers-1954-square.jpg',
-  name: 'Jacqueline Roque'
+  name: 'Jacqueline Roque',
 }
 
 const generatePeople = (

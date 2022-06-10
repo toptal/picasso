@@ -10,15 +10,15 @@ const chapter = PicassoBook.connectToPage(page =>
     .addExample('PageTopBar/story/Variants.example.tsx', 'Variants')
     .addExample('PageTopBar/story/LeftContent.example.tsx', {
       title: 'Left content',
-      waitUntilImagesLoaded: true
+      waitUntilImagesLoaded: true,
     })
     .addExample('PageTopBar/story/RightContent.example.tsx', {
       title: 'Right content',
-      waitUntilImagesLoaded: true
+      waitUntilImagesLoaded: true,
     })
     .addExample('PageTopBar/story/ExtraMenuContent.example.tsx', {
       title: 'Extra header menu content',
-      waitUntilImagesLoaded: true
+      waitUntilImagesLoaded: true,
     })
     .addExample('PageTopBar/story/Link.example.tsx', 'With link')
     .addExample('PageTopBar/story/WithoutTitle.example.tsx', 'Without title')
@@ -27,5 +27,5 @@ const chapter = PicassoBook.connectToPage(page =>
 
 export default {
   componentDocs,
-  chapter
+  chapter,
 }

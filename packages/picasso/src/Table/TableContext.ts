@@ -7,7 +7,7 @@ export interface TableConfig {
 
 const TableContext = createContext<TableConfig>({
   spacing: 'regular',
-  variant: 'bordered'
+  variant: 'bordered',
 })
 
 export default TableContext

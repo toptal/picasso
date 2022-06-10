@@ -14,21 +14,21 @@ page
   .createChapter()
   .addExample('PromptModal/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('PromptModal/story/Variants.example.tsx', {
     title: 'Variants',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('PromptModal/story/WithInput.example.tsx', {
     title: 'With Input',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('PromptModal/story/WithAutocomplete.example.tsx', {
     title: 'With Autocomplete',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('PromptModal/story/ErrorHandling.example.tsx', {
     title: 'Error handling',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

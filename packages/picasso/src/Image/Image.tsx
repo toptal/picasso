@@ -44,7 +44,7 @@ export const Image = forwardRef<HTMLImageElement, Props>(function Image(
       alt={alt}
       className={cx(
         {
-          [classes.circular]: variant === 'circular'
+          [classes.circular]: variant === 'circular',
         },
         classes.root,
         className
@@ -55,7 +55,7 @@ export const Image = forwardRef<HTMLImageElement, Props>(function Image(
 })
 
 Image.defaultProps = {
-  variant: 'rectangle'
+  variant: 'rectangle',
 }
 
 Image.displayName = 'Image'

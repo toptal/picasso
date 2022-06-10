@@ -17,7 +17,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoGridItem'
+  name: 'PicassoGridItem',
 })
 
 export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(

@@ -3,7 +3,7 @@ import {
   render,
   fireEvent,
   RenderResult,
-  PicassoConfig
+  PicassoConfig,
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
@@ -58,7 +58,7 @@ describe('Button', () => {
     const { getByText } = renderButton({
       children: 'Click me!',
       onClick,
-      loading: true
+      loading: true,
     })
 
     fireEvent.click(getByText('Click me!'))
@@ -98,7 +98,7 @@ describe('Button', () => {
       api = renderButton({
         children: 'Click me!',
         onClick,
-        disabled: true
+        disabled: true,
       })
     })
     it('renders disabled version', () => {
@@ -121,7 +121,7 @@ describe('Button', () => {
       const { container } = renderButton({
         children: 'Click me!',
         disabled: true,
-        as: Link
+        as: Link,
       })
 
       expect(container).toMatchSnapshot()

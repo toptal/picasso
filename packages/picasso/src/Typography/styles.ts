@@ -7,7 +7,7 @@ const getHeadingMedium = (theme: Theme) => ({
   color: theme.palette.common.black,
   fontWeight: theme.typography.fontWeights.semibold,
   fontSize: '16px',
-  lineHeight: '24px'
+  lineHeight: '24px',
 })
 
 // TODO: https://toptal-core.atlassian.net/browse/FX-2166
@@ -22,28 +22,28 @@ PicassoProvider.override(theme => {
         color: palette.common.black,
         fontWeight: typography.fontWeights.semibold,
         fontSize: '28px',
-        lineHeight: '42px'
+        lineHeight: '42px',
       },
       [toMuiVariant('heading', 'large')]: {
         color: palette.common.black,
         fontWeight: typography.fontWeights.semibold,
         fontSize: '20px',
-        lineHeight: '30px'
+        lineHeight: '30px',
       },
       [toMuiVariant('heading', 'medium')]: getHeadingMedium(theme),
       [toMuiVariant('heading', 'small')]: {
         color: palette.common.black,
         fontWeight: typography.fontWeights.semibold,
         fontSize: '14px',
-        lineHeight: '22px'
+        lineHeight: '22px',
       },
       [toMuiVariant('body', 'medium')]: {
         color: palette.text.primary,
         fontWeight: typography.fontWeights.regular,
         fontSize: '14px',
-        lineHeight: '22px'
-      }
-    }
+        lineHeight: '22px',
+      },
+    },
   }
 })
 
@@ -56,92 +56,92 @@ export default (theme: Theme) => {
       color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
       fontSize: '11px',
-      lineHeight: '16px'
+      lineHeight: '16px',
     },
     bodyXsmall: {
       color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
       fontSize: '12px',
-      lineHeight: '18px'
+      lineHeight: '18px',
     },
     bodySmall: {
       color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
       fontSize: '13px',
-      lineHeight: '20px'
+      lineHeight: '20px',
     },
     bodyMedium: {
       color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
       fontSize: '14px',
-      lineHeight: '22px'
+      lineHeight: '22px',
     },
     bodyLarge: {
       color: palette.common.black,
       fontWeight: typography.fontWeights.regular,
       fontSize: '16px',
-      lineHeight: '24px'
+      lineHeight: '24px',
     },
     bodyInherit: {
       fontSize: '1em',
       lineHeight: '1.5em',
       fontWeight: typography.fontWeights.regular,
-      color: palette.text.primary
+      color: palette.text.primary,
     },
 
     headingMedium: getHeadingMedium(theme),
 
     regular: {
-      fontWeight: typography.fontWeights.regular
+      fontWeight: typography.fontWeights.regular,
     },
     semibold: {
-      fontWeight: typography.fontWeights.semibold
+      fontWeight: typography.fontWeights.semibold,
     },
     inheritWeight: {
-      fontWeight: 'inherit'
+      fontWeight: 'inherit',
     },
 
     green: {
-      color: palette.green.dark
+      color: palette.green.dark,
     },
     red: {
-      color: palette.red.main
+      color: palette.red.main,
     },
     yellow: {
-      color: palette.yellow.main
+      color: palette.yellow.main,
     },
     lightGrey: {
-      color: palette.grey.light2
+      color: palette.grey.light2,
     },
     grey: {
-      color: palette.grey.main
+      color: palette.grey.main,
     },
     darkGrey: {
-      color: palette.text.primary
+      color: palette.text.primary,
     },
     black: {
-      color: palette.common.black
+      color: palette.common.black,
     },
     lightBlue: {
-      color: palette.blue.light
+      color: palette.blue.light,
     },
     invert: {
-      color: palette.common.white
+      color: palette.common.white,
     },
     inherit: {
-      color: 'inherit'
+      color: 'inherit',
     },
 
     solid: {
       textDecoration: 'underline',
-      textDecorationStyle: 'solid'
+      textDecorationStyle: 'solid',
     },
     dashed: {
       textDecoration: 'underline',
-      textDecorationStyle: 'dashed'
+      textDecorationStyle: 'dashed',
     },
     lineThrough: {
-      textDecoration: 'line-through'
-    }
+      textDecoration: 'line-through',
+    },
   })
 }

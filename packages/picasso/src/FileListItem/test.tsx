@@ -5,7 +5,7 @@ import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
 import FileListItem, { Props } from './FileListItem'
 
 const testIds = {
-  progressBar: 'file-list-item-progressbar'
+  progressBar: 'file-list-item-progressbar',
 }
 
 const renderFileListItem = (props: OmitInternalProps<Props>) =>
@@ -16,14 +16,14 @@ describe('FileListItem', () => {
     file: new File(['user-profile-picture.png'], 'user-profile-picture.png'),
     uploading: false,
     progress: 0,
-    error: undefined
+    error: undefined,
   }
 
   it('renders', () => {
     const { container } = renderFileListItem({
       file,
       index: 0,
-      onRemove: jest.fn()
+      onRemove: jest.fn(),
     })
 
     expect(container).toMatchSnapshot()
@@ -35,7 +35,7 @@ describe('FileListItem', () => {
     const { getByRole } = renderFileListItem({
       file,
       index: 0,
-      onRemove: handleRemove
+      onRemove: handleRemove,
     })
 
     fireEvent.click(getByRole('button'))
@@ -49,7 +49,7 @@ describe('FileListItem', () => {
     it(`renders 'Uploading...' label and progress bar`, () => {
       const { queryByText, queryByTestId } = renderFileListItem({
         file: { ...file, uploading: true, progress: 30 },
-        index: 0
+        index: 0,
       })
 
       expect(queryByText('Uploading...')).toBeInTheDocument()
@@ -63,9 +63,9 @@ describe('FileListItem', () => {
             ...file,
             uploading: true,
             progress: 30,
-            error: 'File is too large'
+            error: 'File is too large',
           },
-          index: 0
+          index: 0,
         })
 
         expect(queryByText('Uploading...')).not.toBeInTheDocument()
@@ -86,9 +86,9 @@ describe('FileListItem', () => {
           ...file,
           uploading: true,
           progress: 30,
-          error: 'File is too large'
+          error: 'File is too large',
         },
-        index: 0
+        index: 0,
       })
 
       expect(queryByText('user-profile-picture.png')).toBeInTheDocument()

@@ -37,7 +37,7 @@ const useUploader = (config: { maxSize: number; files?: FileUpload[] }) => {
         progress: !invalidFile ? 0 : undefined,
         error: invalidFile
           ? `File size exceeds the ${config.maxSize}MB limit.`
-          : undefined
+          : undefined,
       }
     })
 
@@ -62,7 +62,7 @@ const useUploader = (config: { maxSize: number; files?: FileUpload[] }) => {
           uploading: !uploadFinished,
           progress,
           error:
-            uploadFinished && Math.random() < 0.5 ? 'Server error.' : undefined
+            uploadFinished && Math.random() < 0.5 ? 'Server error.' : undefined,
         }
       })
 
@@ -77,7 +77,7 @@ const useUploader = (config: { maxSize: number; files?: FileUpload[] }) => {
   return {
     files,
     upload,
-    remove
+    remove,
   }
 }
 
@@ -85,7 +85,7 @@ const Example = () => {
   const MAX_SIZE = 2
 
   const { files, upload, remove } = useUploader({
-    maxSize: MAX_SIZE
+    maxSize: MAX_SIZE,
   })
 
   return (

@@ -7,7 +7,7 @@ import {
   Container,
   SelectProps,
   Settings16,
-  Drawer
+  Drawer,
 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop, palette } from '@toptal/picasso/utils'
@@ -30,7 +30,7 @@ const TestSelect = ({
   icon,
   menuWidth,
   limit,
-  testIds
+  testIds,
 }: Partial<SelectProps> = {}) => (
   <Select
     data-testid='select'
@@ -113,26 +113,26 @@ const MANY_OPTIONS = [
   { value: '7', text: 'Option 7' },
   { value: '8', text: 'Option 8' },
   { value: '9', text: 'Option 9' },
-  { value: '10', text: 'Option 10' }
+  { value: '10', text: 'Option 10' },
 ]
 const OPTIONS = MANY_OPTIONS.slice(0, 5)
 const OPTION_GROUPS = {
   'Group 1': [
     { value: '1', text: 'Option 1' },
     { value: '2', text: 'Option 2' },
-    { value: '3', text: 'Option 3' }
+    { value: '3', text: 'Option 3' },
   ],
   'Group 2': [
     { value: '4', text: 'Option 4' },
     { value: '5', text: 'Option 5' },
     { value: '6', text: 'Option 6' },
-    { value: '7', text: 'Option 7' }
+    { value: '7', text: 'Option 7' },
   ],
   'Group 3': [
     { value: '8', text: 'Option 8' },
     { value: '9', text: 'Option 9' },
-    { value: '10', text: 'Option 10' }
-  ]
+    { value: '10', text: 'Option 10' },
+  ],
 }
 
 const getOptionQuerySelector = (value: string | number) =>
@@ -151,14 +151,14 @@ const openSelect = () => {
 const pressArrowDown = () => {
   cy.get('[data-testid="select"]').trigger('keydown', {
     key: 'ArrowDown',
-    keyCode: 40
+    keyCode: 40,
   })
 }
 
 const pressEnter = () => {
   cy.get('[data-testid="select"]').trigger('keydown', {
     key: 'Enter',
-    keyCode: 13
+    keyCode: 13,
   })
 }
 
@@ -211,7 +211,7 @@ describe('Select', () => {
       const mouseOverEvent = new MouseEvent('mouseover', {
         view: window,
         bubbles: true,
-        cancelable: true
+        cancelable: true,
       })
 
       // when you hover this last partially shown option
@@ -334,7 +334,7 @@ describe('Select', () => {
         <TestSelect
           options={OPTIONS.map(option => ({
             ...option,
-            description: `Description ${option.value}`
+            description: `Description ${option.value}`,
           }))}
         />
       </TestingPicasso>

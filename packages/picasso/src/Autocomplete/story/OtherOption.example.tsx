@@ -7,7 +7,7 @@ const allOptions = [
   { text: 'Croatia' },
   { text: 'Lithuania' },
   { text: 'Slovakia' },
-  { text: 'Ukraine' }
+  { text: 'Ukraine' },
 ]
 
 const EMPTY_INPUT_VALUE = ''

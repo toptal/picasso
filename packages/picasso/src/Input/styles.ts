@@ -10,16 +10,16 @@ export default ({ palette }: Theme) =>
     root: {
       fontSize: '1rem',
       backgroundColor: palette.common.white,
-      cursor: 'text'
+      cursor: 'text',
     },
     rootMultiline: {
-      height: 'auto'
+      height: 'auto',
     },
     rootMultilineLimiter: {
       minHeight: '3.75rem',
-      paddingBottom: '1.875rem'
+      paddingBottom: '1.875rem',
     },
     inputMultilineResizable: {
-      resize: 'vertical'
-    }
+      resize: 'vertical',
+    },
   })

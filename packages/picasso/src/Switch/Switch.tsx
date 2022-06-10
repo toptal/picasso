@@ -72,7 +72,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     <FormControlLabel
       classes={{
         root: classes.root,
-        label: classes.label
+        label: classes.label,
       }}
       control={switchElement}
       disabled={disabled}
@@ -85,7 +85,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
 
 Switch.defaultProps = {
   disabled: false,
-  onChange: () => {}
+  onChange: () => {},
 }
 
 Switch.displayName = 'Switch'

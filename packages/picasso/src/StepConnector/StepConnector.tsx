@@ -7,7 +7,7 @@ import styles from './styles'
 export type Props = { direction: 'vertical' | 'horizontal' }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoStepConnector'
+  name: 'PicassoStepConnector',
 })
 
 export const StepConnector = ({ direction }: Props) => {

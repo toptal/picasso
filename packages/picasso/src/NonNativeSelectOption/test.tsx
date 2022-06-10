@@ -16,7 +16,7 @@ const renderNonNativeSelectOption = ({
   selected = false,
   highlighted = false,
   onClick = noop,
-  option = OPTION
+  option = OPTION,
 }: Partial<Props<string>> = {}) =>
   render(
     <NonNativeSelectOption
@@ -42,7 +42,7 @@ describe('NonNativeSelectOption', () => {
   it('sets attributes correctly', () => {
     const { container, getByRole } = renderNonNativeSelectOption({
       selected: true,
-      option: { text: 'Option #1', value: 'option1' }
+      option: { text: 'Option #1', value: 'option1' },
     })
 
     const option = getByRole('option')
@@ -60,7 +60,7 @@ describe('NonNativeSelectOption', () => {
     const { getByRole } = renderNonNativeSelectOption({
       onMouseDown,
       onMouseEnter,
-      onClick
+      onClick,
     })
 
     const option = getByRole('option')

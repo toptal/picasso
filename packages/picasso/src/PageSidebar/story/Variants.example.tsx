@@ -11,7 +11,7 @@ import {
   Referrals16,
   Resources16,
   ReferralBonus16,
-  Help16
+  Help16,
 } from '@toptal/picasso/Icon'
 
 const ExampleSidebar = ({ variant }: { variant: 'light' | 'dark' }) => (

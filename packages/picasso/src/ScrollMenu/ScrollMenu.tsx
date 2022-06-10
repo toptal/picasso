@@ -21,7 +21,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoScrollMenu'
+  name: 'PicassoScrollMenu',
 })
 
 const getMenuSelectedNode = (
@@ -106,7 +106,7 @@ const ScrollMenu = (props: Props) => {
 }
 
 ScrollMenu.defaultProps = {
-  role: 'menu'
+  role: 'menu',
 }
 
 ScrollMenu.displayName = 'ScrollMenu'

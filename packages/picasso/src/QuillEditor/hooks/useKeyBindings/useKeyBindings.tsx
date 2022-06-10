@@ -5,7 +5,7 @@ import { TextFormatHandler } from '../../types'
 
 const useKeyBindings = ({
   quill,
-  onTextFormat
+  onTextFormat,
 }: {
   quill?: Quill
   onTextFormat: TextFormatHandler
@@ -18,7 +18,7 @@ const useKeyBindings = ({
     quill.keyboard.addBinding(
       {
         key: 'B',
-        shortKey: true
+        shortKey: true,
       },
       function (range, context) {
         const isBold = context.format.bold
@@ -26,7 +26,7 @@ const useKeyBindings = ({
         quill.format('bold', !isBold)
         onTextFormat({
           formatName: 'bold',
-          value: !isBold
+          value: !isBold,
         })
       }
     )
@@ -34,7 +34,7 @@ const useKeyBindings = ({
     quill.keyboard.addBinding(
       {
         key: 'I',
-        shortKey: true
+        shortKey: true,
       },
       function (range, context) {
         const isItalic = context.format.italic
@@ -42,7 +42,7 @@ const useKeyBindings = ({
         quill.format('italic', !isItalic)
         onTextFormat({
           formatName: 'italic',
-          value: !isItalic
+          value: !isItalic,
         })
       }
     )

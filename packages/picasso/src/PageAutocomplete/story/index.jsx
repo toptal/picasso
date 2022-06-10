@@ -24,5 +24,5 @@ const chapter = PicassoBook.connectToPage(page =>
 
 export default {
   componentDocs,
-  chapter
+  chapter,
 }

@@ -6,8 +6,8 @@ const HIGHLIGHTS = [
   {
     from: 6,
     to: 8,
-    color: 'green'
-  }
+    color: 'green',
+  },
 ]
 
 const EXPECTED_DATA = [
@@ -18,7 +18,7 @@ const EXPECTED_DATA = [
       x1: 5.5,
       x2: 7.5,
       y1: 0,
-      y2: 2
+      y2: 2,
     },
     {
       fill: 'green',
@@ -26,9 +26,9 @@ const EXPECTED_DATA = [
       x1: 5.5,
       x2: 7.5,
       y1: 1.96,
-      y2: 2
-    }
-  ]
+      y2: 2,
+    },
+  ],
 ]
 
 describe('toRechartsHighlightFormat', () => {

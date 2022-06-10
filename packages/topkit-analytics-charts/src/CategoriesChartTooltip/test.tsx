@@ -4,7 +4,7 @@ import { render, screen, TestingPicasso } from '@toptal/picasso/test-utils'
 import CategoriesChartTooltip, { Props } from './CategoriesChartTooltip'
 
 const testIds = {
-  paper: 'tooltip-content'
+  paper: 'tooltip-content',
 }
 
 const renderTooltip = (props: Partial<Props>) => {
@@ -12,7 +12,7 @@ const renderTooltip = (props: Partial<Props>) => {
     active: true,
     payload: [],
     tooltips: {},
-    originalData: []
+    originalData: [],
   }
 
   return render(
@@ -37,12 +37,12 @@ describe('CategoriesChartTooltip', () => {
           id: 'payload-name',
           values: [
             { id: 'value1', values: [] },
-            { id: 'value2', values: [] }
-          ]
-        }
+            { id: 'value2', values: [] },
+          ],
+        },
       ],
       payload: [{ payload: { name: 'payload-name', team: 0, user: 0 } }],
-      testIds: { paper: testIds.paper }
+      testIds: { paper: testIds.paper },
     })
 
     expect(getByTestId(testIds.paper)).not.toBeNull()

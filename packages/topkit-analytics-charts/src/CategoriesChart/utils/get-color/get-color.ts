@@ -7,14 +7,14 @@ const COLOR_MAP: Record<string, string[]> = {
   paused: [palette.yellow.main, palette.yellow.main],
   removed: [palette.green.main, palette.green.main],
   collections: [palette.red.main, palette.red.main],
-  pending: [palette.yellow.main, palette.yellow.main]
+  pending: [palette.yellow.main, palette.yellow.main],
 }
 
 const BAD_RESULT_COLOR = palette.red.main
 
 const getColor = ({
   dataKey,
-  entry
+  entry,
 }: {
   dataKey: string
   entry?: { name: string; value: { team: number; user: number } }

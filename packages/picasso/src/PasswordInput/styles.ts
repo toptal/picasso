@@ -4,17 +4,17 @@ export default ({ spacing }: Theme) =>
   createStyles({
     root: {
       paddingRight: 0,
-      cursor: 'text'
+      cursor: 'text',
     },
     input: {
       '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
         '-webkit-appearance': 'none',
         appearance: 'none',
-        margin: 0
-      }
+        margin: 0,
+      },
     },
 
     toggle: {
-      marginRight: spacing(1)
-    }
+      marginRight: spacing(1),
+    },
   })

@@ -21,7 +21,7 @@ export default ({ palette, sizes, spacing }: Theme) =>
         position: 'absolute',
         content: '""',
         top: 0,
-        width: barWidth
-      }
-    }
+        width: barWidth,
+      },
+    },
   })

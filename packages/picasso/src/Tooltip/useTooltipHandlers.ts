@@ -3,7 +3,7 @@ import {
   MouseEvent,
   cloneElement,
   ReactElement,
-  useState
+  useState,
 } from 'react'
 
 import { TooltipState } from './useTooltipState'
@@ -28,7 +28,7 @@ export const useTooltipHandlers = ({
   onClick,
   tooltipState,
   disableListeners,
-  children
+  children,
 }: UseTooltipHandlersOptions) => {
   const {
     isOpen,
@@ -36,7 +36,7 @@ export const useTooltipHandlers = ({
     isTouchDevice,
     targetHoveredRef,
     openTooltip,
-    closeTooltip
+    closeTooltip,
   } = tooltipState
   // After closing with click the tooltip should not be opened againg until the mouse leave event
   const [ignoreOpening, setIgnoreOpening] = useState(false)
@@ -45,7 +45,7 @@ export const useTooltipHandlers = ({
     return {
       handleOpen: onOpen,
       handleClose: onClose,
-      children
+      children,
     }
   }
   const handleClose = (event: ChangeEvent<{}>) => {
@@ -113,7 +113,7 @@ export const useTooltipHandlers = ({
       onClick: handleClick,
       onMouseOver: handleMouseOver,
       onMouseMove: handleMouseMove,
-      onMouseLeave: handleMouseLeave
-    })
+      onMouseLeave: handleMouseLeave,
+    }),
   }
 }

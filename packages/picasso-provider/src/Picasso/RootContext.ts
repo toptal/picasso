@@ -23,7 +23,7 @@ export const RootContext = React.createContext<RootContextProps>({
   titleCase: false,
   hasDrawer: false,
   setHasDrawer: () => {},
-  disableTransitions: false
+  disableTransitions: false,
 })
 
 export const usePicassoRoot = () => {
@@ -37,7 +37,7 @@ export const usePageTopBar = () => {
 
   return {
     hasTopBar: context.hasTopBar,
-    setHasTopBar: context.setHasTopBar
+    setHasTopBar: context.setHasTopBar,
   }
 }
 
@@ -46,7 +46,7 @@ export const useDrawer = () => {
 
   return {
     hasDrawer: context.hasDrawer,
-    setHasDrawer: context.setHasDrawer
+    setHasDrawer: context.setHasDrawer,
   }
 }
 
@@ -55,7 +55,7 @@ export const useSidebar = () => {
 
   return {
     hasSidebar: context.hasSidebar,
-    setHasSidebar: context.setHasSidebar
+    setHasSidebar: context.setHasSidebar,
   }
 }
 
@@ -65,6 +65,6 @@ export const useAppConfig = () => {
   return {
     environment: context.environment,
     titleCase: context.titleCase,
-    disableTransitions: context.disableTransitions
+    disableTransitions: context.disableTransitions,
   }
 }

@@ -16,11 +16,11 @@ const ApplicationUpdateNotificationExample = () => {
           <ApplicationUpdateNotification
             data-testid='application-update-notification'
             testIds={{
-              updateLaterButton: 'update-later-button'
+              updateLaterButton: 'update-later-button',
             }}
           />,
           {
-            persist: true
+            persist: true,
           }
         )
       }

@@ -9,7 +9,7 @@ const initialFormatState = initialState.toolbar.format
 const mockEvent = {} as React.MouseEvent<HTMLButtonElement, MouseEvent>
 
 const editorRef = {
-  current: null
+  current: null,
 }
 
 describe('useToolbarHandlers', () => {
@@ -23,12 +23,12 @@ describe('useToolbarHandlers', () => {
           useToolbarHandlers({
             editorRef,
             handleTextFormat,
-            format
+            format,
           }),
         {
           initialProps: {
-            format: initFormat
-          }
+            format: initFormat,
+          },
         }
       )
 
@@ -37,7 +37,7 @@ describe('useToolbarHandlers', () => {
       expect(handleTextFormat).toHaveBeenCalledTimes(1)
       expect(handleTextFormat).toHaveBeenCalledWith({
         formatName: 'bold',
-        value: !initFormat.bold
+        value: !initFormat.bold,
       })
 
       const newFormat = { ...initFormat, bold: true }
@@ -48,7 +48,7 @@ describe('useToolbarHandlers', () => {
       expect(handleTextFormat).toHaveBeenCalledTimes(2)
       expect(handleTextFormat).toHaveBeenCalledWith({
         formatName: 'bold',
-        value: !newFormat.bold
+        value: !newFormat.bold,
       })
     })
     it('checks handleItalic', () => {
@@ -60,12 +60,12 @@ describe('useToolbarHandlers', () => {
           useToolbarHandlers({
             editorRef,
             handleTextFormat,
-            format
+            format,
           }),
         {
           initialProps: {
-            format: initFormat
-          }
+            format: initFormat,
+          },
         }
       )
 
@@ -74,7 +74,7 @@ describe('useToolbarHandlers', () => {
       expect(handleTextFormat).toHaveBeenCalledTimes(1)
       expect(handleTextFormat).toHaveBeenCalledWith({
         formatName: 'italic',
-        value: !initFormat.italic
+        value: !initFormat.italic,
       })
 
       const newFormat = { ...initFormat, italic: true }
@@ -85,7 +85,7 @@ describe('useToolbarHandlers', () => {
       expect(handleTextFormat).toHaveBeenCalledTimes(2)
       expect(handleTextFormat).toHaveBeenCalledWith({
         formatName: 'italic',
-        value: !newFormat.italic
+        value: !newFormat.italic,
       })
     })
     it('checks handleHeader', () => {
@@ -96,7 +96,7 @@ describe('useToolbarHandlers', () => {
         useToolbarHandlers({
           editorRef,
           handleTextFormat,
-          format: initFormat
+          format: initFormat,
         })
       )
 
@@ -105,7 +105,7 @@ describe('useToolbarHandlers', () => {
       expect(handleTextFormat).toHaveBeenCalledTimes(1)
       expect(handleTextFormat).toHaveBeenCalledWith({
         formatName: 'header',
-        value: 3
+        value: 3,
       })
 
       act(() => result.current.handleHeader({ target: { value: '' } } as any))
@@ -113,7 +113,7 @@ describe('useToolbarHandlers', () => {
       expect(handleTextFormat).toHaveBeenCalledTimes(2)
       expect(handleTextFormat).toHaveBeenCalledWith({
         formatName: 'header',
-        value: undefined
+        value: undefined,
       })
     })
     it('checks handleUnordered', () => {
@@ -125,12 +125,12 @@ describe('useToolbarHandlers', () => {
           useToolbarHandlers({
             editorRef,
             handleTextFormat,
-            format
+            format,
           }),
         {
           initialProps: {
-            format: initFormat
-          }
+            format: initFormat,
+          },
         }
       )
 
@@ -139,7 +139,7 @@ describe('useToolbarHandlers', () => {
       expect(handleTextFormat).toHaveBeenCalledTimes(1)
       expect(handleTextFormat).toHaveBeenCalledWith({
         formatName: 'list',
-        value: 'bullet'
+        value: 'bullet',
       })
 
       const newFormat = { ...initFormat, list: 'bullet' } as const
@@ -150,7 +150,7 @@ describe('useToolbarHandlers', () => {
       expect(handleTextFormat).toHaveBeenCalledTimes(2)
       expect(handleTextFormat).toHaveBeenCalledWith({
         formatName: 'list',
-        value: undefined
+        value: undefined,
       })
     })
     it('checks handleOrdered', () => {
@@ -162,12 +162,12 @@ describe('useToolbarHandlers', () => {
           useToolbarHandlers({
             editorRef,
             handleTextFormat,
-            format
+            format,
           }),
         {
           initialProps: {
-            format: initFormat
-          }
+            format: initFormat,
+          },
         }
       )
 
@@ -176,7 +176,7 @@ describe('useToolbarHandlers', () => {
       expect(handleTextFormat).toHaveBeenCalledTimes(1)
       expect(handleTextFormat).toHaveBeenCalledWith({
         formatName: 'list',
-        value: 'ordered'
+        value: 'ordered',
       })
 
       const newFormat = { ...initFormat, list: 'ordered' } as const
@@ -187,7 +187,7 @@ describe('useToolbarHandlers', () => {
       expect(handleTextFormat).toHaveBeenCalledTimes(2)
       expect(handleTextFormat).toHaveBeenCalledWith({
         formatName: 'list',
-        value: undefined
+        value: undefined,
       })
     })
   })

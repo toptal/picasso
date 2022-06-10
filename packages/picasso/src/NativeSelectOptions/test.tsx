@@ -7,24 +7,24 @@ import noop from '../utils/noop'
 const OPTIONS = [
   { text: 'One', value: '1' },
   { text: 'Two', value: '2' },
-  { text: 'Three', value: '3' }
+  { text: 'Three', value: '3' },
 ]
 
 const defaultGetItemProps = () => ({
   onMouseDown: noop,
   onMouseEnter: noop,
-  onClick: noop
+  onClick: noop,
 })
 
 const renderNativeSelectOptions = ({
   selection = {
     isSelected: jest.fn(),
     isOptionSelected: jest.fn(),
-    display: jest.fn()
+    display: jest.fn(),
   },
   options = OPTIONS,
   renderOption = option => option.text,
-  getItemProps = defaultGetItemProps
+  getItemProps = defaultGetItemProps,
 }: Partial<Props> = {}) =>
   render(
     <NativeSelectOptions

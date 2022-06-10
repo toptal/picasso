@@ -47,18 +47,18 @@ const OPTIONS = [
   {
     key: 1,
     value: 'val1',
-    text: 'text1'
+    text: 'text1',
   },
   {
     key: 2,
     value: 'val2',
-    text: 'text2'
+    text: 'text2',
   },
   {
     key: 3,
     value: 'val3',
-    text: 'text3'
-  }
+    text: 'text3',
+  },
 ]
 
 const OPTIONS_WITH_DESCRIPTIONS = [
@@ -66,20 +66,20 @@ const OPTIONS_WITH_DESCRIPTIONS = [
     key: 1,
     value: 'val1',
     text: 'text1',
-    description: 'description1'
+    description: 'description1',
   },
   {
     key: 2,
     value: 'val2',
     text: 'text2',
-    description: 'description2'
+    description: 'description2',
   },
   {
     key: 3,
     value: 'val3',
     text: 'text3',
-    description: 'description3'
-  }
+    description: 'description3',
+  },
 ]
 
 const getOptions = (element: Element) =>
@@ -93,7 +93,7 @@ describe('NonNativeSelect', () => {
   it('renders', () => {
     const { container } = renderSelect({
       options: OPTIONS,
-      value: 'val1'
+      value: 'val1',
     })
 
     expect(container).toMatchSnapshot()
@@ -104,7 +104,7 @@ describe('NonNativeSelect', () => {
 
     const { getByPlaceholderText, getByRole } = renderSelect({
       options: OPTIONS,
-      placeholder
+      placeholder,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -119,7 +119,7 @@ describe('NonNativeSelect', () => {
 
     const { getByPlaceholderText, queryByRole } = renderSelect({
       options: OPTIONS,
-      placeholder
+      placeholder,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -134,7 +134,7 @@ describe('NonNativeSelect', () => {
 
     const { getByPlaceholderText, queryByRole } = renderSelect({
       options: OPTIONS,
-      placeholder
+      placeholder,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -154,8 +154,8 @@ describe('NonNativeSelect', () => {
         placeholder,
         loading: true,
         testIds: {
-          loader: 'loader'
-        }
+          loader: 'loader',
+        },
       })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -174,7 +174,7 @@ describe('NonNativeSelect', () => {
       options: OPTIONS,
       placeholder,
       searchPlaceholder,
-      searchThreshold: -1
+      searchThreshold: -1,
     })
 
     const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
@@ -202,7 +202,7 @@ describe('NonNativeSelect', () => {
       options: OPTIONS,
       placeholder,
       searchPlaceholder,
-      searchThreshold: -1
+      searchThreshold: -1,
     })
 
     const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
@@ -231,7 +231,7 @@ describe('NonNativeSelect', () => {
       options: OPTIONS,
       placeholder,
       searchPlaceholder,
-      searchThreshold: -1
+      searchThreshold: -1,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -240,7 +240,7 @@ describe('NonNativeSelect', () => {
     fireEvent.keyDown(selectInput, { key: ' ', code: 'Space' })
     fireEvent.keyDown(selectInput, {
       key: 'Tab',
-      code: 'Tab'
+      code: 'Tab',
     })
 
     const searchInput = getByPlaceholderText(searchPlaceholder)
@@ -256,7 +256,7 @@ describe('NonNativeSelect', () => {
       options: OPTIONS,
       placeholder,
       searchPlaceholder,
-      searchThreshold: -1
+      searchThreshold: -1,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -265,7 +265,7 @@ describe('NonNativeSelect', () => {
     fireEvent.keyDown(selectInput, { key: ' ', code: 'Space' })
     fireEvent.keyDown(selectInput, {
       key: '2',
-      code: 'Digit2'
+      code: 'Digit2',
     })
 
     const searchInput = getByPlaceholderText(
@@ -279,7 +279,7 @@ describe('NonNativeSelect', () => {
     const placeholder = 'Choose an option...'
     const { getByPlaceholderText, getByText, queryByRole } = renderSelect({
       options: OPTIONS,
-      placeholder
+      placeholder,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -295,7 +295,7 @@ describe('NonNativeSelect', () => {
     const placeholder = 'Choose an option...'
     const { getByPlaceholderText, queryByRole } = renderSelect({
       options: OPTIONS,
-      placeholder
+      placeholder,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -316,7 +316,7 @@ describe('NonNativeSelect', () => {
       noOptionsText,
       placeholder,
       searchPlaceholder,
-      searchThreshold: -1
+      searchThreshold: -1,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -340,7 +340,7 @@ describe('NonNativeSelect', () => {
 
     const { getByPlaceholderText, getByRole } = renderSelect({
       options: OPTIONS_WITH_DESCRIPTIONS,
-      placeholder
+      placeholder,
     })
     const selectInput = getByPlaceholderText(placeholder)
 
@@ -367,7 +367,7 @@ describe('NonNativeSelect', () => {
       // eslint-disable-next-line react/display-name
       renderOption: ({ key, text }) => (
         <div data-testid={`custom-option-${key}`}>{text}</div>
-      )
+      ),
     })
     const selectInput = getByPlaceholderText(placeholder)
 
@@ -388,7 +388,7 @@ describe('NonNativeSelect', () => {
     const { getByPlaceholderText } = renderSelect({
       options: OPTIONS,
       placeholder,
-      name: 'country'
+      name: 'country',
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -404,7 +404,7 @@ describe('NonNativeSelect', () => {
       options: OPTIONS,
       placeholder,
       name: 'country',
-      enableAutofill: true
+      enableAutofill: true,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -420,7 +420,7 @@ describe('NonNativeSelect', () => {
       options: OPTIONS,
       value: OPTIONS[0].value,
       placeholder,
-      getDisplayValue: option => `${option ? option.text : 'None'} is selected`
+      getDisplayValue: option => `${option ? option.text : 'None'} is selected`,
     })
 
     const inputComponent = getByPlaceholderText(placeholder) as HTMLInputElement
@@ -433,7 +433,7 @@ describe('NonNativeSelect', () => {
     const { container, getByPlaceholderText } = renderSelect({
       options: OPTIONS,
       value: OPTIONS[2].value,
-      placeholder
+      placeholder,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -463,7 +463,7 @@ describe('NonNativeSelect (multiple)', () => {
       options: OPTIONS,
       placeholder,
       multiple: true,
-      onChange
+      onChange,
     })
 
     fireEvent.click(getByPlaceholderText(placeholder))
@@ -483,7 +483,7 @@ describe('NonNativeSelect (multiple)', () => {
       placeholder,
       multiple: true,
       onChange,
-      value: currentValue
+      value: currentValue,
     })
 
     fireEvent.click(getByPlaceholderText(placeholder))
@@ -499,7 +499,7 @@ describe('NonNativeSelect (multiple)', () => {
       placeholder,
       options: OPTIONS,
       multiple: true,
-      value: [OPTIONS[0].value, OPTIONS[1].value]
+      value: [OPTIONS[0].value, OPTIONS[1].value],
     })
 
     const inputComponent = getByPlaceholderText(placeholder) as HTMLInputElement
@@ -513,7 +513,7 @@ describe('NonNativeSelect (multiple)', () => {
       options: OPTIONS,
       value: [],
       placeholder,
-      multiple: true
+      multiple: true,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -532,7 +532,7 @@ describe('NonNativeSelect (multiple)', () => {
       options: OPTIONS,
       placeholder,
       value: [OPTIONS[2].value],
-      multiple: true
+      multiple: true,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -551,7 +551,7 @@ describe('NonNativeSelect (multiple)', () => {
       options: OPTIONS,
       value: [OPTIONS[1].value, OPTIONS[2].value],
       placeholder,
-      multiple: true
+      multiple: true,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -569,7 +569,7 @@ describe('NonNativeSelect (multiple)', () => {
     const { getByPlaceholderText, getByText, queryByRole } = renderSelect({
       options: OPTIONS,
       placeholder,
-      multiple: true
+      multiple: true,
     })
 
     const selectInput = getByPlaceholderText(placeholder)
@@ -589,10 +589,10 @@ describe('NonNativeSelect (multiple)', () => {
       {
         options: OPTIONS,
         value: OPTIONS[0].value,
-        placeholder
+        placeholder,
       },
       {
-        titleCase: true
+        titleCase: true,
       }
     )
 
@@ -609,7 +609,7 @@ describe('NonNativeSelect (multiple)', () => {
     const initialProps = {
       placeholder,
       options: [],
-      value: selectedOption.value
+      value: selectedOption.value,
     }
     const { rerender, getByPlaceholderText } = renderSelect(initialProps)
 
@@ -634,7 +634,7 @@ describe('NonNativeSelect (multiple)', () => {
 
     const optionsGenerator = (value: number, key: number) => ({
       value: `${key + 1}`,
-      text: `Option ${key + 1}`
+      text: `Option ${key + 1}`,
     })
 
     const { getByPlaceholderText, getByRole, getAllByRole } = renderSelect({
@@ -642,7 +642,7 @@ describe('NonNativeSelect (multiple)', () => {
       placeholder,
       searchPlaceholder,
       limit: 5,
-      searchThreshold: -1
+      searchThreshold: -1,
     })
 
     const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement

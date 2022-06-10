@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Checkbox as PicassoCheckbox, CheckboxProps } from '@toptal/picasso'
 import {
   Field,
-  FieldRenderProps as FinalFormFieldProps
+  FieldRenderProps as FinalFormFieldProps,
 } from 'react-final-form'
 
 import PicassoField, { FieldProps } from '../Field'
@@ -38,7 +38,7 @@ export const Checkbox = ({
       <Field type='checkbox' name={name || groupName!} value={value}>
         {({
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          input: { value: inputValue, type, ...restInput }
+          input: { value: inputValue, type, ...restInput },
         }: FinalFormFieldProps<CheckboxValue>) => {
           return <PicassoCheckbox {...restProps} {...restInput} label={label} />
         }}

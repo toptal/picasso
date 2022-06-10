@@ -33,7 +33,7 @@ import {
   ImportSpecifier,
   Transform,
   ImportDeclaration,
-  JSCodeshift
+  JSCodeshift,
 } from 'jscodeshift'
 
 import { replaceWith, isImportByPath, hasTopLevelComment } from '../../utils'
@@ -41,7 +41,7 @@ import {
   warnUsersAbout,
   getSpecifierName,
   getUnsolvableImportDeclarations,
-  getUnsolvableIdentifierNames
+  getUnsolvableIdentifierNames,
 } from './utils'
 
 type ImportTypes =
@@ -120,7 +120,7 @@ const getImportsMap = (
       if (!unsolvableIdentifierNames.has(specifierName)) {
         specifiers.push({
           name: specifierName,
-          type: specifier.type
+          type: specifier.type,
         })
       }
     })
@@ -130,7 +130,7 @@ const getImportsMap = (
       const prevSpecifiers = currImport.specifiers || []
 
       importsMap.set(moduleSpecifier, {
-        specifiers: [...prevSpecifiers, ...specifiers]
+        specifiers: [...prevSpecifiers, ...specifiers],
       })
     } else {
       importsMap.set(moduleSpecifier, { specifiers })

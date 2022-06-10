@@ -7,7 +7,7 @@ export default ({ screens, layout }: Theme) =>
       margin: `0 ${layout.contentPaddingHorizontal}`,
 
       [screens('small', 'medium')]: {
-        margin: `0 ${layout.contentMobilePaddingHorizontal}`
-      }
-    }
+        margin: `0 ${layout.contentMobilePaddingHorizontal}`,
+      },
+    },
   })

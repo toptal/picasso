@@ -9,7 +9,7 @@ jest.mock('debounce', () => ({
     fn.clear = jest.fn()
 
     return fn
-  }
+  },
 }))
 
 interface currentProps {
@@ -47,9 +47,9 @@ describe('useScrollableShades', () => {
             scrollHeight: 100,
             addEventListener: jest.fn(),
             removeEventListener: jest.fn(),
-            ...currentUpdates
+            ...currentUpdates,
           }
-        : undefined
+        : undefined,
     }
 
     return testRef
@@ -57,7 +57,7 @@ describe('useScrollableShades', () => {
 
   const renderScrollableShadesHook = (ref: testRefProps) => {
     const {
-      result: { current }
+      result: { current },
     } = renderHook(() =>
       useScrollableShades(ref as unknown as RefObject<HTMLDivElement>)
     )
@@ -79,7 +79,7 @@ describe('useScrollableShades', () => {
     it('returns top = false and bottom = false', () => {
       const testRef = getTestRef({
         clientHeight: 100,
-        scrollHeight: 100
+        scrollHeight: 100,
       })
 
       const { top, bottom } = renderScrollableShadesHook(testRef)
@@ -94,7 +94,7 @@ describe('useScrollableShades', () => {
       const testRef = getTestRef({
         scrollTop: 10,
         clientHeight: 50,
-        scrollHeight: 100
+        scrollHeight: 100,
       })
 
       const { top, bottom } = renderScrollableShadesHook(testRef)
@@ -109,7 +109,7 @@ describe('useScrollableShades', () => {
       const testRef = getTestRef({
         scrollTop: 50,
         clientHeight: 50,
-        scrollHeight: 100
+        scrollHeight: 100,
       })
 
       const { top, bottom } = renderScrollableShadesHook(testRef)
@@ -124,7 +124,7 @@ describe('useScrollableShades', () => {
       const testRef = getTestRef({
         scrollTop: 49.654, // may give a bug without rounding
         clientHeight: 50,
-        scrollHeight: 100
+        scrollHeight: 100,
       })
 
       const { top, bottom } = renderScrollableShadesHook(testRef)

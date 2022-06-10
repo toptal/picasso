@@ -20,11 +20,11 @@ export default ({ palette }: Theme) =>
         width: 'calc(100% + 0.7em)',
         height: '1px',
         display: 'inline-block',
-        background: palette.grey.lighter2
-      }
+        background: palette.grey.lighter2,
+      },
     },
 
     counterError: {
-      color: palette.red.main
-    }
+      color: palette.red.main,
+    },
   })

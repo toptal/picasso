@@ -26,8 +26,8 @@ const defaultProps = {
     italicButton,
     unorderedListButton: ulButton,
     orderedListButton: olButton,
-    wrapper
-  }
+    wrapper,
+  },
 }
 
 const editorSelector = `#${defaultProps.id}`
@@ -103,7 +103,7 @@ describe('RichTextEditor', () => {
     const content = {
       bold: 'text with bold format',
       italic: 'text with italic format',
-      bold_italic: 'text with bold and italic format'
+      bold_italic: 'text with bold and italic format',
     }
 
     // test bold

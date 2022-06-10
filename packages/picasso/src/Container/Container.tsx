@@ -7,13 +7,13 @@ import cx from 'classnames'
 import {
   StandardProps,
   SpacingType,
-  spacingToRem
+  spacingToRem,
 } from '@toptal/picasso-shared'
 
 import styles, {
   AlignItemsType,
   JustifyContentType,
-  VariantType
+  VariantType,
 } from './styles'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import { forwardRef, documentable } from '../utils/forward-ref'
@@ -25,7 +25,7 @@ type DirectionType = 'row' | 'column'
 type BorderableType = 'transparent' | 'white'
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoContainer'
+  name: 'PicassoContainer',
 })
 
 export interface Props<V extends VariantType = VariantType>
@@ -107,10 +107,10 @@ export const Container = documentable(
       const margins = {
         ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),
         ...(typeof bottom === 'number' && {
-          marginBottom: spacingToRem(bottom)
+          marginBottom: spacingToRem(bottom),
         }),
         ...(typeof left === 'number' && { marginLeft: spacingToRem(left) }),
-        ...(typeof right === 'number' && { marginRight: spacingToRem(right) })
+        ...(typeof right === 'number' && { marginRight: spacingToRem(right) }),
       }
 
       return (
@@ -141,17 +141,17 @@ export const Container = documentable(
               [classes.rounded]: rounded,
               [classes.flex]: flex,
               [classes.inline]: inline,
-              [classes.column]: direction === 'column'
+              [classes.column]: direction === 'column',
             },
             className
           )}
           style={{
             ...margins,
             ...(typeof padded === 'number' && {
-              padding: spacingToRem(padded)
+              padding: spacingToRem(padded),
             }),
             ...(typeof gap === 'number' && { gap: spacingToRem(gap) }),
-            ...style
+            ...style,
           }}
         >
           {children}
@@ -165,7 +165,7 @@ Container.displayName = 'Container'
 
 Container.defaultProps = {
   as: 'div',
-  inline: false
+  inline: false,
 }
 
 export default Container

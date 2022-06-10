@@ -17,18 +17,18 @@ const getRange = ({ activePage, siblingCount, totalPages }: Args) => {
   const [leftSiblings, rightSiblings] = getSiblings({
     activePage,
     siblingCount,
-    totalPages
+    totalPages,
   })
   const [hasLeftEllipses, hasRightEllipses] = hasEllipses({
     activePage,
     siblingCount,
-    totalPages
+    totalPages,
   })
 
   const rightRange = [
     ...rightSiblings,
     ...(hasRightEllipses ? [ELLIPSIS] : []),
-    totalPages
+    totalPages,
   ]
   const leftRange = [1, ...(hasLeftEllipses ? [ELLIPSIS] : []), ...leftSiblings]
 

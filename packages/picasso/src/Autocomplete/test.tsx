@@ -15,7 +15,7 @@ const testOptions = [
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
   { text: 'Slovakia', value: 'SK' },
-  { text: 'Ukraine', value: 'UA' }
+  { text: 'Ukraine', value: 'UA' },
 ]
 
 const testIds = {
@@ -26,7 +26,7 @@ const testIds = {
   loadingAdornment: 'loading-adornment',
   resetButton: 'reset-adornment',
   input: 'autocomplete',
-  disableAutofillInput: 'disableAutofillInput'
+  disableAutofillInput: 'disableAutofillInput',
 }
 
 const renderAutocomplete = (
@@ -53,7 +53,7 @@ describe('Autocomplete', () => {
     it('renders', () => {
       const { container } = renderAutocomplete({
         options: testOptions,
-        value: ''
+        value: '',
       })
 
       expect(container).toMatchSnapshot()
@@ -63,7 +63,7 @@ describe('Autocomplete', () => {
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
-        placeholder: 'test'
+        placeholder: 'test',
       })
 
       const input = getByTestId('autocomplete') as HTMLInputElement
@@ -78,7 +78,7 @@ describe('Autocomplete', () => {
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value,
-        name
+        name,
       })
 
       const input = getByTestId(
@@ -93,7 +93,7 @@ describe('Autocomplete', () => {
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
-        loading: true
+        loading: true,
       })
 
       const loader = getByTestId(testIds.loadingAdornment)
@@ -107,7 +107,7 @@ describe('Autocomplete', () => {
         options: testOptions,
         value: '',
         startAdornment: <div data-testid='start-adornment' />,
-        endAdornment: <div data-testid='end-adornment' />
+        endAdornment: <div data-testid='end-adornment' />,
       })
 
       expect(getByTestId('start-adornment')).not.toBeNull()
@@ -118,7 +118,7 @@ describe('Autocomplete', () => {
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
-        icon: <div data-testid='icon' />
+        icon: <div data-testid='icon' />,
       })
 
       expect(getByTestId('icon')).not.toBeNull()
@@ -130,7 +130,7 @@ describe('Autocomplete', () => {
       renderAutocomplete({
         options: testOptions,
         value: '',
-        getKey
+        getKey,
       })
 
       expect(getKey).toHaveBeenCalledTimes(testOptions.length)
@@ -139,7 +139,7 @@ describe('Autocomplete', () => {
     it('renders a value that exists in options', () => {
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
-        value: 'Ukraine'
+        value: 'Ukraine',
       })
 
       const input = getByTestId('autocomplete') as HTMLInputElement
@@ -151,7 +151,7 @@ describe('Autocomplete', () => {
       const { getByTestId } = renderAutocomplete({
         value: '',
         // eslint-disable-next-line react/display-name
-        inputComponent: () => <input data-testid='custom-input' />
+        inputComponent: () => <input data-testid='custom-input' />,
       })
 
       const input = getByTestId('custom-input')
@@ -161,7 +161,7 @@ describe('Autocomplete', () => {
 
     it('shows default no options text when no options are available', () => {
       const { getByTestId, getByText } = renderAutocomplete({
-        value: 'Picasso'
+        value: 'Picasso',
       })
 
       const input = getByTestId('autocomplete')
@@ -177,7 +177,7 @@ describe('Autocomplete', () => {
       const noOptionsText = 'my no options text'
       const { getByText, getByTestId } = renderAutocomplete({
         noOptionsText,
-        value: ''
+        value: '',
       })
 
       const input = getByTestId('autocomplete')
@@ -192,7 +192,7 @@ describe('Autocomplete', () => {
     it('hides no options text when disabled and no options are avialble', () => {
       const { getByTestId, queryByTestId, queryByText } = renderAutocomplete({
         noOptionsText: null,
-        value: 'Picasso'
+        value: 'Picasso',
       })
 
       const input = getByTestId('autocomplete')
@@ -215,7 +215,7 @@ describe('Autocomplete', () => {
         value: '',
         renderOption,
         getDisplayValue,
-        getKey: () => generateRandomString()
+        getKey: () => generateRandomString(),
       })
       const input = getByTestId('autocomplete')
 
@@ -235,7 +235,7 @@ describe('Autocomplete', () => {
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
-        getDisplayValue
+        getDisplayValue,
       })
       const input = getByTestId('autocomplete')
 
@@ -255,7 +255,7 @@ describe('Autocomplete', () => {
         value: '',
         renderOption,
         getDisplayValue,
-        getKey: () => generateRandomString()
+        getKey: () => generateRandomString(),
       })
       const input = getByTestId('autocomplete')
 
@@ -269,10 +269,10 @@ describe('Autocomplete', () => {
       const { getByTestId } = renderAutocomplete(
         {
           options: testOptions,
-          value: ''
+          value: '',
         },
         {
-          titleCase: true
+          titleCase: true,
         }
       )
 
@@ -287,7 +287,7 @@ describe('Autocomplete', () => {
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
-        popperContainer: (<div />) as any
+        popperContainer: (<div />) as any,
       })
 
       const input = getByTestId('autocomplete')
@@ -304,7 +304,7 @@ describe('Autocomplete', () => {
       const { getByTestId, queryByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
-        onFocus
+        onFocus,
       })
 
       const input = getByTestId('autocomplete')
@@ -324,7 +324,7 @@ describe('Autocomplete', () => {
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
-        onChange
+        onChange,
       })
 
       const input = getByTestId('autocomplete')
@@ -340,7 +340,7 @@ describe('Autocomplete', () => {
       const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
-        onBlur
+        onBlur,
       })
 
       const input = getByTestId('autocomplete')
@@ -361,7 +361,7 @@ describe('Autocomplete', () => {
         options: testOptions,
         value: '',
         onSelect,
-        onChange
+        onChange,
       })
 
       const input = getByTestId('autocomplete')
@@ -385,14 +385,14 @@ describe('Autocomplete', () => {
         options: testOptions,
         value: 'Croatia',
         onChange,
-        onKeyDown
+        onKeyDown,
       })
 
       const input = getByTestId('autocomplete')
 
       fireEvent.focus(input)
       fireEvent.keyDown(input, {
-        key: 'Escape'
+        key: 'Escape',
       })
 
       // text should be tried to be cleared
@@ -406,14 +406,14 @@ describe('Autocomplete', () => {
       const { getByTestId, queryByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
-        onKeyDown
+        onKeyDown,
       })
 
       const input = getByTestId('autocomplete') as HTMLInputElement
 
       fireEvent.focus(input)
       fireEvent.keyDown(input, {
-        key: 'Backspace'
+        key: 'Backspace',
       })
 
       expect(onKeyDown).toHaveBeenCalledTimes(1)
@@ -431,7 +431,7 @@ describe('Autocomplete', () => {
         const { getByText, getByTestId } = renderAutocomplete({
           options: testOptions,
           value: '',
-          onKeyDown
+          onKeyDown,
         })
 
         const input = getByTestId('autocomplete') as HTMLInputElement
@@ -443,7 +443,7 @@ describe('Autocomplete', () => {
         ).toBe('true')
 
         fireEvent.keyDown(input, {
-          key: 'ArrowDown'
+          key: 'ArrowDown',
         })
 
         expect(onKeyDown).toHaveBeenCalledTimes(1)
@@ -458,7 +458,7 @@ describe('Autocomplete', () => {
         const { getByText, getByTestId } = renderAutocomplete({
           options: testOptions,
           value: '',
-          onKeyDown
+          onKeyDown,
         })
 
         const input = getByTestId('autocomplete') as HTMLInputElement
@@ -466,7 +466,7 @@ describe('Autocomplete', () => {
         fireEvent.focus(input)
 
         fireEvent.keyDown(input, {
-          key: 'ArrowUp'
+          key: 'ArrowUp',
         })
 
         expect(onKeyDown).toHaveBeenCalledTimes(1)
@@ -480,14 +480,14 @@ describe('Autocomplete', () => {
       const { getByTestId, getByText } = renderAutocomplete({
         options: testOptions,
         value: value,
-        showOtherOption: true
+        showOtherOption: true,
       })
       const input = getByTestId('autocomplete')
 
       fireEvent.focus(input)
 
       fireEvent.keyDown(input, {
-        key: 'Enter'
+        key: 'Enter',
       })
 
       expect(getByText('Other option:')).not.toBeNull()
@@ -501,7 +501,7 @@ describe('Autocomplete', () => {
         value: 'Other option!',
         showOtherOption: true,
         otherOptionText: 'my option:',
-        onOtherOptionSelect
+        onOtherOptionSelect,
       })
 
       const input = getByTestId('autocomplete') as HTMLInputElement
@@ -509,7 +509,7 @@ describe('Autocomplete', () => {
       fireEvent.focus(input)
 
       fireEvent.keyDown(input, {
-        key: 'Enter'
+        key: 'Enter',
       })
 
       expect(getByText('my option:')).not.toBeNull()
@@ -537,7 +537,7 @@ describe('Autocomplete', () => {
         options: testOptions,
         value: 'Other option!',
         showOtherOption: true,
-        renderOtherOption: renderOtherOption
+        renderOtherOption: renderOtherOption,
       })
 
       const input = getByTestId('autocomplete') as HTMLInputElement
@@ -545,7 +545,7 @@ describe('Autocomplete', () => {
       fireEvent.focus(input)
 
       fireEvent.keyDown(input, {
-        key: 'Enter'
+        key: 'Enter',
       })
 
       expect(renderOtherOption).toHaveBeenCalledTimes(1)
@@ -561,7 +561,7 @@ describe('Autocomplete', () => {
   describe('Autofill', () => {
     it('when autoComplete value is not passed and autofill is not enabled', () => {
       const { getByTestId } = renderAutocomplete({
-        value: ''
+        value: '',
       })
       const input = getByTestId('autocomplete')
 
@@ -571,7 +571,7 @@ describe('Autocomplete', () => {
     it('when autoComplete value is not passed and autofill is enabled', () => {
       const { getByTestId } = renderAutocomplete({
         value: '',
-        enableAutofill: true
+        enableAutofill: true,
       })
       const input = getByTestId('autocomplete')
 
@@ -582,7 +582,7 @@ describe('Autocomplete', () => {
     it('when autoComplete value is passed and autofill is not enabled', () => {
       const { getByTestId } = renderAutocomplete({
         value: '',
-        autoComplete: 'country-name'
+        autoComplete: 'country-name',
       })
       const input = getByTestId('autocomplete')
 
@@ -595,7 +595,7 @@ describe('Autocomplete', () => {
       const { getByTestId } = renderAutocomplete({
         value: '',
         enableAutofill: true,
-        autoComplete: 'country-name'
+        autoComplete: 'country-name',
       })
       const input = getByTestId('autocomplete')
 
@@ -608,7 +608,7 @@ describe('Autocomplete', () => {
       const { getByTestId, getByRole, getByText, queryByText } =
         renderAutocomplete({
           options: testOptions,
-          value: ''
+          value: '',
         })
 
       const input = getByTestId('autocomplete')

@@ -11,7 +11,7 @@ const options = [
   { text: 'Pavel Nikitsin', value: '6' },
   { text: 'Tomislav Hrvoic', value: '7' },
   { text: 'Bob Smith', value: '8' },
-  { text: 'John Doe', value: '9' }
+  { text: 'John Doe', value: '9' },
 ]
 
 const renderOption = ({ text }: Item) => (

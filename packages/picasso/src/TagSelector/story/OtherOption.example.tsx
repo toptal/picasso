@@ -12,7 +12,7 @@ const allOptions = [
   { value: 'LU', text: 'Lithuania' },
   { value: 'SK', text: 'Slovakia' },
   { value: 'SP', text: 'Spain' },
-  { value: 'UA', text: 'Ukraine' }
+  { value: 'UA', text: 'Ukraine' },
 ]
 
 const EMPTY_INPUT_VALUE = ''

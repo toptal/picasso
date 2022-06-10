@@ -3,7 +3,7 @@ import { formatData, extractValues } from './BarChart'
 const TEST_DATA = [
   { name: 'Moscow', value: { infected: 1, recovered: 2 } },
   { name: 'Berlin', value: { infected: 2, recovered: 5 } },
-  { name: 'London', value: { infected: 7, recovered: 118 } }
+  { name: 'London', value: { infected: 7, recovered: 118 } },
 ]
 
 describe('BarChart', () => {
@@ -13,20 +13,20 @@ describe('BarChart', () => {
         name: 'Moscow',
         infected: 1,
         recovered: 2,
-        value: { infected: 1, recovered: 2 }
+        value: { infected: 1, recovered: 2 },
       },
       {
         name: 'Berlin',
         infected: 2,
         recovered: 5,
-        value: { infected: 2, recovered: 5 }
+        value: { infected: 2, recovered: 5 },
       },
       {
         name: 'London',
         infected: 7,
         recovered: 118,
-        value: { infected: 7, recovered: 118 }
-      }
+        value: { infected: 7, recovered: 118 },
+      },
     ]
 
     expect(formatData<'infected' | 'recovered'>(TEST_DATA)).toEqual(
@@ -38,7 +38,7 @@ describe('BarChart', () => {
     const expectedData = [
       { infected: 1, recovered: 2 },
       { infected: 2, recovered: 5 },
-      { infected: 7, recovered: 118 }
+      { infected: 7, recovered: 118 },
     ]
 
     expect(extractValues<'infected' | 'recovered'>(TEST_DATA)).toEqual(

@@ -19,13 +19,13 @@ PicassoProvider.override(({ palette, transitions }) => ({
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
 
       '&$disabled': {
-        opacity: 0.48
-      }
+        opacity: 0.48,
+      },
     },
     checked: {
-      color: palette.primary.main
-    }
-  }
+      color: palette.primary.main,
+    },
+  },
 }))
 
 const centeredCircle = (backgroundColor: string) => ({
@@ -41,7 +41,7 @@ const centeredCircle = (backgroundColor: string) => ({
   pointerEvents: 'none',
   transition: 'border-color',
   transitionDuration: 'inherit',
-  transitionTimingFunction: 'inherit'
+  transitionTimingFunction: 'inherit',
 })
 
 interface IconStylesProps {
@@ -59,14 +59,14 @@ const iconStyles = ({
   borderWidth,
   dotColor,
   dotOpacity,
-  transition
+  transition,
 }: IconStylesProps) => ({
   color: dotColor,
   transition,
   '&:before': iconBeforeStyles({
     borderWidth,
     borderColor,
-    backgroundColor
+    backgroundColor,
   }),
   '&:after': {
     ...centeredCircle(dotColor),
@@ -75,20 +75,20 @@ const iconStyles = ({
     borderWidth: rem('2px'),
     borderStyle: 'solid',
     opacity: dotOpacity,
-    transition
-  }
+    transition,
+  },
 })
 
 const iconBeforeStyles = ({
   borderWidth,
   borderColor,
-  backgroundColor
+  backgroundColor,
 }: Pick<
   IconStylesProps,
   'borderWidth' | 'borderColor' | 'backgroundColor'
 >) => ({
   ...centeredCircle(backgroundColor),
-  border: `${borderWidth} solid ${borderColor}`
+  border: `${borderWidth} solid ${borderColor}`,
 })
 
 export default ({ palette, sizes, transitions }: Theme) =>
@@ -101,27 +101,27 @@ export default ({ palette, sizes, transitions }: Theme) =>
         borderWidth: sizes.borderWidth,
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         borderColor: palette.grey.main2!,
-        backgroundColor: palette.common.white
+        backgroundColor: palette.common.white,
       }),
 
       '&:hover $checkedIcon:before': iconBeforeStyles({
         borderWidth: sizes.borderWidth,
         borderColor: mix(palette.primary.main, palette.common.white, 0.16),
-        backgroundColor: mix(palette.primary.main, palette.common.white, 0.16)
-      })
+        backgroundColor: mix(palette.primary.main, palette.common.white, 0.16),
+      }),
     },
     focused: {
       '& $checkedIcon:before, & $uncheckedIcon:before': {
-        ...outline(palette.primary.main)
-      }
+        ...outline(palette.primary.main),
+      },
     },
     disabled: {
       '$uncheckedIcon:before': {
-        boxShadow: 'none !important'
-      }
+        boxShadow: 'none !important',
+      },
     },
     withLabel: {
-      marginRight: CONTROL_MARGIN_RIGHT
+      marginRight: CONTROL_MARGIN_RIGHT,
     },
     uncheckedIcon: iconStyles({
       backgroundColor: palette.common.white,
@@ -131,7 +131,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       dotColor: palette.grey.main!,
       dotOpacity: 0,
-      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
     }),
     checkedIcon: iconStyles({
       backgroundColor: palette.primary.main,
@@ -139,12 +139,12 @@ export default ({ palette, sizes, transitions }: Theme) =>
       borderWidth: sizes.borderWidth,
       dotColor: palette.common.white,
       dotOpacity: 1,
-      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
     }),
     label: {
       // 1px is needed for safari
       maxWidth: `calc(100% - ${CONTROL_WIDTH} - ${CONTROL_MARGIN_RIGHT} + 1px)`,
-      marginTop: RADIO_VERTICAL_MARGIN
+      marginTop: RADIO_VERTICAL_MARGIN,
     },
-    labelWithRightSpacing: {}
+    labelWithRightSpacing: {},
   })

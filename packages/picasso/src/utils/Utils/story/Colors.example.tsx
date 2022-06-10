@@ -4,7 +4,7 @@ import React from 'react'
 const data = {
   'colorUtils.alpha': `Sets the alpha channel for the color and returns the hex color format`,
   'colorUtils.lighten': `Sets the lightness of the color and returns the hex color format`,
-  'colorUtils.darken': `Sets the darkness of the color and returns the hex color format`
+  'colorUtils.darken': `Sets the darkness of the color and returns the hex color format`,
 }
 
 const Example = () => (

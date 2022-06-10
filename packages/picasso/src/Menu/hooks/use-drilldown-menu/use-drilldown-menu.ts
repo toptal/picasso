@@ -28,7 +28,7 @@ const useDrilldownMenu = () => {
       activeItemKey,
       onItemMouseEnter: handleItemMouseEnter,
       onMenuMouseLeave: handleMenuMouseLeave,
-      onAwayClick: handleAwayClick
+      onAwayClick: handleAwayClick,
     }),
     [activeItemKey, handleItemMouseEnter, handleMenuMouseLeave, handleAwayClick]
   )
@@ -36,7 +36,7 @@ const useDrilldownMenu = () => {
   return {
     context,
     innerMenu: undefined,
-    hasBackButton: false
+    hasBackButton: false,
   }
 }
 

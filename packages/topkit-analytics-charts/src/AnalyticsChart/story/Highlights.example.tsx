@@ -27,9 +27,9 @@ const CHART_DATA = [
       '2020-11-07': 1.6,
       '2020-11-08': 2,
       '2020-11-09': 2,
-      '2020-11-10': 3.1
-    }
-  }
+      '2020-11-10': 3.1,
+    },
+  },
 ]
 
 const Example = () => (
@@ -38,15 +38,15 @@ const Example = () => (
     highlights={[
       {
         data: ['2020-10-21'],
-        color: palette.green.main
+        color: palette.green.main,
       },
       {
         data: ['2020-11-01', '2020-11-02'],
-        color: palette.red.main
-      }
+        color: palette.red.main,
+      },
     ]}
     lineConfig={{
-      team: { color: palette.blue.main }
+      team: { color: palette.blue.main },
     }}
   />
 )

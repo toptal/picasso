@@ -4,7 +4,7 @@ import Typography, { TypographyProps } from '../Typography'
 import {
   formatAmount,
   DEFAULT_LOCALE,
-  DEFAULT_CURRENCY
+  DEFAULT_CURRENCY,
 } from '../utils/Formatters'
 
 export interface Props extends TypographyProps {

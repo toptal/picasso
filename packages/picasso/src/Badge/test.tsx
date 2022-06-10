@@ -65,7 +65,7 @@ describe('Badge', () => {
   it('should render data-testid', () => {
     renderBadge({
       content: 5,
-      'data-testid': 'badge-root'
+      'data-testid': 'badge-root',
     })
 
     expect(screen.getByTestId('badge-root')).toBeInTheDocument()
@@ -76,7 +76,7 @@ describe('Badge', () => {
       const { getByText } = renderBadge({
         content: 9999,
         max: 999,
-        size: 'large'
+        size: 'large',
       })
 
       expect(getByText('999+')).toBeVisible()
@@ -86,7 +86,7 @@ describe('Badge', () => {
       const { getByText } = renderBadge({
         content: 150,
         max: 999,
-        size: 'large'
+        size: 'large',
       })
 
       expect(getByText('150')).toBeVisible()
@@ -94,7 +94,7 @@ describe('Badge', () => {
 
     it('should show the badge if the content is 0', () => {
       const { getByText } = renderBadge({
-        content: 0
+        content: 0,
       })
 
       expect(getByText('0')).toBeVisible()

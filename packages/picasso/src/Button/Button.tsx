@@ -3,7 +3,7 @@ import React, {
   ReactElement,
   MouseEvent,
   forwardRef,
-  ElementType
+  ElementType,
 } from 'react'
 import cx from 'classnames'
 import ButtonBase from '@material-ui/core/ButtonBase'
@@ -14,7 +14,7 @@ import {
   OverridableComponent,
   useTitleCase,
   TextLabelProps,
-  Classes
+  Classes,
 } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core'
 
@@ -25,7 +25,7 @@ import noop from '../utils/noop'
 import toTitleCase from '../utils/to-title-case'
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoButton'
+  name: 'PicassoButton',
 })
 
 export type VariantType =
@@ -89,15 +89,15 @@ const getIcon = (
   const {
     icon: iconClass,
     iconLeft: iconLeftClass,
-    iconRight: iconRightClass
+    iconRight: iconRightClass,
   } = classes
 
   return React.cloneElement(icon, {
     className: cx(iconClass, icon.props.className, {
       [iconLeftClass]: children && iconPosition === 'left',
-      [iconRightClass]: children && iconPosition === 'right'
+      [iconRightClass]: children && iconPosition === 'right',
     }),
-    key: 'button-icon'
+    key: 'button-icon',
   })
 }
 
@@ -133,7 +133,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
     root: rootClass,
     hidden: hiddenClass,
     loader: loaderClass,
-    content: contentClass
+    content: contentClass,
   } = classes
 
   const titleCase = useTitleCase(propsTitleCase)
@@ -159,7 +159,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
       [classes.active]: active,
       [classes.focused]: focused,
       [classes.hovered]: hovered,
-      [classes.disabled]: disabled
+      [classes.disabled]: disabled,
     },
     sizeClassName,
     variantClassName,
@@ -172,7 +172,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
       ref={ref}
       classes={{
         root: rootClassName,
-        focusVisible: cx(classes.focusVisible)
+        focusVisible: cx(classes.focusVisible),
       }}
       onClick={getClickHandler(loading, onClick)}
       className={className}
@@ -215,7 +215,7 @@ Button.defaultProps = {
   onClick: noop,
   size: 'medium',
   type: 'button',
-  variant: 'primary'
+  variant: 'primary',
 }
 
 Button.displayName = 'Button'

@@ -3,7 +3,7 @@ import { Container } from '@toptal/picasso'
 import { Form, FormConfigProps } from '@toptal/picasso-forms'
 
 const formConfig: FormConfigProps = {
-  showValidState: true
+  showValidState: true,
 }
 
 const Example = () => (

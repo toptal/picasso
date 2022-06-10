@@ -41,7 +41,7 @@ describe('Calendar', () => {
             date,
             getDayFormatted,
             isMonthNext,
-            isMonthPrev
+            isMonthPrev,
           }) => (
             <Container
               flex
@@ -56,7 +56,7 @@ describe('Calendar', () => {
                 verticalAlign: 'middle',
                 fontSize: '0.875rem',
                 userSelect: 'none',
-                position: 'relative'
+                position: 'relative',
               }}
               key={key}
             >

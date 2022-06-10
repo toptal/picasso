@@ -4,7 +4,7 @@ export default () =>
   createStyles({
     hideBottomYAxisLabel: {
       '& .recharts-yAxis .recharts-cartesian-axis-tick:first-child': {
-        display: 'none'
-      }
-    }
+        display: 'none',
+      },
+    },
   })

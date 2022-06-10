@@ -8,5 +8,5 @@ export const TagCompound = Object.assign(Tag, {
   Group: TagGroup,
   Rectangular: TagRectangular,
   Connection: TagConnection,
-  Checkable: TagCheckable
+  Checkable: TagCheckable,
 })

@@ -5,8 +5,8 @@ const value = [
   {
     uploading: true,
     progress: 30,
-    file: new File(['resume.pdf'], 'resume.pdf')
-  }
+    file: new File(['resume.pdf'], 'resume.pdf'),
+  },
 ]
 
 const Example = () => {

@@ -13,43 +13,43 @@ export default ({ palette }: Theme) =>
       position: 'relative',
       display: 'inline-flex',
       fontSize: '1rem',
-      cursor: 'pointer'
+      cursor: 'pointer',
     },
     rootFull: {
-      width: '100%'
+      width: '100%',
     },
     rootShrink: {
-      width: 'auto'
+      width: 'auto',
     },
     rootAuto: {},
     rootDisabled: {
-      cursor: 'default'
+      cursor: 'default',
     },
     select: {
       width: '100%',
       padding: '0.5rem',
 
       '&:focus': {
-        backgroundColor: 'inherit'
-      }
+        backgroundColor: 'inherit',
+      },
     },
     inputWrapper: {
       width: 'inherit',
-      outline: 0
+      outline: 0,
     },
     outlinedInput: {
-      paddingRight: '1.625rem'
+      paddingRight: '1.625rem',
     },
     searchOutlinedInput: {
-      width: '100%'
+      width: '100%',
     },
     searchInputIcon: {
-      marginRight: '0.5rem'
+      marginRight: '0.5rem',
     },
     nativeInput: {
-      padding: 0
+      padding: 0,
     },
     placeholder: {
-      color: palette.grey.main2
-    }
+      color: palette.grey.main2,
+    },
   })

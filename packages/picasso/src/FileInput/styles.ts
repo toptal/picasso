@@ -4,14 +4,14 @@ import { rem } from '@toptal/picasso-shared'
 export default () =>
   createStyles({
     root: {
-      maxWidth: '300px'
+      maxWidth: '300px',
     },
     hint: {
       '& > *': {
-        lineHeight: rem('16px')
-      }
+        lineHeight: rem('16px'),
+      },
     },
     nativeInput: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   })

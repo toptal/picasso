@@ -1,7 +1,7 @@
 import React, { FocusEvent, useCallback } from 'react'
 import {
   PasswordInput as PicassoPasswordInput,
-  PasswordInputProps
+  PasswordInputProps,
 } from '@toptal/picasso'
 
 interface FieldRendererProps extends PasswordInputProps {

@@ -17,7 +17,7 @@ export interface Props extends StandardProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTreeNodeAvatar'
+  name: 'PicassoTreeNodeAvatar',
 })
 
 const renderInitials = ({ src, name, classes }: Partial<Props>) => {
@@ -44,7 +44,7 @@ const sizeValues = {
   xsmall: '40',
   small: '80',
   medium: '120',
-  large: '160'
+  large: '160',
 }
 
 export const TreeNodeAvatar = (props: Props) => {
@@ -81,7 +81,7 @@ export const TreeNodeAvatar = (props: Props) => {
 
 TreeNodeAvatar.defaultProps = {
   size: 'xxsmall',
-  objectFit: 'contain'
+  objectFit: 'contain',
 }
 
 TreeNodeAvatar.displayName = 'TreeNodeAvatar'

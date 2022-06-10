@@ -7,7 +7,7 @@ export const ChartDot = ({
   cy,
   dataKey,
   color,
-  payload
+  payload,
 }: {
   cx?: number
   dataKey?: string

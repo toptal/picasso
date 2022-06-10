@@ -7,7 +7,7 @@ import {
   convertBoldFromEditorValue,
   convertItalicFromEditorValue,
   convertListFromEditorValue,
-  convertHeaderFromEditorValue
+  convertHeaderFromEditorValue,
 } from '../../utils/convertFormat'
 
 type Props = {

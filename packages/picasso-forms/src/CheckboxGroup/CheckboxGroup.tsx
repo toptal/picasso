@@ -3,7 +3,7 @@ import React from 'react'
 import {
   Checkbox as PicassoCheckbox,
   CheckboxProps,
-  CheckboxGroupProps
+  CheckboxGroupProps,
 } from '@toptal/picasso'
 
 import PicassoField, { FieldProps } from '../Field'

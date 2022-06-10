@@ -17,7 +17,7 @@ export default ({ palette, screens, zIndex, transitions }: Theme) =>
 
       [screens('small', 'medium')]: {
         width: '100vw',
-        overflowY: 'scroll'
+        overflowY: 'scroll',
       },
 
       '&::before': {
@@ -26,20 +26,20 @@ export default ({ palette, screens, zIndex, transitions }: Theme) =>
         left: 0,
         top: 0,
         width: '15.50rem',
-        height: '100%'
-      }
+        height: '100%',
+      },
     },
     responsiveWrapper: {
       position: 'fixed',
       top: '0.75em',
       left: '0.75em',
-      zIndex: zIndex.appBar
+      zIndex: zIndex.appBar,
     },
     responsiveWrapperContent: {
       maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
       [screens('small', 'medium')]: {
-        maxHeight: 'calc(100vh - 3rem)' // viewport minus header height
+        maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
       },
 
       // height under which maxHeight menu starts to overflow
@@ -48,22 +48,22 @@ export default ({ palette, screens, zIndex, transitions }: Theme) =>
         maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
         [screens('small', 'medium')]: {
-          maxHeight: 'calc(100vh - 3rem)' // viewport minus header height
-        }
-      }
+          maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
+        },
+      },
     },
     spacer: {
       order: 50,
       flex: 1,
-      height: '100%'
+      height: '100%',
     },
     light: {
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.lighter2}`,
-      backgroundColor: palette.grey.lighter
+      backgroundColor: palette.grey.lighter,
     },
     dark: {
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
-      backgroundColor: palette.grey.darker
+      backgroundColor: palette.grey.darker,
     },
     collapseButton: {
       position: 'absolute',
@@ -78,18 +78,18 @@ export default ({ palette, screens, zIndex, transitions }: Theme) =>
 
       '&:hover': {
         color: palette.common.white,
-        backgroundColor: palette.primary.main
-      }
+        backgroundColor: palette.primary.main,
+      },
     },
     buttonVisible: {
-      visibility: 'visible'
+      visibility: 'visible',
     },
     rootCollapsed: {
       width: '5rem',
       transition: `width ${transitions.duration.leavingScreen}ms ease-in-out`,
 
       '&::before': {
-        width: '5.75rem'
-      }
-    }
+        width: '5.75rem',
+      },
+    },
   })

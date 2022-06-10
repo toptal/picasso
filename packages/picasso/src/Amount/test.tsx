@@ -13,7 +13,7 @@ describe('Amount', () => {
     const { container } = renderAmount({
       amount: 1500,
       currency: 'EUR',
-      color: 'green'
+      color: 'green',
     })
 
     expect(container).toMatchSnapshot()

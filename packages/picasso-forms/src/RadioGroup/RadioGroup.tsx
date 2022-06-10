@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Radio as PicassoRadio,
   RadioProps,
-  RadioGroupProps
+  RadioGroupProps,
 } from '@toptal/picasso'
 
 import PicassoField, { FieldProps } from '../Field'

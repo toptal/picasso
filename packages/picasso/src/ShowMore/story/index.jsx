@@ -15,16 +15,16 @@ page
   .addExample('ShowMore/story/Default.example.tsx', 'Default')
   .addExample('ShowMore/story/LineBreaks.example.tsx', {
     title: 'Line Breaks',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('ShowMore/story/Expanded.example.tsx', 'Expanded')
   .addExample('ShowMore/story/CustomLimit.example.tsx', 'Custom Limit')
   .addExample('ShowMore/story/ToggleDisabled.example.tsx', 'Disabled Toggle')
   .addExample('ShowMore/story/ZeroRows.example.tsx', {
     title: 'With rows={0}',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('ShowMore/story/ReactNode.example.tsx', {
     title: 'With React children',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

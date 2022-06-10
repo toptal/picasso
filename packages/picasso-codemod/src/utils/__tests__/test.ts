@@ -11,7 +11,7 @@ const j = core
 const PICASSO_PACKAGE_NAME = '@toptal/picasso'
 const BAR_PACKAGE_MEMBER: PackageMember = {
   packageName: '@toptal/picasso',
-  exportedName: 'Bar'
+  exportedName: 'Bar',
 }
 
 describe('add-import', () => {

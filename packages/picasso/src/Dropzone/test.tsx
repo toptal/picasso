@@ -18,7 +18,7 @@ describe('Dropzone', () => {
   it('shows error', () => {
     const { queryByText } = renderDropzone({
       errorMessages: ['error example'],
-      hint: 'hint example'
+      hint: 'hint example',
     })
 
     expect(queryByText('hint example')).not.toBeInTheDocument()
@@ -41,9 +41,9 @@ describe('Dropzone', () => {
           {
             uploading: false,
             progress: 0,
-            file: new File(['resume.pdf'], 'resume.pdf')
-          }
-        ]
+            file: new File(['resume.pdf'], 'resume.pdf'),
+          },
+        ],
       })
 
       expect(getByTestId('dropzone').className).toContain('disabled')

@@ -8,134 +8,134 @@ const CHART_DATA = [
     date: '20',
     infected: 10,
     recovered: 5,
-    died: 5
+    died: 5,
   },
   {
     date: '21',
     infected: 9,
     recovered: 6,
-    died: 3
+    died: 3,
   },
   {
     date: '22',
     infected: 9,
     recovered: 6,
-    died: 3
+    died: 3,
   },
   {
     date: '23',
     infected: 8,
     recovered: 4,
-    died: 4
+    died: 4,
   },
   {
     date: '24',
     infected: 11,
     recovered: 6,
-    died: 5
+    died: 5,
   },
   {
     date: '25',
     infected: 7,
     recovered: 7,
-    died: 0
+    died: 0,
   },
   {
     date: '26',
     infected: 11,
     recovered: 7,
-    died: 4
+    died: 4,
   },
   {
     date: '27',
     infected: 7,
     recovered: 4,
-    died: 3
+    died: 3,
   },
   {
     date: '28',
     infected: 12,
     recovered: 3,
-    died: 9
+    died: 9,
   },
   {
     date: '29',
     infected: 8,
     recovered: 6,
-    died: 2
+    died: 2,
   },
   {
     date: '30',
     infected: 8,
     recovered: 3,
-    died: 5
+    died: 5,
   },
   {
     date: '31',
     infected: 12,
     recovered: 4,
-    died: 8
+    died: 8,
   },
   {
     date: '01',
     infected: 7,
     recovered: 4,
-    died: 3
+    died: 3,
   },
   {
     date: '02',
     infected: 10,
     recovered: 4,
-    died: 6
+    died: 6,
   },
   {
     date: '03',
     infected: 7,
     recovered: 7,
-    died: 0
+    died: 0,
   },
   {
     date: '04',
     infected: 8,
     recovered: 5,
-    died: 3
+    died: 3,
   },
   {
     date: '05',
     infected: 11,
     recovered: 7,
-    died: 4
+    died: 4,
   },
   {
     date: '06',
     infected: 8,
     recovered: 3,
-    died: 5
+    died: 5,
   },
   {
     date: '07',
     infected: 11,
     recovered: 3,
-    died: 8
+    died: 8,
   },
   {
     date: '08',
     infected: 7,
     recovered: 6,
-    died: 1
+    died: 1,
   },
   {
     date: '09',
     infected: 12,
     recovered: 4,
-    died: 8
+    died: 8,
   },
   {
     date: '10',
     infected: 11,
     recovered: 6,
-    died: 5
-  }
+    died: 5,
+  },
 ]
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -192,7 +192,7 @@ const Example = () => (
     lineConfig={{
       infected: { color: palette.yellow.main },
       recovered: { color: palette.blue.main },
-      died: { color: palette.red.main }
+      died: { color: palette.red.main },
     }}
   />
 )

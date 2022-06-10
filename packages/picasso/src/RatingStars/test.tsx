@@ -6,7 +6,7 @@ import RatingStars, { Props } from './RatingStars'
 const defaultProps: Props = {
   name: 'rating-name',
   value: 3,
-  onChange: jest.fn()
+  onChange: jest.fn(),
 }
 
 const renderRating = (props = defaultProps) =>
@@ -50,7 +50,7 @@ describe('Rating.Stars', () => {
       ...defaultProps,
       name,
       onChange,
-      interactive: false
+      interactive: false,
     })
 
     fireEvent.click(getByTestId(`${name}-1`))

@@ -11,11 +11,11 @@ page.createTabChapter('Props').addComponentDocs({
       name: 'color',
       type: {
         name: 'enum',
-        enums: ['"red"', '"yellow"', '"blue"', '"green"', '"light-grey"']
+        enums: ['"red"', '"yellow"', '"blue"', '"green"', '"light-grey"'],
       },
-      description: 'Indicator color'
-    }
-  }
+      description: 'Indicator color',
+    },
+  },
 })
 
 page

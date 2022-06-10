@@ -7,7 +7,7 @@ const defaultProps = {
   title: 'Test title',
   message: 'Test message',
   open: true,
-  onSubmit: () => {}
+  onSubmit: () => {},
 }
 
 export default () => (

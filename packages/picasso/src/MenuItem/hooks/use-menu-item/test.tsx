@@ -32,7 +32,7 @@ describe('useMenuItem', () => {
     mockedUseDrilldownMenuItem.mockReturnValue({
       isOpened,
       onItemMouseEnter,
-      onAwayClick
+      onAwayClick,
     })
 
     const { result } = renderHook(() => useMenuItem({}))
@@ -41,7 +41,7 @@ describe('useMenuItem', () => {
       isOpened,
       onItemClick,
       onItemMouseEnter,
-      onAwayClick
+      onAwayClick,
     })
   })
 })

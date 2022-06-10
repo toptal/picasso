@@ -11,24 +11,24 @@ export default ({ palette, sizes, transitions }: Theme) =>
       '&$selected': {
         backgroundColor: palette.blue.lighter,
         '&:hover': {
-          backgroundColor: palette.blue.lighter
-        }
+          backgroundColor: palette.blue.lighter,
+        },
       },
 
       '&$hover:hover': {
-        backgroundColor: palette.blue.lighter
-      }
+        backgroundColor: palette.blue.lighter,
+      },
     },
     bordered: {
-      borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
+      borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter2}`,
     },
     stripeEven: {
-      background: palette.grey.lighter
+      background: palette.grey.lighter,
     },
     hover: {
       transition: transitions.create('background-color', {
-        duration: transitions.duration.shortest
-      })
+        duration: transitions.duration.shortest,
+      }),
     },
-    selected: {}
+    selected: {},
   })

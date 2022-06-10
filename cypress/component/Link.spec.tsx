@@ -5,7 +5,7 @@ import {
   Typography,
   Menu,
   UserBadge,
-  ChevronRight16
+  ChevronRight16,
 } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'

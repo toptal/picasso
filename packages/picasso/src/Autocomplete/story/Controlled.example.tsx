@@ -7,7 +7,7 @@ const options = [
   { text: 'Lithuania', value: 'LU' },
   { text: 'Slovakia', value: 'SK' },
   { text: 'Spain', value: 'SP' },
-  { text: 'Ukraine', value: 'UA' }
+  { text: 'Ukraine', value: 'UA' },
 ]
 
 const Example = () => {

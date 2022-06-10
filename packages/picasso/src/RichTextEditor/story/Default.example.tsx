@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   RichTextEditor,
   RichTextEditorChangeHandler,
-  Container
+  Container,
 } from '@toptal/picasso'
 
 const Example = () => {
@@ -23,7 +23,7 @@ const Example = () => {
         top='large'
         style={{
           fontFamily: "Consolas, 'Courier New', monospace",
-          background: 'lightyellow'
+          background: 'lightyellow',
         }}
       >
         {value}

@@ -14,7 +14,7 @@ describe('Image', () => {
   it('renders', () => {
     const { container } = renderImage({
       alt: 'Default image',
-      src: 'localhost'
+      src: 'localhost',
     })
 
     expect(container).toMatchSnapshot()
@@ -24,7 +24,7 @@ describe('Image', () => {
     const { container } = renderImage({
       alt: 'Circular image',
       variant: 'circular',
-      src: 'localhost'
+      src: 'localhost',
     })
 
     expect(container).toMatchSnapshot()

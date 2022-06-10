@@ -13,7 +13,7 @@ import {
   Option,
   OptionGroups,
   SelectProps,
-  Selection
+  Selection,
 } from '../SelectBase'
 import Typography from '../Typography'
 import styles from './styles'
@@ -75,7 +75,7 @@ const renderOptions = ({
   selection,
   highlightedIndex,
   offset = 0,
-  renderOption
+  renderOption,
 }: Pick<
   Props,
   'getItemProps' | 'selection' | 'highlightedIndex' | 'renderOption'
@@ -101,7 +101,7 @@ const renderGroups = ({
   getItemProps,
   selection,
   highlightedIndex,
-  renderOption
+  renderOption,
 }: Pick<
   Props,
   'getItemProps' | 'selection' | 'highlightedIndex' | 'renderOption'
@@ -117,7 +117,7 @@ const renderGroups = ({
           selection,
           highlightedIndex,
           offset: optionsCount,
-          renderOption
+          renderOption,
         })}
       </MenuGroup>
     )
@@ -160,7 +160,7 @@ const NonNativeSelectOptions = ({
   noOptionsText,
   fixedHeader,
   fixedFooter,
-  testIds
+  testIds,
 }: Props) => {
   const flatOptions: Option[] = useMemo(
     () => flattenOptions(options),
@@ -199,14 +199,14 @@ const NonNativeSelectOptions = ({
             getItemProps,
             selection,
             highlightedIndex,
-            renderOption
+            renderOption,
           })
         : renderGroups({
             groups: options,
             getItemProps,
             selection,
             highlightedIndex,
-            renderOption
+            renderOption,
           })}
     </SelectOptions>
   )

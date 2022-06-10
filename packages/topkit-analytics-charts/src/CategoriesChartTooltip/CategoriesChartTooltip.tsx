@@ -19,7 +19,7 @@ const CategoriesChartTooltip = ({
   payload,
   tooltips,
   originalData,
-  testIds
+  testIds,
 }: Props) => {
   if (active && payload && payload.length > 0) {
     const currentData = originalData.find(
@@ -33,7 +33,7 @@ const CategoriesChartTooltip = ({
     const { teamTexts, userTexts } = getDisplayTexts({
       currentData,
       tooltips,
-      currentPayload: payload[0].payload
+      currentPayload: payload[0].payload,
     })
 
     return (

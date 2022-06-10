@@ -8,10 +8,10 @@ export default ({ zIndex, screens }: Theme) =>
         width: '100vw',
         maxWidth: '100vw',
         padding: 0,
-        margin: 0
+        margin: 0,
       },
       '&[x-out-of-boundaries]': {
-        display: 'none'
-      }
-    }
+        display: 'none',
+      },
+    },
   })

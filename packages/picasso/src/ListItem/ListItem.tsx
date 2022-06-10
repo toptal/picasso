@@ -58,7 +58,7 @@ export const ListItem = (props: Props) => {
         flex
         direction='row'
         className={cx(classes.listContainer, {
-          [classes.lastElement]: isLastElement
+          [classes.lastElement]: isLastElement,
         })}
       >
         <Container

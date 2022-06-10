@@ -9,32 +9,32 @@ PicassoProvider.override(({ typography }: Theme) => ({
       fontWeight: typography.fontWeights.semibold,
       minHeight: 'auto',
       '&$expanded': {
-        minHeight: 'auto'
+        minHeight: 'auto',
       },
       '&$disabled': {
-        opacity: 1
-      }
+        opacity: 1,
+      },
     },
     expandIcon: {
       margin: 0,
       padding: 0,
 
       '&$expanded': {
-        transform: 'rotate(180deg)'
-      }
+        transform: 'rotate(180deg)',
+      },
     },
     content: {
       fontSize: '0.875em',
       margin: 0,
       '&$expanded': {
-        margin: '0'
-      }
-    }
-  }
+        margin: '0',
+      },
+    },
+  },
 }))
 
 export default () =>
   createStyles({
     root: {},
-    content: {}
+    content: {},
   })

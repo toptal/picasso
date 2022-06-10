@@ -17,13 +17,13 @@ page
         name: 'contentOverflow',
         type: {
           name: 'enum',
-          enums: ['scroll', 'visible']
+          enums: ['scroll', 'visible'],
         },
         defaultValue: 'scroll',
         description:
-          "Sets the desired behavior for an element's overflow. When `scroll` it limits max-height of a content of the dropdown. When `visible` it displays as much content as it possible without vertical scrollbar."
-      }
-    }
+          "Sets the desired behavior for an element's overflow. When `scroll` it limits max-height of a content of the dropdown. When `visible` it displays as much content as it possible without vertical scrollbar.",
+      },
+    },
   })
   .addComponentDocs(dropdownArrowStory.componentDocs)
 
@@ -35,9 +35,9 @@ page
       await testPage.click('[data-testid="trigger"]')
 
       await makeScreenshot({
-        selector: '[data-testid="menu"]'
+        selector: '[data-testid="menu"]',
       })
-    }
+    },
   })
   .addExample('Dropdown/story/ButtonDropdown.example.tsx', 'Button Anchor')
   .addExample(
@@ -46,11 +46,11 @@ page
   )
   .addExample('Dropdown/story/CustomTrigger.example.tsx', {
     title: 'Custom Anchor',
-    waitUntilImagesLoaded: true
+    waitUntilImagesLoaded: true,
   })
   .addExample('Dropdown/story/CustomContent.example.tsx', 'Custom Content')
   .addExample('Dropdown/story/SmallArrow.example.tsx', 'Small Arrow Dropdown')
   .addExample('Dropdown/story/LongMenuList.example.tsx', {
     title: 'Long Menu List',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

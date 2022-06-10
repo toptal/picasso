@@ -21,21 +21,21 @@ const accounts = [
   {
     id: '1',
     name: 'Phil Leif 1',
-    position: 'Account Owner at Stowaway Cosmetics'
+    position: 'Account Owner at Stowaway Cosmetics',
   },
   {
     id: '2',
     href: '#',
     name: 'Phil Leif 2',
-    position: 'Company Representative at Marketing Works'
+    position: 'Company Representative at Marketing Works',
   },
   {
     id: '3',
     href: '#',
     name: 'Phil Leif 3',
     position: 'Talent',
-    avatar: './jacqueline-with-flowers-1954-square.jpg'
-  }
+    avatar: './jacqueline-with-flowers-1954-square.jpg',
+  },
 ]
 
 describe('AccountSelect', () => {
@@ -46,7 +46,7 @@ describe('AccountSelect', () => {
     onSelect = jest.fn()
     api = renderAccountSelect(null, {
       onSelect,
-      accounts
+      accounts,
     })
   })
   it('renders', () => {

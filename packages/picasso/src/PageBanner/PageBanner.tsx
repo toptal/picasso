@@ -25,5 +25,5 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
 PageBanner.displayName = 'PageBanner'
 
 export default Object.assign(PageBanner, {
-  Actions: NotificationActions
+  Actions: NotificationActions,
 })

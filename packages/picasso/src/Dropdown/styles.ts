@@ -5,12 +5,12 @@ export default ({ screens, shadows, palette }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
-      alignItems: 'center'
+      alignItems: 'center',
     },
     anchor: {
       display: 'inline-flex',
       alignItems: 'center',
-      cursor: 'pointer'
+      cursor: 'pointer',
     },
     content: {
       fontSize: 'inherit',
@@ -20,7 +20,7 @@ export default ({ screens, shadows, palette }: Theme) =>
       overflowY: 'auto',
       boxShadow: shadows[0],
       [screens('small', 'medium')]: {
-        maxHeight: '14.75rem' // 6.5 lines of menu to show
+        maxHeight: '14.75rem', // 6.5 lines of menu to show
       },
 
       // height under which maxHeight menu starts to overflow
@@ -29,12 +29,12 @@ export default ({ screens, shadows, palette }: Theme) =>
         maxHeight: 'calc(50vh - 3.5rem)', // half of screen minus header and anchor
 
         [screens('small', 'medium')]: {
-          maxHeight: 'calc(50vh - 3rem)' // half of viewport minus header and anchor
-        }
-      }
+          maxHeight: 'calc(50vh - 3rem)', // half of viewport minus header and anchor
+        },
+      },
     },
     popper: {
-      boxShadow: shadows[2]
+      boxShadow: shadows[2],
     },
     contentVisible: {
       // Basically a whole content of a dropdown will be shown without a vertical scrollbar inside the dropdown
@@ -44,11 +44,11 @@ export default ({ screens, shadows, palette }: Theme) =>
       // For non desktop devices better if we have a scrollbar when a dropdown content is pretty long
       [screens('small', 'medium')]: {
         overflowY: 'scroll',
-        maxHeight: '100vh'
+        maxHeight: '100vh',
       },
       '@media screen and (max-height: 585px)': {
         overflowY: 'scroll',
-        maxHeight: '100vh'
-      }
-    }
+        maxHeight: '100vh',
+      },
+    },
   })

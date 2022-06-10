@@ -4,7 +4,7 @@ import {
   addImportMember,
   findSpecifierForImport,
   isImportFor,
-  isSpecifierFor
+  isSpecifierFor,
 } from '../../utils'
 import { PackageMember } from '../../utils/types'
 
@@ -12,12 +12,12 @@ const PICASSO_PACKAGE = '@toptal/picasso'
 
 const OLD_PICASSO_SIDEBAR: PackageMember = {
   packageName: PICASSO_PACKAGE,
-  exportedName: 'Sidebar'
+  exportedName: 'Sidebar',
 }
 
 const PICASSO_PAGE: PackageMember = {
   packageName: PICASSO_PACKAGE,
-  exportedName: 'Page'
+  exportedName: 'Page',
 }
 
 const transformImports = (root: Collection) => {
@@ -38,7 +38,7 @@ const transformImports = (root: Collection) => {
     })
 
   return {
-    pageIdentifier: pageIdentifier?.imported.name
+    pageIdentifier: pageIdentifier?.imported.name,
   }
 }
 

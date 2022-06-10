@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   TimePicker as PicassoTimePicker,
-  TimePickerProps
+  TimePickerProps,
 } from '@toptal/picasso'
 
 import { FieldProps } from '../Field'

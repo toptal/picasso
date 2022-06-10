@@ -8,7 +8,7 @@ const allOptions = [
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
   { text: 'Slovakia', value: 'SK' },
-  { text: 'Ukraine', value: 'UA' }
+  { text: 'Ukraine', value: 'UA' },
 ]
 
 interface ContentProps {

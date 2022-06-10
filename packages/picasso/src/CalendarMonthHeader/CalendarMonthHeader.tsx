@@ -9,7 +9,7 @@ import Container from '../Container'
 
 const CalendarMonthHeader = ({
   switchMonth,
-  activeMonth: headerActiveMonth
+  activeMonth: headerActiveMonth,
 }: MonthHeaderProps) => (
   <Container flex justifyContent='space-between' bottom='medium'>
     <ButtonCircular

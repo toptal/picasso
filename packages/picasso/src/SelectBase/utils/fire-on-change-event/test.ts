@@ -9,7 +9,7 @@ describe('fireOnChangeEvent', () => {
         event: { persist },
         value: '1',
         name: 'test',
-        onChange: undefined
+        onChange: undefined,
       })
     ).not.toThrow()
     expect(persist).toHaveBeenCalled()
@@ -24,13 +24,13 @@ describe('fireOnChangeEvent', () => {
         event: { persist },
         value: '1',
         name: 'test',
-        onChange
+        onChange,
       })
     ).not.toThrow()
     expect(persist).toHaveBeenCalled()
     expect(onChange).toHaveBeenCalledWith({
       persist,
-      target: { name: 'test', value: '1' }
+      target: { name: 'test', value: '1' },
     })
   })
 })

@@ -10,7 +10,7 @@ const useModal = () => {
   return {
     showModal,
     hideModal,
-    isOpen
+    isOpen,
   }
 }
 

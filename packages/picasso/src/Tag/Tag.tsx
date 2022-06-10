@@ -5,7 +5,7 @@ import React, {
   HTMLAttributes,
   ElementType,
   MouseEvent,
-  AnchorHTMLAttributes
+  AnchorHTMLAttributes,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -90,17 +90,17 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       classes={{
         root: classes.root,
         label: classes.label,
-        clickable: classes.clickable
+        clickable: classes.clickable,
       }}
       className={cx(className, classes[variant], {
         [classes.hovered]: hovered,
-        [classes.disabled]: disabled
+        [classes.disabled]: disabled,
       })}
       style={style}
       icon={
         icon
           ? React.cloneElement(icon, {
-              color: disabled ? 'grey' : 'dark-grey'
+              color: disabled ? 'grey' : 'dark-grey',
             })
           : undefined
       }
@@ -124,7 +124,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
 Tag.defaultProps = {
   as: 'div',
   children: '',
-  variant: 'light-grey'
+  variant: 'light-grey',
 }
 
 Tag.displayName = 'Tag'

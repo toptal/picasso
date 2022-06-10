@@ -9,7 +9,7 @@ describe('getColor', () => {
     ['paused', palette.yellow.main],
     ['removed', palette.green.main],
     ['collections', palette.red.main],
-    ['pending', palette.yellow.main]
+    ['pending', palette.yellow.main],
   ]
 
   it.each(TEAM_COLOR_CHECK_LIST)(
@@ -18,7 +18,7 @@ describe('getColor', () => {
       expect(
         getColor({
           dataKey: 'team',
-          entry: { name: status, value: { team: 5, user: 6 } }
+          entry: { name: status, value: { team: 5, user: 6 } },
         })
       ).toBe(color)
     }
@@ -30,7 +30,7 @@ describe('getColor', () => {
     ['paused', palette.yellow.main],
     ['removed', palette.green.main],
     ['collections', palette.red.main],
-    ['pending', palette.yellow.main]
+    ['pending', palette.yellow.main],
   ]
 
   it.each(USER_COLOR_CHECK_LIST)(
@@ -39,7 +39,7 @@ describe('getColor', () => {
       expect(
         getColor({
           dataKey: 'user',
-          entry: { name: status, value: { team: 5, user: 6 } }
+          entry: { name: status, value: { team: 5, user: 6 } },
         })
       ).toBe(color)
     }
@@ -49,7 +49,7 @@ describe('getColor', () => {
     expect(
       getColor({
         dataKey: 'user',
-        entry: { name: 'some status', value: { team: 5, user: 4 } }
+        entry: { name: 'some status', value: { team: 5, user: 4 } },
       })
     ).toBe(palette.red.main)
   })
@@ -58,7 +58,7 @@ describe('getColor', () => {
     expect(
       getColor({
         dataKey: 'user',
-        entry: { name: 'claimed', value: { team: 5, user: 4 } }
+        entry: { name: 'claimed', value: { team: 5, user: 4 } },
       })
     ).toBe(palette.blue.darker)
   })

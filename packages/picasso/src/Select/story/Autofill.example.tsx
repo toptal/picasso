@@ -48,7 +48,7 @@ const OPTIONS = [
   { text: 'Lithuania', value: 'LU' },
   { text: 'Slovakia', value: 'SK' },
   { text: 'Ukraine', value: 'UA' },
-  { text: 'Romania', value: 'RO' }
+  { text: 'Romania', value: 'RO' },
 ]
 
 export default Example

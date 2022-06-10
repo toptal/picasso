@@ -24,5 +24,5 @@ const copyReadme = packageRootDir => {
 }
 
 module.exports = {
-  copyReadme
+  copyReadme,
 }

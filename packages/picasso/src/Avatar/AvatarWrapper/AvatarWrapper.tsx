@@ -12,7 +12,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoAvatarWrapper'
+  name: 'PicassoAvatarWrapper',
 })
 
 const AvatarWrapper = (props: Props) => {

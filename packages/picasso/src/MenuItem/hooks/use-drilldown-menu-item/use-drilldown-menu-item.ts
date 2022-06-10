@@ -36,7 +36,7 @@ const useDrilldownMenuItem = (props: Props) => {
   return {
     isOpened,
     onItemMouseEnter: handleItemMouseEnter,
-    onAwayClick: handleAwayClick
+    onAwayClick: handleAwayClick,
   }
 }
 

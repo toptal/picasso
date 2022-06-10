@@ -6,7 +6,7 @@ import RatingThumbs, { Props } from './RatingThumbs'
 
 const enum DataIds {
   POSITIVE_INPUT = 'positive-input',
-  NEGATIVE_INPUT = 'negative-input'
+  NEGATIVE_INPUT = 'negative-input',
 }
 
 const defaultProps: Props = {
@@ -14,8 +14,8 @@ const defaultProps: Props = {
   onChange: jest.fn(),
   testIds: {
     positiveInput: DataIds.POSITIVE_INPUT,
-    negativeInput: DataIds.NEGATIVE_INPUT
-  }
+    negativeInput: DataIds.NEGATIVE_INPUT,
+  },
 }
 
 const renderRatingThumbs = (props: Partial<OmitInternalProps<Props>> = {}) => {
@@ -29,7 +29,7 @@ const renderRatingThumbs = (props: Partial<OmitInternalProps<Props>> = {}) => {
       result.getByTestId(DataIds.POSITIVE_INPUT) as HTMLInputElement,
 
     getNegativeInput: () =>
-      result.getByTestId(DataIds.NEGATIVE_INPUT) as HTMLInputElement
+      result.getByTestId(DataIds.NEGATIVE_INPUT) as HTMLInputElement,
   } as const
 }
 
@@ -43,11 +43,11 @@ describe('RatingThumbs', () => {
   describe.each([
     [undefined, false, false],
     [true, true, false],
-    [false, false, true]
+    [false, false, true],
   ])('when value is %s', (value, positiveChecked, negativeChecked) => {
     it('shows correct input checked', () => {
       const { getNegativeInput, getPositiveInput } = renderRatingThumbs({
-        value
+        value,
       })
 
       expect(getPositiveInput().checked).toStrictEqual(positiveChecked)
@@ -80,7 +80,7 @@ describe('RatingThumbs', () => {
 
       const { getPositiveInput } = renderRatingThumbs({
         onChange,
-        interactive: false
+        interactive: false,
       })
 
       const parentLabel = expectNotNull(getPositiveInput().parentElement)

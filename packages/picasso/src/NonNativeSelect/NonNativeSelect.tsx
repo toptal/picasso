@@ -21,7 +21,7 @@ import {
   getOptionText,
   DEFAULT_LIMIT,
   DEFAULT_SEARCH_THRESHOLD,
-  countOptions
+  countOptions,
 } from '../SelectBase'
 import NonNativeSelectOptions from '../NonNativeSelectOptions'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
@@ -92,7 +92,7 @@ export const NonNativeSelect = documentable(
         multiple,
         value,
         searchThreshold,
-        limit
+        limit,
       })
       const {
         highlightedIndex,
@@ -101,7 +101,7 @@ export const NonNativeSelect = documentable(
         filterOptionsValue,
         displayValue,
         selection,
-        filteredOptions
+        filteredOptions,
       } = selectState
       const { getItemProps, getRootProps, getInputProps, getSearchInputProps } =
         useSelectProps({
@@ -109,7 +109,7 @@ export const NonNativeSelect = documentable(
           popperRef,
           searchInputRef,
           selectProps: props,
-          selectState
+          selectState,
         })
 
       const searchInput = showSearch ? (
@@ -144,7 +144,7 @@ export const NonNativeSelect = documentable(
       const [startAdornment, endAdornment] = useAdornments({
         position: iconPosition,
         icon,
-        disabled
+        disabled,
       })
 
       const selectComponent = (
@@ -173,7 +173,7 @@ export const NonNativeSelect = documentable(
               defaultValue={undefined}
               className={classes.outlinedInput}
               inputProps={{
-                size: 1 // let input to have smallest width by default for width:'shrink'
+                size: 1, // let input to have smallest width by default for width:'shrink'
               }}
               size={size === 'large' ? 'medium' : size}
               role='textbox'
@@ -222,7 +222,7 @@ export const NonNativeSelect = documentable(
                     ) : null
                   }
                   testIds={{
-                    noOptions: testIds?.noOptions
+                    noOptions: testIds?.noOptions,
                   }}
                 />
               )}
@@ -238,7 +238,7 @@ export const NonNativeSelect = documentable(
             className,
             classes[`root${capitalize(width)}`],
             {
-              [classes.rootDisabled]: disabled
+              [classes.rootDisabled]: disabled,
             }
           )}
           style={style}
@@ -266,7 +266,7 @@ NonNativeSelect.defaultProps = {
   searchThreshold: DEFAULT_SEARCH_THRESHOLD,
   limit: DEFAULT_LIMIT,
   enableAutofill: false,
-  searchPlaceholder: 'Search'
+  searchPlaceholder: 'Search',
 }
 
 NonNativeSelect.displayName = 'NonNativeSelect'

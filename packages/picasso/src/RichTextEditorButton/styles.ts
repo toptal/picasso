@@ -6,15 +6,15 @@ export default ({ palette, sizes }: Theme) =>
       borderRadius: sizes.borderRadius.small,
 
       '&+&': {
-        marginLeft: '0.5em'
-      }
+        marginLeft: '0.5em',
+      },
     },
 
     activeButton: {
       backgroundColor: palette.grey.dark,
 
       '&:not(:hover) svg': {
-        fill: palette.common.white
-      }
-    }
+        fill: palette.common.white,
+      },
+    },
   })

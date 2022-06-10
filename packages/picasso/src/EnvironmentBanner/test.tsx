@@ -17,7 +17,7 @@ describe('EnvironmentBanner', () => {
   it('development render', () => {
     const { container } = renderEnvironmentBanner({
       environment: 'development',
-      productName: 'Picasso'
+      productName: 'Picasso',
     })
 
     expect(container).toMatchSnapshot()
@@ -26,7 +26,7 @@ describe('EnvironmentBanner', () => {
   it('production render', () => {
     const { container } = renderEnvironmentBanner({
       environment: 'production',
-      productName: 'Picasso'
+      productName: 'Picasso',
     })
 
     expect(container).toMatchSnapshot()
@@ -35,7 +35,7 @@ describe('EnvironmentBanner', () => {
   it('render nothing in test environment', () => {
     const { container } = renderEnvironmentBanner({
       environment: 'test',
-      productName: 'Picasso'
+      productName: 'Picasso',
     })
 
     expect(container).toMatchSnapshot()

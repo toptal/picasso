@@ -10,7 +10,7 @@ import {
   DEFAULT_LIMIT,
   filterOptions,
   flattenOptions,
-  limitOptions
+  limitOptions,
 } from '../../utils'
 
 const utils = jest.requireActual('../../utils')
@@ -18,7 +18,7 @@ const utils = jest.requireActual('../../utils')
 const DEFAULT_OPTIONS = [
   { text: 'One', value: '1' },
   { text: 'Two', value: '2' },
-  { text: 'Three', value: '3' }
+  { text: 'Three', value: '3' },
 ]
 
 const defaultGetDisplayValue = (option: Option | null) => option?.text ?? ''
@@ -53,45 +53,45 @@ const mockedFlattenOptions = flattenOptions as jest.Mock<
 const options: Option[] = [
   {
     text: 'OPTION_TEXT+1',
-    value: 'OPTION_VALUE+1'
+    value: 'OPTION_VALUE+1',
   },
   {
     text: 'OPTION_TEXT+2',
-    value: 'OPTION_VALUE+2'
-  }
+    value: 'OPTION_VALUE+2',
+  },
 ]
 
 const filteredOptions: Option[] = [
   {
     text: 'FILTERED_OPTION_TEXT+1',
-    value: 'FILTERED_OPTION_VALUE+1'
+    value: 'FILTERED_OPTION_VALUE+1',
   },
   {
     text: 'FILTERED_OPTION_TEXT+2',
-    value: 'FILTERED_OPTION_VALUE+2'
-  }
+    value: 'FILTERED_OPTION_VALUE+2',
+  },
 ]
 
 const limitedOptions: Option[] = [
   {
     text: 'LIMITED_OPTION_TEXT+1',
-    value: 'LIMITED_OPTION_VALUE+1'
+    value: 'LIMITED_OPTION_VALUE+1',
   },
   {
     text: 'LIMITED_OPTION_TEXT+2',
-    value: 'LIMITED_OPTION_VALUE+2'
-  }
+    value: 'LIMITED_OPTION_VALUE+2',
+  },
 ]
 
 const flattenedOptions: Option[] = [
   {
     text: 'FLATTENED_OPTION_TEXT+1',
-    value: 'FLATTENED_OPTION_VALUE+1'
+    value: 'FLATTENED_OPTION_VALUE+1',
   },
   {
     text: 'FLATTENED_OPTION_TEXT+2',
-    value: 'FLATTENED_OPTION_VALUE+2'
-  }
+    value: 'FLATTENED_OPTION_VALUE+2',
+  },
 ]
 
 const renderUseSelectState = (initialProps: Partial<Props> = {}) =>
@@ -106,10 +106,10 @@ const renderUseSelectState = (initialProps: Partial<Props> = {}) =>
         options,
         getDisplayValue: getDisplayValue,
         searchThreshold,
-        ...rest
+        ...rest,
       }),
     {
-      initialProps
+      initialProps,
     }
   )
 
@@ -180,13 +180,13 @@ describe('useSelectState', () => {
     describe('when selected value is specified', () => {
       it('returns state with value', () => {
         const { result } = renderUseSelectState({
-          value: 'FLATTENED_OPTION_VALUE+1'
+          value: 'FLATTENED_OPTION_VALUE+1',
         })
 
         expect(mockedGetMultipleSelection).not.toHaveBeenCalled()
         expect(mockedGetSingleSelection).toHaveBeenCalledWith({
           text: 'OPTION_TEXT+1',
-          value: 'OPTION_VALUE+1'
+          value: 'OPTION_VALUE+1',
         })
         expect(mockedGetSelectedOptions).toHaveBeenCalledWith(
           flattenedOptions,
@@ -211,14 +211,14 @@ describe('useSelectState', () => {
       it('returns multiple state with value', () => {
         const { result } = renderUseSelectState({
           value: ['FLATTENED_OPTION_VALUE+1', 'FLATTENED_OPTION_VALUE+2'],
-          multiple: true
+          multiple: true,
         })
 
         expect(mockedGetMultipleSelection).toHaveBeenCalledWith(options)
         expect(mockedFilterOptions).toHaveBeenCalledWith({
           options: DEFAULT_OPTIONS,
           filterOptionsValue: EMPTY_INPUT_VALUE,
-          getDisplayValue: defaultGetDisplayValue
+          getDisplayValue: defaultGetDisplayValue,
         })
         expect(mockedGetSingleSelection).not.toHaveBeenCalled()
 
@@ -247,7 +247,7 @@ describe('useSelectState', () => {
     it('forces search', () => {
       const { result } = renderUseSelectState({
         searchThreshold: 3,
-        limit: 2
+        limit: 2,
       })
 
       expect(result.current.showSearch).toBe(true)
@@ -263,13 +263,13 @@ describe('useSelectState', () => {
       expect(mockedLimitOptions).toHaveBeenCalledTimes(1)
       expect(mockedLimitOptions).toHaveBeenCalledWith({
         options: filteredOptions,
-        limit: DEFAULT_LIMIT
+        limit: DEFAULT_LIMIT,
       })
       expect(mockedFilterOptions).toHaveBeenCalledTimes(1)
       expect(mockedFilterOptions).toHaveBeenCalledWith({
         options: DEFAULT_OPTIONS,
         filterOptionsValue: '',
-        getDisplayValue: defaultGetDisplayValue
+        getDisplayValue: defaultGetDisplayValue,
       })
       expect(result.current.filterOptionsValue).toBe('')
       expect(result.current.filteredOptions).toEqual(limitedOptions)
@@ -284,13 +284,13 @@ describe('useSelectState', () => {
       expect(mockedLimitOptions).toHaveBeenCalledTimes(2)
       expect(mockedLimitOptions).toHaveBeenCalledWith({
         options: newFilteredOptions,
-        limit: DEFAULT_LIMIT
+        limit: DEFAULT_LIMIT,
       })
       expect(mockedFilterOptions).toHaveBeenCalledTimes(2)
       expect(mockedFilterOptions).toHaveBeenCalledWith({
         options: DEFAULT_OPTIONS,
         filterOptionsValue: 'one',
-        getDisplayValue: defaultGetDisplayValue
+        getDisplayValue: defaultGetDisplayValue,
       })
       expect(result.current.filterOptionsValue).toBe('one')
       expect(result.current.filteredOptions).toEqual(newLimitedOptions)

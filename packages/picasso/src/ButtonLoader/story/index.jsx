@@ -12,11 +12,11 @@ const chapter = PicassoBook.connectToPage(page =>
     .addExample('ButtonLoader/story/Default.example.tsx', {
       id: 'ButtonLoader',
       waitUntilImagesLoaded: true,
-      takeScreenshot: false
+      takeScreenshot: false,
     })
 )
 
 export default {
   componentDocs,
-  chapter
+  chapter,
 }

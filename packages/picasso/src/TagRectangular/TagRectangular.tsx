@@ -36,7 +36,7 @@ interface IndicatorOnlyProps
 export type Props = VariantOnlyProps | IndicatorOnlyProps
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTagRectangular'
+  name: 'PicassoTagRectangular',
 })
 
 export const TagRectangular = forwardRef<HTMLDivElement, Props>(
@@ -63,7 +63,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         classes={{
           root: cx(classes.root, classes[variant]),
           label: classes.label,
-          icon: classes.icon
+          icon: classes.icon,
         }}
         className={className}
         style={style}
@@ -71,7 +71,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         label={
           <span
             className={cx(classes.innerLabel, {
-              [classes.innerLabelDarkText]: variant === 'light-grey'
+              [classes.innerLabelDarkText]: variant === 'light-grey',
             })}
           >
             {titleCase ? toTitleCase(children) : children}
@@ -83,7 +83,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
 )
 
 TagRectangular.defaultProps = {
-  variant: 'light-grey'
+  variant: 'light-grey',
 }
 
 TagRectangular.displayName = 'TagRectangular'

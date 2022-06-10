@@ -4,7 +4,7 @@ import React, {
   ReactNode,
   InputHTMLAttributes,
   MouseEvent,
-  forwardRef
+  forwardRef,
 } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -83,14 +83,14 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoOutlinedInput'
+  name: 'PicassoOutlinedInput',
 })
 
 const ResetButton = ({
   classes,
   hasValue,
   onClick,
-  testIds
+  testIds,
 }: {
   classes: Classes
   hasValue: boolean
@@ -101,7 +101,7 @@ const ResetButton = ({
     data-testid={testIds?.resetButton}
     position='end'
     className={cx(classes.resetButton, {
-      [classes.resetButtonDirty]: hasValue
+      [classes.resetButtonDirty]: hasValue,
     })}
   >
     <ButtonCircular
@@ -156,7 +156,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     name: 'error',
     componentName: 'OutlinedInput',
     description:
-      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
   })
 
   const classes = useStyles(props)
@@ -194,13 +194,13 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
           { [classes.rootDark]: isDark }
         ),
         input: cx(classes.input, classes[`input${capitalize(size)}`], {
-          [classes.inputDark]: isDark
+          [classes.inputDark]: isDark,
         }),
         inputMultiline: classes.inputMultiline,
         notchedOutline: cx(classes.notchedOutline, {
-          [classes.notchedOutlineDark]: isDark
+          [classes.notchedOutlineDark]: isDark,
         }),
-        focused: classes.focused
+        focused: classes.focused,
       }}
       className={className}
       style={style}
@@ -230,7 +230,7 @@ OutlinedInput.defaultProps = {
   width: 'auto',
   size: 'medium',
   onResetClick: noop,
-  status: 'default'
+  status: 'default',
 }
 
 OutlinedInput.displayName = 'OutlinedInput'

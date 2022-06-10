@@ -10,7 +10,7 @@ let defaultOnSubmit: jest.Mock = jest.fn()
 enum TestId {
   SUBMIT_BUTTON = 'submit-button',
   POSITIVE_THUMB = 'positive-thumb',
-  NEGATIVE_THUMB = 'negative-thumb'
+  NEGATIVE_THUMB = 'negative-thumb',
 }
 
 const renderThumbsForm = (
@@ -25,7 +25,7 @@ const renderThumbsForm = (
         name='thumbs'
         testIds={{
           positiveInput: TestId.POSITIVE_THUMB,
-          negativeInput: TestId.NEGATIVE_THUMB
+          negativeInput: TestId.NEGATIVE_THUMB,
         }}
         {...props.thumbs}
       />
@@ -49,7 +49,7 @@ describe('Rating', () => {
             name='thumbs'
             testIds={{
               positiveInput: TestId.POSITIVE_THUMB,
-              negativeInput: TestId.NEGATIVE_THUMB
+              negativeInput: TestId.NEGATIVE_THUMB,
             }}
           />
         </Form>
@@ -71,7 +71,7 @@ describe('Rating', () => {
     describe('when submitting while required', () => {
       it("don't show a validation error for negative values", async () => {
         const { queryByText, getByTestId } = renderThumbsForm({
-          thumbs: { required: true }
+          thumbs: { required: true },
         })
 
         fireEvent.click(getByTestId(TestId.NEGATIVE_THUMB))
@@ -97,7 +97,7 @@ describe('Rating', () => {
       it('validate both required when having a custom validation with preference', async () => {
         const ERROR_MSG = 'Errata'
         const { getByTestId, queryByText } = renderThumbsForm({
-          thumbs: { required: true, validate: () => ERROR_MSG }
+          thumbs: { required: true, validate: () => ERROR_MSG },
         })
 
         await act(() => {
@@ -112,7 +112,7 @@ describe('Rating', () => {
       it('validate both required and having a custom validation', async () => {
         const ERROR_MSG = 'Errata'
         const { getByTestId, queryByText } = renderThumbsForm({
-          thumbs: { required: true, validate: () => ERROR_MSG }
+          thumbs: { required: true, validate: () => ERROR_MSG },
         })
 
         fireEvent.click(getByTestId(TestId.NEGATIVE_THUMB))
@@ -128,7 +128,7 @@ describe('Rating', () => {
 
       it('validate both required and having a custom validation, everythin ok', async () => {
         const { getByTestId, queryByText } = renderThumbsForm({
-          thumbs: { required: true, validate: () => undefined }
+          thumbs: { required: true, validate: () => undefined },
         })
 
         fireEvent.click(getByTestId(TestId.NEGATIVE_THUMB))
@@ -153,7 +153,7 @@ describe('Rating', () => {
     describe('when submitting with requiredPositive true', () => {
       it("don't allow a negative value", async () => {
         const { getByTestId, queryByText } = renderThumbsForm({
-          thumbs: { requirePositive: true }
+          thumbs: { requirePositive: true },
         })
 
         fireEvent.click(getByTestId(TestId.NEGATIVE_THUMB))

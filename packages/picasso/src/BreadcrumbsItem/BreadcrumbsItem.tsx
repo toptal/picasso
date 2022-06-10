@@ -2,13 +2,13 @@ import React, {
   forwardRef,
   ElementType,
   HTMLAttributes,
-  ReactNode
+  ReactNode,
 } from 'react'
 import {
   BaseProps,
   TextLabelProps,
   OverridableComponent,
-  useTitleCase
+  useTitleCase,
 } from '@toptal/picasso-shared'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -28,7 +28,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoBreadcrumbs'
+  name: 'PicassoBreadcrumbs',
 })
 
 const Active = (props: { children: ReactNode }) => {
@@ -60,7 +60,7 @@ export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
 })
 
 BreadcrumbsItem.defaultProps = {
-  as: 'span'
+  as: 'span',
 }
 
 BreadcrumbsItem.displayName = 'BreadcrumbsItem'

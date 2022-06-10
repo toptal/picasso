@@ -19,7 +19,7 @@ export const createFormContext = (): FormContextProps => {
     },
     clearValidators: fieldName => {
       delete validators[fieldName]
-    }
+    },
   }
 }
 

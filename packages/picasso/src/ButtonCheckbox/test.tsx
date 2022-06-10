@@ -23,7 +23,7 @@ describe('ButtonCheckbox', () => {
     const { getByTestId } = renderButtonCheckbox({
       children: 'Click me!',
       onChange,
-      'data-testid': 'button'
+      'data-testid': 'button',
     })
 
     fireEvent.click(getByTestId('button'))
@@ -38,7 +38,7 @@ describe('ButtonCheckbox', () => {
     const { getByTestId } = renderButtonCheckbox({
       children: 'Click me!',
       onChange,
-      testIds: { checkbox: 'checkbox' }
+      testIds: { checkbox: 'checkbox' },
     })
 
     fireEvent.click(getByTestId('checkbox'))
@@ -55,7 +55,7 @@ describe('ButtonCheckbox', () => {
       onChange,
       testIds: { checkbox: 'checkbox' },
       'data-testid': 'button',
-      disabled: true
+      disabled: true,
     })
 
     fireEvent.click(getByTestId('checkbox'))

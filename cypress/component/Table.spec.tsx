@@ -13,7 +13,7 @@ import {
   Tag,
   Typography,
   UserBadge,
-  ArrowUpMinor16
+  ArrowUpMinor16,
 } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
@@ -25,7 +25,7 @@ const data = [
     talentType: 'Designer',
     company: 'Airbnb',
     role: 'UX lead',
-    country: 'United States'
+    country: 'United States',
   },
   {
     id: 1,
@@ -33,7 +33,7 @@ const data = [
     talentType: 'Designer',
     company: 'Facebook',
     role: 'Art director',
-    country: 'Spain'
+    country: 'Spain',
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ const data = [
     talentType: 'Developer',
     company: 'Amazon',
     role: 'Ruby developer',
-    country: 'Germany'
+    country: 'Germany',
   },
   {
     id: 3,
@@ -49,7 +49,7 @@ const data = [
     talentType: 'Developer',
     company: 'Invision',
     role: 'Web developer',
-    country: 'Poland'
+    country: 'Poland',
   },
   {
     id: 4,
@@ -57,8 +57,8 @@ const data = [
     talentType: 'Developer',
     company: 'Microsoft',
     role: 'CTO',
-    country: 'United States'
-  }
+    country: 'United States',
+  },
 ]
 
 const renderTable = (
@@ -229,7 +229,7 @@ const TableExpandableRowsExample = ({ localData }: { localData: Data[] }) => {
 
     setExpandedData({
       ...expandedData,
-      [id]: !expanded
+      [id]: !expanded,
     })
   }
 
@@ -370,7 +370,7 @@ describe('Table', () => {
         relatedTo: 'Passionate PHP Dev...',
         time: '2:19 PM',
         assignee: 'AD',
-        defaultExpanded: false
+        defaultExpanded: false,
       },
       {
         id: 1,
@@ -378,7 +378,7 @@ describe('Table', () => {
         relatedTo: 'Ardelia Conn',
         time: '3:27 PM',
         assignee: 'AD',
-        defaultExpanded: false
+        defaultExpanded: false,
       },
       {
         id: 2,
@@ -386,8 +386,8 @@ describe('Table', () => {
         relatedTo: 'Mariel Ankunding',
         time: '1:27 PM',
         assignee: 'AD',
-        defaultExpanded: false
-      }
+        defaultExpanded: false,
+      },
     ]
 
     mount(<TableExpandableRowsExample localData={localData} />)
@@ -412,7 +412,7 @@ describe('Table', () => {
         relatedTo: 'Passionate PHP Dev...',
         time: '2:19 PM',
         assignee: 'AD',
-        defaultExpanded: true
+        defaultExpanded: true,
       },
       {
         id: 1,
@@ -420,7 +420,7 @@ describe('Table', () => {
         relatedTo: 'Ardelia Conn',
         time: '3:27 PM',
         assignee: 'AD',
-        defaultExpanded: true
+        defaultExpanded: true,
       },
       {
         id: 2,
@@ -428,8 +428,8 @@ describe('Table', () => {
         relatedTo: 'Mariel Ankunding',
         time: '1:27 PM',
         assignee: 'AD',
-        defaultExpanded: true
-      }
+        defaultExpanded: true,
+      },
     ]
 
     mount(<TableExpandableRowsExample localData={localData} />)

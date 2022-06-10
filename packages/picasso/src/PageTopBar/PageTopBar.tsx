@@ -4,7 +4,7 @@ import React, {
   forwardRef,
   ReactNode,
   ReactElement,
-  HTMLAttributes
+  HTMLAttributes,
 } from 'react'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -39,7 +39,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTopBar'
+  name: 'PicassoTopBar',
 })
 
 export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
@@ -99,7 +99,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const innerClassName = cx(
     {
       [classes.fullWidth]: fullWidth || width === 'full',
-      [classes.wide]: width === 'wide'
+      [classes.wide]: width === 'wide',
     },
     classes.content
   )
@@ -138,7 +138,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
 })
 
 PageTopBar.defaultProps = {
-  variant: 'dark'
+  variant: 'dark',
 }
 
 PageTopBar.displayName = 'PageTopBar'

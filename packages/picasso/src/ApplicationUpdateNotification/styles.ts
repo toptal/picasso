@@ -9,20 +9,20 @@ export default ({ palette, sizes, shadows }: Theme) =>
       width: '27.5em',
       color: palette.common.white,
       overflow: 'hidden',
-      padding: '1.5em'
+      padding: '1.5em',
     },
     message: {
       padding: 0,
-      flexDirection: 'column'
+      flexDirection: 'column',
     },
     icon: {
       opacity: 0.4,
       position: 'absolute',
       top: '-0.4em',
       left: '-0.5em',
-      fill: palette.blue.darker
+      fill: palette.blue.darker,
     },
     positionRelative: {
-      position: 'relative'
-    }
+      position: 'relative',
+    },
   })

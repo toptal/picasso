@@ -20,15 +20,15 @@ page
   .createChapter()
   .addExample('Timeline/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Timeline/story/Dates.example.tsx', {
     title: 'Dates',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Timeline/story/TrimLastConnector.example.tsx', {
     title: 'Trim last connector',
     description:
       'You can trim last connector by passing `hasConnector={false}` to the `Timeline.Row` component. It can be useful in situation when you sort date points in the ascending order.',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

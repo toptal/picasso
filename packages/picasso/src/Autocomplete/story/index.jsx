@@ -15,10 +15,10 @@ page.createTabChapter('Props').addComponentDocs({
   text?: string\n
   value?: string\n
 }
-        `
-      }
-    }
-  }
+        `,
+      },
+    },
+  },
 })
 
 page
@@ -46,11 +46,11 @@ if needed.
   )
   .addExample('Autocomplete/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/Disabled.example.tsx', {
     title: 'Disabled',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/OtherOption.example.tsx', {
     title: 'Other option',
@@ -58,57 +58,57 @@ if needed.
       you can set \`showOtherOption={true}\` prop to allow also this new item to appear in the suggestions list. Also,
       you can decorate this option with the prefix text by using \`otherOptionText\` or fully customize it with \`renderOtherOption\` and handle selection with
       \`onOtherOptionSelect\` event handler.`,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/InitialSetValue.example.tsx', {
     title: 'Initially set value',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/Controlled.example.tsx', {
     title: 'Controlled selection',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/FullWidth.example.tsx', {
     title: 'Full width',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/MenuWidth.example.tsx', {
     title: 'Menu width',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/Loading.example.tsx', {
     title: 'Loading',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/Status.example.tsx', {
     title: 'Status',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/WithIcons.example.tsx', {
     title: 'With Icon',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/WithDescription.example.tsx', {
     title: 'With Description',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/CustomOptionRenderer.example.tsx', {
     title: 'Custom options rendering',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/DynamicOptions.example.tsx', {
     title: 'Dynamic options',
     description: `If you need to obtain the list of options dynamically from a server.
 It is good practice to set debouncing and a minimum number of chars to limit the number of requests you send to the server.
 Start typing "Mongolia" letter by letter to see this example in action.`,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/Autofill.example.tsx', {
     title: 'Form auto filling',
     description: `This example shows how to use component inside the form with several fields
 when it makes sense to have autofill enabled.
     `,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Autocomplete/story/PoweredByGoogle.example.tsx', {
     title: 'Powered By Google label',
@@ -116,5 +116,5 @@ when it makes sense to have autofill enabled.
       'There are situations when we use options in the Autocomplete component from the Google API and ' +
       'to meet their requirements https://developers.google.com/places/web-service/policies in such cases ' +
       'we have to show the "Powered By Google" label.',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

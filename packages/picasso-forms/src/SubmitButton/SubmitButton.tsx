@@ -36,7 +36,7 @@ export const SubmitButton = ({
 
   const submitButtonProps = {
     type: 'submit' as const,
-    loading: submitting
+    loading: submitting,
   }
 
   const resultComponentProps = { ...submitButtonProps, ...restOfProps }
@@ -62,7 +62,7 @@ export const SubmitButton = ({
 }
 
 SubmitButton.defaultProps = {
-  buttonType: 'rectangular'
+  buttonType: 'rectangular',
 }
 
 SubmitButton.displayName = 'SubmitButton'

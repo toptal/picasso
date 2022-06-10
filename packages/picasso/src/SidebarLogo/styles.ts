@@ -4,6 +4,6 @@ export default () =>
   createStyles({
     root: {
       display: 'block',
-      overflow: 'hidden'
-    }
+      overflow: 'hidden',
+    },
   })

@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   NumberInput as PicassoNumberInput,
-  NumberInputProps
+  NumberInputProps,
 } from '@toptal/picasso'
 import { FieldValidator } from 'final-form'
 

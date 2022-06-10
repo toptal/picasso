@@ -45,5 +45,5 @@ export const FormCompound = Object.assign(Form, {
   Dropzone: Dropzone,
   PasswordInput: PasswordInput,
   FieldRequirements: FieldRequirements,
-  RichTextEditor: RichTextEditor
+  RichTextEditor: RichTextEditor,
 })

@@ -45,7 +45,7 @@ SidebarItem.defaultProps = {
   selected: false,
   expand: noop,
   variant: 'light',
-  compact: false
+  compact: false,
 }
 
 SidebarItem.displayName = 'SidebarItem'

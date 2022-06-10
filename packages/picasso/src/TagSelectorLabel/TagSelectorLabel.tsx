@@ -6,7 +6,7 @@ import { Props as TagProps } from '../Tag/Tag'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTagSelectorLabel'
+  name: 'PicassoTagSelectorLabel',
 })
 
 export const TagSelectorLabel = forwardRef<HTMLDivElement, TagProps>(

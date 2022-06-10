@@ -88,7 +88,7 @@ export const Avatar = ({
     testIds?.image,
     testIds?.text,
     name,
-    style
+    style,
   ])
 
   return (
@@ -107,7 +107,7 @@ export const Avatar = ({
 
 Avatar.defaultProps = {
   size: 'xsmall',
-  variant: 'square'
+  variant: 'square',
 }
 
 Avatar.displayName = 'Avatar'

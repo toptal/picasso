@@ -7,7 +7,7 @@ import {
   Tag,
   TagProps,
   TagRectangularProps,
-  TypographyOverflow
+  TypographyOverflow,
 } from '@toptal/picasso'
 import { noop } from '@toptal/picasso/utils'
 import { mount } from '@cypress/react'
@@ -52,7 +52,7 @@ const renderRegularTag = ({ variant }: RegularTagArgs) => (
 const renderCheckableTag = ({
   checked,
   hovered,
-  disabled
+  disabled,
 }: CheckableTagArgs) => (
   <TestingPicasso>
     <Container padded='small'>

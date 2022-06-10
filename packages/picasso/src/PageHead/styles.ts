@@ -14,13 +14,13 @@ export default ({ palette }: Theme) =>
         right: 0,
         height: 1,
         backgroundColor: palette.grey.lighter2,
-        zIndex: 0
-      }
+        zIndex: 0,
+      },
     },
     rightPadding: {
-      paddingRight: '2rem'
+      paddingRight: '2rem',
     },
     main: {
-      height: '3.375em'
-    }
+      height: '3.375em',
+    },
   })

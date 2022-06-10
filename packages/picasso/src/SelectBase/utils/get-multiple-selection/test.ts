@@ -6,7 +6,7 @@ const getDisplayValue = (option: Option | null) => option?.text ?? ''
 const OPTIONS = [
   { text: 'One', value: '1' },
   { text: 'Two', value: '2' },
-  { text: 'Three', value: '3' }
+  { text: 'Three', value: '3' },
 ]
 
 describe('getMultipleSelection', () => {

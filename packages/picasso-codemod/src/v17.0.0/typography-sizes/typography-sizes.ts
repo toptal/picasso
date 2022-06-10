@@ -33,8 +33,8 @@ const transform: Transform = (file, api, options) => {
     .find(j.JSXAttribute, {
       name: {
         type: 'JSXIdentifier',
-        name: 'size'
-      }
+        name: 'size',
+      },
     })
     .filter(path => {
       const { value, parentPath } = path.parentPath

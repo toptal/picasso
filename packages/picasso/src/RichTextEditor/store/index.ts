@@ -5,10 +5,10 @@ export * from './types'
 
 export const combinedReducers = (state: StateType, action: ActionsType) => {
   return {
-    toolbar: toolbarStore.reducer(state.toolbar, action)
+    toolbar: toolbarStore.reducer(state.toolbar, action),
   }
 }
 
 export const initialState = {
-  toolbar: toolbarStore.initialState
+  toolbar: toolbarStore.initialState,
 }

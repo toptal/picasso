@@ -11,7 +11,7 @@ const PasswordInputExample = ({ status }: Partial<PasswordInputProps>) => (
       testIds={{
         input: 'password-input',
         toggle: 'password-input-toggle',
-        validIcon: 'valid-icon'
+        validIcon: 'valid-icon',
       }}
     />
   </TestingPicasso>

@@ -22,7 +22,7 @@ export const StepIcon = (props: Props) => {
       {...rest}
       className={cx(classes.root, {
         [classes.active]: active,
-        [classes.completed]: completed
+        [classes.completed]: completed,
       })}
     >
       {completed && <TickIcon />}

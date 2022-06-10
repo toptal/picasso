@@ -15,7 +15,7 @@ const useSelectKeyDownHandler = <
   selectState: { isOpen, showSearch },
   handleArrowsKeyDown,
   handleEnterOrSpaceKeyDown,
-  handleEscapeKeyDown
+  handleEscapeKeyDown,
 }: UseSelectProps<T, M> & {
   handleArrowsKeyDown: ReturnType<typeof useArrowsKeyDownHandler>
   handleEnterOrSpaceKeyDown: ReturnType<typeof useEnterOrSpaceKeyDownHandler>
@@ -59,7 +59,7 @@ const useSelectKeyDownHandler = <
       showSearch,
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     ]
   )
 

@@ -22,7 +22,7 @@ export interface Props {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarItemContent'
+  name: 'PicassoSidebarItemContent',
 })
 
 const resolveChildrenText = (text: ReactNode, titleCase: boolean) =>
@@ -43,7 +43,7 @@ const ItemContentBadge = (props: Props['badge'] & { children?: ReactNode }) => {
   return (
     <Badge
       className={cx({
-        [classes.staticBadge]: !isOverlay
+        [classes.staticBadge]: !isOverlay,
       })}
       variant={variant}
       size={isOverlay ? 'small' : 'large'}
@@ -99,7 +99,7 @@ const ExpandedItemContent = (props: Props) => {
 
       <Container
         className={cx(classes.noWrap, {
-          [classes.withIcon]: hasIcon
+          [classes.withIcon]: hasIcon,
         })}
         flex
         alignItems='center'

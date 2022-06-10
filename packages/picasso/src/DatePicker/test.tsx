@@ -8,7 +8,7 @@ import { DatePickerInputCustomValueParser } from './'
 
 const testIds = {
   calendar: 'calendar',
-  input: 'input'
+  input: 'input',
 }
 
 const FAR_EAST_TIMEZONE = 'Asia/Tokyo'
@@ -81,7 +81,7 @@ describe('DatePicker', () => {
     it('should display date in given displayDateFormat', () => {
       const { getByPlaceholderText } = renderDatePicker({
         ...defaultProps,
-        displayDateFormat: 'MMM|d|yyyy'
+        displayDateFormat: 'MMM|d|yyyy',
       })
 
       expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
@@ -94,7 +94,7 @@ describe('DatePicker', () => {
       const { getByPlaceholderText } = renderDatePicker({
         ...defaultProps,
         range: true,
-        value: [new Date(2020, 11, 24), new Date(2020, 11, 27)]
+        value: [new Date(2020, 11, 24), new Date(2020, 11, 27)],
       })
 
       expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
@@ -108,7 +108,7 @@ describe('DatePicker', () => {
         ...defaultProps,
         range: true,
         value: [new Date(2020, 11, 24), new Date(2020, 11, 27)],
-        displayDateFormat: 'MMM|d|yyyy'
+        displayDateFormat: 'MMM|d|yyyy',
       })
 
       expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
@@ -129,7 +129,7 @@ describe('DatePicker', () => {
     it('should display date in given editDateFormat', () => {
       const { getByPlaceholderText } = renderDatePicker({
         ...defaultProps,
-        editDateFormat: 'MM|dd|yyyy'
+        editDateFormat: 'MM|dd|yyyy',
       })
       const input = getByPlaceholderText(defaultProps.placeholder)
 
@@ -150,7 +150,7 @@ describe('DatePicker', () => {
     it('should turn autoComplete on', () => {
       const { getByPlaceholderText } = renderDatePicker({
         ...defaultProps,
-        autoComplete: 'on'
+        autoComplete: 'on',
       })
 
       expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
@@ -163,7 +163,7 @@ describe('DatePicker', () => {
       const { getByPlaceholderText } = renderDatePicker({
         ...defaultProps,
         timezone: FAR_EAST_TIMEZONE,
-        value: new Date(2020, 6, 24, 18)
+        value: new Date(2020, 6, 24, 18),
       })
 
       expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
@@ -182,7 +182,7 @@ describe('DatePicker', () => {
         ...defaultProps,
         minDate: MIN_DATE,
         maxDate: MAX_DATE,
-        onChange: handleChange
+        onChange: handleChange,
       })
 
       const input = getByPlaceholderText(defaultProps.placeholder)
@@ -213,7 +213,7 @@ describe('DatePicker', () => {
       const { getByPlaceholderText } = renderDatePicker({
         ...defaultProps,
         minDate: MIN_DATE,
-        onChange: handleChange
+        onChange: handleChange,
       })
 
       const input = getByPlaceholderText(defaultProps.placeholder)
@@ -237,7 +237,7 @@ describe('DatePicker', () => {
       const { getByPlaceholderText } = renderDatePicker({
         ...defaultProps,
         maxDate: MAX_DATE,
-        onChange: handleChange
+        onChange: handleChange,
       })
 
       const input = getByPlaceholderText(defaultProps.placeholder)
@@ -258,7 +258,7 @@ describe('DatePicker', () => {
         const { getByTestId } = renderDatePicker({
           ...defaultProps,
           range: true,
-          value: new Date(2021, 11, 29)
+          value: new Date(2021, 11, 29),
         })
 
         const input = getByTestId(testIds.input)
@@ -267,7 +267,7 @@ describe('DatePicker', () => {
 
         await act(() => {
           fireEvent.change(input, {
-            target: { value: '' }
+            target: { value: '' },
           })
           fireEvent.blur(input)
         })
@@ -292,14 +292,14 @@ describe('DatePicker', () => {
           const { getByPlaceholderText } = renderDatePicker({
             ...defaultProps,
             parseInputValue,
-            onChange: handleChange
+            onChange: handleChange,
           })
 
           const input = getByPlaceholderText(defaultProps.placeholder)
 
           await act(() => {
             fireEvent.change(input, {
-              target: { value: 'some random text' }
+              target: { value: 'some random text' },
             })
             fireEvent.blur(input)
           })
@@ -323,14 +323,14 @@ describe('DatePicker', () => {
             ...defaultProps,
             minDate: new Date(2021, 1, 1),
             parseInputValue,
-            onChange: handleChange
+            onChange: handleChange,
           })
 
           const input = getByPlaceholderText(defaultProps.placeholder)
 
           await act(() => {
             fireEvent.change(input, {
-              target: { value: 'some random text' }
+              target: { value: 'some random text' },
             })
             fireEvent.blur(input)
           })
@@ -351,14 +351,14 @@ describe('DatePicker', () => {
           const { getByPlaceholderText } = renderDatePicker({
             ...defaultProps,
             parseInputValue,
-            onChange: handleChange
+            onChange: handleChange,
           })
 
           const input = getByPlaceholderText(defaultProps.placeholder)
 
           await act(() => {
             fireEvent.change(input, {
-              target: { value: 'some random text' }
+              target: { value: 'some random text' },
             })
             fireEvent.blur(input)
           })
@@ -374,14 +374,14 @@ describe('DatePicker', () => {
           const { getByPlaceholderText } = renderDatePicker({
             ...defaultProps,
             range: true,
-            parseInputValue
+            parseInputValue,
           })
 
           const input = getByPlaceholderText(defaultProps.placeholder)
 
           await act(() => {
             fireEvent.change(input, {
-              target: { value: 'some random text' }
+              target: { value: 'some random text' },
             })
             fireEvent.blur(input)
           })
@@ -399,7 +399,7 @@ describe('DatePicker', () => {
           const { getByPlaceholderText } = renderDatePicker({
             ...defaultProps,
             parseInputValue,
-            onChange: handleChange
+            onChange: handleChange,
           })
 
           const input = getByPlaceholderText(defaultProps.placeholder)
@@ -419,7 +419,7 @@ describe('DatePicker', () => {
       it('should reset input value on reset button click', async () => {
         const { getByPlaceholderText, getByRole } = renderDatePicker({
           ...defaultProps,
-          enableReset: true
+          enableReset: true,
         })
 
         const input = getByPlaceholderText(defaultProps.placeholder)
@@ -437,25 +437,25 @@ describe('DatePicker', () => {
       {
         date: '2020-06-25T00:00:00+09:00',
         timezone: FAR_EAST_TIMEZONE,
-        expectedSelectedDate: '25'
+        expectedSelectedDate: '25',
       },
       {
         date: '2020-06-24T23:59:59+09:00',
         timezone: FAR_EAST_TIMEZONE,
-        expectedSelectedDate: '24'
+        expectedSelectedDate: '24',
       },
       {
         date: '2020-06-25T00:00:00-05:00',
         timezone: NEW_YORK_TIMEZONE,
-        expectedSelectedDate: '25'
-      }
+        expectedSelectedDate: '25',
+      },
     ])(
       'should display date in given timezone',
       ({ date, timezone, expectedSelectedDate }) => {
         const { getByPlaceholderText, getByTestId } = renderDatePicker({
           ...defaultProps,
           timezone,
-          value: new Date(date)
+          value: new Date(date),
         })
 
         fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
@@ -469,16 +469,16 @@ describe('DatePicker', () => {
     it.each([
       {
         date: '2020-06-25T00:00:00+09:00',
-        timezone: FAR_EAST_TIMEZONE
+        timezone: FAR_EAST_TIMEZONE,
       },
       {
         date: '2020-06-24T23:59:59+09:00',
-        timezone: FAR_EAST_TIMEZONE
+        timezone: FAR_EAST_TIMEZONE,
       },
       {
         date: '2020-06-25T00:00:00-05:00',
-        timezone: NEW_YORK_TIMEZONE
-      }
+        timezone: NEW_YORK_TIMEZONE,
+      },
     ])(
       'should display date in given timezone after day click',
       async ({ date, timezone }) => {
@@ -486,7 +486,7 @@ describe('DatePicker', () => {
           renderDatePicker({
             ...defaultProps,
             timezone,
-            value: new Date(date)
+            value: new Date(date),
           })
 
         fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
@@ -506,7 +506,7 @@ describe('DatePicker', () => {
         const { getByRole, queryByTestId, getByPlaceholderText } =
           renderDatePicker({
             ...defaultProps,
-            enableReset: true
+            enableReset: true,
           })
 
         fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
@@ -520,7 +520,7 @@ describe('DatePicker', () => {
   const defaultProps = {
     onChange: () => {},
     value: new Date(2020, 11, 24),
-    placeholder: 'Pick a date'
+    placeholder: 'Pick a date',
   }
 
   const renderDatePicker = (props: Props = defaultProps) => {

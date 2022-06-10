@@ -16,14 +16,14 @@ const chartConstants = {
   Y_AXIS_WIDTH: 60,
   TOOLTIP_OFFSET: 10,
   SCROLL_BAR_WIDTH: 16,
-  NUMBER_OF_TICKS: 4
+  NUMBER_OF_TICKS: 4,
 }
 
 export const chartMargins = {
   top: chartConstants.DEFAULT_MARGIN,
   right: chartConstants.DEFAULT_MARGIN,
   bottom: chartConstants.DEFAULT_MARGIN,
-  left: 0
+  left: 0,
 }
 
 export default chartConstants

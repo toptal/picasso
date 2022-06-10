@@ -11,7 +11,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoModalAction'
+  name: 'PicassoModalAction',
 })
 
 export const ModalActions = forwardRef<HTMLDivElement, Props>(

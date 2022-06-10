@@ -13,10 +13,10 @@ PicassoProvider.override(() => ({
       padding: 0,
 
       '&$disabled': {
-        opacity: 0.48
-      }
-    }
-  }
+        opacity: 0.48,
+      },
+    },
+  },
 }))
 
 export default ({ palette, sizes, transitions }: Theme) =>
@@ -24,7 +24,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
     root: {
       fontSize: '1rem',
       '&:hover $uncheckedIcon': {
-        border: `${sizes.borderWidth} solid ${palette.grey.main2}`
+        border: `${sizes.borderWidth} solid ${palette.grey.main2}`,
       },
       '&:hover $checkedIcon': {
         background: mix(palette.primary.main, palette.common.white, 0.16),
@@ -32,7 +32,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
           palette.primary.main,
           palette.common.white,
           0.16
-        )}`
+        )}`,
       },
       '&:hover $indeterminateIcon': {
         background: mix(palette.primary.main, palette.common.white, 0.16),
@@ -40,30 +40,30 @@ export default ({ palette, sizes, transitions }: Theme) =>
           palette.primary.main,
           palette.common.white,
           0.16
-        )}`
-      }
+        )}`,
+      },
     },
     withLabel: {
-      alignSelf: 'flex-start'
+      alignSelf: 'flex-start',
     },
     disabled: {
       '&:hover $uncheckedIcon': {
-        border: `${sizes.borderWidth} solid ${palette.grey.main}`
+        border: `${sizes.borderWidth} solid ${palette.grey.main}`,
       },
       '& $label': {
-        color: palette.grey.main
-      }
+        color: palette.grey.main,
+      },
     },
     focused: {
       '& $uncheckedIcon': {
-        ...outline(palette.primary.main)
+        ...outline(palette.primary.main),
       },
       '& $checkedIcon': {
-        ...outline(palette.primary.main)
+        ...outline(palette.primary.main),
       },
       '& $indeterminateIcon': {
-        ...outline(palette.primary.main)
-      }
+        ...outline(palette.primary.main),
+      },
     },
     checkedIcon: {
       height: '1em',
@@ -81,7 +81,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
         content: '""',
         position: 'absolute',
         transform: 'rotate(45deg)',
-        background: 'white'
+        background: 'white',
       },
       '&:after': {
         top: '0.4375em',
@@ -91,8 +91,8 @@ export default ({ palette, sizes, transitions }: Theme) =>
         content: '""',
         position: 'absolute',
         transform: 'rotate(-45deg)',
-        background: 'white'
-      }
+        background: 'white',
+      },
     },
     uncheckedIcon: {
       height: '1em',
@@ -100,7 +100,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
       background: palette.common.white,
       border: `${sizes.borderWidth} solid ${palette.grey.main}`,
-      borderRadius: sizes.borderRadius.small
+      borderRadius: sizes.borderRadius.small,
     },
 
     indeterminateIcon: {
@@ -121,17 +121,17 @@ export default ({ palette, sizes, transitions }: Theme) =>
         height: '0.125em',
         top: '50%',
         left: '50%',
-        transform: 'translate(-50%, -50%)'
-      }
+        transform: 'translate(-50%, -50%)',
+      },
     },
     label: {
       marginLeft: labelMargin,
       // 1px is needed for safari
-      maxWidth: `calc(100% - ${controlWidth} - ${labelMargin} + 1px)`
+      maxWidth: `calc(100% - ${controlWidth} - ${labelMargin} + 1px)`,
     },
     labelWithRightSpacing: {},
     checkboxWrapper: {
       alignSelf: 'flex-start',
-      verticalAlign: 'middle'
-    }
+      verticalAlign: 'middle',
+    },
   })

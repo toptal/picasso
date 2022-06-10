@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 const useFocus = ({
   isFocused,
-  quill
+  quill,
 }: {
   isFocused: boolean
   quill?: Quill

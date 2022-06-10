@@ -3,11 +3,11 @@ import React, {
   ChangeEvent,
   ComponentProps,
   useRef,
-  useMemo
+  useMemo,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUISlider, {
-  ValueLabelProps as MUIValueLabelProps
+  ValueLabelProps as MUIValueLabelProps,
 } from '@material-ui/core/Slider'
 import cx from 'classnames'
 
@@ -137,14 +137,14 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
             ...classes,
             track: cx(classes.track, {
               [markTrack]: marks,
-              [unmarkTrack]: disableTrackHighlight
+              [unmarkTrack]: disableTrackHighlight,
             }),
             thumb: cx(classes.thumb, {
-              [hideThumb]: isThumbHidden
+              [hideThumb]: isThumbHidden,
             }),
             markActive: cx(classes.markActive, {
-              [markInactive]: isThumbHidden || disableTrackHighlight
-            })
+              [markInactive]: isThumbHidden || disableTrackHighlight,
+            }),
           }}
           ValueLabelComponent={ValueLabelComponent}
           valueLabelFormat={tooltipFormat}
@@ -163,7 +163,7 @@ Slider.defaultProps = {
   min: 0,
   max: 100,
   tooltip: 'off',
-  disablePortal: false
+  disablePortal: false,
 }
 
 export default Slider

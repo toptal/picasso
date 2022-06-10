@@ -7,7 +7,7 @@ const SidebarContext = React.createContext<SidebarContextProps>({
   expandedItemKey: null,
   setExpandedItemKey: noop,
   isHovered: false,
-  isCollapsed: false
+  isCollapsed: false,
 })
 
 export interface Props {
@@ -25,7 +25,7 @@ export const SidebarContextProvider = ({
   variant,
   expandedItemKey,
   setExpandedItemKey,
-  isHovered
+  isHovered,
 }: Props) => {
   return (
     <SidebarContext.Provider
@@ -34,7 +34,7 @@ export const SidebarContextProvider = ({
         setExpandedItemKey,
         isCollapsed,
         isHovered,
-        variant
+        variant,
       }}
     >
       {children}

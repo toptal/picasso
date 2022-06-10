@@ -67,7 +67,7 @@ describe('Typography', () => {
             'light-grey',
             'grey',
             'dark-grey',
-            'black'
+            'black',
           ] as const
         ).map(color => (
           <Typography key={color} color={color}>

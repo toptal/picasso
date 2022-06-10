@@ -7,7 +7,7 @@ const { SCROLL_BAR_WIDTH, TOOLTIP_OFFSET, Y_AXIS_WIDTH } = CHART_CONSTANTS
 
 const chartViewbox = {
   x: chartMargins.left + Y_AXIS_WIDTH,
-  y: chartMargins.top
+  y: chartMargins.top,
 }
 
 export const getTooltipTranslate = ({
@@ -17,7 +17,7 @@ export const getTooltipTranslate = ({
   tooltipDimension,
   screenDimension,
   offset,
-  viewbox
+  viewbox,
 }: PositionTranslate) => {
   const restricted = cursorCoordinate - tooltipDimension - offset
   const unrestricted = cursorCoordinate + offset
@@ -60,7 +60,7 @@ export const calculateTooltipPosition = debounce(
       tooltipDimension: tooltipElem.clientWidth,
       screenDimension: window.innerWidth,
       offset: TOOLTIP_OFFSET,
-      viewbox: chartViewbox
+      viewbox: chartViewbox,
     })
 
     const translationY = getTooltipTranslate({
@@ -70,7 +70,7 @@ export const calculateTooltipPosition = debounce(
       tooltipDimension: tooltipElem.clientHeight,
       screenDimension: window.innerHeight,
       offset: TOOLTIP_OFFSET,
-      viewbox: chartViewbox
+      viewbox: chartViewbox,
     })
 
     const translateQuery = `translate(${translationX}px, ${translationY}px)`

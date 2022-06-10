@@ -8,7 +8,7 @@ import { palette } from '@toptal/picasso/utils'
 
 import {
   CHART_DATA_CUSTOM_TOOLTIP,
-  CHART_DATA_DEFAULT
+  CHART_DATA_DEFAULT,
 } from '../test-data/BarChart.data'
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -78,11 +78,11 @@ describe('BarChart', () => {
         data={CHART_DATA_CUSTOM_TOOLTIP}
         fillSchema={{
           infected: palette.red.main,
-          recovered: palette.green.main
+          recovered: palette.green.main,
         }}
         labelColorSchema={{
           infected: palette.red.main,
-          recovered: palette.green.main
+          recovered: palette.green.main,
         }}
         tooltip
         customTooltip={<CustomTooltip />}

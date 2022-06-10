@@ -11,7 +11,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLSpanElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoDropdownArrow'
+  name: 'PicassoDropdownArrow',
 })
 
 export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
@@ -34,7 +34,7 @@ export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
 DropdownArrow.displayName = 'DropdownArrow'
 
 DropdownArrow.defaultProps = {
-  size: 'medium'
+  size: 'medium',
 }
 
 export default DropdownArrow
