@@ -53,7 +53,7 @@ describe('Input', () => {
     cy.get('@error-input').invoke('removeAttr', 'data-happo-hover')
     cy.get('@error-input').realClick().get('body').happoScreenshot({
       component: COMPONENT,
-      variant: 'error-status/after-hovered',
+      variant: 'error-status/after-focused',
     })
   })
 })
