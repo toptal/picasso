@@ -15,7 +15,7 @@ const RichTextEditorExample = () => (
         defaultValue={DEFAULT_EXAMPLE}
         label='Text editor'
         id='editor'
-        name='richTextEditor.editor'
+        name='richTextEditor-editor'
       />
     </Container>
 

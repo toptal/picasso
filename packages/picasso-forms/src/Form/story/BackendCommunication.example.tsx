@@ -2,6 +2,8 @@ import React, { useCallback } from 'react'
 import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
+const FORM_PREFIX = 'backendCommunication'
+
 const BackendCommunicationExample = () => {
   const handleSuccessSubmit = useCallback(
     (values: any) => api.successSubmit(values),
@@ -30,14 +32,14 @@ const BackendCommunicationExample = () => {
       >
         <Form.Input
           required
-          name='backendCommunication.successName'
+          name={`${FORM_PREFIX}-successName`}
           label='First name'
           placeholder='e.g. Bruce'
           width='full'
         />
         <Form.Input
           required
-          name='backendCommunication.successSurname'
+          name={`${FORM_PREFIX}-successSurname`}
           label='Last name'
           placeholder='e.g. Wayne'
           width='full'
@@ -59,14 +61,14 @@ const BackendCommunicationExample = () => {
       >
         <Form.Input
           required
-          name='backendCommunication.inlineErrorName'
+          name={`${FORM_PREFIX}-inlineErrorName`}
           label='First name'
           placeholder='e.g. Bruce'
           width='full'
         />
         <Form.Input
           required
-          name='backendCommunication.inlineErrorSurname'
+          name={`${FORM_PREFIX}-inlineErrorSurnam`}
           label='Last name'
           placeholder='e.g. Wayne'
           width='full'
@@ -85,14 +87,14 @@ const BackendCommunicationExample = () => {
       <Form onSubmit={handleSubmitWithCustomNotificationError}>
         <Form.Input
           required
-          name='backendCommunication.customNotificationErrorName'
+          name={`${FORM_PREFIX}-customNotificationErrorName`}
           label='First name'
           placeholder='e.g. Bruce'
           width='full'
         />
         <Form.Input
           required
-          name='backendCommunication.customNotificationErrorSurname'
+          name={`${FORM_PREFIX}-customNotificationErrorSurname`}
           label='Last name'
           placeholder='e.g. Wayne'
           width='full'

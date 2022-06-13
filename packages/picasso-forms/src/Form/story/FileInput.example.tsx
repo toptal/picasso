@@ -3,8 +3,10 @@ import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 import { FileUpload } from '@toptal/picasso/FileInput'
 
+const FILE_INPUT_FIELD = 'fileInput-attachments'
+
 type FormType = {
-  attachments: FileUpload[]
+  [FILE_INPUT_FIELD]: FileUpload[]
 }
 
 const Example = () => {
@@ -14,7 +16,7 @@ const Example = () => {
     { file: new File(['resume.pdf'], 'resume.pdf') },
   ]
 
-  const handleSubmit = ({ attachments }: FormType) => {
+  const handleSubmit = ({ [FILE_INPUT_FIELD]: attachments }: FormType) => {
     window.alert(
       `Uploading: ${attachments.map(({ file }) => file.name).join(', ')}`
     )
@@ -25,11 +27,11 @@ const Example = () => {
       autoComplete='off'
       onSubmit={handleSubmit}
       initialValues={{
-        attachments: initialAttachments,
+        [FILE_INPUT_FIELD]: initialAttachments,
       }}
     >
       <Form.FileInput
-        name='fileInput.attachments'
+        name={FILE_INPUT_FIELD}
         hint={`Max file size: ${MAX_SIZE}MB.`}
       />
       <Container top='small'>

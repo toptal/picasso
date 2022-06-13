@@ -2,13 +2,19 @@ import React from 'react'
 import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
+const PASSWORD_FIELD = `fieldRequirements-password`
+const CONFIRM_PASSWORD_FIELD = `fieldRequirements-confirmPassword`
+
 type FormType = {
-  password: string
-  confirmPassword: string
+  [PASSWORD_FIELD]: string
+  [CONFIRM_PASSWORD_FIELD]: string
 }
 
 const Example = () => {
-  const handleSubmit = ({ password, confirmPassword }: FormType) => {
+  const handleSubmit = ({
+    [PASSWORD_FIELD]: password,
+    [CONFIRM_PASSWORD_FIELD]: confirmPassword,
+  }: FormType) => {
     window.alert(`Password: ${password}, Confirm Password: ${confirmPassword}`)
   }
 
@@ -17,22 +23,18 @@ const Example = () => {
       autoComplete='off'
       onSubmit={handleSubmit}
       initialValues={{
-        password: '',
-        confirmPassword: '',
+        [PASSWORD_FIELD]: '',
+        [CONFIRM_PASSWORD_FIELD]: '',
       }}
     >
-      <Form.PasswordInput
-        label='Password'
-        name='fieldRequirements.password'
-        required
-      />
+      <Form.PasswordInput label='Password' name={PASSWORD_FIELD} required />
       <Form.PasswordInput
         label='Confirm password'
-        name='fieldRequirements.confirmPassword'
+        name={CONFIRM_PASSWORD_FIELD}
         hideRequirements
         required
         validate={(confirmPassword, allValues) => {
-          if ((allValues as FormType).password !== confirmPassword) {
+          if ((allValues as FormType)[PASSWORD_FIELD] !== confirmPassword) {
             return 'Passwords do not match'
           }
         }}

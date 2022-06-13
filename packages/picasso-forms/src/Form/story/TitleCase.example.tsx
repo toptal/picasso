@@ -4,6 +4,8 @@ import { Item } from '@toptal/picasso/Autocomplete'
 import { isSubstring } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
 
+const FORM_PREFIX = 'titleCase'
+
 const countries = [
   { value: 'Afghanistan', text: 'Afghanistan' },
   { value: 'Albania', text: 'Albania' },
@@ -52,7 +54,7 @@ const Example = () => {
     <Form
       autoComplete='off'
       onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
-      initialValues={{ gender: 'female' }}
+      initialValues={{ [`${FORM_PREFIX}-gender`]: 'female' }}
     >
       <Form.Input
         titleCase
@@ -61,7 +63,7 @@ const Example = () => {
           set('')
         }}
         required
-        name='titleCase.firstName'
+        name={`${FORM_PREFIX}-firstName`}
         label='First name'
         placeholder='e.g. Bruce'
       />
@@ -69,27 +71,31 @@ const Example = () => {
         titleCase
         enableReset
         required
-        name='titleCase.age'
+        name={`${FORM_PREFIX}-age`}
         label="What's your age?"
         placeholder='e.g. 25'
       />
-      <Form.RadioGroup titleCase name='titleCase.gender' label='Select gender'>
+      <Form.RadioGroup
+        titleCase
+        name={`${FORM_PREFIX}-gender`}
+        label='Select gender'
+      >
         <Form.Radio label='Male' value='male' />
         <Form.Radio label='Female' value='female' />
       </Form.RadioGroup>
       <Form.DatePicker
         titleCase
-        name='titleCase.dateOfBirth'
+        name={`${FORM_PREFIX}-dateOfBirth`}
         label='Date of birth'
       />
       <Form.TimePicker
         titleCase
-        name='titleCase.timeOfBirth'
+        name={`${FORM_PREFIX}-timeOfBirth`}
         label='Time of birth'
       />
       <Form.TagSelector
         titleCase
-        name='titleCase.skills'
+        name={`${FORM_PREFIX}-skills`}
         label='Your skills'
         inputValue={skillInputValue}
         options={skillOptions}
@@ -97,7 +103,7 @@ const Example = () => {
       />
       <Form.CheckboxGroup
         titleCase
-        name='titleCase.hobbies'
+        name={`${FORM_PREFIX}-hobbies`}
         label='Your hobbies'
       >
         <Form.Checkbox label='Skiing' value='skiing' />
@@ -108,7 +114,7 @@ const Example = () => {
         titleCase
         enableReset
         required
-        name='titleCase.businessType'
+        name={`${FORM_PREFIX}-businessType`}
         label='Business type'
         width='auto'
         options={[
@@ -118,7 +124,7 @@ const Example = () => {
       />
       <Form.Autocomplete
         titleCase
-        name='titleCase.current_country'
+        name={`${FORM_PREFIX}-current_country`}
         label='Current country'
         placeholder='Start typing country...'
         width='auto'
@@ -142,31 +148,31 @@ const Example = () => {
         getDisplayValue={getAutocompleteDisplayValue}
       />
       <Form.Rating.Stars
-        name='titleCase.rating'
+        name={`${FORM_PREFIX}-rating`}
         label='How much do you love Picasso?'
         required
       />
       <Form.Rating.Thumbs
-        name='titleCase.thumbs'
+        name={`${FORM_PREFIX}-thumbs`}
         label='Would you recommend picasso?'
         required
       />
       <Form.FileInput
         titleCase
         required
-        name='titleCase.avatar'
+        name={`${FORM_PREFIX}-avatar`}
         label='Your avatar'
         status='No file selected.'
       />
       <Form.Checkbox
         titleCase
         required
-        name='titleCase.legal'
+        name={`${FORM_PREFIX}-legal`}
         label='I confirm that I have legal permission from the client to feature this project.'
       />
       <Form.Switch
         titleCase
-        name='titleCase.publicProfile'
+        name={`${FORM_PREFIX}-publicProfile`}
         label='Public profile'
         width='auto'
       />

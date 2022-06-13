@@ -3,41 +3,45 @@ import { useField } from 'react-final-form'
 import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
+const HIDE_FIELD = 'validateOnSubmit-hide'
+const NAME_FIELD = 'validateOnSubmit-name'
+const DOB_FIELD = 'validateOnSubmit-dob'
+
 type FormType = {
-  hide: boolean
-  name: {
+  [HIDE_FIELD]: boolean
+  [NAME_FIELD]: {
     first: string
     last: string
   }
-  dob: string
+  [DOB_FIELD]: string
 }
 
 const FormContent = () => {
   const {
     input: { value: hide },
-  } = useField('hide')
+  } = useField(HIDE_FIELD)
 
   return (
     <>
-      <Form.Checkbox name='hide' label='Check to hide fields below' />
+      <Form.Checkbox name={HIDE_FIELD} label='Check to hide fields below' />
 
       {!hide && (
         <>
           <Form.Input
             enableReset
             required
-            name='validateOnSubmit.first'
+            name={`${NAME_FIELD}.first`}
             label='Your first name'
             placeholder='e.g. Bruce'
           />
           <Form.Input
             enableReset
             required
-            name='validateOnSubmit.last'
+            name={`${NAME_FIELD}.last`}
             label='Your last name'
             placeholder='e.g. Wayne'
           />
-          <Form.DatePicker required name='dob' label='DOB' />
+          <Form.DatePicker required name={DOB_FIELD} label='DOB' />
         </>
       )}
     </>
@@ -69,8 +73,11 @@ const responseWithDelay = async (response: any) =>
   new Promise(resolve => setTimeout(() => resolve(response), 2000))
 
 const api = {
-  submit: async (values: FormType) => {
-    if (values.hide || values.name?.first.toLowerCase() === 'bruce') {
+  submit: async ({
+    'validateOnSubmit-name': name,
+    'validateOnSubmit-hide': hide,
+  }: FormType) => {
+    if (hide || name?.first.toLowerCase() === 'bruce') {
       return responseWithDelay(undefined)
     }
 
