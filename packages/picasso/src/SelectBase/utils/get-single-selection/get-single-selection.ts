@@ -5,7 +5,7 @@ const getSingleSelection = (selectedOption: Option | null): Selection => {
     display: (getDisplayValue: (option: Option | null) => string) =>
       getDisplayValue(selectedOption),
     isSelected: () => !!selectedOption,
-    isOptionSelected: option => option.value === selectedOption?.value
+    isOptionSelected: option => option.value === selectedOption?.value,
   }
 }
 

@@ -6,7 +6,7 @@ const useEscapeKeyDownHandler = <
   T extends ValueType,
   M extends boolean = false
 >({
-  selectState: { close }
+  selectState: { close },
 }: UseSelectProps<T, M>) =>
   useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {

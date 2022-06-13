@@ -7,47 +7,47 @@ export default ({ palette }: Theme) =>
       display: 'inline-block',
       fontSize: 'inherit',
       height: '1em',
-      verticalAlign: '-.125em'
+      verticalAlign: '-.125em',
     },
 
     // colors
     green: {
-      color: palette.green.main
+      color: palette.green.main,
     },
     darkGreen: {
-      color: palette.green.dark
+      color: palette.green.dark,
     },
     red: {
-      color: palette.red.main
+      color: palette.red.main,
     },
     lightBlue: {
-      color: palette.blue.light
+      color: palette.blue.light,
     },
     blue: {
-      color: palette.primary.main
+      color: palette.primary.main,
     },
     yellow: {
-      color: palette.yellow.main
+      color: palette.yellow.main,
     },
     white: {
-      color: palette.common.white
+      color: palette.common.white,
     },
     lightGrey: {
-      color: palette.grey.light2
+      color: palette.grey.light2,
     },
     grey: {
-      color: palette.grey.main
+      color: palette.grey.main,
     },
     darkGrey: {
-      color: palette.text.primary
+      color: palette.text.primary,
     },
     black: {
-      color: palette.common.black
+      color: palette.common.black,
     },
     invert: {
-      color: palette.common.white
+      color: palette.common.white,
     },
     inherit: {
-      color: 'inherit'
-    }
+      color: 'inherit',
+    },
   })

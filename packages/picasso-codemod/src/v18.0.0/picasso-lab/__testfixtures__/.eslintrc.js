@@ -7,6 +7,6 @@ module.exports = {
     'import/no-named-default': 'off',
     'array-bracket-spacing': 'off',
     'comma-dangle': ['warn', 'only-multiline'],
-    semi: 'off'
-  }
+    semi: 'off',
+  },
 }

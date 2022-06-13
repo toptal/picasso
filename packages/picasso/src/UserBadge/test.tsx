@@ -29,7 +29,7 @@ const renderUserBadge = (
 describe('UserBadge', () => {
   it('renders', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
-      name: 'Joe Doe'
+      name: 'Joe Doe',
     })
 
     expect(container).toMatchSnapshot()
@@ -38,7 +38,7 @@ describe('UserBadge', () => {
   it('small size', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe',
-      size: 'small'
+      size: 'small',
     })
 
     expect(container).toMatchSnapshot()
@@ -47,7 +47,7 @@ describe('UserBadge', () => {
   it('manual center alignment', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       center: true,
-      name: 'Joe Doe'
+      name: 'Joe Doe',
     })
 
     expect(container).toMatchSnapshot()
@@ -55,7 +55,7 @@ describe('UserBadge', () => {
 
   it('auto center alignment', () => {
     const { container } = renderUserBadge(null, {
-      name: 'Joe Doe'
+      name: 'Joe Doe',
     })
 
     expect(container).toMatchSnapshot()
@@ -64,7 +64,7 @@ describe('UserBadge', () => {
   it('override auto center alignment', () => {
     const { container } = renderUserBadge(null, {
       center: false,
-      name: 'Joe Doe'
+      name: 'Joe Doe',
     })
 
     expect(container).toMatchSnapshot()
@@ -73,7 +73,7 @@ describe('UserBadge', () => {
   it('invert render', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe',
-      invert: true
+      invert: true,
     })
 
     expect(container).toMatchSnapshot()
@@ -82,7 +82,7 @@ describe('UserBadge', () => {
   it('custom name', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe',
-      renderName: name => <div>{name}</div>
+      renderName: name => <div>{name}</div>,
     })
 
     expect(container).toMatchSnapshot()
@@ -92,7 +92,7 @@ describe('UserBadge', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe',
       title: 'Custom Title',
-      renderTitle: title => <div>{title}</div>
+      renderTitle: title => <div>{title}</div>,
     })
 
     expect(container).toMatchSnapshot()

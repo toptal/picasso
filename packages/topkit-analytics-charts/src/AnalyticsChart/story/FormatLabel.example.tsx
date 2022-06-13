@@ -28,16 +28,16 @@ const CHART_DATA = [
       '2020-11-07': 1.6,
       '2020-11-08': 2,
       '2020-11-09': 2,
-      '2020-11-10': 3.1
-    }
-  }
+      '2020-11-10': 3.1,
+    },
+  },
 ]
 
 const Example = () => (
   <AnalyticsChart
     data={CHART_DATA}
     lineConfig={{
-      role: { color: palette.blue.main }
+      role: { color: palette.blue.main },
     }}
     formatXAxisLabel={(label: string) => format(parseISO(label), 'MMM dd')}
   />

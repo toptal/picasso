@@ -40,7 +40,7 @@ export interface Props extends BaseProps {
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoButtonControlLabel',
-  index: -1
+  index: -1,
 })
 
 const ButtonControlLabel = ({
@@ -78,7 +78,7 @@ const ButtonControlLabel = ({
 }
 
 ButtonControlLabel.defaultProps = {
-  size: 'medium'
+  size: 'medium',
 }
 
 export default ButtonControlLabel

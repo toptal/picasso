@@ -3,7 +3,7 @@ import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
 const failWithAnError = () => ({
-  fieldName: 'This form will always blame on a wrong user name'
+  fieldName: 'This form will always blame on a wrong user name',
 })
 
 const NoScrollingExample = () => (

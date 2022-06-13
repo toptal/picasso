@@ -8,7 +8,7 @@ import {
   UserBadge,
   Typography,
   Tag,
-  Container
+  Container,
 } from '@toptal/picasso'
 import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso/Icon'
 
@@ -72,7 +72,7 @@ const TableWithExpandableRows = () => {
 
     setExpandedData({
       ...expandedData,
-      [id]: !expanded
+      [id]: !expanded,
     })
   }
 
@@ -152,29 +152,29 @@ const data: Data[] = [
     task: "Invoice the client for half of Sanin's time...",
     relatedTo: 'Passionate PHP Dev...',
     time: '2:19 PM',
-    assignee: 'AD'
+    assignee: 'AD',
   },
   {
     id: 1,
     task: 'BUG: try to edit skills in profile',
     relatedTo: 'Ardelia Conn',
     time: '3:27 PM',
-    assignee: 'AD'
+    assignee: 'AD',
   },
   {
     id: 2,
     task: 'Assign attendee to scheduled meeting',
     relatedTo: 'Mariel Ankunding',
     time: '1:27 PM',
-    assignee: 'AD'
+    assignee: 'AD',
   },
   {
     id: 3,
     task: 'Conquer The World',
     relatedTo: 'Hye Schmeler',
     time: '7:46 PM',
-    assignee: 'AD'
-  }
+    assignee: 'AD',
+  },
 ]
 
 const expandedDataIds = Object.fromEntries(data.map(item => [item.id, true]))

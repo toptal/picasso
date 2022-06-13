@@ -6,13 +6,13 @@ const PromptModalDefaultExample = () => {
   const {
     showModal: showModalPositive,
     hideModal: hideModalPositive,
-    isOpen: isOpenPositive
+    isOpen: isOpenPositive,
   } = useModal()
 
   const {
     showModal: showModalNegative,
     hideModal: hideModalNegative,
-    isOpen: isOpenNegative
+    isOpen: isOpenNegative,
   } = useModal()
 
   const { showInfo } = useNotifications()

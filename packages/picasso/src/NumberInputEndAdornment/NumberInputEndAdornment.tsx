@@ -11,7 +11,7 @@ import {
   ArrowDownMinor16,
   ArrowUpMinor16,
   ArrowDownMinor24,
-  ArrowUpMinor24
+  ArrowUpMinor24,
 } from '../Icon'
 import styles from './styles'
 
@@ -33,13 +33,14 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'NumberInputEndAdornment'
+  name: 'NumberInputEndAdornment',
 })
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const nativeInputValueSetter = isBrowser()
   ? (
       Object.getOwnPropertyDescriptor(
+        // eslint-disable-next-line ssr-friendly/no-dom-globals-in-module-scope
         window.HTMLInputElement.prototype,
         'value'
       ) as PropertyDescriptor
@@ -54,7 +55,7 @@ export const NumberInputEndAdornment = (props: Props) => {
     value,
     disabled,
     size = 'medium',
-    inputRef
+    inputRef,
   } = props
 
   const classes = useStyles(props)
@@ -75,7 +76,7 @@ export const NumberInputEndAdornment = (props: Props) => {
 
     const event = new Event('input', {
       bubbles: true,
-      cancelable: true
+      cancelable: true,
     })
 
     if (input) {
@@ -123,7 +124,7 @@ export const NumberInputEndAdornment = (props: Props) => {
 
   const rootClassName = cx(
     {
-      [classes.disabled]: disabled
+      [classes.disabled]: disabled,
     },
     classes[size],
     classes.root
@@ -135,7 +136,7 @@ export const NumberInputEndAdornment = (props: Props) => {
         <ButtonBase
           disabled={disabled}
           classes={{
-            root: rootClassName
+            root: rootClassName,
           }}
           onClick={handleUpClick}
         >
@@ -144,7 +145,7 @@ export const NumberInputEndAdornment = (props: Props) => {
         <ButtonBase
           disabled={disabled}
           classes={{
-            root: rootClassName
+            root: rootClassName,
           }}
           onClick={handleDownClick}
         >
@@ -161,7 +162,7 @@ NumberInputEndAdornment.defaultProps = {
   value: 0,
   step: 1,
   disabled: false,
-  size: 'medium'
+  size: 'medium',
 }
 
 NumberInputEndAdornment.displayName = 'NumberInputEndAdornment'

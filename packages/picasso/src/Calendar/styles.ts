@@ -4,11 +4,11 @@ import { alpha, rem } from '@toptal/picasso-shared'
 export default ({ palette, sizes }: Theme) =>
   createStyles({
     root: {
-      display: 'none'
+      display: 'none',
     },
     month: {},
     week: {
-      display: 'flex'
+      display: 'flex',
     },
     day: {
       height: '2.5rem',
@@ -26,7 +26,7 @@ export default ({ palette, sizes }: Theme) =>
       padding: 0,
       border: 'none',
       outline: 0,
-      borderRadius: sizes.borderRadius.small
+      borderRadius: sizes.borderRadius.small,
     },
     weekDays: {
       display: 'flex',
@@ -36,46 +36,46 @@ export default ({ palette, sizes }: Theme) =>
       textTransform: 'uppercase',
       color: palette.grey.main2,
       paddingTop: rem('3px'),
-      paddingBottom: rem('11px')
+      paddingBottom: rem('11px'),
     },
     weekDay: {
-      flexBasis: '15%'
+      flexBasis: '15%',
     },
 
     actions: {
       display: 'flex',
       justifyContent: 'space-between',
-      marginBottom: '1.5rem'
+      marginBottom: '1.5rem',
     },
     selected: {
-      background: palette.blue.lighter
+      background: palette.blue.lighter,
     },
     selectable: {
       cursor: 'pointer',
 
       '&:hover, &:focus': {
-        backgroundColor: alpha(palette.blue.main, 0.24)
+        backgroundColor: alpha(palette.blue.main, 0.24),
       },
 
       '&$startSelection:hover, &$endSelection:hover': {
-        backgroundColor: palette.blue.main
-      }
+        backgroundColor: palette.blue.main,
+      },
     },
     startSelection: {
       backgroundColor: palette.blue.main,
       color: palette.common.white,
 
       '&$today:after': {
-        backgroundColor: palette.common.white
-      }
+        backgroundColor: palette.common.white,
+      },
     },
     endSelection: {
       backgroundColor: palette.blue.main,
       color: palette.common.white,
 
       '&$today:after': {
-        backgroundColor: palette.common.white
-      }
+        backgroundColor: palette.common.white,
+      },
     },
     today: {
       display: 'flex',
@@ -88,13 +88,13 @@ export default ({ palette, sizes }: Theme) =>
         borderRadius: '50%',
         background: palette.blue.main,
         position: 'absolute',
-        bottom: '0.375rem'
-      }
+        bottom: '0.375rem',
+      },
     },
     grayed: {
-      color: palette.grey.main2
+      color: palette.grey.main2,
     },
     disabled: {
-      color: palette.grey.main
-    }
+      color: palette.grey.main,
+    },
   })

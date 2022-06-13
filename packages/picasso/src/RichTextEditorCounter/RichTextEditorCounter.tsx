@@ -12,7 +12,7 @@ type Props = BaseProps & {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'TextEditorCounter'
+  name: 'TextEditorCounter',
 })
 
 const RichTextEditorCounter = ({
@@ -20,7 +20,7 @@ const RichTextEditorCounter = ({
   error,
   className,
   style,
-  'data-testid': dataTestId
+  'data-testid': dataTestId,
 }: Props) => {
   const classes = useStyles()
 
@@ -29,7 +29,7 @@ const RichTextEditorCounter = ({
       className={cx(
         classes.counter,
         {
-          [classes.counterError]: error
+          [classes.counterError]: error,
         },
         className
       )}

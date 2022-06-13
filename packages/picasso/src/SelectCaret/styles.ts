@@ -12,11 +12,11 @@ export default ({ palette }: Theme) =>
       color: palette.grey.dark,
       fontSize: '1rem',
       cursor: 'inherit',
-      pointerEvents: 'none'
+      pointerEvents: 'none',
     },
     caretDisabled: {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       color: alpha(palette.grey.dark!, 0.48),
-      zIndex: 1
-    }
+      zIndex: 1,
+    },
   })

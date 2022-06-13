@@ -7,7 +7,7 @@ import getCleanupOnAllContentRemovalHandler from './getCleanupOnAllContentRemova
 describe('getCleanupOnAllContentRemovalHandler', () => {
   it('does nothing when not delete operation', () => {
     const quill = {
-      getLength: jest.fn()
+      getLength: jest.fn(),
     } as unknown as Quill
 
     const handler = getCleanupOnAllContentRemovalHandler(quill)
@@ -19,7 +19,7 @@ describe('getCleanupOnAllContentRemovalHandler', () => {
   it('does nothing when all text is not removed', () => {
     const quill = {
       getLength: jest.fn(() => 10),
-      getFormat: jest.fn()
+      getFormat: jest.fn(),
     } as unknown as Quill
 
     const handler = getCleanupOnAllContentRemovalHandler(quill)
@@ -33,7 +33,7 @@ describe('getCleanupOnAllContentRemovalHandler', () => {
     const quill = {
       getLength: jest.fn(() => 1),
       getFormat: jest.fn(() => ({})),
-      setContents: jest.fn()
+      setContents: jest.fn(),
     } as unknown as Quill
 
     const handler = getCleanupOnAllContentRemovalHandler(quill)
@@ -48,7 +48,7 @@ describe('getCleanupOnAllContentRemovalHandler', () => {
     const quill = {
       getLength: jest.fn(() => 1),
       getFormat: jest.fn(() => ({ list: 'bullet' })),
-      setContents: jest.fn()
+      setContents: jest.fn(),
     } as unknown as Quill
 
     const handler = getCleanupOnAllContentRemovalHandler(quill)

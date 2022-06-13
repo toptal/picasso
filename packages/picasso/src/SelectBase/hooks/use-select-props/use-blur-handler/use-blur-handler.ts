@@ -6,7 +6,7 @@ import { isRelatedTargetInsidePopper, EMPTY_INPUT_VALUE } from '../../../utils'
 const useBlurHandler = <T extends ValueType, M extends boolean = false>({
   popperRef,
   selectState: { close, setFilterOptionsValue },
-  selectProps: { onBlur }
+  selectProps: { onBlur },
 }: UseSelectProps<T, M>) =>
   useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {

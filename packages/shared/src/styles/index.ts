@@ -37,7 +37,7 @@ export const pxFromRem = (remValue: string, baseFontSize = 16) =>
   `${Number.parseFloat(remValue) * baseFontSize}px`
 
 export const outline = (baseColor: string, width = 3) => ({
-  boxShadow: `0 0 0 ${width}px ${alpha(baseColor, 0.48)}`
+  boxShadow: `0 0 0 ${width}px ${alpha(baseColor, 0.48)}`,
 })
 
 export const remToNumber = (value: string) => Number.parseFloat(value)

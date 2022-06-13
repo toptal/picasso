@@ -4,7 +4,7 @@ import { Form } from '@toptal/picasso-forms'
 
 const DEFAULT_EXAMPLE: ASTType = {
   type: 'root',
-  children: [{ type: 'text', value: 'Example of default text' }]
+  children: [{ type: 'text', value: 'Example of default text' }],
 }
 
 const RichTextEditorExample = () => (

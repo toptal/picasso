@@ -16,7 +16,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
       width: TRACK_WIDTH,
       height: TRACK_HEIGHT,
       padding: 0,
-      overflow: 'visible'
+      overflow: 'visible',
     },
     switchBase: {
       top: 1,
@@ -29,24 +29,24 @@ PicassoProvider.override(({ palette, transitions }) => ({
         '& + $track': {
           backgroundColor: palette.primary.main,
           borderColor: palette.primary.main,
-          opacity: 1
+          opacity: 1,
         },
         '&$disabled + $track': {
           opacity: 0.4,
           backgroundColor: palette.primary.main,
-          borderColor: palette.primary.main
-        }
+          borderColor: palette.primary.main,
+        },
       },
       '&:hover, &.Mui-focusVisible': {
-        ...outline(palette.primary.main, 4)
+        ...outline(palette.primary.main, 4),
       },
       '&$disabled': {
         '& + $track': {
           opacity: 0.4,
           backgroundColor: palette.grey.main2,
-          borderColor: palette.grey.main2
-        }
-      }
+          borderColor: palette.grey.main2,
+        },
+      },
     },
     thumb: {
       width: THUMB_SIZE,
@@ -55,8 +55,8 @@ PicassoProvider.override(({ palette, transitions }) => ({
       // fix for bad subpixel rendering on 150% displays
       '@media (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.5)':
         {
-          transform: 'translate(-0.2px, -0.3px)'
-        }
+          transform: 'translate(-0.2px, -0.3px)',
+        },
     },
     track: {
       borderRadius: TRACK_HEIGHT / 2,
@@ -64,14 +64,14 @@ PicassoProvider.override(({ palette, transitions }) => ({
       backgroundColor: palette.grey.main2,
       borderColor: palette.grey.main2,
       opacity: 1,
-      transition: transitions.create(['background-color', 'border'])
+      transition: transitions.create(['background-color', 'border']),
     },
     disabled: {
       '& + $track': {
-        opacity: 0.4
-      }
-    }
-  }
+        opacity: 0.4,
+      },
+    },
+  },
 }))
 
 export default () =>
@@ -81,6 +81,6 @@ export default () =>
       marginLeft: LABEL_LEFT_MARGIN,
       marginTop: LABEL_TOP_MARGIN,
       // 1px is needed for safari
-      maxWidth: `calc(100% - ${CONTROL_WIDTH} - ${LABEL_LEFT_MARGIN} + 1px)`
-    }
+      maxWidth: `calc(100% - ${CONTROL_WIDTH} - ${LABEL_LEFT_MARGIN} + 1px)`,
+    },
   })

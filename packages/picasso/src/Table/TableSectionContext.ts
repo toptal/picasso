@@ -3,7 +3,7 @@ import { createContext } from 'react'
 export enum TableSection {
   HEAD,
   BODY,
-  FOOTER
+  FOOTER,
 }
 
 export const TableSectionContext = createContext<TableSection | undefined>(

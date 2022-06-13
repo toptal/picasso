@@ -32,5 +32,5 @@ Note.displayName = 'Note'
 export default Object.assign(Note, {
   Title: NoteTitle,
   Subtitle: NoteSubtitle,
-  Content: NoteContent
+  Content: NoteContent,
 })

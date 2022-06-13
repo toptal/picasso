@@ -8,5 +8,5 @@ const componentDocs = PicassoBook.createComponentDocs(
 )
 
 export default {
-  componentDocs
+  componentDocs,
 }

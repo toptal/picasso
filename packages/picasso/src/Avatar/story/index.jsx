@@ -26,22 +26,22 @@ page
   .addExample('Avatar/story/Default.example.tsx', {
     title: 'Default',
     waitUntilImagesLoaded: true,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Avatar/story/Variants.example.tsx', {
     title: 'Variants',
     waitUntilImagesLoaded: true,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Avatar/story/Sizes.example.tsx', {
     title: 'Sizes',
     waitUntilImagesLoaded: true,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Avatar/story/LongName.example.tsx', {
     title: 'Long Name',
     waitUntilImagesLoaded: true,
-    takeScreenshot: false
+    takeScreenshot: false,
   })
 
 page.connect(AvatarGroupStory.chapter)

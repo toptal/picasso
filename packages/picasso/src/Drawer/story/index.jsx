@@ -14,67 +14,28 @@ const page = PicassoBook.section('Components').createPage(
 
 page.createTabChapter('Props').addComponentDocs({
   component: Drawer,
-  name: 'Drawer'
+  name: 'Drawer',
 })
 
 page
   .createChapter()
   .addExample('Drawer/story/Default.example.tsx', {
     title: 'Default',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[data-testid="trigger"]')
-
-      await makeScreenshot({
-        isFullScreen: true,
-        selector: '[data-testid="content"]'
-      })
-    }
+    takeScreenshot: false,
   })
   .addExample('Drawer/story/WithoutTitle.example.tsx', {
     title: 'Without Title',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[data-testid="trigger"]')
-
-      await makeScreenshot({
-        isFullScreen: true
-      })
-    }
+    takeScreenshot: false,
   })
   .addExample('Drawer/story/CustomTitle.example.tsx', {
     title: 'Custom Title',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[data-testid="trigger"]')
-
-      await makeScreenshot({
-        isFullScreen: true
-      })
-    }
+    takeScreenshot: false,
   })
   .addExample('Drawer/story/Widths.example.tsx', {
     title: 'Width',
-    effect: async (testPage, makeScreenshot) => {
-      const types = ['narrow', 'regular', 'medium', 'wide', 'ultra-wide']
-      const contentSelector = '[data-testid="content"]'
-
-      for (const type in types) {
-        const buttonSelector = `[data-testid="show-${types[type]}"]`
-
-        await testPage.click(buttonSelector)
-        await testPage.waitFor(contentSelector, {
-          visible: true
-        })
-        await makeScreenshot({
-          isFullScreen: true,
-          selector: contentSelector
-        })
-        await testPage.click('[role="presentation"] button')
-        await testPage.waitFor(contentSelector, {
-          hidden: true
-        })
-      }
-    }
+    takeScreenshot: false,
   })
   .addExample('Drawer/story/DrawerAndNotification.example.tsx', {
     title: 'With notification',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

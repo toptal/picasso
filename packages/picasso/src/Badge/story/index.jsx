@@ -14,20 +14,20 @@ const page = PicassoBook.section('Components').createPage(
 
 page.createTabChapter('Props').addComponentDocs({
   component: Badge,
-  name: 'Badge'
+  name: 'Badge',
 })
 
 page
   .createChapter()
   .addExample('Badge/story/Variants.example.tsx', {
     title: 'Variants',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Badge/story/Sizes.example.tsx', {
     title: 'Sizes',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Badge/story/Overlay.example.tsx', {
     title: 'Overlay',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

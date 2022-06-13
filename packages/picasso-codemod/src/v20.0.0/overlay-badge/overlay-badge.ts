@@ -4,7 +4,7 @@ import {
   ImportDeclaration,
   JSCodeshift,
   JSXElement,
-  Transform
+  Transform,
 } from 'jscodeshift'
 
 const PREVIOUS_ELEMENT_NAME = 'OverlayBadge'

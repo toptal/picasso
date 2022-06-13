@@ -7,7 +7,7 @@ import {
   DynamicPointLink,
   DynamicPointNode,
   TreeNodeInterface,
-  TreeViewVariant
+  TreeViewVariant,
 } from './types'
 
 export interface UseTreeArguments {
@@ -118,7 +118,7 @@ const getPositionNoLeavesButChildren = (
   if (childWithChildrenIndex !== -1) {
     calculateNodePosition({
       ...options,
-      node: node.children[childWithChildrenIndex]
+      node: node.children[childWithChildrenIndex],
     })
   }
 
@@ -190,7 +190,7 @@ export const useTree = ({
   direction,
   verticalMargin,
   horizontalMargin,
-  variant
+  variant,
 }: UseTreeArguments): UseTreeResponse => {
   const rootNode = useMemo(
     () =>
@@ -201,7 +201,7 @@ export const useTree = ({
         nodeWidth,
         horizontalMargin,
         verticalMargin,
-        variant
+        variant,
       }),
     [
       data,
@@ -210,7 +210,7 @@ export const useTree = ({
       nodeWidth,
       verticalMargin,
       horizontalMargin,
-      variant
+      variant,
     ]
   )
 
@@ -223,7 +223,7 @@ export const useTree = ({
           if (nodePoint.parent) {
             acc.push({
               source: nodePoint.parent,
-              target: nodePoint
+              target: nodePoint,
             })
           }
 
@@ -242,7 +242,7 @@ export const useTree = ({
   return {
     nodes,
     links,
-    selectedNode
+    selectedNode,
   }
 }
 
@@ -253,7 +253,7 @@ const positionTreeNodes = ({
   nodeWidth,
   horizontalMargin,
   verticalMargin,
-  variant
+  variant,
 }: Required<UseTreeArguments>) => {
   const root = hierarchy(data)
   const fullNodeWidth = nodeWidth + 2 * horizontalMargin
@@ -269,7 +269,7 @@ const positionTreeNodes = ({
       node: rootNode,
       leaves,
       nodeSizeAttr: fullNodeWidth,
-      aggregationType: variant === 'normal' ? 'leaves' : 'siblings'
+      aggregationType: variant === 'normal' ? 'leaves' : 'siblings',
     })
   }
 
@@ -277,6 +277,6 @@ const positionTreeNodes = ({
     node: rootNode,
     leaves,
     nodeSizeAttr: fullNodeHeight,
-    aggregationType: variant === 'normal' ? 'leaves' : 'siblings'
+    aggregationType: variant === 'normal' ? 'leaves' : 'siblings',
   })
 }

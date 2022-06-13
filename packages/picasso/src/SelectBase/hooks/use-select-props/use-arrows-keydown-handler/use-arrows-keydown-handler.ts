@@ -12,8 +12,8 @@ const useArrowsKeyDownHandler = <
     highlightedIndex,
     filteredOptions,
     setHighlightedIndex,
-    open
-  }
+    open,
+  },
 }: UseSelectProps<T, M>) =>
   useCallback(
     (key: string, event: KeyboardEvent<HTMLInputElement>) => {

@@ -11,7 +11,7 @@ jest.mock('../Tooltip', () => {
     __esModule: true,
     default: jest.fn(({ children, ...rest }: { children: ReactNode }) => (
       <span {...rest}>{children}</span>
-    ))
+    )),
   }
 })
 jest.mock('../Typography', () => {
@@ -19,12 +19,12 @@ jest.mock('../Typography', () => {
     __esModule: true,
     default: jest.fn(({ children }: { children: ReactNode }) => (
       <span>{children}</span>
-    ))
+    )),
   }
 })
 jest.mock('../utils', () => ({
   __esModule: true,
-  isOverflown: jest.fn(() => true)
+  isOverflown: jest.fn(() => true),
 }))
 
 const mockedTooltip = Tooltip as unknown as jest.Mock<
@@ -70,7 +70,7 @@ describe('TypographyOverflow', () => {
 
         act(() => {
           mockedTypography.mock.calls[0][0].onMouseEnter({
-            currentTarget: true
+            currentTarget: true,
           })
         })
 
@@ -102,7 +102,7 @@ describe('TypographyOverflow', () => {
 
         act(() => {
           mockedTypography.mock.calls[0][0].onMouseEnter({
-            currentTarget: true
+            currentTarget: true,
           })
         })
 

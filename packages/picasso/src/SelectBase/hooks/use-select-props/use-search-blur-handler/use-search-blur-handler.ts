@@ -6,7 +6,7 @@ import { isRelatedTargetInsidePopper, focusRef } from '../../../utils'
 const useSearchBlurHandler = <T extends ValueType, M extends boolean = false>({
   selectRef,
   popperRef,
-  selectState: { close }
+  selectState: { close },
 }: UseSelectProps<T, M>) =>
   useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {

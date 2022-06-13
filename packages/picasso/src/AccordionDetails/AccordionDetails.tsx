@@ -10,7 +10,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoAccordionDetails'
+  name: 'PicassoAccordionDetails',
 })
 
 const AccordionDetails = (props: Props) => {

@@ -38,7 +38,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoUserBadge'
+  name: 'PicassoUserBadge',
 })
 
 export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
@@ -133,7 +133,7 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
 UserBadge.defaultProps = {
   center: 'auto',
   invert: false,
-  size: 'xsmall'
+  size: 'xsmall',
 }
 
 UserBadge.displayName = 'UserBadge'

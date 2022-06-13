@@ -4,32 +4,32 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 PicassoProvider.override(() => ({
   MuiLink: {
     root: {
-      cursor: 'pointer'
-    }
-  }
+      cursor: 'pointer',
+    },
+  },
 }))
 
 export default ({ typography, palette }: Theme) =>
   createStyles({
     root: {
       '&:focus': {
-        outline: 'none'
+        outline: 'none',
       },
       '&[role="button"]': {
-        fontSize: '1rem'
+        fontSize: '1rem',
       },
       textDecoration: 'none',
       '&:hover, &$disabled': {
-        textDecoration: 'underline'
-      }
+        textDecoration: 'underline',
+      },
     },
     noUnderline: {
       '&:hover': {
-        textDecoration: 'none'
+        textDecoration: 'none',
       },
       '&$disabled': {
-        textDecoration: 'underline'
-      }
+        textDecoration: 'underline',
+      },
     },
     action: {
       fontWeight: typography.fontWeights.semibold,
@@ -37,31 +37,31 @@ export default ({ typography, palette }: Theme) =>
       '&$disabled': {
         textDecoration: 'none',
         opacity: '48%',
-        color: palette.blue.main
-      }
+        color: palette.blue.main,
+      },
     },
     visited: {},
     blue: {
       '&:visited, &$visited': {
-        color: palette.purple.main
-      }
+        color: palette.purple.main,
+      },
     },
     white: {
       '&:visited, &$visited': {
-        color: palette.grey.main
+        color: palette.grey.main,
       },
       color: palette.common.white,
       textDecoration: 'underline',
       '&$noUnderline': {
-        textDecoration: 'none'
-      }
+        textDecoration: 'none',
+      },
     },
     disabled: {
       cursor: 'not-allowed',
-      color: palette.grey.main2
+      color: palette.grey.main2,
     },
     container: {
       textDecoration: 'none',
-      display: 'block'
-    }
+      display: 'block',
+    },
   })

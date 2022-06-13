@@ -5,7 +5,7 @@ import {
   Autocomplete,
   AutocompleteProps,
   Globe16,
-  Check16
+  Check16,
 } from '@toptal/picasso'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { isSubstring } from '@toptal/picasso/utils'
@@ -26,7 +26,7 @@ const OPTIONS = [
   { text: 'Spain' },
   { text: 'Sweden' },
   { text: 'Switzerland' },
-  { text: 'Ukraine' }
+  { text: 'Ukraine' },
 ]
 
 const filterOptions = (inputValue: string) =>
@@ -118,7 +118,7 @@ const openAutocompleteWithTab = () => {
 
 const testIds = {
   resetButton: 'reset-adornment',
-  input: 'autocomplete'
+  input: 'autocomplete',
 }
 
 const TestAutocomplete = (props: Partial<AutocompleteProps>) => (
@@ -158,7 +158,7 @@ describe('Autocomplete', () => {
             { text: 'Croatia', description: 'Population: 4M' },
             { text: 'Lithuania', description: 'Population: 3M' },
             { text: 'Slovakia', description: 'Population: 5.5M' },
-            { text: 'Ukraine', description: 'Population: 42M' }
+            { text: 'Ukraine', description: 'Population: 42M' },
           ]}
         />
       </TestingPicasso>

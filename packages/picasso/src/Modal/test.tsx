@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   render,
   fireEvent,
-  waitForElementToBeRemoved
+  waitForElementToBeRemoved,
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
@@ -14,7 +14,7 @@ import { Props as ModalTitleProps } from '../ModalTitle/ModalTitle'
 import { Props as ModalContentProps } from '../ModalContent/ModalContent'
 
 const testIds = {
-  closeButton: 'close-modal'
+  closeButton: 'close-modal',
 }
 
 const TestModal = ({ children, open }: OmitInternalProps<ModalProps>) => (
@@ -28,13 +28,13 @@ const TestModalTitle = ({ children }: OmitInternalProps<ModalTitleProps>) => (
 )
 
 const TestModalContent = ({
-  children
+  children,
 }: OmitInternalProps<ModalContentProps>) => (
   <Modal.Content>{children}</Modal.Content>
 )
 
 const TestModalActions = ({
-  children
+  children,
 }: OmitInternalProps<ModalActionsProps>) => (
   <Modal.Actions>{children}</Modal.Actions>
 )

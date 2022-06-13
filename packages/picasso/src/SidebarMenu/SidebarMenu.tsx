@@ -5,7 +5,7 @@ import React, {
   forwardRef,
   HTMLAttributes,
   useCallback,
-  useEffect
+  useEffect,
 } from 'react'
 
 import Menu from '../Menu'
@@ -19,7 +19,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarMenu'
+  name: 'PicassoSidebarMenu',
 })
 
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
@@ -34,11 +34,11 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
       variant,
       expandedItemKey,
       setExpandedItemKey,
-      isCollapsed: isSidebarCollapsed
+      isCollapsed: isSidebarCollapsed,
     } = useSidebarContext()
 
     const expandSidebarItem = useCallback(setExpandedItemKey, [
-      setExpandedItemKey
+      setExpandedItemKey,
     ])
 
     useEffect(() => {
@@ -56,18 +56,18 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         const itemProps: Partial<SidebarItemProps> = {
           variant,
           isSubMenu,
-          compact: isSidebarCollapsed && !isSubMenu
+          compact: isSidebarCollapsed && !isSubMenu,
         }
 
         const expandibleProps: Partial<SidebarItemProps> = {
           index,
           expand: expandSidebarItem,
-          isExpanded: expandedItemKey === index
+          isExpanded: expandedItemKey === index,
         }
 
         const newProps: Partial<SidebarItemProps> = {
           ...itemProps,
-          ...(child.props.collapsible ? expandibleProps : {})
+          ...(child.props.collapsible ? expandibleProps : {}),
         }
 
         return React.cloneElement(child, newProps)
@@ -86,7 +86,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
           classes.root,
           {
             [classes.bottom]: bottom,
-            [classes.compactParent]: parentMenu?.compact
+            [classes.compactParent]: parentMenu?.compact,
           },
           className
         )}
@@ -98,7 +98,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
 )
 
 SidebarMenu.defaultProps = {
-  bottom: false
+  bottom: false,
 }
 
 SidebarMenu.displayName = 'SidebarMenu'

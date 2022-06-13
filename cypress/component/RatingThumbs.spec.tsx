@@ -4,7 +4,7 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { mount } from '@cypress/react'
 
 const defaultProps: RatingThumbsProps = {
-  name: 'rating-thumbs'
+  name: 'rating-thumbs',
 }
 
 const renderRatingThumbs = (props: Partial<RatingThumbsProps> = {}) => (

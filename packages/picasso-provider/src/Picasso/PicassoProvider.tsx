@@ -10,7 +10,7 @@ import {
   transitions,
   typography,
   sizes,
-  shadows
+  shadows,
 } from './config'
 
 const picasso = {
@@ -24,18 +24,18 @@ const picasso = {
   typography,
   props: {
     MuiButtonBase: {
-      disableRipple: true
+      disableRipple: true,
     },
     MuiList: {
-      disablePadding: true
+      disablePadding: true,
     },
     MuiPaper: {
-      square: true
+      square: true,
     },
     MuiOutlinedInput: {
-      notched: false
-    }
-  }
+      notched: false,
+    },
+  },
 }
 
 class Provider {

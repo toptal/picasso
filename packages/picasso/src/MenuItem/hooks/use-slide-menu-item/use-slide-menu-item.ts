@@ -33,7 +33,7 @@ const useSlideMenuItem = (props: Props) => {
   )
 
   return {
-    onItemClick: handleItemClick
+    onItemClick: handleItemClick,
   }
 }
 

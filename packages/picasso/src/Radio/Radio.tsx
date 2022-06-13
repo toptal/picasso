@@ -4,7 +4,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   StandardProps,
   ButtonOrAnchorProps,
-  TextLabelProps
+  TextLabelProps,
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -32,7 +32,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'Radio'
+  name: 'Radio',
 })
 
 // eslint-disable-next-line react/display-name
@@ -52,7 +52,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
     const classes = useStyles(props)
     const rootClasses = {
       root: classes.root,
-      disabled: classes.disabled
+      disabled: classes.disabled,
     }
     const muiRadio = (
       <MUIRadio
@@ -67,7 +67,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         color='default'
         classes={rootClasses}
         className={cx(className, {
-          [classes.withLabel]: Boolean(label)
+          [classes.withLabel]: Boolean(label),
         })}
         style={style}
         focusVisibleClassName={classes.focused}
@@ -80,7 +80,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
 
     const externalEventListeners = {
       onMouseLeave: rest.onMouseLeave,
-      onMouseOver: rest.onMouseOver
+      onMouseOver: rest.onMouseOver,
     } as ComponentProps<typeof FormControlLabel>
 
     return (
@@ -91,7 +91,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         className={classes.labelWithRightSpacing}
         classes={{
           ...rootClasses,
-          label: classes.label
+          label: classes.label,
         }}
         style={style}
         label={label}
@@ -103,11 +103,11 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
 )
 
 Radio.defaultProps = {
-  disabled: false
+  disabled: false,
 }
 
 Radio.displayName = 'Radio'
 
 export default Object.assign(Radio, {
-  Group: RadioGroup
+  Group: RadioGroup,
 })

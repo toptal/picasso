@@ -28,7 +28,7 @@ const menuItems = [
   'GDPR Report',
   'GDPR Remove Data',
   'Login as this Talent',
-  'Apply to Different Vertical'
+  'Apply to Different Vertical',
 ]
 
 const menu = (

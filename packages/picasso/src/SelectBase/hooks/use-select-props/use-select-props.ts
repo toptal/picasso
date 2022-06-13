@@ -3,7 +3,7 @@ import {
   ItemProps,
   ValueType,
   UseSelectProps,
-  UseSelectOutput
+  UseSelectOutput,
 } from '../../types'
 import useFocusHandler from './use-focus-handler'
 import useClickHandler from './use-click-handler'
@@ -32,12 +32,12 @@ const useSelectProps = <T extends ValueType, M extends boolean = false>(
   const handleEscapeKeyDown = useEscapeKeyDownHandler(props)
   const handleEnterOrSpaceKeyDown = useEnterOrSpaceKeyDownHandler({
     ...props,
-    handleSelect
+    handleSelect,
   })
   const handleArrowsKeyDown = useArrowsKeyDownHandler(props)
   const handleResetClick = useResetClickHandler({
     ...props,
-    handleSelect
+    handleSelect,
   })
   const handleSearchChange = useSearchChangeHandler(props)
   const handleItemOnMouseDown = useItemOnMouseDownHandler()
@@ -47,43 +47,43 @@ const useSelectProps = <T extends ValueType, M extends boolean = false>(
     ...props,
     handleArrowsKeyDown,
     handleEnterOrSpaceKeyDown,
-    handleEscapeKeyDown
+    handleEscapeKeyDown,
   })
   const handleSelectKeyDown = useSelectKeyDownHandler({
     ...props,
     handleArrowsKeyDown,
     handleEnterOrSpaceKeyDown,
-    handleEscapeKeyDown
+    handleEscapeKeyDown,
   })
 
   const getItemProps = (item: Option, index: number): ItemProps => ({
     onMouseEnter: () => handleItemOnMouseEnter(index),
     onMouseDown: handleItemOnMouseDown,
-    onClick: (event: React.MouseEvent) => handleItemOnClick(event, item)
+    onClick: (event: React.MouseEvent) => handleItemOnClick(event, item),
   })
 
   const getRootProps = () => ({
     onFocus: handleFocus,
     onClick: handleClick,
-    onBlur: handleBlur
+    onBlur: handleBlur,
   })
 
   const getInputProps = () => ({
     onKeyDown: handleSelectKeyDown,
-    onResetClick: handleResetClick
+    onResetClick: handleResetClick,
   })
 
   const getSearchInputProps = () => ({
     onChange: handleSearchChange,
     onKeyDown: handleSearchKeyDown,
-    onBlur: handleSearchBlur
+    onBlur: handleSearchBlur,
   })
 
   return {
     getItemProps,
     getRootProps,
     getInputProps,
-    getSearchInputProps
+    getSearchInputProps,
   }
 }
 

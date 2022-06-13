@@ -21,7 +21,7 @@ const getTooltipOpenState = ({
   isOpenExternally,
   isControlled,
   isTouchDevice,
-  followCursor
+  followCursor,
 }: {
   isOpen: boolean
   isOpenExternally: boolean
@@ -43,7 +43,7 @@ const getTooltipOpenState = ({
 
 export const useTooltipState = ({
   externalOpen,
-  followCursor
+  followCursor,
 }: UseTooltipStateOptions): TooltipState => {
   const isTouchDevice = !isPointerDevice()
   const isTooltipControlled = typeof externalOpen !== 'undefined'
@@ -65,12 +65,12 @@ export const useTooltipState = ({
       isOpenExternally: !!externalOpen,
       isControlled: isTooltipControlled,
       isTouchDevice,
-      followCursor
+      followCursor,
     }),
     isControlled: isTooltipControlled,
     isTouchDevice,
     targetHoveredRef,
     openTooltip,
-    closeTooltip
+    closeTooltip,
   }
 }

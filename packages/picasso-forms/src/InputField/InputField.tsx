@@ -49,7 +49,7 @@ const InputField = <
   const onFormInputResetClick = useFormInputReset<TInputValue>({
     input,
     enableReset,
-    onResetClick
+    onResetClick,
   })
 
   return (

@@ -45,18 +45,18 @@ const OPTIONS = [
   {
     key: 1,
     value: 'val1',
-    text: 'text1'
+    text: 'text1',
   },
   {
     key: 2,
     value: 'val2',
-    text: 'text2'
+    text: 'text2',
   },
   {
     key: 3,
     value: 'val3',
-    text: 'text3'
-  }
+    text: 'text3',
+  },
 ]
 
 describe('NativeSelect', () => {
@@ -64,7 +64,7 @@ describe('NativeSelect', () => {
     const { container, getByText } = renderNativeSelect({
       options: OPTIONS,
       placeholder: 'Choose an option...',
-      value: 'val1'
+      value: 'val1',
     })
 
     const emptyOption = getByText('Choose an option...')
@@ -79,7 +79,7 @@ describe('NativeSelect', () => {
       enableReset: true,
       options: OPTIONS,
       placeholder: 'Choose an option...',
-      value: 'val1'
+      value: 'val1',
     })
 
     const emptyOption = getByText('Choose an option...')

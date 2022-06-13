@@ -2,7 +2,7 @@ import React, {
   forwardRef,
   ReactNode,
   TableHTMLAttributes,
-  useMemo
+  useMemo,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITable from '@material-ui/core/Table'
@@ -23,7 +23,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'Table'
+  name: 'Table',
 })
 
 // eslint-disable-next-line react/display-name
@@ -60,7 +60,7 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table(
 
 Table.defaultProps = {
   spacing: 'regular',
-  variant: 'bordered'
+  variant: 'bordered',
 }
 
 Table.displayName = 'Table'

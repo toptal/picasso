@@ -6,13 +6,13 @@ export default ({ palette }: Theme) =>
     root: {
       // No bottom spacing for the last Container
       '&:last-child $content': {
-        marginBottom: 0
-      }
+        marginBottom: 0,
+      },
     },
     content: {},
     icon: {
       margin: '4px 0',
-      color: palette.grey.main2
+      color: palette.grey.main2,
     },
     dot: {
       // Outer dot icon dimensions should match picasso 16px icons
@@ -30,18 +30,18 @@ export default ({ palette }: Theme) =>
         height: '9px',
         background: palette.grey.main2,
         borderRadius: '50%',
-        lineHeight: '20px'
-      }
+        lineHeight: '20px',
+      },
     },
     date: {
-      flex: '0 0 auto'
+      flex: '0 0 auto',
     },
     dateText: {
-      lineHeight: rem('24px')
+      lineHeight: rem('24px'),
     },
     connector: {
       flex: 1,
       width: 0,
-      borderLeft: `1px dashed ${palette.grey.main2}`
-    }
+      borderLeft: `1px dashed ${palette.grey.main2}`,
+    },
   })

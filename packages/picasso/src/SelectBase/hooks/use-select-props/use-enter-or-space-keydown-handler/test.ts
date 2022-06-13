@@ -42,16 +42,16 @@ describe('useEnterOrSpaceKeydownHandler', () => {
     props.selectState.filteredOptions = [
       {
         text: 'One',
-        value: '1'
+        value: '1',
       },
       {
         text: 'Two',
-        value: '2'
+        value: '2',
       },
       {
         text: 'Three',
-        value: '3'
-      }
+        value: '3',
+      },
     ]
 
     const { result } = renderHook(() => useEnterOrSpaceKeydownHandler(props))
@@ -62,7 +62,7 @@ describe('useEnterOrSpaceKeydownHandler', () => {
     expect(props.selectState.close).toHaveBeenCalledTimes(1)
     expect(handleSelect).toHaveBeenCalledWith(event, {
       text: 'Two',
-      value: '2'
+      value: '2',
     })
   })
 })

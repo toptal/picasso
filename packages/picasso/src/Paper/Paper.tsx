@@ -45,7 +45,7 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
 })
 
 Paper.defaultProps = {
-  elevation: 1
+  elevation: 1,
 }
 
 Paper.displayName = 'Paper'

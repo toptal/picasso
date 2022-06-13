@@ -8,16 +8,16 @@ export default (theme: Theme) =>
       '&:active, &$active, &:hover, &$hovered, &:focus, &$focused': {
         // border overlap to keep proper border width, but on state change
         // we need to move up overlapped border
-        zIndex: 1
+        zIndex: 1,
       },
       '&$group': {
         ...createOutlineCommons(theme),
-        '&:active, &$active': activeGroup(theme)
-      }
+        '&:active, &$active': activeGroup(theme),
+      },
     },
     active: {},
     hovered: {},
     focused: {},
     disabled: {},
-    group: {}
+    group: {},
   })

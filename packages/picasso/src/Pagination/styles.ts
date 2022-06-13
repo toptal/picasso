@@ -4,11 +4,11 @@ export default () =>
   createStyles({
     button: {
       '&+&': {
-        marginLeft: '0.5em'
-      }
+        marginLeft: '0.5em',
+      },
     },
     ellipsis: {
       padding: '0 0.5em',
-      cursor: 'default'
-    }
+      cursor: 'default',
+    },
   })

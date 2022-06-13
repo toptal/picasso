@@ -7,7 +7,7 @@ import { generateListItems } from './utils'
 
 const testIds = {
   ul: 'unordered-list',
-  ol: 'ordered-list'
+  ol: 'ordered-list',
 }
 
 const renderList = (props: OmitInternalProps<Props>) =>
@@ -18,7 +18,7 @@ describe('List', () => {
     const { container, getByTestId } = renderList({
       children: generateListItems(5),
       variant: 'unordered',
-      'data-testid': testIds.ul
+      'data-testid': testIds.ul,
     })
 
     const list = getByTestId(testIds.ul) as HTMLUListElement
@@ -32,7 +32,7 @@ describe('List', () => {
     const { container, getByTestId } = renderList({
       children: generateListItems(5),
       variant: 'ordered',
-      'data-testid': testIds.ol
+      'data-testid': testIds.ol,
     })
 
     const list = getByTestId(testIds.ol) as HTMLOListElement

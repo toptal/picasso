@@ -11,13 +11,13 @@ export default ({ screens, layout }: Theme) =>
       ...(layout.contentMinWidth && { minWidth: layout.contentMinWidth }),
 
       '& > footer, & > header': {
-        flex: 0
+        flex: 0,
       },
       '& > header + *': {
         marginTop: headerHeight.default,
         [screens('small', 'medium')]: {
-          marginTop: headerHeight.smallAndMedium
-        }
-      }
-    }
+          marginTop: headerHeight.smallAndMedium,
+        },
+      },
+    },
   })

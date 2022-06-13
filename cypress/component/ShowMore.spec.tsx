@@ -61,7 +61,7 @@ describe('ShowMore', () => {
         <ShowMore
           rows={0}
           testIds={{
-            contentWrapper
+            contentWrapper,
           }}
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos earum

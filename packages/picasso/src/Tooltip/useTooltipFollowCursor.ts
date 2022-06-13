@@ -26,7 +26,7 @@ const isMouseMovedTooFar = (
 
 export const useTooltipFollowCursor = ({
   followCursor,
-  tooltipState
+  tooltipState,
 }: UseTooltipFollowCursorOptions) => {
   const { targetHoveredRef, openTooltip, closeTooltip } = tooltipState
   const positionRef = useRef<CursorPosition>({ x: 0, y: 0 })
@@ -82,8 +82,8 @@ export const useTooltipFollowCursor = ({
       modifiers: {
         offset: {
           enabled: true,
-          offset: '0px,10px'
-        }
+          offset: '0px,10px',
+        },
       },
       anchorEl: {
         clientHeight: 0,
@@ -98,9 +98,9 @@ export const useTooltipFollowCursor = ({
           right: positionRef.current.x,
           bottom: positionRef.current.y,
           // this field required according to types
-          toJSON: () => {}
-        })
-      }
-    }
+          toJSON: () => {},
+        }),
+      },
+    },
   }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import {
   render,
   fireEvent,
-  waitForElementToBeRemoved
+  waitForElementToBeRemoved,
 } from '@toptal/picasso/test-utils'
 
 import Button from '../../Button'

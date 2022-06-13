@@ -12,7 +12,7 @@ import {
   WeekProps,
   DayOfWeekProps,
   DayProps,
-  DaysOfWeekProps
+  DaysOfWeekProps,
 } from './types'
 import styles from './styles'
 import CalendarMonthHeader from '../CalendarMonthHeader'
@@ -118,7 +118,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             handleOnEnter,
             getDayFormatted,
             date,
-            ISODate
+            ISODate,
           } = dayProps
 
           const defaultMarkup = (
@@ -137,7 +137,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
                   (isMonthPrev || isMonthNext) && !isSelected && !isDisabled,
                 [classes.disabled]: isDisabled || !isSelectable,
                 [classes.startSelection]: isSelectionStart,
-                [classes.endSelection]: isSelectionEnd
+                [classes.endSelection]: isSelectionEnd,
               })}
               onClick={handleOnClick}
               onMouseEnter={handleOnEnter}
@@ -151,7 +151,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
           return renderDay
             ? renderDay({
                 ...dayProps,
-                children: defaultMarkup
+                children: defaultMarkup,
               })
             : defaultMarkup
         }}
@@ -182,7 +182,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
 })
 
 Calendar.defaultProps = {
-  range: false
+  range: false,
 }
 
 Calendar.displayName = 'Calendar'

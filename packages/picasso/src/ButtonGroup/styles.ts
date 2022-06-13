@@ -6,27 +6,27 @@ const baseButtonProps = {
   '&:active, &$active, &:hover, &$hovered, &:focus, &$focused': {
     // border overlap to keep proper border width, but on state change
     // we need to move up overlapped border
-    zIndex: 1
-  }
+    zIndex: 1,
+  },
 }
 
 const firstButtonProps = {
   borderTopRightRadius: 0,
   borderBottomRightRadius: 0,
-  marginLeft: '0rem'
+  marginLeft: '0rem',
 }
 
 const middleButtonProps = {
   borderRadius: 0,
   // prevents border between 2 buttons to be wider then specified
-  marginLeft: '-1px'
+  marginLeft: '-1px',
 }
 
 const lastButtonProps = {
   borderTopLeftRadius: 0,
   borderBottomLeftRadius: 0,
   // prevents border between 2 buttons to be wider then specified
-  marginLeft: '-1px'
+  marginLeft: '-1px',
 }
 
 export default () =>
@@ -44,28 +44,28 @@ export default () =>
         // middle item
         '&:not(:first-child):not(:last-child)': middleButtonProps,
         // last item
-        '&:last-child:not(:first-child)': lastButtonProps
+        '&:last-child:not(:first-child)': lastButtonProps,
       },
 
       // nested case when button is nested in first item in ButtonGroup
       '& :first-child:not(:last-child) [data-component-type="button"]': {
         ...baseButtonProps,
-        ...firstButtonProps
+        ...firstButtonProps,
       },
 
       // nested case when button is nested in middle item in ButtonGroup
       '& :not(:first-child):not(:last-child) [data-component-type="button"]': {
         ...baseButtonProps,
-        ...middleButtonProps
+        ...middleButtonProps,
       },
 
       // nested case when button is nested in last item in ButtonGroup
       '& :last-child:not(:first-child) [data-component-type="button"]': {
         ...baseButtonProps,
-        ...lastButtonProps
-      }
+        ...lastButtonProps,
+      },
     },
     active: {},
     focused: {},
-    hovered: {}
+    hovered: {},
   })

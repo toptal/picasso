@@ -3,7 +3,7 @@ import React, {
   ReactNode,
   HTMLAttributes,
   useEffect,
-  useRef
+  useRef,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
@@ -13,7 +13,7 @@ import {
   StandardProps,
   SizeType,
   TransitionProps,
-  isBrowser
+  isBrowser,
 } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 
@@ -59,7 +59,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoModal'
+  name: 'PicassoModal',
 })
 const defaultManager = new ModalManager()
 
@@ -169,6 +169,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   }, [open, rootRef])
 
   const bodyOverflow = useRef<string>(
+    // eslint-disable-next-line ssr-friendly/no-dom-globals-in-react-fc
     isBrowser() ? document.body.style.overflow : 'inherit'
   )
 
@@ -179,7 +180,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     const currentModal = modalId.current
 
     if (open) {
-      // TODO: to be improved as part of https://toptal-core.atlassian.net/browse/FX-1069
+      // TODO: [FX-1069] to be improved as part of https://toptal-core.atlassian.net/browse/FX-1069
       bodyOverflow.current = document.body.style.overflow
       document.body.style.overflow = 'hidden'
 
@@ -207,8 +208,8 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
         root: classes.root,
         container: classes.container,
         paper: cx(classes.paper, classes[size], {
-          [classes.topAlignedDialog]: align === 'top'
-        })
+          [classes.topAlignedDialog]: align === 'top',
+        }),
       }}
       className={className}
       style={style}
@@ -246,7 +247,7 @@ Modal.defaultProps = {
   hideBackdrop: false,
   size: 'medium',
   transitionDuration: 300,
-  align: 'centered'
+  align: 'centered',
 }
 
 Modal.displayName = 'Modal'
@@ -254,5 +255,5 @@ Modal.displayName = 'Modal'
 export default Object.assign(Modal, {
   Content: ModalContent,
   Actions: ModalActions,
-  Title: ModalTitle
+  Title: ModalTitle,
 })

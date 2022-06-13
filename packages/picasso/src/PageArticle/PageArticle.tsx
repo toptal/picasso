@@ -12,7 +12,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPageArticle'
+  name: 'PicassoPageArticle',
 })
 
 export const PageArticle: OverridableComponent<Props> = forwardRef<

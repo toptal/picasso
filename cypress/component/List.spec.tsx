@@ -27,7 +27,7 @@ describe('List', () => {
 
     it('renders with custom icons', () => {
       const listItemProps = {
-        icon: <Referrals16 />
+        icon: <Referrals16 />,
       }
 
       mount(

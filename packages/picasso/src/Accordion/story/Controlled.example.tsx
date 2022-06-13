@@ -4,7 +4,7 @@ import {
   Button,
   Container,
   Typography,
-  Plus16
+  Plus16,
 } from '@toptal/picasso'
 
 const Example = () => {

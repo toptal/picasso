@@ -1,5 +1,12 @@
 # Change Log
 
+## 36.0.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-charts@39.0.0
+
 ## 35.1.0
 
 ### Minor Changes
@@ -363,7 +370,7 @@
   <Accordion
     testIds={{
       emptyAccordionSummary: 'custom-name-1',
-      calendar: 'custom-name-2'
+      calendar: 'custom-name-2',
     }}
     {...props}
   />

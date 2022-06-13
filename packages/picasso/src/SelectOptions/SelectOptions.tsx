@@ -8,7 +8,7 @@ import styles from './styles'
 export interface Props extends ScrollMenuProps {}
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSelectOptions'
+  name: 'PicassoSelectOptions',
 })
 
 const SelectOptions = (props: Props) => {
@@ -31,7 +31,7 @@ const SelectOptions = (props: Props) => {
         classes.menu,
         {
           [classes.withHeader]: Boolean(fixedHeader),
-          [classes.withFooter]: Boolean(fixedFooter)
+          [classes.withFooter]: Boolean(fixedFooter),
         },
         className
       )}
@@ -49,7 +49,7 @@ const SelectOptions = (props: Props) => {
 }
 
 SelectOptions.defaultProps = {
-  role: 'menu'
+  role: 'menu',
 }
 
 SelectOptions.displayName = 'SelectOptions'

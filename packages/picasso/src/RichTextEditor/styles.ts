@@ -10,22 +10,22 @@ export default ({ palette, sizes }: Theme) =>
       padding: '0.5em',
 
       '&:hover:not($disabled):not($error)': {
-        borderColor: palette.grey.main2
-      }
+        borderColor: palette.grey.main2,
+      },
     },
 
     disabled: {
       pointerEvents: 'none',
       background: palette.grey.lighter,
-      border: `1px solid ${palette.grey.lighter2}`
+      border: `1px solid ${palette.grey.lighter2}`,
     },
 
     error: {
-      borderColor: palette.red.main
+      borderColor: palette.red.main,
     },
 
     focused: {
       borderColor: palette.grey.main2,
-      ...outline(palette.primary.main)
-    }
+      ...outline(palette.primary.main),
+    },
   })

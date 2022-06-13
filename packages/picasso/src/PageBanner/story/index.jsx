@@ -11,5 +11,5 @@ const componentDocs = PicassoBook.createComponentDocs(PageBanner, 'Page.Banner')
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

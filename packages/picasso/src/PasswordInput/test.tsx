@@ -8,8 +8,8 @@ const testProps: PasswordInputProps = {
   testIds: {
     input: 'password-input',
     toggle: 'password-input-toggle',
-    validIcon: 'valid-icon'
-  }
+    validIcon: 'valid-icon',
+  },
 }
 
 const renderInput = (props: Partial<PasswordInputProps>) => {
@@ -34,7 +34,7 @@ describe('PasswordInput', () => {
     it('shows valid icon', () => {
       const { getByTestId, rerender } = renderInput({
         ...testProps,
-        status: 'success'
+        status: 'success',
       })
 
       const validIcon = getByTestId('valid-icon')

@@ -13,7 +13,7 @@ const getText = ({
   originalValues,
   currentPayload: { name, user, team },
   tooltips,
-  dataKey
+  dataKey,
 }: {
   originalValues: Value[]
   currentPayload: CurrentPayload
@@ -28,14 +28,14 @@ const getText = ({
       value,
       color: getColor({
         dataKey,
-        entry: { name, value: { user, team } }
-      })
+        entry: { name, value: { user, team } },
+      }),
     }))
 
 const getDisplayTexts = ({
   currentData,
   tooltips,
-  currentPayload
+  currentPayload,
 }: GetDisplayTextsParams) => {
   const [{ values: originalTeamValues }, { values: originalUserValues }] =
     currentData.values
@@ -45,14 +45,14 @@ const getDisplayTexts = ({
       originalValues: originalTeamValues,
       currentPayload,
       tooltips,
-      dataKey: 'team'
+      dataKey: 'team',
     }),
     userTexts: getText({
       originalValues: originalUserValues,
       currentPayload,
       tooltips,
-      dataKey: 'user'
-    })
+      dataKey: 'user',
+    }),
   }
 }
 

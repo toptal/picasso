@@ -21,5 +21,5 @@ export const Breadcrumbs = forwardRef<HTMLElement, Props>(function Breadcrumbs(
 Breadcrumbs.displayName = 'Breadcrumbs'
 
 export default Object.assign(Breadcrumbs, {
-  Item
+  Item,
 })

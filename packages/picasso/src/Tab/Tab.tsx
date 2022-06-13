@@ -2,7 +2,7 @@ import React, {
   forwardRef,
   ReactNode,
   HTMLAttributes,
-  ReactElement
+  ReactElement,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'

@@ -17,22 +17,22 @@ page
   .addExample('Slider/story/Controlled.example.tsx', 'Controlled value')
   .addExample('Slider/story/ControlledWithLabel.example.tsx', {
     title: 'Controlled value with label',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Slider/story/MinMaxValueLabel.example.tsx', {
     title: 'Minimum and Maximum value with label',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Slider/story/Tooltip.example.tsx', 'Tooltip')
   .addExample('Slider/story/Range.example.tsx', 'Range')
   .addExample('Slider/story/RangeWithValueLabel.example.tsx', {
     title: 'Range with value label',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Slider/story/Marks.example.tsx', 'Marks')
   .addExample('Slider/story/CustomTooltip.example.tsx', {
     title: 'Custom Tooltip',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample(
     'Slider/story/HideThumb.example.tsx',

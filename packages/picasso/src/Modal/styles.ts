@@ -13,7 +13,7 @@ export default ({ screens, sizes }: Theme) =>
       flexDirection: 'column',
       // do not remove, should be covered with test
       // https://toptal-core.atlassian.net/browse/FX-1543
-      fontSize: '1rem'
+      fontSize: '1rem',
     },
     container: {},
     paper: {
@@ -26,21 +26,21 @@ export default ({ screens, sizes }: Theme) =>
       [screens('small')]: {
         maxHeight: maxHeightForSmall,
         maxWidth: maxWidthForSmall,
-        margin: '1rem'
-      }
+        margin: '1rem',
+      },
     },
     small: {
-      width: '32.5rem'
+      width: '32.5rem',
     },
     medium: {
-      width: '40.625rem'
+      width: '40.625rem',
     },
     large: {
-      width: '50rem'
+      width: '50rem',
     },
     'full-screen': {
       height: maxHeight,
-      width: maxWidth
+      width: maxWidth,
     },
     topAlignedDialog: {
       position: 'absolute',
@@ -48,12 +48,12 @@ export default ({ screens, sizes }: Theme) =>
       maxHeight: maxHeightForTopAligned,
 
       [screens('small')]: {
-        maxHeight: maxHeightForSmall
-      }
+        maxHeight: maxHeightForSmall,
+      },
     },
     closeButton: {
       position: 'absolute',
       right: '2em',
-      top: '2em'
-    }
+      top: '2em',
+    },
   })

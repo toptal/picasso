@@ -22,7 +22,7 @@ const Example = () => {
       autoComplete='off'
       onSubmit={handleSubmit}
       initialValues={{
-        attachments: initialAttachments
+        attachments: initialAttachments,
       }}
     >
       <Form.Dropzone

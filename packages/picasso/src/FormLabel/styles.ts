@@ -7,24 +7,24 @@ export default ({ palette }: Theme) =>
       color: palette.grey[400],
       display: 'block',
       marginBottom: '0.5em',
-      lineHeight: '1em'
+      lineHeight: '1em',
     },
 
     disabled: {
-      color: alpha(palette.grey[400], 0.48)
+      color: alpha(palette.grey[400], 0.48),
     },
 
     medium: {
-      fontSize: '0.875rem'
+      fontSize: '0.875rem',
     },
 
     large: {
-      fontSize: '1rem'
+      fontSize: '1rem',
     },
 
     asterisk: {
       marginRight: '0.3125em',
-      color: palette.error.main
+      color: palette.error.main,
     },
 
     inline: {
@@ -33,12 +33,12 @@ export default ({ palette }: Theme) =>
 
       '& $medium': {
         fontSize: '0.8125rem',
-        verticalAlign: 'top'
+        verticalAlign: 'top',
       },
 
       '& $asterisk': {
         fontSize: '0.8125rem',
-        verticalAlign: 'top'
-      }
-    }
+        verticalAlign: 'top',
+      },
+    },
   })

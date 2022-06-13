@@ -20,11 +20,11 @@ export const PointLink = (props: Props) => {
     const { source, target } = link
     const sourceYDeltas = {
       horizontal: source.rect?.height / 2 || 0,
-      vertical: source.rect?.height || 0
+      vertical: source.rect?.height || 0,
     }
     const sourceXDeltas = {
       horizontal: source.rect?.width || 0,
-      vertical: source.rect?.width / 2 || 0
+      vertical: source.rect?.width / 2 || 0,
     }
     const sourceY = source.y + sourceYDeltas[direction]
     const sourceX = source.x + sourceXDeltas[direction]
@@ -37,7 +37,7 @@ export const PointLink = (props: Props) => {
       vertical: `M${sourceX}, ${sourceY}
         V${sourceY + verticalMargin / 2}
         H${target.x + (target.rect?.width ?? 0) / 2}
-        V${target.y}`
+        V${target.y}`,
     }
 
     return svgPaths[direction]

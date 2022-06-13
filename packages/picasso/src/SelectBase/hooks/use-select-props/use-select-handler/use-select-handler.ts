@@ -6,13 +6,13 @@ import {
   EMPTY_INPUT_VALUE,
   toggleMultipleSelectValue,
   focusRef,
-  fireOnChangeEvent
+  fireOnChangeEvent,
 } from '../../../utils'
 
 const useSelectHandler = <T extends ValueType, M extends boolean = false>({
   selectState: { emptySelectValue, setValue, setFilterOptionsValue },
   selectProps: { multiple, value, name, onChange },
-  selectRef
+  selectRef,
 }: UseSelectProps<T, M>) =>
   useCallback(
     (event: React.SyntheticEvent, option: Option | null) => {
@@ -44,7 +44,7 @@ const useSelectHandler = <T extends ValueType, M extends boolean = false>({
       multiple,
       value,
       selectRef,
-      setValue
+      setValue,
     ]
   )
 

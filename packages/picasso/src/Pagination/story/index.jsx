@@ -18,28 +18,28 @@ page.createTabChapter('Props').addComponentDocs({
     onPageChange: {
       type: {
         name: 'function',
-        description: '(page: number) => void'
-      }
-    }
+        description: '(page: number) => void',
+      },
+    },
   },
-  name: 'Pagination'
+  name: 'Pagination',
 })
 
 page
   .createChapter()
   .addExample('Pagination/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Pagination/story/Disabled.example.tsx', {
     title: 'Disabled',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Pagination/story/Variants.example.tsx', {
     title: 'Variants',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Pagination/story/Ellipsis.example.tsx', {
     title: 'Ellipsis',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

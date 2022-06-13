@@ -20,57 +20,57 @@ page
   .createChapter()
   .addExample('DatePicker/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/Range.example.tsx', {
     title: 'Range Mode',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/WithOnBlurHandler.example.tsx', {
     title: 'With onBlur handler',
     description: 'Fire onBlur handler on click outside or navigate with tab',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/WithNoHideOnSelect.example.tsx', {
     title: 'With no hideOnSelect',
     description: 'Do not hide calendar on date select',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/WithResetButton.example.tsx', {
     title: 'With reset button',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/WithInitialValue.example.tsx', {
     title: 'With initial value specified',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/WithInputProps.example.tsx', {
     title: 'With Input Props',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/Autocomplete.example.tsx', {
     title: 'Autocomplete',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/Status.example.tsx', {
     title: 'Status',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/WithSelectionLimits.example.tsx', {
     title: 'With Selection Limits',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/WithCustomDayRendering.example.tsx', {
     title: 'With Custom Day rendering',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/WithTimezone.example.tsx', {
     title: 'With Timezone',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('DatePicker/story/WithInputCustomValueParser.example.tsx', {
     title: "With DatePicker's Input custom value parser",
     description:
       'Type any year value like `2015` to get a random date within this year',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

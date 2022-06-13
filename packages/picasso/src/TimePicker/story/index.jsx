@@ -13,9 +13,9 @@ page
   .createChapter()
   .addExample('TimePicker/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('TimePicker/story/Status.example.tsx', {
     title: 'Status',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

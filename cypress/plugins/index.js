@@ -26,7 +26,7 @@ module.exports = (on, config) => {
   // add istanbul plugin for instrumenting code
   babelLoader.options.plugins = [
     ...(babelLoader.options.plugins ?? []),
-    require.resolve('babel-plugin-istanbul')
+    require.resolve('babel-plugin-istanbul'),
   ]
 
   webpackConfig.resolve = {
@@ -54,18 +54,18 @@ module.exports = (on, config) => {
       '@toptal/topkit-analytics-charts': path.resolve(
         __dirname,
         '../../packages/topkit-analytics-charts/dist-package'
-      )
-    }
+      ),
+    },
   }
 
   webpackConfig.module.rules.push({
     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-    loader: require.resolve('url-loader')
+    loader: require.resolve('url-loader'),
   })
 
   webpackConfig.module.rules.push({
     test: /\.css$/i,
-    use: ['style-loader', 'css-loader']
+    use: ['style-loader', 'css-loader'],
   })
 
   on('dev-server:start', options => startDevServer({ options, webpackConfig }))

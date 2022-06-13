@@ -11,7 +11,7 @@ jest.mock('../../../utils/focus-ref', () => jest.fn())
 const OPTIONS = [
   { text: 'One', value: '1' },
   { text: 'Two', value: '2' },
-  { text: 'Three', value: '3' }
+  { text: 'Three', value: '3' },
 ]
 
 describe('useSelectHandler', () => {
@@ -35,7 +35,7 @@ describe('useSelectHandler', () => {
       expect(props.selectState.setValue).toHaveBeenCalledWith(OPTIONS[1].value)
       expect(props.selectProps.onChange).toHaveBeenCalledWith({
         ...event,
-        target: { name: undefined, value: OPTIONS[1].value }
+        target: { name: undefined, value: OPTIONS[1].value },
       })
       expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledWith('')
       expect(focusRef).toHaveBeenCalledWith(props.selectRef)
@@ -59,8 +59,8 @@ describe('useSelectHandler', () => {
         ...event,
         target: {
           name: undefined,
-          value: ''
-        }
+          value: '',
+        },
       })
       expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledWith('')
       expect(focusRef).toHaveBeenCalledWith(props.selectRef)
@@ -82,14 +82,14 @@ describe('useSelectHandler', () => {
 
       expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledTimes(1)
       expect(props.selectState.setValue).toHaveBeenCalledWith([
-        OPTIONS[1].value
+        OPTIONS[1].value,
       ])
       expect(props.selectProps.onChange).toHaveBeenCalledWith({
         ...event,
         target: {
           name: undefined,
-          value: [OPTIONS[1].value]
-        }
+          value: [OPTIONS[1].value],
+        },
       })
       expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledWith('')
       expect(focusRef).toHaveBeenCalledWith(props.selectRef)
@@ -114,8 +114,8 @@ describe('useSelectHandler', () => {
         ...event,
         target: {
           name: undefined,
-          value: []
-        }
+          value: [],
+        },
       })
       expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledWith('')
       expect(focusRef).toHaveBeenCalledWith(props.selectRef)

@@ -4,9 +4,9 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 PicassoProvider.override(() => ({
   MuiPaper: {
     root: {
-      color: 'unset'
-    }
-  }
+      color: 'unset',
+    },
+  },
 }))
 
 export default () => createStyles({})

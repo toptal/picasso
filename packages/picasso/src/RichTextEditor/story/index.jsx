@@ -18,21 +18,21 @@ page
   .createChapter()
   .addExample('RichTextEditor/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('RichTextEditor/story/DefaultValue.example.tsx', {
     title: 'Default value',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('RichTextEditor/story/Disabled.example.tsx', {
     title: 'Disabled',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('RichTextEditor/story/Limit.example.tsx', {
     title: 'Limit Length',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('RichTextEditor/story/Status.example.tsx', {
     title: 'Status',
-    takeScreenshot: false
+    takeScreenshot: false,
   })

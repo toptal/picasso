@@ -4,7 +4,7 @@ import {
   ImportNamespaceSpecifier,
   ImportSpecifier,
   JSXAttribute,
-  Transform
+  Transform,
 } from 'jscodeshift'
 
 import { isImportByPath } from '../../utils'
@@ -17,7 +17,7 @@ const inputComponentNames = [
   'DatePicker',
   'TimePicker',
   'Select',
-  'TagSelector'
+  'TagSelector',
 ]
 const ERROR_PROP_NAME = 'error'
 

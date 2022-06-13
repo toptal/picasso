@@ -12,29 +12,29 @@ PicassoProvider.override(() => ({
       paddingBottom: 0,
       fontSize: '1rem',
       minHeight: 'unset',
-      whiteSpace: 'normal'
+      whiteSpace: 'normal',
     },
     gutters: {
       padding: '0.625rem',
       // to override MUI paddingLeft and paddingRight default values
       paddingLeft: '0.625rem',
-      paddingRight: '0.625rem'
-    }
-  }
+      paddingRight: '0.625rem',
+    },
+  },
 }))
 
 export default ({ typography, palette, shadows }: Theme) =>
   createStyles({
     root: {
       '&$nonSelectable:hover, &$nonSelectable:focus': {
-        backgroundColor: 'unset'
+        backgroundColor: 'unset',
       },
 
       '&$disabled': {
         color: palette.grey.main2,
         pointerEvents: 'none',
-        opacity: 1
-      }
+        opacity: 1,
+      },
     },
     light: {
       color: palette.common.black,
@@ -45,13 +45,13 @@ export default ({ typography, palette, shadows }: Theme) =>
 
         '&$selected': {
           color: palette.common.black,
-          backgroundColor: palette.blue.lighter
-        }
+          backgroundColor: palette.blue.lighter,
+        },
       },
 
       '&$selected': {
         color: palette.common.black,
-        backgroundColor: palette.blue.lighter
+        backgroundColor: palette.blue.lighter,
       },
 
       '&:focus': {
@@ -60,9 +60,9 @@ export default ({ typography, palette, shadows }: Theme) =>
 
         '&$selected': {
           color: palette.common.black,
-          backgroundColor: palette.blue.lighter
-        }
-      }
+          backgroundColor: palette.blue.lighter,
+        },
+      },
     },
     dark: {
       color: palette.grey.main,
@@ -72,13 +72,13 @@ export default ({ typography, palette, shadows }: Theme) =>
 
         '&$selected': {
           color: palette.common.white,
-          backgroundColor: palette.grey.dark
-        }
+          backgroundColor: palette.grey.dark,
+        },
       },
 
       '&$selected': {
         color: palette.common.white,
-        backgroundColor: palette.grey.dark
+        backgroundColor: palette.grey.dark,
       },
 
       '&:focus': {
@@ -87,39 +87,39 @@ export default ({ typography, palette, shadows }: Theme) =>
 
         '&$selected': {
           color: palette.common.white,
-          backgroundColor: palette.grey.dark
-        }
-      }
+          backgroundColor: palette.grey.dark,
+        },
+      },
     },
     selected: {},
     nonSelectable: {},
     stringContent: {
       flex: 1,
       fontSize: '0.875rem',
-      lineHeight: '1.25rem'
+      lineHeight: '1.25rem',
     },
     stringContentSemibold: {
-      fontWeight: typography.fontWeights.semibold
+      fontWeight: typography.fontWeights.semibold,
     },
     gutters: {
-      padding: '0.375rem 1rem'
+      padding: '0.375rem 1rem',
     },
     iconContainer: {
-      width: '1rem'
+      width: '1rem',
     },
     content: {
       flex: 1,
-      minWidth: '0px'
+      minWidth: '0px',
     },
     description: {
       fontSize: '0.6875em',
-      color: palette.text.primary
+      color: palette.text.primary,
     },
     paper: {
       background: palette.common.white,
       maxHeight: '14.75rem', // 6.5 lines to show
       overflowY: 'auto',
-      boxShadow: shadows[2]
+      boxShadow: shadows[2],
     },
-    disabled: {}
+    disabled: {},
   })

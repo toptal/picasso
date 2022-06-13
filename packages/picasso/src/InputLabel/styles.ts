@@ -4,15 +4,15 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 PicassoProvider.override(({ palette }: Theme) => ({
   MuiInputLabel: {
     root: {
-      fontSize: 'unset'
+      fontSize: 'unset',
     },
     error: {
-      color: palette.red.main
-    }
-  }
+      color: palette.red.main,
+    },
+  },
 }))
 
 export default () =>
   createStyles({
-    root: {}
+    root: {},
   })

@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Link as RouterLink,
   Route,
-  Switch
+  Switch,
 } from 'react-router-dom'
 
 const Index = () => {

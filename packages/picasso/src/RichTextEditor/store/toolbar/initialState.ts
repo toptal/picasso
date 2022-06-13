@@ -5,9 +5,9 @@ const initialState: ToolbarStateType = {
     bold: false,
     header: '',
     italic: false,
-    list: false
+    list: false,
   },
-  disabled: true
+  disabled: true,
 }
 
 export default initialState

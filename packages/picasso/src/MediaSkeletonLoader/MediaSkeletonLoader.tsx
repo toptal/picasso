@@ -32,12 +32,12 @@ const AVATAR_SIZES = {
   xsmall: 40,
   small: 80,
   medium: 120,
-  large: 160
+  large: 160,
 }
 
 const ICON_SIZES = {
   medium: 16,
-  large: 24
+  large: 24,
 }
 
 interface LoaderAttributes {
@@ -47,40 +47,40 @@ interface LoaderAttributes {
 }
 
 export const getAvatarAttributes = ({
-  size = 'xsmall'
+  size = 'xsmall',
 }: Omit<AvatarProps, 'variant'>): LoaderAttributes => {
   const boxSize = AVATAR_SIZES[size]
 
   return {
     width: boxSize,
     height: boxSize,
-    borderRadius: BORDER_RADIUS
+    borderRadius: BORDER_RADIUS,
   }
 }
 
 export const getIconAttributes = ({
   size = 'medium',
-  circle
+  circle,
 }: Omit<IconProps, 'variant'>): LoaderAttributes => {
   const boxSize = ICON_SIZES[size]
 
   return {
     width: boxSize,
     height: boxSize,
-    borderRadius: circle ? '50%' : BORDER_RADIUS
+    borderRadius: circle ? '50%' : BORDER_RADIUS,
   }
 }
 
 export const getImageAttributes = ({
   circle,
   width,
-  height
+  height,
 }: Omit<ImageProps, 'variant'>): LoaderAttributes => ({
   width:
     typeof width === 'string' ? Number.parseFloat(pxFromRem(width)) : width,
   height:
     typeof height === 'string' ? Number.parseFloat(pxFromRem(height)) : height,
-  borderRadius: circle ? '50%' : BORDER_RADIUS
+  borderRadius: circle ? '50%' : BORDER_RADIUS,
 })
 
 export const getAttributes = (props: React.PropsWithChildren<Props>) => {
@@ -135,7 +135,7 @@ export const MediaSkeletonLoader = (props: Props) => {
 MediaSkeletonLoader.displayName = 'MediaSkeletonLoader'
 
 MediaSkeletonLoader.defaultProps = {
-  variant: 'avatar'
+  variant: 'avatar',
 }
 
 export default MediaSkeletonLoader

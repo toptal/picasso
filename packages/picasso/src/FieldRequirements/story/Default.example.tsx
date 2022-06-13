@@ -5,13 +5,13 @@ import type { FieldRequirement } from '@toptal/picasso'
 const requirements: FieldRequirement<string>[] = [
   {
     message: 'Min 5 characters',
-    validator: value => value.length >= 5
+    validator: value => value.length >= 5,
   },
   {
     message: 'Max 10 characters',
-    validator: value => value.length <= 10
+    validator: value => value.length <= 10,
   },
-  { message: 'No space character', validator: value => !/\s/.test(value) }
+  { message: 'No space character', validator: value => !/\s/.test(value) },
 ]
 
 const Example = () => {

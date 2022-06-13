@@ -17,10 +17,10 @@ page
       onChange: {
         type: {
           description:
-            '(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void'
-        }
-      }
-    }
+            '(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void',
+        },
+      },
+    },
   })
   .addComponentDocs(radioGroupStory.componentDocs)
 
@@ -37,7 +37,7 @@ page
 
       await testPage.keyboard.press('Tab')
       await makeScreenshot()
-    }
+    },
   })
   .addExample('Radio/story/Checked.example.tsx', 'Checked')
   .addExample('Radio/story/Disabled.example.tsx', 'Disabled')

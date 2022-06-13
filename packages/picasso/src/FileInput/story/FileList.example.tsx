@@ -7,21 +7,21 @@ const Example = () => {
       uploading: false,
       progress: 0,
       name: 'File 1',
-      file: new File(['resume.pdf'], 'resume.pdf')
+      file: new File(['resume.pdf'], 'resume.pdf'),
     },
     {
       uploading: true,
       progress: 30,
       name: 'File under upload',
-      file: new File(['resume.pdf'], 'resume.pdf')
+      file: new File(['resume.pdf'], 'resume.pdf'),
     },
     {
       uploading: true,
       progress: 30,
       name: 'File under upload with error',
       error: 'File is too large',
-      file: new File(['resume.pdf'], 'resume.pdf')
-    }
+      file: new File(['resume.pdf'], 'resume.pdf'),
+    },
   ]
 
   return (

@@ -40,7 +40,7 @@ const getScrollButtonSelector = (direction: string) =>
 const renderTabs = ({
   width,
   disabledIndicies = [],
-  withIconIndicies = []
+  withIconIndicies = [],
 }: RenderTabsArgs = {}) => {
   return (
     <TestingPicasso>

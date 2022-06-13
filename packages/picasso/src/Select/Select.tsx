@@ -3,7 +3,7 @@ import React from 'react'
 import NativeSelect from '../NativeSelect'
 import NonNativeSelect from '../NonNativeSelect'
 import disableUnsupportedProps, {
-  FeatureOptions
+  FeatureOptions,
 } from '../utils/disable-unsupported-props'
 import noop from '../utils/noop'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
@@ -13,7 +13,7 @@ import {
   DEFAULT_LIMIT,
   DEFAULT_SEARCH_THRESHOLD,
   getOptionText,
-  renderOption
+  renderOption,
 } from '../SelectBase'
 import { documentable, forwardRef } from '../utils'
 
@@ -22,12 +22,12 @@ const purifyProps = (
 ): SelectProps<ValueType, boolean> => {
   const sizeOptions: FeatureOptions<SelectProps> = {
     featureProps: {
-      size: 'small'
+      size: 'small',
     },
     unsupportedProps: {
       icon: undefined,
-      loading: false
-    }
+      loading: false,
+    },
   }
 
   return disableUnsupportedProps('Select', props, sizeOptions)
@@ -44,7 +44,7 @@ export const Select = documentable(
         name: 'error',
         componentName: 'Select',
         description:
-          'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.'
+          'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
       })
 
       return native ? (
@@ -74,7 +74,7 @@ Select.defaultProps = {
   enableAutofill: false,
   searchPlaceholder: 'Search',
   native: false,
-  status: 'default'
+  status: 'default',
 }
 
 export default Select

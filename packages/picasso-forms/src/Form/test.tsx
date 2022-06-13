@@ -14,11 +14,11 @@ jest.mock('../utils', () => {
     ...actualUtils,
     createScrollToErrorDecorator: jest.requireActual(
       '../utils/scroll-to-error-decorator'
-    ).default
+    ).default,
   }
 })
 jest.mock('../utils/scroll-to', () => ({
-  scrollTo: jest.fn()
+  scrollTo: jest.fn(),
 }))
 
 const renderForm = (
@@ -48,7 +48,7 @@ describe('Form', () => {
   it('renders', async () => {
     const { container, getByText } = renderForm({
       onSubmit: () => {},
-      mandatory: false
+      mandatory: false,
     })
 
     await act(() => {
@@ -64,7 +64,7 @@ describe('Form', () => {
   it('renders with an error', async () => {
     const { container, getByText } = renderForm({
       onSubmit: () => Promise.resolve({ test: 'Some error' }),
-      mandatory: true
+      mandatory: true,
     })
 
     await act(() => {
@@ -81,7 +81,7 @@ describe('Form', () => {
     const { getByText } = renderForm({
       onSubmit: () => ({ test: 'Some error' }),
       disableScrollOnError: true,
-      mandatory: true
+      mandatory: true,
     })
 
     await act(() => {

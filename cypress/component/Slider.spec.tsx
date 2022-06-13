@@ -6,7 +6,7 @@ import { TestingPicasso } from '@toptal/picasso/test-utils'
 const TestSlider = ({
   value = undefined,
   onChange,
-  tooltipFormat
+  tooltipFormat,
 }: Partial<SliderProps> = {}) => (
   <TestingPicasso>
     <Container style={{ width: '600px' }} padded='medium'>

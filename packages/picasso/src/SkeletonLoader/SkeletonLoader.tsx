@@ -7,5 +7,5 @@ export default {
   Header: HeaderLoader,
   Typography: TypographyLoader,
   Button: ButtonLoader,
-  Media: MediaSkeletonLoader
+  Media: MediaSkeletonLoader,
 }

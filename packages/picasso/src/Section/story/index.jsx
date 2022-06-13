@@ -15,30 +15,30 @@ page.createTabChapter('Props').addComponentDocs({
       description: 'The variant to use',
       type: {
         name: 'enum',
-        enums: ['bordered', 'default', 'withHeaderBar']
+        enums: ['bordered', 'default', 'withHeaderBar'],
       },
-      defaultValue: 'default'
-    }
-  }
+      defaultValue: 'default',
+    },
+  },
 })
 
 page.createChapter().addExample('Section/story/Default.example.tsx', {
   title: 'Default',
-  takeScreenshot: false
+  takeScreenshot: false,
 })
 page.createChapter().addExample('Section/story/Actions.example.tsx', {
   title: 'With Actions',
-  takeScreenshot: false
+  takeScreenshot: false,
 })
 page.createChapter().addExample('Section/story/Collapsible.example.tsx', {
   title: 'Collapsible',
-  takeScreenshot: false
+  takeScreenshot: false,
 })
 page.createChapter().addExample('Section/story/Variant.example.tsx', {
   title: 'Variant',
-  takeScreenshot: false
+  takeScreenshot: false,
 })
 page.createChapter().addExample('Section/story/TitleSize.example.tsx', {
   title: 'Title Size',
-  takeScreenshot: false
+  takeScreenshot: false,
 })

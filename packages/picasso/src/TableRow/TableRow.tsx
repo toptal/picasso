@@ -3,7 +3,7 @@ import React, {
   ReactNode,
   MouseEvent,
   HTMLAttributes,
-  useContext
+  useContext,
 } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -55,7 +55,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
         classes={muiClasses}
         className={cx(className, {
           [stripeEvenClass]: stripeEven,
-          [borderedClass]: isBordered
+          [borderedClass]: isBordered,
         })}
         style={style}
         hover={hover}
@@ -71,7 +71,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
 TableRow.defaultProps = {
   hover: false,
   selected: false,
-  stripeEven: false
+  stripeEven: false,
 }
 
 TableRow.displayName = 'TableRow'

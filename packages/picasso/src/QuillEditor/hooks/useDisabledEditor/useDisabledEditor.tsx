@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 const useDisabledEditor = ({
   disabled,
-  quill
+  quill,
 }: {
   disabled: boolean
   quill?: Quill

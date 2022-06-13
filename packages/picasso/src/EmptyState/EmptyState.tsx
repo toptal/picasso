@@ -3,5 +3,5 @@ import EmptyStateCollection from '../EmptyStateCollection'
 
 export default {
   Page: EmptyStatePage,
-  Collection: EmptyStateCollection
+  Collection: EmptyStateCollection,
 }

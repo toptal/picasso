@@ -6,7 +6,7 @@ import { Tag, Indicator, Container, Typography } from '@toptal/picasso'
 const defaultProps = {
   'data-testid': 'foo',
   className: 'bar',
-  style: { position: 'absolute' }
+  style: { position: 'absolute' },
 }
 
 export default () => (

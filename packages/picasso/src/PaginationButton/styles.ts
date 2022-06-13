@@ -9,9 +9,9 @@ export default (theme: Theme) =>
       padding: '0 0.3em',
 
       ...createOutlineCommons(theme),
-      '&:active, &$active': activeGroup(theme)
+      '&:active, &$active': activeGroup(theme),
     },
     active: {},
     hovered: {},
-    disabled: {}
+    disabled: {},
   })

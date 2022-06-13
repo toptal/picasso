@@ -3,16 +3,16 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      padding: '0'
+      padding: '0',
     },
     accountItem: {
       height: 'auto',
 
       '&+&': {
-        borderTop: `1px solid ${palette.grey.light2}`
-      }
+        borderTop: `1px solid ${palette.grey.light2}`,
+      },
     },
     accountLink: {
-      flex: 1
-    }
+      flex: 1,
+    },
   })

@@ -19,7 +19,7 @@ describe('AvatarGroup', () => {
         const person = {
           name: 'Jacqueline Roque',
           alt: 'Jacqueline Roque, Pablo Picasso, 1954',
-          src: `data:image/jpeg;base64,${file}`
+          src: `data:image/jpeg;base64,${file}`,
         }
 
         return mount(

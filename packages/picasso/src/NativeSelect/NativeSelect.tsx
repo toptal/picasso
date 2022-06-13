@@ -13,7 +13,7 @@ import {
   useSelectState,
   useSelectProps,
   SelectProps,
-  renderOption as defaultRenderOption
+  renderOption as defaultRenderOption,
 } from '../SelectBase'
 import NativeSelectOptions from '../NativeSelectOptions'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
@@ -80,19 +80,19 @@ export const NativeSelect = documentable(
         disabled,
         multiple,
         value,
-        limit
+        limit,
       })
       const { selection, emptySelectValue } = selectState
       const { getItemProps, getInputProps } = useSelectProps({
         selectRef,
         selectProps: props,
-        selectState
+        selectState,
       })
       const [selectStartAdornment, selectEndAdornment] = useAdornments({
         position: iconPosition,
         icon,
         loading,
-        disabled
+        disabled,
       })
 
       const startAdornment = selectStartAdornment && (
@@ -129,13 +129,13 @@ export const NativeSelect = documentable(
           IconComponent={() => <SelectCaret disabled={disabled} />}
           classes={{
             root: cx(classes.select, {
-              [classes.placeholder]: !selection.isSelected()
+              [classes.placeholder]: !selection.isSelected(),
             }),
             select: cx({
               [classes.startAdornmentPadding]:
                 React.isValidElement(startAdornment),
-              [classes.endAdornmentPadding]: React.isValidElement(endAdornment)
-            })
+              [classes.endAdornmentPadding]: React.isValidElement(endAdornment),
+            }),
           }}
         >
           <NativeSelectPlaceholder
@@ -160,7 +160,7 @@ export const NativeSelect = documentable(
             className,
             classes[`root${capitalize(width)}`],
             {
-              [classes.rootDisabled]: disabled
+              [classes.rootDisabled]: disabled,
             }
           )}
           style={style}
@@ -187,7 +187,7 @@ NativeSelect.defaultProps = {
   searchThreshold: 10,
   enableAutofill: false,
   searchPlaceholder: 'Search',
-  status: 'default'
+  status: 'default',
 }
 
 NativeSelect.displayName = 'NativeSelect'

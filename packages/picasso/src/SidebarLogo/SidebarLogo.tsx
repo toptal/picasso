@@ -18,7 +18,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarLogo'
+  name: 'PicassoSidebarLogo',
 })
 
 export const SidebarLogo = forwardRef<HTMLDivElement, Props>(

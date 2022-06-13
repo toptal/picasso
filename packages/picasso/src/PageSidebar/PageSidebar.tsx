@@ -7,7 +7,7 @@ import React, {
   ReactNode,
   useCallback,
   useEffect,
-  useState
+  useState,
 } from 'react'
 
 import ButtonCircular from '../ButtonCircular'
@@ -28,7 +28,7 @@ export interface SmallScreenSidebarWrapperProps extends StandardProps {
 
 const SmallScreenSidebarWrapper = ({
   classes,
-  children
+  children,
 }: SmallScreenSidebarWrapperProps) => {
   const [showSidebar, setShowSidebar] = useState<boolean>(false)
 
@@ -45,9 +45,9 @@ const SmallScreenSidebarWrapper = ({
         modifiers: {
           flip: { enabled: false },
           preventOverflow: {
-            padding: 0
-          }
-        }
+            padding: 0,
+          },
+        },
       }}
       onOpen={handleShowSidebar}
       onClose={handleHideSidebar}
@@ -77,7 +77,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PageSidebar'
+  name: 'PageSidebar',
 })
 
 export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
@@ -91,7 +91,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     style,
     collapsible,
     defaultCollapsed,
-    testIds
+    testIds,
   } = props
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
@@ -127,7 +127,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       direction='column'
       style={style}
       className={cx(classes.root, className, classes[variant], {
-        [classes.rootCollapsed]: collapsible && isCollapsed
+        [classes.rootCollapsed]: collapsible && isCollapsed,
       })}
       data-testid={testIds?.container}
       onMouseEnter={collapsible ? () => setIsHovered(true) : noop}
@@ -137,7 +137,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       {collapsible && (
         <ButtonCircular
           className={cx(classes.collapseButton, {
-            [classes.buttonVisible]: isHovered
+            [classes.buttonVisible]: isHovered,
           })}
           onClick={handleCollapseButtonClick}
           icon={isCollapsed ? <ChevronRight16 /> : <BackMinor16 />}
@@ -168,7 +168,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
 })
 
 PageSidebar.defaultProps = {
-  variant: 'light'
+  variant: 'light',
 }
 
 PageSidebar.displayName = 'PageSidebar'
@@ -176,5 +176,5 @@ PageSidebar.displayName = 'PageSidebar'
 export default Object.assign(PageSidebar, {
   Menu: SidebarMenu,
   Item: SidebarItem,
-  Logo: SidebarLogo
+  Logo: SidebarLogo,
 })

@@ -2,7 +2,7 @@ import React, {
   forwardRef,
   HTMLAttributes,
   ReactElement,
-  cloneElement
+  cloneElement,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
@@ -18,7 +18,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoEmptyStatePage'
+  name: 'PicassoEmptyStatePage',
 })
 
 export const EmptyStatePage = forwardRef<HTMLDivElement, Props>(

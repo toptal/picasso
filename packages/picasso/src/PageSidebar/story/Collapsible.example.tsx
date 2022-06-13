@@ -11,7 +11,7 @@ import {
   Resources16,
   ReferralBonus16,
   Help16,
-  Participants16
+  Participants16,
 } from '@toptal/picasso/Icon'
 
 const Example = () => (
@@ -19,7 +19,7 @@ const Example = () => (
     style={{
       height: '58rem',
       maxHeight: '58rem',
-      overflowY: 'scroll'
+      overflowY: 'scroll',
     }}
   >
     <Page.Sidebar collapsible>

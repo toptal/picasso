@@ -18,8 +18,8 @@ describe('TagSelectorInput', () => {
       'data-testid': 'data-testid',
       testIds: {
         inputAdornment: 'inputAdornment',
-        resetButton: 'resetButton'
-      }
+        resetButton: 'resetButton',
+      },
     })
 
     expect(container).toMatchSnapshot()

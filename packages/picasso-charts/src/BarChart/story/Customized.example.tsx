@@ -6,20 +6,20 @@ import { palette } from '@toptal/picasso/utils'
 const CHART_DATA = [
   {
     name: 'Berlin',
-    value: { infected: 4000, recovered: 2400 }
+    value: { infected: 4000, recovered: 2400 },
   },
   {
     name: 'Milan',
-    value: { infected: 3000, recovered: 1398 }
+    value: { infected: 3000, recovered: 1398 },
   },
   {
     name: 'Moscow',
-    value: { infected: 2000, recovered: 9800 }
+    value: { infected: 2000, recovered: 9800 },
   },
   {
     name: 'Los-Angeles',
-    value: { infected: 2780, recovered: 3908 }
-  }
+    value: { infected: 2780, recovered: 3908 },
+  },
 ]
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -46,7 +46,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 
 const COLORS_MAPPING: Record<string, string> = {
   infected: palette.red.main,
-  recovered: palette.green.main
+  recovered: palette.green.main,
 }
 
 const Example = () => (

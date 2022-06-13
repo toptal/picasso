@@ -2,7 +2,7 @@ import {
   HTMLAttributes,
   InputHTMLAttributes,
   ChangeEvent,
-  ReactNode
+  ReactNode,
 } from 'react'
 import PopperJs from 'popper.js'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'

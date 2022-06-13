@@ -8,7 +8,8 @@ module.exports = {
 
   targets: {
     'chrome-desktop': new RemoteBrowserTarget('chrome', {
-      viewport: '1280x1024'
+      viewport: '1280x1024',
+      applyPseudoClasses: true
     })
   },
   plugins: [

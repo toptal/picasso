@@ -4,7 +4,7 @@ const fireOnChangeEvent = ({
   event,
   value: eventValue,
   name,
-  onChange
+  onChange,
 }: {
   event: any
   value: ValueType | ValueType[]

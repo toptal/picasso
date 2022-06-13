@@ -13,7 +13,7 @@ const DEFAULT_PROGRESS = 35
 enum SIZES {
   small = 16,
   medium = 32,
-  large = 64
+  large = 64,
 }
 
 type VariantType = 'blue' | 'inherit'
@@ -59,12 +59,12 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
       {...rest}
       ref={ref}
       className={cx(classes.root, className, {
-        [classes.inline]: inline
+        [classes.inline]: inline,
       })}
     >
       <CircularProgress
         classes={{
-          root: classes[`spinner${capitalize(variant)}`]
+          root: classes[`spinner${capitalize(variant)}`],
         }}
         size={SIZES[size]}
         value={progress}
@@ -79,7 +79,7 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
 Loader.defaultProps = {
   inline: false,
   size: 'medium',
-  variant: 'blue'
+  variant: 'blue',
 }
 
 Loader.displayName = 'Loader'

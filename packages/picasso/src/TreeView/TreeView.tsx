@@ -3,7 +3,7 @@ import React, {
   useContext,
   useEffect,
   useState,
-  useMemo
+  useMemo,
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 
@@ -15,7 +15,7 @@ import { useZoom } from './useZoom'
 import {
   DEFAULT_SCALE_EXTENT,
   ZERO_VECTOR2,
-  TreeViewPropsDefaults
+  TreeViewPropsDefaults,
 } from './variables'
 import { TreeViewPropsBase, Vector2 } from './types'
 import { TreeViewSvg } from './TreeViewSvg'
@@ -45,7 +45,7 @@ export const TreeView = (props: Props) => {
     name: 'centerTranslation',
     componentName: 'TreeView',
     description:
-      'If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView'
+      'If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView',
   })
 
   usePropDeprecationWarning({
@@ -53,7 +53,7 @@ export const TreeView = (props: Props) => {
     name: 'transitionDuration',
     componentName: 'TreeView',
     description:
-      'If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView'
+      'If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView',
   })
 
   const {
@@ -68,12 +68,12 @@ export const TreeView = (props: Props) => {
     // NOTE: these two are intentionally removed from defaultProps in order
     // to make usePropDeprecationWarning hook correctly detect their usage
     centerTranslation = ZERO_VECTOR2,
-    transitionDuration = 750
+    transitionDuration = 750,
   } = props
 
   const {
     direction = TreeView.defaultProps.directionProps.direction,
-    variant = TreeView.defaultProps.directionProps.variant
+    variant = TreeView.defaultProps.directionProps.variant,
   } = props.directionProps ?? TreeView.defaultProps.directionProps
 
   const classes = useStyles()
@@ -92,7 +92,7 @@ export const TreeView = (props: Props) => {
     horizontalMargin,
     nodeWidth,
     nodeHeight,
-    variant
+    variant,
   })
 
   const center = useMemo<Vector2>(() => {
@@ -104,7 +104,7 @@ export const TreeView = (props: Props) => {
 
     return {
       x: xPosition + nodeWidth / 2 + (nodeData.selectedOffset?.x || 0),
-      y: yPosition + nodeHeight / 2 + (nodeData.selectedOffset?.y || 0)
+      y: yPosition + nodeHeight / 2 + (nodeData.selectedOffset?.y || 0),
     }
   }, [selectedNode, nodeWidth, nodeHeight])
 
@@ -113,10 +113,10 @@ export const TreeView = (props: Props) => {
     scaleExtent,
     center: {
       x: center.x + centerTranslation.x,
-      y: center.y + centerTranslation.y
+      y: center.y + centerTranslation.y,
     },
     transitionDuration,
-    initialScale
+    initialScale,
   })
   const [initialized, setInitialized] = useState(false)
   const { updateState } = useContext(TreeViewContext)
@@ -128,7 +128,7 @@ export const TreeView = (props: Props) => {
 
     updateState({
       ref: rootRef.current,
-      zoom
+      zoom,
     })
     setInitialized(true)
   }, [rootRef, initialized, zoom, updateState])
@@ -157,7 +157,7 @@ TreeView.defaultProps = {
   scaleExtent: DEFAULT_SCALE_EXTENT,
   initialScale: 1,
   scaleCoefficient: 0.5,
-  showZoom: true
+  showZoom: true,
 }
 
 TreeView.displayName = 'TreeView'

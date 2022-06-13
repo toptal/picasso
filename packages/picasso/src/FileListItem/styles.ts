@@ -6,12 +6,12 @@ export default ({ palette }: Theme) =>
     root: {
       borderBottom: `1px solid ${palette.grey.lighter2}`,
       paddingTop: rem('5px'),
-      paddingBottom: rem('5px')
+      paddingBottom: rem('5px'),
     },
     label: {
-      lineHeight: rem('22px')
+      lineHeight: rem('22px'),
     },
     error: {
-      lineHeight: rem('16px')
-    }
+      lineHeight: rem('16px'),
+    },
   })

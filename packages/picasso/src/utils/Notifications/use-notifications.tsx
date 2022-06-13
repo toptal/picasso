@@ -3,7 +3,7 @@ import React, {
   ReactElement,
   forwardRef,
   useMemo,
-  useCallback
+  useCallback,
 } from 'react'
 import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
@@ -13,13 +13,13 @@ import { BaseProps } from '@toptal/picasso-shared'
 
 import {
   Notification as PicassoNotification,
-  VariantType
+  VariantType,
 } from '../../Notification'
 import styles from './styles'
 
 const defaultPosition: SnackbarOrigin = {
   vertical: 'top',
-  horizontal: 'right'
+  horizontal: 'right',
 }
 
 interface Props extends BaseProps {
@@ -31,7 +31,7 @@ interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoNotification'
+  name: 'PicassoNotification',
 })
 
 const StyledNotification =
@@ -49,7 +49,7 @@ const StyledNotification =
         onClose={onClose}
         className={cx({
           [classes.generalNotification]: variant === 'white',
-          [classes.formNotification]: variant !== 'white'
+          [classes.formNotification]: variant !== 'white',
         })}
         ref={ref}
       >
@@ -79,9 +79,9 @@ export const useNotifications = () => {
         content: (key: string) =>
           React.cloneElement(notificationElement, {
             key,
-            onClose: closeNotification
+            onClose: closeNotification,
           }),
-        ...options
+        ...options,
       })
 
       return notificationId
@@ -114,6 +114,6 @@ export const useNotifications = () => {
       [getPicassoNotification]
     ),
     showCustom: useMemo(() => getNotification(), [getNotification]),
-    closeNotification: closeSnackbar
+    closeNotification: closeSnackbar,
   }
 }

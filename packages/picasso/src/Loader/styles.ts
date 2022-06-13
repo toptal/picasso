@@ -6,18 +6,18 @@ export default ({ palette }: Theme) =>
       fontSize: '1rem',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center'
+      alignItems: 'center',
     },
     spinnerBlue: {
-      color: palette.primary.main
+      color: palette.primary.main,
     },
     spinnerInherit: {
-      color: 'inherit'
+      color: 'inherit',
     },
     label: {
-      marginTop: '1rem'
+      marginTop: '1rem',
     },
     inline: {
-      display: 'inline-flex'
-    }
+      display: 'inline-flex',
+    },
   })

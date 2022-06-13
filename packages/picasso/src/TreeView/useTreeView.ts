@@ -12,6 +12,6 @@ export const useTreeView = (): UseTreeViewResponse => {
   const { state } = useContext(TreeViewContext)
 
   return {
-    zoomHandler: state.zoomHandler || defaultZoomHandler
+    zoomHandler: state.zoomHandler || defaultZoomHandler,
   }
 }

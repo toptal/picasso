@@ -20,7 +20,7 @@ const useOnFocus = ({
   wrapperRef,
   onFocus,
   onBlur,
-  dispatch
+  dispatch,
 }: Props) => {
   const [isEditorFocused, setIsEditorFocused] = useState(autoFocus)
 
@@ -80,7 +80,7 @@ const useOnFocus = ({
   return {
     isEditorFocused,
     handleFocus,
-    handleBlur
+    handleBlur,
   }
 }
 

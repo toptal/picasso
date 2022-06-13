@@ -6,7 +6,7 @@ import { render } from '@toptal/picasso/test-utils'
 import Tooltip, { Props } from './Tooltip'
 import {
   mouseMoveDebounceTimeout,
-  mouseMoveCloseTooltipDistance
+  mouseMoveCloseTooltipDistance,
 } from './useTooltipFollowCursor'
 
 const TOOLTIP_SHORT_DELAY = 200
@@ -63,8 +63,8 @@ describe('Tooltip', () => {
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
         value: jest.fn(() => ({
-          matches: true
-        }))
+          matches: true,
+        })),
       })
     })
     it('renders closed by default', () => {
@@ -87,7 +87,7 @@ describe('Tooltip', () => {
     it('renders with portals disabled', () => {
       const { container, queryByTestId, unmount } = renderTooltip({
         open: true,
-        disablePortal: true
+        disablePortal: true,
       })
 
       expect(queryByTestId('tooltip-content')).toBeInTheDocument()
@@ -163,7 +163,7 @@ describe('Tooltip', () => {
         onClick: onClickMock,
         onMouseOver: onMouseOverMock,
         onMouseMove: onMouseMoveMock,
-        onMouseLeave: onMouseLeaveMock
+        onMouseLeave: onMouseLeaveMock,
       })
 
       fireEvent.focus(getByTestId('tooltip-trigger'))
@@ -182,7 +182,7 @@ describe('Tooltip', () => {
 
     it('does not close tooltip when interactive content is used by the user', async () => {
       const { getByTestId, queryByTestId, findByTestId } = renderTooltip({
-        interactive: true
+        interactive: true,
       })
 
       fireEvent.focus(getByTestId('tooltip-trigger'))
@@ -199,7 +199,7 @@ describe('Tooltip', () => {
 
     it('opens and moves tooltip on mouse move when followCursor prop is set and move distance is short', async () => {
       const { getByTestId, queryByTestId } = renderTooltip({
-        followCursor: true
+        followCursor: true,
       })
 
       fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
@@ -215,17 +215,17 @@ describe('Tooltip', () => {
       )
       await waitFor(() => {
         expect(document.querySelector('[role="tooltip"]')).toHaveStyle({
-          transform: 'translate3d(0px, -5px, 0)'
+          transform: 'translate3d(0px, -5px, 0)',
         })
       })
 
       fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
         clientX: 0,
-        clientY: 0
+        clientY: 0,
       })
       fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
         clientX: mouseMoveCloseTooltipDistance - 1,
-        clientY: 0
+        clientY: 0,
       })
 
       await waitFor(
@@ -235,14 +235,14 @@ describe('Tooltip', () => {
 
       await waitFor(() => {
         expect(document.querySelector('[role="tooltip"]')).toHaveStyle({
-          transform: 'translate3d(49px, -5px, 0)'
+          transform: 'translate3d(49px, -5px, 0)',
         })
       })
     })
 
     it('opens and moves tooltip on mouse move when followCursor prop is set and move distance is long', async () => {
       const { getByTestId, queryByTestId } = renderTooltip({
-        followCursor: true
+        followCursor: true,
       })
 
       fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
@@ -258,17 +258,17 @@ describe('Tooltip', () => {
       )
       await waitFor(() => {
         expect(document.querySelector('[role="tooltip"]')).toHaveStyle({
-          transform: 'translate3d(0px, -5px, 0)'
+          transform: 'translate3d(0px, -5px, 0)',
         })
       })
 
       fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
         clientX: 0,
-        clientY: 0
+        clientY: 0,
       })
       fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
         clientX: mouseMoveCloseTooltipDistance + 1,
-        clientY: 0
+        clientY: 0,
       })
 
       await waitFor(
@@ -284,7 +284,7 @@ describe('Tooltip', () => {
 
       await waitFor(() => {
         expect(document.querySelector('[role="tooltip"]')).toHaveStyle({
-          transform: 'translate3d(51px, -5px, 0)'
+          transform: 'translate3d(51px, -5px, 0)',
         })
       })
     })
@@ -295,8 +295,8 @@ describe('Tooltip', () => {
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
         value: jest.fn(() => ({
-          matches: false
-        }))
+          matches: false,
+        })),
       })
     })
 
@@ -314,7 +314,7 @@ describe('Tooltip', () => {
 
     it('does not open tooltip on touch event when followCursor prop is set', async () => {
       const { getByTestId, queryByTestId } = renderTooltip({
-        followCursor: true
+        followCursor: true,
       })
 
       fireEvent.mouseEnter(getByTestId('tooltip-trigger'))
@@ -327,11 +327,11 @@ describe('Tooltip', () => {
 
       fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
         clientX: 0,
-        clientY: 0
+        clientY: 0,
       })
       fireEvent.mouseMove(getByTestId('tooltip-trigger'), {
         clientX: mouseMoveCloseTooltipDistance - 1,
-        clientY: 0
+        clientY: 0,
       })
 
       await waitFor(

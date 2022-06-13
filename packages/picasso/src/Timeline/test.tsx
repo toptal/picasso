@@ -19,7 +19,7 @@ describe('Timeline', () => {
           <Timeline.Row testIds={{ dot: 'dot' }}>Row #2</Timeline.Row>
           <Timeline.Row testIds={{ dot: 'dot' }}>Row #3</Timeline.Row>
         </>
-      )
+      ),
     })
 
     expect(queryByText('Row #1')).toBeInTheDocument()
@@ -48,7 +48,7 @@ describe('Timeline', () => {
             Row #3
           </Timeline.Row>
         </>
-      )
+      ),
     })
 
     expect(queryAllByTestId('dot')).toHaveLength(3)
@@ -65,7 +65,7 @@ describe('Timeline', () => {
           <Timeline.Row date='25.06.2022'>Row #2</Timeline.Row>
           <Timeline.Row date='25.06.2023'>Row #3</Timeline.Row>
         </>
-      )
+      ),
     })
 
     expect(queryByText('25.06.2021')).toBeInTheDocument()
@@ -89,7 +89,7 @@ describe('Timeline', () => {
             Row #3
           </Timeline.Row>
         </>
-      )
+      ),
     })
 
     expect(queryByTestId('icon-1')).toBeInTheDocument()

@@ -21,7 +21,7 @@ describe('useSearchKeydownHandler', () => {
       ...getUseSelectPropsMock(),
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     }
 
     props.selectProps.onKeyDown = jest.fn()
@@ -48,7 +48,7 @@ describe('useSearchKeydownHandler', () => {
       ...getUseSelectPropsMock(),
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     }
 
     props.selectProps.onKeyDown = jest.fn()
@@ -85,7 +85,7 @@ describe('useSearchKeydownHandler', () => {
       ...getUseSelectPropsMock(),
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     }
 
     props.selectProps.onKeyDown = jest.fn()
@@ -108,7 +108,7 @@ describe('useSearchKeydownHandler', () => {
       ...getUseSelectPropsMock(),
       handleArrowsKeyDown,
       handleEnterOrSpaceKeyDown,
-      handleEscapeKeyDown
+      handleEscapeKeyDown,
     }
 
     props.selectProps.onKeyDown = jest.fn()

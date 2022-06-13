@@ -46,7 +46,7 @@ describe('useSlideMenu', () => {
     const menu = <div />
     const context: MenuContextProps = {
       onItemClick: jest.fn(),
-      onBackClick: jest.fn()
+      onBackClick: jest.fn(),
     }
     const wrapper = ({ children }: { children: ReactNode }) => {
       return (

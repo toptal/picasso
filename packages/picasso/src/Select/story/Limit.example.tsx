@@ -78,14 +78,14 @@ const optionsGenerator =
   (start = 1) =>
   (value: number, key: number) => ({
     value: `${key + start}`,
-    text: `Option ${key + start}`
+    text: `Option ${key + start}`,
   })
 
 const LOTS_OF_OPTION_GROUPS = {
   'Group 1': Array.from({ length: 200 }, optionsGenerator()),
   'Group 2': Array.from({ length: 200 }, optionsGenerator(200)),
   'Group 3': Array.from({ length: 200 }, optionsGenerator(400)),
-  'Group 4': Array.from({ length: 200 }, optionsGenerator(600))
+  'Group 4': Array.from({ length: 200 }, optionsGenerator(600)),
 }
 
 const LOTS_OF_OPTIONS = Array.from({ length: 1000 }, optionsGenerator())

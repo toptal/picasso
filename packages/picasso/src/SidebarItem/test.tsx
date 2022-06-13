@@ -9,7 +9,7 @@ import PageSidebar from '../PageSidebar'
 import { Props } from './types'
 import {
   SubMenuContextProvider,
-  useSubMenuContext
+  useSubMenuContext,
 } from './SubMenuContextProvider'
 
 jest.mock('ap-style-title-case')
@@ -20,7 +20,7 @@ const TestSidebarItem = ({
   selected,
   collapsible,
   titleCase,
-  menu
+  menu,
 }: OmitInternalProps<Props>) => {
   return (
     <PageSidebar.Item
@@ -159,7 +159,7 @@ describe('SidebarItem', () => {
       </TestSidebarItem>,
       undefined,
       {
-        titleCase: true
+        titleCase: true,
       }
     )
 
@@ -200,7 +200,7 @@ describe('SubMenuContextProvider', () => {
   describe('when a provider available', () => {
     it('returns `isSubMenu` as true', () => {
       const { result } = renderHook(() => useSubMenuContext(), {
-        wrapper: SubMenuContextProvider
+        wrapper: SubMenuContextProvider,
       })
 
       expect(result.current.isSubMenu).toBe(true)

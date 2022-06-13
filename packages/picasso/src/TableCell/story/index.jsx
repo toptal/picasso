@@ -12,11 +12,11 @@ const chapter = PicassoBook.connectToPage(page =>
     .createChapter('Table.Cell', 'Cell for table content')
     .addExample('TableCell/story/Alignments.example.tsx', {
       title: 'Alignments',
-      takeScreenshot: false
+      takeScreenshot: false,
     })
 )
 
 export default {
   chapter,
-  componentDocs
+  componentDocs,
 }

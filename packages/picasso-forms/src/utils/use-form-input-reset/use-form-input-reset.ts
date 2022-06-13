@@ -14,7 +14,7 @@ const defaultOnResetClick = (callback: (resetValue: string) => void) => {
 const useFormInputReset = <TInputValue>({
   input,
   enableReset,
-  onResetClick = defaultOnResetClick
+  onResetClick = defaultOnResetClick,
 }: Props<TInputValue>): (() => void) | undefined => {
   const resetClickHandler = useCallback(() => {
     onResetClick!((resetValue: string) => {

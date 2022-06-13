@@ -19,7 +19,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoCircularProgress'
+  name: 'PicassoCircularProgress',
 })
 
 const CircularProgress = (props: Props) => {

@@ -6,9 +6,9 @@ const ICON_CONFIG = {
     removeFill: false,
     replaceColors: {
       '#262d3d': 'var(--logo-text-color)',
-      '#204ecf': 'var(--logo-emblem-color)'
-    }
-  }
+      '#204ecf': 'var(--logo-emblem-color)',
+    },
+  },
 }
 
 const cleanupSketch = (doc, params, extra) => {
@@ -58,26 +58,26 @@ module.exports = {
         name: 'preset-default',
         params: {
           overrides: {
-            removeViewBox: false
-          }
-        }
+            removeViewBox: false,
+          },
+        },
       },
       {
         name: 'removeDimensions',
-        active: true
+        active: true,
       },
       {
         name: 'removeAttrs',
         params: {
-          attrs: '(stroke|width|height|xmlns.*)'
-        }
+          attrs: '(stroke|width|height|xmlns.*)',
+        },
       },
       {
         name: 'cleanupSketch',
         type: 'full',
         description: 'Cleanup svg after export from sketch',
-        fn: cleanupSketch
-      }
-    ]
-  }
+        fn: cleanupSketch,
+      },
+    ],
+  },
 }

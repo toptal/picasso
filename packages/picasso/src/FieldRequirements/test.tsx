@@ -22,8 +22,8 @@ const requirements: FieldRequirement<string>[] = [
       root: 'requirement-1',
       defaultIcon: 'requirement-1-default-icon',
       successIcon: 'requirement-1-success-icon',
-      errorIcon: 'requirement-1-error-icon'
-    }
+      errorIcon: 'requirement-1-error-icon',
+    },
   },
   {
     message: 'At least one uppercase character',
@@ -32,9 +32,9 @@ const requirements: FieldRequirement<string>[] = [
       root: 'requirement-2',
       defaultIcon: 'requirement-2-default-icon',
       successIcon: 'requirement-2-success-icon',
-      errorIcon: 'requirement-2-error-icon'
-    }
-  }
+      errorIcon: 'requirement-2-error-icon',
+    },
+  },
 ]
 
 describe('FieldRequirements', () => {
@@ -45,8 +45,8 @@ describe('FieldRequirements', () => {
       value: 'asd',
       testIds: {
         root: 'root',
-        gridContainer: 'grid-container'
-      }
+        gridContainer: 'grid-container',
+      },
     })
 
     const gridContainer = getByTestId('grid-container')
@@ -86,8 +86,8 @@ describe('FieldRequirements', () => {
       value: 'asd',
       testIds: {
         root: 'root',
-        gridContainer: 'grid-container'
-      }
+        gridContainer: 'grid-container',
+      },
     })
 
     const gridContainer = getByTestId('grid-container')

@@ -7,7 +7,7 @@ import {
   DirectionsType,
   DynamicPointLink,
   DynamicPointNode,
-  TreeNodeInterface
+  TreeNodeInterface,
 } from '../types'
 
 interface TreeViewSvgProps {
@@ -33,7 +33,7 @@ const TreeViewSvg = React.forwardRef<SVGSVGElement, TreeViewSvgProps>(
       horizontalMargin,
       renderNode,
       svgProps,
-      graphProps
+      graphProps,
     },
     ref
   ) => {

@@ -26,38 +26,38 @@ page
     additionalDocs: {
       onDelete: {
         type: {
-          description: '(() => void) | undefined'
-        }
-      }
+          description: '(() => void) | undefined',
+        },
+      },
     },
-    name: 'Tag'
+    name: 'Tag',
   })
   .addComponentDocs(tagGroupStory.componentDocs)
   .addComponentDocs(tagRectangularStory.componentDocs)
   .addComponentDocs({
     component: TagConnection,
     name: 'Tag.Connection',
-    description: 'Used inside endAdornment to showcase number of connections'
+    description: 'Used inside endAdornment to showcase number of connections',
   })
   .addComponentDocs({
     component: TagCheckable,
     name: 'Tag.Checkable',
-    description: 'Used when you need toggable Tag'
+    description: 'Used when you need toggable Tag',
   })
 
 page
   .createChapter()
   .addExample('Tag/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Tag/story/Variants.example.tsx', {
     title: 'Variants',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
   .addExample('Tag/story/Checkable.example.tsx', {
     title: 'Checkable',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
 
 page.connect(tagGroupStory.chapter)

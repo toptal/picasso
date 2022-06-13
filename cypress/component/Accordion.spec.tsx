@@ -5,7 +5,7 @@ import {
   Typography,
   Button,
   Container,
-  Check16
+  Check16,
 } from '@toptal/picasso'
 import { mount } from '@cypress/react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
@@ -24,7 +24,7 @@ const TestAccordion = (props: Partial<AccordionProps>) => (
 
 const Summary = ({
   onClick,
-  expanded
+  expanded,
 }: {
   onClick: () => void
   expanded: boolean

@@ -85,7 +85,7 @@ export const isDateWithinInterval = (
   if (minDate && maxDate) {
     return isWithinInterval(date, {
       start: minDate,
-      end: maxDate
+      end: maxDate,
     })
   }
 
@@ -107,7 +107,7 @@ export const datePickerParseDateString = (
     dateFormat,
     timezone,
     minDate,
-    maxDate
+    maxDate,
   }: DatePickerInputValueParserParameters
 ) => {
   if (!value) {

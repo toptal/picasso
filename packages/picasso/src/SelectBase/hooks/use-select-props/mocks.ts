@@ -4,18 +4,18 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
   return {
     searchInputRef: {
       current: {
-        focus: jest.fn()
-      } as any
+        focus: jest.fn(),
+      } as any,
     },
     selectRef: {
       current: {
-        focus: jest.fn()
-      } as any
+        focus: jest.fn(),
+      } as any,
     },
     popperRef: {
       current: {
-        focus: jest.fn()
-      } as any
+        focus: jest.fn(),
+      } as any,
     },
     selectProps: {
       disabled: false,
@@ -28,7 +28,7 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
       value: undefined,
       multiple: false,
       native: false,
-      enableReset: false
+      enableReset: false,
     },
     selectState: {
       isOpen: false,
@@ -45,12 +45,12 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
       selection: {
         isSelected: jest.fn(),
         isOptionSelected: jest.fn(),
-        display: jest.fn()
+        display: jest.fn(),
       },
       filteredOptions: [],
       emptySelectValue: '',
       selectedOptions: [],
-      setValue: jest.fn()
-    }
+      setValue: jest.fn(),
+    },
   }
 }

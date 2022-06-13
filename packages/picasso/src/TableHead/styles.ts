@@ -6,6 +6,6 @@ PicassoProvider.override(() => ({}))
 export default ({ sizes, palette }: Theme) =>
   createStyles({
     root: {
-      borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
-    }
+      borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter2}`,
+    },
   })

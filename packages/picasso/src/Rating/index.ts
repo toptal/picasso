@@ -6,5 +6,5 @@ export type { RatingThumbsProps } from '../RatingThumbs'
 
 export default {
   Stars,
-  Thumbs
+  Thumbs,
 }

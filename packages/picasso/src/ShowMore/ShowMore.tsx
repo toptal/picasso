@@ -87,7 +87,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
             <div className={classes.iconWrapper}>
               <ChevronRightIcon16
                 className={cx(classes.icon, {
-                  [classes.expandedIcon]: shownMore
+                  [classes.expandedIcon]: shownMore,
                 })}
               />
             </div>

@@ -48,15 +48,15 @@ page
             '"dt"',
             '"em"',
             '"figcaption"',
-            '... 95 more ...'
-          ]
+            '... 95 more ...',
+          ],
         },
         description:
           'The component used for the root node. Either a string to use a DOM element or a component.',
-        defaultValue: 'button'
-      }
+        defaultValue: 'button',
+      },
     },
-    name: 'Button'
+    name: 'Button',
   })
   .addComponentDocs(buttonCircularStory.componentDocs)
   .addComponentDocs(buttonActionStory.componentDocs)
@@ -72,7 +72,7 @@ page
   .addExample('Button/story/States.example.tsx', 'States')
   .addExample('Button/story/Disabled.example.tsx', {
     title: 'Disabled',
-    description: 'The button shows that currently unable to be interacted with'
+    description: 'The button shows that currently unable to be interacted with',
   })
   .addExample('Button/story/Sizes.example.tsx', 'Sizes')
   .addExample('Button/story/FullWidth.example.tsx', 'Full width')
@@ -84,7 +84,7 @@ page
   .addExample('Button/story/Augmentation.example.tsx', {
     title: 'Augmentation',
     description:
-      'Example show augmentation with Picasso Link component. You can use Link component from react-router-dom or some other custom component.'
+      'Example show augmentation with Picasso Link component. You can use Link component from react-router-dom or some other custom component.',
   })
 
 page.connect(buttonCircularStory.chapter)

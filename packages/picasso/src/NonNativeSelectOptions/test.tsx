@@ -7,25 +7,25 @@ import noop from '../utils/noop'
 const OPTIONS = [
   { text: 'One', value: '1' },
   { text: 'Two', value: '2' },
-  { text: 'Three', value: '3' }
+  { text: 'Three', value: '3' },
 ]
 
 const OPTION_GROUPS = {
   'Group 1': [
     { text: 'One', value: '1' },
     { text: 'Two', value: '2' },
-    { text: 'Three', value: '3' }
+    { text: 'Three', value: '3' },
   ],
   'Group 2': [
     { text: 'Four', value: '4' },
-    { text: 'Five', value: '5' }
-  ]
+    { text: 'Five', value: '5' },
+  ],
 }
 
 const defaultGetItemProps = () => ({
   onMouseDown: noop,
   onMouseEnter: noop,
-  onClick: noop
+  onClick: noop,
 })
 
 const renderNonNativeSelectOptions = ({
@@ -33,7 +33,7 @@ const renderNonNativeSelectOptions = ({
   selection = {
     isSelected: jest.fn(),
     isOptionSelected: jest.fn(),
-    display: jest.fn()
+    display: jest.fn(),
   },
   multiple,
   noOptionsText,
@@ -44,7 +44,7 @@ const renderNonNativeSelectOptions = ({
   onBlur,
   fixedHeader,
   fixedFooter,
-  testIds
+  testIds,
 }: Partial<Props> = {}) =>
   render(
     <NonNativeSelectOptions
@@ -72,7 +72,7 @@ describe('NonNativeSelectOptions', () => {
 
   it('renders option groups', () => {
     const { container } = renderNonNativeSelectOptions({
-      options: OPTION_GROUPS
+      options: OPTION_GROUPS,
     })
 
     expect(container).toMatchSnapshot()
@@ -82,7 +82,7 @@ describe('NonNativeSelectOptions', () => {
     const { container, getByTestId } = renderNonNativeSelectOptions({
       options: [],
       filterOptionsValue: 'search query',
-      testIds: { noOptions: 'no-options' }
+      testIds: { noOptions: 'no-options' },
     })
 
     expect(getByTestId('no-options')).toBeInTheDocument()

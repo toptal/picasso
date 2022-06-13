@@ -3,9 +3,9 @@ import { createStyles } from '@material-ui/core/styles'
 export default () =>
   createStyles({
     root: {
-      display: 'block'
+      display: 'block',
     },
     circular: {
-      borderRadius: '50%'
-    }
+      borderRadius: '50%',
+    },
   })

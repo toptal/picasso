@@ -4,7 +4,7 @@ import { useModal } from '@toptal/picasso/utils'
 
 const ModalDialog = ({
   open,
-  onClose
+  onClose,
 }: {
   open: boolean
   onClose: () => void

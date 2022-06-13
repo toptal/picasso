@@ -8,7 +8,7 @@ const CHILDREN = 'Select an option'
 const renderNativeSelectPlaceholder = ({
   children = CHILDREN,
   emptySelectValue = '',
-  disabled = false
+  disabled = false,
 }: Partial<Props> = {}) =>
   render(
     <NativeSelectPlaceholder
@@ -28,7 +28,7 @@ describe('NativeSelectPlaceholder', () => {
 
   it('renders with emptySelectValue', () => {
     const { container } = renderNativeSelectPlaceholder({
-      emptySelectValue: 'foo'
+      emptySelectValue: 'foo',
     })
 
     expect(container).toMatchSnapshot()

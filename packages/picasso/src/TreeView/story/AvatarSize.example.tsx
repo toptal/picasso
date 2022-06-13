@@ -4,7 +4,7 @@ import {
   TreeNodeInterface,
   TreeNodeAvatar,
   Container,
-  UserBadge
+  UserBadge,
 } from '@toptal/picasso'
 import { HierarchyPointNode } from 'd3-hierarchy'
 import styled from 'styled-components'
@@ -30,9 +30,9 @@ const createTreeNode = (
     selected: false,
     children: [],
     info: {
-      name: 'NODE+NAME+1'
+      name: 'NODE+NAME+1',
     },
-    ...override
+    ...override,
   }
 }
 
@@ -40,42 +40,42 @@ const rootNode = createTreeNode({
   id: '1',
   selected: true,
   selectedOffset: {
-    y: 150
+    y: 150,
   },
   info: {
     name: 'NODE+1',
-    size: 'xxsmall'
+    size: 'xxsmall',
   },
   children: [
     createTreeNode({
       id: '1.2',
       info: {
         name: 'NODE+2',
-        size: 'xsmall'
-      }
+        size: 'xsmall',
+      },
     }),
     createTreeNode({
       id: '1.3',
       info: {
         name: 'NODE+3',
-        size: 'small'
-      }
+        size: 'small',
+      },
     }),
     createTreeNode({
       id: '1.4',
       info: {
         name: 'NODE+4',
-        size: 'medium'
-      }
+        size: 'medium',
+      },
     }),
     createTreeNode({
       id: '1.5',
       info: {
         name: 'NODE+5',
-        size: 'large'
-      }
-    })
-  ]
+        size: 'large',
+      },
+    }),
+  ],
 })
 
 const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {

@@ -10,7 +10,7 @@ import { Props } from './types'
 import { SidebarItemHeader } from './SidebarItemHeader'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarItemAccordion'
+  name: 'PicassoSidebarItemAccordion',
 })
 
 export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
@@ -23,7 +23,7 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
       variant,
       isExpanded,
       icon,
-      compact
+      compact,
     } = props
 
     const classes = useStyles()
@@ -53,7 +53,7 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
         onChange={handleAccordionChange}
         classes={{
           summary: classes.collapsibleWrapper,
-          content: classes.content
+          content: classes.content,
         }}
         content={content}
         borders='none'
@@ -62,7 +62,7 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
         expandIcon={
           <ArrowDownMinor16
             className={cx(classes.expandIcon, classes[`${variant}ExpandIcon`], {
-              [classes.expandIconDisabled]: disabled
+              [classes.expandIconDisabled]: disabled,
             })}
           />
         }

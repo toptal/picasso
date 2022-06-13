@@ -28,7 +28,7 @@ const SampleContainer = ({ children }: Props) => (
       backgroundColor: '#dfe3e9',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
     }}
   >
     <Typography>{children}</Typography>

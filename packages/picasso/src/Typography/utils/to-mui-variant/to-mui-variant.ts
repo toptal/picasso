@@ -8,7 +8,7 @@ const variantsMapping = {
     medium: 'h3' as const,
     large: 'h2' as const,
     xlarge: 'h1' as const,
-    inherit: undefined
+    inherit: undefined,
   },
   body: {
     xxsmall: 'body1' as const,
@@ -17,8 +17,8 @@ const variantsMapping = {
     medium: 'body1' as const,
     large: 'body1' as const,
     xlarge: undefined,
-    inherit: 'body1' as const
-  }
+    inherit: 'body1' as const,
+  },
 }
 
 const toMuiVariant = <

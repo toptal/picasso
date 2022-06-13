@@ -5,8 +5,8 @@ const value = [
   {
     uploading: false,
     progress: 0,
-    file: new File(['resume.pdf'], 'resume.pdf')
-  }
+    file: new File(['resume.pdf'], 'resume.pdf'),
+  },
 ]
 
 const Example = () => {
@@ -16,7 +16,7 @@ const Example = () => {
     const newFiles = acceptedFiles.map(file => ({
       file,
       uploading: false,
-      progress: 0
+      progress: 0,
     }))
 
     setFiles(newFiles)

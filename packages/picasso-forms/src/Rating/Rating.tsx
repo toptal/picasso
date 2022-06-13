@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Rating as PicassoRating,
   RatingStarsProps as PicassoRatingStarsProps,
-  RatingThumbsProps as PicassoRatingThumbsProps
+  RatingThumbsProps as PicassoRatingThumbsProps,
 } from '@toptal/picasso'
 
 import PicassoField, { FieldProps } from '../Field'
@@ -57,7 +57,7 @@ const Thumbs = (props: RatingThumbsProps) => {
 
   const validateOverride = validators.composeValidators([
     required && !requirePositive ? thumbsRequired : undefined,
-    validate
+    validate,
   ])
 
   return (
@@ -83,7 +83,7 @@ const Thumbs = (props: RatingThumbsProps) => {
 
 export const Rating = {
   Stars,
-  Thumbs
+  Thumbs,
 } as const
 
 export default Rating

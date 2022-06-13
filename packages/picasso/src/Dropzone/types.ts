@@ -40,7 +40,7 @@ export const ErrorCode = {
   FileInvalidType: 'file-invalid-type',
   FileTooLarge: 'file-too-large',
   FileTooSmall: 'file-too-small',
-  TooManyFiles: 'too-many-files'
+  TooManyFiles: 'too-many-files',
 } as const
 
 type ErrorCodeType = typeof ErrorCode[keyof typeof ErrorCode]

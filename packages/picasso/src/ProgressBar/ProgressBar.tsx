@@ -19,7 +19,7 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoProgressBar'
+  name: 'PicassoProgressBar',
 })
 
 const normalizeValue = (value: number) =>
@@ -68,7 +68,7 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
 )
 
 ProgressBar.defaultProps = {
-  showPercentage: false
+  showPercentage: false,
 }
 
 export default ProgressBar

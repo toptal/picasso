@@ -1,5 +1,47 @@
 # Change Log
 
+## 26.0.0
+
+### Major Changes
+
+- [#2864](https://github.com/toptal/picasso/pull/2864) [`b07a0fe8`](https://github.com/toptal/picasso/commit/b07a0fe8f72d670aa2a1844e1b7da9ec26a19d12) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### dependencies
+
+  - `picasso-provider` is now a peer dependency of `picasso`, you should add it to your own project as a `dependency`
+
+### Patch Changes
+
+- Updated dependencies [[`b07a0fe8`](https://github.com/toptal/picasso/commit/b07a0fe8f72d670aa2a1844e1b7da9ec26a19d12)]:
+  - @toptal/picasso-shared@9.0.0
+
+## 25.4.0
+
+### Minor Changes
+
+- [#2868](https://github.com/toptal/picasso/pull/2868) [`0645f129`](https://github.com/toptal/picasso/commit/0645f129cbdd797d2f6254ecb4b0c218e913ef73) Thanks [@sanex3339](https://github.com/sanex3339)! - ---
+
+  ### Autocomplete
+
+  - allow passing popper options
+
+  ### TagSelector
+
+  - allow passing popper options
+
+## 25.3.3
+
+### Patch Changes
+
+- [#2849](https://github.com/toptal/picasso/pull/2849) [`47f2013a`](https://github.com/toptal/picasso/commit/47f2013a4e76f360af5fc7009f90523a536de090) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### Select
+
+  - forward ref properly
+
+- Updated dependencies [[`053e386c`](https://github.com/toptal/picasso/commit/053e386c7268bc34f294adbaa3327470c80947f1)]:
+  - @toptal/picasso-provider@1.2.0
+
 ## 25.3.2
 
 ### Patch Changes
@@ -1157,7 +1199,7 @@
   <Accordion
     testIds={{
       emptyAccordionSummary: 'custom-name-1',
-      calendar: 'custom-name-2'
+      calendar: 'custom-name-2',
     }}
     {...props}
   />

@@ -1,7 +1,7 @@
 import {
   ASTType,
   RichTextEditor as PicassoRichTextEditor,
-  RichTextEditorProps
+  RichTextEditorProps,
 } from '@toptal/picasso'
 import React, { useCallback, useState } from 'react'
 import { Except } from 'type-fest'

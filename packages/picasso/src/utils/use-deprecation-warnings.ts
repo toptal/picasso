@@ -11,7 +11,7 @@ interface UseDeprecationWarningArgs {
 const useDeprecationWarning = ({
   description,
   name,
-  newName
+  newName,
 }: UseDeprecationWarningArgs) => {
   const message =
     `'${name}' component is deprecated and will be removed in the next major release of Picasso.'` +
@@ -36,7 +36,7 @@ const usePropDeprecationWarning = <P>({
   componentName,
   description,
   name,
-  newName
+  newName,
 }: UsePropDeprecationWarningArgs<P>) => {
   const message =
     `${componentName}'s '${name}' prop is deprecated and will be removed in the next major release of Picasso.` +
