@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0
+
+### Major Changes
+
+- [#2864](https://github.com/toptal/picasso/pull/2864) [`b07a0fe8`](https://github.com/toptal/picasso/commit/b07a0fe8f72d670aa2a1844e1b7da9ec26a19d12) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### dependencies
+
+  - `picasso-provider` is now a peer dependency of `picasso`, you should add it to your own project as a `dependency`
+
 ## 8.2.2
 
 ### Patch Changes

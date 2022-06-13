@@ -1,5 +1,13 @@
 # Change Log
 
+## 39.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`b07a0fe8`](https://github.com/toptal/picasso/commit/b07a0fe8f72d670aa2a1844e1b7da9ec26a19d12)]:
+  - @toptal/picasso@26.0.0
+  - @toptal/picasso-shared@9.0.0
+
 ## 38.0.2
 
 ### Patch Changes
@@ -374,7 +382,7 @@
   <Accordion
     testIds={{
       emptyAccordionSummary: 'custom-name-1',
-      calendar: 'custom-name-2'
+      calendar: 'custom-name-2',
     }}
     {...props}
   />
