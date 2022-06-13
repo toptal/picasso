@@ -68,7 +68,7 @@ const BackendCommunicationExample = () => {
         />
         <Form.Input
           required
-          name={`${FORM_PREFIX}-inlineErrorSurnam`}
+          name={`${FORM_PREFIX}-inlineErrorSurname`}
           label='Last name'
           placeholder='e.g. Wayne'
           width='full'
