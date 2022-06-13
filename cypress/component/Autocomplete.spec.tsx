@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react'
-import { mount } from '@cypress/react'
 import debounce from 'debounce'
 import {
   Autocomplete,
@@ -7,7 +6,6 @@ import {
   Globe16,
   Check16,
 } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { isSubstring } from '@toptal/picasso/utils'
 
 const MIN_CHARS_TO_LOAD = 2
@@ -44,21 +42,19 @@ export const StaticOptionsAutocompleteExample = () => {
   const [options, setOptions] = useState<typeof OPTIONS>([])
 
   return (
-    <TestingPicasso>
-      <Autocomplete
-        onSelect={item => {
-          setValue(item?.text ?? '')
-        }}
-        onChange={newValue => {
-          setOptions(filterOptions(newValue))
-          setValue(newValue)
-        }}
-        value={value}
-        options={options}
-        placeholder='Start typing Mongolia...'
-        testIds={testIds}
-      />
-    </TestingPicasso>
+    <Autocomplete
+      onSelect={item => {
+        setValue(item?.text ?? '')
+      }}
+      onChange={newValue => {
+        setOptions(filterOptions(newValue))
+        setValue(newValue)
+      }}
+      value={value}
+      options={options}
+      placeholder='Start typing Mongolia...'
+      testIds={testIds}
+    />
   )
 }
 
@@ -99,16 +95,14 @@ export const DynamicOptionsAutocompleteExample = () => {
   }
 
   return (
-    <TestingPicasso>
-      <Autocomplete
-        value={value}
-        onChange={handleChange}
-        options={options}
-        loading={loading}
-        placeholder='Start typing Mongolia...'
-        testIds={testIds}
-      />
-    </TestingPicasso>
+    <Autocomplete
+      value={value}
+      onChange={handleChange}
+      options={options}
+      loading={loading}
+      placeholder='Start typing Mongolia...'
+      testIds={testIds}
+    />
   )
 }
 
@@ -127,21 +121,13 @@ const TestAutocomplete = (props: Partial<AutocompleteProps>) => (
 
 describe('Autocomplete', () => {
   it('renders', () => {
-    mount(
-      <TestingPicasso>
-        <TestAutocomplete />
-      </TestingPicasso>
-    )
+    cy.mount(<TestAutocomplete />)
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders a list of options when clicked', () => {
-    mount(
-      <TestingPicasso>
-        <TestAutocomplete />
-      </TestingPicasso>
-    )
+    cy.mount(<TestAutocomplete />)
 
     cy.getByTestId(testIds.input).click()
     cy.getByRole('menu').should('be.visible')
@@ -150,18 +136,16 @@ describe('Autocomplete', () => {
   })
 
   it('renders a list of options with descriptions when clicked', () => {
-    mount(
-      <TestingPicasso>
-        <TestAutocomplete
-          options={[
-            { text: 'Belarus', description: 'Population: 9.5M' },
-            { text: 'Croatia', description: 'Population: 4M' },
-            { text: 'Lithuania', description: 'Population: 3M' },
-            { text: 'Slovakia', description: 'Population: 5.5M' },
-            { text: 'Ukraine', description: 'Population: 42M' },
-          ]}
-        />
-      </TestingPicasso>
+    cy.mount(
+      <TestAutocomplete
+        options={[
+          { text: 'Belarus', description: 'Population: 9.5M' },
+          { text: 'Croatia', description: 'Population: 4M' },
+          { text: 'Lithuania', description: 'Population: 3M' },
+          { text: 'Slovakia', description: 'Population: 5.5M' },
+          { text: 'Ukraine', description: 'Population: 42M' },
+        ]}
+      />
     )
 
     cy.getByTestId(testIds.input).click()
@@ -171,22 +155,18 @@ describe('Autocomplete', () => {
   })
 
   it('renders disabled autocomplete', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <TestAutocomplete disabled />
         <TestAutocomplete value='Croatia' disabled />
-      </TestingPicasso>
+      </>
     )
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders a reset button', () => {
-    mount(
-      <TestingPicasso>
-        <TestAutocomplete enableReset value='Croatia' testIds={testIds} />
-      </TestingPicasso>
-    )
+    cy.mount(<TestAutocomplete enableReset value='Croatia' testIds={testIds} />)
 
     // Cypress does not go well with :hover CSS selectors
     // It can fire mouse events via JS, but can't simulate browser cursor behaviour
@@ -200,56 +180,52 @@ describe('Autocomplete', () => {
     cy.get('body').happoScreenshot()
   })
   it('renders a placeholder', () => {
-    mount(
-      <TestingPicasso>
-        <TestAutocomplete placeholder='Start a country...' />
-      </TestingPicasso>
-    )
+    cy.mount(<TestAutocomplete placeholder='Start a country...' />)
     cy.get('body').happoScreenshot()
   })
 
   it('renders the selected value even if a placeholder is specified', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <TestAutocomplete value='Croatia' />
         <TestAutocomplete value='Croatia' placeholder='Start a country...' />
-      </TestingPicasso>
+      </>
     )
     cy.get('body').happoScreenshot()
   })
 
   it('renders start and end adornments', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <TestAutocomplete startAdornment={<Globe16 />} />
         <TestAutocomplete endAdornment={<Globe16 />} />
         <TestAutocomplete
           startAdornment={<Globe16 />}
           endAdornment={<Globe16 />}
         />
-      </TestingPicasso>
+      </>
     )
     cy.get('body').happoScreenshot()
   })
 
   it('renders an icon unless a start adornment is specified', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <TestAutocomplete icon={<Check16 />} />
         <TestAutocomplete icon={<Check16 />} startAdornment={<Globe16 />} />
-      </TestingPicasso>
+      </>
     )
     cy.get('body').happoScreenshot()
   })
 
   it('renders loading and error states', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <TestAutocomplete status='error' />
         <TestAutocomplete loading />
         <TestAutocomplete value='Croatia' status='error' />
         <TestAutocomplete value='Croatia' loading />
-      </TestingPicasso>
+      </>
     )
 
     // Wait for loading spinner to start animation
@@ -260,22 +236,18 @@ describe('Autocomplete', () => {
   })
 
   it('renders in different widths', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <TestAutocomplete width='auto' />
         <TestAutocomplete width='full' />
         <TestAutocomplete width='shrink' />
-      </TestingPicasso>
+      </>
     )
     cy.get('body').happoScreenshot()
   })
 
   it('renders in different menu widths', () => {
-    mount(
-      <TestingPicasso>
-        <TestAutocomplete menuWidth='200px' />
-      </TestingPicasso>
-    )
+    cy.mount(<TestAutocomplete menuWidth='200px' />)
 
     cy.getByTestId(testIds.input).click()
     cy.getByRole('menu').should('be.visible')
@@ -284,11 +256,7 @@ describe('Autocomplete', () => {
   })
 
   it('renders other option', () => {
-    mount(
-      <TestingPicasso>
-        <TestAutocomplete showOtherOption options={[]} value='picasso' />
-      </TestingPicasso>
-    )
+    cy.mount(<TestAutocomplete showOtherOption options={[]} value='picasso' />)
 
     cy.getByTestId(testIds.input).click()
     cy.getByRole('menu').should('be.visible')
@@ -297,15 +265,13 @@ describe('Autocomplete', () => {
   })
 
   it('renders no options text', () => {
-    mount(
-      <TestingPicasso>
-        <TestAutocomplete
-          showOtherOption
-          options={[]}
-          noOptionsText='Nothing found'
-          testIds={testIds}
-        />
-      </TestingPicasso>
+    cy.mount(
+      <TestAutocomplete
+        showOtherOption
+        options={[]}
+        noOptionsText='Nothing found'
+        testIds={testIds}
+      />
     )
 
     cy.getByTestId(testIds.input).click()
@@ -315,10 +281,8 @@ describe('Autocomplete', () => {
   })
 
   it('renders powered by google', () => {
-    mount(
-      <TestingPicasso>
-        <TestAutocomplete poweredByGoogle options={[{ text: 'Belarus' }]} />
-      </TestingPicasso>
+    cy.mount(
+      <TestAutocomplete poweredByGoogle options={[{ text: 'Belarus' }]} />
     )
 
     cy.getByTestId(testIds.input).click()
@@ -328,7 +292,7 @@ describe('Autocomplete', () => {
   })
 
   it('focuses Autocomplete with dynamic options should NOT open options list', () => {
-    mount(<DynamicOptionsAutocompleteExample />)
+    cy.mount(<DynamicOptionsAutocompleteExample />)
 
     openAutocompleteWithTab()
 
@@ -348,7 +312,7 @@ describe('Autocomplete', () => {
   })
 
   it('focuses Autocomplete with static options should NOT open options list', () => {
-    mount(<StaticOptionsAutocompleteExample />)
+    cy.mount(<StaticOptionsAutocompleteExample />)
 
     openAutocompleteWithTab()
 

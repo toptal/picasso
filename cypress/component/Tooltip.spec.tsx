@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { mount } from '@cypress/react'
 import {
   Autocomplete,
   Button,
@@ -15,7 +14,6 @@ import {
   TooltipProps,
   Typography,
 } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const TOOLTIP_LONG_TEXT = 'Content '.repeat(10)
 
@@ -33,119 +31,113 @@ const BasicTooltipExample = () => {
   )
 
   return (
-    <TestingPicasso>
-      <Tooltip content={tooltipContent}>
-        <Button data-testid={testIds.tooltipTrigger}>
-          <span style={{ padding: '20px' }}>Button</span>
-        </Button>
-      </Tooltip>
-    </TestingPicasso>
+    <Tooltip content={tooltipContent}>
+      <Button data-testid={testIds.tooltipTrigger}>
+        <span style={{ padding: '20px' }}>Button</span>
+      </Button>
+    </Tooltip>
   )
 }
 
 const SnapshotTooltipExample = (props?: Partial<TooltipProps>) => (
-  <TestingPicasso>
-    <Tooltip content='Content' open {...props}>
-      <Button>Button</Button>
-    </Tooltip>
-  </TestingPicasso>
+  <Tooltip content='Content' open {...props}>
+    <Button>Button</Button>
+  </Tooltip>
 )
 
 const PlacementTooltipExample = () => {
   return (
-    <TestingPicasso>
-      <Container style={{ padding: '200px' }}>
-        <Container>
-          <Grid direction='row'>
-            <Grid.Item small={4}>
-              <Tooltip placement='top-start' content='Content' open>
-                <Button fullWidth>top-start</Button>
-              </Tooltip>
-            </Grid.Item>
-            <Grid.Item small={4}>
-              <Tooltip placement='top' content='Content' open>
-                <Button fullWidth>top</Button>
-              </Tooltip>
-            </Grid.Item>
-            <Grid.Item small={4}>
-              <Tooltip placement='top-end' content='Content' open>
-                <Button fullWidth>top-end</Button>
-              </Tooltip>
-            </Grid.Item>
-          </Grid>
-        </Container>
-        <Container bottom='small'>
-          <Grid direction='row'>
-            <Grid.Item small={4}>
-              <Tooltip placement='left-start' content='Content' open>
-                <Button fullWidth>left-start</Button>
-              </Tooltip>
-            </Grid.Item>
-            <Grid.Item small={4} />
-            <Grid.Item small={4}>
-              <Tooltip placement='right-start' content='Content' open>
-                <Button fullWidth>right-start</Button>
-              </Tooltip>
-            </Grid.Item>
-          </Grid>
-        </Container>
-        <Container bottom='small'>
-          <Grid direction='row'>
-            <Grid.Item small={4}>
-              <Tooltip placement='left' content='Content' open>
-                <Button fullWidth>left</Button>
-              </Tooltip>
-            </Grid.Item>
-            <Grid.Item small={4} />
-            <Grid.Item small={4}>
-              <Tooltip placement='right' content='Content' open>
-                <Button fullWidth>right</Button>
-              </Tooltip>
-            </Grid.Item>
-          </Grid>
-        </Container>
-        <Container bottom='small'>
-          <Grid direction='row'>
-            <Grid.Item small={4}>
-              <Tooltip placement='left-end' content='Content' open>
-                <Button fullWidth>left-end</Button>
-              </Tooltip>
-            </Grid.Item>
-            <Grid.Item small={4} />
-            <Grid.Item small={4}>
-              <Tooltip placement='right-end' content='Content' open>
-                <Button fullWidth>right-end</Button>
-              </Tooltip>
-            </Grid.Item>
-          </Grid>
-        </Container>
-        <Container bottom='small'>
-          <Grid direction='row'>
-            <Grid.Item small={4}>
-              <Tooltip placement='bottom-start' content='Content' open>
-                <Button fullWidth>bottom-start</Button>
-              </Tooltip>
-            </Grid.Item>
-            <Grid.Item small={4}>
-              <Tooltip placement='bottom' content='Content' open>
-                <Button fullWidth>bottom</Button>
-              </Tooltip>
-            </Grid.Item>
-            <Grid.Item small={4}>
-              <Tooltip placement='bottom-end' content='Content' open>
-                <Button fullWidth>bottom-end</Button>
-              </Tooltip>
-            </Grid.Item>
-          </Grid>
-        </Container>
+    <Container style={{ padding: '200px' }}>
+      <Container>
+        <Grid direction='row'>
+          <Grid.Item small={4}>
+            <Tooltip placement='top-start' content='Content' open>
+              <Button fullWidth>top-start</Button>
+            </Tooltip>
+          </Grid.Item>
+          <Grid.Item small={4}>
+            <Tooltip placement='top' content='Content' open>
+              <Button fullWidth>top</Button>
+            </Tooltip>
+          </Grid.Item>
+          <Grid.Item small={4}>
+            <Tooltip placement='top-end' content='Content' open>
+              <Button fullWidth>top-end</Button>
+            </Tooltip>
+          </Grid.Item>
+        </Grid>
       </Container>
-    </TestingPicasso>
+      <Container bottom='small'>
+        <Grid direction='row'>
+          <Grid.Item small={4}>
+            <Tooltip placement='left-start' content='Content' open>
+              <Button fullWidth>left-start</Button>
+            </Tooltip>
+          </Grid.Item>
+          <Grid.Item small={4} />
+          <Grid.Item small={4}>
+            <Tooltip placement='right-start' content='Content' open>
+              <Button fullWidth>right-start</Button>
+            </Tooltip>
+          </Grid.Item>
+        </Grid>
+      </Container>
+      <Container bottom='small'>
+        <Grid direction='row'>
+          <Grid.Item small={4}>
+            <Tooltip placement='left' content='Content' open>
+              <Button fullWidth>left</Button>
+            </Tooltip>
+          </Grid.Item>
+          <Grid.Item small={4} />
+          <Grid.Item small={4}>
+            <Tooltip placement='right' content='Content' open>
+              <Button fullWidth>right</Button>
+            </Tooltip>
+          </Grid.Item>
+        </Grid>
+      </Container>
+      <Container bottom='small'>
+        <Grid direction='row'>
+          <Grid.Item small={4}>
+            <Tooltip placement='left-end' content='Content' open>
+              <Button fullWidth>left-end</Button>
+            </Tooltip>
+          </Grid.Item>
+          <Grid.Item small={4} />
+          <Grid.Item small={4}>
+            <Tooltip placement='right-end' content='Content' open>
+              <Button fullWidth>right-end</Button>
+            </Tooltip>
+          </Grid.Item>
+        </Grid>
+      </Container>
+      <Container bottom='small'>
+        <Grid direction='row'>
+          <Grid.Item small={4}>
+            <Tooltip placement='bottom-start' content='Content' open>
+              <Button fullWidth>bottom-start</Button>
+            </Tooltip>
+          </Grid.Item>
+          <Grid.Item small={4}>
+            <Tooltip placement='bottom' content='Content' open>
+              <Button fullWidth>bottom</Button>
+            </Tooltip>
+          </Grid.Item>
+          <Grid.Item small={4}>
+            <Tooltip placement='bottom-end' content='Content' open>
+              <Button fullWidth>bottom-end</Button>
+            </Tooltip>
+          </Grid.Item>
+        </Grid>
+      </Container>
+    </Container>
   )
 }
 
 const ModalTooltipExample = () => {
   return (
-    <TestingPicasso>
+    <>
       <Tooltip content='Content' open>
         <Button>Button</Button>
       </Tooltip>
@@ -157,7 +149,7 @@ const ModalTooltipExample = () => {
           </Tooltip>
         </Modal.Actions>
       </Modal>
-    </TestingPicasso>
+    </>
   )
 }
 
@@ -169,11 +161,9 @@ const LinkTooltipExample = () => {
   )
 
   return (
-    <TestingPicasso>
-      <Tooltip content={tooltipContent} interactive>
-        <Button data-testid={testIds.tooltipTrigger}>Button</Button>
-      </Tooltip>
-    </TestingPicasso>
+    <Tooltip content={tooltipContent} interactive>
+      <Button data-testid={testIds.tooltipTrigger}>Button</Button>
+    </Tooltip>
   )
 }
 
@@ -183,11 +173,9 @@ const CheckboxTooltipExample = () => {
   )
 
   return (
-    <TestingPicasso>
-      <Tooltip content={tooltipContent} interactive>
-        <Checkbox label='Checkbox' data-testid={testIds.tooltipTrigger} />
-      </Tooltip>
-    </TestingPicasso>
+    <Tooltip content={tooltipContent} interactive>
+      <Checkbox label='Checkbox' data-testid={testIds.tooltipTrigger} />
+    </Tooltip>
   )
 }
 
@@ -197,11 +185,9 @@ const RadioTooltipExample = () => {
   )
 
   return (
-    <TestingPicasso>
-      <Tooltip content={tooltipContent} interactive>
-        <Radio label='Radio' data-testid={testIds.radioTrigger} />
-      </Tooltip>
-    </TestingPicasso>
+    <Tooltip content={tooltipContent} interactive>
+      <Radio label='Radio' data-testid={testIds.radioTrigger} />
+    </Tooltip>
   )
 }
 
@@ -213,22 +199,20 @@ const AutocompleteTooltipExample = () => {
   )
 
   return (
-    <TestingPicasso>
-      <Autocomplete
-        value={value}
-        options={[{ text: 'Belarus' }, { text: 'Slovakia' }]}
-        placeholder='Start typing country...'
-        renderOption={(option, index) => (
-          <Tooltip open={!index} content={tooltipContent}>
-            <Typography size='medium' weight='semibold'>
-              {option.text}
-            </Typography>
-          </Tooltip>
-        )}
-        onChange={setValue}
-        testIds={{ input: testIds.autocompleteInput }}
-      />
-    </TestingPicasso>
+    <Autocomplete
+      value={value}
+      options={[{ text: 'Belarus' }, { text: 'Slovakia' }]}
+      placeholder='Start typing country...'
+      renderOption={(option, index) => (
+        <Tooltip open={!index} content={tooltipContent}>
+          <Typography size='medium' weight='semibold'>
+            {option.text}
+          </Typography>
+        </Tooltip>
+      )}
+      onChange={setValue}
+      testIds={{ input: testIds.autocompleteInput }}
+    />
   )
 }
 
@@ -248,45 +232,43 @@ const DropdownTooltipExample = () => {
   )
 
   return (
-    <TestingPicasso>
-      <Dropdown content={dropdownContent}>
-        Open Dropdown
-        <Dropdown.Arrow data-testid={testIds.dropdownTrigger} />
-      </Dropdown>
-    </TestingPicasso>
+    <Dropdown content={dropdownContent}>
+      Open Dropdown
+      <Dropdown.Arrow data-testid={testIds.dropdownTrigger} />
+    </Dropdown>
   )
 }
 
 describe('Tooltip', () => {
   it('renders by default', () => {
-    mount(<SnapshotTooltipExample />)
+    cy.mount(<SnapshotTooltipExample />)
     cy.get('body').happoScreenshot()
   })
 
   it('renders with disabled portals', () => {
-    mount(<SnapshotTooltipExample disablePortal />)
+    cy.mount(<SnapshotTooltipExample disablePortal />)
     cy.get('body').happoScreenshot()
   })
 
   it('renders compact', () => {
-    mount(<SnapshotTooltipExample compact />)
+    cy.mount(<SnapshotTooltipExample compact />)
     cy.get('body').happoScreenshot()
   })
 
   it('renders long text with max width', () => {
-    mount(<SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} />)
+    cy.mount(<SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} />)
     cy.get('body').happoScreenshot()
   })
 
   it('renders long text with no max width', () => {
-    mount(
+    cy.mount(
       <SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} maxWidth='none' />
     )
     cy.get('body').happoScreenshot()
   })
 
   it('renders without overflow prevention', () => {
-    mount(
+    cy.mount(
       <SnapshotTooltipExample
         content={TOOLTIP_LONG_TEXT}
         preventOverflow={false}
@@ -296,17 +278,17 @@ describe('Tooltip', () => {
   })
 
   it('renders with different placements', () => {
-    mount(<PlacementTooltipExample />)
+    cy.mount(<PlacementTooltipExample />)
     cy.get('body').happoScreenshot()
   })
 
   it('renders inside and outside of a modal', () => {
-    mount(<ModalTooltipExample />)
+    cy.mount(<ModalTooltipExample />)
     cy.get('body').happoScreenshot()
   })
 
   it('renders on hover, and hides on click', () => {
-    mount(<BasicTooltipExample />)
+    cy.mount(<BasicTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.getByTestId(testIds.tooltipTrigger).realHover({
       position: { x: 0, y: -200 },
@@ -321,7 +303,7 @@ describe('Tooltip', () => {
   })
 
   it('renders on hover, and hides on click for Checkbox', () => {
-    mount(<CheckboxTooltipExample />)
+    cy.mount(<CheckboxTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.getByTestId(testIds.tooltipTrigger)
       .as('trigger')
@@ -337,7 +319,7 @@ describe('Tooltip', () => {
   })
 
   it('renders on hover, and hides on click for Radio', () => {
-    mount(<RadioTooltipExample />)
+    cy.mount(<RadioTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.getByTestId(testIds.radioTrigger).realHover({
       position: { x: 0, y: -200 },
@@ -351,7 +333,7 @@ describe('Tooltip', () => {
   })
 
   it('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
-    mount(<BasicTooltipExample />)
+    cy.mount(<BasicTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
     cy.getByTestId(testIds.tooltipTrigger).realHover({
       position: { x: 0, y: -200 },
@@ -371,7 +353,7 @@ describe('Tooltip', () => {
   })
 
   it('renders interactive content', () => {
-    mount(<LinkTooltipExample />)
+    cy.mount(<LinkTooltipExample />)
     cy.getByTestId(testIds.tooltipTrigger).as('Trigger').realHover()
     cy.getByTestId(testIds.tooltipContent).as('Content').should('be.visible')
     cy.get('body').happoScreenshot()
@@ -385,7 +367,7 @@ describe('Tooltip', () => {
   })
 
   it('renders inside an autocomplete', () => {
-    mount(<AutocompleteTooltipExample />)
+    cy.mount(<AutocompleteTooltipExample />)
 
     cy.getByTestId(testIds.autocompleteInput).click()
     cy.getByTestId(testIds.tooltipContent).should('exist')
@@ -393,7 +375,7 @@ describe('Tooltip', () => {
   })
 
   it('renders inside a dropdown', () => {
-    mount(<DropdownTooltipExample />)
+    cy.mount(<DropdownTooltipExample />)
 
     cy.getByTestId(testIds.dropdownTrigger).click()
     cy.getByTestId(testIds.tooltipContent).should('be.visible')

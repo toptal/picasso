@@ -1,11 +1,9 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import {
   FieldRequirement,
   FieldRequirements,
   FieldRequirementsProps,
 } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const requirements: FieldRequirement<string>[] = [
   {
@@ -48,20 +46,12 @@ const FieldRequirementsExample = (
 
 describe('FieldRequirements', () => {
   it('renders requirements with bullets and checks for default', () => {
-    mount(
-      <TestingPicasso>
-        <FieldRequirementsExample value='dene' />
-      </TestingPicasso>
-    )
+    cy.mount(<FieldRequirementsExample value='dene' />)
     cy.get('body').happoScreenshot()
   })
 
   it('renders requirements with close icons and checks for error', () => {
-    mount(
-      <TestingPicasso>
-        <FieldRequirementsExample error />
-      </TestingPicasso>
-    )
+    cy.mount(<FieldRequirementsExample error />)
     cy.get('body').happoScreenshot()
   })
 })

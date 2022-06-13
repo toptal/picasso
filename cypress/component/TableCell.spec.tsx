@@ -1,7 +1,5 @@
 import React from 'react'
 import { Table } from '@toptal/picasso'
-import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const AlignExample = () => (
   <div>
@@ -32,30 +30,24 @@ const AlignExample = () => (
 
 describe('TableCell', () => {
   it('row spans', () => {
-    mount(
-      <TestingPicasso>
-        <Table>
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell rowSpan={2}>Cell test</Table.Cell>
-              <Table.Cell>Cell test</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Cell test</Table.Cell>
-            </Table.Row>
-          </Table.Body>
-        </Table>
-      </TestingPicasso>
+    cy.mount(
+      <Table>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell rowSpan={2}>Cell test</Table.Cell>
+            <Table.Cell>Cell test</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Cell test</Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
     )
     cy.get('body').happoScreenshot()
   })
 
   it('aligns cells', () => {
-    mount(
-      <TestingPicasso>
-        <AlignExample />
-      </TestingPicasso>
-    )
+    cy.mount(<AlignExample />)
     cy.get('body').happoScreenshot()
   })
 })

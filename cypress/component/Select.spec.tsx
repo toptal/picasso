@@ -1,5 +1,4 @@
 import React, { useState, ChangeEvent } from 'react'
-import { mount } from '@cypress/react'
 import {
   Select,
   SelectValueType,
@@ -9,7 +8,6 @@ import {
   Settings16,
   Drawer,
 } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop, palette } from '@toptal/picasso/utils'
 
 const TestSelect = ({
@@ -85,21 +83,19 @@ const SelectNativeExample = () => {
   }
 
   return (
-    <TestingPicasso>
-      <Container flex>
-        <Form.Field>
-          <Form.Label>Native select</Form.Label>
-          <Select
-            onChange={handleChange}
-            options={OPTIONS}
-            value={value}
-            placeholder='Choose an option...'
-            width='auto'
-            native
-          />
-        </Form.Field>
-      </Container>
-    </TestingPicasso>
+    <Container flex>
+      <Form.Field>
+        <Form.Label>Native select</Form.Label>
+        <Select
+          onChange={handleChange}
+          options={OPTIONS}
+          value={value}
+          placeholder='Choose an option...'
+          width='auto'
+          native
+        />
+      </Form.Field>
+    </Container>
   )
 }
 
@@ -168,21 +164,13 @@ const getNativeSelect = () => cy.get('select')
 /* eslint-disable max-statements */
 describe('Select', () => {
   it('renders', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect />)
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders open', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect />)
 
     openSelect()
 
@@ -190,11 +178,7 @@ describe('Select', () => {
   })
 
   it('reveals partially visible option when it is hovered', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect options={MANY_OPTIONS} />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect options={MANY_OPTIONS} />)
 
     openSelect()
 
@@ -223,52 +207,36 @@ describe('Select', () => {
   })
 
   it('renders disabled', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect disabled />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect disabled />)
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders with value', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect value={OPTIONS[0].value} />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect value={OPTIONS[0].value} />)
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders with error', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect status='error' />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect status='error' />)
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders in different width modes', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <TestSelect width='full' />
         <TestSelect placeholder='ID' width='shrink' />
-      </TestingPicasso>
+      </>
     )
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders loading', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect loading />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect loading />)
 
     openSelect()
 
@@ -276,21 +244,13 @@ describe('Select', () => {
   })
 
   it('renders loading in native mode', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect native loading />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect native loading />)
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders with custom menu width', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect placeholder='ID' width='shrink' menuWidth='200px' />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect placeholder='ID' width='shrink' menuWidth='200px' />)
 
     openSelect()
 
@@ -300,10 +260,8 @@ describe('Select', () => {
   it('renders reset button', () => {
     const testIds = { resetButton: 'reset-adornment' }
 
-    mount(
-      <TestingPicasso>
-        <TestSelect enableReset value={OPTIONS[0].value} testIds={testIds} />
-      </TestingPicasso>
+    cy.mount(
+      <TestSelect enableReset value={OPTIONS[0].value} testIds={testIds} />
     )
 
     // Cypress does not go well with :hover CSS selectors
@@ -319,25 +277,19 @@ describe('Select', () => {
   })
 
   it('renders in small size', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect size='small' />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect size='small' />)
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders options with description', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect
-          options={OPTIONS.map(option => ({
-            ...option,
-            description: `Description ${option.value}`,
-          }))}
-        />
-      </TestingPicasso>
+    cy.mount(
+      <TestSelect
+        options={OPTIONS.map(option => ({
+          ...option,
+          description: `Description ${option.value}`,
+        }))}
+      />
     )
 
     openSelect()
@@ -346,19 +298,19 @@ describe('Select', () => {
   })
 
   it('renders with icon', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <TestSelect icon={<Settings16 />} />
         <TestSelect iconPosition='end' icon={<Settings16 />} />
         <TestSelect icon={<Settings16 />} disabled />
-      </TestingPicasso>
+      </>
     )
 
     cy.get('body').happoScreenshot()
   })
 
   it('changes native select value', () => {
-    mount(<SelectNativeExample />)
+    cy.mount(<SelectNativeExample />)
 
     getNativeSelect().should('be.visible')
     getNativeSelect().select('1')
@@ -366,26 +318,22 @@ describe('Select', () => {
   })
 
   it('sets background correctly to various select states', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <div style={{ background: palette.yellow.main }}>
           <TestSelect />
           <TestSelect native />
           <TestSelect status='error' />
           <TestSelect native status='error' />
         </div>
-      </TestingPicasso>
+      </>
     )
 
     cy.get('body').happoScreenshot()
   })
 
   it('highlights grouped options via keys correctly', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect options={OPTION_GROUPS} />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect options={OPTION_GROUPS} />)
 
     openSelect()
     ;[...Array(6)].forEach(pressArrowDown)
@@ -394,11 +342,7 @@ describe('Select', () => {
   })
 
   it('picks an option from group via keys correctly', () => {
-    mount(
-      <TestingPicasso>
-        <TestUncontrolledSelect options={OPTION_GROUPS} multiple />
-      </TestingPicasso>
-    )
+    cy.mount(<TestUncontrolledSelect options={OPTION_GROUPS} multiple />)
 
     openSelect()
     ;[...Array(6)].forEach(pressArrowDown)
@@ -411,11 +355,7 @@ describe('Select', () => {
   })
 
   it('highlights limited options correctly', () => {
-    mount(
-      <TestingPicasso>
-        <TestSelect options={OPTION_GROUPS} limit={1} />
-      </TestingPicasso>
-    )
+    cy.mount(<TestSelect options={OPTION_GROUPS} limit={1} />)
 
     openSelect()
     pressArrowDown()
@@ -425,16 +365,14 @@ describe('Select', () => {
 
   describe('when rendered in Drawer with search behaviour', () => {
     it('is possible to focus the search input by click', () => {
-      mount(
-        <TestingPicasso>
-          <Drawer open>
-            <Form>
-              <Form.Field>
-                <TestSelect searchThreshold={-1} disablePortal />
-              </Form.Field>
-            </Form>
-          </Drawer>
-        </TestingPicasso>
+      cy.mount(
+        <Drawer open>
+          <Form>
+            <Form.Field>
+              <TestSelect searchThreshold={-1} disablePortal />
+            </Form.Field>
+          </Form>
+        </Drawer>
       )
 
       openSelect()
@@ -448,13 +386,11 @@ describe('Select', () => {
 
   describe('with search input', () => {
     it('focuses the input', () => {
-      mount(
-        <TestingPicasso>
-          <TestSelect
-            searchThreshold={-1}
-            testIds={{ searchInput: 'search-input' }}
-          />
-        </TestingPicasso>
+      cy.mount(
+        <TestSelect
+          searchThreshold={-1}
+          testIds={{ searchInput: 'search-input' }}
+        />
       )
 
       const searchInput = '[data-testid="search-input"]'

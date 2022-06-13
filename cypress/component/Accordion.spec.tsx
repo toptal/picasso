@@ -7,8 +7,6 @@ import {
   Container,
   Check16,
 } from '@toptal/picasso'
-import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const TestAccordion = (props: Partial<AccordionProps>) => (
   <Accordion
@@ -73,7 +71,7 @@ const AccordionCustomSummary = () => {
   }
 
   return (
-    <TestingPicasso>
+    <>
       <Summary onClick={handleClick} expanded={expanded} />
       <Accordion
         data-testid='accordion-custom-summary'
@@ -81,67 +79,51 @@ const AccordionCustomSummary = () => {
         expanded={expanded}
         borders='none'
       />
-    </TestingPicasso>
+    </>
   )
 }
 
 describe('Accordion', () => {
   it('renders', () => {
-    mount(
-      <TestingPicasso>
-        <TestAccordion />
-      </TestingPicasso>
-    )
+    cy.mount(<TestAccordion />)
     cy.get('body').happoScreenshot()
   })
   it('renders disabled', () => {
-    mount(
-      <TestingPicasso>
-        <TestAccordion disabled />
-      </TestingPicasso>
-    )
+    cy.mount(<TestAccordion disabled />)
     cy.get('body').happoScreenshot()
   })
   it('renders border variants', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <TestAccordion borders='none' />
         <TestAccordion borders='middle' />
         <TestAccordion borders='all' />
-      </TestingPicasso>
+      </>
     )
     cy.get('body').happoScreenshot()
   })
   it('renders expanded initially', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <TestAccordion defaultExpanded />
         <TestAccordion expanded />
-      </TestingPicasso>
+      </>
     )
     cy.get('body').happoScreenshot()
   })
   it('renders collapsed initially', () => {
-    mount(
-      <TestingPicasso>
-        <TestAccordion expanded={false} />
-      </TestingPicasso>
-    )
+    cy.mount(<TestAccordion expanded={false} />)
     cy.get('body').happoScreenshot()
   })
 
   it('renders custom expand icon', () => {
-    mount(
-      <TestingPicasso>
-        <TestAccordion expandIcon={<Check16 />} />
-      </TestingPicasso>
-    )
+    cy.mount(<TestAccordion expandIcon={<Check16 />} />)
     cy.get('body').happoScreenshot()
   })
 })
 describe('Accordion with custom summary', () => {
   it('closes and opens', () => {
-    mount(<AccordionCustomSummary />)
+    cy.mount(<AccordionCustomSummary />)
     cy.getByTestId('trigger').click()
     cy.getByTestId('content').should('not.be.visible')
 
@@ -154,7 +136,7 @@ describe('Accordion with custom summary', () => {
   })
 
   it('interacts with accordion content', () => {
-    mount(<AccordionCustomSummary />)
+    cy.mount(<AccordionCustomSummary />)
 
     cy.getByTestId('start-onboarding').click()
     cy.getByTestId('content').should('be.visible')

@@ -1,7 +1,5 @@
 import React from 'react'
 import { Form } from '@toptal/picasso-forms'
-import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop } from '@toptal/picasso/utils'
 import {
   AutocompleteItem,
@@ -35,23 +33,17 @@ const InitiallySelectedOptionExample = () => {
   }
 
   return (
-    <TestingPicasso>
-      <Form onSubmit={noop} initialValues={initialValues}>
-        <>
-          <Form.TagSelector name='options' options={options} />
-          <Form.SubmitButton>Submit</Form.SubmitButton>
-        </>
-      </Form>
-    </TestingPicasso>
+    <Form onSubmit={noop} initialValues={initialValues}>
+      <>
+        <Form.TagSelector name='options' options={options} />
+        <Form.SubmitButton>Submit</Form.SubmitButton>
+      </>
+    </Form>
   )
 }
 
 const NoOptionSelectedExample = ({ status }: Partial<TagSelectorProps>) => {
-  return (
-    <TestingPicasso>
-      <TagSelector status={status} testIds={{ validIcon: 'valid-icon' }} />
-    </TestingPicasso>
-  )
+  return <TagSelector status={status} testIds={{ validIcon: 'valid-icon' }} />
 }
 
 const getOptions = () => cy.get('[role=option]')
@@ -60,7 +52,7 @@ const openTagSelector = () => cy.get('input[type="text"]').click()
 
 describe('TagSelector', () => {
   it('filters options correctly in a form', () => {
-    mount(<InitiallySelectedOptionExample />)
+    cy.mount(<InitiallySelectedOptionExample />)
 
     openTagSelector()
     getOptions().should('have.length', 2)
@@ -74,7 +66,7 @@ describe('TagSelector', () => {
 
   describe('when in a valid state', () => {
     it('shows valid icon', () => {
-      mount(<NoOptionSelectedExample status='success' />)
+      cy.mount(<NoOptionSelectedExample status='success' />)
 
       cy.get('body').happoScreenshot()
     })

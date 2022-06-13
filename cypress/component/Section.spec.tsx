@@ -1,5 +1,4 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import {
   Table,
   Button,
@@ -7,7 +6,6 @@ import {
   Section,
   SectionProps,
 } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const talents = [
   {
@@ -84,45 +82,43 @@ const TestSection = ({
   defaultCollapsed,
   ...rest
 }: Partial<SectionProps>) => {
+  /* The Container wrapper makes it easy to see the borders on the screenshot */
   return (
-    <TestingPicasso>
-      {/* The Container wrapper makes it easy to see the borders on the screenshot */}
-      <Container
-        variant={
-          rest.variant === 'bordered' || rest.variant === 'withHeaderBar'
-            ? 'grey'
-            : undefined
-        }
-        padded={
-          rest.variant === 'bordered' || rest.variant === 'withHeaderBar'
-            ? 'large'
-            : undefined
-        }
+    <Container
+      variant={
+        rest.variant === 'bordered' || rest.variant === 'withHeaderBar'
+          ? 'grey'
+          : undefined
+      }
+      padded={
+        rest.variant === 'bordered' || rest.variant === 'withHeaderBar'
+          ? 'large'
+          : undefined
+      }
+    >
+      <Section
+        title={title}
+        subtitle={subtitle}
+        actions={actions}
+        collapsible={collapsible}
+        defaultCollapsed={defaultCollapsed}
+        {...rest}
       >
-        <Section
-          title={title}
-          subtitle={subtitle}
-          actions={actions}
-          collapsible={collapsible}
-          defaultCollapsed={defaultCollapsed}
-          {...rest}
-        >
-          {children}
-        </Section>
-      </Container>
-    </TestingPicasso>
+        {children}
+      </Section>
+    </Container>
   )
 }
 
 describe('Section', () => {
   it('renders', () => {
-    mount(<TestSection />)
+    cy.mount(<TestSection />)
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders with actions', () => {
-    mount(
+    cy.mount(
       <TestSection
         actions={
           <Button size='small' variant='secondary'>
@@ -136,24 +132,24 @@ describe('Section', () => {
   })
 
   it('renders with bordered variant', () => {
-    mount(<TestSection variant='bordered' />)
+    cy.mount(<TestSection variant='bordered' />)
 
     cy.get('body').happoScreenshot()
   })
   it('renders with withHeaderBar variant', () => {
-    mount(<TestSection variant='withHeaderBar' />)
+    cy.mount(<TestSection variant='withHeaderBar' />)
 
     cy.get('body').happoScreenshot()
   })
   describe('when collapsible', () => {
     it('renders initially collapsed', () => {
-      mount(<TestSection collapsible />)
+      cy.mount(<TestSection collapsible />)
 
       cy.get('body').happoScreenshot()
     })
 
     it('renders initially expanded', () => {
-      mount(
+      cy.mount(
         <TestSection
           defaultCollapsed={false}
           actions={

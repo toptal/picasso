@@ -4,9 +4,7 @@
 /* eslint-disable max-nested-callbacks */
 /* eslint-disable max-lines-per-function */
 import React from 'react'
-import { mount } from '@cypress/react'
 import { RichTextEditor, RichTextEditorProps, Container } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { isOn } from '@cypress/skip-test'
 
 const headerSelect = 'headerSelect'
@@ -33,11 +31,9 @@ const defaultProps = {
 const editorSelector = `#${defaultProps.id}`
 
 const renderEditor = (props: RichTextEditorProps) => (
-  <TestingPicasso>
-    <Container data-testid='bla' style={{ maxWidth: '600px' }} padded='small'>
-      <RichTextEditor {...props} />
-    </Container>
-  </TestingPicasso>
+  <Container data-testid='bla' style={{ maxWidth: '600px' }} padded='small'>
+    <RichTextEditor {...props} />
+  </Container>
 )
 
 const buttonShouldBeActive = (
@@ -79,7 +75,7 @@ const setAliases = () => {
 
 describe('RichTextEditor', () => {
   it('renders default editor', () => {
-    mount(renderEditor(defaultProps))
+    cy.mount(renderEditor(defaultProps))
 
     // waits for lazy-loaded QuillEditor component
     cy.get(editorSelector)
@@ -89,7 +85,7 @@ describe('RichTextEditor', () => {
 
   describe('when in an invalid state', () => {
     it('shows error', () => {
-      mount(renderEditor({ ...defaultProps, status: 'error' }))
+      cy.mount(renderEditor({ ...defaultProps, status: 'error' }))
 
       cy.get('body').happoScreenshot()
     })
@@ -97,7 +93,7 @@ describe('RichTextEditor', () => {
 
   it('handles keybindings correctly', () => {
     // render the editor
-    mount(renderEditor(defaultProps))
+    cy.mount(renderEditor(defaultProps))
     setAliases()
 
     const content = {
@@ -147,7 +143,7 @@ describe('RichTextEditor', () => {
 
   it('formats text correctly when changed in toolbar', () => {
     // render the editor
-    mount(renderEditor(defaultProps))
+    cy.mount(renderEditor(defaultProps))
     setAliases()
 
     // resize the editor
@@ -193,7 +189,7 @@ describe('RichTextEditor', () => {
   describe('select all and delete', () => {
     it('removes header format', () => {
       // render editor
-      mount(renderEditor(defaultProps))
+      cy.mount(renderEditor(defaultProps))
       setAliases()
 
       // add heading to editor
@@ -209,7 +205,7 @@ describe('RichTextEditor', () => {
 
     it('removes lists', () => {
       // render editor
-      mount(renderEditor(defaultProps))
+      cy.mount(renderEditor(defaultProps))
       setAliases()
 
       // add formatted text with lists
@@ -231,7 +227,7 @@ describe('RichTextEditor', () => {
   describe('removes block format on new line', () => {
     it('removes header', () => {
       // render editor
-      mount(renderEditor(defaultProps))
+      cy.mount(renderEditor(defaultProps))
       setAliases()
 
       // add heading to editor
@@ -244,7 +240,7 @@ describe('RichTextEditor', () => {
     })
     it('removes list', () => {
       // render editor
-      mount(renderEditor(defaultProps))
+      cy.mount(renderEditor(defaultProps))
       setAliases()
 
       // add ul
@@ -263,7 +259,7 @@ describe('RichTextEditor', () => {
     })
     it('keeps bold', () => {
       // render editor
-      mount(renderEditor(defaultProps))
+      cy.mount(renderEditor(defaultProps))
       setAliases()
 
       // add bold to editor
@@ -279,7 +275,7 @@ describe('RichTextEditor', () => {
   describe('switching between block formats', () => {
     it('keeps only one block element active', () => {
       // render editor
-      mount(renderEditor(defaultProps))
+      cy.mount(renderEditor(defaultProps))
       setAliases()
 
       // set heading format
@@ -310,14 +306,14 @@ describe('RichTextEditor', () => {
   describe('disabled editor', () => {
     it('renders disabled', () => {
       // render editor
-      mount(renderEditor({ ...defaultProps, disabled: true }))
+      cy.mount(renderEditor({ ...defaultProps, disabled: true }))
 
       cy.get('body').happoScreenshot()
     })
 
     it('cannot be focused', () => {
       // render editor
-      mount(renderEditor({ ...defaultProps, disabled: true }))
+      cy.mount(renderEditor({ ...defaultProps, disabled: true }))
       setAliases()
 
       cy.get('@editor').realClick()
@@ -330,7 +326,7 @@ describe('RichTextEditor', () => {
 
   describe('toolbar', () => {
     it('disables bold and italic when header format is active', () => {
-      mount(renderEditor(defaultProps))
+      cy.mount(renderEditor(defaultProps))
       setAliases()
 
       cy.get('@editor').realClick()
@@ -349,7 +345,7 @@ describe('RichTextEditor', () => {
     })
 
     it('does not open selectbox on click when toolbar is disabled', () => {
-      mount(renderEditor(defaultProps))
+      cy.mount(renderEditor(defaultProps))
       setAliases()
 
       cy.on('fail', error => {

@@ -1,7 +1,5 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import { Container } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { VariantType } from '@toptal/picasso/src/Container/styles'
 
 const colors: VariantType[] = [
@@ -16,61 +14,42 @@ const colors: VariantType[] = [
 
 const borderableColors: VariantType[] = ['white', 'transparent']
 
+const renderColorVariants = () =>
+  colors.map(color => (
+    <Container
+      padded='medium'
+      bottom='small'
+      top='small'
+      variant={color}
+      key={color}
+    >
+      {color} variant
+    </Container>
+  ))
+
 describe('Container', () => {
   it('renders', () => {
-    mount(
-      <TestingPicasso>
-        <Container>Some text</Container>
-      </TestingPicasso>
-    )
+    cy.mount(<Container>Some text</Container>)
     cy.get('body').happoScreenshot()
   })
 
   describe('colored variants', () => {
     it('renders all variants', () => {
-      mount(
-        <TestingPicasso>
-          {colors.map(color => (
-            <Container
-              padded='medium'
-              bottom='small'
-              top='small'
-              variant={color}
-              key={color}
-            >
-              {color} variant
-            </Container>
-          ))}
-        </TestingPicasso>
-      )
+      cy.mount(<>{renderColorVariants()}</>)
       cy.get('body').happoScreenshot()
     })
 
     it('renders all variants with grey background', () => {
-      mount(
-        <TestingPicasso>
-          <div style={{ backgroundColor: 'grey' }}>
-            {colors.map(color => (
-              <Container
-                padded='medium'
-                bottom='small'
-                top='small'
-                variant={color}
-                key={color}
-              >
-                {color} variant
-              </Container>
-            ))}
-          </div>
-        </TestingPicasso>
+      cy.mount(
+        <div style={{ backgroundColor: 'grey' }}>{renderColorVariants()}</div>
       )
       cy.get('body').happoScreenshot()
     })
   })
 
   it('renders white and transparent variants with borders', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         {borderableColors.map(color => (
           <Container
             padded='medium'
@@ -83,7 +62,7 @@ describe('Container', () => {
             {color} variant
           </Container>
         ))}
-      </TestingPicasso>
+      </>
     )
     cy.get('body').happoScreenshot()
   })

@@ -1,12 +1,10 @@
 import React from 'react'
 import { Typography } from '@toptal/picasso'
-import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 describe('Typography', () => {
   it('renders body', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         {(['xxsmall', 'xsmall', 'small', 'medium', 'large'] as const).map(
           size => (
             <Typography key={size} variant='body' size={size}>
@@ -19,46 +17,40 @@ describe('Typography', () => {
             Body (inherit)
           </Typography>
         </div>
-      </TestingPicasso>
+      </>
     )
     cy.get('body').happoScreenshot()
   })
 
   it('renders headings', () => {
-    mount(
-      <TestingPicasso>
-        {(['small', 'medium', 'large', 'xlarge'] as const).map(size => (
-          <Typography key={size} variant='heading' size={size}>
-            Heading ({size})
-          </Typography>
-        ))}
-      </TestingPicasso>
+    cy.mount(
+      (['small', 'medium', 'large', 'xlarge'] as const).map(size => (
+        <Typography key={size} variant='heading' size={size}>
+          Heading ({size})
+        </Typography>
+      ))
     )
     cy.get('body').happoScreenshot()
   })
 
   it('renders with a line through', () => {
-    mount(
-      <TestingPicasso>
-        <Typography lineThrough>Text</Typography>
-      </TestingPicasso>
-    )
+    cy.mount(<Typography lineThrough>Text</Typography>)
     cy.get('body').happoScreenshot()
   })
 
   it('renders underlined', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         <Typography underline='solid'>Text</Typography>
         <Typography underline='dashed'>Text</Typography>
-      </TestingPicasso>
+      </>
     )
     cy.get('body').happoScreenshot()
   })
 
   it('renders colored', () => {
-    mount(
-      <TestingPicasso>
+    cy.mount(
+      <>
         {(
           [
             'green',
@@ -80,7 +72,7 @@ describe('Typography', () => {
         <div style={{ color: 'darkcyan' }}>
           <Typography color='inherit'>Text</Typography>
         </div>
-      </TestingPicasso>
+      </>
     )
     cy.get('body').happoScreenshot()
   })

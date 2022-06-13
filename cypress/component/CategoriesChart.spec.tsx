@@ -1,25 +1,21 @@
 import React from 'react'
 import { CategoriesChart, DataItem } from '@toptal/topkit-analytics-charts'
-import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const TestCategoriesChart = () => (
-  <TestingPicasso>
-    <div style={{ width: 720 }}>
-      <CategoriesChart
-        data={chartData as DataItem[]}
-        labels={chartLabels}
-        tooltips={chartTooltips}
-        width='100%'
-        isAnimationActive={false}
-      />
-    </div>
-  </TestingPicasso>
+  <div style={{ width: 720 }}>
+    <CategoriesChart
+      data={chartData as DataItem[]}
+      labels={chartLabels}
+      tooltips={chartTooltips}
+      width='100%'
+      isAnimationActive={false}
+    />
+  </div>
 )
 
 describe('CategoriesChart', () => {
   it('renders default chart', () => {
-    mount(<TestCategoriesChart />)
+    cy.mount(<TestCategoriesChart />)
 
     cy.get('body').happoScreenshot()
   })

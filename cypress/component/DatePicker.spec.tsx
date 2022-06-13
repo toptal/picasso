@@ -1,6 +1,4 @@
-import { mount } from '@cypress/react'
 import { Container, DatePicker, DatePickerProps } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import React, { useState } from 'react'
 
 const TestDatePicker = (props: Partial<DatePickerProps>) => {
@@ -9,23 +7,21 @@ const TestDatePicker = (props: Partial<DatePickerProps>) => {
   )
 
   return (
-    <TestingPicasso>
-      <Container padded='medium'>
-        <DatePicker {...props} onChange={setValue} value={value} />
-      </Container>
-    </TestingPicasso>
+    <Container padded='medium'>
+      <DatePicker {...props} onChange={setValue} value={value} />
+    </Container>
   )
 }
 
 describe('DatePicker', () => {
   it('renders autofocus', () => {
-    mount(<TestDatePicker autoFocus />)
+    cy.mount(<TestDatePicker autoFocus />)
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders range', () => {
-    mount(
+    cy.mount(
       <TestDatePicker
         range
         value={[new Date(2020, 11, 23), new Date(2020, 11, 27)]}
@@ -40,7 +36,7 @@ describe('DatePicker', () => {
       return new Date(parseInt(value), 0, 1)
     }
 
-    mount(
+    cy.mount(
       <TestDatePicker
         parseInputValue={parseInputValue}
         value={new Date(2020, 0, 1)}

@@ -1,6 +1,4 @@
 import React from 'react'
-import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { RichText, ASTType } from '@toptal/picasso'
 
 const ast: ASTType = {
@@ -130,11 +128,7 @@ const style = { maxWidth: '500px' }
 
 describe('RichText', () => {
   it('renders picasso components correctly', () => {
-    mount(
-      <TestingPicasso>
-        <RichText style={style} value={ast} />
-      </TestingPicasso>
-    )
+    cy.mount(<RichText style={style} value={ast} />)
 
     cy.get('body').happoScreenshot()
   })
