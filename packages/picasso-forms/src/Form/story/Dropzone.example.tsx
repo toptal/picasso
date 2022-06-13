@@ -7,8 +7,6 @@ type FormType = {
   'dropzone-attachments': FileUpload[]
 }
 
-const FORM_PREFIX = 'dropzone'
-
 const Example = () => {
   const MAX_SIZE = 2
   const initialAttachments = [{ file: new File(['resume.pdf'], 'resume.pdf') }]
@@ -29,7 +27,7 @@ const Example = () => {
     >
       <Form.Dropzone
         required
-        name={`${FORM_PREFIX}-attachments`}
+        name='dropzone-attachments'
         dropzoneHint={`Max file size: ${MAX_SIZE}MB.`}
         hint='These documents will be used to analyze and identify your potential.'
       />

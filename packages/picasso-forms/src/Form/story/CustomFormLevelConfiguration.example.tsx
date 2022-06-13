@@ -6,8 +6,6 @@ const formConfig: FormConfigProps = {
   requiredVariant: 'asterisk',
 }
 
-const FORM_PREFIX = 'formConfig'
-
 const Example = () => (
   <Form.ConfigProvider value={formConfig}>
     <Form
@@ -15,7 +13,7 @@ const Example = () => (
     >
       <Form.Input
         required
-        name={`${FORM_PREFIX}-firstName`}
+        name='formConfig-firstName'
         label='First name'
         placeholder='e.g. Bruce'
       />

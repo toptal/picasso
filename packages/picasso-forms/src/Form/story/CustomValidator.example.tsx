@@ -20,20 +20,18 @@ const minMaxValidator = (value?: string | number) => {
   return undefined
 }
 
-const FORM_PREFIX = 'customValidator'
-
 const CustomValidatorExample = () => (
   <Form onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}>
     <Form.Input
       required
-      name={`${FORM_PREFIX}-userName`}
+      name='customValidator-userName'
       label='First name'
       placeholder='e.g. Bruce'
     />
     <Form.NumberInput
       required
       validate={minMaxValidator}
-      name={`${FORM_PREFIX}-userAge`}
+      name='customValidator-userAge'
       label="What's your age?"
       placeholder='e.g. 25'
     />
