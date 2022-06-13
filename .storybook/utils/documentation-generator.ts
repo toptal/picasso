@@ -46,7 +46,7 @@ const merge = <T extends { [key: string]: unknown }>(
 
   Object.keys(o2).forEach(key => {
     if (destination[key]) {
-      Object.assign(destination[key], o2[key])
+      Object.assign(destination[key] as object, o2[key])
     } else {
       destination[key] = o2[key]
     }
@@ -76,7 +76,7 @@ class DocumentationGenerator {
     if (typeName.match(FUNCTION_TYPE_REGEX)) {
       return {
         name: 'function',
-        description: typeName
+        description: typeName,
       }
     }
 
@@ -86,14 +86,14 @@ class DocumentationGenerator {
 
       if (type.value && Array.isArray(type.value)) {
         baseShape = {
-          enums: type.value.map(({ value }: any) => value)
+          enums: type.value.map(({ value }: any) => value),
         }
       }
 
       return {
         name: typeName,
         description: '',
-        ...baseShape
+        ...baseShape,
       }
     }
 
@@ -104,7 +104,7 @@ class DocumentationGenerator {
 
       return {
         name: '[]',
-        description: `${objectDescription}[]`
+        description: `${objectDescription}[]`,
       }
     }
 
@@ -113,7 +113,7 @@ class DocumentationGenerator {
       const objectDescription = this.generateObjectDescription(typeName)
       return {
         name: 'object',
-        description: objectDescription
+        description: objectDescription,
       }
     }
 
@@ -122,14 +122,14 @@ class DocumentationGenerator {
       const enums = typeName.split('|').map(value => value.trim())
       return {
         name: 'enum',
-        enums
+        enums,
       }
     }
 
     // Simple types
     return {
       name: typeName,
-      description: ''
+      description: '',
     }
   }
 
@@ -194,7 +194,7 @@ ${propsTable}
         defaultValue: this.resolveDefaultValue(defaultValue),
         description: description.replace(DEPRECATED_KEYWORD, ''),
         deprecated: description.startsWith(DEPRECATED_KEYWORD),
-        required
+        required,
       }
     }) as PropDocumentationMap
   }

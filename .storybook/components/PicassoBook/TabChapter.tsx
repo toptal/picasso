@@ -13,7 +13,7 @@ class TabChapter extends Chapter {
   }
 
   toStoryBook() {
-    const { title, info, hideOnCompactLayout = true } = this.options
+    const { title, info } = this.options as ChapterOptions
 
     const tabs = this.collection.map(section => {
       const { title, subtitle, sectionFn } = section.toStoryBook()
@@ -21,13 +21,11 @@ class TabChapter extends Chapter {
       return {
         name: title,
         description: subtitle,
-        content: sectionFn()
+        content: sectionFn(),
       }
     })
 
-    const render = () => (
-      <TabsSection tabs={tabs} hideOnCompactLayout={hideOnCompactLayout} />
-    )
+    const render = () => <TabsSection tabs={tabs} />
 
     const tabsSection = new Section({
       title,
@@ -36,15 +34,15 @@ class TabChapter extends Chapter {
       options: {
         decorator: (story: () => ReactNode) => (
           <div className='tab-chapter-container'>{story()}</div>
-        )
+        ),
       },
-      takeScreenshot: false
+      takeScreenshot: false,
     })
 
     return {
       ...this.options,
       title: '',
-      sections: [tabsSection.toStoryBook()]
+      sections: [tabsSection.toStoryBook()],
     }
   }
 }
