@@ -29,26 +29,17 @@ page
 
 page
   .createChapter()
-  .addExample('Dropdown/story/Default.example.tsx', {
-    title: 'Default',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[data-testid="trigger"]')
-
-      await makeScreenshot({
-        selector: '[data-testid="menu"]',
-      })
-    },
-  })
+  .addExample('Dropdown/story/Default.example.tsx', 'Default')
   .addExample('Dropdown/story/ButtonDropdown.example.tsx', 'Button Anchor')
   .addExample(
     'Dropdown/story/PositionsAndOffsets.example.tsx',
     'Positions & Offsets'
   )
-  .addExample('Dropdown/story/CustomTrigger.example.tsx', {
-    title: 'Custom Anchor',
-    waitUntilImagesLoaded: true,
+  .addExample('Dropdown/story/CustomTrigger.example.tsx', 'Custom Anchor')
+  .addExample('Dropdown/story/CustomContent.example.tsx', {
+    title: 'Custom Content',
+    takeScreenshot: false,
   })
-  .addExample('Dropdown/story/CustomContent.example.tsx', 'Custom Content')
   .addExample('Dropdown/story/SmallArrow.example.tsx', 'Small Arrow Dropdown')
   .addExample('Dropdown/story/LongMenuList.example.tsx', {
     title: 'Long Menu List',

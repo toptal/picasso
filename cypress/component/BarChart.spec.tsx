@@ -6,11 +6,6 @@ import { BarChart } from '@toptal/picasso-charts'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { palette } from '@toptal/picasso/utils'
 
-import {
-  CHART_DATA_CUSTOM_TOOLTIP,
-  CHART_DATA_DEFAULT,
-} from '../test-data/BarChart.data'
-
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length > 0) {
     const { infected, recovered } = payload[0].payload
@@ -36,7 +31,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 const TestBarChart = ({ ...rest }) => (
   <TestingPicasso>
     <BarChart
-      data={CHART_DATA_DEFAULT}
+      data={chartDataDefault}
       getBarColor={() => palette.blue.main}
       getBarLabelColor={() => palette.grey.dark}
       width={720}
@@ -75,7 +70,7 @@ describe('BarChart', () => {
   it('renders custom chart with custom tooltip on hover', () => {
     mount(
       <TestBarChart
-        data={CHART_DATA_CUSTOM_TOOLTIP}
+        data={chartDataCustomTooltip}
         fillSchema={{
           infected: palette.red.main,
           recovered: palette.green.main,
@@ -102,3 +97,45 @@ describe('BarChart', () => {
     cy.get('body').happoScreenshot()
   })
 })
+
+const chartDataDefault = [
+  {
+    name: 'Apple',
+    value: { 'engineers hired': 500 },
+  },
+  {
+    name: 'Google',
+    value: { 'engineers hired': 700 },
+  },
+  {
+    name: 'Facebook',
+    value: { 'engineers hired': 600 },
+  },
+  {
+    name: 'Amazon',
+    value: { 'engineers hired': 400 },
+  },
+  {
+    name: 'Toptal',
+    value: { 'engineers hired': 1000 },
+  },
+]
+
+const chartDataCustomTooltip = [
+  {
+    name: 'Berlin',
+    value: { infected: 4000, recovered: 2400 },
+  },
+  {
+    name: 'Milan',
+    value: { infected: 3000, recovered: 1398 },
+  },
+  {
+    name: 'Moscow',
+    value: { infected: 2000, recovered: 9800 },
+  },
+  {
+    name: 'Los-Angeles',
+    value: { infected: 2780, recovered: 3908 },
+  },
+]
