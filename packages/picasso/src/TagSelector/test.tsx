@@ -10,10 +10,10 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import TagSelector, { Props, isIncluded } from './TagSelector'
 
 const testOptions = [
-  { value: 'AF', text: 'Afghanistan' },
-  { value: 'AI', text: 'Aland Islands' },
-  { value: 'ALB', text: 'Albania' },
-  { value: 'ALG', text: 'Algeria' },
+  { value: 'AF', text: 'Afghanistan', id: '100' },
+  { value: 'AI', text: 'Aland Islands', id: '101' },
+  { value: 'ALB', text: 'Albania', id: '102' },
+  { value: 'ALG', text: 'Algeria', id: '103' },
 ]
 
 const testProps = {
@@ -125,10 +125,22 @@ describe('TagSelector', () => {
 })
 
 describe('isIncluded', () => {
-  it('compares object by reference', () => {
+  it("compares object's value attribute by default", () => {
     const actual = isIncluded(testOptions, testOptions[0])
 
     expect(actual).toBe(true)
+  })
+
+  describe('when custom getKey function is provided', () => {
+    it('uses custom function', () => {
+      const getKey = jest.fn(item => item.id as string)
+
+      const actual = isIncluded(testOptions, testOptions[3], getKey)
+
+      expect(actual).toBe(true)
+      // 1 for 3rd option + 4 for each list item
+      expect(getKey).toHaveBeenCalledTimes(5)
+    })
   })
 
   it.each`
