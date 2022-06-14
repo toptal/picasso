@@ -1,8 +1,8 @@
-const path = require('path')
-const happoTask = require('happo-cypress/task')
+import path from 'path'
+import happoTask from 'happo-cypress/task'
 /* eslint-disable import/no-extraneous-dependencies */
-const { defineConfig } = require('cypress')
-const davinciConfig = require('@toptal/davinci-qa/src/configs/cypress.config.js')
+import { defineConfig } from 'cypress'
+import davinciConfig from '@toptal/davinci-qa/src/configs/cypress.config.js'
 /* eslint-enable */
 
 export default defineConfig({
