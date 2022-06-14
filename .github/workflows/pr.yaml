@@ -75,6 +75,9 @@ jobs:
           GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
         run: yarn davinci ci danger
 
+      - name: Syncpack check
+        run: yarn syncpack:list
+
       - name: Circularity Check
         run: yarn circularity
 
