@@ -12,7 +12,7 @@ const NoScrollingExample = () => (
       <Form onSubmit={failWithAnError}>
         <Form.Input
           required
-          name='noScrollingDefault.fieldName'
+          name='noScrollingDefault-fieldName'
           label='With scrolling'
           placeholder='Some field'
         />
@@ -26,7 +26,7 @@ const NoScrollingExample = () => (
       <Form disableScrollOnError onSubmit={failWithAnError}>
         <Form.Input
           required
-          name='noScrollingDisableScroll.fieldName'
+          name='noScrollingDisableScroll-fieldName'
           label='No scrolling'
           placeholder='Some field'
         />

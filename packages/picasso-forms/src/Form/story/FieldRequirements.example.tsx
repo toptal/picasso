@@ -3,12 +3,15 @@ import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
 type FormType = {
-  password: string
-  confirmPassword: string
+  'fieldRequirements-password': string
+  'fieldRequirements-confirmPassword': string
 }
 
 const Example = () => {
-  const handleSubmit = ({ password, confirmPassword }: FormType) => {
+  const handleSubmit = ({
+    'fieldRequirements-password': password,
+    'fieldRequirements-confirmPassword': confirmPassword,
+  }: FormType) => {
     window.alert(`Password: ${password}, Confirm Password: ${confirmPassword}`)
   }
 
@@ -17,22 +20,25 @@ const Example = () => {
       autoComplete='off'
       onSubmit={handleSubmit}
       initialValues={{
-        password: '',
-        confirmPassword: '',
+        'fieldRequirements-password': '',
+        'fieldRequirements-confirmPassword': '',
       }}
     >
       <Form.PasswordInput
         label='Password'
-        name='fieldRequirements.password'
+        name='fieldRequirements-password'
         required
       />
       <Form.PasswordInput
         label='Confirm password'
-        name='fieldRequirements.confirmPassword'
+        name='fieldRequirements-confirmPassword'
         hideRequirements
         required
         validate={(confirmPassword, allValues) => {
-          if ((allValues as FormType).password !== confirmPassword) {
+          if (
+            (allValues as FormType)['fieldRequirements-password'] !==
+            confirmPassword
+          ) {
             return 'Passwords do not match'
           }
         }}

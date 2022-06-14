@@ -11,7 +11,7 @@ const ParseInputExample = () => (
     </Container>
     <Container flex alignItems='flex-end'>
       <Form.Input
-        name='parseInput.firstName'
+        name='parseInput-firstName'
         label='First name'
         placeholder='e.g. Bruce'
         parse={(value: string) => value.trim()}

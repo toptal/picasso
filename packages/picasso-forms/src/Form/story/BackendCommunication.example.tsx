@@ -30,14 +30,14 @@ const BackendCommunicationExample = () => {
       >
         <Form.Input
           required
-          name='backendCommunication.successName'
+          name='backendCommunication-successName'
           label='First name'
           placeholder='e.g. Bruce'
           width='full'
         />
         <Form.Input
           required
-          name='backendCommunication.successSurname'
+          name='backendCommunication-successSurname'
           label='Last name'
           placeholder='e.g. Wayne'
           width='full'
@@ -59,14 +59,14 @@ const BackendCommunicationExample = () => {
       >
         <Form.Input
           required
-          name='backendCommunication.inlineErrorName'
+          name='backendCommunication-inlineErrorName'
           label='First name'
           placeholder='e.g. Bruce'
           width='full'
         />
         <Form.Input
           required
-          name='backendCommunication.inlineErrorSurname'
+          name='backendCommunication-inlineErrorSurname'
           label='Last name'
           placeholder='e.g. Wayne'
           width='full'
@@ -85,14 +85,14 @@ const BackendCommunicationExample = () => {
       <Form onSubmit={handleSubmitWithCustomNotificationError}>
         <Form.Input
           required
-          name='backendCommunication.customNotificationErrorName'
+          name='backendCommunication-customNotificationErrorName'
           label='First name'
           placeholder='e.g. Bruce'
           width='full'
         />
         <Form.Input
           required
-          name='backendCommunication.customNotificationErrorSurname'
+          name='backendCommunication-customNotificationErrorSurname'
           label='Last name'
           placeholder='e.g. Wayne'
           width='full'
