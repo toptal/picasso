@@ -17,8 +17,10 @@ const getDisplayValue = (item: AutocompleteItem | null) =>
 
 const filterOptions = (value: string) =>
   value !== ''
-    ? basicOptions.filter(option => isSubstring(value, getDisplayValue(option)))
-    : basicOptions
+    ? countryOptions.filter(option =>
+        isSubstring(value, getDisplayValue(option))
+      )
+    : countryOptions
 
 const TagSelectorExample = ({
   showOtherOption,
@@ -26,7 +28,7 @@ const TagSelectorExample = ({
 }: Partial<TagSelectorProps>) => {
   const [filteredOptions, setFilteredOptions] = useState<
     AutocompleteItem[] | null | undefined
-  >(basicOptions)
+  >(countryOptions)
   const [value, setValue] = useState<AutocompleteItem[]>([])
   const [inputValue, setInputValue] = useState('')
 
@@ -44,36 +46,38 @@ const TagSelectorExample = ({
   }
 
   return (
-    <TestingPicasso>
-      <Container padded='medium'>
-        <TagSelector
-          {...props}
-          options={filteredOptions}
-          getDisplayValue={getDisplayValue}
-          value={value}
-          onChange={handleChange}
-          inputValue={inputValue}
-          onInputChange={handleInputChange}
-          showOtherOption={showOtherOption}
-          onOtherOptionSelect={handleOtherOptionSelect}
-        />
-      </Container>
-    </TestingPicasso>
+    <Container padded='medium'>
+      <TagSelector
+        {...props}
+        placeholder='Start typing...'
+        options={filteredOptions}
+        getDisplayValue={getDisplayValue}
+        value={value}
+        onChange={handleChange}
+        inputValue={inputValue}
+        onInputChange={handleInputChange}
+        showOtherOption={showOtherOption}
+        onOtherOptionSelect={handleOtherOptionSelect}
+      />
+    </Container>
   )
 }
 
 const InitiallySelectedOptionExample = () => {
   const initialValues = {
-    options: [basicOptions[1]],
+    options: [countryOptions[1]],
   }
 
   return (
-    <Form onSubmit={noop} initialValues={initialValues}>
-      <>
-        <Form.TagSelector name='options' options={basicOptions} />
-        <Form.SubmitButton>Submit</Form.SubmitButton>
-      </>
-    </Form>
+    <Container padded='medium'>
+      <Form onSubmit={noop} initialValues={initialValues}>
+        <Form.TagSelector
+          name='options'
+          options={countryOptions}
+          getKey={item => item.code as string}
+        />
+      </Form>
+    </Container>
   )
 }
 
@@ -81,27 +85,20 @@ const LinkTag = (props: TagProps & AnchorHTMLAttributes<HTMLAnchorElement>) => (
   <TagSelector.Label as={Link} {...props} />
 )
 
-const getCountryDisplayValue = (item: AutocompleteItem | null) =>
-  (item && (item as Country).country) || EMPTY_INPUT_VALUE
-const filterCountryOptions = (value: string) =>
-  value !== ''
-    ? countryOptions.filter(option =>
-        isSubstring(value, getCountryDisplayValue(option))
-      )
-    : countryOptions
-
 const TagSelectorCustomLabelOptionRendererExample = () => {
   const [options, setOptions] = useState(countryOptions)
   const [value, setValue] = useState<Country[]>([])
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
 
-  return <TagSelector
+  return (
+    <Container padded='medium'>
+      <TagSelector
         options={options}
         placeholder='Start typing...'
         value={value}
         inputValue={inputValue}
         getKey={(item: AutocompleteItem) => (item as Country).code}
-        getDisplayValue={getCountryDisplayValue}
+        getDisplayValue={getDisplayValue}
         renderLabel={({ item, displayValue, disabled, onDelete }) => {
           const { href, required } = item as Country
 
@@ -118,7 +115,7 @@ const TagSelectorCustomLabelOptionRendererExample = () => {
         renderOption={(option: Partial<Country>, index?: number) => (
           <Container>
             <Typography size='medium' weight='semibold'>
-              {option.country}
+              {option.text}
             </Typography>
             <Typography size='inherit' style={{ fontSize: '12px' }}>
               {option.capital} ({index})
@@ -130,16 +127,18 @@ const TagSelectorCustomLabelOptionRendererExample = () => {
         }}
         onInputChange={(newInputValue: string) => {
           setInputValue(newInputValue)
-          setOptions(filterCountryOptions(newInputValue))
+          setOptions(filterOptions(newInputValue))
         }}
       />
+    </Container>
+  )
 }
 
 const COMPONENT_NAME = 'TagSelector'
 
 describe('TagSelector', () => {
   it('renders', () => {
-    mount(<TagSelectorExample />)
+    cy.mount(<TagSelectorExample />)
 
     cy.getByRole('combobox')
       .as('combobox-input')
@@ -167,20 +166,26 @@ describe('TagSelector', () => {
         variant: 'default/after-deleted-item',
       })
 
-    cy.get('@combobox-input').type('test').get('body').happoScreenshot({
-      component: COMPONENT_NAME,
-      variant: 'default/after-forced-no-result',
-    })
+    cy.get('@combobox-input')
+      .type('not existing item text')
+      .get('body')
+      .happoScreenshot({
+        component: COMPONENT_NAME,
+        variant: 'default/after-forced-no-result',
+      })
   })
 
   it('renders other option when no result found', () => {
-    mount(<TagSelectorExample showOtherOption />)
+    cy.mount(<TagSelectorExample showOtherOption />)
 
     cy.getByRole('combobox').as('combobox-input').realClick()
-    cy.get('@combobox-input').type('test').get('body').happoScreenshot({
-      component: COMPONENT_NAME,
-      variant: 'other-option/after-forced-other-option',
-    })
+    cy.get('@combobox-input')
+      .type('not existing item text')
+      .get('body')
+      .happoScreenshot({
+        component: COMPONENT_NAME,
+        variant: 'other-option/after-forced-other-option',
+      })
 
     cy.get('[role=option]').realClick().get('body').happoScreenshot({
       component: COMPONENT_NAME,
@@ -192,17 +197,17 @@ describe('TagSelector', () => {
     cy.mount(<InitiallySelectedOptionExample />)
 
     cy.get('input[type="text"]').click()
-    cy.get('[role=option]').as('options').should('have.length', 3)
-    cy.get('@options').contains('Option 2').should('not.exist')
+    cy.get('[role=option]').as('options').should('have.length', 4)
+    cy.get('@options').contains('Croatia').should('not.exist')
 
-    cy.get('@options').contains('Option 1').click()
+    cy.get('@options').contains('Belarus').click()
     cy.get('input[type="text"]').click()
-    cy.get('@options').should('have.length', 2)
-    cy.get('@options').contains('Option 1').should('not.exist')
+    cy.get('@options').should('have.length', 3)
+    cy.get('@options').contains('Belarus').should('not.exist')
   })
 
   it('renders custom label and custom option', () => {
-    mount(<TagSelectorCustomLabelOptionRendererExample />)
+    cy.mount(<TagSelectorCustomLabelOptionRendererExample />)
 
     cy.getByRole('combobox')
       .as('combobox-input')
@@ -217,34 +222,21 @@ describe('TagSelector', () => {
       .type('{downArrow}')
       .type('{downArrow}')
       .type('{enter}')
+
+    // happo doesn't retain hover state but it has a workaround
+    // "data-happo-hover" is being added and removed to mimic the state
+    cy.get('a')
+      .invoke('attr', 'data-happo-hover', true)
       .get('body')
       .happoScreenshot({
         component: COMPONENT_NAME,
-        variant: 'custom-label-custom-option/after-selected-item',
+        variant: 'custom-label-custom-option/after-selected-and-hovered-item',
       })
-  })
-
-  describe('when in a valid state', () => {
-    it('shows valid icon', () => {
-      cy.mount(<TagSelectorExample status='success' options={countryOptions} />)
-
-      cy.get('body').happoScreenshot({
-        component: COMPONENT_NAME,
-        variant: 'show-valid-icon',
-      })
-    })
   })
 })
 
-const basicOptions = [
-  { value: '1', text: 'Option 1' },
-  { value: '2', text: 'Option 2' },
-  { value: '3', text: 'Option 3' },
-  { value: '4', text: 'Option 4' },
-]
-
 interface Country extends AutocompleteItem {
-  country: string
+  text: string
   capital: string
   code: string
   required?: boolean
@@ -253,33 +245,33 @@ interface Country extends AutocompleteItem {
 
 const countryOptions: Country[] = [
   {
-    country: 'Belarus',
+    text: 'Belarus',
     capital: 'Minsk',
     code: 'BE',
     required: true,
     href: 'https://en.wikipedia.org/wiki/Belarus',
   },
   {
-    country: 'Croatia',
+    text: 'Croatia',
     capital: 'Zagreb',
     code: 'HR',
     href: 'https://en.wikipedia.org/wiki/Croatia',
   },
   {
-    country: 'Lithuania',
+    text: 'Lithuania',
     capital: 'Vilnius',
     code: 'LU',
     href: 'https://en.wikipedia.org/wiki/Lithuania',
     required: true,
   },
   {
-    country: 'Slovakia',
+    text: 'Slovakia',
     capital: 'Bratislava',
     code: 'SK',
     href: 'https://en.wikipedia.org/wiki/Slovakia',
   },
   {
-    country: 'Ukraine',
+    text: 'Ukraine',
     capital: 'Kyiv',
     code: 'UA',
     href: 'https://en.wikipedia.org/wiki/Ukraine',
