@@ -32,18 +32,10 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v2
 
-      - name: Checkout davinci GHAs
-        uses: actions/checkout@v2
-        with:
-          repository: toptal/davinci-github-actions
-          ref: v2.2.1
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          path: ./.github/actions/
-
       - name: Setup node
         uses: actions/setup-node@v2
 
-      - uses: ./.github/actions/yarn-install
+      - uses: toptal/davinci-github-actions-public/yarn-install@v3.0.1
 
       - name: Happo Tests
         run: yarn happo:storybook

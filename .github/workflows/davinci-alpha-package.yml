@@ -46,14 +46,6 @@ jobs:
           ref: ${{ steps.get-branch.outputs.branch }}
           fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
 
-      - name: Checkout davinci GHAs
-        uses: actions/checkout@v2
-        with:
-          repository: toptal/davinci-github-actions
-          ref: v2.2.1
-          token: ${{ env.GITHUB_TOKEN }}
-          path: ./.github/actions/
-
       - name: Set status check - pending
         uses: actions/github-script@v4
         with:
@@ -71,7 +63,7 @@ jobs:
 
       - name: Trigger alpha package
         id: alpha-package
-        uses: ./.github/actions/build-publish-alpha-package
+        uses: toptal/davinci-github-actions-public/build-publish-alpha-package@v3.0.1
         with:
           npm-token: ${{ env.NPM_TOKEN }}
           branch: ${{ steps.get-branch.outputs.branch }}
