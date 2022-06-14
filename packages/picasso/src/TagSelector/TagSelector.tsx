@@ -25,8 +25,22 @@ export interface Item extends AutocompleteItem {
 
 const EMPTY_INPUT_VALUE = ''
 
-export const isIncluded = (items: Item[], currentItem: Item) =>
-  items.some(({ value }) => value === currentItem.value)
+export const filterOutSelectedOptions = (
+  options: Item[] | null,
+  values: Item[],
+  getKey = (item: Item) => item.value
+): AutocompleteItem[] | null => {
+  if (!options) {
+    return null
+  }
+
+  const valuesKeySet = values.reduce(
+    (acc, item) => acc.add(getKey(item) as string),
+    new Set<string>()
+  )
+
+  return options.filter(option => !valuesKeySet.has(getKey(option) as string))
+}
 
 const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
@@ -185,7 +199,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     }
 
     const autocompleteOptions: AutocompleteItem[] | null =
-      options && options.filter(option => !isIncluded(values, option))
+      filterOutSelectedOptions(options, values, getKey)
 
     const renderLabel = (item: Item) => {
       const displayValue = getDisplayValue(item)
