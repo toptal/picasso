@@ -1,6 +1,4 @@
 import React from 'react'
-import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import {
   Candidates16,
   Container,
@@ -102,62 +100,58 @@ const SidebarExample = (props: PageSidebarProps) => {
 
 const DefaultExample = (props: PageSidebarProps) => {
   return (
-    <TestingPicasso>
-      <div
-        style={{
-          height: '58rem',
-          maxHeight: '58rem',
-          overflowY: 'scroll',
-        }}
-      >
-        <SidebarExample {...props} />
-      </div>
-    </TestingPicasso>
+    <div
+      style={{
+        height: '58rem',
+        maxHeight: '58rem',
+        overflowY: 'scroll',
+      }}
+    >
+      <SidebarExample {...props} />
+    </div>
   )
 }
 
 const VariantsExample = () => {
   return (
-    <TestingPicasso>
-      <Grid spacing={32}>
-        <Grid.Item style={{ height: '58rem' }}>
-          <Container bottom='small'>
-            <Typography variant='heading' size='small'>
-              Light (default):
-            </Typography>
-          </Container>
-          <SidebarExample variant='light' />
-        </Grid.Item>
+    <Grid spacing={32}>
+      <Grid.Item style={{ height: '58rem' }}>
+        <Container bottom='small'>
+          <Typography variant='heading' size='small'>
+            Light (default):
+          </Typography>
+        </Container>
+        <SidebarExample variant='light' />
+      </Grid.Item>
 
-        <Grid.Item style={{ height: '58rem' }}>
-          <Container bottom='small'>
-            <Typography variant='heading' size='small'>
-              Dark:
-            </Typography>
-          </Container>
-          <SidebarExample variant='dark' />
-        </Grid.Item>
-      </Grid>
-    </TestingPicasso>
+      <Grid.Item style={{ height: '58rem' }}>
+        <Container bottom='small'>
+          <Typography variant='heading' size='small'>
+            Dark:
+          </Typography>
+        </Container>
+        <SidebarExample variant='dark' />
+      </Grid.Item>
+    </Grid>
   )
 }
 
 describe('Sidebar', () => {
   it('renders sidebar with items', () => {
-    mount(<DefaultExample />)
+    cy.mount(<DefaultExample />)
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders sidebar as dark and light variants', () => {
-    mount(<VariantsExample />)
+    cy.mount(<VariantsExample />)
 
     cy.get('body').happoScreenshot()
   })
 
   describe('when the sidebar is collapsible', () => {
     it('hides and shows the sidebar items text', () => {
-      mount(<DefaultExample collapsible />)
+      cy.mount(<DefaultExample collapsible />)
 
       // Expand collapsible Menu
       cy.getByTestId(TestIds.COLLAPSIBLE_MENU_HEADER).realClick()

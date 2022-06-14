@@ -1,5 +1,4 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import {
   Container,
   Pin16,
@@ -8,7 +7,6 @@ import {
   RatingStarsProps,
 } from '@toptal/picasso'
 import RatingIcon from '@toptal/picasso/RatingIcon'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const defaultProps: RatingStarsProps = {
   name: 'rating',
@@ -17,21 +15,19 @@ const defaultProps: RatingStarsProps = {
 }
 
 const renderRating = (props = defaultProps) => (
-  <TestingPicasso>
-    <Container padded='small'>
-      <Rating.Stars {...props} />
-    </Container>
-  </TestingPicasso>
+  <Container padded='small'>
+    <Rating.Stars {...props} />
+  </Container>
 )
 
 describe('Rating.Stars', () => {
   it('renders default rating', () => {
-    mount(renderRating())
+    cy.mount(renderRating())
 
     cy.get('body').happoScreenshot()
   })
   it('renders rating hover', () => {
-    mount(
+    cy.mount(
       renderRating({
         ...defaultProps,
         renderItem: value => (
@@ -48,14 +44,14 @@ describe('Rating.Stars', () => {
     cy.get('body').happoScreenshot()
   })
   it('renders large rating', () => {
-    mount(renderRating({ ...defaultProps, size: 'large' }))
+    cy.mount(renderRating({ ...defaultProps, size: 'large' }))
 
     cy.get('body').happoScreenshot()
   })
   it('renders large rating hover', () => {
     const size = 'large'
 
-    mount(
+    cy.mount(
       renderRating({
         ...defaultProps,
         size,
@@ -73,14 +69,14 @@ describe('Rating.Stars', () => {
     cy.get('body').happoScreenshot()
   })
   it('renders inactive rating', () => {
-    mount(renderRating({ ...defaultProps, interactive: false }))
+    cy.mount(renderRating({ ...defaultProps, interactive: false }))
 
     cy.get('body').happoScreenshot()
   })
   it('renders custom icon rating', () => {
     const customValue = 3
 
-    mount(
+    cy.mount(
       renderRating({
         ...defaultProps,
         value: customValue,

@@ -1,7 +1,5 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import { Tabs, Tooltip, Exclamation16, TabsProps } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const TestIcon = () => (
   <Tooltip content='Some content...' placement='top'>
@@ -43,52 +41,50 @@ const renderTabs = ({
   withIconIndicies = [],
 }: RenderTabsArgs = {}) => {
   return (
-    <TestingPicasso>
-      <div style={{ width }}>
-        <TestTabs data-testid='tabs'>
-          {Array.from({ length: 5 }).map((_, index) => {
-            const testId = getTabTestId(index)
-            const icon = withIconIndicies.includes(index) ? (
-              <TestIcon />
-            ) : undefined
+    <div style={{ width }}>
+      <TestTabs data-testid='tabs'>
+        {Array.from({ length: 5 }).map((_, index) => {
+          const testId = getTabTestId(index)
+          const icon = withIconIndicies.includes(index) ? (
+            <TestIcon />
+          ) : undefined
 
-            return (
-              <Tabs.Tab
-                key={testId}
-                data-testid={testId}
-                disabled={disabledIndicies.includes(index)}
-                label='Label'
-                icon={icon}
-              />
-            )
-          })}
-        </TestTabs>
-      </div>
-    </TestingPicasso>
+          return (
+            <Tabs.Tab
+              key={testId}
+              data-testid={testId}
+              disabled={disabledIndicies.includes(index)}
+              label='Label'
+              icon={icon}
+            />
+          )
+        })}
+      </TestTabs>
+    </div>
   )
 }
 
 describe('Tabs', () => {
   it('renders', () => {
-    mount(renderTabs())
+    cy.mount(renderTabs())
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders disabled', () => {
-    mount(renderTabs({ disabledIndicies: [1] }))
+    cy.mount(renderTabs({ disabledIndicies: [1] }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders with icon', () => {
-    mount(renderTabs({ withIconIndicies: [0, 3] }))
+    cy.mount(renderTabs({ withIconIndicies: [0, 3] }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('navigates with scroll buttons', () => {
-    mount(renderTabs({ width: '13rem' }))
+    cy.mount(renderTabs({ width: '13rem' }))
 
     cy.get(getTabSelector(0)).should('be.visible')
     cy.get(getTabSelector(4)).should('not.be.visible')

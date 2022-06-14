@@ -1,7 +1,5 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import { Container, Menu, MenuProps } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const testIds = {
   menuItem: 'menu-back',
@@ -34,22 +32,20 @@ const MenuExample = (props: MenuProps) => {
   )
 
   return (
-    <TestingPicasso>
-      <Container style={{ width: '240px' }}>
-        <Menu {...props} data-testid='menu'>
-          <Menu.Item data-testid='item-a'>Item A</Menu.Item>
-          <Menu.Item menu={menuForItemB} data-testid='item-b'>
-            Item B
-          </Menu.Item>
-        </Menu>
-      </Container>
-    </TestingPicasso>
+    <Container style={{ width: '240px' }}>
+      <Menu {...props} data-testid='menu'>
+        <Menu.Item data-testid='item-a'>Item A</Menu.Item>
+        <Menu.Item menu={menuForItemB} data-testid='item-b'>
+          Item B
+        </Menu.Item>
+      </Menu>
+    </Container>
   )
 }
 
 describe('Menu', () => {
   it('navigates slide menu', () => {
-    mount(<MenuExample />)
+    cy.mount(<MenuExample />)
     cy.get('[data-testid="menu-b"]').should('not.exist')
     cy.get(`[data-testid="${testIds.menuItem}"]`).should('not.exist')
     cy.get('body').happoScreenshot()
@@ -76,7 +72,7 @@ describe('Menu', () => {
   })
 
   it('navigates drilldown menu', () => {
-    mount(<MenuExample variant='drilldown' />)
+    cy.mount(<MenuExample variant='drilldown' />)
     cy.get('[data-testid="menu-b"]').should('not.exist')
     cy.get('body').happoScreenshot()
 

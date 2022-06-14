@@ -1,6 +1,4 @@
 import React, { useRef, useState } from 'react'
-import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import {
   Button,
   Modal,
@@ -88,18 +86,16 @@ const TestDrawerBehindModal = (props: Partial<DrawerProps>) => {
 
 describe('Drawer', () => {
   it('renders with narrow width and custom title', () => {
-    mount(
-      <TestingPicasso>
-        <TestDrawer
-          width='narrow'
-          title={
-            <Container flex alignItems='center' padded='small'>
-              <Typography>This Drawer has a custom title</Typography>
-              <Button size='small'>OK!</Button>
-            </Container>
-          }
-        />
-      </TestingPicasso>
+    cy.mount(
+      <TestDrawer
+        width='narrow'
+        title={
+          <Container flex alignItems='center' padded='small'>
+            <Typography>This Drawer has a custom title</Typography>
+            <Button size='small'>OK!</Button>
+          </Container>
+        }
+      />
     )
 
     cy.getByTestId('trigger').click()
@@ -107,44 +103,28 @@ describe('Drawer', () => {
   })
 
   it('renders with regular width and title', () => {
-    mount(
-      <TestingPicasso>
-        <TestDrawer width='regular' title='This is a regular Drawer' />
-      </TestingPicasso>
-    )
+    cy.mount(<TestDrawer width='regular' title='This is a regular Drawer' />)
 
     cy.getByTestId('trigger').click()
     cy.get('body').happoScreenshot()
   })
 
   it('renders with medium width and notification', () => {
-    mount(
-      <TestingPicasso>
-        <TestDrawerWithNotification width='medium' />
-      </TestingPicasso>
-    )
+    cy.mount(<TestDrawerWithNotification width='medium' />)
 
     cy.getByTestId('trigger').click()
     cy.get('body').happoScreenshot()
   })
 
   it('renders with wide width and without title', () => {
-    mount(
-      <TestingPicasso>
-        <TestDrawer width='wide' />
-      </TestingPicasso>
-    )
+    cy.mount(<TestDrawer width='wide' />)
 
     cy.getByTestId('trigger').click()
     cy.get('body').happoScreenshot()
   })
 
   it('renders with ultra-wide width behind Modal', () => {
-    mount(
-      <TestingPicasso>
-        <TestDrawerBehindModal width='ultra-wide' />
-      </TestingPicasso>
-    )
+    cy.mount(<TestDrawerBehindModal width='ultra-wide' />)
 
     cy.getByTestId('open-drawer').click()
     cy.getByTestId('open-modal').click()

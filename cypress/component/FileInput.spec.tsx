@@ -1,17 +1,13 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import { FileInput, FileInputProps } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const TestFileInput = (props: FileInputProps = {}) => (
-  <TestingPicasso>
-    <FileInput hint='No file uploaded.' {...props} />
-  </TestingPicasso>
+  <FileInput hint='No file uploaded.' {...props} />
 )
 
 describe('FileInput', () => {
   it('opens file dialog', () => {
-    mount(<TestFileInput />)
+    cy.mount(<TestFileInput />)
     const openFileDialog = cy.stub().as('openFileDialog')
 
     cy.get('input[type="file"]')
@@ -29,7 +25,7 @@ describe('FileInput', () => {
   })
 
   it('renders with changed label', () => {
-    mount(<TestFileInput buttonLabel='Upload File' />)
+    cy.mount(<TestFileInput buttonLabel='Upload File' />)
 
     cy.get('body').happoScreenshot()
   })

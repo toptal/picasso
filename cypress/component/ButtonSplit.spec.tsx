@@ -1,7 +1,5 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import { Button, Container, Menu } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const handleClick = () => {}
 
@@ -22,14 +20,12 @@ const getMenuButton = () => cy.get(`[data-testid=${testIds.menuButton}]`)
 
 describe('Button.Split', () => {
   it('opens dropdown when menu button is clicked', () => {
-    mount(
-      <TestingPicasso>
-        <Container padded='small'>
-          <Button.Split testIds={{ menuButton: 'menu-button' }} menu={menu}>
-            Button
-          </Button.Split>
-        </Container>
-      </TestingPicasso>
+    cy.mount(
+      <Container padded='small'>
+        <Button.Split testIds={{ menuButton: 'menu-button' }} menu={menu}>
+          Button
+        </Button.Split>
+      </Container>
     )
 
     getMenuButton().click()

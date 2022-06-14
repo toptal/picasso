@@ -1,30 +1,26 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import { NumberInput, NumberInputProps } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const NumberInputExample = ({ status }: Partial<NumberInputProps>) => (
-  <TestingPicasso>
-    <NumberInput
-      value='10'
-      status={status}
-      testIds={{
-        validIcon: 'valid-icon',
-      }}
-    />
-  </TestingPicasso>
+  <NumberInput
+    value='10'
+    status={status}
+    testIds={{
+      validIcon: 'valid-icon',
+    }}
+  />
 )
 
 describe('NumberInput', () => {
   it('renders', () => {
-    mount(<NumberInputExample />)
+    cy.mount(<NumberInputExample />)
 
     cy.get('body').happoScreenshot()
   })
 
   describe('when in a valid state', () => {
     it('shows valid icon', () => {
-      mount(<NumberInputExample status='success' />)
+      cy.mount(<NumberInputExample status='success' />)
 
       cy.get('body').happoScreenshot()
     })
@@ -32,7 +28,7 @@ describe('NumberInput', () => {
 
   describe('when in an invalid state', () => {
     it('shows error', () => {
-      mount(<NumberInputExample status='error' />)
+      cy.mount(<NumberInputExample status='error' />)
 
       cy.get('body').happoScreenshot()
     })

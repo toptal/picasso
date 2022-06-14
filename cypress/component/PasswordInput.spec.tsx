@@ -1,26 +1,22 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import { PasswordInput, PasswordInputProps } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const PasswordInputExample = ({ status }: Partial<PasswordInputProps>) => (
-  <TestingPicasso>
-    <PasswordInput
-      value='asd'
-      status={status}
-      testIds={{
-        input: 'password-input',
-        toggle: 'password-input-toggle',
-        validIcon: 'valid-icon',
-      }}
-    />
-  </TestingPicasso>
+  <PasswordInput
+    value='asd'
+    status={status}
+    testIds={{
+      input: 'password-input',
+      toggle: 'password-input-toggle',
+      validIcon: 'valid-icon',
+    }}
+  />
 )
 
 describe('PasswordInput', () => {
   describe('when toggle button clicked', () => {
     it('shows password', () => {
-      mount(<PasswordInputExample />)
+      cy.mount(<PasswordInputExample />)
       cy.get('body').happoScreenshot()
 
       cy.get('[data-testid="password-input-toggle"]').click()
@@ -31,7 +27,7 @@ describe('PasswordInput', () => {
 
   describe('when in a valid state', () => {
     it('shows valid icon', () => {
-      mount(<PasswordInputExample status='success' />)
+      cy.mount(<PasswordInputExample status='success' />)
 
       cy.get('body').happoScreenshot()
     })

@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
-import { mount } from '@cypress/react'
 import { Container, Paper, Typography } from '@toptal/picasso'
 import { BarChart } from '@toptal/picasso-charts'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { palette } from '@toptal/picasso/utils'
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -29,17 +27,15 @@ const CustomTooltip = ({ active, payload }: any) => {
 }
 
 const TestBarChart = ({ ...rest }) => (
-  <TestingPicasso>
-    <BarChart
-      data={chartDataDefault}
-      getBarColor={() => palette.blue.main}
-      getBarLabelColor={() => palette.grey.dark}
-      width={720}
-      tooltip
-      isAnimationActive={false}
-      {...rest}
-    />
-  </TestingPicasso>
+  <BarChart
+    data={chartDataDefault}
+    getBarColor={() => palette.blue.main}
+    getBarLabelColor={() => palette.grey.dark}
+    width={720}
+    tooltip
+    isAnimationActive={false}
+    {...rest}
+  />
 )
 
 const getBar = (name: string) => {
@@ -58,7 +54,7 @@ const assertCustomTooltipContent = (text: string) => {
 
 describe('BarChart', () => {
   it('renders default chart with default tooltip on hover', () => {
-    mount(<TestBarChart />)
+    cy.mount(<TestBarChart />)
 
     hoverOverBar('Apple').get('body').happoScreenshot()
     assertTooltipContent('Appleengineers hired : 500')
@@ -68,7 +64,7 @@ describe('BarChart', () => {
   })
 
   it('renders custom chart with custom tooltip on hover', () => {
-    mount(
+    cy.mount(
       <TestBarChart
         data={chartDataCustomTooltip}
         fillSchema={{
@@ -92,7 +88,7 @@ describe('BarChart', () => {
   })
 
   it('hides label of each bar via passed `showBarLabel` prop being set to `false`', () => {
-    mount(<TestBarChart showBarLabel={false} tooltip={false} />)
+    cy.mount(<TestBarChart showBarLabel={false} tooltip={false} />)
 
     cy.get('body').happoScreenshot()
   })

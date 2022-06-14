@@ -1,8 +1,6 @@
 import React from 'react'
-import { mount } from '@cypress/react'
 import { Button, ApplicationUpdateNotification } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const ApplicationUpdateNotificationExample = () => {
   const { showCustom } = useNotifications()
@@ -32,22 +30,14 @@ const ApplicationUpdateNotificationExample = () => {
 
 describe('ApplicationUpdateNotification', () => {
   it('renders notification when click on trigger', () => {
-    mount(
-      <TestingPicasso>
-        <ApplicationUpdateNotificationExample />
-      </TestingPicasso>
-    )
+    cy.mount(<ApplicationUpdateNotificationExample />)
 
     cy.get('[data-testid="trigger"]').click()
     cy.get('body').happoScreenshot()
   })
 
   it('renders notification when click on trigger and close when click on notification button', () => {
-    mount(
-      <TestingPicasso>
-        <ApplicationUpdateNotificationExample />
-      </TestingPicasso>
-    )
+    cy.mount(<ApplicationUpdateNotificationExample />)
 
     cy.get('[data-testid="trigger"]').click()
     cy.get('[data-testid="application-update-notification"]').should(

@@ -9,8 +9,6 @@ import {
   Form,
   Input,
 } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
-import { mount } from '@cypress/react'
 
 const LongListExample = () => (
   <Container padded='medium' style={{ height: 900 }}>
@@ -60,11 +58,7 @@ const COMPONENT = 'Dropdown'
 
 describe('Dropdown', () => {
   it('renders with long list', () => {
-    mount(
-      <TestingPicasso>
-        <LongListExample />
-      </TestingPicasso>
-    )
+    cy.mount(<LongListExample />)
 
     cy.getByTestId('content-overflow-scroll').click()
 
@@ -84,11 +78,7 @@ describe('Dropdown', () => {
   })
 
   it('renders with custom content', () => {
-    mount(
-      <TestingPicasso>
-        <CustomContentExample />
-      </TestingPicasso>
-    )
+    cy.mount(<CustomContentExample />)
 
     cy.getByTestId('trigger').realClick()
     cy.get('body').happoScreenshot({

@@ -1,13 +1,9 @@
 import React, { ComponentProps } from 'react'
-import { mount } from '@cypress/react'
 import { Calendar, Container } from '@toptal/picasso'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { noop } from '@toptal/picasso/utils'
 
 const TestCalendar = (props: ComponentProps<typeof Calendar>) => (
-  <TestingPicasso>
-    <Calendar {...props} />
-  </TestingPicasso>
+  <Calendar {...props} />
 )
 
 describe('Calendar', () => {
@@ -19,7 +15,7 @@ describe('Calendar', () => {
 
   describe('when no custom renderers provided', () => {
     it('renders default', () => {
-      mount(<TestCalendar onChange={noop} />)
+      cy.mount(<TestCalendar onChange={noop} />)
 
       cy.get('body').happoScreenshot()
     })
@@ -27,7 +23,7 @@ describe('Calendar', () => {
 
   describe('when custom renderers are provided', () => {
     it('renders calendar with the custom layout', () => {
-      mount(
+      cy.mount(
         <TestCalendar
           onChange={noop}
           renderMonthHeader={() => null}

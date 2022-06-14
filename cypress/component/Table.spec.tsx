@@ -15,8 +15,6 @@ import {
   UserBadge,
   ArrowUpMinor16,
 } from '@toptal/picasso'
-import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 const data = [
   {
@@ -65,59 +63,55 @@ const renderTable = (
   props: Omit<TableProps, 'children'> = {},
   sectionHeadings?: string[]
 ) => (
-  <TestingPicasso>
-    <Table {...props}>
-      <Table.Head>
-        <Table.Row>
-          <Table.Cell>Name</Table.Cell>
-          <Table.Cell>Talent type</Table.Cell>
-          <Table.Cell>Company</Table.Cell>
-          <Table.Cell>Role</Table.Cell>
-          <Table.Cell>Country</Table.Cell>
-        </Table.Row>
-      </Table.Head>
-      {sectionHeadings ? (
-        sectionHeadings.map(heading => (
-          <React.Fragment key={heading}>
-            <Table.SectionHead icon={<Calendar16 />}>
-              {heading}
-            </Table.SectionHead>
-            <Table.Body>
-              {data.map(row => (
-                <Table.Row key={row.id}>
-                  <Table.Cell>{row.name}</Table.Cell>
-                  <Table.Cell>{row.talentType}</Table.Cell>
-                  <Table.Cell>{row.company}</Table.Cell>
-                  <Table.Cell>{row.role}</Table.Cell>
-                  <Table.Cell>{row.country}</Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </React.Fragment>
-        ))
-      ) : (
-        <Table.Body>
-          {data.map(row => (
-            <Table.Row key={row.id}>
-              <Table.Cell>{row.name}</Table.Cell>
-              <Table.Cell>{row.talentType}</Table.Cell>
-              <Table.Cell>{row.company}</Table.Cell>
-              <Table.Cell>{row.role}</Table.Cell>
-              <Table.Cell>{row.country}</Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      )}
+  <Table {...props}>
+    <Table.Head>
+      <Table.Row>
+        <Table.Cell>Name</Table.Cell>
+        <Table.Cell>Talent type</Table.Cell>
+        <Table.Cell>Company</Table.Cell>
+        <Table.Cell>Role</Table.Cell>
+        <Table.Cell>Country</Table.Cell>
+      </Table.Row>
+    </Table.Head>
+    {sectionHeadings ? (
+      sectionHeadings.map(heading => (
+        <React.Fragment key={heading}>
+          <Table.SectionHead icon={<Calendar16 />}>{heading}</Table.SectionHead>
+          <Table.Body>
+            {data.map(row => (
+              <Table.Row key={row.id}>
+                <Table.Cell>{row.name}</Table.Cell>
+                <Table.Cell>{row.talentType}</Table.Cell>
+                <Table.Cell>{row.company}</Table.Cell>
+                <Table.Cell>{row.role}</Table.Cell>
+                <Table.Cell>{row.country}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </React.Fragment>
+      ))
+    ) : (
+      <Table.Body>
+        {data.map(row => (
+          <Table.Row key={row.id}>
+            <Table.Cell>{row.name}</Table.Cell>
+            <Table.Cell>{row.talentType}</Table.Cell>
+            <Table.Cell>{row.company}</Table.Cell>
+            <Table.Cell>{row.role}</Table.Cell>
+            <Table.Cell>{row.country}</Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    )}
 
-      <Table.Footer>
-        <Table.Row>
-          <Table.Cell colSpan={3}>Total</Table.Cell>
-          <Table.Cell>Role</Table.Cell>
-          <Table.Cell>Country</Table.Cell>
-        </Table.Row>
-      </Table.Footer>
-    </Table>
-  </TestingPicasso>
+    <Table.Footer>
+      <Table.Row>
+        <Table.Cell colSpan={3}>Total</Table.Cell>
+        <Table.Cell>Role</Table.Cell>
+        <Table.Cell>Country</Table.Cell>
+      </Table.Row>
+    </Table.Footer>
+  </Table>
 )
 
 const SelectableExample = (props: Omit<TableProps, 'children'> = {}) => {
@@ -132,50 +126,48 @@ const SelectableExample = (props: Omit<TableProps, 'children'> = {}) => {
   }
 
   return (
-    <TestingPicasso>
-      <Table {...props}>
-        <Table.Head>
-          <Table.Row>
-            <Table.Cell />
-            <Table.Cell>Name</Table.Cell>
-            <Table.Cell>Talent type</Table.Cell>
-            <Table.Cell>Company</Table.Cell>
-            <Table.Cell>Role</Table.Cell>
-            <Table.Cell>Country</Table.Cell>
-          </Table.Row>
-        </Table.Head>
-        <Table.Body>
-          {data.map(row => {
-            const isSelected = selected.includes(row.id)
+    <Table {...props}>
+      <Table.Head>
+        <Table.Row>
+          <Table.Cell />
+          <Table.Cell>Name</Table.Cell>
+          <Table.Cell>Talent type</Table.Cell>
+          <Table.Cell>Company</Table.Cell>
+          <Table.Cell>Role</Table.Cell>
+          <Table.Cell>Country</Table.Cell>
+        </Table.Row>
+      </Table.Head>
+      <Table.Body>
+        {data.map(row => {
+          const isSelected = selected.includes(row.id)
 
-            return (
-              <Table.Row
-                key={row.id}
-                hover
-                selected={isSelected}
-                onClick={event => handleClick(event, row.id)}
-              >
-                <Table.Cell>
-                  <Checkbox checked={isSelected} />
-                </Table.Cell>
-                <Table.Cell>{row.name}</Table.Cell>
-                <Table.Cell>{row.talentType}</Table.Cell>
-                <Table.Cell>{row.company}</Table.Cell>
-                <Table.Cell>{row.role}</Table.Cell>
-                <Table.Cell>{row.country}</Table.Cell>
-              </Table.Row>
-            )
-          })}
-        </Table.Body>
-        <Table.Footer>
-          <Table.Row>
-            <Table.Cell colSpan={3}>Total</Table.Cell>
-            <Table.Cell>Role</Table.Cell>
-            <Table.Cell>Country</Table.Cell>
-          </Table.Row>
-        </Table.Footer>
-      </Table>
-    </TestingPicasso>
+          return (
+            <Table.Row
+              key={row.id}
+              hover
+              selected={isSelected}
+              onClick={event => handleClick(event, row.id)}
+            >
+              <Table.Cell>
+                <Checkbox checked={isSelected} />
+              </Table.Cell>
+              <Table.Cell>{row.name}</Table.Cell>
+              <Table.Cell>{row.talentType}</Table.Cell>
+              <Table.Cell>{row.company}</Table.Cell>
+              <Table.Cell>{row.role}</Table.Cell>
+              <Table.Cell>{row.country}</Table.Cell>
+            </Table.Row>
+          )
+        })}
+      </Table.Body>
+      <Table.Footer>
+        <Table.Row>
+          <Table.Cell colSpan={3}>Total</Table.Cell>
+          <Table.Cell>Role</Table.Cell>
+          <Table.Cell>Country</Table.Cell>
+        </Table.Row>
+      </Table.Footer>
+    </Table>
   )
 }
 
@@ -234,55 +226,49 @@ const TableExpandableRowsExample = ({ localData }: { localData: Data[] }) => {
   }
 
   return (
-    <TestingPicasso>
-      <Table>
-        <Table.Head>
-          <Table.Row>
-            <Table.Cell />
-            <Table.Cell>Tasks</Table.Cell>
-            <Table.Cell>Related to</Table.Cell>
-            <Table.Cell>Time</Table.Cell>
-            <Table.Cell align='center'>Assignee</Table.Cell>
-            <Table.Cell align='center'>Actions</Table.Cell>
-          </Table.Row>
-        </Table.Head>
-        <Table.Body>
-          {localData.map(
-            ({ id, task, relatedTo, time, assignee, defaultExpanded }) => (
-              <Table.ExpandableRow
-                key={id}
-                content={<ExpandableContent />}
-                expanded={expandedData[id]}
-                defaultExpanded={defaultExpanded}
-              >
-                <Table.Cell>
-                  <Checkbox />
-                </Table.Cell>
-                <Table.Cell>{task}</Table.Cell>
-                <Table.Cell>{relatedTo}</Table.Cell>
-                <Table.Cell>{time}</Table.Cell>
-                <Table.Cell align='center'>{assignee}</Table.Cell>
-                <Table.Cell align='center'>
-                  <Button.Circular variant='flat' icon={<Star16 />} />
-                  <Button.Circular
-                    variant='flat'
-                    icon={
-                      expandedData[id] ? (
-                        <ArrowUpMinor16 />
-                      ) : (
-                        <ArrowDownMinor16 />
-                      )
-                    }
-                    data-testid={`expand-button-${id}`}
-                    onClick={() => handleExpandClick(id)}
-                  />
-                </Table.Cell>
-              </Table.ExpandableRow>
-            )
-          )}
-        </Table.Body>
-      </Table>
-    </TestingPicasso>
+    <Table>
+      <Table.Head>
+        <Table.Row>
+          <Table.Cell />
+          <Table.Cell>Tasks</Table.Cell>
+          <Table.Cell>Related to</Table.Cell>
+          <Table.Cell>Time</Table.Cell>
+          <Table.Cell align='center'>Assignee</Table.Cell>
+          <Table.Cell align='center'>Actions</Table.Cell>
+        </Table.Row>
+      </Table.Head>
+      <Table.Body>
+        {localData.map(
+          ({ id, task, relatedTo, time, assignee, defaultExpanded }) => (
+            <Table.ExpandableRow
+              key={id}
+              content={<ExpandableContent />}
+              expanded={expandedData[id]}
+              defaultExpanded={defaultExpanded}
+            >
+              <Table.Cell>
+                <Checkbox />
+              </Table.Cell>
+              <Table.Cell>{task}</Table.Cell>
+              <Table.Cell>{relatedTo}</Table.Cell>
+              <Table.Cell>{time}</Table.Cell>
+              <Table.Cell align='center'>{assignee}</Table.Cell>
+              <Table.Cell align='center'>
+                <Button.Circular variant='flat' icon={<Star16 />} />
+                <Button.Circular
+                  variant='flat'
+                  icon={
+                    expandedData[id] ? <ArrowUpMinor16 /> : <ArrowDownMinor16 />
+                  }
+                  data-testid={`expand-button-${id}`}
+                  onClick={() => handleExpandClick(id)}
+                />
+              </Table.Cell>
+            </Table.ExpandableRow>
+          )
+        )}
+      </Table.Body>
+    </Table>
   )
 }
 
@@ -297,67 +283,67 @@ type Data = {
 
 describe('Table', () => {
   it('renders default', () => {
-    mount(renderTable())
+    cy.mount(renderTable())
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders clear', () => {
-    mount(renderTable({ variant: 'clear' }))
+    cy.mount(renderTable({ variant: 'clear' }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders striped', () => {
-    mount(renderTable({ variant: 'striped' }))
+    cy.mount(renderTable({ variant: 'striped' }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders bordered', () => {
-    mount(renderTable({ variant: 'bordered' }))
+    cy.mount(renderTable({ variant: 'bordered' }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders narrow', () => {
-    mount(renderTable({ spacing: 'narrow' }))
+    cy.mount(renderTable({ spacing: 'narrow' }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders compact', () => {
-    mount(renderTable({ spacing: 'compact' }))
+    cy.mount(renderTable({ spacing: 'compact' }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders compact and striped', () => {
-    mount(renderTable({ variant: 'striped', spacing: 'compact' }))
+    cy.mount(renderTable({ variant: 'striped', spacing: 'compact' }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders narrow and clear', () => {
-    mount(renderTable({ variant: 'clear', spacing: 'narrow' }))
+    cy.mount(renderTable({ variant: 'clear', spacing: 'narrow' }))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders with section heading', () => {
-    mount(renderTable({}, ['January']))
+    cy.mount(renderTable({}, ['January']))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders with multiple section headings', () => {
-    mount(renderTable({}, ['January', 'February']))
+    cy.mount(renderTable({}, ['January', 'February']))
 
     cy.get('body').happoScreenshot()
   })
 
   it('renders selectable table', () => {
-    mount(<SelectableExample />)
+    cy.mount(<SelectableExample />)
 
     cy.get('body').happoScreenshot()
   })
@@ -390,7 +376,7 @@ describe('Table', () => {
       },
     ]
 
-    mount(<TableExpandableRowsExample localData={localData} />)
+    cy.mount(<TableExpandableRowsExample localData={localData} />)
 
     cy.get('body').happoScreenshot()
 
@@ -432,7 +418,7 @@ describe('Table', () => {
       },
     ]
 
-    mount(<TableExpandableRowsExample localData={localData} />)
+    cy.mount(<TableExpandableRowsExample localData={localData} />)
 
     cy.get('body').happoScreenshot()
 

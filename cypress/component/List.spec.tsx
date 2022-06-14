@@ -1,7 +1,5 @@
 import React from 'react'
 import { Container, List, Referrals16 } from '@toptal/picasso'
-import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 /* eslint-disable react/no-array-index-key */
 const generateListItems = (total: number, listItemProps?: any) =>
@@ -16,11 +14,7 @@ const generateListItems = (total: number, listItemProps?: any) =>
 describe('List', () => {
   describe('Unordered', () => {
     it('renders unordered', () => {
-      mount(
-        <TestingPicasso>
-          <List>{generateListItems(5)}</List>
-        </TestingPicasso>
-      )
+      cy.mount(<List>{generateListItems(5)}</List>)
 
       cy.get('body').happoScreenshot()
     })
@@ -30,11 +24,7 @@ describe('List', () => {
         icon: <Referrals16 />,
       }
 
-      mount(
-        <TestingPicasso>
-          <List>{generateListItems(5, listItemProps)}</List>
-        </TestingPicasso>
-      )
+      cy.mount(<List>{generateListItems(5, listItemProps)}</List>)
 
       cy.get('body').happoScreenshot()
     })
@@ -42,12 +32,10 @@ describe('List', () => {
     context('when put into reduced font-size container', () => {
       // eslint-disable-next-line max-nested-callbacks
       it('aligns bullets correctly', () => {
-        mount(
-          <TestingPicasso>
-            <Container style={{ fontSize: '0.825rem' }}>
-              <List>{generateListItems(5)}</List>
-            </Container>
-          </TestingPicasso>
+        cy.mount(
+          <Container style={{ fontSize: '0.825rem' }}>
+            <List>{generateListItems(5)}</List>
+          </Container>
         )
 
         cy.get('body').happoScreenshot()
@@ -57,22 +45,16 @@ describe('List', () => {
 
   describe('Ordered', () => {
     it('renders ordered', () => {
-      mount(
-        <TestingPicasso>
-          <List variant='ordered'>{generateListItems(5)}</List>
-        </TestingPicasso>
-      )
+      cy.mount(<List variant='ordered'>{generateListItems(5)}</List>)
 
       cy.get('body').happoScreenshot()
     })
 
     it('renders with custom start', () => {
-      mount(
-        <TestingPicasso>
-          <List variant='ordered' start={9} data-testid='list'>
-            {generateListItems(5)}
-          </List>
-        </TestingPicasso>
+      cy.mount(
+        <List variant='ordered' start={9} data-testid='list'>
+          {generateListItems(5)}
+        </List>
       )
 
       cy.get('[data-testid="list"]').children().last().contains(13)
