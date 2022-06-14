@@ -38,12 +38,12 @@ export const filterOutSelectedOptions = (
     return options
   }
 
-  const valuesKeyMap = values.reduce(
+  const valuesKeySet = values.reduce(
     (acc, item) => acc.add(getKey(item) as string),
     new Set<string>()
   )
 
-  return options.filter(option => !valuesKeyMap.has(getKey(option) as string))
+  return options.filter(option => !valuesKeySet.has(getKey(option) as string))
 }
 
 const getItemText = (item: Item | null) =>
