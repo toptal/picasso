@@ -26,16 +26,12 @@ export interface Item extends AutocompleteItem {
 const EMPTY_INPUT_VALUE = ''
 
 export const filterOutSelectedOptions = (
-  options?: Item[] | null,
-  values?: Item[] | null,
+  options: Item[] | null,
+  values: Item[],
   getKey = (item: Item) => item.value
 ): AutocompleteItem[] | null => {
   if (!options) {
     return null
-  }
-
-  if (!values || values.length === 0) {
-    return options
   }
 
   const valuesKeySet = values.reduce(
