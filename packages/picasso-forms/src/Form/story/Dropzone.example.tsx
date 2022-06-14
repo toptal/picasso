@@ -4,14 +4,14 @@ import { Form } from '@toptal/picasso-forms'
 import { FileUpload } from '@toptal/picasso/FileInput'
 
 type FormType = {
-  attachments: FileUpload[]
+  'dropzone-attachments': FileUpload[]
 }
 
 const Example = () => {
   const MAX_SIZE = 2
   const initialAttachments = [{ file: new File(['resume.pdf'], 'resume.pdf') }]
 
-  const handleSubmit = ({ attachments }: FormType) => {
+  const handleSubmit = ({ 'dropzone-attachments': attachments }: FormType) => {
     window.alert(
       `Uploading: ${attachments.map(({ file }) => file.name).join(', ')}`
     )
@@ -22,12 +22,12 @@ const Example = () => {
       autoComplete='off'
       onSubmit={handleSubmit}
       initialValues={{
-        attachments: initialAttachments,
+        'dropzone-attachments': initialAttachments,
       }}
     >
       <Form.Dropzone
         required
-        name='dropzone.attachments'
+        name='dropzone-attachments'
         dropzoneHint={`Max file size: ${MAX_SIZE}MB.`}
         hint='These documents will be used to analyze and identify your potential.'
       />

@@ -8,10 +8,12 @@ const formConfig: FormConfigProps = {
 
 const Example = () => (
   <Form.ConfigProvider value={formConfig}>
-    <Form onSubmit={() => {}}>
+    <Form
+      onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
+    >
       <Form.Input
         required
-        name='formConfig.firstName'
+        name='formConfig-firstName'
         label='First name'
         placeholder='e.g. Bruce'
       />
