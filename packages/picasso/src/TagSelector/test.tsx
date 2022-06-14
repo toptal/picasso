@@ -7,7 +7,7 @@ import {
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import TagSelector, { Props, isIncluded } from './TagSelector'
+import TagSelector, { Props, filterOutSelectedOptions } from './TagSelector'
 
 const testOptions = [
   { value: 'AF', text: 'Afghanistan', id: '100' },
@@ -124,32 +124,28 @@ describe('TagSelector', () => {
   })
 })
 
-describe('isIncluded', () => {
+describe('filterOutSelectedOptions', () => {
   it("compares object's value attribute by default", () => {
-    const actual = isIncluded(testOptions, testOptions[0])
+    const resultOptions = filterOutSelectedOptions(testOptions, [
+      testOptions[0],
+    ])
 
-    expect(actual).toBe(true)
+    expect(resultOptions).toEqual(expect.arrayContaining(testOptions.slice(1)))
   })
 
   describe('when custom getKey function is provided', () => {
     it('uses custom function', () => {
       const getKey = jest.fn(item => item.id as string)
 
-      const actual = isIncluded(testOptions, testOptions[3], getKey)
+      const resultOptions = filterOutSelectedOptions(
+        testOptions,
+        [testOptions[0]],
+        getKey
+      )
 
-      expect(actual).toBe(true)
-      // 1 for 3rd option + 4 for each list item
-      expect(getKey).toHaveBeenCalledTimes(5)
+      expect(resultOptions).toEqual(
+        expect.arrayContaining(testOptions.slice(1))
+      )
     })
-  })
-
-  it.each`
-    value   | text              | result
-    ${'AF'} | ${'Afghanistan'}  | ${true}
-    ${'NO'} | ${'Non existing'} | ${false}
-  `('compares object by value', ({ value, text, result }) => {
-    const actual = isIncluded(testOptions, { text, value })
-
-    expect(actual).toEqual(result)
   })
 })
