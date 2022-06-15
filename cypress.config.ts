@@ -1,16 +1,47 @@
-import path from 'path'
-import happoTask from 'happo-cypress/task'
+import davinciConfig from '@toptal/davinci-qa/src/configs/cypress.config.js'
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from 'cypress'
-import davinciConfig from '@toptal/davinci-qa/src/configs/cypress.config.js'
+import fs from 'fs'
+import glob from 'glob'
+import happoTask from 'happo-cypress/task'
+import path from 'path'
+
+const sizeOf = file => fs.statSync(file).size
+
+const parallelization = config => {
+  const groupIndex = parseInt(process.env.GROUP_INDEX || 0, 10)
+  const total = parseInt(process.env.PARALLEL_GROUPS || 1, 10)
+
+  if (groupIndex < 0 || total <= 1) {
+    return
+  }
+
+  const { specPattern } = config
+
+  config.specPattern = glob
+    .sync(specPattern)
+    .sort((lhs, rhs) => sizeOf(rhs) - sizeOf(lhs))
+    .filter((_, index) => index % total === groupIndex)
+}
 /* eslint-enable */
 
 export default defineConfig({
   ...davinciConfig,
+  e2e: {
+    ...davinciConfig.e2e,
+    setupNodeEvents(on, config) {
+      // split spec files in CI
+      parallelization(config)
+    },
+  },
   component: {
     ...davinciConfig.component,
-    setupNodeEvents: on => {
+    setupNodeEvents: (on, config) => {
+      parallelization(config)
+
       happoTask.register(on)
+
+      return config
     },
     specPattern: 'cypress/component/*.spec.tsx',
     devServer: {
