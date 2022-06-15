@@ -30,13 +30,13 @@ Cypress.Commands.add('getByRole', (role, options) => {
   return cy.get(`[role=${role}]`, options)
 })
 
-// happo doesn't retain hover state but it has a workaround (not official)
-// "data-happo-hover" is being added and removed to mimic the state and
-// happo will be able to detect the hover state
 Cypress.Commands.add(
   'hoverAndTakeHappoScreenshot',
   { prevSubject: true },
   (subject, options) => {
+    // happo doesn't retain hover state but it has a workaround (not official)
+    // "data-happo-hover" is being added and removed to mimic the state and
+    // happo will be able to detect the hover state
     cy.get(subject.selector)
       .invoke('attr', 'data-happo-hover', true)
       .get('body')
