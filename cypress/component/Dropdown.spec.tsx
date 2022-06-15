@@ -54,7 +54,7 @@ const ComplexContent = () => {
   )
 }
 
-const COMPONENT = 'Dropdown'
+const component = 'Dropdown'
 
 describe('Dropdown', () => {
   it('renders with long list', () => {
@@ -66,13 +66,13 @@ describe('Dropdown', () => {
     cy.getByTestId('menu').parent().scrollTo('bottom')
 
     cy.get('body').happoScreenshot({
-      component: COMPONENT,
+      component,
       variant: 'long-list/after-clicked-with-scroll',
     })
 
     cy.getByTestId('content-overflow-visible').click()
     cy.get('body').happoScreenshot({
-      component: COMPONENT,
+      component,
       variant: 'long-list/after-clicked-without-scroll',
     })
   })
@@ -82,7 +82,7 @@ describe('Dropdown', () => {
 
     cy.getByTestId('trigger').realClick()
     cy.get('body').happoScreenshot({
-      component: COMPONENT,
+      component,
       variant: 'custom-content/after-clicked',
     })
   })
