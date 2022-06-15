@@ -36,3 +36,5 @@ export {
   generateRandomStringOrGetEmptyInTest,
   getServersideStylesheets,
 } from './Picasso/utils'
+
+export { default as Favicon } from './Favicon'

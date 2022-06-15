@@ -22,7 +22,6 @@ import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
 import globalStyles from './styles'
-import Favicon from '../Favicon'
 import { EnvironmentType, TextLabelProps } from '../types'
 import { generateRandomStringOrGetEmptyInTest } from './utils'
 import { RootContext } from './RootContext'
@@ -179,7 +178,7 @@ interface PicassoProps extends TextLabelProps {
 
 const Picasso = ({
   loadFonts,
-  loadFavicon,
+  // loadFavicon,
   reset,
   responsive,
   environment = 'development',
@@ -223,7 +222,7 @@ const Picasso = ({
           {/* {fixViewport && <Viewport />} */}
           {loadFonts && <FontsLoader />}
           {reset && <CssBaseline />}
-          {loadFavicon && <Favicon environment={environment} />}
+          {/* {loadFavicon && <Favicon environment={environment} />} */}
           {children}
           {/* <NotificationsProvider container={notificationContainer}>
             {children}
