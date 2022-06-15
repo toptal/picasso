@@ -14,13 +14,3 @@ export const ButtonCompound = Object.assign(Button, {
   Checkbox,
   Radio,
 })
-
-export const ButtonObject = {
-  Button,
-  Group,
-  Circular,
-  Action,
-  Split,
-  Checkbox,
-  Radio
-}
