@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.0.1
+
+### Patch Changes
+
+- [#2885](https://github.com/toptal/picasso/pull/2885) [`a767ce37`](https://github.com/toptal/picasso/commit/a767ce371c956b80c75da2005043ee0d09d268c1) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### TagSelector
+
+  - fix selected items filtering when custom key provided
+
 ## 26.0.0
 
 ### Major Changes
