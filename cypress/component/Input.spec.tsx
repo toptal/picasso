@@ -1,6 +1,4 @@
 import React from 'react'
-import { mount } from '@cypress/react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
 import { Container, Input } from '@toptal/picasso'
 
 const TestInput = () => {
@@ -16,43 +14,31 @@ const TestInput = () => {
   )
 }
 
-const COMPONENT = 'Input'
+const component = 'Input'
 
 describe('Input', () => {
   it("renders Input's hovered and focused states", () => {
-    mount(
-      <TestingPicasso>
-        <TestInput />
-      </TestingPicasso>
-    )
+    cy.mount(<TestInput />)
 
-    // happo doesn't retain hover state but it has a workaround
-    // "data-happo-hover" is being added and removed to mimic the state
-    cy.getByTestId('default-input')
-      .as('default-input')
-      .invoke('attr', 'data-happo-hover', true)
-      .get('body')
-      .happoScreenshot({
-        component: COMPONENT,
-        variant: 'default/after-hovered',
-      })
-    cy.get('@default-input').invoke('removeAttr', 'data-happo-hover')
+    cy.getByTestId('default-input').hoverAndTakeHappoScreenshot({
+      component,
+      variant: 'default/after-hovered',
+    })
+
     cy.get('@default-input').realClick().get('body').happoScreenshot({
-      component: COMPONENT,
+      component,
       variant: 'default/after-focused',
     })
 
     cy.getByTestId('error-input')
       .as('error-input')
-      .invoke('attr', 'data-happo-hover', true)
-      .get('body')
-      .happoScreenshot({
-        component: COMPONENT,
+      .hoverAndTakeHappoScreenshot({
+        component,
         variant: 'error-status/after-hovered',
       })
-    cy.get('@error-input').invoke('removeAttr', 'data-happo-hover')
+
     cy.get('@error-input').realClick().get('body').happoScreenshot({
-      component: COMPONENT,
+      component,
       variant: 'error-status/after-focused',
     })
   })
