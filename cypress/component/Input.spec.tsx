@@ -20,10 +20,12 @@ describe('Input', () => {
   it("renders Input's hovered and focused states", () => {
     cy.mount(<TestInput />)
 
-    cy.getByTestId('default-input').hoverAndTakeHappoScreenshot({
-      component,
-      variant: 'default/after-hovered',
-    })
+    cy.getByTestId('default-input')
+      .as('default-input')
+      .hoverAndTakeHappoScreenshot({
+        component,
+        variant: 'default/after-hovered',
+      })
 
     cy.get('@default-input').realClick().get('body').happoScreenshot({
       component,
