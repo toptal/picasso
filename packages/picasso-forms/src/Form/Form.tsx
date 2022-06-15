@@ -147,7 +147,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
 
   return (
     <FormContext.Provider value={validationObject}>
-      <FinalForm<T>
+      <FinalForm
         render={({ form, handleSubmit }) => (
           <FormRenderer
             autoComplete={autoComplete}
