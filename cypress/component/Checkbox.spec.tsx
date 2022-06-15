@@ -20,12 +20,12 @@ describe('Checkbox', () => {
   it('renders', () => {
     cy.mount(<TestCheckbox />)
 
-    cy.getByTestId('checkbox-unchecked').happoHoverScreenshot({
+    cy.getByTestId('checkbox-unchecked').hoverAndTakeHappoScreenshot({
       component: COMPONENT,
       variant: 'default-unchecked/after-hovered',
     })
 
-    cy.getByTestId('checkbox-checked').happoHoverScreenshot({
+    cy.getByTestId('checkbox-checked').hoverAndTakeHappoScreenshot({
       component: COMPONENT,
       variant: 'default-checked/after-hovered',
     })

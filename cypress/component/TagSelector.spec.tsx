@@ -223,7 +223,7 @@ describe('TagSelector', () => {
       .type('{downArrow}')
       .type('{enter}')
 
-    cy.get('a').happoHoverScreenshot({
+    cy.get('a').hoverAndTakeHappoScreenshot({
       component: COMPONENT_NAME,
       variant: 'custom-label-custom-option/after-selected-and-hovered-item',
     })

@@ -9,7 +9,9 @@ declare global {
       isWithinViewport(): Chainable<Subject>
       getByTestId(testId: string): Chainable<Subject>
       getByRole(role: string): Chainable<Subject>
-      happoHoverScreenshot(options?: HappoScreenshotOptions): Chainable<Subject>
+      hoverAndTakeHappoScreenshot(
+        options?: HappoScreenshotOptions
+      ): Chainable<Subject>
       mount: typeof mount
     }
   }
