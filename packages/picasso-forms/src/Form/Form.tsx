@@ -3,8 +3,14 @@ import {
   Form as FinalForm,
   FormProps as FinalFormProps,
 } from 'react-final-form'
-import { FormApi, SubmissionErrors, getIn, setIn, AnyObject } from 'final-form'
-import { Form as PicassoForm, Container } from '@toptal/picasso'
+import {
+  FormApi,
+  SubmissionErrors,
+  getIn,
+  setIn,
+  AnyObject,
+  MutableState,
+} from 'final-form'
 import { useNotifications } from '@toptal/picasso/utils'
 
 import { createScrollToErrorDecorator } from '../utils'
@@ -14,6 +20,23 @@ import {
   FormContextProps,
   createFormContext,
 } from './FormContext'
+import FormRenderer from './FormRenderer'
+
+const setActiveFieldTouched = <
+  FormValues = object,
+  InitialFormValues = Partial<FormValues>
+>(
+  args: any[],
+  state: MutableState<FormValues, InitialFormValues>
+) => {
+  const activeFieldName = state.formState.active
+
+  if (activeFieldName) {
+    const field = state.fields[activeFieldName]
+
+    field.touched = true
+  }
+}
 
 export type Props<T = AnyObject> = FinalFormProps<T> & {
   disableScrollOnError?: boolean
@@ -51,13 +74,15 @@ const getValidationErrors = (
 
 export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
   const {
-    children,
     autoComplete,
+    children,
     disableScrollOnError,
     onSubmit,
     successSubmitMessage,
     failedSubmitMessage,
     decorators = [],
+    mutators = {},
+    validateOnBlur,
     'data-testid': dataTestId,
     ...rest
   } = props
@@ -94,7 +119,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
     showError(failedSubmitMessage, undefined, { persist: true })
   }
 
-  const handleSubmit = async (
+  const handleFinalFormSubmit = async (
     values: T,
     form: FormApi<T>,
     callback?: (errors?: SubmissionErrors) => void
@@ -122,20 +147,24 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
 
   return (
     <FormContext.Provider value={validationObject}>
-      <FinalForm
-        render={({ handleSubmit }) => (
-          <Container>
-            <PicassoForm
-              autoComplete={autoComplete}
-              onSubmit={handleSubmit}
-              data-testid={dataTestId}
-            >
-              {children}
-            </PicassoForm>
-          </Container>
+      <FinalForm<T>
+        render={({ form, handleSubmit }) => (
+          <FormRenderer
+            autoComplete={autoComplete}
+            data-testid={dataTestId}
+            onSubmit={handleSubmit}
+            validateOnBlur={validateOnBlur}
+            setActiveFieldTouched={form.mutators.setActiveFieldTouched}
+          >
+            {children}
+          </FormRenderer>
         )}
-        onSubmit={handleSubmit}
+        onSubmit={handleFinalFormSubmit}
         decorators={[...decorators, scrollToErrorDecorator]}
+        mutators={{
+          ...mutators,
+          setActiveFieldTouched,
+        }}
         {...rest}
       />
     </FormContext.Provider>
