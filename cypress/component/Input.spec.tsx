@@ -31,6 +31,7 @@ describe('Input', () => {
       component,
       variant: 'default/after-focused',
     })
+    cy.get('@default-input').blur()
 
     cy.getByTestId('error-input')
       .as('error-input')
