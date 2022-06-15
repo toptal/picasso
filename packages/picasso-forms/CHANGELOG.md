@@ -1,5 +1,19 @@
 # Change Log
 
+## 46.0.1
+
+### Patch Changes
+
+- [#2831](https://github.com/toptal/picasso/pull/2831) [`7262726a`](https://github.com/toptal/picasso/commit/7262726a0f78954717dc62c6bba39b24ce73ecec) Thanks [@vvmarulin](https://github.com/vvmarulin)! - ---
+
+  ### InputField
+
+  - Fix valid state of a field when it has a submit error and dirty since last submit
+
+  ### Form.ConfigProvider
+
+  - Forbid simultaneous usage of `showValidState` and `validateOnSubmit`
+
 ## 46.0.0
 
 ### Patch Changes
