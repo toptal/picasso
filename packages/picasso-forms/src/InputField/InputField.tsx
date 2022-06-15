@@ -23,11 +23,7 @@ export const getInputStatus = <T extends ValueType>(
     return 'error'
   }
 
-  if (meta.dirtySinceLastSubmit) {
-    return 'default'
-  }
-
-  if (meta.submitError) {
+  if (!meta.dirtySinceLastSubmit && meta.submitError) {
     return 'error'
   }
 
