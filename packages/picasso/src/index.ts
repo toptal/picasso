@@ -224,6 +224,8 @@ export { default as TSButtonSplit } from './ButtonSplit'
 export { default as TSButtonCheckbox } from './ButtonCheckbox'
 export { default as TSButtonRadio } from './ButtonRadio'
 
+export { ButtonObject } from './ButtonCompound/button-object'
+
 export { Checkbox as TSCheckbox } from './Checkbox/Checkbox'
 export { default as TSCheckboxGroup } from './CheckboxGroup'
 
@@ -246,6 +248,8 @@ export { Modal as TSModal } from './Modal/Modal'
 export { default as TSModalContent } from './ModalContent'
 export { default as TSModalActions } from './ModalActions'
 export { default as TSModalTitle } from './ModalTitle'
+
+export { ModalObject } from './Modal/modal-object'
 
 export { Note as TSNote } from './Note/Note'
 export { default as TSNoteTitle } from './NoteTitle'
@@ -273,6 +277,8 @@ export { PageSidebar as TSPageSidebar } from './PageSidebar/PageSidebar'
 export { default as TSPageSidebarMenu } from './SidebarMenu'
 export { default as TSPageSidebarItem } from './SidebarItem'
 export { default as TSPageSidebarLogo } from './SidebarLogo'
+
+export { PageObject } from './PageCompound/page-object'
 
 export { Radio as TSRadio } from './Radio/Radio'
 export { default as TSRadioGroup } from './RadioGroup'
@@ -304,8 +310,12 @@ export { default as TSFormHint } from './FormHint'
 export { default as TSFormLabel } from './FormLabel'
 export { default as TSFormError } from './FormError'
 
+export { FormObject } from './Form/form-object'
+
 export { default as TSTag } from './Tag'
 export { default as TSTagGroup } from './TagGroup'
 export { default as TSTagRectangular } from './TagRectangular'
 export { default as TSTagConnection } from './TagConnection'
 export { default as TSTagCheckable } from './TagCheckable'
+
+export { TagObject } from './TagCompound/tag-object'

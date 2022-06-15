@@ -6,15 +6,6 @@ import Split from '../ButtonSplit'
 import Checkbox from '../ButtonCheckbox'
 import Radio from '../ButtonRadio'
 
-export const ButtonCompound = Object.assign(Button, {
-  Group,
-  Circular,
-  Action,
-  Split,
-  Checkbox,
-  Radio,
-})
-
 export const ButtonObject = {
   Button,
   Group,
