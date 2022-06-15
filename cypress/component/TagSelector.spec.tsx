@@ -134,7 +134,7 @@ const TagSelectorCustomLabelOptionRendererExample = () => {
   )
 }
 
-const COMPONENT_NAME = 'TagSelector'
+const component = 'TagSelector'
 
 describe('TagSelector', () => {
   it('renders', () => {
@@ -145,7 +145,7 @@ describe('TagSelector', () => {
       .realClick()
       .get('body')
       .happoScreenshot({
-        component: COMPONENT_NAME,
+        component,
         variant: 'default/after-clicked-combobox',
       })
 
@@ -154,7 +154,7 @@ describe('TagSelector', () => {
       .type('{enter}')
       .get('body')
       .happoScreenshot({
-        component: COMPONENT_NAME,
+        component,
         variant: 'default/after-selected-item',
       })
 
@@ -162,7 +162,7 @@ describe('TagSelector', () => {
       .realClick()
       .get('body')
       .happoScreenshot({
-        component: COMPONENT_NAME,
+        component,
         variant: 'default/after-deleted-item',
       })
 
@@ -170,7 +170,7 @@ describe('TagSelector', () => {
       .type('not existing item text')
       .get('body')
       .happoScreenshot({
-        component: COMPONENT_NAME,
+        component,
         variant: 'default/after-forced-no-result',
       })
   })
@@ -183,12 +183,12 @@ describe('TagSelector', () => {
       .type('not existing item text')
       .get('body')
       .happoScreenshot({
-        component: COMPONENT_NAME,
+        component,
         variant: 'other-option/after-forced-other-option',
       })
 
     cy.get('[role=option]').realClick().get('body').happoScreenshot({
-      component: COMPONENT_NAME,
+      component,
       variant: 'other-option/after-clicked-new-option',
     })
   })
@@ -214,7 +214,7 @@ describe('TagSelector', () => {
       .realClick()
       .get('body')
       .happoScreenshot({
-        component: COMPONENT_NAME,
+        component,
         variant: 'custom-label-custom-option/after-clicked-combobox',
       })
 
@@ -223,15 +223,10 @@ describe('TagSelector', () => {
       .type('{downArrow}')
       .type('{enter}')
 
-    // happo doesn't retain hover state but it has a workaround
-    // "data-happo-hover" is being added and removed to mimic the state
-    cy.get('a')
-      .invoke('attr', 'data-happo-hover', true)
-      .get('body')
-      .happoScreenshot({
-        component: COMPONENT_NAME,
-        variant: 'custom-label-custom-option/after-selected-and-hovered-item',
-      })
+    cy.get('a').hoverAndTakeHappoScreenshot({
+      component,
+      variant: 'custom-label-custom-option/after-selected-and-hovered-item',
+    })
   })
 })
 
