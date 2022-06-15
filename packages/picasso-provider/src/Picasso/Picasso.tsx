@@ -21,7 +21,6 @@ import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
-import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
 import Favicon from '../Favicon'
 import { EnvironmentType, TextLabelProps } from '../types'
@@ -111,7 +110,7 @@ const PicassoGlobalStylesProvider = (
   )
 }
 
-const Viewport = () => {
+export const FixViewport = () => {
   const [warned, setWarned] = useState(false)
 
   if (!isBrowser()) {
@@ -185,8 +184,8 @@ const Picasso = ({
   responsive,
   environment = 'development',
   children,
-  fixViewport,
-  notificationContainer,
+  // fixViewport,
+  // notificationContainer,
   RootComponent = PicassoRootNode,
   titleCase,
   theme,
@@ -221,13 +220,14 @@ const Picasso = ({
           titleCase={titleCase}
           disableTransitions={disableTransitions}
         >
-          {fixViewport && <Viewport />}
+          {/* {fixViewport && <Viewport />} */}
           {loadFonts && <FontsLoader />}
           {reset && <CssBaseline />}
           {loadFavicon && <Favicon environment={environment} />}
-          <NotificationsProvider container={notificationContainer}>
+          {children}
+          {/* <NotificationsProvider container={notificationContainer}>
             {children}
-          </NotificationsProvider>
+          </NotificationsProvider> */}
         </PicassoGlobalStylesProvider>
       </MuiThemeProvider>
     </StylesProvider>

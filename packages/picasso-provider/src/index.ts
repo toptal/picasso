@@ -1,4 +1,4 @@
-export { default } from './Picasso'
+export { default, FixViewport } from './Picasso'
 
 export {
   useScreenSize,
@@ -17,6 +17,8 @@ export {
   shadows,
   PicassoBreakpoints,
 } from './Picasso/config'
+
+export { default as NotificationsProvider } from './Picasso/NotificationsProvider'
 
 export { default as PicassoProvider } from './Picasso/PicassoProvider'
 

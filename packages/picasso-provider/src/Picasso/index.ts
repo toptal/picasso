@@ -1,1 +1,1 @@
-export { default } from './Picasso'
+export { default, FixViewport } from './Picasso'
