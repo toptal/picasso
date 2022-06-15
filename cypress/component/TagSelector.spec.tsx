@@ -223,15 +223,10 @@ describe('TagSelector', () => {
       .type('{downArrow}')
       .type('{enter}')
 
-    // happo doesn't retain hover state but it has a workaround
-    // "data-happo-hover" is being added and removed to mimic the state
-    cy.get('a')
-      .invoke('attr', 'data-happo-hover', true)
-      .get('body')
-      .happoScreenshot({
-        component: COMPONENT_NAME,
-        variant: 'custom-label-custom-option/after-selected-and-hovered-item',
-      })
+    cy.get('a').happoHoverScreenshot({
+      component: COMPONENT_NAME,
+      variant: 'custom-label-custom-option/after-selected-and-hovered-item',
+    })
   })
 })
 

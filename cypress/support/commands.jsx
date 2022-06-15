@@ -30,6 +30,19 @@ Cypress.Commands.add('getByRole', (role, options) => {
   return cy.get(`[role=${role}]`, options)
 })
 
+Cypress.Commands.add(
+  'happoHoverScreenshot',
+  { prevSubject: true },
+  (subject, options) => {
+    cy.get(subject.selector)
+      .invoke('attr', 'data-happo-hover', true)
+      .get('body')
+      .happoScreenshot(options)
+
+    cy.get(subject.selector).invoke('removeAttr', 'data-happo-hover')
+  }
+)
+
 Cypress.Commands.add('mount', (component, options, props = {}) => {
   // Wrap any parent components needed
   // ie: return mount(<MyProvider>{component}</MyProvider>, options)

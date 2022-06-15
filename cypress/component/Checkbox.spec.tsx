@@ -14,29 +14,30 @@ const TestCheckbox = () => (
   </Container>
 )
 
+const COMPONENT = 'Checkbox'
+
 describe('Checkbox', () => {
   it('renders', () => {
     cy.mount(<TestCheckbox />)
 
-    // happo doesn't retain hover state but it has a workaround
-    // "data-happo-hover" is being added and removed to mimic the state
-    cy.getByTestId('checkbox-unchecked')
-      .invoke('attr', 'data-happo-hover', true)
-      .get('body')
-      .happoScreenshot()
-    cy.getByTestId('checkbox-unchecked').invoke(
-      'removeAttr',
-      'data-happo-hover'
-    )
+    cy.getByTestId('checkbox-unchecked').happoHoverScreenshot({
+      component: COMPONENT,
+      variant: 'default-unchecked/after-hovered',
+    })
 
-    cy.getByTestId('checkbox-checked')
-      .invoke('attr', 'data-happo-hover', true)
-      .get('body')
-      .happoScreenshot()
-    cy.getByTestId('checkbox-checked').invoke('removeAttr', 'data-happo-hover')
+    cy.getByTestId('checkbox-checked').happoHoverScreenshot({
+      component: COMPONENT,
+      variant: 'default-checked/after-hovered',
+    })
 
     // our data-testid's are not being passed to the input
-    cy.get('input').first().focus().get('body').happoScreenshot()
-    cy.get('input').last().focus().get('body').happoScreenshot()
+    cy.get('input').first().focus().get('body').happoScreenshot({
+      component: COMPONENT,
+      variant: 'default-unchecked/after-focused',
+    })
+    cy.get('input').last().focus().get('body').happoScreenshot({
+      component: COMPONENT,
+      variant: 'default-checked/after-focused',
+    })
   })
 })
