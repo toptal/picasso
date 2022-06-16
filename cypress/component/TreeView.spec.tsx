@@ -218,11 +218,11 @@ describe('TreeView', () => {
   it('render with modal', () => {
     cy.mount(<ModalExample />)
 
-    cy.getByTestId('open').as('open-modal-button').click()
+    cy.getByTestId('open').as('open-modal-button').realClick()
 
     cy.getByTestId('tree-dialog-content')
       .as('dialog-tree')
-      .wait('@dialog-tree')
+      .should('be.visible')
       .happoScreenshot({ component, variant: 'with-modal/after-modal-opened' })
   })
 })
