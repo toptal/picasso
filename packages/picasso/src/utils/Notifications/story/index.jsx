@@ -51,64 +51,23 @@ Each of them has this list of props:
     ])
     .addExample('utils/Notifications/story/Default.example.tsx', {
       title: 'Default',
-      effect: async (testPage, makeScreenshot) => {
-        testPage.click('[data-testid="trigger"]')
-        await testPage.waitFor(100)
-        await makeScreenshot({
-          isFullScreen: true,
-        })
-      },
+      takeScreenshot: false,
     })
     .addExample('utils/Notifications/story/Variants.example.tsx', {
       title: 'Variants',
-      effect: async (testPage, makeScreenshot) => {
-        await testPage.click('[data-testid="error-trigger"]')
-        await testPage.waitFor(100)
-
-        await testPage.click('[data-testid="success-trigger"]')
-        await testPage.waitFor(100)
-
-        await makeScreenshot({
-          isFullScreen: true,
-        })
-      },
+      takeScreenshot: false,
     })
     .addExample('utils/Notifications/story/GeneralNotifications.example.tsx', {
       title: 'General Notifications',
-      effect: async (testPage, makeScreenshot) => {
-        testPage.click('[data-testid="trigger"]')
-        await testPage.waitFor(100)
-        await makeScreenshot({
-          isFullScreen: true,
-        })
-      },
+      takeScreenshot: false,
     })
     .addExample('utils/Notifications/story/Options.example.tsx', {
       title: 'Options',
-      effect: async (testPage, makeScreenshot) => {
-        testPage.click('[data-testid="trigger"]')
-        await testPage.waitFor(100)
-        await makeScreenshot({
-          isFullScreen: true,
-        })
-
-        await testPage.waitFor(1000)
-
-        // by now notification should disappear
-        await makeScreenshot({
-          isFullScreen: true,
-        })
-      },
+      takeScreenshot: false,
     })
     .addExample('utils/Notifications/story/Custom.example.tsx', {
       title: 'Custom',
-      effect: async (testPage, makeScreenshot) => {
-        testPage.click('[data-testid="trigger"]')
-        await testPage.waitFor(100)
-        await makeScreenshot({
-          isFullScreen: true,
-        })
-      },
+      takeScreenshot: false,
     })
 )
 
