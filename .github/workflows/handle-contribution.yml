@@ -12,14 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Call notify jira about contribution
     steps:
-      - uses: actions/checkout@v2
-        with:
-          repository: toptal/davinci-github-actions
-          ref: v2.2.1
-          token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
-          path: ./.github/actions/
-
-      - uses: ./.github/actions/notify-jira-about-contribution
+      - uses: toptal/davinci-github-actions/notify-jira-about-contribution@v3.0.1
         with:
           team: frontend-experience-eng
           repo: ${{ github.event.repository.name }}

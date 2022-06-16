@@ -32,15 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Checkout davinci GHAs
-        uses: actions/checkout@v2
-        with:
-          repository: toptal/davinci-github-actions
-          ref: v2.2.1
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          path: ./.github/actions/
-
-      - uses: ./.github/actions/build-push-image
+      - uses: toptal/davinci-github-actions/build-push-image@v3.0.1
         env:
           GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           GCR_ACCOUNT_KEY: ${{ secrets.GCR_ACCOUNT_KEY }}
@@ -60,15 +52,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Checkout davinci GHAs
-        uses: actions/checkout@v2
-        with:
-          repository: toptal/davinci-github-actions
-          ref: v2.2.1
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          path: ./.github/actions/
-
-      - uses: ./.github/actions/yarn-install
+      - uses: toptal/davinci-github-actions/yarn-install@v3.0.1
 
       - name: Danger
         env:

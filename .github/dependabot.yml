@@ -11,3 +11,15 @@ updates:
   labels:
     - no-jira
   versioning-strategy: increase
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "07:00"
+  open-pull-requests-limit: 4
+  pull-request-branch-name:
+    separator: "-"
+  labels:
+    - no-jira
+    - dependencies
+    - github-actions
