@@ -26,7 +26,7 @@ const setActiveFieldTouched = <
   FormValues = object,
   InitialFormValues = Partial<FormValues>
 >(
-  args: any[],
+  _: any[],
   state: MutableState<FormValues, InitialFormValues>
 ) => {
   const activeFieldName = state.formState.active
