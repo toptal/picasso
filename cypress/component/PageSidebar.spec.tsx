@@ -12,6 +12,8 @@ import {
   Typography,
 } from '@toptal/picasso'
 
+const component = 'PageSidebar'
+
 enum TestIds {
   SIDEBAR_COLLAPSE_BUTTON = 'sidebar-collapse-button',
   SIDEBAR_CONTAINER = 'sidebar-container',
@@ -140,13 +142,13 @@ describe('Sidebar', () => {
   it('renders sidebar with items', () => {
     cy.mount(<DefaultExample />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({ component, variant: 'default-render' })
   })
 
   it('renders sidebar as dark and light variants', () => {
     cy.mount(<VariantsExample />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({ component, variant: 'with-theme'})
   })
 
   describe('when the sidebar is collapsible', () => {
@@ -156,7 +158,7 @@ describe('Sidebar', () => {
       // Expand collapsible Menu
       cy.getByTestId(TestIds.COLLAPSIBLE_MENU_HEADER).realClick()
 
-      cy.get('body').happoScreenshot({ variant: 'expanded accordion menu' })
+      cy.get('body').happoScreenshot({ component, variant: 'expanded accordion menu' })
 
       // Collapse sidebar
       cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
@@ -165,18 +167,18 @@ describe('Sidebar', () => {
       cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON).should('not.be.visible')
       cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
 
-      cy.get('body').happoScreenshot({ variant: 'collapsed sidebar default' })
+      cy.get('body').happoScreenshot({ component, variant: 'collapsed sidebar default' })
 
       // Open collapsible Menu as dropdown
       cy.getByTestId(TestIds.COLLAPSIBLE_MENU_HEADER).realClick()
 
-      cy.get('body').happoScreenshot({ variant: 'open dropdown menu' })
+      cy.get('body').happoScreenshot({ component, variant: 'open dropdown menu' })
 
       // Expand collapsed sidebar
       cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
       cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON).realClick()
 
-      cy.get('body').happoScreenshot({ variant: 'expand sidebar' })
+      cy.get('body').happoScreenshot({ component, variant: 'expand sidebar' })
     })
   })
 })
