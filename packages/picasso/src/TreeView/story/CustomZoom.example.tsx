@@ -46,6 +46,10 @@ const createTree = (): TreeNodeInterface => {
     info: {
       name: 'NODE+1',
     },
+    selectedOffset: {
+      x: -200,
+      y: 400,
+    },
     children: [
       createTreeNode({
         id: '2',
@@ -198,10 +202,15 @@ const CustomZoom = () => {
 }
 
 const Example = () => (
-  <Container style={{ height: '25em' }}>
+  <Container style={{ height: '40em' }}>
     <TreeViewContainer>
       <CustomZoom />
-      <TreeView data={rootNode} renderNode={renderNode} showZoom={false} />
+      <TreeView
+        data={rootNode}
+        renderNode={renderNode}
+        showZoom={false}
+        initialScale={0.7}
+      />
     </TreeViewContainer>
   </Container>
 )
