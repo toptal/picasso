@@ -119,7 +119,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
     showError(failedSubmitMessage, undefined, { persist: true })
   }
 
-  const handleFinalFormSubmit = async (
+  const handleSubmit = async (
     values: T,
     form: FormApi<T>,
     callback?: (errors?: SubmissionErrors) => void
@@ -148,18 +148,18 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
   return (
     <FormContext.Provider value={validationObject}>
       <FinalForm
-        render={({ form, handleSubmit }) => (
+        render={({ form, handleSubmit: handleFormRendererSubmit }) => (
           <FormRenderer
             autoComplete={autoComplete}
             data-testid={dataTestId}
-            onSubmit={handleSubmit}
+            onSubmit={handleFormRendererSubmit}
             validateOnBlur={validateOnBlur}
             setActiveFieldTouched={form.mutators.setActiveFieldTouched}
           >
             {children}
           </FormRenderer>
         )}
-        onSubmit={handleFinalFormSubmit}
+        onSubmit={handleSubmit}
         decorators={[...decorators, scrollToErrorDecorator]}
         mutators={{
           ...mutators,
