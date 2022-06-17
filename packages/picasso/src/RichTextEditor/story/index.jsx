@@ -16,10 +16,7 @@ page
 
 page
   .createChapter()
-  .addExample('RichTextEditor/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
+  .addExample('RichTextEditor/story/Default.example.tsx', 'Default')
   .addExample('RichTextEditor/story/DefaultValue.example.tsx', {
     title: 'Default value',
     takeScreenshot: false,

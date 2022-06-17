@@ -3,8 +3,14 @@ import {
   Form as FinalForm,
   FormProps as FinalFormProps,
 } from 'react-final-form'
-import { FormApi, SubmissionErrors, getIn, setIn, AnyObject } from 'final-form'
-import { Form as PicassoForm, Container } from '@toptal/picasso'
+import {
+  FormApi,
+  SubmissionErrors,
+  getIn,
+  setIn,
+  AnyObject,
+  MutableState,
+} from 'final-form'
 import { useNotifications } from '@toptal/picasso/utils'
 
 import { createScrollToErrorDecorator } from '../utils'
@@ -14,6 +20,23 @@ import {
   FormContextProps,
   createFormContext,
 } from './FormContext'
+import FormRenderer from './FormRenderer'
+
+const setActiveFieldTouched = <
+  FormValues = object,
+  InitialFormValues = Partial<FormValues>
+>(
+  _: any[],
+  state: MutableState<FormValues, InitialFormValues>
+) => {
+  const activeFieldName = state.formState.active
+
+  if (activeFieldName) {
+    const field = state.fields[activeFieldName]
+
+    field.touched = true
+  }
+}
 
 export type Props<T = AnyObject> = FinalFormProps<T> & {
   disableScrollOnError?: boolean
@@ -51,13 +74,15 @@ const getValidationErrors = (
 
 export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
   const {
-    children,
     autoComplete,
+    children,
     disableScrollOnError,
     onSubmit,
     successSubmitMessage,
     failedSubmitMessage,
     decorators = [],
+    mutators = {},
+    validateOnBlur,
     'data-testid': dataTestId,
     ...rest
   } = props
@@ -123,19 +148,23 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
   return (
     <FormContext.Provider value={validationObject}>
       <FinalForm
-        render={({ handleSubmit }) => (
-          <Container>
-            <PicassoForm
-              autoComplete={autoComplete}
-              onSubmit={handleSubmit}
-              data-testid={dataTestId}
-            >
-              {children}
-            </PicassoForm>
-          </Container>
+        render={({ form, handleSubmit: handleFormRendererSubmit }) => (
+          <FormRenderer
+            autoComplete={autoComplete}
+            data-testid={dataTestId}
+            onSubmit={handleFormRendererSubmit}
+            validateOnBlur={validateOnBlur}
+            setActiveFieldTouched={form.mutators.setActiveFieldTouched}
+          >
+            {children}
+          </FormRenderer>
         )}
         onSubmit={handleSubmit}
         decorators={[...decorators, scrollToErrorDecorator]}
+        mutators={{
+          ...mutators,
+          setActiveFieldTouched,
+        }}
         {...rest}
       />
     </FormContext.Provider>

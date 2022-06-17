@@ -74,15 +74,6 @@ const setAliases = () => {
 }
 
 describe('RichTextEditor', () => {
-  it('renders default editor', () => {
-    cy.mount(renderEditor(defaultProps))
-
-    // waits for lazy-loaded QuillEditor component
-    cy.get(editorSelector)
-
-    cy.get('body').happoScreenshot()
-  })
-
   describe('when in an invalid state', () => {
     it('shows error', () => {
       cy.mount(renderEditor({ ...defaultProps, status: 'error' }))

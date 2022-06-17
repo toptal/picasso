@@ -22,19 +22,30 @@ jest.mock('../utils/scroll-to', () => ({
 }))
 
 const renderForm = (
-  props: OmitInternalProps<Props> & { mandatory?: boolean }
+  props: OmitInternalProps<Props> & {
+    mandatory?: boolean
+    showValidState?: boolean
+  }
 ) => {
-  const { onSubmit, disableScrollOnError, mandatory } = props
+  const { onSubmit, disableScrollOnError, mandatory, showValidState } = props
 
   return render(
-    <Form
-      data-testid='form'
-      onSubmit={onSubmit}
-      disableScrollOnError={disableScrollOnError}
-    >
-      <Form.Input name='test' placeholder='test input' required={mandatory} />
-      <Button type='submit'>Submit</Button>
-    </Form>
+    <Form.ConfigProvider value={{ showValidState }}>
+      <Form
+        data-testid='form'
+        onSubmit={onSubmit}
+        disableScrollOnError={disableScrollOnError}
+        validateOnBlur
+      >
+        <Form.Input
+          name='test'
+          placeholder='test input'
+          required={mandatory}
+          testIds={{ validIcon: 'valid-icon' }}
+        />
+        <Button type='submit'>Submit</Button>
+      </Form>
+    </Form.ConfigProvider>
   )
 }
 
@@ -90,6 +101,29 @@ describe('Form', () => {
 
     await waitFor(() => {
       expect(scrollToMock).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('when validateOnBlur is enabled and show valid state is enabled', () => {
+    it('shows validation success when form submitted on Enter', async () => {
+      const { getByPlaceholderText, getByTestId } = renderForm({
+        onSubmit: () => {},
+        disableScrollOnError: false,
+        mandatory: true,
+        showValidState: true,
+      })
+
+      const input = getByPlaceholderText('test input')
+
+      await act(async () => {
+        fireEvent.focus(input)
+        fireEvent.change(input, { target: { value: 'value' } })
+        fireEvent.submit(input)
+      })
+
+      await waitFor(() => {
+        expect(getByTestId('valid-icon')).toBeInTheDocument()
+      })
     })
   })
 })
