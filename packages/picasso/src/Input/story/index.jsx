@@ -21,26 +21,10 @@ page
   })
   .addExample('Input/story/Default.example.tsx', {
     title: 'Default',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.hover('[data-testid="input"]')
-      await makeScreenshot()
-
-      await testPage.click('[data-testid="input"]')
-      await makeScreenshot()
-    },
-  })
-  .addExample('Input/story/Disabled.example.tsx', 'Disabled')
-  .addExample('Input/story/Status.example.tsx', {
-    title: 'Status',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.hover('[data-testid="input"]')
-      await makeScreenshot()
-
-      await testPage.click('[data-testid="input"]')
-      await makeScreenshot()
-    },
     takeScreenshot: false,
   })
+  .addExample('Input/story/Disabled.example.tsx', 'Disabled')
+  .addExample('Input/story/Status.example.tsx', 'Status')
   .addExample('Input/story/WithIcon.example.tsx', 'With icon')
   .addExample('Input/story/Sizes.example.tsx', 'Sizes')
   .addExample('Input/story/FullWidth.example.tsx', 'Full width')
