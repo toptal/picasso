@@ -201,8 +201,6 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const autocompleteOptions: AutocompleteItem[] | null =
       filterOutSelectedOptions(options, values, getKey)
 
-    console.log(values, autocompleteOptions)
-
     const renderLabel = (item: Item) => {
       const displayValue = getDisplayValue(item)
       const handleItemDelete = () => handleDelete(item)
