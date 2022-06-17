@@ -1,4 +1,4 @@
-export { default, FixViewport } from './Picasso'
+export { default } from './Picasso'
 
 export {
   useScreenSize,
@@ -15,10 +15,8 @@ export {
   typography,
   sizes,
   shadows,
-  PicassoBreakpoints,
+  PicassoBreakpoints
 } from './Picasso/config'
-
-export { default as NotificationsProvider } from './Picasso/NotificationsProvider'
 
 export { default as PicassoProvider } from './Picasso/PicassoProvider'
 
@@ -28,13 +26,11 @@ export {
   useAppConfig,
   useDrawer,
   useSidebar,
-  RootContext,
+  RootContext
 } from './Picasso/RootContext'
 
 export {
   generateRandomString,
   generateRandomStringOrGetEmptyInTest,
-  getServersideStylesheets,
+  getServersideStylesheets
 } from './Picasso/utils'
-
-export { default as Favicon } from './Favicon'

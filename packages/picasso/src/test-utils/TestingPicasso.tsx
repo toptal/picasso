@@ -1,5 +1,5 @@
 import React from 'react'
-import Picasso, { NotificationsProvider } from '@toptal/picasso-provider'
+import Picasso from '@toptal/picasso-provider'
 import { TextLabelProps } from '@toptal/picasso-shared'
 
 export type Props = TextLabelProps & {
@@ -15,7 +15,7 @@ export const TestingPicasso = ({ children, titleCase }: Props) => {
       titleCase={titleCase}
       disableTransitions
     >
-      <NotificationsProvider>{children}</NotificationsProvider>
+      {children}
     </Picasso>
   )
 }

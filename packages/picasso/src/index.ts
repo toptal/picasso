@@ -9,7 +9,7 @@ export type { AmountProps } from './Amount'
 export { default as Autocomplete } from './Autocomplete'
 export type {
   AutocompleteProps,
-  Item as AutocompleteItem,
+  Item as AutocompleteItem
 } from './Autocomplete'
 export { AvatarCompound as Avatar } from './AvatarCompound'
 export type { AvatarProps } from './Avatar'
@@ -89,13 +89,13 @@ export type { RadioGroupProps } from './RadioGroup'
 export { default as RichTextEditor } from './RichTextEditor'
 export type {
   RichTextEditorProps,
-  RichTextEditorChangeHandler,
+  RichTextEditorChangeHandler
 } from './RichTextEditor'
 export { default as Select } from './Select'
 export type { SelectProps } from './Select'
 export type {
   Option as SelectOption,
-  ValueType as SelectValueType,
+  ValueType as SelectValueType
 } from './SelectBase'
 export type { PageSidebarProps } from './PageSidebar'
 export { default as Slider } from './Slider'
@@ -136,7 +136,7 @@ export {
   default as TreeView,
   TreeViewContainer,
   useTreeView,
-  TreeNodeAvatar,
+  TreeNodeAvatar
 } from './TreeView'
 export type { TreeNodeInterface } from './TreeView'
 export { default as StaticTreeView } from './StaticTreeView'
@@ -159,13 +159,13 @@ export {
   default as DatePicker,
   datePickerParseDateString,
   DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
-  DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
+  DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
 } from './DatePicker'
 export type {
   DatePickerValue,
   DatePickerInputCustomValueParser,
   DatePickerInputCustomValueParserParameters,
-  DatePickerProps,
+  DatePickerProps
 } from './DatePicker'
 export { default as Drawer } from './Drawer'
 export type { DrawerProps } from './Drawer'
@@ -175,7 +175,7 @@ export type {
   FileUpload as DropzoneFileUpload,
   FileError as DropzoneFileError,
   FileRejection as DropzoneFileRejection,
-  DropEvent as DropzoneDropEvent,
+  DropEvent as DropzoneDropEvent
 } from './Dropzone'
 export { default as OverviewBlock } from './OverviewBlock'
 export type { OverviewBlockProps } from './OverviewBlock'
@@ -195,127 +195,9 @@ export type { PasswordInputProps } from './PasswordInput'
 export { default as FieldRequirements } from './FieldRequirements'
 export type {
   FieldRequirementsProps,
-  FieldRequirement,
+  FieldRequirement
 } from './FieldRequirements'
 export type { Status as OutlinedInputStatus } from './OutlinedInput'
 
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'
-
-export { Accordion as TSAccordion } from './Accordion/Accordion'
-export { default as TSAccordionSummary } from './AccordionSummary'
-export { default as TSAccordionDetails } from './AccordionDetails'
-
-export { Alert as TSAlert } from './Alert/Alert'
-export { default as TSAlertInline } from './AlertInline'
-
-export { default as TSAvatar } from './Avatar'
-export { default as TSAvatarGroup } from './AvatarGroup'
-
-export { Breadcrumbs as TSBreadcrumbs } from './Breadcrumbs/Breadcrumbs'
-export { default as TSBreadcrumbsItem } from './BreadcrumbsItem'
-
-export { default as TSButton } from './Button'
-export { ButtonGroup as TSButtonGroup } from './ButtonGroup/ButtonGroup'
-export { default as TSButtonGroupItem } from './ButtonGroupItem'
-export { default as TSButtonCircular } from './ButtonCircular'
-export { default as TSButtonAction } from './ButtonAction'
-export { default as TSButtonSplit } from './ButtonSplit'
-export { default as TSButtonCheckbox } from './ButtonCheckbox'
-export { default as TSButtonRadio } from './ButtonRadio'
-
-export { ButtonObject } from './ButtonCompound/button-object'
-
-export { Checkbox as TSCheckbox } from './Checkbox/Checkbox'
-export { default as TSCheckboxGroup } from './CheckboxGroup'
-
-export { Dropdown as TSDropdown } from './Dropdown/Dropdown'
-export { default as TSDropdownArrow } from './DropdownArrow'
-export { useDropdownContext as TSUseDropdownContext } from './Dropdown/Dropdown'
-
-export { Grid as TSGrid } from './Grid/Grid'
-export { default as TSGridItem } from './GridItem'
-
-export { Helpbox as TSHelpbox } from './Helpbox/Helpbox'
-export { default as TSHelpboxTitle } from './HelpboxTitle'
-export { default as TSHelpboxContent } from './HelpboxContent'
-export { default as TSHelpboxActions } from './HelpboxActions'
-
-export { Menu as TSMenu } from './Menu/Menu'
-export { default as TSMenuItem } from './MenuItem'
-
-export { Modal as TSModal } from './Modal/Modal'
-export { default as TSModalContent } from './ModalContent'
-export { default as TSModalActions } from './ModalActions'
-export { default as TSModalTitle } from './ModalTitle'
-
-export { ModalObject } from './Modal/modal-object'
-
-export { Note as TSNote } from './Note/Note'
-export { default as TSNoteTitle } from './NoteTitle'
-export { default as TSNoteContent } from './NoteContent'
-export { default as TSNoteSubtitle } from './NoteSubtitle'
-
-export { Notification as TSNotification } from './Notification/Notification'
-export { default as TSNotificationActions } from './NotificationActions'
-
-export { OverviewBlock as TSOverviewBlock } from './OverviewBlock/OverviewBlock'
-export { default as TSOverviewBlockGroup } from './OverviewBlockGroup'
-export { default as TSOverviewBlockRow } from './OverviewBlockRow'
-
-export { default as TSPage } from './Page'
-export { default as TSPageHelmet } from './PageHelmet'
-export { default as TSPageTopBar } from './PageTopBar'
-export { default as TSPageTopBarMenu } from './PageTopBarMenu'
-export { default as TSPageFooter } from './PageFooter'
-export { default as TSPageContent } from './PageContent'
-export { PageBanner as TSPageBanner } from './PageBanner/PageBanner'
-export { default as TSPageBannerActions } from './NotificationActions'
-export { default as TSPageAutocomplete } from './PageAutocomplete'
-export { default as TSPageArticle } from './PageArticle'
-export { PageSidebar as TSPageSidebar } from './PageSidebar/PageSidebar'
-export { default as TSPageSidebarMenu } from './SidebarMenu'
-export { default as TSPageSidebarItem } from './SidebarItem'
-export { default as TSPageSidebarLogo } from './SidebarLogo'
-
-export { PageObject } from './PageCompound/page-object'
-
-export { Radio as TSRadio } from './Radio/Radio'
-export { default as TSRadioGroup } from './RadioGroup'
-
-export { default as TSStepper } from './Stepper'
-export { default as TSStepperVertical } from './StepperVertical'
-
-export { Tabs as TSTabs } from './Tabs/Tabs'
-export { default as TSTabsTab } from './Tab'
-
-export { default as TSTable } from './Table'
-export { default as TSTableCell } from './TableCell'
-export { default as TSTableBody } from './TableBody'
-export { default as TSTableRow } from './TableRow'
-export { default as TSTableHead } from './TableHead'
-export { default as TSTableSectionHead } from './TableSectionHead'
-export { default as TSTableFooter } from './TableFooter'
-export { default as TSTableExpandableRow } from './TableExpandableRow'
-
-export { TagSelector as TSTagSelector } from './TagSelector/TagSelector'
-export { default as TSTagSelectorLabel } from './TagSelectorLabel'
-
-export { Timeline as TSTimeline } from './Timeline/Timeline'
-export { default as TSTimelineRow } from './TimelineRow'
-
-export { Form as TSForm } from './Form/Form'
-export { default as TSFormField } from './FormField'
-export { default as TSFormHint } from './FormHint'
-export { default as TSFormLabel } from './FormLabel'
-export { default as TSFormError } from './FormError'
-
-export { FormObject } from './Form/form-object'
-
-export { default as TSTag } from './Tag'
-export { default as TSTagGroup } from './TagGroup'
-export { default as TSTagRectangular } from './TagRectangular'
-export { default as TSTagConnection } from './TagConnection'
-export { default as TSTagCheckable } from './TagCheckable'
-
-export { TagObject } from './TagCompound/tag-object'

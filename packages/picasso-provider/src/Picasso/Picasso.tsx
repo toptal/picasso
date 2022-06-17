@@ -5,7 +5,7 @@ import {
   Theme,
   ThemeOptions,
   StylesProvider,
-  createGenerateClassName,
+  createGenerateClassName
 } from '@material-ui/core/styles'
 import React, {
   ReactNode,
@@ -13,7 +13,7 @@ import React, {
   useState,
   forwardRef,
   ForwardRefExoticComponent,
-  RefAttributes,
+  RefAttributes
 } from 'react'
 import { Helmet } from 'react-helmet'
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -21,7 +21,9 @@ import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
+import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
+import Favicon from '../Favicon'
 import { EnvironmentType, TextLabelProps } from '../types'
 import { generateRandomStringOrGetEmptyInTest } from './utils'
 import { RootContext } from './RootContext'
@@ -43,7 +45,7 @@ interface PicassoRootNodeProps {
 }
 
 const useGlobalStyles = makeStyles<Theme>(globalStyles, {
-  name: 'Picasso',
+  name: 'Picasso'
 })
 
 // eslint-disable-next-line react/display-name
@@ -68,7 +70,7 @@ const PicassoGlobalStylesProvider = (
     RootComponent,
     environment,
     titleCase,
-    disableTransitions,
+    disableTransitions
   } = props
 
   const rootRef = useRef<HTMLDivElement>(null)
@@ -78,7 +80,7 @@ const PicassoGlobalStylesProvider = (
     setHasTopBar: (hasTopBar: boolean) => {
       setContextValue({
         ...contextValue,
-        hasTopBar,
+        hasTopBar
       })
     },
     environment,
@@ -87,17 +89,17 @@ const PicassoGlobalStylesProvider = (
     setHasDrawer: (hasDrawer: boolean) => {
       setContextValue({
         ...contextValue,
-        hasDrawer,
+        hasDrawer
       })
     },
     hasSidebar: false,
     setHasSidebar: (hasSidebar: boolean) => {
       setContextValue({
         ...contextValue,
-        hasSidebar,
+        hasSidebar
       })
     },
-    disableTransitions,
+    disableTransitions
   })
 
   return (
@@ -109,7 +111,7 @@ const PicassoGlobalStylesProvider = (
   )
 }
 
-export const FixViewport = () => {
+const Viewport = () => {
   const [warned, setWarned] = useState(false)
 
   if (!isBrowser()) {
@@ -178,19 +180,19 @@ interface PicassoProps extends TextLabelProps {
 
 const Picasso = ({
   loadFonts,
-  // loadFavicon,
+  loadFavicon,
   reset,
   responsive,
   environment = 'development',
   children,
-  // fixViewport,
-  // notificationContainer,
+  fixViewport,
+  notificationContainer,
   RootComponent = PicassoRootNode,
   titleCase,
   theme,
   disableTransitions,
   disableClassNamePrefix,
-  injectFirst,
+  injectFirst
 }: PicassoProps) => {
   if (theme) {
     PicassoProvider.extendTheme(theme)
@@ -204,7 +206,7 @@ const Picasso = ({
   const generateClassName = createGenerateClassName({
     // if there are multiples instances of Picasso
     // on the page we want each set of styles to be unique
-    seed: disableClassNamePrefix ? '' : generateRandomStringOrGetEmptyInTest(),
+    seed: disableClassNamePrefix ? '' : generateRandomStringOrGetEmptyInTest()
   })
 
   return (
@@ -219,14 +221,13 @@ const Picasso = ({
           titleCase={titleCase}
           disableTransitions={disableTransitions}
         >
-          {/* {fixViewport && <Viewport />} */}
+          {fixViewport && <Viewport />}
           {loadFonts && <FontsLoader />}
           {reset && <CssBaseline />}
-          {/* {loadFavicon && <Favicon environment={environment} />} */}
-          {children}
-          {/* <NotificationsProvider container={notificationContainer}>
+          {loadFavicon && <Favicon environment={environment} />}
+          <NotificationsProvider container={notificationContainer}>
             {children}
-          </NotificationsProvider> */}
+          </NotificationsProvider>
         </PicassoGlobalStylesProvider>
       </MuiThemeProvider>
     </StylesProvider>
@@ -241,7 +242,7 @@ Picasso.defaultProps = {
   reset: true,
   fixViewport: true,
   injectFirst: undefined,
-  RootComponent: PicassoRootNode,
+  RootComponent: PicassoRootNode
 }
 
 export default Picasso
