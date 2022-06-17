@@ -3,7 +3,6 @@ import { BaseProps } from '@toptal/picasso-shared'
 import { Breadcrumbs as MuiBreadcrumbs } from '@material-ui/core'
 
 import { ChevronRight16 } from '../Icon'
-import Item from '../BreadcrumbsItem'
 import './styles'
 
 export interface Props extends BaseProps {
@@ -20,6 +19,4 @@ export const Breadcrumbs = forwardRef<HTMLElement, Props>(function Breadcrumbs(
 
 Breadcrumbs.displayName = 'Breadcrumbs'
 
-export default Object.assign(Breadcrumbs, {
-  Item,
-})
+export default Breadcrumbs

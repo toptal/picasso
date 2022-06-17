@@ -2,7 +2,8 @@ import React from 'react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
 
-import Accordion, { Props } from './Accordion'
+import { Props } from './Accordion'
+import { AccordionCompound as Accordion } from '../AccordionCompound'
 
 const DETAILS_TEXT =
   'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.'
@@ -20,7 +21,7 @@ const TestSummary = () => (
 )
 
 const testIds = {
-  emptyAccordionSummary: 'picasso-empty-accordion-summary',
+  emptyAccordionSummary: 'picasso-empty-accordion-summary'
 }
 
 const renderAccordion = (props?: Partial<OmitInternalProps<Props>>) =>
@@ -61,7 +62,7 @@ describe('Accordion', () => {
 
     const { getByText, getByTestId } = renderAccordion({
       onChange: handleChange,
-      expandIcon: <span data-testid='trigger' />,
+      expandIcon: <span data-testid='trigger' />
     })
 
     fireEvent.click(getByTestId('accordion-summary'))
@@ -86,7 +87,7 @@ describe('Accordion', () => {
 
   it('renders expanded initially', async () => {
     const { getByText, getByTestId } = renderAccordion({
-      defaultExpanded: true,
+      defaultExpanded: true
     })
 
     expect(getByTestId('accordion-details')).toBeVisible()
@@ -102,7 +103,7 @@ describe('Accordion', () => {
 
   it('renders custom icon when passed', () => {
     const { getByTestId, container } = renderAccordion({
-      expandIcon: <span data-testid='custom-expand-icon' />,
+      expandIcon: <span data-testid='custom-expand-icon' />
     })
 
     expect(getByTestId('custom-expand-icon')).toBeInTheDocument()
@@ -113,7 +114,7 @@ describe('Accordion', () => {
     const { getByTestId } = renderAccordion({
       'data-testid': 'accordion',
       className: 'foobar',
-      style: { display: 'table' },
+      style: { display: 'table' }
     })
 
     const accordionContainer = getByTestId('accordion')

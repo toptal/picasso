@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 import React from 'react'
 
-import Menu from '../Menu'
+import { MenuCompound as Menu } from '../MenuCompound'
 import ScrollMenu, { scrollToSelection } from './ScrollMenu'
 
 const createRect = (opts: Partial<DOMRect>) => {
@@ -15,7 +15,7 @@ const createRect = (opts: Partial<DOMRect>) => {
     width: 0,
     height: 0,
     toJSON: () => {},
-    ...opts,
+    ...opts
   }
 }
 

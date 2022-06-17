@@ -4,9 +4,6 @@ import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Container, { VariantType as ContainerVariantType } from '../Container'
-import HelpboxTitle from '../HelpboxTitle'
-import HelpboxContent from '../HelpboxContent'
-import HelpboxActions from '../HelpboxActions'
 import { CloseMinor16 } from '../Icon'
 import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
@@ -22,7 +19,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoHelpbox',
+  name: 'PicassoHelpbox'
 })
 
 // eslint-disable-next-line react/display-name
@@ -60,8 +57,4 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
 
 Helpbox.displayName = 'Helpbox'
 
-export default Object.assign(Helpbox, {
-  Title: HelpboxTitle,
-  Content: HelpboxContent,
-  Actions: HelpboxActions,
-})
+export default Helpbox

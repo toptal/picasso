@@ -3,7 +3,6 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITabs, { TabsProps } from '@material-ui/core/Tabs'
 import { ButtonOrAnchorProps, BaseProps } from '@toptal/picasso-shared'
 
-import Tab from '../Tab'
 import TabScrollButton from '../TabScrollButton'
 import styles from './styles'
 import useTabAction from './use-tab-action'
@@ -22,7 +21,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'Tabs',
+  name: 'Tabs'
 })
 
 // eslint-disable-next-line react/display-name
@@ -53,6 +52,4 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
 
 Tabs.displayName = 'Tabs'
 
-export default Object.assign(Tabs, {
-  Tab,
-})
+export default Tabs

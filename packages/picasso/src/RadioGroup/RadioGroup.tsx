@@ -4,7 +4,8 @@ import { GridSize } from '@material-ui/core/Grid'
 import MUIRadioGroup, { RadioGroupProps } from '@material-ui/core/RadioGroup'
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 
-import Grid, { GridProps } from '../Grid'
+import { GridProps } from '../Grid'
+import { GridCompound as Grid } from '../GridCompound'
 import styles from './styles'
 
 type GridSpacing = GridProps['spacing']
@@ -27,7 +28,7 @@ export interface Props extends RadioGroupProps {
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoRadioGroup',
-  index: -1,
+  index: -1
 })
 
 const RadioGroup = (props: Props) => {
@@ -64,7 +65,7 @@ const RadioGroup = (props: Props) => {
 }
 
 RadioGroup.defaultProps = {
-  horizontal: false,
+  horizontal: false
 }
 
 export default RadioGroup

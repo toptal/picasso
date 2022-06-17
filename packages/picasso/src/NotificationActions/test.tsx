@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { render, RenderResult } from '@toptal/picasso/test-utils'
 
-import Notification from '../Notification'
+import { NotificationCompound as Notification } from '../NotificationCompound'
 
 const renderNotificationActions = (children: ReactNode) => {
   return render(

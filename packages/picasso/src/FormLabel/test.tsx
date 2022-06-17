@@ -4,7 +4,7 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import FormLabel, { Props } from './FormLabel'
-import Form from '../Form'
+import { FormCompound as Form } from '../FormCompound'
 
 jest.mock('ap-style-title-case')
 
@@ -14,7 +14,7 @@ const TestFormLabel = ({
   disabled,
   titleCase,
   htmlFor,
-  inline,
+  inline
 }: OmitInternalProps<Props>) => {
   return (
     <Form>
@@ -75,7 +75,7 @@ describe('FormLabel', () => {
     const TEXT_CONTENT = 'Test kb8'
 
     render(<TestFormLabel>{TEXT_CONTENT}</TestFormLabel>, undefined, {
-      titleCase: true,
+      titleCase: true
     })
 
     expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)

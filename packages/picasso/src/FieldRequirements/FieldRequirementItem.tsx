@@ -2,12 +2,12 @@ import React, { PropsWithChildren } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Typography from '../Typography'
-import Grid from '../Grid'
+import { GridCompound as Grid } from '../GridCompound'
 import styles from './styles'
 import { Bullet16, CheckMinor16, CloseMinor16 } from '../Icon'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'FieldRequirementItem',
+  name: 'FieldRequirementItem'
 })
 
 export type FieldRequirementItemStatus = 'default' | 'success' | 'error'
@@ -16,13 +16,13 @@ type ColorType = 'dark-grey' | 'inherit' | 'red'
 const colorMap: Record<FieldRequirementItemStatus, ColorType> = {
   default: 'dark-grey',
   success: 'inherit',
-  error: 'red',
+  error: 'red'
 }
 
 const IconsMap = {
   default: Bullet16,
   success: CheckMinor16,
-  error: CloseMinor16,
+  error: CloseMinor16
 }
 
 interface Props extends PropsWithChildren<{}> {

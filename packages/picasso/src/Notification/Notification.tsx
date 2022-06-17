@@ -4,7 +4,7 @@ import React, {
   MouseEvent,
   ReactElement,
   cloneElement,
-  HTMLAttributes,
+  HTMLAttributes
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import SnackbarContent from '@material-ui/core/SnackbarContent'
@@ -17,13 +17,12 @@ import {
   ExclamationSolid16,
   ExclamationSolid24,
   CheckSolid24,
-  Info24,
+  Info24
 } from '../Icon'
 import Container from '../Container'
 import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
 import Typography from '../Typography'
-import NotificationActions from '../NotificationActions'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
@@ -53,7 +52,7 @@ export type PublicProps = Omit<PrivateProps, 'elevated' | 'icon'>
 const renderNotificationCloseButton = ({
   onClose,
   classes,
-  testIds,
+  testIds
 }: PrivateProps) => (
   <ButtonCircular
     data-testid={testIds?.closeButton}
@@ -65,7 +64,7 @@ const renderNotificationCloseButton = ({
 
 const renderNotificationIcon = ({ icon, variant, classes }: PrivateProps) => {
   const iconProps = {
-    className: classes?.icon,
+    className: classes?.icon
   }
 
   // TODO: these are Icons required circular Icon bg color definitions, all Icons should be white on that color
@@ -125,7 +124,7 @@ const renderNotificationContent = (props: PrivateProps) => {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'Notification',
+  name: 'Notification'
 })
 
 export const Notification = forwardRef<HTMLElement, PrivateProps>(
@@ -148,7 +147,7 @@ export const Notification = forwardRef<HTMLElement, PrivateProps>(
           classes[`notification${capitalize(variant as string)}`],
           {
             [classes.notificationShadow]: elevated,
-            [classes.roundedBorders]: elevated,
+            [classes.roundedBorders]: elevated
           },
           classes.notification,
           className
@@ -156,7 +155,7 @@ export const Notification = forwardRef<HTMLElement, PrivateProps>(
         data-testid={dataTestId || testIds?.notification}
         message={renderNotificationContent({
           ...props,
-          classes,
+          classes
         })}
         ref={ref}
       />
@@ -166,9 +165,9 @@ export const Notification = forwardRef<HTMLElement, PrivateProps>(
 
 Notification.defaultProps = {
   elevated: false,
-  variant: 'yellow',
+  variant: 'yellow'
 }
 
 Notification.displayName = 'Notification'
 
-export default Object.assign(Notification, { Actions: NotificationActions })
+export default Notification

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Menu from '../Menu'
+import { MenuCompound as Menu } from '../MenuCompound'
 
 const NoOptionsMenuItem = ({ children, ...rest }: { children: string }) => (
   <Menu.Item titleCase={false} disabled {...rest}>

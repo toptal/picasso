@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import Menu from './Menu'
+import { MenuCompound as Menu } from '../MenuCompound'
 
 describe('Menu', () => {
   it('renders', () => {

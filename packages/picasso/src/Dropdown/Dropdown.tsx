@@ -20,7 +20,6 @@ import {
   StandardProps
 } from '@toptal/picasso-shared'
 
-import DropdownArrow from '../DropdownArrow'
 import Popper from '../Popper'
 import Paper from '../Paper'
 import styles from './styles'
@@ -59,13 +58,13 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   popperContainer?: HTMLElement
 }
 
-interface ContextProps {
+export interface ContextProps {
   close: () => void
 }
 
 const DropdownContext = React.createContext<ContextProps | null>(null)
 
-const useDropdownContext = () => {
+export const useDropdownContext = () => {
   const context = useContext(DropdownContext)
 
   if (!context) {
@@ -287,7 +286,4 @@ Dropdown.defaultProps = {
 
 Dropdown.displayName = 'Dropdown'
 
-export default Object.assign(Dropdown, {
-  Arrow: DropdownArrow,
-  useContext: useDropdownContext
-})
+export default Dropdown

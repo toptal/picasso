@@ -7,12 +7,12 @@ import { BaseProps } from '@toptal/picasso-shared'
 import { useBreakpoint } from '../utils'
 import UserBadge from '../UserBadge'
 import Avatar from '../Avatar'
-import Dropdown from '../Dropdown'
+import { DropdownCompound as Dropdown } from '../DropdownCompound'
 import Typography from '../Typography'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTopBarMenu',
+  name: 'PicassoTopBarMenu'
 })
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -50,7 +50,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
           classes={{
             root: classes.contentUserBadge,
             avatar: classes.avatar,
-            name: cx(classes.name, classes.truncateText),
+            name: cx(classes.name, classes.truncateText)
           }}
           name={name}
           avatar={avatar}
@@ -76,7 +76,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
         center
         size='xxsmall'
         classes={{
-          name: cx(classes.name, classes.truncateText),
+          name: cx(classes.name, classes.truncateText)
         }}
         name={name}
         avatar={avatar}
@@ -98,9 +98,9 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
           modifiers: {
             flip: { enabled: false },
             preventOverflow: {
-              padding: 0,
-            },
-          },
+              padding: 0
+            }
+          }
         }}
       >
         {trigger}

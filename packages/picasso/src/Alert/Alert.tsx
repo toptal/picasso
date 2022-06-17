@@ -3,7 +3,6 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Container, { VariantType as ContainerVariants } from '../Container'
-import AlertInline from '../AlertInline'
 import Typography from '../Typography'
 import ButtonCircular from '../ButtonCircular'
 import { CloseMinor16, Exclamation16, Done16, Info16 } from '../Icon'
@@ -38,11 +37,11 @@ const icons = {
   red: <Exclamation16 color='red' />,
   green: <Done16 color='dark-green' />,
   blue: <Info16 color='light-blue' />,
-  yellow: <Exclamation16 color='yellow' />,
+  yellow: <Exclamation16 color='yellow' />
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAlert',
+  name: 'PicassoAlert'
 })
 
 export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
@@ -83,11 +82,9 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
 })
 
 Alert.defaultProps = {
-  variant: 'yellow',
+  variant: 'yellow'
 }
 
 Alert.displayName = 'Alert'
 
-export default Object.assign(Alert, {
-  Inline: AlertInline,
-})
+export default Alert

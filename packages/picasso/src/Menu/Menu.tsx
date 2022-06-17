@@ -23,7 +23,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoMenu',
+  name: 'PicassoMenu'
 })
 
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
@@ -74,9 +74,9 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
 
 Menu.defaultProps = {
   variant: 'slide',
-  allowNestedNavigation: true,
+  allowNestedNavigation: true
 }
 
 Menu.displayName = 'Menu'
 
-export default Object.assign(Menu, { Item: MenuItem })
+export default Menu

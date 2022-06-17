@@ -3,12 +3,13 @@ import {
   render,
   fireEvent,
   RenderResult,
-  PicassoConfig,
+  PicassoConfig
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Checkbox, { Props } from './Checkbox'
+import { Props } from './Checkbox'
+import { CheckboxCompound as Checkbox } from '../CheckboxCompound'
 
 jest.mock('ap-style-title-case')
 
@@ -24,7 +25,7 @@ const renderCheckbox = (
     titleCase,
     indeterminate,
     onChange,
-    requiredDecoration,
+    requiredDecoration
   } = props
 
   return render(

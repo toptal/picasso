@@ -5,7 +5,8 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 import { TabProps } from '../Tab'
-import Tabs, { Props } from './Tabs'
+import { Props } from './Tabs'
+import { TabsCompound as Tabs } from '../TabsCompound'
 
 const renderTabContent = (tab: TabProps, index: number, value: any) => {
   const isTabActive = index + 1 === value || tab.value === value
@@ -50,7 +51,7 @@ describe('Tabs', () => {
     const { container, queryByTestId } = renderTabs(
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
       {
-        value: false,
+        value: false
       }
     )
 
@@ -64,7 +65,7 @@ describe('Tabs', () => {
     const { container, queryByTestId } = renderTabs(
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
       {
-        value: 1,
+        value: 1
       }
     )
 
@@ -78,10 +79,10 @@ describe('Tabs', () => {
     const { container, queryByTestId } = renderTabs(
       [
         { label: 'Tab 1', value: 'tab-1' },
-        { label: 'Tab 2', value: 'tab-2' },
+        { label: 'Tab 2', value: 'tab-2' }
       ],
       {
-        value: 'tab-1',
+        value: 'tab-1'
       }
     )
 
@@ -97,7 +98,7 @@ describe('Tabs', () => {
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
       {
         value: 1,
-        onChange,
+        onChange
       }
     )
 
@@ -111,7 +112,7 @@ describe('Tabs', () => {
       [{ label: 'Tab 1' }, { label: 'Tab 2', disabled: true }],
       {
         value: 1,
-        onChange,
+        onChange
       }
     )
 

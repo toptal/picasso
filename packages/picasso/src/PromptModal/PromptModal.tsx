@@ -3,7 +3,8 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Container from '../Container'
 import Typography from '../Typography'
-import Modal, { Props as ModalProps } from '../Modal'
+import { Props as ModalProps } from '../Modal'
+import { ModalCompound as Modal } from '../ModalCompound'
 import Button, { VariantType as ButtonVariantType } from '../Button'
 import styles from './styles'
 import { noop, useSafeState } from '../utils'
@@ -20,7 +21,7 @@ export type PromptOptions = {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPromptModal',
+  name: 'PicassoPromptModal'
 })
 
 export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
@@ -126,7 +127,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
               setLoading,
               loading,
               setError,
-              error,
+              error
             })}
           </Container>
         )}
@@ -159,7 +160,7 @@ PromptModal.defaultProps = {
   size: 'small',
   submitText: 'Submit',
   variant: 'positive',
-  onAfterSubmit: noop,
+  onAfterSubmit: noop
 }
 
 PromptModal.displayName = 'PromptModal'
