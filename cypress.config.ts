@@ -9,8 +9,12 @@ export default defineConfig({
   ...davinciConfig,
   component: {
     ...davinciConfig.component,
-    setupNodeEvents: on => {
+    setupNodeEvents: (on, config) => {
+      davinciConfig.component.setupNodeEvents(on, config)
+
       happoTask.register(on)
+
+      return config
     },
     specPattern: 'cypress/component/*.spec.tsx',
     devServer: {
