@@ -4,11 +4,11 @@ export type RequiredVariant = 'default' | 'asterisk'
 
 type ValidationOnSubmitConfig = {
   showValidState?: false
-  validateOnSubmit: true
+  validateOnSubmit?: true
 }
 
 type ShowValidStateConfig = {
-  showValidState: true
+  showValidState?: true
   validateOnSubmit?: false
 }
 
@@ -17,6 +17,7 @@ type NoValidationConfig = {
   validateOnSubmit?: false
 }
 
+// reason for different types is that we want to deny the user to set both showValidState and validateOnSubmit to true
 export type FormConfigProps = (
   | ValidationOnSubmitConfig
   | ShowValidStateConfig
