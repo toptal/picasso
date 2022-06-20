@@ -37,13 +37,9 @@ const createTreeNode = (
 }
 
 const createTree = (): TreeNodeInterface => {
-  return createTreeNode({
+  const node = createTreeNode({
     id: '1',
     selected: true,
-    selectedOffset: {
-      x: -200,
-      y: 400,
-    },
     info: {
       name: 'NODE+1',
     },
@@ -59,54 +55,6 @@ const createTree = (): TreeNodeInterface => {
             info: {
               name: 'NODE+3',
             },
-            children: [
-              createTreeNode({
-                id: '3.1',
-                info: {
-                  name: 'NODE+3.1',
-                },
-                children: [
-                  createTreeNode({
-                    id: '3.1.1',
-                    info: {
-                      name: 'NODE+3.1.1',
-                    },
-                  }),
-                  createTreeNode({
-                    id: '3.1.2',
-                    info: {
-                      name: 'NODE+3.1.2',
-                    },
-                  }),
-                ],
-              }),
-              createTreeNode({
-                id: '3.2',
-                info: {
-                  name: 'NODE+3.2',
-                },
-                children: [
-                  createTreeNode({
-                    id: '3.2.1',
-                    info: {
-                      name: 'NODE+3.2.1',
-                    },
-                  }),
-                  createTreeNode({
-                    id: '3.2.2',
-                    info: {
-                      name: 'NODE+3.2.2',
-                    },
-                  }),
-                  createTreeNode({
-                    id: '3.2.3',
-                    info: {
-                      name: 'NODE+3.2.3',
-                    },
-                  }),
-                ],
-              }),
-            ],
           }),
         ],
       }),
@@ -121,25 +69,31 @@ const createTree = (): TreeNodeInterface => {
             info: {
               name: 'NODE+4.1',
             },
-            children: [
-              createTreeNode({
-                id: '4.1.1',
-                info: {
-                  name: 'NODE+4.1.1',
-                },
-              }),
-              createTreeNode({
-                id: '4.1.2',
-                info: {
-                  name: 'NODE+4.1.2',
-                },
-              }),
-            ],
+          }),
+          createTreeNode({
+            id: '4.2',
+            info: {
+              name: 'NODE+4.2',
+            },
+          }),
+          createTreeNode({
+            id: '4.3',
+            info: {
+              name: 'NODE+4.3',
+            },
           }),
         ],
       }),
     ],
   })
+
+  return {
+    ...node,
+    selectedOffset: {
+      x: 200,
+      y: 200,
+    },
+  }
 }
 
 const rootNode = createTree()
@@ -157,18 +111,6 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
                 src='./jacqueline-with-flowers-1954-square.jpg'
               />
             }
-          />
-          <UserBadge
-            name='QQQQQQQQ QQQQQQQQ'
-            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
-          />
-          <UserBadge
-            name='QQQQQQQQ QQQQQQQQ'
-            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
-          />
-          <UserBadge
-            name='QQQQQQQQ QQQQQQQQ'
-            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
           />
           <UserBadge
             name='QQQQQQQQ QQQQQQQQ'
@@ -192,8 +134,8 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
 }
 
 const Example = () => (
-  <Container style={{ height: '40em' }}>
-    <TreeView data={rootNode} renderNode={renderNode} initialScale={0.6} />
+  <Container style={{ height: '30em' }}>
+    <TreeView data={rootNode} renderNode={renderNode} initialScale={0.8} />
   </Container>
 )
 
