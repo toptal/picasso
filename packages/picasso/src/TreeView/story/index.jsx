@@ -34,9 +34,11 @@ page
   })
   .addExample('TreeView/story/Horizontal.example.tsx', {
     title: 'Horizontal Direction',
+    takeScreenshot: false, // Already covered by StaticTreeView
   })
   .addExample('TreeView/story/Compact.example.tsx', {
     title: 'Compact tree',
+    takeScreenshot: false, // Already covered by StaticTreeView
     description:
       'Example of a compact tree - one with only single node on each depth that has children',
   })
