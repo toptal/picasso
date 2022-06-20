@@ -52,84 +52,12 @@ const createTree = (): TreeNodeInterface => {
         info: {
           name: 'NODE+2',
         },
-        children: [
-          createTreeNode({
-            id: '3',
-            info: {
-              name: 'NODE+3',
-            },
-            children: [
-              createTreeNode({
-                id: '3.1',
-                info: {
-                  name: 'NODE+3.1',
-                },
-                children: [
-                  createTreeNode({
-                    id: '3.1.1',
-                    info: {
-                      name: 'NODE+3.1.1',
-                    },
-                  }),
-                  createTreeNode({
-                    id: '3.1.2',
-                    info: {
-                      name: 'NODE+3.1.2',
-                    },
-                  }),
-                ],
-              }),
-              createTreeNode({
-                id: '3.2',
-                info: {
-                  name: 'NODE+3.2',
-                },
-                children: [
-                  createTreeNode({
-                    id: '3.2.1',
-                    info: {
-                      name: 'NODE+3.2.1',
-                    },
-                  }),
-                  createTreeNode({
-                    id: '3.2.2',
-                    info: {
-                      name: 'NODE+3.2.2',
-                    },
-                  }),
-                ],
-              }),
-            ],
-          }),
-        ],
       }),
       createTreeNode({
         id: '4',
         info: {
           name: 'NODE+4',
         },
-        children: [
-          createTreeNode({
-            id: '4.1',
-            info: {
-              name: 'NODE+4.1',
-            },
-            children: [
-              createTreeNode({
-                id: '4.1.1',
-                info: {
-                  name: 'NODE+4.1.1',
-                },
-              }),
-              createTreeNode({
-                id: '4.1.2',
-                info: {
-                  name: 'NODE+4.1.2',
-                },
-              }),
-            ],
-          }),
-        ],
       }),
     ],
   })
@@ -138,40 +66,6 @@ const createTree = (): TreeNodeInterface => {
 const rootNode = createTree()
 
 const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
-  if (pointNode.data.id === '2') {
-    return (
-      <NodeContainer>
-        <div>
-          <UserBadge
-            name='QQQQQQQQ QQQQQQQQ'
-            avatar={
-              <TreeNodeAvatar
-                name='QQQQQQQQ QQQQQQQQ'
-                src='./jacqueline-with-flowers-1954-square.jpg'
-              />
-            }
-          />
-          <UserBadge
-            name='QQQQQQQQ QQQQQQQQ'
-            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
-          />
-          <UserBadge
-            name='QQQQQQQQ QQQQQQQQ'
-            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
-          />
-          <UserBadge
-            name='QQQQQQQQ QQQQQQQQ'
-            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
-          />
-          <UserBadge
-            name='QQQQQQQQ QQQQQQQQ'
-            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
-          />
-        </div>
-      </NodeContainer>
-    )
-  }
-
   return (
     <NodeContainer>
       <UserBadge
@@ -220,9 +114,11 @@ describe('TreeView', () => {
 
     cy.getByTestId('open').as('open-modal-button').realClick()
 
-    cy.getByTestId('tree-dialog-content')
-      .as('dialog-tree')
-      .should('be.visible')
-      .happoScreenshot({ component, variant: 'with-modal/after-modal-opened' })
+    cy.getByTestId('tree-dialog-content').as('dialog-tree').should('be.visible')
+
+    cy.getByRole('presentation').happoScreenshot({
+      component,
+      variant: 'with-modal/after-modal-opened',
+    })
   })
 })
