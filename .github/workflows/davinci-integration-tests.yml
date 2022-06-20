@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - uses: toptal/davinci-github-actions/yarn-install@v3.0.2
 
@@ -52,7 +52,7 @@ jobs:
       PARALLEL_GROUPS: ${{ strategy.job-total }}
     steps:
       - name: Checkout project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -74,7 +74,7 @@ jobs:
     needs: [ integration-tests ]
     steps:
       - name: Checkout project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - uses: toptal/davinci-github-actions/yarn-install@v3.0.2
 
