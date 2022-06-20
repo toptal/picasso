@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/shared'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Input, { Props } from './Input'
 import Search16 from '../Icon/Search16'
