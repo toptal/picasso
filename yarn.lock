@@ -5382,7 +5382,7 @@
     ora "^5.4.1"
     remark "^13.0.0"
 
-"@toptal/davinci@^18.1.0":
+"@toptal/davinci@^18.1.2":
   version "18.1.4"
   resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-18.1.4.tgz#87d268f168d69b5df4cf7ee9b366357e2ff14f6c"
   integrity sha512-zskPoEOoYdx1HMg2WISsAF0Tr7VWlVDJzw1VLMG8VeY1KM1AgI0inGAlwMo+TZUVVgFKfQo4jlh3vOSV0Xn+XA==
