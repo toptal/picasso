@@ -108,7 +108,7 @@ describe('Link', () => {
         </Typography>
       )
 
-      cy.get('[data-testid="link"]')
+      cy.getByTestId('link')
         .realHover()
         .should(
           'have.css',
@@ -128,7 +128,7 @@ describe('Link', () => {
         </Typography>
       )
 
-      cy.get('[data-testid="link"]')
+      cy.getByTestId('link')
         .realHover()
         .should(
           'have.css',
@@ -148,7 +148,7 @@ describe('Link', () => {
         </Typography>
       )
 
-      cy.get('[data-testid="link"]')
+      cy.getByTestId('link')
         .realHover()
         .should('have.css', 'text-decoration', 'none solid rgb(32, 78, 207)')
     })
@@ -164,7 +164,7 @@ describe('Link', () => {
         </Typography>
       )
 
-      cy.get('[data-testid="link"]')
+      cy.getByTestId('link')
         .realHover()
         .should('have.css', 'text-decoration', 'none solid rgb(32, 78, 207)')
     })
@@ -183,13 +183,9 @@ describe('Link', () => {
         </>
       )
 
-      cy.get('[data-testid="blue-link"]').should(
-        'have.css',
-        'color',
-        PURPLE_MAIN
-      )
+      cy.getByTestId('blue-link').should('have.css', 'color', PURPLE_MAIN)
 
-      cy.get('[data-testid="white-link"]').should('have.css', 'color', GREY)
+      cy.getByTestId('white-link').should('have.css', 'color', GREY)
     })
   })
 })

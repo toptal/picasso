@@ -48,39 +48,39 @@ const component = 'Menu'
 describe('Menu', () => {
   it('navigates slide menu', () => {
     cy.mount(<MenuExample />)
-    cy.get('[data-testid="menu-b"]').should('not.exist')
+    cy.getByTestId('menu-b').should('not.exist')
     cy.get(`[data-testid="${testIds.menuItem}"]`).should('not.exist')
     cy.get('body').happoScreenshot({
       component,
       variant: 'slide-menu',
     })
 
-    cy.get('[data-testid="item-b"]').click()
-    cy.get('[data-testid="menu-b"]').should('be.visible')
-    cy.get('[data-testid="menu-b1"]').should('not.exist')
+    cy.getByTestId('item-b').click()
+    cy.getByTestId('menu-b').should('be.visible')
+    cy.getByTestId('menu-b1').should('not.exist')
     cy.get('body').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-item-to-open-sub-menu',
     })
 
-    cy.get('[data-testid="item-b1"]').click()
-    cy.get('[data-testid="menu-b1"]').should('be.visible')
-    cy.get('[data-testid="menu-b2"]').should('not.exist')
+    cy.getByTestId('item-b1').click()
+    cy.getByTestId('menu-b1').should('be.visible')
+    cy.getByTestId('menu-b2').should('not.exist')
     cy.get('body').click().happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-item-to-open-another-sub-menu',
     })
 
     cy.get(`[data-testid="${testIds.menuItem}"`).last().click()
-    cy.get('[data-testid="menu-b"]').should('be.visible')
-    cy.get('[data-testid="menu-b1"]').should('not.exist')
+    cy.getByTestId('menu-b').should('be.visible')
+    cy.getByTestId('menu-b1').should('not.exist')
     cy.get('body').click().happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-back-to-prev-sub-menu',
     })
 
     cy.get(`[data-testid="${testIds.menuItem}"`).click()
-    cy.get('[data-testid="menu-b"]').should('not.exist')
+    cy.getByTestId('menu-b').should('not.exist')
     cy.get(`[data-testid="${testIds.menuItem}"]`).should('not.exist')
     cy.get('body').happoScreenshot({
       component,
@@ -90,23 +90,23 @@ describe('Menu', () => {
 
   it('navigates drilldown menu', () => {
     cy.mount(<MenuExample variant='drilldown' />)
-    cy.get('[data-testid="menu-b"]').should('not.exist')
+    cy.getByTestId('menu-b').should('not.exist')
     cy.get('body').happoScreenshot()
 
-    cy.get('[data-testid="item-b"]').trigger('mouseover')
-    cy.get('[data-testid="menu-b"]').should('be.visible')
-    cy.get('[data-testid="menu-b1"]').should('not.exist')
+    cy.getByTestId('item-b').trigger('mouseover')
+    cy.getByTestId('menu-b').should('be.visible')
+    cy.getByTestId('menu-b1').should('not.exist')
     cy.get('body').happoScreenshot()
 
-    cy.get('[data-testid="item-b1"]').trigger('mouseover')
-    cy.get('[data-testid="menu-b"]').should('be.visible')
-    cy.get('[data-testid="menu-b1"]').should('be.visible')
+    cy.getByTestId('item-b1').trigger('mouseover')
+    cy.getByTestId('menu-b').should('be.visible')
+    cy.getByTestId('menu-b1').should('be.visible')
     cy.get('body').happoScreenshot()
 
-    cy.get('[data-testid="menu-b1"]').trigger('mouseout')
-    cy.get('[data-testid="item-b"]').trigger('mouseover')
-    cy.get('[data-testid="menu-b"]').should('be.visible')
-    cy.get('[data-testid="menu-b1"]').should('not.exist')
+    cy.getByTestId('menu-b1').trigger('mouseout')
+    cy.getByTestId('item-b').trigger('mouseover')
+    cy.getByTestId('menu-b').should('be.visible')
+    cy.getByTestId('menu-b1').should('not.exist')
     cy.get('body').happoScreenshot()
   })
 })
