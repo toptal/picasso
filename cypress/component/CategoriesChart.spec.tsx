@@ -1,5 +1,5 @@
 import React from 'react'
-import { CategoriesChart, DataItem } from '@toptal/topkit-analytics-charts'
+import { CategoriesChart, DataItem } from '@topkit/analytics-charts'
 
 const TestCategoriesChart = () => (
   <div style={{ width: 720 }}>

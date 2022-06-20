@@ -1,11 +1,19 @@
 import React from 'react'
 import { Container, Radio, Tooltip } from '@toptal/picasso'
 
-const RadioTooltipExample = () => {
+const RadioExample = () => {
+  return (
+    <Container padded='medium'>
+      <Radio label='Radio 1' value='radio1' data-testid='trigger' />
+    </Container>
+  )
+}
+
+const RadioWithTooltipExample = () => {
   const tooltipContent = <span data-testid='tooltip-content'>Content</span>
 
   return (
-    <Container style={{ marginTop: '200px', marginLeft: '200px' }}>
+    <Container padded='medium'>
       <Tooltip content={tooltipContent}>
         <Radio label='Radio 1' value='radio1' data-testid='trigger' />
       </Tooltip>
@@ -13,11 +21,11 @@ const RadioTooltipExample = () => {
   )
 }
 
-const DisabledRadioTooltipExample = () => {
+const DisabledRadioWithTooltipExample = () => {
   const tooltipContent = <span data-testid='tooltip-content'>Content</span>
 
   return (
-    <Container style={{ marginTop: '200px', marginLeft: '200px' }}>
+    <Container padded='medium'>
       <Tooltip content={tooltipContent}>
         <Container as='span'>
           <Radio
@@ -32,20 +40,36 @@ const DisabledRadioTooltipExample = () => {
   )
 }
 
+const component = 'Radio'
+
 describe('Radio', () => {
+  it('renders Radio with hovered and focused state', () => {
+    cy.mount(<RadioExample />)
+
+    cy.getByTestId('trigger').hoverAndTakeHappoScreenshot({
+      component,
+      variant: 'default/after-hovered',
+    })
+
+    cy.get('input').focus().get('body').happoScreenshot({
+      component,
+      variant: 'default/after-focused',
+    })
+  })
+
   it('shows the tooltip when hover a radio button', () => {
-    cy.mount(<RadioTooltipExample />)
+    cy.mount(<RadioWithTooltipExample />)
 
     // hover the radio button itself (not the label)
-    cy.get('[data-testid="trigger"]').realHover()
-    cy.get('[data-testid="tooltip-content"]').should('be.visible')
+    cy.getByTestId('trigger').realHover()
+    cy.getByTestId('tooltip-content').should('be.visible')
   })
 
   it('shows the tooltip when hover a disabled radio button', () => {
-    cy.mount(<DisabledRadioTooltipExample />)
+    cy.mount(<DisabledRadioWithTooltipExample />)
 
     // hover the radio button itself (not the label)
-    cy.get('[data-testid="trigger"]').realHover()
-    cy.get('[data-testid="tooltip-content"]').should('be.visible')
+    cy.getByTestId('trigger').realHover()
+    cy.getByTestId('tooltip-content').should('be.visible')
   })
 })

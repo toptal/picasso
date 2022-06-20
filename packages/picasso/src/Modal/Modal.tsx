@@ -13,7 +13,6 @@ import {
   StandardProps,
   SizeType,
   TransitionProps,
-  isBrowser,
 } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 
@@ -168,33 +167,15 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     }
   }, [open, rootRef])
 
-  const bodyOverflow = useRef<string>(
-    // eslint-disable-next-line ssr-friendly/no-dom-globals-in-react-fc
-    isBrowser() ? document.body.style.overflow : 'inherit'
-  )
-
   useEffect(() => {
-    const resetBodyOverflow = () => {
-      document.body.style.overflow = bodyOverflow.current
-    }
-    const currentModal = modalId.current
+    const currentModalId = modalId.current
 
     if (open) {
-      // TODO: [FX-1069] to be improved as part of https://toptal-core.atlassian.net/browse/FX-1069
-      bodyOverflow.current = document.body.style.overflow
-      document.body.style.overflow = 'hidden'
-
-      defaultManager.add(currentModal)
-    } else {
-      resetBodyOverflow()
-
-      defaultManager.remove(currentModal)
+      defaultManager.add(currentModalId)
     }
 
     return () => {
-      resetBodyOverflow()
-
-      defaultManager.remove(currentModal)
+      defaultManager.remove(currentModalId)
     }
   }, [open])
 
