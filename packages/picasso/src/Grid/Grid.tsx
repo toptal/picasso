@@ -5,7 +5,7 @@ import MUIGrid, {
   GridItemsAlignment,
   GridDirection,
   GridJustification,
-  GridWrap
+  GridWrap,
 } from '@material-ui/core/Grid'
 import { BaseProps } from '@toptal/picasso-shared'
 
@@ -32,7 +32,7 @@ const humanToMUISpacing = (spacing: number) => {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoGrid'
+  name: 'PicassoGrid',
 })
 
 // eslint-disable-next-line react/display-name
@@ -77,7 +77,7 @@ Grid.defaultProps = {
   direction: 'row',
   justifyContent: 'flex-start',
   spacing: 32,
-  wrap: 'wrap'
+  wrap: 'wrap',
 }
 
 Grid.displayName = 'Grid'

@@ -21,7 +21,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'Tabs'
+  name: 'Tabs',
 })
 
 // eslint-disable-next-line react/display-name

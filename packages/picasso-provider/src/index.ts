@@ -15,7 +15,7 @@ export {
   typography,
   sizes,
   shadows,
-  PicassoBreakpoints
+  PicassoBreakpoints,
 } from './Picasso/config'
 
 export { default as PicassoProvider } from './Picasso/PicassoProvider'
@@ -26,11 +26,11 @@ export {
   useAppConfig,
   useDrawer,
   useSidebar,
-  RootContext
+  RootContext,
 } from './Picasso/RootContext'
 
 export {
   generateRandomString,
   generateRandomStringOrGetEmptyInTest,
-  getServersideStylesheets
+  getServersideStylesheets,
 } from './Picasso/utils'

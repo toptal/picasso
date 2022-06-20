@@ -6,5 +6,5 @@ import ModalTitle from '../ModalTitle'
 export const ModalCompound = Object.assign(Modal, {
   Content: ModalContent,
   Actions: ModalActions,
-  Title: ModalTitle
+  Title: ModalTitle,
 })

@@ -21,7 +21,7 @@ export type PromptOptions = {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPromptModal'
+  name: 'PicassoPromptModal',
 })
 
 export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
@@ -127,7 +127,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
               setLoading,
               loading,
               setError,
-              error
+              error,
             })}
           </Container>
         )}
@@ -160,7 +160,7 @@ PromptModal.defaultProps = {
   size: 'small',
   submitText: 'Submit',
   variant: 'positive',
-  onAfterSubmit: noop
+  onAfterSubmit: noop,
 }
 
 PromptModal.displayName = 'PromptModal'

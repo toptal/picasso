@@ -4,5 +4,5 @@ import DropdownArrow from '../DropdownArrow'
 
 export const DropdownCompound = Object.assign(Dropdown, {
   Arrow: DropdownArrow,
-  useContext: useDropdownContext
+  useContext: useDropdownContext,
 })

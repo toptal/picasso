@@ -4,7 +4,7 @@ import React, {
   HTMLAttributes,
   ReactElement,
   forwardRef,
-  useState
+  useState,
 } from 'react'
 import cx from 'classnames'
 import MUIAccordion from '@material-ui/core/Accordion'
@@ -20,11 +20,11 @@ import ButtonAction from '../ButtonAction'
 export type Borders = 'all' | 'middle' | 'none'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAccordion'
+  name: 'PicassoAccordion',
 })
 
 const EmptyAccordionSummary = ({
-  'data-testid': dataTestId
+  'data-testid': dataTestId,
 }: {
   'data-testid'?: string
 }) => <div data-testid={dataTestId} />
@@ -91,7 +91,7 @@ const decorateWithExpandIconClasses = (
   classes: string
 ) =>
   React.cloneElement(expandIcon, {
-    className: cx(expandIcon.props.className, classes)
+    className: cx(expandIcon.props.className, classes),
   })
 
 /* eslint-disable complexity */
@@ -119,7 +119,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   const borderClasses: { [key in Borders]: string } = {
     all: classes.bordersAll,
     middle: classes.bordersMiddle,
-    none: classes.bordersNone
+    none: classes.bordersNone,
   }
   const [summaryExpanded, setSummaryExpanded] = useState(defaultExpanded)
   const [prevExpanded, setPrevExpanded] = useState(defaultExpanded)
@@ -135,7 +135,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   }
 
   const expandIconClass = cx(classes.expandIcon, {
-    [classes.expandIconExpanded]: summaryExpanded
+    [classes.expandIconExpanded]: summaryExpanded,
   })
 
   const appliedBorders = children || expanded ? (borders as Borders) : 'none'
@@ -145,7 +145,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
       {...rest}
       ref={ref}
       classes={{
-        root: cx(classes.root, borderClasses[appliedBorders])
+        root: cx(classes.root, borderClasses[appliedBorders]),
       }}
       className={className}
       style={style}
@@ -159,7 +159,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
         <AccordionSummary
           classes={{
             root: classes.summary,
-            content: classes.content
+            content: classes.content,
           }}
           expandIcon={null}
           onClick={handleSummaryClick}
@@ -181,7 +181,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
       )}
       <AccordionDetails
         classes={{
-          root: classes.details
+          root: classes.details,
         }}
       >
         {content}
@@ -195,7 +195,7 @@ Accordion.defaultProps = {
   defaultExpanded: false,
   disabled: false,
   expanded: undefined,
-  onChange: () => {}
+  onChange: () => {},
 }
 
 Accordion.displayName = 'Accordion'

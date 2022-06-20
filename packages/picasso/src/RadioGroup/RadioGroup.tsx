@@ -28,7 +28,7 @@ export interface Props extends RadioGroupProps {
 // Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoRadioGroup',
-  index: -1
+  index: -1,
 })
 
 const RadioGroup = (props: Props) => {
@@ -65,7 +65,7 @@ const RadioGroup = (props: Props) => {
 }
 
 RadioGroup.defaultProps = {
-  horizontal: false
+  horizontal: false,
 }
 
 export default RadioGroup

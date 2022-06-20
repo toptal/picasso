@@ -34,7 +34,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAccountSelect'
+  name: 'PicassoAccountSelect',
 })
 
 export const AccountSelect = forwardRef<HTMLUListElement, Props>(
@@ -82,7 +82,7 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
 )
 
 AccountSelect.defaultProps = {
-  onSelect: () => {}
+  onSelect: () => {},
 }
 
 AccountSelect.displayName = 'AccountSelect'

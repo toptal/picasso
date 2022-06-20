@@ -5,7 +5,7 @@ import React, {
   useContext,
   useMemo,
   useRef,
-  useState
+  useState,
 } from 'react'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
@@ -17,7 +17,7 @@ import cx from 'classnames'
 import {
   spacingToRem,
   SpacingType,
-  StandardProps
+  StandardProps,
 } from '@toptal/picasso-shared'
 
 import Popper from '../Popper'
@@ -77,7 +77,7 @@ export const useDropdownContext = () => {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoDropdown'
+  name: 'PicassoDropdown',
 })
 
 // eslint-disable-next-line react/display-name
@@ -191,14 +191,14 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
         ...(offset.top && { marginTop: spacingToRem(offset.top) }),
         ...(offset.bottom && { marginBottom: spacingToRem(offset.bottom) }),
         ...(offset.left && { marginLeft: spacingToRem(offset.left) }),
-        ...(offset.right && { marginRight: spacingToRem(offset.right) })
+        ...(offset.right && { marginRight: spacingToRem(offset.right) }),
       }
     }
   }, [offset])
 
   // here you can expose other methods, states to child components
   const context = {
-    close: () => forceClose()
+    close: () => forceClose(),
   }
 
   const handleClickAway = (event: React.MouseEvent<Document>) => {
@@ -237,7 +237,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
             flipped: true -> flipped: false -> flipped: true -> ...
             */
             modifiers: { flip: { enabled: contentOverflow !== 'visible' } },
-            ...popperOptions
+            ...popperOptions,
           }}
           placement={placement}
           style={paperMargins}
@@ -255,7 +255,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
               <Grow in={isOpen} appear>
                 <Paper
                   className={cx(classes.content, {
-                    [classes.contentVisible]: contentOverflow === 'visible'
+                    [classes.contentVisible]: contentOverflow === 'visible',
                   })}
                   onKeyDown={handleContentKeyDown}
                   elevation={2}
@@ -281,7 +281,7 @@ Dropdown.defaultProps = {
   onClose: noop,
   onOpen: noop,
   placement: 'bottom-end',
-  popperOptions: {}
+  popperOptions: {},
 }
 
 Dropdown.displayName = 'Dropdown'

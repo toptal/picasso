@@ -4,5 +4,5 @@ import OverviewBlockRow from '../OverviewBlockRow'
 
 export const OverviewBlockCompound = Object.assign(OverviewBlock, {
   Group: OverviewBlockGroup,
-  Row: OverviewBlockRow
+  Row: OverviewBlockRow,
 })

@@ -151,7 +151,7 @@ describe('ButtonSplit', () => {
     // click away
     fireEvent.click(
       screen.getByRole('menuitem', {
-        name: /first item/i
+        name: /first item/i,
       })
     )
 
@@ -189,7 +189,7 @@ describe('ButtonSplit', () => {
     // click away
     fireEvent.click(
       screen.getByRole('menuitem', {
-        name: /first item/i
+        name: /first item/i,
       })
     )
 

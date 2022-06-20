@@ -9,7 +9,7 @@ export type { AmountProps } from './Amount'
 export { default as Autocomplete } from './Autocomplete'
 export type {
   AutocompleteProps,
-  Item as AutocompleteItem
+  Item as AutocompleteItem,
 } from './Autocomplete'
 export { AvatarCompound as Avatar } from './AvatarCompound'
 export type { AvatarProps } from './Avatar'
@@ -89,13 +89,13 @@ export type { RadioGroupProps } from './RadioGroup'
 export { default as RichTextEditor } from './RichTextEditor'
 export type {
   RichTextEditorProps,
-  RichTextEditorChangeHandler
+  RichTextEditorChangeHandler,
 } from './RichTextEditor'
 export { default as Select } from './Select'
 export type { SelectProps } from './Select'
 export type {
   Option as SelectOption,
-  ValueType as SelectValueType
+  ValueType as SelectValueType,
 } from './SelectBase'
 export type { PageSidebarProps } from './PageSidebar'
 export { default as Slider } from './Slider'
@@ -136,7 +136,7 @@ export {
   default as TreeView,
   TreeViewContainer,
   useTreeView,
-  TreeNodeAvatar
+  TreeNodeAvatar,
 } from './TreeView'
 export type { TreeNodeInterface } from './TreeView'
 export { default as StaticTreeView } from './StaticTreeView'
@@ -159,13 +159,13 @@ export {
   default as DatePicker,
   datePickerParseDateString,
   DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
-  DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT
+  DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
 } from './DatePicker'
 export type {
   DatePickerValue,
   DatePickerInputCustomValueParser,
   DatePickerInputCustomValueParserParameters,
-  DatePickerProps
+  DatePickerProps,
 } from './DatePicker'
 export { default as Drawer } from './Drawer'
 export type { DrawerProps } from './Drawer'
@@ -175,7 +175,7 @@ export type {
   FileUpload as DropzoneFileUpload,
   FileError as DropzoneFileError,
   FileRejection as DropzoneFileRejection,
-  DropEvent as DropzoneDropEvent
+  DropEvent as DropzoneDropEvent,
 } from './Dropzone'
 export { OverviewBlockCompound as OverviewBlock } from './OverviewBlockCompound'
 export type { OverviewBlockProps } from './OverviewBlock'
@@ -195,7 +195,7 @@ export type { PasswordInputProps } from './PasswordInput'
 export { default as FieldRequirements } from './FieldRequirements'
 export type {
   FieldRequirementsProps,
-  FieldRequirement
+  FieldRequirement,
 } from './FieldRequirements'
 export type { Status as OutlinedInputStatus } from './OutlinedInput'
 

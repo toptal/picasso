@@ -51,7 +51,7 @@ describe('Tabs', () => {
     const { container, queryByTestId } = renderTabs(
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
       {
-        value: false
+        value: false,
       }
     )
 
@@ -65,7 +65,7 @@ describe('Tabs', () => {
     const { container, queryByTestId } = renderTabs(
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
       {
-        value: 1
+        value: 1,
       }
     )
 
@@ -79,10 +79,10 @@ describe('Tabs', () => {
     const { container, queryByTestId } = renderTabs(
       [
         { label: 'Tab 1', value: 'tab-1' },
-        { label: 'Tab 2', value: 'tab-2' }
+        { label: 'Tab 2', value: 'tab-2' },
       ],
       {
-        value: 'tab-1'
+        value: 'tab-1',
       }
     )
 
@@ -98,7 +98,7 @@ describe('Tabs', () => {
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
       {
         value: 1,
-        onChange
+        onChange,
       }
     )
 
@@ -112,7 +112,7 @@ describe('Tabs', () => {
       [{ label: 'Tab 1' }, { label: 'Tab 2', disabled: true }],
       {
         value: 1,
-        onChange
+        onChange,
       }
     )
 

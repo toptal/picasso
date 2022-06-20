@@ -19,7 +19,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoHelpbox'
+  name: 'PicassoHelpbox',
 })
 
 // eslint-disable-next-line react/display-name

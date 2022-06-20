@@ -3,7 +3,7 @@ import {
   render,
   fireEvent,
   RenderResult,
-  PicassoConfig
+  PicassoConfig,
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
@@ -25,7 +25,7 @@ const renderCheckbox = (
     titleCase,
     indeterminate,
     onChange,
-    requiredDecoration
+    requiredDecoration,
   } = props
 
   return render(

@@ -14,7 +14,7 @@ const TestFormLabel = ({
   disabled,
   titleCase,
   htmlFor,
-  inline
+  inline,
 }: OmitInternalProps<Props>) => {
   return (
     <Form>
@@ -75,7 +75,7 @@ describe('FormLabel', () => {
     const TEXT_CONTENT = 'Test kb8'
 
     render(<TestFormLabel>{TEXT_CONTENT}</TestFormLabel>, undefined, {
-      titleCase: true
+      titleCase: true,
     })
 
     expect(spiedOnTitleCase).toHaveBeenCalledWith(TEXT_CONTENT)

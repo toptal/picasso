@@ -2,7 +2,7 @@ import React, {
   forwardRef,
   FormEventHandler,
   ReactNode,
-  FormHTMLAttributes
+  FormHTMLAttributes,
 } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 

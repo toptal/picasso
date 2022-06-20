@@ -2,7 +2,7 @@ import React, {
   ReactElement,
   ReactNode,
   LabelHTMLAttributes,
-  forwardRef
+  forwardRef,
 } from 'react'
 import { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -32,7 +32,7 @@ export interface Props
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoFormControlLabel'
+  name: 'PicassoFormControlLabel',
 })
 
 const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
@@ -60,7 +60,7 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
         className={cx(
           classes.root,
           {
-            [classes.disabled]: disabled
+            [classes.disabled]: disabled,
           },
           className
         )}

@@ -8,5 +8,5 @@ export const FormCompound = Object.assign(Form, {
   Field: FormField,
   Hint: FormHint,
   Error: FormError,
-  Label: FormLabel
+  Label: FormLabel,
 })

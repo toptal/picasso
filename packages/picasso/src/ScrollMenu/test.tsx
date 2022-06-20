@@ -15,7 +15,7 @@ const createRect = (opts: Partial<DOMRect>) => {
     width: 0,
     height: 0,
     toJSON: () => {},
-    ...opts
+    ...opts,
   }
 }
 
