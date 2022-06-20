@@ -28,16 +28,7 @@ page
   .createChapter()
   .addExample('Radio/story/Default.example.tsx', {
     title: 'Default',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.hover('[data-testid="trigger"]')
-      await makeScreenshot()
-
-      // Move mouse out not to combine hover and focus
-      await testPage.mouse.move(0, 0)
-
-      await testPage.keyboard.press('Tab')
-      await makeScreenshot()
-    },
+    takeScreenshot: false,
   })
   .addExample('Radio/story/Checked.example.tsx', 'Checked')
   .addExample('Radio/story/Disabled.example.tsx', 'Disabled')
