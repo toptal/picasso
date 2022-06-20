@@ -7,7 +7,7 @@ const chapter = PicassoBook.connectToPage(page =>
     .addExample('ButtonAction/story/Default.example.tsx', 'Default')
     .addExample('ButtonAction/story/States.example.tsx', 'States')
     .addExample(
-      'ButtonAction/story/StatesCustomBackground.example.tsx',
+      'ButtonAction/story/CustomBackground.example.tsx',
       'Custom Background'
     )
 )
