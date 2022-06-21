@@ -11,7 +11,6 @@ const chapter = PicassoBook.connectToPage(page =>
     .createChapter('SkeletonLoader.Header')
     .addExample('HeaderLoader/story/Default.example.tsx', {
       id: 'HeaderLoader',
-      waitUntilImagesLoaded: true,
       takeScreenshot: false,
     })
 )
