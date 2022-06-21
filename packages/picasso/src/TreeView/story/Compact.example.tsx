@@ -44,7 +44,7 @@ const getId = () => {
 }
 
 const createTree = (): TreeNodeInterface => {
-  const node = createTreeNode({
+  return createTreeNode({
     id: getId(),
     selected: true,
     info: {
@@ -100,13 +100,6 @@ const createTree = (): TreeNodeInterface => {
       }),
     ],
   })
-
-  return {
-    ...node,
-    selectedOffset: {
-      x: 500,
-    },
-  }
 }
 
 const rootNode = createTree()
@@ -125,11 +118,11 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
 }
 
 const Example = () => (
-  <Container style={{ height: '55em' }}>
+  <Container style={{ height: '25em' }}>
     <TreeView
       data={rootNode}
       renderNode={renderNode}
-      initialScale={0.7}
+      initialScale={0.8}
       directionProps={{
         verticalMargin: 20,
         horizontalMargin: 200,

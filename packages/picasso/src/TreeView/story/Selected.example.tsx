@@ -225,14 +225,11 @@ const Example = () => {
   }
 
   return (
-    <Container style={{ height: '55em' }}>
+    <Container style={{ height: '25em' }}>
       <Button size='small' onClick={() => setSelectedId(null)}>
         Reset selection
       </Button>
-      <TreeView
-        data={{ ...rootNode, selectedOffset: { y: 350 } }}
-        renderNode={renderNode}
-      />
+      <TreeView data={rootNode} renderNode={renderNode} initialScale={0.5} />
     </Container>
   )
 }
