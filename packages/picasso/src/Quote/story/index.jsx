@@ -16,7 +16,4 @@ page
   .createTabChapter('Props')
   .addComponentDocs({ component: Quote, name: 'Quote' })
 
-page.createChapter().addExample('Quote/story/Default.example.tsx', {
-  title: 'Default',
-  takeScreenshot: true,
-})
+page.createChapter().addExample('Quote/story/Default.example.tsx', 'Default')

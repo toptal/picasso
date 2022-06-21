@@ -12,27 +12,9 @@ page
 
 page
   .createChapter()
-  .addExample('UserBadge/story/Default.example.tsx', {
-    title: 'Default',
-    waitUntilImagesLoaded: true,
-  })
-  .addExample('UserBadge/story/Sizes.example.tsx', {
-    title: 'Sizes',
-    waitUntilImagesLoaded: true,
-  })
-  .addExample('UserBadge/story/Alignment.example.tsx', {
-    title: 'Alignment',
-    waitUntilImagesLoaded: true,
-  })
-  .addExample('UserBadge/story/Invert.example.tsx', {
-    title: 'Invert',
-    waitUntilImagesLoaded: true,
-  })
-  .addExample('UserBadge/story/Custom.example.tsx', {
-    title: 'Custom',
-    waitUntilImagesLoaded: true,
-  })
-  .addExample('UserBadge/story/Title.example.tsx', {
-    title: 'With Title',
-    waitUntilImagesLoaded: true,
-  })
+  .addExample('UserBadge/story/Default.example.tsx', 'Default')
+  .addExample('UserBadge/story/Sizes.example.tsx', 'Sizes')
+  .addExample('UserBadge/story/Alignment.example.tsx', 'Alignment')
+  .addExample('UserBadge/story/Invert.example.tsx', 'Invert')
+  .addExample('UserBadge/story/Custom.example.tsx', 'Custom')
+  .addExample('UserBadge/story/Title.example.tsx', 'With Title')

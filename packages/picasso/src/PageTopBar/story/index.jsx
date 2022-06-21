@@ -8,18 +8,12 @@ const chapter = PicassoBook.connectToPage(page =>
     .createChapter('Page.TopBar', 'A PageTopBar component')
     .addExample('PageTopBar/story/Default.example.tsx', 'Default')
     .addExample('PageTopBar/story/Variants.example.tsx', 'Variants')
-    .addExample('PageTopBar/story/LeftContent.example.tsx', {
-      title: 'Left content',
-      waitUntilImagesLoaded: true,
-    })
-    .addExample('PageTopBar/story/RightContent.example.tsx', {
-      title: 'Right content',
-      waitUntilImagesLoaded: true,
-    })
-    .addExample('PageTopBar/story/ExtraMenuContent.example.tsx', {
-      title: 'Extra header menu content',
-      waitUntilImagesLoaded: true,
-    })
+    .addExample('PageTopBar/story/LeftContent.example.tsx', 'Left content')
+    .addExample('PageTopBar/story/RightContent.example.tsx', 'Right content')
+    .addExample(
+      'PageTopBar/story/ExtraMenuContent.example.tsx',
+      'Extra header menu content'
+    )
     .addExample('PageTopBar/story/Link.example.tsx', 'With link')
     .addExample('PageTopBar/story/WithoutTitle.example.tsx', 'Without title')
     .addExample('PageTopBar/story/Logo.example.tsx', 'With custom logo')

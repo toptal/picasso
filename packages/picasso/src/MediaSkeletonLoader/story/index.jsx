@@ -55,7 +55,6 @@ const chapter = PicassoBook.connectToPage(page =>
     .createChapter('SkeletonLoader.Media')
     .addExample('MediaSkeletonLoader/story/Default.example.tsx', {
       id: 'MediaSkeletonLoader',
-      waitUntilImagesLoaded: true,
       takeScreenshot: false,
     })
 )
