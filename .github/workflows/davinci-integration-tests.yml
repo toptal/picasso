@@ -7,8 +7,6 @@ on:
         required: true
       NPM_TOKEN:
         required: true
-      HAPPO_PROJECT:
-        required: true
       HAPPO_API_KEY:
         required: true
       HAPPO_API_SECRET:
