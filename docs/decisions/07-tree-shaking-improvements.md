@@ -2,16 +2,16 @@
 
 ## Problem
 
-Currently there are a few solutions used in Picasso that prevent webpack from succesfully tree-shake unused modules.
+Currently there are a few solutions used in Picasso that prevent Webpack from succesfully tree-shaking the unused modules.
 
 1. Compound components (and their unofficial siblings)
-2. Picasso provider utilities (Favicon, NotificationsProvider, FixViewport)
+2. Picasso provider utilities (Favicon, NotificationsProvider, FixViewport, LoadFonts)
 
 Let me explain each of them in more detail
 
 ### 1. Compound components
 
-It is a technique that is used in quite a few components in Picasso. I am talking about:
+It is a technique that is used in quite a few components in Picasso (and industry). I am talking about:
 
 ```jsx
 import Button from '../Button'
@@ -38,6 +38,7 @@ Besides `Button` component there are these components that use this technique:
 - `Alert`
 - `Avatar`
 - `Breadcrumbs`
+- `Button`
 - `Checkbox`
 - `Dropdown`
 - `Grid`
@@ -55,6 +56,7 @@ Besides `Button` component there are these components that use this technique:
 - `TagSelector`
 - `Form`
 - `Tag`
+- + the whole `Form` from '@toptal/picasso-forms`
 
 **Why is this a problem?**
 
@@ -86,7 +88,7 @@ import Checkbox from '../ButtonCheckbox'
 import Radio from '../ButtonRadio'
 
 // All the imports are used in the Object.assign expression
-// This cannot be staticly assessed
+// This cannot be statically assessed
 export const ButtonCompound = Object.assign(Button, {
   Group,
   Circular,
@@ -112,11 +114,9 @@ const ComponentWithButton = () => {
 
 See also: https://blog.logrocket.com/tree-shaking-and-code-splitting-in-webpack/
 
-This article suggests using the static object as an export. I tried it, but it didn't work in my setup.
-
 ### Picasso provider utilities
 
-There are three utilities that pack some dependencies:
+There are four utilities that could be composed, three of them pack extra dependencies:
 
 - `FixViewport` packs `react-helmet`
 - `Favicon` packs `react-helmet`
@@ -125,8 +125,7 @@ There are three utilities that pack some dependencies:
 Currently the way these utilities are enabled/disabled doesn't allow for tree-shaking:
 
 ```jsx
-const Picasso = ({}: // ...
-PicassoProps) => {
+const Picasso = ({}: PicassoProps) => {
   // ...
   return (
     <StylesProvider
@@ -140,14 +139,11 @@ PicassoProps) => {
           titleCase={titleCase}
           disableTransitions={disableTransitions}
         >
-          {fixViewport && <Viewport />}{' '}
-          {/* <-- this means that webpack can't statically determine whether Viewport is used or not */}
+          {fixViewport && <Viewport />}{/* <-- this means that webpack can't statically determine whether Viewport is used or not */}
           {loadFonts && <FontsLoader />}
           {reset && <CssBaseline />}
           {loadFavicon && <Favicon environment={environment} />} {/* <-- same here. To webpack Favicon should be bundled */}
-          <NotificationsProvider container={notificationContainer}>
-            {' '}
-            {/* <-- same here */}
+          <NotificationsProvider container={notificationContainer}>{/* <-- same here */}
             {children}
           </NotificationsProvider>
         </PicassoGlobalStylesProvider>
@@ -163,12 +159,11 @@ Assuming the app doesn't need those, that's extra 70kb of parsed JS bundled.
 
 ### Compound components
 
-There are 2 possible ways. Neither are quite elegant.
+There are 3 possible ways. Neither are quite elegant.
 
-1. In addition to Compound components export the original components as well. So that if I want I can import separate components.
+1. In addition to Compound components export the original components as well. So that if I want I can import separate components from root of `@toptal/picasso`.
 
-I am not sure about exact implementation. This should be discussed. Right now in this RFC PR I've used a `TS` prefix.
-This is of course not usable for production.
+For the sake of demostration in this RFC PR I've used a `TS` prefix.
 
 ```jsx
 // ...
@@ -192,7 +187,9 @@ export { default as TSPageSidebarLogo } from './SidebarLogo'
 // ...
 ```
 
-2. Export a static object with necessary components -- This one doesn't work for me. Check out the research section
+2. Export a static object with necessary components.
+
+[UPDATE] I couldn't make this solution work as expected in my setup.
 
 ```jsx
 // ./src/PageCompound/page-object.ts
@@ -222,14 +219,79 @@ export const PageObject = {
 }
 ```
 
+3. [CHOSEN SOLUTION] Standardize `CompoundComponent` usage
+
+Right now only a few components (6/20 I believe) used a separate `Compound` component for grouping. The rest of compound components were grouped in the parent component (`FormLabel`, `FormField` were grouped in `Form`). This meant that there is no safe way to only import `Form`.
+
+The proposal is to standardise `CompoundComponent` technique across all grouped components. This will not introduce a change to the API while allowing users of the library to fine tune their import to allow for better tree-shaking.
+
+[IMPORTANT] This is not recommended and is a workaround, but it might help shaving some bytes off.
+
+```tsx
+import Button from '@toptal/picasso/Button` // - will only import Button, not CompoundButton
+```
+
+If this is important you can use this `eslint` rule to help you remember:
+
+```js
+// eslintrc.js
+
+const PicassoNonTreeshakeables = [
+  'Accordion',
+  'Alert',
+  'Avatar',
+  'Breadcrumbs',
+  'Button',
+  'Checkbox',
+  'Dropdown',
+  'Grid',
+  'Helpbox',
+  'Menu',
+  'Modal',
+  'Note',
+  'Notification',
+  'OverviewBlock',
+  'Page',
+  'Radio',
+  'Stepper',
+  'Tabs',
+  'Table',
+  'TagSelector',
+  'Form',
+  'Tag'
+]
+
+module.exports = {
+  // ... the rest of the eslint config
+  'no-restricted-imports': [
+    'warn',
+    {
+      paths: [
+        {
+          name: '@toptal/picasso',
+          importNames: PicassoNonTreeshakeables,
+          message:
+            "If you are not using every component from Compound component, consider importing necessary components directly from '@toptal/picasso/Component'"
+        },
+        ...PicassoNonTreeshakeables.map(component => ({
+          name: `@toptal/picasso/${component}`,
+          importNames: [component],
+          message: 'Use default import instead'
+        }))
+      ]
+    }
+  ]
+}
+```
+
 ### Picasso provider utilities
 
-The main idea for improvements would be to give the control of including necessary utilities to the library user.
+The main idea for improvements would be to give the control of including necessary utilities to the library user. This can be achieved by creating a light version of `Picasso` and composing it ourselves.
 
 ```jsx
 // _app.tsx
 // Export these separately from separate files, so that Webpack can detect if their dependencies are unused
-import Picasso, { FixViewport, Favicon, NotificationsProvider } from '@toptal/picasso-provider'
+import { FixViewport, Favicon, NotificationsProvider, LoadFonts, PicassoLight } from '@toptal/picasso-provider'
 
 // ...
 
@@ -237,13 +299,14 @@ const App = () => {
   // ...
 
   return (
-    <Picasso loadFonts={false} disableClassNamePrefix>
+    <PicassoLight disableClassNamePrefix>
+      <LoadFonts />
       <FixViewport />
       <Favicon environment="production" />
       <NotificationsProvider>
         <Component {...pageProps} />
       </NotificationsProvider>
-    </Picasso>
+    </PicassoLight>
   )
 }
 ```
@@ -252,13 +315,24 @@ const App = () => {
 
 ### Compound components
 
-Most importantly this is a huge design change and is a breaking change.
-It wouldn't be straightforward to use any of suggested changes together with the current solution.
-Performance-wise there are no drawbacks. It's strictly the way that components are exported
+**Solution three** was chosen so no change is introduced to the current component API.
+
+⚠️ However, if the user incorrectly imported the components prior to this change, they will need to address that.
+
+```tsx
+import Button from '@toptal/picasso/Button`
+
+const Component = () => {
+  return <Button.Circular /> {'<-- will now fail'}
+}
+
+**Solution one** introduced API change and was not straighforward. Also, there would be a huge percent of users, who would not benefit from the change, but would have to rework their apps.
+
+**Solution two** didn't work in targeted environment
 
 ### Picasso provider utilities
 
-Same as the other one. It's a breaking and design change. I'd probably say that this API is less user-friendly, it's always easier to just pass a prop.
+This one doesn't affect anyone in anyway. This is an added feature.
 
 ## Alternatives
 
@@ -271,3 +345,5 @@ I've done the research here: [this PR](https://github.com/toptal/sat-1985--rfc-p
 It's done using our tech stack template: next.js + Picasso + SSR
 
 I've tried implementing the object option that was mentioned in the article but couldn't make it work. Possibly there is some tuning to be done to the webpack config
+
+Implementing and testing this change on 4 SAT projects brought the bundle size down by at least 5% and at most 12.5%.
