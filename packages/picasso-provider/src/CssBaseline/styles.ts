@@ -4,7 +4,7 @@ export default ({ palette }: Theme) =>
   createStyles({
     '@global': {
       html: {
-        boxSizing: 'initial',
+        boxSizing: 'border-box',
         '-webkit-font-smoothing': 'antialiased',
         '-moz-osx-font-smoothing': 'grayscale',
       },
