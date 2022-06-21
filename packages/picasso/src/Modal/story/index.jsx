@@ -42,7 +42,6 @@ component and manage the internal state there.
     takeScreenshot: false,
   })
   .addExample('Modal/story/Tooltips.example.tsx', {
-    // TODO title should be 1-2 words, title -> descripion
     title: 'Two tooltips on the page',
     takeScreenshot: false,
   })

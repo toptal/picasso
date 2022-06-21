@@ -26,11 +26,5 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('AccountSelect/story/Default.example.tsx', {
-    title: 'Default',
-    waitUntilImagesLoaded: true,
-  })
-  .addExample('AccountSelect/story/Page.example.tsx', {
-    title: 'Select Account Page',
-    waitUntilImagesLoaded: true,
-  })
+  .addExample('AccountSelect/story/Default.example.tsx', 'Default')
+  .addExample('AccountSelect/story/Page.example.tsx', 'Select Account Page')

@@ -74,10 +74,5 @@ page
   })
   .addExample('Tooltip/story/Dropdown.example.tsx', {
     title: 'Inside of a Dropdown',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[data-testid="trigger"]')
-
-      await makeScreenshot({ isFullScreen: true })
-    },
     takeScreenshot: false,
   })
