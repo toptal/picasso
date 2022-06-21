@@ -11,7 +11,6 @@ const chapter = PicassoBook.connectToPage(page =>
     .createChapter('EmptyState.Page')
     .addExample('EmptyStatePage/story/Default.example.tsx', {
       id: 'EmptyStatePage',
-      waitUntilImagesLoaded: true,
     })
 )
 

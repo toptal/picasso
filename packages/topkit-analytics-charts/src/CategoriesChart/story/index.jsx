@@ -58,4 +58,4 @@ page.createTabChapter('Props').addComponentDocs({
 page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
   title: 'Default',
   takeScreenshot: false,
-}) // picasso-skip-visuals
+})

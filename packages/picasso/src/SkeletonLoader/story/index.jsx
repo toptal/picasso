@@ -20,7 +20,6 @@ page.createChapter().addExample('SkeletonLoader/story/Default.example.tsx', {
     It's up to the developer to use them to build a loader that mimics the actual UI as close as possible.
     Below is a simple example demonstrating how. If you make a reusable skeleton loader - export it to topkit.
     `,
-  waitUntilImagesLoaded: true,
   takeScreenshot: false,
 })
 

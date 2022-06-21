@@ -12,11 +12,5 @@ page
 
 page
   .createChapter()
-  .addExample('Image/story/Default.example.tsx', {
-    title: 'Default',
-    waitUntilImagesLoaded: true,
-  })
-  .addExample('Image/story/Variants.example.tsx', {
-    title: 'Variants',
-    waitUntilImagesLoaded: true,
-  })
+  .addExample('Image/story/Default.example.tsx', 'Default')
+  .addExample('Image/story/Variants.example.tsx', 'Variants')
