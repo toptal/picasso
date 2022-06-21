@@ -21,15 +21,20 @@ module.exports = {
     '@storybook/addon-a11y',
 
     './addons/anchor-link-handler/register',
-    './addons/document-title/register'
+    './addons/document-title/register',
   ],
   staticDirs: ['./public'],
   stories: [path.join(__dirname, './load-stories.js')],
   typescript: {
     check: isDevelopment,
     checkOptions: {
-      tsconfig: tsConfigFile,
-      checkSyntacticErrors: true
+      typescript: {
+        configFile: tsConfigFile,
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+      },
     },
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
@@ -43,8 +48,11 @@ module.exports = {
 
         return true
       },
-      shouldExtractLiteralValuesFromEnum: true
-    }
+      shouldExtractLiteralValuesFromEnum: true,
+    },
+  },
+  core: {
+    builder: 'webpack5',
   },
   webpackFinal: config => {
     config.module.rules.push({
@@ -52,10 +60,10 @@ module.exports = {
       oneOf: [
         {
           test: PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP,
-          use: threadLoaders
+          use: threadLoaders,
         },
-        { use: threadLoaders }
-      ]
+        { use: threadLoaders },
+      ],
     })
 
     // supress an error with dynamic path e.g. require(`${url}`)
@@ -93,20 +101,20 @@ module.exports = {
       '@toptal/picasso-provider': path.resolve(
         __dirname,
         '../packages/picasso-provider/src'
-      )
+      ),
     }
 
     config.plugins.push(
       new webpack.DefinePlugin({
-        TEST_ENV: JSON.stringify(env.TEST_ENV)
+        TEST_ENV: JSON.stringify(env.TEST_ENV),
       }),
       // https://github.com/TypeStrong/ts-loader/issues/653
       new IgnoreNotFoundPlugin(['OverridableComponent', 'BaseProps'])
     )
 
-    config.node = {
-      fs: 'empty',
-      module: 'empty'
+    config.resolve.mainFields = ['browser', 'main', 'module']
+    config.resolve.fallback = {
+      fs: false,
     }
 
     config.optimization.minimizer = []
@@ -115,9 +123,9 @@ module.exports = {
   },
   reactOptions: {
     fastRefresh: true,
-    strictMode: true
+    strictMode: true,
   },
   features: {
-    postcss: false
-  }
+    postcss: false,
+  },
 }
