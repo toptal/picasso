@@ -298,7 +298,7 @@ describe('Form', () => {
     cy.get('#successName').type('name')
     cy.get('#successSurname').type('surname')
 
-    cy.get('[data-testid=success-submit-button]').click()
+    cy.getByTestId('success-submit-button').click()
 
     cy.get('[role=alert]')
       .should('be.visible')
@@ -311,12 +311,12 @@ describe('Form', () => {
     cy.get('#inlineErrorName').type('name')
     cy.get('#inlineErrorSurname').type('surname')
 
-    cy.get('[data-testid=submit-with-inline-error-button]').click()
+    cy.getByTestId('submit-with-inline-error-button').click()
 
     // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(RESPONSE_TIME + ANIMATION_TIME)
 
-    cy.get('[data-testid=submit-with-inline-error-first-name]')
+    cy.getByTestId('submit-with-inline-error-first-name')
       .contains('Unknown first name')
       .should('be.visible')
       .isWithinViewport()
@@ -335,7 +335,7 @@ describe('Form', () => {
     cy.get('#customNotificationErrorName').type('name')
     cy.get('#customNotificationErrorSurname').type('surname')
 
-    cy.get('[data-testid=submit-with-custom-notification-button]').click()
+    cy.getByTestId('submit-with-custom-notification-button').click()
 
     cy.get('[role=alert]')
       .should('be.visible')

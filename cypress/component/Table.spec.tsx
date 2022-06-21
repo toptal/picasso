@@ -382,7 +382,7 @@ describe('Table', () => {
 
     cy.getByTestId('job').as('job').should('be.visible')
 
-    cy.get(`[data-testid="expand-button-${localData[0].id}"]`)
+    cy.getByTestId(`expand-button-${localData[0].id}`)
       .as('expandButton')
       .realClick()
 
@@ -424,7 +424,7 @@ describe('Table', () => {
 
     cy.getByTestId('job').as('job').should('be.visible')
 
-    cy.get(`[data-testid="expand-button-${localData[0].id}"]`)
+    cy.getByTestId(`expand-button-${localData[0].id}`)
       .as('expandButton')
       .realClick()
 

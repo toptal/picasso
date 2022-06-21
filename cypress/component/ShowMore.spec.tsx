@@ -56,7 +56,7 @@ describe('ShowMore', () => {
       </ShowMore>
     )
 
-    cy.get(`[data-testid="${contentWrapper}"]`).should('have.value', '')
+    cy.getByTestId(contentWrapper).should('have.value', '')
     cy.get('body').happoScreenshot()
   })
 })

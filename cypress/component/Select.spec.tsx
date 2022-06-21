@@ -267,7 +267,7 @@ describe('Select', () => {
     // Cypress does not go well with :hover CSS selectors
     // It can fire mouse events via JS, but can't simulate browser cursor behaviour
     // To fix this issue we're using a force method to show the button so the screenshot is correct
-    cy.get(`[data-testid="${testIds.resetButton}"]`).invoke(
+    cy.getByTestId(testIds.resetButton).invoke(
       'attr',
       'style',
       'visibility: visible'

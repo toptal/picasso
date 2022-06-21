@@ -1,13 +1,9 @@
 import React from 'react'
 import { Container, Menu, MenuProps } from '@toptal/picasso'
 
-const testIds = {
-  menuItem: 'menu-back',
-}
-
 const MenuExample = (props: MenuProps) => {
   const menuForItemB1 = (
-    <Menu data-testid='menu-b1' testIds={testIds}>
+    <Menu data-testid='menu-b1' testIds={{ menuItem: 'menu-back' }}>
       <Menu.Item data-testid='item-b1-1'>Item B1-1</Menu.Item>
       <Menu.Item data-testid='item-b1-2'>Item B1-2</Menu.Item>
     </Menu>
@@ -21,7 +17,7 @@ const MenuExample = (props: MenuProps) => {
   )
 
   const menuForItemB = (
-    <Menu data-testid='menu-b' testIds={testIds}>
+    <Menu data-testid='menu-b' testIds={{ menuItem: 'menu-back' }}>
       <Menu.Item menu={menuForItemB1} data-testid='item-b1'>
         Item B1
       </Menu.Item>
@@ -49,7 +45,7 @@ describe('Menu', () => {
   it('navigates slide menu', () => {
     cy.mount(<MenuExample />)
     cy.getByTestId('menu-b').should('not.exist')
-    cy.get(`[data-testid="${testIds.menuItem}"]`).should('not.exist')
+    cy.getByTestId('menu-back').should('not.exist')
     cy.get('body').happoScreenshot({
       component,
       variant: 'slide-menu',
@@ -71,7 +67,7 @@ describe('Menu', () => {
       variant: 'slide-menu/after-clicked-item-to-open-another-sub-menu',
     })
 
-    cy.get(`[data-testid="${testIds.menuItem}"`).last().click()
+    cy.getByTestId('menu-back').last().click()
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
     cy.get('body').click().happoScreenshot({
@@ -79,9 +75,9 @@ describe('Menu', () => {
       variant: 'slide-menu/after-clicked-back-to-prev-sub-menu',
     })
 
-    cy.get(`[data-testid="${testIds.menuItem}"`).click()
+    cy.getByTestId('menu-back').click()
     cy.getByTestId('menu-b').should('not.exist')
-    cy.get(`[data-testid="${testIds.menuItem}"]`).should('not.exist')
+    cy.getByTestId('menu-back').should('not.exist')
     cy.get('body').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-back-to-original-menu',

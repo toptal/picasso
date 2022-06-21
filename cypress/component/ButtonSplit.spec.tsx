@@ -11,13 +11,6 @@ const menu = (
   </Menu>
 )
 
-const testIds = {
-  menuButton: 'menu-button',
-  actionButton: 'actionButton',
-}
-
-const getMenuButton = () => cy.get(`[data-testid=${testIds.menuButton}]`)
-
 describe('Button.Split', () => {
   it('opens dropdown when menu button is clicked', () => {
     cy.mount(
@@ -28,7 +21,7 @@ describe('Button.Split', () => {
       </Container>
     )
 
-    getMenuButton().click()
+    cy.getByTestId('menu-button').click()
 
     cy.get('body').happoScreenshot()
   })
