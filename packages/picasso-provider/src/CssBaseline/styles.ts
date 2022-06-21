@@ -4,12 +4,12 @@ export default ({ palette }: Theme) =>
   createStyles({
     '@global': {
       html: {
-        boxSizing: 'border-box',
+        boxSizing: 'initial',
         '-webkit-font-smoothing': 'antialiased',
         '-moz-osx-font-smoothing': 'grayscale',
       },
       '*, *::before, *::after': {
-        boxSizing: 'initial',
+        boxSizing: 'inherit',
       },
       body: {
         display: 'flex',
