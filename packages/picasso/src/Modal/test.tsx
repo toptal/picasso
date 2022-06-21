@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {
   render,
+  screen,
+  cleanup,
   fireEvent,
   waitForElementToBeRemoved,
 } from '@toptal/picasso/test-utils'
@@ -42,6 +44,7 @@ const TestModalActions = ({
 
 let modalRoot: HTMLElement
 
+// eslint-disable-next-line max-lines-per-function
 describe('Modal', () => {
   beforeAll(() => {
     modalRoot = document.createElement('div')
@@ -190,5 +193,224 @@ describe('Modal', () => {
     expect(queryByText('Second modal content')).toBeTruthy()
 
     expect(baseElement).toMatchSnapshot()
+  })
+
+  describe('body scroll lock', () => {
+    afterEach(() => {
+      cleanup()
+      document.body.style.overflow = ''
+    })
+
+    it('drops scroll lock when initially open modal is mounted', () => {
+      render(<Modal open={true}>Hello from modal!</Modal>)
+
+      expect(document.body.style.overflow).toBe('hidden')
+    })
+
+    it('does not drop scroll lock when closed modal is mounted', () => {
+      render(<Modal open={false}>Hello from modal!</Modal>)
+
+      expect(document.body.style.overflow).toBe('')
+    })
+
+    describe('drops scroll lock as modal opens and lifts it as modal closes', () => {
+      it('always mounted modal', () => {
+        const TestComponent = () => {
+          const modal = useModal()
+
+          return (
+            <>
+              <Button data-testid='open-first' onClick={modal.showModal}>
+                Open first
+              </Button>
+
+              <Modal
+                open={modal.isOpen}
+                onClose={modal.hideModal}
+                testIds={{ closeButton: 'close-first' }}
+              >
+                <p>First modal content</p>
+              </Modal>
+            </>
+          )
+        }
+
+        render(<TestComponent />)
+        expect(document.body.style.overflow).toBe('')
+
+        fireEvent.click(screen.getByTestId('open-first'))
+        expect(document.body.style.overflow).toBe('hidden')
+
+        fireEvent.click(screen.getByTestId('close-first'))
+        expect(document.body.style.overflow).toBe('')
+      })
+
+      it('conditionally mounted modal', () => {
+        const TestComponent = () => {
+          const modal = useModal()
+
+          return (
+            <>
+              <Button data-testid='open-first' onClick={modal.showModal}>
+                Open first
+              </Button>
+              {modal.isOpen && (
+                <Modal
+                  open
+                  onClose={modal.hideModal}
+                  testIds={{ closeButton: 'close-first' }}
+                >
+                  <p>First modal content</p>
+                </Modal>
+              )}
+            </>
+          )
+        }
+
+        render(<TestComponent />)
+        expect(document.body.style.overflow).toBe('')
+
+        fireEvent.click(screen.getByTestId('open-first'))
+        expect(document.body.style.overflow).toBe('hidden')
+
+        fireEvent.click(screen.getByTestId('close-first'))
+        expect(document.body.style.overflow).toBe('')
+      })
+
+      it('restores prev body overflow value', () => {
+        const TestComponent = () => {
+          const modal = useModal()
+
+          return (
+            <>
+              <Button data-testid='open-first' onClick={modal.showModal}>
+                Open first
+              </Button>
+
+              <Modal
+                open={modal.isOpen}
+                onClose={modal.hideModal}
+                testIds={{ closeButton: 'close-first' }}
+              >
+                <p>First modal content</p>
+              </Modal>
+            </>
+          )
+        }
+
+        document.body.style.overflow = 'visible'
+
+        render(<TestComponent />)
+        expect(document.body.style.overflow).toBe('visible')
+
+        fireEvent.click(screen.getByTestId('open-first'))
+        expect(document.body.style.overflow).toBe('hidden')
+
+        fireEvent.click(screen.getByTestId('close-first'))
+        expect(document.body.style.overflow).toBe('visible')
+      })
+    })
+
+    describe('multiple modals', () => {
+      it('properly manages body scroll lock as modals open/close', () => {
+        const TestComponent = () => {
+          const modal1 = useModal()
+          const modal2 = useModal()
+
+          return (
+            <>
+              <Button data-testid='open-first' onClick={modal1.showModal}>
+                Open first
+              </Button>
+              <Button data-testid='open-second' onClick={modal2.showModal}>
+                Open second
+              </Button>
+
+              <Modal
+                open={modal1.isOpen}
+                onClose={modal1.hideModal}
+                testIds={{ closeButton: 'close-first' }}
+              >
+                <p>First modal content</p>
+              </Modal>
+              <Modal
+                open={modal2.isOpen}
+                onClose={modal2.hideModal}
+                testIds={{ closeButton: 'close-second' }}
+              >
+                <p>Second modal content</p>
+              </Modal>
+            </>
+          )
+        }
+
+        render(<TestComponent />)
+        expect(document.body.style.overflow).toBe('')
+
+        fireEvent.click(screen.getByTestId('open-first'))
+        expect(document.body.style.overflow).toBe('hidden')
+
+        fireEvent.click(screen.getByTestId('open-second'))
+        expect(document.body.style.overflow).toBe('hidden')
+
+        fireEvent.click(screen.getByTestId('close-first'))
+        expect(document.body.style.overflow).toBe('hidden')
+
+        fireEvent.click(screen.getByTestId('close-second'))
+        expect(document.body.style.overflow).toBe('')
+      })
+
+      // NOTE: See https://toptal-core.atlassian.net/browse/FX-1069?focusedCommentId=96115 for more details
+      it('properly restores body overflow when closed modal mounts/unmounts', () => {
+        const TestComponent = () => {
+          const modal1 = useModal()
+          const [isModal2Mounted, setModal2Mounted] = useState(false)
+
+          return (
+            <>
+              <Button data-testid='open-first' onClick={modal1.showModal}>
+                Open first
+              </Button>
+              <Button
+                data-testid={
+                  isModal2Mounted ? 'unmount-second' : 'mount-second'
+                }
+                onClick={() => setModal2Mounted(isMounted => !isMounted)}
+              >
+                Toggle second
+              </Button>
+
+              <Modal
+                open={modal1.isOpen}
+                onClose={modal1.hideModal}
+                testIds={{ closeButton: 'close-first' }}
+              >
+                <p>First modal content</p>
+              </Modal>
+              {isModal2Mounted && (
+                <Modal open={false}>
+                  <p>Second modal content</p>
+                </Modal>
+              )}
+            </>
+          )
+        }
+
+        render(<TestComponent />)
+        expect(document.body.style.overflow).toBe('')
+
+        fireEvent.click(screen.getByTestId('open-first'))
+        expect(document.body.style.overflow).toBe('hidden')
+
+        fireEvent.click(screen.getByTestId('mount-second'))
+        expect(document.body.style.overflow).toBe('hidden')
+
+        fireEvent.click(screen.getByTestId('close-first'))
+        expect(document.body.style.overflow).toBe('')
+
+        fireEvent.click(screen.getByTestId('unmount-second'))
+        expect(document.body.style.overflow).toBe('')
+      })
+    })
   })
 })
