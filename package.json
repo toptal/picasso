@@ -25,7 +25,7 @@
     "symlink:off": "cross-env ./bin/symlink --unlink",
     "test": "yarn test:unit && yarn test:integration",
     "test:integration": "yarn build:package && yarn test:setup cypress run --component",
-    "test:integration:ci": "yarn happo-e2e -- -- yarn cypress run --component",
+    "test:integration:ci": "yarn happo-e2e -- -- yarn test:setup cypress run --component",
     "test:integration:open": "yarn build:package && yarn test:setup cypress open --browser=electron --component",
     "test:setup": "cross-env TZ=UTC NODE_ENV=development",
     "test:unit": "davinci qa unit --config=./jest.spec.js",
