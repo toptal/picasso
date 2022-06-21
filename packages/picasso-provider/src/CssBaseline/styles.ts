@@ -9,7 +9,7 @@ export default ({ palette }: Theme) =>
         '-moz-osx-font-smoothing': 'grayscale',
       },
       '*, *::before, *::after': {
-        boxSizing: 'inherit',
+        boxSizing: 'initial',
       },
       body: {
         display: 'flex',
