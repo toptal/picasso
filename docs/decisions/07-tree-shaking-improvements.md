@@ -325,6 +325,7 @@ import Button from '@toptal/picasso/Button`
 const Component = () => {
   return <Button.Circular /> {'<-- will now fail'}
 }
+```
 
 **Solution one** introduced API change and was not straighforward. Also, there would be a huge percent of users, who would not benefit from the change, but would have to rework their apps.
 
