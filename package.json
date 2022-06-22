@@ -68,7 +68,6 @@
     "@types/happo-cypress": "^3.0.0",
     "@types/jest-image-snapshot": "^3.1.0",
     "@types/react-truncate": "^2.3.4",
-    "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.5",
     "brace": "^0.11.1",
     "cache-loader": "^4.1.0",
