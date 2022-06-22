@@ -26,13 +26,7 @@ page
   })
   .addExample('TreeView/story/Modal.example.tsx', {
     title: 'With Modal',
-    effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[data-testid="open"]')
-      await testPage.waitFor('[data-testid="tree-dialog-content"]')
-      await makeScreenshot({
-        isFullScreen: true,
-      })
-    },
+    takeScreenshot: false,
   })
   .addExample('TreeView/story/CustomZoom.example.tsx', {
     title: 'Custom Zoom',
@@ -44,13 +38,13 @@ page
   })
   .addExample('TreeView/story/Horizontal.example.tsx', {
     title: 'Horizontal Direction',
-    takeScreenshot: false,
+    takeScreenshot: false, // Already covered by StaticTreeView
   })
   .addExample('TreeView/story/Compact.example.tsx', {
     title: 'Compact tree',
+    takeScreenshot: false, // Already covered by StaticTreeView
     description:
       'Example of a compact tree - one with only single node on each depth that has children',
-    takeScreenshot: false,
   })
   .addExample('TreeView/story/TreeNodeAvatar.example.tsx', {
     title: 'TreeNodeAvatar',

@@ -55,54 +55,6 @@ const createTree = (): TreeNodeInterface => {
             info: {
               name: 'NODE+3',
             },
-            children: [
-              createTreeNode({
-                id: '3.1',
-                info: {
-                  name: 'NODE+3.1',
-                },
-                children: [
-                  createTreeNode({
-                    id: '3.1.1',
-                    info: {
-                      name: 'NODE+3.1.1',
-                    },
-                  }),
-                  createTreeNode({
-                    id: '3.1.2',
-                    info: {
-                      name: 'NODE+3.1.2',
-                    },
-                  }),
-                ],
-              }),
-              createTreeNode({
-                id: '3.2',
-                info: {
-                  name: 'NODE+3.2',
-                },
-                children: [
-                  createTreeNode({
-                    id: '3.2.1',
-                    info: {
-                      name: 'NODE+3.2.1',
-                    },
-                  }),
-                  createTreeNode({
-                    id: '3.2.2',
-                    info: {
-                      name: 'NODE+3.2.2',
-                    },
-                  }),
-                  createTreeNode({
-                    id: '3.2.3',
-                    info: {
-                      name: 'NODE+3.2.3',
-                    },
-                  }),
-                ],
-              }),
-            ],
           }),
         ],
       }),
@@ -117,20 +69,18 @@ const createTree = (): TreeNodeInterface => {
             info: {
               name: 'NODE+4.1',
             },
-            children: [
-              createTreeNode({
-                id: '4.1.1',
-                info: {
-                  name: 'NODE+4.1.1',
-                },
-              }),
-              createTreeNode({
-                id: '4.1.2',
-                info: {
-                  name: 'NODE+4.1.2',
-                },
-              }),
-            ],
+          }),
+          createTreeNode({
+            id: '4.2',
+            info: {
+              name: 'NODE+4.2',
+            },
+          }),
+          createTreeNode({
+            id: '4.3',
+            info: {
+              name: 'NODE+4.3',
+            },
           }),
         ],
       }),
@@ -153,18 +103,6 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
                 src='./jacqueline-with-flowers-1954-square.jpg'
               />
             }
-          />
-          <UserBadge
-            name='QQQQQQQQ QQQQQQQQ'
-            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
-          />
-          <UserBadge
-            name='QQQQQQQQ QQQQQQQQ'
-            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
-          />
-          <UserBadge
-            name='QQQQQQQQ QQQQQQQQ'
-            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
           />
           <UserBadge
             name='QQQQQQQQ QQQQQQQQ'
