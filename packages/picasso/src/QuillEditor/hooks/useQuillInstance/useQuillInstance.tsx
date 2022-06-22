@@ -6,21 +6,45 @@ import {
   useTypographyClasses,
   makeHeaderFormat,
   makeBoldFormat,
+  makeLinkFormat,
 } from '../../formats'
+import type { EditorPlugin } from '../../types'
 
 export type EditorOptionsType = {
   id: string
   placeholder?: string
+  plugins?: EditorPlugin[]
 }
 
-export const getModules = (): QuillOptionsStatic['modules'] => {
+export const getModules = (
+  plugins: EditorOptionsType['plugins']
+): QuillOptionsStatic['modules'] => {
+  const allowLinks = plugins?.includes('link')
+
+  const allowedTags = [
+    'b',
+    'strong',
+    'i',
+    'em',
+    'p',
+    'br',
+    'ul',
+    'ol',
+    'li',
+    'h3',
+  ]
+
+  if (allowLinks) {
+    allowedTags.concat('a')
+  }
+
   return {
     clipboard: {
       matchVisual: false,
       allowed: {
         // unsupported tags will be also removed on BE side, so before extending
         // make sure, that our API supports new type
-        tags: ['b', 'strong', 'i', 'em', 'p', 'br', 'ul', 'ol', 'li', 'h3'],
+        tags: allowedTags,
         attributes: [],
       },
       keepSelection: true,
@@ -63,25 +87,45 @@ const formats: QuillOptionsStatic['formats'] = [
   'list',
 ]
 
+/**
+ * Formats that will be used to extend base formats
+ * when the user declares a new plugin
+ */
+const pluginFormats: QuillOptionsStatic['formats'] = ['link']
+
 const useQuillInstance = ({
   id,
   placeholder,
+  plugins,
 }: EditorOptionsType): Quill | undefined => {
   const [quill, setQuill] = useState<Quill>()
   const typographyClasses = useTypographyClasses()
 
   useEffect(() => {
+    let extendedFormats: QuillOptionsStatic['formats'] = [...formats]
+
     Quill.register(makeHeaderFormat(typographyClasses), true)
     Quill.register(makeBoldFormat(typographyClasses), true)
 
+    const allowLinks = plugins?.includes('link')
+
+    if (allowLinks) {
+      Quill.register(makeLinkFormat(typographyClasses), true)
+      const linkFormat = pluginFormats.find(format => format === 'link')
+
+      if (linkFormat) {
+        extendedFormats = extendedFormats.concat(linkFormat)
+      }
+    }
+
     setQuill(
       new Quill(`#${id}`, {
-        modules: getModules(),
-        formats,
+        modules: getModules(plugins),
+        formats: extendedFormats,
         placeholder,
       })
     )
-  }, [typographyClasses, id, placeholder])
+  }, [typographyClasses, id, placeholder, plugins])
 
   return quill
 }

@@ -48,7 +48,13 @@ const defaultValue: ASTType = {
         },
         {
           type: 'text',
-          value: ' team to help us define how talent interacts with Toptal.',
+          value: ' team to help us define how talent interacts with ',
+        },
+        {
+          type: 'element',
+          tagName: 'a',
+          children: [{ type: 'text', value: 'Toptal' }],
+          properties: { href: 'https://toptal.com' },
         },
       ],
     },

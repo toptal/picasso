@@ -1,12 +1,19 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
 
-import { Bold16, Italic16, ListOrdered16, ListUnordered16 } from '../Icon'
+import {
+  Bold16,
+  Italic16,
+  Link16,
+  ListOrdered16,
+  ListUnordered16,
+} from '../Icon'
 import Container from '../Container'
 import Select from '../Select'
 import styles from './styles'
 import TextEditorButton from '../RichTextEditorButton'
 import { ButtonHandlerType, SelectOnChangeHandler, FormatType } from './types'
+import type { EditorPlugin } from '../QuillEditor'
 
 type Props = {
   disabled: boolean
@@ -18,12 +25,15 @@ type Props = {
     italicButton?: string
     unorderedListButton?: string
     orderedListButton?: string
+    linkButton?: string
   }
   onBoldClick: ButtonHandlerType
   onItalicClick: ButtonHandlerType
+  onLinkClick: ButtonHandlerType
   onHeaderChange: SelectOnChangeHandler
   onUnorderedClick: ButtonHandlerType
   onOrderedClick: ButtonHandlerType
+  plugins?: EditorPlugin[]
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -38,14 +48,18 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       format,
       onBoldClick,
       onItalicClick,
+      onLinkClick,
       onHeaderChange,
       onUnorderedClick,
       onOrderedClick,
       testIds,
+      plugins,
     } = props
 
     const classes = useStyles(props)
     const isHeadingFormat = format.header === '3'
+
+    const allowLinks = plugins?.includes('link')
 
     return (
       <Container id={`${id}toolbar`} ref={ref} className={classes.toolbar}>
@@ -96,6 +110,17 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             data-testid={testIds?.orderedListButton}
           />
         </Container>
+        {allowLinks && (
+          <Container className={classes.group}>
+            <TextEditorButton
+              icon={<Link16 />}
+              onClick={onLinkClick}
+              active={!!format.link}
+              disabled={isHeadingFormat || disabled}
+              data-testid={testIds?.linkButton}
+            />
+          </Container>
+        )}
       </Container>
     )
   }
@@ -108,6 +133,7 @@ RichTextEditorToolbar.defaultProps = {
     italic: false,
     list: false,
     header: '',
+    link: '',
   },
   onBoldClick: () => {},
   onItalicClick: () => {},

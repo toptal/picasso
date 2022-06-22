@@ -8,6 +8,7 @@ import {
   SetListActionType,
   SetDisabled,
   ResetFormatType,
+  SetLinkActionType,
 } from './types'
 
 const setBold =
@@ -30,6 +31,11 @@ const setList =
   (payload: SetListActionType['payload']) =>
     dispatch({ type: actionTypes.list, payload })
 
+const setLink =
+  (dispatch: Dispatch<SetLinkActionType>) =>
+  (payload: SetLinkActionType['payload']) =>
+    dispatch({ type: actionTypes.link, payload })
+
 const setDisabled = (dispatch: Dispatch<SetDisabled>) => (payload: boolean) =>
   dispatch({ type: actionTypes.disabled, payload })
 
@@ -41,6 +47,7 @@ const actions = {
   setItalic,
   setHeader,
   setList,
+  setLink,
   setDisabled,
   resetFormat,
 }
