@@ -301,7 +301,7 @@ describe('Tooltip', () => {
   it('renders on hover, and hides on click for Checkbox', () => {
     cy.mount(<CheckboxTooltipExample />)
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
-    cy.getByTestId(testIds.tooltipTrigger).trigger('mouseover')
+    cy.getByTestId(testIds.tooltipTrigger).realHover()
     cy.getByTestId(testIds.tooltipContent).should('be.visible')
     cy.get('body').happoScreenshot()
     cy.getByTestId(testIds.tooltipTrigger).click()
