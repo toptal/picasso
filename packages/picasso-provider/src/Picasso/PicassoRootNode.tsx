@@ -11,7 +11,6 @@ const useGlobalStyles = makeStyles<Theme>(globalStyles, {
   name: 'Picasso',
 })
 
-// eslint-disable-next-line react/display-name
 const PicassoRootNode = forwardRef<HTMLDivElement, PicassoRootNodeProps>(
   (props, ref) => {
     const { children } = props
@@ -24,5 +23,7 @@ const PicassoRootNode = forwardRef<HTMLDivElement, PicassoRootNodeProps>(
     )
   }
 )
+
+PicassoRootNode.displayName = 'PicassoRootNode'
 
 export default PicassoRootNode
