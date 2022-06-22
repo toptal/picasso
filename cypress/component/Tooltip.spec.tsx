@@ -9,6 +9,7 @@ import {
   Link,
   Menu,
   Modal,
+  Radio,
   Tooltip,
   TooltipProps,
   Typography,
@@ -178,6 +179,18 @@ const CheckboxTooltipExample = () => {
   )
 }
 
+const RadioTooltipExample = () => {
+  const tooltipContent = (
+    <span data-testid={testIds.tooltipContent}>Content</span>
+  )
+
+  return (
+    <Tooltip content={tooltipContent} interactive>
+      <Radio label='Radio' data-testid={testIds.radioTrigger} />
+    </Tooltip>
+  )
+}
+
 const AutocompleteTooltipExample = () => {
   const [value, setValue] = useState('')
 
@@ -292,6 +305,16 @@ describe('Tooltip', () => {
     cy.getByTestId(testIds.tooltipContent).should('be.visible')
     cy.get('body').happoScreenshot()
     cy.getByTestId(testIds.tooltipTrigger).click()
+    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+  })
+
+  it('renders on hover, and hides on click for Radio', () => {
+    cy.mount(<RadioTooltipExample />)
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
+    cy.getByTestId(testIds.radioTrigger).trigger('mouseover')
+    cy.getByTestId(testIds.tooltipContent).should('be.visible')
+    cy.get('body').happoScreenshot()
+    cy.getByTestId(testIds.radioTrigger).click()
     cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
   })
 
