@@ -302,7 +302,7 @@ describe('Tooltip', () => {
     cy.mount(<CheckboxTooltipExample />)
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
     cy.getByTestId(testIds.tooltipTrigger).trigger('mouseover')
-    cy.getByTestId(testIds.tooltipContent).should('exist')
+    cy.getByTestId(testIds.tooltipContent).should('be.visible')
     cy.get('body').happoScreenshot()
     cy.getByTestId(testIds.tooltipTrigger).click()
     cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
