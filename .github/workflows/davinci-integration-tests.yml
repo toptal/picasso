@@ -68,6 +68,13 @@ jobs:
       - name: Run integration tests
         uses: toptal/davinci-github-actions/integration-tests@v3.0.2
 
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+            name: cypress-screenshots
+            path: cypress/screenshots
+
   finalize-integtation-tests:
     name: Finalize Integration Tests
     runs-on: ubuntu-latest
