@@ -33,9 +33,11 @@ export const getModules = (
     'li',
     'h3',
   ]
+  const allowedAttributes = []
 
   if (allowLinks) {
-    allowedTags.concat('a')
+    allowedTags.push('a')
+    allowedAttributes.push('href')
   }
 
   return {
@@ -45,7 +47,7 @@ export const getModules = (
         // unsupported tags will be also removed on BE side, so before extending
         // make sure, that our API supports new type
         tags: allowedTags,
-        attributes: [],
+        attributes: allowedAttributes,
       },
       keepSelection: true,
       substituteBlockElements: true,
@@ -87,12 +89,6 @@ const formats: QuillOptionsStatic['formats'] = [
   'list',
 ]
 
-/**
- * Formats that will be used to extend base formats
- * when the user declares a new plugin
- */
-const pluginFormats: QuillOptionsStatic['formats'] = ['link']
-
 const useQuillInstance = ({
   id,
   placeholder,
@@ -111,11 +107,7 @@ const useQuillInstance = ({
 
     if (allowLinks) {
       Quill.register(makeLinkFormat(typographyClasses), true)
-      const linkFormat = pluginFormats.find(format => format === 'link')
-
-      if (linkFormat) {
-        extendedFormats = extendedFormats.concat(linkFormat)
-      }
+      extendedFormats = extendedFormats.concat('link')
     }
 
     setQuill(
