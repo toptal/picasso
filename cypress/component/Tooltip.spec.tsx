@@ -20,7 +20,10 @@ const TOOLTIP_LONG_TEXT = 'Content '.repeat(10)
 const testIds = {
   autocompleteInput: 'autocomplete-input',
   tooltipContent: 'tooltip-content',
+  tooltipRadioContent: 'tooltip-radio-content',
+  tooltipCheckboxContent: 'tooltip-checkbox-content',
   tooltipTrigger: 'tooltip-trigger',
+  checkboxTrigger: 'checkbox-trigger',
   radioTrigger: 'radio-trigger',
   dropdownTrigger: 'dropdown-trigger',
 }
@@ -169,19 +172,19 @@ const LinkTooltipExample = () => {
 
 const CheckboxTooltipExample = () => {
   const tooltipContent = (
-    <span data-testid={testIds.tooltipContent}>Content</span>
+    <span data-testid={testIds.tooltipCheckboxContent}>Content</span>
   )
 
   return (
     <Tooltip content={tooltipContent} interactive>
-      <Checkbox label='Checkbox' data-testid={testIds.tooltipTrigger} />
+      <Checkbox label='Checkbox' data-testid={testIds.checkboxTrigger} />
     </Tooltip>
   )
 }
 
 const RadioTooltipExample = () => {
   const tooltipContent = (
-    <span data-testid={testIds.tooltipContent}>Content</span>
+    <span data-testid={testIds.tooltipRadioContent}>Content</span>
   )
 
   return (
@@ -300,22 +303,22 @@ describe('Tooltip', () => {
 
   it('renders on hover, and hides on click for Radio', () => {
     cy.mount(<RadioTooltipExample />)
-    cy.getByTestId(testIds.tooltipContent).should('not.exist')
+    cy.getByTestId(testIds.tooltipRadioContent).should('not.exist')
     cy.getByTestId(testIds.radioTrigger).trigger('mouseover')
-    cy.getByTestId(testIds.tooltipContent).should('be.visible')
+    cy.getByTestId(testIds.tooltipRadioContent).should('be.visible')
     cy.get('body').happoScreenshot()
     cy.getByTestId(testIds.radioTrigger).click()
-    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+    cy.getByTestId(testIds.tooltipRadioContent).should('not.be.visible')
   })
 
   it('renders on hover, and hides on click for Checkbox', () => {
     cy.mount(<CheckboxTooltipExample />)
-    cy.getByTestId(testIds.tooltipContent).should('not.exist')
-    cy.getByTestId(testIds.tooltipTrigger).trigger('mouseover')
-    cy.getByTestId(testIds.tooltipContent).should('be.visible')
+    cy.getByTestId(testIds.tooltipCheckboxContent).should('not.exist')
+    cy.getByTestId(testIds.checkboxTrigger).trigger('mouseover')
+    cy.getByTestId(testIds.tooltipCheckboxContent).should('be.visible')
     cy.get('body').happoScreenshot()
-    cy.getByTestId(testIds.tooltipTrigger).click()
-    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+    cy.getByTestId(testIds.checkboxTrigger).click()
+    cy.getByTestId(testIds.tooltipCheckboxContent).should('not.be.visible')
   })
 
   it('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
