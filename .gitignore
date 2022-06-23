@@ -12,3 +12,6 @@ build/
 
 # Happo build output
 .happo
+
+coverage
+.nyc_output
