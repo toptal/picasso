@@ -289,8 +289,12 @@ describe('Tooltip', () => {
 
   it('renders on hover, and hides on click', () => {
     cy.mount(<BasicTooltipExample />)
+    // hover outside trigger button to be sure that content shouldnt be seen
+    cy.getByTestId(testIds.tooltipTrigger).realHover({
+      position: { x: 0, y: -200 },
+    })
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
-    cy.getByTestId(testIds.tooltipTrigger).trigger('mouseover')
+    cy.getByTestId(testIds.tooltipTrigger).realHover()
 
     cy.getByTestId(testIds.tooltipContent).should('be.visible')
 
@@ -300,18 +304,28 @@ describe('Tooltip', () => {
 
   it('renders on hover, and hides on click for Checkbox', () => {
     cy.mount(<CheckboxTooltipExample />)
+    // hover outside trigger button to be sure that content shouldnt be seen
+    cy.getByTestId(testIds.tooltipTrigger)
+      .as('trigger')
+      .realHover({
+        position: { x: 0, y: -200 },
+      })
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
-    cy.getByTestId(testIds.tooltipTrigger).trigger('mouseover')
-    cy.getByTestId(testIds.tooltipContent).should('be.visible')
+    cy.get('@trigger').realHover()
+    cy.getByTestId(testIds.tooltipContent).should('exist')
     cy.get('body').happoScreenshot()
-    cy.getByTestId(testIds.tooltipTrigger).click()
+    cy.get('@trigger').click()
     cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
   })
 
   it('renders on hover, and hides on click for Radio', () => {
     cy.mount(<RadioTooltipExample />)
+    // hover outside trigger button to be sure that content shouldnt be seen
+    cy.getByTestId(testIds.radioTrigger).realHover({
+      position: { x: 0, y: -200 },
+    })
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
-    cy.getByTestId(testIds.radioTrigger).trigger('mouseover')
+    cy.getByTestId(testIds.radioTrigger).realHover()
     cy.getByTestId(testIds.tooltipContent).should('be.visible')
     cy.get('body').happoScreenshot()
     cy.getByTestId(testIds.radioTrigger).click()
@@ -320,8 +334,12 @@ describe('Tooltip', () => {
 
   it('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
     cy.mount(<BasicTooltipExample />)
+    // hover outside trigger button to be sure that content shouldnt be seen
+    cy.getByTestId(testIds.tooltipTrigger).realHover({
+      position: { x: 0, y: -200 },
+    })
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
-    cy.getByTestId(testIds.tooltipTrigger).trigger('mouseover')
+    cy.getByTestId(testIds.tooltipTrigger).realHover()
 
     cy.getByTestId(testIds.tooltipContent).should('be.visible')
 
@@ -336,7 +354,7 @@ describe('Tooltip', () => {
 
   it('renders interactive content', () => {
     cy.mount(<LinkTooltipExample />)
-    cy.getByTestId(testIds.tooltipTrigger).as('Trigger').trigger('mouseover')
+    cy.getByTestId(testIds.tooltipTrigger).as('Trigger').realHover()
     cy.getByTestId(testIds.tooltipContent).as('Content').should('be.visible')
     cy.get('body').happoScreenshot()
 
