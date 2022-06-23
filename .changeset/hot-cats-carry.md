@@ -2,4 +2,6 @@
 '@toptal/picasso': minor
 ---
 
-Add support for links on RichTextEditor and RichText
+### RichTextEditor, RichText
+
+- Add support for links
