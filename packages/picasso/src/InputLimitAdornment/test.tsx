@@ -7,70 +7,46 @@ const renderAdornment = (props: Props) =>
   render(<InputLimitAdornment {...props} />)
 
 describe('InputLimitAdornment', () => {
-  describe('multiline', () => {
-    it('uses singular when one characters is entered', async () => {
-      const { findByText } = renderAdornment({
-        counter: 'entered',
-        limit: 0,
-        multiline: true,
-        charsLength: 1,
-      })
+  describe("when counter type is 'entered'", () => {
+    it.each([
+      { charsLength: 1, expectedMessage: '1 character entered' },
+      { charsLength: 2, expectedMessage: '2 characters entered' },
+    ])(
+      "expect '$expectedMessage' for $charsLength characters",
+      async ({ charsLength, expectedMessage }) => {
+        const { findByText } = renderAdornment({
+          counter: 'entered',
+          limit: 0,
+          multiline: true,
+          charsLength,
+        })
 
-      const limitText = await findByText('1 character entered')
+        const limitText = await findByText(expectedMessage)
 
-      expect(limitText).toBeInTheDocument()
-    })
+        expect(limitText).toBeInTheDocument()
+      }
+    )
+  })
 
-    it('uses plural when two characters are entered', async () => {
-      const { findByText } = renderAdornment({
-        counter: 'entered',
-        limit: 0,
-        multiline: true,
-        charsLength: 2,
-      })
+  describe("when counter type is 'remaining'", () => {
+    it.each([
+      { remainingChars: 0, expectedMessage: '0 characters left' },
+      { remainingChars: 1, expectedMessage: '1 character left' },
+      { remainingChars: 2, expectedMessage: '2 characters left' },
+    ])(
+      "expect '$expectedMessage' message for $remainingChars characters",
+      async ({ remainingChars, expectedMessage }) => {
+        const { findByText } = renderAdornment({
+          counter: 'remaining',
+          limit: 3,
+          multiline: true,
+          charsLength: 3 - remainingChars,
+        })
 
-      const limitText = await findByText('2 characters entered')
+        const limitText = await findByText(expectedMessage)
 
-      expect(limitText).toBeInTheDocument()
-    })
-
-    it('uses plural when there are not characters left', async () => {
-      const { findByText } = renderAdornment({
-        counter: 'remaining',
-        limit: 3,
-        multiline: true,
-        charsLength: 3,
-      })
-
-      const limitText = await findByText('0 characters left')
-
-      expect(limitText).toBeInTheDocument()
-    })
-
-    it('uses singular when there is one character left', async () => {
-      const { findByText } = renderAdornment({
-        counter: 'remaining',
-        limit: 3,
-        multiline: true,
-        charsLength: 2,
-      })
-
-      const limitText = await findByText('1 character left')
-
-      expect(limitText).toBeInTheDocument()
-    })
-
-    it('uses plural when there are two characters left', async () => {
-      const { findByText } = renderAdornment({
-        counter: 'remaining',
-        limit: 3,
-        multiline: true,
-        charsLength: 1,
-      })
-
-      const limitText = await findByText('2 characters left')
-
-      expect(limitText).toBeInTheDocument()
-    })
+        expect(limitText).toBeInTheDocument()
+      }
+    )
   })
 })

@@ -22,7 +22,8 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 const hasRemainingCounter = (counter: CounterType) => counter === 'remaining'
-const characters = (count: number) => (count === 1 ? 'character' : 'characters')
+const formatCharacters = (count: number) =>
+  count === 1 ? 'character' : 'characters'
 
 const getCharsTillLimit = (
   charsLength: number,
@@ -43,11 +44,11 @@ const getMultilineLabel = ({
 
   if (hasRemainingCounter(counter)) {
     return charsTillLimit >= 0
-      ? `${characters(charsTillLimit)} left`
+      ? `${formatCharacters(charsTillLimit)} left`
       : 'over the limit'
   }
 
-  return `${characters(charsTillLimit)} entered`
+  return `${formatCharacters(charsTillLimit)} entered`
 }
 
 const InputLimitAdornment = (props: Props) => {
