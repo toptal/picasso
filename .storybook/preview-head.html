@@ -9,13 +9,15 @@
   .story {
     padding: 20px;
   }
-  .markdown-body {
-    padding: 20px;
+  .markdown-body pre {
+    padding: 1rem !important;
   }
-  .markdown-body code {
-    background: #f0f0f0;
-    padding: 5px;
-    font-size: 13px;
+  code[class*='language-'],
+  code[class*='language-'] *,
+  pre[class*='language-'],
+  pre[class*='language-'] * {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+    font-size: 13px !important;
   }
   .story-title {
     margin: 0;
@@ -73,15 +75,6 @@
   .chapter-container {
     flex: 1;
     width: 100%;
-  }
-  code[class*='language-'],
-  code[class*='language-'] *,
-  pre[class*='language-'],
-  pre[class*='language-'] * {
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  }
-  pre {
-    padding: 1rem;
   }
 </style>
 
