@@ -13,7 +13,7 @@ type QuilMockType = jest.Mock & {
 jest.mock('quill', () => {
   const QuillMock = jest.fn() as QuilMockType
 
-  QuillMock.import = jest.fn().mockImplementation(() => null)
+  QuillMock.import = jest.fn().mockImplementation(() => jest.fn())
   QuillMock.register = jest.fn()
 
   return {
