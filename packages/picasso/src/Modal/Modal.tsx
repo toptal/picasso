@@ -19,9 +19,6 @@ import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 import { CloseMinor16 } from '../Icon'
 import useCombinedRefs from '../utils/use-combined-refs'
 import { ModalManager } from '../utils/Modal'
-import ModalTitle from '../ModalTitle'
-import ModalContent from '../ModalContent'
-import ModalActions from '../ModalActions'
 import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
 import ModalContext from './ModalContext'
@@ -233,8 +230,4 @@ Modal.defaultProps = {
 
 Modal.displayName = 'Modal'
 
-export default Object.assign(Modal, {
-  Content: ModalContent,
-  Actions: ModalActions,
-  Title: ModalTitle,
-})
+export default Modal

@@ -3,7 +3,7 @@ import { render, RenderResult } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { Props } from './FormError'
-import Form from '../Form'
+import { FormCompound as Form } from '../FormCompound'
 import Input from '../Input'
 
 const TestFormError = ({ children }: OmitInternalProps<Props>) => {

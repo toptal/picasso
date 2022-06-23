@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import Note from './Note'
+import { NoteCompound as Note } from '../NoteCompound'
 
 const renderNote = () => {
   return render(

@@ -23,7 +23,6 @@ import Container from '../Container'
 import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
 import Typography from '../Typography'
-import NotificationActions from '../NotificationActions'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
@@ -171,4 +170,4 @@ Notification.defaultProps = {
 
 Notification.displayName = 'Notification'
 
-export default Object.assign(Notification, { Actions: NotificationActions })
+export default Notification

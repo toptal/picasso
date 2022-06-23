@@ -17,8 +17,6 @@ import {
 
 import styles from './styles'
 import { useOverviewBlockGroupContext } from '../OverviewBlockGroup/OverviewBlockGroupContext'
-import OverviewBlockGroup from '../OverviewBlockGroup'
-import OverviewBlockRow from '../OverviewBlockRow'
 import Container from '../Container'
 import Typography from '../Typography'
 import { toTitleCase } from '../utils'
@@ -120,7 +118,4 @@ OverviewBlock.defaultProps = {
 
 OverviewBlock.displayName = 'OverviewBlock'
 
-export default Object.assign(OverviewBlock, {
-  Group: OverviewBlockGroup,
-  Row: OverviewBlockRow,
-})
+export default OverviewBlock

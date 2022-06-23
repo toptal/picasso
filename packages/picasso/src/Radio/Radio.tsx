@@ -8,7 +8,6 @@ import {
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
-import RadioGroup from '../RadioGroup'
 import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
 
@@ -108,6 +107,4 @@ Radio.defaultProps = {
 
 Radio.displayName = 'Radio'
 
-export default Object.assign(Radio, {
-  Group: RadioGroup,
-})
+export default Radio

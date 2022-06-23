@@ -29,11 +29,11 @@ const EmptyAccordionSummary = ({
   'data-testid'?: string
 }) => <div data-testid={dataTestId} />
 
-interface SummaryProps extends Partial<StandardProps> {
+export interface SummaryProps extends Partial<StandardProps> {
   children: ReactNode
 }
 
-const Summary = (props: SummaryProps) => {
+export const Summary = (props: SummaryProps) => {
   const { children, className, ...rest } = props
   const classes = useStyles(props)
 
@@ -44,11 +44,11 @@ const Summary = (props: SummaryProps) => {
   )
 }
 
-interface DetailsProps extends Partial<StandardProps> {
+export interface DetailsProps extends Partial<StandardProps> {
   children: ReactNode
 }
 
-const Details = (props: DetailsProps) => {
+export const Details = (props: DetailsProps) => {
   const { children, className, ...rest } = props
   const classes = useStyles(props)
 
@@ -200,7 +200,4 @@ Accordion.defaultProps = {
 
 Accordion.displayName = 'Accordion'
 
-export default Object.assign(Accordion, {
-  Summary,
-  Details,
-})
+export default Accordion

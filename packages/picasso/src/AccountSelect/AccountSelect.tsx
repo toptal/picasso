@@ -5,7 +5,7 @@ import cx from 'classnames'
 
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
-import Menu from '../Menu'
+import { MenuCompound as Menu } from '../MenuCompound'
 import Link from '../Link'
 import Container from '../Container'
 import { ChevronRight16 } from '../Icon'

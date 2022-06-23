@@ -8,7 +8,8 @@ import {
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Checkbox, { Props } from './Checkbox'
+import { Props } from './Checkbox'
+import { CheckboxCompound as Checkbox } from '../CheckboxCompound'
 
 jest.mock('ap-style-title-case')
 

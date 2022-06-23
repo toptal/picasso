@@ -275,6 +275,4 @@ TagSelector.defaultProps = {
 
 TagSelector.displayName = 'TagSelector'
 
-export default Object.assign(TagSelector, {
-  Label: TagSelectorLabel,
-})
+export default TagSelector

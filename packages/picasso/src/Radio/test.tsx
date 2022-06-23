@@ -8,7 +8,8 @@ import {
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Radio, { Props } from './Radio'
+import { Props } from './Radio'
+import { RadioCompound as Radio } from '../RadioCompound'
 
 jest.mock('ap-style-title-case')
 

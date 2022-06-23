@@ -5,7 +5,8 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
 import { TabProps } from '../Tab'
-import Tabs, { Props } from './Tabs'
+import { Props } from './Tabs'
+import { TabsCompound as Tabs } from '../TabsCompound'
 
 const renderTabContent = (tab: TabProps, index: number, value: any) => {
   const isTabActive = index + 1 === value || tab.value === value

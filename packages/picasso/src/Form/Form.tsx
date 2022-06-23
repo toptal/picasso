@@ -6,11 +6,6 @@ import React, {
 } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import FormField from '../FormField'
-import FormHint from '../FormHint'
-import FormLabel from '../FormLabel'
-import FormError from '../FormError'
-
 export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   /** Content of Form constructed of Form elements */
   children?: ReactNode
@@ -38,9 +33,4 @@ export const Form = forwardRef<HTMLFormElement, Props>(function Form(
 
 Form.displayName = 'Form'
 
-export default Object.assign(Form, {
-  Field: FormField,
-  Hint: FormHint,
-  Label: FormLabel,
-  Error: FormError,
-})
+export default Form
