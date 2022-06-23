@@ -43,32 +43,49 @@ const MenuExample = (props: MenuProps) => {
   )
 }
 
+const component = 'Menu'
+
 describe('Menu', () => {
   it('navigates slide menu', () => {
     cy.mount(<MenuExample />)
     cy.get('[data-testid="menu-b"]').should('not.exist')
     cy.get(`[data-testid="${testIds.menuItem}"]`).should('not.exist')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'slide-menu',
+    })
 
     cy.get('[data-testid="item-b"]').click()
     cy.get('[data-testid="menu-b"]').should('be.visible')
     cy.get('[data-testid="menu-b1"]').should('not.exist')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'slide-menu/after-clicked-item-to-open-sub-menu',
+    })
 
     cy.get('[data-testid="item-b1"]').click()
     cy.get('[data-testid="menu-b1"]').should('be.visible')
     cy.get('[data-testid="menu-b2"]').should('not.exist')
-    cy.get('body').happoScreenshot()
+    cy.get('body').click().happoScreenshot({
+      component,
+      variant: 'slide-menu/after-clicked-item-to-open-another-sub-menu',
+    })
 
     cy.get(`[data-testid="${testIds.menuItem}"`).last().click()
     cy.get('[data-testid="menu-b"]').should('be.visible')
     cy.get('[data-testid="menu-b1"]').should('not.exist')
-    cy.get('body').happoScreenshot()
+    cy.get('body').click().happoScreenshot({
+      component,
+      variant: 'slide-menu/after-clicked-back-to-prev-sub-menu',
+    })
 
     cy.get(`[data-testid="${testIds.menuItem}"`).click()
     cy.get('[data-testid="menu-b"]').should('not.exist')
     cy.get(`[data-testid="${testIds.menuItem}"]`).should('not.exist')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'slide-menu/after-clicked-back-to-original-menu',
+    })
   })
 
   it('navigates drilldown menu', () => {

@@ -57,6 +57,7 @@ export default defineConfig({
           ],
         },
         resolve: {
+          mainFields: ['browser', 'main', 'module'],
           alias: {
             '@toptal/picasso': path.resolve(
               process.cwd(),
