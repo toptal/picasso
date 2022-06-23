@@ -116,7 +116,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
               icon={<Link16 />}
               onClick={onLinkClick}
               active={!!format.link}
-              disabled={isHeadingFormat || disabled}
+              disabled={disabled}
               data-testid={testIds?.linkButton}
             />
           </Container>
