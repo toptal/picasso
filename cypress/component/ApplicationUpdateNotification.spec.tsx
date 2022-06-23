@@ -32,22 +32,18 @@ describe('ApplicationUpdateNotification', () => {
   it('renders notification when click on trigger', () => {
     cy.mount(<ApplicationUpdateNotificationExample />)
 
-    cy.get('[data-testid="trigger"]').click()
+    cy.getByTestId('trigger').click()
     cy.get('body').happoScreenshot()
   })
 
   it('renders notification when click on trigger and close when click on notification button', () => {
     cy.mount(<ApplicationUpdateNotificationExample />)
 
-    cy.get('[data-testid="trigger"]').click()
-    cy.get('[data-testid="application-update-notification"]').should(
-      'be.visible'
-    )
+    cy.getByTestId('trigger').click()
+    cy.getByTestId('application-update-notification').should('be.visible')
 
-    cy.get('[data-testid="update-later-button"]').click()
+    cy.getByTestId('update-later-button').click()
 
-    cy.get('[data-testid="application-update-notification"]').should(
-      'not.be.visible'
-    )
+    cy.getByTestId('application-update-notification').should('not.be.visible')
   })
 })

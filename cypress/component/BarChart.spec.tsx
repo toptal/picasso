@@ -49,7 +49,7 @@ const assertTooltipContent = (text: string) => {
 }
 
 const assertCustomTooltipContent = (text: string) => {
-  cy.get('[data-testid="tooltip"]').should('be.visible').and('contain', text)
+  cy.getByTestId('tooltip').should('be.visible').and('contain', text)
 }
 
 describe('BarChart', () => {

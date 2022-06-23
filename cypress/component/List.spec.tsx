@@ -57,7 +57,7 @@ describe('List', () => {
         </List>
       )
 
-      cy.get('[data-testid="list"]').children().last().contains(13)
+      cy.getByTestId('list').children().last().contains(13)
     })
   })
 })

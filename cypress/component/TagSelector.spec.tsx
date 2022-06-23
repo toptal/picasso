@@ -187,7 +187,7 @@ describe('TagSelector', () => {
         variant: 'other-option/after-forced-other-option',
       })
 
-    cy.get('[role=option]').realClick().get('body').happoScreenshot({
+    cy.getByRole('option').realClick().get('body').happoScreenshot({
       component,
       variant: 'other-option/after-clicked-new-option',
     })
@@ -197,7 +197,7 @@ describe('TagSelector', () => {
     cy.mount(<InitiallySelectedOptionExample />)
 
     cy.get('input[type="text"]').click()
-    cy.get('[role=option]').as('options').should('have.length', 4)
+    cy.getByRole('option').as('options').should('have.length', 4)
     cy.get('@options').contains('Croatia').should('not.exist')
 
     cy.get('@options').contains('Belarus').click()
