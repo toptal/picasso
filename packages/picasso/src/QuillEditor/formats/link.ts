@@ -8,7 +8,7 @@ const QuillLink = Quill.import('formats/link')
 class LinkBlot extends QuillLink {
   static typographyClasses: Classes
   static create(value: string) {
-    const node = super.create(value)
+    const node: Element = super.create(value)
 
     node.setAttribute(
       'class',
