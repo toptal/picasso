@@ -1,9 +1,5 @@
-export type {
-  BaseProps,
-  ColorType,
-  SpacingType,
-  SizeType
-} from '@toptal/picasso-shared'
+export { BaseProps } from '@toptal/picasso-shared'
+export type { ColorType, SpacingType, SizeType } from '@toptal/picasso-shared'
 export { AccordionCompound as Accordion } from './AccordionCompound'
 export type { AccordionProps } from './Accordion'
 export { default as AccountSelect } from './AccountSelect'
