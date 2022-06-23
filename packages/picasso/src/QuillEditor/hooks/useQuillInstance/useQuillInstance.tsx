@@ -98,7 +98,7 @@ const useQuillInstance = ({
   const typographyClasses = useTypographyClasses()
 
   useEffect(() => {
-    let extendedFormats: QuillOptionsStatic['formats'] = [...formats]
+    const extendedFormats: QuillOptionsStatic['formats'] = [...formats]
 
     Quill.register(makeHeaderFormat(typographyClasses), true)
     Quill.register(makeBoldFormat(typographyClasses), true)
@@ -107,7 +107,7 @@ const useQuillInstance = ({
 
     if (allowLinks) {
       Quill.register(makeLinkFormat(typographyClasses), true)
-      extendedFormats = extendedFormats.concat('link')
+      extendedFormats.push('link')
     }
 
     setQuill(
