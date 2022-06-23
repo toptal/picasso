@@ -7,7 +7,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import { useBreakpoint } from '../utils'
 import UserBadge from '../UserBadge'
 import Avatar from '../Avatar'
-import Dropdown from '../Dropdown'
+import { DropdownCompound as Dropdown } from '../DropdownCompound'
 import Typography from '../Typography'
 import styles from './styles'
 

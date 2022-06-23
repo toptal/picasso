@@ -79,4 +79,4 @@ Menu.defaultProps = {
 
 Menu.displayName = 'Menu'
 
-export default Object.assign(Menu, { Item: MenuItem })
+export default Menu

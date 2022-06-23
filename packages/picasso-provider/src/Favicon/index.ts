@@ -1,2 +1,2 @@
-export { default } from './Favicon'
-export * from './Favicon'
+export { default, Favicon } from './Favicon'
+export type { Props as FaviconProps } from './Favicon'

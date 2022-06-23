@@ -18,7 +18,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import { PopperOptions } from 'popper.js'
 
 import Input, { InputProps } from '../Input'
-import Menu from '../Menu'
+import { MenuCompound as Menu } from '../MenuCompound'
 import Container from '../Container'
 import Loader from '../Loader'
 import SelectOptions from '../SelectOptions'

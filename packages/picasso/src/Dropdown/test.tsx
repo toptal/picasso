@@ -1,8 +1,8 @@
 import { fireEvent, render, waitFor, act } from '@toptal/picasso/test-utils'
 import React from 'react'
 
-import Menu from '../Menu'
-import Dropdown from './Dropdown'
+import { MenuCompound as Menu } from '../MenuCompound'
+import { DropdownCompound as Dropdown } from '../DropdownCompound'
 import Container from '../Container'
 
 describe('Dropdown', () => {

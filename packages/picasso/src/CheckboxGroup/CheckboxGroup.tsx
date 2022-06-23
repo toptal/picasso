@@ -5,7 +5,8 @@ import { GridSize } from '@material-ui/core/Grid'
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import Grid, { GridProps } from '../Grid'
+import { GridProps } from '../Grid'
+import { GridCompound as Grid } from '../GridCompound'
 import styles from './styles'
 
 type GridSpacing = GridProps['spacing']

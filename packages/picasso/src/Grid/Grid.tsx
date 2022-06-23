@@ -9,7 +9,6 @@ import MUIGrid, {
 } from '@material-ui/core/Grid'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import GridItem from '../GridItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
@@ -83,4 +82,4 @@ Grid.defaultProps = {
 
 Grid.displayName = 'Grid'
 
-export default Object.assign(Grid, { Item: GridItem })
+export default Grid

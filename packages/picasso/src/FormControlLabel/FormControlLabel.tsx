@@ -11,7 +11,7 @@ import cx from 'classnames'
 
 import { RequiredDecoration } from '../FormLabel'
 import styles from './styles'
-import Form from '../Form'
+import { FormCompound as Form } from '../FormCompound'
 
 export type FormControlLabelAttributesType =
   LabelHTMLAttributes<HTMLLabelElement> &

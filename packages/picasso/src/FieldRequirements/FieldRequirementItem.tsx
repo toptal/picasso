@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Typography from '../Typography'
-import Grid from '../Grid'
+import { GridCompound as Grid } from '../GridCompound'
 import styles from './styles'
 import { Bullet16, CheckMinor16, CloseMinor16 } from '../Icon'
 

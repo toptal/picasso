@@ -3,7 +3,6 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Container, { VariantType as ContainerVariants } from '../Container'
-import AlertInline from '../AlertInline'
 import Typography from '../Typography'
 import ButtonCircular from '../ButtonCircular'
 import { CloseMinor16, Exclamation16, Done16, Info16 } from '../Icon'
@@ -88,6 +87,4 @@ Alert.defaultProps = {
 
 Alert.displayName = 'Alert'
 
-export default Object.assign(Alert, {
-  Inline: AlertInline,
-})
+export default Alert

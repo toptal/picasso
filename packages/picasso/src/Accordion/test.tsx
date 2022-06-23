@@ -2,7 +2,8 @@ import React from 'react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
 
-import Accordion, { Props } from './Accordion'
+import { Props } from './Accordion'
+import { AccordionCompound as Accordion } from '../AccordionCompound'
 
 const DETAILS_TEXT =
   'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.'

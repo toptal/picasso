@@ -9,7 +9,6 @@ import cx from 'classnames'
 import React, { ComponentProps, forwardRef, ReactNode } from 'react'
 
 import { RequiredDecoration } from '../FormLabel'
-import CheckboxGroup from '../CheckboxGroup'
 import Container from '../Container'
 import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
@@ -128,6 +127,4 @@ Checkbox.defaultProps = {
 
 Checkbox.displayName = 'Checkbox'
 
-export default Object.assign(Checkbox, {
-  Group: CheckboxGroup,
-})
+export default Checkbox

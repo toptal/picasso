@@ -1,7 +1,7 @@
 import { JssProps } from '@toptal/picasso-shared'
 import React, { ReactNode } from 'react'
 
-import Menu from '../Menu'
+import { MenuCompound as Menu } from '../MenuCompound'
 import Typography from '../Typography'
 
 const OtherOptionMenuItem = ({
