@@ -1,5 +1,25 @@
 # Change Log
 
+## 26.1.0
+
+### Minor Changes
+
+- [#2899](https://github.com/toptal/picasso/pull/2899) [`149fdb67`](https://github.com/toptal/picasso/commit/149fdb6759b18a07f2ba300321307bb10f904c1b) Thanks [@ascrazy](https://github.com/ascrazy)! - ---
+
+  ### Modal
+
+  - Improve body scroll lock to properly handle multiple open modals
+
+### Patch Changes
+
+- [#2912](https://github.com/toptal/picasso/pull/2912) [`3b55d20a`](https://github.com/toptal/picasso/commit/3b55d20a420f944e4fbad36c159574c920b86a28) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### OutlinedInput
+
+  - add red shadow when error input is focused
+
+- [#2894](https://github.com/toptal/picasso/pull/2894) [`244169f5`](https://github.com/toptal/picasso/commit/244169f55820341797c3c3d787e08aa5e1bdd9ed) Thanks [@dmaklygin](https://github.com/dmaklygin)! - - Use davinci github actions directly
+
 ## 26.0.1
 
 ### Patch Changes

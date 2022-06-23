@@ -1,5 +1,15 @@
 # Change Log
 
+## 46.0.2
+
+### Patch Changes
+
+- [#2838](https://github.com/toptal/picasso/pull/2838) [`6faaa39b`](https://github.com/toptal/picasso/commit/6faaa39b998d4c18e66f3423a4ebf373d3cd5527) Thanks [@vvmarulin](https://github.com/vvmarulin)! - ---
+
+  # Form
+
+  Fix form validation when submit with clicking Enter if it has `validateOnBlur={true}`
+
 ## 46.0.1
 
 ### Patch Changes
