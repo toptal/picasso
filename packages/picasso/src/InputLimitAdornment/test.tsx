@@ -12,7 +12,7 @@ describe('InputLimitAdornment', () => {
       { charsLength: 1, expectedMessage: '1 character entered' },
       { charsLength: 2, expectedMessage: '2 characters entered' },
     ])(
-      "expect '$expectedMessage' for $charsLength characters",
+      "expect '$expectedMessage' message for $charsLength characters",
       async ({ charsLength, expectedMessage }) => {
         const { findByText } = renderAdornment({
           counter: 'entered',
