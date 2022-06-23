@@ -15,9 +15,11 @@ class LinkBlot extends QuillLink {
       getTypographyClassName(this.typographyClasses, {
         variant: 'body',
         size: 'inherit',
-        underline: 'solid',
-        color: 'light-blue',
-        weight: 'regular',
+        // we don't expose blue color in typography since it should be used only for links.
+        // in this case we are simulating look of the link
+        // @ts-ignore
+        color: 'blue',
+        weight: 'inherit',
       })
     )
 

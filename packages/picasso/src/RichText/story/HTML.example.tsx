@@ -12,6 +12,7 @@ const Example = () => {
           defaultValue={defaultValue}
           onChange={setHtml}
           id='editor'
+          plugins={['link']}
         />
       </Grid.Item>
       <Grid.Item small={12} large={6}>

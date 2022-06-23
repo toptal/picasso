@@ -89,6 +89,22 @@ const formats: QuillOptionsStatic['formats'] = [
   'list',
 ]
 
+const Inline = Quill.import('blots/inline')
+
+// We need link to be wrapped by other inline HTML tags to keep proper styling
+// Lower index means deeper in the DOM tree, since not found (-1) is for embeds
+Inline.order = [
+  'cursor',
+  'link',
+  'inline', // Must be lower
+  'underline',
+  'strike',
+  'italic',
+  'bold',
+  'script',
+  'code', // Must be higher
+]
+
 const useQuillInstance = ({
   id,
   placeholder,
