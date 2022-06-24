@@ -1,5 +1,13 @@
 # Change Log
 
+## 26.2.0
+
+### Minor Changes
+
+- [#2916](https://github.com/toptal/picasso/pull/2916) [`949e7069`](https://github.com/toptal/picasso/commit/949e70691b6625249239253387710e39a41dcfb4) Thanks [@alexvcasillas](https://github.com/alexvcasillas)! - ### RichTextEditor, RichText
+
+  - Add support for links
+
 ## 26.1.2
 
 ### Patch Changes
