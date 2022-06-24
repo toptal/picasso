@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Container } from '@toptal/picasso'
 
+const component = 'ButtonRadio'
+
 describe('Button.Radio', () => {
   it('renders different sizes', () => {
     cy.mount(
@@ -11,7 +13,10 @@ describe('Button.Radio', () => {
       </Container>
     )
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'all-sizes',
+    })
   })
 
   it('renders different states', () => {
@@ -27,6 +32,9 @@ describe('Button.Radio', () => {
       </Container>
     )
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'all-states',
+    })
   })
 })

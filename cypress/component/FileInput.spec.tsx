@@ -5,6 +5,8 @@ const TestFileInput = (props: FileInputProps = {}) => (
   <FileInput hint='No file uploaded.' {...props} />
 )
 
+const component = 'FileInput'
+
 describe('FileInput', () => {
   it('opens file dialog', () => {
     cy.mount(<TestFileInput />)
@@ -21,12 +23,18 @@ describe('FileInput', () => {
       .click()
       .should(() => expect(openFileDialog).to.be.called)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/after-clicked',
+    })
   })
 
   it('renders with changed label', () => {
     cy.mount(<TestFileInput buttonLabel='Upload File' />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'custom-label',
+    })
   })
 })

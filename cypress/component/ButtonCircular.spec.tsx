@@ -2,6 +2,8 @@ import React from 'react'
 import { Button, Container, Settings16 } from '@toptal/picasso'
 import { palette } from '@toptal/picasso/utils'
 
+const component = 'ButtonCircular'
+
 describe('Button.Circular', () => {
   it('renders flat variant', () => {
     cy.mount(
@@ -18,6 +20,9 @@ describe('Button.Circular', () => {
         <Button.Circular variant='flat' disabled icon={<Settings16 />} />
       </Container>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'flat',
+    })
   })
 })

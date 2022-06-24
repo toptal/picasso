@@ -11,7 +11,7 @@ const renderRatingThumbs = (props: Partial<RatingThumbsProps> = {}) => (
   </Container>
 )
 
-const screenshot = () => cy.get('body').happoScreenshot()
+const component = 'RatingThumbs'
 
 describe('Rating.Thumbs', () => {
   describe('when using different values', () => {
@@ -19,7 +19,10 @@ describe('Rating.Thumbs', () => {
       it(`renders the correct thumb as active if any [value: ${value}]`, () => {
         cy.mount(renderRatingThumbs({ value }))
 
-        screenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'various-values',
+        })
       })
     }
   })
@@ -29,7 +32,10 @@ describe('Rating.Thumbs', () => {
       it(`renders the correct size thumb [size: ${size}]`, () => {
         cy.mount(renderRatingThumbs({ size }))
 
-        screenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'all-sizes',
+        })
       })
     }
   })

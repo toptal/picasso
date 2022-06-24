@@ -34,6 +34,8 @@ const renderExample = ({ size, variant, src }: Props) => (
   </>
 )
 
+const component = 'Avatar'
+
 const createSizeTests = (variant: Props['variant']) => {
   describe(`${variant} variant`, () => {
     SIZES.forEach(size =>
@@ -44,7 +46,10 @@ const createSizeTests = (variant: Props['variant']) => {
           cy.mount(renderExample({ size, variant, src: file }))
         )
 
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: `size-variants/${size}`,
+        })
       })
     )
   })

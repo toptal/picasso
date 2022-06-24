@@ -20,12 +20,18 @@ const renderRating = (props = defaultProps) => (
   </Container>
 )
 
+const component = 'RatingStars'
+
 describe('Rating.Stars', () => {
   it('renders default rating', () => {
     cy.mount(renderRating())
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
+
   it('renders rating hover', () => {
     cy.mount(
       renderRating({
@@ -41,13 +47,21 @@ describe('Rating.Stars', () => {
       })
     )
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'interactive/after-hovered',
+    })
   })
+
   it('renders large rating', () => {
     cy.mount(renderRating({ ...defaultProps, size: 'large' }))
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'size/large',
+    })
   })
+
   it('renders large rating hover', () => {
     const size = 'large'
 
@@ -66,13 +80,21 @@ describe('Rating.Stars', () => {
       })
     )
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'interactive-and-size-large/after-hovered',
+    })
   })
+
   it('renders inactive rating', () => {
     cy.mount(renderRating({ ...defaultProps, interactive: false }))
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'inactive',
+    })
   })
+
   it('renders custom icon rating', () => {
     const customValue = 3
 
@@ -85,6 +107,9 @@ describe('Rating.Stars', () => {
       })
     )
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'custom-icon',
+    })
   })
 })

@@ -20,38 +20,58 @@ const PaginationExample = ({
   )
 }
 
+const component = 'Pagination'
+
 describe('Pagination', () => {
   it('renders', () => {
     cy.mount(<PaginationExample activePage={3} totalPages={5} />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   it('renders start ellipsis', () => {
     cy.mount(<PaginationExample activePage={5} totalPages={5} />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'forced-start-ellipsis',
+    })
   })
 
   it('renders end ellipsis', () => {
     cy.mount(<PaginationExample activePage={1} totalPages={5} />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'forced-end-ellipsis',
+    })
   })
 
   it('renders both ellipsis', () => {
     cy.mount(<PaginationExample activePage={5} totalPages={10} />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'forced-both-ellipsis',
+    })
   })
 
   it('renders both ellipsis with custom siblings count', () => {
     cy.mount(
       <PaginationExample activePage={5} totalPages={10} siblingCount={3} />
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'forced-both-ellipsis/sibling-count',
+    })
   })
 
   it('renders compact', () => {
     cy.mount(
       <PaginationExample activePage={5} totalPages={10} variant='compact' />
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'compact',
+    })
   })
 })

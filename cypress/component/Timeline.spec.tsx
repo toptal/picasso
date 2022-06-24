@@ -70,28 +70,42 @@ const renderTimeline = ({
   </div>
 )
 
+const component = 'Timeline'
+
 describe('Timeline', () => {
   it('renders', () => {
     cy.mount(renderTimeline())
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   it('renders with dates', () => {
     cy.mount(renderTimeline({ hasDates: true }))
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-dates',
+    })
   })
 
   it('renders with dates and icons', () => {
     cy.mount(renderTimeline({ hasDates: true, hasIcons: true }))
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-dates-and-icons',
+    })
   })
 
   it('renders without last connector', () => {
     cy.mount(renderTimeline({ hasDates: true, trimLastConnector: true }))
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'without-last-connector',
+    })
   })
 })

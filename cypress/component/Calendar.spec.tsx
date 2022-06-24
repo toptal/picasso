@@ -6,6 +6,8 @@ const TestCalendar = (props: ComponentProps<typeof Calendar>) => (
   <Calendar {...props} />
 )
 
+const component = 'Calendar'
+
 describe('Calendar', () => {
   // cy.clock() fixes the time so that the screenshots
   // in happo are not affected by server timezone
@@ -17,7 +19,10 @@ describe('Calendar', () => {
     it('renders default', () => {
       cy.mount(<TestCalendar onChange={noop} />)
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'no-custom-renderer',
+      })
     })
   })
 
@@ -62,7 +67,10 @@ describe('Calendar', () => {
         />
       )
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'no-custom-renderer/with-custom-layout',
+      })
     })
   })
 })

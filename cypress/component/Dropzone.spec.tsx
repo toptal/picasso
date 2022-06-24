@@ -7,10 +7,15 @@ const renderDropzone = (props?: DropzoneProps) => (
   </Container>
 )
 
+const component = 'Dropzone'
+
 describe('Dropzone', () => {
   it('renders without props', () => {
     cy.mount(renderDropzone())
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   it('renders with hint', () => {
@@ -21,7 +26,10 @@ describe('Dropzone', () => {
     )
     cy.contains('Max file size').should('be.visible')
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-hint',
+    })
   })
 
   it('renders with error', () => {
@@ -31,7 +39,10 @@ describe('Dropzone', () => {
         hint: 'Max file size: 25MB',
       })
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'error',
+    })
   })
 
   it('renders with uploading files', () => {
@@ -42,18 +53,27 @@ describe('Dropzone', () => {
         ],
       })
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'uploading',
+    })
   })
 
   it('renders hovered', () => {
     cy.mount(renderDropzone({ hovered: true }))
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'hovered-state',
+    })
   })
 
   it('renders focused', () => {
     cy.mount(renderDropzone({ focused: true }))
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'focused-state',
+    })
   })
 
   it('renders with progress bar', () => {
@@ -68,7 +88,10 @@ describe('Dropzone', () => {
         ],
       })
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'uploading/with-progress-bar',
+    })
   })
 
   it('renders disabled', () => {
@@ -85,7 +108,10 @@ describe('Dropzone', () => {
         onRemove: () => {},
       })
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'disabled',
+    })
   })
 
   it('renders completed with multiple files', () => {
@@ -107,6 +133,9 @@ describe('Dropzone', () => {
         onRemove: () => {},
       })
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'completed/with-multiple-files',
+    })
   })
 })

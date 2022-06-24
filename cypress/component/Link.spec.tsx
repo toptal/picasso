@@ -34,6 +34,8 @@ const TestUserBadgeLink = () => {
   )
 }
 
+const component = 'Link'
+
 describe('Link', () => {
   it('renders', () => {
     cy.mount(
@@ -41,7 +43,10 @@ describe('Link', () => {
         <Link>Link</Link>
       </Typography>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   it('renders action variant', () => {
@@ -50,7 +55,10 @@ describe('Link', () => {
         <Link variant='action'>Action link</Link>
       </Typography>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'action',
+    })
   })
 
   describe('when action variant and disabled', () => {
@@ -62,7 +70,10 @@ describe('Link', () => {
           </Link>
         </Typography>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'disabled/without-underline',
+      })
     })
   })
 
@@ -74,7 +85,10 @@ describe('Link', () => {
         </Typography>
       </Container>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/with-white-color',
+    })
   })
 
   it('renders big link', () => {
@@ -83,7 +97,10 @@ describe('Link', () => {
         Big <Link>link</Link>
       </Typography>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'heading/large',
+    })
   })
 
   it('renders without underline', () => {
@@ -92,12 +109,18 @@ describe('Link', () => {
         <Link noUnderline>Link</Link>
       </Typography>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/without-underline',
+    })
   })
 
   it('renders user badge link', () => {
     cy.mount(<TestUserBadgeLink />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-user-badge',
+    })
   })
 
   describe('when hover over the link', () => {

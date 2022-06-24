@@ -11,9 +11,14 @@ const NoteExample = () => (
   </Note>
 )
 
+const component = 'Note'
+
 describe('Note', () => {
   it('renders', () => {
     cy.mount(<NoteExample />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 })

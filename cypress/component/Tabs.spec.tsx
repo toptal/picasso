@@ -64,23 +64,34 @@ const renderTabs = ({
   )
 }
 
+const component = 'Tabs'
+
 describe('Tabs', () => {
   it('renders', () => {
     cy.mount(renderTabs())
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   it('renders disabled', () => {
     cy.mount(renderTabs({ disabledIndicies: [1] }))
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'disabled',
+    })
   })
 
   it('renders with icon', () => {
     cy.mount(renderTabs({ withIconIndicies: [0, 3] }))
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-icon',
+    })
   })
 
   it('navigates with scroll buttons', () => {
@@ -90,7 +101,10 @@ describe('Tabs', () => {
     cy.get(getTabSelector(4)).should('not.be.visible')
     cy.get(getScrollButtonSelector('left')).should('not.exist')
     cy.get(getScrollButtonSelector('right')).should('be.visible')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-scroll-buttons',
+    })
 
     cy.get(getScrollButtonSelector('right')).click()
     cy.get(getTabSelector(0)).should('not.be.visible')

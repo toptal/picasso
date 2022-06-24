@@ -2,6 +2,8 @@ import React from 'react'
 import { Container, Typography } from '@toptal/picasso'
 import * as icons from '@toptal/picasso/Icon'
 
+const component = 'Icon'
+
 describe('Icon', () => {
   it('renders all icons', () => {
     cy.mount(
@@ -25,6 +27,9 @@ describe('Icon', () => {
         })}
       </Container>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'all-icons',
+    })
   })
 })

@@ -291,6 +291,8 @@ const DisabledStateExample = () => {
   )
 }
 
+const component = 'Form'
+
 describe('Form', () => {
   it('submits the form with success result', () => {
     cy.mount(<FormExample />)
@@ -345,6 +347,9 @@ describe('Form', () => {
   it('disabled state visual', () => {
     cy.mount(<DisabledStateExample />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'disabled',
+    })
   })
 })

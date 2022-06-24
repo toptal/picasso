@@ -11,12 +11,17 @@ const generateListItems = (total: number, listItemProps?: any) =>
       </List.Item>
     ))
 
+const component = 'List'
+
 describe('List', () => {
   describe('Unordered', () => {
     it('renders unordered', () => {
       cy.mount(<List>{generateListItems(5)}</List>)
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'unordered',
+      })
     })
 
     it('renders with custom icons', () => {
@@ -26,7 +31,10 @@ describe('List', () => {
 
       cy.mount(<List>{generateListItems(5, listItemProps)}</List>)
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'custom-icons',
+      })
     })
 
     context('when put into reduced font-size container', () => {
@@ -38,7 +46,10 @@ describe('List', () => {
           </Container>
         )
 
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'inside-reduced-font-size-container',
+        })
       })
     })
   })
@@ -47,7 +58,10 @@ describe('List', () => {
     it('renders ordered', () => {
       cy.mount(<List variant='ordered'>{generateListItems(5)}</List>)
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'ordered',
+      })
     })
 
     it('renders with custom start', () => {

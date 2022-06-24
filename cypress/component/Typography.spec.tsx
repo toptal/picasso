@@ -1,6 +1,8 @@
 import React from 'react'
 import { Typography } from '@toptal/picasso'
 
+const component = 'Typography'
+
 describe('Typography', () => {
   it('renders body', () => {
     cy.mount(
@@ -19,7 +21,10 @@ describe('Typography', () => {
         </div>
       </>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'body/all-sizes',
+    })
   })
 
   it('renders headings', () => {
@@ -30,12 +35,18 @@ describe('Typography', () => {
         </Typography>
       ))
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'heading/all-sizes',
+    })
   })
 
   it('renders with a line through', () => {
     cy.mount(<Typography lineThrough>Text</Typography>)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'line-through',
+    })
   })
 
   it('renders underlined', () => {
@@ -45,7 +56,10 @@ describe('Typography', () => {
         <Typography underline='dashed'>Text</Typography>
       </>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'underlined',
+    })
   })
 
   it('renders colored', () => {
@@ -74,6 +88,9 @@ describe('Typography', () => {
         </div>
       </>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'all-colors',
+    })
   })
 })

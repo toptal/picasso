@@ -27,23 +27,34 @@ const renderColorVariants = () =>
     </Container>
   ))
 
+const component = 'Container'
+
 describe('Container', () => {
   it('renders', () => {
     cy.mount(<Container>Some text</Container>)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   describe('colored variants', () => {
     it('renders all variants', () => {
       cy.mount(<>{renderColorVariants()}</>)
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'all-colors',
+      })
     })
 
     it('renders all variants with grey background', () => {
       cy.mount(
         <div style={{ backgroundColor: 'grey' }}>{renderColorVariants()}</div>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'all-colors/with-grey-background',
+      })
     })
   })
 
@@ -64,6 +75,9 @@ describe('Container', () => {
         ))}
       </>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'white-and-transparent/with-borders',
+    })
   })
 })

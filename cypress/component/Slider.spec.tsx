@@ -29,22 +29,33 @@ const renderLabel = (value: number | number[]) => {
   return <Typography color='inherit'>GMT+{formattedVal}:00</Typography>
 }
 
+const component = 'Slider'
+
 describe('Slider', () => {
   it('renders single', () => {
     cy.mount(<TestSlider value={10} />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'single',
+    })
   })
 
   it('renders range', () => {
     cy.mount(<TestSlider value={[10, 20]} tooltipFormat={renderLabel} />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'range',
+    })
   })
 
   it('renders range with tooltips intersect', () => {
     cy.mount(<TestSlider value={[10, 11]} tooltipFormat={renderLabel} />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'range/when-tooltip-intersect',
+    })
   })
 })

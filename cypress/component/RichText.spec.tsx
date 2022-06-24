@@ -125,11 +125,15 @@ const ast: ASTType = {
 }
 
 const style = { maxWidth: '500px' }
+const component = 'RichText'
 
 describe('RichText', () => {
   it('renders picasso components correctly', () => {
     cy.mount(<RichText style={style} value={ast} />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 })

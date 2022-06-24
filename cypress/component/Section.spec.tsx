@@ -110,11 +110,16 @@ const TestSection = ({
   )
 }
 
+const component = 'Section'
+
 describe('Section', () => {
   it('renders', () => {
     cy.mount(<TestSection />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   it('renders with actions', () => {
@@ -128,24 +133,36 @@ describe('Section', () => {
       />
     )
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/with-actions',
+    })
   })
 
   it('renders with bordered variant', () => {
     cy.mount(<TestSection variant='bordered' />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'bordered',
+    })
   })
   it('renders with withHeaderBar variant', () => {
     cy.mount(<TestSection variant='withHeaderBar' />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-header-bar',
+    })
   })
   describe('when collapsible', () => {
     it('renders initially collapsed', () => {
       cy.mount(<TestSection collapsible />)
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'collapsed',
+      })
     })
 
     it('renders initially expanded', () => {
@@ -161,7 +178,10 @@ describe('Section', () => {
         />
       )
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'expanded',
+      })
     })
   })
 })

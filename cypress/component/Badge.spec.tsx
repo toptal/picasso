@@ -1,6 +1,8 @@
 import React from 'react'
 import { Badge, Container, Avatar } from '@toptal/picasso'
 
+const component = 'Badge'
+
 /* eslint-disable max-lines-per-function */
 describe('Badge', () => {
   it('renders with defaults', () => {
@@ -11,7 +13,10 @@ describe('Badge', () => {
         </Container>
       </Container>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   describe('white variant', () => {
@@ -32,7 +37,10 @@ describe('Badge', () => {
           </Container>
         </Container>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'white/small-size',
+      })
     })
 
     it('renders medium', () => {
@@ -55,7 +63,10 @@ describe('Badge', () => {
           </Container>
         </Container>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'white/medium-size',
+      })
     })
 
     it('renders large', () => {
@@ -78,7 +89,10 @@ describe('Badge', () => {
           </Container>
         </Container>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'white/large-size',
+      })
     })
 
     it('renders custom max count', () => {
@@ -100,7 +114,10 @@ describe('Badge', () => {
           </Container>
         </Container>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'white/custom-max-count',
+      })
     })
   })
   describe('red variant', () => {
@@ -121,7 +138,10 @@ describe('Badge', () => {
           </Container>
         </Container>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'red/small-size',
+      })
     })
 
     it('renders medium', () => {
@@ -144,7 +164,10 @@ describe('Badge', () => {
           </Container>
         </Container>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'red/medium-size',
+      })
     })
 
     it('renders large', () => {
@@ -167,7 +190,10 @@ describe('Badge', () => {
           </Container>
         </Container>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'red/large-size',
+      })
     })
 
     it('renders custom max count', () => {
@@ -189,7 +215,10 @@ describe('Badge', () => {
           </Container>
         </Container>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'red/custom-max-count',
+      })
     })
 
     it('renders overlay badge', () => {
@@ -246,7 +275,10 @@ describe('Badge', () => {
           </Container>
         </>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'overlay',
+      })
     })
   })
 })

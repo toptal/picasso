@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Container } from '@toptal/picasso'
 
+const component = 'ButtonAction'
+
 describe('ButtonAction', () => {
   it('renders', () => {
     cy.mount(
@@ -12,6 +14,9 @@ describe('ButtonAction', () => {
         </Container>
       </>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 })

@@ -11,18 +11,26 @@ const NumberInputExample = ({ status }: Partial<NumberInputProps>) => (
   />
 )
 
+const component = 'NumberInput'
+
 describe('NumberInput', () => {
   it('renders', () => {
     cy.mount(<NumberInputExample />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   describe('when in a valid state', () => {
     it('shows valid icon', () => {
       cy.mount(<NumberInputExample status='success' />)
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'valid',
+      })
     })
   })
 
@@ -30,7 +38,10 @@ describe('NumberInput', () => {
     it('shows error', () => {
       cy.mount(<NumberInputExample status='error' />)
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'error',
+      })
     })
   })
 })

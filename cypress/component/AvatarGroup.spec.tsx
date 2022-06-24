@@ -8,6 +8,8 @@ const generatePeople = (
 
 const SIZES = ['xxsmall', 'xsmall', 'small', 'medium', 'large'] as const
 
+const component = 'AvatarGroup'
+
 describe('AvatarGroup', () => {
   SIZES.forEach(size =>
     it(`renders in ${size} size`, () => {
@@ -29,7 +31,10 @@ describe('AvatarGroup', () => {
         )
       })
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: `size-variants/${size}`,
+      })
     })
   )
 })

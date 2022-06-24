@@ -68,6 +68,8 @@ const renderRectangularTag = ({ variant }: RectangularTagArgs) => (
   </Container>
 )
 
+const component = 'Tag'
+
 describe('Tag', () => {
   it('allows to overflow with ellipsis', () => {
     cy.mount(
@@ -79,7 +81,10 @@ describe('Tag', () => {
         </Tag>
       </Container>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'overflow-with-ellipsis',
+    })
   })
 
   it('renders in group', () => {
@@ -91,60 +96,104 @@ describe('Tag', () => {
         <Tag>Vue JS</Tag>
       </Tag.Group>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'group',
+    })
   })
+
   describe('Regular', () => {
     describe('Variants', () => {
       it('renders as blue', () => {
         cy.mount(renderRegularTag({ variant: 'blue' }))
 
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'regular/blue',
+        })
       })
+
       it('renders as grey', () => {
         cy.mount(renderRegularTag({ variant: 'light-grey' }))
 
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'regular/grey',
+        })
       })
+
       it('renders as green', () => {
         cy.mount(renderRegularTag({ variant: 'green' }))
 
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'regular/green',
+        })
       })
+
       it('renders as yellow', () => {
         cy.mount(renderRegularTag({ variant: 'yellow' }))
 
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'regular/yellow',
+        })
       })
+
       it('renders as red', () => {
         cy.mount(renderRegularTag({ variant: 'red' }))
 
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'regular/red',
+        })
       })
     })
+
     describe('Interactive', () => {
       it('renders', () => {
         cy.mount(renderCheckableTag({}))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'interactive',
+        })
       })
+
       it('renders hovered', () => {
         cy.mount(renderCheckableTag({ hovered: true }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'interactive/hovered',
+        })
       })
+
       it('renders selected', () => {
         cy.mount(renderCheckableTag({ checked: true }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'interactive/checked',
+        })
       })
+
       it('renders selected hovered', () => {
         cy.mount(renderCheckableTag({ checked: true, hovered: true }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'interactive/checked-and-hovered',
+        })
       })
+
       it('renders disabled', () => {
         cy.mount(
           renderCheckableTag({ checked: true, hovered: true, disabled: true })
         )
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'disabled/disabled',
+        })
       })
     })
+
     it('renders', () => {
       cy.mount(
         <Container padded='small'>
@@ -152,7 +201,10 @@ describe('Tag', () => {
         </Container>
       )
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'default',
+      })
     })
     it('renders with Icon', () => {
       cy.mount(
@@ -161,7 +213,10 @@ describe('Tag', () => {
         </Container>
       )
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'with-icon',
+      })
     })
     it('renders with remove button', () => {
       cy.mount(
@@ -177,7 +232,10 @@ describe('Tag', () => {
         </>
       )
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'with-remove-button',
+      })
     })
     it('renders disabled', () => {
       cy.mount(
@@ -212,7 +270,10 @@ describe('Tag', () => {
         </>
       )
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'disabled',
+      })
     })
     it('renders with connection', () => {
       cy.mount(
@@ -239,7 +300,10 @@ describe('Tag', () => {
           </Container>
         </>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'with-connection',
+      })
     })
   })
 
@@ -247,41 +311,68 @@ describe('Tag', () => {
     describe('Variants', () => {
       it('renders red', () => {
         cy.mount(renderRectangularTag({ variant: 'red' }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'rectangular/red',
+        })
       })
       it('renders yellow', () => {
         cy.mount(renderRectangularTag({ variant: 'yellow' }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'rectangular/yellow',
+        })
       })
       it('renders green', () => {
         cy.mount(renderRectangularTag({ variant: 'green' }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'rectangular/green',
+        })
       })
       it('renders dark grey', () => {
         cy.mount(renderRectangularTag({ variant: 'dark-grey' }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'rectangular/dark-grey',
+        })
       })
       it('renders light grey', () => {
         cy.mount(renderRectangularTag({ variant: 'light-grey' }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'rectangular/light-grey',
+        })
       })
     })
     describe('Indicators', () => {
       it('renders red indicator', () => {
         cy.mount(renderIndicatorTag({ indicator: 'red' }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'red-indicator',
+        })
       })
       it('renders yellow indicator', () => {
         cy.mount(renderIndicatorTag({ indicator: 'yellow' }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'yellow-indicator',
+        })
       })
       it('renders green indicator', () => {
         cy.mount(renderIndicatorTag({ indicator: 'green' }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'green-indicator',
+        })
       })
       it('renders blue indicator', () => {
         cy.mount(renderIndicatorTag({ indicator: 'blue' }))
-        cy.get('body').happoScreenshot()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: 'blue-indicator',
+        })
       })
     })
   })
