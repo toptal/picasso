@@ -33,3 +33,7 @@ page
     title: 'Status',
     takeScreenshot: false,
   })
+  .addExample('RichTextEditor/story/Links.example.tsx', {
+    title: 'Links',
+    takeScreenshot: false,
+  })

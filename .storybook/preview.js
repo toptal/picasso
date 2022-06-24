@@ -1,4 +1,5 @@
 import React from 'react'
+import 'github-markdown-css/github-markdown-light.css'
 import 'happo-plugin-storybook/register'
 
 import Picasso from '@toptal/picasso-provider'
@@ -6,8 +7,8 @@ import Picasso from '@toptal/picasso-provider'
 export const parameters = {
   layout: 'padded',
   a11y: {
-    element: '.component-section-container'
-  }
+    element: '.component-section-container',
+  },
 }
 
 const loadFonts = TEST_ENV !== 'visual'

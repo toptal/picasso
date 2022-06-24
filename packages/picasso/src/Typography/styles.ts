@@ -131,6 +131,9 @@ export default (theme: Theme) => {
     inherit: {
       color: 'inherit',
     },
+    blue: {
+      color: palette.blue.main,
+    },
 
     solid: {
       textDecoration: 'underline',

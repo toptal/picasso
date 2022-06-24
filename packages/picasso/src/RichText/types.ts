@@ -5,7 +5,7 @@ export type TextType = {
 
 export type ElementType = {
   type: 'element'
-  tagName: 'p' | 'h3' | 'strong' | 'em' | 'ul' | 'ol' | 'li' | 'br'
+  tagName: 'p' | 'h3' | 'strong' | 'em' | 'ul' | 'ol' | 'li' | 'br' | 'a'
   properties: {}
   children: ASTChildType[]
 }

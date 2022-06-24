@@ -4,6 +4,7 @@ import {
   ItalicValue as EditorItalicValue,
   ListValue as EditorListValue,
   HeaderValue as EditorHeaderValue,
+  LinkValue as EditorLinkValue,
 } from '../../QuillEditor'
 import { FormatType as ToolbarFormatType, HeaderValue } from '../store/toolbar'
 
@@ -15,6 +16,7 @@ export const convertListFromEditorValue = (list: EditorListValue) =>
   list || false
 export const convertHeaderFromEditorValue = (header: EditorHeaderValue) =>
   header ? '3' : ''
+export const convertLinkFromEditorValue = (link: EditorLinkValue) => link || ''
 
 export const getToolbarFormatFromEditorFormat = (
   format: EditorFormatType
@@ -24,6 +26,7 @@ export const getToolbarFormatFromEditorFormat = (
     italic: convertItalicFromEditorValue(format.italic),
     list: convertListFromEditorValue(format.list),
     header: convertHeaderFromEditorValue(format.header),
+    link: convertLinkFromEditorValue(format.link),
   }
 }
 

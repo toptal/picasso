@@ -5,6 +5,7 @@ const actionTypes = {
   list: 'TOOLBAR/SET_LIST',
   disabled: 'TOOLBAR/SET_DISABLED',
   resetFormat: 'TOOLBAR/RESET_FORMAT',
+  link: 'TOOLBAR/LINK',
 } as const
 
 export default actionTypes

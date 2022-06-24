@@ -4,12 +4,14 @@ export type HeaderValue = '3' | ''
 export type BoldValue = boolean
 export type ItalicValue = boolean
 export type ListValue = 'bullet' | 'ordered' | false
+export type LinkValue = string
 
 export type FormatType = {
   bold: BoldValue
   italic: ItalicValue
   list: ListValue
   header: HeaderValue
+  link: LinkValue
 }
 
 export type ToolbarStateType = {
@@ -37,6 +39,11 @@ export type SetHeaderActionType = {
   payload: ToolbarStateType['format']['header']
 }
 
+export type SetLinkActionType = {
+  type: typeof actionTypes.link
+  payload: ToolbarStateType['format']['link']
+}
+
 export type SetDisabled = {
   type: typeof actionTypes.disabled
   payload: boolean
@@ -53,6 +60,7 @@ export type ToolbarActionsType =
   | SetHeaderActionType
   | SetDisabled
   | ResetFormatType
+  | SetLinkActionType
 
 export type ToolbarReducerType = (
   state: ToolbarStateType | undefined,
