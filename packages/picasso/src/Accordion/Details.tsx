@@ -9,7 +9,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAccordion',
 })
 
-export interface DetailsProps extends Partial<StandardProps> {
+export interface DetailsProps extends StandardProps {
   children: ReactNode
 }
 

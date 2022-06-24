@@ -11,7 +11,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAccordion',
 })
 
-export interface SummaryProps extends Partial<StandardProps> {
+export interface SummaryProps extends StandardProps {
   children: ReactNode
 }
 
