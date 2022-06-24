@@ -1,5 +1,4 @@
-import Accordion from '../Accordion'
-import { Details, Summary } from '../Accordion/Accordion'
+import Accordion, { Details, Summary } from '../Accordion'
 
 export const AccordionCompound = Object.assign(Accordion, {
   Summary,
