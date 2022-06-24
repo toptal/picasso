@@ -29,36 +29,6 @@ const EmptyAccordionSummary = ({
   'data-testid'?: string
 }) => <div data-testid={dataTestId} />
 
-export interface SummaryProps extends Partial<StandardProps> {
-  children: ReactNode
-}
-
-export const Summary = (props: SummaryProps) => {
-  const { children, className, ...rest } = props
-  const classes = useStyles(props)
-
-  return (
-    <div {...rest} className={cx(className, classes.summaryWrapper)}>
-      {children}
-    </div>
-  )
-}
-
-export interface DetailsProps extends Partial<StandardProps> {
-  children: ReactNode
-}
-
-export const Details = (props: DetailsProps) => {
-  const { children, className, ...rest } = props
-  const classes = useStyles(props)
-
-  return (
-    <div {...rest} className={cx(className, classes.detailsWrapper)}>
-      {children}
-    </div>
-  )
-}
-
 export interface Props
   extends StandardProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
