@@ -55,6 +55,10 @@ export default defineConfig({
             },
           ],
         },
+        resolve: {
+          ...davinciConfig.component.devServer.webpackConfig.resolve,
+          mainFields: ['browser', 'main', 'module'],
+        },
       },
     },
   },
