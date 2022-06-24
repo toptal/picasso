@@ -5,32 +5,25 @@ import getTypographyClassName from '../../Typography/utils/get-typography-class-
 
 const QuillLink = Quill.import('formats/link')
 
-class LinkBlot extends QuillLink {
-  static typographyClasses: Classes
-  static create(value: string) {
-    const node: Element = super.create(value)
+const makeLinkFormat = (typographyClasses: Classes) =>
+  class LinkBlot extends QuillLink {
+    static create(value: string) {
+      const node = super.create(value)
 
-    node.setAttribute(
-      'class',
-      getTypographyClassName(this.typographyClasses, {
-        variant: 'body',
-        size: 'inherit',
-        // we don't expose blue color in typography since it should be used only for links.
-        // in this case we are simulating look of the link
-        // @ts-ignore
-        color: 'blue',
-        weight: 'inherit',
-      })
-    )
+      node.classList.add(
+        getTypographyClassName(typographyClasses, {
+          variant: 'body',
+          size: 'inherit',
+          underline: 'solid',
+          color: 'light-blue',
+          weight: 'regular',
+        })
+          .split(' ')
+          .join(',')
+      )
 
-    return node
+      return node
+    }
   }
-}
-
-const makeLinkFormat = (typographyClasses: Classes) => {
-  LinkBlot.typographyClasses = typographyClasses
-
-  return LinkBlot
-}
 
 export default makeLinkFormat
