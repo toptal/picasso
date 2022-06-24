@@ -12,13 +12,14 @@ type Props = {
 const useOnSelectionChange = ({ dispatch }: Props) => {
   const handleSelectionChange = useCallback(
     (editorFormat: EditorFormatType) => {
-      const { bold, italic, header, list } =
+      const { bold, italic, header, list, link } =
         getToolbarFormatFromEditorFormat(editorFormat)
 
       toolbarActions.setBold(dispatch)(bold)
       toolbarActions.setItalic(dispatch)(italic)
       toolbarActions.setHeader(dispatch)(header)
       toolbarActions.setList(dispatch)(list)
+      toolbarActions.setLink(dispatch)(link)
     },
     [dispatch]
   )

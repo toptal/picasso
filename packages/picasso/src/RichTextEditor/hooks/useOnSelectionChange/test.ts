@@ -16,10 +16,11 @@ describe('useOnSelectionChange', () => {
         italic: false,
         header: 3,
         list: 'ordered',
+        link: 'https://toptal.com',
       })
     )
 
-    expect(dispatch).toHaveBeenCalledTimes(4)
+    expect(dispatch).toHaveBeenCalledTimes(5)
     expect(dispatch).toHaveBeenCalledWith({
       type: actionTypes.bold,
       payload: true,
@@ -35,6 +36,10 @@ describe('useOnSelectionChange', () => {
     expect(dispatch).toHaveBeenCalledWith({
       type: actionTypes.list,
       payload: 'ordered',
+    })
+    expect(dispatch).toHaveBeenCalledWith({
+      type: actionTypes.link,
+      payload: 'https://toptal.com',
     })
   })
 })

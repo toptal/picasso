@@ -6,22 +6,48 @@ import {
   useTypographyClasses,
   makeHeaderFormat,
   makeBoldFormat,
+  makeLinkFormat,
 } from '../../formats'
+import type { EditorPlugin } from '../../types'
 
 export type EditorOptionsType = {
   id: string
   placeholder?: string
+  plugins?: EditorPlugin[]
 }
 
-export const getModules = (): QuillOptionsStatic['modules'] => {
+export const getModules = (
+  plugins: EditorOptionsType['plugins']
+): QuillOptionsStatic['modules'] => {
+  const allowLinks = plugins?.includes('link')
+
+  const allowedTags = [
+    'b',
+    'strong',
+    'i',
+    'em',
+    'p',
+    'br',
+    'ul',
+    'ol',
+    'li',
+    'h3',
+  ]
+  const allowedAttributes = []
+
+  if (allowLinks) {
+    allowedTags.push('a')
+    allowedAttributes.push('href')
+  }
+
   return {
     clipboard: {
       matchVisual: false,
       allowed: {
         // unsupported tags will be also removed on BE side, so before extending
         // make sure, that our API supports new type
-        tags: ['b', 'strong', 'i', 'em', 'p', 'br', 'ul', 'ol', 'li', 'h3'],
-        attributes: [],
+        tags: allowedTags,
+        attributes: allowedAttributes,
       },
       keepSelection: true,
       substituteBlockElements: true,
@@ -63,25 +89,51 @@ const formats: QuillOptionsStatic['formats'] = [
   'list',
 ]
 
+const Inline = Quill.import('blots/inline')
+
+// We need link to be wrapped by other inline HTML tags to keep proper styling
+// Lower index means deeper in the DOM tree, since not found (-1) is for embeds
+Inline.order = [
+  'cursor',
+  'link',
+  'inline', // Must be lower
+  'underline',
+  'strike',
+  'italic',
+  'bold',
+  'script',
+  'code', // Must be higher
+]
+
 const useQuillInstance = ({
   id,
   placeholder,
+  plugins,
 }: EditorOptionsType): Quill | undefined => {
   const [quill, setQuill] = useState<Quill>()
   const typographyClasses = useTypographyClasses()
 
   useEffect(() => {
+    const extendedFormats: QuillOptionsStatic['formats'] = [...formats]
+
     Quill.register(makeHeaderFormat(typographyClasses), true)
     Quill.register(makeBoldFormat(typographyClasses), true)
 
+    const allowLinks = plugins?.includes('link')
+
+    if (allowLinks) {
+      Quill.register(makeLinkFormat(typographyClasses), true)
+      extendedFormats.push('link')
+    }
+
     setQuill(
       new Quill(`#${id}`, {
-        modules: getModules(),
-        formats,
+        modules: getModules(plugins),
+        formats: extendedFormats,
         placeholder,
       })
     )
-  }, [typographyClasses, id, placeholder])
+  }, [typographyClasses, id, placeholder, plugins])
 
   return quill
 }

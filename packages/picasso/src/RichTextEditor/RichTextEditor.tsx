@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useState } from 'react'
+import React, { forwardRef, useMemo, useRef, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -7,7 +7,7 @@ import hastSanitize from 'hast-util-sanitize'
 
 import noop from '../utils/noop'
 import Container from '../Container'
-import QuillEditor from '../QuillEditor'
+import QuillEditor, { EditorPlugin } from '../QuillEditor'
 import Toolbar from '../RichTextEditorToolbar'
 import Counter from '../RichTextEditorCounter'
 import styles from './styles'
@@ -74,6 +74,8 @@ export interface Props extends BaseProps {
   onFocus?: () => void
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
+  /** List of plugins to enable on the editor */
+  plugins?: EditorPlugin[]
   testIds?: {
     wrapper?: string
     editor?: string
@@ -93,6 +95,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
   function RichTextEditor(props, ref) {
     const {
       'data-testid': dataTestId,
+      plugins,
       autoFocus = false,
       className,
       defaultValue,
@@ -133,6 +136,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       handleHeader,
       handleOrdered,
       handleUnordered,
+      handleLink,
     } = useToolbarHandlers({
       editorRef,
       handleTextFormat,
@@ -159,6 +163,12 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       minLengthMessage,
       maxLengthMessage,
     })
+
+    // Disabled the exhaustive deps rule to allow users to
+    // declare prop like "plugins={[]}" instead of having to
+    // declare the array outside the component level
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const memoizedPlugins = useMemo(() => plugins, [])
 
     return (
       <Container
@@ -195,6 +205,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           onUnorderedClick={handleUnordered}
           onOrderedClick={handleOrdered}
           onHeaderChange={handleHeader}
+          onLinkClick={handleLink}
+          plugins={memoizedPlugins}
           testIds={{
             headerSelect: testIds?.headerSelect,
             boldButton: testIds?.boldButton,
@@ -215,6 +227,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           onSelectionChange={handleSelectionChange}
           onTextChange={onChange}
           defaultValue={defaultValueInHtml}
+          plugins={memoizedPlugins}
         />
         {counterMessage && (
           <Counter error={counterError} message={counterMessage} />

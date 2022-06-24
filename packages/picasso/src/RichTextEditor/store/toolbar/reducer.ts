@@ -24,7 +24,11 @@ const reducer: ToolbarReducerType = (state = initialState, action) => {
         ...state,
         format: { ...state.format, list: action.payload },
       }
-
+    case actionTypes.link:
+      return {
+        ...state,
+        format: { ...state.format, link: action.payload },
+      }
     case actionTypes.disabled:
       return {
         ...state,

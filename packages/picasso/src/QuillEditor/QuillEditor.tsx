@@ -12,11 +12,12 @@ import {
   useSubscribeToTextEditorEvents,
 } from './hooks'
 import useDefaultValue from './hooks/useDefaultValue'
-import {
+import type {
   TextFormatHandler,
   ChangeHandler,
   SelectionHandler,
   TextLengthChangeHandler,
+  EditorPlugin,
 } from './types'
 
 export type Props = BaseProps & {
@@ -28,6 +29,7 @@ export type Props = BaseProps & {
   id: string
   isFocused: boolean
   placeholder?: string
+  plugins?: EditorPlugin[]
   onSelectionChange: SelectionHandler
   onTextFormat: TextFormatHandler
   onTextChange: ChangeHandler
@@ -46,10 +48,11 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
     onSelectionChange,
     onTextFormat,
     onTextChange,
+    plugins,
   },
   ref
 ) {
-  const quill = useQuillInstance({ id, placeholder })
+  const quill = useQuillInstance({ id, placeholder, plugins })
   const editorRef = useCombinedRefs<HTMLDivElement>(
     ref,
     useRef<HTMLDivElement>(null)

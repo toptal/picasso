@@ -5,6 +5,7 @@ import {
   CUSTOM_QUILL_EDITOR_FORMAT_EVENT,
   FormatType as EditorFormatType,
 } from '../../../QuillEditor'
+import { INSERT_DEFAULT_LINK_TEXT } from '../../../QuillEditor/constants'
 import {
   SelectOnChangeHandler,
   ButtonHandlerType,
@@ -26,6 +27,17 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
       })
 
       editorRef.current?.dispatchEvent(formatEvent)
+    },
+    [editorRef]
+  )
+
+  const sendDefaultLinkTextEvent = useCallback(
+    detail => {
+      const defaultLinkTextEvent = new CustomEvent(INSERT_DEFAULT_LINK_TEXT, {
+        detail,
+      })
+
+      editorRef.current?.dispatchEvent(defaultLinkTextEvent)
     },
     [editorRef]
   )
@@ -82,12 +94,35 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
     })
   }
 
+  const handleLink: ButtonHandlerType = () => {
+    const link = window.prompt('URL')
+
+    const URLRegexp = new RegExp(
+      /[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/gi
+    )
+
+    if (!link || !URLRegexp.test(link)) {
+      window.alert('Not valid URL')
+
+      return
+    }
+
+    sendDefaultLinkTextEvent({ link })
+
+    sendFormatEvent({ link })
+    handleTextFormat({
+      formatName: 'link',
+      value: link,
+    })
+  }
+
   return {
     handleBold,
     handleItalic,
     handleOrdered,
     handleUnordered,
     handleHeader,
+    handleLink,
   }
 }
 

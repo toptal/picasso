@@ -8,6 +8,7 @@ import {
   convertItalicFromEditorValue,
   convertListFromEditorValue,
   convertHeaderFromEditorValue,
+  convertLinkFromEditorValue,
 } from '../../utils/convertFormat'
 
 type Props = {
@@ -37,6 +38,11 @@ const useOnTextFormat = ({ dispatch }: Props) => {
           const headerValue = convertHeaderFromEditorValue(e.value)
 
           return toolbarActions.setHeader(dispatch)(headerValue)
+        }
+        case 'link': {
+          const linkValue = convertLinkFromEditorValue(e.value)
+
+          return toolbarActions.setLink(dispatch)(linkValue)
         }
         default:
           throw Error(

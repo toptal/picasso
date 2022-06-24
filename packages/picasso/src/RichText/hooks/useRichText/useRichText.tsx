@@ -13,6 +13,7 @@ import Typography from '../../../Typography'
 import Container from '../../../Container'
 import List from '../../../List'
 import ListItem from '../../../ListItem'
+import Link from '../../../Link'
 
 type Props = {
   children?: React.ReactNode
@@ -46,6 +47,7 @@ const H3 = ({ children }: Props) => (
 )
 const Ul = ({ children }: Props) => <List variant='unordered'>{children}</List>
 const Ol = ({ children }: Props) => <List variant='ordered'>{children}</List>
+const A = ({ children, ...props }: Props) => <Link {...props}>{children}</Link>
 
 const componentMap: Record<string, FC> = {
   p: P,
@@ -55,6 +57,7 @@ const componentMap: Record<string, FC> = {
   li: Li,
   ol: Ol,
   ul: Ul,
+  a: A,
 } as const
 
 const picassoMapper = (child: ReactNode): ReactNode => {

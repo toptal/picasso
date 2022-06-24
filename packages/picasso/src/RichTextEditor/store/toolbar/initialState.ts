@@ -6,6 +6,7 @@ const initialState: ToolbarStateType = {
     header: '',
     italic: false,
     list: false,
+    link: '',
   },
   disabled: true,
 }
