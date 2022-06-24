@@ -65,12 +65,12 @@ const setSelectValue = (
 const setAliases = () => {
   // set aliases
   cy.get(editorSelector).as('editor')
-  cy.get(`[data-testid="${headerSelect}"]`).as('headerSelect')
-  cy.get(`[data-testid="${boldButton}"]`).as('boldButton')
-  cy.get(`[data-testid="${italicButton}"]`).as('italicButton')
-  cy.get(`[data-testid="${olButton}"]`).as('olButton')
-  cy.get(`[data-testid="${ulButton}"]`).as('ulButton')
-  cy.get(`[data-testid="${wrapper}"]`).as('wrapper')
+  cy.getByTestId(headerSelect).as('headerSelect')
+  cy.getByTestId(boldButton).as('boldButton')
+  cy.getByTestId(italicButton).as('italicButton')
+  cy.getByTestId(olButton).as('olButton')
+  cy.getByTestId(ulButton).as('ulButton')
+  cy.getByTestId(wrapper).as('wrapper')
 }
 
 describe('RichTextEditor', () => {

@@ -141,18 +141,18 @@ const getNativeOption = (value: string | number) =>
   cy.get(`option[value="${value}"]`)
 
 const openSelect = () => {
-  cy.get('[data-testid="select"]').click()
+  cy.getByTestId('select').click()
 }
 
 const pressArrowDown = () => {
-  cy.get('[data-testid="select"]').trigger('keydown', {
+  cy.getByTestId('select').trigger('keydown', {
     key: 'ArrowDown',
     keyCode: 40,
   })
 }
 
 const pressEnter = () => {
-  cy.get('[data-testid="select"]').trigger('keydown', {
+  cy.getByTestId('select').trigger('keydown', {
     key: 'Enter',
     keyCode: 13,
   })
@@ -267,7 +267,7 @@ describe('Select', () => {
     // Cypress does not go well with :hover CSS selectors
     // It can fire mouse events via JS, but can't simulate browser cursor behaviour
     // To fix this issue we're using a force method to show the button so the screenshot is correct
-    cy.get(`[data-testid="${testIds.resetButton}"]`).invoke(
+    cy.getByTestId(testIds.resetButton).invoke(
       'attr',
       'style',
       'visibility: visible'
@@ -393,39 +393,36 @@ describe('Select', () => {
         />
       )
 
-      const searchInput = '[data-testid="search-input"]'
-      const selectInput = '[data-testid="select"]'
-
-      cy.get('[data-testid="select"]')
-        .click()
-        .find('input')
-        .should('be.focused')
+      cy.getByTestId('select').click().find('input').should('be.focused')
 
       cy.get('body').happoScreenshot()
 
       // focuses on the Search input by clicking on the input
-      cy.get(searchInput).click('center').find('input').should('be.focused')
+      cy.getByTestId('search-input')
+        .click('center')
+        .find('input')
+        .should('be.focused')
 
       // focuses on by click on the input wrapper
-      cy.get(selectInput)
+      cy.getByTestId('select')
         .click()
-        .get(searchInput)
+        .getByTestId('search-input')
         .click('bottom')
         .find('input')
         .should('be.focused')
 
       // focuses on by click on the search icon
-      cy.get(selectInput)
+      cy.getByTestId('select')
         .click()
-        .get(searchInput)
+        .getByTestId('search-input')
         .closest('[role="menuitem"]')
         .click(20, 20)
         .find('input')
         .should('be.focused')
 
       // focuses on by typing
-      cy.get(selectInput).click().type('option')
-      cy.get(searchInput).find('input').should('be.focused')
+      cy.getByTestId('select').click().type('option')
+      cy.getByTestId('search-input').find('input').should('be.focused')
     })
   })
 })

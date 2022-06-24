@@ -19,7 +19,7 @@ describe('PasswordInput', () => {
       cy.mount(<PasswordInputExample />)
       cy.get('body').happoScreenshot()
 
-      cy.get('[data-testid="password-input-toggle"]').click()
+      cy.getByTestId('password-input-toggle').click()
 
       cy.get('body').happoScreenshot()
     })

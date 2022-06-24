@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.1.2
+
+### Patch Changes
+
+- [#2919](https://github.com/toptal/picasso/pull/2919) [`627161f4`](https://github.com/toptal/picasso/commit/627161f40182fd636eeacf3a6b4d96545098ec4e) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### Input
+
+  - use '1 character' instead of '1 characters' in the limit message
+
 ## 26.1.1
 
 ### Patch Changes

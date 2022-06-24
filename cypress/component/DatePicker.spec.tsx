@@ -46,7 +46,7 @@ describe('DatePicker', () => {
       />
     )
 
-    cy.get('[data-testid=date-picker-input]').clear().type('2015')
+    cy.getByTestId('date-picker-input').clear().type('2015')
 
     cy.get('body').happoScreenshot()
   })

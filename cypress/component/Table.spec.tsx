@@ -380,9 +380,9 @@ describe('Table', () => {
 
     cy.get('body').happoScreenshot()
 
-    cy.get('[data-testid="job"]').as('job').should('be.visible')
+    cy.getByTestId('job').as('job').should('be.visible')
 
-    cy.get(`[data-testid="expand-button-${localData[0].id}"]`)
+    cy.getByTestId(`expand-button-${localData[0].id}`)
       .as('expandButton')
       .realClick()
 
@@ -422,9 +422,9 @@ describe('Table', () => {
 
     cy.get('body').happoScreenshot()
 
-    cy.get('[data-testid="job"]').as('job').should('be.visible')
+    cy.getByTestId('job').as('job').should('be.visible')
 
-    cy.get(`[data-testid="expand-button-${localData[0].id}"]`)
+    cy.getByTestId(`expand-button-${localData[0].id}`)
       .as('expandButton')
       .realClick()
 
