@@ -63,7 +63,7 @@ jobs:
 
       - name: Trigger alpha package
         id: alpha-package
-        uses: toptal/davinci-github-actions/build-publish-alpha-package@v3.0.2
+        uses: toptal/davinci-github-actions/build-publish-alpha-package@v3.1.0
         with:
           npm-token: ${{ env.NPM_TOKEN }}
           branch: ${{ steps.get-branch.outputs.branch }}
