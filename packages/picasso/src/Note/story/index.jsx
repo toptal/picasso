@@ -20,7 +20,4 @@ page
   .addComponentDocs(noteSubtitleStory.componentDocs)
   .addComponentDocs(noteContentStory.componentDocs)
 
-page.createChapter().addExample('Note/story/Default.example.tsx', {
-  title: 'Default',
-  takeScreenshot: false,
-})
+page.createChapter().addExample('Note/story/Default.example.tsx', 'Default')
