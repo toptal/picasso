@@ -28,12 +28,17 @@ const ApplicationUpdateNotificationExample = () => {
   )
 }
 
+const component = 'ApplicationUpdateNotification'
+
 describe('ApplicationUpdateNotification', () => {
   it('renders notification when click on trigger', () => {
     cy.mount(<ApplicationUpdateNotificationExample />)
 
     cy.getByTestId('trigger').click()
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/after-triggered',
+    })
   })
 
   it('renders notification when click on trigger and close when click on notification button', () => {
