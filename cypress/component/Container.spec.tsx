@@ -1,69 +1,59 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { VariantType } from '@toptal/picasso/src/Container/styles'
 
-const colors: VariantType[] = [
-  'transparent',
-  'red',
-  'green',
-  'white',
-  'yellow',
-  'blue',
-  'grey',
-]
-
-const borderableColors: VariantType[] = ['white', 'transparent']
-
-const renderColorVariants = () =>
-  colors.map(color => (
-    <Container
-      padded='medium'
-      bottom='small'
-      top='small'
-      variant={color}
-      key={color}
-    >
-      {color} variant
-    </Container>
-  ))
+const component = 'Container'
 
 describe('Container', () => {
-  it('renders', () => {
-    cy.mount(<Container>Some text</Container>)
-    cy.get('body').happoScreenshot()
-  })
+  it('renders white and transparent variants with grey background', () => {
+    cy.mount(
+      <div style={{ padding: '1.5rem', backgroundColor: 'grey' }}>
+        <Container padded='medium' bottom='small' top='small' variant='white'>
+          White variant
+        </Container>
+        <Container
+          padded='medium'
+          bottom='small'
+          top='small'
+          variant='transparent'
+        >
+          Transparent variant
+        </Container>
+      </div>
+    )
 
-  describe('colored variants', () => {
-    it('renders all variants', () => {
-      cy.mount(<>{renderColorVariants()}</>)
-      cy.get('body').happoScreenshot()
-    })
-
-    it('renders all variants with grey background', () => {
-      cy.mount(
-        <div style={{ backgroundColor: 'grey' }}>{renderColorVariants()}</div>
-      )
-      cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'white-and-transparent/with-grey-background',
     })
   })
 
   it('renders white and transparent variants with borders', () => {
     cy.mount(
-      <>
-        {borderableColors.map(color => (
-          <Container
-            padded='medium'
-            bottom='small'
-            top='small'
-            variant={color}
-            key={color}
-            bordered
-          >
-            {color} variant
-          </Container>
-        ))}
-      </>
+      <div style={{ padding: '1.5rem' }}>
+        <Container
+          padded='medium'
+          bottom='small'
+          top='small'
+          variant='white'
+          bordered
+        >
+          White variant
+        </Container>
+        <Container
+          padded='medium'
+          bottom='small'
+          top='small'
+          variant='transparent'
+          bordered
+        >
+          Transparent variant
+        </Container>
+      </div>
     )
-    cy.get('body').happoScreenshot()
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'white-and-transparent/with-borders',
+    })
   })
 })
