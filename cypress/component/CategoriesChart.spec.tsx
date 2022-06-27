@@ -13,11 +13,16 @@ const TestCategoriesChart = () => (
   </div>
 )
 
+const component = 'CategoriesChart'
+
 describe('CategoriesChart', () => {
   it('renders default chart', () => {
     cy.mount(<TestCategoriesChart />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 })
 
