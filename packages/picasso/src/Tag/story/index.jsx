@@ -47,14 +47,8 @@ page
 
 page
   .createChapter()
-  .addExample('Tag/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('Tag/story/Variants.example.tsx', {
-    title: 'Variants',
-    takeScreenshot: false,
-  })
+  .addExample('Tag/story/Default.example.tsx', 'Default')
+  .addExample('Tag/story/Variants.example.tsx', 'Variants')
   .addExample('Tag/story/Checkable.example.tsx', {
     title: 'Checkable',
     takeScreenshot: false,
