@@ -28,6 +28,8 @@ const AlignExample = () => (
   </div>
 )
 
+const component = 'TableCell'
+
 describe('TableCell', () => {
   it('row spans', () => {
     cy.mount(
@@ -43,12 +45,18 @@ describe('TableCell', () => {
         </Table.Body>
       </Table>
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'row-span',
+    })
   })
 
   it('aligns cells', () => {
     cy.mount(<AlignExample />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'align-cells',
+    })
   })
 })
 
