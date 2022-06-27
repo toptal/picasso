@@ -111,28 +111,15 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Link/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('Link/story/Action.example.tsx', {
-    title: 'Action',
-    takeScreenshot: false,
-  })
+  .addExample('Link/story/Default.example.tsx', 'Default')
+  .addExample('Link/story/Action.example.tsx', 'Action')
   .addExample('Link/story/FontSize.example.tsx', {
     title: 'Font size',
     description:
       "You can modify Link's font size by wrapping it in `Typography`",
-    takeScreenshot: false,
   })
-  .addExample('Link/story/Color.example.tsx', {
-    title: 'Color',
-    takeScreenshot: false,
-  })
-  .addExample('Link/story/Disabled.example.tsx', {
-    title: 'Disabled',
-    takeScreenshot: false,
-  })
+  .addExample('Link/story/Color.example.tsx', 'Color')
+  .addExample('Link/story/Disabled.example.tsx', 'Disabled')
   .addExample('Link/story/Routing.example.tsx', {
     title: 'Routing',
     description:
