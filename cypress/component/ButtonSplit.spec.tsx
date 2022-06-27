@@ -11,6 +11,8 @@ const menu = (
   </Menu>
 )
 
+const component = 'ButtonSplit'
+
 describe('Button.Split', () => {
   it('opens dropdown when menu button is clicked', () => {
     cy.mount(
@@ -23,6 +25,9 @@ describe('Button.Split', () => {
 
     cy.getByTestId('menu-button').click()
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/after-clicked',
+    })
   })
 })
