@@ -27,19 +27,7 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Pagination/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('Pagination/story/Disabled.example.tsx', {
-    title: 'Disabled',
-    takeScreenshot: false,
-  })
-  .addExample('Pagination/story/Variants.example.tsx', {
-    title: 'Variants',
-    takeScreenshot: false,
-  })
-  .addExample('Pagination/story/Ellipsis.example.tsx', {
-    title: 'Ellipsis',
-    takeScreenshot: false,
-  })
+  .addExample('Pagination/story/Default.example.tsx', 'Default')
+  .addExample('Pagination/story/Disabled.example.tsx', 'Disabled')
+  .addExample('Pagination/story/Variants.example.tsx', 'Variants')
+  .addExample('Pagination/story/Ellipsis.example.tsx', 'Ellipsis')
