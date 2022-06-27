@@ -20,11 +20,6 @@ page
 
 page
   .createChapter()
-  .addExample('Stepper/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('Stepper/story/Variants.example.tsx', {
-    title: 'Variants',
-    takeScreenshot: false,
-  })
+  .addExample('Stepper/story/Default.example.tsx', 'Default')
+  .addExample('Stepper/story/WithoutLabels.example.tsx', 'Without Labels')
+  .addExample('Stepper/story/Vertical.example.tsx', 'Vertical')
