@@ -2,6 +2,6 @@
 '@toptal/picasso': patch
 ---
 
-#RichTextEditor
+## RichTextEditor
 
-Refactor format creation to avoid possible bug when recreating the format global class
+- Refactor format creation to avoid possible bug when recreating the format global class
