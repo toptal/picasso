@@ -23,21 +23,9 @@ page
 
 page
   .createChapter()
-  .addExample('Avatar/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('Avatar/story/Variants.example.tsx', {
-    title: 'Variants',
-    takeScreenshot: false,
-  })
-  .addExample('Avatar/story/Sizes.example.tsx', {
-    title: 'Sizes',
-    takeScreenshot: false,
-  })
-  .addExample('Avatar/story/LongName.example.tsx', {
-    title: 'Long Name',
-    takeScreenshot: false,
-  })
+  .addExample('Avatar/story/Default.example.tsx', 'Default')
+  .addExample('Avatar/story/Variants.example.tsx', 'Variants')
+  .addExample('Avatar/story/Sizes.example.tsx', 'Sizes')
+  .addExample('Avatar/story/LongName.example.tsx', 'Long Name')
 
 page.connect(AvatarGroupStory.chapter)
