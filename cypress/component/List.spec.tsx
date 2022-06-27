@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, List, Referrals16 } from '@toptal/picasso'
+import { Container, List } from '@toptal/picasso'
 
 /* eslint-disable react/no-array-index-key */
 const generateListItems = (total: number, listItemProps?: any) =>
@@ -11,53 +11,21 @@ const generateListItems = (total: number, listItemProps?: any) =>
       </List.Item>
     ))
 
+const component = 'List'
+
 describe('List', () => {
-  describe('Unordered', () => {
-    it('renders unordered', () => {
-      cy.mount(<List>{generateListItems(5)}</List>)
-
-      cy.get('body').happoScreenshot()
-    })
-
-    it('renders with custom icons', () => {
-      const listItemProps = {
-        icon: <Referrals16 />,
-      }
-
-      cy.mount(<List>{generateListItems(5, listItemProps)}</List>)
-
-      cy.get('body').happoScreenshot()
-    })
-
-    context('when put into reduced font-size container', () => {
-      // eslint-disable-next-line max-nested-callbacks
-      it('aligns bullets correctly', () => {
-        cy.mount(
-          <Container style={{ fontSize: '0.825rem' }}>
-            <List>{generateListItems(5)}</List>
-          </Container>
-        )
-
-        cy.get('body').happoScreenshot()
-      })
-    })
-  })
-
-  describe('Ordered', () => {
-    it('renders ordered', () => {
-      cy.mount(<List variant='ordered'>{generateListItems(5)}</List>)
-
-      cy.get('body').happoScreenshot()
-    })
-
-    it('renders with custom start', () => {
+  describe('when inside reduced font-size container', () => {
+    it('aligns bullets correctly', () => {
       cy.mount(
-        <List variant='ordered' start={9} data-testid='list'>
-          {generateListItems(5)}
-        </List>
+        <Container style={{ fontSize: '0.825rem' }}>
+          <List>{generateListItems(5)}</List>
+        </Container>
       )
 
-      cy.getByTestId('list').children().last().contains(13)
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'inside-reduced-font-size-container',
+      })
     })
   })
 })
