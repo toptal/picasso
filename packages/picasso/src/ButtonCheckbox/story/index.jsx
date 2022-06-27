@@ -4,14 +4,8 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('Checkbox Button', 'Checkbox Style Button.')
-    .addExample('ButtonCheckbox/story/Default.example.tsx', {
-      title: 'Default',
-      takeScreenshot: false,
-    })
-    .addExample('ButtonCheckbox/story/States.example.tsx', {
-      title: 'States',
-      takeScreenshot: false,
-    })
+    .addExample('ButtonCheckbox/story/Default.example.tsx', 'Default')
+    .addExample('ButtonCheckbox/story/States.example.tsx', 'States')
 )
 
 const componentDocs = PicassoBook.createComponentDocs(
