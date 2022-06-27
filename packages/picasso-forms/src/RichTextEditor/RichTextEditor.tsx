@@ -8,6 +8,7 @@ import { Except } from 'type-fest'
 
 import { FieldProps } from '../FieldWrapper'
 import InputField from '../InputField'
+import FieldLabel from '../FieldLabel'
 
 type OverriddenProps = {
   defaultValue?: ASTType
@@ -21,7 +22,8 @@ export type Props = RichTextEditorProps &
 
 type InternalProps = RichTextEditorProps & { value: string }
 
-export const RichTextEditor = ({ onChange, defaultValue, ...rest }: Props) => {
+export const RichTextEditor = (props: Props) => {
+  const { onChange, defaultValue, label, titleCase, ...rest } = props
   const [value, setValue] = useState('')
 
   // Because RichTextEditor doesn't have an value input we need to implement this
@@ -38,6 +40,16 @@ export const RichTextEditor = ({ onChange, defaultValue, ...rest }: Props) => {
     <InputField<InternalProps>
       value={value}
       onChange={handleOnChange}
+      label={
+        label ? (
+          <FieldLabel
+            name={props.name}
+            required={props.required}
+            label={label}
+            titleCase={titleCase}
+          />
+        ) : null
+      }
       {...rest}
     >
       {(inputProps: RichTextEditorProps) => (
