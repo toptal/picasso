@@ -61,8 +61,9 @@ export default ({ sizes, palette }: Theme) =>
     defaultCollapsedHeader,
     borderedCollapsedHeader: defaultCollapsedHeader,
     withHeaderBarCollapsedHeader: {
-      borderBottom: 'none',
+      borderBottomWidth: '0px',
       borderRadius: sizes.borderRadius.medium,
+      transitionDelay: '300ms',
     },
     defaultSectionContent,
     borderedSectionContent: defaultSectionContent,

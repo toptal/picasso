@@ -2,4 +2,6 @@
 '@toptal/picasso': patch
 ---
 
-Improve collapsible section animation to be smoother.
+### Section
+
+- Improve collapsible section animation to be smoother.
