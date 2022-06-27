@@ -14,7 +14,4 @@ page
     title: 'How to use',
     takeScreenshot: false,
   })
-  .addExample('utils/Colors/story/Default.example.tsx', {
-    title: 'Colors',
-    takeScreenshot: false,
-  })
+  .addExample('utils/Colors/story/Default.example.tsx', 'Colors')
