@@ -5,7 +5,6 @@ import {
   Form,
   Container,
   SelectProps,
-  Settings16,
   Drawer,
 } from '@toptal/picasso'
 import { noop, palette } from '@toptal/picasso/utils'
@@ -29,28 +28,31 @@ const TestSelect = ({
   menuWidth,
   limit,
   testIds,
+  'data-testid': dataTestId = 'select',
 }: Partial<SelectProps> = {}) => (
-  <Select
-    data-testid='select'
-    onChange={onChange}
-    options={options}
-    value={value}
-    placeholder={placeholder}
-    width={width}
-    multiple={multiple}
-    native={native}
-    status={status}
-    disabled={disabled}
-    disablePortal={disablePortal}
-    loading={loading}
-    enableReset={enableReset}
-    menuWidth={menuWidth}
-    icon={icon}
-    iconPosition={iconPosition}
-    searchThreshold={searchThreshold}
-    limit={limit}
-    testIds={testIds}
-  />
+  <Container padded='medium'>
+    <Select
+      data-testid={dataTestId}
+      onChange={onChange}
+      options={options}
+      value={value}
+      placeholder={placeholder}
+      width={width}
+      multiple={multiple}
+      native={native}
+      status={status}
+      disabled={disabled}
+      disablePortal={disablePortal}
+      loading={loading}
+      enableReset={enableReset}
+      menuWidth={menuWidth}
+      icon={icon}
+      iconPosition={iconPosition}
+      searchThreshold={searchThreshold}
+      limit={limit}
+      testIds={testIds}
+    />
+  </Container>
 )
 
 const TestUncontrolledSelect = (
@@ -160,21 +162,18 @@ const pressEnter = () => {
 
 const getNativeSelect = () => cy.get('select')
 
-/* eslint-disable max-lines-per-function */
-/* eslint-disable max-statements */
+const component = 'Select'
+
 describe('Select', () => {
-  it('renders', () => {
-    cy.mount(<TestSelect />)
-
-    cy.get('body').happoScreenshot()
-  })
-
   it('renders open', () => {
     cy.mount(<TestSelect />)
 
     openSelect()
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/after-clicked',
+    })
   })
 
   it('reveals partially visible option when it is hovered', () => {
@@ -202,51 +201,27 @@ describe('Select', () => {
       lastHalfVisibleOption?.dispatchEvent(mouseOverEvent)
 
       // the options list should slightly scroll to show the hovered option
-      return cy.get('body').happoScreenshot()
+      return cy.get('body').happoScreenshot({
+        component,
+        variant: 'default/after-hovered-partially-visible-last-option',
+      })
     })
   })
 
-  it('renders disabled', () => {
-    cy.mount(<TestSelect disabled />)
-
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders with value', () => {
-    cy.mount(<TestSelect value={OPTIONS[0].value} />)
-
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders with error', () => {
-    cy.mount(<TestSelect status='error' />)
-
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders in different width modes', () => {
-    cy.mount(
-      <>
-        <TestSelect width='full' />
-        <TestSelect placeholder='ID' width='shrink' />
-      </>
-    )
-
-    cy.get('body').happoScreenshot()
-  })
-
   it('renders loading', () => {
-    cy.mount(<TestSelect loading />)
+    cy.mount(
+      <Container flex direction='row'>
+        <TestSelect data-testid='select' loading />
+        <TestSelect data-testid='native-select' native loading />
+      </Container>
+    )
 
     openSelect()
 
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders loading in native mode', () => {
-    cy.mount(<TestSelect native loading />)
-
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'loading',
+    })
   })
 
   it('renders with custom menu width', () => {
@@ -254,7 +229,10 @@ describe('Select', () => {
 
     openSelect()
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'custom-menu-width',
+    })
   })
 
   it('renders reset button', () => {
@@ -273,13 +251,10 @@ describe('Select', () => {
       'visibility: visible'
     )
 
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders in small size', () => {
-    cy.mount(<TestSelect size='small' />)
-
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-reset-button',
+    })
   })
 
   it('renders options with description', () => {
@@ -294,19 +269,10 @@ describe('Select', () => {
 
     openSelect()
 
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders with icon', () => {
-    cy.mount(
-      <>
-        <TestSelect icon={<Settings16 />} />
-        <TestSelect iconPosition='end' icon={<Settings16 />} />
-        <TestSelect icon={<Settings16 />} disabled />
-      </>
-    )
-
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'options-with-description',
+    })
   })
 
   it('changes native select value', () => {
@@ -329,7 +295,10 @@ describe('Select', () => {
       </>
     )
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-background',
+    })
   })
 
   it('highlights grouped options via keys correctly', () => {
@@ -395,7 +364,10 @@ describe('Select', () => {
 
       cy.getByTestId('select').click().find('input').should('be.focused')
 
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'with-search-input',
+      })
 
       // focuses on the Search input by clicking on the input
       cy.getByTestId('search-input')

@@ -43,10 +43,7 @@ or\n
 
 page
   .createChapter()
-  .addExample('Select/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
+  .addExample('Select/story/Default.example.tsx', 'Default')
   .addExample('Select/story/Native.example.tsx', {
     title: 'Native',
     takeScreenshot: false,
@@ -63,18 +60,11 @@ page
       'Maximum number of options on the list can be controlled through `limit` property',
     takeScreenshot: false,
   })
-  .addExample('Select/story/Disabled.example.tsx', {
-    title: 'Disabled',
-    takeScreenshot: false,
-  })
+  .addExample('Select/story/Disabled.example.tsx', 'Disabled')
   .addExample('Select/story/Status.example.tsx', {
     title: 'Status',
-    takeScreenshot: false,
   })
-  .addExample('Select/story/WithIcon.example.tsx', {
-    title: 'With icon',
-    takeScreenshot: false,
-  })
+  .addExample('Select/story/WithIcon.example.tsx', 'With icon')
   .addExample('Select/story/WithDescription.example.tsx', {
     title: 'With description',
     takeScreenshot: false,
@@ -83,18 +73,9 @@ page
     title: 'Loading',
     takeScreenshot: false,
   })
-  .addExample('Select/story/Sizes.example.tsx', {
-    title: 'Sizes',
-    takeScreenshot: false,
-  })
-  .addExample('Select/story/FullWidth.example.tsx', {
-    title: 'Full width',
-    takeScreenshot: false,
-  })
-  .addExample('Select/story/ShrinkWidth.example.tsx', {
-    title: 'Shrink width',
-    takeScreenshot: false,
-  })
+  .addExample('Select/story/Sizes.example.tsx', 'Sizes')
+  .addExample('Select/story/FullWidth.example.tsx', 'Full width')
+  .addExample('Select/story/ShrinkWidth.example.tsx', 'Shrink width')
   .addExample('Select/story/MenuWidth.example.tsx', {
     title: 'Custom menu width',
     takeScreenshot: false,
@@ -103,7 +84,6 @@ page
     title: 'Chosen option',
     description:
       'Renders Select component with already chosen one of the options',
-    takeScreenshot: false,
   })
   .addExample('Select/story/CustomOptions.example.tsx', {
     title: 'Custom options',
