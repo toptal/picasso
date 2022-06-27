@@ -1,5 +1,25 @@
 # Change Log
 
+## 1.2.1
+
+### Patch Changes
+
+- [#2884](https://github.com/toptal/picasso/pull/2884) [`187eb79ab70045243037754d29c9a3da74ac202f`](https://github.com/toptal/picasso/commit/187eb79ab70045243037754d29c9a3da74ac202f) Thanks [@konstrybakov](https://github.com/konstrybakov)! - ---
+
+  ### PicassoLight
+
+  - Added a composable Picasso version. This change may affect direct component imports (the usage of which is not recommended).
+
+  ### FixViewport
+
+  ### PicassoGlobalStylesProvider
+
+  ### PicassoRootNode
+
+  - Extracted to a separate component
+
+  repo: toptal/picasso
+
 ## 1.2.0
 
 ### Minor Changes
