@@ -178,7 +178,7 @@ const skills = [
   { value: '2', text: 'Javascript' },
 ]
 
-const DisabledStateExample = () => {
+const DisabledFieldsExample = () => {
   return (
     <Form onSubmit={noop}>
       <Form.Input disabled name='disabledInput' label='Name' value='Example' />
@@ -291,6 +291,8 @@ const DisabledStateExample = () => {
   )
 }
 
+const component = 'Form'
+
 describe('Form', () => {
   it('submits the form with success result', () => {
     cy.mount(<FormExample />)
@@ -342,9 +344,12 @@ describe('Form', () => {
       .and('contain', 'Custom Notification Message!')
   })
 
-  it('disabled state visual', () => {
-    cy.mount(<DisabledStateExample />)
+  it('renders all fields disabled', () => {
+    cy.mount(<DisabledFieldsExample />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'disabled',
+    })
   })
 })
