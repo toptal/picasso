@@ -1,22 +1,34 @@
 import { Accordion } from '../Accordion'
+import { default as Details } from '../Details'
+import { default as Summary } from '../Summary'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'Accordion',
   `
-    Accordions store information behind collapsible sections, 
+    Accordions store information behind collapsible sections,
     allowing for more information to be stored in a limited amount of space.
-    
+
     ${PicassoBook.createBaseDocsLink(
       'https://share.goabstract.com/636e68ee-2ef4-483d-bdaf-83aef2340477?collectionLayerId=aa49cc2c-6e4e-4d8d-aa3a-3def89e1837f&mode=design&present=true'
     )}
   `
 )
 
-page.createTabChapter('Props').addComponentDocs({
-  component: Accordion,
-  name: 'Accordion',
-})
+page
+  .createTabChapter('Props')
+  .addComponentDocs({
+    component: Accordion,
+    name: 'Accordion',
+  })
+  .addComponentDocs({
+    component: Details,
+    name: 'Accordion.Details',
+  })
+  .addComponentDocs({
+    component: Summary,
+    name: 'Accordion.Summary',
+  })
 
 page
   .createChapter()
