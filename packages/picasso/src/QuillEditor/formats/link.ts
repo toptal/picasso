@@ -11,15 +11,17 @@ const makeLinkFormat = (typographyClasses: Classes) =>
       const node = super.create(value)
 
       node.classList.add(
-        getTypographyClassName(typographyClasses, {
+        ...getTypographyClassName(typographyClasses, {
           variant: 'body',
           size: 'inherit',
           underline: 'solid',
-          color: 'light-blue',
+          // we don't expose blue color in typography since it should be used only for links.
+          // in this case we are simulating look of the link
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          color: 'blue',
           weight: 'regular',
-        })
-          .split(' ')
-          .join(',')
+        }).split(' ')
       )
 
       return node

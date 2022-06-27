@@ -11,13 +11,11 @@ const makeBoldFormat = (typographyClasses: Classes) =>
       const node = super.create(value)
 
       node.classList.add(
-        getTypographyClassName(typographyClasses, {
+        ...getTypographyClassName(typographyClasses, {
           variant: 'body',
           size: 'inherit',
           weight: 'semibold',
-        })
-          .split(' ')
-          .join(',')
+        }).split(' ')
       )
 
       return node

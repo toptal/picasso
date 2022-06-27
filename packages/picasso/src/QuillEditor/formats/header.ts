@@ -11,12 +11,10 @@ const makeHeaderFormat = (typographyClasses: Classes) =>
       const node = super.create(value)
 
       node.classList.add(
-        getTypographyClassName(typographyClasses, {
+        ...getTypographyClassName(typographyClasses, {
           variant: 'heading',
           size: 'medium',
-        })
-          .split(' ')
-          .join(',')
+        }).split(' ')
       )
 
       return node
