@@ -62,14 +62,14 @@ page
     title: 'Selectable table',
     takeScreenshot: false,
   })
-  .addExample('Table/story/SectionHeader.example.tsx', {
-    title: 'Table with section header',
-    takeScreenshot: false,
-  })
-  .addExample('Table/story/MultipleSectionHeader.example.tsx', {
-    title: 'Table with multiple sections',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'Table/story/SectionHeader.example.tsx',
+    'Table with section header'
+  )
+  .addExample(
+    'Table/story/MultipleSectionHeader.example.tsx',
+    'Table with multiple sections'
+  )
   .addExample('Table/story/ExpandableRows.example.tsx', {
     title: 'Expandable rows',
     takeScreenshot: false,

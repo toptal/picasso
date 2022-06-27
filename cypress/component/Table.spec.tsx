@@ -281,71 +281,43 @@ type Data = {
   defaultExpanded: boolean
 }
 
+const component = 'Table'
+
 describe('Table', () => {
-  it('renders default', () => {
-    cy.mount(renderTable())
-
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders clear', () => {
-    cy.mount(renderTable({ variant: 'clear' }))
-
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders striped', () => {
-    cy.mount(renderTable({ variant: 'striped' }))
-
-    cy.get('body').happoScreenshot()
-  })
-
   it('renders bordered', () => {
     cy.mount(renderTable({ variant: 'bordered' }))
 
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders narrow', () => {
-    cy.mount(renderTable({ spacing: 'narrow' }))
-
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders compact', () => {
-    cy.mount(renderTable({ spacing: 'compact' }))
-
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'bordered',
+    })
   })
 
   it('renders compact and striped', () => {
     cy.mount(renderTable({ variant: 'striped', spacing: 'compact' }))
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'compact-and-striped',
+    })
   })
 
   it('renders narrow and clear', () => {
     cy.mount(renderTable({ variant: 'clear', spacing: 'narrow' }))
 
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders with section heading', () => {
-    cy.mount(renderTable({}, ['January']))
-
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders with multiple section headings', () => {
-    cy.mount(renderTable({}, ['January', 'February']))
-
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'narrow-and-clear',
+    })
   })
 
   it('renders selectable table', () => {
     cy.mount(<SelectableExample />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'selectable',
+    })
   })
 
   it('renders expandable rows', () => {
@@ -378,7 +350,10 @@ describe('Table', () => {
 
     cy.mount(<TableExpandableRowsExample localData={localData} />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'expandable-rows',
+    })
 
     cy.getByTestId('job').as('job').should('be.visible')
 
@@ -420,7 +395,10 @@ describe('Table', () => {
 
     cy.mount(<TableExpandableRowsExample localData={localData} />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'expandable-rows/default-expanded',
+    })
 
     cy.getByTestId('job').as('job').should('be.visible')
 
