@@ -5,28 +5,21 @@ import getTypographyClassName from '../../Typography/utils/get-typography-class-
 
 const QuillBold = Quill.import('formats/bold')
 
-class TypographyBoldBlot extends QuillBold {
-  static typographyClasses: Classes
-  static create() {
-    const node = super.create()
+const makeBoldFormat = (typographyClasses: Classes) =>
+  class LinkBlot extends QuillBold {
+    static create(value: string) {
+      const node = super.create(value)
 
-    node.setAttribute(
-      'class',
-      getTypographyClassName(this.typographyClasses, {
-        variant: 'body',
-        size: 'inherit',
-        weight: 'semibold',
-      })
-    )
+      node.classList.add(
+        ...getTypographyClassName(typographyClasses, {
+          variant: 'body',
+          size: 'inherit',
+          weight: 'semibold',
+        }).split(' ')
+      )
 
-    return node
+      return node
+    }
   }
-}
-
-const makeBoldFormat = (typographyClasses: Classes) => {
-  TypographyBoldBlot.typographyClasses = typographyClasses
-
-  return TypographyBoldBlot
-}
 
 export default makeBoldFormat

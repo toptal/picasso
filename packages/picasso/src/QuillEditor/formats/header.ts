@@ -5,29 +5,20 @@ import getTypographyClassName from '../../Typography/utils/get-typography-class-
 
 const QuillHeader = Quill.import('formats/header')
 
-class TypographyHeaderBlot extends QuillHeader {
-  static typographyClasses: Classes
+const makeHeaderFormat = (typographyClasses: Classes) =>
+  class LinkBlot extends QuillHeader {
+    static create(value: string) {
+      const node = super.create(value)
 
-  static create() {
-    // we only support h3, so every other heading will be transformed to it
-    const node = super.create(3)
+      node.classList.add(
+        ...getTypographyClassName(typographyClasses, {
+          variant: 'heading',
+          size: 'medium',
+        }).split(' ')
+      )
 
-    node.setAttribute(
-      'class',
-      getTypographyClassName(this.typographyClasses, {
-        variant: 'heading',
-        size: 'medium',
-      })
-    )
-
-    return node
+      return node
+    }
   }
-}
-
-const makeHeaderFormat = (typographyClasses: Classes) => {
-  TypographyHeaderBlot.typographyClasses = typographyClasses
-
-  return TypographyHeaderBlot
-}
 
 export default makeHeaderFormat
