@@ -1,5 +1,13 @@
 # Change Log
 
+## 26.2.1
+
+### Patch Changes
+
+- [#2930](https://github.com/toptal/picasso/pull/2930) [`2ae747b7`](https://github.com/toptal/picasso/commit/2ae747b78b0c28c6b802a0681648e6eabf199b9b) Thanks [@alexvcasillas](https://github.com/alexvcasillas)! - ## RichTextEditor
+
+  - Refactor format creation to avoid possible bug when recreating the format global class
+
 ## 26.2.0
 
 ### Minor Changes
