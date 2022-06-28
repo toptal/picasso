@@ -8,8 +8,10 @@ const defaultCollapsedHeader = {
   paddingBottom: '0',
 }
 
-const defaultSectionContent = {
-  paddingTop: '1.5rem',
+const defaultSection = {
+  '& > :last-child:not(:first-child)': {
+    marginTop: '1.5rem',
+  },
 }
 
 export default ({ sizes, palette }: Theme) =>
@@ -34,8 +36,9 @@ export default ({ sizes, palette }: Theme) =>
     collapsed: {
       paddingBottom: '2rem',
     },
-    default: {},
+    default: defaultSection,
     bordered: {
+      ...defaultSection,
       borderRadius: sizes.borderRadius.medium,
       border: `solid ${sizes.borderWidth} ${palette.grey.light}`,
       padding: '2rem',
@@ -65,12 +68,9 @@ export default ({ sizes, palette }: Theme) =>
       borderRadius: sizes.borderRadius.medium,
       transitionDelay: '300ms',
     },
-    defaultSectionContent,
-    borderedSectionContent: defaultSectionContent,
+    defaultSectionContent: {},
+    borderedSectionContent: {},
     withHeaderBarSectionContent: {
-      ...defaultSectionContent,
-      paddingLeft: '1.5rem',
-      paddingRight: '1.5rem',
-      paddingBottom: '1.5rem',
+      padding: '1.5rem',
     },
   })
