@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.2.2
+
+### Patch Changes
+
+- [#2943](https://github.com/toptal/picasso/pull/2943) [`713a9a7a`](https://github.com/toptal/picasso/commit/713a9a7af38850d9fddfcd50fc04311ce06db348) Thanks [@sergiubutnarasu](https://github.com/sergiubutnarasu)! - ---
+
+  ### Section
+
+  - Improve collapsible section animation to be smoother.
+
 ## 26.2.1
 
 ### Patch Changes
