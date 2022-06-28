@@ -1,5 +1,12 @@
 import React from 'react'
-import { Table, Button, Grid, Typography, Section } from '@toptal/picasso'
+import {
+  Table,
+  Button,
+  Grid,
+  Typography,
+  Section,
+  Container,
+} from '@toptal/picasso'
 
 const Example = () => {
   const content = (
@@ -61,6 +68,34 @@ const Example = () => {
         >
           {content}
         </Section>
+      </Grid.Item>
+
+      <Grid.Item small={6}>
+        <Typography>Collapsible section with header bar.</Typography>
+        <Container top='small'>
+          <Section title='Details' collapsible variant='withHeaderBar'>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint
+            dolore, et ipsum eligendi sunt maiores aliquam blanditiis labore
+            praesentium magnam necessitatibus. Quisquam ipsum, doloremque sit
+            laudantium beatae nihil similique. Laborum eum itaque recusandae ut
+            eaque vero et atque dolor nostrum nobis maxime, nihil nisi non
+            perferendis amet voluptatibus odio laudantium!
+          </Section>
+        </Container>
+      </Grid.Item>
+
+      <Grid.Item small={6}>
+        <Typography>Collapsible bordered section.</Typography>
+        <Container top='small'>
+          <Section title='Details' collapsible variant='bordered'>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint
+            dolore, et ipsum eligendi sunt maiores aliquam blanditiis labore
+            praesentium magnam necessitatibus. Quisquam ipsum, doloremque sit
+            laudantium beatae nihil similique. Laborum eum itaque recusandae ut
+            eaque vero et atque dolor nostrum nobis maxime, nihil nisi non
+            perferendis amet voluptatibus odio laudantium!
+          </Section>
+        </Container>
       </Grid.Item>
     </Grid>
   )

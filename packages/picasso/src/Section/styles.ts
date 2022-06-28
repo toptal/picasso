@@ -2,11 +2,16 @@ import { createStyles, Theme } from '@material-ui/core'
 
 const defaultHeader = {
   display: 'flex',
-  paddingBottom: '1.5rem',
 }
 
 const defaultCollapsedHeader = {
   paddingBottom: '0',
+}
+
+const defaultSection = {
+  '& > :last-child:not(:first-child)': {
+    marginTop: '1.5rem',
+  },
 }
 
 export default ({ sizes, palette }: Theme) =>
@@ -31,8 +36,9 @@ export default ({ sizes, palette }: Theme) =>
     collapsed: {
       paddingBottom: '2rem',
     },
-    default: {},
+    default: defaultSection,
     bordered: {
+      ...defaultSection,
       borderRadius: sizes.borderRadius.medium,
       border: `solid ${sizes.borderWidth} ${palette.grey.light}`,
       padding: '2rem',
@@ -42,9 +48,6 @@ export default ({ sizes, palette }: Theme) =>
     },
     withHeaderBar: {
       padding: 0,
-      '& > :last-child:not(:first-child)': {
-        padding: '1.5rem',
-      },
       borderRadius: sizes.borderRadius.medium,
       border: `solid ${sizes.borderWidth} ${palette.grey.light2}`,
     },
@@ -61,7 +64,13 @@ export default ({ sizes, palette }: Theme) =>
     defaultCollapsedHeader,
     borderedCollapsedHeader: defaultCollapsedHeader,
     withHeaderBarCollapsedHeader: {
-      borderBottom: 'none',
+      borderBottomWidth: '0px',
       borderRadius: sizes.borderRadius.medium,
+      transitionDelay: '300ms',
+    },
+    defaultSectionContent: {},
+    borderedSectionContent: {},
+    withHeaderBarSectionContent: {
+      padding: '1.5rem',
     },
   })

@@ -150,7 +150,9 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
         </Container>
       )}
       <Collapse in={!collapsed} unmountOnExit>
-        {children}
+        <Container className={classes[`${variant}SectionContent`]}>
+          {children}
+        </Container>
       </Collapse>
     </Container>
   )
