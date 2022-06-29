@@ -3,7 +3,7 @@ import { Container, Rating, Typography } from '@toptal/picasso'
 
 const Example = () => {
   const [starsValue, setStarsValue] = useState(1)
-  const [thumbsValue, setThumbsValue] = useState<boolean>()
+  const [thumbsValue, setThumbsValue] = useState(true)
 
   const onChangeStarsValue = (event: ChangeEvent<HTMLInputElement>) => {
     setStarsValue(Number(event.target.value))
@@ -26,11 +26,20 @@ const Example = () => {
         <Typography size='medium' variant='heading'>
           Thumbs
         </Typography>
-        <Rating.Thumbs
-          onChange={setThumbsValue}
-          name='rating-thumbs'
-          value={thumbsValue}
-        />
+        <Container flex>
+          <Container right='xlarge'>
+            <Rating.Thumbs
+              onChange={setThumbsValue}
+              name='rating-thumbs'
+              value={thumbsValue}
+            />
+          </Container>
+          <Rating.Thumbs
+            onChange={() => setThumbsValue(!thumbsValue)}
+            name='rating-thumbs-opposite'
+            value={!thumbsValue}
+          />
+        </Container>
       </Container>
     </Container>
   )

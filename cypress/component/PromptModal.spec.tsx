@@ -2,6 +2,8 @@ import React from 'react'
 import { PromptModal } from '@toptal/picasso'
 import { noop } from '@toptal/picasso/utils'
 
+const component = 'PromptModal'
+
 describe('PromptModal', () => {
   it('renders on desktop and mobile', () => {
     cy.mount(
@@ -13,10 +15,14 @@ describe('PromptModal', () => {
         submitText='OK'
       />
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
 
     cy.get('body').happoScreenshot({
-      component: 'PromptModal',
+      component,
+      variant: 'to-small-target',
       targets: [
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

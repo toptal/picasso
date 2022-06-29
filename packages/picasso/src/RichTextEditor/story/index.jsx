@@ -21,18 +21,12 @@ page
     title: 'Default value',
     takeScreenshot: false,
   })
-  .addExample('RichTextEditor/story/Disabled.example.tsx', {
-    title: 'Disabled',
-    takeScreenshot: false,
-  })
+  .addExample('RichTextEditor/story/Disabled.example.tsx', 'Disabled')
   .addExample('RichTextEditor/story/Limit.example.tsx', {
     title: 'Limit Length',
     takeScreenshot: false,
   })
-  .addExample('RichTextEditor/story/Status.example.tsx', {
-    title: 'Status',
-    takeScreenshot: false,
-  })
+  .addExample('RichTextEditor/story/Status.example.tsx', 'Status')
   .addExample('RichTextEditor/story/Links.example.tsx', {
     title: 'Links',
     takeScreenshot: false,

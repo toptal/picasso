@@ -73,15 +73,9 @@ const setAliases = () => {
   cy.getByTestId(wrapper).as('wrapper')
 }
 
+const component = 'RichTextEditor'
+
 describe('RichTextEditor', () => {
-  describe('when in an invalid state', () => {
-    it('shows error', () => {
-      cy.mount(renderEditor({ ...defaultProps, status: 'error' }))
-
-      cy.get('body').happoScreenshot()
-    })
-  })
-
   it('handles keybindings correctly', () => {
     // render the editor
     cy.mount(renderEditor(defaultProps))
@@ -174,7 +168,10 @@ describe('RichTextEditor', () => {
     cy.get('@olButton').realClick()
     cy.get('@editor').realType('ordered list item{enter}')
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/after-typed-and-formatted',
+    })
   })
 
   describe('select all and delete', () => {
@@ -295,13 +292,6 @@ describe('RichTextEditor', () => {
   })
 
   describe('disabled editor', () => {
-    it('renders disabled', () => {
-      // render editor
-      cy.mount(renderEditor({ ...defaultProps, disabled: true }))
-
-      cy.get('body').happoScreenshot()
-    })
-
     it('cannot be focused', () => {
       // render editor
       cy.mount(renderEditor({ ...defaultProps, disabled: true }))
