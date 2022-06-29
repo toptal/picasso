@@ -19,15 +19,6 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Badge/story/Variants.example.tsx', {
-    title: 'Variants',
-    takeScreenshot: false,
-  })
-  .addExample('Badge/story/Sizes.example.tsx', {
-    title: 'Sizes',
-    takeScreenshot: false,
-  })
-  .addExample('Badge/story/Overlay.example.tsx', {
-    title: 'Overlay',
-    takeScreenshot: false,
-  })
+  .addExample('Badge/story/Variants.example.tsx', 'Variants')
+  .addExample('Badge/story/Sizes.example.tsx', 'Sizes')
+  .addExample('Badge/story/Overlay.example.tsx', 'Overlay')

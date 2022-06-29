@@ -44,14 +44,8 @@ if needed.
 \`\`\`
     `
   )
-  .addExample('Autocomplete/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('Autocomplete/story/Disabled.example.tsx', {
-    title: 'Disabled',
-    takeScreenshot: false,
-  })
+  .addExample('Autocomplete/story/Default.example.tsx', 'Default')
+  .addExample('Autocomplete/story/Disabled.example.tsx', 'Disabled')
   .addExample('Autocomplete/story/OtherOption.example.tsx', {
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
@@ -60,10 +54,10 @@ if needed.
       \`onOtherOptionSelect\` event handler.`,
     takeScreenshot: false,
   })
-  .addExample('Autocomplete/story/InitialSetValue.example.tsx', {
-    title: 'Initially set value',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'Autocomplete/story/InitiallySetValue.example.tsx',
+    'Initially set value'
+  )
   .addExample('Autocomplete/story/Controlled.example.tsx', {
     title: 'Controlled selection',
     takeScreenshot: false,
@@ -76,18 +70,13 @@ if needed.
     title: 'Menu width',
     takeScreenshot: false,
   })
-  .addExample('Autocomplete/story/Loading.example.tsx', {
-    title: 'Loading',
-    takeScreenshot: false,
-  })
-  .addExample('Autocomplete/story/Status.example.tsx', {
-    title: 'Status',
-    takeScreenshot: false,
-  })
-  .addExample('Autocomplete/story/WithIcons.example.tsx', {
-    title: 'With Icon',
-    takeScreenshot: false,
-  })
+  .addExample('Autocomplete/story/Loading.example.tsx', 'Loading')
+  .addExample('Autocomplete/story/Status.example.tsx', 'Status')
+  .addExample('Autocomplete/story/WithIcons.example.tsx', 'With Icon')
+  .addExample(
+    'Autocomplete/story/WithAdornments.example.tsx',
+    'With Adornments'
+  )
   .addExample('Autocomplete/story/WithDescription.example.tsx', {
     title: 'With Description',
     takeScreenshot: false,

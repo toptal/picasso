@@ -1,24 +1,11 @@
 import React, { useState } from 'react'
 import {
   Accordion,
-  AccordionProps,
   Typography,
   Button,
   Container,
   Check16,
 } from '@toptal/picasso'
-
-const TestAccordion = (props: Partial<AccordionProps>) => (
-  <Accordion
-    data-testid='accordion'
-    content='Aliqua ut aliquip dolor velit.'
-    {...props}
-  >
-    <Accordion.Summary>
-      Est amet duis deserunt proident Lorem.
-    </Accordion.Summary>
-  </Accordion>
-)
 
 const Summary = ({
   onClick,
@@ -83,65 +70,50 @@ const AccordionCustomSummary = () => {
   )
 }
 
-describe('Accordion', () => {
-  it('renders', () => {
-    cy.mount(<TestAccordion />)
-    cy.get('body').happoScreenshot()
-  })
-  it('renders disabled', () => {
-    cy.mount(<TestAccordion disabled />)
-    cy.get('body').happoScreenshot()
-  })
-  it('renders border variants', () => {
-    cy.mount(
-      <>
-        <TestAccordion borders='none' />
-        <TestAccordion borders='middle' />
-        <TestAccordion borders='all' />
-      </>
-    )
-    cy.get('body').happoScreenshot()
-  })
-  it('renders expanded initially', () => {
-    cy.mount(
-      <>
-        <TestAccordion defaultExpanded />
-        <TestAccordion expanded />
-      </>
-    )
-    cy.get('body').happoScreenshot()
-  })
-  it('renders collapsed initially', () => {
-    cy.mount(<TestAccordion expanded={false} />)
-    cy.get('body').happoScreenshot()
-  })
+const component = 'Accordion'
 
-  it('renders custom expand icon', () => {
-    cy.mount(<TestAccordion expandIcon={<Check16 />} />)
-    cy.get('body').happoScreenshot()
-  })
-})
-describe('Accordion with custom summary', () => {
-  it('closes and opens', () => {
+describe('Accordion', () => {
+  it('renders custom summary and content', () => {
     cy.mount(<AccordionCustomSummary />)
     cy.getByTestId('trigger').click()
     cy.getByTestId('content').should('not.be.visible')
 
-    cy.getByTestId('accordion-custom-summary').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'custom-summary-content/before-expanded',
+    })
 
     cy.getByTestId('trigger').click()
     cy.getByTestId('content').should('be.visible')
 
-    cy.getByTestId('accordion-custom-summary').happoScreenshot()
-  })
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'custom-summary-content/after-expanded',
+    })
 
-  it('interacts with accordion content', () => {
-    cy.mount(<AccordionCustomSummary />)
-
+    // check if content is interactive
     cy.getByTestId('start-onboarding').click()
-    cy.getByTestId('content').should('be.visible')
     cy.on('window:alert', text => {
       expect(text).equal('Onboarding started')
+    })
+  })
+
+  it('renders custom expand icon', () => {
+    cy.mount(
+      <Accordion
+        data-testid='accordion'
+        content='Aliqua ut aliquip dolor velit.'
+        expandIcon={<Check16 />}
+      >
+        <Accordion.Summary>
+          Est amet duis deserunt proident Lorem.
+        </Accordion.Summary>
+      </Accordion>
+    )
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'custom-expand-icon',
     })
   })
 })

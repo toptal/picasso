@@ -52,11 +52,16 @@ const assertCustomTooltipContent = (text: string) => {
   cy.getByTestId('tooltip').should('be.visible').and('contain', text)
 }
 
+const component = 'BarChart'
+
 describe('BarChart', () => {
   it('renders default chart with default tooltip on hover', () => {
     cy.mount(<TestBarChart />)
 
-    hoverOverBar('Apple').get('body').happoScreenshot()
+    hoverOverBar('Apple').get('body').happoScreenshot({
+      component,
+      variant: 'default-chart/default-tooltip',
+    })
     assertTooltipContent('Appleengineers hired : 500')
 
     hoverOverBar('Google')
@@ -80,7 +85,10 @@ describe('BarChart', () => {
       />
     )
 
-    hoverOverBar('Berlin').get('body').happoScreenshot()
+    hoverOverBar('Berlin').get('body').happoScreenshot({
+      component,
+      variant: 'custom-chart/custom-tooltip',
+    })
     assertCustomTooltipContent('Infected: 4000Recovered: 2400')
 
     hoverOverBar('Milan')
@@ -90,7 +98,10 @@ describe('BarChart', () => {
   it('hides label of each bar via passed `showBarLabel` prop being set to `false`', () => {
     cy.mount(<TestBarChart showBarLabel={false} tooltip={false} />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'no-label',
+    })
   })
 })
 

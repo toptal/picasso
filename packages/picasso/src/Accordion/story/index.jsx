@@ -36,7 +36,6 @@ page
     title: 'Default',
     description:
       'Accordion is uncontrolled until the `expanded` prop is specified.',
-    takeScreenshot: false,
   })
   .addExample('Accordion/story/Disabled.example.tsx', {
     title: 'Disabled',
@@ -47,7 +46,6 @@ page
   .addExample('Accordion/story/BorderedGroups.example.tsx', {
     title: 'Borders and Groups',
     description: 'Accordions have configurable borders and can be grouped',
-    takeScreenshot: false,
   })
   .addExample('Accordion/story/Controlled.example.tsx', {
     title: 'Controlled',
