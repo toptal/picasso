@@ -34,25 +34,9 @@ const TestUserBadgeLink = () => {
   )
 }
 
+const component = 'Link'
+
 describe('Link', () => {
-  it('renders', () => {
-    cy.mount(
-      <Typography size='medium'>
-        <Link>Link</Link>
-      </Typography>
-    )
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders action variant', () => {
-    cy.mount(
-      <Typography size='medium'>
-        <Link variant='action'>Action link</Link>
-      </Typography>
-    )
-    cy.get('body').happoScreenshot()
-  })
-
   describe('when action variant and disabled', () => {
     it('renders action variant without underline', () => {
       cy.mount(
@@ -62,42 +46,19 @@ describe('Link', () => {
           </Link>
         </Typography>
       )
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'disabled/without-underline',
+      })
     })
-  })
-
-  it('renders colored', () => {
-    cy.mount(
-      <Container style={{ background: 'black' }} padded='small'>
-        <Typography size='medium'>
-          <Link color='white'>Action link</Link>
-        </Typography>
-      </Container>
-    )
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders big link', () => {
-    cy.mount(
-      <Typography variant='heading' size='large'>
-        Big <Link>link</Link>
-      </Typography>
-    )
-    cy.get('body').happoScreenshot()
-  })
-
-  it('renders without underline', () => {
-    cy.mount(
-      <Typography size='medium'>
-        <Link noUnderline>Link</Link>
-      </Typography>
-    )
-    cy.get('body').happoScreenshot()
   })
 
   it('renders user badge link', () => {
     cy.mount(<TestUserBadgeLink />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-user-badge',
+    })
   })
 
   describe('when hover over the link', () => {

@@ -13,23 +13,23 @@ const PasswordInputExample = ({ status }: Partial<PasswordInputProps>) => (
   />
 )
 
+const component = 'PasswordInput'
+
 describe('PasswordInput', () => {
   describe('when toggle button clicked', () => {
     it('shows password', () => {
       cy.mount(<PasswordInputExample />)
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'default/before-toggle-clicked',
+      })
 
       cy.getByTestId('password-input-toggle').click()
 
-      cy.get('body').happoScreenshot()
-    })
-  })
-
-  describe('when in a valid state', () => {
-    it('shows valid icon', () => {
-      cy.mount(<PasswordInputExample status='success' />)
-
-      cy.get('body').happoScreenshot()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'default/after-toggle-clicked',
+      })
     })
   })
 })

@@ -87,22 +87,34 @@ describe('Menu', () => {
   it('navigates drilldown menu', () => {
     cy.mount(<MenuExample variant='drilldown' />)
     cy.getByTestId('menu-b').should('not.exist')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'drilldown/before-mouseover-item',
+    })
 
     cy.getByTestId('item-b').trigger('mouseover')
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'drilldown/after-mouseover-item',
+    })
 
     cy.getByTestId('item-b1').trigger('mouseover')
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('be.visible')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'drilldown/after-mouseover-subitem',
+    })
 
     cy.getByTestId('menu-b1').trigger('mouseout')
     cy.getByTestId('item-b').trigger('mouseover')
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'drilldown/after-mouseout-subitem',
+    })
   })
 })
