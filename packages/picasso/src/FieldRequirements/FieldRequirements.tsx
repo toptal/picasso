@@ -35,7 +35,7 @@ const ANIMATION_TIMEOUT = 500
 
 const useStyles = makeStyles<Theme>(styles)
 
-export const FieldRequirements = function <TValueType>({
+export const FieldRequirements = <TValueType,>({
   value,
   description,
   open,
@@ -45,7 +45,7 @@ export const FieldRequirements = function <TValueType>({
   className,
   style,
   testIds,
-}: Props<TValueType>) {
+}: Props<TValueType>) => {
   const classes = useStyles()
 
   return (
