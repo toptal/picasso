@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CalendarTooltip renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span>
+      13
+    </span>
+  </div>
+</div>
+`;

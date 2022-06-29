@@ -5,7 +5,6 @@ import SimpleReactCalendar from 'simple-react-calendar'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
-import { Tooltip } from '@toptal/picasso'
 
 import {
   CalendarProps,
@@ -18,6 +17,8 @@ import {
 import styles from './styles'
 import CalendarMonthHeader from '../CalendarMonthHeader'
 import CalendarContainer from '../CalendarContainer'
+import { CalendarIndicators } from '../CalendarIndicators'
+import { CalendarTooltip } from '../CalendarTooltip'
 
 type SimpleReactCalendarRangeType = {
   start: Date
@@ -54,8 +55,8 @@ export interface Props
   value?: DateOrDateRangeType
   activeMonth?: Date
   disabledIntervals?: { start: Date; end: Date }[]
-  highlightedIntervals?: { start: Date; end: Date }[]
-  tooltipIntervals?: { start: Date; end: Date, tooltip: String }[]
+  indicatedIntervals?: { start: Date; end: Date }[]
+  tooltipIntervals?: { start: Date; end: Date; tooltip: string }[]
   weekStartsOn?: number
   renderMonthHeader?: (props: MonthHeaderProps) => JSX.Element | null
   renderRoot?: (props: CalendarProps) => JSX.Element
@@ -82,7 +83,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     minDate,
     maxDate,
     disabledIntervals,
-    highlightedIntervals,
+    indicatedIntervals,
     tooltipIntervals,
     renderDay,
     weekStartsOn,
@@ -126,72 +127,56 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             ISODate,
           } = dayProps
 
-          const isHighlighted = (date:Date):boolean => {
-            if(!highlightedIntervals) return false
-
-            for (let i = 0; i < highlightedIntervals.length; i++) {
-              const interval = highlightedIntervals[i]
-              if (interval.start <= date && date <= interval.end) {
-                return true
-              }
-            }
-
-            return false
-          }
-
-          const dateTooltip = (date:Date):String|null => {
-            if(!tooltipIntervals) return null
-
-            for (let i = 0; i < tooltipIntervals.length; i++) {
-              const interval = tooltipIntervals[i]
-              if (interval.start <= date && date <= interval.end) {
-                return interval.tooltip
-              }
-            }
-
-            return null
-          }
-
           const innerMarkup = (
-              <button
-                data-testid={`day-button-${
-                  isSelected ? 'selected' : getDayFormatted(date)
-                }`}
-                data-simple-react-calendar-day={ISODate}
-                key={key}
-                tabIndex={isDisabled || !isSelectable ? -1 : undefined}
-                className={cx(classes.day, {
-                  [classes.selected]: isSelected,
-                  [classes.selectable]: isSelectable,
-                  [classes.today]: isToday,
-                  [classes.grayed]:
-                    (isMonthPrev || isMonthNext) && !isSelected && !isDisabled,
-                  [classes.disabled]: isDisabled || !isSelectable,
-                  [classes.startSelection]: isSelectionStart,
-                  [classes.endSelection]: isSelectionEnd,
-                  [classes.highlighted]: isHighlighted(date),
-                  highlightedIntervals
-                })}
-                onClick={handleOnClick}
-                onMouseEnter={handleOnEnter}
-                value={date.toString()}
-                type='button'
-              >
-                {getDayFormatted(date)}
-              </button>
+            <button
+              data-testid={`day-button-${
+                isSelected ? 'selected' : getDayFormatted(date)
+              }`}
+              data-simple-react-calendar-day={ISODate}
+              key={key}
+              tabIndex={isDisabled || !isSelectable ? -1 : undefined}
+              className={cx(classes.day, {
+                [classes.selected]: isSelected,
+                [classes.selectable]: isSelectable,
+                [classes.grayed]:
+                  (isMonthPrev || isMonthNext) && !isSelected && !isDisabled,
+                [classes.disabled]: isDisabled || !isSelectable,
+                [classes.startSelection]: isSelectionStart,
+                [classes.endSelection]: isSelectionEnd,
+              })}
+              onClick={handleOnClick}
+              onMouseEnter={handleOnEnter}
+              value={date.toString()}
+              type='button'
+            >
+              {getDayFormatted(date)}
+              <div className={classes.indicators}>
+                {isToday && <div className={classes.today} />}
+                <CalendarIndicators
+                  indicatedIntervals={indicatedIntervals}
+                  date={date}
+                />
+              </div>
+            </button>
           )
 
-          const tooltip = dateTooltip(date)
-          const defaultMarkup = (tooltip) ?
-            <Tooltip content={tooltip} placement='bottom' compact>{innerMarkup}</Tooltip> :
-            innerMarkup
-
-          return renderDay
-            ? renderDay({
-                ...dayProps,
-                children: defaultMarkup,
-              })
-            : defaultMarkup
+          return renderDay ? (
+            renderDay({
+              ...dayProps,
+              children: (
+                <CalendarTooltip
+                  date={date}
+                  tooltipIntervals={tooltipIntervals}
+                >
+                  {innerMarkup}
+                </CalendarTooltip>
+              ),
+            })
+          ) : (
+            <CalendarTooltip date={date} tooltipIntervals={tooltipIntervals}>
+              {innerMarkup}
+            </CalendarTooltip>
+          )
         }}
         renderMonthHeader={renderMonthHeader}
         renderDaysOfWeek={({ children }: DaysOfWeekProps) => {

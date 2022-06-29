@@ -1,7 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { alpha, rem } from '@toptal/picasso-shared'
 
-export default ({ palette, sizes }: Theme) =>
+export default ({ palette }: Theme) =>
   createStyles({
     root: {
       display: 'none',
@@ -11,9 +11,9 @@ export default ({ palette, sizes }: Theme) =>
       display: 'flex',
     },
     day: {
-      height: '2.5rem',
-      width: '2.5rem',
-      minWidth: '2.5rem',
+      height: '2rem',
+      width: '2rem',
+      minWidth: '2rem',
       verticalAlign: 'middle',
       fontSize: '0.75rem',
       userSelect: 'none',
@@ -22,11 +22,14 @@ export default ({ palette, sizes }: Theme) =>
       justifyContent: 'center',
       background: palette.common.white,
       position: 'relative',
-      margin: 0,
       padding: 0,
       border: 'none',
       outline: 0,
-      borderRadius: sizes.borderRadius.small,
+      flexDirection: 'column',
+      margin: '0 0 0.3rem 0.3rem',
+      '&:first-child': {
+        marginLeft: 0,
+      },
     },
     weekDays: {
       display: 'flex',
@@ -55,6 +58,7 @@ export default ({ palette, sizes }: Theme) =>
 
       '&:hover, &:focus': {
         backgroundColor: alpha(palette.blue.main, 0.24),
+        borderRadius: '10%',
       },
 
       '&$startSelection:hover, &$endSelection:hover': {
@@ -77,22 +81,18 @@ export default ({ palette, sizes }: Theme) =>
         backgroundColor: palette.common.white,
       },
     },
-    highlighted: {
-      backgroundColor: '#f00',
+    indicators: {
+      display: 'flex',
+      flexDirection: 'row',
     },
     today: {
-      display: 'flex',
-      flexDirection: 'column',
-
-      '&:after': {
-        content: '""',
-        height: '0.25rem',
-        width: '0.25rem',
-        borderRadius: '50%',
-        background: palette.blue.main,
-        position: 'absolute',
-        bottom: '0.375rem',
-      },
+      content: '""',
+      height: '0.25rem',
+      width: '0.25rem',
+      borderRadius: '50%',
+      background: palette.blue.main,
+      marginRight: '0.375rem',
+      marginTop: '0.175rem',
     },
     grayed: {
       color: palette.grey.main2,

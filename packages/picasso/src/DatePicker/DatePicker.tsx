@@ -79,10 +79,10 @@ export interface Props
   displayDateFormat?: string
   /** Date range where selection is not allowed */
   disabledIntervals?: { start: Date; end: Date }[]
-  /** TOOOODOOOOO */
-  highlightedIntervals?: { start: Date; end: Date }[]
-  /** TOOOODOOOOO */
-  tooltipIntervals?: { start: Date; end: Date, tooltip: String }[]
+  /** Shows indicators in a range of dates */
+  indicatedIntervals?: { start: Date; end: Date }[]
+  /** Adds some description in a tooltip for a range of dates */
+  tooltipIntervals?: { start: Date; end: Date; tooltip: string }[]
   /** Date format that user will see during manual input */
   editDateFormat?: string
   /** Specify icon which should be rendered inside `DatePicker` */
@@ -112,7 +112,10 @@ export interface Props
   testIds?: InputProps['testIds'] & {
     calendar?: string
     input?: string
+    footer?: string
   }
+  /** Adds a customized footer at the bottom of the calendar */
+  footer?: ReactNode
 }
 
 export const DatePicker = (props: Props) => {
@@ -130,7 +133,7 @@ export const DatePicker = (props: Props) => {
     minDate,
     maxDate,
     disabledIntervals,
-    highlightedIntervals,
+    indicatedIntervals,
     tooltipIntervals,
     popperContainer,
     renderDay,
@@ -143,6 +146,7 @@ export const DatePicker = (props: Props) => {
     status,
     popperProps,
     disabled,
+    footer,
     ...rest
   } = props
   const classes = useStyles()
@@ -415,7 +419,7 @@ export const DatePicker = (props: Props) => {
             minDate={normalizedMinDate}
             maxDate={normalizedMaxDate}
             disabledIntervals={disabledIntervals}
-            highlightedIntervals={highlightedIntervals}
+            indicatedIntervals={indicatedIntervals}
             tooltipIntervals={tooltipIntervals}
             renderDay={renderDay}
             onChange={handleCalendarChange}
@@ -423,6 +427,11 @@ export const DatePicker = (props: Props) => {
             className={classes.calendar}
             weekStartsOn={weekStartsOn}
           />
+          {footer && (
+            <div className={classes.footer} data-testid={testIds?.footer}>
+              {footer}
+            </div>
+          )}
         </Popper>
       )}
     </>

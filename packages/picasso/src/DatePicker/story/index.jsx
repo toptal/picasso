@@ -74,7 +74,18 @@ page
       'Type any year value like `2015` to get a random date within this year',
     takeScreenshot: false,
   })
-  .addExample('DatePicker/story/WithHighlightedRange.example.tsx', {
-    title: 'WithHighlightedRange',
+  .addExample('DatePicker/story/WithIndicatedRange.example.tsx', {
+    title: 'With Indicated Range',
+    description: 'Show as indicated a range of dates',
+    takeScreenshot: false,
+  })
+  .addExample('DatePicker/story/WithTooltipRange.example.tsx', {
+    title: 'With Tooltip Range',
+    description: 'Show some description in a tooltip for a range of dates',
+    takeScreenshot: false,
+  })
+  .addExample('DatePicker/story/WithFooter.example.tsx', {
+    title: 'With Footer',
+    description: 'Show a custom footer at the bottom of the calendar',
     takeScreenshot: false,
   })

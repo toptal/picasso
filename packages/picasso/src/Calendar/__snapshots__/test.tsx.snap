@@ -117,6 +117,9 @@ exports[`Calendar renders 1`] = `
               value="Mon Jan 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               28
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
@@ -126,6 +129,9 @@ exports[`Calendar renders 1`] = `
               value="Tue Jan 29 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               29
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
@@ -135,6 +141,9 @@ exports[`Calendar renders 1`] = `
               value="Wed Jan 30 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               30
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
@@ -144,6 +153,9 @@ exports[`Calendar renders 1`] = `
               value="Thu Jan 31 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               31
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -153,6 +165,9 @@ exports[`Calendar renders 1`] = `
               value="Fri Feb 01 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               1
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -162,6 +177,9 @@ exports[`Calendar renders 1`] = `
               value="Sat Feb 02 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               2
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -171,6 +189,9 @@ exports[`Calendar renders 1`] = `
               value="Sun Feb 03 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               3
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
           </div>
           <div
@@ -184,6 +205,9 @@ exports[`Calendar renders 1`] = `
               value="Mon Feb 04 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               4
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -193,6 +217,9 @@ exports[`Calendar renders 1`] = `
               value="Tue Feb 05 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               5
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -202,6 +229,9 @@ exports[`Calendar renders 1`] = `
               value="Wed Feb 06 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               6
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -211,6 +241,9 @@ exports[`Calendar renders 1`] = `
               value="Thu Feb 07 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               7
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -220,6 +253,9 @@ exports[`Calendar renders 1`] = `
               value="Fri Feb 08 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               8
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -229,6 +265,9 @@ exports[`Calendar renders 1`] = `
               value="Sat Feb 09 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               9
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -238,6 +277,9 @@ exports[`Calendar renders 1`] = `
               value="Sun Feb 10 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               10
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
           </div>
           <div
@@ -251,6 +293,9 @@ exports[`Calendar renders 1`] = `
               value="Mon Feb 11 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               11
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -260,6 +305,9 @@ exports[`Calendar renders 1`] = `
               value="Tue Feb 12 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               12
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -269,6 +317,9 @@ exports[`Calendar renders 1`] = `
               value="Wed Feb 13 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               13
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -278,6 +329,9 @@ exports[`Calendar renders 1`] = `
               value="Thu Feb 14 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               14
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -287,6 +341,9 @@ exports[`Calendar renders 1`] = `
               value="Fri Feb 15 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               15
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -296,6 +353,9 @@ exports[`Calendar renders 1`] = `
               value="Sat Feb 16 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               16
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -305,6 +365,9 @@ exports[`Calendar renders 1`] = `
               value="Sun Feb 17 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               17
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
           </div>
           <div
@@ -318,6 +381,9 @@ exports[`Calendar renders 1`] = `
               value="Mon Feb 18 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               18
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -327,6 +393,9 @@ exports[`Calendar renders 1`] = `
               value="Tue Feb 19 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               19
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -336,6 +405,9 @@ exports[`Calendar renders 1`] = `
               value="Wed Feb 20 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               20
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -345,6 +417,9 @@ exports[`Calendar renders 1`] = `
               value="Thu Feb 21 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               21
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -354,6 +429,9 @@ exports[`Calendar renders 1`] = `
               value="Fri Feb 22 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               22
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -363,6 +441,9 @@ exports[`Calendar renders 1`] = `
               value="Sat Feb 23 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               23
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -372,6 +453,9 @@ exports[`Calendar renders 1`] = `
               value="Sun Feb 24 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               24
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
           </div>
           <div
@@ -385,6 +469,9 @@ exports[`Calendar renders 1`] = `
               value="Mon Feb 25 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               25
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -394,6 +481,9 @@ exports[`Calendar renders 1`] = `
               value="Tue Feb 26 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               26
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -403,6 +493,9 @@ exports[`Calendar renders 1`] = `
               value="Wed Feb 27 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               27
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
@@ -412,6 +505,9 @@ exports[`Calendar renders 1`] = `
               value="Thu Feb 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               28
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
@@ -421,6 +517,9 @@ exports[`Calendar renders 1`] = `
               value="Fri Mar 01 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               1
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
@@ -430,6 +529,9 @@ exports[`Calendar renders 1`] = `
               value="Sat Mar 02 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               2
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
@@ -439,6 +541,9 @@ exports[`Calendar renders 1`] = `
               value="Sun Mar 03 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
               3
+              <div
+                class="PicassoCalendar-indicators"
+              />
             </button>
           </div>
         </div>

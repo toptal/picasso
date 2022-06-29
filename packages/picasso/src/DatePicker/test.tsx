@@ -515,6 +515,19 @@ describe('DatePicker', () => {
         expect(queryByTestId('day-button-selected')).toBeInTheDocument()
       })
     })
+
+    describe('when `footer` option is passed', () => {
+      it('should appear a footer at the bottom of the calendar', async () => {
+        const { queryByTestId, getByPlaceholderText } = renderDatePicker({
+          ...defaultProps,
+          footer: <>Test</>,
+        })
+
+        fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
+
+        expect(queryByTestId('footer')).toBeInTheDocument()
+      })
+    })
   })
 
   const defaultProps = {
