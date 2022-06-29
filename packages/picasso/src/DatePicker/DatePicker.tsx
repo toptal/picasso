@@ -79,6 +79,10 @@ export interface Props
   displayDateFormat?: string
   /** Date range where selection is not allowed */
   disabledIntervals?: { start: Date; end: Date }[]
+  /** TOOOODOOOOO */
+  highlightedIntervals?: { start: Date; end: Date }[]
+  /** TOOOODOOOOO */
+  tooltipIntervals?: { start: Date; end: Date, tooltip: String }[]
   /** Date format that user will see during manual input */
   editDateFormat?: string
   /** Specify icon which should be rendered inside `DatePicker` */
@@ -126,6 +130,8 @@ export const DatePicker = (props: Props) => {
     minDate,
     maxDate,
     disabledIntervals,
+    highlightedIntervals,
+    tooltipIntervals,
     popperContainer,
     renderDay,
     weekStartsOn,
@@ -409,6 +415,8 @@ export const DatePicker = (props: Props) => {
             minDate={normalizedMinDate}
             maxDate={normalizedMaxDate}
             disabledIntervals={disabledIntervals}
+            highlightedIntervals={highlightedIntervals}
+            tooltipIntervals={tooltipIntervals}
             renderDay={renderDay}
             onChange={handleCalendarChange}
             onBlur={handleBlur}

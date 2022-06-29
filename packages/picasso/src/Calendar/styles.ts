@@ -77,6 +77,9 @@ export default ({ palette, sizes }: Theme) =>
         backgroundColor: palette.common.white,
       },
     },
+    highlighted: {
+      backgroundColor: '#f00',
+    },
     today: {
       display: 'flex',
       flexDirection: 'column',

@@ -74,3 +74,7 @@ page
       'Type any year value like `2015` to get a random date within this year',
     takeScreenshot: false,
   })
+  .addExample('DatePicker/story/WithHighlightedRange.example.tsx', {
+    title: 'WithHighlightedRange',
+    takeScreenshot: false,
+  })
