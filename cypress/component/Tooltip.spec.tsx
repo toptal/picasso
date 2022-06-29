@@ -239,32 +239,49 @@ const DropdownTooltipExample = () => {
   )
 }
 
+const component = 'Tooltip'
+
 describe('Tooltip', () => {
   it('renders by default', () => {
     cy.mount(<SnapshotTooltipExample />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   it('renders with disabled portals', () => {
     cy.mount(<SnapshotTooltipExample disablePortal />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-disabled-portals',
+    })
   })
 
   it('renders compact', () => {
     cy.mount(<SnapshotTooltipExample compact />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'compact',
+    })
   })
 
   it('renders long text with max width', () => {
     cy.mount(<SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'long-text-with-max-width',
+    })
   })
 
   it('renders long text with no max width', () => {
     cy.mount(
       <SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} maxWidth='none' />
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'long-text-without-max-width',
+    })
   })
 
   it('renders without overflow prevention', () => {
@@ -274,17 +291,26 @@ describe('Tooltip', () => {
         preventOverflow={false}
       />
     )
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'without-overflow-prevention',
+    })
   })
 
   it('renders with different placements', () => {
     cy.mount(<PlacementTooltipExample />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-different-placements',
+    })
   })
 
   it('renders inside and outside of a modal', () => {
     cy.mount(<ModalTooltipExample />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'inside-and-outside-modal',
+    })
   })
 
   it('renders on hover, and hides on click', () => {
@@ -313,7 +339,10 @@ describe('Tooltip', () => {
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
     cy.get('@trigger').realHover()
     cy.getByTestId(testIds.tooltipContent).should('exist')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'inside-checkbox',
+    })
     cy.get('@trigger').click()
     cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
   })
@@ -327,7 +356,10 @@ describe('Tooltip', () => {
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
     cy.getByTestId(testIds.radioTrigger).realHover()
     cy.getByTestId(testIds.tooltipContent).should('be.visible')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'inside-radio',
+    })
     cy.getByTestId(testIds.radioTrigger).click()
     cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
   })
@@ -356,7 +388,10 @@ describe('Tooltip', () => {
     cy.mount(<LinkTooltipExample />)
     cy.getByTestId(testIds.tooltipTrigger).as('Trigger').realHover()
     cy.getByTestId(testIds.tooltipContent).as('Content').should('be.visible')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'inside-link',
+    })
 
     cy.get('@Content').click()
     cy.url().should('include', '#link')
@@ -371,7 +406,10 @@ describe('Tooltip', () => {
 
     cy.getByTestId(testIds.autocompleteInput).click()
     cy.getByTestId(testIds.tooltipContent).should('exist')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'inside-autocomplete',
+    })
   })
 
   it('renders inside a dropdown', () => {
@@ -379,6 +417,9 @@ describe('Tooltip', () => {
 
     cy.getByTestId(testIds.dropdownTrigger).click()
     cy.getByTestId(testIds.tooltipContent).should('be.visible')
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'inside-dropdown',
+    })
   })
 })
