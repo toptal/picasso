@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.3.0
+
+### Minor Changes
+
+- [#2952](https://github.com/toptal/picasso/pull/2952) [`7185c71b`](https://github.com/toptal/picasso/commit/7185c71bfb7896d125c9cb2d795589f2ba8b8ba1) Thanks [@tiagoporto](https://github.com/tiagoporto)! - ---
+
+  ### Icon
+
+  - Add inbox icon
+
 ## 26.2.2
 
 ### Patch Changes
