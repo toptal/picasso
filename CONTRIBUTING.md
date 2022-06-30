@@ -45,9 +45,9 @@ Picasso is an internal company open source project &mdash; yes we just invented 
 
 Picasso is considered as project of everyone but on the top of that `Frontend Experience` team has ownership of all code and we are maintaining and keeping consistency and quality on highest level.
 
-### Design decisions
+### IMPORTANT: Design decisions
 
-We try to have everything inside `Picasso` synced with latest design proposal called `BASE` &mdash; if you see this name it's always referring to our `BASE` design which you could probably already see inside `TopScheduler` or `Portal` projects. Any design decision made should be discussed with us and could be also discussed on `#-base-core` channel through slack.
+We try to have everything inside `Picasso` synced with latest design proposal called [`BASE`](https://design.toptal.net/) &mdash; if you see this name it's always referring to our `BASE` design which you could probably already see inside `TopScheduler` or `Portal` projects. Any design decision made should be discussed with us and could be also discussed on `#-base-core` channel through slack **prior** to its implementation.
 
 ## How can I contribute?
 
