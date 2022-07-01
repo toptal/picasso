@@ -3,7 +3,7 @@ import {
   RichTextEditor as PicassoRichTextEditor,
   RichTextEditorProps,
 } from '@toptal/picasso'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { Except } from 'type-fest'
 
 import { FieldProps } from '../FieldWrapper'
@@ -23,6 +23,7 @@ export type Props = RichTextEditorProps &
 type InternalProps = RichTextEditorProps & { value: string }
 
 export const RichTextEditor = (props: Props) => {
+  const editorRef = useRef<HTMLDivElement>(null)
   const { onChange, defaultValue, label, titleCase, ...rest } = props
   const [value, setValue] = useState('')
 
@@ -36,6 +37,14 @@ export const RichTextEditor = (props: Props) => {
     [onChange, setValue]
   )
 
+  const handleLabelClick = () => {
+    if (!editorRef) {
+      return
+    }
+
+    editorRef.current?.focus()
+  }
+
   return (
     <InputField<InternalProps>
       value={value}
@@ -47,13 +56,18 @@ export const RichTextEditor = (props: Props) => {
             required={props.required}
             label={label}
             titleCase={titleCase}
+            onClick={handleLabelClick}
           />
         ) : null
       }
       {...rest}
     >
       {(inputProps: RichTextEditorProps) => (
-        <PicassoRichTextEditor defaultValue={defaultValue} {...inputProps} />
+        <PicassoRichTextEditor
+          ref={editorRef}
+          defaultValue={defaultValue}
+          {...inputProps}
+        />
       )}
     </InputField>
   )

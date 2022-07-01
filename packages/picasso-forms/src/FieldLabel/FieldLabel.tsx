@@ -8,6 +8,7 @@ export type Props = {
   name?: string
   label?: string
   required?: boolean
+  onClick?: () => void
 } & TextLabelProps
 
 const getRequiredDecoration = (
@@ -29,7 +30,7 @@ const getRequiredDecoration = (
 }
 
 const FieldLabel = (props: Props) => {
-  const { label, required, titleCase, name } = props
+  const { label, required, titleCase, name, onClick } = props
 
   const formConfig = useFormConfig()
   const requiredDecoration = getRequiredDecoration(
@@ -42,6 +43,7 @@ const FieldLabel = (props: Props) => {
       requiredDecoration={requiredDecoration}
       htmlFor={name}
       titleCase={titleCase}
+      onClick={onClick}
     >
       {label}
     </PicassoForm.Label>
