@@ -6,6 +6,7 @@ import { Classes } from '@toptal/picasso-shared'
 
 import { TabOptions } from './TabsSection'
 import styles from './styles'
+import Markdown from '~/.storybook/components/Markdown'
 
 interface Props {
   tabs: TabOptions[]
@@ -14,7 +15,7 @@ interface Props {
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTabsSectionHeader'
+  name: 'PicassoTabsSectionHeader',
 })
 
 const TabsSectionHeader: FunctionComponent<Props> = props => {
@@ -30,7 +31,7 @@ const TabsSectionHeader: FunctionComponent<Props> = props => {
         ))}
       </Tabs>
       <Typography weight='semibold' className={classes.description}>
-        {tabs[selectedTab].description}
+        <Markdown>{tabs[selectedTab].description ?? ''}</Markdown>
       </Typography>
     </Fragment>
   )
