@@ -1,5 +1,4 @@
 import Quill from 'quill'
-import Delta from 'quill-delta'
 import { useEffect, useRef } from 'react'
 
 type Props = {
@@ -15,10 +14,7 @@ const useDefaultValue = ({ defaultValue, quill }: Props) => {
       return
     }
 
-    // there is issue in default types
-    const delta = (quill.clipboard.convert as (html: string) => Delta)(
-      defaultValue
-    )
+    const delta = quill.clipboard.convert(defaultValue)
 
     quill.setContents(delta, 'user')
     hasBeenCalled.current = true

@@ -1,10 +1,11 @@
 import { act } from '@toptal/picasso/test-utils'
 import Quill from 'quill'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Delta from 'quill-delta'
 
 import getTextChangeHandler from './getTextChangeHandler'
 
-const mockDelta = {} as Delta
+const mockDelta = new Delta()
 
 describe('getTextChangeHandler', () => {
   it('does nothing when silent event', () => {

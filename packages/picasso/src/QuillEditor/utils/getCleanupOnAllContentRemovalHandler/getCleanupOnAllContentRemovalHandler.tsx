@@ -1,8 +1,12 @@
 import Quill, { TextChangeHandler } from 'quill'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Delta from 'quill-delta'
 
 const getCleanupOnAllContentRemovalHandler = (quill: Quill) => {
   const handler: TextChangeHandler = newDelta => {
+    if (!newDelta.ops) {
+      return
+    }
     const isDeleteOperation = 'delete' in newDelta.ops[0]
 
     if (!isDeleteOperation) {

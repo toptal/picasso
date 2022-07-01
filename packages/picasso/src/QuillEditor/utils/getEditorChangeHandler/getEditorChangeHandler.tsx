@@ -1,10 +1,9 @@
-import Quill, { RangeStatic, Sources } from 'quill'
-import Delta from 'quill-delta'
+import Quill, { RangeStatic, Sources, DeltaStatic } from 'quill'
 
 import { FormatType } from '../../types'
 
 type SelectionChangeArgs = [RangeStatic, RangeStatic, Sources]
-type TextChangeArgs = [Delta, Delta, Sources]
+type TextChangeArgs = [DeltaStatic, DeltaStatic, Sources]
 
 /**
  * When we write block format and enter new empty line, we have unformated text format.
@@ -17,10 +16,10 @@ const handleNewLineAfterBlock = ({
 }: {
   quill: Quill
   onSelectionChange: (format: FormatType) => void
-  latestDelta: Delta
+  latestDelta: DeltaStatic
 }) => {
   const latestAttributes =
-    latestDelta.ops[latestDelta.ops.length - 1]?.attributes
+    latestDelta.ops?.[latestDelta.ops.length - 1]?.attributes
 
   const isHeaderFormatRemoved = latestAttributes?.header === null
   const isListFormatRemoved = latestAttributes?.list === null
@@ -32,8 +31,8 @@ const handleNewLineAfterBlock = ({
   }
 }
 
-const isDeleteOperationOfSelection = (delta: Delta) => {
-  const delOperation = delta.ops[0].delete
+const isDeleteOperationOfSelection = (delta: DeltaStatic) => {
+  const delOperation = delta.ops?.[0].delete
 
   return delOperation && delOperation > 1
 }
