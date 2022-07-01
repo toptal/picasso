@@ -1,25 +1,23 @@
 import { renderHook } from '@testing-library/react-hooks'
-import Quill from 'quill'
+import Quill, { DeltaStatic } from 'quill'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Delta from 'quill-delta'
 
 import useDefaultValue from './useDefaultValue'
 
 describe('useDefaultValue', () => {
-  let deltaMock: Delta
+  let deltaMock: DeltaStatic
   let quillMock: Quill
 
   beforeEach(() => {
-    deltaMock = {
-      ops: [
-        { insert: 'Gandalf', attributes: { bold: true } },
-        { insert: ' the ' },
-        { insert: 'Grey', attributes: { italic: true } },
-      ],
-    } as Delta
+    deltaMock = new Delta()
+      .insert('Gandalf', { bold: true })
+      .insert('the ')
+      .insert('Grey', { italic: true })
 
     quillMock = {
       clipboard: {
-        convert: jest.fn((): Delta => deltaMock),
+        convert: jest.fn((): DeltaStatic => deltaMock),
       },
       setContents: jest.fn(),
     } as unknown as Quill
