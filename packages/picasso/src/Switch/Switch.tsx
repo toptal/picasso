@@ -1,5 +1,6 @@
-import MUISwitch from '@material-ui/core/Switch'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import MUISwitch from '@mui/material/Switch'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react'
 
