@@ -37,13 +37,7 @@ export const RichTextEditor = (props: Props) => {
     [onChange, setValue]
   )
 
-  const handleLabelClick = () => {
-    if (!editorRef) {
-      return
-    }
-
-    editorRef.current?.focus()
-  }
+  const handleLabelClick = () => editorRef.current?.focus()
 
   return (
     <InputField<InternalProps>
