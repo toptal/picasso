@@ -2,7 +2,7 @@
 
 ## Problem
 
-The [Visual tests placing](./05-visual-tests-placing.md) decision stated when to decide between Cypress and Storybook tests.
+The [Visual tests placing](./05-visual-tests-placing.md) decision stated how to decide between Cypress and Storybook tests.
 However, it is not entirely clear which components need screenshots, for which states, and how to combine them, so that Picasso can have visual testing done efficiently.
 
 ### What is a visual test?
