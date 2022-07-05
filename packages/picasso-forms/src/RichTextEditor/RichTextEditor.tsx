@@ -36,8 +36,7 @@ export const RichTextEditor = (props: Props) => {
     },
     [onChange, setValue]
   )
-
-  const handleLabelClick = () => editorRef.current?.focus()
+  const hiddenInputId = `${props.id}-hidden-input`
 
   return (
     <InputField<InternalProps>
@@ -46,11 +45,10 @@ export const RichTextEditor = (props: Props) => {
       label={
         label ? (
           <FieldLabel
-            name={props.name}
+            name={hiddenInputId}
             required={props.required}
             label={label}
             titleCase={titleCase}
-            onClick={handleLabelClick}
           />
         ) : null
       }
@@ -60,6 +58,7 @@ export const RichTextEditor = (props: Props) => {
         <PicassoRichTextEditor
           ref={editorRef}
           defaultValue={defaultValue}
+          hiddenInputId={hiddenInputId}
           {...inputProps}
         />
       )}
