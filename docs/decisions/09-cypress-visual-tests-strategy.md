@@ -65,7 +65,11 @@ it('focuses the input', () => {})
 
 ### What is Happo screenshots validation?
 
-Happo screenshot validation is the comparison between a Happo screenshot of a component and its Picasso Temploy live version and accepting or rejecting the .
+Happo screenshot validation's purpose is to ensure the saved screenshot is displayed correctly and according to its intended designs.
+
+Validation can be achieved by comparing a Happo screenshot of a component and its:
+- previous screenshot version if it exists
+- Picasso Temploy live version
 
 ### What is a CSS assertion?
 
@@ -119,6 +123,8 @@ Assuming a component is newly implemented along with Storybook examples, but wit
 2. Merge the **identified missing test cases** with the **existing test cases** for different aspects of the same component; _e.g. size and color_
 3. Modify tests according to the merged test cases
 4. Disable unnecessary Storybook screenshots and clean up redundant tests
+
+Screenshots created on Happo's side need to be [validated](#what-is-happo-screenshots-validation).
 
 ### Example
 
