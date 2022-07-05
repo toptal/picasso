@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 import Tag from '../Tag'
 import { Props as TagProps } from '../Tag/Tag'

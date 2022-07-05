@@ -1,6 +1,8 @@
-import muiShadows, { Shadows } from '@material-ui/core/styles/shadows'
+import { createTheme } from '@mui/material/styles'
+import { Shadows } from '@mui/material/styles/shadows'
 
-const shadows: Shadows = [
+const muiShadows = createTheme().shadows
+const shadows = [
   ...[
     'none',
 

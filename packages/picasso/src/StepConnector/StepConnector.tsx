@@ -1,5 +1,6 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 import { ChevronRight16 as ChevronRightIcon } from '../Icon'
 import styles from './styles'

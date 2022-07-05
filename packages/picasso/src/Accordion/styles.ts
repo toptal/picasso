@@ -1,17 +1,20 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({
   MuiAccordion: {
-    root: {
-      '&$expanded': {
-        margin: 0,
-        '&:before': {
-          opacity: 1,
+    styleOverrides: {
+      root: {
+        '&$expanded': {
+          margin: 0,
+          '&:before': {
+            opacity: 1,
+          },
         },
-      },
-      '&$disabled': {
-        backgroundColor: 'unset',
+        '&$disabled': {
+          backgroundColor: 'unset',
+        },
       },
     },
   },

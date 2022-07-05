@@ -4,8 +4,9 @@ import React, {
   ElementType,
   AnchorHTMLAttributes,
 } from 'react'
-import MUILink from '@material-ui/core/Link'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import MUILink from '@mui/material/Link'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import cx from 'classnames'
 import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
 

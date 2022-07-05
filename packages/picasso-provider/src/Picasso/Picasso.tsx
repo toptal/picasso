@@ -1,9 +1,6 @@
-import {
-  MuiThemeProvider,
-  ThemeOptions,
-  StylesProvider,
-  createGenerateClassName,
-} from '@material-ui/core/styles'
+import { ThemeProvider, StyledEngineProvider, DeprecatedThemeOptions } from '@mui/material/styles';
+import StylesProvider from '@mui/styles/StylesProvider';
+import createGenerateClassName from '@mui/styles/createGenerateClassName';
 import React, { ReactNode } from 'react'
 
 import CssBaseline from '../CssBaseline'
@@ -38,7 +35,7 @@ export interface PicassoProps extends TextLabelProps {
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
-  theme?: ThemeOptions
+  theme?: DeprecatedThemeOptions
   /** Disables transitions for components like Loader, to make testing easier */
   disableTransitions?: boolean
   /** Disables unique prefix for styles class names */
@@ -87,24 +84,26 @@ const Picasso = ({
       generateClassName={generateClassName}
       injectFirst={injectFirst}
     >
-      <MuiThemeProvider theme={PicassoProvider.theme}>
-        <PicassoGlobalStylesProvider
-          RootComponent={RootComponent}
-          environment={environment}
-          titleCase={titleCase}
-          disableTransitions={disableTransitions}
-        >
-          {fixViewport && <FixViewport />}
-          {loadFonts && <FontsLoader />}
-          {reset && <CssBaseline />}
-          {loadFavicon && <Favicon environment={environment} />}
-          <NotificationsProvider container={notificationContainer}>
-            {children}
-          </NotificationsProvider>
-        </PicassoGlobalStylesProvider>
-      </MuiThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={PicassoProvider.theme}>
+          <PicassoGlobalStylesProvider
+            RootComponent={RootComponent}
+            environment={environment}
+            titleCase={titleCase}
+            disableTransitions={disableTransitions}
+          >
+            {fixViewport && <FixViewport />}
+            {loadFonts && <FontsLoader />}
+            {reset && <CssBaseline />}
+            {loadFavicon && <Favicon environment={environment} />}
+            <NotificationsProvider container={notificationContainer}>
+              {children}
+            </NotificationsProvider>
+          </PicassoGlobalStylesProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </StylesProvider>
-  )
+  );
 }
 
 Picasso.defaultProps = {

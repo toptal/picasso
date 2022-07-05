@@ -1,4 +1,5 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
 
 // decided to use a custom shadow for the sidebar's collapse button
 const COLLAPSE_BUTTON_SHADOW =

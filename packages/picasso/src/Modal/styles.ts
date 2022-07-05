@@ -1,4 +1,5 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
 
 const maxHeight = 'calc(100% - 6rem)'
 const maxWidth = 'calc(100% - 6rem)'

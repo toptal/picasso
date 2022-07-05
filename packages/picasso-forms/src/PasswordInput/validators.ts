@@ -3,20 +3,20 @@ const atLeastEightCharacters = (value: string) => {
 }
 
 const atLeastOneUpperCaseCharacter = (value: string) => {
-  return /[A-Z]/.test(value)
+  return /[A-Z]/.test(value);
 }
 
 const atLeastOneLowerCaseCharacter = (value: string) => {
-  return /[a-z]/.test(value)
+  return /[a-z]/.test(value);
 }
 
 const atLeastOneNumber = (value: string) => {
-  return /[0-9]/.test(value)
+  return /[0-9]/.test(value);
 }
 
 const atLeastOneSpecialCharacter = (value: string) => {
   // eslint-disable-next-line no-useless-escape
-  return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value)
+  return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value);
 }
 
 export default {

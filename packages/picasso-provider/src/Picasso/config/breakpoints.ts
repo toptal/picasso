@@ -1,15 +1,15 @@
 /* eslint-disable complexity */
 import { useState, useEffect, useCallback } from 'react'
-import { BreakpointValues } from '@material-ui/core/styles/createBreakpoints'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { Breakpoint } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
-import { isBrowser } from '../../utils'
-
-type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'
+export type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'
 
 type BreakpointsList = {
   [key: string]: number
 }
+
+type BreakpointValues = { [key in Breakpoint]: number }
 
 class BreakpointProvider {
   breakpoints: Record<'values', BreakpointValues> = {
@@ -103,7 +103,7 @@ export const isScreenSize = (
 }
 
 export const useScreenSize = () => {
-  const [size, setSize] = useState(isBrowser() ? window.innerWidth : 0)
+  const [size, setSize] = useState(window.innerWidth)
 
   const updateSize = () => setSize(window.innerWidth)
 

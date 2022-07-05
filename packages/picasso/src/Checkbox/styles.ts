@@ -1,4 +1,5 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { mix, outline } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
@@ -7,13 +8,15 @@ const labelMargin = '0.5em'
 
 PicassoProvider.override(() => ({
   MuiCheckbox: {
-    root: {
-      fontSize: '1rem',
-      lineHeight: '1rem',
-      padding: 0,
+    styleOverrides: {
+      root: {
+        fontSize: '1rem',
+        lineHeight: '1rem',
+        padding: 0,
 
-      '&$disabled': {
-        opacity: 0.48,
+        '&$disabled': {
+          opacity: 0.48,
+        },
       },
     },
   },

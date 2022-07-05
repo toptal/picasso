@@ -1,7 +1,8 @@
 import React, { HTMLAttributes, forwardRef } from 'react'
 import cx from 'classnames'
-import MUIMenuList from '@material-ui/core/MenuList'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import MUIMenuList from '@mui/material/MenuList'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { BaseProps } from '@toptal/picasso-shared'
 
 import { BackMinor16 } from '../Icon'

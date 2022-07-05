@@ -7,12 +7,12 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import Grow from '@material-ui/core/Grow'
+import ClickAwayListener from '@mui/material/ClickAwayListener'
+import Grow from '@mui/material/Grow'
 import { PopperPlacementType } from '@material-ui/core/Popper'
 import { PopperOptions } from 'popper.js'
-import RootRef from '@material-ui/core/RootRef'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
 import {
   spacingToRem,

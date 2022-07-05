@@ -1,10 +1,12 @@
-import { createStyles } from '@material-ui/core/styles'
+import createStyles from '@mui/styles/createStyles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({
   MuiStepper: {
-    root: {
-      padding: 0,
+    styleOverrides: {
+      root: {
+        padding: 0,
+      },
     },
   },
 }))

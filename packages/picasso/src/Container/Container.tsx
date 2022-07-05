@@ -1,8 +1,8 @@
 /* eslint-disable complexity */
 
 import React, { ReactNode, HTMLAttributes, Ref } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { PropTypes } from '@material-ui/core'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
 import {
   StandardProps,
@@ -17,6 +17,8 @@ import styles, {
 } from './styles'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import { forwardRef, documentable } from '../utils/forward-ref'
+
+type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify'
 
 type ContainerType = 'div' | 'span'
 
@@ -64,7 +66,7 @@ export interface Props<V extends VariantType = VariantType>
   /** Component used for the root node */
   as?: ContainerType
   /** Text align of the inner text */
-  align?: PropTypes.Alignment
+  align?: Alignment
 }
 
 /**

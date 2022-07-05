@@ -1,4 +1,5 @@
-import { createGenerateClassName, ServerStyleSheets } from '@material-ui/core'
+import createGenerateClassName from '@mui/styles/createGenerateClassName';
+import ServerStyleSheets from '@mui/styles/ServerStyleSheets';
 
 const getServersideStylesheets = (
   generateClassNameSeed = ''

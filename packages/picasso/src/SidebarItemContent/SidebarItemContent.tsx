@@ -1,7 +1,8 @@
 import React, { ReactElement, ReactNode } from 'react'
 import { useTitleCase } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 import Typography from '../Typography'
 import Tooltip from '../Tooltip'

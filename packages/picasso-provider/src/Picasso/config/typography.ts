@@ -1,4 +1,4 @@
-declare module '@material-ui/core/styles/createTypography' {
+declare module '@mui/material/styles/createTypography' {
   export interface Typography {
     buttons: {
       fontSizeSmall: string

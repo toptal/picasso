@@ -1,7 +1,8 @@
 import React, { Children, forwardRef, ReactNode } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import cx from 'classnames'
-import { Badge as MuiBadge } from '@material-ui/core'
+import { Badge as MuiBadge } from '@mui/material'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'

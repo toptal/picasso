@@ -3,7 +3,8 @@ import React, { forwardRef, ReactNode } from 'react'
 // @ts-ignore
 import SimpleReactCalendar from 'simple-react-calendar'
 import cx from 'classnames'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { BaseProps } from '@toptal/picasso-shared'
 
 import {

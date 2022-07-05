@@ -6,7 +6,7 @@ import React, {
   ElementType,
 } from 'react'
 import cx from 'classnames'
-import ButtonBase from '@material-ui/core/ButtonBase'
+import ButtonBase from '@mui/material/ButtonBase'
 import {
   StandardProps,
   SizeType,
@@ -16,7 +16,8 @@ import {
   TextLabelProps,
   Classes,
 } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 import styles from './styles'
 import Loader from '../Loader'

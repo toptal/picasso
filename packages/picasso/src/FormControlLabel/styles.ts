@@ -1,25 +1,28 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(({ palette, typography }: Theme) => ({
   MuiFormControlLabel: {
-    root: {
-      marginLeft: 0,
-      marginRight: 0,
-    },
-    label: {
-      display: 'inline-flex',
-      alignItems: 'center',
+    styleOverrides: {
+      root: {
+        marginLeft: 0,
+        marginRight: 0,
+      },
+      label: {
+        display: 'inline-flex',
+        alignItems: 'center',
 
-      fontSize: '1em',
-      color: palette.text.primary,
-      lineHeight: '1.5em',
-      fontWeight: typography.fontWeights.regular,
-      cursor: 'pointer',
-      userSelect: 'none',
+        fontSize: '1em',
+        color: palette.text.primary,
+        lineHeight: '1.5em',
+        fontWeight: typography.fontWeights.regular,
+        cursor: 'pointer',
+        userSelect: 'none',
 
-      '&$disabled': {
-        pointerEvents: 'auto',
+        '&$disabled': {
+          pointerEvents: 'auto',
+        },
       },
     },
   },
