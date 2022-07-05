@@ -4,6 +4,8 @@ export {
   FontsLoader,
   NotificationsProvider,
   PicassoLight,
+  withStyles,
+  makeStyles,
 } from './Picasso'
 
 export {

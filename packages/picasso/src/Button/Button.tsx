@@ -16,18 +16,12 @@ import {
   TextLabelProps,
   Classes,
 } from '@toptal/picasso-shared'
-import { Theme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 
-import styles from './styles'
 import Loader from '../Loader'
 import Container from '../Container'
 import noop from '../utils/noop'
 import toTitleCase from '../utils/to-title-case'
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoButton',
-})
+import useStyles from './styles'
 
 export type VariantType =
   | 'primary'
@@ -128,7 +122,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
     titleCase: propsTitleCase,
     ...rest
   } = props
-  const classes = useStyles(props)
+  const { classes } = useStyles()
 
   const {
     root: rootClass,

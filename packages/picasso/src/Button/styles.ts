@@ -1,6 +1,6 @@
-import { Theme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
+import { Theme } from '@mui/material/styles'
 import { alpha, outline, mix } from '@toptal/picasso-shared'
+import { makeStyles } from '@toptal/picasso-provider'
 
 const ICON_SPACING = '0.5em'
 
@@ -52,10 +52,10 @@ export const createVariant = (mainColor: string, { palette }: Theme) => ({
   },
 })
 
-export default (theme: Theme) => {
+const useStyles = makeStyles({ name: 'Button' })((theme: Theme) => {
   const { palette, sizes, transitions, typography } = theme
 
-  return createStyles({
+  return {
     root: {
       position: 'relative',
       textTransform: 'none',
@@ -212,5 +212,7 @@ export default (theme: Theme) => {
     hidden: {
       opacity: 0,
     },
-  })
-}
+  }
+})
+
+export default useStyles

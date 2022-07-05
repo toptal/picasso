@@ -1,14 +1,13 @@
-import { ThemeProvider, StyledEngineProvider, DeprecatedThemeOptions } from '@mui/material/styles';
-import StylesProvider from '@mui/styles/StylesProvider';
-import createGenerateClassName from '@mui/styles/createGenerateClassName';
+import { ThemeProvider, DeprecatedThemeOptions } from '@mui/material/styles'
 import React, { ReactNode } from 'react'
+import createCache from '@emotion/cache'
+import { CacheProvider } from '@emotion/react'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
 import NotificationsProvider from './NotificationsProvider'
 import Favicon from '../Favicon'
 import { EnvironmentType, TextLabelProps } from '../types'
-import { generateRandomStringOrGetEmptyInTest } from './utils'
 import { PicassoBreakpoints } from './config'
 import PicassoProvider from './PicassoProvider'
 import FixViewport from './FixViewport'
@@ -16,6 +15,11 @@ import PicassoGlobalStylesProvider, {
   PicassoGlobalStylesProviderProps,
 } from './PicassoGlobalStylesProvider'
 import PicassoRootNode from './PicassoRootNode'
+
+export const muiCache = createCache({
+  key: 'mui',
+  prepend: true,
+})
 
 export interface PicassoProps extends TextLabelProps {
   children?: ReactNode
@@ -61,8 +65,6 @@ const Picasso = ({
   titleCase,
   theme,
   disableTransitions,
-  disableClassNamePrefix,
-  injectFirst,
 }: PicassoProps) => {
   if (theme) {
     PicassoProvider.extendTheme(theme)
@@ -73,37 +75,26 @@ const Picasso = ({
     PicassoBreakpoints.disableMobileBreakpoints()
   }
 
-  const generateClassName = createGenerateClassName({
-    // if there are multiples instances of Picasso
-    // on the page we want each set of styles to be unique
-    seed: disableClassNamePrefix ? '' : generateRandomStringOrGetEmptyInTest(),
-  })
-
   return (
-    <StylesProvider
-      generateClassName={generateClassName}
-      injectFirst={injectFirst}
-    >
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={PicassoProvider.theme}>
-          <PicassoGlobalStylesProvider
-            RootComponent={RootComponent}
-            environment={environment}
-            titleCase={titleCase}
-            disableTransitions={disableTransitions}
-          >
-            {fixViewport && <FixViewport />}
-            {loadFonts && <FontsLoader />}
-            {reset && <CssBaseline />}
-            {loadFavicon && <Favicon environment={environment} />}
-            <NotificationsProvider container={notificationContainer}>
-              {children}
-            </NotificationsProvider>
-          </PicassoGlobalStylesProvider>
-        </ThemeProvider>
-      </StyledEngineProvider>
-    </StylesProvider>
-  );
+    <CacheProvider value={muiCache}>
+      <ThemeProvider theme={PicassoProvider.theme}>
+        <PicassoGlobalStylesProvider
+          RootComponent={RootComponent}
+          environment={environment}
+          titleCase={titleCase}
+          disableTransitions={disableTransitions}
+        >
+          {fixViewport && <FixViewport />}
+          {loadFonts && <FontsLoader />}
+          {reset && <CssBaseline />}
+          {loadFavicon && <Favicon environment={environment} />}
+          <NotificationsProvider container={notificationContainer}>
+            {children}
+          </NotificationsProvider>
+        </PicassoGlobalStylesProvider>
+      </ThemeProvider>
+    </CacheProvider>
+  )
 }
 
 Picasso.defaultProps = {
