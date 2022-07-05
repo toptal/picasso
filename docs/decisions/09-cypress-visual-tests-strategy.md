@@ -1,25 +1,27 @@
-# Cypress Visual Tests coverage
+# Cypress Visual Tests strategy
 
 ## Problem
 
-The `./05-visual-tests-placing.md` decision stated when to decide between Cypress and Storybook tests.
+The [Visual tests placing](./05-visual-tests-placing.md) decision stated when to decide between Cypress and Storybook tests.
 However, it is not entirely clear which components need screenshots, for which states, and how to combine them, so that Picasso can have visual testing done efficiently.
 
 ### What is a visual test?
 
 > A visual test (a screenshot comparison) asserts one or more visual states of the component under test.
 
-### Doing Visual Tests outside of Storybook
+### Writing visual tests in Cypress
 
-There are 5 bottom-up steps to follow:
-1. Identify missing tests for the component under test by checking:
+**Guiding principle**: Minimize the number of screenshots by maximizing test cases covered per screenshot.
+
+**Helpful steps**
+1. Identify **missing** test cases for the component under test by checking:
 - CSS assertions in Jest and Cypress
-- disabled Storybook visual tests
-- existing Cypress visual tests
-2. Write the missing test cases for visual state transition results due to interacting with the component
-3. Combine the written test cases for different aspects of the same component; *e.g. size and color*
-4. Implement the tests for the combined test cases and validate screenshots in the Happo report
-5. Disable unnecessary Storybook screenshots and clean up assertions covered by visual tests
+- Storybook enabled and disabled visual tests
+- Cypress visual tests
+2. Write the identified missing test cases
+3. Combine the **identified missing test cases** with the **existing test cases** for different aspects of the same component; *e.g. size and color*
+4. Implement or modify tests according to the combined test cases
+5. Disable unnecessary Storybook screenshots and clean up redundant tests
 
 **Notes**
 
@@ -27,7 +29,7 @@ There are 5 bottom-up steps to follow:
 - a *test* is the whole test, with the code block
 - a *test case* is only the text describing it in `it` examples
   - example of a *test case*: `it('focuses the input', () => {}`
-2. Validating the Happo screenshots refers to comparing them to the Storybook live component.
+2. Validating the Happo screenshots refers to comparing them to the Picasso Temploy live component.
 
 ### Example
 
