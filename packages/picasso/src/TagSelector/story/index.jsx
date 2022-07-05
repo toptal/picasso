@@ -23,6 +23,10 @@ page
     'TagSelector/story/InitialSetValue.example.tsx',
     'Initially set value'
   )
+  .addExample('TagSelector/story/KeepOpen.example.tsx', {
+    title: 'Keep options open',
+    takeScreenshot: false,
+  }) // picasso-skip-visuals
   .addExample('TagSelector/story/CustomOptionRenderer.example.tsx', {
     title: 'Custom option rendering',
     takeScreenshot: false,

@@ -48,6 +48,8 @@ export interface Props
   disabled?: boolean
   /** Callback invoked when selection changes */
   onSelect?: (item: Item, event: MouseEvent | KeyboardEvent) => void
+  /** Whether to close popper upon selection */
+  closeOnSelect?: boolean
   /** Callback invoked when other option selected */
   onOtherOptionSelect?: (
     value: string,
@@ -148,6 +150,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       menuWidth,
       name,
       noOptionsText = 'No options',
+      closeOnSelect,
       onBlur,
       onChange,
       onFocus,
@@ -208,6 +211,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       value,
       disabled,
       options,
+      closeOnSelect,
       getDisplayValue,
       onSelect,
       onOtherOptionSelect,
