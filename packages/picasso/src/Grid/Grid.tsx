@@ -1,16 +1,34 @@
-import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import React, {
+  ReactNode,
+  forwardRef,
+  HTMLAttributes,
+  ElementType,
+} from 'react'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import MUIGrid, {
   GridSpacing,
-  GridItemsAlignment,
   GridDirection,
-  GridJustification,
   GridWrap,
 } from '@mui/material/Grid'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
+
+type GridItemsAlignment =
+  | 'flex-start'
+  | 'center'
+  | 'flex-end'
+  | 'stretch'
+  | 'baseline'
+
+type GridJustification =
+  | 'flex-start'
+  | 'center'
+  | 'flex-end'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
@@ -25,6 +43,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   justifyContent?: GridJustification
   /** Defines the flex-wrap style property based on the direction */
   wrap?: GridWrap
+  component?: ElementType
 }
 
 const humanToMUISpacing = (spacing: number) => {
@@ -50,6 +69,7 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
     wrap,
     className,
     style,
+    component,
     ...rest
   } = props
   const classes = useStyles()
@@ -67,6 +87,8 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
       classes={classes}
       className={className}
       style={style}
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      component={component!}
     >
       {children}
     </MUIGrid>
@@ -79,6 +101,7 @@ Grid.defaultProps = {
   justifyContent: 'flex-start',
   spacing: 32,
   wrap: 'wrap',
+  component: 'div',
 }
 
 Grid.displayName = 'Grid'

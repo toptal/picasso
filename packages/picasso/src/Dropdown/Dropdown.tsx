@@ -9,8 +9,6 @@ import React, {
 } from 'react'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import Grow from '@mui/material/Grow'
-import { PopperPlacementType } from '@material-ui/core/Popper'
-import { PopperOptions } from 'popper.js'
 import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
@@ -20,7 +18,7 @@ import {
   StandardProps,
 } from '@toptal/picasso-shared'
 
-import Popper from '../Popper'
+import Popper, { PopperOptions, PopperPlacementType } from '../Popper'
 import Paper from '../Paper'
 import styles from './styles'
 import noop from '../utils/noop'
@@ -108,7 +106,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   } = props
   const classes = useStyles(props)
 
-  const contentRef = useRef<HTMLElement>()
+  const contentRef = useRef<HTMLDivElement>(null)
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -201,7 +199,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     close: () => forceClose(),
   }
 
-  const handleClickAway = (event: React.MouseEvent<Document>) => {
+  const handleClickAway = (event: MouseEvent | TouchEvent) => {
     const target = event.target
 
     const isAnchorTapEvent =
@@ -230,19 +228,23 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           className={classes.popper}
           anchorEl={anchorEl ?? null}
           popperOptions={{
-            onCreate: focus,
+            onFirstUpdate: focus,
             /*
             Fixes https://github.com/toptal/picasso/pull/2124#issuecomment-894341054
             When the anchor goes above the viewport, popper goes to infinite flipping.
             flipped: true -> flipped: false -> flipped: true -> ...
             */
-            modifiers: { flip: { enabled: contentOverflow !== 'visible' } },
+            modifiers: [
+              {
+                enabled: contentOverflow !== 'visible',
+                name: 'flip',
+              },
+            ],
             ...popperOptions,
           }}
           placement={placement}
           style={paperMargins}
           disablePortal={disablePortal}
-          keepMounted={keepMounted}
           autoWidth={false}
           open={isOpen}
           enableCompactMode
@@ -261,7 +263,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                   elevation={2}
                 >
                   <DropdownContext.Provider value={context}>
-                    <RootRef rootRef={contentRef}>{content}</RootRef>
+                    <div ref={contentRef}>{content}</div>
                   </DropdownContext.Provider>
                 </Paper>
               </Grow>

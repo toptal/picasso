@@ -1,7 +1,6 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
-import { PropTypes } from '@mui/material'
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import MUITypography from '@mui/material/Typography'
 import {
   StandardProps,
@@ -15,6 +14,8 @@ import toTitleCase from '../utils/to-title-case'
 import toMuiVariant from './utils/to-mui-variant'
 import getTypographyClassName from './utils/get-typography-class-name'
 
+type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify'
+
 export interface Props
   extends StandardProps,
     TextLabelProps,
@@ -26,7 +27,7 @@ export interface Props
   /** Controls whether the Typography is inline or not */
   inline?: boolean
   /** Text align of the inner text */
-  align?: PropTypes.Alignment
+  align?: Alignment
   /** Size of the inner text */
   size?:
     | SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>

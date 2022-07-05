@@ -8,7 +8,6 @@ import React, {
   Fragment,
 } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
-import { PopperOptions } from 'popper.js'
 
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
 import TagSelectorInput from '../TagSelectorInput'
@@ -18,6 +17,7 @@ import unsafeErrorLog from '../utils/unsafe-error-log'
 import noop from '../utils/noop'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import { Status } from '../OutlinedInput'
+import { PopperOptions } from '../Popper'
 
 export interface Item extends AutocompleteItem {
   value?: string

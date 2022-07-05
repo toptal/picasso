@@ -11,19 +11,18 @@ import React, {
   FocusEventHandler,
   MouseEvent,
 } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
-import { PopperOptions } from 'popper.js'
-import { capitalize } from '@mui/material/utils';
+import { capitalize } from '@mui/material/utils'
 
 import Input, { InputProps } from '../Input'
 import { MenuCompound as Menu } from '../MenuCompound'
 import Container from '../Container'
 import Loader from '../Loader'
 import SelectOptions from '../SelectOptions'
-import Popper from '../Popper'
+import Popper, { PopperOptions } from '../Popper'
 import InputAdornment from '../InputAdornment'
 import PoweredByGoogle from './PoweredByGoogle'
 import NoOptionsMenuItem from './NoOptionsMenuItem'

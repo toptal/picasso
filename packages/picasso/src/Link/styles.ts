@@ -1,11 +1,13 @@
-import { Theme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({
   MuiLink: {
-    root: {
-      cursor: 'pointer',
+    styleOverrides: {
+      root: {
+        cursor: 'pointer',
+      },
     },
   },
 }))

@@ -7,8 +7,8 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { SnackbarOrigin } from '@mui/material/Snackbar'
 import { BaseProps } from '@toptal/picasso-shared'
 
@@ -37,7 +37,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 const StyledNotification =
   // eslint-disable-next-line react/display-name
-  forwardRef<HTMLElement, Props>(function Notification(props, ref) {
+  forwardRef<HTMLDivElement, Props>(function Notification(props, ref) {
     const { content, icon, key, onClose, variant = 'white' } = props
     const classes = useStyles()
 

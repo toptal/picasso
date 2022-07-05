@@ -1,10 +1,10 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import cx from 'classnames'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useAppConfig } from '@toptal/picasso-provider'
-import { capitalize } from '@mui/material/utils';
+import { capitalize } from '@mui/material/utils'
 
 import CircularProgress from '../CircularProgress'
 import styles from './styles'
@@ -53,7 +53,7 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
 
   const progress = disableTransitions ? DEFAULT_PROGRESS : value
   const progressVariant =
-    disableTransitions || value ? 'static' : 'indeterminate'
+    disableTransitions || value ? 'determinate' : 'indeterminate'
 
   return (
     <div

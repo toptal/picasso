@@ -1,8 +1,14 @@
 import React, { useRef } from 'react'
-import { ValueLabelProps as MUIValueLabelProps } from '@mui/material/Slider'
 
 import Tooltip from '../Tooltip'
 import { useSliderContext } from '../Slider/SliderContext'
+
+export interface MUIValueLabelProps
+  extends React.HTMLAttributes<HTMLSpanElement> {
+  value: number
+  open: boolean
+  children: React.ReactElement
+}
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 

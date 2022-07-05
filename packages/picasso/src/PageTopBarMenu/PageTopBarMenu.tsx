@@ -1,8 +1,8 @@
 /* eslint-disable complexity */
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import { useBreakpoint } from '../utils'
@@ -96,12 +96,10 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
         content={content}
         offset={{ top: isCompactLayout ? 0.8 : 'xsmall' }}
         popperOptions={{
-          modifiers: {
-            flip: { enabled: false },
-            preventOverflow: {
-              padding: 0,
-            },
-          },
+          modifiers: [
+            { name: 'flip', enabled: false },
+            { name: 'preventOverflow', options: { padding: 0 } },
+          ],
         }}
       >
         {trigger}

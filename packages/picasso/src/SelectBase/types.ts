@@ -4,7 +4,7 @@ import {
   ChangeEvent,
   ReactNode,
 } from 'react'
-import PopperJs from 'popper.js'
+import { Instance as PopperJs } from '@popperjs/core'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import { OutlinedInputProps, Status } from '../OutlinedInput'
