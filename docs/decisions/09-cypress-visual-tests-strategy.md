@@ -23,7 +23,7 @@ However, it is not entirely clear which components need screenshots, for which s
 
 ### What is a test?
 
-> A _test_ is the whole test, with the code block.
+A _test_ is the whole test, with the code block.
 
 Example:
 
@@ -37,7 +37,7 @@ it('focuses the input', () => {
 
 ### What is a visual test?
 
-> A visual test (a screenshot comparison) asserts one or more visual states of the component under test.
+A visual test (a screenshot comparison) asserts one or more visual states of the component under test.
 
 Example:
 
@@ -56,7 +56,7 @@ it('renders with regular width and title', () => {
 
 ### What is a test case?
 
-> A _test case_ is only the text describing it in `it` examples
+A _test case_ is only the text describing it in `it` examples
 
 Example:
 ```js
@@ -65,11 +65,11 @@ it('focuses the input', () => {})
 
 ### What is Happo screenshots validation?
 
-> Happo screenshot validation is the comparison between a Happo screenshot of a component and its Picasso Temploy live version and accepting or rejecting the .
+Happo screenshot validation is the comparison between a Happo screenshot of a component and its Picasso Temploy live version and accepting or rejecting the .
 
 ### What is a CSS assertion?
 
-> A CSS assertion is an expect block asserting a CSS value.
+A CSS assertion is an expect block asserting a CSS value.
 
 Examples:
 
@@ -94,7 +94,8 @@ cy.getByTestId('link')
 ## Writing visual tests in Cypress
 
 ### Guiding principle
-> Minimize the number of screenshots by maximizing test cases covered per screenshot.
+
+Minimize the number of screenshots by maximizing test cases covered per screenshot.
 
 ### Helpful steps
 
