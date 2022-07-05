@@ -60,6 +60,7 @@
   "devDependencies": {
     "@babel/types": "^7.15.0",
     "@emotion/react": "^11.9.3",
+    "@popperjs/core": "^2.11.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.0",
     "@testing-library/react-hooks": "^7.0.2",

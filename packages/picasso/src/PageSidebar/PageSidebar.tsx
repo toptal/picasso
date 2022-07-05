@@ -1,5 +1,5 @@
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { useSidebar } from '@toptal/picasso-provider'
 import { BaseProps, StandardProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -43,12 +43,10 @@ const SmallScreenSidebarWrapper = ({
       classes={{ content: classes?.responsiveWrapperContent ?? '' }}
       offset={{ top: 0.4 }}
       popperOptions={{
-        modifiers: {
-          flip: { enabled: false },
-          preventOverflow: {
-            padding: 0,
-          },
-        },
+        modifiers: [
+          { name: 'flip', enabled: false },
+          { name: 'preventOverflow', options: { padding: 0 } },
+        ],
       }}
       onOpen={handleShowSidebar}
       onClose={handleHideSidebar}

@@ -7,12 +7,12 @@ import React, {
   forwardRef,
 } from 'react'
 import cx from 'classnames'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import MUIOutlinedInput from '@mui/material/OutlinedInput'
 import { InputBaseComponentProps } from '@mui/material/InputBase'
 import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
-import { capitalize } from '@mui/material/utils';
+import { capitalize } from '@mui/material/utils'
 
 import InputAdornment from '../InputAdornment'
 import ButtonCircular from '../ButtonCircular'
@@ -205,7 +205,6 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
       }}
       className={className}
       style={style}
-      labelWidth={0}
       fullWidth={width === 'full'}
       error={Boolean(status === 'error' || error)}
       inputComponent={inputComponent}
@@ -220,7 +219,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
       multiline={multiline}
       autoFocus={autoFocus}
       rows={rows}
-      rowsMax={rowsMax}
+      maxRows={rowsMax}
       onChange={onChange}
       disabled={disabled}
     />

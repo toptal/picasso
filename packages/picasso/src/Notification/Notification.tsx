@@ -6,12 +6,12 @@ import React, {
   cloneElement,
   HTMLAttributes,
 } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import SnackbarContent from '@mui/material/SnackbarContent'
 import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
-import { capitalize } from '@mui/material/utils';
+import { capitalize } from '@mui/material/utils'
 
 import {
   CloseMinor16,
@@ -128,7 +128,7 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'Notification',
 })
 
-export const Notification = forwardRef<HTMLElement, PrivateProps>(
+export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
   function Notification(props, ref) {
     const {
       className,

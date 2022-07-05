@@ -1,17 +1,21 @@
-import { Theme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { rem } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(({ shadows }: Theme) => ({
   MuiMenu: {
-    paper: {
-      boxShadow: shadows[2],
+    styleOverrides: {
+      paper: {
+        boxShadow: shadows[2],
+      },
     },
   },
   MuiList: {
-    root: {
-      boxShadow: shadows[1],
+    styleOverrides: {
+      root: {
+        boxShadow: shadows[1],
+      },
     },
   },
 }))

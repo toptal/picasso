@@ -8,8 +8,8 @@ import React, {
   useRef,
 } from 'react'
 import cx from 'classnames'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import MUIMenuItem from '@mui/material/MenuItem'
 import {
   useTitleCase,
@@ -180,11 +180,14 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           autoWidth={false}
           enableCompactMode
           popperOptions={{
-            modifiers: {
-              offset: {
-                offset: `-10px,6px`,
+            modifiers: [
+              {
+                name: 'offset',
+                options: {
+                  offset: [-10, 6],
+                },
               },
-            },
+            ],
           }}
         >
           <ClickAwayListener onClickAway={onAwayClick}>

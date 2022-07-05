@@ -2,11 +2,11 @@ import React, {
   forwardRef,
   ReactNode,
   ReactElement,
-  ChangeEvent,
   HTMLAttributes,
+  SyntheticEvent,
 } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import MUITooltip, { TooltipProps } from '@mui/material/Tooltip'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -18,6 +18,7 @@ import { ChildrenProps, ContainerValue } from './types'
 import { useTooltipState } from './useTooltipState'
 import { useTooltipHandlers } from './useTooltipHandlers'
 import { useTooltipFollowCursor } from './useTooltipFollowCursor'
+import { PopperOptions } from '../Popper'
 
 export type DelayType = 'short' | 'long'
 
@@ -42,9 +43,9 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Where should the tooltip be positioned */
   placement?: PlacementType
   /** Called when tooltip is opened */
-  onOpen?: (event: ChangeEvent<{}>) => void
+  onOpen?: (event: SyntheticEvent) => void
   /** Called when tooltip is closed */
-  onClose?: (event: ChangeEvent<{}>) => void
+  onClose?: (event: SyntheticEvent | Event) => void
   /** Whether user can interact with tooltip content */
   interactive?: boolean
   /** Programatically control tooltip's visibility */
@@ -127,6 +128,19 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     </Typography>
   )
 
+  const popperOptions: PopperOptions = {
+    modifiers: [
+      {
+        name: 'preventOverflow',
+        enabled: preventOverflow,
+        options: {
+          boundary: 'viewport',
+        },
+      },
+      { name: 'hide', enabled: preventOverflow },
+    ],
+  }
+
   return (
     <MUITooltip
       {...rest}
@@ -136,17 +150,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
         ref: tooltipRef,
         container: container || picassoRootContainer,
         disablePortal,
-        popperOptions: {
-          modifiers: {
-            preventOverflow: {
-              enabled: preventOverflow,
-              boundariesElement: 'window',
-            },
-            hide: {
-              enabled: preventOverflow,
-            },
-          },
-        },
+        popperOptions,
         ...(followCursor && followCursorTooltipData?.followCursorPopperProps),
       }}
       TransitionProps={{
@@ -164,7 +168,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
       }}
       className={className}
       style={style}
-      interactive={interactive}
+      disableInteractive={!interactive}
       onClose={handleClose}
       onOpen={handleOpen}
       open={tooltipState.isOpen}

@@ -1,10 +1,10 @@
 /* eslint-disable max-lines-per-function, max-lines */
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import { BaseProps } from '@toptal/picasso-shared'
 import formatDate from 'date-fns/format'
-import PopperJs from 'popper.js'
+import { Instance as PopperJs } from '@popperjs/core'
 import React, {
   KeyboardEvent,
   ReactNode,
@@ -230,7 +230,7 @@ export const DatePicker = (props: Props) => {
 
   const isInsideDatePicker = (node: Node) => {
     return (
-      popperRef.current?.popper.contains(node) ||
+      popperRef.current?.state.elements.popper.contains(node) ||
       inputWrapperRef.current?.contains(node)
     )
   }

@@ -4,8 +4,8 @@ import React, {
   HTMLAttributes,
   ReactElement,
 } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import MUITab, { TabProps } from '@mui/material/Tab'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
@@ -34,7 +34,6 @@ export interface Props
 
   // Properties below are managed by Tabs component
 
-  selected?: boolean
   onChange?: TabProps['onChange']
   onClick?: TabProps['onClick']
 }
@@ -47,10 +46,11 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
     value,
     label,
     icon,
-    selected,
     onChange,
     onClick,
     titleCase: propsTitleCase,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    children,
     ...rest
   } = props
   const classes = useStyles()
@@ -70,7 +70,6 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
       label={labelComponent}
       icon={icon}
       value={value}
-      selected={selected}
       onChange={onChange}
       onClick={onClick}
       classes={classes}

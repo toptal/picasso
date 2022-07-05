@@ -1,5 +1,5 @@
-import { Theme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 
 export default ({ zIndex, screens }: Theme) =>
   createStyles({
@@ -11,7 +11,7 @@ export default ({ zIndex, screens }: Theme) =>
         padding: 0,
         margin: 0,
       },
-      '&[x-out-of-boundaries]': {
+      '&[data-popper-reference-hidden]': {
         display: 'none',
       },
     },

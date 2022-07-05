@@ -5,8 +5,8 @@ import React, {
   useEffect,
   useRef,
 } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import Dialog from '@mui/material/Dialog'
 import { PaperProps } from '@mui/material/Paper'
 import cx from 'classnames'
@@ -109,14 +109,16 @@ const generateKey = (() => {
 })()
 
 // eslint-disable-next-line react/display-name
-export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
+export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
+  props,
+  ref
+) {
   const {
     children,
     open,
     size = 'medium',
     onBackdropClick,
     onClose,
-    onOpen,
     className,
     style,
     container,
@@ -130,7 +132,10 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   } = props
   const classes = useStyles(props)
   const picassoRootContainer = usePicassoRoot()
-  const rootRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
+  const rootRef = useCombinedRefs<HTMLDivElement>(
+    ref,
+    useRef<HTMLDivElement>(null)
+  )
   const modalId = useRef(generateKey())
 
   useEffect(() => {
@@ -218,7 +223,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
         </ButtonCircular>
       )}
     </Dialog>
-  );
+  )
 })
 
 Modal.defaultProps = {
