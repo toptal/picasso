@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Collapse } from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { Collapse } from '@mui/material'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'

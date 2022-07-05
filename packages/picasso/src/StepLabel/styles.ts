@@ -1,4 +1,5 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { rem } from '@toptal/picasso-shared'
 import {
   PicassoProvider,
@@ -7,15 +8,17 @@ import {
 
 PicassoProvider.override(() => ({
   MuiStepLabel: {
-    label: {
-      display: 'flex',
-
-      '&$active': {
+    styleOverrides: {
+      label: {
         display: 'flex',
+
+        '&$active': {
+          display: 'flex',
+        },
       },
-    },
-    iconContainer: {
-      paddingRight: 0,
+      iconContainer: {
+        paddingRight: 0,
+      },
     },
   },
 }))

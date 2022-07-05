@@ -23,7 +23,7 @@ export {
 } from '@toptal/picasso-provider'
 export { useIsomorphicLayoutEffect, isBrowser } from '@toptal/picasso-shared'
 
-export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListener'
+export { default as ClickAwayListener } from '@mui/material/ClickAwayListener'
 
 export { capitalize } from './capitalize'
 export { default as disableUnsupportedProps } from './disable-unsupported-props'

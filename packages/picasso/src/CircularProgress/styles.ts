@@ -1,10 +1,13 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(({ palette }: Theme) => ({
   MuiCircularProgress: {
-    colorPrimary: {
-      color: palette.grey.darker,
+    styleOverrides: {
+      colorPrimary: {
+        color: palette.grey.darker,
+      },
     },
   },
 }))

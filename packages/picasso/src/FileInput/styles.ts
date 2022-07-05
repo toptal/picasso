@@ -1,4 +1,4 @@
-import { createStyles } from '@material-ui/core/styles'
+import createStyles from '@mui/styles/createStyles';
 import { rem } from '@toptal/picasso-shared'
 
 export default () =>

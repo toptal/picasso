@@ -1,82 +1,85 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { darken, outline } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(
   ({ palette, sizes: { input, borderRadius } }: Theme) => ({
     MuiOutlinedInput: {
-      root: {
-        width: input.width,
-        color: palette.common.black,
+      styleOverrides: {
+        root: {
+          width: input.width,
+          color: palette.common.black,
 
-        '& $notchedOutline': {
-          borderColor: palette.grey.light2,
-          borderRadius: borderRadius.small,
-          top: 0,
-          '& legend': {
-            height: 0,
-          },
-        },
-
-        '&$focused': {
           '& $notchedOutline': {
-            borderWidth: '1px',
-            borderColor: palette.blue.main,
-            ...outline(palette.primary.main),
+            borderColor: palette.grey.light2,
+            borderRadius: borderRadius.small,
+            top: 0,
+            '& legend': {
+              height: 0,
+            },
+          },
+
+          '&$focused': {
+            '& $notchedOutline': {
+              borderWidth: '1px',
+              borderColor: palette.blue.main,
+              ...outline(palette.primary.main),
+            },
+          },
+
+          '&$disabled': {
+            '& $notchedOutline': {
+              borderColor: palette.grey.lighter2,
+            },
+            backgroundColor: palette.grey.lighter,
+            color: palette.grey.main,
+          },
+
+          '&:hover:not($disabled)': {
+            '&:not($error)&:not($focused) $notchedOutline': {
+              borderColor: palette.grey.main2,
+            },
           },
         },
+        input: {
+          display: 'flex',
+          alignItems: 'center',
+          boxSizing: 'border-box',
+          height: '100%',
+          padding: 0,
+          border: 'none',
 
-        '&$disabled': {
-          '& $notchedOutline': {
-            borderColor: palette.grey.lighter2,
-          },
-          backgroundColor: palette.grey.lighter,
-          color: palette.grey.main,
-        },
-
-        '&:hover:not($disabled)': {
-          '&:not($error)&:not($focused) $notchedOutline': {
-            borderColor: palette.grey.main2,
-          },
-        },
-      },
-      input: {
-        display: 'flex',
-        alignItems: 'center',
-        boxSizing: 'border-box',
-        height: '100%',
-        padding: 0,
-        border: 'none',
-
-        '&::placeholder': {
-          color: palette.grey.main2,
-          opacity: 1,
-        },
-
-        '&$disabled': {
-          color: palette.grey.main2,
-          // On Safari the text gets a bit lighter as if it had some transparency applied to it
-          // We need this webkit-specific property to achieve the exact font color
-          '-webkit-text-fill-color': palette.grey.main2,
           '&::placeholder': {
             color: palette.grey.main2,
             opacity: 1,
           },
+
+          '&$disabled': {
+            color: palette.grey.main2,
+            // On Safari the text gets a bit lighter as if it had some transparency applied to it
+            // We need this webkit-specific property to achieve the exact font color
+            '-webkit-text-fill-color': palette.grey.main2,
+            '&::placeholder': {
+              color: palette.grey.main2,
+              opacity: 1,
+            },
+          },
         },
-      },
-      inputMultiline: {
-        padding: 0,
-      },
-      multiline: {
-        padding: 0,
-      },
-      error: {
-        backgroundColor: 'transparent',
-        '&$focused': {
-          '& $notchedOutline': {
-            borderWidth: '1px',
-            borderColor: palette.red.main,
-            ...outline(palette.red.main),
+        inputMultiline: {
+          padding: 0,
+        },
+        multiline: {
+          padding: 0,
+        },
+        error: {
+          backgroundColor: 'transparent',
+          '&$focused': {
+            '& $notchedOutline': {
+              borderWidth: '1px',
+              borderColor: palette.red.main,
+              ...outline(palette.red.main),
+            },
           },
         },
       },

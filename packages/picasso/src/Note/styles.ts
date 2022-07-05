@@ -1,4 +1,5 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
 
 const barWidth = 4
 
@@ -7,7 +8,7 @@ export default ({ palette, sizes, spacing }: Theme) =>
     root: {
       borderRadius: sizes.borderRadius.medium,
       border: `1px solid ${palette.grey.lighter2}`,
-      padding: `${spacing(3)}px ${spacing(3)}px ${spacing(3)}px ${
+      padding: `${spacing(3)} ${spacing(3)} ${spacing(3)} ${
         spacing(3) + barWidth
       }px`,
       position: 'relative',

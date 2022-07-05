@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { forwardRef, useMemo, HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Button from '../Button'

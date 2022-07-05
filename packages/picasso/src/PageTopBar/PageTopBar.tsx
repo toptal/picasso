@@ -9,7 +9,8 @@ import React, {
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 import { usePageTopBar } from '@toptal/picasso-provider'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 import Logo from '../Logo'
 import Container from '../Container'

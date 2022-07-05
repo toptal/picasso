@@ -5,9 +5,10 @@ import React, {
   useEffect,
   useRef,
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import Dialog from '@material-ui/core/Dialog'
-import { PaperProps } from '@material-ui/core/Paper'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import Dialog from '@mui/material/Dialog'
+import { PaperProps } from '@mui/material/Paper'
 import cx from 'classnames'
 import {
   StandardProps,
@@ -197,12 +198,11 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       hideBackdrop={hideBackdrop}
       onBackdropClick={onBackdropClick}
       onClose={onClose}
-      onEnter={onOpen}
       open={open}
       transitionDuration={transitionDuration}
       maxWidth={false}
-      disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
-      disableBackdropClick
+      // we need our own mechanism to keep focus inside the Modals
+      disableEnforceFocus
       TransitionProps={transitionProps}
     >
       <ModalContext.Provider value>{children}</ModalContext.Provider>
@@ -218,7 +218,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
         </ButtonCircular>
       )}
     </Dialog>
-  )
+  );
 })
 
 Modal.defaultProps = {

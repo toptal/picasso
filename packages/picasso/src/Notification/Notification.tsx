@@ -6,11 +6,12 @@ import React, {
   cloneElement,
   HTMLAttributes,
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import SnackbarContent from '@material-ui/core/SnackbarContent'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import SnackbarContent from '@mui/material/SnackbarContent'
 import cx from 'classnames'
-import capitalize from '@material-ui/core/utils/capitalize'
 import { StandardProps } from '@toptal/picasso-shared'
+import { capitalize } from '@mui/material/utils';
 
 import {
   CloseMinor16,

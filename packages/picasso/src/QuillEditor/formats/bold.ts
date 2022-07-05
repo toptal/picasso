@@ -6,7 +6,7 @@ import getTypographyClassName from '../../Typography/utils/get-typography-class-
 const QuillBold = Quill.import('formats/bold')
 
 const makeBoldFormat = (typographyClasses: Classes) =>
-  class LinkBlot extends QuillBold {
+  (class LinkBlot extends QuillBold {
     static create(value: string) {
       const node = super.create(value)
 
@@ -20,6 +20,6 @@ const makeBoldFormat = (typographyClasses: Classes) =>
 
       return node
     }
-  }
+  })
 
 export default makeBoldFormat

@@ -1,6 +1,10 @@
-import { Theme, ThemeOptions, createMuiTheme } from '@material-ui/core/styles'
-import { Overrides } from '@material-ui/core/styles/overrides'
-import { deepmerge } from '@material-ui/utils'
+import {
+  Theme,
+  ThemeOptions,
+  createTheme,
+  Components,
+} from '@mui/material/styles'
+import { deepmerge } from '@mui/utils'
 
 import {
   palette,
@@ -13,7 +17,7 @@ import {
   shadows,
 } from './config'
 
-const picasso = {
+const picasso: ThemeOptions = {
   palette,
   layout,
   transitions,
@@ -22,23 +26,31 @@ const picasso = {
   screens,
   shadows,
   typography,
-  props: {
+  components: {
     MuiButtonBase: {
-      disableRipple: true,
+      defaultProps: {
+        disableRipple: true,
+      },
     },
     MuiList: {
-      disablePadding: true,
+      defaultProps: {
+        disablePadding: true,
+      },
     },
     MuiPaper: {
-      square: true,
+      defaultProps: {
+        square: true,
+      },
     },
     MuiOutlinedInput: {
-      notched: false,
+      defaultProps: {
+        notched: false,
+      },
     },
   },
 }
 
-class Provider {
+class ProviderV5 {
   theme: Theme
 
   constructor(theme: Theme) {
@@ -49,18 +61,18 @@ class Provider {
     this.theme.layout.contentMinWidth = '768px'
   }
 
-  override(getOverride: (theme: Theme) => Partial<Overrides>) {
+  override(getOverride: (theme: Theme) => Partial<Components>) {
     const newOverride = getOverride(this.theme)
 
     this.extendThemeOverrides(newOverride)
   }
 
-  extendThemeOverrides(newOverride: Partial<Overrides>) {
-    const overrides = this.theme.overrides || {}
+  extendThemeOverrides(newOverride: Partial<Components>) {
+    const overrides = this.theme.components || {}
 
     Object.assign(overrides, newOverride)
 
-    this.theme.overrides = overrides
+    this.theme.components = overrides
   }
 
   extendTheme(theme: ThemeOptions) {
@@ -68,6 +80,6 @@ class Provider {
   }
 }
 
-const PicassoProvider = new Provider(createMuiTheme(picasso))
+const PicassoProviderV5 = new ProviderV5(createTheme(picasso))
 
-export default PicassoProvider
+export default PicassoProviderV5

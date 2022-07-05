@@ -1,6 +1,6 @@
 import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
-import { makeStyles } from '@material-ui/core/styles'
+import makeStyles from '@mui/styles/makeStyles';
 import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'

@@ -1,12 +1,15 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
+import createStyles from '@mui/styles/createStyles'
 import { rem } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(() => ({
   MuiSlider: {
-    thumb: {
-      '&:hover, &$active, &$focusVisible': {
-        boxShadow: 'none',
+    styleOverrides: {
+      thumb: {
+        '&:hover, &$active, &$focusVisible': {
+          boxShadow: 'none',
+        },
       },
     },
   },

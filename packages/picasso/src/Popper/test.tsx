@@ -1,16 +1,16 @@
 import React from 'react'
-import MUIPopper from '@material-ui/core/Popper'
+import MUIPopper from '@mui/material/Popper'
 import { usePicassoRoot } from '@toptal/picasso-provider'
 import { render } from '@testing-library/react'
 
 import Popper, { Props, getPopperOptions } from './Popper'
 
-jest.mock('@material-ui/core/Popper', () => jest.fn(() => null))
+jest.mock('@mui/material/Popper', () => jest.fn(() => null))
 jest.mock('@toptal/picasso-provider', () => ({
   useBreakpoint: () => true,
   usePicassoRoot: jest.fn(),
 }))
-jest.mock('@material-ui/core/styles', () => ({
+jest.mock('@mui/material/styles', () => ({
   makeStyles: jest.fn(() => () => ({ root: 'TEST_CLASS_NAME+1' })),
 }))
 jest.mock('../utils/use-width-of', () => ({

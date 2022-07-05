@@ -7,11 +7,12 @@ import React, {
   forwardRef,
 } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
-import { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import capitalize from '@material-ui/core/utils/capitalize'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import MUIOutlinedInput from '@mui/material/OutlinedInput'
+import { InputBaseComponentProps } from '@mui/material/InputBase'
 import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
+import { capitalize } from '@mui/material/utils';
 
 import InputAdornment from '../InputAdornment'
 import ButtonCircular from '../ButtonCircular'

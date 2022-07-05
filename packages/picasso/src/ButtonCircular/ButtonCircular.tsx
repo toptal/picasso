@@ -1,6 +1,7 @@
 import React, { ReactElement, MouseEvent, forwardRef, ElementType } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   BaseProps,
   ButtonOrAnchorProps,

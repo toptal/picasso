@@ -7,8 +7,9 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { SnackbarOrigin } from '@material-ui/core/Snackbar'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { SnackbarOrigin } from '@mui/material/Snackbar'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import {

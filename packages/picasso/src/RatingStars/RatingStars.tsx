@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode, ChangeEvent, useCallback } from 'react'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
-import { makeStyles } from '@material-ui/core/styles'
+import makeStyles from '@mui/styles/makeStyles';
 import cx from 'classnames'
 
 import Container from '../Container'

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { ValueLabelProps as MUIValueLabelProps } from '@material-ui/core/Slider'
+import { ValueLabelProps as MUIValueLabelProps } from '@mui/material/Slider'
 
 import Tooltip from '../Tooltip'
 import { useSliderContext } from '../Slider/SliderContext'

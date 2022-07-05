@@ -1,10 +1,11 @@
-import capitalize from '@material-ui/core/utils/capitalize'
-import { Theme, createStyles } from '@material-ui/core/styles'
-import { Color } from '@material-ui/core'
-import { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
+import { Theme, SimplePaletteColorOptions } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import { Color } from '@mui/material'
 import { SpacingType, spacingToRem } from '@toptal/picasso-shared'
+import { capitalize } from '@mui/material/utils';
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
+
 
 const textAlignVariants = [
   'inherit',

@@ -6,7 +6,7 @@ import getTypographyClassName from '../../Typography/utils/get-typography-class-
 const QuillHeader = Quill.import('formats/header')
 
 const makeHeaderFormat = (typographyClasses: Classes) =>
-  class LinkBlot extends QuillHeader {
+  (class LinkBlot extends QuillHeader {
     static create(value: string) {
       const node = super.create(value)
 
@@ -19,6 +19,6 @@ const makeHeaderFormat = (typographyClasses: Classes) =>
 
       return node
     }
-  }
+  })
 
 export default makeHeaderFormat

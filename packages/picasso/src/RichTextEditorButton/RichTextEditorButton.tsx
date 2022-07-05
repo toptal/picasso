@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { BaseProps } from '@toptal/picasso-shared'
 
 import ButtonCircular from '../ButtonCircular'

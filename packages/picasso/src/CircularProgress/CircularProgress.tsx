@@ -1,11 +1,12 @@
 import React, { HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUICircularProgress from '@material-ui/core/CircularProgress'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import MUICircularProgress from '@mui/material/CircularProgress'
 import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-type VariantType = 'determinate' | 'indeterminate' | 'static'
+type VariantType = 'determinate' | 'indeterminate'
 
 export interface Props
   extends StandardProps,
