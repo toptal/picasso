@@ -1,5 +1,16 @@
 # Change Log
 
+## 26.3.1
+
+### Patch Changes
+
+- [#2959](https://github.com/toptal/picasso/pull/2959) [`984b826a`](https://github.com/toptal/picasso/commit/984b826af8f54835c6914586c338d60c64c741ff) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  - bump `notistack` to `1.0.10`
+
+- Updated dependencies [[`984b826a`](https://github.com/toptal/picasso/commit/984b826af8f54835c6914586c338d60c64c741ff)]:
+  - @toptal/picasso-shared@9.0.1
+
 ## 26.3.0
 
 ### Minor Changes
