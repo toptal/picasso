@@ -42,6 +42,8 @@ export interface Props extends BaseProps {
   error?: boolean
   /** Indicate `RichTextEditor` is in `error` or `default` state */
   status?: Extract<Status, 'error' | 'default'>
+  /** Used inside Form with combination of Label to enable forHtml functionality */
+  hiddenInputId?: string
   /**
    * The maximum number of characters that the user can enter.
    * If this value isn't specified, the user can enter an unlimited
@@ -112,6 +114,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       style,
       status,
       testIds,
+      hiddenInputId,
     } = props
 
     const classes = useStyles()
@@ -232,9 +235,21 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
         {counterMessage && (
           <Counter error={counterError} message={counterMessage} />
         )}
+        {hiddenInputId && enableFocusOnLabelClick(hiddenInputId)}
       </Container>
     )
   }
+)
+
+const hiddenInputStyle: React.CSSProperties = {
+  position: 'absolute',
+  opacity: 0,
+  zIndex: -1,
+}
+
+// Native `for` attribute on label does not work for div target
+const enableFocusOnLabelClick = (hiddenInputId: string) => (
+  <input type='text' id={hiddenInputId} style={hiddenInputStyle} />
 )
 
 RichTextEditor.defaultProps = {

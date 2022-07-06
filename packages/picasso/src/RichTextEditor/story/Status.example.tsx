@@ -1,24 +1,22 @@
 import React from 'react'
-import { Form, RichTextEditor } from '@toptal/picasso'
+import { Form } from '@toptal/picasso-forms'
 
 const Example = () => {
   return (
-    <Form>
-      <Form.Field>
-        <Form.Label>Default</Form.Label>
-        <RichTextEditor
-          id='editor-default'
-          placeholder='Write some cool rich text'
-        />
-      </Form.Field>
-      <Form.Field>
-        <Form.Label>Error</Form.Label>
-        <RichTextEditor
-          id='editor-error'
-          placeholder='Write some cool rich text'
-          status='error'
-        />
-      </Form.Field>
+    <Form onSubmit={() => {}}>
+      <Form.RichTextEditor
+        label='Default'
+        id='editor-default'
+        placeholder='Write some cool rich text'
+        name='default'
+      />
+      <Form.RichTextEditor
+        label='Error'
+        id='editor-error'
+        placeholder='Write some cool rich text'
+        status='error'
+        name='error'
+      />
     </Form>
   )
 }
