@@ -5,6 +5,7 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
 import { RichTextEditor, RichTextEditorProps, Container } from '@toptal/picasso'
+import { Form } from '@toptal/picasso-forms'
 import { isOn } from '@cypress/skip-test'
 
 const headerSelect = 'headerSelect'
@@ -13,6 +14,7 @@ const italicButton = 'italicButton'
 const ulButton = 'ulButton'
 const olButton = 'olButton'
 const wrapper = 'wrapper'
+const editor = 'editor'
 
 const defaultProps = {
   id: 'foo',
@@ -25,6 +27,7 @@ const defaultProps = {
     unorderedListButton: ulButton,
     orderedListButton: olButton,
     wrapper,
+    editor,
   },
 }
 
@@ -34,6 +37,12 @@ const renderEditor = (props: RichTextEditorProps) => (
   <Container data-testid='bla' style={{ maxWidth: '600px' }} padded='small'>
     <RichTextEditor {...props} />
   </Container>
+)
+
+const renderEditorInForm = () => (
+  <Form onSubmit={() => {}}>
+    <Form.RichTextEditor label='label' name='editor' {...defaultProps} />
+  </Form>
 )
 
 const buttonShouldBeActive = (
@@ -62,8 +71,10 @@ const setSelectValue = (
   select.realClick()
   cy.get('span').contains(value).realClick()
 }
+
+const component = 'RichTextEditor'
+
 const setAliases = () => {
-  // set aliases
   cy.get(editorSelector).as('editor')
   cy.getByTestId(headerSelect).as('headerSelect')
   cy.getByTestId(boldButton).as('boldButton')
@@ -73,9 +84,21 @@ const setAliases = () => {
   cy.getByTestId(wrapper).as('wrapper')
 }
 
-const component = 'RichTextEditor'
-
 describe('RichTextEditor', () => {
+  it('focuses the editor', () => {
+    cy.mount(renderEditor(defaultProps))
+    setAliases()
+
+    cy.get('@editor').click()
+    cy.get('body').happoScreenshot({ component, variant: 'focused' })
+  })
+  it('focuses the editor with error state', () => {
+    cy.mount(renderEditor({ ...defaultProps, status: 'error' }))
+    setAliases()
+
+    cy.get('@editor').click()
+    cy.get('body').happoScreenshot({ component, variant: 'focused/with-error' })
+  })
   it('handles keybindings correctly', () => {
     // render the editor
     cy.mount(renderEditor(defaultProps))
@@ -140,33 +163,33 @@ describe('RichTextEditor', () => {
       }
     })
 
-    cy.get('@editor').realClick()
+    cy.get('@editor').click()
     setSelectValue(cy.get('@headerSelect'), 'heading')
-    cy.get('@editor').realClick()
-    cy.get('@editor').realType('Heading text{enter}')
+    cy.get('@editor').click()
+    cy.get('@editor').type('Head{enter}')
 
-    cy.get('@editor').realType('normal text{enter}')
+    cy.get('@editor').type('nor{enter}')
 
-    cy.get('@boldButton').realClick()
-    cy.get('@editor').realType('text with bold format{enter}')
+    cy.get('@boldButton').click()
+    cy.get('@editor').type('bold{enter}')
 
-    cy.get('@italicButton').realClick()
-    cy.get('@editor').realType('text with bold and italic format{enter}')
+    cy.get('@italicButton').click()
+    cy.get('@editor').type('italicbold{enter}')
 
-    cy.get('@boldButton').realClick()
-    cy.get('@editor').realType('text with italic format{enter}')
+    cy.get('@boldButton').click()
+    cy.get('@editor').type('italic{enter}')
 
-    cy.get('@ulButton').realClick()
-    cy.get('@editor').realType('unordered list item italic')
-    cy.get('@boldButton').realClick()
-    cy.get('@editor').realType(' and italic-bold')
-    cy.get('@italicButton').realClick()
-    cy.get('@editor').realType(' and bold{enter}')
-    cy.get('@boldButton').realClick()
-    cy.get('@editor').realType('unordered list item with no styles{enter}')
+    cy.get('@ulButton').click()
+    cy.get('@editor').type('ul-italic')
+    cy.get('@boldButton').click()
+    cy.get('@editor').type(' italic-bold')
+    cy.get('@italicButton').click()
+    cy.get('@editor').type(' bold{enter}')
+    cy.get('@boldButton').click()
+    cy.get('@editor').type('ul{enter}')
 
-    cy.get('@olButton').realClick()
-    cy.get('@editor').realType('ordered list item{enter}')
+    cy.get('@olButton').click()
+    cy.get('@editor').type('ol{enter}')
 
     cy.get('body').happoScreenshot({
       component,
@@ -288,6 +311,17 @@ describe('RichTextEditor', () => {
       selectShouldHaveValue(cy.get('@headerSelect'), 'heading')
       buttonShouldNotBeActive(cy.get('@ulButton'))
       buttonShouldNotBeActive(cy.get('@olButton'))
+    })
+  })
+
+  describe('Form.RichTextEditor', () => {
+    it('focuses editor on label click', () => {
+      cy.mount(renderEditorInForm())
+      setAliases()
+
+      cy.get('label').click()
+      cy.get('.ql-editor').should('be.focused')
+      cy.get('@wrapper').should('have.attr', 'class').and('include', 'focused')
     })
   })
 
