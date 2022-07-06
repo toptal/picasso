@@ -1,5 +1,15 @@
 # Change Log
 
+## 46.0.4
+
+### Patch Changes
+
+- [#2968](https://github.com/toptal/picasso/pull/2968) [`fe1f4887`](https://github.com/toptal/picasso/commit/fe1f48875d15b0ed4aa74fcfb56b92918d0142b4) Thanks [@vvmarulin](https://github.com/vvmarulin)! - ---
+
+  ### Form
+
+  - fix not working `validateOnBlur` property
+
 ## 46.0.3
 
 ### Patch Changes
