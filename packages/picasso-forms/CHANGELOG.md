@@ -1,5 +1,17 @@
 # Change Log
 
+## 46.0.3
+
+### Patch Changes
+
+- [#2942](https://github.com/toptal/picasso/pull/2942) [`6df4477b`](https://github.com/toptal/picasso/commit/6df4477b2d82bfcfeef1db4ba4e25bf9c3d065c4) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### RichTextEditor
+
+  - use proper FieldLabel
+  - use red outline for focused Editor with error state
+  - enable focusing the Editor by clicking on Label with proper `for` attribute
+
 ## 46.0.2
 
 ### Patch Changes
