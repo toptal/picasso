@@ -5,7 +5,7 @@ const Example = () => {
   return (
     <Form onSubmit={() => {}}>
       <Form.RichTextEditor
-        label='default'
+        label='Default'
         id='editor-default'
         placeholder='Write some cool rich text'
         name='default'

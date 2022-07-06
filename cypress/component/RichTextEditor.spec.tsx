@@ -105,9 +105,9 @@ describe('RichTextEditor', () => {
     setAliases()
 
     const content = {
-      bold: 'text with bold format',
-      italic: 'text with italic format',
-      bold_italic: 'text with bold and italic format',
+      bold: 'b',
+      italic: 'b',
+      bold_italic: 'bi',
     }
 
     // test bold
@@ -171,20 +171,20 @@ describe('RichTextEditor', () => {
     cy.get('@editor').type('nor{enter}')
 
     cy.get('@boldButton').click()
-    cy.get('@editor').type('bold{enter}')
+    cy.get('@editor').type('b{enter}')
 
     cy.get('@italicButton').click()
-    cy.get('@editor').type('italicbold{enter}')
+    cy.get('@editor').type('ib{enter}')
 
     cy.get('@boldButton').click()
-    cy.get('@editor').type('italic{enter}')
+    cy.get('@editor').type('i{enter}')
 
     cy.get('@ulButton').click()
-    cy.get('@editor').type('ul-italic')
+    cy.get('@editor').type('ul-i')
     cy.get('@boldButton').click()
-    cy.get('@editor').type(' italic-bold')
+    cy.get('@editor').type(' ib')
     cy.get('@italicButton').click()
-    cy.get('@editor').type(' bold{enter}')
+    cy.get('@editor').type(' b{enter}')
     cy.get('@boldButton').click()
     cy.get('@editor').type('ul{enter}')
 
@@ -206,7 +206,7 @@ describe('RichTextEditor', () => {
       // add heading to editor
       cy.get('@editor').realClick()
       setSelectValue(cy.get('@headerSelect'), 'heading')
-      cy.get('@editor').type('Heading example{enter}')
+      cy.get('@editor').type('Head{enter}')
 
       // remove all
       cy.get('@editor').type('{selectall}{del}')
@@ -220,11 +220,11 @@ describe('RichTextEditor', () => {
       setAliases()
 
       // add formatted text with lists
-      cy.get('@editor').type('normal text')
+      cy.get('@editor').type('nor')
       cy.get('@boldButton').realClick()
-      cy.get('@editor').type(' bold text{enter}')
+      cy.get('@editor').type(' b{enter}')
       cy.get('@olButton').realClick()
-      cy.get('@editor').type('list item{enter}')
+      cy.get('@editor').type('ol{enter}')
 
       // remove all
       cy.get('@editor').type('{selectall}{del}')
@@ -244,7 +244,7 @@ describe('RichTextEditor', () => {
       // add heading to editor
       cy.get('@editor').realClick()
       setSelectValue(cy.get('@headerSelect'), 'heading')
-      cy.get('@editor').type('Heading example{enter}')
+      cy.get('@editor').type('Head{enter}')
 
       // on new line we have unformatted text
       selectShouldHaveValue(cy.get('@headerSelect'), 'normal')
@@ -258,14 +258,14 @@ describe('RichTextEditor', () => {
       cy.get('@editor').realClick()
       cy.get('@ulButton').realClick()
       // first enter triggers new line with list item, another enter removes the format
-      cy.get('@editor').type('list item{enter}{enter}')
+      cy.get('@editor').type('ul{enter}{enter}')
       buttonShouldNotBeActive(cy.get('@ulButton'))
 
       // add ol
       cy.get('@editor').realClick()
       cy.get('@olButton').realClick()
       // first enter triggers new line with list item, another enter removes the format
-      cy.get('@editor').type('list item{enter}{enter}')
+      cy.get('@editor').type('ol{enter}{enter}')
       buttonShouldNotBeActive(cy.get('@olButton'))
     })
     it('keeps bold', () => {
@@ -276,7 +276,7 @@ describe('RichTextEditor', () => {
       // add bold to editor
       cy.get('@editor').realClick()
       cy.get('@boldButton').realClick()
-      cy.get('@editor').type('Button example{enter}')
+      cy.get('@editor').type('b{enter}')
 
       // on new line we have bold format preserved
       buttonShouldBeActive(cy.get('@boldButton'))
@@ -292,7 +292,7 @@ describe('RichTextEditor', () => {
       // set heading format
       cy.get('@editor').realClick()
       setSelectValue(cy.get('@headerSelect'), 'heading')
-      cy.get('@editor').type('foobar')
+      cy.get('@editor').type('foo')
       selectShouldHaveValue(cy.get('@headerSelect'), 'heading')
 
       // change to ul
