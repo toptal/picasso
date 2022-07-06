@@ -22,12 +22,15 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "typescript": "4.6.x",
-    "react": ">=16.12.0 < 19.0.0"
+    "react": ">=16.12.0 < 19.0.0",
+    "typescript": "4.6.x"
   },
   "dependencies": {
     "@material-ui/core": "4.11.0",
     "@material-ui/utils": "4.10.2",
+    "@mui/material": "5.6.4",
+    "@mui/styles": "5.6.2",
+    "@mui/utils": "5.6.1",
     "classnames": "^2.3.1",
     "notistack": "1.0.10",
     "react-helmet": "6.1.0"

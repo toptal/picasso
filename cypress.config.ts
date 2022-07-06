@@ -83,6 +83,10 @@ export default defineConfig({
               process.cwd(),
               './packages/topkit-analytics-charts/dist-package'
             ),
+            '@emotion/core': path.resolve(
+              __dirname,
+              './node_modules/@emotion/react'
+            ),
           },
         },
       },

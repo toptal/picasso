@@ -23,11 +23,14 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "peerDependencies": {
+    "@emotion/react": "11.9.0",
     "@material-ui/core": "4.11.0",
+    "@mui/material": "5.6.4",
+    "@mui/styles": "5.6.2",
     "@toptal/picasso-provider": "^1.2.0",
     "notistack": "1.0.10",
-    "react": ">=16.12.0 < 19.0.0",
-    "react-dom": ">=16.12.0 < 19.0.0",
+    "react": ">=16.12.0 && < 19.0.0",
+    "react-dom": ">=16.12.0 && < 19.0.0",
     "react-helmet": "6.1.0",
     "typescript": "4.6.x"
   },
@@ -57,6 +60,7 @@
   },
   "devDependencies": {
     "@babel/types": "^7.15.0",
+    "@emotion/react": "^11.9.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.0",
     "@testing-library/react-hooks": "^7.0.2",

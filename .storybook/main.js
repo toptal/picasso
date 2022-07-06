@@ -102,6 +102,10 @@ module.exports = {
         __dirname,
         '../packages/picasso-provider/src'
       ),
+      '@emotion/core': path.resolve(
+        __dirname,
+        '../node_modules/@emotion/react'
+      ),
     }
 
     config.plugins.push(

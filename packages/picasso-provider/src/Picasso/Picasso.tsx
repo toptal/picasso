@@ -5,6 +5,10 @@ import {
   createGenerateClassName,
 } from '@material-ui/core/styles'
 import React, { ReactNode } from 'react'
+import {
+  StyledEngineProvider,
+  ThemeProvider as MUIv5ThemeProvider,
+} from '@mui/material'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
@@ -14,6 +18,7 @@ import { EnvironmentType, TextLabelProps } from '../types'
 import { generateRandomStringOrGetEmptyInTest } from './utils'
 import { PicassoBreakpoints } from './config'
 import PicassoProvider from './PicassoProvider'
+import PicassoProviderV5 from './PicassoProviderV5'
 import FixViewport from './FixViewport'
 import PicassoGlobalStylesProvider, {
   PicassoGlobalStylesProviderProps,
@@ -87,22 +92,26 @@ const Picasso = ({
       generateClassName={generateClassName}
       injectFirst={injectFirst}
     >
-      <MuiThemeProvider theme={PicassoProvider.theme}>
-        <PicassoGlobalStylesProvider
-          RootComponent={RootComponent}
-          environment={environment}
-          titleCase={titleCase}
-          disableTransitions={disableTransitions}
-        >
-          {fixViewport && <FixViewport />}
-          {loadFonts && <FontsLoader />}
-          {reset && <CssBaseline />}
-          {loadFavicon && <Favicon environment={environment} />}
-          <NotificationsProvider container={notificationContainer}>
-            {children}
-          </NotificationsProvider>
-        </PicassoGlobalStylesProvider>
-      </MuiThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <MuiThemeProvider theme={PicassoProvider.theme}>
+          <MUIv5ThemeProvider theme={PicassoProviderV5.theme}>
+            <PicassoGlobalStylesProvider
+              RootComponent={RootComponent}
+              environment={environment}
+              titleCase={titleCase}
+              disableTransitions={disableTransitions}
+            >
+              {fixViewport && <FixViewport />}
+              {loadFonts && <FontsLoader />}
+              {reset && <CssBaseline />}
+              {loadFavicon && <Favicon environment={environment} />}
+              <NotificationsProvider container={notificationContainer}>
+                {children}
+              </NotificationsProvider>
+            </PicassoGlobalStylesProvider>
+          </MUIv5ThemeProvider>
+        </MuiThemeProvider>
+      </StyledEngineProvider>
     </StylesProvider>
   )
 }
