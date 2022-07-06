@@ -5,4 +5,4 @@
 ---
 ### Autocomplete
 
-- fix: options not showing on every click
+- show options on every click
