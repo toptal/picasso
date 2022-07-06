@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.3.2
+
+### Patch Changes
+
+- [#2970](https://github.com/toptal/picasso/pull/2970) [`ff4a70ef`](https://github.com/toptal/picasso/commit/ff4a70ef7b568a8a94131f30598577399c188cf3) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### Autocomplete
+
+  - show options on every click
+
 ## 26.3.1
 
 ### Patch Changes
