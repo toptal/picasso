@@ -8,7 +8,6 @@
     * [What is a visual test?](#what-is-a-visual-test)
     * [What is a test case?](#what-is-a-test-case)
     * [What is Happo screenshots validation?](#what-is-happo-screenshots-validation)
-    * [What is a CSS assertion?](#what-is-a-css-assertion)
 3. [Writing visual tests in Cypress](#writing-visual-tests-in-cypress)
     * [Guiding principle](#guiding-principle)
     * [Helpful steps](#helpful-steps)
@@ -71,30 +70,6 @@ Validation can be achieved by comparing a Happo screenshot of a component and it
 - previous screenshot version if it exists
 - Picasso Temploy live version
 
-### What is a CSS assertion?
-
-A CSS assertion is an expect block asserting a CSS value.
-
-Examples:
-
-In Jest:
-```js
-expect(cell).toHaveAttribute('style', 'background: red;')
-
-expect(accordionContainer).toHaveStyle('display: table;')
-```
-
-In Cypress:
-```js
-cy.getByTestId('link')
-  .realHover()
-  .should(
-    'have.css',
-    'text-decoration',
-    'underline solid rgb(32, 78, 207)'
-  )
-```
-
 ## Writing visual tests in Cypress
 
 ### Guiding principle
@@ -108,19 +83,18 @@ Minimize the number of screenshots by maximizing test cases covered per screensh
 Assuming a component is newly implemented along with Storybook examples, but without Cypress visual tests:
 1. Identify test cases for the component under test by:
 - identifying visually testable states; _e.g. size, color, focused_
-- checking Storybook examples and their visual tests
-2. Merge the **identified test cases** for different aspects of the same component; _e.g. size and color_
+- checking Storybook examples
+2. Merge the **identified test cases** for different visual states; _e.g. size and color_
 3. Implement tests according to the merged test cases
 4. Disable redundant Storybook visual tests
 
 **For an existing component**
 
-1. Identify **missing** and **existing** test cases for the component under test by:
+1. Identify **missing** test cases for the component under test by:
 - identifying visually testable states; _e.g. size, color, focused_
-- finding existing CSS assertions in Jest and Cypress
-- identifying enabled and disabled Storybook visual tests
+- checking Storybook examples and disabled visual tests
 - checking existing Cypress visual tests
-2. Merge the **identified missing test cases** with the **existing test cases** for different aspects of the same component; _e.g. size and color_
+2. Merge the **identified missing test cases** with the **existing test cases** for different visual states; _e.g. size and color_
 3. Modify tests according to the merged test cases
 4. Disable unnecessary Storybook screenshots and clean up redundant tests
 
