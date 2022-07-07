@@ -13,11 +13,11 @@ jobs:
 
     steps:
       - name: Create PR review request
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.pulls.requestReviewers({
+            github.rest.pulls.requestReviewers({
               owner: 'toptal',
               repo: 'picasso',
               pull_number: ${{ github.event.number }},
