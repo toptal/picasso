@@ -1,13 +1,14 @@
-import { createStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@toptal/picasso-provider'
 
-export default () =>
-  createStyles({
-    tabs: {
-      marginBottom: '1rem'
-    },
-    description: {
-      fontSize: '0.75em',
-      marginTop: '0.5rem',
-      marginBottom: '1rem'
-    }
-  })
+const useStyles = makeStyles()(() => ({
+  tabs: {
+    marginBottom: '1rem',
+  },
+  description: {
+    fontSize: '0.75em',
+    marginTop: '0.5rem',
+    marginBottom: '1rem',
+  },
+}))
+
+export default useStyles

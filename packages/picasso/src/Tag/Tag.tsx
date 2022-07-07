@@ -7,14 +7,11 @@ import React, {
   MouseEvent,
   AnchorHTMLAttributes,
 } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
-import cx from 'classnames'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
-import styles from './styles'
+import useStyles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
@@ -40,8 +37,6 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   hovered?: boolean
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
-
 // eslint-disable-next-line react/display-name
 export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   const {
@@ -60,7 +55,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
-  const classes = useStyles()
+  const { classes, cx } = useStyles()
 
   const titleCase = useTitleCase(propsTitleCase)
 
@@ -93,7 +88,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
         label: classes.label,
         clickable: classes.clickable,
       }}
-      className={cx(className, classes[variant], {
+      className={cx(className, !!variant && classes[variant], {
         [classes.hovered]: hovered,
         [classes.disabled]: disabled,
       })}

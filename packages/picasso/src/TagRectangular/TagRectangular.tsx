@@ -1,13 +1,10 @@
 import React, { forwardRef, HTMLAttributes, AnchorHTMLAttributes } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
-import cx from 'classnames'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import Indicator, { IndicatorProps } from '../Indicator'
 import Chip from '../Chip'
 import toTitleCase from '../utils/to-title-case'
-import styles from './styles'
+import useStyles from './styles'
 
 export type VariantType =
   | 'red'
@@ -36,10 +33,6 @@ interface IndicatorOnlyProps
 
 export type Props = VariantOnlyProps | IndicatorOnlyProps
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTagRectangular',
-})
-
 export const TagRectangular = forwardRef<HTMLDivElement, Props>(
   function TagRectangular(props, ref) {
     const {
@@ -54,7 +47,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
       ...rest
     } = props
 
-    const classes = useStyles()
+    const { classes, cx } = useStyles()
     const titleCase = useTitleCase(propsTitleCase)
 
     return (

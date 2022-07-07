@@ -52,7 +52,7 @@ export const createVariant = (mainColor: string, { palette }: Theme) => ({
   },
 })
 
-const useStyles = makeStyles({ name: 'Button' })((theme: Theme) => {
+const useStyles = makeStyles({ name: 'PicassoButton' })((theme: Theme) => {
   const { palette, sizes, transitions, typography } = theme
 
   return {

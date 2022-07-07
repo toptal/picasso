@@ -1,6 +1,7 @@
-import createStyles from '@mui/styles/createStyles';
+import { makeStyles } from '@toptal/picasso-provider'
 
-export default () =>
-  createStyles({
-    container: {},
-  })
+const useStyles = makeStyles()(() => ({
+  container: {},
+}))
+
+export default useStyles

@@ -1,16 +1,13 @@
 /* eslint-disable complexity */
 
 import React, { ReactNode, HTMLAttributes, Ref } from 'react'
-import { Theme } from '@mui/material/styles'
-import makeStyles from '@mui/styles/makeStyles'
-import cx from 'classnames'
 import {
   StandardProps,
   SpacingType,
   spacingToRem,
 } from '@toptal/picasso-shared'
 
-import styles, {
+import useStyles, {
   AlignItemsType,
   JustifyContentType,
   VariantType,
@@ -25,10 +22,6 @@ type ContainerType = 'div' | 'span'
 type DirectionType = 'row' | 'column'
 
 type BorderableType = 'transparent' | 'white'
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoContainer',
-})
 
 export interface Props<V extends VariantType = VariantType>
   extends StandardProps,
@@ -104,7 +97,8 @@ export const Container = documentable(
         ...rest
       } = props
 
-      const classes = useStyles(props)
+      const { cx, classes: classesX } = useStyles()
+      const classes = classesX as Record<string, string>
 
       const margins = {
         ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),
@@ -133,11 +127,11 @@ export const Container = documentable(
               [classes[`${align}TextAlign`]]: typeof align === 'string',
 
               [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
-                alignItems,
+                !!alignItems,
 
               [classes[
                 `${kebabToCamelCase(justifyContent || '')}JustifyContent`
-              ]]: justifyContent,
+              ]]: !!justifyContent,
 
               [classes.bordered]: bordered,
               [classes.rounded]: rounded,

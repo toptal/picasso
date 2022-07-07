@@ -26,7 +26,7 @@ const TagCheckable = forwardRef<HTMLDivElement, Props>(function TagCheckable(
   { checked = false, children, icon, onClick, onChange, className, ...rest },
   ref
 ) {
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     onChange?.(!checked)

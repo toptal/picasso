@@ -1,10 +1,8 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
 import MUIGrid, { GridSize } from '@mui/material/Grid'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import styles from './styles'
+import useStyles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Content of Grid.Item */
@@ -16,17 +14,12 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Defines the number of grids the component is going to use. It's applied for the large breakpoint and wider screens */
   large?: boolean | GridSize
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoGridItem',
-})
-
 export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
   props,
   ref
 ) {
   const { children, small, medium, large, className, style, ...rest } = props
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   return (
     <MUIGrid

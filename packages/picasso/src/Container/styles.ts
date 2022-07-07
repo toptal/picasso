@@ -1,11 +1,10 @@
-import { Theme, SimplePaletteColorOptions } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
+import { SimplePaletteColorOptions } from '@mui/material/styles'
 import { Color } from '@mui/material'
 import { SpacingType, spacingToRem } from '@toptal/picasso-shared'
-import { capitalize } from '@mui/material/utils';
+import { capitalize } from '@mui/material/utils'
+import { makeStyles } from '@toptal/picasso-provider'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
-
 
 const textAlignVariants = [
   'inherit',
@@ -91,11 +90,11 @@ const marginClassDef = (direction: Direction, spacing: Spacing) => ({
 
 const marginClasses = (direction: Direction) => {
   return {
-    [`${direction}${'xsmall'}Margin`]: marginClassDef(direction, 'xsmall'),
-    [`${direction}${'small'}Margin`]: marginClassDef(direction, 'small'),
-    [`${direction}${'medium'}Margin`]: marginClassDef(direction, 'medium'),
-    [`${direction}${'large'}Margin`]: marginClassDef(direction, 'large'),
-    [`${direction}${'xlarge'}Margin`]: marginClassDef(direction, 'xlarge'),
+    [`${direction}xsmallMargin`]: marginClassDef(direction, 'xsmall'),
+    [`${direction}smallMargin`]: marginClassDef(direction, 'small'),
+    [`${direction}mediumMargin`]: marginClassDef(direction, 'medium'),
+    [`${direction}largeMargin`]: marginClassDef(direction, 'large'),
+    [`${direction}xlargeMargin`]: marginClassDef(direction, 'xlarge'),
   }
 }
 
@@ -109,7 +108,7 @@ const margins: MapOfClasses = {
 const alignItems: MapOfClasses = {}
 
 alignItemsVariants.forEach(variant => {
-  alignItems[`${kebabToCamelCase(variant)}AlignItems`] = {
+  alignItems[`.${kebabToCamelCase(variant)}AlignItems`] = {
     alignItems: variant,
   }
 })
@@ -117,7 +116,7 @@ alignItemsVariants.forEach(variant => {
 const textAlignItems: MapOfClasses = {}
 
 textAlignVariants.forEach(variant => {
-  textAlignItems[`${variant}TextAlign`] = {
+  textAlignItems[`.${variant}TextAlign`] = {
     textAlign: variant,
   }
 })
@@ -125,13 +124,13 @@ textAlignVariants.forEach(variant => {
 const justifyContent: MapOfClasses = {}
 
 justifyContentVariants.forEach(variant => {
-  justifyContent[`${kebabToCamelCase(variant)}JustifyContent`] = {
+  justifyContent[`.${kebabToCamelCase(variant)}JustifyContent`] = {
     justifyContent: variant,
   }
 })
 
-export default ({ palette, sizes: { borderRadius } }: Theme) =>
-  createStyles({
+const useStyles = makeStyles<void, 'inline'>({ name: 'Container' })(
+  ({ palette, sizes: { borderRadius } }, _params, classes) => ({
     bordered: {
       border: `1px solid ${palette.grey.lighter2}`,
     },
@@ -143,7 +142,7 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
     flex: {
       display: 'flex',
 
-      '&$inline': {
+      [`&.${classes.inline}`]: {
         display: 'inline-flex',
       },
     },
@@ -177,3 +176,6 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
     ...textAlignItems,
     ...gaps,
   })
+)
+
+export default useStyles

@@ -1,25 +1,18 @@
 import React, { FunctionComponent } from 'react'
-
-import { makeStyles, Theme } from '@material-ui/core/styles'
-
 import { Tooltip, Table } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Markdown from '~/.storybook/components/Markdown'
 import { PropTypeDocumentation } from '~/.storybook/utils/documentation-generator'
-import styles from './styles'
+import useStyles from './styles'
 
 interface Props extends BaseProps {
   className?: string
   type: string | PropTypeDocumentation
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPropTypeTableCell'
-})
-
 const PropTypeTableCell: FunctionComponent<Props> = props => {
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   const { type, className } = props
 

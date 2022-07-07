@@ -1,11 +1,10 @@
 import React, { FunctionComponent } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import { PropTypeDocumentation } from '~/.storybook/utils/documentation-generator'
 import cx from 'classnames'
 
-import styles from './styles'
+import useStyles from './styles'
 
 interface Props extends BaseProps {
   enums?: string[]
@@ -14,12 +13,10 @@ interface Props extends BaseProps {
 
 const trim = (value: string) => String(value).replace(/\'|\"/gi, '')
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoEnumsList' })
-
 const EnumsList: FunctionComponent<Props> = props => {
   const { enums, type } = props
 
-  const classes = useStyles()
+  const { classes } = useStyles()
 
   let enumList = enums
 

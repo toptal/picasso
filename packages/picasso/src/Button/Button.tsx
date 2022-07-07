@@ -5,7 +5,6 @@ import React, {
   forwardRef,
   ElementType,
 } from 'react'
-import cx from 'classnames'
 import ButtonBase from '@mui/material/ButtonBase'
 import {
   StandardProps,
@@ -16,6 +15,7 @@ import {
   TextLabelProps,
   Classes,
 } from '@toptal/picasso-shared'
+import { Cx } from 'tss-react'
 
 import Loader from '../Loader'
 import Container from '../Container'
@@ -72,6 +72,7 @@ const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
   loading ? noop : handler
 
 const getIcon = (
+  cx: Cx,
   classes: Classes,
   children: ReactNode,
   icon?: ReactElement,
@@ -89,8 +90,8 @@ const getIcon = (
 
   return React.cloneElement(icon, {
     className: cx(iconClass, icon.props.className, {
-      [iconLeftClass]: children && iconPosition === 'left',
-      [iconRightClass]: children && iconPosition === 'right',
+      [iconLeftClass]: Boolean(children && iconPosition === 'left'),
+      [iconRightClass]: Boolean(children && iconPosition === 'right'),
     }),
     key: 'button-icon',
   })
@@ -122,7 +123,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
     titleCase: propsTitleCase,
     ...rest
   } = props
-  const { classes } = useStyles()
+  const { classes, cx } = useStyles()
 
   const {
     root: rootClass,
@@ -136,7 +137,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
   const finalChildren = [titleCase ? toTitleCase(children) : children]
 
   if (icon) {
-    const iconComponent = getIcon(classes, children, icon, iconPosition)
+    const iconComponent = getIcon(cx, classes, children, icon, iconPosition)
 
     if (iconPosition === 'left') {
       finalChildren.unshift(iconComponent)

@@ -1,4 +1,6 @@
-export default {
+import { makeStyles } from '@toptal/picasso-provider'
+
+const useStyles = makeStyles()(() => ({
   root: {
     '& code': {
       backgroundColor: 'rgb(236, 236, 236, 0.5)',
@@ -7,21 +9,23 @@ export default {
       fontWeight: 400,
       fontSize: '0.8em',
       fontFamily:
-        "'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace"
+        "'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace",
     },
     '& p:first-child': {
-      marginTop: 0
+      marginTop: 0,
     },
     '& p:last-child': {
-      marginBottom: 0
+      marginBottom: 0,
     },
     '& pre': {
       backgroundColor: 'rgb(236, 236, 236, 0.5)',
 
       '& code': {
         padding: '0em',
-        backgroundColor: 'initial'
-      }
-    }
-  }
-}
+        backgroundColor: 'initial',
+      },
+    },
+  },
+}))
+
+export default useStyles
