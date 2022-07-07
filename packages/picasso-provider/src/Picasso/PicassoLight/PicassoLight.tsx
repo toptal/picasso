@@ -4,6 +4,10 @@ import {
   createGenerateClassName,
 } from '@material-ui/core/styles'
 import React from 'react'
+import {
+  StyledEngineProvider,
+  ThemeProvider as MUIv5ThemeProvider,
+} from '@mui/material'
 
 import CssBaseline from '../../CssBaseline'
 import { generateRandomStringOrGetEmptyInTest } from '../utils'
@@ -12,6 +16,7 @@ import PicassoProvider from '../PicassoProvider'
 import { PicassoProps } from '../Picasso'
 import PicassoRootNode from '../PicassoRootNode'
 import PicassoGlobalStylesProvider from '../PicassoGlobalStylesProvider'
+import PicassoProviderV5 from '../PicassoProviderV5'
 
 type PicassoLightProps = Omit<
   PicassoProps,
@@ -50,17 +55,21 @@ const PicassoLight = ({
       generateClassName={generateClassName}
       injectFirst={injectFirst}
     >
-      <MuiThemeProvider theme={PicassoProvider.theme}>
-        <PicassoGlobalStylesProvider
-          RootComponent={RootComponent}
-          environment={environment}
-          titleCase={titleCase}
-          disableTransitions={disableTransitions}
-        >
-          {reset && <CssBaseline />}
-          {children}
-        </PicassoGlobalStylesProvider>
-      </MuiThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <MuiThemeProvider theme={PicassoProvider.theme}>
+          <MUIv5ThemeProvider theme={PicassoProviderV5.theme}>
+            <PicassoGlobalStylesProvider
+              RootComponent={RootComponent}
+              environment={environment}
+              titleCase={titleCase}
+              disableTransitions={disableTransitions}
+            >
+              {reset && <CssBaseline />}
+              {children}
+            </PicassoGlobalStylesProvider>
+          </MUIv5ThemeProvider>
+        </MuiThemeProvider>
+      </StyledEngineProvider>
     </StylesProvider>
   )
 }
