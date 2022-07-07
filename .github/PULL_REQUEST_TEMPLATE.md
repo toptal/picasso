@@ -30,6 +30,9 @@ Describe the changes and motivations for the pull request.
 - [ ] codemod is created and showcased in the changeset
 - [ ] test alpha package of Picasso in StaffPortal
 
+> All **_development checks_** should be done and set checked to pass the
+> **GitHub Bot: TODOLess** action
+
 <details>
 <summary>PR commands</summary>
 <br />
