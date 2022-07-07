@@ -274,6 +274,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     )
 
     const inputWrapperRef = useRef<HTMLDivElement>(null)
+    const inputProps = getInputProps()
 
     return (
       <div
@@ -287,7 +288,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         aria-expanded={isOpen}
         aria-haspopup='listbox'
       >
-        <Container flex ref={inputWrapperRef}>
+        <Container flex ref={inputWrapperRef} onClick={inputProps.onClick}>
           {!enableAutofill && name && (
             <input
               type='hidden'
@@ -298,7 +299,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           )}
           <InputComponent
             {...rest}
-            {...getInputProps()}
+            {...inputProps}
             status={error ? 'error' : status}
             icon={icon}
             disabled={disabled}

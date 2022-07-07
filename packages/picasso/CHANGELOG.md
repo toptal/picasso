@@ -1,5 +1,26 @@
 # Change Log
 
+## 26.3.2
+
+### Patch Changes
+
+- [#2970](https://github.com/toptal/picasso/pull/2970) [`ff4a70ef`](https://github.com/toptal/picasso/commit/ff4a70ef7b568a8a94131f30598577399c188cf3) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### Autocomplete
+
+  - show options on every click
+
+## 26.3.1
+
+### Patch Changes
+
+- [#2959](https://github.com/toptal/picasso/pull/2959) [`984b826a`](https://github.com/toptal/picasso/commit/984b826af8f54835c6914586c338d60c64c741ff) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  - bump `notistack` to `1.0.10`
+
+- Updated dependencies [[`984b826a`](https://github.com/toptal/picasso/commit/984b826af8f54835c6914586c338d60c64c741ff)]:
+  - @toptal/picasso-shared@9.0.1
+
 ## 26.3.0
 
 ### Minor Changes

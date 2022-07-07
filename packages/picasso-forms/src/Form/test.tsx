@@ -27,7 +27,13 @@ const renderForm = (
     showValidState?: boolean
   }
 ) => {
-  const { onSubmit, disableScrollOnError, mandatory, showValidState } = props
+  const {
+    onSubmit,
+    disableScrollOnError,
+    mandatory,
+    showValidState,
+    validateOnBlur,
+  } = props
 
   return render(
     <Form.ConfigProvider value={{ showValidState }}>
@@ -35,7 +41,7 @@ const renderForm = (
         data-testid='form'
         onSubmit={onSubmit}
         disableScrollOnError={disableScrollOnError}
-        validateOnBlur
+        validateOnBlur={validateOnBlur}
       >
         <Form.Input
           name='test'
@@ -104,25 +110,48 @@ describe('Form', () => {
     })
   })
 
-  describe('when validateOnBlur is enabled and show valid state is enabled', () => {
-    it('shows validation success when form submitted on Enter', async () => {
-      const { getByPlaceholderText, getByTestId } = renderForm({
-        onSubmit: () => {},
-        disableScrollOnError: false,
+  describe('when validateOnBlur is enabled', () => {
+    it('validates only on blur', async () => {
+      const { getByPlaceholderText, getByText, queryByText } = renderForm({
+        onSubmit: () => ({ test: 'Some error' }),
+        disableScrollOnError: true,
         mandatory: true,
-        showValidState: true,
+        validateOnBlur: true,
       })
 
       const input = getByPlaceholderText('test input')
 
-      await act(async () => {
-        fireEvent.focus(input)
-        fireEvent.change(input, { target: { value: 'value' } })
-        fireEvent.submit(input)
-      })
+      fireEvent.blur(input)
+      expect(getByText('Please complete this field.')).toBeInTheDocument()
 
-      await waitFor(() => {
-        expect(getByTestId('valid-icon')).toBeInTheDocument()
+      fireEvent.change(input, { target: { value: 'value' } })
+      expect(getByText('Please complete this field.')).toBeInTheDocument()
+
+      fireEvent.blur(input)
+      expect(queryByText('Please complete this field.')).not.toBeInTheDocument()
+    })
+
+    describe('when showValidState is enabled', () => {
+      it('shows validation success when form submitted on Enter', async () => {
+        const { getByPlaceholderText, getByTestId } = renderForm({
+          onSubmit: () => {},
+          disableScrollOnError: false,
+          mandatory: true,
+          showValidState: true,
+          validateOnBlur: true,
+        })
+
+        const input = getByPlaceholderText('test input')
+
+        await act(async () => {
+          fireEvent.focus(input)
+          fireEvent.change(input, { target: { value: 'value' } })
+          fireEvent.submit(input)
+        })
+
+        await waitFor(() => {
+          expect(getByTestId('valid-icon')).toBeInTheDocument()
+        })
       })
     })
   })

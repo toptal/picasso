@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-shared",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "description": "Shared types, utils for Picasso internal usage",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-shared#readme",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@types/classnames": "^2.3.1",
     "@types/color": "^3.0.3",
-    "@toptal/picasso-provider": "1.2.1"
+    "@toptal/picasso-provider": "1.2.2"
   },
   "sideEffects": [
     "**/styles.ts",

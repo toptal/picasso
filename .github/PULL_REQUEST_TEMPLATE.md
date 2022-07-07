@@ -18,6 +18,7 @@ Describe the changes and motivations for the pull request.
 
 - [ ] Add changeset according to [guidelines](https://github.com/toptal/picasso/blob/master/docs/contribution/changeset-guidelines.md) (if needed)
 - [ ] Read [CONTRIBUTING.md](https://github.com/toptal/picasso/blob/master/CONTRIBUTING.md) and [Component API principles](https://github.com/toptal/picasso/blob/master/docs/contribution/component-api.md)
+- [ ] Make sure that additions and changes on design follow [Toptal's BASE design](https://design.toptal.net/), and it's been already discussed with designers at #-base-core
 - [ ] Annotate all `props` in component with documentation
 - [ ] Create `examples` for component
 - [ ] Ensure that deployed demo has expected results and good examples
@@ -29,6 +30,9 @@ Describe the changes and motivations for the pull request.
 
 - [ ] codemod is created and showcased in the changeset
 - [ ] test alpha package of Picasso in StaffPortal
+
+> All **_development checks_** should be done and set checked to pass the
+> **GitHub Bot: TODOLess** action
 
 <details>
 <summary>PR commands</summary>

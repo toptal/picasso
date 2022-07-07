@@ -165,6 +165,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
           ...mutators,
           setActiveFieldTouched,
         }}
+        validateOnBlur={validateOnBlur}
         {...rest}
       />
     </FormContext.Provider>
