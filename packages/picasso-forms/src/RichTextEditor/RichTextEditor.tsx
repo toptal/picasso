@@ -8,6 +8,7 @@ import { Except } from 'type-fest'
 
 import { FieldProps } from '../FieldWrapper'
 import InputField from '../InputField'
+import FieldLabel from '../FieldLabel'
 
 type OverriddenProps = {
   defaultValue?: ASTType
@@ -21,7 +22,8 @@ export type Props = RichTextEditorProps &
 
 type InternalProps = RichTextEditorProps & { value: string }
 
-export const RichTextEditor = ({ onChange, defaultValue, ...rest }: Props) => {
+export const RichTextEditor = (props: Props) => {
+  const { onChange, defaultValue, label, titleCase, ...rest } = props
   const [value, setValue] = useState('')
 
   // Because RichTextEditor doesn't have an value input we need to implement this
@@ -33,15 +35,30 @@ export const RichTextEditor = ({ onChange, defaultValue, ...rest }: Props) => {
     },
     [onChange, setValue]
   )
+  const hiddenInputId = `${props.id}-hidden-input`
 
   return (
     <InputField<InternalProps>
       value={value}
       onChange={handleOnChange}
+      label={
+        label ? (
+          <FieldLabel
+            name={hiddenInputId}
+            required={props.required}
+            label={label}
+            titleCase={titleCase}
+          />
+        ) : null
+      }
       {...rest}
     >
       {(inputProps: RichTextEditorProps) => (
-        <PicassoRichTextEditor defaultValue={defaultValue} {...inputProps} />
+        <PicassoRichTextEditor
+          defaultValue={defaultValue}
+          hiddenInputId={hiddenInputId}
+          {...inputProps}
+        />
       )}
     </InputField>
   )

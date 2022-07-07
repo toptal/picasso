@@ -84,6 +84,8 @@ const TestDrawerBehindModal = (props: Partial<DrawerProps>) => {
   )
 }
 
+const component = 'Drawer'
+
 describe('Drawer', () => {
   it('renders with narrow width and custom title', () => {
     cy.mount(
@@ -99,28 +101,40 @@ describe('Drawer', () => {
     )
 
     cy.getByTestId('trigger').click()
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'narrow-width/with-custom-title',
+    })
   })
 
   it('renders with regular width and title', () => {
     cy.mount(<TestDrawer width='regular' title='This is a regular Drawer' />)
 
     cy.getByTestId('trigger').click()
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'regular-width/with-title',
+    })
   })
 
   it('renders with medium width and notification', () => {
     cy.mount(<TestDrawerWithNotification width='medium' />)
 
     cy.getByTestId('trigger').click()
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'medium-width/with-notification',
+    })
   })
 
   it('renders with wide width and without title', () => {
     cy.mount(<TestDrawer width='wide' />)
 
     cy.getByTestId('trigger').click()
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'wide-width/without-title',
+    })
   })
 
   it('renders with ultra-wide width behind Modal', () => {
@@ -129,6 +143,9 @@ describe('Drawer', () => {
     cy.getByTestId('open-drawer').click()
     cy.getByTestId('open-modal').click()
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'ultra-wide/behind-modal',
+    })
   })
 })

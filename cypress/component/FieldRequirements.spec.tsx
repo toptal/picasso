@@ -44,14 +44,22 @@ const FieldRequirementsExample = (
   />
 )
 
+const component = 'FieldRequirements'
+
 describe('FieldRequirements', () => {
   it('renders requirements with bullets and checks for default', () => {
     cy.mount(<FieldRequirementsExample value='dene' />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   it('renders requirements with close icons and checks for error', () => {
     cy.mount(<FieldRequirementsExample error />)
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'error',
+    })
   })
 })

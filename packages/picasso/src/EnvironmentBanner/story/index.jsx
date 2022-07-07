@@ -21,5 +21,4 @@ page
   .addExample('EnvironmentBanner/story/Variants.example.tsx', {
     title: 'Variants',
     description: 'Click to make them disappear',
-    takeScreenshot: false,
   })

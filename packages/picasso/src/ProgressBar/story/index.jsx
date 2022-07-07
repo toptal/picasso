@@ -20,10 +20,7 @@ page
     title: 'Default',
     takeScreenshot: false,
   })
-  .addExample('ProgressBar/story/WithPercentage.example.tsx', {
-    title: 'With Percentage',
-    takeScreenshot: false,
-  })
+  .addExample('ProgressBar/story/WithPercentage.example.tsx', 'With Percentage')
   .addExample('ProgressBar/story/AnimatingProgressChange.example.tsx', {
     title: 'Animating Progress Change',
     takeScreenshot: false,

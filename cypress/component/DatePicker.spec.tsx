@@ -13,11 +13,16 @@ const TestDatePicker = (props: Partial<DatePickerProps>) => {
   )
 }
 
+const component = 'DatePicker'
+
 describe('DatePicker', () => {
   it('renders autofocus', () => {
     cy.mount(<TestDatePicker autoFocus />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'autofocus',
+    })
   })
 
   it('renders range', () => {
@@ -28,7 +33,10 @@ describe('DatePicker', () => {
       />
     )
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'range',
+    })
   })
 
   it('renders value parsed by custom value parser', () => {
@@ -48,6 +56,9 @@ describe('DatePicker', () => {
 
     cy.getByTestId('date-picker-input').clear().type('2015')
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'custom-value-parser',
+    })
   })
 })

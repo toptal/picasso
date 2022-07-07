@@ -1,5 +1,6 @@
 import { act } from '@toptal/picasso/test-utils'
 import Quill from 'quill'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Delta from 'quill-delta'
 
 import getTextLengthChangeHandler from './getTextLengthChangeHandler'

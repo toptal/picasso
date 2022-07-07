@@ -42,17 +42,17 @@ exports[`useNotifications error notification render 1`] = `
       </span>
     </button>
     <div
-      class="makeStyles-root makeStyles-top makeStyles-right makeStyles-top makeStyles-right"
+      class="makeStyles-top makeStyles-right makeStyles-root PicassoNotificationsProvider-root"
     >
       <div
-        class="MuiCollapse-container SnackbarItem-collapseContainer MuiCollapse-entered"
+        class="MuiCollapse-container MuiCollapse-entered"
         style="min-height: 0px;"
       >
         <div
-          class="MuiCollapse-wrapper SnackbarItem-collapseWrapper"
+          class="MuiCollapse-wrapper"
         >
           <div
-            class="MuiCollapse-wrapperInner SnackbarItem-collapseWrapperInner"
+            class="MuiCollapse-wrapperInner"
           >
             <div
               class="SnackbarItem-root SnackbarItem-wrappedRoot SnackbarItem-anchorOriginTopRight"
@@ -160,17 +160,17 @@ exports[`useNotifications info notification render 1`] = `
       </span>
     </button>
     <div
-      class="makeStyles-root makeStyles-top makeStyles-right makeStyles-top makeStyles-right"
+      class="makeStyles-top makeStyles-right makeStyles-root PicassoNotificationsProvider-root"
     >
       <div
-        class="MuiCollapse-container SnackbarItem-collapseContainer MuiCollapse-entered"
+        class="MuiCollapse-container MuiCollapse-entered"
         style="min-height: 0px;"
       >
         <div
-          class="MuiCollapse-wrapper SnackbarItem-collapseWrapper"
+          class="MuiCollapse-wrapper"
         >
           <div
-            class="MuiCollapse-wrapperInner SnackbarItem-collapseWrapperInner"
+            class="MuiCollapse-wrapperInner"
           >
             <div
               class="SnackbarItem-root SnackbarItem-wrappedRoot SnackbarItem-anchorOriginTopRight"
@@ -281,17 +281,17 @@ exports[`useNotifications success notification render 1`] = `
       </span>
     </button>
     <div
-      class="makeStyles-root makeStyles-top makeStyles-right makeStyles-top makeStyles-right"
+      class="makeStyles-top makeStyles-right makeStyles-root PicassoNotificationsProvider-root"
     >
       <div
-        class="MuiCollapse-container SnackbarItem-collapseContainer MuiCollapse-entered"
+        class="MuiCollapse-container MuiCollapse-entered"
         style="min-height: 0px;"
       >
         <div
-          class="MuiCollapse-wrapper SnackbarItem-collapseWrapper"
+          class="MuiCollapse-wrapper"
         >
           <div
-            class="MuiCollapse-wrapperInner SnackbarItem-collapseWrapperInner"
+            class="MuiCollapse-wrapperInner"
           >
             <div
               class="SnackbarItem-root SnackbarItem-wrappedRoot SnackbarItem-anchorOriginTopRight"

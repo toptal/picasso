@@ -22,6 +22,10 @@ export default ({ palette, sizes }: Theme) =>
 
     error: {
       borderColor: palette.red.main,
+      '&$focused': {
+        borderColor: palette.red.main,
+        ...outline(palette.red.main),
+      },
     },
 
     focused: {

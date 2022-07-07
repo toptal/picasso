@@ -77,30 +77,12 @@ onDrop will provide you with an array of File objects which you can then process
 
 page
   .createChapter()
-  .addExample('Dropzone/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('Dropzone/story/Uploader.example.tsx', {
-    title: 'With upload',
-    takeScreenshot: false,
-  })
-  .addExample('Dropzone/story/Uploading.example.tsx', {
-    title: 'Uploading',
-    takeScreenshot: false,
-  })
-  .addExample('Dropzone/story/Disabled.example.tsx', {
-    title: 'Completed',
-    takeScreenshot: false,
-  })
-  .addExample('Dropzone/story/Multiple.example.tsx', {
-    title: 'Completed Multiple files',
-    takeScreenshot: false,
-  })
-  .addExample('Dropzone/story/Error.example.tsx', {
-    title: 'Upload Failed',
-    takeScreenshot: false,
-  })
+  .addExample('Dropzone/story/Default.example.tsx', 'Default')
+  .addExample('Dropzone/story/Uploader.example.tsx', 'With upload')
+  .addExample('Dropzone/story/Uploading.example.tsx', 'Uploading')
+  .addExample('Dropzone/story/Disabled.example.tsx', 'Disabled')
+  .addExample('Dropzone/story/Multiple.example.tsx', 'Completed Multiple files')
+  .addExample('Dropzone/story/Error.example.tsx', 'Upload Failed')
   .addExample('Dropzone/story/SingleFile.example.tsx', {
     title: 'Single File',
     takeScreenshot: false,

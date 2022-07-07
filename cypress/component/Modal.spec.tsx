@@ -134,46 +134,69 @@ const TestModalOverflown = (props: Partial<Omit<ModalProps, 'open'>>) => (
   </Modal>
 )
 
+const component = 'Modal'
+
 describe('Modal', () => {
   it('renders', () => {
     cy.mount(<TestModalForm />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default',
+    })
   })
 
   it('renders aligned to top', () => {
     cy.mount(<TestModalForm align='top' />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'align-top',
+    })
   })
 
   it('renders without backdrop', () => {
     cy.mount(<TestModalForm hideBackdrop />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'without-backdrop',
+    })
   })
 
   it('renders small', () => {
     cy.mount(<TestModalForm size='small' />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'size/small',
+    })
   })
 
   it('renders large', () => {
     cy.mount(<TestModalForm size='large' />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'size/large',
+    })
   })
 
   it('renders full-screen', () => {
     cy.mount(<TestModalForm size='full-screen' />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'size/full-screen',
+    })
   })
 
   it('renders overflown', () => {
     cy.mount(<TestModalOverflown />)
 
-    cy.get('body').happoScreenshot()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'overflown',
+    })
   })
 })
