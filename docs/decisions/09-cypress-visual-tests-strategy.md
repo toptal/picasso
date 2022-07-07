@@ -82,8 +82,8 @@ Minimize the number of screenshots by maximizing test cases covered per screensh
 
 Assuming a component is newly implemented along with Storybook examples, but without Cypress visual tests:
 1. Identify test cases for the component under test by:
-- identifying visually testable states; _e.g. size, color, focused_
-- checking Storybook examples
+    - identifying visually testable states; _e.g. size, color, focused_
+    - checking Storybook examples
 2. Merge the **identified test cases** for different visual states; _e.g. size and color_
 3. Implement tests according to the merged test cases
 4. Disable redundant Storybook visual tests
@@ -91,9 +91,9 @@ Assuming a component is newly implemented along with Storybook examples, but wit
 **For an existing component**
 
 1. Identify **missing** test cases for the component under test by:
-- identifying visually testable states; _e.g. size, color, focused_
-- checking Storybook examples and disabled visual tests
-- checking existing Cypress visual tests
+    - identifying visually testable states; _e.g. size, color, focused_
+    - checking Storybook examples and disabled visual tests
+    - checking existing Cypress visual tests
 2. Merge the **identified missing test cases** with the **existing test cases** for different visual states; _e.g. size and color_
 3. Modify tests according to the merged test cases
 4. Disable unnecessary Storybook screenshots and clean up redundant tests
