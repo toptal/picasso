@@ -66,7 +66,7 @@ jobs:
 
       - name: Add no-jira label to "Version Package" PR
         if: ${{ steps.changesets.outputs.published != 'true' }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v4
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -92,7 +92,7 @@ jobs:
             }
       - name: Edit "Version Package" PR
         if: ${{ steps.changesets.outputs.published != 'true' }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v4
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
