@@ -14,43 +14,22 @@ const threadLoaders = [{ loader: 'cache-loader' }, { loader: 'thread-loader' }]
 
 module.exports = {
   addons: [
-    'storybook-readme/register',
-    '@storybook/addon-viewport/register',
+    // 'storybook-readme/register',
+    // '@storybook/addon-viewport/register',
 
     // no "/register" because https://github.com/storybookjs/storybook/issues/11929#issuecomment-672998494
-    '@storybook/addon-a11y',
+    // '@storybook/addon-a11y',
 
-    './addons/anchor-link-handler/register',
+    // './addons/anchor-link-handler/register',
+    // './addons/document-title/register',
     './addons/document-title/register',
+    '@storybook/addon-essentials',
   ],
   staticDirs: ['./public'],
-  stories: [path.join(__dirname, './load-stories.js')],
-  typescript: {
-    check: isDevelopment,
-    checkOptions: {
-      typescript: {
-        configFile: tsConfigFile,
-        diagnosticOptions: {
-          semantic: true,
-          syntactic: true,
-        },
-      },
-    },
-    reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {
-      tsconfigPath: tsConfigFile,
-      propFilter: prop => {
-        if (prop.description.length === 0) return false
-
-        if (prop.parent) {
-          return !prop.parent.fileName.includes('node_modules')
-        }
-
-        return true
-      },
-      shouldExtractLiteralValuesFromEnum: true,
-    },
-  },
+  stories: [
+    // path.join(__dirname, './load-stories.js'),
+    '../**/*.stories.tsx',
+  ],
   core: {
     builder: 'webpack5',
   },
@@ -115,6 +94,7 @@ module.exports = {
     config.resolve.mainFields = ['browser', 'main', 'module']
     config.resolve.fallback = {
       fs: false,
+      assert: false,
     }
 
     config.optimization.minimizer = []
