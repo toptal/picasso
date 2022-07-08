@@ -1,10 +1,4 @@
-export {
-  default,
-  FixViewport,
-  FontsLoader,
-  NotificationsProvider,
-  PicassoLight,
-} from './Picasso'
+export { default, FixViewport, FontsLoader, PicassoLight } from './Picasso'
 
 export {
   useScreenSize,

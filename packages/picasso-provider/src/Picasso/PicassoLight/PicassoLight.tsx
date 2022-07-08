@@ -5,7 +5,6 @@ import {
 } from '@material-ui/core/styles'
 import React from 'react'
 
-import CssBaseline from '../../CssBaseline'
 import { generateRandomStringOrGetEmptyInTest } from '../utils'
 import { PicassoBreakpoints } from '../config'
 import PicassoProvider from '../PicassoProvider'
@@ -19,7 +18,6 @@ type PicassoLightProps = Omit<
 >
 
 const PicassoLight = ({
-  reset,
   responsive,
   environment = 'development',
   children,
@@ -57,7 +55,6 @@ const PicassoLight = ({
           titleCase={titleCase}
           disableTransitions={disableTransitions}
         >
-          {reset && <CssBaseline />}
           {children}
         </PicassoGlobalStylesProvider>
       </MuiThemeProvider>

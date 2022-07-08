@@ -6,9 +6,7 @@ import {
 } from '@material-ui/core/styles'
 import React, { ReactNode } from 'react'
 
-import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
-import NotificationsProvider from './NotificationsProvider'
 import Favicon from '../Favicon'
 import { EnvironmentType, TextLabelProps } from '../types'
 import { generateRandomStringOrGetEmptyInTest } from './utils'
@@ -54,12 +52,9 @@ export interface PicassoProps extends TextLabelProps {
 const Picasso = ({
   loadFonts,
   loadFavicon,
-  reset,
   responsive,
   environment = 'development',
-  children,
   fixViewport,
-  notificationContainer,
   RootComponent = PicassoRootNode,
   titleCase,
   theme,
@@ -96,11 +91,7 @@ const Picasso = ({
         >
           {fixViewport && <FixViewport />}
           {loadFonts && <FontsLoader />}
-          {reset && <CssBaseline />}
           {loadFavicon && <Favicon environment={environment} />}
-          <NotificationsProvider container={notificationContainer}>
-            {children}
-          </NotificationsProvider>
         </PicassoGlobalStylesProvider>
       </MuiThemeProvider>
     </StylesProvider>

@@ -12,7 +12,7 @@ import cx from 'classnames'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
-import { CloseMinor16 } from '../Icon'
+import { Abstract16 } from '../Icon'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
@@ -111,7 +111,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
           role='button'
           className={classes.deleteIcon}
         >
-          <CloseMinor16 />
+          <Abstract16 />
         </span>
       }
       component={as}
