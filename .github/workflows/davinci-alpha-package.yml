@@ -18,12 +18,12 @@ jobs:
       STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - name: Feedback on action started
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         with:
           github-token: ${{ env.GITHUB_TOKEN }}
           script: |
             const { owner, repo } = context.issue;
-            await github.reactions.createForIssueComment({ owner, repo, comment_id: context.payload.comment.id, content: '+1' });
+            await github.rest.reactions.createForIssueComment({ owner, repo, comment_id: context.payload.comment.id, content: '+1' });
 
       - id: branch
         uses: xt0rted/pull-request-comment-branch@v1.3.0
@@ -47,12 +47,12 @@ jobs:
           fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
 
       - name: Set status check - pending
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         with:
           github-token: ${{ env.GITHUB_TOKEN }}
           script: |
             const { owner, repo } = context.issue;
-            await github.repos.createCommitStatus({
+            await github.rest.repos.createCommitStatus({
               repo,
               owner,
               state: 'pending',
@@ -70,7 +70,7 @@ jobs:
 
       - name: Alpha package — Handle success
         if: ${{ success() }}
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         env:
           versions: ${{ steps.alpha-package.outputs.versions }}
         with:
@@ -82,11 +82,11 @@ jobs:
               acc += `\`yarn add ${version}\`<br/>`
               return acc
             }, '')
-            await github.issues.createComment({ issue_number: issue.number, owner, repo, body })
+            await github.rest.issues.createComment({ issue_number: issue.number, owner, repo, body })
 
       - name: Set status check - success / failure / error
         if: ${{ always() }}
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         with:
           github-token: ${{ env.GITHUB_TOKEN }}
           script: |
@@ -95,7 +95,7 @@ jobs:
             const status = "${{ job.status }}";
             const state = status === 'cancelled' ? 'error' : status;
 
-            await github.repos.createCommitStatus({
+            await github.rest.repos.createCommitStatus({
               repo,
               owner,
               state,
