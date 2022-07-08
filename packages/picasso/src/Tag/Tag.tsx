@@ -7,15 +7,102 @@ import React, {
   MouseEvent,
   AnchorHTMLAttributes,
 } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles'
 import cx from 'classnames'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
+import '../Chip/styles'
 import { CloseMinor16 } from '../Icon'
-import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
+
+const StyledInnerLabel = styled('span')(() => ({
+  fontSize: '0.75rem',
+  fontWeight: 600,
+  minWidth: 0,
+}))
+
+const PREFIX = 'PicassoTag'
+
+const classes = {
+  root: `${PREFIX}-root`,
+  clickable: `${PREFIX}-clickable`,
+  label: `${PREFIX}-label`,
+  hovered: `${PREFIX}-hovered`,
+  disabled: `${PREFIX}-disabled`,
+  checkable: `${PREFIX}-checkable`,
+  'light-grey': `${PREFIX}-light-grey`,
+  blue: `${PREFIX}-blue`,
+  green: `${PREFIX}-green`,
+  yellow: `${PREFIX}-yellow`,
+  red: `${PREFIX}-red`,
+}
+
+const StyledChip = styled(Chip)(({ theme }) => {
+  const { palette, transitions } = theme
+
+  return {
+    [`&.${classes.root}`]: {
+      fontSize: '1rem',
+      maxWidth: '100%',
+    },
+    [`&.${classes.blue}`]: {
+      color: palette.blue.main,
+      borderColor: palette.blue.main,
+    },
+    [`&.${classes.green}`]: {
+      color: palette.green.dark,
+      borderColor: palette.green.dark,
+    },
+    [`&.${classes.yellow}`]: {
+      color: palette.yellow.main,
+      borderColor: palette.yellow.main,
+    },
+    [`&.${classes.red}`]: {
+      color: palette.red.main,
+      borderColor: palette.red.main,
+    },
+    [`&.${classes.clickable}`]: {
+      cursor: 'default',
+      '&:hover, &:focus': {
+        backgroundColor: palette.common.white,
+        cursor: 'default',
+      },
+      [`&.${classes.checkable}:not(.${classes.disabled})`]: {
+        cursor: 'pointer',
+        [`&:hover, &.${classes.hovered}`]: {
+          borderColor: palette.grey.dark,
+          backgroundColor: palette.common.white,
+          transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
+        },
+        '&:focus': {
+          backgroundColor: palette.common.white,
+        },
+        [`&.${classes.green}`]: {
+          [`&:hover, &.${classes.hovered}`]: {
+            borderColor: palette.red.main,
+            color: palette.red.main,
+          },
+        },
+      },
+    },
+    [`&.${classes.label}`]: {
+      gap: '0.5rem',
+    },
+    [`&.${classes.disabled}`]: {
+      borderColor: palette.grey.lighter2,
+      color: palette.grey.main,
+      pointerEvents: 'none',
+    },
+    [`&.${classes.hovered}`]: {},
+    [`&.${classes.checkable}`]: {},
+  }
+}) as typeof Chip
+
+const DeleteIcon = styled('span')(() => ({
+  width: 'auto',
+  height: 'auto',
+}))
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
@@ -40,9 +127,6 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   hovered?: boolean
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
-
-// eslint-disable-next-line react/display-name
 export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   const {
     as = 'div',
@@ -60,15 +144,14 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
-  const classes = useStyles()
 
   const titleCase = useTitleCase(propsTitleCase)
 
   const label = (
     <>
-      <span className={classes.innerLabel}>
+      <StyledInnerLabel>
         {titleCase ? toTitleCase(children) : children}
-      </span>
+      </StyledInnerLabel>
       {endAdornment}
     </>
   )
@@ -85,7 +168,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   }
 
   return (
-    <Chip
+    <StyledChip
       {...htmlAttributes}
       ref={ref}
       classes={{
@@ -107,13 +190,9 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       }
       label={label}
       deleteIcon={
-        <span
-          aria-label='delete icon'
-          role='button'
-          className={classes.deleteIcon}
-        >
+        <DeleteIcon aria-label='delete icon' role='button'>
           <CloseMinor16 />
-        </span>
+        </DeleteIcon>
       }
       component={as}
       onDelete={onDelete ? handleDelete : undefined}
@@ -130,5 +209,4 @@ Tag.defaultProps = {
 
 Tag.displayName = 'Tag'
 
-export { useStyles }
 export default Tag

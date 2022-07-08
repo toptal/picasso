@@ -1,12 +1,15 @@
 import React, { Fragment, FunctionComponent } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-
+import { styled } from '@mui/material/styles'
 import { Typography, Tabs } from '@toptal/picasso'
-import { Classes } from '@toptal/picasso-shared'
 
 import { TabOptions } from './TabsSection'
-import styles from './styles'
 import Markdown from '~/.storybook/components/Markdown'
+
+const Description = styled(Typography)(() => ({
+  fontSize: '0.75em',
+  marginTop: '0.5rem',
+  marginBottom: '1rem',
+}))
 
 interface Props {
   tabs: TabOptions[]
@@ -14,13 +17,7 @@ interface Props {
   onChange: (event: React.ChangeEvent<{}>, value: number) => void
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTabsSectionHeader',
-})
-
 const TabsSectionHeader: FunctionComponent<Props> = props => {
-  const classes = useStyles()
-
   const { tabs, selectedTab, onChange } = props
 
   return (
@@ -30,9 +27,9 @@ const TabsSectionHeader: FunctionComponent<Props> = props => {
           <Tabs.Tab key={tab.name} label={tab.name} />
         ))}
       </Tabs>
-      <Typography weight='semibold' className={classes.description}>
+      <Description weight='semibold'>
         <Markdown>{tabs[selectedTab].description ?? ''}</Markdown>
-      </Typography>
+      </Description>
     </Fragment>
   )
 }

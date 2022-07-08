@@ -6,11 +6,10 @@ import React, {
   useState,
   useEffect,
   useLayoutEffect,
-  useCallback
+  useCallback,
 } from 'react'
+import { styled } from '@mui/material/styles'
 import debounce from 'debounce'
-import styled from 'styled-components'
-import { makeStyles, Theme } from '@material-ui/core/styles'
 import SourceRender, { RenderResult } from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
@@ -21,15 +20,38 @@ import { Code16, Link16 } from '@toptal/picasso/Icon'
 
 import Editor from '../Editor'
 import purifyFixedPosition from '../../utils/purify-fixed-position'
-import styles from './styles'
+
+const Root = styled('div')(() => ({
+  position: 'relative',
+  width: '100%',
+}))
+
+const Component = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}))
+
+const Buttons = styled('div')(() => ({
+  top: '-.75rem',
+  right: '-1rem',
+  position: 'absolute',
+}))
+
+const ComponentRenderer = styled('div')(() => ({
+  flex: 1,
+  position: 'relative',
+}))
+
+const StyledEditor = styled('div')(() => ({
+  width: '100%',
+  backgroundColor: '#141414',
+  padding: '1rem 0',
+}))
 
 const COPY_LINK_DEFAULT_TEXT = 'Link'
 const COPY_LINK_COPIED_TEXT = 'Copied!'
 const PRESETS = [['typescript', { allExtensions: true, isTSX: true }], 'es2015']
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoCodeExample'
-})
 
 interface Props extends BaseProps {
   permanentLink: string
@@ -54,7 +76,7 @@ const imports: Record<string, object> = {
   '@topkit/analytics-charts/utils': require('@topkit/analytics-charts'),
   '@toptal/picasso/utils': require('@toptal/picasso/utils'),
   '@toptal/picasso/Icon': require('@toptal/picasso/Icon'),
-  '@toptal/picasso-provider': require('@toptal/picasso-provider')
+  '@toptal/picasso-provider': require('@toptal/picasso-provider'),
 }
 
 const resolver = (path: string) => imports[path]
@@ -107,7 +129,7 @@ const requireContext = require.context(
 
 const getOriginalSourceCode = ({
   src,
-  module
+  module,
 }: Pick<Props, 'src' | 'module'>) => {
   try {
     return requireContext(`./${module}/src/${src}`).default
@@ -139,7 +161,6 @@ const getOriginalSourceCode = ({
 const CodeExample = (props: Props) => {
   const { permanentLink, showEditCode } = props
 
-  const classes = useStyles()
   const [sourceCode, setSourceCode] = useState(getOriginalSourceCode(props))
   const [isEditorVisible, setEditorVisible] = useState(false)
   const [copyLinkButtonText, setCopyLinkButtonText] = useState(
@@ -172,10 +193,10 @@ const CodeExample = (props: Props) => {
     )
 
     return (
-      <div className={classes.componentRenderer}>
+      <ComponentRenderer>
         <SourceRender
           babelConfig={{
-            presets: PRESETS
+            presets: PRESETS,
           }}
           wrap={renderInTestPicasso}
           resolver={resolver}
@@ -184,7 +205,7 @@ const CodeExample = (props: Props) => {
         >
           {({ element }: RenderResult) => element}
         </SourceRender>
-      </div>
+      </ComponentRenderer>
     )
   }
 
@@ -193,14 +214,14 @@ const CodeExample = (props: Props) => {
   }
 
   const SourceCodeEditor = (
-    <div className={classes.editor}>
+    <StyledEditor>
       <Editor
         id='some-component-example'
         mode='jsx'
         value={sourceCode}
         onChange={handleChangeCode}
       />
-    </div>
+    </StyledEditor>
   )
 
   const renderInPicasso = (element: ReactNode) => (
@@ -210,7 +231,7 @@ const CodeExample = (props: Props) => {
   return (
     <SourceRender
       babelConfig={{
-        presets: PRESETS
+        presets: PRESETS,
       }}
       wrap={renderInPicasso}
       resolver={resolver}
@@ -218,17 +239,13 @@ const CodeExample = (props: Props) => {
       unstable_hot
     >
       {({ element, error }: RenderResult) => (
-        <div className={classes.root}>
-          <div className={classes.component}>
-            <Container
-              className={classes.componentRenderer}
-              top='large'
-              bottom='large'
-            >
+        <Root>
+          <Component>
+            <Container top='large' bottom='large'>
               {element}
               {error && <Typography color='red'>{error.toString()}</Typography>}
             </Container>
-            <div className={classes.buttons}>
+            <Buttons>
               {showEditCode && (
                 <Button
                   variant='secondary'
@@ -247,12 +264,12 @@ const CodeExample = (props: Props) => {
               >
                 {copyLinkButtonText}
               </Button>
-            </div>
-          </div>
+            </Buttons>
+          </Component>
           <div>
             <Accordion content={SourceCodeEditor} expanded={isEditorVisible} />
           </div>
-        </div>
+        </Root>
       )}
     </SourceRender>
   )
@@ -262,7 +279,7 @@ CodeExample.displayName = 'CodeExample'
 
 CodeExample.defaultProps = {
   showEditCode: true,
-  module: 'picasso'
+  module: 'picasso',
 }
 
 export default CodeExample

@@ -1,10 +1,6 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
 import MUIGrid, { GridSize } from '@mui/material/Grid'
 import { BaseProps } from '@toptal/picasso-shared'
-
-import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Content of Grid.Item */
@@ -17,16 +13,11 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   large?: boolean | GridSize
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoGridItem',
-})
-
 export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
   props,
   ref
 ) {
   const { children, small, medium, large, className, style, ...rest } = props
-  const classes = useStyles()
 
   return (
     <MUIGrid
@@ -36,7 +27,6 @@ export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
       lg={large}
       md={medium}
       xs={small}
-      classes={classes}
       className={className}
       style={style}
     >

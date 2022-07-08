@@ -1,11 +1,42 @@
 import React, { FunctionComponent } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
+import { styled } from '@mui/material/styles'
 
 import { PropTypeDocumentation } from '~/.storybook/utils/documentation-generator'
 import cx from 'classnames'
 
-import styles from './styles'
+const Enums = styled('div')(() => ({
+  marginTop: '1em',
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+}))
+
+const EnumLabel = styled('strong')(() => ({
+  marginRight: '0.2em',
+  marginBottom: '0.2em',
+}))
+
+const PREFIX = 'PicassoEnumsList'
+
+const classes = {
+  highlight: `${PREFIX}-highlight`,
+  enum: `${PREFIX}-enum`,
+}
+
+const EnumValue = styled('span')(() => ({
+  [`& .${classes.highlight}`]: {
+    backgroundColor: 'rgb(236, 236, 236, 0.5)',
+    borderRadius: '0.4em',
+    padding: '0.3em 0.7em',
+    fontWeight: 600,
+  },
+  [`& .${classes.enum}`]: {
+    fontSize: '0.8rem',
+    marginRight: '0.2em',
+    marginBottom: '0.2em',
+  },
+}))
 
 interface Props extends BaseProps {
   enums?: string[]
@@ -14,12 +45,8 @@ interface Props extends BaseProps {
 
 const trim = (value: string) => String(value).replace(/\'|\"/gi, '')
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoEnumsList' })
-
 const EnumsList: FunctionComponent<Props> = props => {
   const { enums, type } = props
-
-  const classes = useStyles()
 
   let enumList = enums
 
@@ -32,15 +59,18 @@ const EnumsList: FunctionComponent<Props> = props => {
   if (!Array.isArray(enumList)) return null
 
   return (
-    <div className={classes.enums}>
-      <strong className={classes.enumLabel}>Enums:</strong>
+    <Enums>
+      <EnumLabel>Enums:</EnumLabel>
 
       {enumList.map(enumValue => (
-        <span key={enumValue} className={cx(classes.highlight, classes.enum)}>
+        <EnumValue
+          key={enumValue}
+          className={cx(classes.highlight, classes.enum)}
+        >
           {trim(enumValue)}
-        </span>
+        </EnumValue>
       ))}
-    </div>
+    </Enums>
   )
 }
 

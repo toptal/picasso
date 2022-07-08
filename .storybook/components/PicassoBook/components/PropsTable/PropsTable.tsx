@@ -1,29 +1,67 @@
 import React, { Fragment, FunctionComponent } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 import { Table, Typography, Tooltip } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import {
   PropDocumentation,
   PropTypeDocumentation,
-  sortBy
+  sortBy,
 } from '~/.storybook/utils'
 import PropTypeTableCell from './PropTypeTableCell'
 import EnumsList from './EnumsList'
 import Description from './Description'
-import styles from './styles'
+
+const StyledPropTypeTableCell = styled(PropTypeTableCell)(() => ({
+  whiteSpace: 'nowrap',
+}))
+
+const DefaultValueCell = styled(Table.Cell)(() => ({
+  whiteSpace: 'nowrap',
+}))
+
+const Highlight = styled('span')(() => ({
+  backgroundColor: 'rgb(236, 236, 236, 0.5)',
+  borderRadius: '0.4em',
+  padding: '0.3em 0.7em',
+  fontWeight: 600,
+}))
+
+const DescriptionCell = styled(Table.Cell)(() => ({
+  paddingTop: '1em',
+  paddingBottom: '1em',
+}))
+
+const Root = styled('div')(() => ({
+  width: '100%',
+}))
+
+const StyledTable = styled(Table)(() => ({
+  width: '100%',
+}))
+
+const StyledName = styled(Table.Cell)(() => ({
+  width: '100px',
+}))
+
+const StyledType = styled(Table.Cell)(() => ({
+  width: '1%',
+}))
+
+const StyledDefaultValue = styled(Table.Cell)(() => ({
+  width: '1%',
+}))
+
+const StyledDescription = styled(Table.Cell)(() => ({
+  width: '100%',
+}))
 
 interface Props extends BaseProps {
   documentation: PropDocumentation[]
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPropsTable'
-})
-
 function useRows(props: Props): JSX.Element {
   const { documentation } = props
-  const classes = useStyles()
 
   const isEnum = (type: string | PropTypeDocumentation) =>
     type === 'enum' || (type as PropTypeDocumentation).name === 'enum'
@@ -42,7 +80,7 @@ function useRows(props: Props): JSX.Element {
           description,
           enums,
           required,
-          deprecated
+          deprecated,
         }) => {
           const propNameTypography = (
             <Typography weight='semibold' inline lineThrough={deprecated}>
@@ -68,16 +106,14 @@ function useRows(props: Props): JSX.Element {
                   </Typography>
                 )}
               </Table.Cell>
-              <PropTypeTableCell className={classes.typeCell} type={type} />
-              <Table.Cell className={classes.defaultValueCell}>
-                {defaultValue && (
-                  <span className={classes.highlight}>{defaultValue}</span>
-                )}
-              </Table.Cell>
-              <Table.Cell className={classes.descriptionCell}>
+              <StyledPropTypeTableCell type={type} />
+              <DefaultValueCell>
+                {defaultValue && <Highlight>{defaultValue}</Highlight>}
+              </DefaultValueCell>
+              <DescriptionCell>
                 <Description description={description} propName={name} />
                 {isEnum(type) && <EnumsList type={type} enums={enums} />}
-              </Table.Cell>
+              </DescriptionCell>
             </Table.Row>
           )
         }
@@ -87,24 +123,22 @@ function useRows(props: Props): JSX.Element {
 }
 
 const PropsTable: FunctionComponent<Props> = props => {
-  const classes = useStyles()
-
   const rows = useRows(props)
 
   return (
-    <div className={classes.root}>
-      <Table className={classes.table}>
+    <Root>
+      <StyledTable>
         <Table.Head>
           <Table.Row>
-            <Table.Cell className={classes.name}>Name</Table.Cell>
-            <Table.Cell className={classes.type}>Type</Table.Cell>
-            <Table.Cell className={classes.defaultValue}>Default</Table.Cell>
-            <Table.Cell className={classes.description}>Description</Table.Cell>
+            <StyledName>Name</StyledName>
+            <StyledType>Type</StyledType>
+            <StyledDefaultValue>Default</StyledDefaultValue>
+            <StyledDescription>Description</StyledDescription>
           </Table.Row>
         </Table.Head>
         <Table.Body>{rows}</Table.Body>
-      </Table>
-    </div>
+      </StyledTable>
+    </Root>
   )
 }
 

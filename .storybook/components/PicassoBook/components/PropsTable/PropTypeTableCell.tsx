@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react'
-
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 
 import { Tooltip, Table } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -14,13 +13,13 @@ interface Props extends BaseProps {
   type: string | PropTypeDocumentation
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPropTypeTableCell'
-})
+const TooltipTarget = styled('span')(() => ({
+  borderBottom: '1px dotted',
+  fontWeight: 600,
+  cursor: 'help',
+}))
 
 const PropTypeTableCell: FunctionComponent<Props> = props => {
-  const classes = useStyles()
-
   const { type, className } = props
 
   if (typeof type === 'string') {
@@ -32,7 +31,7 @@ const PropTypeTableCell: FunctionComponent<Props> = props => {
       <Table.Cell className={className}>
         <Tooltip content={<Markdown>{type.description}</Markdown>} interactive>
           <div>
-            <span className={classes.tooltipTarget}>{type.name}</span>
+            <TooltipTarget>{type.name}</TooltipTarget>
             <sup>?</sup>
           </div>
         </Tooltip>

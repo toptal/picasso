@@ -4,16 +4,12 @@ import React, {
   HTMLAttributes,
   ElementType,
 } from 'react'
-import { Theme } from '@mui/material/styles'
-import makeStyles from '@mui/styles/makeStyles'
 import MUIGrid, {
   GridSpacing,
   GridDirection,
   GridWrap,
 } from '@mui/material/Grid'
 import { BaseProps } from '@toptal/picasso-shared'
-
-import styles from './styles'
 
 type GridItemsAlignment =
   | 'flex-start'
@@ -51,10 +47,6 @@ const humanToMUISpacing = (spacing: number) => {
   return (spacing / 8) as GridSpacing
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoGrid',
-})
-
 // eslint-disable-next-line react/display-name
 export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   props,
@@ -72,7 +64,6 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
     component,
     ...rest
   } = props
-  const classes = useStyles()
 
   return (
     <MUIGrid
@@ -82,9 +73,8 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
       spacing={humanToMUISpacing(spacing)}
       direction={direction}
       alignItems={alignItems}
-      justify={justifyContent}
+      justifyContent={justifyContent}
       wrap={wrap}
-      classes={classes}
       className={className}
       style={style}
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

@@ -2,8 +2,6 @@ import tagGroupStory from '../../TagGroup/story'
 import tagRectangularStory from '../../TagRectangular/story'
 import { Tag } from '../Tag'
 import PicassoBook from '~/.storybook/components/PicassoBook'
-import TagConnection from '../../TagConnection'
-import TagCheckable from '../../TagCheckable'
 
 const page = PicassoBook.section('Components').createPage(
   'Tag',
@@ -34,25 +32,11 @@ page
   })
   .addComponentDocs(tagGroupStory.componentDocs)
   .addComponentDocs(tagRectangularStory.componentDocs)
-  .addComponentDocs({
-    component: TagConnection,
-    name: 'Tag.Connection',
-    description: 'Used inside endAdornment to showcase number of connections',
-  })
-  .addComponentDocs({
-    component: TagCheckable,
-    name: 'Tag.Checkable',
-    description: 'Used when you need toggable Tag',
-  })
 
 page
   .createChapter()
   .addExample('Tag/story/Default.example.tsx', 'Default')
   .addExample('Tag/story/Variants.example.tsx', 'Variants')
-  .addExample('Tag/story/Checkable.example.tsx', {
-    title: 'Checkable',
-    takeScreenshot: false,
-  })
 
 page.connect(tagGroupStory.chapter)
 page.connect(tagRectangularStory.chapter)

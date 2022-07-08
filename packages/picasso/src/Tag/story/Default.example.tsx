@@ -42,11 +42,7 @@ const Example = () => (
         </Tag>
       </div>
       <div>
-        <Tag
-          disabled
-          icon={<Settings16 />}
-          endAdornment={<Tag.Connection>0</Tag.Connection>}
-        >
+        <Tag disabled icon={<Settings16 />}>
           Label
         </Tag>
       </div>
@@ -54,12 +50,7 @@ const Example = () => (
     <Container flex direction='column' gap='xsmall'>
       <Typography>With Connection</Typography>
       <div>
-        <Tag
-          icon={<Settings16 />}
-          endAdornment={<Tag.Connection>0</Tag.Connection>}
-        >
-          Label
-        </Tag>
+        <Tag icon={<Settings16 />}>Label</Tag>
       </div>
     </Container>
     <Container flex direction='column' gap='xsmall'>
