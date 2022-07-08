@@ -1,10 +1,6 @@
-import { ThemeProvider, Theme, StyledEngineProvider } from '@mui/material/styles';
-import StylesProvider from '@mui/styles/StylesProvider';
-import createGenerateClassName from '@mui/styles/createGenerateClassName';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
 import React from 'react'
 
-import CssBaseline from '../../CssBaseline'
-import { generateRandomStringOrGetEmptyInTest } from '../utils'
 import { PicassoBreakpoints } from '../config'
 import PicassoProvider from '../PicassoProvider'
 import { PicassoProps } from '../Picasso'
@@ -17,7 +13,6 @@ type PicassoLightProps = Omit<
 >
 
 const PicassoLight = ({
-  reset,
   responsive,
   environment = 'development',
   children,
@@ -25,8 +20,6 @@ const PicassoLight = ({
   titleCase,
   theme,
   disableTransitions,
-  disableClassNamePrefix,
-  injectFirst,
 }: PicassoLightProps) => {
   if (theme) {
     PicassoProvider.extendTheme(theme)
@@ -37,32 +30,20 @@ const PicassoLight = ({
     PicassoBreakpoints.disableMobileBreakpoints()
   }
 
-  const generateClassName = createGenerateClassName({
-    // if there are multiples instances of Picasso
-    // on the page we want each set of styles to be unique
-    seed: disableClassNamePrefix ? '' : generateRandomStringOrGetEmptyInTest(),
-  })
-
   return (
-    <StylesProvider
-      generateClassName={generateClassName}
-      injectFirst={injectFirst}
-    >
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={PicassoProvider.theme}>
-          <PicassoGlobalStylesProvider
-            RootComponent={RootComponent}
-            environment={environment}
-            titleCase={titleCase}
-            disableTransitions={disableTransitions}
-          >
-            {reset && <CssBaseline />}
-            {children}
-          </PicassoGlobalStylesProvider>
-        </ThemeProvider>
-      </StyledEngineProvider>
-    </StylesProvider>
-  );
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={PicassoProvider.theme}>
+        <PicassoGlobalStylesProvider
+          RootComponent={RootComponent}
+          environment={environment}
+          titleCase={titleCase}
+          disableTransitions={disableTransitions}
+        >
+          {children}
+        </PicassoGlobalStylesProvider>
+      </ThemeProvider>
+    </StyledEngineProvider>
+  )
 }
 
 PicassoLight.defaultProps = {

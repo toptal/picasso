@@ -13,7 +13,7 @@ import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
 import '../Chip/styles'
-import { CloseMinor16 } from '../Icon'
+import { Abstract16 } from '../Icon'
 import toTitleCase from '../utils/to-title-case'
 
 const StyledInnerLabel = styled('span')(() => ({
@@ -191,7 +191,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       label={label}
       deleteIcon={
         <DeleteIcon aria-label='delete icon' role='button'>
-          <CloseMinor16 />
+          <Abstract16 />
         </DeleteIcon>
       }
       component={as}

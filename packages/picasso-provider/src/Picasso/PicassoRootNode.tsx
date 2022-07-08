@@ -1,28 +1,29 @@
 import React, { forwardRef, ReactNode } from 'react'
-import { Theme } from '@mui/material/styles';
-
-import makeStyles from '@mui/styles/makeStyles';
-
-import globalStyles from './styles'
+import { styled } from '@mui/material/styles'
 
 export interface PicassoRootNodeProps {
   children?: ReactNode
 }
 
-const useGlobalStyles = makeStyles<Theme>(globalStyles, {
-  name: 'Picasso',
-})
+const Root = styled('div')(({ theme: { typography } }) => ({
+  flex: 1,
+  boxSizing: 'border-box',
+
+  '& *': {
+    fontFamily: typography.fontFamily,
+  },
+
+  // https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+  '& *, & *::before, & *::after': {
+    boxSizing: 'inherit',
+  },
+}))
 
 const PicassoRootNode = forwardRef<HTMLDivElement, PicassoRootNodeProps>(
   (props, ref) => {
     const { children } = props
-    const classes = useGlobalStyles()
 
-    return (
-      <div ref={ref} className={classes.root}>
-        {children}
-      </div>
-    )
+    return <Root ref={ref}>{children}</Root>
   }
 )
 

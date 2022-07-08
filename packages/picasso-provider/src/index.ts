@@ -1,10 +1,4 @@
-export {
-  default,
-  FixViewport,
-  FontsLoader,
-  NotificationsProvider,
-  PicassoLight,
-} from './Picasso'
+export { default, FixViewport, FontsLoader, PicassoLight } from './Picasso'
 
 export {
   useScreenSize,
@@ -38,7 +32,6 @@ export {
 export {
   generateRandomString,
   generateRandomStringOrGetEmptyInTest,
-  getServersideStylesheets,
 } from './Picasso/utils'
 
 export { default as Favicon } from './Favicon'
