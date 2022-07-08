@@ -18,7 +18,7 @@ export default ({ palette }: Theme) => {
 
   return createStyles({
     modalContent: {
-      padding: WRAPPER_PADDING,
+      padding: `1.5em ${WRAPPER_PADDING} ${WRAPPER_PADDING}`,
       overflow: 'auto',
       flex: '1 1 auto',
     },
