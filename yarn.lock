@@ -1423,10 +1423,10 @@
     resolve-global "1.0.0"
     yargs "^17.0.0"
 
-"@commitlint/config-conventional@^17.0.2":
-  version "17.0.2"
-  resolved "https://registry.npmjs.org/@commitlint/config-conventional/-/config-conventional-17.0.2.tgz"
-  integrity sha512-MfP0I/JbxKkzo+HXWB7B3WstGS4BiniotU3d3xQ9gK8cR0DbeZ4MuyGCWF65YDyrcDTS3WlrJ3ndSPA1pqhoPw==
+"@commitlint/config-conventional@^17.0.3":
+  version "17.0.3"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-17.0.3.tgz#61e937357ce63ea08a2017e58b918748fcf3abc5"
+  integrity sha512-HCnzTm5ATwwwzNVq5Y57poS0a1oOOcd5pc1MmBpLbGmSysc4i7F/++JuwtdFPu16sgM3H9J/j2zznRLOSGVO2A==
   dependencies:
     conventional-changelog-conventionalcommits "^5.0.0"
 
@@ -4007,12 +4007,12 @@
     p-retry "^4.0.0"
     url-join "^4.0.0"
 
-"@semantic-release/npm@^7.1.3":
-  version "7.1.3"
-  resolved "https://registry.npmjs.org/@semantic-release/npm/-/npm-7.1.3.tgz"
-  integrity sha512-x52kQ/jR09WjuWdaTEHgQCvZYMOTx68WnS+TZ4fya5ZAJw4oRtJETtrvUw10FdfM28d/keInQdc66R1Gw5+OEQ==
+"@semantic-release/npm@^8.0.3":
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/@semantic-release/npm/-/npm-8.0.3.tgz#69378ce529bbd263aa8fc899b2d0f874114e0302"
+  integrity sha512-Qbg7x/O1t3sJqsv2+U0AL4Utgi/ymlCiUdt67Ftz9HL9N8aDML4t2tE0T9MBaYdqwD976hz57DqHHXKVppUBoA==
   dependencies:
-    "@semantic-release/error" "^2.2.0"
+    "@semantic-release/error" "^3.0.0"
     aggregate-error "^3.0.0"
     execa "^5.0.0"
     fs-extra "^10.0.0"
@@ -5577,13 +5577,13 @@
   resolved "https://registry.npmjs.org/@toptal/browserslist-config/-/browserslist-config-1.2.0.tgz"
   integrity sha512-eelB1Rg9HyOv8e0PdKnlBExOV0N0aj+EbQw0Ybvh8XoL0wUQGSQ3U8/dAIaVLD2+TYiCUQdwaXT3DexHnCD7IQ==
 
-"@toptal/davinci-bootstrap@3.2.4":
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-3.2.4.tgz#6eed5216de57f302bf5a1bdfe054155469082d4c"
-  integrity sha512-arvYwqjkiebQ4FPQC15a6glFG7K4FYwuMsvYbrTVzTeCDNi6shW2+xtc9+BdYTUfhncxmaohsUD6fl3iKz2jvg==
+"@toptal/davinci-bootstrap@3.2.7":
+  version "3.2.7"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-3.2.7.tgz#6d8e028ef24f12c5b5a556213f9d77d018f979c8"
+  integrity sha512-CDgxCK5fclhU7+2P+4idrSNlZbDWOoHIxjfLyCuarMBFTvvhOxtVbgwcgYlYrBnHXk0Z1TnS20Jg66lzP+IcPg==
   dependencies:
     "@toptal/davinci-cli-shared" "1.5.4"
-    "@toptal/davinci-skeleton" "7.1.2"
+    "@toptal/davinci-skeleton" "7.3.1"
     "@toptal/davinci-skeleton-lib" "0.1.1"
     "@toptal/davinci-skeleton-sub-app" "1.2.0"
     find-yarn-workspace-root "^2.0.0"
@@ -5591,13 +5591,13 @@
     lodash.kebabcase "^4.1.1"
     ora "^5.4.1"
 
-"@toptal/davinci-ci@2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-ci/-/davinci-ci-2.0.5.tgz#4d84216c53da613032b23054df320c561aaf72d3"
-  integrity sha512-Z8T19BcDzM7TRdcG8ueqFFqFq0eswZQZGkQzBM1BSmMoMbiEhlLgOkHBvqGTYIPZglsucY7f1HjY5jBAszvwDQ==
+"@toptal/davinci-ci@2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-ci/-/davinci-ci-2.0.6.tgz#2b8a396c47e0c8ba96af650a508bb47cf3e71ef7"
+  integrity sha512-8kt67Y3KPPeZLPet7TfG+C4iCjeT6KDy7/iG3FsEO3qxDZcGjgVJQ43YWan/iXt2jfIsvlVs861ObYfyAto4sQ==
   dependencies:
     "@commitlint/cli" "^17.0.2"
-    "@commitlint/config-conventional" "^17.0.2"
+    "@commitlint/config-conventional" "^17.0.3"
     "@toptal/davinci-cli-shared" "1.5.4"
     danger "^11.0.5"
     markdown-table "^2.0.0"
@@ -5618,10 +5618,10 @@
   resolved "https://registry.npmjs.org/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.1.tgz"
   integrity sha512-gKQYU2NxZJ8VLGETCDzlrOayfuELtxoRKFWPCNW7OXfgfNQlOmtoZVy127ZedEZ3K2gn9mPQdEBGH6SOFSKEIw==
 
-"@toptal/davinci-code@1.5.7":
-  version "1.5.7"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-1.5.7.tgz#bb31ccf13cce5a3a46e9697aaea79e24c479dc80"
-  integrity sha512-NpzHqcVCn4d7U12Ltu3Y0NtPuou+9laF4hW/OATpyhgbUu8J8Kjjgo1ES7XfdYTEr0YkhiHmej+QjyIUC0yoHA==
+"@toptal/davinci-code@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-1.6.0.tgz#43d417100faf5ce9a3e186359b3e6ae3e17e168d"
+  integrity sha512-vjC2C/JLjSuTRh037KHU+yxCIVe5ooe2ZyyCe7Q+jXPL0kimWm2fFXzM+0K0i3874Nryb0cJF6YgkOEhyguJjw==
   dependencies:
     "@toptal/davinci-cli-shared" "1.5.4"
     hygen "^6.2.7"
@@ -5636,10 +5636,10 @@
     globby "^11.0.1"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-engine@7.3.6":
-  version "7.3.6"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-7.3.6.tgz#553f7b6c63e63d1027bcfb9aeeb7c45f0f106558"
-  integrity sha512-5M10TYGSg9NMQkDKGOhI1Yv7UsIbaxbxGBz0iewlS8/Oh5LizHXr/B27wbsnp8E72gUVVhqV+AJEPoViQQggEw==
+"@toptal/davinci-engine@7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-7.4.0.tgz#d9449e494686db15b696cc19e934149dc52be6ff"
+  integrity sha512-+aRaqxAYYwxfzuDo4I5SXhljb0kgLDCJ3gaySkdYIfWyDVqdTzTyp3NzTITpnbkdqCvgpNUlMitzhRYvYh3QhQ==
   dependencies:
     "@babel/cli" "^7.17.10"
     "@babel/core" "^7.18.0"
@@ -5656,7 +5656,7 @@
     "@semantic-release/commit-analyzer" "^9.0.2"
     "@semantic-release/git" "^10.0.1"
     "@semantic-release/github" "^8.0.2"
-    "@semantic-release/npm" "^7.1.3"
+    "@semantic-release/npm" "^8.0.3"
     "@semantic-release/release-notes-generator" "^10.0.3"
     "@sentry/cli" "^2.1.0"
     "@size-limit/file" "^7.0.8"
@@ -5735,10 +5735,10 @@
     execa "^5.1.1"
     glob "^8.0.3"
 
-"@toptal/davinci-qa@11.1.3":
-  version "11.1.3"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-11.1.3.tgz#0f7ae1eb3cfac315b53d54603318c524df09a47e"
-  integrity sha512-WniHgNR/lezsF09oi0a6yox9mMKaVDsI5JSC9Df9ywUwBDgvNVo9tIDhDVM1zaYnwRaMhbz/JoupVJ53LSlZEw==
+"@toptal/davinci-qa@11.2.3":
+  version "11.2.3"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-11.2.3.tgz#62cf4427570b5e8c8247fa097862b1c5d9230e3f"
+  integrity sha512-um6b408M15XzqLZU9qNh8X+Q115bORjIGe0R/7qBBoCJ4booVmiW2TtB5OEni58Xb0CBrHXtfa2pA97dpd0vUQ==
   dependencies:
     "@babel/core" "^7.18.0"
     "@babel/preset-env" "^7.18.0"
@@ -5749,13 +5749,16 @@
     "@testing-library/jest-dom" "^5.16.4"
     "@testing-library/react" "^12.1.2"
     "@toptal/davinci-cli-shared" "1.5.4"
-    "@toptal/davinci-engine" "7.3.6"
+    "@toptal/davinci-engine" "7.4.0"
     "@types/jest" "^27.5.1"
     babel-jest "^28.1.0"
     cypress "^10.0.3"
     enhanced-resolve "^5.9.2"
     fs-extra "^10.0.0"
     glob "^8.0.3"
+    happo-cypress "^3.0.1"
+    happo-e2e "^1.2.0"
+    happo.io "^7.2.1"
     jest "^28.1.0"
     jest-environment-jsdom "^28.1.0"
     jest-html-reporters "^3.0.6"
@@ -5776,10 +5779,10 @@
   resolved "https://registry.npmjs.org/@toptal/davinci-skeleton-sub-app/-/davinci-skeleton-sub-app-1.2.0.tgz"
   integrity sha512-h9aXK3NUOIf/ohaDvJIx/9zXMp0Cio5c5WMIq6IZttW/kOctisywvvVPE0paZBz0OvzNAyatS7rQyUc4rlp7Qw==
 
-"@toptal/davinci-skeleton@7.1.2":
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-7.1.2.tgz#9446a42d9ac462687d6729327c28c863538d0596"
-  integrity sha512-SmAvUiAqwhbW3R9IGR0Qz1B+/meS+h+xiiU4fX2JefMYF3oSRAeyyEXxork0NEPqgjw8hK5C4u7sGYuFBSVnMw==
+"@toptal/davinci-skeleton@7.3.1":
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-7.3.1.tgz#497b1e89441fcf5b92b82797e78174515c9bfda3"
+  integrity sha512-6AbsLed+GujTpOcH6o1J6d++vdgxB5tcZSNYDZopkjFOZ7m48VFiniCK79ZbBGGC42xDx0PfaPkXuLHpIeoJ1Q==
 
 "@toptal/davinci-syntax@14.0.6":
   version "14.0.6"
@@ -5817,14 +5820,14 @@
     stylelint-config-styled-components "^0.1.1"
     stylelint-processor-styled-components "^1.10.0"
 
-"@toptal/davinci-workflow@1.10.3":
-  version "1.10.3"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-workflow/-/davinci-workflow-1.10.3.tgz#7947ec18e31dec29b70cc2ffab8ed0de94318b67"
-  integrity sha512-i7ZoqT7OTSdHO1+MNjANGgB1V11hH13YMoPTNwA00hr0Y/3mpQR/oiWwXpVjwoUh3QbbObebO2PDLGjlDCfntQ==
+"@toptal/davinci-workflow@1.11.1":
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-workflow/-/davinci-workflow-1.11.1.tgz#2de5b3065ab86baee380d8d7a074baf40772a490"
+  integrity sha512-FqBYnqcXTJjP5/SHRp/REx3jU6ZqY3VXpTmiLjnSW7/Gt8Ut1BA3IfKObYMG/RvuOmdA5x852UPVgNrqq7Pijw==
   dependencies:
     "@toptal/davinci-cli-shared" "1.5.4"
     "@toptal/davinci-monorepo" "^6.6.2"
-    "@toptal/davinci-skeleton" "7.1.2"
+    "@toptal/davinci-skeleton" "7.3.1"
     chalk "^4.1.2"
     cosmiconfig "^7.0.1"
     fs-extra "^9.0.1"
@@ -5838,21 +5841,21 @@
     ora "^5.4.1"
     remark "^13.0.0"
 
-"@toptal/davinci@^18.1.4":
-  version "18.1.4"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-18.1.4.tgz#87d268f168d69b5df4cf7ee9b366357e2ff14f6c"
-  integrity sha512-zskPoEOoYdx1HMg2WISsAF0Tr7VWlVDJzw1VLMG8VeY1KM1AgI0inGAlwMo+TZUVVgFKfQo4jlh3vOSV0Xn+XA==
+"@toptal/davinci@^18.3.2":
+  version "18.3.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-18.3.2.tgz#b3350472175994fb49e4bfed911fca83f713d3e5"
+  integrity sha512-qN8wS/G6aFGXi4yM+J/Z3P2WlPzJvGi8nG5yx9zr//4Vfpc3x0bbaBd6+Ez/3q8s6FDzECO1hVxvncYDs1DI9Q==
   dependencies:
-    "@toptal/davinci-bootstrap" "3.2.4"
-    "@toptal/davinci-ci" "2.0.5"
+    "@toptal/davinci-bootstrap" "3.2.7"
+    "@toptal/davinci-ci" "2.0.6"
     "@toptal/davinci-cli-shared" "1.5.4"
-    "@toptal/davinci-code" "1.5.7"
-    "@toptal/davinci-engine" "7.3.6"
+    "@toptal/davinci-code" "1.6.0"
+    "@toptal/davinci-engine" "7.4.0"
     "@toptal/davinci-graphql-codegen" "0.2.8"
     "@toptal/davinci-monorepo" "6.6.2"
-    "@toptal/davinci-qa" "11.1.3"
+    "@toptal/davinci-qa" "11.2.3"
     "@toptal/davinci-syntax" "14.0.6"
-    "@toptal/davinci-workflow" "1.10.3"
+    "@toptal/davinci-workflow" "1.11.1"
 
 "@toptal/eslint-plugin-davinci@5.3.0":
   version "5.3.0"
@@ -13229,6 +13232,21 @@ happo-e2e@^1.0.3, happo-e2e@^1.1.0:
     parse-srcset "^1.0.2"
     string.prototype.replaceall "^1.0.6"
 
+happo-e2e@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/happo-e2e/-/happo-e2e-1.2.0.tgz#a7bdc71c48fe4fcdd51fc9dfac0c58a7410017d3"
+  integrity sha512-F94HEJgAq1dnZXlty9t7E/uTHrKJlTsem1oqkPpH6EkqXKasWGShEo+f74YvXzxwBlzs+Kw3vVT0E+ibOVmKHw==
+  dependencies:
+    archiver "^5.3.0"
+    base64-stream "^1.0.0"
+    crypto-js "^4.1.1"
+    https-proxy-agent "^5.0.0"
+    image-size "^1.0.1"
+    mkdirp "^1.0.4"
+    node-fetch "^2.0.0"
+    parse-srcset "^1.0.2"
+    string.prototype.replaceall "^1.0.6"
+
 happo-plugin-storybook@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/happo-plugin-storybook/-/happo-plugin-storybook-3.0.0.tgz#a1ab09dddefa0a638f5d686e109aec58b2c65698"
@@ -13984,6 +14002,13 @@ ignore@^5.1.1, ignore@^5.1.4, ignore@^5.1.8, ignore@^5.2.0:
   version "5.2.0"
   resolved "https://registry.npmjs.org/ignore/-/ignore-5.2.0.tgz"
   integrity sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==
+
+image-size@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/image-size/-/image-size-1.0.1.tgz#86d6cfc2b1d19eab5d2b368d4b9194d9e48541c5"
+  integrity sha512-VAwkvNSNGClRw9mDHhc5Efax8PLlsOGcUTh0T/LIriC8vPA3U5PdqXWqkz406MoYHMKW8Uf9gWr05T/rYB44kQ==
+  dependencies:
+    queue "6.0.2"
 
 imagetracerjs@^1.2.5:
   version "1.2.6"
@@ -20101,6 +20126,13 @@ queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
+
+queue@6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/queue/-/queue-6.0.2.tgz#b91525283e2315c7553d2efa18d83e76432fed65"
+  integrity sha512-iHZWu+q3IdFZFX36ro/lKBkSvfkztY5Y7HMiPlOUjhupPcG2JMfst2KKEpu5XndviX/3UhFbRngUPNKtgvtZiA==
+  dependencies:
+    inherits "~2.0.3"
 
 quick-lru@^4.0.1:
   version "4.0.1"
