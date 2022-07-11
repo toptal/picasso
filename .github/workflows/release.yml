@@ -162,7 +162,7 @@ jobs:
 
       - name: Send a Slack notification on failure
         if: ${{ failure() }}
-        uses: slackapi/slack-github-action@v1.14.0
+        uses: slackapi/slack-github-action@v1.19.0
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
           FAILURE_URL: ${{ steps.trigger-deploy.outputs.jenkins_job_url || steps.trigger-build.outputs.jenkins_job_url }}
@@ -173,7 +173,7 @@ jobs:
 
       - name: Send a Slack notification on success release
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
-        uses: slackapi/slack-github-action@v1.14.0
+        uses: slackapi/slack-github-action@v1.19.0
         with:
           channel-id: '-frontend-exp-team-notifications'
           slack-message: 'Current master version of Picasso successfully released :green_heart:'
@@ -181,7 +181,7 @@ jobs:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
       - name: Send a Slack notification on success PR merge
         if: ${{ success() && steps.changesets.outputs.published != 'true'}}
-        uses: slackapi/slack-github-action@v1.14.0
+        uses: slackapi/slack-github-action@v1.19.0
         with:
           channel-id: '-frontend-exp-team-notifications'
           slack-message: 'A new PR was merged to Picasso :parrotspin:'
