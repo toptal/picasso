@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.3.3
+
+### Patch Changes
+
+- [#2981](https://github.com/toptal/picasso/pull/2981) [`40fe9832`](https://github.com/toptal/picasso/commit/40fe98327512e3dc5de85e1124b097cab6057c5a) Thanks [@krav4enkodm](https://github.com/krav4enkodm)! - ---
+
+  ### Modal
+
+  - adjust modal content top padding
+
 ## 26.3.2
 
 ### Patch Changes
