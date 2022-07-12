@@ -249,7 +249,9 @@ export const useAutocomplete = ({
           return
         }
 
-        setOpen(false)
+        if (closeOnSelect) {
+          setOpen(false)
+        }
         handleChange(getDisplayValue(null))
       }
 

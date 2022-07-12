@@ -24,9 +24,10 @@ page
     'Initially set value'
   )
   .addExample('TagSelector/story/KeepOpen.example.tsx', {
-    title: 'Keep options open',
+    title: 'With closeOnSelect disabled',
+    description: 'Do not hide the options on selection',
     takeScreenshot: false,
-  }) // picasso-skip-visuals
+  })
   .addExample('TagSelector/story/CustomOptionRenderer.example.tsx', {
     title: 'Custom option rendering',
     takeScreenshot: false,

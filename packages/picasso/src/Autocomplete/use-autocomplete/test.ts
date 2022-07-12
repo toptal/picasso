@@ -268,7 +268,7 @@ describe('useAutocomplete', () => {
     expect(result.current.isOpen).toBe(false)
   })
 
-  it('keeps the menu open when `closesOnSelect` is disabled', () => {
+  it('keeps the menu open when `closeOnSelect` is disabled', () => {
     const { result } = renderUseAutocomplete({ closeOnSelect: false })
 
     expect(result.current.isOpen).toBe(false)
