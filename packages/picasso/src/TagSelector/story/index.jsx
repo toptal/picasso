@@ -23,6 +23,12 @@ page
     'TagSelector/story/InitialSetValue.example.tsx',
     'Initially set value'
   )
+  .addExample('TagSelector/story/KeepOpen.example.tsx', {
+    title: 'With closeOnSelect disabled',
+    description:
+      'Disabling closeOnSelect can be useful when the user always have to select multiple values at the same time',
+    takeScreenshot: false,
+  })
   .addExample('TagSelector/story/CustomOptionRenderer.example.tsx', {
     title: 'Custom option rendering',
     takeScreenshot: false,

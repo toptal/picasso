@@ -87,6 +87,7 @@ export interface Props {
   onFocus?: FocusEventHandler<HTMLInputElement>
   onBlur?: FocusEventHandler<HTMLInputElement>
   getDisplayValue: (item: Item | null) => string
+  closeOnSelect?: boolean
   enableReset?: boolean
   showOtherOption?: boolean
   disabled?: boolean
@@ -95,6 +96,7 @@ export interface Props {
 export const useAutocomplete = ({
   value,
   options = [],
+  closeOnSelect = true,
   onChange = () => {},
   onKeyDown = () => {},
   onFocus = () => {},
@@ -173,7 +175,9 @@ export const useAutocomplete = ({
   const getItemProps = (index: number, item: Item) => ({
     ...getBaseItemProps(index),
     onClick: (event: MouseEvent) => {
-      setOpen(false)
+      if (closeOnSelect) {
+        setOpen(false)
+      }
       handleChange(getDisplayValue(item), true)
       handleSelect(item, event)
     },
@@ -182,7 +186,9 @@ export const useAutocomplete = ({
   const getOtherItemProps = (index: number, newValue: string) => ({
     ...getBaseItemProps(index),
     onClick: (event: MouseEvent) => {
-      setOpen(false)
+      if (closeOnSelect) {
+        setOpen(false)
+      }
       onOtherOptionSelect(newValue, event)
     },
   })
@@ -243,7 +249,9 @@ export const useAutocomplete = ({
           return
         }
 
-        setOpen(false)
+        if (closeOnSelect) {
+          setOpen(false)
+        }
         handleChange(getDisplayValue(null))
       }
 
@@ -256,7 +264,9 @@ export const useAutocomplete = ({
           return
         }
 
-        setOpen(false)
+        if (closeOnSelect) {
+          setOpen(false)
+        }
 
         const findSelectedItemUsingIndex = () =>
           highlightedIndex === null ? undefined : options?.[highlightedIndex]

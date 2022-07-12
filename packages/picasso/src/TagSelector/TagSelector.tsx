@@ -63,7 +63,7 @@ export interface Props
   loading?: boolean
   /** Text prefix for other option */
   otherOptionLabel?: string
-  /**  Callback invoked when other option selected */
+  /** Callback invoked when other option selected */
   onOtherOptionSelect?: (value: string) => void
   /** Allow to show the other option in the list of options */
   showOtherOption?: boolean
@@ -77,9 +77,11 @@ export interface Props
   getDisplayValue?: (item: Item | null) => string
   /**  Callback invoked when selection changes */
   onChange?: (value: Item[]) => void
+  /** Whether to close popper upon selection */
+  closeOnSelect?: boolean
   /** The value of the `input` element, required for a controlled component. */
   inputValue?: string
-  /**  Callback invoked when `input` element value is changed */
+  /** Callback invoked when `input` element value is changed */
   onInputChange?: (inputValue: string) => void
   /** Focus event handler */
   onFocus?: FocusEventHandler<HTMLInputElement>
@@ -263,6 +265,7 @@ TagSelector.defaultProps = {
   getDisplayValue: getItemText,
   loading: false,
   onChange: noop,
+  closeOnSelect: true,
   onInputChange: noop,
   onOtherOptionSelect: noop,
   options: [],

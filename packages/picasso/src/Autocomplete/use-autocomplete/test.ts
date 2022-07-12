@@ -268,6 +268,31 @@ describe('useAutocomplete', () => {
     expect(result.current.isOpen).toBe(false)
   })
 
+  it('keeps the menu open when `closeOnSelect` is disabled', () => {
+    const { result } = renderUseAutocomplete({ closeOnSelect: false })
+
+    expect(result.current.isOpen).toBe(false)
+
+    const input = result.current.getInputProps()
+
+    act(() => {
+      input.onChange(MOCKED_EVENT)
+    })
+
+    expect(result.current.isOpen).toBe(true)
+
+    const itemProps = result.current.getItemProps(0, {
+      text: 'Ukraine',
+      value: 'UA',
+    })
+
+    act(() => {
+      itemProps.onClick(MOCKED_EVENT)
+    })
+
+    expect(result.current.isOpen).toBe(true)
+  })
+
   describe('works with key presses', () => {
     it('opens menu on enter keypress', () => {
       const { result } = renderUseAutocomplete()
