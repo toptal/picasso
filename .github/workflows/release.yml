@@ -64,32 +64,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOPTAL_BUILD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
 
-      - name: Add no-jira label to "Version Package" PR
-        if: ${{ steps.changesets.outputs.published != 'true' }}
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            // Get list of all open PRs with
-            // head branch "changeset-release/master"
-            // (there should be max 1 PR with such condition)
-            const { data } = await github.rest.pulls.list({
-              owner: 'toptal',
-              repo: 'picasso',
-              state: 'open',
-              head: 'toptal:changeset-release/master'
-            })
-            // add to all of them label "no-jira"
-            for await (let pr of data) {
-              github.rest.issues.addLabels({
-                owner: 'toptal',
-                repo: 'picasso',
-                issue_number: pr.number,
-                labels: [
-                  'no-jira'
-                ]
-              })
-            }
       - name: Edit "Version Package" PR
         if: ${{ steps.changesets.outputs.published != 'true' }}
         uses: actions/github-script@v6
@@ -106,6 +80,16 @@ jobs:
               head: 'toptal:changeset-release/master'
             })
             for await (let pr of data) {
+              // add to all of them label "no-jira"
+              github.rest.issues.addLabels({
+                owner: 'toptal',
+                repo: 'picasso',
+                issue_number: pr.number,
+                labels: [
+                  'no-jira'
+                ]
+              })
+            
               // append PR body with peerDependencies warning
               const hr = "\n_____"
               const warningTodo = "\n- [ ] ⚠️ "
@@ -113,13 +97,11 @@ jobs:
               const appendedMessage = hr + warningTodo + message
               const body = pr.body.includes(message) ? pr.body : pr.body + appendedMessage
 
-              // append title with [skip ci]
               github.rest.pulls.update({
                 owner: 'toptal',
                 repo: 'picasso',
                 pull_number: pr.number,
                 body: body,
-                title: pr.title.includes('[skip ci]') ? pr.title : `${pr.title} [skip ci]`,
               })
             }
 
