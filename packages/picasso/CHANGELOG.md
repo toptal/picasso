@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.4.0
+
+### Minor Changes
+
+- [#2969](https://github.com/toptal/picasso/pull/2969) [`15f613dd`](https://github.com/toptal/picasso/commit/15f613dde58ec389e345b5b08999b709bd3e6ca2) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### TagSelector
+
+  - introduce `closeOnSelect` prop that controls whether the options menu would be closed after selection. The default value is `true` - closing the options menu after each selection
+
 ## 26.3.3
 
 ### Patch Changes
