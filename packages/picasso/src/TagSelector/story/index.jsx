@@ -25,7 +25,8 @@ page
   )
   .addExample('TagSelector/story/KeepOpen.example.tsx', {
     title: 'With closeOnSelect disabled',
-    description: 'Do not hide the options on selection',
+    description:
+      'Disabling closeOnSelect can be useful when the user always have to select multiple values at the same time',
     takeScreenshot: false,
   })
   .addExample('TagSelector/story/CustomOptionRenderer.example.tsx', {
