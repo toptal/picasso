@@ -109,6 +109,10 @@ export interface Props
     calendar?: string
     input?: string
   }
+  /** Adds a customized footer at the bottom of the calendar */
+  footer?: ReactNode
+  /** Shows orange dot indicator in days between a date range */
+  indicatedIntervals?: { start: Date; end: Date }[]
 }
 
 export const DatePicker = (props: Props) => {
@@ -137,6 +141,8 @@ export const DatePicker = (props: Props) => {
     status,
     popperProps,
     disabled,
+    footer,
+    indicatedIntervals,
     ...rest
   } = props
   const classes = useStyles()
@@ -409,12 +415,14 @@ export const DatePicker = (props: Props) => {
             minDate={normalizedMinDate}
             maxDate={normalizedMaxDate}
             disabledIntervals={disabledIntervals}
+            indicatedIntervals={indicatedIntervals}
             renderDay={renderDay}
             onChange={handleCalendarChange}
             onBlur={handleBlur}
             className={classes.calendar}
             weekStartsOn={weekStartsOn}
           />
+          {footer && <div className={classes.footer}>{footer}</div>}
         </Popper>
       )}
     </>

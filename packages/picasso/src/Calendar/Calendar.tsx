@@ -17,6 +17,7 @@ import {
 import styles from './styles'
 import CalendarMonthHeader from '../CalendarMonthHeader'
 import CalendarContainer from '../CalendarContainer'
+import { CalendarIndicators } from '../CalendarIndicators'
 
 type SimpleReactCalendarRangeType = {
   start: Date
@@ -53,6 +54,7 @@ export interface Props
   value?: DateOrDateRangeType
   activeMonth?: Date
   disabledIntervals?: { start: Date; end: Date }[]
+  indicatedIntervals?: { start: Date; end: Date }[]
   weekStartsOn?: number
   renderMonthHeader?: (props: MonthHeaderProps) => JSX.Element | null
   renderRoot?: (props: CalendarProps) => JSX.Element
@@ -79,6 +81,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     minDate,
     maxDate,
     disabledIntervals,
+    indicatedIntervals,
     renderDay,
     weekStartsOn,
     renderRoot = rootProps => <CalendarContainer {...rootProps} />,
@@ -132,7 +135,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               className={cx(classes.day, {
                 [classes.selected]: isSelected,
                 [classes.selectable]: isSelectable,
-                [classes.today]: isToday,
                 [classes.grayed]:
                   (isMonthPrev || isMonthNext) && !isSelected && !isDisabled,
                 [classes.disabled]: isDisabled || !isSelectable,
@@ -145,6 +147,12 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               type='button'
             >
               {getDayFormatted(date)}
+              <CalendarIndicators
+                date={date}
+                indicatedIntervals={indicatedIntervals}
+                isSelected={isSelected}
+                isToday={isToday}
+              />
             </button>
           )
 
