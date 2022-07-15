@@ -15,7 +15,7 @@ import type { InputProps } from '../Input'
 import Input from '../Input'
 import InputAdornment from '../InputAdornment'
 import { noop } from '../utils'
-import type { DateOrDateRangeType, DateRangeType, DayProps } from '../Calendar'
+import type { DateOrDateRangeType, DateRangeType } from '../Calendar'
 import Calendar from '../Calendar'
 import {
   DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
@@ -32,7 +32,8 @@ import {
   getStartOfTheDayDate,
 } from './utils'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import type { Status } from '../OutlinedInput'
+import { Status } from '../OutlinedInput'
+import {DayProps} from "react-day-picker";
 
 const EMPTY_INPUT_VALUE = ''
 
@@ -88,7 +89,7 @@ export interface Props
   renderDay?: (args: DayProps) => ReactNode
   popperContainer?: HTMLElement
   /** Index of the first day of the week (0 - Sunday). Default is 1 - Monday */
-  weekStartsOn?: number
+  weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
   /** IANA timezone to display and edit date(s) */
   timezone?: string
   /** Custom parser for `DatePicker`'s input value to process custom input value, like, human-readable dates */

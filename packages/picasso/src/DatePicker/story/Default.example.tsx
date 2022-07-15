@@ -11,6 +11,7 @@ const DefaultExample = () => {
         onChange={date => {
           setDatepickerValue(date as Date)
         }}
+        weekStartsOn={1}
       />
     </div>
   )
