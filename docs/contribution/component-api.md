@@ -12,7 +12,7 @@ _universal component_ - a component that suppports both _compound_ and regular w
 
 ## Principles
 
-- Picasso components prefer native HTLM components compatibility instead of designing new APIs when possible
+- Picasso components prefer native HTML components compatibility instead of designing new APIs when possible
 
 ## Practical cases
 
