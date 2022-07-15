@@ -10,6 +10,10 @@ _content props_ - props that provide content for the component
 
 _universal component_ - a component that suppports both _compound_ and regular way of usage
 
+## Principles
+
+- Picasso components prefer native HTLM components compatibility instead of designing new APIs when possible
+
 ## Practical cases
 
 #### Q: Should I choose a _compound component_ or _facade_ pattern for my NewComponent?
