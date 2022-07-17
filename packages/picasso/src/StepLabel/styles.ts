@@ -25,6 +25,12 @@ export default ({ palette, breakpoints: { down } }: Theme) =>
     hidden: {
       display: 'none',
     },
+    labelContainerOverflowEllipsis: {
+      display: 'grid',
+    },
+    labelOverflowEllipsis: {
+      overflow: 'hidden',
+    },
     root: {
       marginLeft: '0.5em',
     },

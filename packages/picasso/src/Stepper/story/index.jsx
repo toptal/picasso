@@ -23,3 +23,7 @@ page
   .addExample('Stepper/story/Default.example.tsx', 'Default')
   .addExample('Stepper/story/WithoutLabels.example.tsx', 'Without Labels')
   .addExample('Stepper/story/Vertical.example.tsx', 'Vertical')
+  .addExample('Stepper/story/Overflow.example.tsx', {
+    title: 'Overflow',
+    takeScreenshot: false,
+  })

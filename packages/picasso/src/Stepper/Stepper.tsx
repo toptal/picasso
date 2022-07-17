@@ -18,6 +18,8 @@ export interface StepperBaseProps
   active?: number
   /** Array of the step labels */
   steps: string[]
+  /** Enable overflow ellipsis for labels */
+  overflowEllipsis?: boolean
 }
 
 export interface Props extends StepperBaseProps {
@@ -37,6 +39,7 @@ const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
     style,
     titleCase,
     direction = 'horizontal',
+    overflowEllipsis = false,
     ...rest
   } = props
   const classes = useStyles()
@@ -57,6 +60,7 @@ const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
             active={stepIndex === active}
             hideLabel={hideLabels}
             titleCase={titleCase}
+            overflowEllipsis={overflowEllipsis}
           >
             {label}
           </StepLabel>
@@ -70,6 +74,7 @@ Stepper.defaultProps = {
   active: 0,
   hideLabels: false,
   direction: 'horizontal',
+  overflowEllipsis: false,
   steps: [],
 }
 
