@@ -7,6 +7,7 @@ import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 import StepIcon from '../StepIcon'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
+import TypographyOverflow from '../TypographyOverflow'
 
 export interface Props
   extends BaseProps,
@@ -16,6 +17,7 @@ export interface Props
   children: string
   active?: boolean
   completed?: boolean
+  overflowEllipsis?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepLabel' })
@@ -27,6 +29,7 @@ export const StepLabel = (props: Props) => {
     children,
     completed,
     hideLabel,
+    overflowEllipsis,
     style,
     titleCase: propsTitleCase,
     ...rest
@@ -34,22 +37,35 @@ export const StepLabel = (props: Props) => {
   const titleCase = useTitleCase(propsTitleCase)
   const classes = useStyles()
 
+  const withOverflowEllipsis = !hideLabel && overflowEllipsis
+  const labelElement = (
+    <span className={classes.label}>
+      {titleCase ? toTitleCase(children) : children}
+    </span>
+  )
+
   return (
     <MUIStepLabel
       {...rest}
       classes={{
         labelContainer: cx({
           [classes.root]: !hideLabel || active,
+          [classes.labelContainerOverflowEllipsis]: withOverflowEllipsis,
         }),
-        label: cx({ [classes.hidden]: hideLabel && !active }),
+        label: cx({
+          [classes.hidden]: hideLabel && !active,
+          [classes.labelOverflowEllipsis]: withOverflowEllipsis,
+        }),
       }}
       className={className}
       icon={<StepIcon active={active} completed={completed} />}
       style={style}
     >
-      <span className={classes.label}>
-        {titleCase ? toTitleCase(children) : children}
-      </span>
+      {withOverflowEllipsis ? (
+        <TypographyOverflow>{labelElement}</TypographyOverflow>
+      ) : (
+        labelElement
+      )}
     </MUIStepLabel>
   )
 }
