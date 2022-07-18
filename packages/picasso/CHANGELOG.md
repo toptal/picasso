@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.5.0
+
+### Minor Changes
+
+- [#2997](https://github.com/toptal/picasso/pull/2997) [`eaf8bd3e`](https://github.com/toptal/picasso/commit/eaf8bd3ea3fcd47511bba1b397e81a5639229cb4) Thanks [@sanex3339](https://github.com/sanex3339)! - ---
+
+  ### Stepper
+
+  Add `overflowEllipsis` prop to enable proper ellipsis overflow for `Stepper` labels
+
 ## 26.4.0
 
 ### Minor Changes
