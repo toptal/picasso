@@ -13218,21 +13218,7 @@ happo-cypress@^3.0.1:
   dependencies:
     happo-e2e "^1.0.3"
 
-happo-e2e@^1.0.3, happo-e2e@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/happo-e2e/-/happo-e2e-1.1.0.tgz"
-  integrity sha512-6vHmYfqnCNr+Eur+rOzUSGrsCsjBXtNFi/PwDkyk5ejRJ072aQEL7VnDosEsbiNMK5uCUsX5UprV4L1buezzpA==
-  dependencies:
-    archiver "^5.3.0"
-    base64-stream "^1.0.0"
-    crypto-js "^4.1.1"
-    https-proxy-agent "^5.0.0"
-    mkdirp "^1.0.4"
-    node-fetch "^2.0.0"
-    parse-srcset "^1.0.2"
-    string.prototype.replaceall "^1.0.6"
-
-happo-e2e@^1.2.0:
+happo-e2e@^1.0.3, happo-e2e@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/happo-e2e/-/happo-e2e-1.2.0.tgz#a7bdc71c48fe4fcdd51fc9dfac0c58a7410017d3"
   integrity sha512-F94HEJgAq1dnZXlty9t7E/uTHrKJlTsem1oqkPpH6EkqXKasWGShEo+f74YvXzxwBlzs+Kw3vVT0E+ibOVmKHw==

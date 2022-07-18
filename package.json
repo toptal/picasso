@@ -89,7 +89,7 @@
     "fs-extra": "^8.0.1",
     "github-markdown-css": "^5.1.0",
     "happo-cypress": "^3.0.1",
-    "happo-e2e": "^1.1.0",
+    "happo-e2e": "^1.2.0",
     "happo-plugin-storybook": "^3.0.0",
     "happo.io": "^7.2.1",
     "lerna": "^5.1.6",
