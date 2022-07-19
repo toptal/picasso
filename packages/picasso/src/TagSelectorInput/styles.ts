@@ -17,6 +17,7 @@ export default () =>
       cursor: 'pointer',
 
       '& > input': {
+        minWidth: rem('48px'),
         flexGrow: 1,
         width: 0,
         height: rem('24px'),
