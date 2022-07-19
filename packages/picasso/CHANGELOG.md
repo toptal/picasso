@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.5.1
+
+### Patch Changes
+
+- [#3002](https://github.com/toptal/picasso/pull/3002) [`035e7368`](https://github.com/toptal/picasso/commit/035e73683f3133abb101eed1d531579ba3784eab) Thanks [@SergeyKolchenko](https://github.com/SergeyKolchenko)! - ---
+
+  ### TagSelector
+
+  - support all testids values inherited from Autocomplete
+
 ## 26.5.0
 
 ### Minor Changes
