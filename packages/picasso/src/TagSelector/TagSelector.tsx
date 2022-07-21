@@ -133,7 +133,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       renderLabel: customRenderLabel,
       renderOption,
       showOtherOption,
-      value: values = [],
+      value,
       width,
       popperContainer,
       popperOptions,
@@ -142,6 +142,9 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       testIds,
       ...rest
     } = props
+
+    // being sure that values will be an array
+    const values = value ? value : []
 
     usePropDeprecationWarning({
       props,
