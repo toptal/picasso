@@ -30,7 +30,7 @@ export const TagSelector = (props: Props) => {
       {(inputProps: TagSelectorProps) => {
         const { value, ...restOfInputProps } = inputProps
         // avoid passing empty string to TagSelector
-        const valueAsArray = value ? value : []
+        const valueAsArray = Array.isArray(value) ? value : []
 
         return <PicassoTagSelector {...restOfInputProps} value={valueAsArray} />
       }}
