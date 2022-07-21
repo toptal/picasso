@@ -34,10 +34,6 @@ export const TagSelector = (props: Props) => {
   )
 }
 
-TagSelector.defaultProps = {
-  initialValue: [],
-}
-
 TagSelector.displayName = 'TagSelector'
 
 export default TagSelector
