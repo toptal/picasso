@@ -37,6 +37,10 @@ const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
   return result.length > 0 ? result : null
 }
 
+const initialValues = {
+  'default-gender': 'female',
+}
+
 const Example = () => {
   const [skillInputValue, setSkillInputValue] =
     useState<string>(EMPTY_INPUT_VALUE)
@@ -52,7 +56,7 @@ const Example = () => {
     <Form
       autoComplete='off'
       onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
-      initialValues={{ 'default-gender': 'female' }}
+      initialValues={initialValues}
     >
       <Form.Input
         enableReset
