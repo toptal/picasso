@@ -56,8 +56,7 @@ const renderForm = (
 }
 
 interface FormData {
-  firstName: string
-  skills: any[]
+  skills: { value: string; text: string }[]
 }
 
 const skillOptions = [
@@ -67,14 +66,14 @@ const skillOptions = [
 ]
 
 const initialValues: FormData = {
-  firstName: 'Bruce',
   skills: [skillOptions[0]],
 }
 
-const renderFormWithInitialValues = (onSubmit: (values: FormData) => void) => {
+const renderTagSelectorWithInitialValue = (
+  onSubmit: (values: FormData) => void
+) => {
   return render(
     <Form onSubmit={values => onSubmit(values)} initialValues={initialValues}>
-      <Form.Input name='firstName' placeholder='test input' />
       <Form.TagSelector
         name='skills'
         label='Skills'
@@ -187,11 +186,11 @@ describe('Form', () => {
     })
   })
 
-  describe('when initial values provided', () => {
-    it('fills up the fields with provided value', async () => {
+  describe('when initial values provided to form', () => {
+    it('fills TagSelector field with provided values', async () => {
       const onSubmit = jest.fn()
 
-      const { getByText } = renderFormWithInitialValues(onSubmit)
+      const { getByText } = renderTagSelectorWithInitialValue(onSubmit)
 
       await act(() => {
         fireEvent.click(getByText('Submit'))
