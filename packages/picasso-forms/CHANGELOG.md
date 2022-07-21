@@ -1,5 +1,15 @@
 # Change Log
 
+## 46.0.5
+
+### Patch Changes
+
+- [#3008](https://github.com/toptal/picasso/pull/3008) [`bad2a80e`](https://github.com/toptal/picasso/commit/bad2a80ee0edcd5dbd9ed198b1baacc0e67e117a) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### TagSelector
+
+  - fix using TagSelector with form's initial values
+
 ## 46.0.4
 
 ### Patch Changes
