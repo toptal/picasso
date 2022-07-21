@@ -55,6 +55,37 @@ const renderForm = (
   )
 }
 
+interface FormData {
+  firstName: string
+  skills: any[]
+}
+
+const skillOptions = [
+  { value: '0', text: 'HTML' },
+  { value: '1', text: 'CSS' },
+  { value: '2', text: 'Javascript' },
+]
+
+const initialValues: FormData = {
+  firstName: 'Bruce',
+  skills: [skillOptions[0]],
+}
+
+const renderFormWithInitialValues = (onSubmit: (values: FormData) => void) => {
+  return render(
+    <Form onSubmit={values => onSubmit(values)} initialValues={initialValues}>
+      <Form.Input name='firstName' placeholder='test input' />
+      <Form.TagSelector
+        name='skills'
+        label='Skills'
+        options={skillOptions}
+        inputValue=''
+      />
+      <Button type='submit'>Submit</Button>
+    </Form>
+  )
+}
+
 const scrollToMock = scrollTo as jest.Mock
 
 describe('Form', () => {
@@ -153,6 +184,20 @@ describe('Form', () => {
           expect(getByTestId('valid-icon')).toBeInTheDocument()
         })
       })
+    })
+  })
+
+  describe('when initial values provided', () => {
+    it('fills up the fields with provided value', async () => {
+      const onSubmit = jest.fn()
+
+      const { getByText } = renderFormWithInitialValues(onSubmit)
+
+      await act(() => {
+        fireEvent.click(getByText('Submit'))
+      })
+
+      expect(onSubmit).toHaveBeenCalledWith(initialValues)
     })
   })
 })

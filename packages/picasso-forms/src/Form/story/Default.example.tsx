@@ -39,7 +39,6 @@ const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
 
 const initialValues = {
   'default-gender': 'female',
-  'default-skills': [skills[0]],
 }
 
 const Example = () => {
