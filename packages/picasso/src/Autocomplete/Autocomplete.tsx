@@ -107,6 +107,10 @@ export interface Props
   enableAutofill?: boolean
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
+  /** Callback invoked when reset button was clicked */
+  onResetClick?: (
+    event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>
+  ) => void
   /** DOM element that wraps the Popper */
   popperContainer?: HTMLElement
   /** Options provided to the popper.js instance */
@@ -156,6 +160,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onFocus,
       onKeyDown,
       onOtherOptionSelect,
+      onResetClick,
       onSelect,
       options,
       otherOptionText = 'Other option: ',
@@ -215,6 +220,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       getDisplayValue,
       onSelect,
       onOtherOptionSelect,
+      onResetClick,
       onChange,
       onKeyDown,
       onFocus,
@@ -350,6 +356,7 @@ Autocomplete.defaultProps = {
   onFocus: () => {},
   onBlur: () => {},
   onOtherOptionSelect: () => {},
+  onResetClick: () => {},
   onSelect: () => {},
   options: [],
   otherOptionText: 'Other option: ',

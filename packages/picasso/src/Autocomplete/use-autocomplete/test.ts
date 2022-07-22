@@ -223,6 +223,25 @@ describe('useAutocomplete', () => {
     })
   })
 
+  it('calls onResetClick callback on reset click', () => {
+    const onResetClick = jest.fn()
+    const { result } = renderUseAutocomplete({ value: 'Picasso', onResetClick })
+
+    const input = result.current.getInputProps()
+
+    const stopPropagation = jest.fn()
+
+    act(() => {
+      input.onResetClick({ stopPropagation } as any)
+    })
+
+    expect(stopPropagation).toHaveBeenCalledTimes(1)
+    expect(onResetClick).toHaveBeenCalledTimes(1)
+    expect(onResetClick).toHaveBeenCalledWith({
+      stopPropagation,
+    })
+  })
+
   it('closes menu on blur', () => {
     const { result } = renderUseAutocomplete()
 

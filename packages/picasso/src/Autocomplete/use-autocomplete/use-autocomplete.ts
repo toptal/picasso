@@ -79,6 +79,9 @@ export interface Props {
     value: string,
     event: MouseEvent | KeyboardEvent
   ) => void
+  onResetClick?: (
+    event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>
+  ) => void
   onChange?: (value: string, options: ChangedOptions) => void
   onKeyDown?: (
     event: KeyboardEvent<HTMLInputElement>,
@@ -103,6 +106,7 @@ export const useAutocomplete = ({
   onBlur = () => {},
   onSelect = () => {},
   onOtherOptionSelect = () => {},
+  onResetClick = () => {},
   getDisplayValue,
   enableReset,
   showOtherOption,
@@ -300,6 +304,7 @@ export const useAutocomplete = ({
     ) => {
       event.stopPropagation()
       handleChange(getDisplayValue(null))
+      onResetClick(event)
     },
   })
 
