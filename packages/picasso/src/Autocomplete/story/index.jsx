@@ -107,3 +107,9 @@ when it makes sense to have autofill enabled.
       'we have to show the "Powered By Google" label.',
     takeScreenshot: false,
   })
+  .addExample('Autocomplete/story/WithOnResetClick.example.tsx', {
+    title: 'With onResetClick callback',
+    description:
+      'If you need to trigger a callback after Autocomplete input is cleared',
+    takeScreenshot: false,
+  })
