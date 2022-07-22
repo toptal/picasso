@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.6.0
+
+### Minor Changes
+
+- [#3010](https://github.com/toptal/picasso/pull/3010) [`ae9ff336`](https://github.com/toptal/picasso/commit/ae9ff336efe04e3514cc7ed3d019fb3a48ddfe95) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### Autocomplete
+
+  - add `onResetClick` prop
+
 ## 26.5.2
 
 ### Patch Changes
