@@ -11,7 +11,7 @@ spacingsPage
   .addTextSection(
     `
 In this tutorial you will learn how to create simple card component using
-[\`Container\`](..?path=/story/layout-folder--container) component from Picasso. 
+[\`Container\`](..?path=/story/layout-container--container) component from Picasso. 
 We will focus on explaning inner and outer spacings and stacking of components using flexbox.
 Card will render info about job position opening and will show status of filling the position
 with list of candidates in a pipeline.
@@ -24,7 +24,7 @@ with list of candidates in a pipeline.
   )
   .addExample('tutorials/spacings/story/Spacings.final.example.tsx', {
     title: 'End result',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
 
 /** Tutorial */
@@ -38,7 +38,7 @@ tutorialChapter
   .addTextSection(
     `
 We will start with defining basic card container by using
-[\`Paper\`](..?path=/story/layout-folder--paper) and [\`Container\`](..?path=/story/layout-folder--container)
+[\`Paper\`](..?path=/story/layout-paper--paper) and [\`Container\`](..?path=/story/layout-container--container)
 component to get elevated item with inner spacing. 
 
 We are using \`padded='medium'\` container's prop to define inner spacing and it is translated to
@@ -46,12 +46,12 @@ We are using \`padded='medium'\` container's prop to define inner spacing and it
 use of size types: \`xsmall, small, medium and large\` to get standard spacings.
   `,
     {
-      title: 'First step: Define Card container'
+      title: 'First step: Define Card container',
     }
   )
   .addExample('tutorials/spacings/story/Spacings.1.example.tsx', {
     id: 'spacings-1',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
 
 /** Second step */
@@ -69,12 +69,12 @@ As you can see we are creating a layout by composing containers inside other con
 is a basic building block along with \`Grid\`.
   `,
     {
-      title: 'Second step: Add Card header'
+      title: 'Second step: Add Card header',
     }
   )
   .addExample('tutorials/spacings/story/Spacings.2.example.tsx', {
     id: 'spacings-2',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
 
 /** Third step */
@@ -97,10 +97,10 @@ header container using \`bottom\` prop.
 And that's it, we have implemented a simple job position card.
   `,
     {
-      title: 'Third step: Render candidates list'
+      title: 'Third step: Render candidates list',
     }
   )
   .addExample('tutorials/spacings/story/Spacings.final.example.tsx', {
     id: 'spacings-3',
-    takeScreenshot: false
+    takeScreenshot: false,
   })
