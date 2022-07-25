@@ -51,7 +51,7 @@ exports[`Accordion renders collapsed by default 1`] = `
         </div>
       </div>
       <div
-        class="MuiCollapse-container MuiCollapse-hidden"
+        class="MuiCollapse-root MuiCollapse-hidden"
         style="min-height: 0px;"
       >
         <div
@@ -113,7 +113,7 @@ exports[`Accordion renders custom icon when passed 1`] = `
         </div>
       </div>
       <div
-        class="MuiCollapse-container MuiCollapse-hidden"
+        class="MuiCollapse-root MuiCollapse-hidden"
         style="min-height: 0px;"
       >
         <div
@@ -195,7 +195,7 @@ exports[`Accordion renders disabled 1`] = `
         </div>
       </div>
       <div
-        class="MuiCollapse-container MuiCollapse-hidden"
+        class="MuiCollapse-root MuiCollapse-hidden"
         style="min-height: 0px;"
       >
         <div

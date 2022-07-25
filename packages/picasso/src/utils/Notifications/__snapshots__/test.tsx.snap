@@ -45,7 +45,7 @@ exports[`useNotifications error notification render 1`] = `
       class="makeStyles-top makeStyles-right makeStyles-root PicassoNotificationsProvider-root"
     >
       <div
-        class="MuiCollapse-container MuiCollapse-entered"
+        class="MuiCollapse-root MuiCollapse-entered"
         style="min-height: 0px;"
       >
         <div
@@ -163,7 +163,7 @@ exports[`useNotifications info notification render 1`] = `
       class="makeStyles-top makeStyles-right makeStyles-root PicassoNotificationsProvider-root"
     >
       <div
-        class="MuiCollapse-container MuiCollapse-entered"
+        class="MuiCollapse-root MuiCollapse-entered"
         style="min-height: 0px;"
       >
         <div
@@ -284,7 +284,7 @@ exports[`useNotifications success notification render 1`] = `
       class="makeStyles-top makeStyles-right makeStyles-root PicassoNotificationsProvider-root"
     >
       <div
-        class="MuiCollapse-container MuiCollapse-entered"
+        class="MuiCollapse-root MuiCollapse-entered"
         style="min-height: 0px;"
       >
         <div
