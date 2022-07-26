@@ -14,6 +14,7 @@ export default ({ palette, sizes }: Theme) =>
       height: '2.5rem',
       width: '2.5rem',
       minWidth: '2.5rem',
+      minHeight: '2.5em',
       verticalAlign: 'middle',
       fontSize: '0.75rem',
       userSelect: 'none',
@@ -27,6 +28,7 @@ export default ({ palette, sizes }: Theme) =>
       border: 'none',
       outline: 0,
       borderRadius: sizes.borderRadius.small,
+      flexDirection: 'column',
     },
     weekDays: {
       display: 'flex',
@@ -75,20 +77,6 @@ export default ({ palette, sizes }: Theme) =>
 
       '&$today:after': {
         backgroundColor: palette.common.white,
-      },
-    },
-    today: {
-      display: 'flex',
-      flexDirection: 'column',
-
-      '&:after': {
-        content: '""',
-        height: '0.25rem',
-        width: '0.25rem',
-        borderRadius: '50%',
-        background: palette.blue.main,
-        position: 'absolute',
-        bottom: '0.375rem',
       },
     },
     grayed: {
