@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.7.0
+
+### Minor Changes
+
+- [#2994](https://github.com/toptal/picasso/pull/2994) [`ada629ca`](https://github.com/toptal/picasso/commit/ada629ca32486603906803f7ecb62ac5e4db31b3) Thanks [@pedrobarrostech](https://github.com/pedrobarrostech)! - ---
+
+  ### DatePicker
+
+  - add custom footer and indicated date range options
+
 ## 26.6.0
 
 ### Minor Changes
