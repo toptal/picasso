@@ -20,6 +20,7 @@ concurrency:
 env:
   TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  HTTP_PROXY: http://${{ secrets.HTTP_PROXY }}
 
 jobs:
   build-docker-image:
