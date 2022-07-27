@@ -9,7 +9,7 @@ exports[`Input renders icon in the beginning 1`] = `
       class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionStart MuiInputAdornment-disablePointerEvents"
       >
         <svg
           class="PicassoSvgSearch16-root PicassoInputIconAdornment-icon"
@@ -56,7 +56,7 @@ exports[`Input renders icon in the end 1`] = `
       class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionStart MuiInputAdornment-disablePointerEvents"
       >
         <svg
           class="PicassoSvgSearch16-root PicassoInputIconAdornment-icon"
@@ -204,7 +204,7 @@ exports[`Input shows counter for multiline input 1`] = `
         rows="4"
       />
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
       />
       <fieldset
         aria-hidden="true"
@@ -261,11 +261,11 @@ exports[`Input shows counter for regular input 1`] = `
 
 exports[`Input shows excess chars for multiline input with exceeded limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
   data-testid="limit-adornment-multiline-label"
 >
   <div
-    class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+    class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
   >
     <span
       class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"
@@ -280,11 +280,11 @@ exports[`Input shows excess chars for multiline input with exceeded limit 1`] = 
 
 exports[`Input shows remaining chars for for multiline input with limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
   data-testid="limit-adornment-multiline-label"
 >
   <div
-    class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
+    class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
   >
     <span
       class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"

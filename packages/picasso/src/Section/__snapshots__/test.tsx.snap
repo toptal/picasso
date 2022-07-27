@@ -84,7 +84,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
         </div>
       </div>
       <div
-        class="MuiCollapse-container MuiCollapse-entered"
+        class="MuiCollapse-root MuiCollapse-entered"
         style="min-height: 0px;"
       >
         <div
@@ -140,7 +140,7 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
         </div>
       </div>
       <div
-        class="MuiCollapse-container MuiCollapse-entered"
+        class="MuiCollapse-root MuiCollapse-entered"
         style="min-height: 0px;"
       >
         <div
@@ -173,7 +173,7 @@ exports[`Section renders without header 1`] = `
       class="PicassoSection-default PicassoSection-root"
     >
       <div
-        class="MuiCollapse-container MuiCollapse-entered"
+        class="MuiCollapse-root MuiCollapse-entered"
         style="min-height: 0px;"
       >
         <div
