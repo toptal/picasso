@@ -104,8 +104,8 @@ jobs:
           PR_ID: ${{ github.event.pull_request.number }}
         with:
           jenkins_url: https://jenkins-build.toptal.net/
-          jenkins_user: toptal-jenkins
-          jenkins_token: ${{ secrets.TOPTAL_JENKINS_BUILD_TOKEN }}
+          jenkins_user: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
+          jenkins_token: ${{ secrets.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
           proxy: ${{ env.HTTP_PROXY }}
           job_name: picasso-docs
           job_params: |

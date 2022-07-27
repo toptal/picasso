@@ -9,9 +9,9 @@ on:
 env:
   SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
   REPOSITORY_NAME: ${{ github.event.repository.name }}
-  TOPTAL_BOT_USERNAME: ${{ secrets.TOPTAL_BOT_USERNAME }}
-  TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN: ${{ secrets.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
-  TOPTAL_JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_JENKINS_BUILD_TOKEN }}
+  TOPTAL_BOT_USERNAME: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
+  TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}
+  TOPTAL_JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
   HTTP_PROXY: http://${{ secrets.HTTP_PROXY }}
 
 jobs:
@@ -110,7 +110,7 @@ jobs:
         id: trigger-build
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
-          JENKINS_USER: toptal-jenkins
+          JENKINS_USER: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
         with:
           jenkins_url: https://jenkins-build.toptal.net/
           jenkins_user: ${{ env.JENKINS_USER }}
