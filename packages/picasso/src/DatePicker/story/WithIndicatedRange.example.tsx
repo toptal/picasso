@@ -13,6 +13,7 @@ const WithIndicatedRangeRendering = () => {
     <div style={{ height: '50vh' }}>
       <DatePicker
         value={datepickerValue}
+        today={new Date('2022-07-26')}
         indicatedIntervals={indicatedIntervals}
         onChange={date => {
           setDatepickerValue(date as Date)

@@ -109,6 +109,8 @@ export interface Props
     calendar?: string
     input?: string
   }
+  /** Date value for today. Default is new Date */
+  today?: Date
   /** Adds a customized footer at the bottom of the calendar */
   footer?: ReactNode
   /** Shows orange dot indicator in days between a date range */
@@ -143,6 +145,7 @@ export const DatePicker = (props: Props) => {
     disabled,
     footer,
     indicatedIntervals,
+    today,
     ...rest
   } = props
   const classes = useStyles()
@@ -421,6 +424,7 @@ export const DatePicker = (props: Props) => {
             onBlur={handleBlur}
             className={classes.calendar}
             weekStartsOn={weekStartsOn}
+            today={today}
           />
           {footer && <div className={classes.footer}>{footer}</div>}
         </Popper>
