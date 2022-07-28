@@ -78,7 +78,7 @@ describe('DatePicker', () => {
       <TestDatePicker
         indicatedIntervals={indicatedIntervals}
         value={new Date('2022-07-14')}
-        today={new Date('2022-07-26')}
+        today={new Date('2022-07-27')}
         testIds={{
           input: 'date-picker-with-indicators',
         }}
