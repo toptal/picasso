@@ -70,15 +70,14 @@ describe('DatePicker', () => {
 
   it('renders orange dot indicators in days between a date range', () => {
     const indicatedIntervals = [
-      { start: new Date('2022-07-11'), end: new Date('2022-07-16') },
-      { start: new Date('2022-07-18'), end: new Date('2022-07-23') },
+      { start: new Date('2021-07-11'), end: new Date('2021-07-16') },
+      { start: new Date('2021-07-18'), end: new Date('2021-07-23') },
     ]
 
     cy.mount(
       <TestDatePicker
         indicatedIntervals={indicatedIntervals}
-        value={new Date('2022-07-14')}
-        today={new Date('2022-07-27')}
+        value={new Date('2021-07-14')}
         testIds={{
           input: 'date-picker-with-indicators',
         }}

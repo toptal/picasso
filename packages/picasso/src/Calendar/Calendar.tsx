@@ -52,7 +52,6 @@ export interface Props
   maxDate?: Date
   range?: boolean
   value?: DateOrDateRangeType
-  today?: Date
   activeMonth?: Date
   disabledIntervals?: { start: Date; end: Date }[]
   indicatedIntervals?: { start: Date; end: Date }[]
@@ -87,7 +86,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     weekStartsOn,
     renderRoot = rootProps => <CalendarContainer {...rootProps} />,
     renderMonthHeader = CalendarMonthHeader,
-    today,
     ...rest
   } = props
 
@@ -108,7 +106,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         selected={getNormalizedValue(value)}
         onSelect={handleChange}
         customRender={renderRoot}
-        today={today}
         renderDay={(dayProps: DayProps) => {
           const {
             key,
