@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { DatePicker } from '@toptal/picasso'
 
 const WithIndicatedRangeRendering = () => {
-  const [datepickerValue, setDatepickerValue] = useState<Date>()
+  const [datepickerValue, setDatepickerValue] = useState<Date>(
+    new Date('2021-07-14')
+  )
 
   const indicatedIntervals = [
-    { start: new Date('2022-07-11'), end: new Date('2022-07-16') },
-    { start: new Date('2022-07-18'), end: new Date('2022-07-23') },
+    { start: new Date('2021-07-11'), end: new Date('2021-07-16') },
+    { start: new Date('2021-07-18'), end: new Date('2021-07-23') },
   ]
 
   return (
