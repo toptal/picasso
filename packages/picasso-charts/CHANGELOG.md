@@ -1,5 +1,15 @@
 # Change Log
 
+## 39.1.0
+
+### Minor Changes
+
+- [#3016](https://github.com/toptal/picasso/pull/3016) [`2082a952`](https://github.com/toptal/picasso/commit/2082a952874740fed64c4d698e500192377275ed) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Dependencies
+
+  - update material-ui to latest 4.x.x version
+
 ## 39.0.0
 
 ### Patch Changes
