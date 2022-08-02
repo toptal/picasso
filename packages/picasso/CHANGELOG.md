@@ -1,5 +1,35 @@
 # Change Log
 
+## 26.8.0
+
+### Minor Changes
+
+- [#3016](https://github.com/toptal/picasso/pull/3016) [`2082a952`](https://github.com/toptal/picasso/commit/2082a952874740fed64c4d698e500192377275ed) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Dependencies
+
+  - update material-ui to latest 4.x.x version
+
+### Patch Changes
+
+- [#3015](https://github.com/toptal/picasso/pull/3015) [`3ede7108`](https://github.com/toptal/picasso/commit/3ede71081b89fe74ad84d69253e677e9a97da643) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  ### Storybook
+
+  - fix broken links for `Paper` and `Container` components
+
+- [#3005](https://github.com/toptal/picasso/pull/3005) [`e0c883f8`](https://github.com/toptal/picasso/commit/e0c883f872b7ae322c831c324c342cccf91973be) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### TagSelector
+
+  - fix input's width issue after adding multiple tags
+
+- [#3014](https://github.com/toptal/picasso/pull/3014) [`e1727d95`](https://github.com/toptal/picasso/commit/e1727d952c25321117cdace3d814c79dbc53e521) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### TopBarMenu
+
+  - fix meta is invisible on small and medium screens
+
 ## 26.7.0
 
 ### Minor Changes
