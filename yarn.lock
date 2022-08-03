@@ -1800,10 +1800,10 @@
   resolved "https://registry.npmjs.org/@google-cloud/promisify/-/promisify-3.0.0.tgz"
   integrity sha512-91ArYvRgXWb73YvEOBMmOcJc0bDRs5yiVHnqkwoG0f3nm7nZuipllz6e7BvFESBvjkDTBC0zMD8QxedUwNLc1A==
 
-"@google-cloud/storage@^6.0.0":
-  version "6.2.3"
-  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-6.2.3.tgz#e3dae8708488cf2e0e4fbf0488083d9d279ee097"
-  integrity sha512-UJqn3Ln8wFBPLuwBaNu3PlhzQDL3EKKfP1+3mzLRQhcFqgpBSMPLDgAXxc6e9S0l0kqsi4GOuAA7fA+l/VAMjQ==
+"@google-cloud/storage@^6.2.3":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-6.3.0.tgz#0a9765416b659f54477da6611d9c12b914c04a61"
+  integrity sha512-Ah4wl9cWUEW+2lAqHsKauaLlPmbtdOdQkvJE6BFwmTSZhywYVtVHLcEpf5F+/GmmNTnirFGNdE7UjgbyOxcnRg==
   dependencies:
     "@google-cloud/paginator" "^3.0.7"
     "@google-cloud/projectify" "^3.0.0"
@@ -5445,13 +5445,13 @@
   resolved "https://registry.npmjs.org/@toptal/browserslist-config/-/browserslist-config-1.2.0.tgz"
   integrity sha512-eelB1Rg9HyOv8e0PdKnlBExOV0N0aj+EbQw0Ybvh8XoL0wUQGSQ3U8/dAIaVLD2+TYiCUQdwaXT3DexHnCD7IQ==
 
-"@toptal/davinci-bootstrap@3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-3.3.1.tgz#b26e1df104fd3f4c746fc9944a930ee2384d1c63"
-  integrity sha512-MNtiQvJUi6MYpKDom4OQKC2+pPdhVMhI1gzn3jf+nAGNNukAVahsZnTCvfTqTfZyIXlIIH3Z2ps8JFOZwsXcoQ==
+"@toptal/davinci-bootstrap@3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-3.3.3.tgz#5cefb9c3d01f2c52c05042fd4c79401fbabb8227"
+  integrity sha512-Zqs3OeJn9CXBe9PJFvH2qCI4pnetFrbu49Gnzm57DzbNl0Svt9cdtMfWcgsJAZd0r6vXn1srtyIrCLW1fiUnqA==
   dependencies:
     "@toptal/davinci-cli-shared" "1.5.4"
-    "@toptal/davinci-skeleton" "7.4.1"
+    "@toptal/davinci-skeleton" "7.5.0"
     "@toptal/davinci-skeleton-lib" "0.1.1"
     "@toptal/davinci-skeleton-sub-app" "1.2.0"
     find-yarn-workspace-root "^2.0.0"
@@ -5574,12 +5574,12 @@
     webpackbar "^4.0.0"
     workbox-webpack-plugin "^6.4.2"
 
-"@toptal/davinci-graphql-codegen@0.2.8":
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-graphql-codegen/-/davinci-graphql-codegen-0.2.8.tgz#7f0520e929cb87d350385a4bcf9839bac6d64448"
-  integrity sha512-87qeeGozP4ylb5NwlZh//ktB6DiFrRDVIpetcInYRWh/jSEhOa8ZWrNcYuEcUP9bVHEm7OES0+qSl/jCEFhVwg==
+"@toptal/davinci-graphql-codegen@0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-graphql-codegen/-/davinci-graphql-codegen-0.2.9.tgz#46703d9452a0939e1f1ee8d8c447cd1cb3bd162a"
+  integrity sha512-h9eA7WKGgb8eip2iBNKILLar8qbrW8BWYYbRJyaUMVUfwnSMS4vA9X16Lgg4JkBHtbqDK0TlOQ99K2sN7XncZQ==
   dependencies:
-    "@google-cloud/storage" "^6.0.0"
+    "@google-cloud/storage" "^6.2.3"
     "@graphql-codegen/add" "^3.1.0"
     "@graphql-codegen/cli" "^2.2.0"
     "@graphql-codegen/introspection" "^2.1.0"
@@ -5603,10 +5603,10 @@
     execa "^5.1.1"
     glob "^8.0.3"
 
-"@toptal/davinci-qa@11.2.5":
-  version "11.2.5"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-11.2.5.tgz#a4960890037b1918cacd352c5bb1670c0d80fefc"
-  integrity sha512-Rw+47MEjWNEYlY6sny7lF851VdbMmAbpl/cPxHiRK95KhQhPxva6txeXlA8bxF+Im2MV+TKrrWvW5x5hYYZzdQ==
+"@toptal/davinci-qa@11.3.0":
+  version "11.3.0"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-11.3.0.tgz#92058f865c7be1e06c7d495dfe2a90344cf440bf"
+  integrity sha512-lR2DD53H6jy1TTjFrGTdATfYhrSl20fmXP0e0hjuEThHkwFp7sv6CebVyUPrf5oYkPG+2eprUfREHiUNS19Yew==
   dependencies:
     "@babel/core" "^7.18.0"
     "@babel/preset-env" "^7.18.0"
@@ -5626,6 +5626,7 @@
     glob "^8.0.3"
     happo-cypress "^3.0.1"
     happo-e2e "^1.2.0"
+    happo-plugin-storybook "^3.0.0"
     happo.io "^7.2.1"
     jest "^28.1.0"
     jest-environment-jsdom "^28.1.0"
@@ -5647,22 +5648,22 @@
   resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton-sub-app/-/davinci-skeleton-sub-app-1.2.0.tgz#d6710691f9d2a586c78a42e3a9aad6058414569b"
   integrity sha512-h9aXK3NUOIf/ohaDvJIx/9zXMp0Cio5c5WMIq6IZttW/kOctisywvvVPE0paZBz0OvzNAyatS7rQyUc4rlp7Qw==
 
-"@toptal/davinci-skeleton@7.4.1":
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-7.4.1.tgz#3e12c1ad46725237c1b87ad32819db8a2b57770f"
-  integrity sha512-7qiJt4BI2Sy56rfuQMwUEP39g4WUrbucJI45J6EK6/26cAgtFC37nrc3plpSmjQZNbl+qGrMJLPqFDk8qNLOFg==
+"@toptal/davinci-skeleton@7.5.0":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-7.5.0.tgz#6c9b2c52ac2b4e687c31529fc43f912e9084b8a2"
+  integrity sha512-sd62Dn37Mp6C6p3s7W1uLRwJXTcwFmS+A8dNMGvxDVznGau0wizqrqWUL44B83tskoC+TKtJi9pCg4s16v8ibg==
 
-"@toptal/davinci-syntax@14.0.7":
-  version "14.0.7"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-14.0.7.tgz#a64289c3fa53110efc3949cb3d008ea022832f26"
-  integrity sha512-HoPKt3K+HhYYRezXSut2SbGyL4/1mvFhZMJ35mQBXsW5zPR4pIvDz8yeuteAcTxa/GFy10u5u/w9SXy+3EOmSw==
+"@toptal/davinci-syntax@14.0.8":
+  version "14.0.8"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-14.0.8.tgz#9199d3e726c56d7ff0c35adc994710fc84b6ad1f"
+  integrity sha512-KDGWjjhTFVRZL2UmZf4DePalLY9SItk3x+ErJAJCfyW3CeXqioicss/Roxm9t/TeCAACkZnhBziWMfaMr/Cb9w==
   dependencies:
     "@stylelint/postcss-css-in-js" "^0.37.2"
     "@toptal/davinci-cli-shared" "1.5.4"
     "@toptal/davinci-dir-lint" "^0.1.0"
     "@toptal/eslint-plugin-davinci" "5.3.1"
     "@typescript-eslint/eslint-plugin" "^5.19.0"
-    "@typescript-eslint/parser" "^5.29.0"
+    "@typescript-eslint/parser" "^5.30.7"
     eslint "^8.19.0"
     eslint-config-prettier "^8.5.0"
     eslint-config-prettier-standard "^4.0.1"
@@ -5684,18 +5685,18 @@
     prettier "^2.6.2"
     prettier-config-standard "^5.0.0"
     stylelint "^14.9.1"
-    stylelint-config-standard "^24.0.0"
+    stylelint-config-standard "^26.0.0"
     stylelint-config-styled-components "^0.1.1"
     stylelint-processor-styled-components "^1.10.0"
 
-"@toptal/davinci-workflow@1.11.3":
-  version "1.11.3"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-workflow/-/davinci-workflow-1.11.3.tgz#e76bca0d1f871f581d52b9afcfcf062516675371"
-  integrity sha512-UPfWnjZzgc48vz2EZFve3sV7k0EIvgxKQvarSzZNasL9wocdISC6mDmOl7v39+yWYgtZrmMrQ//u2ztJ+8aciQ==
+"@toptal/davinci-workflow@1.11.5":
+  version "1.11.5"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-workflow/-/davinci-workflow-1.11.5.tgz#ff2fc75eff2ae884ae5d6324fb108c2bbb1e875b"
+  integrity sha512-nIjrptkOZnwSvSmNEfPUYe9QPNVOq0VAe1bfEEhMTHUPP75ECLVh0QFndfJh8umoCGSuCG84fW30x+Kkq+OWpg==
   dependencies:
     "@toptal/davinci-cli-shared" "1.5.4"
     "@toptal/davinci-monorepo" "^6.6.2"
-    "@toptal/davinci-skeleton" "7.4.1"
+    "@toptal/davinci-skeleton" "7.5.0"
     chalk "^4.1.2"
     cosmiconfig "^7.0.1"
     fs-extra "^9.0.1"
@@ -5709,21 +5710,21 @@
     ora "^5.4.1"
     remark "^13.0.0"
 
-"@toptal/davinci@^18.4.2":
-  version "18.4.2"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-18.4.2.tgz#58c932173559f0bdb52aa41eeac2296594640a21"
-  integrity sha512-utQp5HZhPzD3aI9UPzc1OerCLNA7POXWjgdkgIJwTN8SEgl8A98cNWdkdi36rKz8x4+ZXeyujXVRuIVlH9DLHQ==
+"@toptal/davinci@^18.4.5":
+  version "18.4.5"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-18.4.5.tgz#9bc5b4072cebbf8ee93f9c6f5f8d7ace293b98e5"
+  integrity sha512-DM062zdRj4RoBGfHF3KwSU7TGZnzZvt5Q/9Hycz7Gg39iWn0b4IOJvr8Qwwfwi7XGZRtO54+du5W6eCEeely7Q==
   dependencies:
-    "@toptal/davinci-bootstrap" "3.3.1"
+    "@toptal/davinci-bootstrap" "3.3.3"
     "@toptal/davinci-ci" "2.0.6"
     "@toptal/davinci-cli-shared" "1.5.4"
     "@toptal/davinci-code" "1.6.0"
     "@toptal/davinci-engine" "7.4.2"
-    "@toptal/davinci-graphql-codegen" "0.2.8"
+    "@toptal/davinci-graphql-codegen" "0.2.9"
     "@toptal/davinci-monorepo" "6.6.2"
-    "@toptal/davinci-qa" "11.2.5"
-    "@toptal/davinci-syntax" "14.0.7"
-    "@toptal/davinci-workflow" "1.11.3"
+    "@toptal/davinci-qa" "11.3.0"
+    "@toptal/davinci-syntax" "14.0.8"
+    "@toptal/davinci-workflow" "1.11.5"
 
 "@toptal/eslint-plugin-davinci@5.3.1":
   version "5.3.1"
@@ -6742,14 +6743,14 @@
     semver "^7.3.5"
     tsutils "^3.21.0"
 
-"@typescript-eslint/parser@^5.29.0":
-  version "5.30.7"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.30.7.tgz#99d09729392aec9e64b1de45cd63cb81a4ddd980"
-  integrity sha512-Rg5xwznHWWSy7v2o0cdho6n+xLhK2gntImp0rJroVVFkcYFYQ8C8UJTSuTw/3CnExBmPjycjmUJkxVmjXsld6A==
+"@typescript-eslint/parser@^5.30.7":
+  version "5.32.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.32.0.tgz#1de243443bc6186fb153b9e395b842e46877ca5d"
+  integrity sha512-IxRtsehdGV9GFQ35IGm5oKKR2OGcazUoiNBxhRV160iF9FoyuXxjY+rIqs1gfnd+4eL98OjeGnMpE7RF/NBb3A==
   dependencies:
-    "@typescript-eslint/scope-manager" "5.30.7"
-    "@typescript-eslint/types" "5.30.7"
-    "@typescript-eslint/typescript-estree" "5.30.7"
+    "@typescript-eslint/scope-manager" "5.32.0"
+    "@typescript-eslint/types" "5.32.0"
+    "@typescript-eslint/typescript-estree" "5.32.0"
     debug "^4.3.4"
 
 "@typescript-eslint/scope-manager@5.19.0":
@@ -6760,13 +6761,13 @@
     "@typescript-eslint/types" "5.19.0"
     "@typescript-eslint/visitor-keys" "5.19.0"
 
-"@typescript-eslint/scope-manager@5.30.7":
-  version "5.30.7"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.30.7.tgz#8269a931ef1e5ae68b5eb80743cc515c4ffe3dd7"
-  integrity sha512-7BM1bwvdF1UUvt+b9smhqdc/eniOnCKxQT/kj3oXtj3LqnTWCAM0qHRHfyzCzhEfWX0zrW7KqXXeE4DlchZBKw==
+"@typescript-eslint/scope-manager@5.32.0":
+  version "5.32.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.32.0.tgz#763386e963a8def470580cc36cf9228864190b95"
+  integrity sha512-KyAE+tUON0D7tNz92p1uetRqVJiiAkeluvwvZOqBmW9z2XApmk5WSMV9FrzOroAcVxJZB3GfUwVKr98Dr/OjOg==
   dependencies:
-    "@typescript-eslint/types" "5.30.7"
-    "@typescript-eslint/visitor-keys" "5.30.7"
+    "@typescript-eslint/types" "5.32.0"
+    "@typescript-eslint/visitor-keys" "5.32.0"
 
 "@typescript-eslint/type-utils@5.19.0":
   version "5.19.0"
@@ -6787,10 +6788,10 @@
   resolved "https://registry.npmjs.org/@typescript-eslint/types/-/types-5.19.0.tgz"
   integrity sha512-zR1ithF4Iyq1wLwkDcT+qFnhs8L5VUtjgac212ftiOP/ZZUOCuuF2DeGiZZGQXGoHA50OreZqLH5NjDcDqn34w==
 
-"@typescript-eslint/types@5.30.7":
-  version "5.30.7"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.30.7.tgz#18331487cc92d0f1fb1a6f580c8ec832528079d0"
-  integrity sha512-ocVkETUs82+U+HowkovV6uxf1AnVRKCmDRNUBUUo46/5SQv1owC/EBFkiu4MOHeZqhKz2ktZ3kvJJ1uFqQ8QPg==
+"@typescript-eslint/types@5.32.0":
+  version "5.32.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.32.0.tgz#484273021eeeae87ddb288f39586ef5efeb6dcd8"
+  integrity sha512-EBUKs68DOcT/EjGfzywp+f8wG9Zw6gj6BjWu7KV/IYllqKJFPlZlLSYw/PTvVyiRw50t6wVbgv4p9uE2h6sZrQ==
 
 "@typescript-eslint/typescript-estree@5.19.0":
   version "5.19.0"
@@ -6805,13 +6806,13 @@
     semver "^7.3.5"
     tsutils "^3.21.0"
 
-"@typescript-eslint/typescript-estree@5.30.7":
-  version "5.30.7"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.30.7.tgz#05da9f1b281985bfedcf62349847f8d168eecc07"
-  integrity sha512-tNslqXI1ZdmXXrHER83TJ8OTYl4epUzJC0aj2i4DMDT4iU+UqLT3EJeGQvJ17BMbm31x5scSwo3hPM0nqQ1AEA==
+"@typescript-eslint/typescript-estree@5.32.0":
+  version "5.32.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.32.0.tgz#282943f34babf07a4afa7b0ff347a8e7b6030d12"
+  integrity sha512-ZVAUkvPk3ITGtCLU5J4atCw9RTxK+SRc6hXqLtllC2sGSeMFWN+YwbiJR9CFrSFJ3w4SJfcWtDwNb/DmUIHdhg==
   dependencies:
-    "@typescript-eslint/types" "5.30.7"
-    "@typescript-eslint/visitor-keys" "5.30.7"
+    "@typescript-eslint/types" "5.32.0"
+    "@typescript-eslint/visitor-keys" "5.32.0"
     debug "^4.3.4"
     globby "^11.1.0"
     is-glob "^4.0.3"
@@ -6859,12 +6860,12 @@
     "@typescript-eslint/types" "5.19.0"
     eslint-visitor-keys "^3.0.0"
 
-"@typescript-eslint/visitor-keys@5.30.7":
-  version "5.30.7"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.30.7.tgz#c093abae75b4fd822bfbad9fc337f38a7a14909a"
-  integrity sha512-KrRXf8nnjvcpxDFOKej4xkD7657+PClJs5cJVSG7NNoCNnjEdc46juNAQt7AyuWctuCgs6mVRc1xGctEqrjxWw==
+"@typescript-eslint/visitor-keys@5.32.0":
+  version "5.32.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.32.0.tgz#b9715d0b11fdb5dd10fd0c42ff13987470525394"
+  integrity sha512-S54xOHZgfThiZ38/ZGTgB2rqx51CMJ5MCfVT2IplK4Q7hgzGfe0nLzLCcenDnc/cSjP568hdeKfeDcBgqNHD/g==
   dependencies:
-    "@typescript-eslint/types" "5.30.7"
+    "@typescript-eslint/types" "5.32.0"
     eslint-visitor-keys "^3.3.0"
 
 "@webassemblyjs/ast@1.11.1":
@@ -22358,17 +22359,17 @@ styled-components@^5.3.5:
     shallowequal "^1.1.0"
     supports-color "^5.5.0"
 
-stylelint-config-recommended@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/stylelint-config-recommended/-/stylelint-config-recommended-6.0.0.tgz"
-  integrity sha512-ZorSSdyMcxWpROYUvLEMm0vSZud2uB7tX1hzBZwvVY9SV/uly4AvvJPPhCcymZL3fcQhEQG5AELmrxWqtmzacw==
+stylelint-config-recommended@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-recommended/-/stylelint-config-recommended-8.0.0.tgz#7736be9984246177f017c39ec7b1cd0f19ae9117"
+  integrity sha512-IK6dWvE000+xBv9jbnHOnBq01gt6HGVB2ZTsot+QsMpe82doDQ9hvplxfv4YnpEuUwVGGd9y6nbaAnhrjcxhZQ==
 
-stylelint-config-standard@^24.0.0:
-  version "24.0.0"
-  resolved "https://registry.npmjs.org/stylelint-config-standard/-/stylelint-config-standard-24.0.0.tgz"
-  integrity sha512-+RtU7fbNT+VlNbdXJvnjc3USNPZRiRVp/d2DxOF/vBDDTi0kH5RX2Ny6errdtZJH3boO+bmqIYEllEmok4jiuw==
+stylelint-config-standard@^26.0.0:
+  version "26.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-standard/-/stylelint-config-standard-26.0.0.tgz#4701b8d582d34120eec7d260ba779e4c2d953635"
+  integrity sha512-hUuB7LaaqM8abvkOO84wh5oYSkpXgTzHu2Zza6e7mY+aOmpNTjoFBRxSLlzY0uAOMWEFx0OMKzr+reG1BUtcqQ==
   dependencies:
-    stylelint-config-recommended "^6.0.0"
+    stylelint-config-recommended "^8.0.0"
 
 stylelint-config-styled-components@^0.1.1:
   version "0.1.1"
