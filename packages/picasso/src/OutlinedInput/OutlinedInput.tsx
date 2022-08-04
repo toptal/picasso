@@ -218,8 +218,8 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
       endAdornment={endAdornment}
       multiline={multiline}
       autoFocus={autoFocus}
-      rows={rows}
-      rowsMax={rowsMax}
+      minRows={rows}
+      maxRows={rowsMax}
       onChange={onChange}
       disabled={disabled}
     />
