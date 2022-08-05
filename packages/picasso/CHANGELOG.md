@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.9.0
+
+### Minor Changes
+
+- [#3029](https://github.com/toptal/picasso/pull/3029) [`5833af3c`](https://github.com/toptal/picasso/commit/5833af3cd47fae18d68f839f6b20a401f7133d0a) Thanks [@ascrazy](https://github.com/ascrazy)! - ---
+
+  ### Drawer
+
+  - add `transitionProps` prop for better control over open/close transitions
+
 ## 26.8.0
 
 ### Minor Changes
