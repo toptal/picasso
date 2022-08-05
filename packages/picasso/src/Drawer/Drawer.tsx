@@ -1,7 +1,7 @@
 import MUIDrawer from '@material-ui/core/Drawer'
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
 import React, { ReactNode } from 'react'
 
@@ -31,6 +31,8 @@ export interface Props extends BaseProps {
   onClose?: () => void
   /** Width of Drawer */
   width?: WidthType
+  /** Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) */
+  transitionProps?: TransitionProps
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoDrawer' })
@@ -43,6 +45,7 @@ export const Drawer = (props: Props) => {
     onClose,
     title,
     width = 'regular',
+    transitionProps,
     ...rest
   } = props
   const classes = useStyles()
@@ -74,6 +77,7 @@ export const Drawer = (props: Props) => {
       disablePortal={disablePortal}
       container={container}
       ModalProps={{ style: { zIndex: theme.zIndex.drawer } }}
+      SlideProps={transitionProps}
     >
       <Container
         flex
