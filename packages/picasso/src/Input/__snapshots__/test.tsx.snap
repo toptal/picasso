@@ -107,9 +107,17 @@ exports[`Input should show manual resize handler 1`] = `
         autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoInput-inputMultilineResizable PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         rows="4"
+        style="height: 0px; overflow: hidden;"
       >
         Some value
       </textarea>
+      <textarea
+        aria-hidden="true"
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoInput-inputMultilineResizable PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        readonly=""
+        style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); width: 100%;"
+        tabindex="-1"
+      />
       <fieldset
         aria-hidden="true"
         class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
@@ -202,6 +210,14 @@ exports[`Input shows counter for multiline input 1`] = `
         autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         rows="4"
+        style="height: 0px; overflow: hidden;"
+      />
+      <textarea
+        aria-hidden="true"
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        readonly=""
+        style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); width: 100%;"
+        tabindex="-1"
       />
       <div
         class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
