@@ -37,6 +37,20 @@ const CustomContentExample = () => (
   </Container>
 )
 
+const CustomContentStyleExample = () => (
+  <Container padded='medium'>
+    <Dropdown
+      content={<div>custom content height</div>}
+      contentStyle={{
+        height: '25rem',
+        maxHeight: '25rem',
+      }}
+    >
+      <Button data-testid='trigger'>Open dropdown</Button>
+    </Dropdown>
+  </Container>
+)
+
 const ComplexContent = () => {
   return (
     <Container padded='medium'>
@@ -84,6 +98,17 @@ describe('Dropdown', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'custom-content/after-clicked',
+    })
+  })
+
+  it('renders with custom content style', () => {
+    cy.mount(<CustomContentStyleExample />)
+
+    cy.getByTestId('trigger').realClick()
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'custom-content-style/after-clicked',
     })
   })
 })

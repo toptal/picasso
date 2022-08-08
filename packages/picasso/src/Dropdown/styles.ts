@@ -1,6 +1,14 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 import '../Popover/styles'
 
+export type StyleProps = {
+  /** Control content element style */
+  contentStyle?: {
+    height?: string
+    maxHeight?: string
+  }
+}
+
 export default ({ screens, shadows, palette }: Theme) =>
   createStyles({
     root: {
@@ -51,4 +59,7 @@ export default ({ screens, shadows, palette }: Theme) =>
         maxHeight: '100vh',
       },
     },
+    contentStyle: ({ contentStyle }: StyleProps) => ({
+      ...contentStyle,
+    }),
   })
