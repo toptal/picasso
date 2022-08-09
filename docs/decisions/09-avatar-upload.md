@@ -2,32 +2,32 @@
 
 ## Problem
 
-There is a new feature to get avatar uploads through `Avatar` component. So the component will look like an avatar but after hovering, it will show file upload mechanism to the user.
+There is a new feature to help users upload their avatars. So the component will have the shape of an avatar but it will act like a file input. If the input has a selected or uploaded image, the image will be displayed in the background.
 
-### Requirements
+### Requirements
 
 - It has all states like a FileInput
-- It can also act like a field so that if field is empty, user should be notified after form submission.
-- It is also expected to show warning and error according to the file which user is trying to upload.
+- It can also act like a field so that if the field is empty, the user should be notified after form submission.
+- It is also expected to show warning and error according to the file that which user is trying to upload.
 - Drag-and-drop is not required but it is nice to have
 
 ## Proposal
 
-There can be a new component called `AvatarUpload` which will render `Avatar` as default and will use `useDropzone` from `react-dropzone` for hovered state.
+There can be a new component called `AvatarUpload` which will render `AvatarWrapper` as default and will use `useDropzone` from `react-dropzone` for getting the file to upload. `ImageAvatar` will be used to display selected or uploaded avatar image in background.
 
-For form usages, we can implement the field wrapper layer just like `FieldInput` but the component should have the same behaviors like `Dropzone`.
+For form usages, we can implement the field wrapper layer just like `FileInput` but the component should have the same behaviors and callbacks as `Dropzone`.
 
 ### Advantages
 
-- Using `useDropzone` will bring drag-and-drop feature which might be requested later soon.
-- Use `useDropzone` directly instead of `Dropzone` because `Dropzone` will require more updates to be able to used inside `AvatarUpload`.
+- Using `useDropzone` will bring a drag-and-drop feature which may be requested later soon.
+- Use `useDropzone` directly instead of `Dropzone` because `Dropzone` will require more updates to be used inside `AvatarUpload`.
 
 ## Alternatives
 
-### Use `FileInput` instead of `useDropzone`
+### Use `FileInput` instead of `useDropzone`
 
-- This alternative will require a rework when drag-and-drop features is requested.
+- This alternative will require a rework when the drag-and-drop feature is requested.
 
-### Add `FileInput` functionality to `Avatar` without introducing new component
+### Add `FileInput` functionality to `Avatar` without introducing new component
 
-- This alternative will complicate `Avatar` component a lot and the problem looks like more of a composition issue instead of extension.
+- This alternative will complicate `Avatar` component a lot and the problem looks like more of a composition issue instead of an extension.
