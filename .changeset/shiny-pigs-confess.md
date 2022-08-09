@@ -2,4 +2,7 @@
 '@toptal/picasso': patch
 ---
 
-add rule on calendar styles
+---
+### Calendar
+
+- add rule on calendar styles
