@@ -79,6 +79,7 @@ export default ({ palette, sizes }: Theme) =>
         backgroundColor: palette.common.white,
       },
     },
+    today: {},
     grayed: {
       color: palette.grey.main2,
     },
