@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.9.2
+
+### Patch Changes
+
+- [#3037](https://github.com/toptal/picasso/pull/3037) [`41be6f1e`](https://github.com/toptal/picasso/commit/41be6f1ed513ab2e580a7e74bcd465b3e7b5e154) Thanks [@yonathan-pineda](https://github.com/yonathan-pineda)! - ---
+
+  ### Calendar
+
+  - add rule on calendar styles
+
 ## 26.9.1
 
 ### Patch Changes
