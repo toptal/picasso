@@ -282,7 +282,7 @@ exports[`Autocomplete static behavior renders a loading indicator 1`] = `
   >
     <div
       aria-valuenow="35"
-      class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-static"
+      class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-determinate"
       role="progressbar"
       style="width: 16px; height: 16px; transform: rotate(-90deg);"
     >
@@ -291,7 +291,7 @@ exports[`Autocomplete static behavior renders a loading indicator 1`] = `
         viewBox="22 22 44 44"
       >
         <circle
-          class="MuiCircularProgress-circle MuiCircularProgress-circleStatic"
+          class="MuiCircularProgress-circle MuiCircularProgress-circleDeterminate"
           cx="44"
           cy="44"
           fill="none"

@@ -52,7 +52,7 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
 
   const progress = disableTransitions ? DEFAULT_PROGRESS : value
   const progressVariant =
-    disableTransitions || value ? 'static' : 'indeterminate'
+    disableTransitions || value ? 'determinate' : 'indeterminate'
 
   return (
     <div

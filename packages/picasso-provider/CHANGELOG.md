@@ -1,5 +1,32 @@
 # Change Log
 
+## 1.3.1
+
+### Patch Changes
+
+- [#3030](https://github.com/toptal/picasso/pull/3030) [`108a3161`](https://github.com/toptal/picasso/commit/108a31619fef88f64d08912bf6ef00955f5272ea) Thanks [@SergeyKolchenko](https://github.com/SergeyKolchenko)! - ---
+  PicassoProvider
+
+  - uses `createTheme` instead of deprecated `createMuiTheme` due to the function was renamed
+
+  ***
+
+  Grid
+
+  - uses the `justifyContent` property instead of deprecated `justify` one
+
+  ***
+
+  Loader
+
+  - uses the `determinate` variant property value instead of deprecated `static` one
+
+  ***
+
+  OutlinedInput
+
+  - uses `minRows` and `maxRows` props instead of deprecated `rows` and `rowsMax` respectively
+
 ## 1.3.0
 
 ### Minor Changes
