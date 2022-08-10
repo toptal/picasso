@@ -44,6 +44,7 @@ List of available commands:
 - `@toptal-bot run build` - Check build
 - `@toptal-bot run deploy:documentation` - Deploy documentation
 - `@toptal-bot run package:alpha-release` - Release alpha version
+- `@toptal-anvil ping reviewers` - Ping FX team for review
 
 </details>
 
