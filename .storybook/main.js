@@ -29,6 +29,7 @@ module.exports = {
   stories: [
     // path.join(__dirname, './load-stories.js'),
     '../**/*.stories.tsx',
+    '../**/*.stories.mdx',
   ],
   core: {
     builder: 'webpack5',

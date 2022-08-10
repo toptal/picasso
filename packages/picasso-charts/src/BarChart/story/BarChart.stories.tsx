@@ -2,7 +2,6 @@
 import { ComponentMeta } from '@storybook/react'
 
 import BarChart from '../BarChart'
-import DefaultExample from './Default.example'
 import CustomizedExample from './Customized.example'
 
 export default {
@@ -10,5 +9,5 @@ export default {
   component: BarChart,
 } as ComponentMeta<typeof BarChart>
 
-export const Default = DefaultExample
+// export const Default = DefaultExample
 export const Customized = CustomizedExample
