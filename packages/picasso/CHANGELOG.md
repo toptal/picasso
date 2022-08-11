@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.10.0
+
+### Minor Changes
+
+- [#3036](https://github.com/toptal/picasso/pull/3036) [`d0208e04d`](https://github.com/toptal/picasso/commit/d0208e04d88e83a3a09114a918fd1123baae06b9) Thanks [@doglasbatista](https://github.com/doglasbatista)! - ---
+
+  ### Dropdown
+
+  - add `contentStyle` prop
+
 ## 26.9.2
 
 ### Patch Changes
