@@ -45,3 +45,7 @@ page
     title: 'Long Menu List',
     takeScreenshot: false,
   })
+  .addExample('Dropdown/story/CustomStyle.example.tsx', {
+    title: 'Custom Style',
+    takeScreenshot: false,
+  })
