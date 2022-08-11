@@ -198,6 +198,8 @@ export type {
   FieldRequirement,
 } from './FieldRequirements'
 export type { Status as OutlinedInputStatus } from './OutlinedInput'
+export { default as AvatarDropzone } from './AvatarDropzone'
+export type { AvatarDropzoneProps } from './AvatarDropzone'
 
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'
