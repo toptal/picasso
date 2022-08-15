@@ -1,18 +1,28 @@
 import { SizeType } from '@toptal/picasso-shared'
 import { createStyles, Theme } from '@material-ui/core/styles'
 
+const getHypotenuseOfEqualSides = (sideLength: number) => {
+  return Math.sqrt(sideLength * sideLength * 2)
+}
+
+const smallCornerSize = 1
+const largeCornerSize = 1.5
+
+// bold corners are used for focused state
+const focusedCornerCorrection = 0.0575
+
 const SETTINGS = {
   small: {
     dimensions: 5,
-    cornerSize: 1,
-    hipotenusa: Math.sqrt(2) * 1,
+    cornerSize: smallCornerSize,
     cornerCoordinate: 0.65,
+    hypotenuse: getHypotenuseOfEqualSides(smallCornerSize),
   },
   large: {
     dimensions: 10,
-    cornerSize: 1.5,
-    hipotenusa: Math.sqrt(2) * 1.5,
+    cornerSize: largeCornerSize,
     cornerCoordinate: 1,
+    hypotenuse: getHypotenuseOfEqualSides(largeCornerSize),
   },
 } as const
 
@@ -100,7 +110,9 @@ export default ({ palette, sizes, transitions }: Theme) =>
     },
 
     leftBottomCorner: ({ size = 'small', error, focused }: Props) => {
-      const { cornerCoordinate, hipotenusa } = SETTINGS[size]
+      const { cornerCoordinate, hypotenuse } = SETTINGS[size]
+      let coordinate = cornerCoordinate
+
       const borderAttributes = {
         borderStyle: 'dashed',
         borderColor: error ? palette.red.main : palette.blue.main,
@@ -110,14 +122,16 @@ export default ({ palette, sizes, transitions }: Theme) =>
       if (focused) {
         borderAttributes.borderStyle = 'solid'
         borderAttributes.borderWidth = '3px'
+
+        coordinate -= focusedCornerCorrection
       }
 
       return {
         position: 'absolute',
-        left: `-${cornerCoordinate}em`,
-        bottom: `-${cornerCoordinate}em`,
-        width: `${hipotenusa}em`,
-        height: `${hipotenusa}em`,
+        left: `-${coordinate}em`,
+        bottom: `-${coordinate}em`,
+        width: `${hypotenuse}em`,
+        height: `${hypotenuse}em`,
         ...borderAttributes,
         zIndex: 1,
         transform: 'rotate(45deg)',
