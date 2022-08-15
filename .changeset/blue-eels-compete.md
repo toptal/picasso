@@ -3,6 +3,6 @@
 ---
 
 ---
-### AvatarDropzone
+### AvatarUpload
 
 - add new component for avatar uploads

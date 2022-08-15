@@ -2,11 +2,11 @@ import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import AvatarDropzone, { Props } from './AvatarDropzone'
+import AvatarUpload, { Props } from './AvatarUpload'
 
-const renderAvatarDropzone = (props: OmitInternalProps<Props>) => {
+const renderAvatarUpload = (props: OmitInternalProps<Props>) => {
   return render(
-    <AvatarDropzone
+    <AvatarUpload
       {...props}
       testIds={{
         imageAvatar: 'image-avatar',
@@ -17,16 +17,16 @@ const renderAvatarDropzone = (props: OmitInternalProps<Props>) => {
   )
 }
 
-describe('AvatarDropzone', () => {
+describe('AvatarUpload', () => {
   it('renders', () => {
-    const { container } = renderAvatarDropzone({})
+    const { container } = renderAvatarUpload({})
 
     expect(container).toMatchSnapshot()
   })
 
   describe('when source file URL provided', () => {
     it('renders image in background', () => {
-      const { container, getByTestId } = renderAvatarDropzone({
+      const { container, getByTestId } = renderAvatarUpload({
         alt: 'Photo alt text',
         src: 'http://example.png',
       })
@@ -40,7 +40,7 @@ describe('AvatarDropzone', () => {
 
   describe('when warning message provided', () => {
     it('renders image in background', () => {
-      const { container, getByTestId } = renderAvatarDropzone({
+      const { container, getByTestId } = renderAvatarUpload({
         warningMessage: 'File is too big',
       })
 
@@ -53,7 +53,7 @@ describe('AvatarDropzone', () => {
 
   describe('when uploading state provided', () => {
     it('renders loader on top of component', () => {
-      const { container, getByTestId } = renderAvatarDropzone({
+      const { container, getByTestId } = renderAvatarUpload({
         uploading: true,
       })
 

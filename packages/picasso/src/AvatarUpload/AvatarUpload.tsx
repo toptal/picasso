@@ -7,7 +7,7 @@ import { useDropzone } from 'react-dropzone'
 import Container from '../Container'
 import { ExclamationSolid16, Upload24 } from '../Icon'
 import styles from './styles'
-import { AvatarDropzoneOptions, DropEvent, FileRejection } from './types'
+import { AvatarUploadOptions, DropEvent, FileRejection } from './types'
 import Loader from '../Loader'
 import AvatarWrapper from '../Avatar/AvatarWrapper/AvatarWrapper'
 import ImageAvatar from '../Avatar/ImageAvatar/ImageAvatar'
@@ -27,13 +27,13 @@ export interface Props extends BaseProps {
   /** Minimum file size (in bytes) */
   minSize?: number
   /** Callback for when the drop event occurs */
-  onDropAccepted?: AvatarDropzoneOptions['onDropAccepted']
+  onDropAccepted?: AvatarUploadOptions['onDropAccepted']
   /** Callback for when the drop event occurs */
-  onDropRejected?: AvatarDropzoneOptions['onDropRejected']
+  onDropRejected?: AvatarUploadOptions['onDropRejected']
   /** Callback for when the drop event occurs */
-  onDrop?: AvatarDropzoneOptions['onDrop']
+  onDrop?: AvatarUploadOptions['onDrop']
   /** Custom validation function */
-  validator?: AvatarDropzoneOptions['validator']
+  validator?: AvatarUploadOptions['validator']
   /** Warning message to be used as a tooltip */
   warningMessage?: string
   /** Indicate whether input is in error state */
@@ -48,11 +48,11 @@ export interface Props extends BaseProps {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoAvatarDropzone',
+  name: 'PicassoAvatarUpload',
 })
 
-export const AvatarDropzone = forwardRef<HTMLInputElement, Props>(
-  function AvatarDropzone(props, ref) {
+export const AvatarUpload = forwardRef<HTMLInputElement, Props>(
+  function AvatarUpload(props, ref) {
     const {
       className,
       style,
@@ -177,13 +177,13 @@ export const AvatarDropzone = forwardRef<HTMLInputElement, Props>(
   }
 )
 
-AvatarDropzone.displayName = 'AvatarDropzone'
+AvatarUpload.displayName = 'AvatarUpload'
 
-AvatarDropzone.defaultProps = {
+AvatarUpload.defaultProps = {
   size: 'small',
   disabled: false,
   maxSize: Infinity,
   minSize: 0,
 }
 
-export default AvatarDropzone
+export default AvatarUpload

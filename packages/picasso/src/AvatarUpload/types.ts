@@ -5,7 +5,7 @@ export interface FileUpload {
   file: File
 }
 
-export type AvatarDropzoneOptions = {
+export type AvatarUploadOptions = {
   /** Callback for when the drop event occurs */
   onDrop?: <T extends File>(
     acceptedFile: T,

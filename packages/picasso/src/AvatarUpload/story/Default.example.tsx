@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AvatarDropzone, Container } from '@toptal/picasso'
+import { AvatarUpload, Container } from '@toptal/picasso'
 
 const useFile = () => {
   const [uploading, setUploading] = useState<boolean>(false)
@@ -37,7 +37,7 @@ const Example = () => {
 
   return (
     <Container padded='medium'>
-      <AvatarDropzone
+      <AvatarUpload
         alt='Jacqueline Roque. Pablo Picasso, 1954'
         onDrop={addFile}
         src={src}

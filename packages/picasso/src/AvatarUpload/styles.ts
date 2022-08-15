@@ -74,12 +74,10 @@ export default ({ palette, sizes, transitions }: Theme) =>
 
     size: ({ size = 'small' }: Props) => {
       const { dimensions } = SETTINGS[size]
-      const widthRatio = 1
-      const heightRatio = 1
 
       return {
-        width: `${dimensions * widthRatio}em`,
-        height: `${dimensions * heightRatio}em`,
+        width: `${dimensions}em`,
+        height: `${dimensions}em`,
       }
     },
 

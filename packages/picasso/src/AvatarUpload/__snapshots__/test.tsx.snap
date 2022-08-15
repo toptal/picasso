@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AvatarDropzone renders 1`] = `
+exports[`AvatarUpload renders 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="PicassoAvatarDropzone-root"
+      class="PicassoAvatarUpload-root"
     >
       <div
         class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-centerJustifyContent PicassoContainer-flex PicassoAvatarDropzone-dropzone PicassoAvatarDropzone-size PicassoAvatarDropzone-size PicassoAvatarDropzone-corner PicassoAvatarDropzone-corner"
+          class="PicassoContainer-centerAlignItems PicassoContainer-centerJustifyContent PicassoContainer-flex PicassoAvatarUpload-dropzone PicassoAvatarUpload-size PicassoAvatarUpload-size PicassoAvatarUpload-corner PicassoAvatarUpload-corner"
           tabindex="0"
         >
           <input
@@ -33,7 +33,7 @@ exports[`AvatarDropzone renders 1`] = `
           </svg>
         </div>
         <div
-          class="PicassoAvatarDropzone-leftBottomCorner PicassoAvatarDropzone-leftBottomCorner"
+          class="PicassoAvatarUpload-leftBottomCorner PicassoAvatarUpload-leftBottomCorner"
         />
       </div>
     </div>
@@ -41,19 +41,19 @@ exports[`AvatarDropzone renders 1`] = `
 </div>
 `;
 
-exports[`AvatarDropzone when source file URL provided renders image in background 1`] = `
+exports[`AvatarUpload when source file URL provided renders image in background 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="PicassoAvatarDropzone-root"
+      class="PicassoAvatarUpload-root"
     >
       <div
         class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-centerJustifyContent PicassoContainer-flex PicassoAvatarDropzone-dropzone PicassoAvatarDropzone-size PicassoAvatarDropzone-size PicassoAvatarDropzone-corner PicassoAvatarDropzone-corner PicassoAvatarDropzone-reupload"
+          class="PicassoContainer-centerAlignItems PicassoContainer-centerJustifyContent PicassoContainer-flex PicassoAvatarUpload-dropzone PicassoAvatarUpload-size PicassoAvatarUpload-size PicassoAvatarUpload-corner PicassoAvatarUpload-corner PicassoAvatarUpload-reupload"
           tabindex="0"
         >
           <input
@@ -75,7 +75,7 @@ exports[`AvatarDropzone when source file URL provided renders image in backgroun
         </div>
         <img
           alt="Photo alt text"
-          class="PicassoImage-root PicassoImageAvatar-image PicassoAvatarDropzone-imageAvatar"
+          class="PicassoImage-root PicassoImageAvatar-image PicassoAvatarUpload-imageAvatar"
           data-testid="image-avatar"
           src="http://example.png"
         />
@@ -85,19 +85,19 @@ exports[`AvatarDropzone when source file URL provided renders image in backgroun
 </div>
 `;
 
-exports[`AvatarDropzone when uploading state provided renders loader on top of component 1`] = `
+exports[`AvatarUpload when uploading state provided renders loader on top of component 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="PicassoAvatarDropzone-root"
+      class="PicassoAvatarUpload-root"
     >
       <div
         class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-centerJustifyContent PicassoContainer-flex PicassoAvatarDropzone-dropzone PicassoAvatarDropzone-size PicassoAvatarDropzone-size PicassoAvatarDropzone-corner PicassoAvatarDropzone-corner"
+          class="PicassoContainer-centerAlignItems PicassoContainer-centerJustifyContent PicassoContainer-flex PicassoAvatarUpload-dropzone PicassoAvatarUpload-size PicassoAvatarUpload-size PicassoAvatarUpload-corner PicassoAvatarUpload-corner"
           tabindex="0"
         >
           <input
@@ -135,7 +135,7 @@ exports[`AvatarDropzone when uploading state provided renders loader on top of c
           </div>
         </div>
         <div
-          class="PicassoAvatarDropzone-leftBottomCorner PicassoAvatarDropzone-leftBottomCorner"
+          class="PicassoAvatarUpload-leftBottomCorner PicassoAvatarUpload-leftBottomCorner"
         />
       </div>
     </div>
@@ -143,19 +143,19 @@ exports[`AvatarDropzone when uploading state provided renders loader on top of c
 </div>
 `;
 
-exports[`AvatarDropzone when warning message provided renders image in background 1`] = `
+exports[`AvatarUpload when warning message provided renders image in background 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="PicassoAvatarDropzone-root"
+      class="PicassoAvatarUpload-root"
     >
       <div
         class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-centerJustifyContent PicassoContainer-flex PicassoAvatarDropzone-dropzone PicassoAvatarDropzone-size PicassoAvatarDropzone-size PicassoAvatarDropzone-corner PicassoAvatarDropzone-corner"
+          class="PicassoContainer-centerAlignItems PicassoContainer-centerJustifyContent PicassoContainer-flex PicassoAvatarUpload-dropzone PicassoAvatarUpload-size PicassoAvatarUpload-size PicassoAvatarUpload-corner PicassoAvatarUpload-corner"
           tabindex="0"
         >
           <input
@@ -176,11 +176,11 @@ exports[`AvatarDropzone when warning message provided renders image in backgroun
           </svg>
         </div>
         <div
-          class="PicassoAvatarDropzone-leftBottomCorner PicassoAvatarDropzone-leftBottomCorner"
+          class="PicassoAvatarUpload-leftBottomCorner PicassoAvatarUpload-leftBottomCorner"
         />
       </div>
       <div
-        class="PicassoAvatarDropzone-warningIcon"
+        class="PicassoAvatarUpload-warningIcon"
         data-testid="warning-icon"
       >
         <svg
