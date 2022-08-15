@@ -23,6 +23,13 @@ const Example = () => (
       </Typography>
       <AvatarUpload alt='Jacqueline Roque. Pablo Picasso, 1954' error focused />
     </Container>
+
+    <Container flex direction='column' alignItems='center'>
+      <Typography variant='heading' size='small'>
+        Loading
+      </Typography>
+      <AvatarUpload alt='Jacqueline Roque. Pablo Picasso, 1954' uploading />
+    </Container>
   </Container>
 )
 

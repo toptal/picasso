@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback } from 'react'
+import React, { forwardRef, ReactNode, useCallback } from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -35,7 +35,7 @@ export interface Props extends BaseProps {
   /** Custom validation function */
   validator?: AvatarUploadOptions['validator']
   /** Warning message to be used as a tooltip */
-  warningMessage?: string
+  warningMessage?: ReactNode
   /** Indicate whether input is in error state */
   error?: boolean
   /** Indicate whether the selected file is being uploaded */
@@ -45,6 +45,7 @@ export interface Props extends BaseProps {
   testIds?: {
     imageAvatar?: string
     warningIcon?: string
+    uploadIcon?: string
     loader?: string
   }
 }
@@ -126,7 +127,7 @@ export const AvatarUpload = forwardRef<HTMLInputElement, Props>(
     const icon = uploading ? (
       <Loader size={size} variant='inherit' data-testid={testIds?.loader} />
     ) : (
-      <Upload24 />
+      <Upload24 data-testid={testIds?.uploadIcon} />
     )
 
     const showImageAvatar = src && !isDragActive
@@ -142,8 +143,8 @@ export const AvatarUpload = forwardRef<HTMLInputElement, Props>(
 
     const warningTooltip = warningMessage && (
       <Tooltip content={warningMessage}>
-        <div className={classes.warningIcon} data-testid={testIds?.warningIcon}>
-          <ExclamationSolid16 />
+        <div className={classes.warningIcon}>
+          <ExclamationSolid16 data-testid={testIds?.warningIcon} />
         </div>
       </Tooltip>
     )
@@ -152,7 +153,7 @@ export const AvatarUpload = forwardRef<HTMLInputElement, Props>(
       <Container
         style={style}
         ref={ref}
-        className={cx(classes.root, className)}
+        className={cx(classes.root, classes.size, className)}
       >
         <AvatarWrapper variant='square' size={size}>
           <Container

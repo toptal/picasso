@@ -94,6 +94,8 @@ export default ({ palette, sizes, transitions }: Theme) =>
       return {
         width: `${dimensions}em`,
         height: `${dimensions}em`,
+        maxWidth: `${dimensions}em`,
+        maxHeight: `${dimensions}em`,
       }
     },
 
