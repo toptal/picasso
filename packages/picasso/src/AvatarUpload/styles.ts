@@ -20,6 +20,7 @@ interface Props {
   size?: SizeType<'small' | 'large'>
   src?: string
   error?: boolean
+  focused?: boolean
 }
 
 export default ({ palette, sizes, transitions }: Theme) =>
@@ -98,8 +99,18 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
 
-    leftBottomCorner: ({ size = 'small', error }: Props) => {
+    leftBottomCorner: ({ size = 'small', error, focused }: Props) => {
       const { cornerCoordinate, hipotenusa } = SETTINGS[size]
+      const borderAttributes = {
+        borderStyle: 'dashed',
+        borderColor: error ? palette.red.main : palette.blue.main,
+        borderWidth: sizes.borderWidth,
+      }
+
+      if (focused) {
+        borderAttributes.borderStyle = 'solid'
+        borderAttributes.borderWidth = '3px'
+      }
 
       return {
         position: 'absolute',
@@ -107,9 +118,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
         bottom: `-${cornerCoordinate}em`,
         width: `${hipotenusa}em`,
         height: `${hipotenusa}em`,
-        borderColor: error ? palette.red.main : palette.blue.main,
-        borderWidth: sizes.borderWidth,
-        borderStyle: 'dashed',
+        ...borderAttributes,
         zIndex: 1,
         transform: 'rotate(45deg)',
       }
