@@ -62,11 +62,16 @@ export default ({ palette, sizes, transitions }: Theme) =>
         borderColor: palette.red.main,
         color: palette.red.main,
       },
+      '&$focused': {
+        borderStyle: 'solid',
+        borderWidth: 3,
+      },
     },
     dragActive: {},
     disabled: {},
     error: {},
     reupload: {},
+    focused: {},
 
     imageAvatar: {
       zIndex: 0,

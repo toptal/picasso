@@ -40,6 +40,8 @@ export interface Props extends BaseProps {
   error?: boolean
   /** Indicate whether the selected file is being uploaded */
   uploading?: boolean
+  /** Indicate whether input is focused */
+  focused?: boolean
   testIds?: {
     imageAvatar?: string
     warningIcon?: string
@@ -63,6 +65,7 @@ export const AvatarUpload = forwardRef<HTMLInputElement, Props>(
       alt,
       warningMessage,
       testIds,
+      focused,
 
       // dropzoneOptions
       minSize,
@@ -161,6 +164,7 @@ export const AvatarUpload = forwardRef<HTMLInputElement, Props>(
                 [classes.dragActive]: isDragActive,
                 [classes.disabled]: disabled,
                 [classes.error]: error,
+                [classes.focused]: focused,
                 [classes.reupload]: !!src,
               }),
             })}

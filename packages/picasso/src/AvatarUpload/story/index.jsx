@@ -75,7 +75,4 @@ page
     title: 'Warning',
     description: 'Hover warning icon to see the message',
   })
-  .addExample('AvatarUpload/story/Error.example.tsx', {
-    title: 'Error',
-    description: 'Error state when the field is required and empty',
-  })
+  .addExample('AvatarUpload/story/States.example.tsx', 'States')
