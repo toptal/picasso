@@ -15535,7 +15535,7 @@ json-buffer@3.0.1:
   resolved "https://registry.npmjs.org/json-buffer/-/json-buffer-3.0.1.tgz"
   integrity sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==
 
-json-parse-better-errors@^1.0.1:
+json-parse-better-errors@^1.0.1, json-parse-better-errors@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
   integrity sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
@@ -22940,14 +22940,16 @@ text-table@^0.2.0, text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
 
-thread-loader@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/thread-loader/-/thread-loader-3.0.1.tgz"
-  integrity sha512-c8Mr7jooXEAochk72XoQ1vPauwFToz9GVwqevqQShAypCUW0nRzYIbkzZo3KErNhhYf/+ga5cUQWxVXQteJj/g==
+thread-loader@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/thread-loader/-/thread-loader-3.0.4.tgz#c392e4c0241fbc80430eb680e4886819b504a31b"
+  integrity sha512-ByaL2TPb+m6yArpqQUZvP+5S1mZtXsEP7nWKKlAUTm7fCml8kB5s1uI3+eHRP2bk5mVYfRSBI7FFf+tWEyLZwA==
   dependencies:
+    json-parse-better-errors "^1.0.2"
     loader-runner "^4.1.0"
     loader-utils "^2.0.0"
     neo-async "^2.6.2"
+    schema-utils "^3.0.0"
 
 throat@^6.0.1:
   version "6.0.1"
