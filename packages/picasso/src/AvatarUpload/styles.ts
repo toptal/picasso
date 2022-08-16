@@ -9,19 +9,16 @@ const smallCornerSize = 1
 const largeCornerSize = 1.5
 
 // bold corners are used for focused state
-const focusedCornerCorrection = 0.0575
 
 const SETTINGS = {
   small: {
     dimensions: 5,
     cornerSize: smallCornerSize,
-    cornerCoordinate: 0.65,
     hypotenuse: getHypotenuseOfEqualSides(smallCornerSize),
   },
   large: {
     dimensions: 10,
     cornerSize: largeCornerSize,
-    cornerCoordinate: 1,
     hypotenuse: getHypotenuseOfEqualSides(largeCornerSize),
   },
 } as const
@@ -115,8 +112,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
     },
 
     leftBottomCorner: ({ size = 'small', error, focused }: Props) => {
-      const { cornerCoordinate, hypotenuse } = SETTINGS[size]
-      let coordinate = cornerCoordinate
+      const { hypotenuse } = SETTINGS[size]
 
       const borderAttributes = {
         borderStyle: 'dashed',
@@ -124,22 +120,26 @@ export default ({ palette, sizes, transitions }: Theme) =>
         borderWidth: sizes.borderWidth,
       }
 
+      let borderCorrection = '0.5px'
+
       if (focused) {
         borderAttributes.borderStyle = 'solid'
         borderAttributes.borderWidth = '3px'
 
-        coordinate -= focusedCornerCorrection
+        borderCorrection = '2px'
       }
 
       return {
         position: 'absolute',
-        left: `-${coordinate}em`,
-        bottom: `-${coordinate}em`,
+        // left: `-${coordinate}em`,
+        // bottom: `-${coordinate}em`,
+        left: 0,
+        bottom: 0,
         width: `${hypotenuse}em`,
         height: `${hypotenuse}em`,
         ...borderAttributes,
         zIndex: 1,
-        transform: 'rotate(45deg)',
+        transform: `translate(calc(-50% + ${borderCorrection}), calc(50% - ${borderCorrection})) rotate(45deg)`,
       }
     },
 
