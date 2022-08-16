@@ -14,6 +14,10 @@ import ImageAvatar from '../Avatar/ImageAvatar/ImageAvatar'
 import Tooltip from '../Tooltip'
 
 export interface Props extends BaseProps {
+  /**
+   * Set accepted file types. See https://github.com/okonet/attr-accept for more information.
+   */
+  accept?: AvatarUploadOptions['accept']
   /** Alt text */
   alt?: string
   /** Image URL */
@@ -69,6 +73,7 @@ export const AvatarUpload = forwardRef<HTMLInputElement, Props>(
       focused,
 
       // dropzoneOptions
+      accept,
       minSize,
       maxSize,
       disabled,
@@ -111,7 +116,7 @@ export const AvatarUpload = forwardRef<HTMLInputElement, Props>(
     )
 
     const { getRootProps, isDragActive, getInputProps } = useDropzone({
-      accept: 'image/*',
+      accept,
       minSize,
       maxSize,
       multiple: false,
@@ -157,9 +162,6 @@ export const AvatarUpload = forwardRef<HTMLInputElement, Props>(
       >
         <AvatarWrapper variant='square' size={size}>
           <Container
-            flex
-            justifyContent='center'
-            alignItems='center'
             {...getRootProps({
               className: cx(classes.dropzone, classes.size, classes.corner, {
                 [classes.dragActive]: isDragActive,
@@ -189,6 +191,7 @@ AvatarUpload.defaultProps = {
   disabled: false,
   maxSize: Infinity,
   minSize: 0,
+  accept: 'image/*',
 }
 
 export default AvatarUpload

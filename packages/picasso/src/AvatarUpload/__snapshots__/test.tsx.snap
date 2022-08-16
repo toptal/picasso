@@ -12,7 +12,7 @@ exports[`AvatarUpload renders 1`] = `
         class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-centerJustifyContent PicassoContainer-flex PicassoAvatarUpload-dropzone PicassoAvatarUpload-size PicassoAvatarUpload-size PicassoAvatarUpload-corner PicassoAvatarUpload-corner"
+          class="PicassoAvatarUpload-dropzone PicassoAvatarUpload-size PicassoAvatarUpload-size PicassoAvatarUpload-corner PicassoAvatarUpload-corner"
           tabindex="0"
         >
           <input

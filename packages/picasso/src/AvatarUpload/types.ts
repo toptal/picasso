@@ -6,6 +6,10 @@ export interface FileUpload {
 }
 
 export type AvatarUploadOptions = {
+  /**
+   * Set accepted file types. See https://github.com/okonet/attr-accept for more information.
+   */
+  accept?: string | string[]
   /** Callback for when the drop event occurs */
   onDrop?: <T extends File>(
     acceptedFile: T,

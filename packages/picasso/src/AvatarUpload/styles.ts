@@ -2,7 +2,7 @@ import { SizeType } from '@toptal/picasso-shared'
 import { createStyles, Theme } from '@material-ui/core/styles'
 
 const getHypotenuseOfEqualSides = (sideLength: number) => {
-  return Math.sqrt(sideLength * sideLength * 2)
+  return sideLength * Math.sqrt(2)
 }
 
 const smallCornerSize = 1
@@ -39,6 +39,9 @@ export default ({ palette, sizes, transitions }: Theme) =>
       position: 'relative',
     },
     dropzone: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       position: 'relative',
       backgroundColor: palette.blue.lighter,
       fontSize: '1rem',
