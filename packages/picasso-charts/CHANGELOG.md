@@ -1,5 +1,12 @@
 # Change Log
 
+## 40.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`549bbb96d`](https://github.com/toptal/picasso/commit/549bbb96d4d1a5090b3fbc8169d16f19a939659e)]:
+  - @toptal/picasso-shared@10.0.0
+
 ## 39.1.0
 
 ### Minor Changes
