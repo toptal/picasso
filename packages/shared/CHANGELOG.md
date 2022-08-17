@@ -1,5 +1,15 @@
 # Change Log
 
+## 10.0.0
+
+### Major Changes
+
+- [#3047](https://github.com/toptal/picasso/pull/3047) [`549bbb96d`](https://github.com/toptal/picasso/commit/549bbb96d4d1a5090b3fbc8169d16f19a939659e) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### Dependencies
+
+  - change notistack from a dependency to peerDependency
+
 ## 9.0.1
 
 ### Patch Changes
