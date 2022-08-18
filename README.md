@@ -25,25 +25,25 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 
 ## Project commands
 
-| Command                   | Description                                                                    |
-| ------------------------- | ------------------------------------------------------------------------------ |
-| **build:package**         | Build the packages                                                             |
-| **build:storybook**       | Build Storybook as static website                                              |
-| **commit**                | Interactive conventional commits                                               |
-| **generate:component**    | Generate a new component template                                              |
-| **generate:example**      | Generate a new component component code example                                |
-| **generate:icons**        | [Generate JSX icon components from svgs](#add-icon)                            |
-| **happo**                 | Run Happo locally and generate report on happo.io                              |
-| **happo:storybook**       | Run Happo for Storybook on CI                                                  |
-| **lint**                  | Lint all files                                                                 |
-| **start**                 | Start storybook instance and inspect components                                |
-| **test**                  | Run jest and cypress tests                                                     |
-| **test:integration**      | Run cypress tests                                                              |
-| **test:integration:open** | Run cypress in development mode                                                |
-| **test:unit**             | Run unit tests                                                                 |
-| **test:unit -u**          | Update jest snapshots                                                          |
-| **test:unit:watch**       | Run unit tests in watch mode                                                   |
-| **typecheck**             | Validate typescript compilation                                                |
+| Command                   | Description                                         |
+| ------------------------- | --------------------------------------------------- |
+| **build:package**         | Build the packages                                  |
+| **build:storybook**       | Build Storybook as static website                   |
+| **commit**                | Interactive conventional commits                    |
+| **generate:component**    | Generate a new component template                   |
+| **generate:example**      | Generate a new component component code example     |
+| **generate:icons**        | [Generate JSX icon components from svgs](#add-icon) |
+| **happo**                 | Run Happo locally and generate report on happo.io   |
+| **happo:storybook**       | Run Happo for Storybook on CI                       |
+| **lint**                  | Lint all files                                      |
+| **start**                 | Start storybook instance and inspect components     |
+| **test**                  | Run jest and cypress tests                          |
+| **test:integration**      | Run cypress tests                                   |
+| **test:integration:open** | Run cypress in development mode                     |
+| **test:unit**             | Run unit tests                                      |
+| **test:unit -u**          | Update jest snapshots                               |
+| **test:unit:watch**       | Run unit tests in watch mode                        |
+| **typecheck**             | Validate typescript compilation                     |
 
 ## Icons
 
@@ -150,7 +150,7 @@ In your project directory:
 
 ### Tree shaking
 
-If you use [davinci](https://www.npmjs.com/package/@toptal/davinci) to manage your application - tree shaking works by default when you build your project in the `production` mode.
+If you use [davinci-engine](https://www.npmjs.com/package/@toptal/davinci-engine) to manage your application - tree shaking works by default when you build your project in the `production` mode.
 
 In other cases when you use custom webpack build configuration you should check these three things to make sure you will have Picasso tree-shaked:
 
