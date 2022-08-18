@@ -16,6 +16,7 @@ The following is a set of guidelines for contributing to Picasso and its package
 - [Reporting Bugs](#reporting-bugs)
 - [Creating new components](#creating-new-components)
 - [Your first contribution](#your-first-contribution)
+- [How to test specific use case](#how-to-test-specific-use-case)
 - [Release](#release)
 
 [Why my first PR is taking too long to merge ?](#why-my-first-pr-is-taking-too-long-to-merge-)
@@ -75,6 +76,10 @@ In case that you found something which doesn't work as advertised feel free to r
 ### Creating new components
 
 Picasso should cover all repetitive and reusable components used at Toptal. As we can't fully track every line created by you, you are welcomed to propose any new component which should be part of Picasso and you see that it might be a helpful addition used also by the other people. Don't be afraid to raise any question and propose new ideas to us.
+
+### How to test specific use case
+
+We showcase how to use Picasso components via storybook. If you are not able to test your use case there, please create a new story. In some cases, you might need to verify functionality in your project, in those cases, you can publish the alpha package of the Picasso by adding this comment to the PR `@toptal-bot run package:alpha-release` 
 
 ### Release
 
