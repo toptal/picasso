@@ -79,7 +79,7 @@ Picasso should cover all repetitive and reusable components used at Toptal. As w
 
 ### How to test specific use case
 
-We showcase how to use Picasso components via storybook. If you are not able to test your use case there, please create a new story. In some cases, you might need to verify functionality in your project, in those cases, you can publish the alpha package of the Picasso by adding this comment to the PR `@toptal-bot run package:alpha-release` 
+We showcase how to use Picasso components via storybook. If you have new case and want to show other users how to use the component, create new story. In some cases, you might want to verify functionality in your project, in those cases, you can publish the alpha package of the Picasso by adding this comment to the PR `@toptal-bot run package:alpha-release`
 
 ### Release
 
