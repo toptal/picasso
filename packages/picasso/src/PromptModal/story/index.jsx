@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Overlays').createPage(
   'PromptModal',
-  'Predefined modal for short prompts that asks user for input.'
+  `Predefined modal for short prompts that asks user for input.
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

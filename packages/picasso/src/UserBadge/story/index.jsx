@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'UserBadge',
-  'Show user avatar and name along with addition content'
+  `Show user avatar and name along with addition content
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

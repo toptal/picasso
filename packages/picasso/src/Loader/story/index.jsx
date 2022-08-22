@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'Loader',
-  'Loaders indicate that an action is underway and that the user must wait to proceed until it is finished.'
+  `Loaders indicate that an action is underway and that the user must wait to proceed until it is finished.
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

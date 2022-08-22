@@ -1,7 +1,10 @@
 import { AccountSelect } from '../AccountSelect'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Widgets').createPage('AccountSelect', null)
+const page = PicassoBook.section('Widgets').createPage(
+  'AccountSelect',
+  `${PicassoBook.createSourceLink(__filename)}`
+)
 
 page.createTabChapter('Props').addComponentDocs({
   component: AccountSelect,

@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Picasso Charts').createPage(
   'LineChart',
-  'Responsive line charts'
+  `Responsive line charts
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page.createTabChapter('Props').addComponentDocs({

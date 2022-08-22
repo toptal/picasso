@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Picasso Forms').createPage(
   'SubmitButton',
-  'SubmitButton reacts to the submission state of the form.'
+  `SubmitButton reacts to the submission state of the form.
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page.createTabChapter('Props').addComponentDocs({

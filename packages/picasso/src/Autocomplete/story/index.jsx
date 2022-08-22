@@ -1,7 +1,10 @@
 import { Autocomplete } from '../Autocomplete'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Forms').createPage('Autocomplete')
+const page = PicassoBook.section('Forms').createPage(
+  'Autocomplete',
+  `${PicassoBook.createSourceLink(__filename)}`
+)
 
 page.createTabChapter('Props').addComponentDocs({
   component: Autocomplete,

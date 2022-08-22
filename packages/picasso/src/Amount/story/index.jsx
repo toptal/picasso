@@ -5,6 +5,8 @@ const page = PicassoBook.section('Components').createPage(
   'Amount',
   `
     Use "Amount" to render formatted amount with a currency, in desired locale.
+
+    ${PicassoBook.createSourceLink(__filename)}
   `
 )
 

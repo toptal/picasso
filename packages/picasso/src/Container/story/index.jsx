@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Layout').createPage(
   'Container',
-  'Use Container to add space between 2 elements.'
+  `Use Container to add space between 2 elements.
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

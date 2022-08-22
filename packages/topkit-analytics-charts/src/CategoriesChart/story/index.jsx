@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Picasso Charts').createPage(
   'CategoriesChart',
-  'Use BarChart with analytics data'
+  `Use BarChart with analytics data 
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page.createTabChapter('Props').addComponentDocs({

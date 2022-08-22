@@ -13,6 +13,8 @@ const page = PicassoBook.section('Components').createPage(
       should be used only as nested in Picasso component.
       The preferred way to do that - to wrap your app within
       the <Picasso> component.
+
+      ${PicassoBook.createSourceLink(__filename)}
     `
 )
 

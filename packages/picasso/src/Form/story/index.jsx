@@ -7,7 +7,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(
   'Form',
-  'Helper components for building forms.'
+  `Helper components for building forms.
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

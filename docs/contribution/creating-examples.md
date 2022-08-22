@@ -20,6 +20,8 @@ const page = PicassoBook
   )
 ```
 
+💡 ***TIP:*** When writing description it is prefered to add links to BASE description(if there is one) and source code of component.   
+
 💡 ***TIP:*** You can see real example here [src/components/Button/story/index.jsx#L7](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L7)
 
 ### Generating automatic PropsTable from the passed component through AST parsing.

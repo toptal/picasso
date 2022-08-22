@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(
   'PasswordInput',
-  'Input component for passwords'
+  `Input component for passwords
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'FieldRequirements',
-  'Component to list field requirements to be valid'
+  `Component to list field requirements to be valid
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

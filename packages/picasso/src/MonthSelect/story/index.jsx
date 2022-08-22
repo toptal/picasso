@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'MonthSelect',
-  'Month selector'
+  `Month selector
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

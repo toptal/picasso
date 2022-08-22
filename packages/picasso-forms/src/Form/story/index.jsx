@@ -2,7 +2,13 @@ import Form from '../Form'
 import fieldWrapperStory from '../../FieldWrapper/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Picasso Forms').createPage('Form', 'Form')
+const page = PicassoBook.section('Picasso Forms').createPage(
+  'Form',
+  `Form
+
+   ${PicassoBook.createSourceLink(__filename)}
+`
+)
 
 page
   .createTabChapter('Props')
