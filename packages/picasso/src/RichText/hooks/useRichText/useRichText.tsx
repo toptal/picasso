@@ -70,7 +70,7 @@ const picassoMapper = (child: ReactNode): ReactNode => {
 
   const mappedChildren = child.props.children?.map(picassoMapper) ?? null
 
-  return createElement(type, { key: child.key }, mappedChildren)
+  return createElement(type, { ...child.props, key: child.key }, mappedChildren)
 }
 
 const useRichText = (value: ASTType): ReactNode[] | ReactNode => {
