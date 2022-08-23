@@ -1,5 +1,13 @@
 # Change Log
 
+## 26.10.2
+
+### Patch Changes
+
+- [#3062](https://github.com/toptal/picasso/pull/3062) [`af55d5ddb`](https://github.com/toptal/picasso/commit/af55d5ddbf553ea0fedaebf20d0a671bb149e207) Thanks [@alexvcasillas](https://github.com/alexvcasillas)! - ### RichText
+
+  - fix useRichText hook and make it pass props down properly so Links can work fine
+
 ## 26.10.1
 
 ### Patch Changes
