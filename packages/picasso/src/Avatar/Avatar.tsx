@@ -1,5 +1,6 @@
 import React, { HTMLAttributes, useCallback } from 'react'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
 import getNameInitials from '../utils/get-name-initials'
@@ -7,6 +8,8 @@ import ImageAvatar from './ImageAvatar/ImageAvatar'
 import TextAvatar from './TextAvatar/TextAvatar'
 import IconAvatar from './IconAvatar/IconAvatar'
 import AvatarWrapper from './AvatarWrapper/AvatarWrapper'
+import styles from './styles'
+import { Pencil16, Pencil24 } from '../Icon'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Alt text */
@@ -19,25 +22,35 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   src?: string
   /** Variant of the avatar shape */
   variant?: 'square' | 'portrait' | 'landscape'
+  /** Callback to show edit-on-hover and receive event */
+  onEdit?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   testIds?: {
     wrapper?: string
     icon?: string
     image?: string
     text?: string
+    editContainer?: string
   }
 }
 
-export const Avatar = ({
-  alt,
-  src,
-  className,
-  name,
-  size,
-  style,
-  variant,
-  testIds,
-  ...rest
-}: Props) => {
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoAvatarWrapper',
+})
+
+export const Avatar = (props: Props) => {
+  const {
+    alt,
+    src,
+    className,
+    name,
+    size,
+    style,
+    variant,
+    testIds,
+    onEdit,
+    ...rest
+  } = props
+
   const renderAvatar = useCallback(() => {
     if (src) {
       return (
@@ -91,6 +104,12 @@ export const Avatar = ({
     style,
   ])
 
+  const classes = useStyles(props)
+  const isEditable = Boolean(onEdit)
+
+  const pencilIcon =
+    size === 'xxsmall' || size === 'xsmall' ? <Pencil16 /> : <Pencil24 />
+
   return (
     <AvatarWrapper
       /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
@@ -100,6 +119,15 @@ export const Avatar = ({
       data-testid={testIds?.wrapper}
       {...rest}
     >
+      {isEditable && (
+        <div
+          data-testid={testIds?.editContainer}
+          className={classes.editContainer}
+          onClick={onEdit}
+        >
+          {pencilIcon}
+        </div>
+      )}
       {renderAvatar()}
     </AvatarWrapper>
   )
