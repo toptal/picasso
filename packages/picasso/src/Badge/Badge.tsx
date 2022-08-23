@@ -65,6 +65,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
           [classes.static]: !hasChildren,
         }),
       }}
+      overlap='rectangular'
     >
       {children}
     </MuiBadge>

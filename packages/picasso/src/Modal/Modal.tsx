@@ -4,6 +4,7 @@ import React, {
   HTMLAttributes,
   useEffect,
   useRef,
+  useCallback,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
@@ -178,6 +179,16 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
 
   const isSmall = useBreakpoint('small')
 
+  const handleClose = useCallback(
+    (_event, reason: 'backdropClick' | 'escapeKeyDown') => {
+      // workaround for "disableBackdropClick" prop due to deprecation
+      if (reason !== 'backdropClick' && onClose) {
+        onClose()
+      }
+    },
+    [onClose]
+  )
+
   return (
     <Dialog
       {...rest}
@@ -196,13 +207,12 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}
       onBackdropClick={onBackdropClick}
-      onClose={onClose}
+      onClose={handleClose}
       onEnter={onOpen}
       open={open}
       transitionDuration={transitionDuration}
       maxWidth={false}
       disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
-      disableBackdropClick
       TransitionProps={transitionProps}
     >
       <ModalContext.Provider value>{children}</ModalContext.Provider>
