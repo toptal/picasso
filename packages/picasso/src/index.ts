@@ -198,6 +198,15 @@ export type {
   FieldRequirement,
 } from './FieldRequirements'
 export type { Status as OutlinedInputStatus } from './OutlinedInput'
+export { default as AvatarUpload } from './AvatarUpload'
+export type {
+  AvatarUploadProps,
+  FileUpload as AvatarUploadFileUpload,
+  FileError as AvatarUploadFileError,
+  FileRejection as AvatarUploadFileRejection,
+  DropEvent as AvatarUploadDropEvent,
+  AvatarUploadRef,
+} from './AvatarUpload'
 
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'
