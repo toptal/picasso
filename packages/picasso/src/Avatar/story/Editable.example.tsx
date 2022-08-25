@@ -8,13 +8,14 @@ const Example = () => {
 
   return (
     <Container gap='medium' flex>
+      <Avatar name='Jacqueline Roque' onEdit={handleEdit} />
       <Avatar
         alt='Jacqueline Roque. Pablo Picasso, 1954'
         src='./jacqueline-with-flowers-1954-square.jpg'
         name='Jacqueline Roque'
+        size='medium'
         onEdit={handleEdit}
       />
-      <Avatar name='Jacqueline Roque' onEdit={handleEdit} size='medium' />
     </Container>
   )
 }
