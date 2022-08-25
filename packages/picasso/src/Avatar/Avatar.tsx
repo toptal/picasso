@@ -22,7 +22,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   src?: string
   /** Variant of the avatar shape */
   variant?: 'square' | 'portrait' | 'landscape'
-  /** Callback to show edit-on-hover and receive event */
+  /** Callback to show edit-on-click and receive event */
   onEdit?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   testIds?: {
     wrapper?: string
