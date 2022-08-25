@@ -6,4 +6,4 @@
 
 ### Avatar
 
-- add onEdit prop to Avatar
+- add `onEdit` prop to Avatar
