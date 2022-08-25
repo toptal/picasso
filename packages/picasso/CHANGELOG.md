@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.11.0
+
+### Minor Changes
+
+- [#3065](https://github.com/toptal/picasso/pull/3065) [`c2ca8780e`](https://github.com/toptal/picasso/commit/c2ca8780e73d62ff51e0baaac98702e62862df24) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Avatar
+
+  - add `onEdit` prop to Avatar
+
 ## 26.10.2
 
 ### Patch Changes
