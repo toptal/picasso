@@ -3,7 +3,7 @@ import { AvatarUpload, Container } from '@toptal/picasso'
 
 const Example = () => {
   return (
-    <Container padded='medium' gap='medium' flex>
+    <Container padded='medium'>
       <AvatarUpload />
     </Container>
   )

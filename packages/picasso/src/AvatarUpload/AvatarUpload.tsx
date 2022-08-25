@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback } from 'react'
+import React, { forwardRef, ReactNode, useCallback } from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -17,8 +17,17 @@ import DropzoneSvg from './DropzoneSvg/DropzoneSvg'
 import Loader from '../Loader'
 import { Upload24 } from '../Icon'
 import useAvatarUpload from './use-avatar-upload/use-avatar-upload'
+import Container from '../Container'
 
 export interface Props extends BaseProps {
+  /**
+   * Header section of the component.
+   */
+  header?: ReactNode
+  /**
+   * File description section of the component.
+   */
+  description?: ReactNode
   /**
    * Set accepted file types. See https://github.com/okonet/attr-accept for more information.
    */
@@ -82,6 +91,11 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 export const AvatarUpload = forwardRef<AvatarUploadRef, Props>(
   function AvatarUpload(props, ref) {
     const {
+      header,
+      description,
+      className,
+      style,
+
       focused: initiallyFocused,
       hovered: initiallyHovered,
       uploading,
@@ -166,60 +180,66 @@ export const AvatarUpload = forwardRef<AvatarUploadRef, Props>(
     )
 
     return (
-      <Dropzone
-        ref={ref}
-        accept={accept}
-        minSize={minSize}
-        maxSize={maxSize}
-        multiple={false}
-        disabled={disabled}
-        onDrop={handleDrop}
-        onDropAccepted={handleDropAccepted}
-        onDropRejected={handleDropRejected}
-        validator={validator}
-        noClick={showAvatar}
-        noDrag={showAvatar}
-      >
-        {({ getRootProps, isDragActive, getInputProps }) => (
-          <div
-            {...getRootProps({
-              className: cx(classes.root, classes.size, {
-                [classes.error]: error,
-              }),
-              ...callbacks,
-              'data-testid': dataTestId,
-            })}
+      <Container flex direction='column' className={className} style={style}>
+        {header}
+        <Container flex direction='row'>
+          <Dropzone
+            ref={ref}
+            accept={accept}
+            minSize={minSize}
+            maxSize={maxSize}
+            multiple={false}
+            disabled={disabled}
+            onDrop={handleDrop}
+            onDropAccepted={handleDropAccepted}
+            onDropRejected={handleDropRejected}
+            validator={validator}
+            noClick={showAvatar}
+            noDrag={showAvatar}
           >
-            <input {...getInputProps()} />
+            {({ getRootProps, isDragActive, getInputProps }) => (
+              <div
+                {...getRootProps({
+                  className: cx(classes.root, classes.size, {
+                    [classes.error]: error,
+                  }),
+                  ...callbacks,
+                  'data-testid': dataTestId,
+                })}
+              >
+                <input {...getInputProps()} />
 
-            {showAvatar ? (
-              <Avatar
-                size={size}
-                onEdit={onEdit}
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                src={src!}
-                alt={alt}
-                data-testid={testIds?.avatar}
-                variant='square'
-              />
-            ) : (
-              <>
-                {loadingIcon}
-                {uploadIcon}
-                <DropzoneSvg
-                  disabled={disabled}
-                  error={error}
-                  size={size}
-                  focused={focused}
-                  hovered={hovered}
-                  isDragActive={isDragActive}
-                  data-testid={testIds?.dropzoneSvg}
-                />
-              </>
+                {showAvatar ? (
+                  <Avatar
+                    size={size}
+                    onEdit={onEdit}
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    src={src!}
+                    alt={alt}
+                    data-testid={testIds?.avatar}
+                    variant='square'
+                  />
+                ) : (
+                  <>
+                    {loadingIcon}
+                    {uploadIcon}
+                    <DropzoneSvg
+                      disabled={disabled}
+                      error={error}
+                      size={size}
+                      focused={focused}
+                      hovered={hovered}
+                      isDragActive={isDragActive}
+                      data-testid={testIds?.dropzoneSvg}
+                    />
+                  </>
+                )}
+              </div>
             )}
-          </div>
-        )}
-      </Dropzone>
+          </Dropzone>
+          {description}
+        </Container>
+      </Container>
     )
   }
 )
@@ -232,6 +252,8 @@ AvatarUpload.defaultProps = {
   maxSize: Infinity,
   minSize: 0,
   accept: 'image/*',
+  header: null,
+  description: null,
 }
 
 export default AvatarUpload
