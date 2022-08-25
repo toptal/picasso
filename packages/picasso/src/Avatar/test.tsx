@@ -1,14 +1,21 @@
 import React from 'react'
-import { render } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Avatar, { Props } from './Avatar'
 
 const renderAvatar = (props: OmitInternalProps<Props>) => {
-  const { alt, name, src, size, testIds } = props
+  const { alt, name, src, size, onEdit, testIds } = props
 
   return render(
-    <Avatar alt={alt} name={name} src={src} size={size} testIds={testIds} />
+    <Avatar
+      alt={alt}
+      name={name}
+      src={src}
+      size={size}
+      testIds={testIds}
+      onEdit={onEdit}
+    />
   )
 }
 
@@ -59,5 +66,24 @@ describe('Avatar', () => {
     })
 
     expect(getByTestId('photo-placeholder')).toBeVisible()
+  })
+
+  describe('when edit state provided', () => {
+    it('renders with edit icon and backdrop', () => {
+      const mockOnEdit = jest.fn()
+
+      const { getByTestId } = renderAvatar({
+        onEdit: mockOnEdit,
+        testIds: { editContainer: 'edit-container' },
+      })
+
+      const editContainer = getByTestId('edit-container')
+
+      expect(editContainer).toBeVisible()
+
+      fireEvent.click(editContainer)
+
+      expect(mockOnEdit).toHaveBeenCalledTimes(1)
+    })
   })
 })

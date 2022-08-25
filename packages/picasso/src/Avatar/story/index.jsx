@@ -27,5 +27,6 @@ page
   .addExample('Avatar/story/Variants.example.tsx', 'Variants')
   .addExample('Avatar/story/Sizes.example.tsx', 'Sizes')
   .addExample('Avatar/story/LongName.example.tsx', 'Long Name')
+  .addExample('Avatar/story/Editable.example.tsx', 'Editable state')
 
 page.connect(AvatarGroupStory.chapter)
