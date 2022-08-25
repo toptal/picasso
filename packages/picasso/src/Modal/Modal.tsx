@@ -182,7 +182,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   const handleClose = useCallback(
     (_event, reason: 'backdropClick' | 'escapeKeyDown') => {
       // workaround for "disableBackdropClick" prop due to deprecation
-      if (reason !== 'backdropClick' && onClose) {
+      if (reason === 'escapeKeyDown' && onClose) {
         onClose()
       }
     },
