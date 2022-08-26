@@ -7,6 +7,13 @@ on:
       - master
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      with:
+        limit-access-to-actor: true
   call-notify-jira-about-contribution:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     runs-on: ubuntu-latest
