@@ -37,21 +37,12 @@ const Example = () => {
     }
   }
 
-  const handleEdit = () => {
-    // free to do whatever you want with editing event
-    // e.g. open a modal to change zoom or selected area of the uploaded image
-
-    // you can use the ref to access the root component
-    avatarUploadRef.current?.click()
-  }
-
   return (
     <Container padded='medium'>
       <AvatarUpload
         ref={avatarUploadRef}
         alt='Jacqueline Roque. Pablo Picasso, 1954'
         onDrop={handleDrop}
-        onEdit={handleEdit}
         src={src}
         uploading={uploading}
       />

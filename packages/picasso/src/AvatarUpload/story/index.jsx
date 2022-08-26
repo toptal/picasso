@@ -16,6 +16,7 @@ page
   .addExample('AvatarUpload/story/Default.example.tsx', 'Default')
   .addExample('AvatarUpload/story/WithUpload.example.tsx', {
     title: 'With upload',
-    description: 'Simulates file upload and editing',
+    description:
+      'Shows how the component can be used with FileReader to upload a file',
     takeScreenshot: false,
   })

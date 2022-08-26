@@ -5,6 +5,9 @@ import { BaseProps } from '@toptal/picasso-shared'
 import styles from './styles'
 import { getBackgroundShape, getBordersShape, getOutlineShape } from './utils'
 
+/**
+ * For measuring, pixel values are used because SVG's "d" attribute works with percentages and pixels only
+ */
 const BASE_FONT_SIZE = 16
 
 const dimensions = 5 * BASE_FONT_SIZE

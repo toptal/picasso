@@ -18,7 +18,6 @@ export default ({ palette }: Theme) =>
 
     icon: {
       position: 'absolute',
-      zIndex: 1,
       cursor: 'pointer',
     },
   })

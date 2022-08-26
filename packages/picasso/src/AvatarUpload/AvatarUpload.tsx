@@ -131,6 +131,7 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
     const showLoader = Boolean(uploading)
     const showAvatar = !showLoader && Boolean(src)
     const showUploadIcon = !showAvatar && !showLoader
+    const showEditIcon = Boolean(onEdit)
 
     const classes = useStyles()
 
@@ -171,7 +172,7 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
         {showAvatar ? (
           <Avatar
             size='small'
-            onEdit={handleEdit}
+            onEdit={showEditIcon ? handleEdit : undefined}
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             src={src!}
             alt={alt}
@@ -180,9 +181,9 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
           />
         ) : (
           <>
+            <DropzoneSvg data-testid={testIds?.dropzoneSvg} />
             {loadingIcon}
             {uploadIcon}
-            <DropzoneSvg data-testid={testIds?.dropzoneSvg} />
           </>
         )}
       </div>
@@ -194,7 +195,7 @@ AvatarUpload.displayName = 'AvatarUpload'
 
 AvatarUpload.defaultProps = {
   disabled: false,
-  maxSize: Infinity,
+  maxSize: 104857600, // 100MB in bytes (100 * 1024 * 1024)
   minSize: 0,
   accept: 'image/*',
 }

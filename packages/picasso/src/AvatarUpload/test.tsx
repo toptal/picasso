@@ -109,7 +109,7 @@ describe('AvatarUpload', () => {
   describe('when source is exist', () => {
     it('shows avatar with src and hides dropzone', async () => {
       const { getByTestId, queryByTestId } = renderAvatarUpload({
-        src: 'https://example.com/avatar.jpg',
+        src: 'some-url',
         'data-testid': 'avatar-upload',
         testIds: {
           avatar: 'avatar',
