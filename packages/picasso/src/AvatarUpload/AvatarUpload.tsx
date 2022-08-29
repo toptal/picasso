@@ -136,6 +136,10 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
     const showUploadIcon = !showAvatar && !showLoader
     const showEditIcon = Boolean(onEdit)
 
+    // after showing avatar, only way to change the file selection is to use 'onEdit'
+    const disableDropzoneClick = showAvatar && !showEditIcon
+    const disableDropzoneDragAndKeyboard = showAvatar
+
     const classes = useStyles()
 
     const loadingIcon = showLoader && (
@@ -160,10 +164,9 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
       onDropAccepted: handleDropAccepted,
       onDropRejected: handleDropRejected,
       validator,
-      noClick: showAvatar && !showEditIcon,
-      // after showing avatar, only way to change the avatar is to use 'onEdit'
-      noDrag: showAvatar,
-      noKeyboard: showAvatar,
+      noClick: disableDropzoneClick,
+      noDrag: disableDropzoneDragAndKeyboard,
+      noKeyboard: disableDropzoneDragAndKeyboard,
     })
 
     return (
