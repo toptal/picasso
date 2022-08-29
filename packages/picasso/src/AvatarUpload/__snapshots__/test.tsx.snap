@@ -6,7 +6,7 @@ exports[`AvatarUpload renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoAvatarUpload-root PicassoAvatarUpload-size"
+      class="PicassoAvatarUpload-root PicassoAvatarUpload-sizeSmall"
       tabindex="0"
     >
       <input
@@ -17,10 +17,10 @@ exports[`AvatarUpload renders 1`] = `
         type="file"
       />
       <div
-        class="PicassoDropzoneSvg-root"
+        class="PicassoDropzoneSvg-root PicassoDropzoneSvg-rootSmall"
       >
         <svg
-          class="PicassoDropzoneSvg-svg"
+          class="PicassoDropzoneSvg-svg PicassoDropzoneSvg-svgSmall"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >

@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core'
-import { BaseProps } from '@toptal/picasso-shared'
+import { capitalize, makeStyles, Theme } from '@material-ui/core'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import styles from './styles'
 import { getBackgroundShape, getBordersShape, getOutlineShape } from './utils'
@@ -9,29 +10,53 @@ import { getBackgroundShape, getBordersShape, getOutlineShape } from './utils'
  * For measuring, pixel values are used because SVG's "d" attribute works with percentages and pixels only
  */
 const BASE_FONT_SIZE = 16
+const SETTINGS = {
+  small: {
+    dimensions: 5 * BASE_FONT_SIZE,
+    cornerSize: 1 * BASE_FONT_SIZE,
+  },
+  large: {
+    dimensions: 10 * BASE_FONT_SIZE,
+    cornerSize: 1.5 * BASE_FONT_SIZE,
+  },
+} as const
 
-const dimensions = 5 * BASE_FONT_SIZE
-const cornerSize = BASE_FONT_SIZE
+const SHAPES = {
+  small: {
+    backgroundShape: getBackgroundShape(SETTINGS.small),
+    outlineShape: getOutlineShape(SETTINGS.small),
+    bordersShape: getBordersShape(SETTINGS.small),
+  },
+  large: {
+    backgroundShape: getBackgroundShape(SETTINGS.large),
+    outlineShape: getOutlineShape(SETTINGS.large),
+    bordersShape: getBordersShape(SETTINGS.large),
+  },
+} as const
 
-const backgroundShape = getBackgroundShape(dimensions, cornerSize)
-const bordersShape = getBordersShape(dimensions, cornerSize)
-const outlineShape = getOutlineShape(dimensions, cornerSize)
-
-export interface Props extends BaseProps {}
+export interface Props extends BaseProps {
+  size?: SizeType<'small' | 'large'>
+}
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoDropzoneSvg',
 })
 
 export const DropzoneSvg = (props: Props) => {
-  const { 'data-testid': dataTestId } = props
+  const { size = 'small', 'data-testid': dataTestId } = props
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const shapes = SHAPES[size!]
 
   const classes = useStyles()
 
   return (
-    <div className={classes.root} data-testid={dataTestId}>
+    <div
+      className={cx(classes.root, classes[`root${capitalize(size)}`])}
+      data-testid={dataTestId}
+    >
       <svg
-        className={classes.svg}
+        className={cx(classes.svg, classes[`svg${capitalize(size)}`])}
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
       >
@@ -39,13 +64,13 @@ export const DropzoneSvg = (props: Props) => {
           className={classes.background}
           fillRule='evenodd'
           clipRule='evenodd'
-          d={backgroundShape}
+          d={shapes.backgroundShape}
         />
         <path
           className={classes.outline}
           fillRule='evenodd'
           clipRule='evenodd'
-          d={outlineShape}
+          d={shapes.outlineShape}
           strokeOpacity='.48'
           strokeWidth='3'
           strokeLinejoin='round'
@@ -54,7 +79,7 @@ export const DropzoneSvg = (props: Props) => {
           className={classes.border}
           fillRule='evenodd'
           clipRule='evenodd'
-          d={bordersShape}
+          d={shapes.bordersShape}
           strokeDasharray='3 3'
         />
       </svg>

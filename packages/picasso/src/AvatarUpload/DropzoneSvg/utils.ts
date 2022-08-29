@@ -34,9 +34,15 @@ const getAvatarShape = ({
 
 /**
  * Returns the shape of the background of the avatar.
- * it should be 80x80(px)
+ * For small variant, it should be 80x80(px), for large - 160x160(px).
  */
-export const getBackgroundShape = (dimensions: number, cornerSize: number) => {
+export const getBackgroundShape = ({
+  dimensions,
+  cornerSize,
+}: {
+  dimensions: number
+  cornerSize: number
+}) => {
   const centerShift = 3 // shift for the outline stroke
 
   return getAvatarShape({
@@ -51,10 +57,16 @@ export const getBackgroundShape = (dimensions: number, cornerSize: number) => {
 
 /**
  * Returns the shape of the outline when field is focused.
- * it should be 82x82(px)
+ * For small variant, it should be 82x82(px), for large - 162x162(px).
  * it is 2px bigger than the background because of the outline stroke width.
  */
-export const getOutlineShape = (dimensions: number, cornerSize: number) => {
+export const getOutlineShape = ({
+  dimensions,
+  cornerSize,
+}: {
+  dimensions: number
+  cornerSize: number
+}) => {
   const centerShift = 2 // shift for the outline stroke
   const outlineStrokeWidth = 2 // width of the outline stroke
 
@@ -70,10 +82,16 @@ export const getOutlineShape = (dimensions: number, cornerSize: number) => {
 
 /**
  * Returns the shape of the borders.
- * it should be 78x78(px)
+ * For small variant, it should be 78x78(px), for large - 158x158(px).
  * it is 1px smaller than the background because of the border stroke width.
  */
-export const getBordersShape = (dimensions: number, cornerSize: number) => {
+export const getBordersShape = ({
+  dimensions,
+  cornerSize,
+}: {
+  dimensions: number
+  cornerSize: number
+}) => {
   const centerShift = 4 // shift for the outline stroke and border stroke
   const outlineStrokeWidth = 2 // width of the outline stroke
 
