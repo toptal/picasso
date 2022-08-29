@@ -1,3 +1,5 @@
 dist-package
 build
 node_modules
+!.changeset
+.changeset/README.md
