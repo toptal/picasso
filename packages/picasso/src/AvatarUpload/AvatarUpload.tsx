@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback } from 'react'
-import { makeStyles, Theme } from '@material-ui/core'
-import { BaseProps } from '@toptal/picasso-shared'
+import { capitalize, makeStyles, Theme } from '@material-ui/core'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useDropzone } from 'react-dropzone'
 import cx from 'classnames'
 
@@ -20,6 +20,8 @@ export interface Props extends BaseProps {
   alt?: string
   /** Image URL */
   src?: string
+  /** Size of the avatar */
+  size?: SizeType<'small' | 'large'>
   /** Enable/disable the dropzone */
   disabled?: boolean
   /** Maximum file size (in bytes) */
@@ -68,6 +70,7 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
   function AvatarUpload(props, ref) {
     const {
       uploading,
+      size = 'small',
       onEdit,
       'data-testid': dataTestId,
       testIds,
@@ -157,13 +160,17 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
       onDropAccepted: handleDropAccepted,
       onDropRejected: handleDropRejected,
       validator,
+      noClick: showAvatar && !showEditIcon,
+      // after showing avatar, only way to change the avatar is to use 'onEdit'
+      noDrag: showAvatar,
+      noKeyboard: showAvatar,
     })
 
     return (
       <div
         {...getRootProps({
           ref,
-          className: cx(classes.root, classes.size),
+          className: cx(classes.root, classes[`size${capitalize(size)}`]),
           'data-testid': dataTestId,
         })}
       >
@@ -171,7 +178,7 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
 
         {showAvatar ? (
           <Avatar
-            size='small'
+            size={size}
             onEdit={showEditIcon ? handleEdit : undefined}
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             src={src!}
@@ -181,7 +188,7 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
           />
         ) : (
           <>
-            <DropzoneSvg data-testid={testIds?.dropzoneSvg} />
+            <DropzoneSvg size={size} data-testid={testIds?.dropzoneSvg} />
             {loadingIcon}
             {uploadIcon}
           </>
@@ -194,6 +201,7 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
 AvatarUpload.displayName = 'AvatarUpload'
 
 AvatarUpload.defaultProps = {
+  size: 'small',
   disabled: false,
   maxSize: 104857600, // 100MB in bytes (100 * 1024 * 1024)
   minSize: 0,

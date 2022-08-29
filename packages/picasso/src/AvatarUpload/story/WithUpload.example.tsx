@@ -1,9 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { AvatarUpload, Container } from '@toptal/picasso'
 import { FileRejection } from '@toptal/picasso/AvatarUpload'
 
 const Example = () => {
-  const avatarUploadRef = useRef<HTMLDivElement>(null)
   const [uploading, setUploading] = useState<boolean>(false)
   const [src, setSrc] = useState<string | undefined>()
 
@@ -40,7 +39,6 @@ const Example = () => {
   return (
     <Container padded='medium'>
       <AvatarUpload
-        ref={avatarUploadRef}
         alt='Jacqueline Roque. Pablo Picasso, 1954'
         onDrop={handleDrop}
         src={src}

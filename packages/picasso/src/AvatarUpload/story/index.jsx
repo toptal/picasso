@@ -20,3 +20,4 @@ page
       'Shows how the component can be used with FileReader to upload a file',
     takeScreenshot: false,
   })
+  .addExample('AvatarUpload/story/Sizes.example.tsx', 'Sizes')

@@ -11,9 +11,14 @@ export default ({ palette }: Theme) =>
       outline: 'none',
     },
 
-    size: {
+    sizeSmall: {
       width: '5rem',
       height: '5rem',
+    },
+
+    sizeLarge: {
+      width: '10rem',
+      height: '10rem',
     },
 
     icon: {
