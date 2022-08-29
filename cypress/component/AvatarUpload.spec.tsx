@@ -18,8 +18,9 @@ describe('AvatarUpload', () => {
 
     it('renders upload icon over image avatar', () => {
       cy.mount(
-        <Container padded='small'>
+        <Container padded='small' gap='small'>
           <AvatarUpload src={src} alt='avatar' />
+          <AvatarUpload src={src} alt='avatar' size='large' />
         </Container>
       )
 
