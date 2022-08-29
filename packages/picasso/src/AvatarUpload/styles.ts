@@ -9,6 +9,10 @@ export default ({ palette }: Theme) =>
       alignItems: 'center',
       color: palette.blue.main,
       outline: 'none',
+
+      '&$error': {
+        color: palette.red.main,
+      },
     },
 
     sizeSmall: {
@@ -23,6 +27,8 @@ export default ({ palette }: Theme) =>
 
     icon: {
       position: 'absolute',
-      cursor: 'pointer',
+      pointerEvents: 'none',
     },
+
+    error: {},
   })

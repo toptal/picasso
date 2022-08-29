@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback } from 'react'
+import React, { forwardRef, useCallback, useState } from 'react'
 import { capitalize, makeStyles, Theme } from '@material-ui/core'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useDropzone } from 'react-dropzone'
@@ -10,6 +10,7 @@ import { AvatarUploadOptions, DropEvent, FileRejection } from './types'
 import DropzoneSvg from './DropzoneSvg/DropzoneSvg'
 import Loader from '../Loader'
 import { Upload24 } from '../Icon'
+import { Status } from '../OutlinedInput'
 
 export interface Props extends BaseProps {
   /**
@@ -52,8 +53,14 @@ export interface Props extends BaseProps {
    * (file: File) => FileError | FileError[] | null
    */
   validator?: AvatarUploadOptions['validator']
+  /** Indicate `AvatarUpload` is in `error` or `default` state */
+  status?: Extract<Status, 'error' | 'default'>
   /** Indicate whether the selected file is being uploaded */
   uploading?: boolean
+  /** Indicate whether component has focused state */
+  focused?: boolean
+  /** Indicate whether component has hovered state */
+  hovered?: boolean
   testIds?: {
     avatar?: string
     dropzoneSvg?: string
@@ -69,9 +76,12 @@ const useStyles = makeStyles<Theme>(styles, {
 export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
   function AvatarUpload(props, ref) {
     const {
+      focused: initiallyFocused,
+      hovered: initiallyHovered,
       uploading,
       size = 'small',
       onEdit,
+      status,
       'data-testid': dataTestId,
       testIds,
       src,
@@ -87,6 +97,11 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
       onDropRejected,
       validator,
     } = props
+
+    const [{ focused, hovered }, setVisualStates] = useState<{
+      focused?: boolean
+      hovered?: boolean
+    }>({ focused: initiallyFocused, hovered: initiallyHovered })
 
     // callback overrides to return only one file to the parent component
     const handleDrop = useCallback(
@@ -131,14 +146,29 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
       }
     }
 
+    const onFocus = () => {
+      setVisualStates(oldState => ({ ...oldState, focused: true }))
+    }
+
+    const onBlur = () => {
+      setVisualStates(oldState => ({ ...oldState, focused: false }))
+    }
+
+    const onMouseEnter = () => {
+      setVisualStates(oldState => ({ ...oldState, hovered: true }))
+    }
+
+    const onMouseLeave = () => {
+      setVisualStates(oldState => ({ ...oldState, hovered: false }))
+    }
+
     const showLoader = Boolean(uploading)
     const showAvatar = !showLoader && Boolean(src)
     const showUploadIcon = !showAvatar && !showLoader
     const showEditIcon = Boolean(onEdit)
 
-    // after showing avatar, only way to change the file selection is to use 'onEdit'
+    // after showing avatar, only way to change the file selection is to use 'onEdit' by clicking
     const disableDropzoneClick = showAvatar && !showEditIcon
-    const disableDropzoneDragAndKeyboard = showAvatar
 
     const classes = useStyles()
 
@@ -154,7 +184,7 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
       <Upload24 className={classes.icon} data-testid={testIds?.uploadIcon} />
     )
 
-    const { getInputProps, getRootProps } = useDropzone({
+    const { getInputProps, getRootProps, isDragActive } = useDropzone({
       accept,
       minSize,
       maxSize,
@@ -165,17 +195,23 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
       onDropRejected: handleDropRejected,
       validator,
       noClick: disableDropzoneClick,
-      noDrag: disableDropzoneDragAndKeyboard,
-      noKeyboard: disableDropzoneDragAndKeyboard,
+      noDrag: showAvatar,
+      noKeyboard: showAvatar,
     })
 
     return (
       <div
         {...getRootProps({
           ref,
-          className: cx(classes.root, classes[`size${capitalize(size)}`]),
+          className: cx(classes.root, classes[`size${capitalize(size)}`], {
+            [classes.error]: status === 'error',
+          }),
           'data-testid': dataTestId,
         })}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
         <input {...getInputProps()} />
 
@@ -191,7 +227,15 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
           />
         ) : (
           <>
-            <DropzoneSvg size={size} data-testid={testIds?.dropzoneSvg} />
+            <DropzoneSvg
+              disabled={disabled}
+              error={status === 'error'}
+              size={size}
+              focused={focused}
+              hovered={hovered}
+              isDragActive={isDragActive}
+              data-testid={testIds?.dropzoneSvg}
+            />
             {loadingIcon}
             {uploadIcon}
           </>

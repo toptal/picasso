@@ -36,6 +36,11 @@ const SHAPES = {
 
 export interface Props extends BaseProps {
   size?: SizeType<'small' | 'large'>
+  isDragActive?: boolean
+  disabled?: boolean
+  error?: boolean
+  focused?: boolean
+  hovered?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -43,7 +48,15 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const DropzoneSvg = (props: Props) => {
-  const { size = 'small', 'data-testid': dataTestId } = props
+  const {
+    size = 'small',
+    disabled,
+    error,
+    focused,
+    hovered,
+    isDragActive,
+    'data-testid': dataTestId,
+  } = props
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const shapes = SHAPES[size!]
@@ -61,13 +74,21 @@ export const DropzoneSvg = (props: Props) => {
         xmlns='http://www.w3.org/2000/svg'
       >
         <path
-          className={classes.background}
+          className={cx(classes.background, {
+            [classes.dragActive]: isDragActive,
+            [classes.disabled]: disabled,
+            [classes.error]: error,
+            [classes.focused]: focused,
+            [classes.hovered]: hovered,
+          })}
           fillRule='evenodd'
           clipRule='evenodd'
           d={shapes.backgroundShape}
         />
         <path
-          className={classes.outline}
+          className={cx(classes.outline, {
+            [classes.focused]: focused,
+          })}
           fillRule='evenodd'
           clipRule='evenodd'
           d={shapes.outlineShape}
@@ -76,7 +97,10 @@ export const DropzoneSvg = (props: Props) => {
           strokeLinejoin='round'
         />
         <path
-          className={classes.border}
+          className={cx(classes.border, {
+            [classes.error]: error,
+            [classes.focused]: focused,
+          })}
           fillRule='evenodd'
           clipRule='evenodd'
           d={shapes.bordersShape}
