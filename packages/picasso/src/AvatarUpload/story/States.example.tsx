@@ -1,12 +1,21 @@
 import React from 'react'
 import { AvatarUpload, Container, Typography } from '@toptal/picasso'
 
+const HoveredExample = () => (
+  <Container flex direction='column' alignItems='center'>
+    <Typography variant='heading' size='small'>
+      Hovered
+    </Typography>
+    <AvatarUpload alt='avatar-upload' hovered />
+  </Container>
+)
+
 const FocusedExample = () => (
   <Container flex direction='column' alignItems='center'>
     <Typography variant='heading' size='small'>
       Focused
     </Typography>
-    <AvatarUpload alt='Jacqueline Roque. Pablo Picasso, 1954' focused />
+    <AvatarUpload alt='avatar-upload' focused />
   </Container>
 )
 
@@ -15,7 +24,7 @@ const ErrorExample = () => (
     <Typography variant='heading' size='small'>
       Error
     </Typography>
-    <AvatarUpload alt='Jacqueline Roque. Pablo Picasso, 1954' status='error' />
+    <AvatarUpload alt='avatar-upload' status='error' />
   </Container>
 )
 
@@ -24,11 +33,7 @@ const FocusedAndErrorExample = () => (
     <Typography variant='heading' size='small'>
       Focused & Error
     </Typography>
-    <AvatarUpload
-      alt='Jacqueline Roque. Pablo Picasso, 1954'
-      status='error'
-      focused
-    />
+    <AvatarUpload alt='avatar-upload' status='error' focused />
   </Container>
 )
 
@@ -37,16 +42,27 @@ const LoadingExample = () => (
     <Typography variant='heading' size='small'>
       Loading
     </Typography>
-    <AvatarUpload alt='Jacqueline Roque. Pablo Picasso, 1954' uploading />
+    <AvatarUpload alt='avatar-upload' uploading />
+  </Container>
+)
+
+const ActiveExample = () => (
+  <Container flex direction='column' alignItems='center'>
+    <Typography variant='heading' size='small'>
+      Active & Drag
+    </Typography>
+    <AvatarUpload alt='avatar-upload' active />
   </Container>
 )
 
 const Example = () => (
   <Container flex padded='medium' gap='medium'>
+    <HoveredExample />
     <FocusedExample />
     <ErrorExample />
     <FocusedAndErrorExample />
     <LoadingExample />
+    <ActiveExample />
   </Container>
 )
 

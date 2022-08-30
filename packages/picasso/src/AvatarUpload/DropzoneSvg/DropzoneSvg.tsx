@@ -88,6 +88,7 @@ export const DropzoneSvg = (props: Props) => {
         <path
           className={cx(classes.outline, {
             [classes.focused]: focused,
+            [classes.error]: error,
           })}
           fillRule='evenodd'
           clipRule='evenodd'
@@ -100,6 +101,7 @@ export const DropzoneSvg = (props: Props) => {
           className={cx(classes.border, {
             [classes.error]: error,
             [classes.focused]: focused,
+            [classes.hovered]: hovered,
           })}
           fillRule='evenodd'
           clipRule='evenodd'

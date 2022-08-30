@@ -4,10 +4,12 @@ import { alpha } from '@toptal/picasso-shared'
 export default ({ palette, transitions }: Theme) => {
   const dragActiveColor = alpha(palette.blue.main, 0.24)
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const hoverColor = alpha(palette.blue.lighter!, 0.84)
+  const hoverBackgroundColor = alpha(palette.blue.lighter!, 0.84)
+  const hoverBorderColor = alpha(palette.blue.main, 0.84)
 
   return createStyles({
     root: {
+      pointerEvents: 'unset',
       position: 'relative',
       background: 'transparent',
     },
@@ -38,8 +40,7 @@ export default ({ palette, transitions }: Theme) => {
       transitionProperty: 'fill',
 
       '&$hovered': {
-        cursor: 'pointer',
-        fill: hoverColor,
+        fill: hoverBackgroundColor,
       },
 
       '&$dragActive,&:active': {
@@ -49,7 +50,6 @@ export default ({ palette, transitions }: Theme) => {
       '&$disabled': {
         fill: palette.grey.lighter,
         '&$hovered': {
-          cursor: 'no-drop',
           fill: palette.grey.light2,
         },
       },
@@ -58,12 +58,12 @@ export default ({ palette, transitions }: Theme) => {
       stroke: palette.blue.main,
       transition: `stroke ${transitions.duration.short}`,
 
+      '&$hovered': {
+        stroke: hoverBorderColor,
+      },
+
       '&$error': {
         stroke: palette.red.main,
-
-        '&$focused': {
-          stroke: palette.blue.main,
-        },
       },
     },
     outline: {
@@ -72,6 +72,10 @@ export default ({ palette, transitions }: Theme) => {
 
       '&$focused:not($dragActive)': {
         display: 'initial',
+      },
+
+      '&$error': {
+        stroke: palette.red.main,
       },
     },
 

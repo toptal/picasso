@@ -1,4 +1,10 @@
-import React, { forwardRef, useCallback, useState } from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from 'react'
 import { capitalize, makeStyles, Theme } from '@material-ui/core'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useDropzone } from 'react-dropzone'
@@ -61,6 +67,8 @@ export interface Props extends BaseProps {
   focused?: boolean
   /** Indicate whether component has hovered state */
   hovered?: boolean
+  /** Indicate whether component has active state */
+  active?: boolean
   testIds?: {
     avatar?: string
     dropzoneSvg?: string
@@ -73,11 +81,13 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAvatarUpload',
 })
 
-export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
+export const AvatarUpload = forwardRef<HTMLElement, Props>(
+  // eslint-disable-next-line max-statements
   function AvatarUpload(props, ref) {
     const {
-      focused: initiallyFocused,
-      hovered: initiallyHovered,
+      focused: focusedProp,
+      hovered: hoveredProp,
+      active: activeProp,
       uploading,
       size = 'small',
       onEdit,
@@ -98,10 +108,16 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
       validator,
     } = props
 
-    const [{ focused, hovered }, setVisualStates] = useState<{
-      focused?: boolean
-      hovered?: boolean
-    }>({ focused: initiallyFocused, hovered: initiallyHovered })
+    const [{ initiallyFocused, initiallyActive, hovered }, setVisualStates] =
+      useState<{
+        hovered?: boolean
+        initiallyFocused?: boolean
+        initiallyActive?: boolean
+      }>({
+        hovered: hoveredProp,
+        initiallyFocused: focusedProp,
+        initiallyActive: activeProp,
+      })
 
     // callback overrides to return only one file to the parent component
     const handleDrop = useCallback(
@@ -146,14 +162,6 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
       }
     }
 
-    const onFocus = () => {
-      setVisualStates(oldState => ({ ...oldState, focused: true }))
-    }
-
-    const onBlur = () => {
-      setVisualStates(oldState => ({ ...oldState, focused: false }))
-    }
-
     const onMouseEnter = () => {
       setVisualStates(oldState => ({ ...oldState, hovered: true }))
     }
@@ -174,42 +182,65 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
 
     const loadingIcon = showLoader && (
       <Loader
-        className={classes.icon}
+        className={cx(classes.icon, {
+          [classes.hovered]: hovered,
+        })}
         size='small'
         variant='inherit'
         data-testid={testIds?.loader}
       />
     )
     const uploadIcon = showUploadIcon && (
-      <Upload24 className={classes.icon} data-testid={testIds?.uploadIcon} />
+      <Upload24
+        className={cx(classes.icon, {
+          [classes.hovered]: hovered,
+        })}
+        data-testid={testIds?.uploadIcon}
+      />
     )
 
-    const { getInputProps, getRootProps, isDragActive } = useDropzone({
-      accept,
-      minSize,
-      maxSize,
-      disabled,
-      multiple: false,
-      onDrop: handleDrop,
-      onDropAccepted: handleDropAccepted,
-      onDropRejected: handleDropRejected,
-      validator,
-      noClick: disableDropzoneClick,
-      noDrag: showAvatar,
-      noKeyboard: showAvatar,
-    })
+    const { getInputProps, getRootProps, isDragActive, isFocused, rootRef } =
+      useDropzone({
+        accept,
+        minSize,
+        maxSize,
+        disabled,
+        multiple: false,
+        onDrop: handleDrop,
+        onDropAccepted: handleDropAccepted,
+        onDropRejected: handleDropRejected,
+        validator,
+        noClick: disableDropzoneClick,
+        noDrag: showAvatar,
+        noKeyboard: showAvatar,
+      })
+
+    useEffect(() => {
+      if (initiallyActive && isDragActive) {
+        setVisualStates(oldState => ({ ...oldState, initiallyActive: false }))
+      }
+    }, [initiallyActive, isDragActive])
+
+    useEffect(() => {
+      if (initiallyFocused && isFocused) {
+        setVisualStates(oldState => ({ ...oldState, initiallyFocused: false }))
+      }
+    }, [initiallyFocused, isFocused])
+
+    // exposing the rootRef from react-dropzone to the parent component
+    useImperativeHandle(ref, () => rootRef.current ?? ({} as HTMLElement), [
+      rootRef,
+    ])
 
     return (
       <div
         {...getRootProps({
-          ref,
           className: cx(classes.root, classes[`size${capitalize(size)}`], {
             [classes.error]: status === 'error',
+            [classes.disabled]: disabled,
           }),
           'data-testid': dataTestId,
         })}
-        onFocus={onFocus}
-        onBlur={onBlur}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
@@ -231,9 +262,9 @@ export const AvatarUpload = forwardRef<HTMLDivElement, Props>(
               disabled={disabled}
               error={status === 'error'}
               size={size}
-              focused={focused}
               hovered={hovered}
-              isDragActive={isDragActive}
+              focused={initiallyFocused || isFocused}
+              isDragActive={initiallyActive || isDragActive}
               data-testid={testIds?.dropzoneSvg}
             />
             {loadingIcon}
