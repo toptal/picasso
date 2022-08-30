@@ -2,7 +2,8 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 import { alpha } from '@toptal/picasso-shared'
 
 export default ({ palette }: Theme) => {
-  const hoverIconColor = alpha(palette.blue.main, 0.84)
+  const iconHoverColor = alpha(palette.blue.main, 0.84)
+  const iconHoverErrorColor = alpha(palette.red.main, 0.84)
 
   return createStyles({
     root: {
@@ -13,10 +14,6 @@ export default ({ palette }: Theme) => {
       color: palette.blue.main,
       outline: 'none',
       cursor: 'pointer',
-
-      '&$error': {
-        color: palette.red.main,
-      },
 
       '&$disabled': {
         cursor: 'no-drop',
@@ -37,8 +34,16 @@ export default ({ palette }: Theme) => {
       position: 'absolute',
       pointerEvents: 'none',
 
+      '&$error': {
+        color: palette.red.main,
+      },
+
       '&$hovered': {
-        color: hoverIconColor,
+        color: iconHoverColor,
+
+        '&$error': {
+          color: iconHoverErrorColor,
+        },
       },
     },
 

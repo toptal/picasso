@@ -174,6 +174,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
     const showAvatar = !showLoader && Boolean(src)
     const showUploadIcon = !showAvatar && !showLoader
     const showEditIcon = Boolean(onEdit)
+    const error = status === 'error'
 
     // after showing avatar, only way to change the file selection is to use 'onEdit' by clicking
     const disableDropzoneClick = showAvatar && !showEditIcon
@@ -184,6 +185,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       <Loader
         className={cx(classes.icon, {
           [classes.hovered]: hovered,
+          [classes.error]: error,
         })}
         size='small'
         variant='inherit'
@@ -194,6 +196,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       <Upload24
         className={cx(classes.icon, {
           [classes.hovered]: hovered,
+          [classes.error]: error,
         })}
         data-testid={testIds?.uploadIcon}
       />
@@ -236,7 +239,6 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       <div
         {...getRootProps({
           className: cx(classes.root, classes[`size${capitalize(size)}`], {
-            [classes.error]: status === 'error',
             [classes.disabled]: disabled,
           }),
           'data-testid': dataTestId,
