@@ -49,7 +49,7 @@ const LoadingExample = () => (
 const ActiveExample = () => (
   <Container flex direction='column' alignItems='center'>
     <Typography variant='heading' size='small'>
-      Active & Drag
+      Active
     </Typography>
     <AvatarUpload alt='avatar-upload' active />
   </Container>
