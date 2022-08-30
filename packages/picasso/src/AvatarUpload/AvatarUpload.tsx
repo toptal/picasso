@@ -82,13 +82,13 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const AvatarUpload = forwardRef<HTMLElement, Props>(
-  // eslint-disable-next-line max-statements
+  // eslint-disable-next-line complexity
   function AvatarUpload(props, ref) {
     const {
       focused: focusedProp,
       hovered: hoveredProp,
       active: activeProp,
-      uploading,
+      uploading = false,
       size = 'small',
       onEdit,
       status,
@@ -170,22 +170,20 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       setVisualStates(oldState => ({ ...oldState, hovered: false }))
     }
 
-    const showLoader = Boolean(uploading)
-    const showAvatar = !showLoader && Boolean(src)
-    const showUploadIcon = !showAvatar && !showLoader
-    const showEditIcon = Boolean(onEdit)
-    const error = status === 'error'
+    const showAvatar = !uploading && Boolean(src)
+    const showUploadIcon = !(showAvatar || uploading)
 
     // after showing avatar, only way to change the file selection is to use 'onEdit' by clicking
-    const disableDropzoneClick = showAvatar && !showEditIcon
+    const disableDropzoneClick = (showAvatar && !onEdit) || uploading
+    const disableKeyboardAndDragging = showAvatar || uploading
 
     const classes = useStyles()
 
-    const loadingIcon = showLoader && (
+    const loadingIcon = uploading && (
       <Loader
         className={cx(classes.icon, {
           [classes.hovered]: hovered,
-          [classes.error]: error,
+          [classes.error]: status === 'error',
         })}
         size='small'
         variant='inherit'
@@ -196,7 +194,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       <Upload24
         className={cx(classes.icon, {
           [classes.hovered]: hovered,
-          [classes.error]: error,
+          [classes.error]: status === 'error',
         })}
         data-testid={testIds?.uploadIcon}
       />
@@ -214,8 +212,8 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
         onDropRejected: handleDropRejected,
         validator,
         noClick: disableDropzoneClick,
-        noDrag: showAvatar,
-        noKeyboard: showAvatar,
+        noDrag: disableKeyboardAndDragging,
+        noKeyboard: disableKeyboardAndDragging,
       })
 
     useEffect(() => {
@@ -240,6 +238,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
         {...getRootProps({
           className: cx(classes.root, classes[`size${capitalize(size)}`], {
             [classes.disabled]: disabled,
+            [classes.readonlyAvatar]: showAvatar,
           }),
           'data-testid': dataTestId,
         })}
@@ -251,7 +250,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
         {showAvatar ? (
           <Avatar
             size={size}
-            onEdit={showEditIcon ? handleEdit : undefined}
+            onEdit={onEdit ? handleEdit : undefined}
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             src={src!}
             alt={alt}
@@ -283,6 +282,7 @@ AvatarUpload.displayName = 'AvatarUpload'
 AvatarUpload.defaultProps = {
   size: 'small',
   disabled: false,
+  uploading: false,
   maxSize: 104857600, // 100MB in bytes (100 * 1024 * 1024)
   minSize: 0,
   accept: 'image/*',

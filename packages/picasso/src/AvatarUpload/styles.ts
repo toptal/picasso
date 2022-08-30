@@ -18,6 +18,10 @@ export default ({ palette }: Theme) => {
       '&$disabled': {
         cursor: 'no-drop',
       },
+
+      '&$readonlyAvatar': {
+        cursor: 'default',
+      },
     },
 
     sizeSmall: {
@@ -50,5 +54,6 @@ export default ({ palette }: Theme) => {
     error: {},
     disabled: {},
     hovered: {},
+    readonlyAvatar: {},
   })
 }
