@@ -1,5 +1,16 @@
 # Change Log
 
+## 26.12.0
+
+### Minor Changes
+
+- [#3069](https://github.com/toptal/picasso/pull/3069) [`3ee414e7c`](https://github.com/toptal/picasso/commit/3ee414e7c7088011992b731642099c68d6e25a17) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### AvatarUpload
+
+  - add new component for avatar uploads
+  - add `size` prop and large variant for the component
+
 ## 26.11.0
 
 ### Minor Changes
