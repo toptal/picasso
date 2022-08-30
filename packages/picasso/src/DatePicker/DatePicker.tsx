@@ -420,6 +420,7 @@ export const DatePicker = (props: Props) => {
             onChange={handleCalendarChange}
             onBlur={handleBlur}
             className={classes.calendar}
+            hasFooter={Boolean(footer)}
             weekStartsOn={weekStartsOn}
           />
           {footer && <div className={classes.footer}>{footer}</div>}
