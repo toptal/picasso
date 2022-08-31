@@ -6,7 +6,7 @@ const HoveredExample = () => (
     <Typography variant='heading' size='small'>
       Hovered
     </Typography>
-    <AvatarUpload alt='avatar-upload' hovered />
+    <AvatarUpload alt='avatar-upload' autoHover />
   </Container>
 )
 
@@ -15,7 +15,7 @@ const FocusedExample = () => (
     <Typography variant='heading' size='small'>
       Focused
     </Typography>
-    <AvatarUpload alt='avatar-upload' focused />
+    <AvatarUpload alt='avatar-upload' autoFocus />
   </Container>
 )
 
@@ -33,7 +33,7 @@ const FocusedAndErrorExample = () => (
     <Typography variant='heading' size='small'>
       Focused & Error
     </Typography>
-    <AvatarUpload alt='avatar-upload' status='error' focused />
+    <AvatarUpload alt='avatar-upload' status='error' autoFocus />
   </Container>
 )
 
@@ -51,7 +51,7 @@ const ActiveExample = () => (
     <Typography variant='heading' size='small'>
       Active
     </Typography>
-    <AvatarUpload alt='avatar-upload' active />
+    <AvatarUpload alt='avatar-upload' autoActive />
   </Container>
 )
 

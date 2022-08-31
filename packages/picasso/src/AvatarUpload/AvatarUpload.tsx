@@ -63,12 +63,10 @@ export interface Props extends BaseProps {
   status?: Extract<Status, 'error' | 'default'>
   /** Indicate whether the selected file is being uploaded */
   uploading?: boolean
-  /** Indicate whether component has focused state */
-  focused?: boolean
-  /** Indicate whether component has hovered state */
-  hovered?: boolean
-  /** Indicate whether component has active state */
-  active?: boolean
+  /** Indicate whether component has focused state as default */
+  autoFocus?: boolean
+  autoHover?: boolean
+  defaultActive?: boolean
   testIds?: {
     avatar?: string
     dropzoneSvg?: string
@@ -85,9 +83,9 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
   // eslint-disable-next-line complexity
   function AvatarUpload(props, ref) {
     const {
-      focused: focusedProp,
-      hovered: hoveredProp,
-      active: activeProp,
+      autoFocus,
+      autoHover,
+      defaultActive,
       uploading = false,
       size = 'small',
       onEdit,
@@ -114,9 +112,9 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
         initiallyFocused?: boolean
         initiallyActive?: boolean
       }>({
-        hovered: hoveredProp,
-        initiallyFocused: focusedProp,
-        initiallyActive: activeProp,
+        hovered: autoHover,
+        initiallyFocused: autoFocus,
+        initiallyActive: defaultActive,
       })
 
     // callback overrides to return only one file to the parent component
