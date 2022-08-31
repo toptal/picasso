@@ -51,7 +51,7 @@ const ActiveExample = () => (
     <Typography variant='heading' size='small'>
       Active
     </Typography>
-    <AvatarUpload alt='avatar-upload' autoActive />
+    <AvatarUpload alt='avatar-upload' defaultActive />
   </Container>
 )
 
