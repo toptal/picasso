@@ -12,7 +12,12 @@ import cx from 'classnames'
 
 import Avatar from '../Avatar'
 import styles from './styles'
-import { AvatarUploadOptions, DropEvent, FileRejection } from './types'
+import {
+  AvatarUploadOptions,
+  DropEvent,
+  FileRejection,
+  FileUpload,
+} from './types'
 import DropzoneSvg from './DropzoneSvg/DropzoneSvg'
 import Loader from '../Loader'
 import { Upload24 } from '../Icon'
@@ -59,6 +64,8 @@ export interface Props extends BaseProps {
    * (file: File) => FileError | FileError[] | null
    */
   validator?: AvatarUploadOptions['validator']
+  /** Value to be used for forms */
+  value?: FileUpload
   /** Indicate `AvatarUpload` is in `error` or `default` state */
   status?: Extract<Status, 'error' | 'default'>
   /** Indicate whether the selected file is being uploaded */

@@ -178,6 +178,11 @@ const Example = () => {
         status='No file selected.'
       />
       <Form.Dropzone label='Attachments' required name='default-attachments' />
+      <Form.AvatarUpload
+        label='Profile photo'
+        required
+        name='default-avatarUpload'
+      />
       <Form.Checkbox
         required
         name='default-legal'

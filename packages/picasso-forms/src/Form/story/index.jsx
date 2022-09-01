@@ -148,9 +148,9 @@ provides inside all the necessary input components types.
     {
       title: 'Default',
       description: `
-A general look of the form includes the examples of all the input
-types supported by picasso-forms.
-`,
+  A general look of the form includes the examples of all the input
+  types supported by picasso-forms.
+  `,
     },
     'picasso-form'
   )
@@ -159,9 +159,9 @@ types supported by picasso-forms.
     {
       title: 'Custom validator',
       description: `
-We have a 'required' validator included by default to each input type,
-however, you may need custom validators for more complex types of fields.
-`,
+  We have a 'required' validator included by default to each input type,
+  however, you may need custom validators for more complex types of fields.
+  `,
       takeScreenshot: false,
     },
     'picasso-form'
@@ -171,14 +171,14 @@ however, you may need custom validators for more complex types of fields.
     {
       title: 'Change form input value',
       description: `
-      When you use picasso-forms your form input components are no longer
-      completely controlled and they are controlled by final-form, which
-      gives you the opportunity to rely on it with displaying errors,
-      validations, etc.
+        When you use picasso-forms your form input components are no longer
+        completely controlled and they are controlled by final-form, which
+        gives you the opportunity to rely on it with displaying errors,
+        validations, etc.
 
-      However, sometimes you may need to be able to modify the form input
-      value.
-      `,
+        However, sometimes you may need to be able to modify the form input
+        value.
+        `,
       takeScreenshot: false,
     },
     'picasso-form'
@@ -188,10 +188,10 @@ however, you may need custom validators for more complex types of fields.
     {
       title: 'Backend communication',
       description: `
-        The form usually need to send data to backend, so we need to have
-        backend communication and display the process of submission and
-        the results. The form-level results are represented by notifications.
-        `,
+          The form usually need to send data to backend, so we need to have
+          backend communication and display the process of submission and
+          the results. The form-level results are represented by notifications.
+          `,
       takeScreenshot: false,
     },
     'picasso-form'
@@ -205,8 +205,8 @@ however, you may need custom validators for more complex types of fields.
     {
       title: 'Validate only on submit',
       description: `
-            All fields should not show any validation error messages until submission is made.
-            `,
+              All fields should not show any validation error messages until submission is made.
+              `,
       takeScreenshot: false,
     },
     'picasso-form'
@@ -246,5 +246,11 @@ however, you may need custom validators for more complex types of fields.
     title: 'Form Level Status Configuration',
     description:
       'Showcase how to enable success status via form configuration.',
+    takeScreenshot: false,
+  })
+  .addExample('Form/story/AvatarUpload.example.tsx', {
+    title: 'AvatarUpload',
+    description:
+      'Showcase how to handle avatar upload with external upload service.',
     takeScreenshot: false,
   })
