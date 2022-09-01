@@ -248,3 +248,9 @@ however, you may need custom validators for more complex types of fields.
       'Showcase how to enable success status via form configuration.',
     takeScreenshot: false,
   })
+  .addExample('Form/story/AvatarUpload.example.tsx', {
+    title: 'AvatarUpload',
+    description:
+      'Showcase how to handle avatar upload with external upload service.',
+    takeScreenshot: false,
+  })

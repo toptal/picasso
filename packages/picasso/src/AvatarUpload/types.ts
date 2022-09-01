@@ -1,8 +1,6 @@
 export interface FileUpload {
-  uploading?: boolean
-  progress?: number
-  error?: string
-  file: File
+  file?: File
+  src?: string
 }
 
 export type AvatarUploadOptions = {

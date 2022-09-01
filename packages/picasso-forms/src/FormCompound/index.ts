@@ -22,6 +22,7 @@ import Dropzone from '../Dropzone'
 import RichTextEditor from '../RichTextEditor'
 import PasswordInput from '../PasswordInput'
 import { FormConfigContext } from '../FormConfig'
+import AvatarUpload from '../AvatarUpload'
 
 export const FormCompound = Object.assign(Form, {
   Autocomplete: Autocomplete,
@@ -46,4 +47,5 @@ export const FormCompound = Object.assign(Form, {
   PasswordInput: PasswordInput,
   FieldRequirements: FieldRequirements,
   RichTextEditor: RichTextEditor,
+  AvatarUpload: AvatarUpload,
 })

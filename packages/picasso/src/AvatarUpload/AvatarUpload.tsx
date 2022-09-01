@@ -1,4 +1,5 @@
 import React, {
+  FocusEvent,
   forwardRef,
   useCallback,
   useEffect,
@@ -12,7 +13,12 @@ import cx from 'classnames'
 
 import Avatar from '../Avatar'
 import styles from './styles'
-import { AvatarUploadOptions, DropEvent, FileRejection } from './types'
+import {
+  AvatarUploadOptions,
+  DropEvent,
+  FileRejection,
+  FileUpload,
+} from './types'
 import DropzoneSvg from './DropzoneSvg/DropzoneSvg'
 import Loader from '../Loader'
 import { Upload24 } from '../Icon'
@@ -35,10 +41,12 @@ export interface Props extends BaseProps {
   maxSize?: number
   /** Minimum file size (in bytes) */
   minSize?: number
-  /**
-   * Callback for when there is already a source and user clicks on the avatar.
-   */
+  /** Callback for when there is already a source and user clicks on the avatar. */
   onEdit?: AvatarUploadOptions['onEdit']
+  /** Callback for focusing */
+  onFocus?: (event: FocusEvent<HTMLElement, Element>) => void
+  /** Callback for losing focus */
+  onBlur?: (event: FocusEvent<HTMLElement, Element>) => void
   /**
    * Callback for when the drop event occurs. Note that if file is not accepted, this callback is not invoked.,
    * @type <T extends File>(files: T, event: DropEvent) => void
@@ -59,6 +67,8 @@ export interface Props extends BaseProps {
    * (file: File) => FileError | FileError[] | null
    */
   validator?: AvatarUploadOptions['validator']
+  /** Value to be used for forms */
+  value?: FileUpload
   /** Indicate `AvatarUpload` is in `error` or `default` state */
   status?: Extract<Status, 'error' | 'default'>
   /** Indicate whether the selected file is being uploaded */
@@ -89,6 +99,8 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       uploading = false,
       size = 'small',
       onEdit,
+      onFocus,
+      onBlur,
       status,
       'data-testid': dataTestId,
       testIds,
@@ -239,9 +251,11 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
             [classes.readonlyAvatar]: showAvatar,
           }),
           'data-testid': dataTestId,
+          onMouseEnter,
+          onMouseLeave,
+          onFocus,
+          onBlur,
         })}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
       >
         <input {...getInputProps()} />
 
