@@ -21,3 +21,4 @@ page
     takeScreenshot: false,
   })
   .addExample('AvatarUpload/story/Sizes.example.tsx', 'Sizes')
+  .addExample('AvatarUpload/story/States.example.tsx', 'States')
