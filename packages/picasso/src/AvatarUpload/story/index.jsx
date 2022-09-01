@@ -22,3 +22,9 @@ page
   })
   .addExample('AvatarUpload/story/Sizes.example.tsx', 'Sizes')
   .addExample('AvatarUpload/story/States.example.tsx', 'States')
+  .addExample('AvatarUpload/story/UsingRef.example.tsx', {
+    title: 'Using ref',
+    description:
+      'Shows how to use the ref to access the component after clicking edit',
+    takeScreenshot: false,
+  })
