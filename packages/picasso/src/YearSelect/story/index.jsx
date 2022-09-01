@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'YearSelect',
-  'Year select'
+  `Year select
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

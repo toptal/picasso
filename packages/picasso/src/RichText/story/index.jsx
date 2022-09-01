@@ -15,6 +15,8 @@ const page = PicassoBook.section('Components').createPage(
     ${PicassoBook.createBaseDocsLink(
       'https://app.abstract.com/projects/1b06c884-06af-482a-bf12-a82f521a19a1/branches/master/commits/4f1f6493dfac89015cc6c71ea348807e931fe3bc/files/13531207-e094-44ec-ae1f-f27628c1aea5/layers/5AFC1310-BBF4-4601-BA95-9FB38248733B?mode=design'
     )}
+
+    ${PicassoBook.createSourceLink(__filename)}
   `
 )
 

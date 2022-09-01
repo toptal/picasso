@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'TimePicker',
-  'Time Picker component'
+  `Time Picker component
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

@@ -10,7 +10,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'Table',
-  'Display sets of data'
+  `Display sets of data
+  
+   ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

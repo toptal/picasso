@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(
   'NumberInput',
-  'Input component for numbers'
+  `Input component for numbers
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

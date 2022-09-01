@@ -10,7 +10,7 @@ class PicassoBook extends Base {
 
     // initialize ENV vars to window
     window.PICASSO_BOOK = {
-      TEST_ENV: TEST_ENV
+      TEST_ENV: TEST_ENV,
     }
 
     return this
@@ -41,12 +41,24 @@ in https://github.com/toptal/picasso/blob/dcc2b12a05ebec7cbce2cd591149d4f056762a
         const page = new Page({ title, section: name, sectionFn, alwaysOnTop })
         this.collection.push(page)
         return page
-      }
+      },
     }
   }
 
   createBaseDocsLink = link => {
     return `[BASE documentation](${link})`
+  }
+
+  createSourceLink = link => {
+    const linkWithoutStoryPath = link.split('/story/')[0]
+
+    const linkSplittedByHash = linkWithoutStoryPath.split('/')
+
+    const componentName = linkSplittedByHash[linkSplittedByHash.length - 1]
+
+    const sourceLink = `https://github.com/toptal/picasso/tree/master/${linkWithoutStoryPath}/${componentName}.tsx`
+
+    return `[Source link](${sourceLink})`
   }
 
   createComponentDocs = (component, name, description, additionalDocs = {}) => {

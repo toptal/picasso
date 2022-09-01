@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'Image',
-  'Display any types of images.'
+  `Display any types of images.
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

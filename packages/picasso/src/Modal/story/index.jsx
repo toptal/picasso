@@ -12,6 +12,8 @@ const page = PicassoBook.section('Overlays').createPage(
     ${PicassoBook.createBaseDocsLink(
       'https://share.goabstract.com/d2ef8ff4-c842-4f2b-9ea7-78bfad1f21cb?collectionLayerId=4e8db29f-a5ad-4849-8803-296882ed62bc&mode=design&present=true'
     )}
+
+    ${PicassoBook.createSourceLink(__filename)}
   `
 )
 

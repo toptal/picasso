@@ -2,7 +2,10 @@ import { List } from '../List'
 import listItemStory from '../../ListItem/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Components').createPage('List', null)
+const page = PicassoBook.section('Components').createPage(
+  'List',
+  `${PicassoBook.createSourceLink(__filename)}`
+)
 
 page
   .createTabChapter('Props')

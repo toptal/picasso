@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'Section',
-  'Use sections to organize content on the page'
+  `Use sections to organize content on the page
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page.createTabChapter('Props').addComponentDocs({

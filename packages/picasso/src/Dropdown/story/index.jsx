@@ -4,7 +4,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'Dropdown',
-  'Allows rendering of menus and custom content triggered by custom anchors'
+  `Allows rendering of menus and custom content triggered by custom anchors
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

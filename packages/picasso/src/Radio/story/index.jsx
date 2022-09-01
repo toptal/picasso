@@ -5,7 +5,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const page = PicassoBook.section('Forms').createPage(
   'Radio',
   `Radio buttons are best used when users need to select a single option from a set of unfamiliar choices. 
-    Radio buttons surface all the options and allow the user to compare choices before making a selection.`
+    Radio buttons surface all the options and allow the user to compare choices before making a selection.
+    
+  ${PicassoBook.createSourceLink(__filename)}
+    `
 )
 
 page

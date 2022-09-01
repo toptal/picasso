@@ -112,6 +112,14 @@ module.exports = {
       new IgnoreNotFoundPlugin(['OverridableComponent', 'BaseProps'])
     )
 
+    /*
+    The following Node.js options configure whether to use the filename of the input file relative to the context option.
+    It was added to easily construct links to Source code of components
+    */
+    config.node = {
+      __filename: true,
+    }
+
     config.resolve.mainFields = ['browser', 'main', 'module']
     config.resolve.fallback = {
       fs: false,

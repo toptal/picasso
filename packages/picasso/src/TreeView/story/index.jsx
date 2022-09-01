@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'TreeView',
-  'Allows rendering a tree view'
+  `Allows rendering a tree view
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page.createTabChapter('Props').addComponentDocs({

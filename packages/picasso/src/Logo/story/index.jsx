@@ -8,6 +8,8 @@ const page = PicassoBook.section('Components').createPage(
     It was designed to be instantly recognizable to our users, partners and
     internal teams. Or goal is to ensure each logo instance contributes to our
     brand. This requires consistency in placement, scale, color and location.
+
+    ${PicassoBook.createSourceLink(__filename)}
   `
 )
 

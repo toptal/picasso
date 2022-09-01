@@ -4,7 +4,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const page = PicassoBook.section('Forms').createPage(
   'Input',
   `Input fields are UI elements through which users submit information to the system.
-    Input fields should be clearly labeled by the topic to ensure users know exactly what is being asked of them.`
+    Input fields should be clearly labeled by the topic to ensure users know exactly what is being asked of them.
+    
+  ${PicassoBook.createSourceLink(__filename)}
+    `
 )
 
 page

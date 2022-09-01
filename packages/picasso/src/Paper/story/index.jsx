@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Layout').createPage(
   'Paper',
-  'Elevated container with shadow'
+  `Elevated container with shadow
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page

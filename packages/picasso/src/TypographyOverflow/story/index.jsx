@@ -3,7 +3,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'TypographyOverflow',
-  'Show tooltip when typography overflows'
+  `Show tooltip when typography overflows
+  
+  ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page.createTabChapter('Props').addComponentDocs({

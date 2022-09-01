@@ -10,6 +10,8 @@ const page = PicassoBook.section('Components').createPage(
     ${PicassoBook.createBaseDocsLink(
       'https://share.goabstract.com/fe19eb54-183d-4359-95f2-43f93bad961c?collectionLayerId=903f1c63-750f-495e-8d0f-cdd889851fa2&mode=design&present=true'
     )}
+
+    ${PicassoBook.createSourceLink(__filename)}
   `
 )
 

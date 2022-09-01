@@ -7,6 +7,8 @@ const page = PicassoBook.section('Components').createPage(
   ${PicassoBook.createBaseDocsLink(
     'https://app.abstract.com/projects/1b06c884-06af-482a-bf12-a82f521a19a1/branches/master/commits/58ee1df911f7d6ca2d9214171088a69bdff23401/files/13531207-e094-44ec-ae1f-f27628c1aea5/layers/27C9F1FA-E469-4AA4-936C-DD752F77ADE3?mode=build&selected=root-8BD3C500-A858-4CC4-8CE8-02E0453C0C4D&sha=58ee1df911f7d6ca2d9214171088a69bdff23401'
   )}
+
+  ${PicassoBook.createSourceLink(__filename)}
   `
 )
 

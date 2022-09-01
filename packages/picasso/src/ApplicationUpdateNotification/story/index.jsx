@@ -3,7 +3,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Widgets').createPage(
   'ApplicationUpdateNotification',
-  null
+  `${PicassoBook.createSourceLink(__filename)}`
 )
 
 page.createTabChapter('Props').addComponentDocs({
