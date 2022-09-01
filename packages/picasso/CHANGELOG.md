@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.13.1
+
+### Patch Changes
+
+- [#3080](https://github.com/toptal/picasso/pull/3080) [`6c54f7dd8`](https://github.com/toptal/picasso/commit/6c54f7dd8afd9c75ab82a3f6ed248f9a549b3329) Thanks [@pedrobarrostech](https://github.com/pedrobarrostech)! - ---
+
+  ### DatePicker
+
+  - fix footer alignment
+
 ## 26.13.0
 
 ### Minor Changes
