@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.13.0
+
+### Minor Changes
+
+- [#3079](https://github.com/toptal/picasso/pull/3079) [`aac672c9b`](https://github.com/toptal/picasso/commit/aac672c9b366d5d7836ab6ebcff9c284f1bf30b7) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### AvatarUpload
+
+  - add `focused`, `hovered`, `active` and `error` states for the component
+
 ## 26.12.0
 
 ### Minor Changes
