@@ -1,6 +1,4 @@
 export interface FileUpload {
-  uploading?: boolean
-  error?: string
   file?: File
   src?: string
 }
