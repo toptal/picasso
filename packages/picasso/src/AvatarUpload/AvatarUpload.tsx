@@ -1,4 +1,5 @@
 import React, {
+  FocusEvent,
   forwardRef,
   useCallback,
   useEffect,
@@ -40,10 +41,12 @@ export interface Props extends BaseProps {
   maxSize?: number
   /** Minimum file size (in bytes) */
   minSize?: number
-  /**
-   * Callback for when there is already a source and user clicks on the avatar.
-   */
+  /** Callback for when there is already a source and user clicks on the avatar. */
   onEdit?: AvatarUploadOptions['onEdit']
+  /** Callback for focusing */
+  onFocus?: (event: FocusEvent<HTMLElement, Element>) => void
+  /** Callback for losing focus */
+  onBlur?: (event: FocusEvent<HTMLElement, Element>) => void
   /**
    * Callback for when the drop event occurs. Note that if file is not accepted, this callback is not invoked.,
    * @type <T extends File>(files: T, event: DropEvent) => void
@@ -96,6 +99,8 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       uploading = false,
       size = 'small',
       onEdit,
+      onFocus,
+      onBlur,
       status,
       'data-testid': dataTestId,
       testIds,
@@ -246,9 +251,11 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
             [classes.readonlyAvatar]: showAvatar,
           }),
           'data-testid': dataTestId,
+          onMouseEnter,
+          onMouseLeave,
+          onFocus,
+          onBlur,
         })}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
       >
         <input {...getInputProps()} />
 
