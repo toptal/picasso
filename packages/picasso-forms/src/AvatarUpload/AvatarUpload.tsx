@@ -10,7 +10,7 @@ import { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 
-export type Props = AvatarUploadProps & FieldProps<AvatarUploadProps['value']>
+type Props = AvatarUploadProps & FieldProps<AvatarUploadProps['value']>
 
 type FinalFormOnChangeType = FinalFieldInputProps<
   AvatarUploadProps['value']
