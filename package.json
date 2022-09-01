@@ -65,7 +65,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@toptal/browserslist-config": "^1.2.0",
     "@toptal/davinci-code": "^1.6.3",
-    "@toptal/davinci-syntax": "^16.1.3",
+    "@toptal/davinci-syntax": "^16.2.0",
     "@toptal/davinci-qa": "^12.1.0",
     "@toptal/davinci-ci": "^2.0.10",
     "@toptal/davinci-engine": "^7.4.7",
@@ -119,7 +119,7 @@
     "yarn-deduplicate": "^3.1.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "{**/*.{js,jsx,ts,tsx},.changeset/*.md}": [
       "davinci-syntax lint code",
       "prettier --write"
     ]
