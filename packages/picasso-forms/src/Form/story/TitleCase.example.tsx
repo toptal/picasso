@@ -154,8 +154,8 @@ const Example = () => {
       <Form.FileInput
         titleCase
         required
-        name='titleCase-avatar'
-        label='Your avatar'
+        name='titleCase-resume'
+        label='Your resume'
         status='No file selected.'
       />
       <Form.Checkbox

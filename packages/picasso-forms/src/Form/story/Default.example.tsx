@@ -173,8 +173,8 @@ const Example = () => {
       />
       <Form.FileInput
         required
-        name='default-avatar'
-        label='Avatar'
+        name='default-resume'
+        label='Resume'
         status='No file selected.'
       />
       <Form.Dropzone label='Attachments' required name='default-attachments' />
