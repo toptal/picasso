@@ -39,4 +39,5 @@ export interface DaysOfWeekProps {
 
 export interface CalendarProps {
   children?: ReactNode
+  hasFooter?: boolean
 }

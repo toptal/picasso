@@ -14,4 +14,7 @@ export default ({ palette, shadows, sizes }: Theme) =>
       borderRadius: sizes.borderRadius.small,
       backgroundColor: palette.common.white,
     },
+    hasFooter: {
+      borderRadius: `${sizes.borderRadius.small} ${sizes.borderRadius.small} 0 0`,
+    },
   })

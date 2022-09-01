@@ -58,6 +58,7 @@ export interface Props
   weekStartsOn?: number
   renderMonthHeader?: (props: MonthHeaderProps) => JSX.Element | null
   renderRoot?: (props: CalendarProps) => JSX.Element
+  hasFooter?: boolean
 }
 
 const isDateRange = (
@@ -84,7 +85,10 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     indicatedIntervals,
     renderDay,
     weekStartsOn,
-    renderRoot = rootProps => <CalendarContainer {...rootProps} />,
+    hasFooter,
+    renderRoot = rootProps => (
+      <CalendarContainer {...rootProps} hasFooter={hasFooter} />
+    ),
     renderMonthHeader = CalendarMonthHeader,
     ...rest
   } = props
