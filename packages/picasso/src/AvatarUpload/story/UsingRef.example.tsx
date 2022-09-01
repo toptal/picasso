@@ -1,7 +1,8 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { AvatarUpload, Container } from '@toptal/picasso'
 
 const Example = () => {
+  const [src, setSrc] = useState('./jacqueline-with-flowers-1954-square.jpg')
   const avatarUploadRef = useRef<HTMLElement>(null)
 
   const handleEdit = () => {
@@ -9,13 +10,28 @@ const Example = () => {
     avatarUploadRef.current?.click()
   }
 
+  const handleDropAccepted = (acceptedFile: File) => {
+    const reader = new FileReader()
+
+    reader.readAsDataURL(acceptedFile)
+
+    reader.onload = () => {
+      setSrc(reader.result as string)
+    }
+
+    reader.onerror = error => {
+      console.log('Error: upload failed, ', error)
+    }
+  }
+
   return (
     <Container padded='medium'>
       <AvatarUpload
         ref={avatarUploadRef}
         onEdit={handleEdit}
-        alt='Jacqueline Roque. Pablo Picasso, 1954'
-        src='./jacqueline-with-flowers-1954-square.jpg'
+        onDropAccepted={handleDropAccepted}
+        alt='avatar'
+        src={src}
       />
     </Container>
   )
