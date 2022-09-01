@@ -1,5 +1,15 @@
 # Change Log
 
+## 47.1.0
+
+### Minor Changes
+
+- [#3082](https://github.com/toptal/picasso/pull/3082) [`514eb9fe6`](https://github.com/toptal/picasso/commit/514eb9fe68ce7986bcf2bea8246161b15c7daf5c) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### AvatarUpload
+
+  - add new component `AvatarUpload` as a field
+
 ## 47.0.0
 
 ### Patch Changes
