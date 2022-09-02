@@ -43,8 +43,8 @@ exports[`AvatarUpload renders 1`] = `
     M 2 2
     H 84 
     V 84 
-    H 17 
-    L 2 66 Z
+    H 18 
+    L 2 68 Z
   "
             fill-rule="evenodd"
             stroke-linejoin="round"
@@ -58,8 +58,8 @@ exports[`AvatarUpload renders 1`] = `
     M 4 4
     H 82 
     V 82 
-    H 18 
-    L 4 66 Z
+    H 19 
+    L 4 67 Z
   "
             fill-rule="evenodd"
             stroke-dasharray="3 3"
