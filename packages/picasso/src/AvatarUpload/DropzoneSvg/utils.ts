@@ -1,17 +1,29 @@
 /**
  * Returns the shape of the Avatar component in SVG path's format.
  * SVG's "path" works for the function like this:
- * M x1 y1 - move to point x, y (start point)
- * H x2 - horizontal line to x1 (top edge)
- * V y3 - vertical line to y2 (right edge)
- * H x4 - horizontal line to x3 (bottom edge)
- * L x1 y5 - close path to point x4, y4
+ * M x1 y1 => move to point (x1,y1) (startPoint)
+ * H x2 => horizontal line from (x1,y1) to (x2,y1) (topEdgeLength)
+ * V y2 => vertical line from (x2,y1) to (x2,y2) (rightEdgeLength)
+ * H x3 => horizontal line from (x2,y2) to (x3,y2) (bottomEdgeStartPoint)
+ * L x1 y3 => line from (x1,y3) to (x3,y2) (leftCornerEndPoint)
  * Z - draw path back to starting point (x1 y1)
+ *
+ *   x1,y1 ----------------- x2,y1
+ *     |                       |
+ *     |                       |
+ *     |                       |
+ *     |                       |
+ *     |                       |
+ *   x1,y3                     |
+ *      \                      |
+ *       \                     |
+ *       x3,y2-------------- x2,y2
+ *
  */
 const getAvatarShape = ({
-  bottomEdgeLength,
+  bottomEdgeStartPoint,
   startPoint,
-  leftCornerPoint,
+  leftCornerEndPoint,
   rightEdgeLength,
   topEdgeLength,
   drawBackToStart,
@@ -19,54 +31,40 @@ const getAvatarShape = ({
   startPoint: number
   topEdgeLength: number
   rightEdgeLength: number
-  bottomEdgeLength: number
-  leftCornerPoint: number
+  bottomEdgeStartPoint: number
+  leftCornerEndPoint: number
   drawBackToStart: boolean
 }) => {
   return `
     M ${startPoint} ${startPoint}
     H ${topEdgeLength} 
     V ${rightEdgeLength} 
-    H ${bottomEdgeLength} 
-    L ${startPoint} ${leftCornerPoint}${drawBackToStart ? ' Z' : ''}
+    H ${bottomEdgeStartPoint} 
+    L ${startPoint} ${leftCornerEndPoint}${drawBackToStart ? ' Z' : ''}
   `
 }
 
 /**
  * Returns the shape of the background of the avatar.
- * For small variant, it should be 80x80(px), for large - 160x160(px).
  */
-export const getBackgroundShape = ({
-  dimensions,
-  cornerSize,
-}: {
-  dimensions: number
-  cornerSize: number
-}) => {
+export const getBackgroundShape = (dimensions: number, cornerSize: number) => {
   const centerShift = 3 // shift for the outline stroke
 
   return getAvatarShape({
     startPoint: centerShift,
     topEdgeLength: dimensions + centerShift,
     rightEdgeLength: dimensions + centerShift,
-    bottomEdgeLength: cornerSize + centerShift,
-    leftCornerPoint: dimensions - cornerSize + centerShift,
+    bottomEdgeStartPoint: cornerSize + centerShift,
+    leftCornerEndPoint: dimensions - cornerSize + centerShift,
     drawBackToStart: false,
   })
 }
 
 /**
  * Returns the shape of the outline when field is focused.
- * For small variant, it should be 82x82(px), for large - 162x162(px).
  * it is 2px bigger than the background because of the outline stroke width.
  */
-export const getOutlineShape = ({
-  dimensions,
-  cornerSize,
-}: {
-  dimensions: number
-  cornerSize: number
-}) => {
+export const getOutlineShape = (dimensions: number, cornerSize: number) => {
   const centerShift = 2 // shift for the outline stroke
   const outlineStrokeWidth = 2 // width of the outline stroke
 
@@ -74,24 +72,18 @@ export const getOutlineShape = ({
     startPoint: centerShift,
     topEdgeLength: dimensions + centerShift + outlineStrokeWidth,
     rightEdgeLength: dimensions + centerShift + outlineStrokeWidth,
-    bottomEdgeLength: cornerSize + 1,
-    leftCornerPoint: dimensions - cornerSize + centerShift,
+    bottomEdgeStartPoint: cornerSize + centerShift,
+    leftCornerEndPoint:
+      dimensions - cornerSize + centerShift + outlineStrokeWidth, // fine tuning for the outline stroke
     drawBackToStart: true,
   })
 }
 
 /**
  * Returns the shape of the borders.
- * For small variant, it should be 78x78(px), for large - 158x158(px).
- * it is 1px smaller than the background because of the border stroke width.
+ * it is 2px smaller than the background because of the border stroke width.
  */
-export const getBordersShape = ({
-  dimensions,
-  cornerSize,
-}: {
-  dimensions: number
-  cornerSize: number
-}) => {
+export const getBordersShape = (dimensions: number, cornerSize: number) => {
   const centerShift = 4 // shift for the outline stroke and border stroke
   const outlineStrokeWidth = 2 // width of the outline stroke
 
@@ -99,8 +91,22 @@ export const getBordersShape = ({
     startPoint: centerShift,
     topEdgeLength: dimensions + outlineStrokeWidth,
     rightEdgeLength: dimensions + outlineStrokeWidth,
-    bottomEdgeLength: cornerSize + outlineStrokeWidth,
-    leftCornerPoint: dimensions - cornerSize + outlineStrokeWidth,
+    bottomEdgeStartPoint: cornerSize + outlineStrokeWidth + 1, // fine tuning for the border stroke
+    leftCornerEndPoint: dimensions - cornerSize + outlineStrokeWidth + 1, // fine tuning for the border stroke
     drawBackToStart: true,
   })
+}
+
+export const getShapes = ({
+  dimensions,
+  cornerSize,
+}: {
+  dimensions: number
+  cornerSize: number
+}) => {
+  return {
+    background: getBackgroundShape(dimensions, cornerSize),
+    outline: getOutlineShape(dimensions, cornerSize),
+    borders: getBordersShape(dimensions, cornerSize),
+  }
 }

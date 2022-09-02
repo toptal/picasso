@@ -24,11 +24,22 @@ export default ({ palette }: Theme) => {
       },
     },
 
+    sizeXxsmall: {
+      width: '2rem',
+      height: '2rem',
+    },
+    sizeXsmall: {
+      width: '2.5rem',
+      height: '2.5rem',
+    },
     sizeSmall: {
       width: '5rem',
       height: '5rem',
     },
-
+    sizeMedium: {
+      width: '7.5rem',
+      height: '7.5rem',
+    },
     sizeLarge: {
       width: '10rem',
       height: '10rem',

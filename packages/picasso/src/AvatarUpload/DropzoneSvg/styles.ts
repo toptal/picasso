@@ -13,9 +13,21 @@ export default ({ palette, transitions }: Theme) => {
       position: 'relative',
       background: 'transparent',
     },
+    rootXxsmall: {
+      width: '32px',
+      height: '32px',
+    },
+    rootXsmall: {
+      width: '40px',
+      height: '40px',
+    },
     rootSmall: {
       width: '80px',
       height: '80px',
+    },
+    rootMedium: {
+      width: '120px',
+      height: '120px',
     },
     rootLarge: {
       width: '160px',
@@ -25,18 +37,30 @@ export default ({ palette, transitions }: Theme) => {
     svg: {
       margin: '-3px', // to center the svg
     },
+    svgXxsmall: {
+      width: '38px', // +6px for outline
+      height: '38px', // +6px for outline
+    },
+    svgXsmall: {
+      width: '46px', // +6px for outline
+      height: '46px', // +6px for outline
+    },
     svgSmall: {
-      width: '86px', // 6px for the outline stroke
-      height: '86px', // 6px for the outline stroke
+      width: '86px', // +6px for outline
+      height: '86px', // +6px for outline
+    },
+    svgMedium: {
+      width: '126px', // +6px for outline
+      height: '126px', // +6px for outline
     },
     svgLarge: {
-      width: '166px', // 6px for the outline stroke
-      height: '166px', // 6px for the outline stroke
+      width: '166px', // +6px for outline
+      height: '166px', // +6px for outline
     },
 
     background: {
       fill: palette.blue.lighter,
-      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}ms`,
       transitionProperty: 'fill',
 
       '&$hovered': {
@@ -56,7 +80,7 @@ export default ({ palette, transitions }: Theme) => {
     },
     border: {
       stroke: palette.blue.main,
-      transition: `stroke ${transitions.duration.short}`,
+      transition: `stroke ${transitions.duration.short}ms`,
 
       '&$hovered': {
         stroke: hoverBorderColor,
