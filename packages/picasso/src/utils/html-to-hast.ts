@@ -1,7 +1,7 @@
 import hastSanitize, { Schema } from 'hast-util-sanitize'
 import hastFromDom from 'hast-util-from-dom'
 
-import { ElementType, ASTType } from '../RichText/types'
+import { ASTType, ASTChildType } from '../RichText/types'
 
 export const hastSanitizeSchema: Schema = {
   allowComments: false,
@@ -19,14 +19,13 @@ export const hastSanitizeSchema: Schema = {
 
 const htmlToAst = (html: string) => {
   const dom = new DOMParser().parseFromString(html, 'text/html')
-  const domHast = hastSanitize(
-    hastFromDom(dom.body),
-    hastSanitizeSchema
-  ) as ElementType
+  const domHast = hastSanitize(hastFromDom(dom.body), hastSanitizeSchema) as
+    | ASTType
+    | ASTChildType
 
   const ast: ASTType = {
     type: 'root',
-    children: domHast.children,
+    children: domHast.type === 'root' ? domHast.children : [domHast],
   }
 
   return ast
