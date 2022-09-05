@@ -1,5 +1,16 @@
 # Change Log
 
+## 26.15.0
+
+### Minor Changes
+
+- [#3086](https://github.com/toptal/picasso/pull/3086) [`42c841330`](https://github.com/toptal/picasso/commit/42c8413304518723b0ed0a0842357b42b4191901) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### AvatarUpload
+
+  - add `xxsmall`, `xsmall`, and `medium` size variants
+  - pixel perfect the border and outline of the component
+
 ## 26.14.0
 
 ### Minor Changes
