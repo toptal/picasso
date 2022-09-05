@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.15.1
+
+### Patch Changes
+
+- [#3088](https://github.com/toptal/picasso/pull/3088) [`b17bd9725`](https://github.com/toptal/picasso/commit/b17bd9725f8a63ab55943ef0c7e525ff4b78115d) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### RichText
+
+  - fix losing single root containers in html to ast parsing
+
 ## 26.15.0
 
 ### Minor Changes
