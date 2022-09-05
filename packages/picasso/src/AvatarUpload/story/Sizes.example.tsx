@@ -1,15 +1,14 @@
 import React from 'react'
 import { AvatarUpload, Container } from '@toptal/picasso'
 
-const SmallSizeExample = () => <AvatarUpload size='small' />
-
-const LargeSizeExample = () => <AvatarUpload size='large' />
-
 const Example = () => {
   return (
-    <Container flex gap='medium' padded='medium'>
-      <SmallSizeExample />
-      <LargeSizeExample />
+    <Container flex gap='medium' padded='medium' alignItems='flex-end'>
+      <AvatarUpload size='xxsmall' />
+      <AvatarUpload size='xsmall' />
+      <AvatarUpload size='small' />
+      <AvatarUpload size='medium' />
+      <AvatarUpload size='large' />
     </Container>
   )
 }

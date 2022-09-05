@@ -4,16 +4,29 @@ import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import styles from './styles'
-import { getBackgroundShape, getBordersShape, getOutlineShape } from './utils'
+import { getShapes } from './utils'
 
 /**
  * For measuring, pixel values are used because SVG's "d" attribute works with percentages and pixels only
  */
 const BASE_FONT_SIZE = 16
+
 const SETTINGS = {
+  xxsmall: {
+    dimensions: 2 * BASE_FONT_SIZE,
+    cornerSize: 0.5 * BASE_FONT_SIZE,
+  },
+  xsmall: {
+    dimensions: 2.5 * BASE_FONT_SIZE,
+    cornerSize: 0.5 * BASE_FONT_SIZE,
+  },
   small: {
     dimensions: 5 * BASE_FONT_SIZE,
     cornerSize: 1 * BASE_FONT_SIZE,
+  },
+  medium: {
+    dimensions: 7.5 * BASE_FONT_SIZE,
+    cornerSize: 1.5 * BASE_FONT_SIZE,
   },
   large: {
     dimensions: 10 * BASE_FONT_SIZE,
@@ -22,20 +35,15 @@ const SETTINGS = {
 } as const
 
 const SHAPES = {
-  small: {
-    backgroundShape: getBackgroundShape(SETTINGS.small),
-    outlineShape: getOutlineShape(SETTINGS.small),
-    bordersShape: getBordersShape(SETTINGS.small),
-  },
-  large: {
-    backgroundShape: getBackgroundShape(SETTINGS.large),
-    outlineShape: getOutlineShape(SETTINGS.large),
-    bordersShape: getBordersShape(SETTINGS.large),
-  },
+  xxsmall: getShapes(SETTINGS.xxsmall),
+  xsmall: getShapes(SETTINGS.xsmall),
+  small: getShapes(SETTINGS.small),
+  medium: getShapes(SETTINGS.medium),
+  large: getShapes(SETTINGS.large),
 } as const
 
 export interface Props extends BaseProps {
-  size?: SizeType<'small' | 'large'>
+  size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
   isDragActive?: boolean
   disabled?: boolean
   error?: boolean
@@ -83,7 +91,7 @@ export const DropzoneSvg = (props: Props) => {
           })}
           fillRule='evenodd'
           clipRule='evenodd'
-          d={shapes.backgroundShape}
+          d={shapes.background}
         />
         <path
           className={cx(classes.outline, {
@@ -92,7 +100,7 @@ export const DropzoneSvg = (props: Props) => {
           })}
           fillRule='evenodd'
           clipRule='evenodd'
-          d={shapes.outlineShape}
+          d={shapes.outline}
           strokeOpacity='.48'
           strokeWidth='3'
           strokeLinejoin='round'
@@ -105,7 +113,7 @@ export const DropzoneSvg = (props: Props) => {
           })}
           fillRule='evenodd'
           clipRule='evenodd'
-          d={shapes.bordersShape}
+          d={shapes.borders}
           strokeDasharray='3 3'
         />
       </svg>

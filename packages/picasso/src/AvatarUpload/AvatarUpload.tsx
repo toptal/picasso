@@ -21,7 +21,7 @@ import {
 } from './types'
 import DropzoneSvg from './DropzoneSvg/DropzoneSvg'
 import Loader from '../Loader'
-import { Upload24 } from '../Icon'
+import { Upload16, Upload24 } from '../Icon'
 import { Status } from '../OutlinedInput'
 
 export interface Props extends BaseProps {
@@ -34,7 +34,7 @@ export interface Props extends BaseProps {
   /** Image URL */
   src?: string
   /** Size of the avatar */
-  size?: SizeType<'small' | 'large'>
+  size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
   /** Enable/disable the dropzone */
   disabled?: boolean
   /** Maximum file size (in bytes) */
@@ -90,7 +90,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const AvatarUpload = forwardRef<HTMLElement, Props>(
-  // eslint-disable-next-line complexity
+  // eslint-disable-next-line complexity, max-statements
   function AvatarUpload(props, ref) {
     const {
       autoFocus,
@@ -200,8 +200,11 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
         data-testid={testIds?.loader}
       />
     )
+
+    const UploadIconComponent =
+      size === 'xxsmall' || size === 'xsmall' ? Upload16 : Upload24
     const uploadIcon = showUploadIcon && (
-      <Upload24
+      <UploadIconComponent
         className={cx(classes.icon, {
           [classes.hovered]: hovered,
           [classes.error]: status === 'error',
