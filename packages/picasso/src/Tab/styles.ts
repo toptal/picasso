@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
-PicassoProvider.override(({ breakpoints, palette, sizes }: Theme) => ({
+PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
   MuiTab: {
     root: {
       minHeight: 0,
@@ -17,17 +17,6 @@ PicassoProvider.override(({ breakpoints, palette, sizes }: Theme) => ({
       },
 
       color: palette.grey.dark,
-
-      '&.PicassoTab-horizontal:not(:last-child)': {
-        marginRight: '2em',
-      },
-
-      '&.PicassoTab-vertical': {
-        borderRadius: `${sizes.borderRadius.medium} 0 0 ${sizes.borderRadius.medium}`,
-        margin: '0.125rem 0',
-        overflow: 'hidden',
-        padding: `0.5rem 0 0.5rem`,
-      },
 
       [breakpoints.up('md')]: {
         minWidth: 'auto',
@@ -46,8 +35,31 @@ PicassoProvider.override(({ breakpoints, palette, sizes }: Theme) => ({
     },
     selected: {
       color: palette.common.black,
+    },
+    textColorInherit: {
+      '&$disabled': {
+        color: palette.grey.main,
+      },
+    },
+    disabled: {},
+  },
+}))
 
-      '&.PicassoTab-vertical': {
+export default ({ palette, sizes }: Theme) =>
+  createStyles({
+    horizontal: {
+      '&:not(:last-child)': {
+        marginRight: '2em',
+      },
+    },
+
+    vertical: {
+      borderRadius: `${sizes.borderRadius.medium} 0 0 ${sizes.borderRadius.medium}`,
+      margin: '0.125rem 0',
+      overflow: 'hidden',
+      padding: `0.5rem 0 0.5rem`,
+
+      '&$selected': {
         boxShadow: `0.25rem 0 0 ${palette.grey.lightest}, 0 0 0.25rem rgba(0, 0, 0, 0.08)`,
 
         '&::before': {
@@ -60,22 +72,13 @@ PicassoProvider.override(({ breakpoints, palette, sizes }: Theme) => ({
           width: '3px',
         },
       },
-    },
-    textColorInherit: {
-      '&$disabled': {
-        color: palette.grey.main,
-      },
-    },
-    disabled: {},
-    wrapper: {
-      width: 'auto',
 
-      '.PicassoTab-vertical &': {
+      '& $wrapper': {
         marginLeft: '1rem',
         marginRight: '2rem',
       },
     },
-  },
-}))
 
-export default () => createStyles({})
+    selected: {},
+    wrapper: {},
+  })
