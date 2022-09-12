@@ -30,7 +30,7 @@ const validatePassword: FieldValidator<PasswordInputProps['value']> = (
     passwordValidators.atLeastOneLowerCaseCharacter(value) &&
     passwordValidators.atLeastOneSpecialCharacter(value)
 
-  return isValidPassword ? undefined : 'Invalid password'
+  return isValidPassword ? undefined : 'Please enter a valid password.'
 }
 
 export const PasswordInput = ({
