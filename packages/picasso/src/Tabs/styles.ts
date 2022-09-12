@@ -18,6 +18,15 @@ PicassoProvider.override(({ palette }: Theme) => ({
         zIndex: 0,
       },
     },
+    vertical: {
+      '&::after': {
+        display: 'none',
+      },
+
+      '& $indicator': {
+        display: 'none',
+      },
+    },
     indicator: {
       backgroundColor: palette.blue.main,
       zIndex: 1,

@@ -18,38 +18,51 @@ export interface Props
 
   /** The value of the currently selected Tab. If you don't want any selected Tab, you can set this property to false. */
   value: TabsProps['value']
+
+  /** The tabs orientation (layout flow direction). */
+  orientation?: 'horizontal' | 'vertical'
 }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'Tabs',
 })
 
+export const TabsOrientationContext = React.createContext<
+  'horizontal' | 'vertical'
+>('horizontal')
+
 // eslint-disable-next-line react/display-name
 export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
   props,
   ref
 ) {
-  const { children, onChange, value, ...rest } = props
-  const classes = useStyles()
+  const { children, orientation, onChange, value, ...rest } = props
+  const classes = useStyles(props)
   const action = useTabAction()
 
   return (
-    <MUITabs
-      {...rest}
-      classes={classes}
-      ref={ref}
-      onChange={onChange}
-      value={value}
-      variant='scrollable'
-      action={action}
-      scrollButtons='auto'
-      ScrollButtonComponent={TabScrollButton}
-    >
-      {children}
-    </MUITabs>
+    <TabsOrientationContext.Provider value={orientation || 'horizontal'}>
+      <MUITabs
+        {...rest}
+        classes={classes}
+        ref={ref}
+        onChange={onChange}
+        value={value}
+        variant='scrollable'
+        action={action}
+        scrollButtons='auto'
+        ScrollButtonComponent={TabScrollButton}
+        orientation={orientation}
+      >
+        {children}
+      </MUITabs>
+    </TabsOrientationContext.Provider>
   )
 })
 
 Tabs.displayName = 'Tabs'
+Tabs.defaultProps = {
+  orientation: 'horizontal',
+}
 
 export default Tabs

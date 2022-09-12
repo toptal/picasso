@@ -18,8 +18,17 @@ PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
 
       color: palette.grey.dark,
 
-      '&:not(:last-child)': {
-        marginRight: '2em',
+      '&.PicassoTab-horizontal': {
+        '&:not(:last-child)': {
+          marginRight: '2em',
+        },
+      },
+
+      '&.PicassoTab-vertical': {
+        borderRadius: '0.5rem 0 0 0.5rem',
+        margin: '0.125rem 0',
+        overflow: 'hidden',
+        padding: `${rem('8px')} 0 ${rem('8px')}`,
       },
 
       [breakpoints.up('md')]: {
@@ -39,6 +48,20 @@ PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
     },
     selected: {
       color: palette.common.black,
+
+      '&.PicassoTab-vertical': {
+        boxShadow: `0.25rem 0 0 ${palette.grey.lightest}, 0 0 0.25rem rgba(0, 0, 0, 0.08)`,
+
+        '&::before': {
+          content: '""',
+          background: palette.blue.main,
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          bottom: 0,
+          width: '3px',
+        },
+      },
     },
     textColorInherit: {
       '&$disabled': {
@@ -48,6 +71,11 @@ PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
     disabled: {},
     wrapper: {
       width: 'auto',
+
+      '.PicassoTab-vertical &': {
+        marginLeft: '1rem',
+        marginRight: '2rem',
+      },
     },
   },
 }))

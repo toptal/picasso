@@ -6,7 +6,7 @@ exports[`Tab Tab disabled tab 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-disabled Mui-disabled"
+      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit PicassoTab-horizontal Mui-disabled Mui-disabled"
       disabled=""
       role="tab"
       tabindex="-1"
@@ -32,7 +32,7 @@ exports[`Tab Tab renders 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit PicassoTab-horizontal"
       role="tab"
       tabindex="0"
       type="button"
@@ -57,7 +57,7 @@ exports[`Tab Tab tab with icon 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-labelIcon"
+      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit PicassoTab-horizontal MuiTab-labelIcon"
       role="tab"
       tabindex="0"
       type="button"
