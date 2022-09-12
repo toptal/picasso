@@ -52,14 +52,26 @@ export default ({ palette, sizes }: Theme) =>
         marginRight: '2em',
       },
     },
-
     vertical: {
       borderRadius: `${sizes.borderRadius.medium} 0 0 ${sizes.borderRadius.medium}`,
-      margin: '0.125rem 0',
+      margin: '0.5rem 0',
       overflow: 'hidden',
-      padding: `0.5rem 0 0.5rem`,
+      padding: `${rem('9px')} 0 ${rem('9px')}`,
 
-      '&$selected': {
+      '&:first-child': {
+        marginTop: '0.125rem',
+      },
+
+      '&:last-child': {
+        marginBottom: '0.125rem',
+      },
+
+      '&:hover:not($selected)': {
+        backgroundColor: palette.grey.lighter2,
+      },
+    },
+    selected: {
+      '&$vertical': {
         boxShadow: `0.25rem 0 0 ${palette.grey.lightest}, 0 0 0.25rem rgba(0, 0, 0, 0.08)`,
 
         '&::before': {
@@ -72,13 +84,11 @@ export default ({ palette, sizes }: Theme) =>
           width: '3px',
         },
       },
-
-      '& $wrapper': {
+    },
+    wrapper: {
+      '$vertical &': {
         marginLeft: '1rem',
         marginRight: '2rem',
       },
     },
-
-    selected: {},
-    wrapper: {},
   })
