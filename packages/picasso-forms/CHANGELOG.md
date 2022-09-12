@@ -1,5 +1,15 @@
 # Change Log
 
+## 47.1.1
+
+### Patch Changes
+
+- [#3095](https://github.com/toptal/picasso/pull/3095) [`5d6543b32`](https://github.com/toptal/picasso/commit/5d6543b320e64254c2bf882a157c63f50ee2a76f) Thanks [@vvmarulin](https://github.com/vvmarulin)! - ---
+
+  ### PasswordInput
+
+  - update error message for invalid password value
+
 ## 47.1.0
 
 ### Minor Changes
