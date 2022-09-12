@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
-PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
+PicassoProvider.override(({ breakpoints, palette, sizes }: Theme) => ({
   MuiTab: {
     root: {
       minHeight: 0,
@@ -18,17 +18,15 @@ PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
 
       color: palette.grey.dark,
 
-      '&.PicassoTab-horizontal': {
-        '&:not(:last-child)': {
-          marginRight: '2em',
-        },
+      '&.PicassoTab-horizontal:not(:last-child)': {
+        marginRight: '2em',
       },
 
       '&.PicassoTab-vertical': {
-        borderRadius: '0.5rem 0 0 0.5rem',
+        borderRadius: `${sizes.borderRadius.medium} 0 0 ${sizes.borderRadius.medium}`,
         margin: '0.125rem 0',
         overflow: 'hidden',
-        padding: `${rem('8px')} 0 ${rem('8px')}`,
+        padding: `0.5rem 0 0.5rem`,
       },
 
       [breakpoints.up('md')]: {

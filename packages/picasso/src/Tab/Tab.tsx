@@ -61,7 +61,7 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
       {titleCase ? toTitleCase(label) : label}
     </Typography>
   )
-  const orientation = useContext(TabsOrientationContext) || 'horizontal'
+  const orientation = useContext(TabsOrientationContext)
 
   return (
     <MUITab
