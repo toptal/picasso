@@ -58,7 +58,7 @@ export default ({ sizes }: Theme) =>
       borderRadius: `${sizes.borderRadius.medium} 0 0 ${sizes.borderRadius.medium}`,
       margin: '0.5rem 0',
       overflow: 'hidden',
-      padding: `${rem('9px')} 0 ${rem('9px')}`,
+      padding: '0.5625em 0 0.5625em',
 
       '&:first-child': {
         marginTop: '0.125rem',
@@ -70,6 +70,11 @@ export default ({ sizes }: Theme) =>
 
       '&:hover:not($selected)': {
         backgroundColor: palette.grey.lighter2,
+      },
+
+      '& $wrapper': {
+        marginLeft: '1rem',
+        marginRight: '2rem',
       },
     },
     selected: {
@@ -87,10 +92,5 @@ export default ({ sizes }: Theme) =>
         },
       },
     },
-    wrapper: {
-      '$vertical &': {
-        marginLeft: '1rem',
-        marginRight: '2rem',
-      },
-    },
+    wrapper: {},
   })
