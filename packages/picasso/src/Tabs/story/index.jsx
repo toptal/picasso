@@ -28,7 +28,7 @@ page
   })
   .addExample('Tabs/story/Vertical.example.tsx', {
     title: 'Vertical',
-    takeScreenshot: false,
+    takeScreenshot: true,
   })
   .addExample('Tabs/story/ScrollButtons.example.tsx', {
     title: 'Scroll buttons',

@@ -63,16 +63,11 @@ describe('Tabs', () => {
   })
 
   it('renders in vertical orientation', () => {
-    const { container, queryByTestId } = renderTabs(
+    const { container } = renderTabs(
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
-      {
-        value: false,
-      },
+      { value: false },
       'vertical'
     )
-
-    expect(queryByTestId('tab-1-content')).not.toBeInTheDocument()
-    expect(queryByTestId('tab-2-content')).not.toBeInTheDocument()
 
     expect(container).toMatchSnapshot()
   })
