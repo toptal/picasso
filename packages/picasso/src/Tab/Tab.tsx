@@ -8,7 +8,6 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
-import cx from 'classnames'
 
 import Typography from '../Typography'
 import styles from './styles'
@@ -77,10 +76,7 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
       onChange={onChange}
       onClick={onClick}
       classes={{
-        root: cx({
-          [classes.horizontal]: orientation === 'horizontal',
-          [classes.vertical]: orientation === 'vertical',
-        }),
+        root: classes[orientation],
         selected: classes.selected,
         wrapper: classes.wrapper,
       }}

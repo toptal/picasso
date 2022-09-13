@@ -22,14 +22,14 @@ exports[`Tabs renders 1`] = `
         >
           <button
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit PicassoTab-horizontal"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit"
             data-testid="tab-1"
             role="tab"
             tabindex="0"
             type="button"
           >
             <span
-              class="MuiTab-wrapper"
+              class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
                 class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
@@ -40,14 +40,14 @@ exports[`Tabs renders 1`] = `
           </button>
           <button
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit PicassoTab-horizontal"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit"
             data-testid="tab-2"
             role="tab"
             tabindex="0"
             type="button"
           >
             <span
-              class="MuiTab-wrapper"
+              class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
                 class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
@@ -89,14 +89,14 @@ exports[`Tabs renders in vertical orientation 1`] = `
         >
           <button
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit PicassoTab-vertical"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-vertical MuiTab-textColorInherit"
             data-testid="tab-1"
             role="tab"
             tabindex="0"
             type="button"
           >
             <span
-              class="MuiTab-wrapper"
+              class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
                 class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
@@ -107,14 +107,14 @@ exports[`Tabs renders in vertical orientation 1`] = `
           </button>
           <button
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit PicassoTab-vertical"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-vertical MuiTab-textColorInherit"
             data-testid="tab-2"
             role="tab"
             tabindex="0"
             type="button"
           >
             <span
-              class="MuiTab-wrapper"
+              class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
                 class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
@@ -156,14 +156,14 @@ exports[`Tabs renders with a pre-selected option 1`] = `
         >
           <button
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit PicassoTab-horizontal"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit"
             data-testid="tab-1"
             role="tab"
             tabindex="0"
             type="button"
           >
             <span
-              class="MuiTab-wrapper"
+              class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
                 class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
@@ -174,14 +174,14 @@ exports[`Tabs renders with a pre-selected option 1`] = `
           </button>
           <button
             aria-selected="true"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit PicassoTab-horizontal Mui-selected"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit Mui-selected PicassoTab-selected"
             data-testid="tab-2"
             role="tab"
             tabindex="0"
             type="button"
           >
             <span
-              class="MuiTab-wrapper"
+              class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
                 class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
@@ -230,14 +230,14 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
         >
           <button
             aria-selected="true"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit PicassoTab-horizontal Mui-selected"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit Mui-selected PicassoTab-selected"
             data-testid="tab-1"
             role="tab"
             tabindex="0"
             type="button"
           >
             <span
-              class="MuiTab-wrapper"
+              class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
                 class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
@@ -248,14 +248,14 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
           </button>
           <button
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit PicassoTab-horizontal"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit"
             data-testid="tab-2"
             role="tab"
             tabindex="0"
             type="button"
           >
             <span
-              class="MuiTab-wrapper"
+              class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
                 class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
