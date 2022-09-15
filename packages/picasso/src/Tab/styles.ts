@@ -1,10 +1,8 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
-import { PicassoProvider, palette } from '@toptal/picasso-provider'
+import { PicassoProvider } from '@toptal/picasso-provider'
 
-const ACTIVE_SHADOW = `4px 0 0 ${palette.grey.lightest}, 0 0 4px rgba(0, 0, 0, 0.08)`
-
-PicassoProvider.override(({ breakpoints }: Theme) => ({
+PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
   MuiTab: {
     root: {
       minHeight: 0,
@@ -47,7 +45,7 @@ PicassoProvider.override(({ breakpoints }: Theme) => ({
   },
 }))
 
-export default ({ sizes }: Theme) =>
+export default ({ sizes, palette, shadows }: Theme) =>
   createStyles({
     horizontal: {
       '&:not(:last-child)': {
@@ -79,7 +77,7 @@ export default ({ sizes }: Theme) =>
     },
     selected: {
       '&$vertical': {
-        boxShadow: ACTIVE_SHADOW,
+        boxShadow: shadows[1],
 
         '&::before': {
           content: '""',
