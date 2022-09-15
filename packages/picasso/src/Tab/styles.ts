@@ -54,16 +54,16 @@ export default ({ sizes, palette, shadows }: Theme) =>
     },
     vertical: {
       borderRadius: `${sizes.borderRadius.medium} 0 0 ${sizes.borderRadius.medium}`,
-      margin: '0.5rem 0',
+      margin: '0.5em 0',
       overflow: 'hidden',
       padding: '0.5625em 0 0.5625em',
 
       '&:first-child': {
-        marginTop: '0.125rem',
+        marginTop: '0.125em',
       },
 
       '&:last-child': {
-        marginBottom: '0.125rem',
+        marginBottom: '0.125em',
       },
 
       '&:hover:not($selected)': {
@@ -71,8 +71,8 @@ export default ({ sizes, palette, shadows }: Theme) =>
       },
 
       '& $wrapper': {
-        marginLeft: '1rem',
-        marginRight: '2rem',
+        marginLeft: '1em',
+        marginRight: '2em',
       },
     },
     selected: {
