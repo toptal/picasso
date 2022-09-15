@@ -66,6 +66,14 @@ module.exports = {
       ],
     })
 
+    const fullTextLoader = path.resolve(__dirname, './full-text-loader.js')
+    console.log('full-text loader:', fullTextLoader)
+
+    config.module.rules.push({
+      test: /story\/index\.jsx$/,
+      use: [fullTextLoader],
+    })
+
     // supress an error with dynamic path e.g. require(`${url}`)
     // https://github.com/webpack/webpack/issues/196
     config.module.exprContextCritical = false
@@ -126,6 +134,8 @@ module.exports = {
     }
 
     config.optimization.minimizer = []
+
+    console.log('config:', config)
 
     return config
   },
