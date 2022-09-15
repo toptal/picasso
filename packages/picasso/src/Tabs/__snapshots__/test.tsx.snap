@@ -6,7 +6,7 @@ exports[`Tabs renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root"
+      class="MuiTabs-root Tabs-horizontal"
     >
       <div
         class="MuiTabs-scrollable"
@@ -73,7 +73,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root MuiTabs-vertical"
+      class="MuiTabs-root Tabs-vertical MuiTabs-vertical"
     >
       <div
         class="MuiTabs-scrollable"
@@ -140,7 +140,7 @@ exports[`Tabs renders with a pre-selected option 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root"
+      class="MuiTabs-root Tabs-horizontal"
     >
       <div
         class="MuiTabs-scrollable"
@@ -214,7 +214,7 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root"
+      class="MuiTabs-root Tabs-horizontal"
     >
       <div
         class="MuiTabs-scrollable"
