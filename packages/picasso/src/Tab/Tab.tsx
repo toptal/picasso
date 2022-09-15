@@ -3,6 +3,7 @@ import React, {
   ReactNode,
   HTMLAttributes,
   ReactElement,
+  useContext,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
@@ -11,6 +12,7 @@ import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 import Typography from '../Typography'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
+import { TabsOrientationContext } from '../Tabs/Tabs'
 
 export interface Props
   extends BaseProps,
@@ -59,6 +61,7 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
       {titleCase ? toTitleCase(label) : label}
     </Typography>
   )
+  const orientation = useContext(TabsOrientationContext)
 
   return (
     <MUITab
@@ -72,7 +75,11 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
       selected={selected}
       onChange={onChange}
       onClick={onClick}
-      classes={classes}
+      classes={{
+        root: classes[orientation],
+        selected: classes.selected,
+        wrapper: classes.wrapper,
+      }}
     />
   )
 })

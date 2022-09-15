@@ -25,11 +25,12 @@ const renderTabContent = (tab: TabProps, index: number, value: any) => {
 
 const renderTabs = (
   tabs: TabProps[],
-  { value, onChange }: OmitInternalProps<Props, 'children'>
+  { value, onChange }: OmitInternalProps<Props, 'children'>,
+  orientation: 'horizontal' | 'vertical' = 'horizontal'
 ) => {
   return render(
     <TestingPicasso>
-      <Tabs onChange={onChange} value={value}>
+      <Tabs onChange={onChange} value={value} orientation={orientation}>
         {tabs.map((tab, index) => (
           <Tabs.Tab
             key={index}
@@ -57,6 +58,16 @@ describe('Tabs', () => {
 
     expect(queryByTestId('tab-1-content')).not.toBeInTheDocument()
     expect(queryByTestId('tab-2-content')).not.toBeInTheDocument()
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders in vertical orientation', () => {
+    const { container } = renderTabs(
+      [{ label: 'Tab 1' }, { label: 'Tab 2' }],
+      { value: false },
+      'vertical'
+    )
 
     expect(container).toMatchSnapshot()
   })

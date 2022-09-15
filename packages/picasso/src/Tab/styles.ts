@@ -18,10 +18,6 @@ PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
 
       color: palette.grey.dark,
 
-      '&:not(:last-child)': {
-        marginRight: '2em',
-      },
-
       [breakpoints.up('md')]: {
         minWidth: 'auto',
         fontSize: '1rem',
@@ -46,10 +42,53 @@ PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
       },
     },
     disabled: {},
-    wrapper: {
-      width: 'auto',
-    },
   },
 }))
 
-export default () => createStyles({})
+export default ({ sizes, palette, shadows }: Theme) =>
+  createStyles({
+    horizontal: {
+      '&:not(:last-child)': {
+        marginRight: '2em',
+      },
+    },
+    vertical: {
+      borderRadius: `${sizes.borderRadius.medium} 0 0 ${sizes.borderRadius.medium}`,
+      margin: '0.5em 0',
+      overflow: 'hidden',
+      padding: '0.5625em 0 0.5625em',
+
+      '&:first-child': {
+        marginTop: '0.125em',
+      },
+
+      '&:last-child': {
+        marginBottom: '0.125em',
+      },
+
+      '&:hover:not($selected)': {
+        backgroundColor: palette.grey.lighter2,
+      },
+
+      '& $wrapper': {
+        marginLeft: '1em',
+        marginRight: '2em',
+      },
+    },
+    selected: {
+      '&$vertical': {
+        boxShadow: shadows[1],
+
+        '&::before': {
+          content: '""',
+          background: palette.blue.main,
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          bottom: 0,
+          width: '3px',
+        },
+      },
+    },
+    wrapper: {},
+  })

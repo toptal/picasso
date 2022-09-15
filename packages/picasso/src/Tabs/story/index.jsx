@@ -26,6 +26,10 @@ page
     title: 'Default',
     takeScreenshot: false,
   })
+  .addExample('Tabs/story/Vertical.example.tsx', {
+    title: 'Vertical',
+    takeScreenshot: true,
+  })
   .addExample('Tabs/story/ScrollButtons.example.tsx', {
     title: 'Scroll buttons',
     takeScreenshot: false,
