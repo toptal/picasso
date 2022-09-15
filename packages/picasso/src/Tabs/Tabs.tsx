@@ -44,7 +44,7 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
     <TabsOrientationContext.Provider value={orientation!}>
       <MUITabs
         {...rest}
-        classes={classes}
+        classes={{ root: classes[orientation!] }}
         ref={ref}
         onChange={onChange}
         value={value}

@@ -6,23 +6,8 @@ PicassoProvider.override(({ palette }: Theme) => ({
     root: {
       position: 'relative',
       minHeight: 0,
-
-      '&::after': {
-        position: 'absolute',
-        content: '""',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: 1,
-        backgroundColor: palette.grey.main,
-        zIndex: 0,
-      },
     },
     vertical: {
-      '&::after': {
-        display: 'none',
-      },
-
       '& $indicator': {
         display: 'none',
       },
@@ -34,4 +19,19 @@ PicassoProvider.override(({ palette }: Theme) => ({
   },
 }))
 
-export default () => createStyles({})
+export default ({ palette }: Theme) =>
+  createStyles({
+    horizontal: {
+      '&::after': {
+        position: 'absolute',
+        content: '""',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 1,
+        backgroundColor: palette.grey.main,
+        zIndex: 0,
+      },
+    },
+    vertical: {},
+  })
