@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.15.2
+
+### Patch Changes
+
+- [#3096](https://github.com/toptal/picasso/pull/3096) [`5b08902c9`](https://github.com/toptal/picasso/commit/5b08902c9dc80fe331da594b99eee54e13e6a6cd) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### Tabs
+
+  - introduce `orientation` prop. possible values are `horizontal` and `vertical`
+
 ## 26.15.1
 
 ### Patch Changes
