@@ -73,11 +73,13 @@ export default ({ sizes, palette, shadows }: Theme) =>
       '& $wrapper': {
         marginLeft: '1em',
         marginRight: '2em',
+        alignItems: 'flex-start',
       },
     },
     selected: {
       '&$vertical': {
         boxShadow: shadows[1],
+        backgroundColor: palette.grey.lightest,
 
         '&::before': {
           content: '""',
