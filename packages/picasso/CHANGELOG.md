@@ -1,5 +1,15 @@
 # Change Log
 
+## 26.15.3
+
+### Patch Changes
+
+- [#3099](https://github.com/toptal/picasso/pull/3099) [`932c5da44`](https://github.com/toptal/picasso/commit/932c5da44042127b9f44e909e9274087c6c391c9) Thanks [@domagojkorman](https://github.com/domagojkorman)! - ---
+
+  ### PasswordInput
+
+  - remove `startAdornment` and `endAdornment` from PasswordInput's prop typings
+
 ## 26.15.2
 
 ### Patch Changes
