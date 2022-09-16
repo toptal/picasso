@@ -10,7 +10,7 @@ import {
 } from '../../../utils'
 
 const useSelectHandler = <T extends ValueType, M extends boolean = false>({
-  selectState: { emptySelectValue, setValue, setFilterOptionsValue },
+  selectState: { emptySelectValue, setFilterOptionsValue },
   selectProps: { multiple, value, name, onChange },
   selectRef,
 }: UseSelectProps<T, M>) =>
@@ -29,8 +29,6 @@ const useSelectHandler = <T extends ValueType, M extends boolean = false>({
         newValue = option.value
       }
 
-      setValue(newValue)
-
       fireOnChangeEvent({ event, value: newValue, name, onChange })
       setFilterOptionsValue(EMPTY_INPUT_VALUE)
 
@@ -44,7 +42,6 @@ const useSelectHandler = <T extends ValueType, M extends boolean = false>({
       multiple,
       value,
       selectRef,
-      setValue,
     ]
   )
 

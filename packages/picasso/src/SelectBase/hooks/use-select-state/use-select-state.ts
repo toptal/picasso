@@ -46,10 +46,9 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     () => flattenOptions(options),
     [options]
   )
-  const [value, setValue] = useState(valueProp)
   const selectedOptions = useMemo(
-    () => getSelectedOptions(flatOptions, value),
-    [flatOptions, value]
+    () => getSelectedOptions(flatOptions, valueProp),
+    [flatOptions, valueProp]
   )
   const selection = useMemo(
     () =>
@@ -97,10 +96,6 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     isOpen,
   })
 
-  useEffect(() => {
-    setValue(valueProp)
-  }, [valueProp])
-
   const close = useCallback(() => {
     setOpen(false)
   }, [])
@@ -117,7 +112,6 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
 
   return {
     ...props,
-    setValue,
     selectedOptions,
     // TODO: keep consistent naming
     filteredOptions: filteredLimitedOptions,

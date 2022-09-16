@@ -50,7 +50,6 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
       filteredOptions: [],
       emptySelectValue: '',
       selectedOptions: [],
-      setValue: jest.fn(),
     },
   }
 }

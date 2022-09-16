@@ -155,7 +155,6 @@ export type UseSelectStateOutput = {
   filteredOptions: Option[] | OptionGroups
   emptySelectValue: string | string[]
   selectedOptions: Option[]
-  setValue: (value: ValueType | ValueType[]) => void
 }
 
 export interface UseSelectProps<
