@@ -1,5 +1,15 @@
 # Change Log
 
+## 47.1.2
+
+### Patch Changes
+
+- [#3100](https://github.com/toptal/picasso/pull/3100) [`2cba21996`](https://github.com/toptal/picasso/commit/2cba2199653994832e6f7c252b9185eef495a4e7) Thanks [@vvmarulin](https://github.com/vvmarulin)! - ---
+
+  ### PasswordInput
+
+  - fix visibility of the password requirements
+
 ## 47.1.1
 
 ### Patch Changes
