@@ -445,6 +445,28 @@ describe('NonNativeSelect', () => {
     expect(highlightedOption).not.toBeNull()
     expect(highlightedOption?.textContent).toEqual(OPTIONS[2].text)
   })
+
+  describe('when value prop is not updated after onChange', () => {
+    it("doesn't change value", () => {
+      const onChange = jest.fn(event => event.target.value)
+      const placeholder = 'choose'
+
+      const { getByPlaceholderText, getByText } = renderSelect({
+        options: OPTIONS,
+        placeholder,
+        onChange,
+        value: OPTIONS[0].value,
+      })
+
+      const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
+
+      fireEvent.click(getByPlaceholderText(placeholder))
+      fireEvent.click(getByText(OPTIONS[1].text))
+
+      // expect value didn't change because value prop didn't change
+      expect(selectInput.value).toBe(OPTIONS[0].text)
+    })
+  })
 })
 
 describe('NonNativeSelect (multiple)', () => {
