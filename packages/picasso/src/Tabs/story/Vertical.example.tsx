@@ -11,9 +11,9 @@ const Example = () => {
   return (
     <Container flex>
       <Tabs value={value} orientation='vertical' onChange={handleChange}>
-        <Tabs.Tab label='Label' />
-        <Tabs.Tab label='Label' />
-        <Tabs.Tab label='Label' />
+        <Tabs.Tab label='Jobs' />
+        <Tabs.Tab label='Engagements' />
+        <Tabs.Tab label='Interviews' />
       </Tabs>
 
       {value === 0 && (
