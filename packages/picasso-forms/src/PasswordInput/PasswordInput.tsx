@@ -1,4 +1,4 @@
-import React, { useState, ReactNode, useCallback } from 'react'
+import React, { useEffect, useState, ReactNode, useCallback } from 'react'
 import { PasswordInputProps, FieldRequirements } from '@toptal/picasso'
 import { FieldValidator } from 'final-form'
 
@@ -38,7 +38,23 @@ export const PasswordInput = ({
   hideRequirements,
   ...rest
 }: Props) => {
-  const [showContent, setShowContent] = useState(false)
+  const [focused, setFocused] = useState(false)
+  const [showRequirements, setShowRequirements] = useState(false)
+
+  useEffect(() => {
+    if (!focused) {
+      // Hide the requirements after a short delay
+      const timeout = setTimeout(() => {
+        setShowRequirements(false)
+      }, ANIMATION_TIMEOUT)
+
+      return () => {
+        clearTimeout(timeout)
+      }
+    }
+
+    setShowRequirements(true)
+  }, [focused])
 
   const validationsObject = hideRequirements
     ? validate
@@ -53,7 +69,7 @@ export const PasswordInput = ({
   }) => ReactNode = ({ value, error }) => (
     <FieldRequirements<string>
       value={value}
-      open={showContent}
+      open={showRequirements}
       error={error}
       description='Please make sure that your password contains:'
       timeout={ANIMATION_TIMEOUT}
@@ -83,14 +99,11 @@ export const PasswordInput = ({
   )
 
   const handleShowContent = useCallback(() => {
-    setShowContent(true)
+    setFocused(true)
   }, [])
 
   const handleHideContent = useCallback(() => {
-    // Hide the requirements after a short delay
-    setTimeout(() => {
-      setShowContent(false)
-    }, ANIMATION_TIMEOUT)
+    setFocused(false)
   }, [])
 
   return (
