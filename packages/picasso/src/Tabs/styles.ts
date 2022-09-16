@@ -8,8 +8,10 @@ PicassoProvider.override(({ palette }: Theme) => ({
       minHeight: 0,
     },
     vertical: {
-      // We need a bit of padding to allow active tab's shadow to be visible
-      paddingLeft: '0.25em',
+      '& $scroller': {
+        // We need a bit of padding to allow active tab's shadow to be visible
+        paddingLeft: '0.5em',
+      },
 
       '& $indicator': {
         display: 'none',
