@@ -1,5 +1,12 @@
 # Change Log
 
+## 48.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`92b701958`](https://github.com/toptal/picasso/commit/92b701958f75e3a0962e15acf806d60fbb5d3dd9), [`1915606f6`](https://github.com/toptal/picasso/commit/1915606f631a574a35d59a4df0c5c423e7ef1e74), [`54b09c177`](https://github.com/toptal/picasso/commit/54b09c177ba5e32bcc894ae44b86e1b1092daad9)]:
+  - @toptal/picasso@27.0.0
+
 ## 47.1.2
 
 ### Patch Changes

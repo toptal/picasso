@@ -1,5 +1,31 @@
 # Change Log
 
+## 27.0.0
+
+### Major Changes
+
+- [#3098](https://github.com/toptal/picasso/pull/3098) [`92b701958`](https://github.com/toptal/picasso/commit/92b701958f75e3a0962e15acf806d60fbb5d3dd9) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Select
+
+  - remove internal value state and make component controlled only
+
+### Minor Changes
+
+- [#3103](https://github.com/toptal/picasso/pull/3103) [`54b09c177`](https://github.com/toptal/picasso/commit/54b09c177ba5e32bcc894ae44b86e1b1092daad9) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### Tabs
+
+  - fix vertical active tab has not background color
+  - fix vertical tabs labels are center align instead of left aligned
+  - fix active vertical tab's shadow is not visible on the left
+
+### Patch Changes
+
+- [#3104](https://github.com/toptal/picasso/pull/3104) [`1915606f6`](https://github.com/toptal/picasso/commit/1915606f631a574a35d59a4df0c5c423e7ef1e74) Thanks [@ykaragol](https://github.com/ykaragol)! - ---
+
+  - add source link to storybook for AvatarUpload component
+
 ## 26.15.3
 
 ### Patch Changes
