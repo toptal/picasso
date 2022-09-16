@@ -3,7 +3,11 @@ import { AvatarUpload } from '../AvatarUpload'
 
 const page = PicassoBook.section('Components').createPage(
   'AvatarUpload',
-  `Gets the image from file input and displays it in the Avatar component.`
+  `
+    Gets the image from file input and displays it in the Avatar component.
+
+    ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page.createTabChapter('Props').addComponentDocs({
