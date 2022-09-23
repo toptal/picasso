@@ -1,5 +1,13 @@
 # Change Log
 
+## 27.0.1
+
+### Patch Changes
+
+- [#3112](https://github.com/toptal/picasso/pull/3112) [`8fb49a981`](https://github.com/toptal/picasso/commit/8fb49a981ff904579b4a175f7ab93f79994bc2bf) Thanks [@sergiubutnarasu](https://github.com/sergiubutnarasu)! - ---
+
+  - use `TypographyOverflow` to display the file name inside `Dropzone`
+
 ## 27.0.0
 
 ### Major Changes
