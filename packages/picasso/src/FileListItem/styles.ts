@@ -14,4 +14,7 @@ export default ({ palette }: Theme) =>
     error: {
       lineHeight: rem('16px'),
     },
+    fileNodeContent: {
+      minWidth: 0,
+    },
   })

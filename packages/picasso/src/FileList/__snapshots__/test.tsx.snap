@@ -12,7 +12,7 @@ exports[`FileList renders 1`] = `
         class="PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex FileListItem-root"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column"
+          class="PicassoContainer-flex PicassoContainer-column FileListItem-fileNodeContent"
         >
           <div
             class="PicassoContainer-flex"
@@ -32,7 +32,7 @@ exports[`FileList renders 1`] = `
               </svg>
             </div>
             <p
-              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black FileListItem-label MuiTypography-body1"
+              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black TypographyOverflow-wrapper TypographyOverflow-singleLine FileListItem-label MuiTypography-body1 MuiTypography-noWrap"
             >
               user-profile-picture.png
             </p>

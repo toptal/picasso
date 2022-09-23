@@ -11,6 +11,7 @@ import ProgressBar from '../ProgressBar'
 import { Attachment16, Trash16, CloseMinor16 } from '../Icon'
 import { FileUpload } from '../FileInput/types'
 import styles from './styles'
+import TypographyOverflow from '../TypographyOverflow'
 
 export interface Props {
   file: FileUpload
@@ -60,21 +61,25 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
 
   const fileNode = (
     <>
-      <Container flex direction='column'>
+      <Container
+        flex
+        direction='column'
+        className={cx(classes.fileNodeContent)}
+      >
         <Container flex direction='row'>
           {!error && (
             <Container right='xsmall'>
               <Attachment16 color='darkGrey' />
             </Container>
           )}
-          <Typography
+          <TypographyOverflow
             className={classes.label}
             variant='body'
             size='medium'
             color={error ? 'red' : 'black'}
           >
             {name}
-          </Typography>
+          </TypographyOverflow>
         </Container>
         <Typography
           className={classes.error}
