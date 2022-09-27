@@ -1,0 +1,49 @@
+name: Automatically merge non-major release PR
+
+on:
+  pull_request:
+    branches:
+      - master
+
+    types:
+      - opened
+
+jobs:
+  merge-release-pr:
+    if: ${{ github.event.pull_request.head.ref == 'changeset-release/master' }}
+    name: Merge release PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+
+    steps:
+      - name: Merge pull request if the release is not major
+        uses: actions/github-script@v5
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        with:
+          github-token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+          script: |
+            const { PR_NUMBER, PR_BODY } = process.env
+            const repository = context.repo
+
+            const isMajorRelease = PR_BODY.includes("### Major Changes")
+            const commentBody = isMajorRelease ?
+              "This pull request seems to be a **major** release and will **not** be merged automatically"
+              : "This pull request seems to be a **non-major** release and will be merged automatically"
+
+            await github.rest.issues.createComment({
+              owner: repository.owner,
+              issue_number: PR_NUMBER,
+              repo: repository.repo,
+              body: commentBody,
+            })
+
+            if (!isMajorRelease) {
+              await github.rest.pulls.merge({
+                merge_method: "squash",
+                owner: repository.owner,
+                pull_number: PR_NUMBER,
+                repo: repository.repo,
+              })
+            }
