@@ -7,7 +7,7 @@
 
 </div>
 
-This repository is the home for all of Toptal's reusable UI, split up into distinct monorepo packages distributed through NPM:
+This repository is the home for all of Toptal's awesome and reusable UI, split up into distinct monorepo packages distributed through NPM:
 
 - [@toptal/picasso](./packages/picasso/README.md) - core UI building blocks
 - [@toptal/picasso-charts](./packages/picasso-charts/README.md) - reusable charts, based on `recharts`
