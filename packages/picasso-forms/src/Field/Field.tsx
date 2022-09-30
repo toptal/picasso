@@ -29,7 +29,6 @@ export type Props<
     name: string
     type?: string
     label?: React.ReactNode
-    fieldType?: string
     status?: OutlinedInputStatus
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: (props: any) => React.ReactNode
