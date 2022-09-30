@@ -1,5 +1,15 @@
 # Change Log
 
+## 27.1.0
+
+### Minor Changes
+
+- [#3122](https://github.com/toptal/picasso/pull/3122) [`e3c897296`](https://github.com/toptal/picasso/commit/e3c89729662ac68075f8f81ff418ef0637fc68ff) Thanks [@ykaragol](https://github.com/ykaragol)! - ---
+
+  ### Dropzone
+
+  - add `hideContentText` property for hiding default text
+
 ## 27.0.1
 
 ### Patch Changes
