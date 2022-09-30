@@ -49,4 +49,22 @@ describe('Dropzone', () => {
       expect(getByTestId('dropzone').className).toContain('disabled')
     })
   })
+
+  describe('when hideContentText is not provided', () => {
+    it('render contentText', () => {
+      const { queryByText } = renderDropzone({})
+
+      expect(queryByText('Click or drag file to upload')).toBeInTheDocument()
+    })
+  })
+
+  describe('when hideContentText is provided', () => {
+    it('render contentText', () => {
+      const { queryByText } = renderDropzone({ hideContentText: true })
+
+      expect(
+        queryByText('Click or drag file to upload')
+      ).not.toBeInTheDocument()
+    })
+  })
 })

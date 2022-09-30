@@ -28,6 +28,8 @@ export interface Props extends BaseProps {
   multiple?: boolean
   /** The text of the hint */
   hint?: string
+  /** Hide/Show the content text */
+  hideContentText?: boolean
   /** Callback invoked when a file item is removed */
   onRemove?: (fileName: string, index: number) => void
   /** Callback for when the drop event occurs */
@@ -54,6 +56,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
 ) {
   const {
     hint,
+    hideContentText,
     onRemove,
     value,
     className,
@@ -111,9 +114,11 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
       >
         <input {...getInputProps({ className: classes.nativeInput })} />
         <Upload24 color='darkGrey' />
-        <Typography size='medium' color='black' weight='semibold'>
-          Click or drag file to upload
-        </Typography>
+        {!hideContentText && (
+          <Typography size='medium' color='black' weight='semibold'>
+            Click or drag file to upload
+          </Typography>
+        )}
         {hint && errorMessages.length === 0 && (
           <FormHint className={cx(classes.hint)}>{hint}</FormHint>
         )}
