@@ -4,9 +4,13 @@ on:
   pull_request:
     branches:
       - master
-
     types:
       - opened
+
+env:
+  PR_NUMBER: ${{ github.event.number }}
+  PR_BODY: ${{ github.event.pull_request.body }}
+  DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
 
 jobs:
   merge-release-pr:
@@ -18,11 +22,8 @@ jobs:
     steps:
       - name: Merge pull request if the release is not major
         uses: actions/github-script@v5
-        env:
-          PR_NUMBER: ${{ github.event.number }}
-          PR_BODY: ${{ github.event.pull_request.body }}
         with:
-          github-token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+          github-token: ${{ env.DEVBOT_TOKEN }}
           script: |
             const { PR_NUMBER, PR_BODY } = process.env
             const repository = context.repo
