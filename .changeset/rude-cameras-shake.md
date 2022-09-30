@@ -4,4 +4,6 @@
 
 ---
 
-- added `hideContentText` property to the Dropzone to not put the default text in Dropzone
+### Dropzone
+
+- add `hideContentText` property for hiding default text
