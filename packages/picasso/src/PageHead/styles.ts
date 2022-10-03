@@ -4,7 +4,8 @@ export default ({ palette }: Theme) =>
   createStyles({
     root: {
       position: 'relative',
-
+    },
+    withBorder: {
       // underline effect for the container
       '&::after': {
         position: 'absolute',
