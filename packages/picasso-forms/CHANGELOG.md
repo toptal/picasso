@@ -1,5 +1,15 @@
 # Change Log
 
+## 48.0.1
+
+### Patch Changes
+
+- [#3125](https://github.com/toptal/picasso/pull/3125) [`d2aa5d453`](https://github.com/toptal/picasso/commit/d2aa5d45375c94fd222410de8aff1db46779c895) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Switch
+
+  - add `type=checkbox` for Switch field
+
 ## 48.0.0
 
 ### Patch Changes
