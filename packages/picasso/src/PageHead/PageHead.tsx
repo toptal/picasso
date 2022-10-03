@@ -12,6 +12,8 @@ export interface Props extends BaseProps {
   children?: ReactNode
   /** Whether it should have right padding */
   rightPadding?: boolean
+  /** Whether it should hide bottom border */
+  noBorder?: boolean
 }
 
 const useStyles = makeStyles(styles, {
@@ -64,14 +66,15 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
   props,
   ref
 ) {
-  const { children } = props
+  const { children, noBorder, rightPadding } = props
   const classes = useStyles()
 
   return (
     <Container
       ref={ref}
       className={cx(classes.root, {
-        [classes.rightPadding]: props.rightPadding,
+        [classes.withBorder]: !noBorder,
+        [classes.rightPadding]: rightPadding,
       })}
     >
       {children}
@@ -81,6 +84,7 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
 
 PageHead.defaultProps = {
   rightPadding: false,
+  noBorder: false,
 }
 
 PageHead.displayName = 'PageHead'
