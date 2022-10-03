@@ -1,5 +1,16 @@
 # Change Log
 
+## 27.2.0
+
+### Minor Changes
+
+- [#3130](https://github.com/toptal/picasso/pull/3130) [`5e0b23b1a`](https://github.com/toptal/picasso/commit/5e0b23b1aa3b1cbb5c648749eac7428bc3500c18) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### PageHead
+
+  - add `noBorder` property to hide bottom border, when PageHead is directly followed by bordered section.
+    Check [storybook example](https://picasso.toptal.net/?path=/story/components-pagehead--pagehead#no-border) for more details
+
 ## 27.1.0
 
 ### Minor Changes
