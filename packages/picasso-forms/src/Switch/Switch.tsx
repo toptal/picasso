@@ -15,6 +15,7 @@ export type Props = FormSwitchProps & FieldProps<SwitchProps['value']>
 export const Switch = (props: Props) => (
   <PicassoField<FormSwitchProps>
     {...props}
+    type='checkbox'
     label={
       props.label ? (
         <PicassoForm.Label htmlFor={props.id} titleCase={props.titleCase}>

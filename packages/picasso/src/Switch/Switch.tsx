@@ -11,7 +11,7 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoSwitch' })
 export interface Props
   extends BaseProps,
     TextLabelProps,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> {
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'type'> {
   /** Show Switch initially as checked */
   checked?: boolean
   /** Disable changing `Switch` state */
