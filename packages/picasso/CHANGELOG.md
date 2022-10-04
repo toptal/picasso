@@ -1,5 +1,15 @@
 # Change Log
 
+## 27.3.0
+
+### Minor Changes
+
+- [#3132](https://github.com/toptal/picasso/pull/3132) [`2d872820e`](https://github.com/toptal/picasso/commit/2d872820ec07986833e84116a0d6436c93729571) Thanks [@nikolalsvk](https://github.com/nikolalsvk)! - ---
+
+  ### Icon
+
+  - add mobile icon
+
 ## 27.2.0
 
 ### Minor Changes
