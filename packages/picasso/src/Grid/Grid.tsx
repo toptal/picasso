@@ -17,7 +17,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Defines amount of space between Grid.Item components (in px) */
   spacing?: 0 | 8 | 16 | 32 | 64 | 72 | 80
   /** Defines the orientation of the grid */
-  direction?: GridDirection
+  direction?: GridDirection | undefined
   /** Defines the align-items style property based on the direction */
   alignItems?: GridItemsAlignment
   /** Defines the justify-content style property based on the direction */

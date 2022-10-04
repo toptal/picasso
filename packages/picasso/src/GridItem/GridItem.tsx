@@ -9,11 +9,11 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Content of Grid.Item */
   children?: ReactNode
   /** Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority */
-  small?: boolean | GridSize
+  small?: boolean | GridSize | undefined
   /** Defines the number of grids the component is going to use. It's applied for the medium breakpoint and wider screens */
   medium?: boolean | GridSize
   /** Defines the number of grids the component is going to use. It's applied for the large breakpoint and wider screens */
-  large?: boolean | GridSize
+  large?: boolean | GridSize | undefined
 }
 
 const useStyles = makeStyles<Theme>(styles, {

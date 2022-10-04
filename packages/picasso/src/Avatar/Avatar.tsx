@@ -17,9 +17,11 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** User full name to display initials on the avatar */
   name?: string
   /** Size */
-  size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+  size?:
+    | SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+    | undefined
   /** Photo url */
-  src?: string
+  src?: string | undefined
   /** Variant of the avatar shape */
   variant?: 'square' | 'portrait' | 'landscape'
   /** Callback to show edit-on-click and receive event */

@@ -34,11 +34,11 @@ export interface Props<V extends VariantType = VariantType>
   /** Content of Container */
   children: ReactNode
   /** margin-top for the container transformed to `rem` */
-  top?: SpacingType
+  top?: SpacingType | undefined
   /** margin-bottom for the container transformed to `rem` */
   bottom?: SpacingType
   /** margin-left for the container transformed to `rem` */
-  left?: SpacingType
+  left?: SpacingType | undefined
   /** margin-right for the container transformed to `rem` */
   right?: SpacingType
   /** padding for the container transformed to `rem` */

@@ -44,7 +44,7 @@ export interface Props
   /** Indicate `Input` status */
   status?: Status
   /** If true, the `Input` will be disabled */
-  disabled?: boolean
+  disabled?: boolean | undefined
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Whether icon should be placed at the beginning or end of the `Input` */
