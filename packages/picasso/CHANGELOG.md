@@ -1,5 +1,15 @@
 # Change Log
 
+## 27.3.1
+
+### Patch Changes
+
+- [#3134](https://github.com/toptal/picasso/pull/3134) [`8adb1d360`](https://github.com/toptal/picasso/commit/8adb1d360e88814f2d3b1f7d0e4f3b9e7ec2872c) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### AvatarUpload
+
+  - remove redundant time unit for animation function
+
 ## 27.3.0
 
 ### Minor Changes
