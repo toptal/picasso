@@ -52,14 +52,13 @@ We try to have everything inside `Picasso` synced with latest design proposal ca
 
 ## How can I contribute?
 
-1. Read [CONTRIBUTING.md](./CONTRIBUTING.md)
-2. Open a PR with your first contribution
-3. Make sure test pass by running `yarn test`
+- Make sure tests pass by running `yarn test`
 
-   - [Fixing broken visual tests](./docs/contribution/visual-testing.md#fixing-broken-visual-tests-inside-a-pr)
-   - [Project commands](./README.md#project-commands)
+- When your PR is opened, `contribution` label will be added and a ticket will be created automatically with high priority on `Frontend Experience` Kanban board. It will be reviewed by the team as soon as possible.
 
-4. Ask for a review in [#-frontend-exp-core](https://toptal-core.slack.com/archives/CERF5NHT3)
+- You can also use `@toptal-anvil ping reviewers` to ping the reviewers back to get their approvals after resolving the stated issues.
+
+- In case of an emergency, ask for review in [#-frontend-exp-core](https://toptal-core.slack.com/archives/CERF5NHT3)
 
 ### Your first contribution
 
@@ -83,21 +82,26 @@ We showcase how to use Picasso components via storybook. If you have new case an
 
 ### Alpha package release
 
-If you need to test the changes in your project, you can release an alpha package by adding this comment in PR: `@toptal-bot run package:alpha-release`.
+If you need to test the changes in your project, you can release an alpha package by adding this comment in the PR: `@toptal-bot run package:alpha-release`.
 
 ### Release
 
 We use [changesets](https://github.com/atlassian/changesets) to manage releases for Picasso packages.
 
-As a contributor, we expect you to create a "changeset" file for the changes you've made. You can do it, by running:
+As a contributor, we expect you to create a "changeset" file for the changes you've made. You can do it by running:
 
 ```
 yarn changeset
 ```
 
-"changeset" file should be committed together with the modified code to the PR branch. "changeset" file shoud follow [changeset guidelines](./docs/contribution/changeset-guidelines.md). You can also check [how to add changeset](https://github.com/atlassian/changesets/blob/main/docs/adding-a-changeset.md) for more details.
+The "changeset" file should:
 
-When the PR is merged, additional "Version Packages [skip ci]" PR is created with the version bump and changelogs generated. FX team member should merge this PR to make a release.
+- be committed together with the modified code to the PR branch
+- follow [changeset guidelines](./docs/contribution/changeset-guidelines.md)
+
+You can also check [how to add changeset](https://github.com/atlassian/changesets/blob/main/docs/adding-a-changeset.md) for more details.
+
+After the PR is merged, an additional "Version Packages [skip ci]" PR is created with the version bump, and changelogs are generated. An FX team member will merge this PR to make a release.
 
 #### Why my first PR is taking too long to merge?
 
