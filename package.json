@@ -77,7 +77,7 @@
     "babel-loader": "^8.2.5",
     "brace": "^0.11.1",
     "cache-loader": "^4.1.0",
-    "chalk": "^4.1.0",
+    "chalk": "^5.0.1",
     "copy-to-clipboard": "^3.3.2",
     "core-js": "^3.25.0",
     "cross-env": "^7.0.3",
