@@ -60,7 +60,7 @@ export default ({ palette, transitions }: Theme) => {
 
     background: {
       fill: palette.blue.lighter,
-      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}ms`,
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
       transitionProperty: 'fill',
 
       '&$hovered': {
