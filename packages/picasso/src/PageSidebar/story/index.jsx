@@ -8,6 +8,7 @@ const page = PicassoBook.section('Components').createPage(
   'PageSidebar',
   `Navigation items provide access to parts in your app 
   
+  
   ${PicassoBook.createSourceLink(__filename)}
   `
 )
