@@ -8,6 +8,7 @@ import React, { ReactNode } from 'react'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
+import HelmetProvider from './HelmetProvider'
 import NotificationsProvider from './NotificationsProvider'
 import Favicon from '../Favicon'
 import { EnvironmentType, TextLabelProps } from '../types'
@@ -39,6 +40,8 @@ export interface PicassoProps extends TextLabelProps {
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
   theme?: ThemeOptions
+  /** Disables usage of `<HelmetProvider>` component from `react-helmet-async` package */
+  disableHelmet?: boolean
   /** Disables transitions for components like Loader, to make testing easier */
   disableTransitions?: boolean
   /** Disables unique prefix for styles class names */
@@ -63,6 +66,7 @@ const Picasso = ({
   RootComponent = PicassoRootNode,
   titleCase,
   theme,
+  disableHelmet,
   disableTransitions,
   disableClassNamePrefix,
   injectFirst,
@@ -94,13 +98,15 @@ const Picasso = ({
           titleCase={titleCase}
           disableTransitions={disableTransitions}
         >
-          {fixViewport && <FixViewport />}
-          {loadFonts && <FontsLoader />}
-          {reset && <CssBaseline />}
-          {loadFavicon && <Favicon environment={environment} />}
-          <NotificationsProvider container={notificationContainer}>
-            {children}
-          </NotificationsProvider>
+          <HelmetProvider disabled={disableHelmet}>
+            {fixViewport && <FixViewport />}
+            {loadFonts && <FontsLoader />}
+            {reset && <CssBaseline />}
+            {loadFavicon && <Favicon environment={environment} />}
+            <NotificationsProvider container={notificationContainer}>
+              {children}
+            </NotificationsProvider>
+          </HelmetProvider>
         </PicassoGlobalStylesProvider>
       </MuiThemeProvider>
     </StylesProvider>

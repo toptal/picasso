@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Helmet, HelmetProps } from 'react-helmet'
+import { Helmet, HelmetProps } from 'react-helmet-async'
 
 export interface Props extends HelmetProps {
   /** content that goes to the document head */

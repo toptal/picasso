@@ -8,7 +8,7 @@ const chapter = PicassoBook.connectToPage(page =>
     .createChapter('Page.Helmet', 'Manipulate with document head')
     .addTextSection(
       `
-      This component is a wrapper around react-helmet, you can use Page.Helmet as a drop-in replacement
+      This component is a wrapper around react-helmet-async, you can use Page.Helmet as a drop-in replacement
 
       <Page.Helmet>
         <title>My custom title</title>
@@ -16,13 +16,14 @@ const chapter = PicassoBook.connectToPage(page =>
     `
     )
     .addTextSection(
-      'ℹ️ To use this component with SSR you might need to perform some extra setup.'
+      'ℹ️ You must wrap your application with `<PicassoProvider>` component to make `<Page.Helmet>` work properly.'
     )
     .addTextSection(
-      'Please refer to the original [react-helmet documentation](https://www.npmjs.com/package/react-helmet#server-usage).'
+      'Please refer to the original [react-helmet-async documentation](https://www.npmjs.com/package/react-helmet-async).'
     )
     .addTextSection(
-      'If you are using **Next.js** please refer to the [next/head documentation](https://nextjs.org/docs/api-reference/next/head).'
+      'If you are using **Next.js** please disable usage of `react-helmet-async` by passing `disableHelmet` prop to the `<PicassoProvider>`. ' +
+        'After that, refer to the [next/head documentation](https://nextjs.org/docs/api-reference/next/head).'
     )
 )
 
