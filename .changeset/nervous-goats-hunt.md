@@ -11,7 +11,7 @@
 **Example**
 
 ```jsx
-<Typograhy as='strong' weight='semibold'>
-  <Typograhy as='em'>Should be both bold and italic</Typograhy>
-</Typograhy>
+<Typography as='strong' weight='semibold'>
+  <Typography as='em'>Should be both bold and italic</Typography>
+</Typography>
 ```
