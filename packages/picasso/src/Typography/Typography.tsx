@@ -89,6 +89,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
           underline,
           invert,
           lineThrough,
+          as,
         }),
       }}
       style={style}

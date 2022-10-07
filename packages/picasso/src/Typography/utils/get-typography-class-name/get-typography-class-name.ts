@@ -13,6 +13,7 @@ const getTypographyClassName = (
     underline,
     invert,
     lineThrough,
+    as,
   }: {
     variant: 'heading' | 'body'
     size:
@@ -23,6 +24,7 @@ const getTypographyClassName = (
     underline?: 'solid' | 'dashed'
     invert?: boolean
     lineThrough?: boolean
+    as?: React.ElementType<React.HTMLAttributes<HTMLElement>>
   }
 ) => {
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
@@ -30,7 +32,9 @@ const getTypographyClassName = (
 
   const weightVariantClass = weight ? classes[weight] : undefined
   const weightClass =
-    weight === 'inherit' ? classes.inheritWeight : weightVariantClass
+    weight === 'inherit' || as === 'em'
+      ? classes.inheritWeight
+      : weightVariantClass
 
   const underlineClass = underline ? classes[underline] : undefined
 
