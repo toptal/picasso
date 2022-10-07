@@ -1,5 +1,23 @@
 # Change Log
 
+## 27.3.2
+
+### Patch Changes
+
+- [#3138](https://github.com/toptal/picasso/pull/3138) [`09f7dbb49`](https://github.com/toptal/picasso/commit/09f7dbb496ae30a0bca02e52f720db41d4189e52) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  ### Typography
+
+  - inherits font-weight correctly when taken as italic component.
+
+  **Example**
+
+  ```jsx
+  <Typography as='strong' weight='semibold'>
+    <Typography as='em'>Should be both bold and italic</Typography>
+  </Typography>
+  ```
+
 ## 27.3.1
 
 ### Patch Changes
