@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Helmet, HelmetProps } from 'react-helmet-async'
 
 export interface Props extends HelmetProps {
