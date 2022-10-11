@@ -1,4 +1,5 @@
 import React, {
+  CSSProperties,
   FocusEvent,
   forwardRef,
   useCallback,
@@ -25,9 +26,7 @@ import { Upload16, Upload24 } from '../Icon'
 import { Status } from '../OutlinedInput'
 
 export interface Props extends BaseProps {
-  /**
-   * Set accepted file types. See https://github.com/okonet/attr-accept for more information.
-   */
+  /** Set accepted file types. See https://github.com/okonet/attr-accept for more information. */
   accept?: AvatarUploadOptions['accept']
   /** Alt text */
   alt?: string
@@ -35,6 +34,8 @@ export interface Props extends BaseProps {
   src?: string
   /** Size of the avatar */
   size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+  /** Avatar style */
+  avatarStyle?: CSSProperties
   /** Enable/disable the dropzone */
   disabled?: boolean
   /** Maximum file size (in bytes) */
@@ -106,6 +107,8 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       testIds,
       src,
       alt,
+      style,
+      avatarStyle,
 
       // dropzoneOptions
       accept,
@@ -248,6 +251,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
 
     return (
       <div
+        style={style}
         {...getRootProps({
           className: cx(classes.root, classes[`size${capitalize(size)}`], {
             [classes.disabled]: disabled,
@@ -264,6 +268,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
 
         {showAvatar ? (
           <Avatar
+            style={avatarStyle}
             size={size}
             onEdit={onEdit ? handleEdit : undefined}
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
