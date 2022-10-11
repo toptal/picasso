@@ -126,58 +126,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     </Typography>
   )
 
-  return (
-    <MUITooltip
-      {...rest}
-      ref={ref}
-      arrow={!compact && !followCursor}
-      PopperProps={{
-        ref: tooltipRef,
-        container: container || picassoRootContainer,
-        disablePortal,
-        popperOptions: {
-          modifiers: {
-            preventOverflow: {
-              enabled: preventOverflow,
-              boundariesElement: 'window',
-            },
-            hide: {
-              enabled: preventOverflow,
-            },
-          },
-        },
-        ...(followCursor && followCursorTooltipData?.followCursorPopperProps),
-      }}
-      TransitionProps={{
-        // passing undefined onExiting or onExited changes Tooltip behavior
-        ...(onTransitionExiting && { onExiting: onTransitionExiting }),
-        ...(onTransitionExited && { onExiting: onTransitionExited }),
-      }}
-      classes={{
-        arrow: classes.arrow,
-        tooltip: cx(classes.tooltip, {
-          [classes.light]: !compact,
-          [classes.compact]: compact,
-          [classes.noMaxWidth]: maxWidth === 'none',
-        }),
-      }}
-      className={className}
-      style={style}
-      interactive={interactive}
-      onClose={handleClose}
-      onOpen={handleOpen}
-      open={tooltipState.isOpen}
-      placement={placement}
-      title={title}
-      disableHoverListener={disableListeners}
-      disableFocusListener={disableListeners}
-      disableTouchListener
-      enterDelay={delayDuration}
-      enterNextDelay={delayDuration}
-    >
-      {children as ReactElement}
-    </MUITooltip>
-  )
+  return children
 })
 
 Tooltip.defaultProps = {

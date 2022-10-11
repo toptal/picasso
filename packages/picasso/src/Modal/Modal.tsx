@@ -189,46 +189,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     [onClose]
   )
 
-  return (
-    <Dialog
-      {...rest}
-      ref={rootRef}
-      classes={{
-        root: classes.root,
-        container: classes.container,
-        paper: cx(classes.paper, classes[size], {
-          [classes.topAlignedDialog]: align === 'top',
-        }),
-      }}
-      className={className}
-      style={style}
-      fullScreen={isSmall}
-      container={container || picassoRootContainer}
-      PaperProps={{ ...paperProps, elevation: 2 }}
-      hideBackdrop={hideBackdrop}
-      onBackdropClick={onBackdropClick}
-      onClose={handleClose}
-      onEnter={onOpen}
-      open={open}
-      transitionDuration={transitionDuration}
-      maxWidth={false}
-      disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
-      TransitionProps={transitionProps}
-    >
-      <ModalContext.Provider value>{children}</ModalContext.Provider>
-
-      {onClose && (
-        <ButtonCircular
-          variant='flat'
-          className={classes.closeButton}
-          onClick={onClose}
-          data-testid={testIds?.closeButton}
-        >
-          <CloseMinor16 />
-        </ButtonCircular>
-      )}
-    </Dialog>
-  )
+  return null
 })
 
 Modal.defaultProps = {

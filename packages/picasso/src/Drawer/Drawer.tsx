@@ -69,35 +69,7 @@ export const Drawer = (props: Props) => {
     }
   }
 
-  return (
-    <MUIDrawer
-      {...rest}
-      open={open}
-      onClose={handleOnClose}
-      disablePortal={disablePortal}
-      container={container}
-      ModalProps={{ style: { zIndex: theme.zIndex.drawer } }}
-      SlideProps={transitionProps}
-    >
-      <Container
-        flex
-        direction='column'
-        className={cx(classes.container, classes[width])}
-      >
-        <DrawerTitle title={title} />
-        <Container flex className={classes.content}>
-          {children}
-        </Container>
-        <ButtonCircular
-          variant='flat'
-          icon={<CloseMinor16 />}
-          onClick={handleOnClose}
-          className={classes.closeButton}
-          aria-label='Close drawer'
-        />
-      </Container>
-    </MUIDrawer>
-  )
+  return null
 }
 
 Drawer.displayName = 'Drawer'

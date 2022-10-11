@@ -2,6 +2,7 @@ import React, {
   ReactNode,
   ChangeEvent,
   HTMLAttributes,
+  MutableRefObject,
   ReactElement,
   forwardRef,
   useState,
@@ -110,54 +111,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
 
   const appliedBorders = children || expanded ? (borders as Borders) : 'none'
 
-  return (
-    <MUIAccordion
-      {...rest}
-      ref={ref}
-      classes={{
-        root: cx(classes.root, borderClasses[appliedBorders]),
-      }}
-      className={className}
-      style={style}
-      elevation={0}
-      expanded={summaryExpanded}
-      disabled={disabled}
-      onChange={onChange}
-      TransitionProps={transitionProps}
-    >
-      {children ? (
-        <AccordionSummary
-          classes={{
-            root: classes.summary,
-            content: classes.content,
-          }}
-          expandIcon={null}
-          onClick={handleSummaryClick}
-          data-testid={testIds?.accordionSummary}
-        >
-          {children}
-          {expandIcon ? (
-            decorateWithExpandIconClasses(expandIcon, expandIconClass)
-          ) : (
-            <div className={classes.expandIconAlignTop}>
-              <ButtonAction
-                icon={<ArrowDownMinor16 className={expandIconClass} />}
-              />
-            </div>
-          )}
-        </AccordionSummary>
-      ) : (
-        <EmptyAccordionSummary data-testid={testIds?.emptyAccordionSummary} />
-      )}
-      <AccordionDetails
-        classes={{
-          root: classes.details,
-        }}
-      >
-        {content}
-      </AccordionDetails>
-    </MUIAccordion>
-  )
+  return <div ref={ref as MutableRefObject<HTMLDivElement>}>children</div>
 })
 
 Accordion.defaultProps = {
