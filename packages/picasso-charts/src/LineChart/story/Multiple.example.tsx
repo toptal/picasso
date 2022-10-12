@@ -1,7 +1,70 @@
 import React from 'react'
 import { palette } from '@toptal/picasso/utils'
 import { LineChart } from '@toptal/picasso-charts'
-import { Paper, Container, Typography, Indicator } from '@toptal/picasso'
+import { Page, Paper, Container, Typography, Indicator } from '@toptal/picasso'
+
+const CustomTooltip = ({ active, payload }: any) => {
+  if (active && payload && payload.length > 0) {
+    // eslint-disable-next-line id-length
+    const { x, infected, recovered, died } = payload[0].payload
+
+    return (
+      <Paper>
+        <Container padded='xsmall'>
+          <Typography size='medium'>Date: {x}</Typography>
+          <Container>
+            <Container inline right='small'>
+              <Indicator color='yellow' />
+            </Container>
+            <Typography inline size='medium'>
+              Infected: {infected}
+            </Typography>
+          </Container>
+
+          <Container>
+            <Container inline right='small'>
+              <Indicator color='red' />
+            </Container>
+            <Typography inline size='medium'>
+              Died: {died}
+            </Typography>
+          </Container>
+
+          <Container>
+            <Container inline right='small'>
+              <Indicator color='green' />
+            </Container>
+            <Typography inline size='medium'>
+              Recovered: {recovered}
+            </Typography>
+          </Container>
+        </Container>
+      </Paper>
+    )
+  }
+
+  return null
+}
+
+const Example = () => (
+  <Page.Content>
+    <Page.Article>
+      <LineChart
+        tooltip
+        xAxisKey='date'
+        customTooltip={<CustomTooltip />}
+        height={150}
+        unit=' cases'
+        data={CHART_DATA}
+        lineConfig={{
+          infected: { color: palette.yellow.main },
+          recovered: { color: palette.blue.main },
+          died: { color: palette.red.main },
+        }}
+      />
+    </Page.Article>
+  </Page.Content>
+)
 
 const CHART_DATA = [
   {
@@ -137,64 +200,5 @@ const CHART_DATA = [
     died: 5,
   },
 ]
-
-const CustomTooltip = ({ active, payload }: any) => {
-  if (active && payload && payload.length > 0) {
-    // eslint-disable-next-line id-length
-    const { x, infected, recovered, died } = payload[0].payload
-
-    return (
-      <Paper>
-        <Container padded='xsmall'>
-          <Typography size='medium'>Date: {x}</Typography>
-          <Container>
-            <Container inline right='small'>
-              <Indicator color='yellow' />
-            </Container>
-            <Typography inline size='medium'>
-              Infected: {infected}
-            </Typography>
-          </Container>
-
-          <Container>
-            <Container inline right='small'>
-              <Indicator color='red' />
-            </Container>
-            <Typography inline size='medium'>
-              Died: {died}
-            </Typography>
-          </Container>
-
-          <Container>
-            <Container inline right='small'>
-              <Indicator color='green' />
-            </Container>
-            <Typography inline size='medium'>
-              Recovered: {recovered}
-            </Typography>
-          </Container>
-        </Container>
-      </Paper>
-    )
-  }
-
-  return null
-}
-
-const Example = () => (
-  <LineChart
-    tooltip
-    xAxisKey='date'
-    customTooltip={<CustomTooltip />}
-    height={150}
-    unit=' cases'
-    data={CHART_DATA}
-    lineConfig={{
-      infected: { color: palette.yellow.main },
-      recovered: { color: palette.blue.main },
-      died: { color: palette.red.main },
-    }}
-  />
-)
 
 export default Example

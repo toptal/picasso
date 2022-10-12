@@ -1,7 +1,51 @@
 import React from 'react'
-import { Container } from '@toptal/picasso'
+import { Container, Page } from '@toptal/picasso'
 import { palette } from '@toptal/picasso/utils'
 import { AnalyticsChart } from '@topkit/analytics-charts'
+
+type Payload = {
+  name: string
+  value: number
+  payload: Record<string, number | boolean>
+}
+
+const CustomTooltip = ({
+  active,
+  payload,
+}: {
+  active?: boolean
+  payload?: Payload[]
+}) => {
+  if (!active || !payload) {
+    return null
+  }
+
+  return (
+    <Container style={{ background: '#fff' }}>
+      {payload.map(({ name, value, payload: data }) => (
+        <Container key={name}>
+          <b>{name}</b>: {data[`${name}IsEmpty`] ? 'No data provided.' : value}
+        </Container>
+      ))}
+    </Container>
+  )
+}
+
+const Example = () => (
+  <Page.Content>
+    <Page.Article>
+      <AnalyticsChart
+        tooltip
+        customTooltip={<CustomTooltip />}
+        data={CHART_DATA}
+        lineConfig={{
+          role: { color: palette.yellow.main },
+          team: { color: palette.blue.main },
+        }}
+      />
+    </Page.Article>
+  </Page.Content>
+)
 
 const CHART_DATA = [
   {
@@ -59,45 +103,5 @@ const CHART_DATA = [
     },
   },
 ]
-
-type Payload = {
-  name: string
-  value: number
-  payload: Record<string, number | boolean>
-}
-
-const CustomTooltip = ({
-  active,
-  payload,
-}: {
-  active?: boolean
-  payload?: Payload[]
-}) => {
-  if (!active || !payload) {
-    return null
-  }
-
-  return (
-    <Container style={{ background: '#fff' }}>
-      {payload.map(({ name, value, payload: data }) => (
-        <Container key={name}>
-          <b>{name}</b>: {data[`${name}IsEmpty`] ? 'No data provided.' : value}
-        </Container>
-      ))}
-    </Container>
-  )
-}
-
-const Example = () => (
-  <AnalyticsChart
-    tooltip
-    customTooltip={<CustomTooltip />}
-    data={CHART_DATA}
-    lineConfig={{
-      role: { color: palette.yellow.main },
-      team: { color: palette.blue.main },
-    }}
-  />
-)
 
 export default Example
