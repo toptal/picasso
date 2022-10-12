@@ -8,7 +8,6 @@ export interface FormatAmount {
   currency?: string
   /** Locale identifiers are case-insensitive ASCII. However, it's conventional to use title case (first letter capitalized, successive letters lower case) for script code, upper case for region codes, and lower case for everything else. */
   locale?: string
-  /**More options**/
   options?: {
     /** The minimum number of fraction digits to display **/
     minimumFractionDigits?: number
