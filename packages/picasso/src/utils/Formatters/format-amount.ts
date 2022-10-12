@@ -17,11 +17,13 @@ export interface FormatAmount {
   }
 }
 
+const DEFAULT_OPTIONS = {}
+
 export const formatAmount = ({
   amount,
   currency = DEFAULT_CURRENCY,
   locale = DEFAULT_LOCALE,
-  options = {},
+  options = DEFAULT_OPTIONS,
 }: FormatAmount) => {
   const transformedAmount = typeof amount === 'string' ? Number(amount) : amount
 
