@@ -23,7 +23,7 @@ const Example = () => (
         €{exampleAmount2}.
       </Typography>
     </Container>
-    <Container>
+    <Container bottom='small'>
       <Typography variant='heading' size='medium'>
         Using Amount format helper
       </Typography>
@@ -31,6 +31,30 @@ const Example = () => (
         This is an example pure string usage of the amount{' '}
         {formatAmount({ amount: exampleAmount1 })} and{' '}
         {formatAmount({ amount: exampleAmount2, currency: 'EUR' })}.
+      </Typography>
+    </Container>
+    <Container bottom='small'>
+      <Typography variant='heading' size='medium'>
+        Using fraction digits options:
+      </Typography>
+      <Typography>
+        minimumFractionDigits: 3 with value: {exampleAmount1}
+      </Typography>
+      <Typography>
+        output:{' '}
+        {formatAmount({
+          amount: exampleAmount1,
+          options: { minimumFractionDigits: 3 },
+        })}
+      </Typography>
+      <Typography>minimumFractionDigits: 1 with value: 1575.1234</Typography>
+      <Typography>
+        output:{' '}
+        {formatAmount({
+          amount: 890.1234,
+          options: { maximumFractionDigits: 1 },
+          currency: 'EUR',
+        })}
       </Typography>
     </Container>
   </div>
