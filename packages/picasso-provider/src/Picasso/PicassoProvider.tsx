@@ -1,8 +1,4 @@
-import {
-  Theme,
-  ThemeOptions,
-  unstable_createMuiStrictModeTheme,
-} from '@material-ui/core/styles'
+import { Theme, ThemeOptions, createTheme } from '@material-ui/core/styles'
 import { Overrides } from '@material-ui/core/styles/overrides'
 import { deepmerge } from '@material-ui/utils'
 
@@ -72,6 +68,6 @@ class Provider {
   }
 }
 
-const PicassoProvider = new Provider(unstable_createMuiStrictModeTheme(picasso))
+const PicassoProvider = new Provider(createTheme(picasso))
 
 export default PicassoProvider
