@@ -50,4 +50,53 @@ describe('formatAmount', () => {
       expect(formatAmount({ amount: '15' })).toBe('$15.00')
     })
   })
+
+  describe('options', () => {
+    it('displays decimals when options are not provided', () => {
+      expect(formatAmount({ amount: '15' })).toBe('$15.00')
+    })
+
+    it('does not display decimals when options are 0', () => {
+      expect(
+        formatAmount({
+          amount: '15',
+          options: {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          },
+        })
+      ).toBe('$15')
+    })
+
+    it('displays min number of decimal digits', () => {
+      expect(
+        formatAmount({
+          amount: '15',
+          options: {
+            minimumFractionDigits: 3,
+          },
+        })
+      ).toBe('$15.000')
+    })
+
+    it('displays max number of decimal digits', () => {
+      expect(
+        formatAmount({
+          amount: '15.1234',
+          options: {
+            maximumFractionDigits: 2,
+          },
+        })
+      ).toBe('$15.12')
+
+      expect(
+        formatAmount({
+          amount: '15.1294',
+          options: {
+            maximumFractionDigits: 2,
+          },
+        })
+      ).toBe('$15.13')
+    })
+  })
 })

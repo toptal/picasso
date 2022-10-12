@@ -11,10 +11,10 @@ export interface FormatAmount {
   /**More options**/
   options?: {
     /**Minimum number of digits to write from the decimal part**/
-    minimumFractionDigits?: 0
+    minimumFractionDigits?: number
 
     /**Maximum number of digits to write from the decimal part**/
-    maximumFractionDigits?: 0
+    maximumFractionDigits?: number
   }
 }
 
