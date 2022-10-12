@@ -10,10 +10,10 @@ export interface FormatAmount {
   locale?: string
   /**More options**/
   options?: {
-    /**Minimum number of digits to write from the decimal part**/
+    /** The minimum number of fraction digits to display **/
     minimumFractionDigits?: number
 
-    /**Maximum number of digits to write from the decimal part**/
+    /** The minimum number of fraction digits to display **/
     maximumFractionDigits?: number
   }
 }
