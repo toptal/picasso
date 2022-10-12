@@ -4,6 +4,6 @@
 
 ---
 
-### formatAmount()
+### Formatters
 
-- add options maximumFractionDigits, minimumFractionDigits
+- formatAmount(): add options maximumFractionDigits, minimumFractionDigits
