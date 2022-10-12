@@ -12,7 +12,7 @@ export interface FormatAmount {
     /** The minimum number of fraction digits to display **/
     minimumFractionDigits?: number
 
-    /** The minimum number of fraction digits to display **/
+    /** The maximum number of fraction digits to display **/
     maximumFractionDigits?: number
   }
 }
