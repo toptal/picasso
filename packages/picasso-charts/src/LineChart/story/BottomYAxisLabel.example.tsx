@@ -1,6 +1,21 @@
 import React from 'react'
 import { palette } from '@toptal/picasso/utils'
 import { LineChart } from '@toptal/picasso-charts'
+import { Page } from '@toptal/picasso'
+
+const Example = () => (
+  <Page.Content>
+    <Page.Article>
+      <LineChart
+        data={CHART_DATA}
+        showBottomYAxisLabel
+        lineConfig={{
+          talents: { color: palette.blue.main },
+        }}
+      />
+    </Page.Article>
+  </Page.Content>
+)
 
 const CHART_DATA = [
   { x: 'Oct 20', talents: 0 },
@@ -11,15 +26,5 @@ const CHART_DATA = [
   { x: 'Oct 25', talents: 9.1 },
   { x: 'Oct 26', talents: 10 },
 ]
-
-const Example = () => (
-  <LineChart
-    data={CHART_DATA}
-    showBottomYAxisLabel
-    lineConfig={{
-      talents: { color: palette.blue.main },
-    }}
-  />
-)
 
 export default Example

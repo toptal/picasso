@@ -1,6 +1,20 @@
 import React from 'react'
 import { palette } from '@toptal/picasso/utils'
 import { AnalyticsChart } from '@topkit/analytics-charts'
+import { Page } from '@toptal/picasso'
+
+const Example = () => (
+  <Page.Content>
+    <Page.Article>
+      <AnalyticsChart
+        data={CHART_DATA}
+        lineConfig={{
+          role: { color: palette.blue.main },
+        }}
+      />
+    </Page.Article>
+  </Page.Content>
+)
 
 const CHART_DATA = [
   {
@@ -31,14 +45,5 @@ const CHART_DATA = [
     },
   },
 ]
-
-const Example = () => (
-  <AnalyticsChart
-    data={CHART_DATA}
-    lineConfig={{
-      role: { color: palette.blue.main },
-    }}
-  />
-)
 
 export default Example

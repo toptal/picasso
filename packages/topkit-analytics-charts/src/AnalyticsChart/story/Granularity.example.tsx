@@ -2,6 +2,37 @@ import React from 'react'
 import { format, parseISO, addHours } from 'date-fns'
 import { palette } from '@toptal/picasso/utils'
 import { AnalyticsChart } from '@topkit/analytics-charts'
+import { Page } from '@toptal/picasso'
+
+const Example = () => (
+  <Page.Content>
+    <Page.Article>
+      <h3>Granularity: day</h3>
+      <AnalyticsChart
+        data={CHART_DATA_DAY}
+        lineConfig={{
+          global: { color: palette.blue.main },
+        }}
+        granularity='day'
+        unit='minutes'
+        formatXAxisLabel={label => format(parseISO(label), 'MMM dd')}
+        showBottomYAxisLabel
+      />
+
+      <h3>Granularity: hour</h3>
+      <AnalyticsChart
+        data={CHART_DATA_HOUR}
+        lineConfig={{
+          global: { color: palette.blue.main },
+        }}
+        granularity='hour'
+        unit='minutes'
+        formatXAxisLabel={label => format(addHours(parseISO(label), 1), 'ha')}
+        showBottomYAxisLabel
+      />
+    </Page.Article>
+  </Page.Content>
+)
 
 const CHART_DATA_DAY = [
   {
@@ -72,33 +103,5 @@ const CHART_DATA_HOUR = [
     },
   },
 ]
-
-const Example = () => (
-  <>
-    <h3>Granularity: day</h3>
-    <AnalyticsChart
-      data={CHART_DATA_DAY}
-      lineConfig={{
-        global: { color: palette.blue.main },
-      }}
-      granularity='day'
-      unit='minutes'
-      formatXAxisLabel={label => format(parseISO(label), 'MMM dd')}
-      showBottomYAxisLabel
-    />
-
-    <h3>Granularity: hour</h3>
-    <AnalyticsChart
-      data={CHART_DATA_HOUR}
-      lineConfig={{
-        global: { color: palette.blue.main },
-      }}
-      granularity='hour'
-      unit='minutes'
-      formatXAxisLabel={label => format(addHours(parseISO(label), 1), 'ha')}
-      showBottomYAxisLabel
-    />
-  </>
-)
 
 export default Example
