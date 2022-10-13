@@ -1,6 +1,6 @@
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 import React, { useState } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 import { isBrowser } from '../utils'
 

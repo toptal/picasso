@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
-import { Helmet, HelmetProps } from 'react-helmet'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Helmet, HelmetProps } from 'react-helmet-async'
 
 export interface Props extends HelmetProps {
   /** content that goes to the document head */

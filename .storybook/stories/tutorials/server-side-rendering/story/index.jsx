@@ -14,8 +14,9 @@ generalUsage.addTextSection(
   `
 We need to disable client side features for Picasso root:
 
-1. Remove favicon, font, viewport meta tag
-2. Disable Picasso class name prefix (to avoid generating different className prefix on server and client)
+1. Disable the usage of \`<HelmetProviver>\` component
+2. Remove favicon, font, viewport meta tag
+3. Disable Picasso class name prefix (to avoid generating different className prefix on server and client)
 
 Not doing so will not break the app. However, the performance might degrade and there might be unpredictable results.
 
@@ -30,6 +31,7 @@ import Picasso from '@toptal/picasso-provider'
   loadFavicon={false}
   fixViewport={false}
   loadFonts={false}
+  disableHelmet
   disableClassNamePrefix
 >
   ...
@@ -37,7 +39,7 @@ import Picasso from '@toptal/picasso-provider'
 ~~~
 `,
   {
-    title: 'Remove PicassoProvider client side features'
+    title: 'Remove PicassoProvider client side features',
   }
 )
 
@@ -48,7 +50,7 @@ JSS implementation of Picasso styles requires to pre-render styles and classes o
 To make it possible a utility function \`getServersideStylesheets\` was introduced.
 `,
     {
-      title: 'Render styles on server side'
+      title: 'Render styles on server side',
     }
   )
   .addExample(
@@ -56,7 +58,7 @@ To make it possible a utility function \`getServersideStylesheets\` was introduc
     {
       id: 'server-side-utils',
       showEditCode: false,
-      takeScreenshot: false
+      takeScreenshot: false,
     }
   )
 generalUsage.addTextSection(
@@ -77,6 +79,7 @@ generalUsage.addTextSection(
           loadFavicon={false}
           fixViewport={false}
           loadFonts={false}
+          disableHelmet
           disableClassNamePrefix>
           <App />
         </Picasso>,
@@ -115,7 +118,7 @@ const disableQuillForDevelopment = config => { // config is a Webpack config
 ~~~
 `,
   {
-    title: 'Avoid using RichTextEditor component'
+    title: 'Avoid using RichTextEditor component',
   }
 )
 
@@ -134,7 +137,7 @@ nextJSChapter.addTextSection(
     yarn create next-app --typescript
     `,
   {
-    title: '1: Create an empty Next.js project'
+    title: '1: Create an empty Next.js project',
   }
 )
 
@@ -143,7 +146,7 @@ nextJSChapter.addTextSection(
     yarn add @toptal/picasso @toptal/picasso-provider
     `,
   {
-    title: '2: Add Picasso and PicassoProvider as a dependency'
+    title: '2: Add Picasso and PicassoProvider as a dependency',
   }
 )
 
@@ -163,6 +166,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       loadFavicon={false}
       fixViewport={false}
       loadFonts={false}
+      disableHelmet
       disableClassNamePrefix
     >
       <Component {...pageProps} />
@@ -174,7 +178,7 @@ export default MyApp
 ~~~
     `,
   {
-    title: '3: Wrap _app.tsx in PicassoProvider'
+    title: '3: Wrap _app.tsx in PicassoProvider',
   }
 )
 
@@ -229,7 +233,7 @@ export default class MyDocument extends Document {
 ~~~
     `,
   {
-    title: '4: Add server side stylesheet generation to _document.tsx'
+    title: '4: Add server side stylesheet generation to _document.tsx',
   }
 )
 
@@ -256,7 +260,7 @@ module.exports = withTM({
 ~~~
     `,
   {
-    title: '5: Transpile Picasso modules'
+    title: '5: Transpile Picasso modules',
   }
 )
 
@@ -314,6 +318,6 @@ export default Home
 ~~~
     `,
   {
-    title: '6: Use Picasso components'
+    title: '6: Use Picasso components',
   }
 )

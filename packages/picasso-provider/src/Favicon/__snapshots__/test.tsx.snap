@@ -3,20 +3,20 @@
 exports[`Favicon renders 1`] = `
 NodeList [
   <link
-    data-react-helmet="true"
+    data-rh="true"
     href="test-file-stub"
     rel="apple-touch-icon"
     sizes="180x180"
   />,
   <link
-    data-react-helmet="true"
+    data-rh="true"
     href="test-file-stub"
     rel="icon"
     sizes="32x32"
     type="image/png"
   />,
   <link
-    data-react-helmet="true"
+    data-rh="true"
     href="test-file-stub"
     rel="icon"
     sizes="16x16"
@@ -28,20 +28,20 @@ NodeList [
 exports[`Favicon renders with environment specified 1`] = `
 NodeList [
   <link
-    data-react-helmet="true"
+    data-rh="true"
     href="test-file-stub"
     rel="apple-touch-icon"
     sizes="180x180"
   />,
   <link
-    data-react-helmet="true"
+    data-rh="true"
     href="test-file-stub"
     rel="icon"
     sizes="32x32"
     type="image/png"
   />,
   <link
-    data-react-helmet="true"
+    data-rh="true"
     href="test-file-stub"
     rel="icon"
     sizes="16x16"
