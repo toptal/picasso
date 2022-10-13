@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- [#3137](https://github.com/toptal/picasso/pull/3137) [`356678e34`](https://github.com/toptal/picasso/commit/356678e341388e60fce5dcfc5cc4b9aa956d2c02) Thanks [@sanex3339](https://github.com/sanex3339)! - ---
+
+  ### PicassoProvider
+
+  **BREAKING CHANGE:**
+
+  - replace usage of `react-helmet` package with `react-helmet-async`
+  - add `disableHelmet` prop to disable the usage of `<HelmetProvider>` component from `react-helmet-async` for server environment
+
 ## 1.3.1
 
 ### Patch Changes
