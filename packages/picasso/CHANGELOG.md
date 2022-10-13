@@ -1,5 +1,15 @@
 # Change Log
 
+## 27.4.0
+
+### Minor Changes
+
+- [#3142](https://github.com/toptal/picasso/pull/3142) [`06ec10cdd`](https://github.com/toptal/picasso/commit/06ec10cdd6096cc883cf2d65a0968fcb29e91e38) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### AvatarUpload
+
+  - add new prop `avatarStyle` to allow styling on the inner `Avatar` component
+
 ## 27.3.2
 
 ### Patch Changes
