@@ -184,9 +184,11 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       // workaround for "disableBackdropClick" prop due to deprecation
       if (reason === 'escapeKeyDown' && onClose) {
         onClose()
+      } else if (reason === 'backdropClick' && onBackdropClick) {
+        onBackdropClick()
       }
     },
-    [onClose]
+    [onBackdropClick, onClose]
   )
 
   return (
@@ -206,7 +208,6 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       container={container || picassoRootContainer}
       PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}
-      onBackdropClick={onBackdropClick}
       onClose={handleClose}
       onEnter={onOpen}
       open={open}
