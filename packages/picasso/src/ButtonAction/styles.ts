@@ -23,7 +23,7 @@ export default ({ palette, typography }: Theme) =>
       },
     },
     content: {
-      fontWeight: 'normal',
+      fontWeight: typography.fontWeights.semibold,
       color: palette.blue.main,
     },
     small: {
@@ -36,11 +36,6 @@ export default ({ palette, typography }: Theme) =>
       },
       '& $iconRight': {
         marginRight: 0,
-      },
-    },
-    iconless: {
-      '&:not($loading) $content': {
-        fontWeight: typography.fontWeights.semibold,
       },
     },
     icon: {
