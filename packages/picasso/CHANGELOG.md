@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.1.1
+
+### Patch Changes
+
+- [#3147](https://github.com/toptal/picasso/pull/3147) [`31e24f9af`](https://github.com/toptal/picasso/commit/31e24f9afff79271999f845c3f613a250f3d4ca4) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### ButtonAction
+
+  - update `font-weight` in all variants to `semibold` to comply with BASE
+
 ## 28.1.0
 
 ### Minor Changes
