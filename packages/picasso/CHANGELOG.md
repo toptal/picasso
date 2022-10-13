@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.1.0
+
+### Minor Changes
+
+- [#3144](https://github.com/toptal/picasso/pull/3144) [`b700a5377`](https://github.com/toptal/picasso/commit/b700a537776183c14890c6af964daa27c5cbc882) Thanks [@ybouhjira](https://github.com/ybouhjira)! - ---
+
+  ### Formatters
+
+  - formatAmount(): add options maximumFractionDigits, minimumFractionDigits
+
 ## 28.0.0
 
 ### Major Changes
