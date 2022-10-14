@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.1.2
+
+### Patch Changes
+
+- [#3153](https://github.com/toptal/picasso/pull/3153) [`0dbe7be79`](https://github.com/toptal/picasso/commit/0dbe7be79e7a6ea09a889ac6dc24207b685b114f) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Modal
+
+  - fix `onBackdropClick` deprecation issue and use `onClose` instead
+
 ## 28.1.1
 
 ### Patch Changes
