@@ -2,7 +2,7 @@
 
 ## Problem
 
-Changes in MenuItem can unexpectedly update multiple components. Currently, MenuItem handles too many things. We can see usage in this [diagram](https://miro.com/app/board/uXjVPOOdjH8=/).
+Changes in MenuItem can unexpectedly update multiple components. Currently, MenuItem handles too many things. We can see usage in this [diagram](https://miro.com/app/board/uXjVPOOdjH8=/?share_link_id=687084096239).
 
 ## Proposal
 
@@ -27,4 +27,4 @@ Instead of creating abstraction of Menu.Item, we would create 3 different compon
 
 ## Research data
 
-- Usage [diagram](https://miro.com/app/board/uXjVPOOdjH8=/) with screenshots
+- Usage [diagram](https://miro.com/app/board/uXjVPOOdjH8=/?share_link_id=687084096239) with screenshots
