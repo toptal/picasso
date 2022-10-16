@@ -13,22 +13,6 @@ const page = PicassoBook.section('Components').createPage(
 page.createTabChapter('Props').addComponentDocs({
   component: Amount,
   name: 'Amount',
-  additionalDocs: {
-    maximumFractionDigits: {
-      name: 'options.maximumFractionDigits',
-      type: {
-        name: 'number',
-      },
-      description: 'The maximum number of fraction digits to display',
-    },
-    minimumFractionDigits: {
-      name: 'options.minimumFractionDigits',
-      type: {
-        name: 'number',
-      },
-      description: 'The minimum number of fraction digits to display',
-    },
-  },
 })
 
 page
@@ -37,3 +21,4 @@ page
   .addExample('Amount/story/Currency.example.tsx', 'Currency Variants')
   .addExample('Amount/story/Variants.example.tsx', 'Typography Variants')
   .addExample('Amount/story/Locale.example.tsx', 'Locale Variants')
+  .addExample('Amount/story/Decimals.example.tsx', 'Decimal digits')

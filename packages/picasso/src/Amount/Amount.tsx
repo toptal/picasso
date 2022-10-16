@@ -14,12 +14,10 @@ export interface Props extends TypographyProps {
   currency?: string
   /** Locale identifiers are case-insensitive ASCII. However, it's conventional to use title case (first letter capitalized, successive letters lower case) for script code, upper case for region codes, and lower case for everything else. */
   locale?: string
-  options?: {
-    /** The minimum number of fraction digits to display **/
-    minimumFractionDigits?: number
-    /** The maximum number of fraction digits to display **/
-    maximumFractionDigits?: number
-  }
+  /** The minimum number of fraction digits to display **/
+  minimumFractionDigits?: number
+  /** The maximum number of fraction digits to display **/
+  maximumFractionDigits?: number
 }
 
 export const Amount = ({
@@ -28,12 +26,18 @@ export const Amount = ({
   locale = DEFAULT_LOCALE,
   inline = true,
   as = 'span',
-  options,
+  minimumFractionDigits,
+  maximumFractionDigits,
   ...typographyProps
 }: Props) => {
   return (
     <Typography inline={inline} as={as} {...typographyProps}>
-      {formatAmount({ amount, currency, locale, options })}
+      {formatAmount({
+        amount,
+        currency,
+        locale,
+        options: { minimumFractionDigits, maximumFractionDigits },
+      })}
     </Typography>
   )
 }
