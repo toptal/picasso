@@ -19,7 +19,7 @@ export interface Props
   extends BaseProps,
     TextLabelProps,
     Omit<ButtonOrAnchorProps, 'onChange'> {
-  /** Show checkbox initially as checked */
+  /** Show checkbox as `checked` */
   checked?: boolean
   /** Disable changing `Checkbox` state */
   disabled?: boolean
