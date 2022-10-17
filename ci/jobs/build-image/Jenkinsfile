@@ -51,6 +51,13 @@ pipeline {
           } else {
             success "== Found image for version ${VERSION} =="
           }
+
+          if (!isDockerImagePresentRemotely("us-central1-docker.pkg.dev/toptal-hub/containers/${IMAGE_NAME}", VERSION)) {
+            image = docker.build("us-central1-docker.pkg.dev/toptal-hub/containers/${IMAGE_NAME}:${VERSION}")
+            success "== Built image for version ${VERSION} =="
+          } else {
+            success "== Found image for version ${VERSION} =="
+          }
         }
       }
     }//build image
@@ -60,6 +67,9 @@ pipeline {
         script {
           if (image) {
             docker.withRegistry('https://gcr.io/toptal-hub/') {
+              image.push(VERSION)
+            }
+            docker.withRegistry('us-central1-docker.pkg.dev/toptal-hub/containers/') {
               image.push(VERSION)
             }
             success "== Pushed image with tag ${VERSION} =="
