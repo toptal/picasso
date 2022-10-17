@@ -21,4 +21,4 @@ page
   .addExample('Amount/story/Currency.example.tsx', 'Currency Variants')
   .addExample('Amount/story/Variants.example.tsx', 'Typography Variants')
   .addExample('Amount/story/Locale.example.tsx', 'Locale Variants')
-  .addExample('Amount/story/Decimals.example.tsx', 'Decimal digits')
+  .addExample('Amount/story/Decimals.example.tsx', 'Fractional digits')
