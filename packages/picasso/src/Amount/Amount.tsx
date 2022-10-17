@@ -14,9 +14,9 @@ export interface Props extends TypographyProps {
   currency?: string
   /** Locale identifiers are case-insensitive ASCII. However, it's conventional to use title case (first letter capitalized, successive letters lower case) for script code, upper case for region codes, and lower case for everything else. */
   locale?: string
-  /** The minimum number of fraction digits to display **/
+  /** The minimum number of fraction digits to display */
   minimumFractionDigits?: number
-  /** The maximum number of fraction digits to display **/
+  /** The maximum number of fraction digits to display */
   maximumFractionDigits?: number
 }
 
