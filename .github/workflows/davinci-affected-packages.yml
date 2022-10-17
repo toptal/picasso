@@ -1,0 +1,59 @@
+name: Affected Packages
+
+on:
+  # only for testing purpose
+  pull_request:
+    branches: [ master ]
+  issue_comment:
+    types: [ created ]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+  GCS_CREDENTIALS: ${{ secrets.GCR_ACCOUNT_KEY }} # The Google Cloud JSON service account key
+  GCS_BUCKET_NAME: toptal-ci-artifacts # The Google Cloud Storage bucket name
+  GRAPH_FILE: monorepo-graph.svg
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN_READ_ONLY }}
+
+jobs:
+  affected_packages:
+    name: Generate Graph
+    # if: >
+    #   github.event.issue.pull_request &&
+    #   github.event.comment.body == '@toptal-bot generate graph:affected'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get the GraphViz's dot reporter
+        run: sudo apt-get install graphviz
+
+      - name: Install dependencies
+        uses: toptal/davinci-github-actions/yarn-install@v4.2.2
+
+      - name: Generate affected depency graph
+        run: yarn generate:graph:affected --output-file ${{ env.GRAPH_FILE }}
+
+      - name: GCS authentication
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: ${{ env.GCS_CREDENTIALS }}
+
+      - name: Upload generated graph to GCS bucket
+        id: upload-file
+        uses: google-github-actions/upload-cloud-storage@v0
+        with:
+          path: ${{ env.GRAPH_FILE }}
+          destination: |
+            ${{ env.GCS_BUCKET_NAME }}/davinci_visualizer/${{ github.repository }}/commit-${{ github.sha }}/run-${{ github.run_id }}
+
+      - name: Send a comment with graph to the PR
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            const { issue: { number: issue_number }, repo: { owner, repo }  } = context
+            const body = 'See the affected packages graph [here](https://storage.cloud.google.com/${{ env.GCS_BUCKET_NAME }}/${{ steps.upload-file.outputs.uploaded }}?authuser=1)'
+            github.rest.issues.createComment({ issue_number, owner, repo, body })

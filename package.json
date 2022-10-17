@@ -34,7 +34,8 @@
     "test:unit:watch": "yarn test:unit --watch",
     "typecheck": "tsc --noEmit && tsc -p ./cypress/tsconfig.json",
     "prepublish": "if [ -f 'yarn.lock' ]; then yarn-deduplicate yarn.lock; fi",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "generate:graph:affected": "davinci-monorepo graph generate --diff master"
   },
   "repository": {
     "type": "git",
@@ -65,6 +66,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@toptal/browserslist-config": "^1.2.0",
     "@toptal/davinci-code": "^1.6.3",
+    "@toptal/davinci-monorepo": "6.8.1-alpha-fx-3080-create-workflow-for-displaying-the-graph-in-ci-f049e258.13",
     "@toptal/davinci-syntax": "^16.2.0",
     "@toptal/davinci-qa": "^12.1.0",
     "@toptal/davinci-ci": "^2.0.10",
