@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.2.0
+
+### Minor Changes
+
+- [#3158](https://github.com/toptal/picasso/pull/3158) [`ae95eae59`](https://github.com/toptal/picasso/commit/ae95eae59207bc9e58052b23129c3515beb3d523) Thanks [@ybouhjira](https://github.com/ybouhjira)! - ---
+
+  ### Amount
+
+  - add props maximumFractionDigits, minimumFractionDigits
+
 ## 28.1.2
 
 ### Patch Changes
