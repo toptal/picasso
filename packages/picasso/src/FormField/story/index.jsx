@@ -13,6 +13,7 @@ const chapter = PicassoBook.connectToPage(page =>
     .addExample('FormField/story/Required.example.tsx', 'Required')
     .addExample('FormField/story/Error.example.tsx', 'Error')
     .addExample('FormField/story/Hint.example.tsx', 'Hint')
+    .addExample('FormField/story/HintAndError.example.tsx', 'Hint with Error')
 )
 
 const componentDocs = PicassoBook.createComponentDocs(FormField, 'Form.Field')
