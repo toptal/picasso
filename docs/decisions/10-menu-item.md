@@ -6,20 +6,20 @@ Changes in MenuItem can unexpectedly update multiple components. Currently, Menu
 
 ## Proposal
 
-Instead of creating abstraction of Menu.Item, we would create 3 different components.
-1. `Menu.Item` - current solution used in Dropdown, Select, Autocomplete, Page.TopBarMenu. They share the same design.
+Instead of creating abstraction of Menu.Item, we would create multiple different components.
+1. `Menu.DropdownItem` - current solution used in Dropdown, Page.TopBarMenu. They share the same design.
+2. `Menu.SelectItem` - different design and API
 2. `Menu.SidebarItem` - instead of overriding lot of styles of Menu.Item, we would create new component
 3. `Menu.AccountItem` - instead of overriding lot of styles of Menu.Item, we would create new component
 
 ### Benefits
 
-- Instead of one complex component, we would have three very simple.
+- Instead of one complex component that does everything, we would have multiple very simple ones.
 - Updating styles of base Menu.Item would not affect other components with different design.
-- Should be possible to be done without any breaking change
 
 ### Drawbacks and limitations
 
-- I don't see any right now
+- Will cause breaking change that would be hard to fix with codemods
 
 ## Alternatives
 
