@@ -2,7 +2,6 @@
 import React from 'react'
 import {
   Checkbox as PicassoCheckbox,
-  CheckboxProps,
   CheckboxGroupProps,
 } from '@toptal/picasso'
 
@@ -10,15 +9,17 @@ import PicassoField, { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import CheckboxGroupContext from './CheckboxGroupContext'
 
-export type Props = CheckboxGroupProps & FieldProps<CheckboxProps['value']>
+type ValueType = string[] | undefined
+export type Props = CheckboxGroupProps & FieldProps<ValueType>
 
 export const CheckboxGroup = (props: Props) => {
-  const { children, titleCase, label, ...rest } = props
+  const { children, titleCase, label, initialValue, ...rest } = props
 
   return (
     <CheckboxGroupContext.Provider value={props.name}>
       <PicassoField
         {...rest}
+        initialValue={initialValue}
         type='checkbox'
         label={
           label ? (

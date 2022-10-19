@@ -212,7 +212,7 @@ const DisabledFieldsExample = () => {
       />
       <Form.CheckboxGroup
         disabled
-        value='freeDiving'
+        value={['freeDiving']}
         name='disabledHobbies'
         label='Hobbies'
       >
