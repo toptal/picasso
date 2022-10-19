@@ -1,5 +1,15 @@
 # Change Log
 
+## 49.0.1
+
+### Patch Changes
+
+- [#3162](https://github.com/toptal/picasso/pull/3162) [`29a96d111`](https://github.com/toptal/picasso/commit/29a96d1110af48b1f5d2f1c495431d12a99e77a4) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### CheckboxGroup
+
+  - fix type related to `value` and `initialValue` of the field
+
 ## 49.0.0
 
 ### Patch Changes
