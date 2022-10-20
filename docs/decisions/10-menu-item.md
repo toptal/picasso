@@ -11,6 +11,8 @@ Instead of creating abstraction of Menu.Item, we would create multiple different
 2. `Menu.SelectItem` - different design and API
 3. `Menu.SidebarItem` - instead of overriding lot of styles of Menu.Item, we would create new component
 
+Also `AccountSelect` is used only in [Platform](https://github.com/toptal/platform/blob/c5b4e5a0749ff44a05b724ababad3e1a5edf0506/app/assets/features/platform/role_selection/components/RoleSelectionScreen/index.jsx#L33) and is not part of BASE design, so we should move this component to their repo.
+
 ### Benefits
 
 - Instead of one complex component that does everything, we would have multiple very simple ones.
