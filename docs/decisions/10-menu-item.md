@@ -9,8 +9,7 @@ Changes in MenuItem can unexpectedly update multiple components. Currently, Menu
 Instead of creating abstraction of Menu.Item, we would create multiple different components.
 1. `Menu.DropdownItem` - current solution used in Dropdown, Page.TopBarMenu. They share the same design.
 2. `Menu.SelectItem` - different design and API
-2. `Menu.SidebarItem` - instead of overriding lot of styles of Menu.Item, we would create new component
-3. `Menu.AccountItem` - instead of overriding lot of styles of Menu.Item, we would create new component
+3. `Menu.SidebarItem` - instead of overriding lot of styles of Menu.Item, we would create new component
 
 ### Benefits
 
