@@ -20,7 +20,7 @@ page
   .addExample('Menu/story/Default.example.tsx', {
     title: 'Default',
   })
-  .addExample('Menu/story/Nested.example.tsx', {
+  .addExample('Menu/story/Multilevel.example.tsx', {
     title: 'Multilevel',
     takeScreenshot: false,
   })

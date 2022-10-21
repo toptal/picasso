@@ -38,7 +38,7 @@ page
     title: 'Dropdown menu',
     takeScreenshot: false,
   })
-  .addExample('Menu/story/Nested.example.tsx', {
+  .addExample('Menu/story/Multilevel.example.tsx', {
     title: 'Multilevel menu',
     takeScreenshot: false,
   })
