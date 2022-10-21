@@ -1,5 +1,16 @@
 # Change Log
 
+## 28.2.1
+
+### Patch Changes
+
+- [#3166](https://github.com/toptal/picasso/pull/3166) [`f7db29420`](https://github.com/toptal/picasso/commit/f7db294205c83321e4f6b4897e06ecff99fe907b) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Menu Item
+
+  - update `min-width` to 144px to follow BASE design
+  - fix color of description when item is disabled
+
 ## 28.2.0
 
 ### Minor Changes
