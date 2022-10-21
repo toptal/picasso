@@ -156,13 +156,15 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
             )}
             {menu && (
               <Container flex inline left='xsmall'>
-                <ChevronMinor16 />
+                <ChevronMinor16 color='' />
               </Container>
             )}
           </Container>
           {description && (
             <Container
-              className={classes.description}
+              className={cx(classes.description, {
+                [classes.descriptionDisabled]: disabled,
+              })}
               left={checkmarked === undefined ? undefined : 'medium'}
               top={0.25}
             >

@@ -1,5 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
+import { rem } from '@toptal/picasso-shared'
 
 PicassoProvider.override(() => ({
   MuiMenuItem: {
@@ -26,6 +27,7 @@ PicassoProvider.override(() => ({
 export default ({ typography, palette, shadows }: Theme) =>
   createStyles({
     root: {
+      minWidth: rem('144'),
       '&$nonSelectable:hover, &$nonSelectable:focus': {
         backgroundColor: 'unset',
       },
@@ -114,6 +116,9 @@ export default ({ typography, palette, shadows }: Theme) =>
     description: {
       fontSize: '0.6875em',
       color: palette.text.primary,
+    },
+    descriptionDisabled: {
+      color: 'inherit',
     },
     paper: {
       background: palette.common.white,

@@ -5,7 +5,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const page = PicassoBook.section('Components').createPage(
   'Dropdown',
   `Allows rendering of menus and custom content triggered by custom anchors
-  
+
   ${PicassoBook.createSourceLink(__filename)}
   `
 )
@@ -34,6 +34,14 @@ page
   .createChapter()
   .addExample('Dropdown/story/Default.example.tsx', 'Default')
   .addExample('Dropdown/story/ButtonDropdown.example.tsx', 'Button Anchor')
+  .addExample('Menu/story/Default.example.tsx', {
+    title: 'Dropdown menu',
+    takeScreenshot: false,
+  })
+  .addExample('Menu/story/Multilevel.example.tsx', {
+    title: 'Multilevel menu',
+    takeScreenshot: false,
+  })
   .addExample(
     'Dropdown/story/PositionsAndOffsets.example.tsx',
     'Positions & Offsets'
