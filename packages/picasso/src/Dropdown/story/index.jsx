@@ -34,7 +34,14 @@ page
   .createChapter()
   .addExample('Dropdown/story/Default.example.tsx', 'Default')
   .addExample('Dropdown/story/ButtonDropdown.example.tsx', 'Button Anchor')
-  .addExample('Dropdown/story/Menu.example.tsx', 'Dropdown menu')
+  .addExample('Menu/story/Default.example.tsx', {
+    title: 'Dropdown menu',
+    takeScreenshot: false,
+  })
+  .addExample('Menu/story/Nested.example.tsx', {
+    title: 'Multilevel menu',
+    takeScreenshot: false,
+  })
   .addExample(
     'Dropdown/story/PositionsAndOffsets.example.tsx',
     'Positions & Offsets'

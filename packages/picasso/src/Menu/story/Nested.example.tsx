@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Form, Menu } from '@toptal/picasso'
+import { Container, Typography, Menu } from '@toptal/picasso'
 
 const Example = () => {
   const menuForItemB1 = (
@@ -27,6 +27,12 @@ const Example = () => {
     <Menu>
       <Menu.Item>Item A</Menu.Item>
       <Menu.Item menu={menuForItemB}>Item B</Menu.Item>
+      <Menu.Item description='Description' menu={menuForItemB}>
+        Item B
+      </Menu.Item>
+      <Menu.Item description='Description' disabled menu={menuForItemB}>
+        Item B
+      </Menu.Item>
     </Menu>
   )
 
@@ -34,18 +40,28 @@ const Example = () => {
     <Menu variant='drilldown'>
       <Menu.Item>Item A</Menu.Item>
       <Menu.Item menu={menuForItemB}>Item B</Menu.Item>
+      <Menu.Item description='Description' menu={menuForItemB}>
+        Item B
+      </Menu.Item>
+      <Menu.Item description='Description' disabled menu={menuForItemB}>
+        Item B
+      </Menu.Item>
     </Menu>
   )
 
   return (
-    <Container flex>
-      <Container right='small'>
-        <Form.Label>Default</Form.Label>
-        <Container style={{ width: '240px' }}>{sliderMenu}</Container>
+    <Container flex gap='medium'>
+      <Container flex gap='small' direction='column'>
+        <Typography variant='heading' size='small'>
+          Slide (default)
+        </Typography>
+        <Container>{sliderMenu}</Container>
       </Container>
-      <Container>
-        <Form.Label>Drilldown</Form.Label>
-        <Container style={{ width: '240px' }}>{drilldownMenu}</Container>
+      <Container flex gap='small' direction='column'>
+        <Typography variant='heading' size='small'>
+          Drilldown
+        </Typography>
+        <Container>{drilldownMenu}</Container>
       </Container>
     </Container>
   )

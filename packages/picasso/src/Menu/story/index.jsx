@@ -19,10 +19,9 @@ page
   .createChapter()
   .addExample('Menu/story/Default.example.tsx', {
     title: 'Default',
-    takeScreenshot: false,
   })
   .addExample('Menu/story/Nested.example.tsx', {
-    title: 'Nested',
+    title: 'Multilevel',
     takeScreenshot: false,
   })
   .addExample('Menu/story/Dropdown.example.tsx', {
