@@ -52,7 +52,7 @@ const generateSizeClassNames = () => {
 const generateCornerClassNames = () => {
   const classNames: Record<string, CSSProperties> = {}
 
-  for (const [size, { cornerSize }] of Object.entries(SETTINGS)) {
+  Object.entries(SETTINGS).forEach(([size, { cornerSize }]) => {
     const className = `corner${capitalize(size)}`
     const clipPath = `polygon(0 0, 100% 0, 100% 100%, ${cornerSize} 100%, 0 calc(100% - ${cornerSize}))`
 
@@ -62,7 +62,7 @@ const generateCornerClassNames = () => {
       // be resolved - https://github.com/cssinjs/css-vendor/issues/74
       '-webkit-clip-path': clipPath,
     }
-  }
+  })
 
   return classNames
 }
