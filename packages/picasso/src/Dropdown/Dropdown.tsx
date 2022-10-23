@@ -258,9 +258,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
             <div onClick={close}>
               <Grow in={isOpen} appear>
                 <Paper
+                  style={contentStyle}
                   className={cx(classes.content, {
                     [classes.contentVisible]: contentOverflow === 'visible',
-                    [classes.contentStyle]: contentStyle,
                   })}
                   onKeyDown={handleContentKeyDown}
                   elevation={2}

@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
+import cx from 'classnames'
 
 import {
   Bold16,
@@ -63,7 +64,11 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Container id={`${id}toolbar`} ref={ref} className={classes.toolbar}>
-        <Container className={classes.group}>
+        <Container
+          className={cx(classes.group, {
+            groupDisabled: disabled,
+          })}
+        >
           <Select
             onChange={onHeaderChange}
             value={format.header}

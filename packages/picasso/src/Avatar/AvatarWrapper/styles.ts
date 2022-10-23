@@ -1,5 +1,7 @@
 import { SizeType } from '@toptal/picasso-shared'
 import { createStyles, Theme } from '@material-ui/core/styles'
+import capitalize from '@material-ui/core/utils/capitalize'
+import { CSSProperties } from '@material-ui/core/styles/withStyles'
 
 const SETTINGS = {
   xxsmall: {
@@ -24,6 +26,47 @@ const SETTINGS = {
   },
 } as const
 
+const VARIANTS = ['square', 'portrait', 'landscape']
+
+const generateSizeClassNames = () => {
+  const classNames: Record<string, CSSProperties> = {}
+
+  Object.entries(SETTINGS).forEach(([size, { dimensions }]) => {
+    VARIANTS.forEach(variant => {
+      const className = `size${capitalize(size)}${capitalize(variant)}`
+
+      const ratio = size === 'large' ? 3 / 4 : 2 / 3
+      const widthRatio = variant === 'portrait' ? ratio : 1
+      const heightRatio = variant === 'landscape' ? ratio : 1
+
+      classNames[className] = {
+        width: `${dimensions * widthRatio}em`,
+        height: `${dimensions * heightRatio}em`,
+      }
+    })
+  })
+
+  return classNames
+}
+
+const generateCornerClassNames = () => {
+  const classNames: Record<string, CSSProperties> = {}
+
+  for (const [size, { cornerSize }] of Object.entries(SETTINGS)) {
+    const className = `corner${capitalize(size)}`
+    const clipPath = `polygon(0 0, 100% 0, 100% 100%, ${cornerSize} 100%, 0 calc(100% - ${cornerSize}))`
+
+    classNames[className] = {
+      clipPath,
+      // we can remove this prefix as soon as this issue will
+      // be resolved - https://github.com/cssinjs/css-vendor/issues/74
+      '-webkit-clip-path': clipPath,
+    }
+  }
+
+  return classNames
+}
+
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
@@ -33,37 +76,20 @@ export default ({ palette }: Theme) =>
       flexShrink: 0,
       flexGrow: 0,
     },
-    size: ({
-      size,
-      variant,
-    }: {
-      size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
-      variant: 'square' | 'portrait' | 'landscape'
-    }) => {
-      const { dimensions } = SETTINGS[size]
-      const ratio = size === 'large' ? 3 / 4 : 2 / 3
-      const widthRatio = variant === 'portrait' ? ratio : 1
-      const heightRatio = variant === 'landscape' ? ratio : 1
 
-      return {
-        width: `${dimensions * widthRatio}em`,
-        height: `${dimensions * heightRatio}em`,
-      }
-    },
-
-    corner: ({
-      size,
-    }: {
-      size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
-    }) => {
-      const { cornerSize } = SETTINGS[size]
-      const clipPath = `polygon(0 0, 100% 0, 100% 100%, ${cornerSize} 100%, 0 calc(100% - ${cornerSize}))`
-
-      return {
-        clipPath,
-        // we can remove this prefix as soon as this issue will
-        // be resolved - https://github.com/cssinjs/css-vendor/issues/74
-        '-webkit-clip-path': clipPath,
-      }
-    },
+    ...generateSizeClassNames(),
+    ...generateCornerClassNames(),
   })
+
+export const getSizeClassName = (
+  size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>,
+  variant: 'square' | 'portrait' | 'landscape'
+) => {
+  return `size${capitalize(size)}${capitalize(variant)}`
+}
+
+export const getCornerClassName = (
+  size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+) => {
+  return `corner${capitalize(size)}`
+}

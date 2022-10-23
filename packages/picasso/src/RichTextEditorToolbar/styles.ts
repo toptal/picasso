@@ -11,8 +11,7 @@ export default ({ palette }: Theme) =>
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
-      pointerEvents: ({ disabled }: { disabled: boolean }) =>
-        disabled ? 'none' : 'unset',
+      pointerEvents: 'unset',
 
       '&:not(:last-child)::after': {
         content: '""',
@@ -26,5 +25,9 @@ export default ({ palette }: Theme) =>
     },
     select: {
       width: '7.125em',
+    },
+
+    groupDisabled: {
+      pointerEvents: 'none',
     },
   })
