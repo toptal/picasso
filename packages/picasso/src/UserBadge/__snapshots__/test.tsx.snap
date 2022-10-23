@@ -9,7 +9,7 @@ exports[`UserBadge auto center alignment 1`] = `
       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
       >
         <div
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
@@ -48,7 +48,7 @@ exports[`UserBadge custom name 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
       >
         <div
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
@@ -90,7 +90,7 @@ exports[`UserBadge custom title 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
       >
         <div
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
@@ -137,7 +137,7 @@ exports[`UserBadge invert render 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
       >
         <div
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
@@ -181,7 +181,7 @@ exports[`UserBadge manual center alignment 1`] = `
       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
       >
         <div
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
@@ -225,7 +225,7 @@ exports[`UserBadge override auto center alignment 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
       >
         <div
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
@@ -264,7 +264,7 @@ exports[`UserBadge renders 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
       >
         <div
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
@@ -308,7 +308,7 @@ exports[`UserBadge small size 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
+        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeSmallSquare PicassoAvatarWrapper-cornerSmall"
       >
         <div
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-small"
