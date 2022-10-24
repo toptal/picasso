@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.3.0
+
+### Minor Changes
+
+- [#3173](https://github.com/toptal/picasso/pull/3173) [`c5c086f71`](https://github.com/toptal/picasso/commit/c5c086f71fd4d4124d02aab560ed44706e94a667) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Menu.Item
+
+  - add new prop `icon` to render any Icon. Check [example](https://picasso.toptal.net/?path=/story/components-dropdown--dropdown#dropdown-menu) for more info.
+
 ## 28.2.2
 
 ### Patch Changes
