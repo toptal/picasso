@@ -103,6 +103,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     onMouseEnter,
   })
   const isLink = as === Link && rest.href
+  const isIconWrapperVisible = checkmarked !== undefined || icon
 
   return (
     <>
@@ -135,7 +136,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           className={classes.content}
         >
           <Container flex alignItems='center'>
-            {(checkmarked !== undefined || icon) && (
+            {isIconWrapperVisible && (
               <Container
                 className={classes.iconContainer}
                 flex
@@ -168,7 +169,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
               className={cx(classes.description, {
                 [classes.descriptionDisabled]: disabled,
               })}
-              left={checkmarked === undefined && !icon ? undefined : 'medium'}
+              left={isIconWrapperVisible ? 'medium' : undefined}
               top={0.25}
             >
               {description}
