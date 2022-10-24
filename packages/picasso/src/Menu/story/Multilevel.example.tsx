@@ -8,127 +8,148 @@ import {
   Typography,
 } from '@toptal/picasso'
 
+const SlideMenu = () => (
+  <Menu>
+    <Menu.Item>Label</Menu.Item>
+    <Menu.Item
+      menu={
+        <Menu>
+          <Menu.Item>Label inner</Menu.Item>
+          <Menu.Item
+            menu={
+              <Menu>
+                <Menu.Item>Label inner</Menu.Item>
+              </Menu>
+            }
+          >
+            Label inner
+          </Menu.Item>
+        </Menu>
+      }
+    >
+      Label
+    </Menu.Item>
+  </Menu>
+)
+
+const DrilldownMenu = () => (
+  <Menu variant='drilldown'>
+    <Menu.Item>Label</Menu.Item>
+    <Menu.Item
+      menu={
+        <Menu variant='drilldown'>
+          <Menu.Item>Label inner</Menu.Item>
+          <Menu.Item
+            menu={
+              <Menu variant='drilldown'>
+                <Menu.Item>Label inner</Menu.Item>
+              </Menu>
+            }
+          >
+            Label inner
+          </Menu.Item>
+        </Menu>
+      }
+    >
+      Label
+    </Menu.Item>
+  </Menu>
+)
+
+const SlideMenuWithIcon = () => (
+  <Menu>
+    <Menu.Item icon={<Afternoon16 />}>Label</Menu.Item>
+    <Menu.Item
+      icon={<Company16 />}
+      menu={
+        <Menu>
+          <Menu.Item icon={<Afternoon16 />}>Label inner</Menu.Item>
+          <Menu.Item
+            icon={<Company16 />}
+            menu={
+              <Menu>
+                <Menu.Item icon={<Component16 />}>Label inner</Menu.Item>
+              </Menu>
+            }
+          >
+            Label inner
+          </Menu.Item>
+        </Menu>
+      }
+    >
+      Label
+    </Menu.Item>
+  </Menu>
+)
+const DrilldownMenuWithDescIcon = () => (
+  <Menu variant='drilldown'>
+    <Menu.Item description='Description' icon={<Afternoon16 />}>
+      Label
+    </Menu.Item>
+    <Menu.Item
+      description='Description'
+      icon={<Company16 />}
+      menu={
+        <Menu variant='drilldown'>
+          <Menu.Item description='Description' icon={<Afternoon16 />}>
+            Label inner
+          </Menu.Item>
+          <Menu.Item
+            description='Description'
+            icon={<Company16 />}
+            menu={
+              <Menu variant='drilldown'>
+                <Menu.Item description='Description' icon={<Component16 />}>
+                  Label inner
+                </Menu.Item>
+              </Menu>
+            }
+          >
+            Label inner
+          </Menu.Item>
+        </Menu>
+      }
+    >
+      Label
+    </Menu.Item>
+  </Menu>
+)
+
 const Example = () => {
-  const menuForItemB1 = (
-    <Menu>
-      <Menu.Item>Item B1-1</Menu.Item>
-      <Menu.Item>Item B1-2</Menu.Item>
-    </Menu>
-  )
-
-  const menuForItemB2 = (
-    <Menu>
-      <Menu.Item>Item B2-1</Menu.Item>
-      <Menu.Item>Item B2-2</Menu.Item>
-    </Menu>
-  )
-
-  const menuForItemB = (
-    <Menu>
-      <Menu.Item menu={menuForItemB1}>Item B1</Menu.Item>
-      <Menu.Item menu={menuForItemB2}>Item B2</Menu.Item>
-    </Menu>
-  )
-
-  const sliderMenu = (
-    <Menu>
-      <Menu.Item>Item A</Menu.Item>
-      <Menu.Item menu={menuForItemB}>Item B</Menu.Item>
-      <Menu.Item description='Description' menu={menuForItemB}>
-        Item B
-      </Menu.Item>
-      <Menu.Item description='Description' disabled menu={menuForItemB}>
-        Item B
-      </Menu.Item>
-    </Menu>
-  )
-
-  const drilldownMenu = (
-    <Menu variant='drilldown'>
-      <Menu.Item>Item A</Menu.Item>
-      <Menu.Item menu={menuForItemB}>Item B</Menu.Item>
-      <Menu.Item description='Description' menu={menuForItemB}>
-        Item B
-      </Menu.Item>
-      <Menu.Item description='Description' disabled menu={menuForItemB}>
-        Item B
-      </Menu.Item>
-    </Menu>
-  )
-
-  type Options = { variant?: 'slide' | 'drilldown'; description?: string }
-
-  const iconMenu = ({ variant, description }: Options) => (
-    <Menu variant={variant}>
-      <Menu.Item icon={<Component16 />} description={description}>
-        Label
-      </Menu.Item>
-      <Menu.Item icon={<Company16 />} description={description}>
-        Label
-      </Menu.Item>
-      <Menu.Item disabled icon={<Afternoon16 />} description={description}>
-        Label
-      </Menu.Item>
-    </Menu>
-  )
-
-  const multiIconMenu = (options: Options) => (
-    <Menu variant={options.variant}>
-      <Menu.Item
-        description={options.description}
-        menu={iconMenu(options)}
-        icon={<Component16 />}
-      >
-        Label
-      </Menu.Item>
-      <Menu.Item
-        description={options.description}
-        menu={iconMenu(options)}
-        icon={<Company16 />}
-      >
-        Label
-      </Menu.Item>
-      <Menu.Item
-        description={options.description}
-        disabled
-        menu={iconMenu(options)}
-        icon={<Afternoon16 />}
-      >
-        Label
-      </Menu.Item>
-    </Menu>
-  )
-
   return (
     <Container flex gap='medium'>
-      <Container flex gap='small' direction='column'>
-        <Typography variant='heading' size='small'>
-          Slide (default)
-        </Typography>
-        <Container>{sliderMenu}</Container>
-      </Container>
-      <Container flex gap='small' direction='column'>
-        <Typography variant='heading' size='small'>
-          Drilldown
-        </Typography>
-        <Container>{drilldownMenu}</Container>
-      </Container>
+      <ExampleContainer title='Slide (default)'>
+        <SlideMenu />
+      </ExampleContainer>
 
-      <Container flex gap='small' direction='column'>
-        <Typography variant='heading' size='small'>
-          With Icon
-        </Typography>
-        <Container>{multiIconMenu({})}</Container>
-      </Container>
+      <ExampleContainer title='Drilldown'>
+        <DrilldownMenu />
+      </ExampleContainer>
 
-      <Container flex gap='small' direction='column'>
-        <Typography variant='heading' size='small'>
-          With Description and Icon
-        </Typography>
-        <Container>
-          {multiIconMenu({ variant: 'drilldown', description: 'Description' })}
-        </Container>
-      </Container>
+      <ExampleContainer title='Slide with Icon'>
+        <SlideMenuWithIcon />
+      </ExampleContainer>
+
+      <ExampleContainer title='Drilldown with Description and Icon'>
+        <DrilldownMenuWithDescIcon />
+      </ExampleContainer>
+    </Container>
+  )
+}
+
+const ExampleContainer = ({
+  title,
+  children,
+}: {
+  title: string
+  children: React.ReactNode
+}) => {
+  return (
+    <Container flex gap='small' direction='column'>
+      <Typography variant='heading' size='small'>
+        {title}
+      </Typography>
+      <Container>{children}</Container>
     </Container>
   )
 }
