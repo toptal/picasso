@@ -56,6 +56,8 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   children?: ReactNode
   /** The additional description */
   description?: ReactNode
+  /** Render an `<Icon />` */
+  icon?: ReactElement
   /** Callback when item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Callback when item is hovered */
@@ -88,6 +90,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     nonSelectable,
     onClick,
     onMouseEnter,
+    icon,
     ...rest
   } = props
 
@@ -132,14 +135,14 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           className={classes.content}
         >
           <Container flex alignItems='center'>
-            {checkmarked !== undefined && (
+            {(checkmarked !== undefined || icon) && (
               <Container
                 className={classes.iconContainer}
                 flex
                 inline
                 right='xsmall'
               >
-                {checkmarked && <CheckMinor16 />}
+                {checkmarked ? <CheckMinor16 /> : icon}
               </Container>
             )}
             {typeof children === 'string' ? (
@@ -165,7 +168,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
               className={cx(classes.description, {
                 [classes.descriptionDisabled]: disabled,
               })}
-              left={checkmarked === undefined ? undefined : 'medium'}
+              left={checkmarked === undefined && !icon ? undefined : 'medium'}
               top={0.25}
             >
               {description}

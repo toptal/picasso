@@ -1,5 +1,12 @@
 import React from 'react'
-import { Container, Typography, Menu } from '@toptal/picasso'
+import {
+  Afternoon16,
+  Company16,
+  Component16,
+  Container,
+  Menu,
+  Typography,
+} from '@toptal/picasso'
 
 const Example = () => {
   const menuForItemB1 = (
@@ -49,6 +56,49 @@ const Example = () => {
     </Menu>
   )
 
+  type Options = { variant?: 'slide' | 'drilldown'; description?: string }
+
+  const iconMenu = ({ variant, description }: Options) => (
+    <Menu variant={variant}>
+      <Menu.Item icon={<Component16 />} description={description}>
+        Label
+      </Menu.Item>
+      <Menu.Item icon={<Company16 />} description={description}>
+        Label
+      </Menu.Item>
+      <Menu.Item disabled icon={<Afternoon16 />} description={description}>
+        Label
+      </Menu.Item>
+    </Menu>
+  )
+
+  const multiIconMenu = (options: Options) => (
+    <Menu variant={options.variant}>
+      <Menu.Item
+        description={options.description}
+        menu={iconMenu(options)}
+        icon={<Component16 />}
+      >
+        Label
+      </Menu.Item>
+      <Menu.Item
+        description={options.description}
+        menu={iconMenu(options)}
+        icon={<Company16 />}
+      >
+        Label
+      </Menu.Item>
+      <Menu.Item
+        description={options.description}
+        disabled
+        menu={iconMenu(options)}
+        icon={<Afternoon16 />}
+      >
+        Label
+      </Menu.Item>
+    </Menu>
+  )
+
   return (
     <Container flex gap='medium'>
       <Container flex gap='small' direction='column'>
@@ -62,6 +112,22 @@ const Example = () => {
           Drilldown
         </Typography>
         <Container>{drilldownMenu}</Container>
+      </Container>
+
+      <Container flex gap='small' direction='column'>
+        <Typography variant='heading' size='small'>
+          With Icon
+        </Typography>
+        <Container>{multiIconMenu({})}</Container>
+      </Container>
+
+      <Container flex gap='small' direction='column'>
+        <Typography variant='heading' size='small'>
+          With Description and Icon
+        </Typography>
+        <Container>
+          {multiIconMenu({ variant: 'drilldown', description: 'Description' })}
+        </Container>
       </Container>
     </Container>
   )
