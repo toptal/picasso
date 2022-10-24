@@ -15,3 +15,7 @@
 ### RichtextEditorToolbar
 
 - remove functional styles
+
+### ProgressBar
+
+- remove functional styles
