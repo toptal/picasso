@@ -32,7 +32,7 @@ exports[`AccountSelect renders 1`] = `
                   class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
                 >
                   <div
-                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
+                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
                   >
                     <div
                       class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
@@ -100,7 +100,7 @@ exports[`AccountSelect renders 1`] = `
                   class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
                 >
                   <div
-                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
+                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
                   >
                     <div
                       class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
@@ -168,7 +168,7 @@ exports[`AccountSelect renders 1`] = `
                   class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
                 >
                   <div
-                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-size PicassoAvatarWrapper-size PicassoAvatarWrapper-corner PicassoAvatarWrapper-corner"
+                    class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
                   >
                     <img
                       alt="Phil Leif 3"

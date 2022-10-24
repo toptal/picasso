@@ -47,7 +47,12 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
         ref={ref}
       >
         <div className={cx(classes.progressBar)}>
-          <div className={cx(classes.progressIndicator)} />
+          <div
+            className={cx(classes.progressIndicator)}
+            style={{
+              width: `${props.value}%`,
+            }}
+          />
         </div>
 
         {showPercentage && (

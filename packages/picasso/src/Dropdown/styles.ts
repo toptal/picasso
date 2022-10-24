@@ -59,7 +59,4 @@ export default ({ screens, shadows, palette }: Theme) =>
         maxHeight: '100vh',
       },
     },
-    contentStyle: ({ contentStyle }: StyleProps) => ({
-      ...contentStyle,
-    }),
   })
