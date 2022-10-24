@@ -11,7 +11,7 @@ export interface Props extends BaseProps {
   variant: 'square' | 'portrait' | 'landscape'
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAvatarWrapper',
 })
 
@@ -24,7 +24,7 @@ const AvatarWrapper = (props: Props) => {
     size,
     variant,
   } = props
-  const classes = useStyles(props)
+  const classes = useStyles()
 
   const sizeClassName = getSizeClassName(size, variant)
   const cornerClassName = getCornerClassName(size)
