@@ -1,5 +1,27 @@
 # Change Log
 
+## 28.2.2
+
+### Patch Changes
+
+- [#3168](https://github.com/toptal/picasso/pull/3168) [`b04cb788d`](https://github.com/toptal/picasso/commit/b04cb788d090920d9b62fe88863edef04bc4aa2b) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Avatar
+
+  - remove functional styles
+
+  ### Dropdown
+
+  - remove functional styles
+
+  ### RichtextEditorToolbar
+
+  - remove functional styles
+
+  ### ProgressBar
+
+  - remove functional styles
+
 ## 28.2.1
 
 ### Patch Changes
