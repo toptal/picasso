@@ -1,6 +1,7 @@
 @Library('globalLibrary@master') _
 
 image = null
+image2 = null
 
 pipeline {
   agent { label 'docker' }
@@ -53,7 +54,7 @@ pipeline {
           }
 
           if (!isDockerImagePresentRemotely("us-central1-docker.pkg.dev/toptal-hub/containers/${IMAGE_NAME}", VERSION)) {
-            image = docker.build("us-central1-docker.pkg.dev/toptal-hub/containers/${IMAGE_NAME}:${VERSION}")
+            image2 = docker.build("us-central1-docker.pkg.dev/toptal-hub/containers/${IMAGE_NAME}:${VERSION}")
             success "== Built image for version ${VERSION} =="
           } else {
             success "== Found image for version ${VERSION} =="
@@ -69,8 +70,10 @@ pipeline {
             docker.withRegistry('https://gcr.io/toptal-hub/') {
               image.push(VERSION)
             }
-            docker.withRegistry('us-central1-docker.pkg.dev/toptal-hub/containers/') {
-              image.push(VERSION)
+          }
+          if (image2) {
+            docker.withRegistry('https://us-central1-docker.pkg.dev/toptal-hub/containers/') {
+              image2.push(VERSION)
             }
             success "== Pushed image with tag ${VERSION} =="
           }
