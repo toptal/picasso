@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import { Typography } from '@toptal/picasso'
 import debounce from 'debounce'
 
-interface Props {
+import Typography from '../Typography'
+
+export interface Props {
   saving: boolean
 }
 
@@ -23,13 +24,9 @@ const AutosaveIndicator = ({ saving }: Props) => {
     }
   }, [saving])
 
-  if (!show) {
-    return null
-  }
-
   return (
     <Typography size='xsmall' align='right'>
-      {saving ? 'Saving...' : 'Saved'}
+      {show ? (saving ? 'Saving...' : 'Saved') : ''}
     </Typography>
   )
 }

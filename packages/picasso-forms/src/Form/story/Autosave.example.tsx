@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
-import { ASTType, Container } from '@toptal/picasso'
-import { AutosaveIndicator, Form, useFormAutoSave } from '@toptal/picasso-forms'
+import { ASTType, AutoSaveIndicator, Container } from '@toptal/picasso'
+import { Form, useFormAutoSave } from '@toptal/picasso-forms'
 
 // the emulation of the api call
 const responseWithDelay = async () =>
@@ -45,7 +45,7 @@ const Example = () => {
         id='editor'
         name='autosave-editor'
       />
-      <AutosaveIndicator saving={saving} />
+      <AutoSaveIndicator saving={saving} />
 
       <Container top='small'>
         <Form.SubmitButton>Submit</Form.SubmitButton>
