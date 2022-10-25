@@ -11,9 +11,9 @@ import {
   AnyObject,
   MutableState,
 } from 'final-form'
-import { useNotifications } from '@toptal/picasso/utils'
+import { noop, useNotifications } from '@toptal/picasso/utils'
 
-import { createScrollToErrorDecorator } from '../utils'
+import { createScrollToErrorDecorator, createOnChangeDecorator } from '../utils'
 import {
   FormContext,
   Validators,
@@ -45,6 +45,8 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   failedSubmitMessage?: ReactNode
   scrollOffsetTop?: number
   'data-testid'?: string
+  onFieldValueChange?: (values: T) => void
+  subscribedFields?: (keyof T)[]
 }
 
 const getValidationErrors = (
@@ -84,6 +86,8 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
     mutators = {},
     validateOnBlur,
     'data-testid': dataTestId,
+    onFieldValueChange,
+    subscribedFields,
     ...rest
   } = props
   const { showSuccess, showError } = useNotifications()
@@ -93,6 +97,14 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
         disableScrollOnError,
       }),
     [disableScrollOnError]
+  )
+  const onChangeDecorator = useMemo(
+    () =>
+      createOnChangeDecorator({
+        onChange: onFieldValueChange ?? noop,
+        subscribedFields,
+      }),
+    [onFieldValueChange, subscribedFields]
   )
 
   const validationObject = useRef<FormContextProps>(createFormContext())
@@ -160,7 +172,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
           </FormRenderer>
         )}
         onSubmit={handleSubmit}
-        decorators={[...decorators, scrollToErrorDecorator]}
+        decorators={[...decorators, scrollToErrorDecorator, onChangeDecorator]}
         mutators={{
           ...mutators,
           setActiveFieldTouched,

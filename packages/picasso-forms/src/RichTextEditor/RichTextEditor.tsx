@@ -33,7 +33,7 @@ export const RichTextEditor = (props: Props) => {
       setValue(newVal)
       onChange?.(newVal)
     },
-    [onChange, setValue]
+    [onChange]
   )
   const hiddenInputId = `${props.id}-hidden-input`
 

@@ -143,114 +143,120 @@ Form is a wrapper for 'react-final-form' Form component. It also
 provides inside all the necessary input components types.
     `
   )
-  .addExample(
-    'Form/story/Default.example.tsx',
-    {
-      title: 'Default',
-      description: `
-A general look of the form includes the examples of all the input
-types supported by picasso-forms.
-`,
-    },
-    'picasso-form'
-  )
-  .addExample(
-    'Form/story/CustomValidator.example.tsx',
-    {
-      title: 'Custom validator',
-      description: `
-We have a 'required' validator included by default to each input type,
-however, you may need custom validators for more complex types of fields.
-`,
-      takeScreenshot: false,
-    },
-    'picasso-form'
-  )
-  .addExample(
-    'Form/story/ParseInput.example.tsx',
-    {
-      title: 'Change form input value',
-      description: `
-      When you use picasso-forms your form input components are no longer
-      completely controlled and they are controlled by final-form, which
-      gives you the opportunity to rely on it with displaying errors,
-      validations, etc.
+  //   .addExample(
+  //     'Form/story/Default.example.tsx',
+  //     {
+  //       title: 'Default',
+  //       description: `
+  // A general look of the form includes the examples of all the input
+  // types supported by picasso-forms.
+  // `,
+  //     },
+  //     'picasso-form'
+  //   )
+  //   .addExample(
+  //     'Form/story/CustomValidator.example.tsx',
+  //     {
+  //       title: 'Custom validator',
+  //       description: `
+  // We have a 'required' validator included by default to each input type,
+  // however, you may need custom validators for more complex types of fields.
+  // `,
+  //       takeScreenshot: false,
+  //     },
+  //     'picasso-form'
+  //   )
+  //   .addExample(
+  //     'Form/story/ParseInput.example.tsx',
+  //     {
+  //       title: 'Change form input value',
+  //       description: `
+  //       When you use picasso-forms your form input components are no longer
+  //       completely controlled and they are controlled by final-form, which
+  //       gives you the opportunity to rely on it with displaying errors,
+  //       validations, etc.
 
-      However, sometimes you may need to be able to modify the form input
-      value.
-      `,
-      takeScreenshot: false,
-    },
-    'picasso-form'
-  )
-  .addExample(
-    'Form/story/BackendCommunication.example.tsx',
-    {
-      title: 'Backend communication',
-      description: `
-        The form usually need to send data to backend, so we need to have
-        backend communication and display the process of submission and
-        the results. The form-level results are represented by notifications.
-        `,
-      takeScreenshot: false,
-    },
-    'picasso-form'
-  )
-  .addExample(
-    'Form/story/CustomFormLevelConfiguration.example.tsx',
-    'Form Level Configurations'
-  )
-  .addExample(
-    'Form/story/ValidateOnSubmit.example.tsx',
-    {
-      title: 'Validate only on submit',
-      description: `
-            All fields should not show any validation error messages until submission is made.
-            `,
-      takeScreenshot: false,
-    },
-    'picasso-form'
-  )
-  .addExample('Form/story/FileInput.example.tsx', {
-    title: 'File input on a Form',
-    description: 'Showcase how to upload files on the form submission',
-    takeScreenshot: false,
-  })
-  .addExample('Form/story/Dropzone.example.tsx', {
-    title: 'Dropzone on a Form',
+  //       However, sometimes you may need to be able to modify the form input
+  //       value.
+  //       `,
+  //       takeScreenshot: false,
+  //     },
+  //     'picasso-form'
+  //   )
+  //   .addExample(
+  //     'Form/story/BackendCommunication.example.tsx',
+  //     {
+  //       title: 'Backend communication',
+  //       description: `
+  //         The form usually need to send data to backend, so we need to have
+  //         backend communication and display the process of submission and
+  //         the results. The form-level results are represented by notifications.
+  //         `,
+  //       takeScreenshot: false,
+  //     },
+  //     'picasso-form'
+  //   )
+  //   .addExample(
+  //     'Form/story/CustomFormLevelConfiguration.example.tsx',
+  //     'Form Level Configurations'
+  //   )
+  //   .addExample(
+  //     'Form/story/ValidateOnSubmit.example.tsx',
+  //     {
+  //       title: 'Validate only on submit',
+  //       description: `
+  //             All fields should not show any validation error messages until submission is made.
+  //             `,
+  //       takeScreenshot: false,
+  //     },
+  //     'picasso-form'
+  //   )
+  //   .addExample('Form/story/FileInput.example.tsx', {
+  //     title: 'File input on a Form',
+  //     description: 'Showcase how to upload files on the form submission',
+  //     takeScreenshot: false,
+  //   })
+  //   .addExample('Form/story/Dropzone.example.tsx', {
+  //     title: 'Dropzone on a Form',
+  //     description:
+  //       'Showcase how to upload files on the form submission using dropzone',
+  //     takeScreenshot: false,
+  //   })
+  //   .addExample('Form/story/TitleCase.example.tsx', {
+  //     title: 'Title case',
+  //     description: "Display the field's label in title case.",
+  //     takeScreenshot: false,
+  //   })
+  //   .addExample('Form/story/NoScrolling.example.tsx', {
+  //     title: 'No scrolling case',
+  //     description: "Showcase Form's behavior on form submission error.",
+  //     takeScreenshot: false,
+  //   })
+  //   .addExample('Form/story/RichTextEditor.example.tsx', {
+  //     title: 'Rich text editor',
+  //     description: 'Showcase how to use RichTextEditor in the form.',
+  //     takeScreenshot: false,
+  //   })
+  //   .addExample('Form/story/FieldRequirements.example.tsx', {
+  //     title: 'Field requirements',
+  //     description: 'Showcase how to display field requirements.',
+  //     takeScreenshot: false,
+  //   })
+  //   .addExample('Form/story/Status.example.tsx', {
+  //     title: 'Form Level Status Configuration',
+  //     description:
+  //       'Showcase how to enable success status via form configuration.',
+  //     takeScreenshot: false,
+  //   })
+  // .addExample('Form/story/AvatarUpload.example.tsx', {
+  //   title: 'AvatarUpload',
+  //   description:
+  //     'Showcase how to handle avatar upload with external upload service.',
+  //   takeScreenshot: false,
+  // })
+  .addExample('Form/story/Autosave.example.tsx', {
+    title: 'Autosave',
     description:
-      'Showcase how to upload files on the form submission using dropzone',
-    takeScreenshot: false,
-  })
-  .addExample('Form/story/TitleCase.example.tsx', {
-    title: 'Title case',
-    description: "Display the field's label in title case.",
-    takeScreenshot: false,
-  })
-  .addExample('Form/story/NoScrolling.example.tsx', {
-    title: 'No scrolling case',
-    description: "Showcase Form's behavior on form submission error.",
-    takeScreenshot: false,
-  })
-  .addExample('Form/story/RichTextEditor.example.tsx', {
-    title: 'Rich text editor',
-    description: 'Showcase how to use RichTextEditor in the form.',
-    takeScreenshot: false,
-  })
-  .addExample('Form/story/FieldRequirements.example.tsx', {
-    title: 'Field requirements',
-    description: 'Showcase how to display field requirements.',
-    takeScreenshot: false,
-  })
-  .addExample('Form/story/Status.example.tsx', {
-    title: 'Form Level Status Configuration',
-    description:
-      'Showcase how to enable success status via form configuration.',
-    takeScreenshot: false,
-  })
-  .addExample('Form/story/AvatarUpload.example.tsx', {
-    title: 'AvatarUpload',
-    description:
-      'Showcase how to handle avatar upload with external upload service.',
+      'Showcase how to handle autosave with external upload service.',
     takeScreenshot: false,
   })
