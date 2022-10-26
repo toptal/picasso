@@ -5,7 +5,7 @@ import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
-const BASE_SIZE = 16
+const BASE_SIZE = 24
 
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
@@ -14,9 +14,9 @@ export interface Props extends StandardProps {
   base?: number
 }
 const useStyles = makeStyles(styles, {
-  name: 'PicassoSvgMobile16',
+  name: 'PicassoSvgLayers24',
 })
-const SvgMobile16 = forwardRef(function SvgMobile16(
+const SvgLayers24 = forwardRef(function SvgLayers24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
@@ -45,17 +45,21 @@ const SvgMobile16 = forwardRef(function SvgMobile16(
 
   return (
     <svg
-      viewBox='0 0 16 16'
+      viewBox='0 0 24 24'
       fill='none'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
     >
-      <path d='M13 0v16H3V0h10Zm-1 1H4v14h8V1ZM9 13v1H7v-1h2Z' />
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='m12 2 12 6-12 6L0 8l12-6Zm12 10-1.104-.553L12 16.882 1.104 11.447 0 12l12 6 12-6Zm0 4-1.104-.553L12 20.882 1.104 15.447 0 16l12 6 12-6ZM2.236 8 12 3.118 21.764 8 12 12.882 2.236 8Z'
+      />
     </svg>
   )
 })
 
-SvgMobile16.displayName = 'SvgMobile16'
-export default SvgMobile16
+SvgLayers24.displayName = 'SvgLayers24'
+export default SvgLayers24

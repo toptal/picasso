@@ -14,9 +14,9 @@ export interface Props extends StandardProps {
   base?: number
 }
 const useStyles = makeStyles(styles, {
-  name: 'PicassoSvgMobile16',
+  name: 'PicassoSvgLayers16',
 })
-const SvgMobile16 = forwardRef(function SvgMobile16(
+const SvgLayers16 = forwardRef(function SvgLayers16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
@@ -52,10 +52,14 @@ const SvgMobile16 = forwardRef(function SvgMobile16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M13 0v16H3V0h10Zm-1 1H4v14h8V1ZM9 13v1H7v-1h2Z' />
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='m8 1 8 4-8 4-8-4 8-4Zm8 7-1.116-.559L8 10.882l-6.884-3.44L0 8l8 4 8-4Zm0 3-1.116-.559L8 13.882l-6.884-3.44L0 11l8 4 8-4ZM2.236 5 8 2.118 13.764 5 8 7.882 2.236 5Z'
+      />
     </svg>
   )
 })
 
-SvgMobile16.displayName = 'SvgMobile16'
-export default SvgMobile16
+SvgLayers16.displayName = 'SvgLayers16'
+export default SvgLayers16
