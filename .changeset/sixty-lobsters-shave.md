@@ -2,4 +2,8 @@
 '@toptal/picasso': minor
 ---
 
-add layers icon
+---
+
+### Icon
+
+- add `Layers` icon
