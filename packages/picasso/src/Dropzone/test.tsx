@@ -21,7 +21,7 @@ describe('Dropzone', () => {
       hint: 'hint example',
     })
 
-    expect(queryByText('hint example')).not.toBeInTheDocument()
+    expect(queryByText('hint example')).toBeInTheDocument()
     expect(queryByText('error example')).toBeVisible()
   })
 
