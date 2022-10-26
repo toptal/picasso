@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.4.0
+
+### Minor Changes
+
+- [#3179](https://github.com/toptal/picasso/pull/3179) [`690d52c1d`](https://github.com/toptal/picasso/commit/690d52c1d9c4e259334afb1ebf058ac6e8f0e402) Thanks [@oksana-artyshko](https://github.com/oksana-artyshko)! - ---
+
+  ### Icon
+
+  - add `Layers` icon
+
 ## 28.3.0
 
 ### Minor Changes
