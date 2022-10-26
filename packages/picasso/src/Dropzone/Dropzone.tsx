@@ -42,7 +42,10 @@ export interface Props extends BaseProps {
   validator?: DropzoneOptions['validator']
   /** Value uses the File interface. */
   value?: FileUpload[]
-  /** Reasons why files couldn't be droped into dropzone */
+  /**
+   * @deprecated Use value.error instead
+   * Reasons why files couldn't be droped into dropzone
+   */
   errorMessages?: string[]
   focused?: boolean
   hovered?: boolean
@@ -119,9 +122,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
             Click or drag file to upload
           </Typography>
         )}
-        {hint && errorMessages.length === 0 && (
-          <FormHint className={cx(classes.hint)}>{hint}</FormHint>
-        )}
+        {hint && <FormHint className={cx(classes.hint)}>{hint}</FormHint>}
         {errorMessages.length > 0 &&
           errorMessages.map((error, index) => (
             <FormError

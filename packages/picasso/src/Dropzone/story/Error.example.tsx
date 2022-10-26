@@ -1,14 +1,21 @@
 import React from 'react'
 import { Dropzone } from '@toptal/picasso'
 
-const errorMessages = ['resume.pdf: File is too large']
-
 const Example = () => {
   return (
     <Dropzone
-      hint='Max file size: 25MB'
+      hint='Files allowed: 2. Max file size: 25MB'
       accept='image/*'
-      errorMessages={errorMessages}
+      value={[
+        {
+          file: new File(['resume.pdf'], 'resume.pdf'),
+          error: 'File size exceeds the 25MB limit.',
+        },
+        {
+          file: new File(['portfolio.pdf'], 'portfolio.pdf'),
+        },
+      ]}
+      onRemove={() => undefined}
     />
   )
 }
