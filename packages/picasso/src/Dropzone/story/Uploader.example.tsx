@@ -38,7 +38,6 @@ const useFiles = ({ maxFiles }: { maxFiles: number }) => {
     acceptedFiles: File[],
     rejectedFiles: DropzoneFileRejection[]
   ): void => {
-    console.log(files, acceptedFiles, rejectedFiles)
     if (files.length + acceptedFiles.length + rejectedFiles.length > maxFiles) {
       return setFiles(prevFiles => [
         ...prevFiles,
