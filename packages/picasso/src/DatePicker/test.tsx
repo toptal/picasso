@@ -527,6 +527,20 @@ describe('DatePicker', () => {
 
         expect(getByText('Footer')).toBeInTheDocument()
       })
+
+      describe('when `footerBackgroundColor` option is passed', () => {
+        it('should appear a custom color footer at the bottom of the calendar', async () => {
+          const { getByText, getByPlaceholderText } = renderDatePicker({
+            ...defaultProps,
+            footer: <>Footer</>,
+            footerBackgroundColor: 'red',
+          })
+
+          fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
+
+          expect(getByText('Footer')).toHaveStyle({ backgroundColor: 'red' })
+        })
+      })
     })
   })
 

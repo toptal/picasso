@@ -111,6 +111,8 @@ export interface Props
   }
   /** Adds a customized footer at the bottom of the calendar */
   footer?: ReactNode
+  /** Change the footer background color */
+  footerBackgroundColor?: string
   /** Shows orange dot indicator in days between a date range */
   indicatedIntervals?: { start: Date; end: Date }[]
 }
@@ -143,6 +145,7 @@ export const DatePicker = (props: Props) => {
     disabled,
     footer,
     indicatedIntervals,
+    footerBackgroundColor,
     ...rest
   } = props
   const classes = useStyles()
@@ -423,7 +426,14 @@ export const DatePicker = (props: Props) => {
             hasFooter={Boolean(footer)}
             weekStartsOn={weekStartsOn}
           />
-          {footer && <div className={classes.footer}>{footer}</div>}
+          {footer && (
+            <div
+              className={classes.footer}
+              style={{ backgroundColor: footerBackgroundColor }}
+            >
+              {footer}
+            </div>
+          )}
         </Popper>
       )}
     </>
