@@ -24,7 +24,6 @@ const customSizeValidator = (file: File): DropzoneFileError[] | null => {
 
 const useFiles = ({ maxFiles }: { maxFiles: number }) => {
   const [files, setFiles] = useState<DropzoneFileUpload[]>([])
-  const [errorMessages, setError] = useState<string[]>([])
   const [disabled, setDisabled] = useState<boolean>(false)
 
   useEffect(() => {
@@ -39,9 +38,17 @@ const useFiles = ({ maxFiles }: { maxFiles: number }) => {
     acceptedFiles: File[],
     rejectedFiles: DropzoneFileRejection[]
   ): void => {
+    console.log(files, acceptedFiles, rejectedFiles)
     if (files.length + acceptedFiles.length + rejectedFiles.length > maxFiles) {
-      return setError(['Too many files'])
+      return setFiles(prevFiles => [
+        ...prevFiles,
+        {
+          error: 'Too many files',
+          file: new File([], ''),
+        },
+      ])
     }
+
     if (acceptedFiles.length > 0) {
       const previousFiles = files
       const newFiles = acceptedFiles.map(file => ({
@@ -69,18 +76,18 @@ const useFiles = ({ maxFiles }: { maxFiles: number }) => {
     }
 
     if (rejectedFiles.length) {
-      setError(
-        rejectedFiles.map(
-          ({ errors, file }) =>
-            `${file.name}: ${errors.map(error => error.message).join(', ')}`
-        )
-      )
-    } else {
-      setError([])
+      setFiles((prevFiles: DropzoneFileUpload[]) => [
+        ...prevFiles,
+        ...rejectedFiles.map(({ errors, file }) => {
+          const error = errors.map(error => error.message).join(', ')
+
+          return { error, file }
+        }),
+      ])
     }
   }
 
-  const removeFile = (fileName: string, fileIndex: number) => {
+  const removeFile = (_fileName: string, fileIndex: number) => {
     const updatedFiles = files.filter((_, index) => index !== fileIndex)
 
     setFiles(updatedFiles)
@@ -90,12 +97,11 @@ const useFiles = ({ maxFiles }: { maxFiles: number }) => {
     files,
     addFiles,
     removeFile,
-    errorMessages,
     disabled,
   }
 }
 const Example = () => {
-  const { files, addFiles, removeFile, errorMessages, disabled } = useFiles({
+  const { files, addFiles, removeFile, disabled } = useFiles({
     maxFiles: 2,
   })
 
@@ -107,7 +113,6 @@ const Example = () => {
       hint={`Files allowed 2. Max file size: ${MAX_SIZE / 1000}KB`}
       accept='image/*'
       validator={customSizeValidator}
-      errorMessages={errorMessages}
       disabled={disabled}
     />
   )
