@@ -45,6 +45,10 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     fullWidth: {
       maxWidth: '100%',
     },
+    center: {
+      display: 'flex',
+      alignItems: 'center',
+    },
     left: {
       display: 'flex',
       alignItems: 'center',

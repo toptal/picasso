@@ -42,10 +42,57 @@ exports[`Page.TopBar render with custom logo 1`] = `
             </div>
           </div>
           <div
+            class="PicassoTopBar-center"
+          />
+          <div
             class="PicassoTopBar-right"
           />
         </div>
       </header>
+      <div
+        class="PicassoDropdown-root PageHamburger-responsiveWrapper PageHamburger-hidden"
+      >
+        <div
+          class="PicassoDropdown-anchor"
+        >
+          <button
+            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
+            data-component-type="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            >
+              <svg
+                class="PicassoSvgOverview16-root PicassoButton-icon"
+                style="min-width: 16px; min-height: 16px; pointer-events: none;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M0 13h16v1H0v-1Zm0-5h16v1H0V8Zm0-5h16v1H0V3Z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="PicassoPopper-root PicassoDropdown-popper"
+      role="tooltip"
+      style="position: fixed; top: 0px; left: 0px; display: none; margin-top: 0.4rem;"
+    >
+      <div>
+        <div
+          class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
+          style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+        >
+          <div
+            id="hamburger"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -109,10 +156,57 @@ exports[`Page.TopBar render with link 1`] = `
             </div>
           </div>
           <div
+            class="PicassoTopBar-center"
+          />
+          <div
             class="PicassoTopBar-right"
           />
         </div>
       </header>
+      <div
+        class="PicassoDropdown-root PageHamburger-responsiveWrapper PageHamburger-hidden"
+      >
+        <div
+          class="PicassoDropdown-anchor"
+        >
+          <button
+            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
+            data-component-type="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            >
+              <svg
+                class="PicassoSvgOverview16-root PicassoButton-icon"
+                style="min-width: 16px; min-height: 16px; pointer-events: none;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M0 13h16v1H0v-1Zm0-5h16v1H0V8Zm0-5h16v1H0V3Z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="PicassoPopper-root PicassoDropdown-popper"
+      role="tooltip"
+      style="position: fixed; top: 0px; left: 0px; display: none; margin-top: 0.4rem;"
+    >
+      <div>
+        <div
+          class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
+          style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+        >
+          <div
+            id="hamburger"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -171,10 +265,57 @@ exports[`Page.TopBar renders 1`] = `
             </div>
           </div>
           <div
+            class="PicassoTopBar-center"
+          />
+          <div
             class="PicassoTopBar-right"
           />
         </div>
       </header>
+      <div
+        class="PicassoDropdown-root PageHamburger-responsiveWrapper PageHamburger-hidden"
+      >
+        <div
+          class="PicassoDropdown-anchor"
+        >
+          <button
+            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
+            data-component-type="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            >
+              <svg
+                class="PicassoSvgOverview16-root PicassoButton-icon"
+                style="min-width: 16px; min-height: 16px; pointer-events: none;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M0 13h16v1H0v-1Zm0-5h16v1H0V8Zm0-5h16v1H0V3Z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="PicassoPopper-root PicassoDropdown-popper"
+      role="tooltip"
+      style="position: fixed; top: 0px; left: 0px; display: none; margin-top: 0.4rem;"
+    >
+      <div>
+        <div
+          class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
+          style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+        >
+          <div
+            id="hamburger"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>

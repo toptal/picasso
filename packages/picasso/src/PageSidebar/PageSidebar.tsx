@@ -1,19 +1,23 @@
 import { makeStyles, Theme } from '@material-ui/core/styles'
+import Portal from '@material-ui/core/Portal'
 import { useSidebar } from '@toptal/picasso-provider'
-import { BaseProps, StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import React, {
   forwardRef,
   ReactNode,
   useCallback,
+  useContext,
   useEffect,
   useState,
 } from 'react'
 
 import ButtonCircular from '../ButtonCircular'
 import Container from '../Container'
-import Dropdown from '../Dropdown'
-import { BackMinor16, ChevronRight16, Close16, Overview16 } from '../Icon'
+import { BackMinor16, ChevronRight16 } from '../Icon'
+import { PageContext } from '../Page'
+import { PageContextProps } from '../Page/types'
+import { getHamburgerContainer } from '../PageHamburger'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
 import SidebarMenu from '../SidebarMenu'
@@ -21,44 +25,6 @@ import { noop, useBreakpoint } from '../utils'
 import { SidebarContextProvider } from './SidebarContextProvider'
 import styles from './styles'
 import { VariantType } from './types'
-
-export interface SmallScreenSidebarWrapperProps extends StandardProps {
-  children?: ReactNode
-}
-
-const SmallScreenSidebarWrapper = ({
-  classes,
-  children,
-}: SmallScreenSidebarWrapperProps) => {
-  const [showSidebar, setShowSidebar] = useState<boolean>(false)
-
-  const handleShowSidebar = () => setShowSidebar(true)
-  const handleHideSidebar = () => setShowSidebar(false)
-
-  return (
-    <Dropdown
-      content={children}
-      className={classes?.responsiveWrapper}
-      classes={{ content: classes?.responsiveWrapperContent ?? '' }}
-      offset={{ top: 0.4 }}
-      popperOptions={{
-        modifiers: {
-          flip: { enabled: false },
-          preventOverflow: {
-            padding: 0,
-          },
-        },
-      }}
-      onOpen={handleShowSidebar}
-      onClose={handleHideSidebar}
-    >
-      <ButtonCircular
-        icon={showSidebar ? <Close16 /> : <Overview16 />}
-        variant='transparent'
-      />
-    </Dropdown>
-  )
-}
 
 export interface Props extends BaseProps {
   /** Style variant of Sidebar and subcomponents */
@@ -98,6 +64,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const [isCollapsed, setIsCollapsed] = useState(!!defaultCollapsed)
   const [isHovered, setIsHovered] = useState(false)
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
+  const { setShowHamburger } = useContext<PageContextProps>(PageContext)
 
   useEffect(() => {
     // Clear expanded submenu on sidebar collapse
@@ -113,6 +80,10 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       setHasSidebar(false)
     }
   }, [setHasSidebar])
+
+  useEffect(() => {
+    setShowHamburger?.(true)
+  }, [])
 
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
@@ -159,9 +130,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   )
 
   return isCompactLayout ? (
-    <SmallScreenSidebarWrapper classes={classes}>
-      {sidebar}
-    </SmallScreenSidebarWrapper>
+    <Portal container={getHamburgerContainer}>{children}</Portal>
   ) : (
     sidebar
   )

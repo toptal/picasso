@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -29,6 +29,7 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   ref
 ) {
   const { children, className, style, width, fullWidth, ...rest } = props
+  const [showHamburger, setShowHamburger] = useState(false)
   const classes = useStyles()
 
   return (
@@ -38,7 +39,9 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
       className={cx(classes.root, className)}
       style={style}
     >
-      <PageContext.Provider value={{ width, fullWidth }}>
+      <PageContext.Provider
+        value={{ width, fullWidth, showHamburger, setShowHamburger }}
+      >
         {children}
       </PageContext.Provider>
     </div>

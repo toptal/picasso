@@ -5,7 +5,11 @@ import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
 const Example = () => (
   <div style={{ height: '30rem' }}>
     <Page>
-      <Page.TopBar rightContent={<RightContent />} title='Default example' />
+      <Page.TopBar
+        rightContent={<RightContent />}
+        centerContent={<CenterContent />}
+        title='Default example'
+      />
       <Page.Content>
         <SidebarMenu />
         <Page.Article>
@@ -29,6 +33,13 @@ const SidebarMenu = () => (
       <Page.Sidebar.Item icon={<Globe16 />}>Team</Page.Sidebar.Item>
     </Page.Sidebar.Menu>
   </Page.Sidebar>
+)
+
+const CenterContent = () => (
+  <Page.TopBar.Menu>
+    <Page.TopBar.Item icon={<Globe16 />}>Foo</Page.TopBar.Item>
+    <Page.TopBar.Item icon={<Profile16 />}>Bar</Page.TopBar.Item>
+  </Page.TopBar.Menu>
 )
 
 const RightContent = () => (

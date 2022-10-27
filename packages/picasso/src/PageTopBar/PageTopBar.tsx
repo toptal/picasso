@@ -10,9 +10,13 @@ import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 import { usePageTopBar } from '@toptal/picasso-provider'
 import { makeStyles, Theme } from '@material-ui/core/styles'
+import Portal from '@material-ui/core/Portal'
 
 import Logo from '../Logo'
 import Container from '../Container'
+import PageHamburger, { getHamburgerContainer } from '../PageHamburger'
+import TopBarMenu from '../TopBarMenu'
+import TopBarItem from '../TopBarItem'
 import Typography from '../Typography'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
@@ -28,6 +32,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   logoLink?: ReactElement
   /** Logo to display */
   logo?: ReactNode
+  /** Content for the center of the `Header`  */
+  centerContent?: ReactNode
   /** Content for the left side of the `Header`  */
   leftContent?: ReactNode
   /** Content for the right side of the `Header`  */
@@ -52,6 +58,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     title,
     logoLink,
     logo,
+    centerContent,
     leftContent,
     rightContent,
     actionItems,
@@ -127,12 +134,19 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
             {leftContent}
           </div>
 
+          {isCompactLayout ? (
+            <Portal container={getHamburgerContainer}>{centerContent}</Portal>
+          ) : (
+            <div className={classes.center}>{centerContent}</div>
+          )}
+
           <div className={classes.right}>
             {!isCompactLayout && actionItems}
             {rightContent}
           </div>
         </div>
       </header>
+      <PageHamburger />
     </div>
   )
 })
@@ -143,4 +157,7 @@ PageTopBar.defaultProps = {
 
 PageTopBar.displayName = 'PageTopBar'
 
-export default PageTopBar
+export default Object.assign(PageTopBar, {
+  Menu: TopBarMenu,
+  Item: TopBarItem,
+})
