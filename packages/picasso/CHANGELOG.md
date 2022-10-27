@@ -1,5 +1,21 @@
 # Change Log
 
+## 28.5.0
+
+### Minor Changes
+
+- [#3183](https://github.com/toptal/picasso/pull/3183) [`9b12b62b`](https://github.com/toptal/picasso/commit/9b12b62b536bf53831dc80fc5eae9c2ee6385c97) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Typography
+
+  - enable `grey-main-2` as a `color` option of Typography
+  - update reusable `ColorType`
+
+### Patch Changes
+
+- Updated dependencies [[`9b12b62b`](https://github.com/toptal/picasso/commit/9b12b62b536bf53831dc80fc5eae9c2ee6385c97)]:
+  - @toptal/picasso-shared@11.1.0
+
 ## 28.4.0
 
 ### Minor Changes
