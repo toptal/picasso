@@ -88,6 +88,7 @@ export type ColorType =
   | 'yellow'
   | 'light-grey'
   | 'grey'
+  | 'grey-main-2'
   | 'dark-grey'
   | 'black'
   | 'light-blue'

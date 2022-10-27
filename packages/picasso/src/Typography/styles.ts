@@ -116,6 +116,9 @@ export default (theme: Theme) => {
     grey: {
       color: palette.grey.main,
     },
+    'greyMain-2': {
+      color: palette.grey.main2,
+    },
     darkGrey: {
       color: palette.text.primary,
     },

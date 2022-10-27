@@ -20,6 +20,9 @@ const Example = () => (
       <Typography color='grey'>Grey</Typography>
     </Container>
     <Container bottom={1}>
+      <Typography color='grey-main-2'>Grey Main 2</Typography>
+    </Container>
+    <Container bottom={1}>
       <Typography color='dark-grey'>Dark Grey</Typography>
     </Container>
     <Container bottom={1}>
