@@ -86,3 +86,8 @@ page
     description: 'Show a custom footer at the bottom of the calendar',
     takeScreenshot: false,
   })
+  .addExample('DatePicker/story/WithFooterBackgroundColor.example.tsx', {
+    title: 'With Footer background color customized',
+    description: 'Show a custom color footer at the bottom of the calendar',
+    takeScreenshot: false,
+  })
