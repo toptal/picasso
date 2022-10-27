@@ -3,6 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
+import { PageHamburgerContext, useHamburger } from '../PageHamburger'
 import { PageContextProps, ViewportWidthType } from './types'
 import styles from './styles'
 
@@ -15,6 +16,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   centered?: boolean
   /** Children components (`Page.TopBar`, `Page.Content`, `Page.Footer`) */
   children: ReactNode
+  hamburgerId?: string
 }
 
 export const PageContext = React.createContext<PageContextProps>({})
@@ -28,7 +30,16 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   props,
   ref
 ) {
-  const { children, className, style, width, fullWidth, ...rest } = props
+  const {
+    children,
+    className,
+    hamburgerId = 'hamburger',
+    style,
+    width,
+    fullWidth,
+    ...rest
+  } = props
+  const { context } = useHamburger(hamburgerId)
   const classes = useStyles()
 
   return (
@@ -39,7 +50,9 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
       style={style}
     >
       <PageContext.Provider value={{ width, fullWidth }}>
-        {children}
+        <PageHamburgerContext.Provider value={context}>
+          {children}
+        </PageHamburgerContext.Provider>
       </PageContext.Provider>
     </div>
   )
