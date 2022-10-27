@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.6.0
+
+### Minor Changes
+
+- [#3182](https://github.com/toptal/picasso/pull/3182) [`32d512ee`](https://github.com/toptal/picasso/commit/32d512ee262853265038d81c8859ffca1595970e) Thanks [@pedromonad](https://github.com/pedromonad)! - ---
+
+  ### DatePicker
+
+  - add footer background color
+
 ## 28.5.0
 
 ### Minor Changes
