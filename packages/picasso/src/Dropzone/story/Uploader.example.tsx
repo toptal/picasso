@@ -42,7 +42,7 @@ const useFiles = ({ maxFiles }: { maxFiles: number }) => {
       return setFiles(prevFiles => [
         ...prevFiles,
         {
-          error: 'Too many files',
+          error: 'Upload failed due to number of files',
           file: new File([], ''),
         },
       ])
