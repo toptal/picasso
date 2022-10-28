@@ -8,8 +8,10 @@ const scrollTo = (section, container) => {
     return
   }
 
-  const scrollToPosition = sectionContainer.getBoundingClientRect().top
-  container.scrollTo(0, scrollToPosition)
+  setTimeout(() => {
+    const scrollToPosition = sectionContainer.getBoundingClientRect().top
+    container.scrollTo(0, scrollToPosition)
+  }, 0)
 }
 
 const highlightSection = section => {
