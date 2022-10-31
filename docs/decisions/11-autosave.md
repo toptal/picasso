@@ -10,7 +10,7 @@ The auto-save feature is fully implemented in `picasso-forms` for all field type
 
 A mechanism that notifies the parent component about the form values changes will be provided. Then, the parent component will decide how to save this data (in BE or in external storage like local storage) and when. Validation errors will be ignored, for now, so the parent component can decide when to save the data with or without validation errors.
 
-The implementation of the feature can be split into three parts as follows:
+The implementation of the feature can be split into five parts as follows:
 
 - To listen for form state changes, a `final-form` decorator that triggers a callback to notify the parent component with the latest values will be implemented.
 
