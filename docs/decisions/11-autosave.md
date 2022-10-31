@@ -13,7 +13,8 @@ A mechanism that notifies the parent component about the form values changes wil
 The implementation of the feature can be split into three parts as follows:
 
 - To listen for form state changes, a `final-form` decorator that triggers a callback to notify the parent component with the latest values will be implemented.
-  For performance reasons, there will be made as a subscription functionality so that a component can listen to only specific field value changes.
+
+- For performance reasons, the decorator will have a subscription functionality so that a component can listen to only specific field value changes.
 
 - There won't be any changes to the `picasso-forms/Form` component since the decorator can be plugged in by using the `decorators` prop.
 
