@@ -1,27 +1,37 @@
 import { AnyObject, FormApi } from 'final-form'
 
-export const isValuesEqual = <T extends AnyObject>(
+type ChangedFields<T extends AnyObject> = Partial<Record<keyof T, boolean>>
+
+export const getChangedFields = <T extends AnyObject>(
   newValues: T,
   existingValues?: T,
   subscribedFields?: (keyof T)[]
-) => {
+): ChangedFields<T> => {
   if (!existingValues) {
-    return false
+    return {}
   }
 
-  if (subscribedFields && subscribedFields.length > 0) {
-    return subscribedFields.every(
-      field => newValues[field] === existingValues[field]
-    )
-  }
+  const keysArray = subscribedFields ?? (Object.keys(newValues) as (keyof T)[])
 
-  return Object.keys(newValues).every(
-    key => newValues[key] === existingValues[key]
+  const result = keysArray.reduce<Partial<Record<keyof T, boolean>>>(
+    (changedFields, field) => {
+      if (newValues[field] !== existingValues[field]) {
+        changedFields[field] = true
+      }
+
+      return changedFields
+    },
+    {}
   )
+
+  return result as Record<keyof T, boolean>
 }
 
 interface Props<T extends AnyObject> {
-  onFormValuesChange: (values: T) => void
+  onFormValuesChange: (
+    changedFields: Partial<Record<keyof T, boolean>>,
+    values: T
+  ) => void
   subscribedFields?: (keyof T)[]
 }
 
@@ -34,10 +44,14 @@ const createAutoSaveDecorator = <T extends AnyObject>({
   return (form: FormApi<T>) => {
     const unsubscribe = form.subscribe(
       nextState => {
-        if (
-          !isValuesEqual(nextState.values, oldValues as T, subscribedFields)
-        ) {
-          onFormValuesChange(nextState.values)
+        const changedFields = getChangedFields(
+          nextState.values,
+          oldValues as T,
+          subscribedFields
+        )
+
+        if (Object.keys(changedFields).length > 0) {
+          onFormValuesChange(changedFields, nextState.values)
 
           oldValues = nextState.values
         }

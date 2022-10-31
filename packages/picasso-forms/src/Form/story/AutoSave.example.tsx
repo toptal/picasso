@@ -11,7 +11,8 @@ const Example = () => {
     'autoSave-age': undefined,
   })
 
-  const handleFormValuesChange = useCallback((values: any) => {
+  const handleFormValuesChange = useCallback((changedFields, values) => {
+    console.log('changedFields', changedFields)
     setAutoSaveValues(values)
   }, [])
 
@@ -52,8 +53,8 @@ const Example = () => {
           />
         </Container>
         <Container variant='grey' padded='medium'>
-          <Typography>
-            Values should be only updated after subscribed fields changes
+          <Typography size='small'>
+            Values should be updated only after subscribed fields changes
           </Typography>
           <pre style={{ width: 500 }}>
             {JSON.stringify(autoSaveValues, undefined, 2)}

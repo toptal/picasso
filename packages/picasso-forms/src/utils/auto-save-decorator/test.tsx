@@ -1,63 +1,77 @@
-import { isValuesEqual } from './auto-save-decorator'
+import { getChangedFields } from './auto-save-decorator'
 
 describe('auto-save-decorator', () => {
-  describe('isValuesEqual', () => {
+  describe('getChangedValues', () => {
     describe('when subscribed fields is provided', () => {
-      it('should return true if subscribed values are equal', () => {
-        expect(
-          isValuesEqual(
-            { firstName: 'Bruce', lastName: 'Wayne' },
-            { firstName: 'Bruce', lastName: 'Wayne' },
-            ['firstName']
-          )
-        ).toBe(true)
-
-        expect(
-          isValuesEqual(
-            { firstName: 'Bruce', lastName: 'Wayne' },
-            { firstName: 'Bruce', lastName: 'Pain' },
-            ['firstName']
-          )
-        ).toBe(true)
+      describe('when subscribed fields are changed', () => {
+        it('should return changed fields if values are not equal', () => {
+          expect(
+            getChangedFields(
+              { firstName: 'Bruce', lastName: 'Wayne' },
+              { firstName: 'Brook', lastName: 'Wayne' },
+              ['firstName']
+            )
+          ).toEqual({ firstName: true })
+        })
       })
 
-      it('should return false if values are not equal', () => {
-        expect(
-          isValuesEqual(
-            { firstName: 'Bruce', lastName: 'Wayne' },
-            { firstName: 'Brook', lastName: 'Wayne' }
-          )
-        ).toBe(false)
+      describe('when subscribed fields are not changed', () => {
+        it('should return empty object for fields', () => {
+          expect(
+            getChangedFields(
+              { firstName: 'Bruce', lastName: 'Wayne' },
+              { firstName: 'Bruce', lastName: 'Wayne' },
+              ['firstName']
+            )
+          ).toEqual({})
+
+          expect(
+            getChangedFields(
+              { firstName: 'Bruce', lastName: 'Wayne' },
+              { firstName: 'Bruce', lastName: 'Pain' },
+              ['firstName']
+            )
+          ).toEqual({})
+        })
       })
     })
 
     describe('when subscribed fields is not provided', () => {
-      it('should check all fields and return true if values are equal', () => {
+      describe('when values are not equal', () => {
+        it('should check all fields and return changed fields', () => {
+          expect(
+            getChangedFields(
+              { firstName: 'Bruce', lastName: 'Wayne' },
+              { firstName: 'Brook', lastName: 'Wayne' }
+            )
+          ).toEqual({ firstName: true })
+
+          expect(
+            getChangedFields(
+              { firstName: 'Bruce', lastName: 'Wayne' },
+              { firstName: 'Brook', lastName: 'Pain' }
+            )
+          ).toEqual({ firstName: true, lastName: true })
+        })
+      })
+
+      it('should check all fields and return empty object if values are equal', () => {
         expect(
-          isValuesEqual(
+          getChangedFields(
             { firstName: 'Bruce', lastName: 'Wayne' },
             { firstName: 'Bruce', lastName: 'Wayne' }
           )
-        ).toBe(true)
-      })
-
-      it('should check all fields and return false if values are not equal', () => {
-        expect(
-          isValuesEqual(
-            { firstName: 'Bruce', lastName: 'Wayne' },
-            { firstName: 'Brook', lastName: 'Wayne' }
-          )
-        ).toBe(false)
+        ).toEqual({})
       })
     })
 
     it('should do shallow comparison', () => {
       expect(
-        isValuesEqual(
+        getChangedFields(
           { items: [{ id: 1 }, { id: 2 }] },
           { items: [{ id: 1 }, { id: 2 }] }
         )
-      ).toBe(false)
+      ).toEqual({ items: true })
     })
   })
 })
