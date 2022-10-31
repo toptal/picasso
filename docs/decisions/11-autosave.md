@@ -2,7 +2,7 @@
 
 ## Problem
 
-Users want to have auto-save functionality for `RichTextEditor`, and `picasso-forms` doesn't have a built-in solution for this mechanism.
+Developers want to have auto-save functionality for `RichTextEditor`, and `picasso-forms` doesn't have a built-in solution for this mechanism.
 
 ## Proposal
 
@@ -28,6 +28,4 @@ The implementation of the feature can be split into three parts as follows:
 ## Alternatives
 
 - Fully implement `RichTextEditor` auto-save feature on the product side without touching `picasso-forms`.
-  - While keeping the form state, we thought that it would be easier to implement this feature inside Picasso.
-- Implement auto-save feature just for `RichTextEditor` field inside `picasso-forms`.
-  - Instead of implementing the feature just for `RichTextEditor`, we decided to cover all types of inputfields so the feature would become more useful for all product teams.
+- Implement the auto-save feature just for the `RichTextEditor` field inside `picasso-forms`.
