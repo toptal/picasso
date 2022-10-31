@@ -11,6 +11,7 @@ import Container from '../Container'
 import FileList from '../FileList'
 import Typography from '../Typography'
 import { FileUpload, DropzoneOptions } from './types'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import styles from './styles'
 
 export interface Props extends BaseProps {
@@ -43,7 +44,7 @@ export interface Props extends BaseProps {
   /** Value uses the File interface. */
   value?: FileUpload[]
   /**
-   * @deprecated **Use value.error instead.**
+   * @deprecated **Use value[n].error instead.**
    * Provide reasons why files couldn't be dropped into dropzone
    */
   errorMessages?: string[]
@@ -98,6 +99,14 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
   })
 
   const classes = useStyles()
+
+  usePropDeprecationWarning({
+    props,
+    name: 'errorMessages',
+    componentName: 'Dropzone',
+    description:
+      'Use the `value[n].error` prop instead. `errorMessages` is deprecated and will be removed in the next major release.',
+  })
 
   return (
     <Container style={style} ref={ref} className={className}>
