@@ -1,5 +1,16 @@
 # Change Log
 
+## 28.6.1
+
+### Patch Changes
+
+- [#3180](https://github.com/toptal/picasso/pull/3180) [`6400592f`](https://github.com/toptal/picasso/commit/6400592fbe4844ea373168a1b070fb21f5ce973d) Thanks [@LashaJini](https://github.com/LashaJini)! - ---
+
+  ### Dropzone
+
+  - deprecate `errorMessages` prop
+  - comply with BASE design
+
 ## 28.6.0
 
 ### Minor Changes
