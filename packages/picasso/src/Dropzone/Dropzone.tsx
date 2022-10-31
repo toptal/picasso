@@ -44,7 +44,7 @@ export interface Props extends BaseProps {
   value?: FileUpload[]
   /**
    * @deprecated **Use value.error instead.**
-   * Provides reasons why files couldn't be dropped into dropzone
+   * Provide reasons why files couldn't be dropped into dropzone
    */
   errorMessages?: string[]
   focused?: boolean
