@@ -14,7 +14,7 @@ const getHeadingMedium = (theme: Theme) => ({
 PicassoProvider.override(theme => {
   const { palette, typography } = theme
   // Fundamental Typography styles across the MUI complex components
-  // Ex. DatePicker has a MUITypography inside, the styles will be overriden to match BASE
+  // Ex. DatePicker has a MUITypography inside, the styles will be overridden to match BASE
 
   return {
     MuiTypography: {
