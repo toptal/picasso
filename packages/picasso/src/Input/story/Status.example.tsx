@@ -18,7 +18,14 @@ const Example = () => {
       </Form.Field>
       <Form.Field>
         <Form.Label>Multiline Success</Form.Label>
-        <Input value='Ukraine' multiline rows={4} status='success' />
+        <Input
+          value='Ukraine'
+          multiline
+          multilineResizable
+          limit={5}
+          rows={2}
+          status='success'
+        />
       </Form.Field>
     </Form>
   )

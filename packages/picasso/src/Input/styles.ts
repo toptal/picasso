@@ -8,16 +8,18 @@ import '../InputAdornment/styles'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      fontSize: '1rem',
+      fontSize: '1em',
       backgroundColor: palette.common.white,
       cursor: 'text',
     },
     rootMultiline: {
       height: 'auto',
+      padding: '0.15em',
     },
-    rootMultilineLimiter: {
-      minHeight: '3.75rem',
-      paddingBottom: '1.875rem',
+    inputMultiline: {
+      minHeight: '4em',
+      paddingBottom: '1.25em',
+      padding: '0.5em',
     },
     inputMultilineResizable: {
       resize: 'vertical',

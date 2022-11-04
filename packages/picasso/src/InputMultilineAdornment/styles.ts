@@ -1,15 +1,26 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
-  createStyles({
+export default ({ palette }: Theme) => {
+  const bottomBarSpacingPx = 9
+
+  return createStyles({
     multilineAdornment: {
       position: 'absolute',
       bottom: 0,
-      width: 'calc(100% - 1.25rem)',
+      left: 0,
+      width: '100%',
       height: '1.25rem',
       justifyContent: 'space-between',
       margin: 0,
-      padding: '0.25rem 0',
-      borderTop: `1px solid ${palette.grey.lighter2}`,
+      padding: `0.25rem ${bottomBarSpacingPx}px`,
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: `${bottomBarSpacingPx}px`,
+        width: `calc(100% - ${bottomBarSpacingPx * 2}px)`,
+        borderTop: `1px solid ${palette.grey.lighter2}`,
+      },
     },
   })
+}
