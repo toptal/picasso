@@ -1,41 +1,39 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Container, Typography } from '@toptal/picasso'
-import { Form, createFormValuesChangeDecorator } from '@toptal/picasso-forms'
+import { Form, ChangedFields, useFormAutoSave } from '@toptal/picasso-forms'
+
+// the emulation of the api call
+const saveWithDelay = async () =>
+  new Promise(resolve => setTimeout(() => resolve('success'), 2000))
 
 interface FormData {
   'autoSave-firstName'?: string
   'autoSave-lastName'?: string
-  'autoSave-age'?: string
+  'autoSave-bio'?: string
 }
 
-const autoSaveSubscribedFields: (keyof FormData)[] = ['autoSave-firstName']
+const autoSaveSubscribedFields: (keyof FormData)[] = ['autoSave-bio']
 
 const Example = () => {
   const [autoSaveValues, setAutoSaveValues] = useState<FormData>({
     'autoSave-firstName': undefined,
     'autoSave-lastName': undefined,
-    'autoSave-age': undefined,
+    'autoSave-bio': undefined,
   })
 
   const handleFormValuesChange = useCallback(
-    (
-      changedFields: Partial<Record<keyof FormData, boolean>>,
-      values: FormData
-    ) => {
-      console.log('changedFields', changedFields)
+    async (changedFields: ChangedFields<FormData>, values: FormData) => {
+      await saveWithDelay()
+
       setAutoSaveValues(values)
     },
     []
   )
 
-  const autoSaveDecorator = useMemo(
-    () =>
-      createFormValuesChangeDecorator<FormData>({
-        subscribedFields: autoSaveSubscribedFields,
-        onChange: handleFormValuesChange,
-      }),
-    [handleFormValuesChange]
-  )
+  const { autoSaveDecorator, savingFields } = useFormAutoSave({
+    subscribedFields: autoSaveSubscribedFields,
+    onFormValuesChange: handleFormValuesChange,
+  })
 
   return (
     <Form<FormData>
@@ -56,20 +54,24 @@ const Example = () => {
             label='Last name'
             placeholder='e.g. Wayne'
           />
-          <Form.NumberInput
-            enableReset
+          <Form.Input
             required
-            name='autoSave-age'
-            label="What's your age?"
-            placeholder='e.g. 25'
+            name='autoSave-bio'
+            multiline
+            rows={5}
+            label='Bio'
+            placeholder='Please tell us about yourself'
           />
+          {savingFields?.['autoSave-bio'] && (
+            <Typography align='right'>Saving</Typography>
+          )}
         </Container>
         <Container variant='grey' padded='medium'>
           <Typography size='small'>
-            Values should be updated only after subscribed fields changes
+            Values should be updated only after subscribed fields changes.
           </Typography>
           <pre style={{ width: 500 }}>
-            {JSON.stringify(autoSaveValues, undefined, 2)}
+            Saved values: {JSON.stringify(autoSaveValues, undefined, 2)}
           </pre>
         </Container>
       </Container>
