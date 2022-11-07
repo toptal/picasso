@@ -1,32 +1,44 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { Container, Typography } from '@toptal/picasso'
-import { Form, createAutoSaveDecorator } from '@toptal/picasso-forms'
+import { Form, createFormValuesDecorator } from '@toptal/picasso-forms'
 
-const autoSaveSubscribedFields = ['autoSave-firstName']
+interface FormData {
+  'autoSave-firstName'?: string
+  'autoSave-lastName'?: string
+  'autoSave-age'?: string
+}
+
+const autoSaveSubscribedFields: (keyof FormData)[] = ['autoSave-firstName']
 
 const Example = () => {
-  const [autoSaveValues, setAutoSaveValues] = useState({
+  const [autoSaveValues, setAutoSaveValues] = useState<FormData>({
     'autoSave-firstName': undefined,
     'autoSave-lastName': undefined,
     'autoSave-age': undefined,
   })
 
-  const handleFormValuesChange = useCallback((changedFields, values) => {
-    console.log('changedFields', changedFields)
-    setAutoSaveValues(values)
-  }, [])
+  const handleFormValuesChange = useCallback(
+    (
+      changedFields: Partial<Record<keyof FormData, boolean>>,
+      values: FormData
+    ) => {
+      console.log('changedFields', changedFields)
+      setAutoSaveValues(values)
+    },
+    []
+  )
 
   const autoSaveDecorator = useMemo(
     () =>
-      createAutoSaveDecorator({
+      createFormValuesDecorator<FormData>({
         subscribedFields: autoSaveSubscribedFields,
-        onFormValuesChange: handleFormValuesChange,
+        onChange: handleFormValuesChange,
       }),
     [handleFormValuesChange]
   )
 
   return (
-    <Form
+    <Form<FormData>
       onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
       decorators={[autoSaveDecorator]}
     >

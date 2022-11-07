@@ -13,32 +13,26 @@ export const getChangedFields = <T extends AnyObject>(
 
   const keysArray = subscribedFields ?? (Object.keys(newValues) as (keyof T)[])
 
-  const result = keysArray.reduce<Partial<Record<keyof T, boolean>>>(
-    (changedFields, field) => {
-      if (newValues[field] !== existingValues[field]) {
-        changedFields[field] = true
-      }
+  const result = keysArray.reduce<ChangedFields<T>>((changedFields, field) => {
+    if (newValues[field] !== existingValues[field]) {
+      changedFields[field] = true
+    }
 
-      return changedFields
-    },
-    {}
-  )
+    return changedFields
+  }, {})
 
-  return result as Record<keyof T, boolean>
+  return result
 }
 
 interface Props<T extends AnyObject> {
-  onFormValuesChange: (
-    changedFields: Partial<Record<keyof T, boolean>>,
-    values: T
-  ) => void
+  onChange: (changedFields: ChangedFields<T>, values: T) => void
   subscribedFields?: (keyof T)[]
 }
 
 let oldValues: AnyObject = {}
 
-const createAutoSaveDecorator = <T extends AnyObject>({
-  onFormValuesChange,
+const createFormValuesChangeDecorator = <T extends AnyObject>({
+  onChange,
   subscribedFields,
 }: Props<T>) => {
   return (form: FormApi<T>) => {
@@ -51,7 +45,7 @@ const createAutoSaveDecorator = <T extends AnyObject>({
         )
 
         if (Object.keys(changedFields).length > 0) {
-          onFormValuesChange(changedFields, nextState.values)
+          onChange(changedFields, nextState.values)
 
           oldValues = nextState.values
         }
@@ -65,4 +59,4 @@ const createAutoSaveDecorator = <T extends AnyObject>({
   }
 }
 
-export default createAutoSaveDecorator
+export default createFormValuesChangeDecorator

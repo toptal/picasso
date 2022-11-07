@@ -44,5 +44,5 @@ export { FormCompound as Form } from './FormCompound'
 export { default as FieldWrapper } from './FieldWrapper'
 export type { FieldProps } from './Field'
 export type { FormConfigProps, RequiredVariant } from './FormConfig'
-export { default as createAutoSaveDecorator } from './utils/auto-save-decorator'
+export { default as createFormValuesDecorator } from './utils/form-values-change-decorator'
 // hygen code generator inserts export statements above this comment.

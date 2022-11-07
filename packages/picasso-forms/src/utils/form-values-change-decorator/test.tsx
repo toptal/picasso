@@ -1,7 +1,7 @@
-import { getChangedFields } from './auto-save-decorator'
+import { getChangedFields } from './form-values-change-decorator'
 
-describe('auto-save-decorator', () => {
-  describe('getChangedValues', () => {
+describe('on-value-change-decorator', () => {
+  describe('getChangedFields', () => {
     describe('when subscribed fields is provided', () => {
       describe('when subscribed fields are changed', () => {
         it('should return changed fields if values are not equal', () => {
