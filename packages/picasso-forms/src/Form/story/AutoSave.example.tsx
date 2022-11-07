@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { Container, Typography } from '@toptal/picasso'
-import { Form, createFormValuesDecorator } from '@toptal/picasso-forms'
+import { Form, createFormValuesChangeDecorator } from '@toptal/picasso-forms'
 
 interface FormData {
   'autoSave-firstName'?: string
@@ -30,7 +30,7 @@ const Example = () => {
 
   const autoSaveDecorator = useMemo(
     () =>
-      createFormValuesDecorator<FormData>({
+      createFormValuesChangeDecorator<FormData>({
         subscribedFields: autoSaveSubscribedFields,
         onChange: handleFormValuesChange,
       }),
