@@ -4,4 +4,4 @@
 
 ---
 
-- introduce auto-save decorator for forms
+- introduce form-values-change decorator for forms
