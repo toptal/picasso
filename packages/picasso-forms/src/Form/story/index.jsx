@@ -254,3 +254,8 @@ however, you may need custom validators for more complex types of fields.
       'Showcase how to handle avatar upload with external upload service.',
     takeScreenshot: false,
   })
+  .addExample('Form/story/AutoSave.example.tsx', {
+    title: 'Auto-save',
+    description: 'Showcase how to use auto-save functionality.',
+    takeScreenshot: false,
+  })
