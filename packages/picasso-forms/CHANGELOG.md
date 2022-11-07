@@ -1,5 +1,13 @@
 # Change Log
 
+## 49.1.0
+
+### Minor Changes
+
+- [#3193](https://github.com/toptal/picasso/pull/3193) [`061c141e`](https://github.com/toptal/picasso/commit/061c141e97ec963401f35967c6e6dbacbeda7ee7) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  - introduce form-values-change decorator for forms
+
 ## 49.0.1
 
 ### Patch Changes
