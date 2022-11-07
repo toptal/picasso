@@ -96,7 +96,7 @@
     "happo-e2e": "^1.2.0",
     "happo-plugin-storybook": "^3.0.0",
     "happo.io": "^7.3.0",
-    "lerna": "^5.5.2",
+    "lerna": "^6.0.1",
     "madge": "^5.0.1",
     "raw-loader": "^4.0.2",
     "react": "^18.1.0",
