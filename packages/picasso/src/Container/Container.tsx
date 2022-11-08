@@ -20,7 +20,7 @@ import { forwardRef, documentable } from '../utils/forward-ref'
 
 type ContainerType = 'div' | 'span'
 
-type DirectionType = 'row' | 'column'
+type DirectionType = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 
 type BorderableType = 'transparent' | 'white'
 
@@ -142,6 +142,8 @@ export const Container = documentable(
               [classes.flex]: flex,
               [classes.inline]: inline,
               [classes.column]: direction === 'column',
+              [classes.rowReverse]: direction === 'row-reverse',
+              [classes.columnReverse]: direction === 'column-reverse',
             },
             className
           )}

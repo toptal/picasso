@@ -151,6 +151,14 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
       flexDirection: 'column',
     },
 
+    rowReverse: {
+      flexDirection: 'row-reverse',
+    },
+
+    columnReverse: {
+      flexDirection: 'column-reverse',
+    },
+
     inline: {
       display: 'inline-block',
     },
