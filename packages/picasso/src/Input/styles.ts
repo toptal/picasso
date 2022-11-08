@@ -16,10 +16,14 @@ export default ({ palette }: Theme) =>
       height: 'auto',
       padding: '0.15em',
     },
-    inputMultiline: {
+    rootMultilineLimiter: {
       minHeight: '4em',
-      paddingBottom: '1.25em',
+    },
+    inputMultiline: {
       padding: '0.5em',
+    },
+    inputMultilineWithAdornment: {
+      paddingBottom: '1.25em',
     },
     inputMultilineResizable: {
       resize: 'vertical',

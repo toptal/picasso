@@ -283,6 +283,12 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         }),
         input: cx(classes.input, {
           [classes.inputMultiline]: multiline,
+          [classes.inputMultilineWithAdornment]: hasMultilineAdornment({
+            multiline,
+            status,
+            limit,
+            counter,
+          }),
           [classes.inputMultilineResizable]: multiline && multilineResizable,
         }),
       }}
