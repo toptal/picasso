@@ -45,4 +45,6 @@ export { default as FieldWrapper } from './FieldWrapper'
 export type { FieldProps } from './Field'
 export type { FormConfigProps, RequiredVariant } from './FormConfig'
 export { default as createFormValuesChangeDecorator } from './utils/form-values-change-decorator'
+export type { ChangedFields } from './utils/form-values-change-decorator'
+export { default as useFormAutoSave } from './utils/use-form-auto-save/use-form-auto-save'
 // hygen code generator inserts export statements above this comment.

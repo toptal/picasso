@@ -1,6 +1,8 @@
 import { AnyObject, FormApi } from 'final-form'
 
-type ChangedFields<T extends AnyObject> = Partial<Record<keyof T, boolean>>
+export type ChangedFields<T extends AnyObject> = Partial<
+  Record<keyof T, boolean>
+>
 
 export const getChangedFields = <T extends AnyObject>(
   newValues: T,

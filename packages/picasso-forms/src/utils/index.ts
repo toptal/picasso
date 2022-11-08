@@ -1,5 +1,6 @@
 export { default as validators } from './validators'
 export { default as createScrollToErrorDecorator } from './scroll-to-error-decorator'
 export { default as createFormValuesChangeDecorator } from './form-values-change-decorator'
+export { default as useFormAutoSave } from './use-form-auto-save'
 export { default as flatMap } from './flat-map'
 export { default as useFieldValidation } from './use-field-validation'
