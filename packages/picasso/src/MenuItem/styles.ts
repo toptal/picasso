@@ -109,6 +109,9 @@ export default ({ typography, palette, shadows }: Theme) =>
     iconContainer: {
       width: '1rem',
     },
+    itemWrapper: {
+      flex: 1,
+    },
     content: {
       flex: 1,
       minWidth: '0px',

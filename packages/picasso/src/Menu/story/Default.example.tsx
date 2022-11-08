@@ -6,6 +6,7 @@ import {
   Afternoon16,
   Company16,
   Component16,
+  Avatar,
 } from '@toptal/picasso'
 
 const handleClick = () => window.alert('Item clicked')
@@ -82,6 +83,54 @@ const Example = () => (
         <Menu.Item
           description='Description'
           icon={<Component16 />}
+          onClick={handleClick}
+        >
+          Label
+        </Menu.Item>
+      </Menu>
+    </Container>
+
+    <Container flex gap='small' direction='column'>
+      <Typography variant='heading' size='small'>
+        With avatar
+      </Typography>
+      <Menu data-testid='menu'>
+        <Menu.Item
+          description='Description'
+          avatar={
+            <Avatar
+              alt='Jacqueline Roque. Pablo Picasso, 1954'
+              src='./jacqueline-with-flowers-1954-square.jpg'
+              name='Jacqueline Roque'
+            />
+          }
+          onClick={handleClick}
+        >
+          Label
+        </Menu.Item>
+        <Menu.Item
+          disabled
+          avatar={
+            <Avatar
+              alt='Jacqueline Roque. Pablo Picasso, 1954'
+              src='./jacqueline-with-flowers-1954-square.jpg'
+              name='Jacqueline Roque'
+            />
+          }
+          description='Description'
+          onClick={handleClick}
+        >
+          Label
+        </Menu.Item>
+        <Menu.Item
+          description='Description'
+          avatar={
+            <Avatar
+              alt='Jacqueline Roque. Pablo Picasso, 1954'
+              src='./jacqueline-with-flowers-1954-square.jpg'
+              name='Jacqueline Roque'
+            />
+          }
           onClick={handleClick}
         >
           Label
