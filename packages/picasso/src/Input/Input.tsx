@@ -105,6 +105,7 @@ type EndAdornmentProps = Pick<
   | 'multiline'
   | 'limit'
   | 'counter'
+  | 'size'
   | 'status'
   | 'testIds'
 > & { charsLength?: number }
@@ -154,6 +155,7 @@ const EndAdornment = (props: EndAdornmentProps) => {
     testIds,
     counter,
     status,
+    size,
   } = props
 
   if (icon && iconPosition === 'end') {
@@ -178,7 +180,7 @@ const EndAdornment = (props: EndAdornmentProps) => {
 
   if (hasMultilineAdornment({ multiline, status, counter, limit })) {
     return (
-      <InputMultilineAdornment status={status} testIds={testIds}>
+      <InputMultilineAdornment status={status} testIds={testIds} size={size}>
         {showCounter && (
           <InputLimitAdornment
             charsLength={charsLength}
@@ -277,6 +279,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         }),
         input: cx(classes.input, {
           [classes.inputMultiline]: multiline,
+          [classes.inputLarge]: size === 'large',
           [classes.inputMultilineWithAdornment]: hasMultilineAdornment({
             multiline,
             status,
@@ -327,6 +330,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             counter={counter}
             status={status}
             testIds={testIds}
+            size={size}
           />
         )
       }

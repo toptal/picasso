@@ -27,6 +27,22 @@ const Example = () => {
           status='success'
         />
       </Form.Field>
+      <Form.Field>
+        <Form.Label>Success</Form.Label>
+        <Input size='large' value='Ukraine' status='success' />
+      </Form.Field>
+      <Form.Field>
+        <Form.Label>Multiline Success</Form.Label>
+        <Input
+          value='Ukraine'
+          multiline
+          size='large'
+          multilineResizable
+          limit={5}
+          rows={2}
+          status='success'
+        />
+      </Form.Field>
     </Form>
   )
 }

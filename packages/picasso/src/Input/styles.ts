@@ -1,4 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { rem } from '@toptal/picasso-shared'
 
 import '../InputBase/styles'
 import '../InputLabel/styles'
@@ -14,12 +15,18 @@ export default ({ palette }: Theme) =>
     },
     rootMultiline: {
       height: 'auto',
-      padding: '0.15em',
+      padding: rem('2px'),
     },
     inputMultiline: {
-      // 1rem line + top and bottom 0.5rem padding
-      minHeight: '2rem',
-      padding: '0.5rem',
+      // 1rem line + top and bottom 0.375rem padding
+      minHeight: '1.75rem',
+      padding: '0.375rem',
+
+      '&$inputLarge': {
+        // 1rem line + top and bottom 0.625rem
+        minHeight: '2.25rem',
+        padding: '0.625rem',
+      },
 
       // after manually lowering height of the textarea,
       // the input receives inline overflow:hidden and
@@ -28,11 +35,18 @@ export default ({ palette }: Theme) =>
       overflow: 'auto !important',
     },
     inputMultilineWithAdornment: {
-      // 1rem line + top 0.5rem + bottom 1.25rem padding
-      minHeight: '2.75rem',
-      paddingBottom: '1.25rem',
+      // 1rem line + top 0.375rem + bottom 1.5rem padding
+      minHeight: '2.875rem',
+      paddingBottom: '1.5rem',
+
+      '&$inputLarge': {
+        // 1rem line + top 0.625rem + bottom 2.125rem padding
+        minHeight: '3.75rem',
+        paddingBottom: '2.125rem',
+      },
     },
     inputMultilineResizable: {
       resize: 'vertical',
     },
+    inputLarge: {},
   })
