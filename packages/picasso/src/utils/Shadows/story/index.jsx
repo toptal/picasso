@@ -1,12 +1,6 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Utils').createPage(
-  'Shadows',
-  `
-      The Toptal color palette comprises the core brand colors
-      plus a range of shades and tints.
-    `
-)
+const page = PicassoBook.section('Utils').createPage('Shadows')
 
 page
   .createChapter()
