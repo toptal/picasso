@@ -5,8 +5,8 @@ import { Container, Typography, Grid } from '@toptal/picasso'
 const Example = () => (
   <Container flex direction='column' gap='medium'>
     <Typography>
-      First 6 shadows are overriden by BASE values. Following shadow values are
-      coming from MUI.
+      First 6 shadow values are overridden with BASE values. Following shadow
+      values are coming from MUI.
     </Typography>
     <Grid spacing={80}>
       <ShadowBox
