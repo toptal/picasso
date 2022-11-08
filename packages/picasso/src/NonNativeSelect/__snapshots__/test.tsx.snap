@@ -76,18 +76,22 @@ exports[`NonNativeSelect renders custom options 1`] = `
         value="val1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-            />
-            <div
-              data-testid="custom-option-1"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              text1
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+              <div
+                data-testid="custom-option-1"
+              >
+                text1
+              </div>
             </div>
           </div>
         </div>
@@ -102,18 +106,22 @@ exports[`NonNativeSelect renders custom options 1`] = `
         value="val2"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-            />
-            <div
-              data-testid="custom-option-2"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              text2
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+              <div
+                data-testid="custom-option-2"
+              >
+                text2
+              </div>
             </div>
           </div>
         </div>
@@ -128,18 +136,22 @@ exports[`NonNativeSelect renders custom options 1`] = `
         value="val3"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-            />
-            <div
-              data-testid="custom-option-3"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              text3
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+              <div
+                data-testid="custom-option-3"
+              >
+                text3
+              </div>
             </div>
           </div>
         </div>
@@ -171,25 +183,29 @@ exports[`NonNativeSelect renders description 1`] = `
         value="val1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-            />
-            <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              text1
-            </span>
-          </div>
-          <div
-            class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
-            style="margin-top: 0.25rem;"
-          >
-            description1
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                text1
+              </span>
+            </div>
+            <div
+              class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+              style="margin-top: 0.25rem;"
+            >
+              description1
+            </div>
           </div>
         </div>
       </li>
@@ -203,25 +219,29 @@ exports[`NonNativeSelect renders description 1`] = `
         value="val2"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-            />
-            <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              text2
-            </span>
-          </div>
-          <div
-            class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
-            style="margin-top: 0.25rem;"
-          >
-            description2
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                text2
+              </span>
+            </div>
+            <div
+              class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+              style="margin-top: 0.25rem;"
+            >
+              description2
+            </div>
           </div>
         </div>
       </li>
@@ -235,25 +255,29 @@ exports[`NonNativeSelect renders description 1`] = `
         value="val3"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-            />
-            <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              text3
-            </span>
-          </div>
-          <div
-            class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
-            style="margin-top: 0.25rem;"
-          >
-            description3
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                text3
+              </span>
+            </div>
+            <div
+              class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+              style="margin-top: 0.25rem;"
+            >
+              description3
+            </div>
           </div>
         </div>
       </li>

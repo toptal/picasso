@@ -62,16 +62,20 @@ exports[`Dropdown should render menu 1`] = `
                 tabindex="0"
               >
                 <div
-                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
                 >
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                   >
-                    <span
-                      class="PicassoMenuItem-stringContent"
+                    <div
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                     >
-                      Item1
-                    </span>
+                      <span
+                        class="PicassoMenuItem-stringContent"
+                      >
+                        Item1
+                      </span>
+                    </div>
                   </div>
                 </div>
               </li>
@@ -82,16 +86,20 @@ exports[`Dropdown should render menu 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
                 >
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                   >
-                    <span
-                      class="PicassoMenuItem-stringContent"
+                    <div
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                     >
-                      Item2
-                    </span>
+                      <span
+                        class="PicassoMenuItem-stringContent"
+                      >
+                        Item2
+                      </span>
+                    </div>
                   </div>
                 </div>
               </li>
@@ -102,16 +110,20 @@ exports[`Dropdown should render menu 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
                 >
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                   >
-                    <span
-                      class="PicassoMenuItem-stringContent"
+                    <div
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                     >
-                      Item3
-                    </span>
+                      <span
+                        class="PicassoMenuItem-stringContent"
+                      >
+                        Item3
+                      </span>
+                    </div>
                   </div>
                 </div>
               </li>
@@ -169,16 +181,20 @@ exports[`Dropdown should render menu with focus 1`] = `
                 tabindex="0"
               >
                 <div
-                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
                 >
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                   >
-                    <span
-                      class="PicassoMenuItem-stringContent"
+                    <div
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                     >
-                      Item1
-                    </span>
+                      <span
+                        class="PicassoMenuItem-stringContent"
+                      >
+                        Item1
+                      </span>
+                    </div>
                   </div>
                 </div>
               </li>
@@ -189,16 +205,20 @@ exports[`Dropdown should render menu with focus 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
                 >
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                   >
-                    <span
-                      class="PicassoMenuItem-stringContent"
+                    <div
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                     >
-                      Item2
-                    </span>
+                      <span
+                        class="PicassoMenuItem-stringContent"
+                      >
+                        Item2
+                      </span>
+                    </div>
                   </div>
                 </div>
               </li>
@@ -209,16 +229,20 @@ exports[`Dropdown should render menu with focus 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
                 >
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                   >
-                    <span
-                      class="PicassoMenuItem-stringContent"
+                    <div
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                     >
-                      Item3
-                    </span>
+                      <span
+                        class="PicassoMenuItem-stringContent"
+                      >
+                        Item3
+                      </span>
+                    </div>
                   </div>
                 </div>
               </li>

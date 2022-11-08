@@ -17,16 +17,20 @@ exports[`Menu renders 1`] = `
         tabindex="0"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              1
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                1
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -37,16 +41,20 @@ exports[`Menu renders 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              2
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                2
+              </span>
+            </div>
           </div>
         </div>
       </li>

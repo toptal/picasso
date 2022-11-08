@@ -26,6 +26,7 @@ import Link from '../Link'
 import { ClickAwayListener, toTitleCase } from '../utils'
 import { useMenuItem } from './hooks'
 import styles from './styles'
+import Avatar, { AvatarProps } from '../Avatar'
 
 export type VariantType = 'light' | 'dark'
 
@@ -58,6 +59,8 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   description?: ReactNode
   /** Render an `<Icon />` */
   icon?: ReactElement
+  /** Render an <Avatar /> */
+  avatar?: ReactElement<AvatarProps, typeof Avatar>
   /** Callback when item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Callback when item is hovered */
@@ -91,6 +94,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     onClick,
     onMouseEnter,
     icon,
+    avatar,
     ...rest
   } = props
 
@@ -131,50 +135,54 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
       >
         <Container
           ref={anchorRef}
+          className={classes.itemWrapper}
           flex
-          direction='column'
-          className={classes.content}
+          direction='row'
         >
-          <Container flex alignItems='center'>
-            {isIconWrapperVisible && (
+          {avatar && <Container right='xsmall'>{avatar}</Container>}
+
+          <Container flex direction='column' className={classes.content}>
+            <Container flex alignItems='center'>
+              {isIconWrapperVisible && (
+                <Container
+                  className={classes.iconContainer}
+                  flex
+                  inline
+                  right='xsmall'
+                >
+                  {checkmarked ? <CheckMinor16 /> : icon}
+                </Container>
+              )}
+              {typeof children === 'string' ? (
+                <span
+                  className={cx(classes.stringContent, {
+                    [classes.stringContentSemibold]: checkmarked,
+                  })}
+                  style={style}
+                >
+                  {titleCase ? toTitleCase(children) : children}
+                </span>
+              ) : (
+                children
+              )}
+              {menu && (
+                <Container flex inline left='xsmall'>
+                  <ChevronMinor16 color='' />
+                </Container>
+              )}
+            </Container>
+            {description && (
               <Container
-                className={classes.iconContainer}
-                flex
-                inline
-                right='xsmall'
-              >
-                {checkmarked ? <CheckMinor16 /> : icon}
-              </Container>
-            )}
-            {typeof children === 'string' ? (
-              <span
-                className={cx(classes.stringContent, {
-                  [classes.stringContentSemibold]: checkmarked,
+                className={cx(classes.description, {
+                  [classes.descriptionDisabled]: disabled,
                 })}
-                style={style}
+                left={isIconWrapperVisible ? 'medium' : undefined}
+                top={0.25}
               >
-                {titleCase ? toTitleCase(children) : children}
-              </span>
-            ) : (
-              children
-            )}
-            {menu && (
-              <Container flex inline left='xsmall'>
-                <ChevronMinor16 color='' />
+                {description}
               </Container>
             )}
           </Container>
-          {description && (
-            <Container
-              className={cx(classes.description, {
-                [classes.descriptionDisabled]: disabled,
-              })}
-              left={isIconWrapperVisible ? 'medium' : undefined}
-              top={0.25}
-            >
-              {description}
-            </Container>
-          )}
         </Container>
       </MUIMenuItem>
       {menu && isOpened && (
