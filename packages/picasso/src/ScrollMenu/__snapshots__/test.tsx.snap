@@ -23,16 +23,20 @@ exports[`ScrollMenu renders 1`] = `
             tabindex="-1"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
               >
-                <span
-                  class="PicassoMenuItem-stringContent"
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                 >
-                  top
-                </span>
+                  <span
+                    class="PicassoMenuItem-stringContent"
+                  >
+                    top
+                  </span>
+                </div>
               </div>
             </div>
           </li>
@@ -43,16 +47,20 @@ exports[`ScrollMenu renders 1`] = `
             tabindex="-1"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
               >
-                <span
-                  class="PicassoMenuItem-stringContent"
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                 >
-                  middle
-                </span>
+                  <span
+                    class="PicassoMenuItem-stringContent"
+                  >
+                    middle
+                  </span>
+                </div>
               </div>
             </div>
           </li>
@@ -63,16 +71,20 @@ exports[`ScrollMenu renders 1`] = `
             tabindex="-1"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
               >
-                <span
-                  class="PicassoMenuItem-stringContent"
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                 >
-                  bottom
-                </span>
+                  <span
+                    class="PicassoMenuItem-stringContent"
+                  >
+                    bottom
+                  </span>
+                </div>
               </div>
             </div>
           </li>

@@ -12,16 +12,20 @@ exports[`NonNativeSelectLimitFooter renders footer when overflow 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          Showing only first 
-          50
-           of 
-          100
-           items
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          >
+            Showing only first 
+            50
+             of 
+            100
+             items
+          </div>
         </div>
       </div>
     </li>

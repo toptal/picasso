@@ -25,11 +25,15 @@ exports[`NonNativeSelectOptions renders 1`] = `
             value="1"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              />
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              >
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                />
+              </div>
             </div>
           </li>
           <li
@@ -41,11 +45,15 @@ exports[`NonNativeSelectOptions renders 1`] = `
             value="2"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              />
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              >
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                />
+              </div>
             </div>
           </li>
           <li
@@ -57,11 +65,15 @@ exports[`NonNativeSelectOptions renders 1`] = `
             value="3"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              />
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              >
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                />
+              </div>
             </div>
           </li>
         </div>
@@ -95,11 +107,15 @@ exports[`NonNativeSelectOptions renders no option 1`] = `
             tabindex="-1"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              />
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              >
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                />
+              </div>
             </div>
           </li>
         </div>
@@ -132,16 +148,20 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
             tabindex="-1"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
               >
-                <p
-                  class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                 >
-                  Group 1
-                </p>
+                  <p
+                    class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+                  >
+                    Group 1
+                  </p>
+                </div>
               </div>
             </div>
           </li>
@@ -154,11 +174,15 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
             value="1"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              />
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              >
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                />
+              </div>
             </div>
           </li>
           <li
@@ -170,11 +194,15 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
             value="2"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              />
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              >
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                />
+              </div>
             </div>
           </li>
           <li
@@ -186,11 +214,15 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
             value="3"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              />
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              >
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                />
+              </div>
             </div>
           </li>
           <li
@@ -200,16 +232,20 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
             tabindex="-1"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
               >
-                <p
-                  class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                 >
-                  Group 2
-                </p>
+                  <p
+                    class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+                  >
+                    Group 2
+                  </p>
+                </div>
               </div>
             </div>
           </li>
@@ -222,11 +258,15 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
             value="4"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              />
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              >
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                />
+              </div>
             </div>
           </li>
           <li
@@ -238,11 +278,15 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
             value="5"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              />
+                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              >
+                <div
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                />
+              </div>
             </div>
           </li>
         </div>

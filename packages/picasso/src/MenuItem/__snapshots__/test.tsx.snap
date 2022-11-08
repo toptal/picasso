@@ -12,16 +12,20 @@ exports[`MenuItem renders 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            1
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              1
+            </span>
+          </div>
         </div>
       </div>
     </li>
@@ -41,29 +45,33 @@ exports[`MenuItem renders checkmarked 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
           <div
-            class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            <svg
-              class="PicassoSvgCheckMinor16-root"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <div
+              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
             >
-              <path
-                d="m6.5 9.793 4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2Z"
-              />
-            </svg>
+              <svg
+                class="PicassoSvgCheckMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m6.5 9.793 4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2Z"
+                />
+              </svg>
+            </div>
+            <span
+              class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentSemibold"
+            >
+              1
+            </span>
           </div>
-          <span
-            class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentSemibold"
-          >
-            1
-          </span>
         </div>
       </div>
     </li>
@@ -86,16 +94,20 @@ exports[`MenuItem renders in title case with global prop 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              Arrow
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                Arrow
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -116,16 +128,20 @@ exports[`MenuItem renders in title case with local prop 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            Arrow
-          </span>
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Arrow
+            </span>
+          </div>
         </div>
       </div>
     </li>
@@ -145,28 +161,32 @@ exports[`MenuItem renders with a sub menu arrow 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent"
-          >
-            1
-          </span>
           <div
-            class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            <svg
-              class="PicassoSvgChevronMinor16-root"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <span
+              class="PicassoMenuItem-stringContent"
             >
-              <path
-                d="m5.997 3.29 4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707Z"
-              />
-            </svg>
+              1
+            </span>
+            <div
+              class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
+            >
+              <svg
+                class="PicassoSvgChevronMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m5.997 3.29 4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707Z"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -187,22 +207,26 @@ exports[`MenuItem renders with description 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
         >
-          <span
-            class="PicassoMenuItem-stringContent"
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
-            1
-          </span>
-        </div>
-        <div
-          class="PicassoMenuItem-description"
-          style="margin-top: 0.25rem;"
-        >
-          details
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              1
+            </span>
+          </div>
+          <div
+            class="PicassoMenuItem-description"
+            style="margin-top: 0.25rem;"
+          >
+            details
+          </div>
         </div>
       </div>
     </li>

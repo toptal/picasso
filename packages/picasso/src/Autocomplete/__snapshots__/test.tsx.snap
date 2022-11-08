@@ -22,16 +22,20 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              Belarus
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                Belarus
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -44,16 +48,20 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              Croatia
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                Croatia
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -66,16 +74,20 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              Lithuania
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                Lithuania
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -88,16 +100,20 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              Slovakia
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                Slovakia
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -110,16 +126,20 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              Ukraine
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                Ukraine
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -146,21 +166,25 @@ exports[`Autocomplete dynamic behavior renders custom other options text and cal
   tabindex="-1"
 >
   <div
-    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
   >
     <div
-      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
     >
-      <span
-        class="PicassoAutocomplete-stringContent"
+      <div
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
       >
         <span
-          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-darkGrey MuiTypography-body1"
+          class="PicassoAutocomplete-stringContent"
         >
-          my option:
+          <span
+            class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-darkGrey MuiTypography-body1"
+          >
+            my option:
+          </span>
+          Other option!
         </span>
-        Other option!
-      </span>
+      </div>
     </div>
   </div>
 </li>
@@ -176,21 +200,25 @@ exports[`Autocomplete dynamic behavior renders other option with default text 1`
   tabindex="-1"
 >
   <div
-    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
   >
     <div
-      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
     >
-      <span
-        class="PicassoAutocomplete-stringContent"
+      <div
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
       >
         <span
-          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-darkGrey MuiTypography-body1"
+          class="PicassoAutocomplete-stringContent"
         >
-          Other option: 
+          <span
+            class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-darkGrey MuiTypography-body1"
+          >
+            Other option: 
+          </span>
+          Other option!
         </span>
-        Other option!
-      </span>
+      </div>
     </div>
   </div>
 </li>
@@ -327,16 +355,20 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              BelarusBY
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                BelarusBY
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -349,16 +381,20 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              CroatiaHR
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                CroatiaHR
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -371,16 +407,20 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              LithuaniaLU
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                LithuaniaLU
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -393,16 +433,20 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              SlovakiaSK
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                SlovakiaSK
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -415,16 +459,20 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
-            <span
-              class="PicassoMenuItem-stringContent"
+            <div
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              UkraineUA
-            </span>
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                UkraineUA
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -455,15 +503,19 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              data-testid="custom-option"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              BY
+              <div
+                data-testid="custom-option"
+              >
+                BY
+              </div>
             </div>
           </div>
         </div>
@@ -477,15 +529,19 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              data-testid="custom-option"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              HR
+              <div
+                data-testid="custom-option"
+              >
+                HR
+              </div>
             </div>
           </div>
         </div>
@@ -499,15 +555,19 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              data-testid="custom-option"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              LU
+              <div
+                data-testid="custom-option"
+              >
+                LU
+              </div>
             </div>
           </div>
         </div>
@@ -521,15 +581,19 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              data-testid="custom-option"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              SK
+              <div
+                data-testid="custom-option"
+              >
+                SK
+              </div>
             </div>
           </div>
         </div>
@@ -543,15 +607,19 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              data-testid="custom-option"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              UA
+              <div
+                data-testid="custom-option"
+              >
+                UA
+              </div>
             </div>
           </div>
         </div>
