@@ -1,5 +1,13 @@
 # Change Log
 
+## 49.2.0
+
+### Minor Changes
+
+- [#3200](https://github.com/toptal/picasso/pull/3200) [`34278fcd`](https://github.com/toptal/picasso/commit/34278fcd084de2ab17e6aae55493434be132b130) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  - add form auto-save hook
+
 ## 49.1.0
 
 ### Minor Changes
