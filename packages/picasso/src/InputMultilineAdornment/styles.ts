@@ -5,6 +5,9 @@ export default ({ palette }: Theme) => {
 
   return createStyles({
     multilineAdornment: {
+      // we cover the input when resizing, but keep the resize handle visible
+      background:
+        'linear-gradient(90deg, white 0%, white calc(100% - 20px), transparent calc(100% - 19px))',
       position: 'absolute',
       bottom: 0,
       left: 0,

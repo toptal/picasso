@@ -264,12 +264,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   const charsLength = value ? value.length : 0
 
   const classes = useStyles()
-  const showAdornment = hasMultilineAdornment({
-    multiline,
-    status,
-    limit,
-    counter,
-  })
 
   return (
     <OutlinedInput
@@ -280,11 +274,15 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       classes={{
         root: cx(classes.root, {
           [classes.rootMultiline]: multiline,
-          [classes.rootMultilineLimiter]: showAdornment,
         }),
         input: cx(classes.input, {
           [classes.inputMultiline]: multiline,
-          [classes.inputMultilineWithAdornment]: showAdornment,
+          [classes.inputMultilineWithAdornment]: hasMultilineAdornment({
+            multiline,
+            status,
+            limit,
+            counter,
+          }),
           [classes.inputMultilineResizable]: multiline && multilineResizable,
         }),
       }}

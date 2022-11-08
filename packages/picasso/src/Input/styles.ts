@@ -16,14 +16,21 @@ export default ({ palette }: Theme) =>
       height: 'auto',
       padding: '0.15em',
     },
-    rootMultilineLimiter: {
-      minHeight: '4em',
-    },
     inputMultiline: {
-      padding: '0.5em',
+      // 1rem line + top and bottom 0.5rem padding
+      minHeight: '2rem',
+      padding: '0.5rem',
+
+      // after manually lowering height of the textarea,
+      // the input receives inline overflow:hidden and
+      // it is very hard to navigate inside the textarea
+      // showing scrollbar is much better experience
+      overflow: 'auto !important',
     },
     inputMultilineWithAdornment: {
-      paddingBottom: '1.25em',
+      // 1rem line + top 0.5rem + bottom 1.25rem padding
+      minHeight: '2.75rem',
+      paddingBottom: '1.25rem',
     },
     inputMultilineResizable: {
       resize: 'vertical',
