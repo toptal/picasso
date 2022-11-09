@@ -141,7 +141,8 @@ export const Container = documentable(
               [classes.rounded]: rounded,
               [classes.flex]: flex,
               [classes.inline]: inline,
-              [classes[kebabToCamelCase(direction || '')]]: direction,
+              [classes[kebabToCamelCase(direction || '')]]:
+                direction && direction !== 'row',
             },
             className
           )}
