@@ -22,19 +22,23 @@ exports[`YearSelect render in descending order 1`] = `
         value="2005"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-            />
-            <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              2005
-            </span>
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                2005
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -48,19 +52,23 @@ exports[`YearSelect render in descending order 1`] = `
         value="2004"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-            />
-            <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              2004
-            </span>
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                2004
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -74,19 +82,23 @@ exports[`YearSelect render in descending order 1`] = `
         value="2003"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-            />
-            <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              2003
-            </span>
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                2003
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -100,19 +112,23 @@ exports[`YearSelect render in descending order 1`] = `
         value="2002"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-            />
-            <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              2002
-            </span>
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                2002
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -126,19 +142,23 @@ exports[`YearSelect render in descending order 1`] = `
         value="2001"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-            />
-            <span
-              class="PicassoMenuItem-stringContent"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
-              2001
-            </span>
+              <div
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              />
+              <span
+                class="PicassoMenuItem-stringContent"
+              >
+                2001
+              </span>
+            </div>
           </div>
         </div>
       </li>

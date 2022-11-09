@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.7.0
+
+### Minor Changes
+
+- [#3201](https://github.com/toptal/picasso/pull/3201) [`fc18936c`](https://github.com/toptal/picasso/commit/fc18936ce276e404ec5c3514b2e6f7b5c8651008) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### MenuItem
+
+  - add avatar option for MenuItem and consenquentely to Dropdown
+
 ## 28.6.1
 
 ### Patch Changes
