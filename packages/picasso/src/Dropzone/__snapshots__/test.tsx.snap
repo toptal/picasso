@@ -31,7 +31,7 @@ exports[`Dropzone renders 1`] = `
         <p
           class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
         >
-          Click or drag file to upload
+          Click or drag to upload
         </p>
       </div>
     </div>
