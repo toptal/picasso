@@ -11,6 +11,8 @@ export type {
   AutocompleteProps,
   Item as AutocompleteItem,
 } from './Autocomplete'
+export { default as FormAutoSaveIndicator } from './FormAutoSaveIndicator'
+export type { FormAutoSaveIndicatorProps } from './FormAutoSaveIndicator'
 export { AvatarCompound as Avatar } from './AvatarCompound'
 export type { AvatarProps } from './Avatar'
 export { ButtonCompound as Button } from './ButtonCompound'

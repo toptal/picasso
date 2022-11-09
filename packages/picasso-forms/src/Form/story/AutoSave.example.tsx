@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Container, Typography } from '@toptal/picasso'
+import { Container, FormAutoSaveIndicator, Typography } from '@toptal/picasso'
 import { Form, ChangedFields, useFormAutoSave } from '@toptal/picasso-forms'
 
 // the emulation of the api call
@@ -62,9 +62,7 @@ const Example = () => {
             label='Bio'
             placeholder='Please tell us about yourself'
           />
-          {savingFields?.['autoSave-bio'] && (
-            <Typography align='right'>Saving</Typography>
-          )}
+          <FormAutoSaveIndicator saving={savingFields?.['autoSave-bio']} />
         </Container>
         <Container variant='grey' padded='medium'>
           <Typography size='small'>
@@ -73,6 +71,9 @@ const Example = () => {
           <pre style={{ width: 500 }}>
             Saved values: {JSON.stringify(autoSaveValues, undefined, 2)}
           </pre>
+          {savingFields?.['autoSave-bio'] && (
+            <Typography size='medium'>Saving...</Typography>
+          )}
         </Container>
       </Container>
 
