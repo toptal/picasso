@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.8.0
+
+### Minor Changes
+
+- [#3206](https://github.com/toptal/picasso/pull/3206) [`04f111b0`](https://github.com/toptal/picasso/commit/04f111b0dc3f7c022facec765d6a44aea3930749) Thanks [@DmitriyT51](https://github.com/DmitriyT51)! - ---
+
+  ### Container
+
+  - add additional values to direction property of Container component
+
 ## 28.7.0
 
 ### Minor Changes
