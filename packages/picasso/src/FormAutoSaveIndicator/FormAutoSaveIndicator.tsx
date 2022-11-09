@@ -25,37 +25,37 @@ const FormAutoSaveIndicator = ({
   label = 'Saved',
   duration = 1000,
 }: Props) => {
-  const [visibilityState, setVisibilityState] = useState<
+  const [savingState, setSavingState] = useState<
     'initial' | 'saving' | 'saved'
   >('initial')
   const classes = useStyles()
 
   useEffect(() => {
     if (saving) {
-      setVisibilityState('saving')
-    } else if (visibilityState === 'saving') {
-      setVisibilityState('saved')
+      setSavingState('saving')
+    } else if (savingState === 'saving') {
+      setSavingState('saved')
     }
-  }, [saving, visibilityState])
+  }, [saving, savingState])
 
   useEffect(() => {
     const hideIndicator = debounce(() => {
-      setVisibilityState('initial')
+      setSavingState('initial')
     }, duration)
 
-    if (visibilityState === 'saved') {
+    if (savingState === 'saved') {
       hideIndicator()
     }
 
     return () => {
       hideIndicator.clear()
     }
-  }, [visibilityState, duration])
+  }, [savingState, duration])
 
   return (
     <Container
       className={cx(classes.root, {
-        [classes.visible]: visibilityState === 'saved',
+        [classes.visible]: savingState === 'saved',
       })}
       align='right'
     >
