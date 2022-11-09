@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import debounce from 'debounce'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -8,8 +8,11 @@ import Typography from '../Typography'
 import Container from '../Container'
 
 export interface Props {
+  /** Indicates that form values are being saved */
   saving?: boolean
+  /** Duration for the delay before hiding 'Saved' text */
   duration?: number
+  /** The text of the label, default is 'Saved' */
   label?: string
 }
 
@@ -22,37 +25,37 @@ const FormAutoSaveIndicator = ({
   label = 'Saved',
   duration = 1000,
 }: Props) => {
-  const [show, setShow] = React.useState<'initial' | 'saving' | 'saved'>(
-    'initial'
-  )
+  const [visibilityState, setVisibilityState] = useState<
+    'initial' | 'saving' | 'saved'
+  >('initial')
   const classes = useStyles()
 
   useEffect(() => {
     if (saving) {
-      setShow('saving')
-    } else if (show === 'saving') {
-      setShow('saved')
+      setVisibilityState('saving')
+    } else if (visibilityState === 'saving') {
+      setVisibilityState('saved')
     }
-  }, [saving, show])
+  }, [saving, visibilityState])
 
   useEffect(() => {
     const hideIndicator = debounce(() => {
-      setShow('initial')
+      setVisibilityState('initial')
     }, duration)
 
-    if (show === 'saved') {
+    if (visibilityState === 'saved') {
       hideIndicator()
     }
 
     return () => {
       hideIndicator.clear()
     }
-  }, [show, duration])
+  }, [visibilityState, duration])
 
   return (
     <Container
       className={cx(classes.root, {
-        [classes.visible]: show === 'saved',
+        [classes.visible]: visibilityState === 'saved',
       })}
       align='right'
     >
