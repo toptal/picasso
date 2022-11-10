@@ -128,7 +128,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
         <Upload24 color='darkGrey' />
         {!hideContentText && (
           <Typography size='medium' color='black' weight='semibold'>
-            Click or drag file to upload
+            Click or drag to upload
           </Typography>
         )}
         {hint && <FormHint className={cx(classes.hint)}>{hint}</FormHint>}

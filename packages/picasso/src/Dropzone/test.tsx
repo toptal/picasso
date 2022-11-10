@@ -11,7 +11,7 @@ describe('Dropzone', () => {
   it('renders', () => {
     const { queryByText, container } = renderDropzone({})
 
-    expect(queryByText('Click or drag file to upload')).toBeVisible()
+    expect(queryByText('Click or drag to upload')).toBeVisible()
     expect(container).toMatchSnapshot()
   })
 
@@ -54,7 +54,7 @@ describe('Dropzone', () => {
     it('render contentText', () => {
       const { queryByText } = renderDropzone({})
 
-      expect(queryByText('Click or drag file to upload')).toBeInTheDocument()
+      expect(queryByText('Click or drag to upload')).toBeInTheDocument()
     })
   })
 
@@ -62,9 +62,7 @@ describe('Dropzone', () => {
     it('render contentText', () => {
       const { queryByText } = renderDropzone({ hideContentText: true })
 
-      expect(
-        queryByText('Click or drag file to upload')
-      ).not.toBeInTheDocument()
+      expect(queryByText('Click or drag to upload')).not.toBeInTheDocument()
     })
   })
 })
