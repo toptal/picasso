@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.9.0
+
+### Minor Changes
+
+- [#3212](https://github.com/toptal/picasso/pull/3212) [`05f2672e`](https://github.com/toptal/picasso/commit/05f2672e8cd9babaeda3d97ba96d7446a55445f9) Thanks [@mkrl](https://github.com/mkrl)! - ---
+
+  ### Dropzone
+
+  - adjust copy text for the Dropzone component
+
 ## 28.8.0
 
 ### Minor Changes
