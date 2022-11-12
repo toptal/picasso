@@ -4,7 +4,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 const COLLAPSE_BUTTON_SHADOW =
   '0 0 0 1px rgba(0, 0, 0, 0.04), 0 0 8px 0 rgba(0, 0, 0, 0.16)'
 
-export default ({ palette, screens, zIndex, transitions }: Theme) =>
+export default ({ palette, screens, transitions }: Theme) =>
   createStyles({
     root: {
       height: '100%',
@@ -27,29 +27,6 @@ export default ({ palette, screens, zIndex, transitions }: Theme) =>
         top: 0,
         width: '15.50rem',
         height: '100%',
-      },
-    },
-    responsiveWrapper: {
-      position: 'fixed',
-      top: '0.75em',
-      left: '0.75em',
-      zIndex: zIndex.appBar,
-    },
-    responsiveWrapperContent: {
-      maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
-
-      [screens('small', 'medium')]: {
-        maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
-      },
-
-      // height under which maxHeight menu starts to overflow
-      // and needs to reduce height dynamically to avoid overflow
-      '@media screen and (max-height: 585px)': {
-        maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
-
-        [screens('small', 'medium')]: {
-          maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
-        },
       },
     },
     spacer: {

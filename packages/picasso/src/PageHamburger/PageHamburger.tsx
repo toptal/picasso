@@ -1,0 +1,70 @@
+import React, { useContext, useState } from 'react'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import cx from 'classnames'
+
+import ButtonCircular from '../ButtonCircular'
+import PageHamburgerContext, {
+  PageHamburgerContextProps,
+} from './PageHamburgerContext'
+import Dropdown from '../Dropdown'
+import { Close16, Overview16 } from '../Icon'
+import { useBreakpoint } from '../utils'
+import styles from './styles'
+
+type HamburgerContentProps = {
+  id: string
+}
+
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PageHamburger',
+})
+
+const PageHamburgerContent = ({ id }: HamburgerContentProps) => {
+  return <div id={id} />
+}
+
+const PageHamburger = ({ id }: HamburgerContentProps) => {
+  const { showHamburger } =
+    useContext<PageHamburgerContextProps>(PageHamburgerContext)
+  const [showContent, setShowContent] = useState<boolean>(false)
+  const classes = useStyles()
+  const isCompactLayout = useBreakpoint(['small', 'medium'])
+
+  const handleShowContent = () => setShowContent(true)
+  const handleHideContent = () => setShowContent(false)
+
+  return (
+    <Dropdown
+      content={<PageHamburgerContent id={id} />}
+      className={cx(classes.responsiveWrapper, {
+        [classes.hidden]: !isCompactLayout || !showHamburger,
+      })}
+      classes={{ content: classes.responsiveWrapperContent }}
+      offset={{ top: 0.4 }}
+      popperOptions={{
+        modifiers: {
+          flip: { enabled: false },
+          preventOverflow: {
+            padding: 0,
+          },
+        },
+      }}
+      onOpen={handleShowContent}
+      onClose={handleHideContent}
+      keepMounted
+    >
+      <ButtonCircular
+        icon={
+          showContent ? (
+            <Close16 />
+          ) : (
+            <Overview16 className={classes.hamburger} />
+          )
+        }
+        variant='transparent'
+      />
+    </Dropdown>
+  )
+}
+
+export default PageHamburger
