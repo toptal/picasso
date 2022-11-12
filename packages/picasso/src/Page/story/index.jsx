@@ -1,5 +1,3 @@
-import pageTopBarStory from '../../PageTopBar/story'
-import pageTopBarMenuStory from '../../PageTopBarMenu/story'
 import pageHelmetStory from '../../PageHelmet/story'
 import pageContentStory from '../../PageContent/story'
 import pageFooterStory from '../../PageFooter/story'
@@ -20,8 +18,6 @@ const page = PicassoBook.section('Layout').createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Page, name: 'Page' })
-  .addComponentDocs(pageTopBarStory.componentDocs)
-  .addComponentDocs(pageTopBarMenuStory.componentDocs)
   .addComponentDocs(pageHelmetStory.componentDocs)
   .addComponentDocs(pageContentStory.componentDocs)
   .addComponentDocs(pageArticleStory.componentDocs)
@@ -51,8 +47,6 @@ page
   .addExample('Page/story/WithCompoundBanner.example.tsx', {
     title: 'With Compound Banner',
   })
-
-page.connect(pageTopBarStory.chapter)
 
 page.connect(pageHelmetStory.chapter)
 
