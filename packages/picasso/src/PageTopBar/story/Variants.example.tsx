@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Container, Stepper, Button } from '@toptal/picasso'
+import { Page, Container, Stepper, Button, Menu, Bell16 } from '@toptal/picasso'
 
 const Example = () => (
   <div>
@@ -25,6 +25,29 @@ const Example = () => (
           <Container right='medium'>
             <Button variant='transparent'>Create job</Button>
           </Container>
+        }
+      />
+    </Container>
+
+    <Container style={{ position: 'relative', height: '6rem' }}>
+      <Page.TopBar
+        variant='black'
+        title='Black'
+        actionItems={
+          <Container right='medium'>
+            <Button.Circular variant='transparent' icon={<Bell16 />} />
+          </Container>
+        }
+        rightContent={
+          <Page.TopBarMenu
+            name='Jacqueline Roque'
+            avatar='./jacqueline-with-flowers-1954-square.jpg'
+          >
+            <Menu>
+              <Menu.Item>My Account</Menu.Item>
+              <Menu.Item>Log Out</Menu.Item>
+            </Menu>
+          </Page.TopBarMenu>
         }
       />
     </Container>
