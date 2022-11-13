@@ -8,8 +8,8 @@ import ImageAvatar from './ImageAvatar/ImageAvatar'
 import TextAvatar from './TextAvatar/TextAvatar'
 import IconAvatar from './IconAvatar/IconAvatar'
 import AvatarWrapper from './AvatarWrapper/AvatarWrapper'
+import AvatarEditContainer from './AvatarEditContainer/AvatarEditContainer'
 import styles from './styles'
-import { Pencil16, Pencil24 } from '../Icon'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Alt text */
@@ -23,7 +23,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Variant of the avatar shape */
   variant?: 'square' | 'portrait' | 'landscape'
   /** Callback to show edit-on-click and receive event */
-  onEdit?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  onEdit?: (event: React.MouseEvent) => void
   testIds?: {
     wrapper?: string
     icon?: string
@@ -107,10 +107,7 @@ export const Avatar = (props: Props) => {
   const classes = useStyles(props)
   const isEditable = Boolean(onEdit)
 
-  const pencilIcon =
-    size === 'xxsmall' || size === 'xsmall' ? <Pencil16 /> : <Pencil24 />
-
-  return (
+  const avatar = (
     <AvatarWrapper
       /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
       variant={variant!}
@@ -119,18 +116,26 @@ export const Avatar = (props: Props) => {
       data-testid={testIds?.wrapper}
       {...rest}
     >
-      {isEditable && (
-        <div
-          data-testid={testIds?.editContainer}
-          className={classes.editContainer}
-          onClick={onEdit}
-        >
-          {pencilIcon}
-        </div>
-      )}
       {renderAvatar()}
     </AvatarWrapper>
   )
+
+  if (isEditable) {
+    return (
+      <div className={classes.editableAvatarContainer}>
+        {avatar}
+        {isEditable && (
+          <AvatarEditContainer
+            data-testid={testIds?.editContainer}
+            onClick={onEdit}
+            size={size}
+          />
+        )}
+      </div>
+    )
+  }
+
+  return avatar
 }
 
 Avatar.defaultProps = {
