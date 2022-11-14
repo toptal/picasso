@@ -110,9 +110,9 @@ export const Avatar = (props: Props) => {
   const avatar = (
     <AvatarWrapper
       /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-      size={size!}
-      /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
       variant={variant!}
+      /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
+      size={size!}
       data-testid={testIds?.wrapper}
       {...rest}
     >
