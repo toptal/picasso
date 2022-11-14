@@ -16,6 +16,12 @@ export interface Props {
   label?: string
 }
 
+enum SavingState {
+  Initial,
+  Saving,
+  Saved,
+}
+
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAutoSaveIndicator',
 })
@@ -25,25 +31,25 @@ const FormAutoSaveIndicator = ({
   label = 'Saved',
   duration = 1000,
 }: Props) => {
-  const [savingState, setSavingState] = useState<
-    'initial' | 'saving' | 'saved'
-  >('initial')
+  const [savingState, setSavingState] = useState<SavingState>(
+    SavingState.Initial
+  )
   const classes = useStyles()
 
   useEffect(() => {
     if (saving) {
-      setSavingState('saving')
-    } else if (savingState === 'saving') {
-      setSavingState('saved')
+      setSavingState(SavingState.Saving)
+    } else if (savingState === SavingState.Saving) {
+      setSavingState(SavingState.Saved)
     }
   }, [saving, savingState])
 
   useEffect(() => {
     const hideIndicator = debounce(() => {
-      setSavingState('initial')
+      setSavingState(SavingState.Initial)
     }, duration)
 
-    if (savingState === 'saved') {
+    if (savingState === SavingState.Saved) {
       hideIndicator()
     }
 
@@ -55,7 +61,7 @@ const FormAutoSaveIndicator = ({
   return (
     <Container
       className={cx(classes.root, {
-        [classes.visible]: savingState === 'saved',
+        [classes.visible]: savingState === SavingState.Saved,
       })}
       align='right'
     >

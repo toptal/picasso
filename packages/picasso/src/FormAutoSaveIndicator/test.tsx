@@ -24,8 +24,6 @@ describe('FormAutoSaveIndicator', () => {
     it('should show label', () => {
       const { queryByText, rerender } = render(<FormAutoSaveIndicator saving />)
 
-      expect(queryByText('Saved')).not.toBeVisible()
-
       rerender(<FormAutoSaveIndicator />)
 
       expect(queryByText('Saved')).toBeVisible()
