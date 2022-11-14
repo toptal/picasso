@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.10.0
+
+### Minor Changes
+
+- [#3210](https://github.com/toptal/picasso/pull/3210) [`4f3897e0`](https://github.com/toptal/picasso/commit/4f3897e02418852c5d24c496c7332f57adfd0cb8) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### FormAutoSaveIndicator
+
+  - add a new component to be used inside forms to show the auto-saving state
+
 ## 28.9.0
 
 ### Minor Changes
