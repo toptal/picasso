@@ -10,8 +10,8 @@ import Container from '../Container'
 export interface Props {
   /** Indicates that form values are being saved */
   saving?: boolean
-  /** Duration for the delay before hiding 'Saved' text */
-  duration?: number
+  /** Timeout duration for the delay before hiding 'Saved' text */
+  hideTimeout?: number
   /** The text of the label, default is 'Saved' */
   label?: string
 }
@@ -29,7 +29,7 @@ const useStyles = makeStyles<Theme>(styles, {
 const FormAutoSaveIndicator = ({
   saving,
   label = 'Saved',
-  duration = 1000,
+  hideTimeout = 1000,
 }: Props) => {
   const [savingState, setSavingState] = useState<SavingState>(
     SavingState.Initial
@@ -47,7 +47,7 @@ const FormAutoSaveIndicator = ({
   useEffect(() => {
     const hideIndicator = debounce(() => {
       setSavingState(SavingState.Initial)
-    }, duration)
+    }, hideTimeout)
 
     if (savingState === SavingState.Saved) {
       hideIndicator()
@@ -56,7 +56,7 @@ const FormAutoSaveIndicator = ({
     return () => {
       hideIndicator.clear()
     }
-  }, [savingState, duration])
+  }, [savingState, hideTimeout])
 
   return (
     <Container
