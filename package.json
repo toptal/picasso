@@ -13,7 +13,7 @@
     "generate:component": "davinci-code new component",
     "generate:example": "davinci-code new example",
     "generate:icons": "./bin/generate-icons",
-    "happo": "cross-env TEST_ENV=visual happo run",
+    "happo": "cross-env TEST_ENV=visual happo",
     "happo:storybook": "cross-env TEST_ENV=visual HAPPO_IS_ASYNC=false happo-ci-github-actions",
     "lint": "davinci-syntax lint code .",
     "release": "yarn build:package && changeset publish",
