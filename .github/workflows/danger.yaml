@@ -1,0 +1,28 @@
+name: Danger
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: [master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  danger:
+    name: Check
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+
+      - uses: toptal/davinci-github-actions/yarn-install@v4.4.1
+
+      - uses: toptal/davinci-github-actions/danger@v4.4.1
