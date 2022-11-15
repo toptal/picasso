@@ -34,7 +34,7 @@ const SETTINGS = {
   },
 } as const
 
-const SHAPES = {
+export const AVATAR_DROPZONE_SVG_SHAPES = {
   xxsmall: getShapes(SETTINGS.xxsmall),
   xsmall: getShapes(SETTINGS.xsmall),
   small: getShapes(SETTINGS.small),
@@ -67,7 +67,7 @@ export const DropzoneSvg = (props: Props) => {
   } = props
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const shapes = SHAPES[size!]
+  const shapes = AVATAR_DROPZONE_SVG_SHAPES[size!]
 
   const classes = useStyles()
 

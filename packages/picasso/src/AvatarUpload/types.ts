@@ -12,7 +12,7 @@ export type AvatarUploadOptions = {
   ) => void
   onDropAccepted?: <T extends File>(files: T, event: DropEvent) => void
   onDropRejected?: (fileRejection: FileRejection, event: DropEvent) => void
-  onEdit?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  onEdit?: (event: React.MouseEvent) => void
   validator?: <T extends File>(file: T) => FileError | null
 }
 

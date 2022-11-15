@@ -20,7 +20,7 @@ import {
   FileRejection,
   FileUpload,
 } from './types'
-import DropzoneSvg from './DropzoneSvg/DropzoneSvg'
+import AvatarDropzoneSvg from '../AvatarDropzoneSvg'
 import Loader from '../Loader'
 import { Upload16, Upload24 } from '../Icon'
 import { Status } from '../OutlinedInput'
@@ -164,9 +164,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       [onDropRejected]
     )
 
-    const handleEdit = (
-      event: React.MouseEvent<HTMLDivElement, MouseEvent>
-    ) => {
+    const handleEdit = (event: React.MouseEvent) => {
       // to avoid dropzone to be triggered
       event.stopPropagation()
 
@@ -279,7 +277,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
           />
         ) : (
           <>
-            <DropzoneSvg
+            <AvatarDropzoneSvg
               disabled={disabled}
               error={status === 'error'}
               size={size}
