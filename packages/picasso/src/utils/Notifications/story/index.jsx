@@ -69,6 +69,14 @@ Each of them has this list of props:
       title: 'Custom',
       takeScreenshot: false,
     })
+    .addExample('utils/Notifications/story/CustomPosition.example.tsx', {
+      title: 'Custom Position',
+      takeScreenshot: false,
+    })
+    .addExample('utils/Notifications/story/MaxNotifications.example.tsx', {
+      title: 'MaxNotifications',
+      takeScreenshot: false,
+    })
 )
 
 export default {

@@ -9,15 +9,20 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoNotificationsProvider',
 })
 
-const MAX_NOTIFICATION_MESSAGES = 5
-
-interface Props {
+export interface NotificationsProviderProps {
   /** Notification DOMNode for createPortal */
   children: React.ReactNode
+  /** Valid HTML Node element, used to target `ReactDOM.createPortal`.*/
   container?: HTMLElement
+  /** Maximum notifications that can be stacked on top of one another.   */
+  maxNotifications?: 1 | 2 | 3 | 4 | 5
 }
 
-const NotificationsProvider = ({ children, container }: Props) => {
+const NotificationsProvider = ({
+  children,
+  container,
+  maxNotifications = 5,
+}: NotificationsProviderProps) => {
   const { hasTopBar } = usePageTopBar()
   const classes = useStyles()
 
@@ -27,7 +32,7 @@ const NotificationsProvider = ({ children, container }: Props) => {
 
   return (
     <SnackbarProvider
-      maxSnack={MAX_NOTIFICATION_MESSAGES}
+      maxSnack={maxNotifications}
       domRoot={container}
       classes={{
         containerRoot: classes.root,
