@@ -1,5 +1,16 @@
 # Change Log
 
+## 28.10.1
+
+### Patch Changes
+
+- [#3228](https://github.com/toptal/picasso/pull/3228) [`28c97407`](https://github.com/toptal/picasso/commit/28c97407a30529e3a9052633c17f535fcb93af6f) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Avatar
+
+  - add outline for focused state when editable
+    Due to changes in the component structure, snapshot changes should be expected.
+
 ## 28.10.0
 
 ### Minor Changes
