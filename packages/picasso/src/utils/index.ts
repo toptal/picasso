@@ -20,6 +20,7 @@ export {
   colors as palette,
   generateRandomString,
   generateRandomStringOrGetEmptyInTest,
+  sizes,
 } from '@toptal/picasso-provider'
 export { useIsomorphicLayoutEffect, isBrowser } from '@toptal/picasso-shared'
 
