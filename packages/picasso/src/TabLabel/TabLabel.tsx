@@ -21,11 +21,12 @@ const TabLabel = ({ label, orientation, titleCase }: Props) => {
 
   return (
     <TypographyOverflow
-      variant='body'
-      size='medium'
-      weight='semibold'
-      inline
+      as='div'
       color='inherit'
+      inline
+      size='medium'
+      variant='body'
+      weight='semibold'
     >
       {titleCase ? toTitleCase(label) : label}
     </TypographyOverflow>
