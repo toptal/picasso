@@ -9,10 +9,11 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
-import Typography from '../Typography'
+import UserBadge from '../UserBadge'
 import styles from './styles'
-import toTitleCase from '../utils/to-title-case'
 import { TabsOrientationContext } from '../Tabs/Tabs'
+import TabLabel from '../TabLabel'
+import TabDescription from '../TabDescription'
 
 export interface Props
   extends BaseProps,
@@ -33,6 +34,12 @@ export interface Props
   /** The Icon element */
   icon?: ReactElement
 
+  /** Image URL */
+  avatar?: string | null
+
+  /** Description */
+  description?: string
+
   // Properties below are managed by Tabs component
 
   selected?: boolean
@@ -52,16 +59,22 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
     onChange,
     onClick,
     titleCase: propsTitleCase,
+    description,
+    avatar,
     ...rest
   } = props
   const classes = useStyles()
   const titleCase = useTitleCase(propsTitleCase)
-  const labelComponent = (
-    <Typography as='div' size='small' weight='semibold' color='inherit'>
-      {titleCase ? toTitleCase(label) : label}
-    </Typography>
-  )
   const orientation = useContext(TabsOrientationContext)
+
+  const labelComponent = getLabelComponent({
+    avatar,
+    description,
+    disabled,
+    label,
+    orientation,
+    titleCase,
+  })
 
   return (
     <MUITab
@@ -87,5 +100,56 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
 Tab.defaultProps = {}
 
 Tab.displayName = 'Tab'
+
+type GetLabelComponentProps = {
+  avatar?: string | null
+  description?: string
+  disabled?: boolean
+  label?: React.ReactNode
+  orientation: 'horizontal' | 'vertical'
+  titleCase?: boolean
+}
+const getLabelComponent = ({
+  avatar,
+  description,
+  disabled,
+  label,
+  orientation,
+  titleCase,
+}: GetLabelComponentProps): React.ReactNode => {
+  if (!label) {
+    return null
+  }
+
+  const isHorizontal = orientation === 'horizontal'
+  const isCustomLabel = typeof label !== 'string'
+
+  const Label = () => (
+    <TabLabel titleCase={titleCase} label={label} orientation={orientation} />
+  )
+
+  if (isHorizontal || isCustomLabel) {
+    return <Label />
+  }
+
+  if (typeof avatar === 'undefined') {
+    return (
+      <>
+        <Label />
+        {description && (
+          <TabDescription disabled={disabled}>{description}</TabDescription>
+        )}
+      </>
+    )
+  }
+
+  return (
+    <UserBadge renderName={Label} name={label} avatar={avatar}>
+      {description && (
+        <TabDescription disabled={disabled}>{description}</TabDescription>
+      )}
+    </UserBadge>
+  )
+}
 
 export default Tab
