@@ -3,6 +3,7 @@ export {
   FixViewport,
   FontsLoader,
   NotificationsProvider,
+  NotificationsProviderProps,
   PicassoLight,
 } from './Picasso'
 
