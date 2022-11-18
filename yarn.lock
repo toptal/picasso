@@ -12137,6 +12137,21 @@ happo-e2e@^1.0.3, happo-e2e@^1.2.0:
     parse-srcset "^1.0.2"
     string.prototype.replaceall "^1.0.6"
 
+happo-e2e@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/happo-e2e/-/happo-e2e-2.0.0.tgz#2756d2cd55c829079808593d8638ca0ec64ecd9e"
+  integrity sha512-XHM2+gIU22FMkc7LgXJDrMnCSaXJgZC8/GNb1NCPSaF/MisFwjwEUTmCRGZZ/dnDzfd5lZghxjH8smvfdHPQTg==
+  dependencies:
+    archiver "^5.3.0"
+    base64-stream "^1.0.0"
+    crypto-js "^4.1.1"
+    https-proxy-agent "^5.0.0"
+    image-size "^1.0.1"
+    mkdirp "^1.0.4"
+    node-fetch "^2.0.0"
+    parse-srcset "^1.0.2"
+    string.prototype.replaceall "^1.0.6"
+
 happo-plugin-storybook@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/happo-plugin-storybook/-/happo-plugin-storybook-3.0.0.tgz#a1ab09dddefa0a638f5d686e109aec58b2c65698"
