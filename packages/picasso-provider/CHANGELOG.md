@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [#3237](https://github.com/toptal/picasso/pull/3237) [`b820471e`](https://github.com/toptal/picasso/commit/b820471e3091a5c22fe521de0ee85ec4347f58f5) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### PicassoGlobalStylesProvider
+
+  - only render application after Picasso's root element is mounted
+
 ## 2.0.0
 
 ### Major Changes
