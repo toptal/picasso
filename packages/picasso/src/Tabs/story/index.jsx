@@ -1,3 +1,4 @@
+import { Tabs } from '../Tabs'
 import tabStory from '../../Tab/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
