@@ -34,7 +34,7 @@ Cypress.Commands.add(
   'hoverAndTakeHappoScreenshot',
   { prevSubject: true },
   (subject, options) => {
-    // happo doesn't retain hover state but it has a workaround (not official)
+    // this is the official way to hover element in happo-e2e
     // "data-happo-hover" is being added and removed to mimic the state and
     // happo will be able to detect the hover state
     cy.get(subject.selector)
