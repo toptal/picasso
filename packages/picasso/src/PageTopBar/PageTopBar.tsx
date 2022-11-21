@@ -13,6 +13,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Logo from '../Logo'
 import Container from '../Container'
+import PageHamburger, { useHamburgerContext } from '../PageHamburger'
 import Typography from '../Typography'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
@@ -72,6 +73,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   }, [setHasTopBar])
 
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
+  const { hamburgerId } = useHamburgerContext()
 
   const isDark = variant === 'dark'
 
@@ -133,6 +135,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
           </div>
         </div>
       </header>
+      <PageHamburger id={hamburgerId} />
     </div>
   )
 })
