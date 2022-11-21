@@ -14,10 +14,10 @@ const page = PicassoBook.section('Layout').createPage(
   `
 )
 
-// page
-//   .createTabChapter('Props')
-//   .addComponentDocs({ component: Tabs, name: 'Tabs' })
-//   .addComponentDocs(tabStory.componentDocs)
+page
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Tabs, name: 'Tabs' })
+  .addComponentDocs(tabStory.componentDocs)
 
 page
   .createChapter()
