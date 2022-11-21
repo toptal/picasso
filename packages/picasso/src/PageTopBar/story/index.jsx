@@ -10,6 +10,7 @@ const chapter = PicassoBook.connectToPage(page =>
     .addExample('PageTopBar/story/Variants.example.tsx', 'Variants')
     .addExample('PageTopBar/story/LeftContent.example.tsx', 'Left content')
     .addExample('PageTopBar/story/RightContent.example.tsx', 'Right content')
+    .addExample('PageTopBar/story/CenterContent.example.tsx', 'Center content')
     .addExample(
       'PageTopBar/story/ExtraMenuContent.example.tsx',
       'Extra header menu content'
