@@ -45,7 +45,7 @@ PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
   },
 }))
 
-export default ({ sizes, palette, shadows }: Theme) =>
+export default ({ sizes, palette, shadows, transitions }: Theme) =>
   createStyles({
     horizontal: {
       '&:not(:last-child)': {
@@ -53,17 +53,27 @@ export default ({ sizes, palette, shadows }: Theme) =>
       },
     },
     vertical: {
-      borderRadius: `${sizes.borderRadius.medium} 0 0 ${sizes.borderRadius.medium}`,
-      margin: '0.5em 0',
+      width: '100%',
+      borderRadius: `${sizes.borderRadius.small} 0 0 ${sizes.borderRadius.small}`,
+      margin: '0.25rem 0',
       overflow: 'hidden',
-      padding: '0.5625em 0 0.5625em',
+      padding: '0.5rem 1rem',
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
+      textAlign: 'left',
+      backgroundColor: palette.grey.lighter,
+      opacity: 1,
+      color: palette.grey.dark,
 
       '&:first-child': {
-        marginTop: '0.125em',
+        marginTop: '1rem',
       },
 
       '&:last-child': {
-        marginBottom: '0.125em',
+        marginBottom: '1rem',
+      },
+
+      '&:hover': {
+        color: palette.common.black,
       },
 
       '&:hover:not($selected)': {
@@ -71,13 +81,12 @@ export default ({ sizes, palette, shadows }: Theme) =>
       },
 
       '& $wrapper': {
-        marginLeft: '1em',
-        marginRight: '2em',
-        alignItems: 'flex-start',
+        display: 'block',
       },
     },
     selected: {
       '&$vertical': {
+        color: palette.common.black,
         boxShadow: shadows[1],
         backgroundColor: palette.grey.lightest,
 

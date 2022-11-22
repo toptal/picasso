@@ -99,7 +99,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit PicassoTypography-semibold TypographyOverflow-wrapper TypographyOverflow-singleLine MuiTypography-body1 MuiTypography-noWrap MuiTypography-displayInline"
               >
                 Tab 1
               </div>
@@ -117,7 +117,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit PicassoTypography-semibold TypographyOverflow-wrapper TypographyOverflow-singleLine MuiTypography-body1 MuiTypography-noWrap MuiTypography-displayInline"
               >
                 Tab 2
               </div>
