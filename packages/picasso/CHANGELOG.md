@@ -1,5 +1,17 @@
 # Change Log
 
+## 28.12.0
+
+### Minor Changes
+
+- [#3211](https://github.com/toptal/picasso/pull/3211) [`9028491d`](https://github.com/toptal/picasso/commit/9028491d5aae8731dbad767ac1bf86ef4cf22b72) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Tabs
+
+  - update styles of the vertical variant to comply with BASE
+  - add `description` and `avatar` props to `Tabs.Tab` in the vertical variant
+  - add [new examples](https://picasso.toptal.net/?path=/story/layout-tabs--tabs#tabs-tab-vertical-tab) in the storybook
+
 ## 28.11.0
 
 ### Minor Changes
