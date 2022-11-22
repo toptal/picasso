@@ -1,5 +1,35 @@
 # Change Log
 
+## 28.11.0
+
+### Minor Changes
+
+- [#3246](https://github.com/toptal/picasso/pull/3246) [`83f57466`](https://github.com/toptal/picasso/commit/83f57466ab64eb581e172382da63573ee7ff2bb2) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### Page.TopBar
+
+  - add new variant `grey`
+  - add `centerContent` prop to display center menu
+
+  ### Page.TopBar.Menu
+
+  - new component for center menu in `TopBar` designed to be used in the new `grey` variant
+  - allows maximum of 6 menu items
+  - on mobile the menu can be accessed from the hamburger menu
+  - example usage:
+
+  ```jsx
+  <Page.TopBar.Menu>
+    <Page.TopBar.Item icon={<Profile16 />}>Menu item 1</Page.TopBar.Item>
+    <Page.TopBar.Item>Menu item 2</Page.TopBar.Item>
+  </Page.TopBar.Menu>
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`83f57466`](https://github.com/toptal/picasso/commit/83f57466ab64eb581e172382da63573ee7ff2bb2)]:
+  - @toptal/picasso-shared@11.2.0
+
 ## 28.10.1
 
 ### Patch Changes

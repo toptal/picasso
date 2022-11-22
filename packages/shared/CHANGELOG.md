@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.2.0
+
+### Minor Changes
+
+- [#3246](https://github.com/toptal/picasso/pull/3246) [`83f57466`](https://github.com/toptal/picasso/commit/83f57466ab64eb581e172382da63573ee7ff2bb2) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  - add `getElementById` util function
+
 ## 11.1.0
 
 ### Minor Changes
