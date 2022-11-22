@@ -13,13 +13,17 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Logo from '../Logo'
 import Container from '../Container'
+import PageHamburger, {
+  PageHamburgerPortal,
+  useHamburgerContext,
+} from '../PageHamburger'
 import Typography from '../Typography'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import { useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
 import styles from './styles'
 
-type VariantType = 'dark' | 'light'
+type VariantType = 'dark' | 'light' | 'grey'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Title which is displayed along the `Logo` */
@@ -28,6 +32,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   logoLink?: ReactElement
   /** Logo to display */
   logo?: ReactNode
+  /** Content for the center of the `Header`  */
+  centerContent?: ReactNode
   /** Content for the left side of the `Header`  */
   leftContent?: ReactNode
   /** Content for the right side of the `Header`  */
@@ -52,6 +58,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     title,
     logoLink,
     logo,
+    centerContent,
     leftContent,
     rightContent,
     actionItems,
@@ -72,8 +79,9 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   }, [setHasTopBar])
 
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
+  const { hamburgerId } = useHamburgerContext()
 
-  const isDark = variant === 'dark'
+  const isDark = ['dark', 'grey'].includes(variant)
 
   const logoDefault = (
     <Logo
@@ -93,6 +101,14 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
       <Container left='small'>
         <Typography invert={isDark}>{title}</Typography>
       </Container>
+    </Container>
+  )
+
+  const responsiveCenterContent = isCompactLayout ? (
+    <PageHamburgerPortal>{centerContent}</PageHamburgerPortal>
+  ) : (
+    <Container flex alignItems='center'>
+      {centerContent}
     </Container>
   )
 
@@ -127,12 +143,15 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
             {leftContent}
           </div>
 
+          {centerContent && responsiveCenterContent}
+
           <div className={classes.right}>
             {!isCompactLayout && actionItems}
             {rightContent}
           </div>
         </div>
       </header>
+      <PageHamburger id={hamburgerId} />
     </div>
   )
 })

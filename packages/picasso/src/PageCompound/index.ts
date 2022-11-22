@@ -1,6 +1,6 @@
 import Page from '../Page'
 import PageHelmet from '../PageHelmet'
-import PageTopBar from '../PageTopBar'
+import { PageTopBarCompound as PageTopBar } from '../PageTopBarCompound'
 import PageTopBarMenu from '../PageTopBarMenu'
 import PageFooter from '../PageFooter'
 import PageContent from '../PageContent'
