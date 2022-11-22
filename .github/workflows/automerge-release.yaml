@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Merge pull request if the release is not major
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           github-token: ${{ env.DEVBOT_TOKEN }}
           script: |
