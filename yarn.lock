@@ -4946,10 +4946,10 @@
     globby "^11.0.1"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-engine@^7.6.0":
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-7.6.0.tgz#ca677d76b66a9b34f017a877ece3cdbb4ae15e93"
-  integrity sha512-ZC8bQPHwfbzeFuMdbqe6kDzrugZXvqxRPIJ8h4gzO8EpMmLlBD52PQWoSRzUzIctycIzvVndoeUcdvT57stuDw==
+"@toptal/davinci-engine@^7.6.1":
+  version "7.6.1"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-7.6.1.tgz#ae7eff0b75e03aaf7e61b5f1ad4be4c0f6c871f2"
+  integrity sha512-hRVZMhGRgL06W+OD6+IjZTP6/NS8DMrpnxXWAlrbIj2OGB0/K8vmZWalxQuuXDsBy0W1qSkVqMT9G4+kwRUDAg==
   dependencies:
     "@babel/cli" "^7.17.10"
     "@babel/core" "^7.18.0"
@@ -4973,7 +4973,7 @@
     "@svgr/webpack" "^6.1.2"
     "@toptal/davinci-cli-shared" "1.8.1"
     "@toptal/davinci-cloudflare-requests-handler" "0.1.1"
-    "@toptal/davinci-monorepo" "6.8.0"
+    "@toptal/davinci-monorepo" "6.8.1"
     babel-loader "^8.2.2"
     babel-plugin-graphql-tag "^3.3.0"
     babel-plugin-module-resolver "^4.1.0"
@@ -5016,10 +5016,10 @@
     webpackbar "^4.0.0"
     workbox-webpack-plugin "^6.5.4"
 
-"@toptal/davinci-monorepo@6.8.0":
-  version "6.8.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-monorepo/-/davinci-monorepo-6.8.0.tgz#26d08273bc430ac305137382bc6ed79090f598da"
-  integrity sha512-hcUsXNCwWzR/p02s8EunaFmO6o3sfcW4vTRQfzdo4TcNOxvWB1sSFArOE+QNgtmbSFCyCLwFCUfaLTU8cM7B5Q==
+"@toptal/davinci-monorepo@6.8.1":
+  version "6.8.1"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-monorepo/-/davinci-monorepo-6.8.1.tgz#28b824bf663009c200d9446dea16681c2af4b6fc"
+  integrity sha512-V2OSOgEh3OmTFRTmf08N2N2IbYDORt1qc+h5AqZu+S1ZRNIJaqjnfK0vygxZ0VDN999RdLHV7fekkErSInbOcw==
   dependencies:
     "@oclif/core" "^1.16.1"
     "@toptal/davinci-cli-shared" "1.8.1"
