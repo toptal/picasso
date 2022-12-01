@@ -4,7 +4,7 @@ import { MenuItemProps } from '@material-ui/core/MenuItem'
 
 import { MenuItemAttributes } from '../MenuItem'
 import { VariantType } from '../PageSidebar/types'
-import { BadgeProps } from '../Badge'
+import { SidebarTagProps, SidebarBadgeProps } from '../SidebarItemContent/types'
 
 export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
@@ -20,7 +20,9 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Component name to render the menu item as */
   as?: ElementType<MenuItemProps>
   /** Definition of the embedded badge  */
-  badge?: Omit<BadgeProps, 'size' | 'children'>
+  badge?: number | SidebarBadgeProps
+  /** Render Tag.Rectangular */
+  tag?: string | SidebarTagProps
   /** Callback when item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Callback when item is hovered */
