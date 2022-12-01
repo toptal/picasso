@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { useTitleCase } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core'
@@ -6,20 +6,10 @@ import { makeStyles, Theme } from '@material-ui/core'
 import Typography from '../Typography'
 import Tooltip from '../Tooltip'
 import Container from '../Container'
-import Badge, { BadgeProps } from '../Badge'
+import Badge from '../Badge'
 import { getReactNodeTextContent } from '../utils'
 import styles from './styles'
-
-export interface Props {
-  compact?: boolean
-  icon?: ReactElement
-  badge?: Omit<BadgeProps, 'size' | 'children'>
-  children?: ReactNode
-  titleCase?: boolean
-  testIds?: {
-    content?: string
-  }
-}
+import { Props } from './types'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItemContent',
@@ -61,8 +51,10 @@ const CompactItemContent = (props: Props) => {
   const hasBadge = badge != null
 
   const wrappedIcon =
-    icon && hasBadge ? (
-      <ItemContentBadge content={badge.content}>{icon}</ItemContentBadge>
+    icon && hasBadge && !hasSubItems ? (
+      <ItemContentBadge content={badge.content} variant={badge.variant}>
+        {icon}
+      </ItemContentBadge>
     ) : (
       icon
     )
