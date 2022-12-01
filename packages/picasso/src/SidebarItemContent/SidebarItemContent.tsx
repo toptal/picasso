@@ -7,9 +7,10 @@ import Typography from '../Typography'
 import Tooltip from '../Tooltip'
 import Container from '../Container'
 import Badge from '../Badge'
+import TagRectangular from '../TagRectangular'
 import { getReactNodeTextContent } from '../utils'
 import styles from './styles'
-import { Props } from './types'
+import { Props, SidebarBadgeProps } from './types'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItemContent',
@@ -24,21 +25,14 @@ const resolveChildrenText = (text: ReactNode, titleCase: boolean) =>
     text
   )
 
-const ItemContentBadge = (props: Props['badge'] & { children?: ReactNode }) => {
+const ItemContentBadge = (
+  props: SidebarBadgeProps & { children?: ReactNode }
+) => {
   const { children, variant = 'red', ...rest } = props
-
-  const classes = useStyles()
   const isOverlay = React.Children.count(children) > 0
 
   return (
-    <Badge
-      className={cx({
-        [classes.staticBadge]: !isOverlay,
-      })}
-      variant={variant}
-      size={isOverlay ? 'small' : 'large'}
-      {...rest}
-    >
+    <Badge variant={variant} size={isOverlay ? 'small' : 'large'} {...rest}>
       {children}
     </Badge>
   )
@@ -79,15 +73,23 @@ const CompactItemContent = (props: Props) => {
 }
 
 const ExpandedItemContent = (props: Props) => {
-  const { icon, badge, children, testIds } = props
+  const { icon, badge, children, testIds, tag } = props
   const classes = useStyles()
 
   const hasIcon = icon != null
   const hasBadge = badge != null
+  const hasTag = tag != null
+  const hasSubItems = menu != null
 
   return (
-    <Container className={classes.noWrap} inline flex alignItems='center'>
-      {icon}
+    <Container
+      className={classes.noWrap}
+      inline
+      flex
+      alignItems='center'
+      gap='xsmall'
+    >
+      {!isSubMenu && icon}
 
       <Container
         className={cx(classes.noWrap, {
@@ -98,16 +100,18 @@ const ExpandedItemContent = (props: Props) => {
         data-testid={testIds?.content}
       >
         {children}
-
-        {hasBadge && <ItemContentBadge {...badge} />}
       </Container>
+      {hasTag && !hasSubItems && (
+        <TagRectangular variant={tag.variant || 'red'}>
+          {tag.content}
+        </TagRectangular>
+      )}
     </Container>
   )
 }
 
 const SidebarItemContent = (props: Props) => {
   const { children, titleCase: propsTitleCase, compact } = props
-
   const titleCase = useTitleCase(propsTitleCase)
   const resolvedChildren = resolveChildrenText(children, !!titleCase)
 

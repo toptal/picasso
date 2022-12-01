@@ -1,4 +1,5 @@
 import { createStyles } from '@material-ui/core'
+import { rem } from '@toptal/picasso-shared'
 
 export default () =>
   createStyles({
@@ -7,7 +8,7 @@ export default () =>
       minWidth: 0,
     },
     withIcon: {
-      marginLeft: '0.875em',
+      marginLeft: rem('6px'),
     },
     hiddenContent: {
       visibility: 'hidden',
@@ -15,8 +16,5 @@ export default () =>
     iconWrapper: {
       width: '1em',
       height: '1em',
-    },
-    staticBadge: {
-      marginLeft: '0.5em',
     },
   })
