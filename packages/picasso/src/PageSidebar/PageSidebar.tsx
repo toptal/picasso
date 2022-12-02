@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { useSidebar } from '@toptal/picasso-provider'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import React, {
   forwardRef,
@@ -36,6 +36,8 @@ export interface Props extends BaseProps {
     collapseButton?: string
     container?: string
   }
+  /** Different width of sidebar */
+  size?: SizeType<'small' | 'medium' | 'large'>
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -54,6 +56,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     collapsible,
     defaultCollapsed,
     testIds,
+    size = 'medium',
   } = props
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
@@ -90,7 +93,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       flex
       direction='column'
       style={style}
-      className={cx(classes.root, className, classes[variant], {
+      className={cx(classes.root, className, classes[variant], classes[size], {
         [classes.rootCollapsed]: collapsible && isCollapsed,
       })}
       data-testid={testIds?.container}
@@ -131,6 +134,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
 
 PageSidebar.defaultProps = {
   variant: 'light',
+  size: 'medium',
 }
 
 PageSidebar.displayName = 'PageSidebar'
