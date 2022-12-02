@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.14.2
+
+### Patch Changes
+
+- [#3264](https://github.com/toptal/picasso/pull/3264) [`921da632`](https://github.com/toptal/picasso/commit/921da632eb0e1f3aa54b89bd15b61160f4e2220b) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### PageHamburger
+
+  - change role from `tooltip` to `navigation` for hamburger content
+
 ## 28.14.1
 
 ### Patch Changes
