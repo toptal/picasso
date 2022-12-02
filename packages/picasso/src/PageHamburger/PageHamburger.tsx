@@ -42,6 +42,9 @@ const PageHamburger = ({ id }: Props) => {
           },
         },
       }}
+      popperProps={{
+        role: 'navigation',
+      }}
       onOpen={handleShowContent}
       onClose={handleHideContent}
       keepMounted
