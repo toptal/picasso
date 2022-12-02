@@ -1,5 +1,37 @@
 # Change Log
 
+## 28.13.0
+
+### Minor Changes
+
+- [#3258](https://github.com/toptal/picasso/pull/3258) [`d0e014b2`](https://github.com/toptal/picasso/commit/d0e014b2fc8f80be4b9e65e3c7432b1fe595092f) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### useBoolean
+
+  - add new reusable hook `useBoolean`
+
+  ```diff
+  const Component = () => {
+  -  const [isOpened, setOpen] = useState(false)
+  -
+  -  const handleOpen = () => setOpen(true)
+  -  const handleClose = () => setOpen(false)
+  -  const handleToggle = () => setOpen(value => !value)
+
+  + const [isOpened, handleOpen, handleClose, handleToggle] = useBoolean()
+  }
+  ```
+
+  ```diff
+  const Component = () => {
+  -  const [isCollapsed, setCollapsed] = useState(true)
+  -
+  -  const handleToggle = () => setCollapsed(value => !value)
+
+  + const [isCollapsed, , , handleToggle] = useBoolean(true)
+  }
+  ```
+
 ## 28.12.0
 
 ### Minor Changes
