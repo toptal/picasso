@@ -1,5 +1,18 @@
 # Change Log
 
+## 28.14.0
+
+### Minor Changes
+
+- [#3257](https://github.com/toptal/picasso/pull/3257) [`a4b70ba3`](https://github.com/toptal/picasso/commit/a4b70ba30a70c965f3b5875c36c3f89125c21092) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Page.Sidebar
+
+  - add `size` prop to support different widths
+    - **small** for `212px`
+    - **medium** for `236px`
+    - **large** for `280px`
+
 ## 28.13.0
 
 ### Minor Changes
