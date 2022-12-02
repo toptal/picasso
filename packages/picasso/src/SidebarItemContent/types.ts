@@ -21,4 +21,6 @@ export interface Props {
   testIds?: {
     content?: string
   }
+  isSubMenu?: boolean
+  menu?: ReactElement
 }

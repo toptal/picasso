@@ -6,6 +6,7 @@ import Accordion from '../Accordion'
 import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { SubMenuContextProvider } from './SubMenuContextProvider'
+import { ParentItemContextProvider } from './ParentItemContextProvider'
 import { Props } from './types'
 import { SidebarItemHeader } from './SidebarItemHeader'
 
@@ -25,16 +26,13 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
       icon,
       compact,
     } = props
-
     const classes = useStyles()
 
     const handleAccordionChange = useCallback(
       (event: ChangeEvent<{}>, isAccordionExpanded: boolean) => {
         event.stopPropagation()
 
-        if (isAccordionExpanded) {
-          expand?.(index ?? null)
-        }
+        expand?.((isAccordionExpanded && index) || null)
       },
       [index, expand]
     )
@@ -49,26 +47,32 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
     )
 
     return (
-      <Accordion
-        onChange={handleAccordionChange}
-        classes={{
-          summary: classes.collapsibleWrapper,
-          content: classes.content,
-        }}
-        content={content}
-        borders='none'
-        disabled={disabled}
-        expanded={isExpanded}
-        expandIcon={
-          <ArrowDownMinor16
-            className={cx(classes.expandIcon, classes[`${variant}ExpandIcon`], {
-              [classes.expandIconDisabled]: disabled,
-            })}
-          />
-        }
-      >
-        <SidebarItemHeader {...props} ref={ref} />
-      </Accordion>
+      <ParentItemContextProvider isOpened={isExpanded || false}>
+        <Accordion
+          onChange={handleAccordionChange}
+          classes={{
+            summary: classes.collapsibleWrapper,
+            content: classes.content,
+          }}
+          content={content}
+          borders='none'
+          disabled={disabled}
+          expanded={isExpanded}
+          expandIcon={
+            <ArrowDownMinor16
+              className={cx(
+                classes.expandIcon,
+                classes[`${variant}ExpandIcon`],
+                {
+                  [classes.expandIconDisabled]: disabled,
+                }
+              )}
+            />
+          }
+        >
+          <SidebarItemHeader {...props} ref={ref} />
+        </Accordion>
+      </ParentItemContextProvider>
     )
   }
 )

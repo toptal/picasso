@@ -16,5 +16,15 @@ export default () =>
     iconWrapper: {
       width: '1em',
       height: '1em',
+      position: 'relative',
+    },
+    compactIndicator: {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      transform: 'translate(50%, -50%)',
+    },
+    expandedIndicator: {
+      marginRight: rem('6px'),
     },
   })
