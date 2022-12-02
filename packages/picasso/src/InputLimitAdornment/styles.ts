@@ -10,8 +10,4 @@ export default ({ palette }: Theme) =>
     limiterLabelError: {
       color: palette.red.main,
     },
-    limiterMultiline: {
-      justifyContent: 'unset',
-      marginLeft: 'unset',
-    },
   })

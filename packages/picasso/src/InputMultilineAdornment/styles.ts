@@ -1,15 +1,19 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { rem } from '@toptal/picasso-shared'
 
 export default ({ palette }: Theme) =>
   createStyles({
-    multilineAdornment: {
-      position: 'absolute',
-      bottom: 0,
-      width: 'calc(100% - 1.25rem)',
-      height: '1.25rem',
-      justifyContent: 'space-between',
-      margin: 0,
-      padding: '0.25rem 0',
-      borderTop: `1px solid ${palette.grey.lighter2}`,
+    root: {
+      fontSize: '0.625rem',
+      lineHeight: 1,
+      marginTop: '0.25rem',
+      color: palette.grey.main2,
+      marginRight: rem('2px'),
+
+      '&$error': {
+        color: palette.red.main,
+      },
     },
+
+    error: {},
   })
