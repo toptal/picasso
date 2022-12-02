@@ -85,11 +85,19 @@ const CompactItemContent = (props: Props & { isIndicatorVisible: boolean }) => {
 const ExpandedItemContent = (
   props: Props & { isIndicatorVisible: boolean }
 ) => {
-  const { icon, badge, children, testIds, tag, isIndicatorVisible, menu, isSubMenu } =
-    props
+  const {
+    icon,
+    badge,
+    children,
+    testIds,
+    tag,
+    isIndicatorVisible,
+    menu,
+    isSubMenu,
+  } = props
   const classes = useStyles()
 
-  const hasIcon = icon != null
+  const hasIcon = icon != null && !isSubMenu
   const hasBadge = badge != null
   const hasTag = tag != null
   const hasSubItems = menu != null
