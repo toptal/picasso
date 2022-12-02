@@ -6,7 +6,7 @@ exports[`PageSidebar renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
+      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium"
     >
       <div
         class="PageSidebar-spacer"
@@ -22,7 +22,7 @@ exports[`PageSidebar with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
+      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium"
     >
       <div
         class="PageSidebar-spacer"
@@ -43,7 +43,7 @@ exports[`PageSidebar with one normal and one bottom menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light"
+      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium"
     >
       <div
         class="PageSidebar-spacer"

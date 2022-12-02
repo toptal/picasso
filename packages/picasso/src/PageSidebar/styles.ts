@@ -1,4 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { rem } from '@toptal/picasso-shared'
 
 // decided to use a custom shadow for the sidebar's collapse button
 const COLLAPSE_BUTTON_SHADOW =
@@ -8,7 +9,6 @@ export default ({ palette, screens, transitions }: Theme) =>
   createStyles({
     root: {
       height: '100%',
-      width: '14.75rem',
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
       padding: '1rem 0 0.5rem',
       fontSize: '1rem',
@@ -28,6 +28,15 @@ export default ({ palette, screens, transitions }: Theme) =>
         width: '15.50rem',
         height: '100%',
       },
+    },
+    small: {
+      width: rem('212px'),
+    },
+    medium: {
+      width: rem('236px'),
+    },
+    large: {
+      width: rem('280px'),
     },
     spacer: {
       order: 50,

@@ -6,8 +6,8 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
   'PageSidebar',
-  `Navigation items provide access to parts in your app 
-  
+  `Navigation items provide access to parts in your app
+
   ${PicassoBook.createSourceLink(__filename)}
   `
 )
@@ -32,6 +32,9 @@ page
   .addExample('PageSidebar/story/Collapsible.example.tsx', {
     title: 'Collapsible',
     takeScreenshot: false,
+  })
+  .addExample('PageSidebar/story/Size.example.tsx', {
+    title: 'Sizes',
   })
 
 page.connect(sidebarItemStory.chapter)
