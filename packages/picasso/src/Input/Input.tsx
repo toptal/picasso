@@ -8,7 +8,11 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  SizeType,
+  useHasMultilineCounter,
+} from '@toptal/picasso-shared'
 
 import OutlinedInput, { BaseInputProps, Status } from '../OutlinedInput'
 import { disableUnsupportedProps } from '../utils'
@@ -94,6 +98,7 @@ export interface Props
     resetButton?: string
     validIcon?: string
   }
+  setHasMultilineCounter?: (name: string, hasCounter: boolean) => void
 }
 
 type StartAdornmentProps = Pick<Props, 'icon' | 'iconPosition' | 'disabled'>
@@ -268,6 +273,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     onResetClick,
     outlineRef,
     testIds,
+    setHasMultilineCounter,
     ...rest
   } = purifyProps(props)
 
@@ -284,6 +290,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   const classes = useStyles()
 
   const showCounter = !!charsLength && hasCounter({ counter, limit })
+
+  useHasMultilineCounter(name, showCounter && multiline, setHasMultilineCounter)
 
   return (
     <>

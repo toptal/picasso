@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useRef, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, useHasMultilineCounter } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import hastUtilToHtml from 'hast-util-to-html'
 import hastSanitize from 'hast-util-sanitize'
@@ -54,6 +54,8 @@ export interface Props extends BaseProps {
    * The minimum number of characters required that the user should enter.
    */
   minLength?: number
+  /** Name attribute of the input element */
+  name?: string
   /**
    * Custom counter message for minLength
    */
@@ -78,6 +80,7 @@ export interface Props extends BaseProps {
   placeholder?: string
   /** List of plugins to enable on the editor */
   plugins?: EditorPlugin[]
+  setHasMultilineCounter?: (name: string, hasCounter: boolean) => void
   testIds?: {
     wrapper?: string
     editor?: string
@@ -115,6 +118,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       status,
       testIds,
       hiddenInputId,
+      setHasMultilineCounter,
+      name,
     } = props
 
     const classes = useStyles()
@@ -172,6 +177,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     // declare the array outside the component level
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const memoizedPlugins = useMemo(() => plugins, [])
+
+    useHasMultilineCounter(name, !!counterMessage, setHasMultilineCounter)
 
     return (
       <>

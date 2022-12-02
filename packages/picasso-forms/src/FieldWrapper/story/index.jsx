@@ -140,6 +140,11 @@ const componentDocs = PicassoBook.createComponentDocs(
       description:
         'This component also accepts all the native props from the corresponding form component, ex. Form.Input accepts all the Picasso Input props',
     },
+    autoSaveIndicator: {
+      name: 'autoSaveIndicator',
+      type: 'ReactNode',
+      description: 'instance of FormAutoSaveIndicator component',
+    },
   }
 )
 

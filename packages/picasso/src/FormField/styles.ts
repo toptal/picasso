@@ -13,6 +13,22 @@ export default () =>
       },
     },
 
+    adornment: {
+      position: 'relative',
+      paddingRight: '2rem',
+    },
+    autoSaveIndicator: {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+
+      '&$hasMultilineCounter': {
+        top: '-0.875rem',
+      },
+    },
+
+    hasMultilineCounter: {},
+
     hint: {},
 
     error: {},
