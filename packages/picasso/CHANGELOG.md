@@ -1,5 +1,15 @@
 # Change Log
 
+## 28.14.1
+
+### Patch Changes
+
+- [#3259](https://github.com/toptal/picasso/pull/3259) [`2dc67848`](https://github.com/toptal/picasso/commit/2dc67848365538fb6e27c352027d6fa83403ce30) Thanks [@mkrl](https://github.com/mkrl)! - ---
+
+  ### Timeline.Row
+
+  - adjust row content to being able to take up to the full width of the container (`flex-grow: 1`)
+
 ## 28.14.0
 
 ### Minor Changes
