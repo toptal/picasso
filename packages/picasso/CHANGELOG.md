@@ -1,5 +1,13 @@
 # Change Log
 
+## 29.0.1
+
+### Patch Changes
+
+- [#3251](https://github.com/toptal/picasso/pull/3251) [`efd2b03a`](https://github.com/toptal/picasso/commit/efd2b03ab78e825f99eb904dd7067937f525e4ec) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  - show character count for multiline input and RichTextEditor below the component
+
 ## 29.0.0
 
 ### Major Changes
