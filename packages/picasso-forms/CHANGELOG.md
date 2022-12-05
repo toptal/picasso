@@ -1,5 +1,15 @@
 # Change Log
 
+## 50.1.0
+
+### Minor Changes
+
+- [#3251](https://github.com/toptal/picasso/pull/3251) [`efd2b03a`](https://github.com/toptal/picasso/commit/efd2b03ab78e825f99eb904dd7067937f525e4ec) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### FieldWrapper
+
+  - add `autoSaveIndicator` prop for instance of `FormAutoSaveIndicator` component
+
 ## 50.0.0
 
 ### Patch Changes
