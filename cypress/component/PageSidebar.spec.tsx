@@ -60,17 +60,17 @@ const SidebarExample = (props: PageSidebarProps) => {
         >
           Team
         </Page.Sidebar.Item>
+        <Page.Sidebar.Item icon={<Team16 />} badge={10}>
+          Team
+        </Page.Sidebar.Item>
         <Page.Sidebar.Item
           icon={<Referral16 />}
           menu={
             <Page.Sidebar.Menu data-testid={TestIds.BASIC_MENU_INNER_MENU}>
-              <Page.Sidebar.Item>Foo </Page.Sidebar.Item>
-              <Page.Sidebar.Item>Bar </Page.Sidebar.Item>
+              <Page.Sidebar.Item badge={10}>Foo </Page.Sidebar.Item>
+              <Page.Sidebar.Item>Bar</Page.Sidebar.Item>
             </Page.Sidebar.Menu>
           }
-          badge={{
-            content: 10,
-          }}
         >
           Referral
         </Page.Sidebar.Item>
@@ -82,8 +82,25 @@ const SidebarExample = (props: PageSidebarProps) => {
             <Page.Sidebar.Menu
               data-testid={TestIds.COLLAPSIBLE_MENU_INNER_MENU}
             >
-              <Page.Sidebar.Item>Foo </Page.Sidebar.Item>
-              <Page.Sidebar.Item>Bar </Page.Sidebar.Item>
+              <Page.Sidebar.Item>Foo</Page.Sidebar.Item>
+              <Page.Sidebar.Item>Bar</Page.Sidebar.Item>
+            </Page.Sidebar.Menu>
+          }
+        >
+          Collapsible
+        </Page.Sidebar.Item>
+        <Page.Sidebar.Item
+          icon={<Referral16 />}
+          testIds={{ header: TestIds.COLLAPSIBLE_MENU_HEADER }}
+          collapsible
+          menu={
+            <Page.Sidebar.Menu
+              data-testid={TestIds.COLLAPSIBLE_MENU_INNER_MENU}
+            >
+              <Page.Sidebar.Item>Foo</Page.Sidebar.Item>
+              <Page.Sidebar.Item badge={10} tag='New'>
+                Bar
+              </Page.Sidebar.Item>
             </Page.Sidebar.Menu>
           }
         >
@@ -148,7 +165,7 @@ describe('Sidebar', () => {
   it('renders sidebar as dark and light variants', () => {
     cy.mount(<VariantsExample />)
 
-    cy.get('body').happoScreenshot({ component, variant: 'with-theme'})
+    cy.get('body').happoScreenshot({ component, variant: 'with-theme' })
   })
 
   describe('when the sidebar is collapsible', () => {
@@ -158,7 +175,10 @@ describe('Sidebar', () => {
       // Expand collapsible Menu
       cy.getByTestId(TestIds.COLLAPSIBLE_MENU_HEADER).realClick()
 
-      cy.get('body').happoScreenshot({ component, variant: 'expanded accordion menu' })
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'expanded accordion menu',
+      })
 
       // Collapse sidebar
       cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
@@ -167,12 +187,18 @@ describe('Sidebar', () => {
       cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON).should('not.be.visible')
       cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
 
-      cy.get('body').happoScreenshot({ component, variant: 'collapsed sidebar default' })
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'collapsed sidebar default',
+      })
 
       // Open collapsible Menu as dropdown
       cy.getByTestId(TestIds.COLLAPSIBLE_MENU_HEADER).realClick()
 
-      cy.get('body').happoScreenshot({ component, variant: 'open dropdown menu' })
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'open dropdown menu',
+      })
 
       // Expand collapsed sidebar
       cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
