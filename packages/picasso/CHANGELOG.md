@@ -1,5 +1,15 @@
 # Change Log
 
+## 29.1.0
+
+### Minor Changes
+
+- [#3271](https://github.com/toptal/picasso/pull/3271) [`cf337f2b`](https://github.com/toptal/picasso/commit/cf337f2b00eb31e6b001a4c899e1ff78aef8a3b7) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Icon
+
+  - add new `add` and `ask` icons from the BASE.
+
 ## 29.0.1
 
 ### Patch Changes
