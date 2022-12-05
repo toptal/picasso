@@ -8,7 +8,11 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  SizeType,
+  useHasMultilineCounter,
+} from '@toptal/picasso-shared'
 
 import OutlinedInput, { BaseInputProps, Status } from '../OutlinedInput'
 import { disableUnsupportedProps } from '../utils'
@@ -21,7 +25,8 @@ import InputLimitAdornment, {
 import InputIconAdornment, {
   InputIconAdornmentProps,
 } from '../InputIconAdornment'
-import InputMultilineAdornment from '../InputMultilineAdornment'
+import Container from '../Container'
+import InputValidIconAdornment from '../InputValidIconAdornment'
 
 export interface Props
   extends BaseProps,
@@ -93,6 +98,7 @@ export interface Props
     resetButton?: string
     validIcon?: string
   }
+  setHasMultilineCounter?: (name: string, hasCounter: boolean) => void
 }
 
 type StartAdornmentProps = Pick<Props, 'icon' | 'iconPosition' | 'disabled'>
@@ -107,7 +113,7 @@ type EndAdornmentProps = Pick<
   | 'counter'
   | 'status'
   | 'testIds'
-> & { charsLength?: number }
+> & { charsLength?: number; showCounter: boolean }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoInput' })
 
@@ -153,19 +159,18 @@ const EndAdornment = (props: EndAdornmentProps) => {
     charsLength,
     testIds,
     counter,
-    status,
+    showCounter,
   } = props
 
   if (icon && iconPosition === 'end') {
     return <InputIconAdornment disabled={disabled} position='end' icon={icon} />
   }
 
-  const showCounter = !!charsLength && hasCounter({ counter, limit })
-
   if (!multiline && showCounter) {
     return (
       <InputLimitAdornment
-        charsLength={charsLength}
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        charsLength={charsLength!}
         multiline={multiline}
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         counter={counter!}
@@ -176,24 +181,42 @@ const EndAdornment = (props: EndAdornmentProps) => {
     )
   }
 
-  if (hasMultilineAdornment({ multiline, status, counter, limit })) {
-    return (
-      <InputMultilineAdornment status={status} testIds={testIds}>
-        {showCounter && (
-          <InputLimitAdornment
-            charsLength={charsLength}
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            counter={counter!}
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            limit={limit!}
-            multiline={multiline}
-          />
-        )}
-      </InputMultilineAdornment>
-    )
-  }
-
   return null
+}
+
+type MultilineAdornmentProps = Pick<
+  Props,
+  'counter' | 'limit' | 'status' | 'testIds'
+> &
+  Pick<EndAdornmentProps, 'charsLength' | 'showCounter'>
+
+const MultilineAdornment = ({
+  charsLength,
+  counter,
+  limit,
+  showCounter,
+  status,
+  testIds,
+}: MultilineAdornmentProps) => {
+  return (
+    <Container>
+      {showCounter && (
+        <InputLimitAdornment
+          testIds={testIds}
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          charsLength={charsLength!}
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          counter={counter!}
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          limit={limit!}
+          multiline
+        />
+      )}
+      {status === 'success' && (
+        <InputValidIconAdornment data-testid={testIds?.validIcon} multiline />
+      )}
+    </Container>
+  )
 }
 
 const purifyProps = (props: Props) => {
@@ -250,6 +273,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     onResetClick,
     outlineRef,
     testIds,
+    setHasMultilineCounter,
     ...rest
   } = purifyProps(props)
 
@@ -265,77 +289,93 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 
   const classes = useStyles()
 
+  const showCounter = !!charsLength && hasCounter({ counter, limit })
+
+  useHasMultilineCounter(name, showCounter && multiline, setHasMultilineCounter)
+
   return (
-    <OutlinedInput
-      ref={outlineRef}
-      inputRef={ref}
-      className={className}
-      style={style}
-      classes={{
-        root: cx(classes.root, {
-          [classes.rootMultiline]: multiline,
-          [classes.rootMultilineLimiter]: hasMultilineAdornment({
-            multiline,
-            status,
-            limit,
-            counter,
+    <>
+      <OutlinedInput
+        ref={outlineRef}
+        inputRef={ref}
+        className={className}
+        style={style}
+        classes={{
+          root: cx(classes.root, {
+            [classes.rootMultiline]: multiline,
           }),
-        }),
-        input: cx(classes.input, {
-          [classes.inputMultilineResizable]: multiline && multilineResizable,
-        }),
-      }}
-      id={id}
-      name={name}
-      defaultValue={defaultValue}
-      value={value}
-      placeholder={placeholder}
-      status={error ? 'error' : status}
-      disabled={disabled}
-      multiline={multiline}
-      autoFocus={autoFocus}
-      rows={rows}
-      rowsMax={rowsMax}
-      type={type}
-      width={width}
-      size={size}
-      onClick={onClick}
-      // html attributes
-      inputProps={{
-        ...rest,
-        ...inputProps,
-      }}
-      startAdornment={
-        startAdornment || (
-          <StartAdornment
-            icon={icon}
-            iconPosition={iconPosition}
-            disabled={disabled}
-          />
-        )
-      }
-      endAdornment={
-        endAdornment || (
-          <EndAdornment
-            icon={icon}
-            iconPosition={iconPosition}
-            disabled={disabled}
-            limit={limit}
-            charsLength={charsLength}
-            multiline={multiline}
-            counter={counter}
-            status={status}
-            testIds={testIds}
-          />
-        )
-      }
-      onChange={onChange}
-      enableReset={enableReset}
-      onResetClick={onResetClick}
-      testIds={testIds}
-    >
-      {children}
-    </OutlinedInput>
+          input: cx(classes.input, {
+            [classes.inputMultilineResizable]: multiline && multilineResizable,
+          }),
+        }}
+        id={id}
+        name={name}
+        defaultValue={defaultValue}
+        value={value}
+        placeholder={placeholder}
+        status={error ? 'error' : status}
+        disabled={disabled}
+        multiline={multiline}
+        autoFocus={autoFocus}
+        rows={rows}
+        rowsMax={rowsMax}
+        type={type}
+        width={width}
+        size={size}
+        onClick={onClick}
+        // html attributes
+        inputProps={{
+          ...rest,
+          ...inputProps,
+        }}
+        startAdornment={
+          startAdornment || (
+            <StartAdornment
+              icon={icon}
+              iconPosition={iconPosition}
+              disabled={disabled}
+            />
+          )
+        }
+        endAdornment={
+          endAdornment || (
+            <EndAdornment
+              icon={icon}
+              iconPosition={iconPosition}
+              disabled={disabled}
+              limit={limit}
+              charsLength={charsLength}
+              multiline={multiline}
+              counter={counter}
+              status={status}
+              testIds={testIds}
+              showCounter={showCounter}
+            />
+          )
+        }
+        onChange={onChange}
+        enableReset={enableReset}
+        onResetClick={onResetClick}
+        testIds={testIds}
+      >
+        {children}
+      </OutlinedInput>
+      {hasMultilineAdornment({
+        multiline,
+        status,
+        limit,
+        counter,
+      }) && (
+        <MultilineAdornment
+          charsLength={charsLength}
+          status={status}
+          testIds={testIds}
+          showCounter={showCounter}
+          counter={counter}
+          limit={limit}
+        />
+      )}
+    </>
   )
 })
 

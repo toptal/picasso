@@ -9,15 +9,20 @@ const saveWithDelay = async () =>
 interface FormData {
   'autoSave-firstName'?: string
   'autoSave-lastName'?: string
+  'autoSave-about'?: string
   'autoSave-bio'?: string
 }
 
-const autoSaveSubscribedFields: (keyof FormData)[] = ['autoSave-bio']
+const autoSaveSubscribedFields: (keyof FormData)[] = [
+  'autoSave-about',
+  'autoSave-bio',
+]
 
 const Example = () => {
   const [autoSaveValues, setAutoSaveValues] = useState<FormData>({
     'autoSave-firstName': undefined,
     'autoSave-lastName': undefined,
+    'autoSave-about': undefined,
     'autoSave-bio': undefined,
   })
 
@@ -56,13 +61,32 @@ const Example = () => {
           />
           <Form.Input
             required
-            name='autoSave-bio'
+            name='autoSave-about'
             multiline
+            limit={100}
             rows={5}
-            label='Bio'
+            label='About'
+            hint='Tell us about yourself'
             placeholder='Please tell us about yourself'
+            autoSaveIndicator={
+              <FormAutoSaveIndicator
+                saving={savingFields?.['autoSave-about']}
+              />
+            }
           />
-          <FormAutoSaveIndicator saving={savingFields?.['autoSave-bio']} />
+          <Form.RichTextEditor
+            id='autoSave-rich-text-editor'
+            label='Bio'
+            required
+            name='autoSave-bio'
+            hint='Write a short bio'
+            placeholder='Write a short bio'
+            minLength={5}
+            maxLength={25}
+            autoSaveIndicator={
+              <FormAutoSaveIndicator saving={savingFields?.['autoSave-bio']} />
+            }
+          />
         </Container>
         <Container variant='grey' padded='medium'>
           <Typography size='small'>
@@ -71,7 +95,8 @@ const Example = () => {
           <pre style={{ width: 500 }}>
             Saved values: {JSON.stringify(autoSaveValues, undefined, 2)}
           </pre>
-          {savingFields?.['autoSave-bio'] && (
+          {(savingFields?.['autoSave-bio'] ||
+            savingFields?.['autoSave-about']) && (
             <Typography size='medium'>Saving...</Typography>
           )}
         </Container>

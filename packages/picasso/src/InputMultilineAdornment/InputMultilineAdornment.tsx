@@ -1,17 +1,14 @@
 import React, { ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
+import cx from 'classnames'
 
+import Container from '../Container'
 import styles from './styles'
-import InputAdornment from '../InputAdornment'
-import { Status } from '../OutlinedInput'
-import InputValidIconAdornment from '../InputValidIconAdornment'
 
 export interface Props {
   children: ReactNode
-  status?: Status
-  testIds?: {
-    inputAdornment?: string
-  }
+  error?: boolean
+  'data-testid'?: string
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -19,19 +16,19 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 const InputMultilineAdornment = (props: Props) => {
-  const { children, status, testIds } = props
+  const { children, error, 'data-testid': dataTestId } = props
   const classes = useStyles()
 
   return (
-    <InputAdornment
-      data-testid={testIds?.inputAdornment}
-      position='end'
-      className={classes.multilineAdornment}
-      disablePointerEvents
+    <Container
+      flex
+      data-testid={dataTestId}
+      className={cx(classes.root, {
+        [classes.error]: error,
+      })}
     >
       {children}
-      {status === 'success' && <InputValidIconAdornment />}
-    </InputAdornment>
+    </Container>
   )
 }
 

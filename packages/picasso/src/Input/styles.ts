@@ -15,10 +15,6 @@ export default ({ palette }: Theme) =>
     rootMultiline: {
       height: 'auto',
     },
-    rootMultilineLimiter: {
-      minHeight: '3.75rem',
-      paddingBottom: '1.875rem',
-    },
     inputMultilineResizable: {
       resize: 'vertical',
     },

@@ -3,10 +3,14 @@
 exports[`FormField renders 1`] = `
 <div>
   <div
-    class="PicassoFormField-root"
-    data-field-has-error="false"
+    class="Picasso-root"
   >
-    <input />
+    <div
+      class="PicassoFormField-root"
+      data-field-has-error="false"
+    >
+      <input />
+    </div>
   </div>
 </div>
 `;

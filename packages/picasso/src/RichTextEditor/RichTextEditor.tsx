@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useRef, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, useHasMultilineCounter } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import hastUtilToHtml from 'hast-util-to-html'
 import hastSanitize from 'hast-util-sanitize'
@@ -8,8 +8,8 @@ import hastSanitize from 'hast-util-sanitize'
 import noop from '../utils/noop'
 import Container from '../Container'
 import QuillEditor, { EditorPlugin } from '../QuillEditor'
+import InputMultilineAdornment from '../InputMultilineAdornment'
 import Toolbar from '../RichTextEditorToolbar'
-import Counter from '../RichTextEditorCounter'
 import styles from './styles'
 import {
   useTextEditorState,
@@ -54,6 +54,8 @@ export interface Props extends BaseProps {
    * The minimum number of characters required that the user should enter.
    */
   minLength?: number
+  /** Name attribute of the input element */
+  name?: string
   /**
    * Custom counter message for minLength
    */
@@ -78,6 +80,7 @@ export interface Props extends BaseProps {
   placeholder?: string
   /** List of plugins to enable on the editor */
   plugins?: EditorPlugin[]
+  setHasMultilineCounter?: (name: string, hasCounter: boolean) => void
   testIds?: {
     wrapper?: string
     editor?: string
@@ -115,6 +118,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       status,
       testIds,
       hiddenInputId,
+      setHasMultilineCounter,
+      name,
     } = props
 
     const classes = useStyles()
@@ -173,70 +178,76 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const memoizedPlugins = useMemo(() => plugins, [])
 
+    useHasMultilineCounter(name, !!counterMessage, setHasMultilineCounter)
+
     return (
-      <Container
-        className={cx(
-          classes.editorWrapper,
-          {
-            [classes.disabled]: disabled,
-            [classes.focused]: isEditorFocused,
-            [classes.error]: status === 'error',
-          },
-          className
-        )}
-        tabIndex={-1}
-        style={style}
-        ref={node => {
-          if (typeof ref === 'function') {
-            ref(node)
-          } else if (ref != null) {
-            ref.current = node
-          }
-          wrapperRef.current = node
-        }}
-        data-testid={testIds?.wrapper || dataTestId}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-      >
-        <Toolbar
-          ref={toolbarRef}
-          disabled={disabled || state.toolbar.disabled}
-          id={id}
-          format={state.toolbar.format}
-          onBoldClick={handleBold}
-          onItalicClick={handleItalic}
-          onUnorderedClick={handleUnordered}
-          onOrderedClick={handleOrdered}
-          onHeaderChange={handleHeader}
-          onLinkClick={handleLink}
-          plugins={memoizedPlugins}
-          testIds={{
-            headerSelect: testIds?.headerSelect,
-            boldButton: testIds?.boldButton,
-            italicButton: testIds?.italicButton,
-            unorderedListButton: testIds?.unorderedListButton,
-            orderedListButton: testIds?.orderedListButton,
+      <>
+        <Container
+          className={cx(
+            classes.editorWrapper,
+            {
+              [classes.disabled]: disabled,
+              [classes.focused]: isEditorFocused,
+              [classes.error]: status === 'error',
+            },
+            className
+          )}
+          tabIndex={-1}
+          style={style}
+          ref={node => {
+            if (typeof ref === 'function') {
+              ref(node)
+            } else if (ref != null) {
+              ref.current = node
+            }
+            wrapperRef.current = node
           }}
-        />
-        <QuillEditor
-          ref={editorRef}
-          disabled={!!disabled}
-          data-testid={testIds?.editor}
-          id={id}
-          isFocused={isEditorFocused}
-          placeholder={placeholder}
-          onTextLengthChange={handleCounterMessage}
-          onTextFormat={handleTextFormat}
-          onSelectionChange={handleSelectionChange}
-          onTextChange={onChange}
-          defaultValue={defaultValueInHtml}
-          plugins={memoizedPlugins}
-        />
+          data-testid={testIds?.wrapper || dataTestId}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        >
+          <Toolbar
+            ref={toolbarRef}
+            disabled={disabled || state.toolbar.disabled}
+            id={id}
+            format={state.toolbar.format}
+            onBoldClick={handleBold}
+            onItalicClick={handleItalic}
+            onUnorderedClick={handleUnordered}
+            onOrderedClick={handleOrdered}
+            onHeaderChange={handleHeader}
+            onLinkClick={handleLink}
+            plugins={memoizedPlugins}
+            testIds={{
+              headerSelect: testIds?.headerSelect,
+              boldButton: testIds?.boldButton,
+              italicButton: testIds?.italicButton,
+              unorderedListButton: testIds?.unorderedListButton,
+              orderedListButton: testIds?.orderedListButton,
+            }}
+          />
+          <QuillEditor
+            ref={editorRef}
+            disabled={!!disabled}
+            data-testid={testIds?.editor}
+            id={id}
+            isFocused={isEditorFocused}
+            placeholder={placeholder}
+            onTextLengthChange={handleCounterMessage}
+            onTextFormat={handleTextFormat}
+            onSelectionChange={handleSelectionChange}
+            onTextChange={onChange}
+            defaultValue={defaultValueInHtml}
+            plugins={memoizedPlugins}
+          />
+          {hiddenInputId && enableFocusOnLabelClick(hiddenInputId)}
+        </Container>
         {counterMessage && (
-          <Counter error={counterError} message={counterMessage} />
+          <InputMultilineAdornment error={counterError}>
+            {counterMessage}
+          </InputMultilineAdornment>
         )}
-        {hiddenInputId && enableFocusOnLabelClick(hiddenInputId)}
-      </Container>
+      </>
     )
   }
 )
