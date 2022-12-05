@@ -42,6 +42,15 @@ const componentDocs = PicassoBook.createComponentDocs(
       },
       description: 'Callback when item is clicked',
     },
+    onMouseEnter: {
+      name: 'onClick',
+      type: {
+        name: 'function',
+        description:
+          '(event: React.MouseEvent<HTMLElement, MouseEvent>) => void',
+      },
+      description: 'Callback when item is hovered',
+    },
     as: {
       name: 'as',
       type: {
@@ -81,6 +90,24 @@ const componentDocs = PicassoBook.createComponentDocs(
       name: 'style',
       type: 'CSSProperties',
       description: 'Style applied to root element',
+    },
+    badge: {
+      name: 'badge',
+      type: {
+        name: 'number | BadgeProps',
+        description:
+          '{ content: number, variant?: "white" | "red", max?: number }',
+      },
+      description: 'Show number of unread messages',
+    },
+    tag: {
+      name: 'tag',
+      type: {
+        name: 'string | TagProps',
+        description:
+          '{ content: string, variant?: "red" | "yellow" | "dark-grey" | "light-grey" | "green" }',
+      },
+      description: 'Highlight new feature',
     },
   }
 )
