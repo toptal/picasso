@@ -117,7 +117,7 @@ jobs:
 
     steps:
       - name: Trigger doc deployment job
-        uses: toptal/jenkins-job-trigger-action@1.0.0
+        uses: toptal/jenkins-job-trigger-action@1.0.1
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
           PR_ID: ${{ github.event.pull_request.number }}

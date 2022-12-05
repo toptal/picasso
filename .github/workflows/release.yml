@@ -106,7 +106,7 @@ jobs:
             }
 
       - name: Trigger build image job
-        uses: toptal/jenkins-job-trigger-action@1.0.0
+        uses: toptal/jenkins-job-trigger-action@1.0.1
         id: trigger-build
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
@@ -127,7 +127,7 @@ jobs:
 
       - name: Trigger deployment job
         id: trigger-deploy
-        uses: toptal/jenkins-job-trigger-action@1.0.0
+        uses: toptal/jenkins-job-trigger-action@1.0.1
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs
         with:
