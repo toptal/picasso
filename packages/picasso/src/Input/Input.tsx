@@ -199,7 +199,7 @@ const MultilineAdornment = ({
   testIds,
 }: MultilineAdornmentProps) => {
   return (
-    <Container>
+    <Container flex>
       {showCounter && (
         <InputLimitAdornment
           testIds={testIds}

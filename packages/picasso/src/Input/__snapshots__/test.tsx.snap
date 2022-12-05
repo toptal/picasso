@@ -235,7 +235,7 @@ exports[`Input shows counter for multiline input 1`] = `
       </fieldset>
     </div>
     <div
-      class=""
+      class="PicassoContainer-flex"
     />
   </div>
 </div>
