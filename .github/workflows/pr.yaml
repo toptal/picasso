@@ -21,6 +21,8 @@ env:
   TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   HTTP_PROXY: http://${{ secrets.HTTP_PROXY }}
+  HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+  HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
 
 jobs:
   build-docker-image:
@@ -43,7 +45,7 @@ jobs:
           environment: temploy
           docker-file: ./Dockerfile
 
-  tests:
+  static-checks:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: PR Checks
     runs-on: ubuntu-latest
@@ -57,10 +59,11 @@ jobs:
       # surfacing known-vulnerable versions of the packages declared or updated in the PR.
       # Once installed, if the workflow run is marked as required, PRs introducing known-vulnerable
       # packages will be blocked from merging.
-      - name: 'Dependency Review'
+      - name: Dependency Review
         uses: actions/dependency-review-action@v3
 
-      - uses: toptal/davinci-github-actions/yarn-install@v4.4.2
+      - name: Install Dependencies
+        uses: toptal/davinci-github-actions/yarn-install@v4.4.2
 
       - name: Syncpack check
         run: yarn syncpack:list
@@ -77,12 +80,25 @@ jobs:
       - name: Jest Tests
         run: yarn test:unit:ci
 
+  storybook-visual-tests:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: Storybook Visual Tests
+    runs-on: ubuntu-latest
+    needs: [static-checks]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies from cache
+        uses: toptal/davinci-github-actions/yarn-install@v4.4.2
+
       - name: Visual Tests
         run: yarn happo:storybook
         env:
           HAPPO_PROJECT: Picasso/Storybook
-          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+          HAPPO_API_KEY: ${{ env.HAPPO_API_KEY }}
+          HAPPO_API_SECRET: ${{ env.HAPPO_API_SECRET }}
 
   integration-tests:
     name: Integration Tests
