@@ -70,7 +70,10 @@ const InputLimitAdornment = (props: Props) => {
         data-testid={testIds?.inputAdornment}
         error={error}
       >
-        {Math.abs(charsTillLimit)} {multilineLabel}
+        <span data-testid='message'>
+          <span translate='no'>{Math.abs(charsTillLimit)}</span>{' '}
+          <span>{multilineLabel}</span>
+        </span>
       </InputMultilineAdornment>
     )
   }
@@ -84,7 +87,10 @@ const InputLimitAdornment = (props: Props) => {
         [classes.limiterLabelError]: error,
       })}
     >
-      {charsTillLimit} {multilineLabel}
+      <span data-testid='message'>
+        <span translate='no'>{charsTillLimit}</span>{' '}
+        <span>{multilineLabel}</span>
+      </span>
     </InputAdornment>
   )
 }
