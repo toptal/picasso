@@ -1,5 +1,15 @@
 # Change Log
 
+## 29.1.1
+
+### Patch Changes
+
+- [#3272](https://github.com/toptal/picasso/pull/3272) [`014069aa`](https://github.com/toptal/picasso/commit/014069aaa24094a8ed2effa804cf6f011f7ae3e4) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### Input
+
+  - fix success state for multiline input with counter
+
 ## 29.1.0
 
 ### Minor Changes
