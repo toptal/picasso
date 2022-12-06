@@ -27,6 +27,14 @@ describe('CategoriesChart', () => {
       component,
       variant: 'default',
     })
+
+    cy.get('text').contains('421').realHover({ position: 'center' })
+    cy.get('.recharts-tooltip-wrapper').should('be.visible')
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/with-column-hover',
+    })
   })
 })
 
