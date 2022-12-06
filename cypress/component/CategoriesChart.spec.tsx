@@ -19,6 +19,10 @@ describe('CategoriesChart', () => {
   it('renders default chart', () => {
     cy.mount(<TestCategoriesChart />)
 
+    // fix flakiness, sometimes the screenshot was taken
+    // with mouse over the bar and it triggered tooltip
+    cy.get('svg').realHover({ position: 'topLeft' })
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'default',
