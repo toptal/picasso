@@ -354,14 +354,16 @@ describe('Select', () => {
   })
 
   describe('with search input', () => {
-    it('focuses the input', () => {
+    beforeEach(() => {
       cy.mount(
         <TestSelect
           searchThreshold={-1}
           testIds={{ searchInput: 'search-input' }}
         />
       )
+    })
 
+    it('focuses the input', () => {
       cy.getByTestId('select').click().find('input').should('be.focused')
 
       cy.get('body').happoScreenshot({
@@ -374,16 +376,18 @@ describe('Select', () => {
         .click('center')
         .find('input')
         .should('be.focused')
+    })
 
-      // focuses on by click on the input wrapper
+    it('focuses on by click on the input wrapper', () => {
       cy.getByTestId('select')
         .click()
         .getByTestId('search-input')
         .click('bottom')
         .find('input')
         .should('be.focused')
+    })
 
-      // focuses on by click on the search icon
+    it('focuses on by click on the search icon', () => {
       cy.getByTestId('select')
         .click()
         .getByTestId('search-input')
@@ -391,8 +395,9 @@ describe('Select', () => {
         .click(20, 20)
         .find('input')
         .should('be.focused')
+    })
 
-      // focuses on by typing
+    it('focuses on by typing', () => {
       cy.getByTestId('select').click().type('option')
       cy.getByTestId('search-input').find('input').should('be.focused')
     })
