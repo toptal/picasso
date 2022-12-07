@@ -13,17 +13,18 @@ describe('InputLimitAdornment', () => {
       { charsLength: 2, expectedMessage: '2 characters entered' },
     ])(
       "expect '$expectedMessage' message for $charsLength characters",
-      async ({ charsLength, expectedMessage }) => {
-        const { findByText } = renderAdornment({
+      ({ charsLength, expectedMessage }) => {
+        const { getByTestId } = renderAdornment({
           counter: 'entered',
           limit: 0,
           multiline: true,
           charsLength,
+          testIds: { message: 'message' },
         })
 
-        const limitText = await findByText(expectedMessage)
+        const limitText = getByTestId('message').textContent
 
-        expect(limitText).toBeInTheDocument()
+        expect(limitText).toBe(expectedMessage)
       }
     )
   })
@@ -35,17 +36,18 @@ describe('InputLimitAdornment', () => {
       { remainingChars: 2, expectedMessage: '2 characters left' },
     ])(
       "expect '$expectedMessage' message for $remainingChars characters",
-      async ({ remainingChars, expectedMessage }) => {
-        const { findByText } = renderAdornment({
+      ({ remainingChars, expectedMessage }) => {
+        const { getByTestId } = renderAdornment({
           counter: 'remaining',
           limit: 3,
           multiline: true,
           charsLength: 3 - remainingChars,
+          testIds: { message: 'message' },
         })
 
-        const limitText = await findByText(expectedMessage)
+        const limitText = getByTestId('message').textContent
 
-        expect(limitText).toBeInTheDocument()
+        expect(limitText).toBe(expectedMessage)
       }
     )
   })
