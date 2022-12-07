@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { mount } from 'cypress/react'
+import { mount } from 'cypress/react18'
 import React from 'react'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
