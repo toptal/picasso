@@ -1,5 +1,15 @@
 # Change Log
 
+## 29.1.2
+
+### Patch Changes
+
+- [#3279](https://github.com/toptal/picasso/pull/3279) [`8c26ca36`](https://github.com/toptal/picasso/commit/8c26ca36ba5efc031c429e7aeb153f30c82b54f1) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### InputLimitAdornment
+
+  - split limit message into translatable and non-translatable part to handle google translation better
+
 ## 29.1.1
 
 ### Patch Changes
