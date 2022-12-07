@@ -38,8 +38,10 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     },
     wrapper: {
       height: headerHeight.default,
+      minHeight: headerHeight.default,
       [screens('small', 'medium')]: {
         height: headerHeight.smallAndMedium,
+        minHeight: headerHeight.smallAndMedium,
       },
     },
     wide: {

@@ -47,6 +47,9 @@ page
   .addExample('Page/story/WithCompoundBanner.example.tsx', {
     title: 'With Compound Banner',
   })
+  .addExample('Page/story/WithBannerAndSidebar.example.tsx', {
+    title: 'With Banner and Sidebar',
+  })
 
 page.connect(pageHelmetStory.chapter)
 

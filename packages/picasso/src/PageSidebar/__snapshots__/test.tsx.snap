@@ -9,8 +9,16 @@ exports[`PageSidebar renders 1`] = `
       class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium"
     >
       <div
-        class="PageSidebar-spacer"
-      />
+        class="PageSidebar-wrapper PageSidebar-sticky"
+      >
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PageSidebar-scrollableContent"
+        >
+          <div
+            class="PageSidebar-spacer"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -25,13 +33,21 @@ exports[`PageSidebar with menu 1`] = `
       class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium"
     >
       <div
-        class="PageSidebar-spacer"
-      />
-      <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
-        role="menu"
-        tabindex="-1"
-      />
+        class="PageSidebar-wrapper PageSidebar-sticky"
+      >
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PageSidebar-scrollableContent"
+        >
+          <div
+            class="PageSidebar-spacer"
+          />
+          <ul
+            class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+            role="menu"
+            tabindex="-1"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -46,18 +62,26 @@ exports[`PageSidebar with one normal and one bottom menu 1`] = `
       class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium"
     >
       <div
-        class="PageSidebar-spacer"
-      />
-      <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
-        role="menu"
-        tabindex="-1"
-      />
-      <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
-        role="menu"
-        tabindex="-1"
-      />
+        class="PageSidebar-wrapper PageSidebar-sticky"
+      >
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PageSidebar-scrollableContent"
+        >
+          <div
+            class="PageSidebar-spacer"
+          />
+          <ul
+            class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+            role="menu"
+            tabindex="-1"
+          />
+          <ul
+            class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
+            role="menu"
+            tabindex="-1"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>
