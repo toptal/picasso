@@ -280,9 +280,19 @@ exports[`Input shows excess chars for multiline input with exceeded limit 1`] = 
   class="PicassoContainer-flex PicassoInputMultilineAdornment-root PicassoInputMultilineAdornment-error"
   data-testid="limit-adornment-multiline-label"
 >
-  1
-   
-  over the limit
+  <span
+    data-testid="message"
+  >
+    <span
+      translate="no"
+    >
+      1
+    </span>
+     
+    <span>
+      over the limit
+    </span>
+  </span>
 </div>
 `;
 
@@ -291,8 +301,18 @@ exports[`Input shows remaining chars for for multiline input with limit 1`] = `
   class="PicassoContainer-flex PicassoInputMultilineAdornment-root PicassoInputMultilineAdornment-error"
   data-testid="limit-adornment-multiline-label"
 >
-  0
-   
-  characters left
+  <span
+    data-testid="message"
+  >
+    <span
+      translate="no"
+    >
+      0
+    </span>
+     
+    <span>
+      characters left
+    </span>
+  </span>
 </div>
 `;
