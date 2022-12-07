@@ -19,6 +19,7 @@ describe('InputLimitAdornment', () => {
           limit: 0,
           multiline: true,
           charsLength,
+          testIds: { message: 'message' },
         })
 
         const limitText = getByTestId('message').textContent
@@ -41,6 +42,7 @@ describe('InputLimitAdornment', () => {
           limit: 3,
           multiline: true,
           charsLength: 3 - remainingChars,
+          testIds: { message: 'message' },
         })
 
         const limitText = getByTestId('message').textContent

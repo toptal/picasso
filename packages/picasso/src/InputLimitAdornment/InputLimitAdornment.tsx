@@ -15,6 +15,7 @@ export interface Props {
   counter: CounterType
   testIds?: {
     inputAdornment?: string
+    message?: string
   }
 }
 
@@ -70,7 +71,7 @@ const InputLimitAdornment = (props: Props) => {
         data-testid={testIds?.inputAdornment}
         error={error}
       >
-        <span data-testid='message'>
+        <span data-testid={testIds?.message}>
           <span translate='no'>{Math.abs(charsTillLimit)}</span>{' '}
           <span>{multilineLabel}</span>
         </span>
@@ -87,7 +88,7 @@ const InputLimitAdornment = (props: Props) => {
         [classes.limiterLabelError]: error,
       })}
     >
-      <span data-testid='message'>
+      <span data-testid={testIds?.message}>
         <span translate='no'>{charsTillLimit}</span>{' '}
         <span>{multilineLabel}</span>
       </span>
