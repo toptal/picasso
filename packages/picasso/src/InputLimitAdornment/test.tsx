@@ -13,7 +13,7 @@ describe('InputLimitAdornment', () => {
       { charsLength: 2, expectedMessage: '2 characters entered' },
     ])(
       "expect '$expectedMessage' message for $charsLength characters",
-      async ({ charsLength, expectedMessage }) => {
+      ({ charsLength, expectedMessage }) => {
         const { getByTestId } = renderAdornment({
           counter: 'entered',
           limit: 0,
@@ -35,7 +35,7 @@ describe('InputLimitAdornment', () => {
       { remainingChars: 2, expectedMessage: '2 characters left' },
     ])(
       "expect '$expectedMessage' message for $remainingChars characters",
-      async ({ remainingChars, expectedMessage }) => {
+      ({ remainingChars, expectedMessage }) => {
         const { getByTestId } = renderAdornment({
           counter: 'remaining',
           limit: 3,
