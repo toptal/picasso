@@ -54,6 +54,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       # This Action will scan dependency manifest files that change as part of a Pull Request,
       # surfacing known-vulnerable versions of the packages declared or updated in the PR.
@@ -64,6 +66,11 @@ jobs:
 
       - name: Install Dependencies
         uses: toptal/davinci-github-actions/yarn-install@v4.4.3
+
+      - name: Check missing changeset
+        uses: toptal/davinci-github-actions/report-missing-changeset@feat/report-missing-dependency
+        with:
+          github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
 
       - name: Syncpack check
         run: yarn syncpack:list
