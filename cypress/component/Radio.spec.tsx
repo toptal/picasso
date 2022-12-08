@@ -51,7 +51,7 @@ describe('Radio', () => {
       variant: 'default/after-hovered',
     })
 
-    cy.get('input').focus().get('body').happoScreenshot({
+    cy.get('input').focus().trigger('focus').get('body').happoScreenshot({
       component,
       variant: 'default/after-focused',
     })

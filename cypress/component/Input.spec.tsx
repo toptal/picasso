@@ -35,6 +35,7 @@ describe('Input', () => {
 
     cy.getByTestId('error-input')
       .as('error-input')
+      .realHover()
       .hoverAndTakeHappoScreenshot({
         component,
         variant: 'error-status/after-hovered',

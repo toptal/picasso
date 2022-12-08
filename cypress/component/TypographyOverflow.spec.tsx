@@ -79,7 +79,7 @@ const CustomTooltipAndDelayExample = () => (
 const component = 'TypographyOverflow'
 
 describe('TypographyOverflow', () => {
-  it('renders', () => {
+  it('renders with static width', () => {
     cy.mount(<DefaultExample />)
 
     cy.getByTestId('ellipsed-text').click()
@@ -87,6 +87,10 @@ describe('TypographyOverflow', () => {
       component,
       variant: 'default/after-hovered-static-width',
     })
+  })
+
+  it('renders with dynamic width', () => {
+    cy.mount(<DefaultExample />)
 
     cy.getByTestId('ellipsed-text-dynamic-width').click()
     cy.get('body').happoScreenshot({

@@ -42,7 +42,8 @@ const getBar = (name: string) => {
   return cy.get(`path[name="${name}"]`).first()
 }
 
-const hoverOverBar = (name: string) => getBar(name).trigger('mousemove')
+const hoverOverBar = (name: string) =>
+  getBar(name).realHover().trigger('mousemove')
 
 const assertTooltipContent = (text: string) => {
   cy.get('.recharts-default-tooltip').should('be.visible').and('contain', text)

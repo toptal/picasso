@@ -30,14 +30,24 @@ describe('Checkbox', () => {
       variant: 'default-checked/after-hovered',
     })
 
-    // our data-testid's are not being passed to the input
-    cy.get('input').first().focus().get('body').happoScreenshot({
-      component,
-      variant: 'default-unchecked/after-focused',
-    })
-    cy.get('input').last().focus().get('body').happoScreenshot({
-      component,
-      variant: 'default-checked/after-focused',
-    })
+    cy.getByTestId('checkbox-unchecked')
+      .find('input') // our data-testid's are not being passed to the input
+      .focus()
+      .trigger('focus') // since 'focus' is not an action command, we need to trigger it
+      .get('body')
+      .happoScreenshot({
+        component,
+        variant: 'default-unchecked/after-focused',
+      })
+
+    cy.getByTestId('checkbox-checked')
+      .find('input') // our data-testid's are not being passed to the input
+      .focus()
+      .trigger('focus') // since 'focus' is not an action command, we need to trigger it
+      .get('body')
+      .happoScreenshot({
+        component,
+        variant: 'default-checked/after-focused',
+      })
   })
 })

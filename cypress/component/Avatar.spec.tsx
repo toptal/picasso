@@ -30,7 +30,7 @@ describe('Avatar', () => {
         </Container>
       )
 
-      cy.get('button').focus().get('body').happoScreenshot({
+      cy.get('button').focus().trigger('focus').get('body').happoScreenshot({
         component,
         variant: 'editable/after-focus',
       })

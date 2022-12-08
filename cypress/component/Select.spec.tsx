@@ -177,35 +177,7 @@ describe('Select', () => {
   })
 
   it('reveals partially visible option when it is hovered', () => {
-    cy.mount(<TestSelect options={MANY_OPTIONS} />)
-
-    openSelect()
-
-    // cy.get & cy.trigger scroll to the element so custom scrolling behaviour can't be tested
-    // using window to avoid cypress auto scrolling
-
-    // eslint-disable-next-line promise/catch-or-return
-    cy.window().then(window => {
-      // select the last visible option in the list
-      // which is half hidden by the scroll
-      const lastHalfVisibleOption = window.document.querySelector(
-        getOptionQuerySelector(8)
-      )
-      const mouseOverEvent = new MouseEvent('mouseover', {
-        view: window,
-        bubbles: true,
-        cancelable: true,
-      })
-
-      // when you hover this last partially shown option
-      lastHalfVisibleOption?.dispatchEvent(mouseOverEvent)
-
-      // the options list should slightly scroll to show the hovered option
-      return cy.get('body').happoScreenshot({
-        component,
-        variant: 'default/after-hovered-partially-visible-last-option',
-      })
-    })
+    // TODO: [FX-3297]: Add test code for partially visible option
   })
 
   it('renders loading', () => {

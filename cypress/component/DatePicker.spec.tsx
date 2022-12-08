@@ -84,7 +84,7 @@ describe('DatePicker', () => {
       />
     )
 
-    cy.getByTestId('date-picker-with-indicators').focus()
+    cy.getByTestId('date-picker-with-indicators').focus().trigger('focus')
 
     cy.get('body').happoScreenshot({
       component,
@@ -106,7 +106,7 @@ describe('DatePicker', () => {
       />
     )
 
-    cy.getByTestId('date-picker-with-footer').focus()
+    cy.getByTestId('date-picker-with-footer').focus().trigger('focus')
 
     cy.get('body').happoScreenshot({
       component,
