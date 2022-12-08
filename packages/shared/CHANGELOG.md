@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.2.1
+
+### Patch Changes
+
+- [#3283](https://github.com/toptal/picasso/pull/3283) [`a9218c42`](https://github.com/toptal/picasso/commit/a9218c42b85ed5964909b9493fdd58503d036cb4) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  - add hook `useHasMultilineCounter` for multiline form elements that use counter
+
 ## 11.2.0
 
 ### Minor Changes
