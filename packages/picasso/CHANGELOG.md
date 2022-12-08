@@ -1,5 +1,12 @@
 # Change Log
 
+## 29.1.3
+
+### Patch Changes
+
+- Updated dependencies [[`a9218c42`](https://github.com/toptal/picasso/commit/a9218c42b85ed5964909b9493fdd58503d036cb4)]:
+  - @toptal/picasso-shared@11.2.1
+
 ## 29.1.2
 
 ### Patch Changes
