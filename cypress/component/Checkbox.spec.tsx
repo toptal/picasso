@@ -33,7 +33,7 @@ describe('Checkbox', () => {
     cy.getByTestId('checkbox-unchecked')
       .find('input') // our data-testid's are not being passed to the input
       .focus()
-      .trigger('focus') // since 'focus' is not an action command, we need to trigger it
+      .trigger('focus') // since `focus` is not an action command, we need to trigger it
       .get('body')
       .happoScreenshot({
         component,
@@ -43,7 +43,7 @@ describe('Checkbox', () => {
     cy.getByTestId('checkbox-checked')
       .find('input') // our data-testid's are not being passed to the input
       .focus()
-      .trigger('focus') // since 'focus' is not an action command, we need to trigger it
+      .trigger('focus') // since `focus` is not an action command, we need to trigger it
       .get('body')
       .happoScreenshot({
         component,
