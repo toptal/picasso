@@ -1,5 +1,13 @@
 # Change Log
 
+## 50.1.1
+
+### Patch Changes
+
+- [#3285](https://github.com/toptal/picasso/pull/3285) [`a4d697b4`](https://github.com/toptal/picasso/commit/a4d697b42d65b9467c2446222d22ff2a16f71441) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  - fix `setHasMultilineCounter` prop propagating to DOM
+
 ## 50.1.0
 
 ### Minor Changes
