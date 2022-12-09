@@ -17,6 +17,7 @@ module.exports = {
   addons: [
     'storybook-readme/register',
     '@storybook/addon-viewport/register',
+    'storybook-addon-swc',
 
     // no "/register" because https://github.com/storybookjs/storybook/issues/11929#issuecomment-672998494
     '@storybook/addon-a11y',
