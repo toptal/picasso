@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Input as PicassoInput, InputProps } from '@toptal/picasso'
+import { useForm } from 'react-final-form'
 
 import { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
@@ -31,11 +32,16 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
     warnAutocompleteDisabledInput(props.name)
   }, [props.name])
 
+  const {
+    mutators: { setHasMultilineCounter },
+  } = useForm()
+
   const { label, titleCase, ...rest } = props
 
   return (
     <InputField<FormInputProps>
       {...rest}
+      setHasMultilineCounter={setHasMultilineCounter}
       label={
         label ? (
           <FieldLabel

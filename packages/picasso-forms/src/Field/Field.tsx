@@ -3,7 +3,6 @@ import {
   useField,
   FieldProps as FinalFieldProps,
   FieldRenderProps,
-  useForm,
 } from 'react-final-form'
 import { Form as PicassoForm, OutlinedInputStatus } from '@toptal/picasso'
 import { TextLabelProps } from '@toptal/picasso-shared'
@@ -91,9 +90,6 @@ const Field = <
   } = props
 
   const { validateOnSubmit: shouldValidateOnSubmit } = useFormConfig()
-  const {
-    mutators: { setHasMultilineCounter },
-  } = useForm()
   const validators = useMemo(
     () => getValidators(required, validate),
     [required, validate]
@@ -127,7 +123,6 @@ const Field = <
   const childProps: Record<string, unknown> = {
     id,
     status,
-    setHasMultilineCounter,
     ...rest,
     ...input,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

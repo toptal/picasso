@@ -5,6 +5,7 @@ import {
 } from '@toptal/picasso'
 import React, { useCallback, useState } from 'react'
 import { Except } from 'type-fest'
+import { useForm } from 'react-final-form'
 
 import { FieldProps } from '../FieldWrapper'
 import InputField from '../InputField'
@@ -25,6 +26,9 @@ type InternalProps = RichTextEditorProps & { value: string }
 export const RichTextEditor = (props: Props) => {
   const { onChange, defaultValue, label, titleCase, ...rest } = props
   const [value, setValue] = useState('')
+  const {
+    mutators: { setHasMultilineCounter },
+  } = useForm()
 
   // Because RichTextEditor doesn't have an value input we need to implement this
   // as an compatibility layer between final-form
@@ -51,6 +55,7 @@ export const RichTextEditor = (props: Props) => {
           />
         ) : null
       }
+      setHasMultilineCounter={setHasMultilineCounter}
       {...rest}
     >
       {(inputProps: RichTextEditorProps) => (
