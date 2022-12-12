@@ -99,7 +99,7 @@
     "lerna": "^5.5.2",
     "madge": "^5.0.1",
     "raw-loader": "^4.0.2",
-    "react": "^18.1.0",
+    "react": "^18.2.0",
     "react-ace": "^10.1.0",
     "react-deprecate": "^0.1.0",
     "react-dom": "^18.2.0",
