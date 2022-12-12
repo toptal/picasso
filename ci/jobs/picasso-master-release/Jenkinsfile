@@ -116,7 +116,7 @@ pipeline {
             -v $SSH_AUTH_SOCK:/ssh-agent \
             -v ${PWD}/.git:/app/.git \
             --entrypoint=./bin/release \
-            gcr.io/toptal-hub/${repoName}:${imageCommitId}
+            us-central1-docker.pkg.dev/toptal-hub/containers/${repoName}:${imageCommitId}
           """
         }
 
