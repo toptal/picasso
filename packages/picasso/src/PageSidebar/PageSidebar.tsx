@@ -115,7 +115,12 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
           [classes.sticky]: !disableSticky,
         })}
       >
-        <Container flex direction='column' className={classes.scrollable}>
+        <Container
+          flex
+          direction='column'
+          className={classes.scrollableContent}
+          data-testid={testIds?.scrollableContainer}
+        >
           {collapsible && (
             <ButtonCircular
               className={cx(classes.collapseButton, {

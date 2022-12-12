@@ -42,7 +42,7 @@ export default ({ palette, screens, transitions }: Theme) =>
         },
       },
     },
-    scrollable: {
+    scrollableContent: {
       height: '100%',
       overflowY: 'auto',
       padding: '1rem 0 0.5rem',
@@ -94,6 +94,13 @@ export default ({ palette, screens, transitions }: Theme) =>
 
       '&::before': {
         width: '5.75rem',
+      },
+      '& $scrollableContent': {
+        '-ms-overflow-style': 'none',
+        'scrollbar-width': 'none',
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
       },
     },
     sticky: {},
