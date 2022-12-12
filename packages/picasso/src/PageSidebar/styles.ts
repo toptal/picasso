@@ -1,14 +1,14 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { rem } from '@toptal/picasso-shared'
 
 // decided to use a custom shadow for the sidebar's collapse button
 const COLLAPSE_BUTTON_SHADOW =
   '0 0 0 1px rgba(0, 0, 0, 0.04), 0 0 8px 0 rgba(0, 0, 0, 0.16)'
 
-export default ({ palette, screens, zIndex, transitions }: Theme) =>
+export default ({ palette, screens, transitions }: Theme) =>
   createStyles({
     root: {
       height: '100%',
-      width: '14.75rem',
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
       padding: '1rem 0 0.5rem',
       fontSize: '1rem',
@@ -29,28 +29,14 @@ export default ({ palette, screens, zIndex, transitions }: Theme) =>
         height: '100%',
       },
     },
-    responsiveWrapper: {
-      position: 'fixed',
-      top: '0.75em',
-      left: '0.75em',
-      zIndex: zIndex.appBar,
+    small: {
+      width: rem('212px'),
     },
-    responsiveWrapperContent: {
-      maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
-
-      [screens('small', 'medium')]: {
-        maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
-      },
-
-      // height under which maxHeight menu starts to overflow
-      // and needs to reduce height dynamically to avoid overflow
-      '@media screen and (max-height: 585px)': {
-        maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
-
-        [screens('small', 'medium')]: {
-          maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
-        },
-      },
+    medium: {
+      width: rem('236px'),
+    },
+    large: {
+      width: rem('280px'),
     },
     spacer: {
       order: 50,

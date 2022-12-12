@@ -9,7 +9,9 @@ export default ({ palette }: Theme) =>
         marginBottom: 0,
       },
     },
-    content: {},
+    content: {
+      flexGrow: 1,
+    },
     icon: {
       margin: '4px 0',
       color: palette.grey.main2,

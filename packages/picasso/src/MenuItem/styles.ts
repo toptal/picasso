@@ -111,6 +111,7 @@ export default ({ typography, palette, shadows }: Theme) =>
     },
     itemWrapper: {
       flex: 1,
+      maxWidth: '100%',
     },
     content: {
       flex: 1,

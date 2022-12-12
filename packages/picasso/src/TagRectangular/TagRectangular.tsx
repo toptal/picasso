@@ -1,39 +1,13 @@
-import React, { forwardRef, HTMLAttributes, AnchorHTMLAttributes } from 'react'
+import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
+import { useTitleCase } from '@toptal/picasso-shared'
 
-import Indicator, { IndicatorProps } from '../Indicator'
+import Indicator from '../Indicator'
 import Chip from '../Chip'
 import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
-
-export type VariantType =
-  | 'red'
-  | 'yellow'
-  | 'dark-grey'
-  | 'light-grey'
-  | 'green'
-
-export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
-  HTMLAttributes<HTMLDivElement>
-
-interface VariantOnlyProps extends BaseProps, TextLabelProps, DivOrAnchorProps {
-  /** Variant of the rectangular `Tag`, can not be used with the `indicator` property at the same time. */
-  variant?: VariantType
-  /** Indicator color, can not be used with the `variant` property at the same time. The Tag's `variant` property is automatically set to `light` when indicator color is set. */
-  indicator?: never
-}
-
-interface IndicatorOnlyProps
-  extends BaseProps,
-    TextLabelProps,
-    DivOrAnchorProps {
-  variant?: never
-  indicator: IndicatorProps['color']
-}
-
-export type Props = VariantOnlyProps | IndicatorOnlyProps
+import { Props } from './types'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTagRectangular',

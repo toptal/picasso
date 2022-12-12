@@ -9,6 +9,7 @@ export default defineConfig({
   ...davinciConfig,
   component: {
     ...davinciConfig.component,
+    retries: { openMode: null, runMode: 2 },
     setupNodeEvents: (on, config) => {
       davinciConfig.component.setupNodeEvents(on, config)
 

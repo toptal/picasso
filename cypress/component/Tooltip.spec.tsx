@@ -305,7 +305,10 @@ describe('Tooltip', () => {
     })
   })
 
-  it('renders inside and outside of a modal', () => {
+  // The problem with this test is that even though the example is correctly being rendered
+  // The happo screenshot doesn't contain the modal itself, just the button
+  // We are skipping this test until we get a response from Happo team
+  it.skip('renders inside and outside of a modal', () => {
     cy.mount(<ModalTooltipExample />)
     cy.get('body').happoScreenshot({
       component,

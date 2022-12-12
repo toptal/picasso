@@ -7,6 +7,8 @@ import SidebarItemContent from '../SidebarItemContent'
 import styles from './styles'
 import { Props } from './types'
 import { useSubMenuContext } from './SubMenuContextProvider'
+import getBadgeProps from './utils/getBadgeProps/getBadgeProps'
+import getTagProps from './utils/getTagProps/getTagProps'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItemHeader',
@@ -29,6 +31,7 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
       icon,
       isSubMenu,
       badge,
+      tag,
       isExpanded,
       expand,
       index,
@@ -82,7 +85,11 @@ export const SidebarItemHeader = forwardRef<HTMLElement, Props>(
         nonSelectable
         data-testid={testIds?.header}
       >
-        <SidebarItemContent {...props} />
+        <SidebarItemContent
+          {...props}
+          badge={getBadgeProps(badge)}
+          tag={getTagProps(tag)}
+        />
       </MenuItem>
     )
   }

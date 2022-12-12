@@ -4,9 +4,10 @@ import React, {
   useState,
   ForwardRefExoticComponent,
   RefAttributes,
+  useCallback,
 } from 'react'
 
-import { RootContext } from './RootContext'
+import { RootContext, RootContextProps } from './RootContext'
 import { EnvironmentType, TextLabelProps } from '../types'
 import { PicassoRootNodeProps } from './PicassoRootNode'
 
@@ -30,8 +31,9 @@ const PicassoGlobalStylesProvider = (
     disableTransitions,
   } = props
 
-  const rootRef = useRef<HTMLDivElement>(null)
-  const [contextValue, setContextValue] = useState({
+  const [picassoRootMounted, setPicassoRootMounted] = useState(false)
+  const rootRef = useRef<HTMLDivElement | null>(null)
+  const [contextValue, setContextValue] = useState<RootContextProps>({
     rootRef,
     hasTopBar: false,
     setHasTopBar: (hasTopBar: boolean) => {
@@ -59,10 +61,18 @@ const PicassoGlobalStylesProvider = (
     disableTransitions,
   })
 
+  const setRootRef = useCallback(
+    (ref: HTMLDivElement) => {
+      rootRef.current = ref
+      setPicassoRootMounted(true)
+    },
+    [setPicassoRootMounted]
+  )
+
   return (
-    <RootComponent ref={rootRef}>
+    <RootComponent ref={setRootRef}>
       <RootContext.Provider value={contextValue}>
-        {children}
+        {picassoRootMounted && children}
       </RootContext.Provider>
     </RootComponent>
   )

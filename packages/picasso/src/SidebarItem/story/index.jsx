@@ -42,6 +42,15 @@ const componentDocs = PicassoBook.createComponentDocs(
       },
       description: 'Callback when item is clicked',
     },
+    onMouseEnter: {
+      name: 'onClick',
+      type: {
+        name: 'function',
+        description:
+          '(event: React.MouseEvent<HTMLElement, MouseEvent>) => void',
+      },
+      description: 'Callback when item is hovered',
+    },
     as: {
       name: 'as',
       type: {
@@ -82,6 +91,24 @@ const componentDocs = PicassoBook.createComponentDocs(
       type: 'CSSProperties',
       description: 'Style applied to root element',
     },
+    badge: {
+      name: 'badge',
+      type: {
+        name: 'number | BadgeProps',
+        description:
+          '{ content: number, variant?: "white" | "red", max?: number }',
+      },
+      description: 'Show number of unread messages',
+    },
+    tag: {
+      name: 'tag',
+      type: {
+        name: 'string | TagProps',
+        description:
+          '{ content: string, variant?: "red" | "yellow" | "dark-grey" | "light-grey" | "green" }',
+      },
+      description: 'Highlight new feature',
+    },
   }
 )
 
@@ -105,6 +132,10 @@ Most of the time you would use Sidebar.Item as a router Link. This is how to do 
       description:
         'When a nested Sidebar.Item is selected, it automatically expands the menu.',
     })
+    .addExample(
+      'SidebarItem/story/WithBadgeAndTag.example.tsx',
+      'With Badge and Tag'
+    )
     .addExample('SidebarItem/story/Disabled.example.tsx', 'Disabled')
 )
 

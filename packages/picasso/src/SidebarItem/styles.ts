@@ -58,11 +58,11 @@ export default ({ palette, sizes }: Theme) =>
       margin: '0 1rem',
     },
     nestedMenu: {
-      padding: '0 0 0 2rem',
+      padding: '0 1rem 0 2rem',
       marginRight: '1rem',
     },
     nestedMenuWithIcon: {
-      padding: '0 0 0 2.875rem',
+      padding: '0 1rem 0 2.875rem',
       marginRight: '1rem',
     },
     content: {

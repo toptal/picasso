@@ -7,6 +7,8 @@ import { SidebarItemHeader } from './SidebarItemHeader'
 import { SubMenuContextProvider } from './SubMenuContextProvider'
 import { Props } from './types'
 import styles from './styles'
+import { ParentItemContextProvider } from './ParentItemContextProvider'
+import useOpen from '../utils/useBoolean'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItemCompact',
@@ -15,7 +17,7 @@ const useStyles = makeStyles<Theme>(styles, {
 export const SidebarItemCompact = forwardRef<HTMLElement, Props>(
   function CompactSidebarItem(props: Props, ref) {
     const { menu, index, compact, icon } = props
-
+    const [isOpened, handleOpen, handleClose] = useOpen()
     const classes = useStyles()
 
     const subMenu = (
@@ -28,15 +30,23 @@ export const SidebarItemCompact = forwardRef<HTMLElement, Props>(
     )
 
     return (
-      <Container left='small' right='small'>
-        <Dropdown
-          classes={{ popper: classes.compactDropdown }}
-          placement='right-start'
-          content={subMenu}
-        >
-          <SidebarItemHeader {...props} ref={ref} />
-        </Dropdown>
-      </Container>
+      <ParentItemContextProvider isOpened={isOpened}>
+        <Container left='small' right='small'>
+          <Dropdown
+            classes={{ popper: classes.compactDropdown }}
+            placement='right-start'
+            content={subMenu}
+            keepMounted
+            onOpen={handleOpen}
+            onClose={handleClose}
+            popperProps={{
+              role: 'menu',
+            }}
+          >
+            <SidebarItemHeader {...props} ref={ref} />
+          </Dropdown>
+        </Container>
+      </ParentItemContextProvider>
     )
   }
 )

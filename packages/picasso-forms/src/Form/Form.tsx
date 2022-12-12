@@ -3,14 +3,7 @@ import {
   Form as FinalForm,
   FormProps as FinalFormProps,
 } from 'react-final-form'
-import {
-  FormApi,
-  SubmissionErrors,
-  getIn,
-  setIn,
-  AnyObject,
-  MutableState,
-} from 'final-form'
+import { FormApi, SubmissionErrors, getIn, setIn, AnyObject } from 'final-form'
 import { useNotifications } from '@toptal/picasso/utils'
 
 import { createScrollToErrorDecorator } from '../utils'
@@ -21,22 +14,7 @@ import {
   createFormContext,
 } from './FormContext'
 import FormRenderer from './FormRenderer'
-
-const setActiveFieldTouched = <
-  FormValues = object,
-  InitialFormValues = Partial<FormValues>
->(
-  _: any[],
-  state: MutableState<FormValues, InitialFormValues>
-) => {
-  const activeFieldName = state.formState.active
-
-  if (activeFieldName) {
-    const field = state.fields[activeFieldName]
-
-    field.touched = true
-  }
-}
+import { setActiveFieldTouched, setHasMultilineCounter } from './mutators'
 
 export type Props<T = AnyObject> = FinalFormProps<T> & {
   disableScrollOnError?: boolean
@@ -164,6 +142,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
         mutators={{
           ...mutators,
           setActiveFieldTouched,
+          setHasMultilineCounter,
         }}
         validateOnBlur={validateOnBlur}
         {...rest}

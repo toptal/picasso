@@ -1,9 +1,10 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
+import { InputAdornment } from '@material-ui/core'
 
 import styles from './styles'
-import InputAdornment from '../InputAdornment'
+import InputMultilineAdornment from '../InputMultilineAdornment'
 
 type CounterType = 'remaining' | 'entered'
 
@@ -14,6 +15,7 @@ export interface Props {
   counter: CounterType
   testIds?: {
     inputAdornment?: string
+    message?: string
   }
 }
 
@@ -61,22 +63,34 @@ const InputLimitAdornment = (props: Props) => {
     charsTillLimit,
     counter,
   })
+  const error = charsTillLimit <= 0
+
+  if (multiline) {
+    return (
+      <InputMultilineAdornment
+        data-testid={testIds?.inputAdornment}
+        error={error}
+      >
+        <span data-testid={testIds?.message}>
+          <span translate='no'>{Math.abs(charsTillLimit)}</span>{' '}
+          <span>{multilineLabel}</span>
+        </span>
+      </InputMultilineAdornment>
+    )
+  }
 
   return (
     <InputAdornment
       data-testid={testIds?.inputAdornment}
       position='end'
-      className={cx({
-        [classes.limiterMultiline]: multiline,
-      })}
       disablePointerEvents
+      className={cx(classes.limiterLabel, {
+        [classes.limiterLabelError]: error,
+      })}
     >
-      <span
-        className={cx(classes.limiterLabel, {
-          [classes.limiterLabelError]: charsTillLimit <= 0,
-        })}
-      >
-        {multiline ? Math.abs(charsTillLimit) : charsTillLimit} {multilineLabel}
+      <span data-testid={testIds?.message}>
+        <span translate='no'>{charsTillLimit}</span>{' '}
+        <span>{multilineLabel}</span>
       </span>
     </InputAdornment>
   )

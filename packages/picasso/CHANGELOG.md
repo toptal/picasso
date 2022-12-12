@@ -1,5 +1,186 @@
 # Change Log
 
+## 29.1.3
+
+### Patch Changes
+
+- Updated dependencies [[`a9218c42`](https://github.com/toptal/picasso/commit/a9218c42b85ed5964909b9493fdd58503d036cb4)]:
+  - @toptal/picasso-shared@11.2.1
+
+## 29.1.2
+
+### Patch Changes
+
+- [#3279](https://github.com/toptal/picasso/pull/3279) [`8c26ca36`](https://github.com/toptal/picasso/commit/8c26ca36ba5efc031c429e7aeb153f30c82b54f1) Thanks [@iatanas0v](https://github.com/iatanas0v)! - ---
+
+  ### InputLimitAdornment
+
+  - split limit message into translatable and non-translatable part to handle google translation better
+
+## 29.1.1
+
+### Patch Changes
+
+- [#3272](https://github.com/toptal/picasso/pull/3272) [`014069aa`](https://github.com/toptal/picasso/commit/014069aaa24094a8ed2effa804cf6f011f7ae3e4) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### Input
+
+  - fix success state for multiline input with counter
+
+## 29.1.0
+
+### Minor Changes
+
+- [#3271](https://github.com/toptal/picasso/pull/3271) [`cf337f2b`](https://github.com/toptal/picasso/commit/cf337f2b00eb31e6b001a4c899e1ff78aef8a3b7) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Icon
+
+  - add new `add` and `ask` icons from the BASE.
+
+## 29.0.1
+
+### Patch Changes
+
+- [#3251](https://github.com/toptal/picasso/pull/3251) [`efd2b03a`](https://github.com/toptal/picasso/commit/efd2b03ab78e825f99eb904dd7067937f525e4ec) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  - show character count for multiline input and RichTextEditor below the component
+
+## 29.0.0
+
+### Major Changes
+
+- [#3256](https://github.com/toptal/picasso/pull/3256) [`a0cfb3aa`](https://github.com/toptal/picasso/commit/a0cfb3aa11c78d781298c8b90c22d5e85b649f40) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Page.SidebarItem
+
+  - add the new prop `tag` to display a new feature in the sidebar
+
+  ```jsx
+  <Page.Sidebar.Item tag='New'>Label</Page.Sidebar.Item>
+  <Page.Sidebar.Item tag={{ content: 'New', ...otherTagProps }}>Label</Page.Sidebar.Item>
+  ```
+
+  - update `badge` prop to also support `number` as it is the most common way of the usage
+  - the badge is now aligned to the right
+
+  ```jsx
+  <Page.Sidebar.Item badge={5}>Label</Page.Sidebar.Item>
+  ```
+
+  #### BREAKING CHANGES
+
+  - sidebar item with a submenu (parent)
+    - will not display a `badge` or `tag` (**BREAKING CHANGE**)
+    - will display an indicator when any hidden child item has a `badge` or `tag`
+  - submenu items will no longer display an icon (**BREAKING CHANGE**)
+
+## 28.14.2
+
+### Patch Changes
+
+- [#3264](https://github.com/toptal/picasso/pull/3264) [`921da632`](https://github.com/toptal/picasso/commit/921da632eb0e1f3aa54b89bd15b61160f4e2220b) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### PageHamburger
+
+  - change role from `tooltip` to `navigation` for hamburger content
+
+## 28.14.1
+
+### Patch Changes
+
+- [#3259](https://github.com/toptal/picasso/pull/3259) [`2dc67848`](https://github.com/toptal/picasso/commit/2dc67848365538fb6e27c352027d6fa83403ce30) Thanks [@mkrl](https://github.com/mkrl)! - ---
+
+  ### Timeline.Row
+
+  - adjust row content to being able to take up to the full width of the container (`flex-grow: 1`)
+
+## 28.14.0
+
+### Minor Changes
+
+- [#3257](https://github.com/toptal/picasso/pull/3257) [`a4b70ba3`](https://github.com/toptal/picasso/commit/a4b70ba30a70c965f3b5875c36c3f89125c21092) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Page.Sidebar
+
+  - add `size` prop to support different widths
+    - **small** for `212px`
+    - **medium** for `236px`
+    - **large** for `280px`
+
+## 28.13.0
+
+### Minor Changes
+
+- [#3258](https://github.com/toptal/picasso/pull/3258) [`d0e014b2`](https://github.com/toptal/picasso/commit/d0e014b2fc8f80be4b9e65e3c7432b1fe595092f) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### useBoolean
+
+  - add new reusable hook `useBoolean`
+
+  ```diff
+  const Component = () => {
+  -  const [isOpened, setOpen] = useState(false)
+  -
+  -  const handleOpen = () => setOpen(true)
+  -  const handleClose = () => setOpen(false)
+  -  const handleToggle = () => setOpen(value => !value)
+
+  + const [isOpened, handleOpen, handleClose, handleToggle] = useBoolean()
+  }
+  ```
+
+  ```diff
+  const Component = () => {
+  -  const [isCollapsed, setCollapsed] = useState(true)
+  -
+  -  const handleToggle = () => setCollapsed(value => !value)
+
+  + const [isCollapsed, , , handleToggle] = useBoolean(true)
+  }
+  ```
+
+## 28.12.0
+
+### Minor Changes
+
+- [#3211](https://github.com/toptal/picasso/pull/3211) [`9028491d`](https://github.com/toptal/picasso/commit/9028491d5aae8731dbad767ac1bf86ef4cf22b72) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Tabs
+
+  - update styles of the vertical variant to comply with BASE
+  - add `description` and `avatar` props to `Tabs.Tab` in the vertical variant
+  - add [new examples](https://picasso.toptal.net/?path=/story/layout-tabs--tabs#tabs-tab-vertical-tab) in the storybook
+
+## 28.11.0
+
+### Minor Changes
+
+- [#3246](https://github.com/toptal/picasso/pull/3246) [`83f57466`](https://github.com/toptal/picasso/commit/83f57466ab64eb581e172382da63573ee7ff2bb2) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### Page.TopBar
+
+  - add new variant `grey`
+  - add `centerContent` prop to display center menu
+
+  ### Page.TopBar.Menu
+
+  - new component for center menu in `TopBar` designed to be used in the new `grey` variant
+  - allows maximum of 6 menu items
+  - on mobile the menu can be accessed from the hamburger menu
+  - example usage:
+
+  ```jsx
+  <Page.TopBar.Menu>
+    <Page.TopBar.Item icon={<Profile16 />}>Menu item 1</Page.TopBar.Item>
+    <Page.TopBar.Item>Menu item 2</Page.TopBar.Item>
+  </Page.TopBar.Menu>
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`83f57466`](https://github.com/toptal/picasso/commit/83f57466ab64eb581e172382da63573ee7ff2bb2)]:
+  - @toptal/picasso-shared@11.2.0
+
 ## 28.10.1
 
 ### Patch Changes

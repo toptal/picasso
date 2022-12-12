@@ -203,7 +203,7 @@ exports[`Input shows counter for multiline input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-rootMultiline PicassoInput-rootMultilineLimiter PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-rootMultiline PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <textarea
         aria-invalid="false"
@@ -218,9 +218,6 @@ exports[`Input shows counter for multiline input 1`] = `
         readonly=""
         style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); width: 100%;"
         tabindex="-1"
-      />
-      <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
       />
       <fieldset
         aria-hidden="true"
@@ -237,6 +234,9 @@ exports[`Input shows counter for multiline input 1`] = `
         </legend>
       </fieldset>
     </div>
+    <div
+      class="PicassoContainer-flex"
+    />
   </div>
 </div>
 `;
@@ -277,38 +277,38 @@ exports[`Input shows counter for regular input 1`] = `
 
 exports[`Input shows excess chars for multiline input with exceeded limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
+  class="PicassoContainer-flex PicassoInputMultilineAdornment-root PicassoInputMultilineAdornment-error"
   data-testid="limit-adornment-multiline-label"
 >
-  <div
-    class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
-  >
+  <span>
     <span
-      class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"
+      translate="no"
     >
       1
-       
+    </span>
+     
+    <span>
       over the limit
     </span>
-  </div>
+  </span>
 </div>
 `;
 
 exports[`Input shows remaining chars for for multiline input with limit 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputMultilineAdornment-multilineAdornment MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
+  class="PicassoContainer-flex PicassoInputMultilineAdornment-root PicassoInputMultilineAdornment-error"
   data-testid="limit-adornment-multiline-label"
 >
-  <div
-    class="MuiInputAdornment-root PicassoInputAdornment-root PicassoInputLimitAdornment-limiterMultiline MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
-  >
+  <span>
     <span
-      class="PicassoInputLimitAdornment-limiterLabel PicassoInputLimitAdornment-limiterLabelError"
+      translate="no"
     >
       0
-       
+    </span>
+     
+    <span>
       characters left
     </span>
-  </div>
+  </span>
 </div>
 `;

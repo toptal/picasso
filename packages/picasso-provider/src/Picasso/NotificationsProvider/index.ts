@@ -1,1 +1,1 @@
-export { default } from './NotificationsProvider'
+export { default, NotificationsProviderProps } from './NotificationsProvider'

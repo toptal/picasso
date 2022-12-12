@@ -12,7 +12,7 @@ const RightSidebar = styled(Container)`
 
 const Example = () => (
   <div style={{ height: '30rem' }}>
-    <Page>
+    <Page hamburgerId='hamburger-article-example'>
       <Page.Content>
         <SidebarMenu />
         <Page.Article>

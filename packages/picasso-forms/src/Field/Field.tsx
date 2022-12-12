@@ -85,7 +85,7 @@ const Field = <
     validate,
     validateFields,
     value,
-    //
+    autoSaveIndicator,
     ...rest
   } = props
 
@@ -173,6 +173,8 @@ const Field = <
         value: input.value,
         error: status === 'error',
       })}
+      autoSaveIndicator={autoSaveIndicator}
+      hasMultilineCounter={meta.data?.hasMultilineCounter}
     >
       {label}
       {children(childProps)}

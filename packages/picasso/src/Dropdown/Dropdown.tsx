@@ -50,6 +50,7 @@ export interface Props
   /** Disable the portal behavior. The children stay within it's parent DOM hierarchy. */
   disablePortal?: boolean
   popperOptions?: PopperOptions
+  popperProps?: HTMLAttributes<HTMLDivElement>
   /** Always keep Popper's children in the DOM */
   keepMounted?: boolean
   /** Callback invoked when component is opened */
@@ -99,6 +100,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     disableAutoFocus,
     disablePortal,
     popperOptions,
+    popperProps,
     keepMounted,
     onOpen = noop,
     popperContainer,
@@ -251,6 +253,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           open={isOpen}
           enableCompactMode
           container={popperContainer}
+          {...popperProps}
         >
           <ClickAwayListener onClickAway={handleClickAway}>
             {/* TODO: Remove this extra markup and put the onClick handler on `Paper` element */}

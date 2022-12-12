@@ -96,7 +96,7 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
       if (classes[colorClassName]) {
         classNames.push(classes[colorClassName])
       }
-
+      ${'\n'}
       const svgStyle = {
         minWidth: \`\${scaledSize}px\`,
         minHeight: \`\${scaledSize}px\`,

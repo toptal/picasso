@@ -20,6 +20,7 @@ export {
   colors as palette,
   generateRandomString,
   generateRandomStringOrGetEmptyInTest,
+  sizes,
 } from '@toptal/picasso-provider'
 export { useIsomorphicLayoutEffect, isBrowser } from '@toptal/picasso-shared'
 
@@ -43,6 +44,7 @@ export { default as useCombinedRefs } from './use-combined-refs'
 export { default as useSafeState } from './use-safe-state'
 export { default as useWidthOf } from './use-width-of'
 export { default as unsafeErrorLog } from './unsafe-error-log'
+export { default as useBoolean } from './useBoolean/use-boolean'
 export { default as sum } from './sum'
 export { default as htmlToHast, hastSanitizeSchema } from './html-to-hast'
 export type { ReferenceObject } from './use-width-of'

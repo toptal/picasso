@@ -1,5 +1,30 @@
 # Change Log
 
+## 50.1.1
+
+### Patch Changes
+
+- [#3285](https://github.com/toptal/picasso/pull/3285) [`a4d697b4`](https://github.com/toptal/picasso/commit/a4d697b42d65b9467c2446222d22ff2a16f71441) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  - fix `setHasMultilineCounter` prop propagating to DOM
+
+## 50.1.0
+
+### Minor Changes
+
+- [#3251](https://github.com/toptal/picasso/pull/3251) [`efd2b03a`](https://github.com/toptal/picasso/commit/efd2b03ab78e825f99eb904dd7067937f525e4ec) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### FieldWrapper
+
+  - add `autoSaveIndicator` prop for instance of `FormAutoSaveIndicator` component
+
+## 50.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`a0cfb3aa`](https://github.com/toptal/picasso/commit/a0cfb3aa11c78d781298c8b90c22d5e85b649f40)]:
+  - @toptal/picasso@29.0.0
+
 ## 49.2.0
 
 ### Minor Changes
