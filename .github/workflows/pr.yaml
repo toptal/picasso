@@ -54,6 +54,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Check missing changeset
+        uses: toptal/davinci-github-actions/report-missing-changeset@v4.6.0
+        with:
+          github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
 
       # This Action will scan dependency manifest files that change as part of a Pull Request,
       # surfacing known-vulnerable versions of the packages declared or updated in the PR.
