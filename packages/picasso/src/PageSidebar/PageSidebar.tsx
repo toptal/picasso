@@ -8,6 +8,7 @@ import React, {
   useCallback,
   useEffect,
   useState,
+  CSSProperties,
 } from 'react'
 
 import ButtonCircular from '../ButtonCircular'
@@ -35,9 +36,13 @@ export interface Props extends BaseProps {
   testIds?: {
     collapseButton?: string
     container?: string
+    scrollableContainer?: string
   }
   /** Different width of sidebar */
   size?: SizeType<'small' | 'medium' | 'large'>
+  /** Make sidebar scroll with the content */
+  disableSticky?: boolean
+  wrapperMaxHeight?: string | number
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -57,6 +62,8 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     defaultCollapsed,
     testIds,
     size = 'medium',
+    wrapperMaxHeight,
+    disableSticky,
   } = props
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
@@ -100,28 +107,44 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       onMouseEnter={collapsible ? () => setIsHovered(true) : noop}
       onMouseLeave={collapsible ? () => setIsHovered(false) : noop}
     >
-      <div className={classes.spacer} />
-      {collapsible && (
-        <ButtonCircular
-          className={cx(classes.collapseButton, {
-            [classes.buttonVisible]: isHovered,
-          })}
-          onClick={handleCollapseButtonClick}
-          icon={isCollapsed ? <ChevronRight16 /> : <BackMinor16 />}
-          aria-label='collapse sidebar'
-          variant='primary'
-          data-testid={testIds?.collapseButton}
-        />
-      )}
-      <SidebarContextProvider
-        isCollapsed={isCollapsed}
-        isHovered={isHovered}
-        variant={variant}
-        expandedItemKey={expandedItemKey}
-        setExpandedItemKey={setExpandedItemKey}
+      <div
+        style={{
+          maxHeight: wrapperMaxHeight,
+        }}
+        className={cx(classes.wrapper, {
+          [classes.sticky]: !disableSticky,
+        })}
       >
-        {children}
-      </SidebarContextProvider>
+        <Container
+          flex
+          direction='column'
+          className={classes.scrollableContent}
+          data-testid={testIds?.scrollableContainer}
+        >
+          {collapsible && (
+            <ButtonCircular
+              className={cx(classes.collapseButton, {
+                [classes.buttonVisible]: isHovered,
+              })}
+              onClick={handleCollapseButtonClick}
+              icon={isCollapsed ? <ChevronRight16 /> : <BackMinor16 />}
+              aria-label='collapse sidebar'
+              variant='primary'
+              data-testid={testIds?.collapseButton}
+            />
+          )}
+          <div className={classes.spacer} />
+          <SidebarContextProvider
+            isCollapsed={isCollapsed}
+            isHovered={isHovered}
+            variant={variant}
+            expandedItemKey={expandedItemKey}
+            setExpandedItemKey={setExpandedItemKey}
+          >
+            {children}
+          </SidebarContextProvider>
+        </Container>
+      </div>
     </Container>
   )
 

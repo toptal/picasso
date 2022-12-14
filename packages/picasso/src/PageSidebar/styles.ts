@@ -1,6 +1,8 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
+import { headerHeight } from '../PageTopBar/styles'
+
 // decided to use a custom shadow for the sidebar's collapse button
 const COLLAPSE_BUTTON_SHADOW =
   '0 0 0 1px rgba(0, 0, 0, 0.04), 0 0 8px 0 rgba(0, 0, 0, 0.16)'
@@ -10,7 +12,6 @@ export default ({ palette, screens, transitions }: Theme) =>
     root: {
       height: '100%',
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
-      padding: '1rem 0 0.5rem',
       fontSize: '1rem',
       position: 'relative',
       transition: `width ${transitions.duration.enteringScreen}ms ease-in-out`,
@@ -28,6 +29,23 @@ export default ({ palette, screens, transitions }: Theme) =>
         width: '15.50rem',
         height: '100%',
       },
+    },
+    wrapper: {
+      height: '100%',
+      '&$sticky': {
+        maxHeight: `calc(100vh - ${headerHeight.default})`,
+        position: 'sticky',
+        top: headerHeight.default,
+        [screens('small', 'medium')]: {
+          maxHeight: `calc(100vh - ${headerHeight.smallAndMedium})`,
+          top: headerHeight.smallAndMedium,
+        },
+      },
+    },
+    scrollableContent: {
+      height: '100%',
+      overflowY: 'auto',
+      padding: '1rem 0 0.5rem',
     },
     small: {
       width: rem('212px'),
@@ -77,5 +95,13 @@ export default ({ palette, screens, transitions }: Theme) =>
       '&::before': {
         width: '5.75rem',
       },
+      '& $scrollableContent': {
+        '-ms-overflow-style': 'none',
+        'scrollbar-width': 'none',
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
+      },
     },
+    sticky: {},
   })
