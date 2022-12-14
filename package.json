@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build:package": "lerna run build:package --stream --parallel",
+    "build:package": "lerna run build:package",
     "build:storybook": "build-storybook -c .storybook -o build/storybook --quiet",
     "circularity": "madge --circular packages/*/src",
     "generate:component": "davinci-code new component",

@@ -1,4 +1,7 @@
 {
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*"]
+  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx/tasks-runners/default",
@@ -9,7 +12,8 @@
   },
   "targetDefaults": {
     "build:package": {
-      "outputs": ["{projectRoot}/dist-package"]
+      "outputs": ["{projectRoot}/dist-package"],
+      "inputs": ["default"]
     }
   }
 }
