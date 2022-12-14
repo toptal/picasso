@@ -1,5 +1,24 @@
 # Change Log
 
+## 30.0.0
+
+### Major Changes
+
+- [#3282](https://github.com/toptal/picasso/pull/3282) [`24c1be48`](https://github.com/toptal/picasso/commit/24c1be48ad35ed5624b1962a256ad614134a2b1f) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### PageSidebar
+
+  #### BREAKING CHANGE
+
+  - sidebar sticks to TopBar on scroll
+  - you can opt-out by setting:
+
+  ```jsx
+  <Page.Sidebar disableSticky>
+    <Page.Sidebar.Menu>...</Page.Sidebar.Menu>
+  </Page.Sidebar>
+  ```
+
 ## 29.1.3
 
 ### Patch Changes
