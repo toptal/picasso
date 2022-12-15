@@ -1,2 +1,4 @@
 master:
   conventional_commits: true
+  require_assignee: true
+  require_assignee_whitelist: []
