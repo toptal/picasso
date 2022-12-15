@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build:package": "lerna run build:package --stream --parallel",
+    "build:package": "lerna run build:package",
     "build:storybook": "build-storybook -c .storybook -o build/storybook --quiet",
     "circularity": "madge --circular packages/*/src",
     "generate:component": "davinci-code new component",
@@ -96,7 +96,7 @@
     "happo-e2e": "^2.0.1",
     "happo-plugin-storybook": "^3.0.0",
     "happo.io": "^7.3.0",
-    "lerna": "^5.5.2",
+    "lerna": "^6.1.0",
     "madge": "^5.0.1",
     "raw-loader": "^4.0.2",
     "react": "^18.2.0",
