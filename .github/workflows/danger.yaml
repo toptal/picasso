@@ -2,7 +2,7 @@ name: Danger
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, edited]
+    types: [opened, synchronize, reopened, edited, assigned, unassigned]
     branches: [master]
 
 concurrency:
