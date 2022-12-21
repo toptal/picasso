@@ -187,19 +187,7 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
     <p
       class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
     >
-      <span
-        width="0"
-      >
-        <span />
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
-        </span>
-        <span
-          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
-        >
-          …
-        </span>
-      </span>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
     </p>
     <button
       class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root PicassoShowMore-toggleText"
@@ -289,19 +277,7 @@ exports[`ShowMore when show more link is clicked should render expanded version 
     <p
       class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
     >
-      <span
-        width="0"
-      >
-        <span />
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
-        </span>
-        <span
-          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
-        >
-          …
-        </span>
-      </span>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
     </p>
     <button
       class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root PicassoShowMore-toggleText"
