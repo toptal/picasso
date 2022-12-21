@@ -29,6 +29,9 @@ export const RichTextEditor = (props: Props) => {
   const {
     mutators: { setHasMultilineCounter },
   } = useForm()
+  const handleSetHasMultilineCounter = useCallback(setHasMultilineCounter, [
+    setHasMultilineCounter,
+  ])
 
   // Because RichTextEditor doesn't have an value input we need to implement this
   // as an compatibility layer between final-form
@@ -55,7 +58,7 @@ export const RichTextEditor = (props: Props) => {
           />
         ) : null
       }
-      setHasMultilineCounter={setHasMultilineCounter}
+      setHasMultilineCounter={handleSetHasMultilineCounter}
       {...rest}
     >
       {(inputProps: RichTextEditorProps) => (

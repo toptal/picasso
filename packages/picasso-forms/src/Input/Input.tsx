@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Input as PicassoInput, InputProps } from '@toptal/picasso'
 import { useForm } from 'react-final-form'
 
@@ -35,13 +35,16 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   const {
     mutators: { setHasMultilineCounter },
   } = useForm()
+  const handleSetHasMultilineCounter = useCallback(setHasMultilineCounter, [
+    setHasMultilineCounter,
+  ])
 
   const { label, titleCase, ...rest } = props
 
   return (
     <InputField<FormInputProps>
       {...rest}
-      setHasMultilineCounter={setHasMultilineCounter}
+      setHasMultilineCounter={handleSetHasMultilineCounter}
       label={
         label ? (
           <FieldLabel
