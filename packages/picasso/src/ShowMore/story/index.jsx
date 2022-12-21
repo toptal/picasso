@@ -28,3 +28,8 @@ page
     title: 'With React children',
     takeScreenshot: false,
   })
+  .addExample('ShowMore/story/ShortText.example.tsx', {
+    title: 'With short text',
+    description:
+      'If number of lines are less than `rows` defined, the "Show More" button is hidden',
+  })
