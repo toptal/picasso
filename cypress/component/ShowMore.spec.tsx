@@ -20,4 +20,23 @@ describe('ShowMore', () => {
 
     cy.getByTestId(contentWrapper).should('have.value', '')
   })
+
+  describe('when there is nothing to expand', () => {
+    it('should render without action link', () => {
+      const toggleButton = 'toggle-button'
+
+      cy.mount(
+        <ShowMore
+          rows={3}
+          testIds={{
+            toggleButton,
+          }}
+        >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </ShowMore>
+      )
+
+      cy.getByTestId(toggleButton).should('not.exist')
+    })
+  })
 })
