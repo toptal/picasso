@@ -1,4 +1,10 @@
-import React, { forwardRef, ReactNode, useMemo, useState } from 'react'
+import React, {
+  forwardRef,
+  ReactNode,
+  useMemo,
+  useCallback,
+  useState,
+} from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Truncate from 'react-truncate'
@@ -52,6 +58,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
   } = props
   const classes = useStyles()
   const [shownMore, setShownMore] = useState(initialExpanded)
+  const [needsTruncation, setNeedsTruncation] = useState(true)
   const content = useMemo(
     () =>
       typeof children === 'string'
@@ -59,9 +66,19 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         : children,
     [children]
   )
+  const handleNeedsTruncation = useCallback(
+    (truncated: boolean) => setNeedsTruncation(truncated),
+    [setNeedsTruncation]
+  )
 
   const isContentVisible = rows !== 0 || shownMore
-  const lines = shownMore ? -1 : rows
+  const formattedContent = shownMore ? (
+    content
+  ) : (
+    <Truncate onTruncate={handleNeedsTruncation} lines={rows}>
+      {content}
+    </Truncate>
+  )
 
   return (
     <>
@@ -74,9 +91,9 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         style={style}
         data-testid={testIds?.contentWrapper}
       >
-        {isContentVisible && <Truncate lines={lines}>{content}</Truncate>}
+        {isContentVisible && formattedContent}
       </Typography>
-      {!disableToggle && (
+      {!disableToggle && needsTruncation && (
         <ButtonAction
           onClick={() => {
             setShownMore(!shownMore)
