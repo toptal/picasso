@@ -45,5 +45,6 @@
     "@types/react-final-form-listeners": "^1.0.0",
     "storybook-readme": "^5.0.9",
     "type-fest": "^2.14.0"
-  }
+  },
+  "sideEffects": false
 }
