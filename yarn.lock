@@ -5069,13 +5069,13 @@
   resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.1.tgz#a220538c1bf21cf4ab2e12a6888a47c06a098d07"
   integrity sha512-gKQYU2NxZJ8VLGETCDzlrOayfuELtxoRKFWPCNW7OXfgfNQlOmtoZVy127ZedEZ3K2gn9mPQdEBGH6SOFSKEIw==
 
-"@toptal/davinci-code@^1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-1.6.3.tgz#8cd433b8bec82256dfbcc9938421ddbaf70adc13"
-  integrity sha512-AC+fdmiWqNIUCAPn055IWTHuFEtBoO+RfREI74Sxs4qWI3RQlyZeSIrEiKgAgXQ4doy6sh1IOC/J40c3NHAA2g==
+"@toptal/davinci-code@^1.7.2":
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-1.7.2.tgz#49dcf187429f5db957c69e8b01bc7a27d69dafd9"
+  integrity sha512-k+dbE5ip3tOPGyJ7LcSl70rrXhzJlJEBIfjoVwmiiOrGSmT6QrHyg6hTTt9vUEtAPjIGdPqYbsz5PNbdHaVlPg==
   dependencies:
-    "@toptal/davinci-cli-shared" "1.7.0"
-    hygen "^6.2.7"
+    "@toptal/davinci-cli-shared" "1.10.0"
+    hygen "^6.2.11"
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
 
@@ -12994,10 +12994,10 @@ husky@^7.0.4:
   resolved "https://registry.npmjs.org/husky/-/husky-7.0.4.tgz"
   integrity sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==
 
-hygen@^6.2.7:
-  version "6.2.7"
-  resolved "https://registry.npmjs.org/hygen/-/hygen-6.2.7.tgz"
-  integrity sha512-JKVS3cnOgKb+iY2/qP+6tq07P4U/gCmE2gmkSLDCoCGJONt2YCXimNT/2mzi2NuSzvisjjkVxwBY7kNvUufrAQ==
+hygen@^6.2.11:
+  version "6.2.11"
+  resolved "https://registry.yarnpkg.com/hygen/-/hygen-6.2.11.tgz#c8fd1a5da6799783d6511f416048db02df1c2dda"
+  integrity sha512-t6/zLI2XozP5gvV74nnl8LZSbwpVNFUkUs/O9DwuOdiiBbws5k4AQNVwKZ9FGzcKjdJ5EBBYkVzlcUHkLyY0FQ==
   dependencies:
     "@types/node" "^17.0.19"
     chalk "^4.1.2"
@@ -13006,7 +13006,6 @@ hygen@^6.2.7:
     degit "^2.8.4"
     ejs "^3.1.6"
     enquirer "^2.3.6"
-    eslint-plugin-prettier "^4.0.0"
     execa "^5.0.0"
     front-matter "^4.0.2"
     fs-extra "^10.0.0"
