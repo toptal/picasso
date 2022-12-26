@@ -1,5 +1,15 @@
 # Change Log
 
+## 30.0.2
+
+### Patch Changes
+
+- [#3300](https://github.com/toptal/picasso/pull/3300) [`36b7fd9c`](https://github.com/toptal/picasso/commit/36b7fd9c7c24fb002fa8e4c486e206341a352009) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### ShowMore
+
+  - hide "Show More" button when there's nothing to show
+
 ## 30.0.1
 
 ### Patch Changes
