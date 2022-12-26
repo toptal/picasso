@@ -1,5 +1,13 @@
 # Change Log
 
+## 30.0.1
+
+### Patch Changes
+
+- [#3295](https://github.com/toptal/picasso/pull/3295) [`c18cc7c5`](https://github.com/toptal/picasso/commit/c18cc7c50628d2eeb49c774c4b2d544984268db3) Thanks [@dependabot](https://github.com/apps/dependabot)! - ---
+
+  Bump d3-hierarchy from 2 to 3
+
 ## 30.0.0
 
 ### Major Changes
