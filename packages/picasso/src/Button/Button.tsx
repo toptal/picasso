@@ -214,8 +214,8 @@ Button.defaultProps = {
   loading: false,
   onClick: noop,
   size: 'medium',
-  type: 'button',
   variant: 'primary',
+  type: 'button',
 }
 
 Button.displayName = 'Button'
