@@ -33,10 +33,10 @@ jobs:
 #        uses: xt0rted/pull-request-comment-branch@v1.4.0
 
       - name: Get branch
-          id: get-branch
-          run: |
-            echo "::set-output name=branch::${{ env.BRANCH }}"
-            echo "::set-output name=sha::${{ env.SHA }}"
+        id: get-branch
+        run: |
+          echo "::set-output name=branch::${{ env.BRANCH }}"
+          echo "::set-output name=sha::${{ env.SHA }}"
 
 #      - name: Specify branch
 #        id: get-branch
