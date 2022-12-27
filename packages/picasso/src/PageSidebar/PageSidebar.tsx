@@ -8,7 +8,6 @@ import React, {
   useCallback,
   useEffect,
   useState,
-  CSSProperties,
 } from 'react'
 
 import ButtonCircular from '../ButtonCircular'
