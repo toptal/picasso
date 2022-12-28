@@ -5029,10 +5029,26 @@
     uuid "^9.0.0"
     vorpal "^1.12.0"
 
-"@toptal/davinci-cloudflare-requests-handler@0.1.2-alpha-chore-improve-packages-building-40711b5a.658+40711b5a":
-  version "0.1.2-alpha-chore-improve-packages-building-40711b5a.658"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.2-alpha-chore-improve-packages-building-40711b5a.658.tgz#329a8019f7f2d46cbc3f8fb9a05c4a8b4c7ec426"
-  integrity sha512-hj4avtl9wFMYg3OrkdTOC0csyoItIPhrd7zKD/Hs74PeS6mnEnyzzkajtkCJlgcsl/7Z4uGE80SNSsI9cr+HdQ==
+"@toptal/davinci-cli-shared@1.10.2-alpha-chore-improve-packages-building-baa9604a.14+baa9604a":
+  version "1.10.2-alpha-chore-improve-packages-building-baa9604a.14"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-1.10.2-alpha-chore-improve-packages-building-baa9604a.14.tgz#cdf92301a64cd1342a7f4490356d6b4289d6827e"
+  integrity sha512-km5BZb17w+ZyWCc8lAJgQNt3IFe8wFO6q5p8do2FhT9dcUFNmJc0BTB/wUnr5sFMIpJqVJi1urf8yrEKHwVnaw==
+  dependencies:
+    analytics-node "^6.2.0"
+    chalk "^4.1.2"
+    execa "^5.1.1"
+    find-yarn-workspace-root "^2.0.0"
+    inquirer "^8.2.0"
+    js-yaml "^4.1.0"
+    read-pkg-up "7.0.1"
+    semver "^7.3.7"
+    uuid "^9.0.0"
+    vorpal "^1.12.0"
+
+"@toptal/davinci-cloudflare-requests-handler@0.1.2-alpha-chore-improve-packages-building-baa9604a.659+baa9604a":
+  version "0.1.2-alpha-chore-improve-packages-building-baa9604a.659"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.2-alpha-chore-improve-packages-building-baa9604a.659.tgz#2509977a17901f64bb1d3d3e93da5c5c91feb2c8"
+  integrity sha512-5yo3KYQLfNMBCkNzKNlH5sKt9Wy4TwmjLVR43s9Qv9mMJih3iY66K2BpS3aGYbQ6jYYK44EXpWaQlv9QaIV8sA==
 
 "@toptal/davinci-code@1.7.4-alpha-chore-improve-packages-building-40711b5a.13":
   version "1.7.4-alpha-chore-improve-packages-building-40711b5a.13"
@@ -5052,10 +5068,10 @@
     globby "^11.0.1"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-engine@9.0.3-alpha-chore-improve-packages-building-40711b5a.13":
-  version "9.0.3-alpha-chore-improve-packages-building-40711b5a.13"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-9.0.3-alpha-chore-improve-packages-building-40711b5a.13.tgz#fd487c1c0b09ccc440b26661769f981b6c253f0e"
-  integrity sha512-k38FioAXmgozOmwyhzyNezGgVB4Dfbau20Q5pTEzZY5KbdkoVa5TBPVwrYsJaKtMfLKw0RGtC6U2iD8s4K0cSA==
+"@toptal/davinci-engine@9.0.3-alpha-chore-improve-packages-building-baa9604a.14":
+  version "9.0.3-alpha-chore-improve-packages-building-baa9604a.14"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-9.0.3-alpha-chore-improve-packages-building-baa9604a.14.tgz#b32f81b5af3c2d95db89255e1c33b6775d2fce84"
+  integrity sha512-l6h+Sip1PHMCyzWKrcgb4cwrOJv//RqNGDP3/kPBgfMi6xD8VcciTxkwx4LENNsaU+ohF/4i9V26djbZ3WHBCA==
   dependencies:
     "@babel/cli" "^7.17.10"
     "@babel/core" "^7.18.0"
@@ -5077,9 +5093,9 @@
     "@sentry/cli" "^2.1.0"
     "@size-limit/file" "^8.1.0"
     "@svgr/webpack" "^6.1.2"
-    "@toptal/davinci-cli-shared" "1.10.2-alpha-chore-improve-packages-building-40711b5a.13+40711b5a"
-    "@toptal/davinci-cloudflare-requests-handler" "0.1.2-alpha-chore-improve-packages-building-40711b5a.658+40711b5a"
-    "@toptal/davinci-monorepo" "6.8.8-alpha-chore-improve-packages-building-40711b5a.13+40711b5a"
+    "@toptal/davinci-cli-shared" "1.10.2-alpha-chore-improve-packages-building-baa9604a.14+baa9604a"
+    "@toptal/davinci-cloudflare-requests-handler" "0.1.2-alpha-chore-improve-packages-building-baa9604a.659+baa9604a"
+    "@toptal/davinci-monorepo" "6.8.8-alpha-chore-improve-packages-building-baa9604a.14+baa9604a"
     babel-loader "^8.2.2"
     babel-plugin-graphql-tag "^3.3.0"
     babel-plugin-module-resolver "^4.1.0"
@@ -5122,13 +5138,13 @@
     webpackbar "^5.0.2"
     workbox-webpack-plugin "^6.5.4"
 
-"@toptal/davinci-monorepo@6.8.8-alpha-chore-improve-packages-building-40711b5a.13+40711b5a":
-  version "6.8.8-alpha-chore-improve-packages-building-40711b5a.13"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-monorepo/-/davinci-monorepo-6.8.8-alpha-chore-improve-packages-building-40711b5a.13.tgz#f418d2bc0955bb7a8fbdc468bfe9369ade0d0ee1"
-  integrity sha512-4kxJSKtc2oKopdbDXFNmVxiMfbTErVuXLJcFzlRrk2WML7ssZ7Ju7+VFxKTHLdmx0YsdgTSNMoCRWKGw3QKVMQ==
+"@toptal/davinci-monorepo@6.8.8-alpha-chore-improve-packages-building-baa9604a.14+baa9604a":
+  version "6.8.8-alpha-chore-improve-packages-building-baa9604a.14"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-monorepo/-/davinci-monorepo-6.8.8-alpha-chore-improve-packages-building-baa9604a.14.tgz#bcf7994f52b6c88860b70f729cd71f00cb7bd860"
+  integrity sha512-g9d5LzEhItUUMG34ijwjW2v7EOKly09YbHX+Xjjs/HYmy+mHKjWg5UreGcP9XnvGUYm3owLuksZYU3Ok7Nfk3w==
   dependencies:
     "@oclif/core" "^1.16.1"
-    "@toptal/davinci-cli-shared" "1.10.2-alpha-chore-improve-packages-building-40711b5a.13+40711b5a"
+    "@toptal/davinci-cli-shared" "1.10.2-alpha-chore-improve-packages-building-baa9604a.14+baa9604a"
     chalk "^4.1.2"
     dependency-cruiser "^11.15.0"
     execa "^5.1.1"
