@@ -375,6 +375,8 @@ describe('Select', () => {
         .find('input')
         .should('be.focused')
 
+      cy.get('body').click()
+
       // focuses on by click on the input wrapper
       cy.getByTestId('select')
         .click()
@@ -382,6 +384,8 @@ describe('Select', () => {
         .click('bottom')
         .find('input')
         .should('be.focused')
+
+      cy.get('body').click()
 
       // focuses on by click on the search icon
       cy.getByTestId('select')
@@ -391,6 +395,8 @@ describe('Select', () => {
         .click(20, 20)
         .find('input')
         .should('be.focused')
+
+      cy.get('body').click()
 
       // focuses on by typing
       cy.getByTestId('select').click().type('option')
