@@ -11,8 +11,8 @@ const Summary = ({
   onClick,
   expanded,
 }: {
-  onClick: () => void
   expanded: boolean
+  onClick: () => void
 }) => (
   <Container
     flex
