@@ -229,8 +229,8 @@ AvatarUpload.defaultProps = {
   size: 'small',
   disabled: false,
   uploading: false,
-  minSize: 0,
   maxSize: 104857600, // 100MB in bytes (100 * 1024 * 1024)
+  minSize: 0,
   accept: 'image/*',
 }
 
