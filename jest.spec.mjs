@@ -1,8 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
-const davinciJestConfig = require('@toptal/davinci-qa/src/configs/jest.config.js')
+import davinciJestConfig from '@toptal/davinci-qa/src/configs/jest.config.js'
 
-
-module.exports = {
+const config = {
   ...davinciJestConfig,
   roots: ['<rootDir>/packages'],
 
@@ -17,3 +15,5 @@ module.exports = {
   },
   setupFiles: ['jest-canvas-mock'],
 }
+
+export default config
