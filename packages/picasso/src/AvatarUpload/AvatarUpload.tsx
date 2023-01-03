@@ -1,29 +1,22 @@
+import { capitalize, makeStyles, Theme } from '@material-ui/core'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import cx from 'classnames'
 import React, {
   CSSProperties,
   FocusEvent,
   forwardRef,
-  useCallback,
-  useEffect,
   useImperativeHandle,
-  useState,
 } from 'react'
-import { capitalize, makeStyles, Theme } from '@material-ui/core'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
-import { useDropzone } from 'react-dropzone'
-import cx from 'classnames'
 
 import Avatar from '../Avatar'
-import styles from './styles'
-import {
-  AvatarUploadOptions,
-  DropEvent,
-  FileRejection,
-  FileUpload,
-} from './types'
 import AvatarDropzoneSvg from '../AvatarDropzoneSvg'
-import Loader from '../Loader'
 import { Upload16, Upload24 } from '../Icon'
+import Loader from '../Loader'
 import { Status } from '../OutlinedInput'
+import styles from './styles'
+import { AvatarUploadOptions, FileUpload } from './types'
+import useAvatarUpload from './hooks/use-avatar-upload'
+import useAvatarStates from './hooks/use-avatar-states'
 
 export interface Props extends BaseProps {
   /** Set accepted file types. See https://github.com/okonet/attr-accept for more information. */
@@ -91,7 +84,6 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const AvatarUpload = forwardRef<HTMLElement, Props>(
-  // eslint-disable-next-line complexity, max-statements
   function AvatarUpload(props, ref) {
     const {
       autoFocus,
@@ -121,74 +113,38 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       validator,
     } = props
 
-    const [{ initiallyFocused, initiallyActive, hovered }, setVisualStates] =
-      useState<{
-        hovered?: boolean
-        initiallyFocused?: boolean
-        initiallyActive?: boolean
-      }>({
-        hovered: autoHover,
-        initiallyFocused: autoFocus,
-        initiallyActive: defaultActive,
-      })
-
-    // callback overrides to return only one file to the parent component
-    const handleDrop = useCallback(
-      (
-        acceptedFiles: File[],
-        fileRejections: FileRejection[],
-        event: DropEvent
-      ) => {
-        if (onDrop) {
-          onDrop(acceptedFiles[0] ?? null, fileRejections[0] ?? null, event)
-        }
-      },
-      [onDrop]
-    )
-
-    const handleDropAccepted = useCallback(
-      (files: File[], event: DropEvent) => {
-        if (onDropAccepted) {
-          onDropAccepted(files[0], event)
-        }
-      },
-      [onDropAccepted]
-    )
-
-    const handleDropRejected = useCallback(
-      (fileRejections: FileRejection[], event: DropEvent) => {
-        if (onDropRejected) {
-          onDropRejected(fileRejections[0], event)
-        }
-      },
-      [onDropRejected]
-    )
-
-    const handleEdit = (event: React.MouseEvent) => {
-      // to avoid dropzone to be triggered
-      event.stopPropagation()
-
-      if (onEdit) {
-        onEdit(event)
-      }
-    }
-
-    const onMouseEnter = () => {
-      setVisualStates(oldState => ({ ...oldState, hovered: true }))
-    }
-
-    const onMouseLeave = () => {
-      setVisualStates(oldState => ({ ...oldState, hovered: false }))
-    }
-
-    const showAvatar = !uploading && Boolean(src)
-    const showUploadIcon = !(showAvatar || uploading)
-
-    // after showing avatar, only way to change the file selection is to use 'onEdit' by clicking
-    const disableDropzoneClick = (showAvatar && !onEdit) || uploading
-    const disableKeyboardAndDragging = showAvatar || uploading
-
     const classes = useStyles()
+
+    const {
+      rootRef,
+      showUploadIcon,
+      showAvatar,
+      isDropzoneDragActive,
+      isDropzoneFocused,
+      getInputProps,
+      getRootProps,
+      handleEdit,
+    } = useAvatarUpload({
+      accept,
+      minSize,
+      maxSize,
+      disabled,
+      uploading,
+      src,
+      validator,
+      onDrop,
+      onEdit,
+      onDropAccepted,
+      onDropRejected,
+    })
+    const { hovered, onMouseEnter, onMouseLeave, isDragActive, isFocused } =
+      useAvatarStates({
+        autoHover,
+        autoFocus,
+        defaultActive,
+        isDropzoneFocused,
+        isDropzoneDragActive,
+      })
 
     const loadingIcon = uploading && (
       <Loader
@@ -213,34 +169,6 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
         data-testid={testIds?.uploadIcon}
       />
     )
-
-    const { getInputProps, getRootProps, isDragActive, isFocused, rootRef } =
-      useDropzone({
-        accept,
-        minSize,
-        maxSize,
-        disabled,
-        multiple: false,
-        onDrop: handleDrop,
-        onDropAccepted: handleDropAccepted,
-        onDropRejected: handleDropRejected,
-        validator,
-        noClick: disableDropzoneClick,
-        noDrag: disableKeyboardAndDragging,
-        noKeyboard: disableKeyboardAndDragging,
-      })
-
-    useEffect(() => {
-      if (initiallyActive && isDragActive) {
-        setVisualStates(oldState => ({ ...oldState, initiallyActive: false }))
-      }
-    }, [initiallyActive, isDragActive])
-
-    useEffect(() => {
-      if (initiallyFocused && isFocused) {
-        setVisualStates(oldState => ({ ...oldState, initiallyFocused: false }))
-      }
-    }, [initiallyFocused, isFocused])
 
     // exposing the rootRef from react-dropzone to the parent component
     useImperativeHandle(ref, () => rootRef.current ?? ({} as HTMLElement), [
@@ -282,8 +210,8 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
               error={status === 'error'}
               size={size}
               hovered={hovered}
-              focused={initiallyFocused || isFocused}
-              isDragActive={initiallyActive || isDragActive}
+              focused={isFocused}
+              isDragActive={isDragActive}
               data-testid={testIds?.dropzoneSvg}
             />
             {loadingIcon}
