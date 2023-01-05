@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-/* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
+/* eslint-disable complexity, max-statements, max-lines-per-function */ // Squiggly lines makes code difficult to work with
 
 import React, {
   InputHTMLAttributes,
@@ -10,11 +10,12 @@ import React, {
   useRef,
   FocusEventHandler,
   MouseEvent,
+  Ref,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, isForwardRef } from '@toptal/picasso-shared'
 import { PopperOptions } from 'popper.js'
 
 import Input, { InputProps } from '../Input'
@@ -137,7 +138,7 @@ const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
-  function Autocomplete(props, ref) {
+  function Autocomplete(props, customRef) {
     const {
       autoComplete,
       className,
@@ -178,6 +179,16 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       disabled = false,
       ...rest
     } = props
+
+    const inputRef = useRef<HTMLInputElement | null>(null)
+    let ref: Ref<HTMLInputElement> | undefined = customRef || inputRef
+
+    if (inputComponent && !isForwardRef(inputComponent)) {
+      ref = undefined
+      unsafeErrorLog(
+        'You provided `inputComponent` prop to Autocomplete without using React.forwardRef wrapper. This is not supported and may cause unexpected behavior. Consider wrapping your input component with React.forwardRef.'
+      )
+    }
 
     usePropDeprecationWarning({
       props,
@@ -227,6 +238,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onBlur,
       enableReset,
       showOtherOption,
+      ref,
     })
 
     const optionsLength = options ? options.length : 0

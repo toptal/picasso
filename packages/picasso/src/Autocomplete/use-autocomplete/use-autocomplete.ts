@@ -6,6 +6,7 @@ import {
   useState,
   ChangeEvent,
   FocusEventHandler,
+  Ref,
   useEffect,
   useMemo,
 } from 'react'
@@ -94,6 +95,7 @@ export interface Props {
   enableReset?: boolean
   showOtherOption?: boolean
   disabled?: boolean
+  ref?: Ref<HTMLInputElement>
 }
 
 export const useAutocomplete = ({
@@ -111,6 +113,7 @@ export const useAutocomplete = ({
   enableReset,
   showOtherOption,
   disabled = false,
+  ref,
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number>(
@@ -135,6 +138,15 @@ export const useAutocomplete = ({
       }
     }
   }, [isOpen, selectedIndex, highlightedIndex])
+
+  useEffect(() => {
+    if (typeof ref === 'function' || !isOpen || !ref?.current) {
+      return
+    }
+    if (document.activeElement !== ref.current) {
+      ref.current.focus()
+    }
+  }, [isOpen, ref])
 
   const shouldShowOtherOption = Boolean(showOtherOption) && selectedIndex === -1
 
