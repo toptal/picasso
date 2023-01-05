@@ -19,6 +19,18 @@ const Example = () => {
         <TagSelector placeholder='error' status='error' value={value} />
       </Container>
       <Container padded='small'>
+        <Typography>Success with long placeholder</Typography>
+        <TagSelector placeholder='Very long placeholder' status='success' />
+      </Container>
+      <Container padded='small'>
+        <Typography>Success on one line</Typography>
+        <TagSelector
+          placeholder='success'
+          status='success'
+          value={value.slice(0, 2)}
+        />
+      </Container>
+      <Container padded='small'>
         <Typography>Success</Typography>
         <TagSelector placeholder='success' status='success' value={value} />
       </Container>
