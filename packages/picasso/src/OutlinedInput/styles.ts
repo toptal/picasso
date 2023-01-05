@@ -88,6 +88,7 @@ export default ({ palette, sizes: { input } }: Theme) =>
   createStyles({
     root: {
       cursor: 'inherit',
+      gap: '0.5rem',
 
       '&:hover': {
         '& $resetButtonDirty': {
