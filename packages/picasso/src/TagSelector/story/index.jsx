@@ -9,10 +9,10 @@ const page = PicassoBook.section('Forms').createPage(
   `
 )
 
-// page
-//   .createTabChapter('Props')
-//   .addComponentDocs({ component: TagSelector, name: 'TagSelector' })
-//   .addComponentDocs(tagSelectorLabelStory.componentDocs)
+page
+  .createTabChapter('Props')
+  .addComponentDocs({ component: TagSelector, name: 'TagSelector' })
+  .addComponentDocs(tagSelectorLabelStory.componentDocs)
 
 page
   .createChapter()
