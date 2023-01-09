@@ -8,7 +8,9 @@ PicassoProvider.override(({ palette }) => ({
       color: palette.grey.dark,
       height: 'auto',
     },
-    positionStart: {},
+    positionStart: {
+      marginRight: 0,
+    },
     positionEnd: {
       justifyContent: 'flex-end',
       flex: '0 0 auto',
