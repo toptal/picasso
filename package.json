@@ -95,7 +95,7 @@
     "happo-cypress": "^3.0.1",
     "happo-e2e": "^2.0.1",
     "happo-plugin-storybook": "^3.0.0",
-    "happo.io": "^7.3.0",
+    "happo.io": "^8.3.1",
     "jest-canvas-mock": "^2.4.0",
     "lerna": "^6.1.0",
     "madge": "^5.0.1",
