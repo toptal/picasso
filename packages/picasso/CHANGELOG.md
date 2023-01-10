@@ -1,5 +1,15 @@
 # Change Log
 
+## 30.0.3
+
+### Patch Changes
+
+- [#3314](https://github.com/toptal/picasso/pull/3314) [`9090119b`](https://github.com/toptal/picasso/commit/9090119b7cc870b743f5625340eb237dc3fc74a1) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Input
+
+  - fix the size and spacing of adornments
+
 ## 30.0.2
 
 ### Patch Changes
