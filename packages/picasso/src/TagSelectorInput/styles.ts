@@ -11,7 +11,7 @@ export default () =>
       display: 'flex',
       flexWrap: 'wrap',
       height: 'auto',
-      paddingBottom: 0,
+      paddingBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE,
       paddingLeft: TAG_SELECTOR_INPUT_GUTTER_SIZE,
       paddingTop: TAG_SELECTOR_INPUT_GUTTER_SIZE,
       cursor: 'pointer',
@@ -23,7 +23,7 @@ export default () =>
         height: rem('24px'),
         paddingLeft: rem('4px'),
         paddingRight: 0,
-        marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE,
+        marginBottom: 0,
       },
     },
     withEndAdornment: {
