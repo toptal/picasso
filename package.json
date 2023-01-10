@@ -59,7 +59,7 @@
     "@storybook/addon-viewport": "^6.5.13",
     "@storybook/builder-webpack5": "^6.5.12",
     "@storybook/manager-webpack5": "^6.5.12",
-    "@storybook/react": "^6.5.12",
+    "@storybook/react": "^6.5.15",
     "@storybook/theming": "^6.5.12",
     "@svgr/cli": "^6.2.1",
     "@testing-library/jest-dom": "^5.16.5",
