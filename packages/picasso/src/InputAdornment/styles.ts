@@ -6,11 +6,15 @@ PicassoProvider.override(({ palette }) => ({
   MuiInputAdornment: {
     root: {
       color: palette.grey.dark,
+      height: 'auto',
     },
-    positionStart: {},
+    positionStart: {
+      marginRight: 0,
+    },
     positionEnd: {
       justifyContent: 'flex-end',
-      flexGrow: 1,
+      flex: '0 0 auto',
+      marginLeft: 'auto',
     },
   },
 }))

@@ -224,6 +224,10 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       )
     }
 
+    const renderTags = values.map(item => (
+      <Fragment key={getKey(item)}>{renderLabel(item)}</Fragment>
+    ))
+
     return (
       <Autocomplete
         {...rest}
@@ -238,9 +242,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         onKeyDown={handleKeyDown}
         onFocus={onFocus}
         onBlur={onBlur}
-        startAdornment={values.map(item => (
-          <Fragment key={getKey(item)}>{renderLabel(item)}</Fragment>
-        ))}
+        startAdornment={renderTags}
         loading={loading}
         disabled={disabled}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}
