@@ -623,3 +623,41 @@ describe('Autocomplete', () => {
     })
   })
 })
+
+describe('Focus behavior', () => {
+  it('focuses input when start adornment is clicked', () => {
+    const { getByTestId } = renderAutocomplete({
+      options: testOptions,
+      value: '',
+      startAdornment: <div data-testid='start-adornment' />,
+    })
+
+    const input = getByTestId('autocomplete')
+
+    expect(input).not.toHaveFocus()
+
+    const startAdornment = getByTestId('start-adornment')
+
+    fireEvent.click(startAdornment)
+
+    expect(input).toHaveFocus()
+  })
+
+  it('focuses input when end adornment is clicked', () => {
+    const { getByTestId } = renderAutocomplete({
+      options: testOptions,
+      value: '',
+      endAdornment: <div data-testid='end-adornment' />,
+    })
+
+    const input = getByTestId('autocomplete')
+
+    expect(input).not.toHaveFocus()
+
+    const endAdornment = getByTestId('end-adornment')
+
+    fireEvent.click(endAdornment)
+
+    expect(input).toHaveFocus()
+  })
+})
