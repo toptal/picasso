@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.3.0
+
+### Minor Changes
+
+- [#3315](https://github.com/toptal/picasso/pull/3315) [`8d1d3a66`](https://github.com/toptal/picasso/commit/8d1d3a6697a30c1d991a5f7750e6cef189fa6ee8) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  - add new `isForwardRef` util function to detect whether React component has a React.forwardRef wrapper
+
 ## 11.2.1
 
 ### Patch Changes
