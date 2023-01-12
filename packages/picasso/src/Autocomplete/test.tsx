@@ -1,12 +1,13 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import { generateRandomString } from '@toptal/picasso-provider'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import Autocomplete, { Props } from './Autocomplete'
+import { InputProps } from '../Input'
 
 jest.mock('ap-style-title-case')
 
@@ -150,8 +151,9 @@ describe('Autocomplete', () => {
     it('with custom input component', async () => {
       const { getByTestId } = renderAutocomplete({
         value: '',
-        // eslint-disable-next-line react/display-name
-        inputComponent: () => <input data-testid='custom-input' />,
+        inputComponent: forwardRef<HTMLInputElement, InputProps>((_, ref) => (
+          <input ref={ref} data-testid='custom-input' />
+        )),
       })
 
       const input = getByTestId('custom-input')
@@ -619,5 +621,43 @@ describe('Autocomplete', () => {
 
       expect(queryByText('Slovakia')).not.toBeInTheDocument()
     })
+  })
+})
+
+describe('Focus behavior', () => {
+  it('focuses input when start adornment is clicked', () => {
+    const { getByTestId } = renderAutocomplete({
+      options: testOptions,
+      value: '',
+      startAdornment: <div data-testid='start-adornment' />,
+    })
+
+    const input = getByTestId('autocomplete')
+
+    expect(input).not.toHaveFocus()
+
+    const startAdornment = getByTestId('start-adornment')
+
+    fireEvent.click(startAdornment)
+
+    expect(input).toHaveFocus()
+  })
+
+  it('focuses input when end adornment is clicked', () => {
+    const { getByTestId } = renderAutocomplete({
+      options: testOptions,
+      value: '',
+      endAdornment: <div data-testid='end-adornment' />,
+    })
+
+    const input = getByTestId('autocomplete')
+
+    expect(input).not.toHaveFocus()
+
+    const endAdornment = getByTestId('end-adornment')
+
+    fireEvent.click(endAdornment)
+
+    expect(input).toHaveFocus()
   })
 })
