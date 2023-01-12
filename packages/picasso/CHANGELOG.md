@@ -1,5 +1,21 @@
 # Change Log
 
+## 30.0.4
+
+### Patch Changes
+
+- [#3315](https://github.com/toptal/picasso/pull/3315) [`8d1d3a66`](https://github.com/toptal/picasso/commit/8d1d3a6697a30c1d991a5f7750e6cef189fa6ee8) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### Autocomplete
+
+  - focus Autocomplete when clicking on its adornments
+
+  > NOTE: when using custom `inputComponent` in Autocomplete,
+  > make sure you wrap it with React.forwardRef
+
+- Updated dependencies [[`8d1d3a66`](https://github.com/toptal/picasso/commit/8d1d3a6697a30c1d991a5f7750e6cef189fa6ee8)]:
+  - @toptal/picasso-shared@11.3.0
+
 ## 30.0.3
 
 ### Patch Changes
