@@ -7,6 +7,10 @@ const page = PicassoBook.section('Picasso Forms').createPage(
   `Form
 
    ${PicassoBook.createSourceLink(__filename)}
+
+  Confused between Form from Picasso and Picasso Forms?
+  Take a look at this
+  [page](/?path=/story/tutorials-difference-between-picasso-forms-and-base-form-components--difference-between-picasso-forms-and-base-form-components).
 `
 )
 
