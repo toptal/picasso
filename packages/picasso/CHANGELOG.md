@@ -1,5 +1,15 @@
 # Change Log
 
+## 30.1.0
+
+### Minor Changes
+
+- [#3318](https://github.com/toptal/picasso/pull/3318) [`c074bdb1`](https://github.com/toptal/picasso/commit/c074bdb172b7893ec6393e0acaf3f6557f06eff0) Thanks [@ascrazy](https://github.com/ascrazy)! - ---
+
+  ### Drawer
+
+  - Add support for optional body scroll lock enabled mode
+
 ## 30.0.4
 
 ### Patch Changes
