@@ -11,6 +11,7 @@ import ButtonCircular from '../ButtonCircular'
 import Container from '../Container'
 import DrawerTitle from '../DrawerTitle'
 import { useIsomorphicLayoutEffect } from '../utils'
+import { useBodyScrollLock } from '../utils/use-body-scroll-lock'
 
 type AnchorType = 'bottom' | 'left' | 'right' | 'top'
 
@@ -33,6 +34,8 @@ export interface Props extends BaseProps {
   width?: WidthType
   /** Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) */
   transitionProps?: TransitionProps
+  /** enable Drawer to maintain body scroll lock */
+  maintainBodyScrollLock?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoDrawer' })
@@ -46,12 +49,15 @@ export const Drawer = (props: Props) => {
     title,
     width = 'regular',
     transitionProps,
+    maintainBodyScrollLock,
     ...rest
   } = props
   const classes = useStyles()
   const { setHasDrawer } = useDrawer()
   const theme = useTheme()
   const container = usePicassoRoot()
+
+  useBodyScrollLock(Boolean(maintainBodyScrollLock && open))
 
   useIsomorphicLayoutEffect(() => {
     setHasDrawer(open)

@@ -23,6 +23,7 @@ import { ModalManager } from '../utils/Modal'
 import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
 import ModalContext from './ModalContext'
+import { useBodyScrollLock } from '../utils/use-body-scroll-lock'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
 type Alignment = 'top' | 'centered'
@@ -176,6 +177,8 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       defaultManager.remove(currentModalId)
     }
   }, [open])
+
+  useBodyScrollLock(open)
 
   const isSmall = useBreakpoint('small')
 

@@ -25,6 +25,10 @@ page
     title: 'Default',
     takeScreenshot: false,
   })
+  .addExample('Drawer/story/WithBodyScrollLock.example.tsx', {
+    title: 'With body scroll lock',
+    takeScreenshot: false,
+  })
   .addExample('Drawer/story/WithoutTitle.example.tsx', {
     title: 'Without Title',
     takeScreenshot: false,
