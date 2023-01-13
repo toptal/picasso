@@ -1,30 +1,33 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const formsPage = PicassoBook.section('Tutorials').createPage(
-  'Difference between Picasso-forms and base form components',
+  'Difference between Picasso Forms and base form components',
   'Learn how to pick the right abstraction for working with inputs and forms in different scenarios.'
 )
 
 formsPage.createChapter().addTextSection(
   `
-In this document you'll learn all the differences between \`Form\` from Picasso core and Picasso Forms,
+In this document you'll learn all the differences between [Form](/?path=/story/forms-form--form) from Picasso core and [Picasso Forms](/?path=/story/picasso-forms-form--form),
 learn about what the differences are and how to apply each to a particular task you have.
 There are several ways to work with forms and inputs in Picasso and this may look confusing at first, so let's take a deeper look at what are your options and what do they do.
 `
 )
 
-const basicChapter = formsPage.createChapter('Basic Form and form elements')
+const basicChapter = formsPage.createChapter(
+  'Basic Form and base form components'
+)
 
 basicChapter
   .addTextSection(
     `
 Let's take a look at the basic \`Form\` and inputs first.
-Basic Form component and all inputs / form elements you can find in Picasso are mostly just pure decorations on top of basic HTML elements you got used to.
+Basic Form component and all inputs / form elements you can find in Picasso are mostly just pure decorations on top of basic HTML elements you got used to. They are built on top of the Material UI input components.
 
 They can be directly imported from \`@toptal/picasso\` and found in the "Forms" section in the Storybook sidebar.
 
 There are some more complex components like Autocomplete, but most components accept the same props and have the same properties as pure HTML inputs.
 They do not contain any extra styling, spacing or labels you used to see in most big forms.
+Form elements imported directly from Picasso also won't show any field-level errors in the form.
 You can use them in a fully controlled manner by directly manipulating their \`value\` and \`onChange\` props or have them uncontrolled as a part of the form.
   `,
     {
@@ -69,7 +72,9 @@ You will find exactly the same set of form inputs as in regular Picasso, but as 
 
 Please note: most of the time you want to use **either** only pure components from Picasso or only components from Picasso Forms,
 almost never both types at the same time (unless you need something very specific-looking).
+
 Form elements provided by Picasso Forms already include a set of UI of basic components, labels and spacing + the all the Final Form abstractions on top of it.
+Picasso Form components are written especially to operate inside a React Final Form and they have error handling, labels and validation working out of the box.
       `,
     {
       title: 'Form and form field wrappers',
