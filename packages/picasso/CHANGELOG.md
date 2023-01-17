@@ -1,5 +1,15 @@
 # Change Log
 
+## 30.2.0
+
+### Minor Changes
+
+- [#3324](https://github.com/toptal/picasso/pull/3324) [`ff13e63e`](https://github.com/toptal/picasso/commit/ff13e63e390fc69825cfbdd6ca76174f7813e504) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Icon
+
+  - add `BellSolid16` and `BellSolid24` icons
+
 ## 30.1.0
 
 ### Minor Changes
