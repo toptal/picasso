@@ -55,7 +55,7 @@
     "simple-react-calendar": "^2.2.8"
   },
   "devDependencies": {
-    "@babel/types": "^7.19.4",
+    "@babel/types": "^7.20.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/react-hooks": "^8.0.1",
