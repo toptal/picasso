@@ -37,6 +37,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   size?: SizeType<'small' | 'medium' | 'large'> | 'full-screen'
   /** Callback executed when backdrop was clicked */
   onBackdropClick?: () => void
+  /** If `true`, clicking the backdrop will not fire `onClose` or `onBackdropClick` */
+  disableBackdropClick?: boolean
   /** Callback executed when attempting to close modal */
   onClose?: () => void
   /** Callback executed when modal is being opened */
@@ -127,6 +129,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     align = 'centered',
     testIds,
     transitionProps,
+    disableBackdropClick = false,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -186,11 +189,17 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     (_event, reason: 'backdropClick' | 'escapeKeyDown') => {
       if (reason === 'escapeKeyDown' && onClose) {
         onClose()
-      } else if (reason === 'backdropClick' && onBackdropClick) {
-        onBackdropClick()
+      } else if (reason === 'backdropClick' && !disableBackdropClick) {
+        if (onBackdropClick) {
+          onBackdropClick()
+        }
+
+        if (onClose) {
+          onClose()
+        }
       }
     },
-    [onBackdropClick, onClose]
+    [disableBackdropClick, onBackdropClick, onClose]
   )
 
   return (
@@ -236,6 +245,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
 
 Modal.defaultProps = {
   hideBackdrop: false,
+  disableBackdropClick: false,
   size: 'medium',
   transitionDuration: 300,
   align: 'centered',

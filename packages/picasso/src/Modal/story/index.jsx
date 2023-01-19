@@ -52,3 +52,9 @@ component and manage the internal state there.
     description: 'Demonstrate how `align` prop works',
     takeScreenshot: false,
   })
+  .addExample('Modal/story/DisableBackdropClick.example.tsx', {
+    title: 'Disable backdrop click',
+    description:
+      'Demonstrate how `disableBackdropClick` prop can be used to avoid closing modal on backdrop click',
+    takeScreenshot: false,
+  })
