@@ -43,6 +43,8 @@ export interface Props extends BaseProps {
   /** Make sidebar scroll with the content */
   disableSticky?: boolean
   wrapperMaxHeight?: string | number
+  /** Callback when sidebar is collapsed */
+  onCollapse?: () => void
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -64,6 +66,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     size = 'medium',
     wrapperMaxHeight,
     disableSticky,
+    onCollapse
   } = props
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
@@ -92,6 +95,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
 
   const handleCollapseButtonClick = useCallback(() => {
     setIsCollapsed(previousState => !previousState)
+    onCollapse?.()
   }, [setIsCollapsed])
 
   const sidebar = (
