@@ -14,7 +14,12 @@ import {
   Participants16,
 } from '@toptal/picasso/Icon'
 
-const Example = () => (
+const Example = () => {
+  const handleCollapse = () => {
+    window.alert('Sidebar onCollapse called')
+  }
+
+  return (
   <div
     style={{
       height: '58rem',
@@ -22,7 +27,7 @@ const Example = () => (
       overflowY: 'scroll',
     }}
   >
-    <Page.Sidebar collapsible>
+    <Page.Sidebar collapsible onCollapse={handleCollapse}>
       <Page.Sidebar.Logo collapsedLogo={<Logo emblem />} fullLogo={<Logo />} />
       <Page.Sidebar.Menu>
         <Page.Sidebar.Item icon={<Overview16 />} selected>
@@ -83,6 +88,6 @@ const Example = () => (
       </Page.Sidebar.Menu>
     </Page.Sidebar>
   </div>
-)
+)}
 
 export default Example
