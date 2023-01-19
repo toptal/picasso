@@ -1,5 +1,12 @@
 # Change Log
 
+## 30.3.0
+
+### Minor Changes
+
+- [#3327](https://github.com/toptal/picasso/pull/3327) [`04c73c80`](https://github.com/toptal/picasso/commit/04c73c804f2e76a262b463f4ee7ddf7213d5b2a4) Thanks [@besirovic](https://github.com/besirovic)! - - add new `onCollapse` prop
+  - call `onCollapse` when collapse button is clicked
+
 ## 30.2.0
 
 ### Minor Changes
