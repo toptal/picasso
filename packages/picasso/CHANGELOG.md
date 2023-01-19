@@ -1,5 +1,16 @@
 # Change Log
 
+## 31.0.0
+
+### Major Changes
+
+- [#3326](https://github.com/toptal/picasso/pull/3326) [`e1f6d98e`](https://github.com/toptal/picasso/commit/e1f6d98e55a65025b98dda38d29f9e9d0c7573c0) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Modal
+
+  - trigger `onClose` callback by default when the backdrop is clicked
+  - add new prop `disableBackdropClick` to prevent calling onClose after clicking the backdrop
+
 ## 30.3.0
 
 ### Minor Changes
