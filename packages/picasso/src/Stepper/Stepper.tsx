@@ -1,7 +1,7 @@
 import React, { forwardRef, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUIStepper from '@material-ui/core/Stepper'
+import { Stepper as MUIStepper } from '@material-ui/core'
 import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import Step from '../Step'

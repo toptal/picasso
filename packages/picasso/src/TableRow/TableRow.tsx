@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITableRow from '@material-ui/core/TableRow'
+import { TableRow as MUITableRow } from '@material-ui/core'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'

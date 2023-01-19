@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
 import { GridSize } from '@material-ui/core/Grid'
-import MUIRadioGroup, { RadioGroupProps } from '@material-ui/core/RadioGroup'
+import { RadioGroup as MUIRadioGroup, RadioGroupProps } from '@material-ui/core'
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 
 import { GridProps } from '../Grid'

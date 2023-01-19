@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import SnackbarContent from '@material-ui/core/SnackbarContent'
+import { SnackbarContent } from '@material-ui/core'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Typography from '../Typography'

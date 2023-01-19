@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
+import { OutlinedInput as MUIOutlinedInput } from '@material-ui/core'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import capitalize from '@material-ui/core/utils/capitalize'
 import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'

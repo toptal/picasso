@@ -5,7 +5,7 @@ import React, {
   useCallback,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUIInputAdornment from '@material-ui/core/InputAdornment'
+import { InputAdornment as MUIInputAdornment } from '@material-ui/core'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 

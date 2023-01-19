@@ -6,7 +6,7 @@ import React, {
   HTMLAttributes,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITooltip, { TooltipProps } from '@material-ui/core/Tooltip'
+import { Tooltip as MUITooltip, TooltipProps } from '@material-ui/core'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 import { usePicassoRoot } from '@toptal/picasso-provider'
