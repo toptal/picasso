@@ -6,7 +6,7 @@ import React, {
   useContext,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITab, { TabProps } from '@material-ui/core/Tab'
+import { Tab as MUITab, TabProps } from '@material-ui/core'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
 import UserBadge from '../UserBadge'

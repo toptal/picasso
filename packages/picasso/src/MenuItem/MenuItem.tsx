@@ -9,7 +9,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
-import MUIMenuItem from '@material-ui/core/MenuItem'
+import { MenuItem as MUIMenuItem } from '@material-ui/core'
 import {
   useTitleCase,
   BaseProps,

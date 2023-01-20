@@ -1,6 +1,6 @@
 import React, { ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUIAccordionDetails from '@material-ui/core/AccordionDetails'
+import { AccordionDetails as MUIAccordionDetails } from '@material-ui/core'
 import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'

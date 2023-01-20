@@ -7,7 +7,7 @@ import React, {
   HTMLAttributes,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import SnackbarContent from '@material-ui/core/SnackbarContent'
+import { SnackbarContent } from '@material-ui/core'
 import cx from 'classnames'
 import capitalize from '@material-ui/core/utils/capitalize'
 import { StandardProps } from '@toptal/picasso-shared'

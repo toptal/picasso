@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUICollapse from '@material-ui/core/Collapse'
+import { Collapse as MUICollapse } from '@material-ui/core'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import TableRow from '../TableRow'

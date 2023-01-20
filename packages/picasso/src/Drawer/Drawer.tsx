@@ -1,4 +1,4 @@
-import MUIDrawer from '@material-ui/core/Drawer'
+import { Drawer as MUIDrawer } from '@material-ui/core'
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, TransitionProps } from '@toptal/picasso-shared'

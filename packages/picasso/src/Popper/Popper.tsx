@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode, useContext } from 'react'
 import cx from 'classnames'
-import MUIPopper from '@material-ui/core/Popper'
+import { Popper as MUIPopper } from '@material-ui/core'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import PopperJs, { ReferenceObject, PopperOptions } from 'popper.js'
 import { BaseProps, useIsomorphicLayoutEffect } from '@toptal/picasso-shared'

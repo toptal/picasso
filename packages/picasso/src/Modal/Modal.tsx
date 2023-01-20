@@ -7,7 +7,7 @@ import React, {
   useCallback,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import Dialog from '@material-ui/core/Dialog'
+import { Dialog } from '@material-ui/core'
 import { PaperProps } from '@material-ui/core/Paper'
 import cx from 'classnames'
 import {

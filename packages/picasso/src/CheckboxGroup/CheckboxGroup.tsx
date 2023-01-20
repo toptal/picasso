@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
-import FormGroup, { FormGroupProps } from '@material-ui/core/FormGroup'
+import { FormGroup, FormGroupProps } from '@material-ui/core'
 import { GridSize } from '@material-ui/core/Grid'
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import cx from 'classnames'

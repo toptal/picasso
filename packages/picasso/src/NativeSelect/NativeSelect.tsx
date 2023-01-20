@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import cx from 'classnames'
-import MuiNativeSelect from '@material-ui/core/NativeSelect'
+import { NativeSelect as MUINativeSelect } from '@material-ui/core'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 
@@ -103,7 +103,7 @@ export const NativeSelect = documentable(
       )
 
       const nativeSelectComponent = (
-        <MuiNativeSelect
+        <MUINativeSelect
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={selectRef}
@@ -150,7 +150,7 @@ export const NativeSelect = documentable(
             renderOption={renderOption as any}
             getItemProps={getItemProps}
           />
-        </MuiNativeSelect>
+        </MUINativeSelect>
       )
 
       return (

@@ -6,9 +6,10 @@ import React, {
   useMemo,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUISlider, {
+import {
+  Slider as MUISlider,
   ValueLabelProps as MUIValueLabelProps,
-} from '@material-ui/core/Slider'
+} from '@material-ui/core'
 import cx from 'classnames'
 
 import SliderValueLabel, { ValueLabelProps } from '../SliderValueLabel'

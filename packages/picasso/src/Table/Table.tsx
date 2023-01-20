@@ -5,7 +5,7 @@ import React, {
   useMemo,
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITable from '@material-ui/core/Table'
+import { Table as MUITable } from '@material-ui/core'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import TableContext from './TableContext'

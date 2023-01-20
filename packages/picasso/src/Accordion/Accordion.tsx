@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react'
 import cx from 'classnames'
-import MUIAccordion from '@material-ui/core/Accordion'
+import { Accordion as MUIAccordion } from '@material-ui/core'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { StandardProps, TransitionProps } from '@toptal/picasso-shared'
 

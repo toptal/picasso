@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, forwardRef } from 'react'
 import cx from 'classnames'
-import MUIMenuList from '@material-ui/core/MenuList'
+import { MenuList as MUIMenuList } from '@material-ui/core'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 

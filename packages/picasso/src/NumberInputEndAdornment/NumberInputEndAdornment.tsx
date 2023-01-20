@@ -2,7 +2,7 @@
 import React, { RefObject } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, SizeType, isBrowser } from '@toptal/picasso-shared'
-import ButtonBase from '@material-ui/core/ButtonBase'
+import { ButtonBase } from '@material-ui/core'
 import cx from 'classnames'
 
 import InputAdornment from '../InputAdornment'
