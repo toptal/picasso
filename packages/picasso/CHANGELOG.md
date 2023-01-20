@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.0.2
+
+### Patch Changes
+
+- [#3331](https://github.com/toptal/picasso/pull/3331) [`0c5da322`](https://github.com/toptal/picasso/commit/0c5da32206a8fab8dd3f9c5ef0976facdb3fc82b) Thanks [@zorguiala](https://github.com/zorguiala)! - ---
+
+  ### RichTextEditor
+
+  - fix disabled default value bug
+
 ## 31.0.1
 
 ### Patch Changes
