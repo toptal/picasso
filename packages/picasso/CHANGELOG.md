@@ -1,5 +1,13 @@
 # Change Log
 
+## 31.0.1
+
+### Patch Changes
+
+- [#3332](https://github.com/toptal/picasso/pull/3332) [`2eba69f1`](https://github.com/toptal/picasso/commit/2eba69f1b6ff1ff6a8d8a9fd66944196b7498aa9) Thanks [@damianstasik](https://github.com/damianstasik)! - ---
+
+  - import from `@material-ui/core` barrel module in restyled components to fix MUI's side-effects being executed in wrong order
+
 ## 31.0.0
 
 ### Major Changes
