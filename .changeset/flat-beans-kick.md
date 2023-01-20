@@ -4,4 +4,5 @@
 
 ---
 
-- richTextEditor disabled default value bug fix
+### RichTextEditor
+- fix disabled default value bug
