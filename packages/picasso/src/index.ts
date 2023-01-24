@@ -56,7 +56,10 @@ export { default as InputAdornment } from './InputAdornment'
 export type { InputAdornmentProps } from './InputAdornment'
 export { TagCompound as Tag } from './TagCompound'
 export type { TagProps } from './Tag'
-export type { TagRectangularProps } from './TagRectangular'
+export type {
+  TagRectangularProps,
+  TypeRectangularVariantType,
+} from './TagRectangular'
 export { default as Link } from './Link'
 export type { LinkProps } from './Link'
 export { default as Loader } from './Loader'
