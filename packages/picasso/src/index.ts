@@ -58,7 +58,7 @@ export { TagCompound as Tag } from './TagCompound'
 export type { TagProps } from './Tag'
 export type {
   TagRectangularProps,
-  TypeRectangularVariantType,
+  TagRectangularVariantType,
 } from './TagRectangular'
 export { default as Link } from './Link'
 export type { LinkProps } from './Link'
