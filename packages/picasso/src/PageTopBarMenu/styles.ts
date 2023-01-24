@@ -13,12 +13,6 @@ export default ({ screens }: Theme) =>
         position: 'relative',
       },
     },
-    xsmall: {
-      [screens('small', 'medium')]: {
-        height: '2em',
-        width: '2em',
-      },
-    },
     content: {
       width: '15em',
       maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
