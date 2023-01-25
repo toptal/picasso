@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.1.1
+
+### Patch Changes
+
+- [#3341](https://github.com/toptal/picasso/pull/3341) [`c9c7a127`](https://github.com/toptal/picasso/commit/c9c7a1276183b4f5ac6fc225dfe64610fb48eae5) Thanks [@augustobmoura](https://github.com/augustobmoura)! - ---
+
+  ### TagRectangular
+
+  - rename exported variant type to the correct name
+
 ## 31.1.0
 
 ### Minor Changes
