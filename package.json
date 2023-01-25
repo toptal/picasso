@@ -64,7 +64,7 @@
     "@svgr/cli": "^6.2.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@toptal/browserslist-config": "^1.2.0",
-    "@toptal/davinci-ci": "^2.1.0",
+    "@toptal/davinci-ci": "^4.0.2",
     "@toptal/davinci-code": "^1.7.2",
     "@toptal/davinci-engine": "^7.6.1",
     "@toptal/davinci-qa": "^12.1.0",
