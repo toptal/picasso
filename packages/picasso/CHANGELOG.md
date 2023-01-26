@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.1.2
+
+### Patch Changes
+
+- [#3338](https://github.com/toptal/picasso/pull/3338) [`462d0383`](https://github.com/toptal/picasso/commit/462d0383d8d0bd309e5dc78a52f356edf2344dbb) Thanks [@OndrejTuma](https://github.com/OndrejTuma)! - ---
+
+  ### PageTopBarMenu
+
+  - fix alignment of Avatar initials on small screens
+
 ## 31.1.1
 
 ### Patch Changes
