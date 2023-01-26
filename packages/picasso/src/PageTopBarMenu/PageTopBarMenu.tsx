@@ -68,12 +68,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
     )
 
     const trigger = isCompactLayout ? (
-      <Avatar
-        size='xxsmall'
-        className={classes.xsmall}
-        name={name}
-        src={avatar as string}
-      />
+      <Avatar size='xxsmall' name={name} src={avatar as string} />
     ) : (
       <UserBadge
         invert

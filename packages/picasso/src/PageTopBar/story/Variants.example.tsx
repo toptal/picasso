@@ -39,10 +39,7 @@ const Example = () => (
           </Container>
         }
         rightContent={
-          <Page.TopBarMenu
-            name='Jacqueline Roque'
-            avatar='./jacqueline-with-flowers-1954-square.jpg'
-          >
+          <Page.TopBarMenu name='Jacqueline Roque'>
             <Menu>
               <Menu.Item>My Account</Menu.Item>
               <Menu.Item>Log Out</Menu.Item>
