@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.1.3
+
+### Patch Changes
+
+- [#3346](https://github.com/toptal/picasso/pull/3346) [`640e009e`](https://github.com/toptal/picasso/commit/640e009e38a9c97f74d5bdeebc56a481451eeb37) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Autocomplete
+
+  - fix typo `data-test-id` -> `data-testid` so `getByTestId` works correctly
+
 ## 31.1.2
 
 ### Patch Changes
