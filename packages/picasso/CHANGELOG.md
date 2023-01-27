@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.1.4
+
+### Patch Changes
+
+- [#3347](https://github.com/toptal/picasso/pull/3347) [`cd8b59d2`](https://github.com/toptal/picasso/commit/cd8b59d279d2bdbbe4fc7e9be941374c6bbe1767) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Autocomplete
+
+  - pass `data-testid` to `Menu.Item` only when `testIds?.menuItem` is available
+
 ## 31.1.3
 
 ### Patch Changes
