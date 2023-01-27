@@ -254,7 +254,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       >
         {options?.map((option, index) => (
           <Menu.Item
-            data-testid={`${testIds?.menuItem}-${index}`}
+            data-testid={
+              testIds?.menuItem ? `${testIds?.menuItem}-${index}` : undefined
+            }
             key={getKey(option)}
             {...getItemProps(index, option)}
             titleCase={false}
