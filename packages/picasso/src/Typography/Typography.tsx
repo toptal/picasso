@@ -1,6 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { PropTypes, Typography as MUITypography } from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { PropTypes, Typography as MUITypography } from '@mui/material'
 import {
   StandardProps,
   ColorType,

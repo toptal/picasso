@@ -5,11 +5,12 @@ import React, {
   useRef,
   useMemo,
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   Slider as MUISlider,
   ValueLabelProps as MUIValueLabelProps,
-} from '@material-ui/core'
+} from '@mui/material'
 import cx from 'classnames'
 
 import SliderValueLabel, { ValueLabelProps } from '../SliderValueLabel'

@@ -1,3 +1,3 @@
 import './styles'
 
-export { Popover as default } from '@material-ui/core'
+export { Popover as default } from '@mui/material'

@@ -1,6 +1,6 @@
 import { ReactNode, FunctionComponent } from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import { AccordionSummary as MUIAccordionSummary } from '@material-ui/core'
+import withStyles from '@mui/styles/withStyles';
+import { AccordionSummary as MUIAccordionSummary } from '@mui/material'
 import { StandardProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -12,9 +12,9 @@ export interface Props extends StandardProps, ButtonOrAnchorProps {
 }
 
 // We can't create here intermediate object for AccordionSummary
-// because MUI ExpansionPanel use type check to set Summary in the
+// because MUI Accordion use type check to set Summary in the
 // correct place of the markdown
-// https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ExpansionPanel/ExpansionPanel.js#L144
+// https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Accordion/Accordion.js#L144
 export default withStyles(styles)(
   MUIAccordionSummary
 ) as FunctionComponent<Props>

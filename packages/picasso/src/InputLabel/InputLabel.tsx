@@ -1,6 +1,7 @@
 import React, { ReactNode, LabelHTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { InputLabel as MUIInputLabel } from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { InputLabel as MUIInputLabel } from '@mui/material'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'

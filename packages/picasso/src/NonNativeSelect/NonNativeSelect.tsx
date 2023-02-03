@@ -2,10 +2,10 @@
 import React, { useRef } from 'react'
 import PopperJs from 'popper.js'
 import cx from 'classnames'
-import { Theme, makeStyles } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
-
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { Search16 } from '../Icon'
+
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
 import MenuItem from '../MenuItem'
@@ -28,6 +28,7 @@ import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
 import NonNativeSelectLimitFooter from '../NonNativeSelectLimitFooter'
 import InputAdornment from '../InputAdornment'
+import { capitalize } from '@mui/material/utils';
 
 const useStyles = makeStyles<Theme>(styles)
 

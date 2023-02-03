@@ -1,5 +1,6 @@
 import React, { forwardRef, MouseEvent, ReactNode } from 'react'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Container, { VariantType as ContainerVariants } from '../Container'

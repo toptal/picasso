@@ -1,6 +1,8 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { BaseProps, ColorType } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 import Container, { VariantType as ContainerVariants } from '../Container'
 import Typography from '../Typography'

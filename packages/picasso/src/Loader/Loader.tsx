@@ -1,12 +1,13 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import cx from 'classnames'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useAppConfig } from '@toptal/picasso-provider'
-
 import CircularProgress from '../CircularProgress'
+
 import styles from './styles'
+import { capitalize } from '@mui/material/utils';
 
 const DEFAULT_PROGRESS = 35
 

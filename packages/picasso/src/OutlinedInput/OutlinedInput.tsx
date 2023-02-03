@@ -7,19 +7,20 @@ import React, {
   forwardRef,
 } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { OutlinedInput as MUIOutlinedInput } from '@material-ui/core'
-import { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import capitalize from '@material-ui/core/utils/capitalize'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { OutlinedInput as MUIOutlinedInput } from '@mui/material'
+import { InputBaseComponentProps } from '@mui/material/InputBase'
 import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
-
 import InputAdornment from '../InputAdornment'
+
 import ButtonCircular from '../ButtonCircular'
 import { CloseMinor16 } from '../Icon'
 import styles from './styles'
 import noop from '../utils/noop'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import InputValidIconAdornment from '../InputValidIconAdornment'
+import { capitalize } from '@mui/material/utils';
 
 type ValueType =
   | (string | number | boolean | object)[]

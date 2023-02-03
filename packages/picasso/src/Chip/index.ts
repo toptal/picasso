@@ -1,3 +1,3 @@
 import './styles'
 
-export { Chip as default } from '@material-ui/core'
+export { Chip as default } from '@mui/material'

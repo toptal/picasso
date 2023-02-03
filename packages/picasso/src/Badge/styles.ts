@@ -1,5 +1,8 @@
 import { rem } from '@toptal/picasso-shared'
-import { Theme, createStyles, StyleRules } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+
+import { StyleRules } from '@mui/styles';
+import createStyles from '@mui/styles/createStyles';
 
 const getSizeProps = (unitInRem: string): StyleRules[keyof {}] => ({
   borderRadius: unitInRem,

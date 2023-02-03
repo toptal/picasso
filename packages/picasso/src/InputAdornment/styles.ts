@@ -1,4 +1,5 @@
-import { Theme, createStyles } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import createStyles from '@mui/styles/createStyles';
 import { alpha } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 

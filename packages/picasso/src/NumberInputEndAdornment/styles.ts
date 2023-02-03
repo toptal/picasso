@@ -1,4 +1,6 @@
-import { createStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+
+import createStyles from '@mui/styles/createStyles';
 
 export default ({ palette, transitions, sizes: { borderRadius } }: Theme) =>
   createStyles({

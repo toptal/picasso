@@ -6,8 +6,9 @@ import React, {
   useEffect,
 } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Collapse as MUICollapse } from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { Collapse as MUICollapse } from '@mui/material'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import TableRow from '../TableRow'

@@ -4,8 +4,9 @@ import {
   OverridableComponent,
 } from '@toptal/picasso-shared'
 import React, { forwardRef, memo, ElementType, ReactElement } from 'react'
-import { MenuItemProps } from '@material-ui/core/MenuItem'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import { MenuItemProps } from '@mui/material/MenuItem'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import cx from 'classnames'
 
 import MenuItem from '../MenuItem'

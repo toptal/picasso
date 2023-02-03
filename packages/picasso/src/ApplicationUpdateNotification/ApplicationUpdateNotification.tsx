@@ -1,7 +1,8 @@
 import React, { forwardRef, ReactNode } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { SnackbarContent } from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { SnackbarContent } from '@mui/material'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import Typography from '../Typography'

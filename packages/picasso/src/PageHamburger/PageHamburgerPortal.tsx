@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import Portal from '@material-ui/core/Portal'
+import Portal from '@mui/material/Portal'
 import { getElementById } from '@toptal/picasso-shared'
 
 import { useHamburgerContext } from './PageHamburgerContext'

@@ -12,13 +12,13 @@ import React, {
   MouseEvent,
   Ref,
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import cx from 'classnames'
 import { BaseProps, isForwardRef } from '@toptal/picasso-shared'
 import { PopperOptions } from 'popper.js'
-
 import Input, { InputProps } from '../Input'
+
 import { MenuCompound as Menu } from '../MenuCompound'
 import Container from '../Container'
 import Loader from '../Loader'
@@ -34,6 +34,7 @@ import styles from './styles'
 import { BaseInputProps, Status } from '../OutlinedInput'
 import unsafeErrorLog from '../utils/unsafe-error-log'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import { capitalize } from '@mui/material/utils';
 
 export interface Props
   extends BaseProps,

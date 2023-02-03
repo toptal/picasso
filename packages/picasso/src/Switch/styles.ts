@@ -1,4 +1,4 @@
-import { createStyles } from '@material-ui/core/styles'
+import createStyles from '@mui/styles/createStyles';
 import { outline } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 

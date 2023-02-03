@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
-import { FormGroup, FormGroupProps } from '@material-ui/core'
-import { GridSize } from '@material-ui/core/Grid'
-import { makeStyles, Theme, useTheme } from '@material-ui/core/styles'
+import { FormGroup, FormGroupProps } from '@mui/material'
+import { GridSize } from '@mui/material/Grid'
+import { Theme, useTheme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import cx from 'classnames'
 
 import { GridProps } from '../Grid'

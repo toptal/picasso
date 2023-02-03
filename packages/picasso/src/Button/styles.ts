@@ -1,4 +1,5 @@
-import { createStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
 import { alpha, outline, mix } from '@toptal/picasso-shared'
 
 const ICON_SPACING = '0.5em'

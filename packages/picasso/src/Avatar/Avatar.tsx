@@ -1,6 +1,8 @@
 import React, { HTMLAttributes, useCallback } from 'react'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
 import getNameInitials from '../utils/get-name-initials'

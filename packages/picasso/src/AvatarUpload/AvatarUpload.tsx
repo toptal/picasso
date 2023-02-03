@@ -1,4 +1,5 @@
-import { capitalize, makeStyles, Theme } from '@material-ui/core'
+import { capitalize, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import React, {

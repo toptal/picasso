@@ -1,7 +1,8 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import cx from 'classnames'
-import { InputAdornment } from '@material-ui/core'
+import { InputAdornment } from '@mui/material'
 
 import styles from './styles'
 import InputMultilineAdornment from '../InputMultilineAdornment'

@@ -6,9 +6,10 @@ import React, {
   useRef,
   useCallback,
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Dialog } from '@material-ui/core'
-import { PaperProps } from '@material-ui/core/Paper'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { Dialog } from '@mui/material'
+import { PaperProps } from '@mui/material/Paper'
 import cx from 'classnames'
 import {
   StandardProps,
@@ -217,13 +218,12 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}
       onClose={handleClose}
-      onEnter={onOpen}
       open={open}
       transitionDuration={transitionDuration}
       maxWidth={false}
-      disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
-      TransitionProps={transitionProps}
-    >
+      // we need our own mechanism to keep focus inside the Modals
+      disableEnforceFocus
+      TransitionProps={transitionProps}>
       <ModalContext.Provider value>{children}</ModalContext.Provider>
 
       {onClose && (
@@ -237,7 +237,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
         </ButtonCircular>
       )}
     </Dialog>
-  )
+  );
 })
 
 Modal.defaultProps = {

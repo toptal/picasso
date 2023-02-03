@@ -1,4 +1,5 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
 import { rem } from '@toptal/picasso-shared'
 
 // copied and manually changed from packages/picasso-provider/src/Picasso/config/shadows.ts

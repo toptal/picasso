@@ -8,8 +8,9 @@ import React, {
   useRef,
 } from 'react'
 import cx from 'classnames'
-import { Theme, makeStyles } from '@material-ui/core/styles'
-import { MenuItem as MUIMenuItem } from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { MenuItem as MUIMenuItem } from '@mui/material'
 import {
   useTitleCase,
   BaseProps,

@@ -7,8 +7,9 @@ import React, {
   useState,
 } from 'react'
 import cx from 'classnames'
-import { Accordion as MUIAccordion } from '@material-ui/core'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Accordion as MUIAccordion } from '@mui/material'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { StandardProps, TransitionProps } from '@toptal/picasso-shared'
 
 import { ArrowDownMinor16 } from '../Icon'

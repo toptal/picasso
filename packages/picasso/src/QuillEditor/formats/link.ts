@@ -6,7 +6,7 @@ import getTypographyClassName from '../../Typography/utils/get-typography-class-
 const QuillLink = Quill.import('formats/link')
 
 const makeLinkFormat = (typographyClasses: Classes) =>
-  class LinkBlot extends QuillLink {
+  (class LinkBlot extends QuillLink {
     static create(value: string) {
       const node = super.create(value)
 
@@ -26,6 +26,6 @@ const makeLinkFormat = (typographyClasses: Classes) =>
 
       return node
     }
-  }
+  })
 
 export default makeLinkFormat

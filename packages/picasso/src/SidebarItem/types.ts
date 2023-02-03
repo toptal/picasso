@@ -1,6 +1,6 @@
 import React, { ElementType, ReactElement } from 'react'
 import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import { MenuItemProps } from '@material-ui/core/MenuItem'
+import { MenuItemProps } from '@mui/material/MenuItem'
 
 import { MenuItemAttributes } from '../MenuItem'
 import { VariantType } from '../PageSidebar/types'

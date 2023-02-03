@@ -1,6 +1,7 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Grid as MUIGrid, GridSize } from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { Grid as MUIGrid, GridSize } from '@mui/material'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'

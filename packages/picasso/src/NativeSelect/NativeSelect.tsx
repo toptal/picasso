@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
 import cx from 'classnames'
-import { NativeSelect as MUINativeSelect } from '@material-ui/core'
-import { Theme, makeStyles } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
-
+import { NativeSelect as MUINativeSelect } from '@mui/material'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import OutlinedInput from '../OutlinedInput'
+
 import SelectCaret from '../SelectCaret'
 import {
   ValueType,
@@ -19,6 +19,7 @@ import NativeSelectOptions from '../NativeSelectOptions'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
+import { capitalize } from '@mui/material/utils';
 
 const useStyles = makeStyles<Theme>(styles)
 

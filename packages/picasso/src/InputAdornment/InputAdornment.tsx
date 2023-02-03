@@ -4,8 +4,9 @@ import React, {
   MouseEvent,
   useCallback,
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { InputAdornment as MUIInputAdornment } from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { InputAdornment as MUIInputAdornment } from '@mui/material'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 

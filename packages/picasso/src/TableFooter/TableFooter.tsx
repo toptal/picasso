@@ -1,5 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { TableFooter as MUITableFooter } from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { TableFooter as MUITableFooter } from '@mui/material'
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 

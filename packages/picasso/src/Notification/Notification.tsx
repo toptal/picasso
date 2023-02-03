@@ -6,12 +6,11 @@ import React, {
   cloneElement,
   HTMLAttributes,
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { SnackbarContent } from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { SnackbarContent } from '@mui/material'
 import cx from 'classnames'
-import capitalize from '@material-ui/core/utils/capitalize'
 import { StandardProps } from '@toptal/picasso-shared'
-
 import {
   CloseMinor16,
   ExclamationSolid16,
@@ -19,10 +18,12 @@ import {
   CheckSolid24,
   Info24,
 } from '../Icon'
+
 import Container from '../Container'
 import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
 import Typography from '../Typography'
+import { capitalize } from '@mui/material/utils';
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 

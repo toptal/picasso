@@ -1,6 +1,7 @@
 import React, { ComponentProps, forwardRef, ReactNode } from 'react'
-import { Radio as MUIRadio } from '@material-ui/core'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Radio as MUIRadio } from '@mui/material'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   StandardProps,
   ButtonOrAnchorProps,

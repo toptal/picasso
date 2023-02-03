@@ -15,7 +15,9 @@ import {
   TextLabelProps,
   Classes,
 } from '@toptal/picasso-shared'
-import { makeStyles, Theme, ButtonBase } from '@material-ui/core'
+import { Theme, ButtonBase } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 import styles from './styles'
 import Loader from '../Loader'

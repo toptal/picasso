@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import cx from 'classnames'
 
 import {

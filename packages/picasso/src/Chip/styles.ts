@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(({ palette, sizes }: Theme) => ({
