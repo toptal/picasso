@@ -41,8 +41,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disableBackdropClick?: boolean
   /** Callback executed when attempting to close modal */
   onClose?: () => void
-  /** Callback executed when modal is being opened */
-  onOpen?: () => void
   /** A node, or a function that returns node. The container will have the portal children appended to it. */
   container?: ContainerValue
   /** If `true`, the backdrop is not rendered */
@@ -119,7 +117,6 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     size = 'medium',
     onBackdropClick,
     onClose,
-    onOpen,
     className,
     style,
     container,
