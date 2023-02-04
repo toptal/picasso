@@ -42,6 +42,7 @@ export interface Props
     left?: SpacingType
     right?: SpacingType
   }
+  /** The placement of the content element relative to anchor element. */
   placement?: PopperPlacementType
   /** Disable auto focus of first item in list or item */
   disableAutoFocus?: boolean
