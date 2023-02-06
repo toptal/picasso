@@ -5,7 +5,7 @@ const page = PicassoBook.section('Forms').createPage(
   'Select',
   `Selects are interactive elements that prompt users to make selections
     or take actions from a set of list of available options.
-    
+
   ${PicassoBook.createSourceLink(__filename)}
     `
 )
@@ -43,7 +43,7 @@ or\n
     },
     filterOptions: {
       defaultValue: `(options: Option[], searchValue: string) =>
-        options.filter(option => option.text.includes(searchValue))
+        options.filter(option => option.text.toLowerCase().includes(searchValue.trim().toLowerCase())))
       `,
     },
   },
