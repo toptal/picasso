@@ -29,6 +29,7 @@ const MenuExample = (props: MenuProps) => {
 
   return (
     <Container style={{ width: '240px' }}>
+      <div data-testid='spacer' style={{ height: 1 }} />
       <Menu {...props} data-testid='menu'>
         <Menu.Item data-testid='item-a'>Item A</Menu.Item>
         <Menu.Item menu={menuForItemB} data-testid='item-b'>
@@ -86,6 +87,7 @@ describe('Menu', () => {
 
   it('navigates drilldown menu', () => {
     cy.mount(<MenuExample variant='drilldown' />)
+    cy.getByTestId('spacer').trigger('mouseover')
     cy.getByTestId('menu-b').should('not.exist')
     cy.get('body').happoScreenshot({
       component,
