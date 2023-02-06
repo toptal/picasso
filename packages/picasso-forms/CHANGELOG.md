@@ -1,5 +1,13 @@
 # Change Log
 
+## 52.0.1
+
+### Patch Changes
+
+- [#3354](https://github.com/toptal/picasso/pull/3354) [`7d99beca`](https://github.com/toptal/picasso/commit/7d99beca2c569b3395018e50515f185479d9d615) Thanks [@dependabot](https://github.com/apps/dependabot)! - ---
+
+  - bump `final-form` from `4.20.7` to `4.20.9`
+
 ## 52.0.0
 
 ### Patch Changes
