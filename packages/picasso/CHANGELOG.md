@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.3.0
+
+### Minor Changes
+
+- [#3365](https://github.com/toptal/picasso/pull/3365) [`6d9a4064`](https://github.com/toptal/picasso/commit/6d9a40640423a12d1c4dbb627fa63caa0b3fbe20) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Select
+
+  - add new `filterOptions` prop to provide custom filtering functionality
+
 ## 31.2.0
 
 ### Minor Changes
