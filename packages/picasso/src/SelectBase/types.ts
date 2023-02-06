@@ -91,7 +91,7 @@ export interface SelectProps<
   limit?: number
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
-  /** A function that takes an array of options and a value and returns filtered options */
+  /** A function that is invoked during search. It takes an array of options and a search value and returns filtered options */
   filterOptions?: (
     options: Option[],
     searchValue: string,

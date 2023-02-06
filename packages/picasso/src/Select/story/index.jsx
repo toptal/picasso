@@ -130,6 +130,7 @@ page
   })
   .addExample('Select/story/FilterOptions.example.tsx', {
     title: 'Filter options',
-    description: 'Filter options by custom function (e.g. ends with search)',
+    description:
+      'Use a custom filter function for search results (e.g. option text ends with search input)',
     takeScreenshot: false,
   })

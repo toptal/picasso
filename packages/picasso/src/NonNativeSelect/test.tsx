@@ -458,7 +458,7 @@ describe('NonNativeSelect', () => {
         placeholder,
         searchPlaceholder,
         searchThreshold: -1,
-        // for testing purposes, we want to filter out all options that doesn't contain the search value
+        // for testing purposes, we want to filter out all options that don't contain the search value
         filterOptions: (options, searchValue) =>
           options.filter(option => !option.text.includes(searchValue)),
       })
