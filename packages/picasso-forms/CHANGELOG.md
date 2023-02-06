@@ -1,5 +1,13 @@
 # Change Log
 
+## 52.1.0
+
+### Minor Changes
+
+- [#3367](https://github.com/toptal/picasso/pull/3367) [`39a06894`](https://github.com/toptal/picasso/commit/39a068943852ea2406bd3a806485c39565867bac) Thanks [@mkrl](https://github.com/mkrl)! - ---
+
+  - picasso-forms is now distributed as a side-effects free package
+
 ## 52.0.1
 
 ### Patch Changes
