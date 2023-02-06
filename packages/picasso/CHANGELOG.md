@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.2.0
+
+### Minor Changes
+
+- [#3356](https://github.com/toptal/picasso/pull/3356) [`db764470`](https://github.com/toptal/picasso/commit/db7644708bbe9f6703f5449ff2329fd51cf39ac0) Thanks [@sofiaternovskaya](https://github.com/sofiaternovskaya)! - ---
+
+  ### Icon
+
+  - add `TimeSolid16` and `TimeSolid24` icons
+
 ## 31.1.4
 
 ### Patch Changes
