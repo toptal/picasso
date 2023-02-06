@@ -41,6 +41,11 @@ or\n
         name: 'boolean',
       },
     },
+    filterOptions: {
+      defaultValue: `(options: Option[], searchValue: string) =>
+        options.filter(option => option.text.includes(searchValue))
+      `,
+    },
   },
 })
 
@@ -121,5 +126,10 @@ page
   })
   .addExample('Select/story/Autofill.example.tsx', {
     title: 'Disable autofilling',
+    takeScreenshot: false,
+  })
+  .addExample('Select/story/FilterOptions.example.tsx', {
+    title: 'Filter options',
+    description: 'Filter options by custom function (e.g. ends with search)',
     takeScreenshot: false,
   })

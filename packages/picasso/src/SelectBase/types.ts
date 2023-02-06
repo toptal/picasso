@@ -91,6 +91,12 @@ export interface SelectProps<
   limit?: number
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
+  /** A function that takes an array of options and a value and returns filtered options */
+  filterOptions?: (
+    options: Option[],
+    searchValue: string,
+    getDisplayValue?: (option: Option | null) => string
+  ) => Option[]
   ref?: React.Ref<HTMLInputElement>
   testIds?: OutlinedInputProps['testIds'] & {
     noOptions?: string

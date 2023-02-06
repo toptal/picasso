@@ -1,28 +1,39 @@
 import { isSubstring } from '../../../utils'
 import { Option, OptionGroups } from '../../types'
 import isOptionsType from '../../utils/is-options-type'
+import getOptionText from '../get-option-text'
 
 interface Props {
   options: Option[] | OptionGroups
   filterOptionsValue: string
   getDisplayValue: (option: Option | null) => string
+  filterFlatOptions?: (
+    options: Option[],
+    filterOptionsValue: string,
+    getDisplayValue: (option: Option | null) => string
+  ) => Option[]
 }
 
 const filterOptions = ({
   options,
   filterOptionsValue,
   getDisplayValue,
+  filterFlatOptions: filterFlatOptionsFunction = filterFlatOptions,
 }: Props): Option[] | OptionGroups => {
   if (isOptionsType(options)) {
-    return filterFlatOptions({ options, filterOptionsValue, getDisplayValue })
+    return filterFlatOptionsFunction(
+      options,
+      filterOptionsValue,
+      getDisplayValue
+    )
   }
 
   return Object.keys(options).reduce((result: OptionGroups, group) => {
-    const filteredFlatOptions = filterFlatOptions({
-      options: options[group],
+    const filteredFlatOptions = filterFlatOptionsFunction(
+      options[group],
       filterOptionsValue,
-      getDisplayValue,
-    })
+      getDisplayValue
+    )
 
     if (filteredFlatOptions.length > 0) {
       result[group] = filteredFlatOptions
@@ -32,11 +43,11 @@ const filterOptions = ({
   }, {})
 }
 
-const filterFlatOptions = ({
-  options,
-  filterOptionsValue,
-  getDisplayValue,
-}: Props & { options: Option[] }): Option[] =>
+export const filterFlatOptions = (
+  options: Option[],
+  filterOptionsValue: string,
+  getDisplayValue: (option: Option | null) => string = getOptionText
+): Option[] =>
   options.filter(option =>
     isSubstring(filterOptionsValue, getDisplayValue(option))
   )

@@ -23,6 +23,11 @@ export const EMPTY_INPUT_VALUE = ''
 
 export interface Props {
   getDisplayValue: (option: Option | null) => string
+  filterFlatOptions?: (
+    options: Option[],
+    filterOptionsValue: string,
+    getDisplayValue: (option: Option | null) => string
+  ) => Option[]
   options: Option[] | OptionGroups
   disabled?: boolean
   multiple?: boolean
@@ -34,6 +39,7 @@ export interface Props {
 const useSelectState = (props: Props): UseSelectStateOutput => {
   const {
     getDisplayValue,
+    filterFlatOptions,
     options = [],
     disabled = false,
     multiple,
@@ -69,8 +75,9 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
         options,
         filterOptionsValue,
         getDisplayValue,
+        filterFlatOptions,
       }),
-    [options, filterOptionsValue, getDisplayValue]
+    [options, filterOptionsValue, getDisplayValue, filterFlatOptions]
   )
   const filteredLimitedOptions = useMemo(
     () => limitOptions({ options: filteredOptions, limit }),
