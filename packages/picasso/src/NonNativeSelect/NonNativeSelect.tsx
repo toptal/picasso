@@ -22,6 +22,7 @@ import {
   DEFAULT_LIMIT,
   DEFAULT_SEARCH_THRESHOLD,
   countOptions,
+  filterFlatOptions as defaultFilterOptions,
 } from '../SelectBase'
 import NonNativeSelectOptions from '../NonNativeSelectOptions'
 import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
@@ -35,6 +36,7 @@ const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
 
 export const NonNativeSelect = documentable(
   forwardRef(
+    // eslint-disable-next-line max-lines-per-function
     <T extends ValueType, M extends boolean = false>(
       props: SelectProps<T, M>,
       ref: React.Ref<HTMLInputElement> | null
@@ -69,6 +71,7 @@ export const NonNativeSelect = documentable(
         getDisplayValue = getOptionText,
         options,
         onChange,
+        filterOptions = defaultFilterOptions,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         native,
         testIds,
@@ -87,6 +90,7 @@ export const NonNativeSelect = documentable(
 
       const selectState = useSelectState({
         getDisplayValue,
+        filterFlatOptions: filterOptions,
         options,
         disabled,
         multiple,
@@ -267,6 +271,7 @@ NonNativeSelect.defaultProps = {
   limit: DEFAULT_LIMIT,
   enableAutofill: false,
   searchPlaceholder: 'Search',
+  filterOptions: defaultFilterOptions,
 }
 
 NonNativeSelect.displayName = 'NonNativeSelect'

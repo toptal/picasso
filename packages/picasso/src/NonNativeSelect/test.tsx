@@ -22,6 +22,7 @@ const renderSelect = (
     onChange = () => {},
     renderOption,
     getDisplayValue,
+    filterOptions,
     ...rest
   } = props
 
@@ -37,6 +38,7 @@ const renderSelect = (
       placeholder={placeholder}
       multiple={multiple}
       onChange={onChange}
+      filterOptions={filterOptions}
     />,
     undefined,
     picassoConfig
@@ -444,6 +446,38 @@ describe('NonNativeSelect', () => {
 
     expect(highlightedOption).not.toBeNull()
     expect(highlightedOption?.textContent).toEqual(OPTIONS[2].text)
+  })
+
+  describe('when filterOptions is provided', () => {
+    it('filters options', () => {
+      const placeholder = 'Choose an option...'
+      const searchPlaceholder = 'Search for an option'
+
+      const { getByPlaceholderText, getByRole } = renderSelect({
+        options: OPTIONS,
+        placeholder,
+        searchPlaceholder,
+        searchThreshold: -1,
+        // for testing purposes, we want to filter out all options that don't contain the search value
+        filterOptions: (options, searchValue) =>
+          options.filter(option => !option.text.includes(searchValue)),
+      })
+
+      const selectInput = getByPlaceholderText(placeholder)
+
+      fireEvent.click(selectInput)
+
+      const searchInput = getByPlaceholderText(searchPlaceholder)
+
+      fireEvent.focus(searchInput)
+      fireEvent.change(searchInput, { target: { value: '1' } })
+
+      const menu = getByRole('listbox')
+
+      expect(menu).not.toHaveTextContent(OPTIONS[0].text)
+      expect(menu).toHaveTextContent(OPTIONS[1].text)
+      expect(menu).toHaveTextContent(OPTIONS[2].text)
+    })
   })
 
   describe('when value prop is not updated after onChange', () => {

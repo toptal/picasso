@@ -5,7 +5,7 @@ const page = PicassoBook.section('Forms').createPage(
   'Select',
   `Selects are interactive elements that prompt users to make selections
     or take actions from a set of list of available options.
-    
+
   ${PicassoBook.createSourceLink(__filename)}
     `
 )
@@ -40,6 +40,11 @@ or\n
       type: {
         name: 'boolean',
       },
+    },
+    filterOptions: {
+      defaultValue: `(options: Option[], searchValue: string) =>
+        options.filter(option => option.text.toLowerCase().includes(searchValue.trim().toLowerCase())))
+      `,
     },
   },
 })
@@ -121,5 +126,11 @@ page
   })
   .addExample('Select/story/Autofill.example.tsx', {
     title: 'Disable autofilling',
+    takeScreenshot: false,
+  })
+  .addExample('Select/story/FilterOptions.example.tsx', {
+    title: 'Filter options',
+    description:
+      'Use a custom filter function for search results (e.g. option text ends with search input)',
     takeScreenshot: false,
   })
