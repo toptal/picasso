@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.3.1
+
+### Patch Changes
+
+- [#3360](https://github.com/toptal/picasso/pull/3360) [`924b95fd`](https://github.com/toptal/picasso/commit/924b95fd06d5de4d86fe5c3dbc94d35b1d14d550) Thanks [@ozgurkececioglu](https://github.com/ozgurkececioglu)! - ---
+
+  ### Dropdown
+
+  - add comment for `placement` prop to appear in props table
+
 ## 31.3.0
 
 ### Minor Changes
