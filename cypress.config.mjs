@@ -1,5 +1,5 @@
 import path from 'path'
-import happoTask from 'happo-cypress/task'
+import happoTask from 'happo-cypress/task.js'
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from 'cypress'
 import davinciConfig from '@toptal/davinci-qa/src/configs/cypress.config.js'
@@ -28,20 +28,16 @@ export default defineConfig({
               test: /\.jsx|\.tsx?$/,
               use: [
                 {
-                  loader: require.resolve('babel-loader'),
+                  loader: 'babel-loader',
                   options: {
                     presets: [
-                      require.resolve('@babel/preset-typescript'),
-                      require.resolve('@babel/preset-react'),
+                      '@babel/preset-typescript',
+                      '@babel/preset-react',
                     ],
                     plugins: [
-                      require.resolve(
-                        '@babel/plugin-proposal-nullish-coalescing-operator'
-                      ),
-                      require.resolve(
-                        '@babel/plugin-proposal-optional-chaining'
-                      ),
-                      require.resolve('babel-plugin-istanbul'),
+                      '@babel/plugin-proposal-nullish-coalescing-operator',
+                      '@babel/plugin-proposal-optional-chaining',
+                      'babel-plugin-istanbul',
                     ],
                   },
                 },
@@ -49,7 +45,7 @@ export default defineConfig({
             },
             {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-              loader: require.resolve('url-loader'),
+              loader: 'url-loader',
             },
             {
               test: /\.css$/i,
