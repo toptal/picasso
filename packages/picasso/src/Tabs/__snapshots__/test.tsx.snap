@@ -67,6 +67,69 @@ exports[`Tabs renders 1`] = `
 </div>
 `;
 
+exports[`Tabs renders in full width 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiTabs-root Tabs-horizontal"
+    >
+      <div
+        class="MuiTabs-scroller MuiTabs-fixed"
+        style="overflow: hidden;"
+      >
+        <div
+          class="MuiTabs-flexContainer"
+          role="tablist"
+        >
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit MuiTab-fullWidth"
+            data-testid="tab-1"
+            role="tab"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiTab-wrapper PicassoTab-wrapper"
+            >
+              <div
+                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+              >
+                Tab 1
+              </div>
+            </span>
+          </button>
+          <button
+            aria-selected="false"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit MuiTab-fullWidth"
+            data-testid="tab-2"
+            role="tab"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiTab-wrapper PicassoTab-wrapper"
+            >
+              <div
+                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+              >
+                Tab 2
+              </div>
+            </span>
+          </button>
+        </div>
+        <span
+          class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
+          style="left: 0px; width: 0px;"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Tabs renders in vertical orientation 1`] = `
 <div>
   <div
