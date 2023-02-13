@@ -94,11 +94,15 @@
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",
     "fs-extra": "^8.0.1",
+<<<<<<< HEAD
     "github-markdown-css": "^5.2.0",
     "happo-cypress": "^4.0.1",
     "happo-e2e": "^2.1.2",
     "happo-plugin-storybook": "^3.1.0",
     "happo.io": "^8.3.1",
+=======
+    "github-markdown-css": "^5.1.0",
+>>>>>>> chore: remove unnecessary dependencies
     "jest-canvas-mock": "^2.4.0",
     "lerna": "^6.1.0",
     "madge": "^5.0.1",
