@@ -37,6 +37,5 @@ page
   })
   .addExample('Tabs/story/FullWidth.example.tsx', {
     title: 'Full Width',
-    takeScreenshot: false,
   })
 page.connect(tabStory.chapter)
