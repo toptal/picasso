@@ -70,7 +70,7 @@ jobs:
         uses: actions/dependency-review-action@v3
 
       - name: Install Dependencies
-        uses: toptal/davinci-github-actions/yarn-install@v4.9.0
+        uses: toptal/davinci-github-actions/yarn-install@set-output-deprecation
 
       - name: Syncpack check
         run: yarn syncpack:list
@@ -98,7 +98,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install dependencies from cache
-        uses: toptal/davinci-github-actions/yarn-install@v4.9.0
+        uses: toptal/davinci-github-actions/yarn-install@set-output-deprecation
 
       - name: Visual Tests
         run: yarn happo:storybook

@@ -28,7 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: toptal/davinci-github-actions/yarn-install@v4.9.0
+      - uses: toptal/davinci-github-actions/yarn-install@set-output-deprecation
 
       - name: Build packages
         run: yarn build:package
@@ -57,7 +57,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
 
-      - uses: toptal/davinci-github-actions/yarn-install@v4.9.0
+      - uses: toptal/davinci-github-actions/yarn-install@set-output-deprecation
 
       - name: Get cached packages
         uses: actions/cache@v3
@@ -66,7 +66,7 @@ jobs:
           key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
 
       - name: Run integration tests
-        uses: toptal/davinci-github-actions/integration-tests@v4.9.0
+        uses: toptal/davinci-github-actions/integration-tests@set-output-deprecation
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v3
@@ -83,7 +83,7 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v3
 
-      - uses: toptal/davinci-github-actions/yarn-install@v4.9.0
+      - uses: toptal/davinci-github-actions/yarn-install@set-output-deprecation
 
       - name: Finalize Happo
         run: npx happo-e2e finalize
