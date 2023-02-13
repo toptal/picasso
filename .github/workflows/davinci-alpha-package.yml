@@ -31,8 +31,8 @@ jobs:
       - name: Specify branch
         id: get-branch
         run: |
-          echo "::set-output name=branch::${{ steps.branch.outputs.head_ref }}"
-          echo "::set-output name=sha::${{ steps.branch.outputs.head_sha }}"
+          echo "branch=${{ steps.branch.outputs.head_ref }}" >> $GITHUB_OUTPUT
+          echo "sha=${{ steps.branch.outputs.head_sha }}" >> $GITHUB_OUTPUT
 
       - name: Configure git user
         run: |
