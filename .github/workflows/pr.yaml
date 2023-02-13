@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: toptal/davinci-github-actions/build-push-image@v4.9.0
+      - uses: toptal/davinci-github-actions/build-push-image@set-output-deprecation
         env:
           GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           GCR_ACCOUNT_KEY: ${{ secrets.GCR_ACCOUNT_KEY }}
@@ -58,7 +58,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check missing changeset
-        uses: toptal/davinci-github-actions/report-missing-changeset@v4.9.0
+        uses: toptal/davinci-github-actions/report-missing-changeset@set-output-deprecation
         with:
           github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
 
