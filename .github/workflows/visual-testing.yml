@@ -35,7 +35,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
 
-      - uses: toptal/davinci-github-actions/yarn-install@v4.10.1
+      - uses: toptal/davinci-github-actions/yarn-install@version-fixup
 
       - name: Happo Tests
         run: yarn happo:storybook
