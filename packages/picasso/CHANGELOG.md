@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.4.0
+
+### Minor Changes
+
+- [#3378](https://github.com/toptal/picasso/pull/3378) [`18f16f2a`](https://github.com/toptal/picasso/commit/18f16f2a3f04e3eb82089e6e94f657dd2f26d00e) Thanks [@sachalifs](https://github.com/sachalifs)! - ---
+
+  ### Tabs
+
+  - add `variant` prop
+
 ## 31.3.1
 
 ### Patch Changes
