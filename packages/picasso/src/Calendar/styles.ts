@@ -85,5 +85,6 @@ export default ({ palette, sizes }: Theme) =>
     },
     disabled: {
       color: palette.grey.main,
-    },
+      cursor: 'default'
+    }
   })
