@@ -35,4 +35,7 @@ page
     title: 'Scroll buttons',
     takeScreenshot: false,
   })
+  .addExample('Tabs/story/FullWidth.example.tsx', {
+    title: 'Full Width',
+  })
 page.connect(tabStory.chapter)

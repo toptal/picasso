@@ -21,6 +21,9 @@ export interface Props
 
   /** The tabs orientation (layout flow direction). */
   orientation?: 'horizontal' | 'vertical'
+
+  /** Determines additional display behavior of the tabs */
+  variant?: Extract<TabsProps['variant'], 'scrollable' | 'fullWidth'>
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -36,7 +39,14 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
   props,
   ref
 ) {
-  const { children, orientation, onChange, value, ...rest } = props
+  const {
+    children,
+    orientation,
+    onChange,
+    value,
+    variant = 'scrollable',
+    ...rest
+  } = props
   const classes = useStyles(props)
   const action = useTabAction()
 
@@ -48,11 +58,11 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
         ref={ref}
         onChange={onChange}
         value={value}
-        variant='scrollable'
         action={action}
         scrollButtons='auto'
         ScrollButtonComponent={TabScrollButton}
         orientation={orientation}
+        variant={variant}
       >
         {children}
       </MUITabs>

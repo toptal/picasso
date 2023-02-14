@@ -25,12 +25,17 @@ const renderTabContent = (tab: TabProps, index: number, value: any) => {
 
 const renderTabs = (
   tabs: TabProps[],
-  { value, onChange }: OmitInternalProps<Props, 'children'>,
+  { value, onChange, variant }: OmitInternalProps<Props, 'children'>,
   orientation: 'horizontal' | 'vertical' = 'horizontal'
 ) => {
   return render(
     <TestingPicasso>
-      <Tabs onChange={onChange} value={value} orientation={orientation}>
+      <Tabs
+        onChange={onChange}
+        value={value}
+        orientation={orientation}
+        variant={variant}
+      >
         {tabs.map((tab, index) => (
           <Tabs.Tab
             key={index}
@@ -129,5 +134,14 @@ describe('Tabs', () => {
 
     fireEvent.click(getByTestId('tab-2'))
     expect(onChange).toHaveBeenCalledTimes(0)
+  })
+
+  it('renders in full width', () => {
+    const { container } = renderTabs([{ label: 'Tab 1' }, { label: 'Tab 2' }], {
+      value: false,
+      variant: 'fullWidth',
+    })
+
+    expect(container).toMatchSnapshot()
   })
 })
