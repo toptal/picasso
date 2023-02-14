@@ -23,7 +23,7 @@ export interface Props
   orientation?: 'horizontal' | 'vertical'
 
   /** Determines additional display behavior of the tabs */
-  variant?: TabsProps['variant']
+  variant?: Extract<TabsProps['variant'], 'scrollable' | 'fullWidth'>
 }
 
 const useStyles = makeStyles<Theme>(styles, {
