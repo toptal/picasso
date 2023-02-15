@@ -12224,6 +12224,11 @@ github-markdown-css@^5.2.0:
   resolved "https://registry.yarnpkg.com/github-markdown-css/-/github-markdown-css-5.2.0.tgz#9f9e30f16cbc1d3b76110667b7c36ca3d96c9cdc"
   integrity sha512-hq5RaCInSUZ48bImOZpkppW2/MT44StRgsbsZ8YA4vJFwLKB/Vo3k7R2t+pUGqO+ThG0QDMi96TewV/B3vyItg==
 
+glider-js@^1.7.7:
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/glider-js/-/glider-js-1.7.8.tgz#b9a50bf86d23ec42b58539a8d80400efd710c92a"
+  integrity sha512-env4+yfoNYaeHJmEBGygjcZDpZ5LRUjGhCB6Ag+XNQfvuLVD5PhCYQShBVCAd5On7XfknM57O+V2Fwfcsii3Dw==
+
 glob-parent@^3.1.0, glob-parent@^5.1.1, glob-parent@^5.1.2, glob-parent@^6.0.1, glob-parent@^6.0.2, glob-parent@~5.1.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-6.0.2.tgz#6d237d99083950c79290f24c7642a3de9a28f9e3"
@@ -19073,6 +19078,13 @@ react-focus-lock@^2.1.0:
     react-clientside-effect "^1.2.5"
     use-callback-ref "^1.2.5"
     use-sidecar "^1.0.5"
+
+react-glider@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/react-glider/-/react-glider-4.0.2.tgz#444e9637cb066efd4a88ecd4b20494881467ce58"
+  integrity sha512-nZnkV4x8mSzfhGgrTkMrlL/g07T6hR0bLHg0q1iRumuORwfX+kqxCYoRy4/WXTRhlmurhcFKTaH007Vz2HjeHA==
+  dependencies:
+    glider-js "^1.7.7"
 
 react-helmet-async@1.3.0, react-helmet-async@^1.0.2:
   version "1.3.0"
