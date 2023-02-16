@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.4.1
+
+### Patch Changes
+
+- [#3379](https://github.com/toptal/picasso/pull/3379) [`b81d000c`](https://github.com/toptal/picasso/commit/b81d000c6a976a99eea5df096b35de582b2d7da5) Thanks [@mateusbzerra](https://github.com/mateusbzerra)! - ---
+
+  ### Calendar
+
+  - fix `calendar` disabled dates by adding disabled attribute and default cursor
+
 ## 31.4.0
 
 ### Minor Changes
