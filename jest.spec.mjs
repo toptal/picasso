@@ -14,6 +14,7 @@ const config = {
     '^@toptal/picasso-root/(.*)$': '<rootDir>/$1',
   },
   setupFiles: ['jest-canvas-mock'],
+  transformIgnorePatterns: ["node_modules/(?!@toptal|@topkit|d3|internmap|robust-predicates|delaunator)"]
 }
 
 export default config
