@@ -1,5 +1,13 @@
 # Change Log
 
+## 42.0.1
+
+### Patch Changes
+
+- [#3382](https://github.com/toptal/picasso/pull/3382) [`edd10829`](https://github.com/toptal/picasso/commit/edd10829ce9fe09604d4a4a98e339966795b0573) Thanks [@sashuk](https://github.com/sashuk)! - ---
+
+  - updated d3 dependencies
+
 ## 42.0.0
 
 ### Patch Changes
