@@ -42,6 +42,37 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 ## Included Scripts
 
 
+### v52.2.0
+
+Replaces compound `Form` with `FormNonCompound` and adjusts all the compound components to be directly imported from `picasso-forms`.
+
+#### `non-compound-forms`
+
+```diff
+-<Form>
+-  <Form.Input/>
+-  <Form.CheckboxGroup>
+-    <Form.Checkbox/>
+-  </Form.CheckboxGroup>
+-</Form>
++<FormNonCompound>
++  <Input/>
++  <CheckboxGroup>
++    <Checkbox/>
++  </CheckboxGroup>
++</FormNonCompound>
+```
+
+<details>
+<summary>Command</summary>
+
+```sh
+npx @toptal/picasso-codemod v52.2.0/non-compound-forms src/**/*.tsx
+```
+
+</details>
+
+
 ### v24.0.0
 
 Replaces imports and components from `Sidebar` to `Page.Sidebar`
