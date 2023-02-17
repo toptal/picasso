@@ -4,7 +4,12 @@ import {
   AvatarUploadFileRejection,
   Container,
 } from '@toptal/picasso'
-import { Form, useForm } from '@toptal/picasso-forms'
+import {
+  FormNonCompound as Form,
+  useForm,
+  AvatarUpload,
+  SubmitButton,
+} from '@toptal/picasso-forms'
 
 type FormType = {
   avatarUpload: AvatarUploadFileUpload
@@ -46,7 +51,7 @@ const FormRenderer = () => {
 
   return (
     <>
-      <Form.AvatarUpload
+      <AvatarUpload
         required
         name='avatarUpload'
         onDrop={handleDrop}
@@ -54,7 +59,7 @@ const FormRenderer = () => {
       />
 
       <Container top='small'>
-        <Form.SubmitButton>Submit</Form.SubmitButton>
+        <SubmitButton>Submit</SubmitButton>
       </Container>
     </>
   )

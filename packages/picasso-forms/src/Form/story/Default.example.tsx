@@ -2,7 +2,28 @@ import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { isSubstring } from '@toptal/picasso/utils'
-import { Form } from '@toptal/picasso-forms'
+import {
+  FormNonCompound as Form,
+  NumberInput,
+  Input,
+  RadioGroup,
+  Radio,
+  SubmitButton,
+  ButtonRadio,
+  CheckboxGroup,
+  Checkbox,
+  DatePicker,
+  TimePicker,
+  ButtonCheckbox,
+  Autocomplete,
+  FileInput,
+  Dropzone,
+  AvatarUpload,
+  Rating,
+  TagSelector,
+  Select,
+  Switch,
+} from '@toptal/picasso-forms'
 
 const countries = [
   { value: 'Afghanistan', text: 'Afghanistan' },
@@ -58,7 +79,7 @@ const Example = () => {
       onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
       initialValues={initialValues}
     >
-      <Form.Input
+      <Input
         enableReset
         onResetClick={(set: (value: string) => void) => {
           set('')
@@ -68,59 +89,52 @@ const Example = () => {
         label='First name'
         placeholder='e.g. Bruce'
       />
-      <Form.Input
+      <Input
         required
         name='default-lastName'
         label='Last name'
         placeholder='e.g. Wayne'
       />
-      <Form.NumberInput
+      <NumberInput
         enableReset
         required
         name='default-age'
         label="What's your age?"
         placeholder='e.g. 25'
       />
-      <Form.RadioGroup name='default-gender' label='Gender'>
-        <Form.Radio label='Male' value='male' />
-        <Form.Radio label='Female' value='female' />
-      </Form.RadioGroup>
-      <Form.RadioGroup
-        name='default-gender'
-        label='Gender'
-        horizontal
-        spacing={8}
-      >
-        <Form.ButtonRadio value='male'>Male</Form.ButtonRadio>
-        <Form.ButtonRadio value='female'>Female</Form.ButtonRadio>
-      </Form.RadioGroup>
-      <Form.DatePicker name='default-dateOfBirth' label='Date of birth' />
-      <Form.TimePicker name='default-timeOfBirth' label='Time of birth' />
-      <Form.TagSelector
+      <RadioGroup name='default-gender' label='Gender'>
+        <Radio label='Male' value='male' />
+        <Radio label='Female' value='female' />
+      </RadioGroup>
+      <RadioGroup name='default-gender' label='Gender' horizontal spacing={8}>
+        <ButtonRadio value='male'>Male</ButtonRadio>
+        <ButtonRadio value='female'>Female</ButtonRadio>
+      </RadioGroup>
+      <DatePicker name='default-dateOfBirth' label='Date of birth' />
+      <TimePicker name='default-timeOfBirth' label='Time of birth' />
+      <TagSelector
         name='default-skills'
         label='Skills'
         inputValue={skillInputValue}
         options={skillOptions}
         onInputChange={setSkillInputValue}
       />
-      <Form.CheckboxGroup name='default-hobbies' label='Hobbies'>
-        <Form.Checkbox label='Skiing' value='skiing' />
-        <Form.Checkbox label='Free diving' value='freeDiving' />
-        <Form.Checkbox label='Dancing' value='dancing' />
-      </Form.CheckboxGroup>
-      <Form.CheckboxGroup
+      <CheckboxGroup name='default-hobbies' label='Hobbies'>
+        <Checkbox label='Skiing' value='skiing' />
+        <Checkbox label='Free diving' value='freeDiving' />
+        <Checkbox label='Dancing' value='dancing' />
+      </CheckboxGroup>
+      <CheckboxGroup
         name='default-hobbies'
         label='Hobbies'
         horizontal
         spacing={8}
       >
-        <Form.ButtonCheckbox value='skiing'>Skiing</Form.ButtonCheckbox>
-        <Form.ButtonCheckbox value='freeDiving'>
-          Free diving
-        </Form.ButtonCheckbox>
-        <Form.ButtonCheckbox value='dancing'>Dancing</Form.ButtonCheckbox>
-      </Form.CheckboxGroup>
-      <Form.Select
+        <ButtonCheckbox value='skiing'>Skiing</ButtonCheckbox>
+        <ButtonCheckbox value='freeDiving'>Free diving</ButtonCheckbox>
+        <ButtonCheckbox value='dancing'>Dancing</ButtonCheckbox>
+      </CheckboxGroup>
+      <Select
         enableReset
         required
         name='default-businessType'
@@ -131,13 +145,13 @@ const Example = () => {
           { value: 1, text: 'Individual' },
         ]}
       />
-      <Form.Select
+      <Select
         name='default-origin_country'
         label='Origin country'
         width='auto'
         options={countries}
       />
-      <Form.Autocomplete
+      <Autocomplete
         name='default-current_country'
         label='Current country'
         placeholder='Start typing country...'
@@ -161,41 +175,41 @@ const Example = () => {
         }}
         getDisplayValue={getAutocompleteDisplayValue}
       />
-      <Form.Rating.Stars
+      <Rating.Stars
         name='default-rating'
         label='How much do you love Picasso?'
         required
       />
-      <Form.Rating.Thumbs
+      <Rating.Thumbs
         name='default-thumbs'
         label='Would you recommend picasso?'
         required
       />
-      <Form.FileInput
+      <FileInput
         required
         name='default-resume'
         label='Resume'
         status='No file selected.'
       />
-      <Form.Dropzone label='Attachments' required name='default-attachments' />
-      <Form.AvatarUpload
+      <Dropzone label='Attachments' required name='default-attachments' />
+      <AvatarUpload
         label='Profile photo'
         required
         name='default-avatarUpload'
       />
-      <Form.Checkbox
+      <Checkbox
         required
         name='default-legal'
         label='I confirm that I have legal permission from the client to feature this project.'
       />
-      <Form.Switch
+      <Switch
         name='default-publicProfile'
         label='Public Profile'
         width='auto'
       />
 
       <Container top='small'>
-        <Form.SubmitButton>Submit</Form.SubmitButton>
+        <SubmitButton>Submit</SubmitButton>
       </Container>
     </Form>
   )
