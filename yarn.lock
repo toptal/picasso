@@ -5102,22 +5102,6 @@
     danger "^11.2.2"
     markdown-table "^2.0.0"
 
-"@toptal/davinci-cli-shared@1.10.0":
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-1.10.0.tgz#fe5e558a1fb407fa3dfb220c5b39a4d3a72051ec"
-  integrity sha512-9FQ8/3nsbO7I1jVRAkWkBJgZTGKv/mNyIEgzhjWqZgD8a4Xj+CCgyoa/Cr3mYpiYsmVVPAT1ltQKWTN4ggPk7w==
-  dependencies:
-    analytics-node "^6.2.0"
-    chalk "^4.1.2"
-    execa "^5.1.1"
-    find-yarn-workspace-root "^2.0.0"
-    inquirer "^8.2.0"
-    js-yaml "^4.1.0"
-    read-pkg-up "7.0.1"
-    semver "^7.3.7"
-    uuid "^9.0.0"
-    vorpal "^1.12.0"
-
 "@toptal/davinci-cli-shared@1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-1.7.0.tgz#a66627c38da48bb27d15451bb62ccef162667b00"
@@ -5167,12 +5151,12 @@
   resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.1.tgz#a220538c1bf21cf4ab2e12a6888a47c06a098d07"
   integrity sha512-gKQYU2NxZJ8VLGETCDzlrOayfuELtxoRKFWPCNW7OXfgfNQlOmtoZVy127ZedEZ3K2gn9mPQdEBGH6SOFSKEIw==
 
-"@toptal/davinci-code@^1.7.2":
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-1.7.2.tgz#49dcf187429f5db957c69e8b01bc7a27d69dafd9"
-  integrity sha512-k+dbE5ip3tOPGyJ7LcSl70rrXhzJlJEBIfjoVwmiiOrGSmT6QrHyg6hTTt9vUEtAPjIGdPqYbsz5PNbdHaVlPg==
+"@toptal/davinci-code@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-2.0.2.tgz#9cb57689047bc82891b79311845193fdc54f93db"
+  integrity sha512-UzVH6hSzFY1OYBe8ycQNlImKNIwDPygiJGjiv/iHGzG1THi3oEBgOiCq/M1A/pYPLmd14mSlDc8PlDP5JziVSg==
   dependencies:
-    "@toptal/davinci-cli-shared" "1.10.0"
+    "@toptal/davinci-cli-shared" "2.1.1"
     hygen "^6.2.11"
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
