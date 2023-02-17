@@ -13,8 +13,7 @@ const config = {
       '<rootDir>/packages/picasso-provider/src/index.ts',
     '^@toptal/picasso-root/(.*)$': '<rootDir>/$1',
   },
-  setupFiles: ['jest-canvas-mock'],
-  transformIgnorePatterns: ["node_modules/(?!@toptal|@topkit|d3|internmap|robust-predicates|delaunator)"]
+  setupFiles: ['jest-canvas-mock']
 }
 
 export default config
